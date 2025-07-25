@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Iris ==================== -->
+
+	<ThingDef ParentName="UnfinishedBase">
+		<defName>Rimgate_UnfinishedIrisInstallKit</defName>
+		<label>unfinished iris installation kit</label>
+		<description>An unfinished iris installation kit.</description>
+		<statBases>
+			<Flammability>0</Flammability>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Item/Unfinished/UnfinishedComponent</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stuffCategories Inherit="false" />
+	</ThingDef>
+
+	<!-- ==================== Makeshift Stargate ==================== -->
+
+	<ThingDef ParentName="UnfinishedBase">
+		<defName>Rimgate_UnfinishedMakeshiftStargate</defName>
+		<label>Unfinished makeshift Stargate</label>
+		<description>An unfinished makeshift Stargate.</description>
+		<statBases>
+			<Flammability>0</Flammability>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Item/Unfinished/UnfinishedComponent</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stuffCategories Inherit="false" />
+	</ThingDef>
+
+</Defs>

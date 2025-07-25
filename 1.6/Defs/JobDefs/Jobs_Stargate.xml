@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<JobDef>
+		<defName>Rimgate_EnterStargate</defName>
+		<driverClass>Rimgate.JobDriver_EnterStargate</driverClass>
+		<reportString>Entering TargetA.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+	
+	<JobDef>
+		<defName>Rimgate_DialStargate</defName>
+		<driverClass>Rimgate.JobDriver_DialStargate</driverClass>
+		<reportString>Using TargetA.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+	
+	<JobDef>
+		<defName>Rimgate_BringToStargate</defName>
+		<driverClass>Rimgate.JobDriver_BringToStargate</driverClass>
+		<reportString>Bringing TargetA to TargetB.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+	
+	<JobDef>
+		<defName>Rimgate_InstallIris</defName>
+		<driverClass>Rimgate.JobDriver_InstallIris</driverClass>
+		<reportString>Installing iris on TargetB.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+	
+	<JobDef>
+		<defName>Rimgate_DecodeGlyphs</defName>
+		<driverClass>Rimgate.JobDriver_DecodeGlyphs</driverClass>
+		<reportString>Decoding stargate glyphs.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+ 
+</Defs>

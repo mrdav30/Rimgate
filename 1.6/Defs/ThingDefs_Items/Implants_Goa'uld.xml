@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- ==================== Symbiote ==================== -->
+
+    <ThingDef ParentName="BodyPartBase">
+        <defName>Rimgate_SymbioteImplant</defName>
+        <label>goa'uld symbiote</label>
+        <description>A small, serpentine creature genetically engineered to enhance and sustain a
+            host.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_InstallSymbiote</RecipeDef>
+        </descriptionHyperlinks>
+        <techLevel>Neolithic</techLevel>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGGoauldSymbiote</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <Mass>2</Mass>
+            <MarketValue>800</MarketValue>
+            <MaxHitPoints>100</MaxHitPoints>
+        </statBases>
+        <thingCategories>
+            <li>BodyPartsNatural</li>
+        </thingCategories>
+        <techHediffsTags Inherit="false">
+            <li>Rimgate_GoauldSymbiote_tag</li>
+        </techHediffsTags>
+    </ThingDef>
+
+    <!-- ==================== Jaffa Forehead Symbol Base ==================== -->
+
+    <ThingDef Name="Rimgate_JaffaForeheadSymbolImplantBase" ParentName="BodyPartBase"
+        Abstract="True">
+        <statBases>
+            <Mass>0.05</Mass>
+            <MarketValue>75</MarketValue>
+        </statBases>
+    </ThingDef>
+
+    <!-- =========== Anubis =========== -->
+
+    <ThingDef ParentName="Rimgate_JaffaForeheadSymbolImplantBase">
+        <defName>Rimgate_JaffaForeheadSymbolImplantAnubis</defName>
+        <label>Anubis Jaffa symbol implant</label>
+        <description>A ceremonial implant that marks the bearer as a Jaffa of Anubis. Can be
+            surgically installed in the forehead.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_InstallJaffaForeheadSymbolAnubis</RecipeDef>
+        </descriptionHyperlinks>
+        <techLevel>Neolithic</techLevel>
+        <techHediffsTags>
+            <li>Rimgate_JaffaForeheadSymbolApophis_tag</li>
+        </techHediffsTags>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_JaffaForeheadSymbolImplantBase">
+        <defName>Rimgate_PrimeForeheadSymbolImplantAnubis</defName>
+        <label>Anubis Prime Jaffa symbol implant</label>
+        <description>A ceremonial implant that marks the bearer as a First Prime of Anubis. Can be
+            surgically installed in the forehead.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_InstallPrimeForeheadSymbolAnubis</RecipeDef>
+        </descriptionHyperlinks>
+        <techHediffsTags>
+            <li>Rimgate_PrimeForeheadSymbolApophis_tag</li>
+        </techHediffsTags>
+    </ThingDef>
+
+    <!-- =========== Apophis =========== -->
+
+    <ThingDef ParentName="Rimgate_JaffaForeheadSymbolImplantBase">
+        <defName>Rimgate_JaffaForeheadSymbolImplantApophis</defName>
+        <label>Apophis Jaffa symbol implant</label>
+        <description>A ceremonial implant that marks the bearer as a Jaffa of Apophis. Can be
+            surgically installed in the forehead.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_InstallJaffaForeheadSymbolApophis</RecipeDef>
+        </descriptionHyperlinks>
+        <techHediffsTags>
+            <li>Rimgate_JaffaForeheadSymbolApophis_tag</li>
+        </techHediffsTags>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_JaffaForeheadSymbolImplantBase">
+        <defName>Rimgate_PrimeForeheadSymbolImplantApophis</defName>
+        <label>Apophis Prime Jaffa symbol implant</label>
+        <description>A ceremonial implant that marks the bearer as a First Prime of Apophis. Can be
+            surgically installed in the forehead.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_InstallPrimeForeheadSymbolApophis</RecipeDef>
+        </descriptionHyperlinks>
+        <techHediffsTags>
+            <li>Rimgate_PrimeForeheadSymbolApophis_tag</li>
+        </techHediffsTags>
+    </ThingDef>
+
+    <!-- =========== Ra =========== -->
+
+    <ThingDef ParentName="Rimgate_JaffaForeheadSymbolImplantBase">
+        <defName>Rimgate_JaffaForeheadSymbolImplantRa</defName>
+        <label>Ra Jaffa symbol implant</label>
+        <description>A ceremonial implant that marks the bearer as a Jaffa of Ra. Can be surgically
+            installed in the forehead.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_InstallJaffaForeheadSymbolRa</RecipeDef>
+        </descriptionHyperlinks>
+        <techHediffsTags>
+            <li>Rimgate_JaffaForeheadSymbolRa_tag</li>
+        </techHediffsTags>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_JaffaForeheadSymbolImplantBase">
+        <defName>Rimgate_PrimeForeheadSymbolImplantRa</defName>
+        <label>Ra Prime Jaffa symbol implant</label>
+        <description>A ceremonial implant that marks the bearer as a First Prime of Ra. Can be
+            surgically installed in the forehead.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_InstallPrimeForeheadSymbolRa</RecipeDef>
+        </descriptionHyperlinks>
+        <techHediffsTags>
+            <li>Rimgate_PrimeForeheadSymbolRa_tag</li>
+        </techHediffsTags>
+    </ThingDef>
+
+</Defs>

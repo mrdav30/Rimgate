@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ======== Child ========= -->
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithChild</defName>
+    <title>Wraith Child</title>
+    <titleShort>Wraith Child</titleShort>
+    <baseDesc>[PAWN_nameDef] grew up in the Wraith empire.</baseDesc>
+    <slot>Childhood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithChildBackStory</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <!-- ======== Adult ========= -->
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithQueen</defName>
+    <title>Wraith Queen</title>
+    <titleShort>Wraith Queen</titleShort>
+    <baseDesc>[PAWN_nameDef] is a Hive Queen. They rule the wraith empire.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithQueenBackStory</li>
+    </spawnCategories>
+    <skillGains>
+      <Melee>8</Melee>
+      <Shooting>8</Shooting>
+      <Mining>-12</Mining>
+      <Construction>-12</Construction>
+      <Cooking>-12</Cooking>
+      <Plants>-12</Plants>
+      <Animals>12</Animals>
+      <Crafting>12</Crafting>
+      <Artistic>12</Artistic>
+      <Medicine>12</Medicine>
+      <Social>12</Social>
+      <Intellectual>12</Intellectual>
+    </skillGains>
+    <forcedTraits>
+      <Beauty>2</Beauty>
+      <Greedy>0</Greedy>
+    </forcedTraits>
+    <workDisables>
+      <li>ManualDumb</li>
+    </workDisables>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithCommander</defName>
+    <title>Wraith Commander</title>
+    <titleShort>Wraith Commander</titleShort>
+    <baseDesc>[PAWN_nameDef] is a wraith commander. They assit the hive queen. </baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithCommanderBackStory</li>
+    </spawnCategories>
+    <skillGains>
+      <Melee>4</Melee>
+      <Shooting>4</Shooting>
+      <Artistic>4</Artistic>
+      <Medicine>4</Medicine>
+      <Social>4</Social>
+      <Intellectual>5</Intellectual>
+    </skillGains>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithWarrior</defName>
+    <title>Wraith Warrior</title>
+    <titleShort>Wraith Warrior</titleShort>
+    <baseDesc>[PAWN_nameDef] is a warrior. They are the military cast of the wraith empire.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithWarriorBackStory</li>
+    </spawnCategories>
+    <skillGains>
+      <Melee>6</Melee>
+      <Shooting>6</Shooting>
+      <Medicine>4</Medicine>
+      <Social>0</Social>
+      <Intellectual>-12</Intellectual>
+    </skillGains>
+  </BackstoryDef>
+
+</Defs>

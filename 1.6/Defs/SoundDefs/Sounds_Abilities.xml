@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <SoundDef>
+        <defName>Rimgate_WraitDrainLifeCast</defName>
+        <context>MapOnly</context>
+        <maxSimultaneous>1</maxSimultaneous>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>Abilities/RG_Wraith_Drain_Life_Cast</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>42</volumeRange>
+                <distRange>20~50</distRange>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+    <SoundDef>
+        <defName>Rimgate_WraithCocoonTrapCast</defName>
+        <context>MapOnly</context>
+        <subSounds>
+            <li>
+                <grains>
+                    <li Class="AudioGrain_Clip">
+                        <clipPath>Abilities/RG_Wraith_Cocoon_Trap_Cast</clipPath>
+                    </li>
+                </grains>
+                <volumeRange>42</volumeRange>
+                <pitchRange>
+                    <min>0.9770588</min>
+                    <max>1.137647</max>
+                </pitchRange>
+                <distRange>20~50</distRange>
+                <sustainLoop>False</sustainLoop>
+            </li>
+        </subSounds>
+    </SoundDef>
+
+</Defs>

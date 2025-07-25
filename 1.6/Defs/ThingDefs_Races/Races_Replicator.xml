@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Replicator - fast melee -->
+
+  <ThingDef ParentName="BaseMechanoid">
+    <defName>Rimgate_Replicator</defName>
+    <label>replicator</label>
+    <description>A mechanical, spider-like creature composed of self-replicating blocks of metal.
+      Highly adaptable and extremely dangerous, specializing in rapid approach and close-range
+      combat.</description>
+    <tools>
+      <li>
+        <label>left blade</label>
+        <capacities>
+          <li>Cut</li>
+          <li>Stab</li>
+          <li>Rimgate_SiegeBlunt</li>
+        </capacities>
+        <power>20</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+      <li>
+        <label>right blade</label>
+        <capacities>
+          <li>Cut</li>
+          <li>Stab</li>
+          <li>Rimgate_SiegeBlunt</li>
+        </capacities>
+        <power>20</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+      <li>
+        <label>head</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Rimgate_SiegeBlunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+      <li>
+        <label>cutting mandibles</label>
+        <capacities>
+          <li>Cut</li>
+          <li>Rimgate_SiegeBlunt</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>1.5</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+      </li>
+    </tools>
+    <statBases>
+      <MarketValue>350</MarketValue>
+      <ArmorRating_Sharp>0.56</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.20</ArmorRating_Heat>
+      <PsychicSensitivity>0.75</PsychicSensitivity>
+      <MoveSpeed>4.7</MoveSpeed>
+      <Flammability>0.1</Flammability>
+      <BandwidthCost MayRequire="Ludeon.Rimworld.Biotech">4</BandwidthCost>
+      <Wildness>1.0</Wildness>
+      <MoveSpeed>4.5</MoveSpeed>
+    </statBases>
+    <race>
+      <body>Rimgate_Replicator</body>
+      <thinkTreeMain>Mechanoid</thinkTreeMain>
+      <thinkTreeConstant>MechConstant</thinkTreeConstant>
+      <intelligence>ToolUser</intelligence>
+      <nameCategory>NoName</nameCategory>
+      <needsRest>false</needsRest>
+      <hasGenders>false</hasGenders>
+      <ageGenerationCurve>
+        <points>
+          <li>(0, 1)</li>
+          <li>(100, 1)</li>
+        </points>
+      </ageGenerationCurve>
+      <lifeExpectancy>9999</lifeExpectancy>
+
+      <soundMeleeHitPawn>Pawn_Melee_MechanoidSlash_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_MechanoidSlash_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_MechanoidSlash_Miss</soundMeleeMiss>
+
+      <meatLabel>metal bits</meatLabel>
+      <meatMarketValue>0</meatMarketValue>
+
+      <trainability>None</trainability>
+      <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+
+      <baseBodySize>1.0</baseBodySize>
+      <baseHealthScale>1.32</baseHealthScale>
+
+      <gestationPeriodDays>0</gestationPeriodDays>
+      <manhunterOnDamageChance>0.15</manhunterOnDamageChance>
+
+      <lifeStageAges>
+        <li>
+          <def>MechanoidFullyFormed</def>
+          <minAge>0</minAge>
+          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+        </li>
+      </lifeStageAges>
+    </race>
+    <butcherProducts>
+      <Steel>20</Steel>
+      <Plasteel>5</Plasteel>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </butcherProducts>
+    <comps Inherit="False">
+      <li Class="CompProperties_CanBeDormant" />
+      <li Class="CompProperties_WakeUpDormant">
+        <wakeUpOnDamage>true</wakeUpOnDamage>
+        <wakeUpCheckRadius>30</wakeUpCheckRadius>
+        <wakeUpSound>MechanoidsWakeUp</wakeUpSound>
+      </li>
+    </comps>
+    <tradeTags>
+      <li>Mechanoid</li>
+    </tradeTags>
+  </ThingDef>
+
+</Defs>

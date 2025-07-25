@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<!-- ==================== Symbiote ==================== -->
+
+	<HediffDef>
+		<defName>Rimgate_SymbioteImplant</defName>
+		<hediffClass>Rimgate.Hediff_GoauldSymbiote</hediffClass>
+		<label>symbiote host</label>
+		<labelNoun>a symbiote host</labelNoun>
+		<description>A Goa'uld symbiote.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
+		</descriptionHyperlinks>
+		<tendable>false</tendable>
+		<isBad>false</isBad>
+		<spawnThingOnRemoved>Rimgate_SymbioteImplant</spawnThingOnRemoved>
+		<countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+		<addedPartProps>
+			<partEfficiency>1</partEfficiency>
+			<solid>false</solid>
+			<betterThanNatural>true</betterThanNatural>
+		</addedPartProps>
+		<comps>
+			<!-- Passive Healing -->
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.05</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+			<li Class="Rimgate.HediffCompProperties_GoauldSymbiote">
+				<lifespanFactor>3.75</lifespanFactor>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>symbiote host</label>
+				<painFactor>0.75</painFactor>
+				<hungerRateFactor>0.75</hungerRateFactor> <!-- Eats 25% less -->
+				<statOffsets>
+					<MoveSpeed>0.1</MoveSpeed>
+					<ImmunityGainSpeed>0.3</ImmunityGainSpeed>
+					<InjuryHealingFactor>0.25</InjuryHealingFactor>
+					<RestFallRateFactor>0.25</RestFallRateFactor> <!-- Sleeps 25% less -->
+				</statOffsets>
+				<capMods>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>0.2</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.1</offset>
+					</li>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<tags>
+			<li>Rimgate_Symbiote_tag</li>
+		</tags>
+		<duplicationAllowed>false</duplicationAllowed>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>Rimgate_SymbioteWithdrawal</defName>
+		<label>symbiote withdrawal</label>
+		<description>Goa'uld symbiote withdrawal.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<initialSeverity>0.1</initialSeverity>
+		<lethalSeverity>1</lethalSeverity>
+		<tendable>true</tendable>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.125</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_Disappears">
+				<!--  8 days  -->
+				<disappearsAfterTicks>480000</disappearsAfterTicks>
+				<showRemainingTime>true</showRemainingTime>
+			</li>
+			<li Class="HediffCompProperties_TendDuration">
+				<severityPerDayTended>-1</severityPerDayTended>
+				<baseTendDurationHours>48</baseTendDurationHours>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>extreme</label>
+				<lifeThreatening>true</lifeThreatening>
+				<painOffset>0.2</painOffset>
+				<statOffsets>
+					<RestFallRateFactor>1</RestFallRateFactor>
+				</statOffsets>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.3</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<duplicationAllowed>false</duplicationAllowed>
+	</HediffDef>
+
+	<!-- ==================== Jaffa Forehead Symbol Base ==================== -->
+
+	<HediffDef Name="Rimgate_JaffaForeheadSymbolBase" ParentName="ImplantHediffBase" Abstract="True">
+		<description>A surgically embedded or branded symbol on the forehead, marking the bearer as
+			a servant of a Goa'uld. This iconic mark interferes slightly with psionic harmonics.</description>
+		<defaultLabelColor>(0.7, 0.7, 0.1)</defaultLabelColor>
+		<isBad>false</isBad>
+		<tendable>false</tendable>
+		<countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+		<addedPartProps>
+			<solid>true</solid>
+			<partEfficiency>1.35</partEfficiency>
+			<betterThanNatural>false</betterThanNatural>
+		</addedPartProps>
+		<stages>
+			<li>
+				<statOffsets>
+					<PawnBeauty>-1</PawnBeauty>
+					<PsychicSensitivity>-0.25</PsychicSensitivity>
+				</statOffsets>
+			</li>
+		</stages>
+		<renderNodeProperties>
+			<li>
+				<workerClass>PawnRenderNodeWorker_HediffEye</workerClass>
+				<parentTagDef>Head</parentTagDef>
+				<texSeed>1</texSeed>
+				<drawData>
+					<defaultData>
+						<layer>72</layer>
+						<offset>(0, 0, 0)</offset>
+					</defaultData>
+					<dataNorth />
+					<dataSouth>
+						<!-- across, depth, height -->
+						<offset>(0, 0, 0)</offset>
+						<layer>61</layer>
+					</dataSouth>
+					<dataEast />
+					<dataWest />
+				</drawData>
+				<shaderTypeDef>MoteGlow</shaderTypeDef>
+				<color>(0, 0.09, 0.0)</color>
+				<overlayOverApparel>false</overlayOverApparel>
+			</li>
+		</renderNodeProperties>
+		<tags>
+			<li>Rimgate_JaffaForeheadSymbol_tag</li>
+		</tags>
+		<duplicationAllowed>false</duplicationAllowed>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+	</HediffDef>
+
+	<!-- =========== Anubis =========== -->
+
+	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
+		<defName>Rimgate_JaffaForeheadSymbolAnubis</defName>
+		<label>Anubis forehead symbol</label>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_JaffaForeheadSymbolImplantAnubis</ThingDef>
+		</descriptionHyperlinks>
+		<renderNodeProperties>
+			<li>
+				<debugLabel>Jaffa Anubis forehead symbol</debugLabel>
+				<texPaths>
+					<li>Things/Item/Implants/Anubis/RGJaffaAnubisForeheadSymbol</li>
+				</texPaths>
+			</li>
+		</renderNodeProperties>
+		<tags>
+			<li>Rimgate_JaffaForeheadSymbolAnubis_tag</li>
+		</tags>
+	</HediffDef>
+
+	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
+		<defName>Rimgate_PrimeForeheadSymbolAnubis</defName>
+		<label>Anubis Prime forehead symbol</label>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeForeheadSymbolImplantAnubis</ThingDef>
+		</descriptionHyperlinks>
+		<renderNodeProperties>
+			<li>
+				<debugLabel>Prime Anubis forehead symbol</debugLabel>
+				<texPaths>
+					<li>Things/Item/Implants/Anubis/RGAnubisPrimeForeheadSymbol</li>
+				</texPaths>
+			</li>
+		</renderNodeProperties>
+		<tags>
+			<li>Rimgate_PrimeForeheadSymbolAnubis_tag</li>
+		</tags>
+	</HediffDef>
+
+	<!-- =========== Apophis =========== -->
+
+	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
+		<defName>Rimgate_JaffaForeheadSymbolApophis</defName>
+		<label>Apophis forehead symbol</label>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_JaffaForeheadSymbolImplantApophis</ThingDef>
+		</descriptionHyperlinks>
+		<renderNodeProperties>
+			<li>
+				<debugLabel>Jaffa Apophis forehead symbol</debugLabel>
+				<texPaths>
+					<li>Things/Item/Implants/Apophis/RGJaffaApophisForeheadSymbol</li>
+				</texPaths>
+			</li>
+		</renderNodeProperties>
+		<tags>
+			<li>Rimgate_JaffaForeheadSymbolApophis_tag</li>
+		</tags>
+	</HediffDef>
+
+	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
+		<defName>Rimgate_PrimeForeheadSymbolApophis</defName>
+		<label>Apophis Prime forehead symbol</label>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeForeheadSymbolImplantApophis</ThingDef>
+		</descriptionHyperlinks>
+		<renderNodeProperties>
+			<li>
+				<debugLabel>Prime Apophis forehead symbol</debugLabel>
+				<texPaths>
+					<li>Things/Item/Implants/Apophis/RGApophisPrimeForeheadSymbol</li>
+				</texPaths>
+			</li>
+		</renderNodeProperties>
+		<tags>
+			<li>Rimgate_PrimeForeheadSymbolApophis_tag</li>
+		</tags>
+	</HediffDef>
+
+	<!-- =========== Ra =========== -->
+
+	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
+		<defName>Rimgate_JaffaForeheadSymbolRa</defName>
+		<label>Ra forehead symbol</label>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_JaffaForeheadSymbolImplantRa</ThingDef>
+		</descriptionHyperlinks>
+		<renderNodeProperties>
+			<li>
+				<debugLabel>Jaffa Ra forehead symbol</debugLabel>
+				<texPaths>
+					<li>Things/Item/Implants/Ra/RGJaffaRaForeheadSymbol</li>
+				</texPaths>
+			</li>
+		</renderNodeProperties>
+		<tags>
+			<li>Rimgate_JaffaForeheadSymbolRa_tag</li>
+		</tags>
+	</HediffDef>
+
+	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
+		<defName>Rimgate_PrimeForeheadSymbolRa</defName>
+		<label>Ra Prime forehead symbol</label>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeForeheadSymbolImplantRa</ThingDef>
+		</descriptionHyperlinks>
+		<renderNodeProperties>
+			<li>
+				<debugLabel>Prime Ra forehead symbol</debugLabel>
+				<texPaths>
+					<li>Things/Item/Implants/Ra/RGJaffaRaPrimeForeheadSymbol</li>
+				</texPaths>
+			</li>
+		</renderNodeProperties>
+		<tags>
+			<li>Rimgate_PrimeForeheadSymbolRa_tag</li>
+		</tags>
+	</HediffDef>
+
+</Defs>

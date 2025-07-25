@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- Ma'Tok Burn -->
+
+    <HediffDef ParentName="InjuryBase">
+        <defName>Rimgate_Staff_Weapon_Burn</defName>
+        <label>Ma'Tok Burn</label>
+        <labelNoun>a staff weapon burn</labelNoun>
+        <description>A burn casued by a staff weapon.</description>
+        <comps>
+            <li Class="HediffCompProperties_TendDuration">
+                <labelTendedWell>bandaged</labelTendedWell>
+                <labelTendedWellInner>tended</labelTendedWellInner>
+                <labelSolidTendedWell>tended</labelSolidTendedWell>
+            </li>
+            <li Class="HediffCompProperties_Infecter">
+                <infectionChance>0.30</infectionChance>
+            </li>
+            <li Class="HediffCompProperties_GetsPermanent">
+                <permanentLabel>burn scar</permanentLabel>
+            </li>
+        </comps>
+        <injuryProps>
+            <painPerSeverity>0.01875</painPerSeverity>
+            <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+            <canMerge>true</canMerge>
+            <destroyedLabel>Burned off</destroyedLabel>
+            <destroyedOutLabel>Burned out</destroyedOutLabel>
+        </injuryProps>
+    </HediffDef>
+
+    <!-- Zat Blast -->
+
+    <HediffDef ParentName="DiseaseBase">
+        <defName>Rimgate_ZatShock</defName>
+        <label>Zat shock</label>
+        <labelNoun>a shock</labelNoun>
+        <description>A state of shock in the brain and mind caused by the blast of a Goa'uld
+            Zat'nik'tel, this effect is debilitating until it wears off.</description>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>7500~7500</disappearsAfterTicks>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.1</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+</Defs>

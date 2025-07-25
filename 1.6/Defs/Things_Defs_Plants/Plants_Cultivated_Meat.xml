@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Meat crop ==================== -->
+
+	<ThingDef>
+		<defName>Rimgate_CulturedMeatCrop</defName>
+		<thingClass>Rimgate.Plant_MeatPlant</thingClass>
+		<label>Cultivated Human meat.</label>
+		<description>Human meat. Long growth speed and high nutrition value.</description>
+		<category>Plant</category>
+		<altitudeLayer>LowPlant</altitudeLayer>
+		<useHitPoints>True</useHitPoints>
+		<statBases>
+			<Flammability>0.8</Flammability>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Nutrition>0.20</Nutrition>
+		</statBases>
+		<tickerType>Long</tickerType>
+		<selectable>true</selectable>
+		<neverMultiSelect>True</neverMultiSelect>
+		<drawerType>MapMeshOnly</drawerType>
+		<pathCostIgnoreRepeat>false</pathCostIgnoreRepeat>
+		<graphicData>
+			<texPath>Things/Item/Resource/CulturedMeatGrowing</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+			<shaderType>CutoutPlant</shaderType>
+		</graphicData>
+		<ingestible>
+			<foodType>Meat</foodType>
+			<preferability>RawBad</preferability>
+			<canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>
+		</ingestible>
+		<plant>
+			<growMinGlow>0</growMinGlow>
+			<growOptimalGlow>0</growOptimalGlow>
+			<fertilityMin>0.5</fertilityMin>
+			<fertilitySensitivity>1.0</fertilitySensitivity>
+			<dieIfLeafless>true</dieIfLeafless>
+			<maxMeshCount>4</maxMeshCount>
+			<harvestTag>Standard</harvestTag>
+			<harvestedThingDef>Rimgate_CulturedMeat</harvestedThingDef>
+			<harvestYield>28</harvestYield>
+			<growDays>2</growDays>
+			<sowTags>
+				<li>Rimgate_WraithMeatLab_tag</li>
+			</sowTags>
+			<soundHarvesting>Harvest_Standard</soundHarvesting>
+			<soundHarvestFinish>Harvest_Standard_Finish</soundHarvestFinish>
+			<harvestWork>190</harvestWork>
+			<sowWork>260</sowWork>
+			<topWindExposure>0</topWindExposure>
+			<visualSizeRange>
+				<min>0.3</min>
+				<max>0.8</max>
+			</visualSizeRange>
+			<purpose>Food</purpose>
+		</plant>
+		<pathCost>10</pathCost>
+	</ThingDef>
+
+</Defs>

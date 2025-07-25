@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <RulePackDef>
+    <defName>Rimgate_NamerPersonJaffaM</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[RG_GoauldFirstM] [RG_GoauldLast]</li>
+        <li>name->[comboname] [RG_GoauldLast]</li>
+        <li>comboname-&gt;[RG_Goauld_FirstPartM][RG_Goauld_SecondPartM]</li>
+      </rulesStrings>
+      <rulesRaw>
+        <li Class="Rule_File">
+          <keyword>RG_GoauldFirstM</keyword>
+          <path>NameBanks/Goauld/Names_First_GoauldM</path>
+        </li>
+        <li Class="Rule_File">
+          <keyword>RG_GoauldLast</keyword>
+          <path>NameBanks/Goauld/Names_Last_Goauld</path>
+        </li>
+        <li Class="Rule_File">
+          <keyword>RG_Goauld_FirstPartM</keyword>
+          <path>NameBanks/Goauld/Names_FirstPart_GoauldM</path>
+        </li>
+        <li Class="Rule_File">
+          <keyword>RG_Goauld_SecondPartM</keyword>
+          <path>NameBanks/Goauld/Names_SecondPart_GoauldM</path>
+        </li>
+      </rulesRaw>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimgate_NamerPersonJaffaF</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[RG_GoauldFirstF] [RG_GoauldLast]</li>
+        <li>name->[comboname] [RG_GoauldLast]</li>
+        <li>comboname-&gt;[RG_Goauld_FirstPartF][RG_Goauld_SecondPartF]</li>
+      </rulesStrings>
+      <rulesRaw>
+        <li Class="Rule_File">
+          <keyword>RG_GoauldFirstF</keyword>
+          <path>NameBanks/Goauld/Names_First_GoauldF</path>
+        </li>
+        <li Class="Rule_File">
+          <keyword>RG_GoauldLast</keyword>
+          <path>NameBanks/Goauld/Names_Last_Goauld</path>
+        </li>
+        <li Class="Rule_File">
+          <keyword>RG_Goauld_FirstPartF</keyword>
+          <path>NameBanks/Goauld/Names_FirstPart_GoauldF</path>
+        </li>
+        <li Class="Rule_File">
+          <keyword>RG_Goauld_SecondPartF</keyword>
+          <path>NameBanks/Goauld/Names_SecondPart_GoauldF</path>
+        </li>
+      </rulesRaw>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

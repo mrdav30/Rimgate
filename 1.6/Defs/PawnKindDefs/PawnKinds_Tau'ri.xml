@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <PawnKindDef Name="Rimgate_TauriBase" Abstract="True">
+        <defaultFactionType>Rimgate_TauriFaction</defaultFactionType>
+        <race>Human</race>
+        <chemicalAddictionChance>0.01</chemicalAddictionChance>
+        <initialWillRange>1~2</initialWillRange>
+        <initialResistanceRange>15~45</initialResistanceRange>
+        <apparelTags>
+            <li>Rimgate_TauriApparel_tag</li>
+        </apparelTags>
+        <techHediffsChance>0.05</techHediffsChance>
+        <techHediffsTags>
+            <li>Simple</li>
+            <li>Advanced</li>
+            <li>ImplantEmpireCommon</li>
+        </techHediffsTags>
+        <biocodeWeaponChance>0.2</biocodeWeaponChance>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_TauriBase">
+        <defName>Rimgate_TauriScientist</defName>
+        <label>Tau'ri SGC scientist</label>
+        <isFighter>false</isFighter>
+        <combatPower>20</combatPower>
+        <weaponTags>
+            <li>MedievalMeleeBasic</li>
+        </weaponTags>
+        <apparelMoney>300~600</apparelMoney>
+        <apparelRequired>
+            <li>Rimgate_TauriSGTeamBDU</li>
+        </apparelRequired>
+        <weaponMoney>40~200</weaponMoney>
+        <inventoryOptions>
+            <skipChance>0.85</skipChance>
+            <subOptionsChooseOne>
+                <li>
+                    <thingDef>ComponentIndustrial</thingDef>
+                    <countRange>
+                        <min>2</min>
+                        <max>4</max>
+                    </countRange>
+                </li>
+                <li>
+                    <thingDef>Rimgate_Naquadria</thingDef>
+                    <countRange>
+                        <min>2</min>
+                        <max>4</max>
+                    </countRange>
+                </li>
+            </subOptionsChooseOne>
+        </inventoryOptions>
+    </PawnKindDef>
+
+    <PawnKindDef Name="Rimgate_TauriUniformed" ParentName="Rimgate_TauriBase" Abstract="True">
+        <isFighter>true</isFighter>
+        <canBeSapper>true</canBeSapper>
+        <invNutrition>2.25</invNutrition>
+        <gearHealthRange>0.6~1.3</gearHealthRange>
+        <apparelMoney>800~1800</apparelMoney>
+        <weaponMoney>900~1500</weaponMoney>
+        <apparelRequired>
+            <li>Rimgate_TauriSGTeamBDU</li>
+        </apparelRequired>
+        <apparelTags>
+            <li>Rimgate_TauriApparel_tag</li>
+            <li>Rimgate_TauriTacticalVest</li>
+            <li>Rimgate_TauriBackpack_tag</li>
+        </apparelTags>
+        <inventoryOptions>
+            <skipChance>0.7</skipChance>
+            <subOptionsChooseOne>
+                <li>
+                    <thingDef>MedicineIndustrial</thingDef>
+                    <countRange>
+                        <min>1</min>
+                        <max>2</max>
+                    </countRange>
+                </li>
+                <li>
+                    <thingDef>MealSurvivalPack</thingDef>
+                    <countRange>
+                        <min>2</min>
+                        <max>4</max>
+                    </countRange>
+                </li>
+            </subOptionsChooseOne>
+        </inventoryOptions>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_TauriUniformed">
+        <defName>Rimgate_TauriSGCSoldier</defName>
+        <label>Tau'ri SGC team soldier</label>
+        <combatPower>110</combatPower>
+        <weaponTags>
+            <li>Rimgate_TauriSubmachineGun_tag</li>
+            <li>Rimgate_TauriAssaultRifle_tag</li>
+            <li>Rimgate_TauriPistol_tag</li>
+            <li>Rimgate_TauriShotgun_tag</li>
+        </weaponTags>
+        <apparelRequired>
+            <li>Rimgate_TauriBallisticHelmet</li>
+        </apparelRequired>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_TauriUniformed">
+        <defName>Rimgate_TauriRifleman</defName>
+        <label>Tau'ri rifleman</label>
+        <race>Human</race>
+        <combatPower>245</combatPower>
+        <weaponTags>
+            <li>Rimgate_TauriAssaultRifle_tag</li>
+        </weaponTags>
+        <apparelRequired>
+            <li>Rimgate_TauriTacticalVest</li>
+            <li>Rimgate_TauriBallisticHelmet</li>
+        </apparelRequired>
+        <inventoryOptions>
+            <skipChance>0.9</skipChance>
+            <subOptionsChooseOne>
+                <li>
+                    <thingDef>MealSurvivalPack</thingDef>
+                    <countRange>2</countRange>
+                </li>
+            </subOptionsChooseOne>
+        </inventoryOptions>
+        <requiredWorkTags>
+            <li>Violent</li>
+        </requiredWorkTags>
+        <gearHealthRange>0.75~2.3</gearHealthRange>
+        <weaponMoney>1000~2260</weaponMoney>
+        <apparelMoney>1000~2180</apparelMoney>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_TauriUniformed">
+        <defName>Rimgate_TauriSpecialForces</defName>
+        <label>Tau'ri SGC special forces</label>
+        <race>Human</race>
+        <combatPower>370</combatPower>
+        <weaponTags>
+            <li>Rimgate_TauriShotgun_tag</li>
+            <li>Rimgate_Tauri_SniperRifle</li>
+        </weaponTags>
+        <apparelRequired>
+            <li>Rimgate_TauriTacticalVest</li>
+            <li>Rimgate_TauriGreenBoonieHat</li>
+            <li>Rimgate_TacticalVestCompositePlateInsert</li>
+            <li>Rimgate_TauriTacticalBackpack</li>
+        </apparelRequired>
+        <inventoryOptions>
+            <skipChance>0.8</skipChance>
+            <subOptionsChooseOne>
+                <li>
+                    <thingDef>MedicineIndustrial</thingDef>
+                    <countRange>
+                        <min>1</min>
+                        <max>3</max>
+                    </countRange>
+                </li>
+            </subOptionsChooseOne>
+        </inventoryOptions>
+        <gearHealthRange>0.8~2.3</gearHealthRange>
+        <weaponMoney>1500~2450</weaponMoney>
+        <apparelMoney>1250~2400</apparelMoney>
+        <requiredWorkTags>
+            <li>Violent</li>
+            <li>Intellectual</li>
+        </requiredWorkTags>
+        <backstoryFiltersOverride>
+            <li>
+                <categoriesAdulthood>
+                    <li>EliteMilitary</li>
+                </categoriesAdulthood>
+            </li>
+        </backstoryFiltersOverride>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_TauriUniformed">
+        <defName>Rimgate_TauriCommander</defName>
+        <label>Tau'ri SG team commander</label>
+        <factionLeader>true</factionLeader>
+        <canBeSapper>true</canBeSapper>
+        <combatPower>150</combatPower>
+        <weaponTags>
+            <li>Rimgate_TauriAssaultRifle_tag</li>
+            <li>Rimgate_TauriPistol_tag</li>
+        </weaponTags>
+        <apparelRequired>
+            <li>Rimgate_TauriGreenCap</li>
+            <li>Rimgate_TauriTacticalVest</li>
+            <li>Rimgate_TacticalVestCompositePlateInsert</li>
+        </apparelRequired>
+        <gearHealthRange>0.85~3.5</gearHealthRange>
+        <weaponMoney>2350~3500</weaponMoney>
+        <apparelMoney>2300~3450</apparelMoney>
+        <inventoryOptions>
+            <skipChance>0.8</skipChance>
+            <subOptionsChooseOne>
+                <li>
+                    <thingDef>MedicineIndustrial</thingDef>
+                    <countRange>
+                        <min>1</min>
+                        <max>4</max>
+                    </countRange>
+                </li>
+            </subOptionsChooseOne>
+        </inventoryOptions>
+        <requiredWorkTags>
+            <li>Social</li>
+            <li>Violent</li>
+        </requiredWorkTags>
+        <backstoryFiltersOverride>
+            <li>
+                <categoriesChildhood>
+                    <li>Military</li>
+                    <li>Spacer</li>
+                    <li>Offworld</li>
+                </categoriesChildhood>
+                <categoriesAdulthood>
+                    <li>EliteMilitary</li>
+                    <li>Leader</li>
+                </categoriesAdulthood>
+            </li>
+        </backstoryFiltersOverride>
+        <techHediffsChance>0.12</techHediffsChance>
+        <techHediffsTags>
+            <li>Advanced</li>
+        </techHediffsTags>
+    </PawnKindDef>
+
+</Defs>

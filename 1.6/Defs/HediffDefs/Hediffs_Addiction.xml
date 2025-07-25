@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <ChemicalDef>
+        <defName>Rimgate_Sarcophagus</defName>
+        <label>sarcophagus</label>
+        <addictionHediff>Rimgate_SarcophagusAddiction</addictionHediff>
+        <canBinge>false</canBinge>
+        <generateAddictionGenes>false</generateAddictionGenes>
+    </ChemicalDef>
+
+    <NeedDef ParentName="DrugAddictionNeedBase">
+        <defName>Rimgate_SarcophagusChemical</defName>
+        <needClass>Need_Chemical</needClass>
+        <label>sarcophagus</label>
+        <description>This person's body is enhanced by the Goa'uld sarcophagus.\n\nWithout regular
+            use of a sarcophagus, the user becomes continuously, violently insane and eventually
+            dies.\n\nThis addiction never goes away.</description>
+        <listPriority>45</listPriority>
+        <fallPerDay>0.15</fallPerDay>
+        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    </NeedDef>
+
+    <HediffDef ParentName="AddictionBase">
+        <defName>Rimgate_SarcophagusAddiction</defName>
+        <label>sarcophagus need</label>
+        <description>The consequence of using a Goa'uld sarcophagus. The effects decohere over time;
+            only regular uses of a sarcophagus can prevent this process. \nBy neglecting this need,
+            the victim to go insane and die.</description>
+        <hediffClass>Hediff_Addiction</hediffClass>
+        <chemicalNeed>Rimgate_SarcophagusChemical</chemicalNeed>
+        <everCurableByItem>false</everCurableByItem>
+        <stages>
+            <li>
+                <label>unmet</label>
+                <painOffset>0.4</painOffset>
+                <lifeThreatening>true</lifeThreatening>
+                <deathMtbDays>10</deathMtbDays>
+                <mtbDeathDestroysBrain>true</mtbDeathDestroysBrain>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.8</setMax>
+                    </li>
+                </capMods>
+                <mentalStateGivers>
+                    <li>
+                        <mentalState>Berserk</mentalState>
+                        <mtbDays>0.4</mtbDays>
+                    </li>
+                </mentalStateGivers>
+            </li>
+        </stages>
+    </HediffDef>
+
+</Defs>

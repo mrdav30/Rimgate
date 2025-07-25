@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- =============== Naquadah ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_Naquadah</defName>
+    <label>Naquadah</label>
+    <description>A combustible grayish material. Its energetic density is perfect for advanced power
+      generation.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGNaquadah</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <useHitPoints>false</useHitPoints>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <statBases>
+      <MarketValue>1.4</MarketValue>
+      <Mass>0.3</Mass>
+      <StuffPower_Armor_Sharp>1.08</StuffPower_Armor_Sharp>
+      <StuffPower_Armor_Blunt>0.54</StuffPower_Armor_Blunt>
+      <StuffPower_Armor_Heat>0.9</StuffPower_Armor_Heat>
+      <StuffPower_Insulation_Cold>3</StuffPower_Insulation_Cold>
+      <StuffPower_Insulation_Heat>0</StuffPower_Insulation_Heat>
+      <SharpDamageMultiplier>1.1</SharpDamageMultiplier>
+      <BluntDamageMultiplier>1.5</BluntDamageMultiplier>
+    </statBases>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <deepCommonality>6</deepCommonality>
+    <deepCountPerPortion>45</deepCountPerPortion>
+    <deepLumpSizeRange>
+      <min>30</min>
+      <max>40</max>
+    </deepLumpSizeRange>
+  </ThingDef>
+
+  <!-- =============== Naquadria ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_Naquadria</defName>
+    <label>Naquadria</label>
+    <description>Enriched radioactive product of Naquadah refinement.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGNaquadria</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <useHitPoints>false</useHitPoints>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <statBases>
+      <MarketValue>1.3</MarketValue>
+      <Mass>0.3</Mass>
+      <StuffPower_Armor_Sharp>1.08</StuffPower_Armor_Sharp>
+      <StuffPower_Armor_Blunt>0.54</StuffPower_Armor_Blunt>
+      <StuffPower_Armor_Heat>0.9</StuffPower_Armor_Heat>
+      <StuffPower_Insulation_Cold>3</StuffPower_Insulation_Cold>
+      <StuffPower_Insulation_Heat>0</StuffPower_Insulation_Heat>
+      <SharpDamageMultiplier>1.1</SharpDamageMultiplier>
+      <BluntDamageMultiplier>1.5</BluntDamageMultiplier>
+    </statBases>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+  </ThingDef>
+
+  <!-- =============== Biomass ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_Biomass</defName>
+    <label>Biomass</label>
+    <description>Biomass is produceed out of human meat and necessary to build most Wraith
+      technology.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGBiomass</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <useHitPoints>false</useHitPoints>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <statBases>
+      <MarketValue>1.3</MarketValue>
+      <Mass>0.3</Mass>
+      <StuffPower_Armor_Sharp>1.08</StuffPower_Armor_Sharp>
+      <StuffPower_Armor_Blunt>0.54</StuffPower_Armor_Blunt>
+      <StuffPower_Armor_Heat>0.9</StuffPower_Armor_Heat>
+      <StuffPower_Insulation_Cold>3</StuffPower_Insulation_Cold>
+      <StuffPower_Insulation_Heat>0</StuffPower_Insulation_Heat>
+      <SharpDamageMultiplier>1.1</SharpDamageMultiplier>
+      <BluntDamageMultiplier>1.5</BluntDamageMultiplier>
+    </statBases>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+  </ThingDef>
+
+  <!-- ==================== Stargate Glyph ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_GlyphScrap</defName>
+    <label>Stargate glyph slab</label>
+    <description>A mysterious cracked stone with stargate symbols engraved on it.\n\n"Dial it up!"</description>
+    <thingClass>ThingWithComps</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGGlyphScrap</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stackLimit>1</stackLimit>
+    <tradeNeverStack>true</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MarketValue>900</MarketValue>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>80</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <techLevel>Medieval</techLevel>
+    <thingCategories>
+      <li>Artifacts</li>
+    </thingCategories>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+    <thingSetMakerTags>
+      <li>RewardStandardHighFreq</li>
+    </thingSetMakerTags>
+    <comps>
+      <li Class="Rimgate.CompProperties_GlyphScrap" />
+    </comps>
+  </ThingDef>
+
+  <!-- ==================== Iris ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_IrisInstallKit</defName>
+    <label>Iris installation kit</label>
+    <description>A kit containing all of the pre-assembled materials needed to install an iris on a
+      stargate.\n\n"We have in place an impenetrable shield called an iris."</description>
+    <thingClass>ThingWithComps</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGIrisUpgradeKit</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>80</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <techLevel>Ultra</techLevel>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+    <tradeability>None</tradeability>
+    <comps>
+      <li Class="CompProperties_Usable">
+        <useJob>Rimgate_InstallIris</useJob>
+        <useLabel>Install iris</useLabel>
+        <useDuration>5000</useDuration>
+      </li>
+      <li Class="CompProperties_Targetable">
+        <compClass>Rimgate.CompTargetable_Stargate</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

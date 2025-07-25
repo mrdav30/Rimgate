@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <PawnKindDef ParentName="BaseMechanoidKind">
+        <defName>Rimgate_Replicator</defName>
+        <label>replicator</label>
+        <race>Rimgate_Replicator</race>
+        <defaultFactionType>Rimgate_Replicator</defaultFactionType>
+        <aiAvoidCover>true</aiAvoidCover>
+        <destroyGearOnDrop>true</destroyGearOnDrop>
+        <combatPower>160</combatPower>
+        <lifeStages>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
+                    <drawSize>1</drawSize>
+                    <shadowData>
+                        <volume>(0.4, 0.8, 0.4)</volume>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+        </lifeStages>
+        <isGoodBreacher>true</isGoodBreacher>
+        <weaponMoney>9999~9999</weaponMoney>
+        <weaponTags />
+    </PawnKindDef>
+
+</Defs>

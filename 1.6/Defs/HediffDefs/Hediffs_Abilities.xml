@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- Wraith Drain -->
+
+    <HediffDef>
+        <defName>Rimgate_WraithLifeDrainTarget</defName>
+        <label>life drained</label>
+        <description>weakness caused by vitality being stolen by a Wraith.</description>
+        <hediffClass>Hediff_Injury</hediffClass>
+        <tendable>false</tendable>
+        <isBad>true</isBad>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-0.10</severityPerDay> <!-- Passive health drain -->
+            </li>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>1200</disappearsAfterTicks> <!-- 20 secs -->
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <restFallFactor>2</restFallFactor>
+                <naturalHealingFactor>0.8</naturalHealingFactor>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <postFactor>0.8</postFactor>
+                    </li>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.70</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <HediffDef>
+        <defName>Rimgate_WraithLifeDrainRegen</defName>
+        <label>life-empowered</label>
+        <description>vitality drained from another person.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <tendable>false</tendable>
+        <isBad>false</isBad>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>1200</disappearsAfterTicks> <!-- 20 secs -->
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <restFallFactor>0.5</restFallFactor>
+                <naturalHealingFactor>1.2</naturalHealingFactor>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <postFactor>1.2</postFactor>
+                    </li>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <postFactor>1.3</postFactor>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+</Defs>

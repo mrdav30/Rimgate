@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- Staff Weapon Blast -->
+
+    <DamageDef>
+        <defName>Rimgate_StaffBlast</defName>
+        <label>Staff Blast</label>
+        <workerClass>DamageWorker_AddInjury</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been killed.</deathMessage>
+        <hediff>Rimgate_Staff_Weapon_Burn</hediff>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <impactSoundType>Bullet</impactSoundType>
+        <armorCategory>Sharp</armorCategory>
+        <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+        <isRanged>true</isRanged>
+        <makesAnimalsFlee>true</makesAnimalsFlee>
+    </DamageDef>
+
+    <!-- Zat Stun -->
+
+    <DamageDef>
+        <defName>Rimgate_ZatStun</defName>
+        <label>Zat Stun</label>
+        <workerClass>DamageWorker_Stun</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been stunned.</deathMessage>
+        <defaultDamage>20</defaultDamage>
+        <explosionCellFleck>BlastDry</explosionCellFleck>
+        <soundExplosion>Explosion_Stun</soundExplosion>
+        <combatLogRules>Damage_Stun</combatLogRules>
+        <isRanged>true</isRanged>
+        <makesAnimalsFlee>false</makesAnimalsFlee>
+    </DamageDef>
+
+    <DamageDef>
+        <defName>Rimgate_SiegeBlunt</defName>
+        <label>crush</label>
+        <workerClass>Rimgate.DamageWorker_Siege</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been crushed to death.</deathMessage>
+        <hediff>Crush</hediff>
+        <hediffSkin>Shredded</hediffSkin>
+        <hediffSolid>Crack</hediffSolid>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <impactSoundType>Blunt</impactSoundType>
+        <armorCategory>Blunt</armorCategory>
+    </DamageDef>
+
+</Defs>

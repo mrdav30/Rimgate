@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- =============== Naquadria Generator ======== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_NaquadriaFiredGenerator</defName>
+    <label>Naquadria generator</label>
+    <description>Produces power by consuming Naquadria. Must be periodically loaded with Naquadria
+      by hand.</description>
+    <thingClass>Building</thingClass>
+    <size>(1,2)</size>
+    <graphicData>
+      <texPath>Things/Building/Power/NaquadriaGenerator/RGNaquadriaFiredGenerator</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(1.93,1,1.69)</volume>
+        <offset>(-0.03,0,-0.1)</offset>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>Things/Building/Power/NaquadriaGenerator/RGNaquadriaFiredGenerator</uiIconPath>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>150</pathCost>
+    <blockWind>true</blockWind>
+    <fillPercent>1.0</fillPercent>
+    <castEdgeShadows>false</castEdgeShadows>
+    <statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+      <WorkToBuild>3000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-25</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <canOverlapZones>false</canOverlapZones>
+    <costList>
+      <Steel>125</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerPlant</compClass>
+        <basePowerConsumption>-5000</basePowerConsumption>
+        <transmitsPower>true</transmitsPower>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>0.25</fuelConsumptionRate>
+        <fuelCapacity>25.0</fuelCapacity>
+        <fuelFilter>
+          <thingDefs>
+            <li>Rimgate_Naquadria</li>
+          </thingDefs>
+        </fuelFilter>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>6</glowRadius>
+        <glowColor>(255,202,33,0)</glowColor>
+      </li>
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>6</heatPerSecond>
+      </li>
+      <li Class="CompProperties_Breakdownable" />
+    </comps>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <designationHotKey>Misc3</designationHotKey>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>Rimgate_NaquadriaFiredGenerator</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+  </ThingDef>
+
+  <!-- =============== Wraith Generator ======== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_WraithGenerator</defName>
+    <label>Meat fired generator</label>
+    <description>Produces power by consuming human meat. Must be periodically loaded with cocooned
+      human meat by hand.</description>
+    <thingClass>Building</thingClass>
+    <size>(1,2)</size>
+    <graphicData>
+      <texPath>Things/Building/Power/BiomassGenerator/RGBiomassGenerator</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <shadowData>
+        <volume>(1.93,1,1.69)</volume>
+        <offset>(-0.03,0,-0.1)</offset>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>Things/Building/Power/BiomassGenerator/RGBiomassGenerator</uiIconPath>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>150</pathCost>
+    <blockWind>true</blockWind>
+    <fillPercent>1.0</fillPercent>
+    <castEdgeShadows>false</castEdgeShadows>
+    <statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+      <WorkToBuild>3000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-25</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <canOverlapZones>false</canOverlapZones>
+    <costList>
+      <Steel>60</Steel>
+      <Rimgate_Biomass>70</Rimgate_Biomass>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerPlant</compClass>
+        <basePowerConsumption>-5000</basePowerConsumption>
+        <transmitsPower>true</transmitsPower>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>0.25</fuelConsumptionRate>
+        <fuelCapacity>25.0</fuelCapacity>
+        <fuelFilter>
+          <thingDefs>
+            <li>Rimgate_CocoonedMeat</li>
+          </thingDefs>
+        </fuelFilter>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>6</glowRadius>
+        <glowColor>(255,202,33,0)</glowColor>
+      </li>
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>6</heatPerSecond>
+      </li>
+      <li Class="CompProperties_Breakdownable" />
+    </comps>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <designationHotKey>Misc3</designationHotKey>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>Rimgate_WraithGenerator</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+  </ThingDef>
+
+  <!-- =============== ZPM =============== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_ZPM</defName>
+    <label>Zero point module</label>
+    <description>Converts Dark Energy into electricity and stores amazing amounts of power. Solar
+      flare proof.</description>
+    <thingClass>Rimgate.Building_ZPM</thingClass>
+    <category>Building</category>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <repairEffect>Repair</repairEffect>
+    <size>(1,2)</size>
+    <graphicData>
+      <texPath>Things/Building/Power/ZPM/RGZPM</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,2)</drawSize>
+    </graphicData>
+    <techLevel>Archotech</techLevel>
+    <stackLimit>1</stackLimit>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsPower</li>
+    </thingCategories>
+    <altitudeLayer>Building</altitudeLayer>
+    <castEdgeShadows>true</castEdgeShadows>
+    <fillPercent>1</fillPercent>
+    <specialDisplayRadius>1</specialDisplayRadius>
+    <tickerType>Rare</tickerType>
+    <statBases>
+      <WorkToMake>30000</WorkToMake>
+      <MaxHitPoints>1000000</MaxHitPoints>
+      <MarketValue>10000.5</MarketValue>
+      <Flammability>0.0</Flammability>
+      <Mass>20</Mass>
+    </statBases>
+    <tradeability>Buyable</tradeability>
+    <tradeNeverStack>true</tradeNeverStack>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+    <comps>
+      <li Class="CompProperties_Battery">
+        <storedEnergyMax>64000</storedEnergyMax>
+        <efficiency>2.00</efficiency>
+        <transmitsPower>true</transmitsPower>
+        <shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Flickable" />
+    </comps>
+    <costList>
+      <Steel>2000</Steel>
+      <Uranium>500</Uranium>
+      <Plasteel>1000</Plasteel>
+      <Gold>1000</Gold>
+      <Silver>5000</Silver>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>12</ComponentSpacer>
+    </costList>
+    <hasInteractionCell>False</hasInteractionCell>
+    <designationCategory>Power</designationCategory>
+    <staticSunShadowHeight>0.75</staticSunShadowHeight>
+  </ThingDef>
+
+</Defs>

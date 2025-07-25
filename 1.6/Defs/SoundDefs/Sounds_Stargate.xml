@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<SoundDef>
+		<defName>Rimgate_StargateOpen</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Gate_Open</clipPath>
+					</li>
+				</grains>
+				<volumeRange>12</volumeRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_StargateFailDial</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Gate_Fail</clipPath>
+					</li>
+				</grains>
+				<volumeRange>12</volumeRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_StargateKawooshExplosion</defName>
+		<maxSimultaneous>1</maxSimultaneous>
+			<subSounds>
+				<li>
+					<onCamera>True</onCamera>
+					<grains>
+						<li Class="AudioGrain_Clip">
+							<clipPath>UI/TinyBell</clipPath>
+						</li>
+					</grains>
+					<volumeRange>0~0</volumeRange>
+				</li>
+			</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_StargateIdle</defName>
+		<sustain>True</sustain>
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<priorityMode>PrioritizeNearest</priorityMode>
+		<subSounds>
+			<li>
+				<muteWhenPaused>True</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Gate_Idle</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<distRange>10~30</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_StargateClose</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Gate_Close</clipPath>
+					</li>
+				</grains>
+				<volumeRange>12</volumeRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_StargateTeleport01</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Gate_Teleport01</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_StargateTeleport02</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Gate_Teleport02</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_StargateTeleport03</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Gate_Teleport03</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_StargateTeleport04</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Gate_Teleport04</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_IrisOpen</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Iris_Open</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_IrisClose</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Iris_Close</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+	
+	<SoundDef>
+		<defName>Rimgate_IrisHit</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Stargate/RG_Iris_Hit</clipPath>
+					</li>
+				</grains>
+				<volumeRange>6</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+</Defs>

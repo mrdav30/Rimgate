@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- =============== Meat Plant ==================== -->
+
+  <ThingDef ParentName="OrganicProductBase">
+    <defName>Rimgate_CulturedMeat</defName>
+    <label>cultured meat</label>
+    <description>Raw meat grown from a culture.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGCultivatedMeat</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <ingestible>
+      <foodType>Meat</foodType>
+      <preferability>RawBad</preferability>
+      <ingestEffect>EatMeat</ingestEffect>
+      <ingestSound>RawMeat_Eat</ingestSound>
+      <tasteThought>AteRawFood</tasteThought>
+    </ingestible>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <statBases>
+      <Nutrition>0.20</Nutrition>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+      <MarketValue>2</MarketValue>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>5</DeteriorationRate>
+      <Mass>0.20</Mass>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>3</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+    <thingCategories>
+      <li>MeatRaw</li>
+    </thingCategories>
+    <tickerType>Rare</tickerType>
+  </ThingDef>
+
+  <ThingDef ParentName="OrganicProductBase">
+    <defName>Rimgate_CocoonedMeat</defName>
+    <label>cocooned meat</label>
+    <description>Raw meat wrapped in a neat cocoon so it won't spoil.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGCocoonedMeat</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <ingestible>
+      <foodType>Kibble</foodType>
+      <preferability>RawBad</preferability>
+      <ingestEffect>EatMeat</ingestEffect>
+      <ingestSound>RawMeat_Eat</ingestSound>
+      <tasteThought>AteRawFood</tasteThought>
+    </ingestible>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <statBases>
+      <DeteriorationRate Inherit="False">0</DeteriorationRate>
+      <Nutrition>0.20</Nutrition>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+      <MarketValue>2</MarketValue>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Mass>0.25</Mass>
+    </statBases>
+    <thingCategories>
+      <li>MeatRaw</li>
+    </thingCategories>
+    <tickerType>Rare</tickerType>
+  </ThingDef>
+
+</Defs>

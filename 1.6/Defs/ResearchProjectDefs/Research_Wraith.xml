@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ResearchTabDef>
+		<defName>Rimgate_WraithTechnology</defName>
+		<label>Wraith</label>
+	</ResearchTabDef>
+
+	<ResearchProjectDef Name="Rimgate_WraithResearch" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<tab>Rimgate_WraithTechnology</tab>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<prerequisites>
+			<li>MicroelectronicsBasics</li>
+			<li>Rimgate_GlyphDeciphering</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+		<defName>Rimgate_WraithBasic</defName>
+		<label>Wraith technology</label>
+		<description>Get access to Wraith technology.</description>
+		<baseCost>1500</baseCost>
+		<researchViewX>2</researchViewX>
+		<researchViewY>2</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- ======== Armor ========= -->
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+		<defName>Rimgate_WraithArmorTier1</defName>
+		<label>Wraith armor</label>
+		<description>Research the basic Armor for the Wraith troops.</description>
+		<baseCost>2500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithBasic</li>
+			<li>ReconArmor</li>
+		</prerequisites>
+		<researchViewX>0</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+		<defName>Rimgate_WraithArmorTier2</defName>
+		<label>Wraith commander armor</label>
+		<description>Research specialized Armor for the Wraith troops.</description>
+		<baseCost>2500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithArmorTier1</li>
+		</prerequisites>
+		<researchViewX>0</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- ======== Weapon ========= -->
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+		<defName>Rimgate_WraithWeaponTier1</defName>
+		<label>Wraith weapons</label>
+		<description>Research the basic weapon for the Wraith troops.</description>
+		<baseCost>2500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithBasic</li>
+			<li>PrecisionRifling</li>
+		</prerequisites>
+		<researchViewX>0</researchViewX>
+		<researchViewY>1</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- ======== Buildings ========= -->
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+		<defName>Rimgate_MeatCultivation</defName>
+		<label>Meat cultivation</label>
+		<description>Research how to reliably cultivate meat.</description>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithBasic</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>2</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+		<defName>Rimgate_WraithGenerator</defName>
+		<label>Wraith Generator</label>
+		<description>Get access to the Wraith Biomass generator for a meat based power source.</description>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithBasic</li>
+			<li>Rimgate_MeatCultivation</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>2</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+		<defName>Rimgate_WraithDart</defName>
+		<label>Wraith Dart</label>
+		<description>Get access to the Wraith starfighter.</description>
+		<baseCost>3500</baseCost>
+		<techLevel>Spacer</techLevel>
+		<prerequisites>
+			<li>Rimgate_WraithBasic</li>
+			<li>Rimgate_WraithGenerator</li>
+			<li>ShipBasics</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>2</researchViewY>
+	</ResearchProjectDef>
+
+</Defs>

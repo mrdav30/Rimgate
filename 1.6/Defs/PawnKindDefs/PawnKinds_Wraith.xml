@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ============================ Wraith Base ============================ -->
+
+  <PawnKindDef Name="Rimgate_WraithBase" Abstract="True">
+    <defaultFactionType>Rimgate_WraithEmpire</defaultFactionType>
+    <race>Human</race>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Rimgate_Wraith>999</Rimgate_Wraith>
+      </xenotypeChances>
+    </xenotypeSet>
+    <chemicalAddictionChance>0.035</chemicalAddictionChance>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>30~60</initialResistanceRange>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <apparelTags>
+      <li>Tribal</li>
+      <li>Neolithic</li>
+    </apparelTags>
+  </PawnKindDef>
+
+  <!-- ============ Wraith Civilian Base ============ -->
+
+  <PawnKindDef Name="Rimgate_WraithCivilianBase" ParentName="Rimgate_WraithBase" Abstract="True">
+    <combatPower>25</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <isFighter>false</isFighter>
+    <gearHealthRange>0.2~2.0</gearHealthRange>
+    <apparelMoney>300~900</apparelMoney>
+    <weaponMoney>100~550</weaponMoney>
+    <weaponTags>
+      <li>Gun</li>
+      <li>NeolithicMeleeBasic</li>
+      <li>NeolithicMeleeAdvanced</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>200</min>
+      <max>300</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Simple</li>
+    </techHediffsTags>
+    <techHediffsChance>0.51</techHediffsChance>
+    <invNutrition>2.55</invNutrition>
+    <inventoryOptions>
+      <skipChance>0.75</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <choiceChance>90</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>25</min>
+            <max>70</max>
+          </countRange>
+        </li>
+        <li>
+          <choiceChance>10</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>700</min>
+            <max>1000</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+
+  <!-- ====== Wraith Civilians classes ====== -->
+
+  <PawnKindDef ParentName="Rimgate_WraithCivilianBase">
+    <defName>Rimgate_WraithColonist</defName>
+    <label>Colonist</label>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_WraithCivilianBase">
+    <defName>Rimgate_GrandVizier</defName>
+    <label>Grand Vizier</label>
+    <labelPlural>Grand Viziers</labelPlural>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>39</minGenerationAge>
+    <maxGenerationAge>100</maxGenerationAge>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_WraithCivilianBase">
+    <defName>Rimgate_WraithSlave</defName>
+    <label>Slave</label>
+  </PawnKindDef>
+
+  <!-- ============ Wraith Military Base ============ -->
+
+  <PawnKindDef Name="Rimgate_WraithMilBase" ParentName="Rimgate_WraithBase" Abstract="True">
+    <isFighter>true</isFighter>
+    <canBeSapper>true</canBeSapper>
+    <chemicalAddictionChance>0</chemicalAddictionChance>
+    <isFighter>true</isFighter>
+    <invNutrition>2.55</invNutrition>
+    <itemQuality>Normal</itemQuality>
+    <minGenerationAge>19</minGenerationAge>
+    <maxGenerationAge>50</maxGenerationAge>
+    <gearHealthRange>0.7~2.3</gearHealthRange>
+    <apparelTags>
+      <li>Outlander</li>
+      <li>Military</li>
+    </apparelTags>
+    <apparelMoney>1500~2800</apparelMoney>
+    <weaponMoney>400~1000</weaponMoney>
+    <techHediffsMoney>
+      <min>1000</min>
+      <max>1500</max>
+    </techHediffsMoney>
+    <inventoryOptions>
+      <skipChance>0.8</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>50</min>
+            <max>200</max>
+          </countRange>
+        </li>
+        <li>
+          <thingDef>MedicineIndustrial</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>1</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+
+  <!-- ====== Wraith Military classes ====== -->
+
+  <PawnKindDef ParentName="Rimgate_WraithMilBase">
+    <defName>Rimgate_WraithSoldier</defName>
+    <label>Wraith Soldier</label>
+    <combatPower>90</combatPower>
+    <minGenerationAge>19</minGenerationAge>
+    <gearHealthRange>0.7~2.3</gearHealthRange>
+    <apparelTags>
+      <li>Rimgate_WraithSoldierApparel_tag</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Rimgate_WraithSoldierArmor</li>
+    </apparelRequired>
+    <apparelMoney>1500~2500</apparelMoney>
+    <weaponMoney>1200~1800</weaponMoney>
+    <weaponTags>
+      <li>Rimgate_WraithWeapons_tag</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>1000</min>
+      <max>1500</max>
+    </techHediffsMoney>
+    <combatEnhancingDrugsCount>
+      <min>0</min>
+      <max>2</max>
+    </combatEnhancingDrugsCount>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.73</techHediffsChance>
+    <inventoryOptions>
+      <skipChance>0.8</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>50</min>
+            <max>200</max>
+          </countRange>
+        </li>
+        <li>
+          <thingDef>MedicineIndustrial</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>1</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+
+
+  <PawnKindDef ParentName="Rimgate_WraithMilBase">
+    <defName>Rimgate_WraithCommander</defName>
+    <label>Wraith Commander</label>
+    <combatPower>135</combatPower>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesChildhood>
+          <li>Military</li>
+          <li>Spacer</li>
+          <li>Offworld</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_WraithCommanderBackStory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
+    <minGenerationAge>20</minGenerationAge>
+    <gearHealthRange>0.5~3.3</gearHealthRange>
+    <apparelTags>
+      <li>Rimgate_WraithSoldierApparel_tag</li>
+      <li>Rimgate_WraithCommanderApparel_tag</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Rimgate_WraithHelmet</li>
+      <li>Rimgate_WraithCommanderArmor</li>
+    </apparelRequired>
+    <apparelMoney>1000~3500</apparelMoney>
+    <weaponMoney>1200~2000</weaponMoney>
+    <weaponTags>
+      <li>Rimgate_WraithSpear_tag</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>2000</min>
+      <max>3000</max>
+    </techHediffsMoney>
+    <combatEnhancingDrugsCount>
+      <min>0</min>
+      <max>2</max>
+    </combatEnhancingDrugsCount>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.88</techHediffsChance>
+    <inventoryOptions>
+      <skipChance>0.8</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>180</min>
+            <max>400</max>
+          </countRange>
+        </li>
+        <li>
+          <thingDef>MedicineIndustrial</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>2</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_WraithMilBase">
+    <defName>Rimgate_WraithQueen</defName>
+    <label>Wraith Queen</label>
+    <factionLeader>true</factionLeader>
+    <combatPower>220</combatPower>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesChildhood>
+          <li>Rimgate_WraithChildBackStory</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_WraithQueenBackStory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
+    <minGenerationAge>26</minGenerationAge>
+    <gearHealthRange>0.8~3.5</gearHealthRange>
+    <apparelTags>
+      <li>Rimgate_WraithSoldierApparel_tag</li>
+      <li>Rimgate_WraithCommanderApparel_tag</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Rimgate_WraithHelmet</li>
+      <li>Rimgate_WraithCommanderArmor</li>
+    </apparelRequired>
+    <apparelMoney>2500~4200</apparelMoney>
+    <weaponMoney>1600~2000</weaponMoney>
+    <weaponTags>
+      <li>Rimgate_WraithSpear_tag</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>2000</min>
+      <max>3000</max>
+    </techHediffsMoney>
+    <combatEnhancingDrugsCount>
+      <min>1</min>
+      <max>2</max>
+    </combatEnhancingDrugsCount>
+    <combatEnhancingDrugsChance>0.1</combatEnhancingDrugsChance>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.80</techHediffsChance>
+    <inventoryOptions>
+      <skipChance>0.8</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>120</min>
+            <max>480</max>
+          </countRange>
+        </li>
+        <li>
+          <thingDef>MedicineIndustrial</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>2</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+
+</Defs>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dubs Bad Hygiene</li>
+			<li>Dubs Bad Hygiene Lite</li>
+			<li>Dubs Bad Hygiene - Thirst</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+				<!-- Prevent Sarcophagus from treating bad hygiene hediff -->
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="Rimgate_GoauldSarcophagus"]/comps/li[@Class="Rimgate.CompProperties_TreatmentRestrictions"]/neverTreatableHediffs</xpath>
+					<value>
+						<li>BadHygiene</li>
+					</value>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+	
+</Patch>

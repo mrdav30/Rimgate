@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ============ Wraith Grenades ============ -->
+
+	<!-- ========= Wraith Grenade ========= -->
+
+	<ThingDef ParentName="BaseMakeableGrenade">
+		<defName>Rimgate_WraithGrenade</defName>
+		<label>Wraith grenade</label>
+		<description>A grenade used by the wraith warriors.</description>
+		<tickerType>Normal</tickerType>
+		<costList>
+			<Steel>20</Steel>
+			<Chemfuel>80</Chemfuel>
+		</costList>
+		<graphicData>
+			<texPath>Things/Item/Weapon/Grenade/RGWraithGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Grenade</soundInteract>
+		<techLevel>Industrial</techLevel>
+		<statBases>
+			<Mass>1</Mass>
+			<RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+			<WorkToMake>12000</WorkToMake>
+		</statBases>
+		<verbs>
+			<li>
+				<label>Throw Wraith grenade</label>
+				<verbClass>Verb_LaunchProjectile</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Rimgate_WraithGrenadeProjectile</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+			<researchPrerequisite>Rimgate_WraithWeaponTier1</researchPrerequisite>
+		</recipeMaker>
+		<weaponTags>
+			<li>Rimgate_WraithGrenade_tag</li>
+			<li>Rimgate_WraithWeapons_tag</li>
+		</weaponTags>
+		<thingCategories>
+			<li>Grenades</li>
+		</thingCategories>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.66</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li>
+		</comps>
+		<tradeTags>
+			<li>Rimgate_WraithWeaponsTrade_tag</li>
+			<li>ExoticMisc</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- ====== Wraith Grenade Projectile ====== -->
+
+	<ThingDef>
+		<defName>Rimgate_WraithGrenadeProjectile</defName>
+		<thingClass>Projectile_Explosive</thingClass>
+		<label>Wraith Grenade</label>
+		<category>Projectile</category>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<tickerType>Normal</tickerType>
+		<useHitPoints>False</useHitPoints>
+		<neverMultiSelect>True</neverMultiSelect>
+		<projectile>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+		<graphicData>
+			<texPath>Things/Projectile/RGWraithGrenadeProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>Transparent</shaderType>
+		</graphicData>
+		<projectile>
+			<explosionRadius>1.9</explosionRadius>
+			<damageDef>Bomb</damageDef>
+			<!-- Use default damage from explosion def -->
+			<explosionDelay>100</explosionDelay>
+		</projectile>
+	</ThingDef>
+
+	<!-- ============ Wraith Guns ============ -->
+
+	<!-- ========= Wraith Gun Base ========= -->
+
+	<ThingDef Name="Rimgate_WraithGunBase" ParentName="BaseMakeableGun" Abstract="True">
+		<techLevel>Ultra</techLevel>
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+			<researchPrerequisite>Gunsmithing</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<researchPrerequisite>Rimgate_WraithWeaponTier1</researchPrerequisite>
+		</recipeMaker>
+		<graphicData>
+			<drawSize>1</drawSize>
+		</graphicData>
+		<weaponTags>
+			<li>Rimgate_WraithWeapons_tag</li>
+		</weaponTags>
+		<tradeTags>
+			<li>Rimgate_WraithWeaponsTrade_tag</li>
+			<li>ExoticMisc</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- ====== Wraith Spear Gun ====== -->
+
+	<ThingDef ParentName="Rimgate_WraithGunBase">
+		<defName>Rimgate_WraithSpear</defName>
+		<label>Wraith spear gun</label>
+		<description>This is a wraith spear. It is used to stun humans. After they are captured they can be turned into food.</description>
+		<costList>
+			<Steel>100</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Rimgate_Biomass>50</Rimgate_Biomass>
+		</costList>
+		<graphicData>
+			<texPath>Things/Item/Weapon/Ranged/RGWraithSpearGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_ChargeRifle</soundInteract>
+		<statBases>
+			<MarketValue>750</MarketValue>
+			<WorkToMake>30000</WorkToMake>
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.71</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.32</AccuracyLong>
+			<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_WraithSpearGunProjectile</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>29</range>
+				<minRange>0.5</minRange>
+				<burstShotCount>1</burstShotCount>
+				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				<soundCast>Shot_ChargeRifle</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+
+	<!-- ====== Wraith Spear Gun Projectile ====== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_WraithSpearGunProjectile</defName>
+		<label>Wraith spear gun shot</label>
+		<description>bullet</description>
+		<graphicData>
+			<texPath>Things/Projectile/RGWraithSpearGunProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Stun</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<speed>40</speed>
+		</projectile>
+	</ThingDef>
+
+</Defs>

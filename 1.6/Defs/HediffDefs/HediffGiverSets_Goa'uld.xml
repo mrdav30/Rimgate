@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <HediffGiverSetDef>
+        <defName>Rimgate_JaffaImplants</defName>
+        <hediffGivers>
+            <li Class="Rimgate.HediffGiver_AtAge">
+                <hediff>Rimgate_SymbioteImplant</hediff>
+                <partsToAffect>
+                    <li>Stomach</li>
+                </partsToAffect>
+                <age>10</age>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+
+    <HediffGiverSetDef Name="Rimgate_ForeheadSymbolBase" Abstract="True">
+        <hediffGivers>
+            <li Class="Rimgate.HediffGiver_AtAge">
+                <hediff>Rimgate_JaffaForeheadSymbolAnubis</hediff>
+                <partsToAffect>
+                    <li>Head</li>
+                </partsToAffect>
+                <age>10</age>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+
+    <HediffGiverSetDef ParentName="Rimgate_ForeheadSymbolBase">
+        <defName>Rimgate_JaffaAnubis</defName>
+        <hediffGivers>
+            <li Class="Rimgate.HediffGiver_AtAge">
+                <hediff>Rimgate_JaffaForeheadSymbolAnubis</hediff>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+
+    <HediffGiverSetDef ParentName="Rimgate_ForeheadSymbolBase">
+        <defName>Rimgate_PrimeAnubis</defName>
+        <hediffGivers>
+            <li Class="Rimgate.HediffGiver_AtAge">
+                <hediff>Rimgate_PrimeForeheadSymbolAnubis</hediff>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+
+    <HediffGiverSetDef ParentName="Rimgate_ForeheadSymbolBase">
+        <defName>Rimgate_JaffaApophis</defName>
+        <hediffGivers>
+            <li Class="Rimgate.HediffGiver_AtAge">
+                <hediff>Rimgate_JaffaForeheadSymbolApophis</hediff>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+
+    <HediffGiverSetDef ParentName="Rimgate_ForeheadSymbolBase">
+        <defName>Rimgate_PrimeApophis</defName>
+        <hediffGivers>
+            <li Class="Rimgate.HediffGiver_AtAge">
+                <hediff>Rimgate_PrimeForeheadSymbolApophis</hediff>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+
+    <HediffGiverSetDef ParentName="Rimgate_ForeheadSymbolBase">
+        <defName>Rimgate_JaffaRa</defName>
+        <hediffGivers>
+            <li Class="Rimgate.HediffGiver_AtAge">
+                <hediff>Rimgate_JaffaForeheadSymbolRa</hediff>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+
+    <HediffGiverSetDef ParentName="Rimgate_ForeheadSymbolBase">
+        <defName>Rimgate_PrimeRa</defName>
+        <hediffGivers>
+            <li Class="Rimgate.HediffGiver_AtAge">
+                <hediff>Rimgate_PrimeForeheadSymbolRa</hediff>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+
+</Defs>

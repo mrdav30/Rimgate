@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- =============== Stargate Base =============== -->
+
+	<ThingDef Name="Rimgate_StargateBase" ParentName="BuildingBase" Abstract="True">
+		<thingClass>Rimgate.Building_Stargate</thingClass>
+		<rotatable>false</rotatable>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<stealable>false</stealable>
+		<pathCost>3</pathCost>
+		<constructEffect>ConstructMetal</constructEffect>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<fillPercent>0.20</fillPercent>
+		<canOverlapZones>true</canOverlapZones>
+		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+		<designationCategory>Misc</designationCategory>
+		<thingCategories>
+			<li>Artifacts</li>
+		</thingCategories>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<tickerType>Normal</tickerType>
+		<drawerType>RealtimeOnly</drawerType>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,0)</interactionCellOffset>
+		<building>
+			<ai_neverTrashThis>true</ai_neverTrashThis>
+		</building>
+		<placeWorkers>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+			<li>Rimgate.PlaceWorker_Stargate</li>
+		</placeWorkers>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>0</glowRadius> <!-- This is changed in C# -->
+				<glowColor>(115,171,224,0)</glowColor>
+			</li>
+			<li Class="CompProperties_Transporter">
+				<max1PerGroup>true</max1PerGroup>
+				<massCapacity>999999</massCapacity>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ======= Stargate Ancient ======= -->
+
+	<ThingDef ParentName="Rimgate_StargateBase">
+		<defName>Rimgate_Stargate</defName>
+		<label>Stargate</label>
+		<description>An ancient device used to transport people or resources between planets. This
+			specific type of Stargate seems to be adapted to work on only one planet. \n\n"By the
+			time you get to the other side, you're frozen stiff. Like you'd just been through a
+			blizzard...naked."</description>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGStargateAncient</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(5.3,5.3)</drawSize>
+			<drawOffset>(0,0,1.2)</drawOffset>
+		</graphicData>
+		<techLevel>Archotech</techLevel>
+		<killedLeavings>
+			<Steel>120</Steel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Rimgate_Naquadria>5</Rimgate_Naquadria>
+		</killedLeavings>
+		<statBases>
+			<MarketValue>2000</MarketValue>
+			<MaxHitPoints>6000</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<Mass>290</Mass>
+		</statBases>
+		<designationCategory />
+		<size>(5,1)</size>
+		<comps>
+			<li Class="Rimgate.CompProperties_Stargate">
+				<puddleTexture>Things/Building/Misc/RGEventHorizon</puddleTexture>
+				<irisTexture>Things/Building/Misc/RGIris</irisTexture>
+				<puddleDrawSize>(8.7,8.7)</puddleDrawSize>
+			</li>
+			<li Class="CompProperties_AffectedByFacilities">
+				<linkableFacilities>
+					<li>Rimgate_DialHomeDevice</li>
+				</linkableFacilities>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ======= Stargate Adhoc ======= -->
+
+	<ThingDef ParentName="Rimgate_StargateBase">
+		<defName>Rimgate_AdhocStargate</defName>
+		<label>Makeshift stargate</label>
+		<description>A device used to transport people or resources between planets. This specific
+			type of Stargate seems to be adapted to work on only one planet.
+			This stargate in particular was made using easily available resources, but is quite
+			unstable and unreliable, and also requires an external power source. It is both too weak
+			and too small to have an iris. It has an integrated DHD. Make sure to get out of the way
+			before it finishes dialling...
+			\n"You wouldn't believe the things that you can make from the common, simple items lying
+			around your planet. Which reminds me, you're going to need a new microwave."</description>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGStargateAdhoc</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3.5,3.5)</drawSize>
+			<drawOffset>(0,0,0.8)</drawOffset>
+		</graphicData>
+		<techLevel>Spacer</techLevel>
+		<killedLeavings>
+			<Steel>120</Steel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Rimgate_Naquadria>5</Rimgate_Naquadria>
+		</killedLeavings>
+		<statBases>
+			<MarketValue>1050</MarketValue>
+			<WorkToBuild>10000</WorkToBuild>
+			<MaxHitPoints>1500</MaxHitPoints>
+			<Flammability>0.3</Flammability>
+			<Mass>100</Mass>
+		</statBases>
+		<size>(3,1)</size>
+		<comps>
+			<li Class="Rimgate.CompProperties_Stargate">
+				<canHaveIris>False</canHaveIris>
+				<explodeOnUse>True</explodeOnUse>
+				<puddleTexture>Things/Building/Misc/RGEventHorizon</puddleTexture>
+				<puddleDrawSize>(5.3,5.3)</puddleDrawSize>
+				<vortexPattern>
+					<li>(0,0,0)</li>
+					<li>(0,0,-1)</li>
+					<li>(0,0,-2)</li>
+				</vortexPattern>
+			</li>
+			<li Class="Rimgate.CompProperties_DialHomeDevice">
+				<selfDialler>True</selfDialler>
+				<requiresPower>True</requiresPower>
+			</li>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>3</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<wickTicks>250</wickTicks>
+				<chanceNeverExplodeFromDamage>1</chanceNeverExplodeFromDamage>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>2000</basePowerConsumption>
+			</li>
+		</comps>
+		<researchPrerequisites>
+			<li>Rimgate_StargateMakingResearch</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<!-- =============== DHD =============== -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_DialHomeDevice</defName>
+		<label>Dial home device</label>
+		<description>An ancient device used to control a stargate.\n\n"Kind of a ring thing, comes
+			with a dialer, you hit the symbols, it spins around and lights come on, it kind of
+			flushes sideways..."</description>
+		<thingClass>Building</thingClass>
+		<rotatable>false</rotatable>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<stealable>false</stealable>
+		<passability>Impassable</passability>
+		<constructEffect>ConstructMetal</constructEffect>
+		<uiIconScale>0.65</uiIconScale>
+		<fillPercent>0.40</fillPercent>
+		<canOverlapZones>true</canOverlapZones>
+		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+		<thingCategories>
+			<li>Artifacts</li>
+		</thingCategories>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<tickerType>Never</tickerType>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<building>
+			<ai_neverTrashThis>true</ai_neverTrashThis>
+		</building>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+		<comps>
+			<li Class="CompProperties_Facility" />
+			<li Class="Rimgate.CompProperties_DialHomeDevice" />
+		</comps>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGDHD</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<killedLeavings>
+			<Steel>300</Steel>
+			<ComponentIndustrial>60</ComponentIndustrial>
+			<ComponentSpacer>25</ComponentSpacer>
+			<Gold>100</Gold>
+		</killedLeavings>
+		<statBases>
+			<MaxHitPoints>6000</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<Mass>60</Mass>
+		</statBases>
+		<size>(1,1)</size>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+	</ThingDef>
+
+</Defs>

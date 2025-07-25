@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- ============ P-90 ============ -->
+
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>Rimgate_TauriP90Gun</defName>
+        <label>P90</label>
+        <description>A compact, lightweight submachine gun chambered used by the Tau'ri. Fires fast
+            and has a high capacity top loading mag.</description>
+        <graphicData>
+            <texPath>Things/Item/Weapon/Ranged/RGTauriP90</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Interact_SMG</soundInteract>
+        <weaponClasses>
+            <li>ShortShots</li>
+            <li>RangedHeavy</li>
+        </weaponClasses>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>5</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <thingSetMakerTags>
+            <li>RewardStandardQualitySuper</li>
+        </thingSetMakerTags>
+        <statBases>
+            <WorkToMake>26000</WorkToMake>
+            <Mass>3</Mass>
+            <AccuracyTouch>0.85</AccuracyTouch>
+            <AccuracyShort>0.70</AccuracyShort>
+            <AccuracyMedium>0.40</AccuracyMedium>
+            <AccuracyLong>0.30</AccuracyLong>
+            <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>75</Steel>
+            <ComponentIndustrial>4</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_HeavySMG</defaultProjectile>
+                <warmupTime>0.9</warmupTime>
+                <range>24.9</range>
+                <burstShotCount>6</burstShotCount>
+                <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+                <soundCast>Rimgate_P90Shot</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>Rimgate_TauriSubmachineGun_tag</li>
+            <li>Rimgate_TauriWeapon_tag</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <label>grip</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+        <tradeTags>
+            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>ExoticMisc</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============ M4-A1 ============ -->
+
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>Rimgate_TauriM4A1Gun</defName>
+        <label>M4A1</label>
+        <description>A general-purpose gas-operated assault rifle for field or urban combat used by
+            Tau'ri SGC teams.</description>
+        <graphicData>
+            <texPath>Things/Item/Weapon/Ranged/RGTauriM4A1</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Interact_Rifle</soundInteract>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>6</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <thingSetMakerTags>
+            <li>RewardStandardQualitySuper</li>
+        </thingSetMakerTags>
+        <statBases>
+            <WorkToMake>26000</WorkToMake>
+            <Mass>3.5</Mass>
+            <AccuracyTouch>0.75</AccuracyTouch>
+            <AccuracyShort>0.80</AccuracyShort>
+            <AccuracyMedium>0.60</AccuracyMedium>
+            <AccuracyLong>0.55</AccuracyLong>
+            <RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+        </statBases>
+        <equippedAngleOffset>45</equippedAngleOffset>
+        <costList>
+            <Steel>60</Steel>
+            <ComponentIndustrial>5</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_AssaultRifle</defaultProjectile>
+                <warmupTime>1.0</warmupTime>
+                <range>31.9</range>
+                <burstShotCount>4</burstShotCount>
+                <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+                <soundCast>Shot_AssaultRifle</soundCast>
+                <soundCastTail>GunTail_Medium</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>Rimgate_TauriAssaultRifle_tag</li>
+            <li>Rimgate_TauriWeapon_tag</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+        <tradeTags>
+            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>ExoticMisc</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ============ M4-A1_M203_AR ============ -->
+
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>Rimgate_TauriM4A1_M203Gun</defName>
+        <label>M4A1 with M203 Launcher</label>
+        <description>A general-purpose gas-operated assault rifle for field or urban combat used by
+            Tau'ri SGC teams. This variation comes with an underbarrel M203 grenade launcher.</description>
+        <graphicData>
+            <texPath>Things/Item/Weapon/Ranged/RGTauriM4M203</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Interact_Rifle</soundInteract>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>8</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <thingSetMakerTags>
+            <li>RewardStandardQualitySuper</li>
+        </thingSetMakerTags>
+        <statBases>
+            <WorkToMake>32000</WorkToMake>
+            <Mass>3.9</Mass>
+            <AccuracyTouch>0.75</AccuracyTouch>
+            <AccuracyShort>0.80</AccuracyShort>
+            <AccuracyMedium>0.60</AccuracyMedium>
+            <AccuracyLong>0.55</AccuracyLong>
+            <RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+        </statBases>
+        <equippedAngleOffset>45</equippedAngleOffset>
+        <costList>
+            <Rimgate_TauriM4A1Gun>1</Rimgate_TauriM4A1Gun>
+            <ComponentIndustrial>6</ComponentIndustrial>
+            <Steel>20</Steel>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_AssaultRifle</defaultProjectile>
+                <warmupTime>1.0</warmupTime>
+                <range>31.9</range>
+                <burstShotCount>4</burstShotCount>
+                <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+                <soundCast>Shot_AssaultRifle</soundCast>
+                <soundCastTail>GunTail_Medium</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>Rimgate_TauriAssaultRifle_tag</li>
+            <li>Rimgate_TauriWeapon_tag</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+        <comps>
+            <li Class="Rimgate.CompProperties_SwitchWeapon">
+                <weaponsToSwitch>
+                    <li>Rimgate_TauriM4A1_M203_GrenadeLauncher</li>
+                </weaponsToSwitch>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ============ M4-A1_M203_GR ============ -->
+
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>Rimgate_TauriM4A1_M203_GrenadeLauncher</defName>
+        <label>M203 Underbarrel Launcher</label>
+        <description>A general-purpose gas-operated assault rifle for field or urban combat used by
+            Tau'ri SGC teams. This variation comes with an underbarrel M203 grenade launcher.</description>
+        <graphicData>
+            <texPath>Things/Item/Weapon/Ranged/RGTauriM4M203</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Interact_Rifle</soundInteract>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>8</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <thingSetMakerTags>
+            <li>RewardStandardQualitySuper</li>
+        </thingSetMakerTags>
+        <statBases>
+            <WorkToMake>32000</WorkToMake>
+            <Mass>3.9</Mass>
+            <AccuracyTouch>0.35</AccuracyTouch>
+            <AccuracyShort>0.65</AccuracyShort>
+            <AccuracyMedium>0.45</AccuracyMedium>
+            <AccuracyLong>0.25</AccuracyLong>
+            <RangedWeapon_Cooldown>2.9</RangedWeapon_Cooldown>
+        </statBases>
+        <equippedAngleOffset>45</equippedAngleOffset>
+        <costList>
+            <Rimgate_TauriM4A1Gun>1</Rimgate_TauriM4A1Gun>
+            <ComponentIndustrial>6</ComponentIndustrial>
+            <Steel>20</Steel>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Rimgate_M203Projectile</defaultProjectile>
+                <warmupTime>2.9</warmupTime>
+                <range>17.9</range>
+                <forcedMissRadius>0.9</forcedMissRadius>
+                <soundCast>Rimgate_M203Shot</soundCast>
+                <soundCastTail>GunTail_Medium</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>Rimgate_TauriAssaultRifle_tag</li>
+            <li>Rimgate_TauriWeapon_tag</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+        <comps>
+            <li Class="Rimgate.CompProperties_SwitchWeapon">
+                <weaponsToSwitch>
+                    <li>Rimgate_TauriM4A1_M203Gun</li>
+                </weaponsToSwitch>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ========= M4-A1_M203 40MM Grenade Projectile ========= -->
+
+    <ThingDef ParentName="BaseBullet">
+        <defName>Rimgate_M203Projectile</defName>
+        <label>40mm Grenade</label>
+        <graphicData>
+            <texPath>Things/Projectile/RG40mmGrenadeProjectile</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <thingClass>Projectile_Explosive</thingClass>
+        <projectile>
+            <damageDef>Bomb</damageDef>
+            <!-- Use default damage from explosion def -->
+            <explosionRadius>1.4</explosionRadius>
+            <speed>60</speed>
+        </projectile>
+    </ThingDef>
+
+    <!-- ========= Beretta M92A ========= -->
+
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>Rimgate_TauriM92A</defName>
+        <label>Beretta M92A</label>
+        <description>An blowback-operated self-loading pistol. This is the standard sidearm for
+            Tau'ri SGC teams.</description>
+        <graphicData>
+            <texPath>Things/Item/Weapon/Ranged/RGTauriBerettaM92APistol</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <uiIconScale>1.5</uiIconScale>
+        <soundInteract>Interact_Autopistol</soundInteract>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>4</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <weaponTags>
+            <li>Rimgate_TauriPistol_tag</li>
+            <li>Rimgate_TauriWeapon_tag</li>
+        </weaponTags>
+        <weaponClasses>
+            <li>RangedLight</li>
+        </weaponClasses>
+        <statBases>
+            <WorkToMake>5500</WorkToMake>
+            <Mass>1.5</Mass>
+            <AccuracyTouch>0.85</AccuracyTouch>
+            <AccuracyShort>0.75</AccuracyShort>
+            <AccuracyMedium>0.45</AccuracyMedium>
+            <AccuracyLong>0.35</AccuracyLong>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>30</Steel>
+            <ComponentIndustrial>2</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_Autopistol</defaultProjectile>
+                <warmupTime>0.2</warmupTime>
+                <range>22.9</range>
+                <soundCast>Shot_Autopistol</soundCast>
+                <soundCastTail>GunTail_Light</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <label>grip</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+        <tradeTags>
+            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>ExoticMisc</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ========= USAS 12 ========= -->
+
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>Rimgate_TauriUSAS12Shotgun</defName>
+        <label>USAS 12</label>
+        <description>An automatic shotgun used by Tau'ri SGC teams.</description>
+        <graphicData>
+            <texPath>Things/Item/Weapon/Ranged/RGTauriUSAS12Shotgun</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Interact_Shotgun</soundInteract>
+        <weaponClasses>
+            <li>ShortShots</li>
+        </weaponClasses>
+        <statBases>
+            <WorkToMake>17000</WorkToMake>
+            <Mass>3</Mass>
+            <AccuracyTouch>0.80</AccuracyTouch>
+            <AccuracyShort>0.90</AccuracyShort>
+            <AccuracyMedium>0.80</AccuracyMedium>
+            <AccuracyLong>0.60</AccuracyLong>
+            <RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>60</Steel>
+            <ComponentIndustrial>6</ComponentIndustrial>
+        </costList>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>5</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <weaponTags>
+            <li>Rimgate_TauriShotgun_tag</li>
+            <li>Rimgate_TauriWeapon_tag</li>
+        </weaponTags>
+        <weaponClasses>
+            <li>RangedHeavy</li>
+        </weaponClasses>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_Shotgun</defaultProjectile>
+                <warmupTime>1</warmupTime>
+                <burstShotCount>3</burstShotCount>
+                <ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+                <range>15.9</range>
+                <soundCast>Shot_Shotgun</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+        <tradeTags>
+            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>ExoticMisc</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ========= Remington_700 ========= -->
+
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>Rimgate_TauriRemington700Rifle</defName>
+        <label>sniper rifle</label>
+        <description>Standard bolt action sniper rifle used by Tau'ri SGC teams.</description>
+        <graphicData>
+            <texPath>Things/Item/Weapon/Ranged/RGTauriRemington700</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Interact_Rifle</soundInteract>
+        <weaponClasses>
+            <li>LongShots</li>
+            <li>RangedHeavy</li>
+        </weaponClasses>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>7</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <thingSetMakerTags>
+            <li>RewardStandardQualitySuper</li>
+        </thingSetMakerTags>
+        <statBases>
+            <WorkToMake>50000</WorkToMake>
+            <Mass>4</Mass>
+            <AccuracyTouch>0.55</AccuracyTouch>
+            <AccuracyShort>0.75</AccuracyShort>
+            <AccuracyMedium>0.86</AccuracyMedium>
+            <AccuracyLong>0.90</AccuracyLong>
+            <RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>60</Steel>
+            <ComponentIndustrial>8</ComponentIndustrial>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_SniperRifle</defaultProjectile>
+                <warmupTime>3.0</warmupTime>
+                <range>48.9</range>
+                <soundCast>Shot_SniperRifle</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <weaponTags>
+            <li>Rimgate_TauriSniperRifle_tag</li>
+            <li>Rimgate_TauriWeapon_tag</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <label>stock</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+        <tradeTags>
+            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>ExoticMisc</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ========= Anti Replicator Gun ========= -->
+
+    <ThingDef ParentName="BaseHumanMakeableGun">
+        <defName>Rimgate_TauriAntiReplicatorGun</defName>
+        <label>Anti Replicator gun</label>
+        <description>A weapon used to disrupt the emp between Replicator blocks.</description>
+        <graphicData>
+            <texPath>Things/Item/Weapon/Ranged/RGTauriAntiReplicatorGun</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <uiIconScale>1.5</uiIconScale>
+        <soundInteract>Interact_Autopistol</soundInteract>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>4</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <weaponTags>
+            <li>Rimgate_TauriAntiReplicator_tag</li>
+            <li>Rimgate_TauriWeapon_tag</li>
+        </weaponTags>
+        <weaponClasses>
+            <li>RangedLight</li>
+        </weaponClasses>
+        <statBases>
+            <WorkToMake>5500</WorkToMake>
+            <Mass>1.5</Mass>
+            <AccuracyTouch>0.85</AccuracyTouch>
+            <AccuracyShort>0.75</AccuracyShort>
+            <AccuracyMedium>0.45</AccuracyMedium>
+            <AccuracyLong>0.35</AccuracyLong>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>20</Steel>
+            <ComponentIndustrial>7</ComponentIndustrial>
+            <ComponentSpacer>2</ComponentSpacer>
+        </costList>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Rimgate_AntiReplicatorProjectile</defaultProjectile>
+                <warmupTime>0.2</warmupTime>
+                <range>15.9</range>
+                <soundCast>ChargeLance_Fire</soundCast>
+                <soundCastTail>GunTail_Light</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <label>grip</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+        <tradeTags>
+            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>ExoticMisc</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ====== Anti-Replicator Bullet ====== -->
+
+    <ThingDef ParentName="BaseBullet">
+        <defName>Rimgate_AntiReplicatorProjectile</defName>
+        <label>Anti Replicator EMP</label>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>EMP</damageDef>
+            <damageAmountBase>10</damageAmountBase>
+            <speed>50</speed>
+        </projectile>
+    </ThingDef>
+
+    <!-- ====== FIM Stinger ====== -->
+
+    <ThingDef ParentName="BaseGun">
+        <defName>Rimgate_TauriFIMStinger</defName>
+        <label>FIM Stinger</label>
+        <description>An infantry air-defense weapon used to take out low flying targets by Tau'ri
+            SGC teams, the upgraded and more modern version of the "FIM-43 Redeye".</description>
+        <tickerType>Normal</tickerType>
+        <graphicData>
+            <texPath>Things/Item/Weapon/Ranged/RGTauriFIMStinger</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>15</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <statBases>
+            <WorkToMake>80000</WorkToMake>
+            <MarketValue>650</MarketValue>
+            <Mass>5</Mass>
+            <RangedWeapon_Cooldown>9</RangedWeapon_Cooldown>
+        </statBases>
+        <costList>
+            <Steel>50</Steel>
+            <ComponentIndustrial>20</ComponentIndustrial>
+        </costList>
+        <equippedAngleOffset>45</equippedAngleOffset>
+        <techLevel>Industrial</techLevel>
+        <weaponTags>
+            <li>Rimgate_TauriRocketLauncher_tag</li>
+            <li>Rimgate_TauriWeapon_tag</li>
+        </weaponTags>
+        <weaponClasses>
+            <li>RangedHeavy</li>
+        </weaponClasses>
+        <tradeTags>
+            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>ExoticMisc</li>
+        </tradeTags>
+        <thingSetMakerTags>
+            <li>SingleUseWeapon</li>
+            <li>RewardStandardLowFreq</li>
+        </thingSetMakerTags>
+        <relicChance>0</relicChance>
+        <verbs>
+            <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Rimgate_FIMStingerProjectile</defaultProjectile>
+                <forcedMissRadius>3.1</forcedMissRadius>
+                <warmupTime>2</warmupTime>
+                <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+                <range>45.9</range>
+                <soundCast>InfernoCannon_Fire</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <onlyManualCast>true</onlyManualCast>
+                <stopBurstWithoutLos>false</stopBurstWithoutLos>
+                <targetParams>
+                    <canTargetLocations>true</canTargetLocations>
+                </targetParams>
+                <muzzleFlashScale>14</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <label>barrel</label>
+                <capacities>
+
+                </capacities>
+                <power>11.7</power>
+                <cooldownTime>2.6</cooldownTime>
+            </li>
+        </tools>
+        <comps>
+            <li Class="CompProperties_Explosive">
+                <explosiveRadius>3.5</explosiveRadius>
+                <explosiveDamageType>Bomb</explosiveDamageType>
+                <requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ====== FIM Stinger Projectile ====== -->
+
+    <ThingDef ParentName="BaseBullet">
+        <defName>Rimgate_FIMStingerProjectile</defName>
+        <label>Anti Air Missle</label>
+        <graphicData>
+            <texPath>Things/Projectile/RGAAMissileProjectile</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+        </graphicData>
+        <thingClass>Projectile_Explosive</thingClass>
+        <projectile>
+            <damageDef>Bomb</damageDef>
+            <!-- Use default damage from explosion def -->
+            <explosionRadius>2.9</explosionRadius>
+            <speed>60</speed>
+        </projectile>
+    </ThingDef>
+
+</Defs>

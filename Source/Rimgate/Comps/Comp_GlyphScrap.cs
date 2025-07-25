@@ -1,0 +1,38 @@
+﻿using System;
+using RimWorld;
+using RimWorld.Planet;
+using Verse;
+using Verse.AI;
+using System.Collections.Generic;
+
+namespace Rimgate;
+
+public class Comp_GlyphScrap : ThingComp
+{
+    public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
+    {
+        if (selPawn == null)
+            yield break;
+
+        bool canReach = selPawn.CanReach(
+            this.parent,
+            PathEndMode.Touch,
+            Danger.Deadly,
+            false,
+            false,
+            TraverseMode.ByPawn);
+        if (!canReach)
+            yield break;
+
+        if (DefDatabase<ResearchProjectDef>.GetNamed("Rimgate_GlyphDeciphering").IsFinished)
+        {
+            yield return new FloatMenuOption("Rimgate_DecodeSGSymbols".Translate(), () =>
+            {
+                Job job = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("Rimgate_DecodeGlyphs"), this.parent);
+                selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            });
+        }
+        else
+            yield return new FloatMenuOption("Rimgate_CannotDecodeSGSymbols".Translate(), null);
+    }
+}

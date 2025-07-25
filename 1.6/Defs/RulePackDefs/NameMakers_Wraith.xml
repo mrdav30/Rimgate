@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <RulePackDef>
+    <defName>Rimgate_NamerPersonWraith</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[RG_WraithFirst] [RG_WraithLast]</li>
+        <li>name->[RG_Nickname] [RG_WraithFirst]</li>
+        <li>name->[RG_WraithFirst] '[RG_Nickname]' [RG_WraithLast]</li>
+        <li>name->[RG_WraithFirst] [RG_Nickname]</li>
+      </rulesStrings>
+      <rulesRaw>
+        <li Class="Rule_File">
+          <keyword>RG_WraithFirst</keyword>
+          <path>NameBanks/Wraith/Names_First_Wraith</path>
+        </li>
+        <li Class="Rule_File">
+          <keyword>RG_WraithLast</keyword>
+          <path>NameBanks/Wraith/Names_Last_Wraith</path>
+        </li>
+        <li Class="Rule_File">
+          <keyword>RG_Nickname</keyword>
+          <path>NameBanks/Wraith/Names_Nickname_Wraith</path>
+        </li>
+      </rulesRaw>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

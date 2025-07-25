@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <XenotypeDef>
+    <defName>Rimgate_Wraith</defName>
+    <label>Wraith</label>
+    <description>Wraith are vampiric aliens with psychic power, enhanced mobility, and a disturbing
+      hunger for human flesh. They are ageless, never sleep, and thrive in darkness.</description>
+    <iconPath>UI/Icon/Xenotype/RGWraithXenotypeIcon</iconPath>
+    <inheritable>true</inheritable>
+    <nameMaker>Rimgate_NamerPersonWraith</nameMaker>
+    <nameMakerFemale>Rimgate_NamerPersonWraith</nameMakerFemale>
+    <chanceToUseNameMaker>1</chanceToUseNameMaker>
+    <genes>
+      <!-- Appearance & Theme -->
+      <li>Hair_SnowWhite</li>
+      <li>Skin_SheerWhite</li>
+      <li>Rimgate_WraithBeauty</li>
+
+      <!-- Core Traits -->
+      <li>Rimgate_WraithAgeless</li>
+      <li>Neversleep</li>
+      <li>ArchiteMetabolism</li>
+      <li>DarkVision</li>
+      <li>MeleeDamage_Strong</li>
+      <li>Rimgate_WraithMovement</li>
+      <li>Rimgate_WraithPsychic</li>
+      <li>Rimgate_WraithMiner</li>
+      <li>Rimgate_WraithCannibal</li>
+      <li>Rimgate_WraithLifeDrain</li>
+      <li>Rimgate_WraithCocoonTrap</li>
+    </genes>
+  </XenotypeDef>
+
+</Defs>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ResearchTabDef>
+		<defName>Rimgate_ResearchTab</defName>
+		<label>Stargates</label>
+	</ResearchTabDef>
+
+	<ResearchProjectDef>
+		<tab>Rimgate_ResearchTab</tab>
+		<defName>Rimgate_GlyphDeciphering</defName>
+		<label>Glyph deciphering</label>
+		<description>The glyphs both engraved on Stargates and on mysterious scraps of paper have
+			meaning. Deciphering them and locating where they go may unlock a new way of travel.</description>
+		<baseCost>2000</baseCost>
+		<techLevel>Medieval</techLevel>
+		<researchViewX>0.00</researchViewX>
+		<researchViewY>0.00</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef Name="Rimgate_ResearchBase" Abstract="True">
+		<tab>Rimgate_ResearchTab</tab>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>AdvancedFabrication</li>
+			<li>Rimgate_GlyphDeciphering</li>
+		</prerequisites>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+
+	<!-- ==================== Stargate Creation ==================== -->
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_StargateMakingResearch</defName>
+		<label>Makeshift Stargate creation</label>
+		<description>The materials used to build the ancient stargates aren't available on this
+			planet, but we might be able to create a makeshift version.</description>
+		<baseCost>3500</baseCost>
+		<researchViewX>1.00</researchViewX>
+		<researchViewY>1.00</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- ==================== Iris Research ==================== -->
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_StargateIrisAlloyResearch</defName>
+		<label>Plasteel alloys</label>
+		<description>A material with incredible strength can made by combining Plasteel, Uranium and
+			Steel. Even though it is too atomically unstable to use as a building material, its
+			low-friction nature could be used to make an aperture to cover a stargate.</description>
+		<baseCost>4000</baseCost>
+		<researchViewX>1.00</researchViewX>
+		<researchViewY>0.00</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_StargateIrisResearch</defName>
+		<label>Irises</label>
+		<description>Experimentation reveals that a barrier placed microns from the event horizon of
+			a stargate would stop almost anything from reintegrating. Using the low-friction alloy
+			we discovered, we could make an aperture to cover the stargate and prevent people
+			invading our base through it.</description>
+		<baseCost>6000</baseCost>
+		<prerequisites>
+			<li>Rimgate_StargateIrisAlloyResearch</li>
+		</prerequisites>
+		<researchViewX>2.00</researchViewX>
+		<researchViewY>0.00</researchViewY>
+	</ResearchProjectDef>
+
+</Defs>

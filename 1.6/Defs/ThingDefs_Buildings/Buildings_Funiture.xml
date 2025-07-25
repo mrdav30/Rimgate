@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ============================== Beds ============================== -->
+
+  <ThingDef ParentName="FurnitureBase">
+    <defName>Rimgate_GoauldSarcophagus</defName>
+    <label>Goa'uld Sarcophagus</label>
+    <description>Based on Ancient technology, the sarcophagus heals the human host body very
+      efficiently.</description>
+    <thingClass>Rimgate.Building_Bed_Sarcophagus</thingClass>
+    <size>(1,2)</size>
+    <graphicData>
+      <texPath>Things/Building/Furniture/RGGoauldSarcophagus</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <color>(0.01, 0.01, 0.01)</color>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(1,2)</drawSize>
+      <damageData>
+        <rect>(0,0.04,1,1.89)</rect>
+      </damageData>
+    </graphicData>
+    <selectable>true</selectable>
+    <altitudeLayer>Building</altitudeLayer>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <uiIconPath>Things/Building/Furniture/RGGoauldSarcophagus</uiIconPath>
+    <statBases>
+      <MarketValue>80000</MarketValue>
+      <!-- Ensures market value is reflected in colony wealth calculations -->
+      <MarketValueIgnoreHp>80000</MarketValueIgnoreHp>
+      <MaxHitPoints>380</MaxHitPoints>
+      <WorkToBuild>25000</WorkToBuild>
+      <Mass>400</Mass>
+      <Beauty>20</Beauty>
+      <Flammability>0.2</Flammability>
+      <BedRestEffectiveness>1</BedRestEffectiveness>
+      <Comfort>0.95</Comfort>
+      <ImmunityGainSpeedFactor>1.5</ImmunityGainSpeedFactor>
+      <MedicalTendQualityOffset>0.25</MedicalTendQualityOffset>
+      <SurgerySuccessChanceFactor>1.25</SurgerySuccessChanceFactor>
+    </statBases>
+    <constructEffect>ConstructMetal</constructEffect>
+    <costList>
+      <Steel>350</Steel>
+      <Gold>25</Gold>
+      <MedicineUltratech>5</MedicineUltratech>
+      <ComponentSpacer>10</ComponentSpacer>
+      <Rimgate_Naquadria>4</Rimgate_Naquadria>
+    </costList>
+    <building>
+      <bed_showSleeperBody>False</bed_showSleeperBody>
+      <bed_healPerDay>90</bed_healPerDay>
+      <bed_defaultMedical>true</bed_defaultMedical>
+      <soundDispense>Rimgate_SarcophagusRunning</soundDispense>
+    </building>
+    <castEdgeShadows>false</castEdgeShadows>
+    <comps>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Breakdownable" />
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
+        <compClass>CompAssignableToPawn_Bed</compClass>
+      </li>
+      <li Class="Rimgate.CompProperties_TreatmentRestrictions">
+        <alwaysTreatableHediffs>
+          <li>Anesthetic</li>
+          <li>ChemicalDamageModerate</li>
+          <li>ChemicalDamageSevere</li>
+          <li>Cirrhosis</li>
+          <li>FoodPoisoning</li>
+          <li>LuciferiumHigh</li>
+          <li>ResurrectionPsychosis</li>
+          <li>ToxicBuildup</li>
+          <li>TraumaSavant</li>
+        </alwaysTreatableHediffs>
+        <neverTreatableHediffs>
+          <li>Sterilized</li>
+          <li>Rimgate_SarcophagusAddiction</li>
+        </neverTreatableHediffs>
+        <nonCriticalTreatableHediffs>
+          <li>AlcoholHigh</li>
+          <li>AlcoholTolerance</li>
+          <li>AmbrosiaHigh</li>
+          <li>AmbrosiaTolerance</li>
+          <li>FlakeHigh</li>
+          <li>GoJuiceHigh</li>
+          <li>GoJuiceTolerance</li>
+          <li>LungRotExposure</li>
+          <li>PsychiteTolerance</li>
+          <li>SmokeleafHigh</li>
+          <li>SmokeleafTolerance</li>
+          <li>WakeUpHigh</li>
+          <li>WakeUpTolerance</li>
+          <li>YayoHigh</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty">PsychicSuppression</li>
+        </nonCriticalTreatableHediffs>
+        <usageBlockingHediffs />
+        <usageBlockingTraits />
+        <alwaysTreatableTraits />
+        <disallowedRaces />
+        <disallowedXenotypes />
+      </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <shortCircuitInRain>true</shortCircuitInRain>
+        <basePowerConsumption>500</basePowerConsumption>
+      </li>
+      <li Class="Rimgate.CompProperties_AnimatedSarcophagus">
+        <sarchophagusGlowGraphicData>
+          <texPath>FX/RGGoauldSarcophagusGlow</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>MoteGlow</shaderType>
+          <drawSize>(1, 2)</drawSize>
+        </sarchophagusGlowGraphicData>
+      </li>
+      <li Class="Rimgate.CompProperties_Sarcophagus" />
+      <li Class="CompProperties_Drug">
+        <chemical>Rimgate_Sarcophagus</chemical>
+        <addictiveness>1.00</addictiveness>
+        <needLevelOffset>0.9</needLevelOffset>
+        <listOrder>1010</listOrder>
+      </li>
+    </comps>
+    <tickerType>Normal</tickerType>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <repairEffect>Repair</repairEffect>
+    <canOverlapZones>false</canOverlapZones>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <fillPercent>0.4</fillPercent>
+    <pathCost>60</pathCost>
+    <leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
+    <staticSunShadowHeight>0.17</staticSunShadowHeight>
+    <castEdgeShadows>True</castEdgeShadows>
+    <researchPrerequisites>
+      <li>Rimgate_Sarcophagus</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
+    <techLevel>Ultra</techLevel>
+  </ThingDef>
+
+</Defs>

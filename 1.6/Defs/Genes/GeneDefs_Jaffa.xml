@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <GeneCategoryDef>
+        <defName>Rimgate_JaffaGenes</defName>
+        <label>Goa'uld</label>
+        <displayPriorityInXenotype>1101</displayPriorityInXenotype>
+    </GeneCategoryDef>
+
+    <GeneDef Name="Rimgate_JaffaGenesBase" Abstract="True">
+        <displayCategory>Rimgate_JaffaGenes</displayCategory>
+        <canGenerateInGeneSet>false</canGenerateInGeneSet>
+    </GeneDef>
+
+    <GeneDef ParentName="Rimgate_JaffaGenesBase">
+        <defName>Rimgate_JaffaLongevity</defName>
+        <label>life longevity</label>
+        <description>
+            This gene reduces the aging process and extends life expectancy.
+        </description>
+        <iconPath>UI/Icon/Gene/RGJaffaLongevityGeneIcon</iconPath>
+        <displayCategory>Archite</displayCategory>
+        <statFactors>
+            <LearningRateFactor>0.40</LearningRateFactor>
+        </statFactors>
+        <biologicalAgeTickFactorFromAgeCurve>
+            <points>
+                <li>(13, 0.25)</li>
+                <li>(18, 0.25)</li>
+            </points>
+        </biologicalAgeTickFactorFromAgeCurve>
+        <modExtensions>
+            <li Class="VEF.Genes.GeneExtension">
+                <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+                <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+            </li>
+        </modExtensions>
+    </GeneDef>
+
+    <GeneDef ParentName="Rimgate_JaffaGenesBase">
+        <defName>Rimgate_JaffaCombatDiscipline</defName>
+        <label>combat discipline</label>
+        <description>
+            Carriers of this gene possess instinctive combat training, improving their ability to
+            pilot and hunt while showing little interest in anything else.
+        </description>
+        <iconPath>UI/Icon/Gene/RGJaffaDisciplineGeneIcon</iconPath>
+        <suppressedTraits>
+            <li>
+                <def>Wimp</def>
+            </li>
+        </suppressedTraits>
+        <description></description>
+        <biostatMet>-6</biostatMet>
+        <biostatCpx>3</biostatCpx>
+        <displayCategory>Violence</displayCategory>
+        <statFactors>
+            <PilotingAbility>2.25</PilotingAbility>
+            <HuntingStealth>1.75</HuntingStealth>
+        </statFactors>
+        <disabledWorkTags>
+            <li>Caring</li>
+            <li>Mining</li>
+            <li>Artistic</li>
+            <li>Social</li>
+        </disabledWorkTags>
+        <modExtensions>
+            <li Class="VEF.Genes.GeneExtension">
+                <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+                <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+            </li>
+        </modExtensions>
+    </GeneDef>
+
+    <GeneDef ParentName="Rimgate_JaffaGenesBase">
+        <defName>Rimgate_JaffaWarrior</defName>
+        <label>jaffa warrior</label>
+        <description>
+            This gene grants enhanced combat focus, increasing accuracy, pain resistance, and mental
+            stability, while reducing aiming delay in battle.
+        </description>
+        <iconPath>UI/Icon/Gene/RGJaffaWarriorGeneIcon</iconPath>
+        <biostatMet>-6</biostatMet>
+        <displayCategory>Violence</displayCategory>
+        <statFactors>
+            <MeleeHitChance>1.1</MeleeHitChance>
+            <MeleeDodgeChance>1.6</MeleeDodgeChance>
+            <MentalBreakThreshold>-0.30</MentalBreakThreshold>
+            <PainShockThreshold>0.40</PainShockThreshold>
+            <ShootingAccuracyPawn>1.4</ShootingAccuracyPawn>
+            <AimingDelayFactor>0.4</AimingDelayFactor>
+        </statFactors>
+        <symbolPack>
+            <prefixSymbols>
+                <li>
+                    <symbol>aggro</symbol>
+                </li>
+                <li>
+                    <symbol>fight</symbol>
+                </li>
+                <li>
+                    <symbol>barb</symbol>
+                </li>
+                <li>
+                    <symbol>sturdy</symbol>
+                </li>
+                <li>
+                    <symbol>stout</symbol>
+                </li>
+            </prefixSymbols>
+            <suffixSymbols>
+                <li>
+                    <symbol>stub</symbol>
+                </li>
+                <li>
+                    <symbol>fighter</symbol>
+                </li>
+            </suffixSymbols>
+        </symbolPack>
+        <modExtensions>
+            <li Class="VEF.Genes.GeneExtension">
+                <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+                <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+            </li>
+        </modExtensions>
+    </GeneDef>
+
+</Defs>

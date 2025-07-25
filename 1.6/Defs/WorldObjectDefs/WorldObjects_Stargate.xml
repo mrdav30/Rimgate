@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <WorldObjectDef>
+	<defName>Rimgate_PermanentStargateSite</defName>
+	<label>new stargate site</label>
+	<description>A stargate site, created recently and mostly unknown to everyone but us.</description>
+	<worldObjectClass>Rimgate.WorldObject_PermanentStargateSite</worldObjectClass>
+	<canHaveFaction>false</canHaveFaction>
+	<texture>World/WorldObjects/Sites/GenericSite</texture>
+	<expandingIcon>true</expandingIcon>
+	<expandingIconTexture>UI/Icon/Map/RGStargatePermanentSiteIcon</expandingIconTexture>
+	<expandingIconPriority>30</expandingIconPriority>
+	<expandMore>true</expandMore>
+	<comps>
+      <li Class="WorldObjectCompProperties_FormCaravan" />
+    </comps>
+	<modExtensions>
+	  <li Class="KCSG.CustomGenOption">
+		<chooseFromlayouts>
+		  <li>Rimgate_StructureBarrenGate</li>
+		</chooseFromlayouts>
+		<fullClear>true</fullClear>
+		<tryFindFreeArea>true</tryFindFreeArea>
+		<preventBridgeable>true</preventBridgeable>
+	  </li>
+	</modExtensions>
+  </WorldObjectDef>
+
+</Defs>

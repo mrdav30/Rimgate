@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <BodyDef>
+    <defName>Rimgate_Replicator</defName>
+    <label>replicator</label>
+    <corePart>
+      <def>Rimgate_ReplicatorBase</def>
+      <height>Middle</height>
+      <depth>Outside</depth>
+      <groups>
+        <li>HeadAttackTool</li>
+      </groups>
+      <parts>
+        <li>
+          <def>Rimgate_ReplicatorCentralCore</def>
+          <height>Middle</height>
+          <coverage>0.19</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>Rimgate_ReplicatorSensorCluster</def>
+          <height>Middle</height>
+          <coverage>0.15</coverage>
+          <depth>Inside</depth>
+        </li>
+        <li>
+          <def>Rimgate_ReplicatorCuttingMandibles</def>
+          <coverage>0.15</coverage>
+          <groups>
+            <li>Teeth</li>
+          </groups>
+        </li>
+        <li>
+          <def>Rimgate_ReplicatorLeg</def>
+          <customLabel>left front leg</customLabel>
+          <coverage>0.125</coverage>
+          <groups>
+            <li>LeftBlade</li>
+          </groups>
+        </li>
+        <li>
+          <def>Rimgate_ReplicatorLeg</def>
+          <customLabel>left back leg</customLabel>
+          <coverage>0.125</coverage>
+        </li>
+        <li>
+          <def>Rimgate_ReplicatorLeg</def>
+          <customLabel>right front leg</customLabel>
+          <coverage>0.125</coverage>
+          <groups>
+            <li>RightBlade</li>
+          </groups>
+        </li>
+        <li>
+          <def>Rimgate_ReplicatorLeg</def>
+          <customLabel>right back leg</customLabel>
+          <coverage>0.125</coverage>
+        </li>
+      </parts>
+    </corePart>
+  </BodyDef>
+
+</Defs>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <GeneCategoryDef>
+    <defName>Rimgate_WraithGenes</defName>
+    <label>Wraith</label>
+    <displayPriorityInXenotype>1201</displayPriorityInXenotype>
+  </GeneCategoryDef>
+
+  <GeneDef Name="Rimgate_WraithGenesBase" Abstract="True">
+    <displayCategory>Rimgate_WraithGenes</displayCategory>
+    <canGenerateInGeneSet>true</canGenerateInGeneSet>
+  </GeneDef>
+
+  <GeneDef ParentName="Rimgate_WraithGenesBase">
+    <defName>Rimgate_WraithBeauty</defName>
+    <label>wraith beauty</label>
+    <description>This gene enhances the pawn's appearance to a captivating alien standard.</description>
+    <iconPath>UI/Icon/Gene/RGWraithBeautyGeneIcon</iconPath>
+    <displayCategory>Cosmetic</displayCategory>
+    <statOffsets>
+      <Beauty>2</Beauty>
+    </statOffsets>
+    <hairTagFilter>
+      <tags>
+        <li>HairWraith</li>
+      </tags>
+    </hairTagFilter>
+    <forcedHeadTypes>
+      <li>Rimgate_WraithFemaleAverageNormal</li>
+      <li>Rimgate_WraithFemaleAveragePointy</li>
+      <li>Rimgate_WraithFemaleAverageWide</li>
+      <li>Rimgate_WraithFemaleNarrowNormal</li>
+      <li>Rimgate_WraithFemaleNarrowPointy</li>
+      <li>Rimgate_WraithFemaleNarrowWide</li>
+      <li>Rimgate_WraithMaleAverageNormal</li>
+      <li>Rimgate_WraithMaleAveragePointy</li>
+      <li>Rimgate_WraithMaleAverageWide</li>
+      <li>Rimgate_WraithMaleNarrowNormal</li>
+      <li>Rimgate_WraithMaleNarrowPointy</li>
+      <li>Rimgate_WraithMaleNarrowWide</li>
+    </forcedHeadTypes>
+    <modExtensions>
+      <li Class="VEF.Genes.GeneExtension">
+        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef ParentName="Rimgate_WraithGenesBase">
+    <defName>Rimgate_WraithMovement</defName>
+    <label>wraith mobility</label>
+    <description>This gene enhances neuromuscular efficiency, increasing movement speed.</description>
+    <iconPath>UI/Icon/Gene/RGWraithMovementGeneIcon</iconPath>
+    <displayCategory>Movement</displayCategory>
+    <statOffsets>
+      <MoveSpeed>0.6</MoveSpeed>
+    </statOffsets>
+    <modExtensions>
+      <li Class="VEF.Genes.GeneExtension">
+        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef ParentName="Rimgate_WraithGenesBase">
+    <defName>Rimgate_WraithPsychic</defName>
+    <label>wraith psionics</label>
+    <description>This gene enhances latent psychic sensitivity.</description>
+    <iconPath>UI/Icon/Gene/RGWraithPsychicGene</iconPath>
+    <displayCategory>Psychic</displayCategory>
+    <statOffsets>
+      <PsychicSensitivity>0.25</PsychicSensitivity>
+    </statOffsets>
+    <modExtensions>
+      <li Class="VEF.Genes.GeneExtension">
+        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef ParentName="Rimgate_WraithGenesBase">
+    <defName>Rimgate_WraithMiner</defName>
+    <label>wraith digger</label>
+    <description>This gene improves muscle endurance for excavation tasks.</description>
+    <iconPath>UI/Icon/Gene/RGWraithMinerGeneIcon</iconPath>
+    <displayCategory>Miscellaneous</displayCategory>
+    <statOffsets>
+      <MiningSpeed>0.2</MiningSpeed>
+    </statOffsets>
+    <modExtensions>
+      <li Class="VEF.Genes.GeneExtension">
+        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef ParentName="Rimgate_WraithGenesBase">
+    <defName>Rimgate_WraithCannibal</defName>
+    <label>wraith carnivore</label>
+    <description>
+      This gene enables a preference for humanoid flesh, and negates negative thoughts from
+      cannibalism.
+    </description>
+    <iconPath>UI/Icon/Gene/RGWraithCannibalGeneIcon</iconPath>
+    <displayCategory>Violence</displayCategory>
+    <forcedTraits>
+      <li>
+        <def>Cannibal</def>
+        <degree>0</degree>
+      </li>
+    </forcedTraits>
+    <modExtensions>
+      <li Class="VEF.Genes.GeneExtension">
+        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef ParentName="Rimgate_WraithGenesBase">
+    <defName>Rimgate_WraithAgeless</defName>
+    <label>ageless</label>
+    <description>
+      This gene eliminates the aging process and extends life expectancy indefinitely. Starting at
+      the age of 13, carriers begin to biologically age slower. By 18, the aging process stops
+      completely.
+    </description>
+    <iconPath>UI/Icon/Gene/RGWraithAgelessGeneIcon</iconPath>
+    <displayCategory>Archite</displayCategory>
+    <biologicalAgeTickFactorFromAgeCurve>
+      <points>
+        <li>(13, 1)</li>
+        <li>(18.5, 0)</li>
+      </points>
+    </biologicalAgeTickFactorFromAgeCurve>
+    <modExtensions>
+      <li Class="VEF.Genes.GeneExtension">
+        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef>
+    <defName>Rimgate_WraithLifeDrain</defName>
+    <label>life drain</label>
+    <description>This gene allows the host to drain the life energy from other pawns, restoring
+      their own vitality.</description>
+    <displayCategory>Ability</displayCategory>
+    <iconPath>UI/Icon/Gene/RGWraithLifeDrainGeneIcon</iconPath>
+    <abilities>
+      <li>Rimgate_WraithLifeDrainAbility</li>
+    </abilities>
+    <descriptionHyperlinks>
+      <AbilityDef>Rimgate_WraithLifeDrainAbility</AbilityDef>
+    </descriptionHyperlinks>
+    <biostatArc>4</biostatArc>
+    <biostatCpx>3</biostatCpx>
+    <biostatMet>-2</biostatMet>
+    <modExtensions>
+      <li Class="VEF.Genes.GeneExtension">
+        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef>
+    <defName>Rimgate_WraithCocoonTrap</defName>
+    <label>cocoon trap</label>
+    <description>
+      This gene allows the host to release a sticky, web-like substance that encases their victims,
+      effectively putting them in a state of stasis, rendering them mostly immobile but still
+      alive.\n\nAlso very useful for wrapping up meat for later use.
+    </description>
+    <displayCategory>Ability</displayCategory>
+    <iconPath>UI/Icon/Gene/RGWraithCocoonTrapGeneIcon</iconPath>
+    <abilities>
+      <li>Rimgate_WraithCocoonTrapAbility</li>
+    </abilities>
+    <descriptionHyperlinks>
+      <AbilityDef>Rimgate_WraithCocoonTrapAbility</AbilityDef>
+    </descriptionHyperlinks>
+    <biostatArc>4</biostatArc>
+    <biostatCpx>3</biostatCpx>
+    <biostatMet>-2</biostatMet>
+    <modExtensions>
+      <li Class="VEF.Genes.GeneExtension">
+        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+</Defs>

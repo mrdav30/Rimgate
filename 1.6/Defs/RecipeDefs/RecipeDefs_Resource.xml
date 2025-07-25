@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Naquadria ==================== -->
+
+	<RecipeDef>
+		<defName>Rimgate_MakeNaquadria</defName>
+		<label>Make Naquadria</label>
+		<description>Make a batch of Naquadria from Naquadah.</description>
+		<jobString>Making Naquadria.</jobString>
+		<effectWorking>Cremate</effectWorking>
+		<soundWorking>Recipe_Cremate</soundWorking>
+		<workAmount>2000</workAmount>
+		<workSpeedStat>SmeltingSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>FabricationBench</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_Naquadah</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_Naquadria>5</Rimgate_Naquadria>
+		</products>
+		<researchPrerequisite>Rimgate_NaquadriaFiredGenerator</researchPrerequisite>
+	</RecipeDef>
+
+</Defs>

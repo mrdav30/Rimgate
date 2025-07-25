@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- ================== Wraith Apparel ================== -->
+
+	<!-- ============ Wraith Apparel Base ============ -->
+
+	<ThingDef Name="Rimgate_WraithArmorBase" ParentName="ApparelBase" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+		</recipeMaker>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>RGBA(1,1,1,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<tradeTags>
+			<li>Rimgate_WraithApparelTrade_tag</li>
+			<li>ExoticMisc</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- ========= Wraith Helmet ========= -->
+
+	<ThingDef ParentName="Rimgate_WraithArmorBase">
+		<defName>Rimgate_WraithHelmet</defName>
+		<label>Wraith solider helmet</label>
+		<description>This basic helmet is worn by all Wraith soldiers.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/WraithHelm/RGWraithHelmet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costList>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Steel>20</Steel>
+			<Rimgate_Biomass>10</Rimgate_Biomass>
+		</costList>
+		<statBases>
+			<MarketValue>750</MarketValue>
+			<MaxHitPoints>80</MaxHitPoints>
+			<WorkToMake>1000</WorkToMake>
+			<Mass>0.5</Mass>
+			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+			<Flammability>0.6</Flammability>
+			<EquipDelay>2</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/WraithHelm/RGWraithHelmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>Rimgate_WraithSoldierApparel_tag</li>
+			</tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+		</apparel>
+		<thingCategories>
+			<li>ArmorHeadgear</li>
+		</thingCategories>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_WraithArmorTier1</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- ========= Wraith Soldier Armor ========= -->
+
+	<ThingDef ParentName="Rimgate_WraithArmorBase">
+		<defName>Rimgate_WraithSoldierArmor</defName>
+		<label>Wraith soldier armor</label>
+		<description>Shell-like armor worn by Wraith soldiers.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmor</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costList>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<Steel>100</Steel>
+			<Rimgate_Biomass>50</Rimgate_Biomass>
+		</costList>
+		<thingCategories>
+			<li>ApparelArmor</li>
+		</thingCategories>
+		<statBases>
+			<MarketValue>1500</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>12500</WorkToMake>
+			<Mass>4</Mass>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.65</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.30</ArmorRating_Heat>
+			<Insulation_Cold>25</Insulation_Cold>
+			<Insulation_Heat>5</Insulation_Heat>
+			<Flammability>0.6</Flammability>
+			<EquipDelay>3</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.10</MoveSpeed>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+				<li>Hands</li>
+				<li>Feet</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmor</wornGraphicPath>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Rimgate_WraithSoldierApparel_tag</li>
+			</tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_WraithArmorTier1</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- ========= Wraith Commander Armor ========= -->
+
+	<ThingDef ParentName="Rimgate_WraithArmorBase">
+		<defName>Rimgate_WraithCommanderArmor</defName>
+		<label>Wraith commander armor</label>
+		<description>Light and stylish armor worn by higher ranking Wraith.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Torso/WraithCommander/RGWraithCommanderArmor</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costList>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<Steel>100</Steel>
+			<Cloth>50</Cloth>
+			<Rimgate_Biomass>50</Rimgate_Biomass>
+		</costList>
+		<thingCategories>
+			<li>ApparelArmor</li>
+		</thingCategories>
+		<statBases>
+			<MarketValue>1500</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>12500</WorkToMake>
+			<Mass>4</Mass>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.65</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.30</ArmorRating_Heat>
+			<Insulation_Cold>25</Insulation_Cold>
+			<Insulation_Heat>5</Insulation_Heat>
+			<Flammability>0.6</Flammability>
+			<EquipDelay>3</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.10</MoveSpeed>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+				<li>Hands</li>
+				<li>Feet</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Torso/WraithCommander/RGWraithCommanderArmor</wornGraphicPath>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Rimgate_WraithCommanderApparel_tag</li>
+			</tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_WraithArmorTier2</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+	</ThingDef>
+
+</Defs>

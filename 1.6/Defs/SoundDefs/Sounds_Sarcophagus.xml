@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<SoundDef>
+		<defName>Rimgate_SarcophagusRunning</defName>
+		<sustain>True</sustain>
+		<sustainFadeoutTime>1</sustainFadeoutTime>
+		<maxSimultaneous>3</maxSimultaneous>
+		<context>MapOnly</context>
+		<priorityMode>PrioritizeNearest</priorityMode>
+		<subSounds>
+			<li>
+				<muteWhenPaused>True</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Buildings/RG_Sarcophagus_Running</clipPath>
+					</li>
+				</grains>
+				<volumeRange>5</volumeRange>
+				<distRange>0~40</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+</Defs>

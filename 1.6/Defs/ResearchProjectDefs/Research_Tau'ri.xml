@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <ResearchTabDef>
+        <defName>Rimage_TauriTechnology</defName>
+        <label>Tau'ri</label>
+    </ResearchTabDef>
+
+    <ResearchProjectDef Name="Rimgate_TauriResearch" Abstract="True">
+        <techLevel>Spacer</techLevel>
+        <tab>Rimage_TauriTechnology</tab>
+        <prerequisites>
+            <li>Rimgate_GlyphDeciphering</li>
+        </prerequisites>
+    </ResearchProjectDef>
+
+    <!-- ======== Tau'ri Armor ========= -->
+    <ResearchProjectDef ParentName="Rimgate_TauriResearch">
+        <defName>Rimgate_TauriArmors</defName>
+        <label>Tau'ri Uniforms Armors</label>
+        <description>Uniforms used by the Tau'ri, Humans of Earth.</description>
+        <baseCost>2500</baseCost>
+        <researchViewX>0</researchViewX>
+        <researchViewY>1</researchViewY>
+        <prerequisites>
+            <li>ReconArmor</li>
+        </prerequisites>
+    </ResearchProjectDef>
+
+    <!-- ======== Tau'ri Weapons ======== -->
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearch">
+        <defName>Rimgate_TauriWeaponsTier1</defName>
+        <label>Tau'ri Weapons</label>
+        <description>Weapons used by the Tau'ri, Humans of Earth.</description>
+        <baseCost>2500</baseCost>
+        <researchViewX>1</researchViewX>
+        <researchViewY>1</researchViewY>
+        <prerequisites>
+            <li>PrecisionRifling</li>
+        </prerequisites>
+    </ResearchProjectDef>
+
+</Defs>

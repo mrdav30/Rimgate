@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <AbilityDef>
+        <defName>Rimgate_WraithLifeDrainAbility</defName>
+        <label>drain life</label>
+        <description>Siphons vitality from a nearby source, transferring the target’s natural
+            healing factor, movement speed, and consciousness to the caster for a full day.
+            Considered an overtly hostile action.</description>
+        <iconPath>UI/Icon/Ability/RGWraithDrainLifeIcon</iconPath>
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <range>-1</range>
+            <warmupTime>0.25</warmupTime>
+            <soundCast>Rimgate_WraitDrainLifeCast</soundCast>
+            <targetParams>
+                <canTargetLocations>false</canTargetLocations>
+                <canTargetPawns>true</canTargetPawns>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetSelf>false</canTargetSelf>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetMechs>false</canTargetMechs>
+            </targetParams>
+        </verbProperties>
+        <cooldownTicksRange>120</cooldownTicksRange>
+        <jobDef>CastAbilityOnThingMelee</jobDef>
+        <aiCanUse>true</aiCanUse>
+        <hostile>true</hostile>
+        <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+        <statBases>
+            <Ability_Duration>60000</Ability_Duration>
+            <Ability_GoodwillImpact>-15</Ability_GoodwillImpact>
+        </statBases>
+        <comps>
+            <li Class="Rimgate.CompProperties_ApplyHediff">
+                <compClass>Rimgate.CompAbilityEffect_ApplyHediffs</compClass>
+                <hediffToReceive>Rimgate_WraithLifeDrainRegen</hediffToReceive>
+                <hediffToGive>Rimgate_WraithLifeDrainTarget</hediffToGive>
+                <durationTime>60000</durationTime>
+            </li>
+            <li Class="CompProperties_AbilityFleckOnTarget">
+                <fleckDef>PsycastPsychicEffect</fleckDef>
+            </li>
+        </comps>
+    </AbilityDef>
+
+    <AbilityDef>
+        <defName>Rimgate_WraithCocoonTrapAbility</defName>
+        <label>cocoon trap</label>
+        <description>Release a sticky, web-like substance to cocoon victims for future
+            feedings...\nThese webs will stun and burn the target.</description>
+        <iconPath>UI/Icon/Ability/RGWraithCocoonTrapIcon</iconPath>
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <range>16.9</range>
+            <warmupTime>0.25</warmupTime>
+            <soundCast>Rimgate_WraithCocoonTrapCast</soundCast>
+            <targetParams>
+                <canTargetLocations>false</canTargetLocations>
+                <canTargetPawns>true</canTargetPawns>
+            </targetParams>
+        </verbProperties>
+        <cooldownTicksRange>120</cooldownTicksRange>
+        <jobDef>CastAbilityOnThingMelee</jobDef>
+        <aiCanUse>true</aiCanUse>
+        <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+        <statBases>
+            <Ability_Duration>60000</Ability_Duration>
+            <Ability_GoodwillImpact>-15</Ability_GoodwillImpact>
+        </statBases>
+        <comps>
+            <li Class="Rimgate.CompProperties_MultipleProjectile">
+                <compClass>Rimgate.CompAbilityEffect_LaunchMultipleProjectile</compClass>
+                <projectile>Rimgate_WraithWeb</projectile>
+                <numberOfProjectiles>3</numberOfProjectiles>
+            </li>
+        </comps>
+    </AbilityDef>
+
+    <ThingDef ParentName="BaseBullet">
+        <defName>Rimgate_WraithWeb</defName>
+        <label>web</label>
+        <thingClass>Rimgate.Projectile_Web</thingClass>
+        <graphicData>
+            <texPath>Things/Projectile/RGCocoonTrapAbilityProjectile</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>2</drawSize>
+        </graphicData>
+        <projectile>
+            <flyOverhead>false</flyOverhead>
+            <damageDef>Stun</damageDef>
+            <damageAmountBase>15</damageAmountBase>
+            <speed>15</speed>
+        </projectile>
+    </ThingDef>
+
+</Defs>
