@@ -217,7 +217,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>5</damageAmountBase>
 			<armorPenetrationBase>0.65</armorPenetrationBase>
-			<speed>65</speed>
+			<speed>55</speed>
 		</projectile>
 		<comps>
 			<li Class="Rimgate.CompProperties_AdditionalDamage">

@@ -4,14 +4,12 @@
     <AbilityDef>
         <defName>Rimgate_WraithLifeDrainAbility</defName>
         <label>drain life</label>
-        <description>Siphons vitality from a nearby source, transferring the target’s natural
-            healing factor, movement speed, and consciousness to the caster for a full day.
-            Considered an overtly hostile action.</description>
+        <description>Siphons vitality from a nearby source, transferring the target’s natural healing factor, movement speed, and consciousness to the caster for a full day. Considered an overtly hostile action.</description>
         <iconPath>UI/Icon/Ability/RGWraithDrainLifeIcon</iconPath>
         <verbProperties>
             <verbClass>Verb_CastAbilityTouch</verbClass>
             <drawAimPie>false</drawAimPie>
-            <range>1</range>
+            <range>-1</range>
             <warmupTime>0.25</warmupTime>
             <soundCast>Rimgate_WraitDrainLifeCast</soundCast>
             <targetParams>
@@ -19,7 +17,7 @@
                 <canTargetLocations>false</canTargetLocations>
                 <canTargetAnimals>false</canTargetAnimals>
                 <canTargetSelf>false</canTargetSelf>
-                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetBuildings>false</canTargetBuildings> 
                 <canTargetMechs>false</canTargetMechs>
             </targetParams>
         </verbProperties>
@@ -35,7 +33,7 @@
                 <compClass>Rimgate.CompAbilityEffect_ApplyHediffs</compClass>
                 <hediffToReceive>Rimgate_WraithLifeDrainRegen</hediffToReceive>
                 <hediffToGive>Rimgate_WraithLifeDrainTarget</hediffToGive>
-                <durationTime>60000</durationTime>
+                <durationTime>120000</durationTime>
             </li>
             <li Class="CompProperties_AbilityFleckOnTarget">
                 <fleckDef>PsycastPsychicEffect</fleckDef>
@@ -87,7 +85,7 @@
         <projectile>
             <flyOverhead>false</flyOverhead>
             <damageDef>Stun</damageDef>
-            <damageAmountBase>15</damageAmountBase>
+            <damageAmountBase>3</damageAmountBase>
             <speed>15</speed>
         </projectile>
         <comps>

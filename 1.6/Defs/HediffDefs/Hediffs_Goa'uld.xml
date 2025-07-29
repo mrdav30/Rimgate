@@ -57,7 +57,7 @@
 
 	<HediffDef>
 		<defName>Rimgate_SymbioteWithdrawal</defName>
-		<label>symbiote withdrawal</label>
+		<label>Goa'uld symbiote withdrawal</label>
 		<description>Goa'uld symbiote withdrawal.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<initialSeverity>0.1</initialSeverity>
@@ -107,17 +107,8 @@
 	<!-- ==================== Jaffa Forehead Symbol Base ==================== -->
 
 	<HediffDef Name="Rimgate_JaffaForeheadSymbolBase" ParentName="ImplantHediffBase" Abstract="True">
-		<description>A surgically embedded or branded symbol on the forehead, marking the bearer as
-			a servant of a Goa'uld. This iconic mark interferes slightly with psionic harmonics.</description>
+		<description>A surgically embedded or branded symbol on the forehead, marking the bearer as a servant of a Goa'uld. This iconic mark interferes slightly with psionic harmonics.</description>
 		<defaultLabelColor>(0.7, 0.7, 0.1)</defaultLabelColor>
-		<isBad>false</isBad>
-		<tendable>false</tendable>
-		<countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
-		<addedPartProps>
-			<solid>true</solid>
-			<partEfficiency>1.35</partEfficiency>
-			<betterThanNatural>false</betterThanNatural>
-		</addedPartProps>
 		<stages>
 			<li>
 				<statOffsets>
@@ -126,33 +117,6 @@
 				</statOffsets>
 			</li>
 		</stages>
-		<renderNodeProperties>
-			<li>
-				<workerClass>PawnRenderNodeWorker_HediffEye</workerClass>
-				<parentTagDef>Head</parentTagDef>
-				<texSeed>1</texSeed>
-				<drawData>
-					<defaultData>
-						<layer>72</layer>
-						<offset>(0, 0, 0)</offset>
-					</defaultData>
-					<dataNorth />
-					<dataSouth>
-						<!-- across, depth, height -->
-						<offset>(0, 0, 0)</offset>
-						<layer>61</layer>
-					</dataSouth>
-					<dataEast />
-					<dataWest />
-				</drawData>
-				<shaderTypeDef>MoteGlow</shaderTypeDef>
-				<color>(0, 0.09, 0.0)</color>
-				<overlayOverApparel>false</overlayOverApparel>
-			</li>
-		</renderNodeProperties>
-		<tags>
-			<li>Rimgate_JaffaForeheadSymbol_tag</li>
-		</tags>
 		<duplicationAllowed>false</duplicationAllowed>
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
@@ -161,16 +125,31 @@
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
 		<defName>Rimgate_JaffaForeheadSymbolImplantAnubis</defName>
-		<label>Anubis forehead symbol</label>
+		<label>Jaffa Anubis mark</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantAnubis</ThingDef>
 		</descriptionHyperlinks>
 		<renderNodeProperties>
 			<li>
-				<debugLabel>Jaffa Anubis forehead symbol</debugLabel>
+				<debugLabel>Jaffa Anubis mark</debugLabel>
 				<texPaths>
 					<li>Things/Item/Implants/Anubis/RGJaffaAnubisForeheadSymbol</li>
 				</texPaths>
+				<workerClass>PawnRenderNodeWorker_Head</workerClass>
+				<parentTagDef>Head</parentTagDef>
+				<texSeed>1</texSeed>
+				<drawData>
+					<defaultData>
+						<layer>72</layer>
+						<!--across, depth, height-->
+						<offset>(0, 0, 0)</offset>
+					</defaultData>
+					<dataSouth>
+						<offset>(0, 0, -0.325)</offset>
+						<layer>60</layer>
+					</dataSouth>
+				</drawData>
+				<overlayOverApparel>false</overlayOverApparel>
 			</li>
 		</renderNodeProperties>
 		<tags>
@@ -180,7 +159,7 @@
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
 		<defName>Rimgate_PrimeForeheadSymbolImplantAnubis</defName>
-		<label>Anubis Prime forehead symbol</label>
+		<label>Prime Anubis mark</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantAnubis</ThingDef>
 		</descriptionHyperlinks>
@@ -190,6 +169,21 @@
 				<texPaths>
 					<li>Things/Item/Implants/Anubis/RGAnubisPrimeForeheadSymbol</li>
 				</texPaths>
+				<workerClass>PawnRenderNodeWorker_Head</workerClass>
+				<parentTagDef>Head</parentTagDef>
+				<texSeed>1</texSeed>
+				<drawData>
+					<defaultData>
+						<layer>72</layer>
+						<!--across, depth, height-->
+						<offset>(0, 0, 0)</offset>
+					</defaultData>
+					<dataSouth>
+						<offset>(0, 0, -0.325)</offset>
+						<layer>60</layer>
+					</dataSouth>
+				</drawData>
+				<overlayOverApparel>false</overlayOverApparel>
 			</li>
 		</renderNodeProperties>
 		<tags>
@@ -201,16 +195,31 @@
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
 		<defName>Rimgate_JaffaForeheadSymbolImplantApophis</defName>
-		<label>Apophis forehead symbol</label>
+		<label>Jaffa Apophis mark</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantApophis</ThingDef>
 		</descriptionHyperlinks>
 		<renderNodeProperties>
 			<li>
-				<debugLabel>Jaffa Apophis forehead symbol</debugLabel>
+				<debugLabel>Jaffa Apophis mark</debugLabel>
 				<texPaths>
 					<li>Things/Item/Implants/Apophis/RGJaffaApophisForeheadSymbol</li>
 				</texPaths>
+				<workerClass>PawnRenderNodeWorker_Head</workerClass>
+				<parentTagDef>Head</parentTagDef>
+				<texSeed>1</texSeed>
+				<drawData>
+					<defaultData>
+						<layer>72</layer>
+						<!--across, depth, height-->
+						<offset>(0, 0, 0)</offset>
+					</defaultData>
+					<dataSouth>
+						<offset>(0, 0, -0.325)</offset>
+						<layer>60</layer>
+					</dataSouth>
+				</drawData>
+				<overlayOverApparel>false</overlayOverApparel>
 			</li>
 		</renderNodeProperties>
 		<tags>
@@ -220,16 +229,31 @@
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
 		<defName>Rimgate_PrimeForeheadSymbolImplantApophis</defName>
-		<label>Apophis Prime forehead symbol</label>
+		<label>Prime Apophis mark</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantApophis</ThingDef>
 		</descriptionHyperlinks>
 		<renderNodeProperties>
 			<li>
-				<debugLabel>Prime Apophis forehead symbol</debugLabel>
+				<debugLabel>Prime Apophis mark</debugLabel>
 				<texPaths>
 					<li>Things/Item/Implants/Apophis/RGApophisPrimeForeheadSymbol</li>
 				</texPaths>
+				<workerClass>PawnRenderNodeWorker_Head</workerClass>
+				<parentTagDef>Head</parentTagDef>
+				<texSeed>1</texSeed>
+				<drawData>
+					<defaultData>
+						<layer>72</layer>
+						<!--across, depth, height-->
+						<offset>(0, 0, 0)</offset>
+					</defaultData>
+					<dataSouth>
+						<offset>(0, 0, -0.325)</offset>
+						<layer>60</layer>
+					</dataSouth>
+				</drawData>
+				<overlayOverApparel>false</overlayOverApparel>
 			</li>
 		</renderNodeProperties>
 		<tags>
@@ -241,16 +265,31 @@
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
 		<defName>Rimgate_JaffaForeheadSymbolImplantRa</defName>
-		<label>Ra forehead symbol</label>
+		<label>Jaffa Ra mark</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantRa</ThingDef>
 		</descriptionHyperlinks>
 		<renderNodeProperties>
 			<li>
-				<debugLabel>Jaffa Ra forehead symbol</debugLabel>
+				<debugLabel>Jaffa Ra mark</debugLabel>
 				<texPaths>
 					<li>Things/Item/Implants/Ra/RGJaffaRaForeheadSymbol</li>
 				</texPaths>
+				<workerClass>PawnRenderNodeWorker_Head</workerClass>
+				<parentTagDef>Head</parentTagDef>
+				<texSeed>1</texSeed>
+				<drawData>
+					<defaultData>
+						<layer>72</layer>
+						<!--across, depth, height-->
+						<offset>(0, 0, 0)</offset>
+					</defaultData>
+					<dataSouth>
+						<offset>(0, 0, -0.325)</offset>
+						<layer>60</layer>
+					</dataSouth>
+				</drawData>
+				<overlayOverApparel>false</overlayOverApparel>
 			</li>
 		</renderNodeProperties>
 		<tags>
@@ -260,16 +299,31 @@
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
 		<defName>Rimgate_PrimeForeheadSymbolImplantRa</defName>
-		<label>Ra Prime forehead symbol</label>
+		<label>Prime Ra mark</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantRa</ThingDef>
 		</descriptionHyperlinks>
 		<renderNodeProperties>
 			<li>
-				<debugLabel>Prime Ra forehead symbol</debugLabel>
+				<debugLabel>Prime Ra mark</debugLabel>
 				<texPaths>
 					<li>Things/Item/Implants/Ra/RGJaffaRaPrimeForeheadSymbol</li>
 				</texPaths>
+				<workerClass>PawnRenderNodeWorker_Head</workerClass>
+				<parentTagDef>Head</parentTagDef>
+				<texSeed>1</texSeed>
+				<drawData>
+					<defaultData>
+						<layer>72</layer>
+						<!--across, depth, height-->
+						<offset>(0, 0, 0)</offset>
+					</defaultData>
+					<dataSouth>
+						<offset>(0, 0, -0.325)</offset>
+						<layer>60</layer>
+					</dataSouth>
+				</drawData>
+				<overlayOverApparel>false</overlayOverApparel>
 			</li>
 		</renderNodeProperties>
 		<tags>

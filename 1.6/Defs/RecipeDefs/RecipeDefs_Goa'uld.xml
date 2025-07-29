@@ -68,54 +68,18 @@
 
 	<!-- ==================== Jaffa forehead Symbol Base ==================== -->
 
-	<RecipeDef Name="Rimgate_InstallJaffaForeheadSymbolBase" ParentName="SurgeryInstallImplantBase"
-		Abstract="True">
+	<RecipeDef Name="Rimgate_InstallForeheadSymbolBase" ParentName="SurgeryInstallImplantBase" Abstract="True">
 		<appliedOnFixedBodyParts>
 			<li>Head</li>
 		</appliedOnFixedBodyParts>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
 		<skillRequirements>
 			<Medicine>5</Medicine>
 		</skillRequirements>
 	</RecipeDef>
 
-	<RecipeDef Name="Rimgate_InstallPrimeForeheadSymbolBase"
-		ParentName="Rimgate_InstallJaffaForeheadSymbolBase"
-		Abstract="True">
-		<ingredients inherit="false">
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Gold</li>
-					</thingDefs>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter inherit="false">
-			<thingDefs>
-				<li>Gold</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-	</RecipeDef>
-
 	<!-- =========== Anubis =========== -->
 
-	<RecipeDef ParentName="Rimgate_InstallJaffaForeheadSymbolBase">
+	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallJaffaForeheadSymbolAnubis</defName>
 		<label>install Anubis Jaffa forehead symbol</label>
 		<description>Install Anubis Jaffa forehead symbol.</description>
@@ -124,6 +88,21 @@
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantAnubis</HediffDef>
 		</descriptionHyperlinks>
 		<jobString>Installing Anubis Jaffa forehead symbol.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
+			</thingDefs>
+		</fixedIngredientFilter>
 		<addsHediff>Rimgate_JaffaForeheadSymbolImplantAnubis</addsHediff>
 	</RecipeDef>
 
@@ -139,7 +118,7 @@
 		<removesHediff>Rimgate_JaffaForeheadSymbolImplantAnubis</removesHediff>
 	</RecipeDef>
 
-	<RecipeDef ParentName="Rimgate_InstallPrimeForeheadSymbolBase">
+	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallPrimeForeheadSymbolAnubis</defName>
 		<label>install Anubis First Prime forehead symbol</label>
 		<description>Install Anubis First Prime forehead symbol.</description>
@@ -148,6 +127,21 @@
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantAnubis</HediffDef>
 		</descriptionHyperlinks>
 		<jobString>Installing Anubis First Prime forehead symbol.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_PrimeForeheadSymbolImplantAnubis</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_PrimeForeheadSymbolImplantAnubis</li>
+			</thingDefs>
+		</fixedIngredientFilter>
 		<addsHediff>Rimgate_PrimeForeheadSymbolImplantAnubis</addsHediff>
 	</RecipeDef>
 
@@ -165,7 +159,7 @@
 
 	<!-- =========== Apophis =========== -->
 
-	<RecipeDef ParentName="Rimgate_InstallJaffaForeheadSymbolBase">
+	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallJaffaForeheadSymbolApophis</defName>
 		<label>install Apophis Jaffa forehead symbol</label>
 		<description>Install Apophis Jaffa forehead symbol.</description>
@@ -174,6 +168,21 @@
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantApophis</HediffDef>
 		</descriptionHyperlinks>
 		<jobString>Installing Apophis Jaffa forehead symbol.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_JaffaForeheadSymbolImplantApophis</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_JaffaForeheadSymbolImplantApophis</li>
+			</thingDefs>
+		</fixedIngredientFilter>
 		<addsHediff>Rimgate_JaffaForeheadSymbolImplantApophis</addsHediff>
 	</RecipeDef>
 
@@ -189,7 +198,7 @@
 		<removesHediff>Rimgate_JaffaForeheadSymbolImplantApophis</removesHediff>
 	</RecipeDef>
 
-	<RecipeDef ParentName="Rimgate_InstallPrimeForeheadSymbolBase">
+	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallPrimeForeheadSymbolApophis</defName>
 		<label>install Anubis First Prime forehead symbol</label>
 		<description>Install Anubis First Prime forehead symbol.</description>
@@ -198,6 +207,21 @@
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantApophis</HediffDef>
 		</descriptionHyperlinks>
 		<jobString>Installing Anubis First Prime forehead symbol.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_PrimeForeheadSymbolImplantApophis</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_PrimeForeheadSymbolImplantApophis</li>
+			</thingDefs>
+		</fixedIngredientFilter>
 		<addsHediff>Rimgate_PrimeForeheadSymbolImplantApophis</addsHediff>
 	</RecipeDef>
 
@@ -215,7 +239,7 @@
 
 	<!-- =========== Ra =========== -->
 
-	<RecipeDef ParentName="Rimgate_InstallJaffaForeheadSymbolBase">
+	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallJaffaForeheadSymbolRa</defName>
 		<label>install Ra Jaffa forehead symbol</label>
 		<description>Install Ra Jaffa forehead symbol.</description>
@@ -224,6 +248,21 @@
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantRa</HediffDef>
 		</descriptionHyperlinks>
 		<jobString>Installing Ra Jaffa forehead symbol.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_JaffaForeheadSymbolImplantRa</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_JaffaForeheadSymbolImplantRa</li>
+			</thingDefs>
+		</fixedIngredientFilter>
 		<addsHediff>Rimgate_JaffaForeheadSymbolImplantRa</addsHediff>
 	</RecipeDef>
 
@@ -239,7 +278,7 @@
 		<removesHediff>Rimgate_JaffaForeheadSymbolImplantRa</removesHediff>
 	</RecipeDef>
 
-	<RecipeDef ParentName="Rimgate_InstallPrimeForeheadSymbolBase">
+	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallPrimeForeheadSymbolRa</defName>
 		<label>install Ra First Prime forehead symbol</label>
 		<description>Install Ra First Prime forehead symbol.</description>
@@ -248,6 +287,21 @@
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantRa</HediffDef>
 		</descriptionHyperlinks>
 		<jobString>Installing Ra First Prime forehead symbol.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_PrimeForeheadSymbolImplantRa</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_PrimeForeheadSymbolImplantRa</li>
+			</thingDefs>
+		</fixedIngredientFilter>
 		<addsHediff>Rimgate_PrimeForeheadSymbolImplantRa</addsHediff>
 	</RecipeDef>
 

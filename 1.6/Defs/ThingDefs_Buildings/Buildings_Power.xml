@@ -6,8 +6,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_NaquadriaFiredGenerator</defName>
     <label>Naquadria generator</label>
-    <description>Produces power by consuming Naquadria. Must be periodically loaded with Naquadria
-      by hand.</description>
+    <description>Produces power by consuming Naquadria. Must be periodically loaded with Naquadria by hand.</description>
     <thingClass>Building</thingClass>
     <size>(1,2)</size>
     <graphicData>
@@ -79,9 +78,8 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithGenerator</defName>
-    <label>Meat fired generator</label>
-    <description>Produces power by consuming human meat. Must be periodically loaded with cocooned
-      human meat by hand.</description>
+    <label>meat fired generator</label>
+    <description>Produces power by consuming meat. Must be periodically loaded with cocooned human meat by hand.</description>
     <thingClass>Building</thingClass>
     <size>(1,2)</size>
     <graphicData>
@@ -116,7 +114,7 @@
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerPlant</compClass>
-        <basePowerConsumption>-5000</basePowerConsumption>
+        <basePowerConsumption>-3600</basePowerConsumption>
         <transmitsPower>true</transmitsPower>
         <shortCircuitInRain>false</shortCircuitInRain>
       </li>
@@ -155,8 +153,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_ZPM</defName>
     <label>Zero point module</label>
-    <description>Converts Dark Energy into electricity and stores amazing amounts of power. Solar
-      flare proof.</description>
+    <description>Converts Dark Energy into electricity and stores amazing amounts of power. Solar flare proof.</description>
     <thingClass>Rimgate.Building_ZPM</thingClass>
     <category>Building</category>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>

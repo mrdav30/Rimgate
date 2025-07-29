@@ -255,6 +255,7 @@
       <li>AdvancedWeapon</li>
       <li>Rimgate_GoauldSymbiote_tag</li>
     </techHediffsTags>
+    <itemQuality>Excellent </itemQuality>
     <apparelMoney>2500~4200</apparelMoney>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags Inherit="False">
