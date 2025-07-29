@@ -7,7 +7,8 @@
         <defName>Rimgate_WraithLifeDrainTarget</defName>
         <label>life drained</label>
         <description>weakness caused by vitality being stolen by a Wraith.</description>
-        <hediffClass>Hediff_Injury</hediffClass>
+        <!-- <hediffClass>Hediff_Injury</hediffClass> -->
+        <hediffClass>HediffWithComps</hediffClass>
         <tendable>false</tendable>
         <isBad>true</isBad>
         <comps>
@@ -15,7 +16,8 @@
                 <severityPerDay>-0.10</severityPerDay> <!-- Passive health drain -->
             </li>
             <li Class="HediffCompProperties_Disappears">
-                <disappearsAfterTicks>1200</disappearsAfterTicks> <!-- 20 secs -->
+                <disappearsAfterTicks>120000</disappearsAfterTicks> <!-- 20 secs -->
+                <showRemainingTime>true</showRemainingTime>
             </li>
         </comps>
         <stages>
@@ -45,7 +47,8 @@
         <isBad>false</isBad>
         <comps>
             <li Class="HediffCompProperties_Disappears">
-                <disappearsAfterTicks>1200</disappearsAfterTicks> <!-- 20 secs -->
+                <disappearsAfterTicks>120000</disappearsAfterTicks> <!-- 200 secs -->
+                <showRemainingTime>true</showRemainingTime>
             </li>
         </comps>
         <stages>

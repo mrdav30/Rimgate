@@ -95,8 +95,8 @@
           <Rimgate_GoauldGrenadierApophis>1.5</Rimgate_GoauldGrenadierApophis>
           <Rimgate_GoauldMeleeApophis>7</Rimgate_GoauldMeleeApophis>
           <Rimgate_GoauldRangedApophis>10</Rimgate_GoauldRangedApophis>
-          <Rimgate_SerpentGuard>150</Rimgate_SerpentGuard>
-          <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
+          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
+          <Rimgate_PrimeSerpentGuard>5</Rimgate_PrimeSerpentGuard>
         </options>
       </li>
       <li>
@@ -110,7 +110,7 @@
           <Rimgate_KullWarrior>1</Rimgate_KullWarrior>
           <Rimgate_GoauldGrenadierApophis>1.5</Rimgate_GoauldGrenadierApophis>
           <Rimgate_GoauldRangedApophis>10</Rimgate_GoauldRangedApophis>
-          <Rimgate_SerpentGuard>150</Rimgate_SerpentGuard>
+          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
           <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
         </options>
       </li>
@@ -143,7 +143,7 @@
           <Rimgate_GoauldSlave>5</Rimgate_GoauldSlave>
           <Rimgate_GoauldMeleeApophis>7</Rimgate_GoauldMeleeApophis>
           <Rimgate_GoauldRangedApophis>15</Rimgate_GoauldRangedApophis>
-          <Rimgate_SerpentGuard>150</Rimgate_SerpentGuard>
+          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
           <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
         </options>
       </li>

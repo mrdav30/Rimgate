@@ -14,7 +14,7 @@ public class WorkGiver_PatientGoToSarcophagus : WorkGiver
         ThinkResult thinkResult = jgpgtmp.TryIssueJobPackage(pawn, default(JobIssueParams));
         if (thinkResult.IsValid)
             return thinkResult.Job;
-
+         
         return null;
     }
 }

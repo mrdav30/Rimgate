@@ -27,10 +27,12 @@ namespace Rimgate;
 		if (!warden.CanReserve(prisoner))
 			return null;
 
-            Building_Bed_Sarcophagus bedSarcophagus = SarcophagusRestUtility.FindBestSarcophagus(warden, prisoner);
-		if (bedSarcophagus != null && prisoner.CanReserve(bedSarcophagus))
+            Building_Bed_Sarcophagus bed = SarcophagusRestUtility.FindBestSarcophagus(warden, prisoner);
+		if (bed != null 
+			&& !bed.HasAnyContents
+			&& prisoner.CanReserve(bed))
 		{
-			Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_RescueToSarcophagus, prisoner, bedSarcophagus);
+			Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_RescueToSarcophagus, prisoner, bed);
 			job.count = 1;
 			return job;
 		}

@@ -21,11 +21,19 @@
     <statOffsets>
       <Beauty>2</Beauty>
     </statOffsets>
+    <hairColorOverride>(250, 250, 250)</hairColorOverride>
     <hairTagFilter>
+      <whitelist>true</whitelist>
       <tags>
         <li>HairWraith</li>
       </tags>
     </hairTagFilter>
+    <beardTagFilter>
+      <whitelist>true</whitelist>
+      <tags>
+        <li>NoBeard</li>
+      </tags>
+    </beardTagFilter>
     <forcedHeadTypes>
       <li>Rimgate_WraithFemaleAverageNormal</li>
       <li>Rimgate_WraithFemaleAveragePointy</li>

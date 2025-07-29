@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using VEF.Abilities;
 using Verse;
 
 namespace Rimgate;

@@ -23,7 +23,7 @@
     <selectable>true</selectable>
     <altitudeLayer>Building</altitudeLayer>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
-    <uiIconPath>Things/Building/Furniture/RGGoauldSarcophagus</uiIconPath>
+    <uiIconScale>0.90</uiIconScale>
     <statBases>
       <MarketValue>80000</MarketValue>
       <!-- Ensures market value is reflected in colony wealth calculations -->
@@ -48,7 +48,6 @@
       <Rimgate_Naquadria>4</Rimgate_Naquadria>
     </costList>
     <building>
-      <bed_showSleeperBody>False</bed_showSleeperBody>
       <bed_healPerDay>90</bed_healPerDay>
       <bed_defaultMedical>true</bed_defaultMedical>
       <soundDispense>Rimgate_SarcophagusRunning</soundDispense>
@@ -103,7 +102,7 @@
       </li>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
-        <shortCircuitInRain>true</shortCircuitInRain>
+        <shortCircuitInRain>false</shortCircuitInRain>
         <basePowerConsumption>500</basePowerConsumption>
       </li>
       <li Class="Rimgate.CompProperties_AnimatedSarcophagus">

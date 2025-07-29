@@ -20,6 +20,7 @@ public static class Harmony_RestUtility_CanUseBedNow
         return 
             // Sarcophagus has power
             bedSarcophagus.powerComp.PowerOn
+            && !bedSarcophagus.HasAnyContents
             // Sarcophagus is not forbidden for the pawn
             && !bedSarcophagus.IsForbidden(pawn) 
             // Pawn actually has a medical need for a Sarcophagus

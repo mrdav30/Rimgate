@@ -8,9 +8,9 @@ namespace Rimgate;
 
 public static class SarcophagusRestUtility
 {
-    private static List<ThingDef> sarcophagusDefsBestToWorst => sarcophagusDefsBestToWorstCached ??= RestUtility.AllBedDefBestToWorst
-        .Where(x => 
-            x.thingClass == typeof(Building_Bed_Sarcophagus)).ToList();
+    private static List<ThingDef> sarcophagusDefsBestToWorst => 
+        sarcophagusDefsBestToWorstCached ??= RestUtility.AllBedDefBestToWorst
+        .Where(x => x.thingClass == typeof(Building_Bed_Sarcophagus)).ToList();
 
     private static List<ThingDef> sarcophagusDefsBestToWorstCached;
 
@@ -25,7 +25,7 @@ public static class SarcophagusRestUtility
 
     public static bool IsValidBedForUserType(Building_Bed_Sarcophagus bedSarcophagus, Pawn pawn)
     {
-        // VetPods: skip execution early and return true if patient is an animal
+        // skip execution early and return true if patient is an animal
         if (pawn.RaceProps.Animal && !bedSarcophagus.def.building.bed_humanlike)
             return true;
         
@@ -141,9 +141,7 @@ public static class SarcophagusRestUtility
     {
         // Skip if there are no sarcophagus bed defs
         if (!sarcophagusDefsBestToWorst.Any())
-        {
             return null;
-        }
 
         Map map = patient.Map;
         ListerThings listerThings = map.listerThings;
@@ -162,12 +160,16 @@ public static class SarcophagusRestUtility
                 foreach (Thing sarcophagus in listerThings.ThingsOfDef(sarcophagusDef))
                 {
                     if (sarcophagus is Building_Bed_Sarcophagus { Medical: true } bedSarcophagus
+                        && !bedSarcophagus.HasAnyContents
                         && IsValidSarcophagusFor(bedSarcophagus, patient, pawn, patient.GuestStatus))
                     {
                         tempSarcophagusList.Add(bedSarcophagus);
                     }
                 }
             }
+
+            if (tempSarcophagusList.Count == 0)
+                return null;
 
             // Look for the closest reachable sarcophagus from the temporary list, going down by danger level
             for (int i = 0; i < 2; i++)
@@ -195,5 +197,33 @@ public static class SarcophagusRestUtility
 
         // Can't find any valid sarcophagi
         return null;
+    }
+
+    public static void PutIntoSarcophagus(
+        Building_Bed_Sarcophagus bed,
+        Pawn taker,
+        Pawn patient,
+        bool rescued)
+    {
+        if (taker != patient)
+            bed.TryAcceptPawn(patient);
+
+        if (IsValidSarcophagusFor(bed, patient, taker))
+        {
+            if (taker != patient && rescued)
+                patient.relations.Notify_RescuedBy(taker);
+
+            patient.mindState.Notify_TuckedIntoBed();
+        }
+        else
+            bed.EjectContents();
+
+        if (patient.IsPrisonerOfColony)
+        {
+            LessonAutoActivator.TeachOpportunity(
+                ConceptDefOf.PrisonerTab,
+                patient,
+                OpportunityType.GoodToKnow);
+        }
     }
 }

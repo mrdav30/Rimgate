@@ -27,13 +27,13 @@ public class WorkGiver_WardenCarryFromBedToSarcophagus : WorkGiver_Warden
         if (!warden.CanReserve(prisoner))
             return null;
 
-        Building_Bed_Sarcophagus bedSarcophagus = SarcophagusRestUtility.FindBestSarcophagus(warden, prisoner);
-        if (bedSarcophagus != null
-            && SarcophagusHealthAIUtility.ShouldSeekSarcophagusRest(prisoner, bedSarcophagus)
+        Building_Bed_Sarcophagus bed = SarcophagusRestUtility.FindBestSarcophagus(warden, prisoner);
+        if (bed != null
+            && SarcophagusHealthAIUtility.ShouldSeekSarcophagusRest(prisoner, bed)
             && SarcophagusHealthAIUtility.HasAllowedMedicalCareCategory(prisoner)
-            && prisoner.CanReserve(bedSarcophagus))
+            && prisoner.CanReserve(bed))
         {
-            Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_CarryToSarcophagus, prisoner, bedSarcophagus);
+            Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_CarryToSarcophagus, prisoner, bed);
             job.count = 1;
             return job;
         }

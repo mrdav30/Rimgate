@@ -11,7 +11,8 @@ public class RimgateMod : Mod
 {
     public static Harmony harmony;
 
-    public static bool debugLogging = true;
+    public static bool debug = true;
+    public static bool debugPower = false;
 
     public RimgateMod(ModContentPack pack) : base(pack)
     {

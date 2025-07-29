@@ -9,7 +9,7 @@ using Verse;
 namespace Rimgate.HarmonyPatches;
 
 // Keep map with Stargate open
-[HarmonyPatch(typeof(MapPawns), "AnyPawnBlockingMapRemoval", MethodType.Getter)]
+[HarmonyPatch(typeof(MapPawns), nameof(MapPawns.AnyPawnBlockingMapRemoval), MethodType.Getter)]
 public class Harmony_MapPawns_AnyPawnBlockingMapRemoval
 {
     static void Postfix(Map ___map, ref bool __result)

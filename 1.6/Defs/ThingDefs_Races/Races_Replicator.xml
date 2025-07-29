@@ -66,7 +66,6 @@
       <MoveSpeed>4.7</MoveSpeed>
       <Flammability>0.1</Flammability>
       <BandwidthCost MayRequire="Ludeon.Rimworld.Biotech">4</BandwidthCost>
-      <Wildness>1.0</Wildness>
       <MoveSpeed>4.5</MoveSpeed>
     </statBases>
     <race>
@@ -75,31 +74,17 @@
       <thinkTreeConstant>MechConstant</thinkTreeConstant>
       <intelligence>ToolUser</intelligence>
       <nameCategory>NoName</nameCategory>
-      <needsRest>false</needsRest>
-      <hasGenders>false</hasGenders>
-      <ageGenerationCurve>
-        <points>
-          <li>(0, 1)</li>
-          <li>(100, 1)</li>
-        </points>
-      </ageGenerationCurve>
-      <lifeExpectancy>9999</lifeExpectancy>
 
       <soundMeleeHitPawn>Pawn_Melee_MechanoidSlash_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_MechanoidSlash_HitBuilding</soundMeleeHitBuilding>
       <soundMeleeMiss>Pawn_Melee_MechanoidSlash_Miss</soundMeleeMiss>
 
       <meatLabel>metal bits</meatLabel>
-      <meatMarketValue>0</meatMarketValue>
-
-      <trainability>None</trainability>
-      <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
 
       <baseBodySize>1.0</baseBodySize>
       <baseHealthScale>1.32</baseHealthScale>
 
       <gestationPeriodDays>0</gestationPeriodDays>
-      <manhunterOnDamageChance>0.15</manhunterOnDamageChance>
 
       <lifeStageAges>
         <li>
@@ -110,20 +95,13 @@
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
       </lifeStageAges>
+      <mechWeightClass>Medium</mechWeightClass>
     </race>
     <butcherProducts>
       <Steel>20</Steel>
       <Plasteel>5</Plasteel>
       <ComponentIndustrial>1</ComponentIndustrial>
     </butcherProducts>
-    <comps Inherit="False">
-      <li Class="CompProperties_CanBeDormant" />
-      <li Class="CompProperties_WakeUpDormant">
-        <wakeUpOnDamage>true</wakeUpOnDamage>
-        <wakeUpCheckRadius>30</wakeUpCheckRadius>
-        <wakeUpSound>MechanoidsWakeUp</wakeUpSound>
-      </li>
-    </comps>
     <tradeTags>
       <li>Mechanoid</li>
     </tradeTags>

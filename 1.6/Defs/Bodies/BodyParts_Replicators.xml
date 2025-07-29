@@ -10,6 +10,9 @@
     <solid>true</solid>
     <alive>false</alive>
     <bleedRate>0</bleedRate>
+    <tags>
+      <li>ManipulationLimbCore</li>
+    </tags>
   </BodyPartDef>
 
   <BodyPartDef>
@@ -23,6 +26,11 @@
     <bleedRate>0</bleedRate>
     <tags>
       <li>ConsciousnessSource</li>
+      <li>BloodFiltrationSource</li>
+      <li>BloodPumpingSource</li>
+      <li>BreathingPathway</li>
+      <li>EatingPathway</li>
+      <li>TalkingPathway</li>
     </tags>
   </BodyPartDef>
 
@@ -64,6 +72,7 @@
     <alive>false</alive>
     <bleedRate>0</bleedRate>
     <tags>
+      <li>MovingLimbCore</li>
       <li>ManipulationLimbCore</li>
     </tags>
   </BodyPartDef>

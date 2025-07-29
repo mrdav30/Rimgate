@@ -82,11 +82,10 @@
       <drawSize>(12,9)</drawSize>
     </graphicData>
     <skyfaller>
-      <reversed>true</reversed>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>
-      <shadowSize>(6,4.5)</shadowSize>
+      <shadowSize>(12.5,9.5)</shadowSize>
       <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
       <rotationCurve>
         <points>
@@ -129,7 +128,7 @@
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>
       <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
-      <shadowSize>(6,4.5)</shadowSize> 
+      <shadowSize>(12.5,9.5)</shadowSize>
       <motesPerCell>1</motesPerCell>
       <rotationCurve>
         <points>
@@ -233,7 +232,6 @@
       <drawSize>(5,6)</drawSize>
     </graphicData>
     <skyfaller>
-      <reversed>true</reversed>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>
@@ -386,7 +384,6 @@
       <drawSize>(6,8)</drawSize>
     </graphicData>
     <skyfaller>
-      <reversed>true</reversed>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>

@@ -6,34 +6,25 @@
 	<HediffDef>
 		<defName>Rimgate_SymbioteImplant</defName>
 		<hediffClass>Rimgate.Hediff_GoauldSymbiote</hediffClass>
-		<label>symbiote host</label>
-		<labelNoun>a symbiote host</labelNoun>
+		<label>Goa'uld symbiote</label>
+		<labelNoun>a Goa'uld symbiote</labelNoun>
 		<description>A Goa'uld symbiote.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
 		</descriptionHyperlinks>
-		<tendable>false</tendable>
-		<isBad>false</isBad>
+		<defaultLabelColor>(255, 0, 94)</defaultLabelColor>
 		<spawnThingOnRemoved>Rimgate_SymbioteImplant</spawnThingOnRemoved>
 		<countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
-		<addedPartProps>
-			<partEfficiency>1</partEfficiency>
-			<solid>false</solid>
-			<betterThanNatural>true</betterThanNatural>
-		</addedPartProps>
 		<comps>
 			<!-- Passive Healing -->
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.05</severityPerDay>
-				<showHoursToRecover>true</showHoursToRecover>
 			</li>
-			<li Class="Rimgate.HediffCompProperties_GoauldSymbiote">
-				<lifespanFactor>3.75</lifespanFactor>
-			</li>
+			<li Class="Rimgate.HediffCompProperties_GoauldSymbiote" />
 		</comps>
 		<stages>
 			<li>
-				<label>symbiote host</label>
+				<!-- <label>symbiote host</label> -->
 				<painFactor>0.75</painFactor>
 				<hungerRateFactor>0.75</hungerRateFactor> <!-- Eats 25% less -->
 				<statOffsets>
@@ -59,9 +50,8 @@
 			</li>
 		</stages>
 		<tags>
-			<li>Rimgate_Symbiote_tag</li>
+			<li>Rimgate_GoauldSymbiote_tag</li>
 		</tags>
-		<duplicationAllowed>false</duplicationAllowed>
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
 
@@ -170,7 +160,7 @@
 	<!-- =========== Anubis =========== -->
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
-		<defName>Rimgate_JaffaForeheadSymbolAnubis</defName>
+		<defName>Rimgate_JaffaForeheadSymbolImplantAnubis</defName>
 		<label>Anubis forehead symbol</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantAnubis</ThingDef>
@@ -184,12 +174,12 @@
 			</li>
 		</renderNodeProperties>
 		<tags>
-			<li>Rimgate_JaffaForeheadSymbolAnubis_tag</li>
+			<li>Rimgate_JaffaForeheadSymbolImplantAnubis_tag</li>
 		</tags>
 	</HediffDef>
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
-		<defName>Rimgate_PrimeForeheadSymbolAnubis</defName>
+		<defName>Rimgate_PrimeForeheadSymbolImplantAnubis</defName>
 		<label>Anubis Prime forehead symbol</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantAnubis</ThingDef>
@@ -203,14 +193,14 @@
 			</li>
 		</renderNodeProperties>
 		<tags>
-			<li>Rimgate_PrimeForeheadSymbolAnubis_tag</li>
+			<li>Rimgate_PrimeForeheadSymbolImplantAnubis_tag</li>
 		</tags>
 	</HediffDef>
 
 	<!-- =========== Apophis =========== -->
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
-		<defName>Rimgate_JaffaForeheadSymbolApophis</defName>
+		<defName>Rimgate_JaffaForeheadSymbolImplantApophis</defName>
 		<label>Apophis forehead symbol</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantApophis</ThingDef>
@@ -224,12 +214,12 @@
 			</li>
 		</renderNodeProperties>
 		<tags>
-			<li>Rimgate_JaffaForeheadSymbolApophis_tag</li>
+			<li>Rimgate_JaffaForeheadSymbolImplantApophis_tag</li>
 		</tags>
 	</HediffDef>
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
-		<defName>Rimgate_PrimeForeheadSymbolApophis</defName>
+		<defName>Rimgate_PrimeForeheadSymbolImplantApophis</defName>
 		<label>Apophis Prime forehead symbol</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantApophis</ThingDef>
@@ -243,14 +233,14 @@
 			</li>
 		</renderNodeProperties>
 		<tags>
-			<li>Rimgate_PrimeForeheadSymbolApophis_tag</li>
+			<li>Rimgate_PrimeForeheadSymbolImplantApophis_tag</li>
 		</tags>
 	</HediffDef>
 
 	<!-- =========== Ra =========== -->
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
-		<defName>Rimgate_JaffaForeheadSymbolRa</defName>
+		<defName>Rimgate_JaffaForeheadSymbolImplantRa</defName>
 		<label>Ra forehead symbol</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantRa</ThingDef>
@@ -264,12 +254,12 @@
 			</li>
 		</renderNodeProperties>
 		<tags>
-			<li>Rimgate_JaffaForeheadSymbolRa_tag</li>
+			<li>Rimgate_JaffaForeheadSymbolImplantRa_tag</li>
 		</tags>
 	</HediffDef>
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
-		<defName>Rimgate_PrimeForeheadSymbolRa</defName>
+		<defName>Rimgate_PrimeForeheadSymbolImplantRa</defName>
 		<label>Ra Prime forehead symbol</label>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantRa</ThingDef>
@@ -283,7 +273,7 @@
 			</li>
 		</renderNodeProperties>
 		<tags>
-			<li>Rimgate_PrimeForeheadSymbolRa_tag</li>
+			<li>Rimgate_PrimeForeheadSymbolImplantRa_tag</li>
 		</tags>
 	</HediffDef>
 

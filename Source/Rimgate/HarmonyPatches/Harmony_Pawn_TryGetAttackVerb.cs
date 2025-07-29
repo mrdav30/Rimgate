@@ -9,10 +9,13 @@ using Verse;
 
 namespace Rimgate.HarmonyPatches;
 
-[HarmonyPatch(typeof(Pawn), "TryGetAttackVerb")]
+[HarmonyPatch(typeof(Pawn), nameof(Pawn.TryGetAttackVerb))]
 public static class Harmony_Pawn_TryGetAttackVerb
 {
-    public static void Prefix(Thing target, bool allowManualCastWeapons = false, bool allowTurrets = false)
+    public static void Prefix(
+        Thing target,
+        bool allowManualCastWeapons = false,
+        bool allowTurrets = false)
     {
         if (target is not Pawn pawn || pawn.Faction == Faction.OfPlayer)
             return;

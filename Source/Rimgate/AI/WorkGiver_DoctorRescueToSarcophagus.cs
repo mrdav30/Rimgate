@@ -25,7 +25,8 @@ public class WorkGiver_DoctorRescueToSarcophagus : WorkGiver_RescueDowned
 
         Building_Bed_Sarcophagus bedSarcophagus = SarcophagusRestUtility.FindBestSarcophagus(pawn, patient);
 		if (bedSarcophagus != null 
-			&& patient.CanReserve(bedSarcophagus))
+			&& !bedSarcophagus.HasAnyContents
+            && patient.CanReserve(bedSarcophagus))
 		{
 			return true;
 		}
@@ -36,8 +37,11 @@ public class WorkGiver_DoctorRescueToSarcophagus : WorkGiver_RescueDowned
 	public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 	{
 		Pawn patient = t as Pawn;
-        Building_Bed_Sarcophagus bedSarcophagus = SarcophagusRestUtility.FindBestSarcophagus(pawn, patient);
-		Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_RescueToSarcophagus, patient, bedSarcophagus);
+        Building_Bed_Sarcophagus bed = SarcophagusRestUtility.FindBestSarcophagus(pawn, patient);
+		if(bed == null || bed.HasAnyContents)
+			return null;
+
+        Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_RescueToSarcophagus, patient, bed);
 		job.count = 1;
 		return job;
 	}

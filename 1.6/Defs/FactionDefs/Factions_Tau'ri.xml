@@ -64,6 +64,8 @@
                     <li>Military</li>
                     <li>Spacer</li>
                     <li>Offworld</li>
+                    <li>EliteMilitary</li>
+                    <li>Leader</li>
                 </categories>
             </li>
         </backstoryFilters>

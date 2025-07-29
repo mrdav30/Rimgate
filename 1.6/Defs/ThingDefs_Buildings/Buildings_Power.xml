@@ -43,6 +43,7 @@
         <compClass>CompPowerPlant</compClass>
         <basePowerConsumption>-5000</basePowerConsumption>
         <transmitsPower>true</transmitsPower>
+        <shortCircuitInRain>false</shortCircuitInRain>
       </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Refuelable">
@@ -117,6 +118,7 @@
         <compClass>CompPowerPlant</compClass>
         <basePowerConsumption>-5000</basePowerConsumption>
         <transmitsPower>true</transmitsPower>
+        <shortCircuitInRain>false</shortCircuitInRain>
       </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Refuelable">

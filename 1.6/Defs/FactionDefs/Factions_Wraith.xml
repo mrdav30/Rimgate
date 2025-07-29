@@ -22,7 +22,7 @@
       </xenotypeChances>
     </xenotypeSet>
     <allowedCultures Inherit="False">
-      <li>Astropolitan</li>
+      <li>Rimgate_WraithCulture</li>
     </allowedCultures>
     <factionIconPath>UI/Icon/Map/RGWraithBaseIcon</factionIconPath>
     <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
@@ -93,9 +93,7 @@
         <kindDef>Settlement</kindDef>
         <options>
           <Rimgate_WraithColonist>50</Rimgate_WraithColonist>
-          <Rimgate_GrandVizier>250</Rimgate_GrandVizier>
           <Rimgate_WraithSoldier>100</Rimgate_WraithSoldier>
-          <Rimgate_WraithSoldier>130</Rimgate_WraithSoldier>
           <Rimgate_WraithCommander>130</Rimgate_WraithCommander>
           <Rimgate_WraithQueen>170</Rimgate_WraithQueen>
         </options>

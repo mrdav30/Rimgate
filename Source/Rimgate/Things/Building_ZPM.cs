@@ -69,6 +69,8 @@ public class Building_ZPM : Building
 
     public override void TickRare()
     {
+        if(this.power == null || this.power.PowerNet == null) return;
+
         if (this.power.PowerNet.CurrentEnergyGainRate() > 0.01f)
         {
             // Charge using all the excess energy on the grid.
@@ -86,10 +88,10 @@ public class Building_ZPM : Building
             darkEnergyReserve -= 1000;
         }
 
-        if (RimgateMod.debugLogging)
+        if (RimgateMod.debugPower)
         {
-            Log.Warning("Current Energy Gain Rate: " + this.power.PowerNet.CurrentEnergyGainRate());
-            Log.Warning("Stored Energy: " + this.power.StoredEnergy);
+            Log.Warning("ZPM :: Current Energy Gain Rate: " + this.power.PowerNet.CurrentEnergyGainRate());
+            Log.Warning("ZPM :: Stored Energy: " + this.power.StoredEnergy);
         }
 
         base.TickRare();

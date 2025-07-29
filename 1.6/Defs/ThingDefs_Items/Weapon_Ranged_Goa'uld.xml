@@ -43,7 +43,7 @@
 				<label>Throw Tok'Kal grenade</label>
 				<verbClass>Verb_LaunchProjectile</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<range>12.9</range>
+				<range>15.9</range>
 				<forcedMissRadius>1.9</forcedMissRadius>
 				<warmupTime>1.5</warmupTime>
 				<noiseRadius>4</noiseRadius>
@@ -78,6 +78,7 @@
 	<ThingDef>
 		<defName>Rimgate_GoauldTokKalProjectile</defName>
 		<label>Goa'uld Tok'Kal</label>
+		<thingClass>Rimgate.Projectile_AdditionalDamage</thingClass>
 		<category>Projectile</category>
 		<altitudeLayer>Projectile</altitudeLayer>
 		<thingClass>Projectile_Explosive</thingClass>
@@ -94,12 +95,15 @@
 			<speed>12</speed>
 			<flyOverhead>false</flyOverhead>
 			<explosionRadius>1.9</explosionRadius>
-			<!--<damageDef>EMP</damageDef>
-			Disable this for now, til I figure out how to have both effects -->
 			<damageDef>Stun</damageDef>
-			<!-- Use default damage from explosion def -->
 			<explosionDelay>100</explosionDelay>
 		</projectile>
+		<comps>
+			<li Class="Rimgate.CompProperties_AdditionalDamage">
+				<compClass>Rimgate.Comp_AdditionalDamage</compClass>
+				<damageType>EMP</damageType>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ============ Goa'uld Gun Base ============ -->
@@ -384,8 +388,8 @@
 				<cooldownTime>1.6</cooldownTime>
 			</li>
 		</tools>
-		<weaponTags>
-			<li>KullGun</li>
+		<weaponTags Inherit="False">
+			<li>Rimgate_KullRanged_tag</li>
 		</weaponTags>
 	</ThingDef>
 

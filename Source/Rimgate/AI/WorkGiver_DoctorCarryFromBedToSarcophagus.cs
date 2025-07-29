@@ -51,8 +51,11 @@ public class WorkGiver_DoctorCarryFromBedToSarcophagus
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
         Pawn patient = t as Pawn;
-        Building_Bed_Sarcophagus bedSarcophagus = SarcophagusRestUtility.FindBestSarcophagus(pawn, patient);
-        Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_CarryToSarcophagus, patient, bedSarcophagus);
+        Building_Bed_Sarcophagus bed = SarcophagusRestUtility.FindBestSarcophagus(pawn, patient);
+        if (bed == null || bed.HasAnyContents)
+            return null;
+        
+        Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_CarryToSarcophagus, patient, bed);
         job.count = 1;
         return job;
     }

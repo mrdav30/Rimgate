@@ -22,9 +22,9 @@
             <MaxHitPoints>100</MaxHitPoints>
         </statBases>
         <thingCategories>
-            <li>BodyPartsNatural</li>
+            <li>BodyPartsBionic</li>
         </thingCategories>
-        <techHediffsTags Inherit="false">
+        <techHediffsTags>
             <li>Rimgate_GoauldSymbiote_tag</li>
         </techHediffsTags>
     </ThingDef>
@@ -51,7 +51,7 @@
         </descriptionHyperlinks>
         <techLevel>Neolithic</techLevel>
         <techHediffsTags>
-            <li>Rimgate_JaffaForeheadSymbolApophis_tag</li>
+            <li>Rimgate_JaffaForeheadSymbolImplantAnubis_tag</li>
         </techHediffsTags>
     </ThingDef>
 
@@ -64,7 +64,7 @@
             <RecipeDef>Rimgate_InstallPrimeForeheadSymbolAnubis</RecipeDef>
         </descriptionHyperlinks>
         <techHediffsTags>
-            <li>Rimgate_PrimeForeheadSymbolApophis_tag</li>
+            <li>Rimgate_PrimeForeheadSymbolImplantAnubis_tag</li>
         </techHediffsTags>
     </ThingDef>
 
@@ -79,7 +79,7 @@
             <RecipeDef>Rimgate_InstallJaffaForeheadSymbolApophis</RecipeDef>
         </descriptionHyperlinks>
         <techHediffsTags>
-            <li>Rimgate_JaffaForeheadSymbolApophis_tag</li>
+            <li>Rimgate_JaffaForeheadSymbolImplantApophis_tag</li>
         </techHediffsTags>
     </ThingDef>
 
@@ -92,7 +92,7 @@
             <RecipeDef>Rimgate_InstallPrimeForeheadSymbolApophis</RecipeDef>
         </descriptionHyperlinks>
         <techHediffsTags>
-            <li>Rimgate_PrimeForeheadSymbolApophis_tag</li>
+            <li>Rimgate_PrimeForeheadSymbolImplantApophis_tag</li>
         </techHediffsTags>
     </ThingDef>
 
@@ -107,7 +107,7 @@
             <RecipeDef>Rimgate_InstallJaffaForeheadSymbolRa</RecipeDef>
         </descriptionHyperlinks>
         <techHediffsTags>
-            <li>Rimgate_JaffaForeheadSymbolRa_tag</li>
+            <li>Rimgate_JaffaForeheadSymbolImplantRa_tag</li>
         </techHediffsTags>
     </ThingDef>
 
@@ -120,7 +120,7 @@
             <RecipeDef>Rimgate_InstallPrimeForeheadSymbolRa</RecipeDef>
         </descriptionHyperlinks>
         <techHediffsTags>
-            <li>Rimgate_PrimeForeheadSymbolRa_tag</li>
+            <li>Rimgate_PrimeForeheadSymbolImplantRa_tag</li>
         </techHediffsTags>
     </ThingDef>
 

@@ -40,7 +40,8 @@
             Zat'nik'tel, this effect is debilitating until it wears off.</description>
         <comps>
             <li Class="HediffCompProperties_Disappears">
-                <disappearsAfterTicks>7500~7500</disappearsAfterTicks>
+                <disappearsAfterTicks>5000~7500</disappearsAfterTicks>
+                <showRemainingTime>true</showRemainingTime>
             </li>
         </comps>
         <stages>

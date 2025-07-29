@@ -135,7 +135,7 @@ public class Comp_Stargate : ThingComp
         glowComp.Props.glowRadius = glowRadius;
         glowComp.PostSpawnSetup(false);
 
-        if (RimgateMod.debugLogging)
+        if (RimgateMod.debug)
             Log.Message($"Rimgate :: finished opening gate {this.parent}");
     }
 
@@ -239,7 +239,7 @@ public class Comp_Stargate : ThingComp
 
         if (!connectedMap.HasMap)
         {
-            if (RimgateMod.debugLogging)
+            if (RimgateMod.debug)
                 Log.Message($"Rimgate :: generating map for {connectedMap}");
 
             GetOrGenerateMapUtility.GetOrGenerateMap(
@@ -248,7 +248,7 @@ public class Comp_Stargate : ThingComp
                     ? new IntVec3(75, 1, 75)
                     : Find.World.info.initialMapSize, null);
 
-            if (RimgateMod.debugLogging)
+            if (RimgateMod.debug)
                 Log.Message($"Rimgate :: finished generating map");
         }
 
@@ -444,7 +444,7 @@ public class Comp_Stargate : ThingComp
         if (transComp != null && transComp.innerContainer == null)
             transComp.innerContainer = new ThingOwner<Thing>(transComp);
 
-        if (RimgateMod.debugLogging)
+        if (RimgateMod.debug)
             Log.Message($"Rimgate :: compsg postspawnssetup: sgactive={stargateIsActive} connectgate={connectedStargate} connectaddress={connectedAddress}, mapparent={this.parent.Map.Parent}");
     }
 

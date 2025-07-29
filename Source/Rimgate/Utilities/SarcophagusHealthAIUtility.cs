@@ -31,7 +31,7 @@ public static class SarcophagusHealthAIUtility
         bool flag12 = !SarcophagusHealthAIUtility.HasUsageBlockingHediffs(patientPawn, usageBlockingHediffs) && !SarcophagusHealthAIUtility.HasUsageBlockingTraits(patientPawn, usageBlockingTraits);
         bool flag13 = (flag1 | flag2 | flag3 | flag4 | flag5 | flag6 | flag7 | flag8 | flag9 | flag10 | flag11) & flag12;
 
-        if (DebugSettings.godMode)
+        if (RimgateMod.debug)
             Log.Message($"{$"{patientPawn} should use {bedSarcophagus}? = {GenText.ToStringYesNo(flag13)}\n"}isDowned = {GenText.ToStringYesNo(flag1)}\nhasTendableHediffs = {GenText.ToStringYesNo(flag2)}\nhasTendedAndHealingInjuries = {GenText.ToStringYesNo(flag3)}\nhasImmunizableNotImmuneHediffs = {GenText.ToStringYesNo(flag4)}\nhasSickThoughtHediffs = {GenText.ToStringYesNo(flag5)}\nhasMissingBodyParts = {GenText.ToStringYesNo(flag6)}\nhasPermanentInjuries = {GenText.ToStringYesNo(flag7)}\nhasChronicDiseases = {GenText.ToStringYesNo(flag8)}\nhasAddictions = {GenText.ToStringYesNo(flag9)}\nhasAlwaysTreatableHediffs = {GenText.ToStringYesNo(flag10)}\nhasGreylistedHediffsDuringTreatment = {GenText.ToStringYesNo(flag11)}\nhasNoBlockingHediffsOrTraits = {GenText.ToStringYesNo(flag12)}");
 
         return flag13;

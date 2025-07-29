@@ -311,20 +311,29 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abilities\CompAbilityEffect_LaunchMultipleProjectile.cs" />
-    <Compile Include="Abilities\CompAbilityEffect_ApplyHediffs.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_ApplyHediff.cs" />
+    <Compile Include="AbiliyComps\CompAbilityEffect_LaunchMultipleProjectile.cs" />
+    <Compile Include="AbiliyComps\CompAbilityEffect_ApplyHediffs.cs" />
+    <Compile Include="AI\JobDriver_CarryToSarcophagus.cs" />
+    <Compile Include="Comps\Comp_AdditionalDamage.cs" />
+    <Compile Include="Comps\Properties\CompProperties_AdditionalDamage.cs" />
+    <Compile Include="AbiliyComps\Properties\CompProperties_ApplyHediff.cs" />
     <Compile Include="AI\WorkerGiver_DoBill_Wraith.cs" />
     <Compile Include="Comps\Properties\CompProperties_FrameApparel.cs" />
     <Compile Include="Comps\Properties\CompProperties_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
+    <Compile Include="HarmonyPatches\Harmony_BedCellSearchPattern_AddCellsToList.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Building_Bed_GetSleepingSlotPos.cs" />
     <Compile Include="HarmonyPatches\Harmony_EquipmentUtility_CanEquip.cs" />
+    <Compile Include="HarmonyPatches\Harmony_JobMaker_MakeJob.cs" />
+    <Compile Include="HarmonyPatches\Harmony_WorkGiver_RescueDowned.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_TryGetAttackVerb.cs" />
-    <Compile Include="Hediffs\HediffGiver_AtAge.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_MultipleProjectile.cs" />
+    <Compile Include="HarmonyPatches\Harmony_RestUtility_TuckIntoBed.cs" />
+    <Compile Include="Misc\HediffGiver_AtAge.cs" />
+    <Compile Include="AbiliyComps\Properties\CompProperties_MultipleProjectile.cs" />
+    <Compile Include="Misc\PawnRenderSubWorker_ShiftFrontForHeadType.cs" />
     <Compile Include="Misc\Projectile_ZatBlast_Extension.cs" />
-    <Compile Include="Things\Projectile_Web.cs" />
+    <Compile Include="Things\Projectile_AdditionalDamage.cs" />
     <Compile Include="Things\Projectile_ZatBlast.cs" />
     <Compile Include="Things\Building_Bed_Sarcophagus.cs" />
     <Compile Include="Compatibility\AlphaGenesCompatibility.cs" />
@@ -341,22 +350,20 @@
     <Compile Include="Comps\Comp_ApparelWithAttachedHeadgear.cs" />
     <Compile Include="Comps\Comp_TreatmentRestrictions.cs" />
     <Compile Include="DamageWorkers\DamageWorker_Siege.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Command_SetBedOwnerType.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Building_Bed_SetBedOwnerType.cs" />
     <Compile Include="HarmonyPatches\Harmony_Designator_Strip_CanDesignateThing.cs" />
     <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
     <Compile Include="HarmonyPatches\Harmony_FloatMenuOptionProvider_Generic.cs" />
     <Compile Include="HarmonyPatches\Harmony_MapPawns_AnyPawnBlockingMapRemoval.cs" />
     <Compile Include="HarmonyPatches\Harmony_DynamicPawnRenderNodeSetup_Apparel_ProcessApparel.cs" />
-    <Compile Include="HarmonyPatches\Harmony_PawnRenderer_BodyAngle.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_CurrentlyUsableForBills.cs" />
-    <Compile Include="HarmonyPatches\Harmony_PawnRenderer_LayingFacing.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_GetGizmos.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility_CanUseBedNow.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility_IsValidBedFor.cs" />
     <Compile Include="HarmonyPatches\Harmony_WorkGiver_Tend_HasJobOnThing.cs" />
-    <Compile Include="Hediffs\HediffComp_GoauldSymbiote.cs" />
-    <Compile Include="Hediffs\HediffCompProperties_GoauldSymbiote.cs" />
-    <Compile Include="Hediffs\Hediff_GoauldSymbiote.cs" />
+    <Compile Include="HediffComps\HediffComp_GoauldSymbiote.cs" />
+    <Compile Include="HediffComps\Properties\HediffCompProperties_GoauldSymbiote.cs" />
+    <Compile Include="Things\Hediff_GoauldSymbiote.cs" />
     <Compile Include="AI\JobDriver_PatientGoToSarcophagus.cs" />
     <Compile Include="AI\JobGiver_PatientGoToSarcophagus.cs" />
     <Compile Include="Things\Building_Stargate.cs" />
@@ -396,8 +403,6 @@
     <Compile Include="Comps\Comp_Sarcophagus.cs" />
     <Compile Include="Utilities\SarcophagusHealthAIUtility.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AbilityComps\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

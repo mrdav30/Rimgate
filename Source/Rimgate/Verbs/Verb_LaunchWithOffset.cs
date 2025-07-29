@@ -59,7 +59,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
                 if (index > 0)
                 {
                     IntVec3 c = currentTarget.Cell + GenRadial.RadialPattern[index];
-                    if (RimgateMod.debugLogging && DebugViewSettings.drawShooting)
+                    if (RimgateMod.debug && DebugViewSettings.drawShooting)
                         Utils.ThrowDebugText("Rimgate :: ToRadius: ", c, caster.Map);
 
                     ProjectileHitFlags projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
@@ -90,7 +90,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
         if (!Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture))
         {
             shootLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget, true, caster.Map);
-            if (RimgateMod.debugLogging && DebugViewSettings.drawShooting)
+            if (RimgateMod.debug && DebugViewSettings.drawShooting)
             {
                 Utils.ThrowDebugText("Rimgate :: ToWild "
                     + (canHitNonTargetPawnsNow ? "chntp " : "")
@@ -116,7 +116,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
             && currentTarget.Thing.def.category == ThingCategory.Pawn
             && !Rand.Chance(shotReport.PassCoverChance))
         {
-            if (RimgateMod.debugLogging && DebugViewSettings.drawShooting)
+            if (RimgateMod.debug && DebugViewSettings.drawShooting)
             {
                 Utils.ThrowDebugText("Rimgate :: ToCover "
                     + (canHitNonTargetPawnsNow ? "chntp " : "")
@@ -147,7 +147,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
         if (!currentTarget.HasThing || currentTarget.Thing.def.Fillage == FillCategory.Full)
             projectileHitFlags1 = (ProjectileHitFlags)((int)projectileHitFlags1 | 4);
 
-        if (RimgateMod.debugLogging && DebugViewSettings.drawShooting)
+        if (RimgateMod.debug && DebugViewSettings.drawShooting)
             Utils.ThrowDebugText("Rimgate :: ToHit" + (canHitNonTargetPawnsNow ? "\nchntp" : ""), caster.DrawPos, caster.Map);
 
         if (currentTarget.Thing != null)
@@ -161,7 +161,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
                 thing2,
                 def);
 
-            if (RimgateMod.debugLogging && DebugViewSettings.drawShooting)
+            if (RimgateMod.debug && DebugViewSettings.drawShooting)
                 Utils.ThrowDebugText("Rimgate :: HitDest " + currentTarget.Cell, caster.DrawPos, caster.Map);
         }
         else
@@ -176,7 +176,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
                 thing2,
                 def);
 
-            if (RimgateMod.debugLogging && DebugViewSettings.drawShooting)
+            if (RimgateMod.debug && DebugViewSettings.drawShooting)
                 Utils.ThrowDebugText("Rimgate :: HitDest ", shootLine.Dest, caster.Map);
         }
         return true;

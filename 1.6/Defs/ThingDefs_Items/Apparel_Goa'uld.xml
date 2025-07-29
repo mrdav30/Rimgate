@@ -53,8 +53,7 @@
 		</apparel>
 	</ThingDef>
 
-	<ThingDef Name="Rimgate_GuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearBase"
-		Abstract="True">
+	<ThingDef Name="Rimgate_GuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearBase" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_GoauldArmorTier2</researchPrerequisite>
 		</recipeMaker>
@@ -63,13 +62,9 @@
 			<ComponentIndustrial>2</ComponentIndustrial>
 			<Rimgate_Naquadah>2</Rimgate_Naquadah>
 		</costList>
-		<graphicData>
-			<drawSize>(1.2, 1.1)</drawSize>
-		</graphicData>
 	</ThingDef>
 
-	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_GuardHeadgearBase"
-		Abstract="True">
+	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_GuardHeadgearBase" Abstract="True">
 		<costList>
 			<Gold>2</Gold>
 		</costList>

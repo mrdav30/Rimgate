@@ -30,7 +30,7 @@
 				<label>Throw Wraith grenade</label>
 				<verbClass>Verb_LaunchProjectile</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<range>12.9</range>
+				<range>15.9</range>
 				<forcedMissRadius>1.9</forcedMissRadius>
 				<warmupTime>1.5</warmupTime>
 				<noiseRadius>4</noiseRadius>
@@ -167,7 +167,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_WraithSpearGunProjectile</defaultProjectile>
 				<warmupTime>0.3</warmupTime>
-				<range>29</range>
+				<range>22.9</range>
 				<minRange>0.5</minRange>
 				<burstShotCount>1</burstShotCount>
 				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
@@ -183,7 +183,7 @@
 					<li>Blunt</li>
 				</capacities>
 				<power>8</power>
-				<cooldownTime>1.6</cooldownTime>
+				<cooldownTime>1.25</cooldownTime>
 			</li>
 			<li>
 				<label>barrel</label>
@@ -191,10 +191,13 @@
 					<li>Blunt</li>
 					<li>Poke</li>
 				</capacities>
-				<power>12</power>
-				<cooldownTime>1.6</cooldownTime>
+				<power>14</power>
+				<cooldownTime>1.25</cooldownTime>
 			</li>
 		</tools>
+		<weaponTags>
+			<li>Rimgate_WraithSpear_tag</li>
+		</weaponTags>
 	</ThingDef>
 
 	<!-- ====== Wraith Spear Gun Projectile ====== -->
@@ -203,6 +206,7 @@
 		<defName>Rimgate_WraithSpearGunProjectile</defName>
 		<label>Wraith spear gun shot</label>
 		<description>bullet</description>
+		<thingClass>Rimgate.Projectile_AdditionalDamage</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/RGWraithSpearGunProjectile</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -210,10 +214,17 @@
 		</graphicData>
 		<projectile>
 			<flyOverhead>false</flyOverhead>
-			<damageDef>Stun</damageDef>
+			<damageDef>Bullet</damageDef>
 			<damageAmountBase>5</damageAmountBase>
-			<speed>40</speed>
+			<armorPenetrationBase>0.65</armorPenetrationBase>
+			<speed>65</speed>
 		</projectile>
+		<comps>
+			<li Class="Rimgate.CompProperties_AdditionalDamage">
+				<compClass>Rimgate.Comp_AdditionalDamage</compClass>
+				<damageType>Stun</damageType>
+			</li>
+		</comps>
 	</ThingDef>
 
 </Defs>

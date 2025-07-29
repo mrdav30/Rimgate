@@ -7,15 +7,14 @@
         <race>Rimgate_Replicator</race>
         <defaultFactionType>Rimgate_Replicator</defaultFactionType>
         <aiAvoidCover>true</aiAvoidCover>
-        <destroyGearOnDrop>true</destroyGearOnDrop>
         <combatPower>160</combatPower>
         <lifeStages>
             <li>
                 <bodyGraphicData>
                     <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
-                    <drawSize>1</drawSize>
+                    <drawSize>1.45</drawSize>
                     <shadowData>
-                        <volume>(0.4, 0.8, 0.4)</volume>
+                        <volume>(0.25, 0.3, 0.25)</volume>
                     </shadowData>
                 </bodyGraphicData>
             </li>

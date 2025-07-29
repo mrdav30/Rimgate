@@ -4,6 +4,8 @@
     <PawnKindDef Name="Rimgate_TauriBase" Abstract="True">
         <defaultFactionType>Rimgate_TauriFaction</defaultFactionType>
         <race>Human</race>
+        <minGenerationAge>20</minGenerationAge>
+        <maxGenerationAge>50</maxGenerationAge>
         <chemicalAddictionChance>0.01</chemicalAddictionChance>
         <initialWillRange>1~2</initialWillRange>
         <initialResistanceRange>15~45</initialResistanceRange>
@@ -17,12 +19,16 @@
             <li>ImplantEmpireCommon</li>
         </techHediffsTags>
         <biocodeWeaponChance>0.2</biocodeWeaponChance>
+        <itemQuality>Normal</itemQuality>
     </PawnKindDef>
 
     <PawnKindDef ParentName="Rimgate_TauriBase">
         <defName>Rimgate_TauriScientist</defName>
         <label>Tau'ri SGC scientist</label>
         <isFighter>false</isFighter>
+        <requiredWorkTags>
+            <li>Intellectual</li>
+        </requiredWorkTags>
         <combatPower>20</combatPower>
         <weaponTags>
             <li>MedievalMeleeBasic</li>
@@ -32,6 +38,13 @@
             <li>Rimgate_TauriSGTeamBDU</li>
         </apparelRequired>
         <weaponMoney>40~200</weaponMoney>
+        <backstoryFiltersOverride>
+            <li>
+                <categoriesAdulthood>
+                    <li>Scientist</li>
+                </categoriesAdulthood>
+            </li>
+        </backstoryFiltersOverride>
         <inventoryOptions>
             <skipChance>0.85</skipChance>
             <subOptionsChooseOne>
@@ -53,9 +66,13 @@
         </inventoryOptions>
     </PawnKindDef>
 
-    <PawnKindDef Name="Rimgate_TauriUniformed" ParentName="Rimgate_TauriBase" Abstract="True">
+    <PawnKindDef Name="Rimgate_TauriUniformedBase" ParentName="Rimgate_TauriBase" Abstract="True">
         <isFighter>true</isFighter>
         <canBeSapper>true</canBeSapper>
+        <requiredWorkTags>
+            <li>Social</li>
+            <li>Violent</li>
+        </requiredWorkTags>
         <invNutrition>2.25</invNutrition>
         <gearHealthRange>0.6~1.3</gearHealthRange>
         <apparelMoney>800~1800</apparelMoney>
@@ -64,6 +81,8 @@
             <li>Rimgate_TauriSGTeamBDU</li>
         </apparelRequired>
         <apparelTags>
+            <li>IndustrialMilitaryAdvanced</li>
+            <li>SpacerMilitary</li>
             <li>Rimgate_TauriApparel_tag</li>
             <li>Rimgate_TauriTacticalVest</li>
             <li>Rimgate_TauriBackpack_tag</li>
@@ -89,7 +108,7 @@
         </inventoryOptions>
     </PawnKindDef>
 
-    <PawnKindDef ParentName="Rimgate_TauriUniformed">
+    <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCSoldier</defName>
         <label>Tau'ri SGC team soldier</label>
         <combatPower>110</combatPower>
@@ -102,9 +121,15 @@
         <apparelRequired>
             <li>Rimgate_TauriBallisticHelmet</li>
         </apparelRequired>
+        <skills>
+            <li>
+                <skill>Shooting</skill>
+                <range>5~8</range>
+            </li>
+        </skills>
     </PawnKindDef>
 
-    <PawnKindDef ParentName="Rimgate_TauriUniformed">
+    <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriRifleman</defName>
         <label>Tau'ri rifleman</label>
         <race>Human</race>
@@ -125,19 +150,23 @@
                 </li>
             </subOptionsChooseOne>
         </inventoryOptions>
-        <requiredWorkTags>
-            <li>Violent</li>
-        </requiredWorkTags>
         <gearHealthRange>0.75~2.3</gearHealthRange>
         <weaponMoney>1000~2260</weaponMoney>
         <apparelMoney>1000~2180</apparelMoney>
+        <skills>
+            <li>
+                <skill>Shooting</skill>
+                <range>5~12</range>
+            </li>
+        </skills>
     </PawnKindDef>
 
-    <PawnKindDef ParentName="Rimgate_TauriUniformed">
+    <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSpecialForces</defName>
         <label>Tau'ri SGC special forces</label>
         <race>Human</race>
         <combatPower>370</combatPower>
+        <itemQuality>Good</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriShotgun_tag</li>
             <li>Rimgate_Tauri_SniperRifle</li>
@@ -163,25 +192,21 @@
         <gearHealthRange>0.8~2.3</gearHealthRange>
         <weaponMoney>1500~2450</weaponMoney>
         <apparelMoney>1250~2400</apparelMoney>
-        <requiredWorkTags>
-            <li>Violent</li>
-            <li>Intellectual</li>
-        </requiredWorkTags>
-        <backstoryFiltersOverride>
+        <skills>
             <li>
-                <categoriesAdulthood>
-                    <li>EliteMilitary</li>
-                </categoriesAdulthood>
+                <skill>Shooting</skill>
+                <range>8~16</range>
             </li>
-        </backstoryFiltersOverride>
+        </skills>
     </PawnKindDef>
 
-    <PawnKindDef ParentName="Rimgate_TauriUniformed">
+    <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriCommander</defName>
         <label>Tau'ri SG team commander</label>
         <factionLeader>true</factionLeader>
         <canBeSapper>true</canBeSapper>
         <combatPower>150</combatPower>
+        <itemQuality>Excellent</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriPistol_tag</li>
@@ -206,27 +231,16 @@
                 </li>
             </subOptionsChooseOne>
         </inventoryOptions>
-        <requiredWorkTags>
-            <li>Social</li>
-            <li>Violent</li>
-        </requiredWorkTags>
-        <backstoryFiltersOverride>
-            <li>
-                <categoriesChildhood>
-                    <li>Military</li>
-                    <li>Spacer</li>
-                    <li>Offworld</li>
-                </categoriesChildhood>
-                <categoriesAdulthood>
-                    <li>EliteMilitary</li>
-                    <li>Leader</li>
-                </categoriesAdulthood>
-            </li>
-        </backstoryFiltersOverride>
         <techHediffsChance>0.12</techHediffsChance>
         <techHediffsTags>
             <li>Advanced</li>
         </techHediffsTags>
+        <skills>
+            <li>
+                <skill>Shooting</skill>
+                <range>8~16</range>
+            </li>
+        </skills>
     </PawnKindDef>
 
 </Defs>

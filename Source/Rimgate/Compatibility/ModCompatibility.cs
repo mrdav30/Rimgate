@@ -22,7 +22,7 @@ public class ModCompatibility
     {
         if (ModCompatibility.AlphaGenesIsActive)
         {
-            if (RimgateMod.debugLogging)
+            if (RimgateMod.debug)
                 Log.Message("Rimgate :: Alpha Genes detected!");
 
             // Conditionally patch BreakSomeBones patch to patients on Sarcophagus
@@ -36,7 +36,7 @@ public class ModCompatibility
 
         if (ModCompatibility.DbhIsActive)
         {
-            if (RimgateMod.debugLogging)
+            if (RimgateMod.debug)
                 Log.Message("Rimgate :: Dubs Bad Hygiene detected!");
 
             // Conditionally patch WorkGiver_washPatient to ignore MedPods

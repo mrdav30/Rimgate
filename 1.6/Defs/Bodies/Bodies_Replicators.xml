@@ -8,33 +8,44 @@
       <def>Rimgate_ReplicatorBase</def>
       <height>Middle</height>
       <depth>Outside</depth>
-      <groups>
+      <!-- <groups>
         <li>HeadAttackTool</li>
-      </groups>
+      </groups> -->
       <parts>
         <li>
-          <def>Rimgate_ReplicatorCentralCore</def>
-          <height>Middle</height>
-          <coverage>0.19</coverage>
-          <depth>Inside</depth>
-        </li>
-        <li>
-          <def>Rimgate_ReplicatorSensorCluster</def>
-          <height>Middle</height>
-          <coverage>0.15</coverage>
-          <depth>Inside</depth>
-        </li>
-        <li>
-          <def>Rimgate_ReplicatorCuttingMandibles</def>
-          <coverage>0.15</coverage>
+          <def>MechanicalHead</def>
+          <coverage>0.49</coverage>
+          <height>Top</height>
           <groups>
-            <li>Teeth</li>
+            <li>HeadAttackTool</li>
           </groups>
+          <parts>
+            <li>
+              <def>Rimgate_ReplicatorCentralCore</def>
+              <height>Middle</height>
+              <coverage>0.19</coverage>
+              <depth>Inside</depth>
+            </li>
+            <li>
+              <def>Rimgate_ReplicatorSensorCluster</def>
+              <height>Middle</height>
+              <coverage>0.15</coverage>
+              <depth>Inside</depth>
+            </li>
+            <li>
+              <def>Rimgate_ReplicatorCuttingMandibles</def>
+              <coverage>0.15</coverage>
+              <groups>
+                <li>Teeth</li>
+              </groups>
+            </li>
+          </parts>
         </li>
         <li>
           <def>Rimgate_ReplicatorLeg</def>
           <customLabel>left front leg</customLabel>
           <coverage>0.125</coverage>
+          <height>Bottom</height>
           <groups>
             <li>LeftBlade</li>
           </groups>
@@ -43,11 +54,13 @@
           <def>Rimgate_ReplicatorLeg</def>
           <customLabel>left back leg</customLabel>
           <coverage>0.125</coverage>
+          <height>Bottom</height>
         </li>
         <li>
           <def>Rimgate_ReplicatorLeg</def>
           <customLabel>right front leg</customLabel>
           <coverage>0.125</coverage>
+          <height>Bottom</height>
           <groups>
             <li>RightBlade</li>
           </groups>
@@ -56,6 +69,7 @@
           <def>Rimgate_ReplicatorLeg</def>
           <customLabel>right back leg</customLabel>
           <coverage>0.125</coverage>
+          <height>Bottom</height>
         </li>
       </parts>
     </corePart>

@@ -9,29 +9,27 @@
             Considered an overtly hostile action.</description>
         <iconPath>UI/Icon/Ability/RGWraithDrainLifeIcon</iconPath>
         <verbProperties>
-            <verbClass>Verb_CastAbility</verbClass>
-            <range>-1</range>
+            <verbClass>Verb_CastAbilityTouch</verbClass>
+            <drawAimPie>false</drawAimPie>
+            <range>1</range>
             <warmupTime>0.25</warmupTime>
             <soundCast>Rimgate_WraitDrainLifeCast</soundCast>
             <targetParams>
-                <canTargetLocations>false</canTargetLocations>
                 <canTargetPawns>true</canTargetPawns>
+                <canTargetLocations>false</canTargetLocations>
                 <canTargetAnimals>false</canTargetAnimals>
                 <canTargetSelf>false</canTargetSelf>
                 <canTargetBuildings>false</canTargetBuildings>
                 <canTargetMechs>false</canTargetMechs>
             </targetParams>
         </verbProperties>
-        <cooldownTicksRange>120</cooldownTicksRange>
+        <cooldownTicksRange>120000</cooldownTicksRange>
         <jobDef>CastAbilityOnThingMelee</jobDef>
         <aiCanUse>true</aiCanUse>
         <hostile>true</hostile>
+        <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
         <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
         <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
-        <statBases>
-            <Ability_Duration>60000</Ability_Duration>
-            <Ability_GoodwillImpact>-15</Ability_GoodwillImpact>
-        </statBases>
         <comps>
             <li Class="Rimgate.CompProperties_ApplyHediff">
                 <compClass>Rimgate.CompAbilityEffect_ApplyHediffs</compClass>
@@ -51,6 +49,7 @@
         <description>Release a sticky, web-like substance to cocoon victims for future
             feedings...\nThese webs will stun and burn the target.</description>
         <iconPath>UI/Icon/Ability/RGWraithCocoonTrapIcon</iconPath>
+        <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
         <verbProperties>
             <verbClass>Verb_CastAbility</verbClass>
             <range>16.9</range>
@@ -59,17 +58,14 @@
             <targetParams>
                 <canTargetLocations>false</canTargetLocations>
                 <canTargetPawns>true</canTargetPawns>
+                <canTargetSelf>false</canTargetSelf>
+                <canTargetBuildings>false</canTargetBuildings>
             </targetParams>
         </verbProperties>
         <cooldownTicksRange>120</cooldownTicksRange>
-        <jobDef>CastAbilityOnThingMelee</jobDef>
         <aiCanUse>true</aiCanUse>
         <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
         <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
-        <statBases>
-            <Ability_Duration>60000</Ability_Duration>
-            <Ability_GoodwillImpact>-15</Ability_GoodwillImpact>
-        </statBases>
         <comps>
             <li Class="Rimgate.CompProperties_MultipleProjectile">
                 <compClass>Rimgate.CompAbilityEffect_LaunchMultipleProjectile</compClass>
@@ -82,7 +78,7 @@
     <ThingDef ParentName="BaseBullet">
         <defName>Rimgate_WraithWeb</defName>
         <label>web</label>
-        <thingClass>Rimgate.Projectile_Web</thingClass>
+        <thingClass>Rimgate.Projectile_AdditionalDamage</thingClass>
         <graphicData>
             <texPath>Things/Projectile/RGCocoonTrapAbilityProjectile</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -94,6 +90,12 @@
             <damageAmountBase>15</damageAmountBase>
             <speed>15</speed>
         </projectile>
+        <comps>
+            <li Class="Rimgate.CompProperties_AdditionalDamage">
+                <compClass>Rimgate.Comp_AdditionalDamage</compClass>
+                <damageType>Burn</damageType>
+            </li>
+        </comps>
     </ThingDef>
 
 </Defs>
