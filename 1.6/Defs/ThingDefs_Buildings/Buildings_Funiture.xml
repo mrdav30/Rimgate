@@ -6,8 +6,11 @@
   <ThingDef ParentName="FurnitureBase">
     <defName>Rimgate_GoauldSarcophagus</defName>
     <label>Goa'uld Sarcophagus</label>
-    <description>Based on Ancient technology, the sarcophagus heals the human host body very
-      efficiently.</description>
+    <description>Based on Ancient technology, the sarcophagus heals the human host body very efficiently...at a cost</description>
+    <descriptionHyperlinks>
+      <HediffDef>Rimgate_SarcophagusHigh</HediffDef>
+      <HediffDef>Rimgate_SarcophagusAddiction</HediffDef>
+    </descriptionHyperlinks>
     <thingClass>Rimgate.Building_Bed_Sarcophagus</thingClass>
     <size>(1,2)</size>
     <graphicData>
@@ -75,6 +78,7 @@
         </alwaysTreatableHediffs>
         <neverTreatableHediffs>
           <li>Sterilized</li>
+          <li>Rimgate_SarcophagusHigh</li>
           <li>Rimgate_SarcophagusAddiction</li>
         </neverTreatableHediffs>
         <nonCriticalTreatableHediffs>
@@ -113,12 +117,11 @@
           <drawSize>(1, 2)</drawSize>
         </sarchophagusGlowGraphicData>
       </li>
-      <li Class="Rimgate.CompProperties_Sarcophagus" />
-      <li Class="CompProperties_Drug">
-        <chemical>Rimgate_Sarcophagus</chemical>
-        <addictiveness>1.00</addictiveness>
+      <li Class="Rimgate.CompProperties_Sarcophagus">
+        <applyAddictionHediff>true</applyAddictionHediff>
+        <severity>1.00</severity>
         <needLevelOffset>0.9</needLevelOffset>
-        <listOrder>1010</listOrder>
+        <addictiveness>1.0</addictiveness>
       </li>
     </comps>
     <tickerType>Normal</tickerType>

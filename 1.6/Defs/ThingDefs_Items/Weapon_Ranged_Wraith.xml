@@ -159,14 +159,14 @@
 			<AccuracyShort>0.71</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
 			<AccuracyLong>0.32</AccuracyLong>
-			<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
 		</statBases>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_WraithSpearGunProjectile</defaultProjectile>
-				<warmupTime>0.3</warmupTime>
+				<warmupTime>0.9</warmupTime>
 				<range>22.9</range>
 				<minRange>0.5</minRange>
 				<burstShotCount>1</burstShotCount>
@@ -215,9 +215,9 @@
 		<projectile>
 			<flyOverhead>false</flyOverhead>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>5</damageAmountBase>
+			<damageAmountBase>3</damageAmountBase>
 			<armorPenetrationBase>0.65</armorPenetrationBase>
-			<speed>55</speed>
+			<speed>45</speed>
 		</projectile>
 		<comps>
 			<li Class="Rimgate.CompProperties_AdditionalDamage">

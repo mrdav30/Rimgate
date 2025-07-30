@@ -331,7 +331,6 @@
     <Compile Include="HarmonyPatches\Harmony_RestUtility_TuckIntoBed.cs" />
     <Compile Include="Misc\HediffGiver_AtAge.cs" />
     <Compile Include="AbiliyComps\Properties\CompProperties_MultipleProjectile.cs" />
-    <Compile Include="Misc\PawnRenderSubWorker_ShiftFrontForHeadType.cs" />
     <Compile Include="Misc\Projectile_ZatBlast_Extension.cs" />
     <Compile Include="Things\Projectile_AdditionalDamage.cs" />
     <Compile Include="Things\Projectile_ZatBlast.cs" />

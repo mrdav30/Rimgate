@@ -81,13 +81,13 @@
 
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallJaffaForeheadSymbolAnubis</defName>
-		<label>install Anubis Jaffa forehead symbol</label>
-		<description>Install Anubis Jaffa forehead symbol.</description>
+		<label>install Anubis Jaffa mark</label>
+		<description>Install Anubis Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantAnubis</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantAnubis</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Installing Anubis Jaffa forehead symbol.</jobString>
+		<jobString>Installing Anubis Jaffa mark.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -108,25 +108,25 @@
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveJaffaForeheadSymbolAnubis</defName>
-		<label>remove Anubis Jaffa forehead symbol</label>
-		<description>Remove Anubis Jaffa forehead symbol.</description>
+		<label>remove Anubis Jaffa mark</label>
+		<description>Remove Anubis Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantAnubis</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantAnubis</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Removing Jaffa Jaffa forehead symbol.</jobString>
+		<jobString>Removing Jaffa Jaffa mark.</jobString>
 		<removesHediff>Rimgate_JaffaForeheadSymbolImplantAnubis</removesHediff>
 	</RecipeDef>
 
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallPrimeForeheadSymbolAnubis</defName>
-		<label>install Anubis First Prime forehead symbol</label>
-		<description>Install Anubis First Prime forehead symbol.</description>
+		<label>install Anubis First Prime mark</label>
+		<description>Install Anubis First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantAnubis</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantAnubis</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Installing Anubis First Prime forehead symbol.</jobString>
+		<jobString>Installing Anubis First Prime mark.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -147,13 +147,13 @@
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemovePrimeForeheadSymbolAnubis</defName>
-		<label>remove Anubis First Prime forehead symbol</label>
-		<description>Remove Anubis First Prime forehead symbol.</description>
+		<label>remove Anubis First Prime mark</label>
+		<description>Remove Anubis First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantAnubis</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantAnubis</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Removing Prime Jaffa forehead symbol.</jobString>
+		<jobString>Removing Prime Jaffa mark.</jobString>
 		<removesHediff>Rimgate_PrimeForeheadSymbolImplantAnubis</removesHediff>
 	</RecipeDef>
 
@@ -161,13 +161,13 @@
 
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallJaffaForeheadSymbolApophis</defName>
-		<label>install Apophis Jaffa forehead symbol</label>
-		<description>Install Apophis Jaffa forehead symbol.</description>
+		<label>install Apophis Jaffa mark</label>
+		<description>Install Apophis Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantApophis</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantApophis</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Installing Apophis Jaffa forehead symbol.</jobString>
+		<jobString>Installing Apophis Jaffa mark.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -188,25 +188,25 @@
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveJaffaForeheadSymbolApophis</defName>
-		<label>remove Apophis Jaffa forehead symbol</label>
-		<description>Remove Apophis Jaffa forehead symbol.</description>
+		<label>remove Apophis Jaffa mark</label>
+		<description>Remove Apophis Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantApophis</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantApophis</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Removing Jaffa Jaffa forehead symbol.</jobString>
+		<jobString>Removing Jaffa Jaffa mark.</jobString>
 		<removesHediff>Rimgate_JaffaForeheadSymbolImplantApophis</removesHediff>
 	</RecipeDef>
 
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallPrimeForeheadSymbolApophis</defName>
-		<label>install Anubis First Prime forehead symbol</label>
-		<description>Install Anubis First Prime forehead symbol.</description>
+		<label>install Anubis First Prime mark</label>
+		<description>Install Anubis First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantApophis</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantApophis</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Installing Anubis First Prime forehead symbol.</jobString>
+		<jobString>Installing Anubis First Prime mark.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -227,13 +227,13 @@
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemovePrimeForeheadSymbolApophis</defName>
-		<label>remove Apophis First Prime forehead symbol</label>
-		<description>Remove Apophis First Prime forehead symbol.</description>
+		<label>remove Apophis First Prime mark</label>
+		<description>Remove Apophis First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantApophis</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantApophis</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Removing Apophis First Prime forehead symbol.</jobString>
+		<jobString>Removing Apophis First Prime mark.</jobString>
 		<removesHediff>Rimgate_PrimeForeheadSymbolImplantAnubis</removesHediff>
 	</RecipeDef>
 
@@ -241,13 +241,13 @@
 
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallJaffaForeheadSymbolRa</defName>
-		<label>install Ra Jaffa forehead symbol</label>
-		<description>Install Ra Jaffa forehead symbol.</description>
+		<label>install Ra Jaffa mark</label>
+		<description>Install Ra Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantRa</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantRa</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Installing Ra Jaffa forehead symbol.</jobString>
+		<jobString>Installing Ra Jaffa mark.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -268,25 +268,25 @@
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveJaffaForeheadSymbolRa</defName>
-		<label>remove Ra Jaffa forehead symbol</label>
-		<description>Remove Ra Jaffa forehead symbol.</description>
+		<label>remove Ra Jaffa mark</label>
+		<description>Remove Ra Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantRa</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantRa</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Removing Jaffa Jaffa forehead symbol.</jobString>
+		<jobString>Removing Jaffa Jaffa mark.</jobString>
 		<removesHediff>Rimgate_JaffaForeheadSymbolImplantRa</removesHediff>
 	</RecipeDef>
 
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallPrimeForeheadSymbolRa</defName>
-		<label>install Ra First Prime forehead symbol</label>
-		<description>Install Ra First Prime forehead symbol.</description>
+		<label>install Ra First Prime mark</label>
+		<description>Install Ra First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantRa</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantRa</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Installing Ra First Prime forehead symbol.</jobString>
+		<jobString>Installing Ra First Prime mark.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -307,13 +307,13 @@
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemovePrimeForeheadSymbolRa</defName>
-		<label>remove Ra First Prime forehead symbol</label>
-		<description>Remove Ra First Prime forehead symbol.</description>
+		<label>remove Ra First Prime mark</label>
+		<description>Remove Ra First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantRa</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantRa</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Removing Ra First Prime forehead symbol.</jobString>
+		<jobString>Removing Ra First Prime mark.</jobString>
 		<removesHediff>Rimgate_PrimeForeheadSymbolImplantRa</removesHediff>
 	</RecipeDef>
 

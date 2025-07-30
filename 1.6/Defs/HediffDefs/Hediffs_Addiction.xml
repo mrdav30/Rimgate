@@ -2,7 +2,7 @@
 <Defs>
 
     <ChemicalDef>
-        <defName>Rimgate_Sarcophagus</defName>
+        <defName>Rimgate_SarcophagusChemical</defName>
         <label>sarcophagus</label>
         <addictionHediff>Rimgate_SarcophagusAddiction</addictionHediff>
         <canBinge>false</canBinge>
@@ -10,37 +10,128 @@
     </ChemicalDef>
 
     <NeedDef ParentName="DrugAddictionNeedBase">
-        <defName>Rimgate_SarcophagusChemical</defName>
+        <defName>Rimgate_SarcophagusChemicalNeed</defName>
         <needClass>Need_Chemical</needClass>
         <label>sarcophagus</label>
-        <description>This person's body is enhanced by the Goa'uld sarcophagus.\n\nWithout regular
-            use of a sarcophagus, the user becomes continuously, violently insane and eventually
-            dies.\n\nThis addiction never goes away.</description>
+        <description>This person's body is enhanced by the Goa'uld sarcophagus.\n\nWithout regular use of a sarcophagus, the user becomes continuously, violently insane and can eventually die.</description>
         <listPriority>45</listPriority>
-        <fallPerDay>0.15</fallPerDay>
-        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+        <!-- <fallPerDay>0.333</fallPerDay> -->
     </NeedDef>
+
+    <HediffDef>
+        <defName>Rimgate_SarcophagusHigh</defName>
+        <hediffClass>Hediff_High</hediffClass>
+        <label>sarcophagus high</label>
+        <description>Feeling a rush after using a Goa'uld sarcophagus. However, without regular use of a sarcophagus, the user will be driven to insanity.</description>
+        <defaultLabelColor>(1,1,0.5)</defaultLabelColor>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <maxSeverity>1.0</maxSeverity>
+        <isBad>false</isBad>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-1.5</severityPerDay>
+                <showHoursToRecover>true</showHoursToRecover>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <painFactor>0.4</painFactor>
+                <statFactors>
+                    <RestFallRateFactor>0.33</RestFallRateFactor>
+                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>0.5</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Metabolism</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <ThoughtDef>
+        <defName>Rimgate_SarcophagusHigh</defName>
+        <workerClass>ThoughtWorker_Hediff</workerClass>
+        <hediff>Rimgate_SarcophagusHigh</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+        <stages>
+            <li>
+                <label>high on life</label>
+                <description>Feeling like a brand new you! Let's do this!</description>
+                <baseMoodEffect>35</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 
     <HediffDef ParentName="AddictionBase">
         <defName>Rimgate_SarcophagusAddiction</defName>
-        <label>sarcophagus need</label>
-        <description>The consequence of using a Goa'uld sarcophagus. The effects decohere over time;
-            only regular uses of a sarcophagus can prevent this process. \nBy neglecting this need,
-            the victim to go insane and die.</description>
+        <label>sarcophagus addiction</label>
+        <description>The consequence of using a Goa'uld sarcophagus. The effects decohere over time; only regular uses of a sarcophagus can prevent this process. \nBy neglecting this need, the victim can go insane and die.</description>
         <hediffClass>Hediff_Addiction</hediffClass>
-        <chemicalNeed>Rimgate_SarcophagusChemical</chemicalNeed>
+        <chemicalNeed>Rimgate_SarcophagusChemicalNeed</chemicalNeed>
         <everCurableByItem>false</everCurableByItem>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <!-- <initialSeverity>0.15</initialSeverity> -->
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-0.0333</severityPerDay>
+                <showDaysToRecover>true</showDaysToRecover>
+            </li>
+        </comps>
         <stages>
+            <li>
+            </li>
             <li>
                 <label>unmet</label>
                 <painOffset>0.4</painOffset>
                 <lifeThreatening>true</lifeThreatening>
                 <deathMtbDays>10</deathMtbDays>
                 <mtbDeathDestroysBrain>true</mtbDeathDestroysBrain>
+                <socialFightChanceFactor>3.0</socialFightChanceFactor>
+                <statOffsets>
+                    <RestFallRateFactor>0.3</RestFallRateFactor>
+                </statOffsets>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
                         <setMax>0.8</setMax>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <offset>-0.20</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>-0.20</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.10</offset>
                     </li>
                 </capMods>
                 <mentalStateGivers>

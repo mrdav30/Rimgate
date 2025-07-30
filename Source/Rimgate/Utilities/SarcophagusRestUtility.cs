@@ -81,49 +81,31 @@ public static class SarcophagusRestUtility
         }
 
         if (travelerPawn.Map.designationManager.DesignationOn(bedSarcophagus, DesignationDefOf.Deconstruct) != null)
-        {
             return false;
-        }
 
         if (!RestUtility.CanUseBedEver(patientPawn, bedSarcophagus.def))
-        {
             return false;
-        }
 
         if (!IsValidBedForUserType(bedSarcophagus, patientPawn))
-        {
             return false;
-        }
 
         if (!SarcophagusHealthAIUtility.ShouldSeekSarcophagusRest(patientPawn, bedSarcophagus))
-        {
             return false;
-        }
 
         if (!SarcophagusHealthAIUtility.HasAllowedMedicalCareCategory(patientPawn))
-        {
             return false;
-        }
 
         if (!SarcophagusHealthAIUtility.IsValidRaceForSarcophagus(patientPawn, bedSarcophagus.DisallowedRaces))
-        {
             return false;
-        }
 
         if (!SarcophagusHealthAIUtility.IsValidXenotypeForSarcophagus(patientPawn, bedSarcophagus.DisallowedXenotypes))
-        {
             return false;
-        }
 
         if (SarcophagusHealthAIUtility.HasUsageBlockingHediffs(patientPawn, bedSarcophagus.UsageBlockingHediffs))
-        {
             return false;
-        }
 
         if (SarcophagusHealthAIUtility.HasUsageBlockingTraits(patientPawn, bedSarcophagus.UsageBlockingTraits))
-        {
             return false;
-        }
 
         if (bedSarcophagus.Aborted) 
             return false;

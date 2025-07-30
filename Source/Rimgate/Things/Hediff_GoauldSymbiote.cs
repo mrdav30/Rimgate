@@ -14,12 +14,10 @@ public class Hediff_GoauldSymbiote : Hediff_Implant
             return;
 
         // Apply fatal withdrawal hediff
-        var withdrawalDef = Rimgate_DefOf.Rimgate_SymbioteWithdrawal;
-
-        if (pawn.health.hediffSet.HasHediff(withdrawalDef))
+        if (pawn.health.hediffSet.HasHediff(Rimgate_DefOf.Rimgate_SymbioteWithdrawal))
             return;
 
-        var hediff = HediffMaker.MakeHediff(withdrawalDef, pawn);
+        var hediff = HediffMaker.MakeHediff(Rimgate_DefOf.Rimgate_SymbioteWithdrawal, pawn);
         pawn.health.AddHediff(hediff);
     }
 }

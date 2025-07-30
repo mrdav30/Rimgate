@@ -60,7 +60,7 @@
                 <canTargetBuildings>false</canTargetBuildings>
             </targetParams>
         </verbProperties>
-        <cooldownTicksRange>120</cooldownTicksRange>
+        <cooldownTicksRange>240</cooldownTicksRange>
         <aiCanUse>true</aiCanUse>
         <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
         <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>

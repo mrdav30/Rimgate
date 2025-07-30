@@ -6,13 +6,12 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithMeatLab</defName>
     <label>Meat lab</label>
-    <description>Grows meat quickly in an artificial nutrient bath. Requires power to work; meat
-      will die if power is cut.</description>
+    <description>Grows meat quickly in an artificial nutrient bath. Requires power to work; meat will die if power is cut.</description>
     <thingClass>Building_PlantGrower</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/RGMeatLab</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(2,2)</drawSize>
+      <drawSize>(1,1)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
         <cornerTR>Damage/Corner</cornerTR>
@@ -32,7 +31,7 @@
       <Flammability>1.0</Flammability>
       <Cleanliness>-3</Cleanliness>
     </statBases>
-    <size>(2,2)</size>
+    <size>(1,1)</size>
     <costList>
       <Rimgate_Biomass>100</Rimgate_Biomass>
       <ComponentIndustrial>2</ComponentIndustrial>
@@ -60,8 +59,7 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_CocoonStation</defName>
-    <description>An area in which colonists a colonist with the Wraith Cocoon ability can
-      efficiently cocoon meat.</description>
+    <description>An area in which colonists with the ability to make a cocoon can efficiently cocoon meat.</description>
     <label>Cocoon Spot</label>
     <thingClass>Building_WorkTable</thingClass>
     <graphicData>

@@ -15,14 +15,23 @@ public class CompProperties_Sarcophagus : CompProperties
 
     public float healingModePowerConsumption = 32000f;
 
+    public bool applyAddictionHediff;
+
+    public float addictiveness;
+
+    public float severity = -1f;
+
+    public float existingAddictionSeverityOffset = 0.1f;
+
+    public float needLevelOffset = 1f;
+
     public CompProperties_Sarcophagus() => compClass = typeof(Comp_Sarcophagus);
 
     public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
     {
         foreach (string item in base.ConfigErrors(parentDef))
-        {
             yield return item;
-        }
+
         if (maxDiagnosisTime > 30f)
         {
             yield return $"{nameof(CompProperties_Sarcophagus)}.{nameof(maxDiagnosisTime)} above allowed maximum; value capped at 30 seconds";
