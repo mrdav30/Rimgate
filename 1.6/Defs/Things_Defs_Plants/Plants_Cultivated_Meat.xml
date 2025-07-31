@@ -17,7 +17,7 @@
 			<Nutrition>0.20</Nutrition>
 		</statBases>
 		<tickerType>Long</tickerType>
-		<selectable>true</selectable>
+		<selectable>false</selectable>
 		<neverMultiSelect>True</neverMultiSelect>
 		<drawerType>MapMeshOnly</drawerType>
 		<pathCostIgnoreRepeat>false</pathCostIgnoreRepeat>

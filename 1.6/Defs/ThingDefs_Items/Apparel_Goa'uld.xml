@@ -413,11 +413,13 @@
 		</graphicData>
 		<apparel>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</wornGraphicPath>
-			<dataNorth>
-				<layer>72</layer>
-				<!--across, depth, height-->
-				<offset>(0, 1, 0)</offset>
-			</dataNorth>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
@@ -772,7 +774,11 @@
 		<tradeability>Sellable</tradeability>
 		<generateAllowChance>0.15</generateAllowChance>
 		<equippedStatOffsets>
-			<WorkSpeedGlobal>0.05</WorkSpeedGlobal>
+			<WorkSpeedGlobal>0.10</WorkSpeedGlobal>
+			<MedicalSurgerySuccessChance>0.15</MedicalSurgerySuccessChance>
+			<MedicalOperationSpeed>0.10</MedicalOperationSpeed>
+			<MedicalTendQuality>0.10</MedicalTendQuality>
+			<MedicalTendSpeed>0.05</MedicalTendSpeed>
 		</equippedStatOffsets>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>

@@ -6,7 +6,7 @@
 		<label>Goa'uld</label>
 	</ResearchTabDef>
 
-	<ResearchProjectDef Name="Rimgate_GoauldResearch" Abstract="True">
+	<ResearchProjectDef Name="Rimgate_GoauldResearchBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
 		<tab>Rimgate_GoauldTechnology</tab>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -19,7 +19,7 @@
 		</prerequisites>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearch">
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldBasic</defName>
 		<label>Goa'uld technology</label>
 		<description>Get access to Goa'uld technology.</description>
@@ -30,7 +30,7 @@
 
 	<!-- ======== Armor ========= -->
 
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearch">
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier1</defName>
 		<label>Jaffa armor</label>
 		<description>Armors used by the Goa'uld and their Jaffa armies.</description>
@@ -42,7 +42,7 @@
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearch">
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier2</defName>
 		<label>Jaffa Guard armor</label>
 		<description>Specialized Armors used by the Goa'uld and their Jaffa armies.</description>
@@ -55,7 +55,7 @@
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearch">
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier3</defName>
 		<label>Kull armor</label>
 		<description>Research the Kull armor.</description>
@@ -69,7 +69,7 @@
 
 	<!-- ======== Weapon ========= -->
 
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearch">
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldWeaponTier1</defName>
 		<label>Jaffa weapons</label>
 		<description>Weapons used by the Goa'uld and their Jaffa armies.</description>
@@ -82,7 +82,7 @@
 		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearch">
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldWeaponTier2</defName>
 		<label>Kull weapons</label>
 		<description>Research the Kull weapons.</description>
@@ -96,19 +96,7 @@
 
 	<!-- ======== Buildings ========= -->
 
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearch">
-		<defName>Rimgate_NaquadriaFiredGenerator</defName>
-		<label>Naquadria generator</label>
-		<description>Get access to the Naquadria fired generator.</description>
-		<baseCost>3500</baseCost>
-		<prerequisites>
-			<li>Rimgate_GoauldBasic</li>
-		</prerequisites>
-		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearch">
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTelTak</defName>
 		<label>Tel'tak</label>
 		<description>Get access to the Tel'tak transport ship.</description>
@@ -124,7 +112,7 @@
 	</ResearchProjectDef>
 
 
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearch">
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_Sarcophagus</defName>
 		<label>Sarcophagus</label>
 		<description>Get access to the Goa'uld sarcophagus.</description>

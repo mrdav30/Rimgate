@@ -7,9 +7,9 @@
     <defName>Rimgate_WraithMeatLab</defName>
     <label>Meat lab</label>
     <description>Grows meat quickly in an artificial nutrient bath. Requires power to work; meat will die if power is cut.</description>
-    <thingClass>Building_PlantGrower</thingClass>
+    <thingClass>Rimgate.Building_MeatLab</thingClass>
     <graphicData>
-      <texPath>Things/Building/Production/RGMeatLab</texPath>
+      <texPath>Things/Building/Production/MeatLab/RGMeatLab</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(1,1)</drawSize>
       <damageData>
@@ -19,13 +19,21 @@
         <cornerBR>Damage/Corner</cornerBR>
       </damageData>
     </graphicData>
+    <techLevel>Spacer</techLevel>
+    <stackLimit>1</stackLimit>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsProduction</li>
+    </thingCategories>
     <altitudeLayer>LowPlant</altitudeLayer>
     <castEdgeShadows>true</castEdgeShadows>
+    <pathCost>30</pathCost>
     <constructEffect>ConstructMetal</constructEffect>
     <fillPercent>0.30</fillPercent>
     <canOverlapZones>false</canOverlapZones>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <statBases>
+      <Mass>150</Mass>
       <WorkToBuild>3500</WorkToBuild>
       <MaxHitPoints>150</MaxHitPoints>
       <Flammability>1.0</Flammability>

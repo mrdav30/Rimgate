@@ -2,20 +2,34 @@
 <Defs>
 
     <ResearchTabDef>
-        <defName>Rimage_TauriTechnology</defName>
+        <defName>Rimgate_TauriTechnology</defName>
         <label>Tau'ri</label>
     </ResearchTabDef>
 
-    <ResearchProjectDef Name="Rimgate_TauriResearch" Abstract="True">
+    <ResearchProjectDef Name="Rimgate_TauriResearchBase" Abstract="True">
         <techLevel>Spacer</techLevel>
-        <tab>Rimage_TauriTechnology</tab>
+        <tab>Rimgate_TauriTechnology</tab>
+        <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+        <requiredResearchFacilities>
+            <li>MultiAnalyzer</li>
+        </requiredResearchFacilities>
         <prerequisites>
+            <li>MicroelectronicsBasics</li>
             <li>Rimgate_GlyphDeciphering</li>
         </prerequisites>
     </ResearchProjectDef>
 
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_TauriBasic</defName>
+        <label>Tau'ri technology</label>
+        <description>Get access to Tau'ri technology.</description>
+        <baseCost>1500</baseCost>
+        <researchViewX>0</researchViewX>
+        <researchViewY>2</researchViewY>
+    </ResearchProjectDef>
+
     <!-- ======== Tau'ri Armor ========= -->
-    <ResearchProjectDef ParentName="Rimgate_TauriResearch">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriArmors</defName>
         <label>Tau'ri Uniforms Armors</label>
         <description>Uniforms used by the Tau'ri, Humans of Earth.</description>
@@ -24,12 +38,13 @@
         <researchViewY>1</researchViewY>
         <prerequisites>
             <li>ReconArmor</li>
+            <li>Rimgate_TauriBasic</li>
         </prerequisites>
     </ResearchProjectDef>
 
     <!-- ======== Tau'ri Weapons ======== -->
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearch">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriWeaponsTier1</defName>
         <label>Tau'ri Weapons</label>
         <description>Weapons used by the Tau'ri, Humans of Earth.</description>
@@ -38,7 +53,38 @@
         <researchViewY>1</researchViewY>
         <prerequisites>
             <li>PrecisionRifling</li>
+            <li>Rimgate_TauriBasic</li>
         </prerequisites>
+    </ResearchProjectDef>
+
+    <!-- ======== Buildings ========= -->
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_NaquadriaFiredGenerator</defName>
+        <label>Naquadria generator</label>
+        <description>Get access to the Naquadria fired generator.</description>
+        <baseCost>3500</baseCost>
+        <prerequisites>
+            <li>Rimgate_TauriBasic</li>
+            <li>Rimgate_GoauldBasic</li>
+        </prerequisites>
+        <researchViewX>2</researchViewX>
+        <researchViewY>2</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_TauriPuddleJumper</defName>
+        <label>Tau'ri Puddle Jumper</label>
+        <description>Get access to the Tau'ri Puddle Jumper.</description>
+        <baseCost>3500</baseCost>
+        <techLevel>Spacer</techLevel>
+        <prerequisites>
+            <li>Rimgate_NaquadriaFiredGenerator</li>
+            <li>Rimgate_StargateMakingResearch</li>
+            <li>ShipBasics</li>
+        </prerequisites>
+        <researchViewX>1</researchViewX>
+        <researchViewY>2</researchViewY>
     </ResearchProjectDef>
 
 </Defs>

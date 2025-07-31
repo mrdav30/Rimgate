@@ -366,9 +366,7 @@
       <li>ITab_ContentsTransporter</li>
     </inspectorTabs>
     <researchPrerequisites>
-      <li>Rimgate_StargateMakingResearch</li>
-      <li>Rimgate_GoauldTelTak</li>
-      <li>Rimgate_WraithDart</li>
+      <li>Rimgate_TauriPuddleJumper</li>
     </researchPrerequisites>
     <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
   </ThingDef>

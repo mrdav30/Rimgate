@@ -183,11 +183,9 @@
 			<drawSize>(2,2)</drawSize>
 		</graphicData>
 		<killedLeavings>
-			<Steel>300</Steel>
-			<ComponentIndustrial>60</ComponentIndustrial>
-			<ComponentSpacer>25</ComponentSpacer>
-			<Gold>100</Gold>
+			<Rimgate_ZPM>1</Rimgate_ZPM>
 		</killedLeavings>
+		<killedLeavingsChance>0.05</killedLeavingsChance>
 		<statBases>
 			<MaxHitPoints>6000</MaxHitPoints>
 			<Flammability>0</Flammability>

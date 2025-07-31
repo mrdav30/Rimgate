@@ -332,6 +332,7 @@
     <Compile Include="Misc\HediffGiver_AtAge.cs" />
     <Compile Include="AbiliyComps\Properties\CompProperties_MultipleProjectile.cs" />
     <Compile Include="Misc\Projectile_ZatBlast_Extension.cs" />
+    <Compile Include="Things\Building_MeatLab.cs" />
     <Compile Include="Things\Projectile_AdditionalDamage.cs" />
     <Compile Include="Things\Projectile_ZatBlast.cs" />
     <Compile Include="Things\Building_Bed_Sarcophagus.cs" />

@@ -6,7 +6,7 @@
   <ThingDef ParentName="OrganicProductBase">
     <defName>Rimgate_CulturedMeat</defName>
     <label>cultured meat</label>
-    <description>Raw meat grown from a culture.</description>
+    <description>Meat?...It's raw meat grown from a culture.</description>
     <graphicData>
       <texPath>Things/Item/Resource/RGCultivatedMeat</texPath>
       <graphicClass>Graphic_Single</graphicClass>

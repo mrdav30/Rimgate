@@ -6,7 +6,7 @@
 		<label>Wraith</label>
 	</ResearchTabDef>
 
-	<ResearchProjectDef Name="Rimgate_WraithResearch" Abstract="True">
+	<ResearchProjectDef Name="Rimgate_WraithResearchBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
 		<tab>Rimgate_WraithTechnology</tab>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
@@ -19,7 +19,7 @@
 		</prerequisites>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithBasic</defName>
 		<label>Wraith technology</label>
 		<description>Get access to Wraith technology.</description>
@@ -30,7 +30,7 @@
 
 	<!-- ======== Armor ========= -->
 
-	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithArmorTier1</defName>
 		<label>Wraith armor</label>
 		<description>Research the basic Armor for the Wraith troops.</description>
@@ -43,7 +43,7 @@
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithArmorTier2</defName>
 		<label>Wraith commander armor</label>
 		<description>Research specialized Armor for the Wraith troops.</description>
@@ -57,7 +57,7 @@
 
 	<!-- ======== Weapon ========= -->
 
-	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithWeaponTier1</defName>
 		<label>Wraith weapons</label>
 		<description>Research the basic weapon for the Wraith troops.</description>
@@ -72,7 +72,7 @@
 
 	<!-- ======== Buildings ========= -->
 
-	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_MeatCultivation</defName>
 		<label>Meat cultivation</label>
 		<description>Research how to reliably cultivate meat.</description>
@@ -85,7 +85,7 @@
 		<researchViewY>2</researchViewY>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithGenerator</defName>
 		<label>Wraith Generator</label>
 		<description>Get access to the Wraith Biomass generator for a meat based power source.</description>
@@ -98,7 +98,7 @@
 		<researchViewY>2</researchViewY>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef ParentName="Rimgate_WraithResearch">
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithDart</defName>
 		<label>Wraith Dart</label>
 		<description>Get access to the Wraith starfighter.</description>

@@ -11,11 +11,11 @@ public class CompProperties_Sarcophagus : CompProperties
 
     public float maxPerHediffHealingTime = 10f;
 
-    public float diagnosisModePowerConsumption = 8000f;
+    public float diagnosisModePowerConsumption = 4000f;
 
-    public float healingModePowerConsumption = 32000f;
+    public float healingModePowerConsumption = 16000f;
 
-    public bool applyAddictionHediff;
+    public bool applyAddictionHediff; 
 
     public float addictiveness;
 

@@ -25,8 +25,6 @@ public class Building_ZPM : Building
     private int darkEnergyReserve = 7500;
     private int maxDarkEnergy = -1;
 
-    protected Map currentMap;
-
     #endregion
 
     static Building_ZPM()
@@ -60,7 +58,6 @@ public class Building_ZPM : Building
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        this.currentMap = map;
         base.SpawnSetup(map, respawningAfterLoad);
 
         this.power = base.GetComp<CompPowerBattery>();
