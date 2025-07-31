@@ -6,8 +6,8 @@
 	<ThingDef>
 		<defName>Rimgate_CulturedMeatCrop</defName>
 		<thingClass>Rimgate.Plant_MeatPlant</thingClass>
-		<label>Cultivated meat.</label>
-		<description>meat? Long growth speed and high nutrition value.</description>
+		<label>cultivated meat.</label>
+		<description>meat? Long growth process but high nutrition value.</description>
 		<category>Plant</category>
 		<altitudeLayer>LowPlant</altitudeLayer>
 		<useHitPoints>True</useHitPoints>
@@ -32,12 +32,13 @@
 			<canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>
 		</ingestible>
 		<plant>
+			<neverBlightable>true</neverBlightable>
 			<growMinGlow>0</growMinGlow>
 			<growOptimalGlow>0</growOptimalGlow>
-			<fertilityMin>0.5</fertilityMin>
-			<fertilitySensitivity>1.0</fertilitySensitivity>
+			<harvestFailable>false</harvestFailable>
+			<dieIfNoSunlight>false</dieIfNoSunlight>
+			<allowAutoCut>false</allowAutoCut>
 			<dieIfLeafless>true</dieIfLeafless>
-			<maxMeshCount>4</maxMeshCount>
 			<harvestTag>Standard</harvestTag>
 			<harvestedThingDef>Rimgate_CulturedMeat</harvestedThingDef>
 			<harvestYield>28</harvestYield>
@@ -50,11 +51,10 @@
 			<harvestWork>190</harvestWork>
 			<sowWork>260</sowWork>
 			<topWindExposure>0</topWindExposure>
-			<visualSizeRange>
-				<min>0.3</min>
-				<max>0.8</max>
-			</visualSizeRange>
+			<visualSizeRange>0.3~0.8</visualSizeRange>
 			<purpose>Food</purpose>
+			<minGrowthTemperature>-35</minGrowthTemperature>
+			<maxGrowthTemperature>75</maxGrowthTemperature>
 		</plant>
 		<pathCost>10</pathCost>
 	</ThingDef>

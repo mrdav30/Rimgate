@@ -19,7 +19,7 @@
         <cornerBR>Damage/Corner</cornerBR>
       </damageData>
     </graphicData>
-    <altitudeLayer>Building</altitudeLayer>
+    <altitudeLayer>LowPlant</altitudeLayer>
     <castEdgeShadows>true</castEdgeShadows>
     <constructEffect>ConstructMetal</constructEffect>
     <fillPercent>0.30</fillPercent>
@@ -36,10 +36,13 @@
       <Rimgate_Biomass>100</Rimgate_Biomass>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-    <fertility>1.0</fertility>
+    <fertility>3</fertility>
     <building>
       <defaultPlantToGrow>Rimgate_CulturedMeatCrop</defaultPlantToGrow>
       <sowTag>Rimgate_WraithMeatLab_tag</sowTag>
+      <buildingTags>
+        <li>Production</li>
+      </buildingTags>
     </building>
     <tickerType>Rare</tickerType>
     <comps>
@@ -49,6 +52,10 @@
         <basePowerConsumption>450</basePowerConsumption>
       </li>
       <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>2</glowRadius>
+        <glowColor>(33,202,255,0)</glowColor>
+      </li>
     </comps>
     <researchPrerequisites>
       <li>Rimgate_MeatCultivation</li>

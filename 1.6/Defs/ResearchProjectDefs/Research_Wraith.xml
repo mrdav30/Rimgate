@@ -78,6 +78,7 @@
 		<description>Research how to reliably cultivate meat.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
+			<li>Hydroponics</li>
 			<li>Rimgate_WraithBasic</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>

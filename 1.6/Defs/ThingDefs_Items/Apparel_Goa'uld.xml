@@ -3,10 +3,13 @@
 
 	<!-- ================== Goa'uld Apparel ================== -->
 
-	<!-- ============ Goa'uld Apparel Base ============ -->
+	<!-- ============ Jaffa Helm Base ============ -->
 
-	<ThingDef Name="Rimgate_JaffaArmorBase" ParentName="ApparelBase" Abstract="True">
+	<ThingDef Name="Rimgate_JaffaHeadgearBase" ParentName="ApparelBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
@@ -19,6 +22,7 @@
 				<li>FabricationBench</li>
 			</recipeUsers>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<researchPrerequisite>Rimgate_GoauldArmorTier1</researchPrerequisite>
 		</recipeMaker>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
@@ -33,41 +37,15 @@
 			<li>HiTechArmor</li>
 			<li>ExoticMisc</li>
 		</tradeTags>
-		<thingCategories>
-			<li>ApparelArmor</li>
-		</thingCategories>
-	</ThingDef>
-
-	<ThingDef Name="Rimgate_JaffaHeadgearBase" ParentName="Rimgate_JaffaArmorBase" Abstract="True">
-		<thingCategories Inherit="False">
-			<li>ArmorHeadgear</li>
-		</thingCategories>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTier1</researchPrerequisite>
-		</recipeMaker>
 		<apparel>
 			<parentTagDef>ApparelHead</parentTagDef>
 		</apparel>
-	</ThingDef>
-
-	<ThingDef Name="Rimgate_GuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearBase" Abstract="True">
-		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTier2</researchPrerequisite>
-		</recipeMaker>
-		<costList>
-			<Steel>75</Steel>
-			<ComponentIndustrial>2</ComponentIndustrial>
-			<Rimgate_Naquadah>2</Rimgate_Naquadah>
-		</costList>
-	</ThingDef>
-
-	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_GuardHeadgearBase" Abstract="True">
-		<costList>
-			<Gold>2</Gold>
-		</costList>
+		<thingCategories>
+			<li>ArmorHeadgear</li>
+		</thingCategories>
 	</ThingDef>
 
 	<!-- ====== Goa'uld Helmet ====== -->
@@ -161,16 +139,71 @@
 		</apparel>
 	</ThingDef>
 
-	<!-- ====== Goa'uld Horus Helmet ====== -->
+	<!-- ====== Kull Helmet ====== -->
 
-	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
-		<defName>Rimgate_HorusHelmet</defName>
-		<label>Horus helmet</label>
-		<description>This helmet is worn by the Goa'uld Horus Guards led by Supreme System Lord Ra.
-			Susceptible to armor-piercing rounds, excellent against the rest.</description>
+	<ThingDef ParentName="Rimgate_JaffaHeadgearBase">
+		<defName>Rimgate_KullHelmet</defName>
+		<label>Kull helmet</label>
+		<description>The Kull helmets offer great protection while still being relatively light.</description>
+		<costList>
+			<Plasteel>50</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Rimgate_Naquadah>50</Rimgate_Naquadah>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
+		</recipeMaker>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/KullHelm/RGKullHelmet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
+		<statBases>
+			<MarketValue>750</MarketValue>
+			<WorkToMake>28250</WorkToMake>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Mass>2</Mass>
+			<Flammability>0.4</Flammability>
+			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.47</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.9</ArmorRating_Heat>
+			<Insulation_Cold>4</Insulation_Cold>
+			<Insulation_Heat>2</Insulation_Heat>
+			<EquipDelay>6</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.2</SlaveSuppressionOffset>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.70</VacuumResistance>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/KullHelm/RGKullHelmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>Rimgate_KullApparel_tag</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+		</apparel>
+	</ThingDef>
+
+	<!-- ============ Guard Helm Base ============ -->
+
+	<ThingDef Name="Rimgate_GuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearBase" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTier2</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Rimgate_Naquadah>2</Rimgate_Naquadah>
+		</costList>
 		<statBases>
 			<MarketValue>1400</MarketValue>
 			<MaxHitPoints>200</MaxHitPoints>
@@ -186,12 +219,13 @@
 		</statBases>
 		<equippedStatOffsets>
 			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.67</VacuumResistance>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
 				<li>FullHead</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</wornGraphicPath>
 			<layers>
 				<li>Overhead</li>
 			</layers>
@@ -203,53 +237,67 @@
 			</defaultOutfitTags>
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
+	</ThingDef>
+
+	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_GuardHeadgearBase" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Gold>2</Gold>
+		</costList>
+		<apparel>
+			<tags Inherit="false">
+				<li>Rimgate_GoauldPrimeApparel_tag</li>
+			</tags>
+		</apparel>
+	</ThingDef>
+
+	<!-- ====== Goa'uld Horus Helmet ====== -->
+
+	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
+		<defName>Rimgate_HorusHelmet</defName>
+		<label>Horus helmet</label>
+		<description>This helmet is worn by the Goa'uld Horus Guards led by Supreme System Lord Ra. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
+		</graphicData>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</wornGraphicPath>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
+		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_HorusHelmetOpen</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</toggleUiIconPath>
+				<isClosedState>true</isClosedState>
 			</li>
 		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_HorusHelmetOpen</defName>
-		<label>Horus helmet (Open)</label>
-		<description>This helmet is worn by the Horus Guards led by Supreme System Lord Ra.
-			Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<label>Horus helmet (open)</label>
+		<description>This helmet is worn by the Horus Guards led by Supreme System Lord Ra. Susceptible to armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
+		<recipeMaker />
+		<costList />
 		<apparel>
-			<tags>
-				<li>Rimgate_GoauldGuardApparel_tag</li>
-			</tags>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
+			<renderSkipFlags>
+				<li>Beard</li>
+			</renderSkipFlags>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_HorusHelmet</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</toggleUiIconPath>
 			</li>
@@ -259,89 +307,46 @@
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeHorusHelmet</defName>
 		<label>First Prime Horus helmet</label>
-		<description>This helmet is worn by Supreme System Lord Ra and his First Prime.</description>
+		<description>This helmet is worn by Supreme System Lord Ra and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGHorusPrimeHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-		</equippedStatOffsets>
 		<apparel>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGHorusPrimeHelmet</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<tags>
-				<li>Rimgate_GoauldPrimeApparel_tag</li>
-			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_PrimeHorusHelmetOpen</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGPrimeGuardHelmetOpen</toggleUiIconPath>
+				<isClosedState>true</isClosedState>
 			</li>
 		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeHorusHelmetOpen</defName>
-		<label>First Prime Horus helmet (Open)</label>
-		<description>This helmet is worn by Supreme System Lord Ra and his First Prime. Susceptible
-			to armor-piercing rounds, excellent against the rest.</description>
+		<label>First Prime Horus helmet (open)</label>
+		<description>This helmet is worn by Supreme System Lord Ra and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGHorusPrimeHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
+		<recipeMaker />
+		<costList />
 		<apparel>
-			<tags>
-				<li>Rimgate_GoauldPrimeApparel_tag</li>
-			</tags>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
+			<renderSkipFlags>
+				<li>Beard</li>
+			</renderSkipFlags>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGPrimeGuardHelmetOpen</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_PrimeHorusHelmet</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGHorusPrimeHelmet</toggleUiIconPath>
 			</li>
@@ -353,90 +358,46 @@
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_JackalHelmet</defName>
 		<label>Jackal helmet</label>
-		<description>This helmet is worn by the Jackal Guards led by the Goa'uld Anubis. Susceptible
-			to armor-piercing rounds, excellent against the rest.</description>
+		<description>This helmet is worn by the Jackal Guards led by the Goa'uld Anubis. Susceptible to armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-		</equippedStatOffsets>
 		<apparel>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<tags>
-				<li>Rimgate_GoauldGuardApparel_tag</li>
-			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_JackalHelmetOpen</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</toggleUiIconPath>
+				<isClosedState>true</isClosedState>
 			</li>
 		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_JackalHelmetOpen</defName>
-		<label>Jackal helmet (Open)</label>
-		<description>This helmet is worn by the Jackal Guards led by the Goa'uld Anubis. Susceptible
-			to armor-piercing rounds, excellent against the rest.</description>
+		<label>Jackal helmet (open)</label>
+		<description>This helmet is worn by the Jackal Guards led by the Goa'uld Anubis. Susceptibleto armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
+		<recipeMaker />
+		<costList />
 		<apparel>
-			<tags>
-				<li>Rimgate_GoauldGuardApparel_tag</li>
-			</tags>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
+			<renderSkipFlags>
+				<li>Beard</li>
+			</renderSkipFlags>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_JackalHelmet</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</toggleUiIconPath>
 			</li>
@@ -446,89 +407,44 @@
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeJackalHelmet</defName>
 		<label>First Prime Jackal helmet</label>
-		<description>This helmet is worn by the Goa'uld Anubis and his First Prime.</description>
+		<description>This helmet is worn by the Goa'uld Anubis and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-		</equippedStatOffsets>
 		<apparel>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<tags>
-				<li>Rimgate_GoauldPrimeApparel_tag</li>
-			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<dataNorth>
+				<layer>72</layer>
+				<!--across, depth, height-->
+				<offset>(0, 1, 0)</offset>
+			</dataNorth>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_PrimeJackalHelmetOpen</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGPrimeGuardHelmetOpen</toggleUiIconPath>
+				<isClosedState>true</isClosedState>
 			</li>
 		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeJackalHelmetOpen</defName>
-		<label>First Prime Jackal helmet (Open)</label>
-		<description>This helmet is worn by the Jackal Guards led by the Goa'uld Anubis. Susceptible
-			to armor-piercing rounds, excellent against the rest.</description>
+		<label>First Prime Jackal helmet (open)</label>
+		<description>This helmet is worn by the Jackal Guards led by the Goa'uld Anubis. Susceptible to armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
+		<recipeMaker />
+		<costList />
 		<apparel>
-			<tags>
-				<li>Rimgate_GoauldPrimeApparel_tag</li>
-			</tags>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
+			<renderSkipFlags>
+				<li>Beard</li>
+			</renderSkipFlags>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGPrimeGuardHelmetOpen</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_PrimeJackalHelmet</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</toggleUiIconPath>
 			</li>
@@ -544,85 +460,35 @@
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-		</equippedStatOffsets>
 		<apparel>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<tags>
-				<li>Rimgate_GoauldGuardApparel_tag</li>
-			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_SerpentHelmetOpen</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</toggleUiIconPath>
+				<isClosedState>true</isClosedState>
 			</li>
 		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_SerpentHelmetOpen</defName>
-		<label>Serpent helmet (Open)</label>
-		<description>This helmet is worn by the Serpent Guards led by the Goa'uld Apophis.
-			Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<label>Serpent helmet (open)</label>
+		<description>This helmet is worn by the Serpent Guards led by the Goa'uld Apophis. Susceptible to armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
+		<recipeMaker />
+		<costList />
 		<apparel>
-			<tags>
-				<li>Rimgate_GoauldGuardApparel_tag</li>
-			</tags>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
+			<renderSkipFlags>
+				<li>Beard</li>
+			</renderSkipFlags>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_SerpentHelmet</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</toggleUiIconPath>
 			</li>
@@ -632,93 +498,98 @@
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeSerpentHelmet</defName>
 		<label>First Prime Serpent helmet</label>
-		<description>This helmet is worn by the Goa'uld Apophis and his First Prime.</description>
+		<description>This helmet is worn by the Goa'uld Apophis and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-		</equippedStatOffsets>
 		<apparel>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<tags>
-				<li>Rimgate_GoauldPrimeApparel_tag</li>
-			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
+			<li Class="Rimgate.CompProperties_AlternateApparel">
 				<attachedHeadgearDef>Rimgate_PrimeSerpentHelmetOpen</attachedHeadgearDef>
 				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGPrimeGuardHelmetOpen</toggleUiIconPath>
+				<isClosedState>true</isClosedState>
 			</li>
 		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeSerpentHelmetOpen</defName>
-		<label>First Prime Serpent helmet (Open)</label>
-		<description>This helmet is worn by the Goa'uld Apophis and his First Prime. Susceptible to
-			armor-piercing rounds, excellent against the rest.</description>
+		<label>First Prime Serpent helmet (open)</label>
+		<description>This helmet is worn by the Goa'uld Apophis and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</texPath>
 		</graphicData>
-		<statBases>
-			<MarketValue>1400</MarketValue>
-			<MaxHitPoints>200</MaxHitPoints>
-			<WorkToMake>7500</WorkToMake>
-			<Mass>1.5</Mass>
-			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
-			<Insulation_Cold>15</Insulation_Cold>
-			<Insulation_Heat>5</Insulation_Heat>
-			<Flammability>0.6</Flammability>
-			<EquipDelay>2</EquipDelay>
-		</statBases>
+		<recipeMaker />
+		<costList />
 		<apparel>
-			<tags>
-				<li>Rimgate_GoauldPrimeApparel_tag</li>
-			</tags>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
+			<renderSkipFlags>
+				<li>Beard</li>
+			</renderSkipFlags>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGPrimeGuardHelmetOpen</wornGraphicPath>
+		</apparel>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<attachedHeadgearDef>Rimgate_PrimeSerpentHelmet</attachedHeadgearDef>
+				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</toggleUiIconPath>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ============ Armor Base ============ -->
+
+	<ThingDef Name="Rimgate_JaffaArmorBase" ParentName="ApparelBase" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<skillRequirements>
+				<Crafting>6</Crafting>
+			</skillRequirements>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+		</recipeMaker>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>RGBA(1,1,1,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<tradeTags>
+			<li>Rimgate_GoauldApparelTrade_tag</li>
+			<li>HiTechArmor</li>
+			<li>ExoticMisc</li>
+		</tradeTags>
+		<apparel>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
 			<layers>
-				<li>Overhead</li>
+				<li>Middle</li>
+				<li>Shell</li>
 			</layers>
 			<defaultOutfitTags>
 				<li>Soldier</li>
 			</defaultOutfitTags>
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
-		<comps>
-			<li Class="Rimgate.CompProperties_ApparelWithAttachedHeadgear">
-				<attachedHeadgearDef>Rimgate_PrimeSerpentHelmet</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</toggleUiIconPath>
-			</li>
-		</comps>
+		<thingCategories>
+			<li>ApparelArmor</li>
+		</thingCategories>
 	</ThingDef>
 
 	<!-- ========= Goa'uld Armor ========= -->
@@ -737,7 +608,6 @@
 		</recipeMaker>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmor</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>1500</MarketValue>
@@ -756,26 +626,11 @@
 			<MoveSpeed>-0.15</MoveSpeed>
 		</equippedStatOffsets>
 		<apparel>
-			<bodyPartGroups>
-				<li>Neck</li>
-				<li>Torso</li>
-				<li>Shoulders</li>
-				<li>Arms</li>
-				<li>Legs</li>
-			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmor</wornGraphicPath>
-			<layers>
-				<li>Middle</li>
-				<li>Shell</li>
-			</layers>
 			<tags>
 				<li>Rimgate_GoauldApparel_tag</li>
 				<li>Rimgate_GoauldGuardApparel_tag</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 	</ThingDef>
 
@@ -813,77 +668,10 @@
 			<MoveSpeed>-0.15</MoveSpeed>
 		</equippedStatOffsets>
 		<apparel>
-			<bodyPartGroups>
-				<li>Neck</li>
-				<li>Torso</li>
-				<li>Shoulders</li>
-				<li>Arms</li>
-				<li>Legs</li>
-			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Torso/Prime/RGPrimeArmor</wornGraphicPath>
-			<layers>
-				<li>Middle</li>
-				<li>Shell</li>
-			</layers>
 			<tags>
 				<li>Rimgate_GoauldPrimeApparel_tag</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
-		</apparel>
-	</ThingDef>
-
-	<!-- ========= Kull Helmet ========= -->
-
-	<ThingDef ParentName="Rimgate_JaffaHeadgearBase">
-		<defName>Rimgate_KullHelmet</defName>
-		<label>Kull helmet</label>
-		<description>The Kull helmets offer great protection while still being relatively light.</description>
-		<costList>
-			<Plasteel>50</Plasteel>
-			<ComponentSpacer>1</ComponentSpacer>
-			<Rimgate_Naquadah>50</Rimgate_Naquadah>
-		</costList>
-		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
-		</recipeMaker>
-		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/KullHelm/RGKullHelmet</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>750</MarketValue>
-			<WorkToMake>28250</WorkToMake>
-			<MaxHitPoints>250</MaxHitPoints>
-			<Mass>2</Mass>
-			<Flammability>0.4</Flammability>
-			<ArmorRating_Sharp>1</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.47</ArmorRating_Blunt>
-			<ArmorRating_Heat>0.9</ArmorRating_Heat>
-			<Insulation_Cold>4</Insulation_Cold>
-			<Insulation_Heat>2</Insulation_Heat>
-			<EquipDelay>6</EquipDelay>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-		</equippedStatOffsets>
-		<apparel>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
-			<wornGraphicPath>Things/Item/Apparel/Headgear/KullHelm/RGKullHelmet</wornGraphicPath>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<tags>
-				<li>Rimgate_KullApparel_tag</li>
-			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 	</ThingDef>
 
@@ -892,8 +680,7 @@
 	<ThingDef ParentName="Rimgate_JaffaArmorBase">
 		<defName>Rimgate_KullArmor</defName>
 		<label>Kull Armor</label>
-		<description>Advanced armor used by Kull warriors. Highly resistant to most conventional
-			weapons, although it is very heavy.</description>
+		<description>Advanced armor used by Kull warriors. Highly resistant to most conventional weapons, although it is very heavy.</description>
 		<costList>
 			<Plasteel>110</Plasteel>
 			<ComponentSpacer>4</ComponentSpacer>
@@ -925,25 +712,10 @@
 			<MoveSpeed>-0.50</MoveSpeed>
 		</equippedStatOffsets>
 		<apparel>
-			<bodyPartGroups>
-				<li>Neck</li>
-				<li>Torso</li>
-				<li>Shoulders</li>
-				<li>Arms</li>
-				<li>Legs</li>
-			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Torso/Kull/RGKullArmor</wornGraphicPath>
-			<layers>
-				<li>Middle</li>
-				<li>Shell</li>
-			</layers>
 			<tags>
 				<li>Rimgate_KullApparel_tag</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<comps>
 			<li Class="VEF.Apparels.CompProperties_ShieldBubble">
@@ -966,10 +738,7 @@
 	<ThingDef ParentName="Rimgate_JaffaArmorBase">
 		<defName>Rimgate_GoauldKaraKesh</defName>
 		<label>Goa'uld Kara Kesh</label>
-		<description>A projectile-repulsion hand device used by the Goa'uld. It will attempt to stop
-			incoming projectiles or shrapnel, but does nothing against melee attacks or heat. It
-			doesn't prevent the wearer from firing out, and shuts down instantly if hit by EMP.</description>
-		<thingClass>Apparel</thingClass>
+		<description>A projectile-repulsion hand device used by the Goa'uld. It will attempt to stop incoming projectiles or shrapnel, but does nothing against melee attacks or heat. It doesn't prevent the wearer from firing out, and shuts down instantly if hit by EMP.</description>
 		<tickerType>Normal</tickerType>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
@@ -991,7 +760,6 @@
 		</costList>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Utility/RGGoauldKaraKesh</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
 			<Mass>1.5</Mass>
@@ -1001,13 +769,7 @@
 			<EnergyShieldEnergyMax>0.9</EnergyShieldEnergyMax>
 			<EquipDelay>2</EquipDelay>
 		</statBases>
-		<thingCategories Inherit="False">
-			<li>ApparelUtility</li>
-		</thingCategories>
 		<tradeability>Sellable</tradeability>
-		<tradeTags>
-			<li>Armor</li>
-		</tradeTags>
 		<generateAllowChance>0.15</generateAllowChance>
 		<equippedStatOffsets>
 			<WorkSpeedGlobal>0.05</WorkSpeedGlobal>
@@ -1016,24 +778,24 @@
 			<careIfWornByCorpse>false</careIfWornByCorpse>
 			<careIfDamaged>false</careIfDamaged>
 			<countsAsClothingForNudity>false</countsAsClothingForNudity>
-			<bodyPartGroups>
+			<bodyPartGroups Inherit="false">
 				<li>Hands</li>
 			</bodyPartGroups>
-			<layers>
+			<layers Inherit="false">
 				<li>Middle</li>
 			</layers>
 			<tags>
 				<li>Rimgate_GoauldKaraKesh_tag</li>
 			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
 		</apparel>
 		<comps>
 			<li Class="CompProperties_Shield">
 				<blocksRangedWeapons>false</blocksRangedWeapons>
 			</li>
 		</comps>
+		<thingCategories Inherit="False">
+			<li>ApparelUtility</li>
+		</thingCategories>
 	</ThingDef>
 
 </Defs>

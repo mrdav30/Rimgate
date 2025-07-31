@@ -339,14 +339,14 @@
     <Compile Include="Compatibility\DbhCompatibility.cs" />
     <Compile Include="Compatibility\EbfCompatibilityWrapper.cs" />
     <Compile Include="Compatibility\ModCompatibility.cs" />
-    <Compile Include="Comps\Properties\CompProperties_ApparelWithAttachedHeadgear.cs" />
+    <Compile Include="Comps\Properties\CompProperties_AlternateApparel.cs" />
     <Compile Include="Comps\Properties\CompProperties_GlyphScrap.cs" />
     <Compile Include="Comps\Properties\CompProperties_DHD.cs" />
     <Compile Include="Comps\Comp_AnimatedSarcophagus.cs" />
     <Compile Include="Comps\Properties\CompProperties_AnimatedSarcophagus.cs" />
     <Compile Include="Comps\Properties\CompProperties_TreatmentRestrictions.cs" />
     <Compile Include="Comps\Properties\CompProperties_Stargate.cs" />
-    <Compile Include="Comps\Comp_ApparelWithAttachedHeadgear.cs" />
+    <Compile Include="Comps\Comp_AlternateApparel.cs" />
     <Compile Include="Comps\Comp_TreatmentRestrictions.cs" />
     <Compile Include="DamageWorkers\DamageWorker_Siege.cs" />
     <Compile Include="HarmonyPatches\Harmony_Building_Bed_SetBedOwnerType.cs" />
@@ -354,7 +354,6 @@
     <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
     <Compile Include="HarmonyPatches\Harmony_FloatMenuOptionProvider_Generic.cs" />
     <Compile Include="HarmonyPatches\Harmony_MapPawns_AnyPawnBlockingMapRemoval.cs" />
-    <Compile Include="HarmonyPatches\Harmony_DynamicPawnRenderNodeSetup_Apparel_ProcessApparel.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_CurrentlyUsableForBills.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_GetGizmos.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility_CanUseBedNow.cs" />

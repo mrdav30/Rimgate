@@ -7,11 +7,12 @@ using Verse;
 
 namespace Rimgate;
 
-public class CompProperties_ApparelWithAttachedHeadgear : CompProperties
+public class CompProperties_AlternateApparel : CompProperties
 {
     public ThingDef attachedHeadgearDef;
     [NoTranslate]
     public string toggleUiIconPath;
+    public bool isClosedState;
 
-    public CompProperties_ApparelWithAttachedHeadgear() => this.compClass = typeof(Comp_ApparelWithAttachedHeadgear);
+    public CompProperties_AlternateApparel() => this.compClass = typeof(Comp_AlternateApparel);
 }

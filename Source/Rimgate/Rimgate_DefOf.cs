@@ -27,14 +27,14 @@ public static class Rimgate_DefOf
 
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
 
-    public static SoundDef Rimgate_StargateOpen;
-    public static SoundDef Rimgate_StargateFailDial;
-    public static SoundDef Rimgate_StargateKawooshExplosion;
-    public static SoundDef Rimgate_StargateIdle;
-    public static SoundDef Rimgate_StargateClose;
+    public static SoundDef Rimgate_GoauldGuardHelmToggle;
     public static SoundDef Rimgate_IrisOpen;
     public static SoundDef Rimgate_IrisClose;
     public static SoundDef Rimgate_IrisHit;
+    public static SoundDef Rimgate_StargateOpen;
+    public static SoundDef Rimgate_StargateFailDial;
+    public static SoundDef Rimgate_StargateIdle;
+    public static SoundDef Rimgate_StargateClose;
 
     public static ThingDef Gun_Autopistol;
 }
