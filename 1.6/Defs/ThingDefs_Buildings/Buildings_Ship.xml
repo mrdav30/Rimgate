@@ -17,6 +17,13 @@
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
     </graphicData>
+    <pathCost>50</pathCost>
+    <drawOffscreen>true</drawOffscreen>
+    <passability>PassThroughOnly</passability>
+    <stealable>false</stealable>
+    <altitudeLayer>Building</altitudeLayer>
+    <receivesSignals>true</receivesSignals>
+    <neverMultiSelect>true</neverMultiSelect>
     <statBases>
       <MaxHitPoints>1400</MaxHitPoints>
       <WorkToBuild>24000</WorkToBuild>
@@ -53,9 +60,10 @@
         <initialConfigurableTargetFuelLevel>3000</initialConfigurableTargetFuelLevel>
         <fuelFilter>
           <thingDefs>
-            <li>Rimgate_Naquadah</li>
+            <li>Rimgate_Naquadria</li>
           </thingDefs>
         </fuelFilter>
+        <initialFuelPercent>0.25</initialFuelPercent>
         <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
         <autoRefuelPercent>1</autoRefuelPercent>
         <showFuelGizmo>true</showFuelGizmo>
@@ -168,6 +176,13 @@
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
     </graphicData>
+    <pathCost>50</pathCost>
+    <drawOffscreen>true</drawOffscreen>
+    <passability>PassThroughOnly</passability>
+    <stealable>false</stealable>
+    <altitudeLayer>Building</altitudeLayer>
+    <receivesSignals>true</receivesSignals>
+    <neverMultiSelect>true</neverMultiSelect>
     <statBases>
       <MaxHitPoints>1000</MaxHitPoints>
       <WorkToBuild>24000</WorkToBuild>
@@ -180,7 +195,7 @@
       <Plasteel>250</Plasteel>
       <ComponentIndustrial>16</ComponentIndustrial>
       <ComponentSpacer>5</ComponentSpacer>
-      <Rimgate_Biomass>500</Rimgate_Biomass>
+      <Rimgate_Biomass>750</Rimgate_Biomass>
     </costList>
     <comps>
       <li Class="CompProperties_Shuttle">
@@ -207,6 +222,7 @@
             <li>Rimgate_Biomass</li>
           </thingDefs>
         </fuelFilter>
+        <initialFuelPercent>0.25</initialFuelPercent>
         <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
         <autoRefuelPercent>1</autoRefuelPercent>
         <showFuelGizmo>true</showFuelGizmo>
@@ -307,7 +323,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_TauriPuddleJumper</defName>
     <label>Tau'ri Puddle Jumper</label>
-    <description>A Tau'ri Puddle spacecraft equipped with drones, cloak, and Stargate compatibility.</description>
+    <description>A Tau'ri Puddle spacecraft equipped with a defense shield.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <size>(4,7)</size>
     <graphicData>
@@ -318,6 +334,16 @@
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
     </graphicData>
+    <tickerType>Normal</tickerType>
+    <fillPercent>0.4</fillPercent>
+    <pathCost>50</pathCost>
+    <drawOffscreen>true</drawOffscreen>
+    <passability>PassThroughOnly</passability>
+    <stealable>false</stealable>
+    <altitudeLayer>Building</altitudeLayer>
+    <receivesSignals>true</receivesSignals>
+    <neverMultiSelect>true</neverMultiSelect>
+    <drawerType>MapMeshAndRealTime</drawerType>
     <statBases>
       <MaxHitPoints>5000</MaxHitPoints>
       <WorkToBuild>24000</WorkToBuild>
@@ -326,13 +352,32 @@
     </statBases>
     <designationCategory>Odyssey</designationCategory>
     <costList>
-      <Steel>250</Steel>
-      <Plasteel>500</Plasteel>
+      <Steel>750</Steel>
+      <Plasteel>250</Plasteel>
       <ComponentIndustrial>16</ComponentIndustrial>
       <ComponentSpacer>15</ComponentSpacer>
-      <Rimgate_Naquadria>25</Rimgate_Naquadria>
+      <Rimgate_Naquadah>75</Rimgate_Naquadah>
     </costList>
     <comps>
+      <li Class="Rimgate.CompProperties_ShieldEmitter">
+        <compClass>Rimgate.Comp_ShieldEmitter</compClass>
+        <interceptAirProjectiles>true</interceptAirProjectiles>
+        <interceptGroundProjectiles>true</interceptGroundProjectiles>
+        <podBlocker>false</podBlocker>
+        <resetTime>4000</resetTime>
+        <fuelConsumptionRate>0.05</fuelConsumptionRate>
+        <stressPerDamage>0.02</stressPerDamage>
+        <empDamageFactor>4.5</empDamageFactor>
+        <shieldOverloadThreshold>0.9</shieldOverloadThreshold>
+        <shieldOverloadChance>0.05</shieldOverloadChance>
+        <extraOverloadRange>10</extraOverloadRange>
+        <overloadDamageType>EMP</overloadDamageType>
+        <explodeOnCollapse>false</explodeOnCollapse>
+        <shieldCanBeScaled>true</shieldCanBeScaled>
+        <shieldScaleLimits>10~20 </shieldScaleLimits>
+        <shieldScaleDefault>10</shieldScaleDefault>
+        <shieldColour>(237, 227, 133)</shieldColour>
+      </li>
       <li Class="CompProperties_Shuttle">
         <shipDef>Rimgate_TauriPuddleJumperShip</shipDef>
       </li>
@@ -357,9 +402,15 @@
             <li>Rimgate_Naquadria</li>
           </thingDefs>
         </fuelFilter>
+        <initialFuelPercent>0.25</initialFuelPercent>
         <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
         <autoRefuelPercent>1</autoRefuelPercent>
         <showFuelGizmo>true</showFuelGizmo>
+      </li>
+      <li Class="Rimgate.CompProperties_Toggle">
+        <compClass>Rimgate.Comp_Toggle</compClass>
+        <commandLabelKey>RG_ShieldToggleLabel</commandLabelKey>
+        <commandDescKey>RG_ShieldToggleDescription</commandDescKey>
       </li>
     </comps>
     <inspectorTabs>

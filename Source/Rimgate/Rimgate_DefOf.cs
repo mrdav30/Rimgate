@@ -24,6 +24,7 @@ public static class Rimgate_DefOf
     public static JobDef Rimgate_CarryToSarcophagus;
     public static JobDef Rimgate_PatientGoToSarcophagus;
     public static JobDef Rimgate_RescueToSarcophagus;
+    public static JobDef Rimgate_Toggle;
 
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
 

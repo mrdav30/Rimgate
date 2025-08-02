@@ -28,6 +28,14 @@
             <StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
             <EquipDelay>1.5</EquipDelay>
         </statBases>
+        <equippedStatOffsets>
+            <SocialImpact>0.05</SocialImpact>
+            <MoveSpeed>0.10</MoveSpeed>
+            <ComfyTemperatureMin>-2</ComfyTemperatureMin>
+            <PainShockThreshold>0.05</PainShockThreshold>
+            <HuntingStealth>0.20</HuntingStealth>
+            <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+        </equippedStatOffsets>
         <apparel>
             <bodyPartGroups>
                 <li>Torso</li>
@@ -85,6 +93,11 @@
             <StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
             <EquipDelay>1.5</EquipDelay>
         </statBases>
+        <equippedStatOffsets>
+            <MentalBreakThreshold>-0.10</MentalBreakThreshold>
+            <PainShockThreshold>0.10</PainShockThreshold>
+            <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+        </equippedStatOffsets>
         <costList>
             <Steel>50</Steel>
         </costList>
@@ -130,6 +143,12 @@
             <StuffEffectMultiplierInsulation_Heat>0.40</StuffEffectMultiplierInsulation_Heat>
             <EquipDelay>0.8</EquipDelay>
         </statBases>
+        <equippedStatOffsets>
+            <ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+            <SocialImpact>0.05</SocialImpact>
+            <NegotiationAbility>0.05</NegotiationAbility>
+            <MoveSpeed>0.05</MoveSpeed>
+        </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
             <wornGraphicPath>Things/Item/Apparel/Headgear/Cap/RGTauriBaseballCapGreen</wornGraphicPath>
@@ -167,6 +186,12 @@
             <StuffEffectMultiplierInsulation_Heat>0.40</StuffEffectMultiplierInsulation_Heat>
             <EquipDelay>0.8</EquipDelay>
         </statBases>
+        <equippedStatOffsets>
+            <ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
+            <SocialImpact>0.10</SocialImpact>
+            <NegotiationAbility>0.05</NegotiationAbility>
+            <MoveSpeed>0.05</MoveSpeed>
+        </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
             <wornGraphicPath>Things/Item/Apparel/Headgear/Boonie/RGBoonieHatGreen</wornGraphicPath>
@@ -209,6 +234,11 @@
             <Insulation_Cold>1</Insulation_Cold>
             <EquipDelay>5</EquipDelay>
         </statBases>
+        <equippedStatOffsets>
+            <MoveSpeed>-0.10</MoveSpeed>
+            <PainShockThreshold>0.05</PainShockThreshold>
+            <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+        </equippedStatOffsets>
         <thingCategories>
             <li>ApparelArmor</li>
         </thingCategories>

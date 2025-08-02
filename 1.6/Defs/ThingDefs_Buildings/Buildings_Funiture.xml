@@ -26,7 +26,6 @@
     <selectable>true</selectable>
     <altitudeLayer>Building</altitudeLayer>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
-    <uiIconScale>0.90</uiIconScale>
     <statBases>
       <MarketValue>80000</MarketValue>
       <!-- Ensures market value is reflected in colony wealth calculations -->

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <FactionDef ParentName="PlayerFactionBase">
+    <defName>Rimgate_TauriPlayerColony</defName>
+    <label>rogue SG team</label>
+    <description>A group of stranded rogue SGC team members.</description>
+    <isPlayer>true</isPlayer>
+    <basicMemberKind>Rimgate_TauriPlayer</basicMemberKind>
+    <pawnSingular>SGC team member</pawnSingular>
+    <pawnsPlural>SGC team members</pawnsPlural>
+    <techLevel>Industrial</techLevel>
+    <factionNameMaker>NamerFactionOutlander</factionNameMaker>
+    <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
+    <allowedCultures>
+      <li>Astropolitan</li>
+    </allowedCultures>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>Military</li>
+          <li>Spacer</li>
+          <li>Offworld</li>
+          <li>EliteMilitary</li>
+          <li>Leader</li>
+        </categories>
+      </li>
+    </backstoryFilters>
+    <factionIconPath>World/WorldObjects/Expanding/Town</factionIconPath>
+    <startingResearchTags>
+      <li>TribalStart</li>
+      <li>ClassicStart</li>
+    </startingResearchTags>
+    <startingTechprintsResearchTags>
+      <li>TribalStart</li>
+      <li>ClassicStart</li>
+      <li>TribalStartTechprints</li>
+      <li>ClassicStartTechprints</li>
+    </startingTechprintsResearchTags>
+  </FactionDef>
+
+</Defs>

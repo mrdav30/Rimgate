@@ -4,10 +4,7 @@
     <FactionDef>
         <defName>Rimgate_TauriFaction</defName>
         <label>Tau'ri</label>
-        <description>An offworld military and scientific organization originating from some planet
-            called Earth, the Tau'ri specialize in high-tech operations, exploration, and defense.
-            While focused on their own missions, they are open to diplomacy and alliances with local
-            settlers.</description>
+        <description>An offworld military and scientific organization originating from some planet called Earth, the Tau'ri specialize in high-tech operations, exploration, and defense. While focused on their own missions, they are open to diplomacy and alliances with local settlers.</description>
         <fixedName>Tau'ri</fixedName>
         <pawnsPlural>Tau'ri</pawnsPlural>
         <requiredCountAtGameStart>1</requiredCountAtGameStart>

@@ -75,6 +75,8 @@
 		</statBases>
 		<equippedStatOffsets>
 			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PainShockThreshold>0.05</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -119,7 +121,8 @@
 			<EquipDelay>2</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.15</SlaveSuppressionOffset>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -290,6 +293,9 @@
 		</graphicData>
 		<recipeMaker />
 		<costList />
+		<equippedStatOffsets>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0</VacuumResistance>
+		</equippedStatOffsets>
 		<apparel>
 			<renderSkipFlags>
 				<li>Beard</li>
@@ -339,6 +345,9 @@
 		</graphicData>
 		<recipeMaker />
 		<costList />
+		<equippedStatOffsets>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0</VacuumResistance>
+		</equippedStatOffsets>
 		<apparel>
 			<renderSkipFlags>
 				<li>Beard</li>
@@ -390,6 +399,9 @@
 		</graphicData>
 		<recipeMaker />
 		<costList />
+		<equippedStatOffsets>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0</VacuumResistance>
+		</equippedStatOffsets>
 		<apparel>
 			<renderSkipFlags>
 				<li>Beard</li>
@@ -439,6 +451,9 @@
 		</graphicData>
 		<recipeMaker />
 		<costList />
+		<equippedStatOffsets>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0</VacuumResistance>
+		</equippedStatOffsets>
 		<apparel>
 			<renderSkipFlags>
 				<li>Beard</li>
@@ -483,6 +498,9 @@
 		</graphicData>
 		<recipeMaker />
 		<costList />
+		<equippedStatOffsets>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0</VacuumResistance>
+		</equippedStatOffsets>
 		<apparel>
 			<renderSkipFlags>
 				<li>Beard</li>
@@ -525,6 +543,9 @@
 		</graphicData>
 		<recipeMaker />
 		<costList />
+		<equippedStatOffsets>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0</VacuumResistance>
+		</equippedStatOffsets>
 		<apparel>
 			<renderSkipFlags>
 				<li>Beard</li>
@@ -626,6 +647,9 @@
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.15</MoveSpeed>
+			<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
 		</equippedStatOffsets>
 		<apparel>
 			<wornGraphicPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmor</wornGraphicPath>
@@ -667,7 +691,10 @@
 			<EquipDelay>20</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>-0.15</MoveSpeed>
+			<MoveSpeed>-0.1</MoveSpeed>
+			<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+			<PainShockThreshold>0.15</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.15</SlaveSuppressionOffset>
 		</equippedStatOffsets>
 		<apparel>
 			<wornGraphicPath>Things/Item/Apparel/Torso/Prime/RGPrimeArmor</wornGraphicPath>
@@ -701,17 +728,20 @@
 			<WorkToMake>12500</WorkToMake>
 			<Mass>17</Mass>
 			<Flammability>0.6</Flammability>
+			<EnergyShieldRechargeRate>0.13</EnergyShieldRechargeRate>
+			<EnergyShieldEnergyMax>0.9</EnergyShieldEnergyMax>
 			<ArmorRating_Sharp>1.18</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.45</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.55</ArmorRating_Heat>
 			<Insulation_Cold>35</Insulation_Cold>
 			<Insulation_Heat>11</Insulation_Heat>
 			<EquipDelay>20</EquipDelay>
-			<!-- <EnergyShieldRechargeRate>0.02</EnergyShieldRechargeRate>
-			<EnergyShieldEnergyMax>1</EnergyShieldEnergyMax> -->
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.50</MoveSpeed>
+			<PainShockThreshold>0.2</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.15</SlaveSuppressionOffset>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.3</VacuumResistance>
 		</equippedStatOffsets>
 		<apparel>
 			<wornGraphicPath>Things/Item/Apparel/Torso/Kull/RGKullArmor</wornGraphicPath>
@@ -719,6 +749,7 @@
 				<li>Rimgate_KullApparel_tag</li>
 			</tags>
 		</apparel>
+		<tickerType>Normal</tickerType>
 		<comps>
 			<li Class="VEF.Apparels.CompProperties_ShieldBubble">
 				<compClass>VEF.Apparels.CompShieldBubble</compClass>
@@ -741,7 +772,6 @@
 		<defName>Rimgate_GoauldKaraKesh</defName>
 		<label>Goa'uld Kara Kesh</label>
 		<description>A projectile-repulsion hand device used by the Goa'uld. It will attempt to stop incoming projectiles or shrapnel, but does nothing against melee attacks or heat. It doesn't prevent the wearer from firing out, and shuts down instantly if hit by EMP.</description>
-		<tickerType>Normal</tickerType>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
 			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
@@ -794,9 +824,19 @@
 				<li>Rimgate_GoauldKaraKesh_tag</li>
 			</tags>
 		</apparel>
+		<tickerType>Normal</tickerType>
 		<comps>
-			<li Class="CompProperties_Shield">
-				<blocksRangedWeapons>false</blocksRangedWeapons>
+			<li Class="VEF.Apparels.CompProperties_ShieldBubble">
+				<compClass>VEF.Apparels.CompShieldBubble</compClass>
+				<blockRangedAttack>true</blockRangedAttack>
+				<blockMeleeAttack>false</blockMeleeAttack>
+				<showWhenDrafted>true</showWhenDrafted>
+				<showOnHostiles>true</showOnHostiles>
+				<showOnNeutralInCombat>true</showOnNeutralInCombat>
+				<shieldTexPath>Other/ShieldBubble</shieldTexPath>
+				<minShieldSize>1.4</minShieldSize>
+				<maxShieldSize>1.8</maxShieldSize>
+				<disableRotation>true</disableRotation>
 			</li>
 		</comps>
 		<thingCategories Inherit="False">

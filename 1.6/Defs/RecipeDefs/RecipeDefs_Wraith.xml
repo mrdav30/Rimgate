@@ -100,7 +100,7 @@
 		<jobString>Making cocooned meat.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>450</workAmount>
+		<workAmount>250</workAmount>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<recipeUsers>
 			<li>Rimgate_CocoonStation</li>
@@ -135,7 +135,7 @@
 		<jobString>Making cocooned meat.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>900</workAmount>
+		<workAmount>600</workAmount>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<recipeUsers>
 			<li>Rimgate_CocoonStation</li>

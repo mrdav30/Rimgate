@@ -141,11 +141,7 @@
 		<defName>Rimgate_WraithSpear</defName>
 		<label>Wraith spear gun</label>
 		<description>This is a wraith spear. It is used to stun humans. After they are captured they can be turned into food.</description>
-		<costList>
-			<Steel>100</Steel>
-			<ComponentIndustrial>2</ComponentIndustrial>
-			<Rimgate_Biomass>50</Rimgate_Biomass>
-		</costList>
+
 		<graphicData>
 			<texPath>Things/Item/Weapon/Ranged/RGWraithSpearGun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -161,6 +157,12 @@
 			<AccuracyLong>0.32</AccuracyLong>
 			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
 		</statBases>
+		<costList>
+			<Steel>100</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Rimgate_Biomass>50</Rimgate_Biomass>
+		</costList>
+		<equippedAngleOffset>45</equippedAngleOffset>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
@@ -215,9 +217,10 @@
 		<projectile>
 			<flyOverhead>false</flyOverhead>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>3</damageAmountBase>
+			<damageAmountBase>10</damageAmountBase>
+			<stoppingPower>1</stoppingPower>
 			<armorPenetrationBase>0.65</armorPenetrationBase>
-			<speed>45</speed>
+			<speed>55</speed>
 		</projectile>
 		<comps>
 			<li Class="Rimgate.CompProperties_AdditionalDamage">

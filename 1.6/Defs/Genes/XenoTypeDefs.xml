@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- =================== Goa'uld-Jaffa Xenotype =================== -->
+
+    <XenotypeDef>
+        <defName>Rimgate_GoauldJaffa</defName>
+        <label>Goa'uld Jaffa</label>
+        <description>Genetically altered humans who serve as hosts and warriors for the parasitic Goa'uld. They possess enhanced physical traits and rely on a symbiote for immunity and vitality.</description>
+        <iconPath>UI/Icon/Xenotype/RGJaffaXenotypeIcon</iconPath>
+        <inheritable>true</inheritable>
+        <nameMaker>Rimgate_NamerPersonJaffaM</nameMaker>
+        <nameMakerFemale>Rimgate_NamerPersonJaffaF</nameMakerFemale>
+        <chanceToUseNameMaker>1</chanceToUseNameMaker>
+        <genes>
+            <li>Body_Standard</li>
+            <li>MoveSpeed_VeryQuick</li>
+            <li>Rimgate_JaffaLongevity</li>
+            <li>Rimgate_JaffaWarrior</li>
+            <li>Rimgate_JaffaCombatDiscipline</li>
+        </genes>
+    </XenotypeDef>
+
+    <XenotypeDef>
+        <defName>Rimgate_KullWarrior</defName>
+        <label>Kull</label>
+        <description>Genetically engineered humanoid hosts for the Goa'uld. The hosts were grown to be the perfect soldier. To this end, the host has physical capabilities well beyond those of a normal human.</description>
+        <iconPath>UI/Icon/Xenotype/RGKullXenotypeIcon</iconPath>
+        <inheritable>true</inheritable>
+        <nameMaker>NamerMech</nameMaker>
+        <chanceToUseNameMaker>1</chanceToUseNameMaker>
+        <genes>
+            <li>Eyes_Gray</li>
+            <li>Hair_BaldOnly</li>
+            <li>Skin_LightGray</li>
+            <li>Beard_NoBeardOnly</li>
+            <li>Body_Hulk</li>
+            <li>Beauty_Ugly</li>
+            <li>MoveSpeed_VeryQuick</li>
+            <li>Pain_Reduced</li>
+            <li>Unstoppable</li>
+            <li>Robust</li>
+            <li>PsychicAbility_Deaf</li>
+            <li>Immunity_Weak</li>
+            <li>WoundHealing_Slow</li>
+            <li>Rimgate_CellularDegradation</li>
+        </genes>
+    </XenotypeDef>
+
+    <XenotypeDef>
+        <defName>Rimgate_Wraith</defName>
+        <label>Wraith</label>
+        <description>Wraith are vampiric aliens with psychic power, enhanced mobility, and a disturbing hunger for human flesh. They are ageless, never sleep, and thrive in darkness.</description>
+        <iconPath>UI/Icon/Xenotype/RGWraithXenotypeIcon</iconPath>
+        <inheritable>true</inheritable>
+        <nameMaker>Rimgate_NamerPersonWraith</nameMaker>
+        <nameMakerFemale>Rimgate_NamerPersonWraith</nameMakerFemale>
+        <chanceToUseNameMaker>1</chanceToUseNameMaker>
+        <genes>
+            <!-- Appearance & Theme -->
+            <li>Hair_SnowWhite</li>
+            <li>Skin_SheerWhite</li>
+            <li>Rimgate_WraithBeauty</li>
+
+            <!-- Core Traits -->
+            <li>Rimgate_WraithAgeless</li>
+            <li>Neversleep</li>
+            <li>ArchiteMetabolism</li>
+            <li>DarkVision</li>
+            <li>MeleeDamage_Strong</li>
+            <li>Rimgate_WraithMovement</li>
+            <li>Rimgate_WraithPsychic</li>
+            <li>Rimgate_WraithMiner</li>
+            <li>Rimgate_WraithCannibal</li>
+            <li>Rimgate_WraithLifeDrain</li>
+            <li>Rimgate_WraithCocoonTrap</li>
+        </genes>
+    </XenotypeDef>
+
+</Defs>

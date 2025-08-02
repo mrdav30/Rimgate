@@ -6,9 +6,7 @@
   <ThingDef ParentName="BaseMechanoid">
     <defName>Rimgate_Replicator</defName>
     <label>replicator</label>
-    <description>A mechanical, spider-like creature composed of self-replicating blocks of metal.
-      Highly adaptable and extremely dangerous, specializing in rapid approach and close-range
-      combat.</description>
+    <description>A mechanical, spider-like creature composed of self-replicating blocks of metal. Highly adaptable and extremely dangerous, specializing in rapid approach and close-range combat.</description>
     <tools>
       <li>
         <label>left blade</label>

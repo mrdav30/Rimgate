@@ -5,6 +5,7 @@
 
   <PawnKindDef Name="Rimgate_GoauldBase" Abstract="True">
     <race>Human</race>
+    <defaultFactionType>Rimgate_GoauldBaal</defaultFactionType>
     <chemicalAddictionChance>0</chemicalAddictionChance>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>30~60</initialResistanceRange>
@@ -62,22 +63,90 @@
   <!-- ====== Goa'uld Civilian Classes ========= -->
 
   <PawnKindDef ParentName="Rimgate_GoauldCivilianBase">
-    <defName>Rimgate_Colonist</defName>
-    <label>Colonist</label>
-    <race>Human</race>
-
+    <defName>Rimgate_GoauldColonist</defName>
+    <label>colonist</label>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldCivilianBase">
     <defName>Rimgate_GoauldSlave</defName>
-    <label>Slave</label>
+    <label>slave</label>
     <chemicalAddictionChance>0.5</chemicalAddictionChance>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_GoauldBase">
+    <defName>Rimgate_GoauldLeader</defName>
+    <label>under lord</label>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>39</minGenerationAge>
+    <maxGenerationAge>100</maxGenerationAge>
+    <isFighter>true</isFighter>
+    <canBeSapper>true</canBeSapper>
+    <combatPower>150</combatPower>
+    <techHediffsChance>1</techHediffsChance>
+    <techHediffsMoney>1000~2000</techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+      <li>ImplantEmpireCommon</li>
+      <li>AdvancedWeapon</li>
+      <li>Rimgate_GoauldSymbiote_tag</li>
+    </techHediffsTags>
+    <techHediffsRequired>
+      <li>Rimgate_SymbioteImplant</li>
+    </techHediffsRequired>
+    <itemQuality>Excellent</itemQuality>
+    <gearHealthRange>0.7~2.3</gearHealthRange>
+    <weaponMoney>750~2500</weaponMoney>
+    <weaponTags>
+      <li>Rimgate_GoauldRanged_Tag</li>
+    </weaponTags>
+    <apparelMoney>2300~7000</apparelMoney>
+    <apparelTags>
+      <li>Rimgate_GoauldPrimeApparel_tag</li>
+      <li>Rimgate_GoauldKaraKesh_tag</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Rimgate_FirstPrimeHelmet</li>
+      <li>Rimgate_FirstPrimeArmor</li>
+      <li>Rimgate_GoauldKaraKesh</li>
+    </apparelRequired>
+    <invNutrition>2.55</invNutrition>
+    <inventoryOptions>
+      <skipChance>0.75</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <choiceChance>90</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>25</min>
+            <max>70</max>
+          </countRange>
+        </li>
+        <li>
+          <choiceChance>10</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>700</min>
+            <max>1000</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>12~20</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>12~20</range>
+      </li>
+    </skills>
   </PawnKindDef>
 
   <!-- ============ Goa'uld Military Base ============ -->
 
   <PawnKindDef Name="Rimgate_GoauldMilBase" ParentName="Rimgate_GoauldBase" Abstract="True">
-    <xenotypeSet Inherit="False">
+    <xenotypeSet>
       <xenotypeChances>
         <Rimgate_GoauldJaffa>999</Rimgate_GoauldJaffa>
       </xenotypeChances>
@@ -88,7 +157,6 @@
       <li>Violent</li>
     </requiredWorkTags>
     <chemicalAddictionChance>0</chemicalAddictionChance>
-    <isFighter>true</isFighter>
     <invNutrition>2.55</invNutrition>
     <minGenerationAge>19</minGenerationAge>
     <maxGenerationAge>250</maxGenerationAge>
@@ -136,6 +204,16 @@
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>4~12</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>4~12</range>
+      </li>
+    </skills>
   </PawnKindDef>
 
   <!-- ====== Goa'uld Military classes ========= -->
@@ -150,7 +228,7 @@
   <PawnKindDef ParentName="Rimgate_GoauldRangedBase">
     <defName>Rimgate_GoauldRangedAnubis</defName>
     <label>Anubis Jaffa Warrior</label>
-    <defaultFactionType>Rimgate_GoauldAnubis</defaultFactionType>
+
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
     </techHediffsRequired>
@@ -167,7 +245,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldRangedBase">
     <defName>Rimgate_GoauldRangedRa</defName>
     <label>Ra Jaffa Warrior</label>
-    <defaultFactionType>Rimgate_GoauldRa</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantRa</li>
     </techHediffsRequired>
@@ -183,7 +260,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldMeleeBase">
     <defName>Rimgate_GoauldMeleeAnubis</defName>
     <label>Anubis Jaffa Warrior</label>
-    <defaultFactionType>Rimgate_GoauldAnubis</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
     </techHediffsRequired>
@@ -192,7 +268,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldMeleeBase">
     <defName>Rimgate_GoauldMeleeApophis</defName>
     <label>Apophis Jaffa Warrior</label>
-    <defaultFactionType>Rimgate_GoauldApophis</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantApophis</li>
     </techHediffsRequired>
@@ -201,7 +276,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldMeleeBase">
     <defName>Rimgate_GoauldMeleeRa</defName>
     <label>Ra Jaffa Warrior</label>
-    <defaultFactionType>Rimgate_GoauldRa</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantRa</li>
     </techHediffsRequired>
@@ -217,7 +291,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldGrenadierBase">
     <defName>Rimgate_GoauldGrenadierAnubis</defName>
     <label>Anubis Jaffa Warrior</label>
-    <defaultFactionType>Rimgate_GoauldAnubis</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
     </techHediffsRequired>
@@ -226,7 +299,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldGrenadierBase">
     <defName>Rimgate_GoauldGrenadierApophis</defName>
     <label>Apophis Jaffa Warrior</label>
-    <defaultFactionType>Rimgate_GoauldApophis</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantApophis</li>
     </techHediffsRequired>
@@ -235,7 +307,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldGrenadierBase">
     <defName>Rimgate_GoauldGrenadierRa</defName>
     <label>Ra Jaffa Warrior</label>
-    <defaultFactionType>Rimgate_GoauldRa</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantRa</li>
     </techHediffsRequired>
@@ -249,6 +320,11 @@
     <combatPower>220</combatPower>
     <minGenerationAge>26</minGenerationAge>
     <gearHealthRange>0.8~3.5</gearHealthRange>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Rimgate_KullWarrior>999</Rimgate_KullWarrior>
+      </xenotypeChances>
+    </xenotypeSet>
     <techHediffsTags Inherit="false">
       <li>Advanced</li>
       <li>ImplantEmpireCommon</li>
@@ -269,6 +345,16 @@
     <weaponTags Inherit="False">
       <li>Rimgate_KullRanged_tag</li>
     </weaponTags>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>12~20</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>12~20</range>
+      </li>
+    </skills>
   </PawnKindDef>
 
   <!-- === Jaffa Guard Base === -->
@@ -291,7 +377,7 @@
     <apparelTags>
       <li>Rimgate_GoauldGuardApparel_tag</li>
     </apparelTags>
-    <weaponMoney>200~2500</weaponMoney>
+    <weaponMoney>1200~2500</weaponMoney>
     <weaponTags>
       <li>Rimgate_GoauldWeapons_tag</li>
     </weaponTags>
@@ -299,7 +385,6 @@
 
   <PawnKindDef Name="Rimgate_PrimeBase" ParentName="Rimgate_GoauldGuardBase" Abstract="True">
     <combatPower>150</combatPower>
-    <factionLeader>true</factionLeader>
     <itemQuality>Excellent</itemQuality>
     <backstoryFiltersOverride>
       <li>
@@ -320,12 +405,20 @@
     </techHediffsTags>
     <apparelTags Inherit="False">
       <li>Rimgate_GoauldPrimeApparel_tag</li>
-      <li>Rimgate_GoauldKaraKesh_tag</li>
     </apparelTags>
     <apparelRequired Inherit="false">
       <li>Rimgate_FirstPrimeArmor</li>
-      <li>Rimgate_GoauldKaraKesh</li>
     </apparelRequired>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>8~16</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>8~16</range>
+      </li>
+    </skills>
   </PawnKindDef>
 
   <!-- Jaffa Guards -->
@@ -333,7 +426,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
     <defName>Rimgate_SerpentGuard</defName>
     <label>Serpent Guard</label>
-    <defaultFactionType>Rimgate_GoauldApophis</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantApophis</li>
     </techHediffsRequired>
@@ -345,7 +437,6 @@
   <PawnKindDef ParentName="Rimgate_PrimeBase">
     <defName>Rimgate_PrimeSerpentGuard</defName>
     <label>First Prime</label>
-    <defaultFactionType>Rimgate_GoauldApophis</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_PrimeForeheadSymbolImplantApophis</li>
     </techHediffsRequired>
@@ -357,7 +448,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
     <defName>Rimgate_HorusGuard</defName>
     <label>Horus Guard</label>
-    <defaultFactionType>Rimgate_GoauldRa</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantRa</li>
     </techHediffsRequired>
@@ -369,7 +459,6 @@
   <PawnKindDef ParentName="Rimgate_PrimeBase">
     <defName>Rimgate_PrimeHorusGuard</defName>
     <label>First Prime</label>
-    <defaultFactionType>Rimgate_GoauldRa</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_PrimeForeheadSymbolImplantRa</li>
     </techHediffsRequired>
@@ -381,7 +470,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
     <defName>Rimgate_JackalGuard</defName>
     <label>Jackal Guard</label>
-    <defaultFactionType>Rimgate_GoauldAnubis</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
     </techHediffsRequired>
@@ -393,7 +481,6 @@
   <PawnKindDef ParentName="Rimgate_PrimeBase">
     <defName>Rimgate_PrimeJackalGuard</defName>
     <label>First Prime</label>
-    <defaultFactionType>Rimgate_GoauldAnubis</defaultFactionType>
     <techHediffsRequired>
       <li>Rimgate_PrimeForeheadSymbolImplantAnubis</li>
     </techHediffsRequired>

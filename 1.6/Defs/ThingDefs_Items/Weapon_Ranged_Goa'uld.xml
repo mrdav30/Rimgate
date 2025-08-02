@@ -165,7 +165,7 @@
 			<AccuracyShort>0.87</AccuracyShort>
 			<AccuracyMedium>0.77</AccuracyMedium>
 			<AccuracyLong>0.64</AccuracyLong>
-			<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
 			<MarketValue>750</MarketValue>
 			<WorkToMake>8000</WorkToMake>
 		</statBases>
@@ -177,7 +177,7 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_MaTokProjectile</defaultProjectile>
-				<warmupTime>0.9</warmupTime>
+				<warmupTime>1.0</warmupTime>
 				<range>31</range>
 				<burstShotCount>1</burstShotCount>
 				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
@@ -228,10 +228,10 @@
 		<projectile>
 			<flyOverhead>false</flyOverhead>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>20</damageAmountBase>
-			<stoppingPower>2</stoppingPower>
+			<damageAmountBase>18</damageAmountBase>
+			<stoppingPower>1.5</stoppingPower>
 			<armorPenetrationBase>0.35</armorPenetrationBase>
-			<speed>70</speed>
+			<speed>65</speed>
 		</projectile>
 	</ThingDef>
 

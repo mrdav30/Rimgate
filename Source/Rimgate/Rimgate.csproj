@@ -314,11 +314,16 @@
     <Compile Include="AbiliyComps\CompAbilityEffect_LaunchMultipleProjectile.cs" />
     <Compile Include="AbiliyComps\CompAbilityEffect_ApplyHediffs.cs" />
     <Compile Include="AI\JobDriver_CarryToSarcophagus.cs" />
+    <Compile Include="AI\JobDriver_Toggle.cs" />
     <Compile Include="Comps\Comp_AdditionalDamage.cs" />
+    <Compile Include="Comps\Comp_Toggle.cs" />
+    <Compile Include="Comps\Comp_ShieldEmitter.cs" />
     <Compile Include="Comps\Properties\CompProperties_AdditionalDamage.cs" />
     <Compile Include="AbiliyComps\Properties\CompProperties_ApplyHediff.cs" />
     <Compile Include="AI\WorkerGiver_DoBill_Wraith.cs" />
+    <Compile Include="Comps\Properties\CompProperties_Toggle.cs" />
     <Compile Include="Comps\Properties\CompProperties_FrameApparel.cs" />
+    <Compile Include="Comps\Properties\CompProperties_ShieldEmitter.cs" />
     <Compile Include="Comps\Properties\CompProperties_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
@@ -326,7 +331,7 @@
     <Compile Include="HarmonyPatches\Harmony_Building_Bed_GetSleepingSlotPos.cs" />
     <Compile Include="HarmonyPatches\Harmony_EquipmentUtility_CanEquip.cs" />
     <Compile Include="HarmonyPatches\Harmony_JobMaker_MakeJob.cs" />
-    <Compile Include="HarmonyPatches\Harmony_WorkGiver_RescueDowned.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Pawn_GetGizmos.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_TryGetAttackVerb.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility_TuckIntoBed.cs" />
     <Compile Include="Misc\HediffGiver_AtAge.cs" />
@@ -356,7 +361,7 @@
     <Compile Include="HarmonyPatches\Harmony_FloatMenuOptionProvider_Generic.cs" />
     <Compile Include="HarmonyPatches\Harmony_MapPawns_AnyPawnBlockingMapRemoval.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_CurrentlyUsableForBills.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Pawn_GetGizmos.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Pawn_DraftController_GetGizmos.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility_CanUseBedNow.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility_IsValidBedFor.cs" />
     <Compile Include="HarmonyPatches\Harmony_WorkGiver_Tend_HasJobOnThing.cs" />
@@ -381,6 +386,7 @@
     <Compile Include="AI\JobDriver_EnterStargate.cs" />
     <Compile Include="AI\JobDriver_InstallIris.cs" />
     <Compile Include="Arrivals\PawnsArrivalModeWorker_Stargate.cs" />
+    <Compile Include="UI\Gizmo_ShieldStatus.cs" />
     <Compile Include="UI\PlaceWorker_ShowTurretRadiusWithOffset.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
     <Compile Include="QuestNodes\QuestNode_RemoveFromStargateAddresses.cs" />

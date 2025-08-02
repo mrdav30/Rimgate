@@ -12,7 +12,7 @@
     <canSiege>true</canSiege>
     <canStageAttacks>true</canStageAttacks>
     <leaderTitle>Queen</leaderTitle>
-    <factionNameMaker>NamerFactionTribal</factionNameMaker>
+    <fixedName>Wraith Domain</fixedName>
     <settlementNameMaker>NamerSettlementTribal</settlementNameMaker>
     <techLevel>Ultra</techLevel>
     <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>

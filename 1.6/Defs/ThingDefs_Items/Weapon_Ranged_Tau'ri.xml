@@ -6,8 +6,7 @@
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriP90Gun</defName>
         <label>P90</label>
-        <description>A compact, lightweight submachine gun chambered used by the Tau'ri. Fires fast
-            and has a high capacity top loading mag.</description>
+        <description>A compact, lightweight submachine gun chambered used by the Tau'ri. Fires fast and has a high capacity top loading mag.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriP90</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -87,8 +86,7 @@
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriM4A1Gun</defName>
         <label>M4A1</label>
-        <description>A general-purpose gas-operated assault rifle for field or urban combat used by
-            Tau'ri SGC teams.</description>
+        <description>A general-purpose gas-operated assault rifle for field or urban combat used by Tau'ri SGC teams.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriM4A1</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -165,8 +163,8 @@
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriM4A1_M203Gun</defName>
         <label>M4A1 with M203 Launcher</label>
-        <description>A general-purpose gas-operated assault rifle for field or urban combat used by
-            Tau'ri SGC teams. This variation comes with an underbarrel M203 grenade launcher.</description>
+        <description>A general-purpose gas-operated assault rifle for field or urban combat used by Tau'ri SGC teams. This variation comes with an underbarrel M203 grenade launcher.</description>
+        <smeltable>false</smeltable>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriM4M203</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -235,31 +233,23 @@
         </tools>
         <comps>
             <li Class="Rimgate.CompProperties_SwitchWeapon">
-                <weaponsToSwitch>
-                    <li>Rimgate_TauriM4A1_M203_GrenadeLauncher</li>
-                </weaponsToSwitch>
+                <weaponToSwitch>Rimgate_TauriM4A1_M203_GrenadeLauncher</weaponToSwitch>
             </li>
         </comps>
     </ThingDef>
 
     <!-- ============ M4-A1_M203_GR ============ -->
 
-    <ThingDef ParentName="BaseHumanMakeableGun">
+    <ThingDef ParentName="BaseGunWithQuality">
         <defName>Rimgate_TauriM4A1_M203_GrenadeLauncher</defName>
         <label>M203 Underbarrel Launcher</label>
-        <description>A general-purpose gas-operated assault rifle for field or urban combat used by
-            Tau'ri SGC teams. This variation comes with an underbarrel M203 grenade launcher.</description>
+        <description>A general-purpose gas-operated assault rifle for field or urban combat used by Tau'ri SGC teams. This variation comes with an underbarrel M203 grenade launcher.</description>
+        <smeltable>false</smeltable>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriM4M203</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <soundInteract>Interact_Rifle</soundInteract>
-        <recipeMaker>
-            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
-            <skillRequirements>
-                <Crafting>8</Crafting>
-            </skillRequirements>
-        </recipeMaker>
         <thingSetMakerTags>
             <li>RewardStandardQualitySuper</li>
         </thingSetMakerTags>
@@ -273,11 +263,6 @@
             <RangedWeapon_Cooldown>2.9</RangedWeapon_Cooldown>
         </statBases>
         <equippedAngleOffset>45</equippedAngleOffset>
-        <costList>
-            <Rimgate_TauriM4A1Gun>1</Rimgate_TauriM4A1Gun>
-            <ComponentIndustrial>6</ComponentIndustrial>
-            <Steel>20</Steel>
-        </costList>
         <verbs>
             <li>
                 <verbClass>Verb_Shoot</verbClass>
@@ -316,9 +301,7 @@
         </tools>
         <comps>
             <li Class="Rimgate.CompProperties_SwitchWeapon">
-                <weaponsToSwitch>
-                    <li>Rimgate_TauriM4A1_M203Gun</li>
-                </weaponsToSwitch>
+                <weaponToSwitch>Rimgate_TauriM4A1_M203Gun</weaponToSwitch>
             </li>
         </comps>
     </ThingDef>
@@ -346,8 +329,7 @@
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriM92A</defName>
         <label>Beretta M92A</label>
-        <description>An blowback-operated self-loading pistol. This is the standard sidearm for
-            Tau'ri SGC teams.</description>
+        <description>An blowback-operated self-loading pistol. This is the standard sidearm for Tau'ri SGC teams.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriBerettaM92APistol</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -671,9 +653,10 @@
     <ThingDef ParentName="BaseGun">
         <defName>Rimgate_TauriFIMStinger</defName>
         <label>FIM Stinger</label>
-        <description>An infantry air-defense weapon used to take out low flying targets by Tau'ri
-            SGC teams, the upgraded and more modern version of the "FIM-43 Redeye".</description>
+        <description>An infantry air-defense weapon used to take out low flying targets by Tau'ri SGC teams, the upgraded and more modern version of the "FIM-43 Redeye".</description>
         <tickerType>Normal</tickerType>
+        <techLevel>Industrial</techLevel>
+        <smeltable>false</smeltable>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriFIMStinger</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -688,14 +671,13 @@
             <WorkToMake>80000</WorkToMake>
             <MarketValue>650</MarketValue>
             <Mass>5</Mass>
-            <RangedWeapon_Cooldown>9</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
         </statBases>
         <costList>
             <Steel>50</Steel>
             <ComponentIndustrial>20</ComponentIndustrial>
         </costList>
         <equippedAngleOffset>45</equippedAngleOffset>
-        <techLevel>Industrial</techLevel>
         <weaponTags>
             <li>Rimgate_TauriRocketLauncher_tag</li>
             <li>Rimgate_TauriWeapon_tag</li>
@@ -717,8 +699,8 @@
                 <verbClass>Verb_Shoot</verbClass>
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Rimgate_FIMStingerProjectile</defaultProjectile>
-                <forcedMissRadius>3.1</forcedMissRadius>
-                <warmupTime>2</warmupTime>
+                <forcedMissRadius>1.5</forcedMissRadius>
+                <warmupTime>4</warmupTime>
                 <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
                 <range>45.9</range>
                 <soundCast>InfernoCannon_Fire</soundCast>
@@ -743,7 +725,7 @@
         </tools>
         <comps>
             <li Class="CompProperties_Explosive">
-                <explosiveRadius>3.5</explosiveRadius>
+                <explosiveRadius>5.5</explosiveRadius>
                 <explosiveDamageType>Bomb</explosiveDamageType>
                 <requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
             </li>
@@ -764,7 +746,7 @@
         <projectile>
             <damageDef>Bomb</damageDef>
             <!-- Use default damage from explosion def -->
-            <explosionRadius>2.9</explosionRadius>
+            <explosionRadius>5.9</explosionRadius>
             <speed>60</speed>
         </projectile>
     </ThingDef>

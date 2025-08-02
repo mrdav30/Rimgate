@@ -15,9 +15,7 @@
     <GeneDef ParentName="Rimgate_JaffaGenesBase">
         <defName>Rimgate_JaffaLongevity</defName>
         <label>life longevity</label>
-        <description>
-            This gene reduces the aging process and extends life expectancy.
-        </description>
+        <description>This gene reduces the aging process and extends life expectancy.</description>
         <iconPath>UI/Icon/Gene/RGJaffaLongevityGeneIcon</iconPath>
         <displayCategory>Archite</displayCategory>
         <statFactors>
@@ -40,10 +38,7 @@
     <GeneDef ParentName="Rimgate_JaffaGenesBase">
         <defName>Rimgate_JaffaCombatDiscipline</defName>
         <label>combat discipline</label>
-        <description>
-            Carriers of this gene possess instinctive combat training, improving their ability to
-            pilot and hunt while showing little interest in anything else.
-        </description>
+        <description>Carriers of this gene possess instinctive combat training, improving their ability to pilot and hunt while showing little interest in anything else.</description>
         <iconPath>UI/Icon/Gene/RGJaffaDisciplineGeneIcon</iconPath>
         <suppressedTraits>
             <li>
@@ -75,10 +70,7 @@
     <GeneDef ParentName="Rimgate_JaffaGenesBase">
         <defName>Rimgate_JaffaWarrior</defName>
         <label>jaffa warrior</label>
-        <description>
-            This gene grants enhanced combat focus, increasing accuracy, pain resistance, and mental
-            stability, while reducing aiming delay in battle.
-        </description>
+        <description>This gene grants enhanced combat focus, increasing accuracy, pain resistance, and mental stability, while reducing aiming delay in battle.</description>
         <iconPath>UI/Icon/Gene/RGJaffaWarriorGeneIcon</iconPath>
         <biostatMet>-6</biostatMet>
         <displayCategory>Violence</displayCategory>

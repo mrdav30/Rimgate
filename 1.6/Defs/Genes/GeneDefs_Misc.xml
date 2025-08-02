@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<GeneDef>
+		<defName>Rimgate_CellularDegradation</defName>
+		<label>cellular degradation</label>
+		<description>Carriers of this gene are unstable at the cellular level and will age at extremely increased rate.</description>
+		<iconPath>UI/Icon/Gene/RGCellularDegradationIcon</iconPath>
+		<exclusionTags>
+			<li>Aging</li>
+		</exclusionTags>
+		<displayCategory>Healing</displayCategory>
+		<displayOrderInCategory>500</displayOrderInCategory>
+		<biostatCpx>1</biostatCpx>
+		<biostatMet>-1</biostatMet>
+		<customEffectDescriptions>
+			<li>Age will advance 75% faster.</li>
+		</customEffectDescriptions>
+		<biologicalAgeTickFactorFromAgeCurve>
+			<points>
+				<li>(13, 1.75)</li>
+				<li>(18, 1.75)</li>
+			</points>
+		</biologicalAgeTickFactorFromAgeCurve>
+		<selectionWeight>0</selectionWeight>
+		<modExtensions>
+			<li Class="VEF.Genes.GeneExtension">
+                <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+                <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+</Defs>

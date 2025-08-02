@@ -9,7 +9,7 @@
         <verbProperties>
             <verbClass>Verb_CastAbilityTouch</verbClass>
             <drawAimPie>false</drawAimPie>
-            <range>-1</range>
+            <range>1.42</range>
             <warmupTime>0.25</warmupTime>
             <soundCast>Rimgate_WraitDrainLifeCast</soundCast>
             <targetParams>
@@ -44,8 +44,7 @@
     <AbilityDef>
         <defName>Rimgate_WraithCocoonTrapAbility</defName>
         <label>cocoon trap</label>
-        <description>Release a sticky, web-like substance to cocoon victims for future
-            feedings...\nThese webs will stun and burn the target.</description>
+        <description>Release a sticky, web-like substance to cocoon victims for future feedings...\nThese webs will stun and burn the target.</description>
         <iconPath>UI/Icon/Ability/RGWraithCocoonTrapIcon</iconPath>
         <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
         <verbProperties>

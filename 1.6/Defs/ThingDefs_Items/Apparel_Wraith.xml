@@ -55,7 +55,7 @@
 			<EquipDelay>2</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
 			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.67</VacuumResistance>
 		</equippedStatOffsets>
@@ -70,9 +70,9 @@
 			<tags>
 				<li>Rimgate_WraithSoldierApparel_tag</li>
 			</tags>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<thingCategories>
@@ -119,6 +119,10 @@
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.10</MoveSpeed>
+			<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.3</VacuumResistance>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -136,9 +140,9 @@
 			<tags>
 				<li>Rimgate_WraithSoldierApparel_tag</li>
 			</tags>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<recipeMaker>
@@ -183,6 +187,10 @@
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.10</MoveSpeed>
+			<ComfyTemperatureMin>-10</ComfyTemperatureMin>
+			<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+			<PainShockThreshold>0.15</PainShockThreshold>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.3</VacuumResistance>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -200,9 +208,9 @@
 			<tags>
 				<li>Rimgate_WraithCommanderApparel_tag</li>
 			</tags>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<recipeMaker>

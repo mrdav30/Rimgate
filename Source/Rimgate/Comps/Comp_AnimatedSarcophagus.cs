@@ -23,7 +23,7 @@ public class Comp_AnimatedSarcophagus : ThingComp
 
         sarchophagusGlowDrawPos.y = drawAltitude + 0.06f;
 
-        // GetColoredVersion() ensures that the gantry and machine lid get tinted correctly with the material color if the parent MedPod furniture is stuffed
+        // GetColoredVersion() ensures the sarcophagus lid gets tinted correctly with the material color if the parent is stuffed
 
         Graphics.DrawMesh(
             sarchophagusGlowMesh,

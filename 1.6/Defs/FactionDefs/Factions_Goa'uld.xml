@@ -8,7 +8,7 @@
     <settlementGenerationWeight>1</settlementGenerationWeight>
     <canSiege>false</canSiege>
     <canStageAttacks>true</canStageAttacks>
-    <leaderTitle>First Prime</leaderTitle>
+    <leaderTitle>Under Lord</leaderTitle>
     <techLevel>Ultra</techLevel>
     <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
     <xenotypeSet Inherit="False">
@@ -33,11 +33,6 @@
       <li>Rimgate_Jaffari</li>
     </allowedCultures>
     <naturalEnemy>true</naturalEnemy>
-    <permanentEnemyToEveryoneExcept>
-      <li>Rimgate_GoauldApophis</li>
-      <li>Rimgate_GoauldAnubis</li>
-      <li>Rimgate_GoauldRa</li>
-    </permanentEnemyToEveryoneExcept>
     <hostileToFactionlessHumanlikes>true</hostileToFactionlessHumanlikes>
     <settlementNameMaker>NamerSettlementTribal</settlementNameMaker>
     <allowedArrivalTemperatureRange>-50~45</allowedArrivalTemperatureRange>
@@ -74,14 +69,12 @@
   <!-- ============================ Goa'uld Factions ========================== -->
 
   <FactionDef ParentName="Rimgate_GoauldFactionBase">
-    <defName>Rimgate_GoauldApophis</defName>
-    <label>Serpent Jaffas</label>
-    <description>Apophis was once an extremely powerful Goa'uld System Lord. The brother of the
-      Supreme System Lord Ra, Apophis originally commanded a minor fleet, but he grew in strength to
-      command the power of multiple System Lords that had been killed during his reign.</description>
-    <fixedName>System Lord Apophis</fixedName>
+    <defName>Rimgate_GoauldBaal</defName>
+    <label>Supreme System Lord Ba'aal</label>
+    <description>Ba'al was a Goa'uld System Lord who rose from an underlord in the Second Goa'uld Dynasty under Ra to a position of power among the System Lords in his own right. He was believed to have been destroyed...</description>
+    <fixedName>Supreme System Lord Ba'aal</fixedName>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
-    <factionIconPath>UI/Icon/Map/RGApophisBaseIcon</factionIconPath>
+    <factionIconPath>UI/Icon/Map/RGBaalBaseIcon</factionIconPath>
     <pawnGroupMakers>
       <!-- Normal fights, everything mixed in -->
       <li>
@@ -92,89 +85,22 @@
         </disallowedStrategies>
         <options>
           <Rimgate_KullWarrior>1</Rimgate_KullWarrior>
-          <Rimgate_GoauldGrenadierApophis>1.5</Rimgate_GoauldGrenadierApophis>
-          <Rimgate_GoauldMeleeApophis>7</Rimgate_GoauldMeleeApophis>
-          <Rimgate_GoauldRangedApophis>10</Rimgate_GoauldRangedApophis>
-          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
-          <Rimgate_PrimeSerpentGuard>5</Rimgate_PrimeSerpentGuard>
-        </options>
-      </li>
-      <li>
-        <!-- Normal fights, ranged only -->
-        <kindDef>Combat</kindDef>
-        <commonality>80</commonality>
-        <disallowedStrategies>
-          <li>Siege</li>
-        </disallowedStrategies>
-        <options>
-          <Rimgate_KullWarrior>1</Rimgate_KullWarrior>
-          <Rimgate_GoauldGrenadierApophis>1.5</Rimgate_GoauldGrenadierApophis>
-          <Rimgate_GoauldRangedApophis>10</Rimgate_GoauldRangedApophis>
-          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
-          <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
-        </options>
-      </li>
-      <li>
-        <!-- Normal fights, melee only -->
-        <kindDef>Combat</kindDef>
-        <commonality>20</commonality>
-        <disallowedStrategies>
-          <li>Siege</li>
-        </disallowedStrategies>
-        <options>
-          <Rimgate_GoauldMeleeApophis>10</Rimgate_GoauldMeleeApophis>
-        </options>
-      </li>
-      <li>
-        <!-- Normal fights, Kull only. Have fun! -->
-        <kindDef>Combat</kindDef>
-        <commonality>5</commonality>
-        <disallowedStrategies>
-          <li>Siege</li>
-        </disallowedStrategies>
-        <options>
-          <Rimgate_KullWarrior>5</Rimgate_KullWarrior>
-        </options>
-      </li>
-      <li>
-        <kindDef>Settlement</kindDef>
-        <options>
-          <Rimgate_Colonist>5</Rimgate_Colonist>
-          <Rimgate_GoauldSlave>5</Rimgate_GoauldSlave>
-          <Rimgate_GoauldMeleeApophis>7</Rimgate_GoauldMeleeApophis>
-          <Rimgate_GoauldRangedApophis>15</Rimgate_GoauldRangedApophis>
-          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
-          <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
-        </options>
-      </li>
-    </pawnGroupMakers>
-  </FactionDef>
-
-  <FactionDef ParentName="Rimgate_GoauldFactionBase">
-    <defName>Rimgate_GoauldAnubis</defName>
-    <label>Jackal Jaffas</label>
-    <description>Anubis was the most powerful and dangerous Goa'uld in history. Once a powerful
-      System Lord, Anubis was banished by Ra and the others because his actions were deemed
-      unspeakable, even among the Goa'uld. He was believed to have been destroyed, but managed to
-      escape and trick Oma Desala into helping him to ascend.</description>
-    <fixedName>System Lord Anubis</fixedName>
-    <requiredCountAtGameStart>1</requiredCountAtGameStart>
-    <factionIconPath>UI/Icon/Map/RGAnubisBaseIcon</factionIconPath>
-    <pawnGroupMakers>
-      <!-- Normal fights, everything mixed in -->
-      <li>
-        <kindDef>Combat</kindDef>
-        <commonality>100</commonality>
-        <disallowedStrategies>
-          <li>Siege</li>
-        </disallowedStrategies>
-        <options>
-          <Rimgate_KullWarrior>1</Rimgate_KullWarrior>
-          <Rimgate_GoauldGrenadierAnubis>1.5</Rimgate_GoauldGrenadierAnubis>
           <Rimgate_GoauldMeleeAnubis>7</Rimgate_GoauldMeleeAnubis>
+          <Rimgate_GoauldMeleeApophis>7</Rimgate_GoauldMeleeApophis>
+          <Rimgate_GoauldMeleeRa>7</Rimgate_GoauldMeleeRa>
           <Rimgate_GoauldRangedAnubis>10</Rimgate_GoauldRangedAnubis>
-          <Rimgate_JackalGuard>150</Rimgate_JackalGuard>
+          <Rimgate_GoauldRangedApophis>10</Rimgate_GoauldRangedApophis>
+          <Rimgate_GoauldRangedRa>10</Rimgate_GoauldRangedRa>
+          <Rimgate_GoauldGrenadierAnubis>1.5</Rimgate_GoauldGrenadierAnubis>
+          <Rimgate_GoauldGrenadierApophis>1.5</Rimgate_GoauldGrenadierApophis>
+          <Rimgate_GoauldGrenadierRa>1.5</Rimgate_GoauldGrenadierRa>
+          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
+          <Rimgate_JackalGuard>10</Rimgate_JackalGuard>
+          <Rimgate_HorusGuard>10</Rimgate_HorusGuard>
           <Rimgate_PrimeJackalGuard>1</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>1</Rimgate_PrimeHorusGuard>
+          <Rimgate_GoauldLeader>1</Rimgate_GoauldLeader>
         </options>
       </li>
       <li>
@@ -187,9 +113,18 @@
         <options>
           <Rimgate_KullWarrior>1</Rimgate_KullWarrior>
           <Rimgate_GoauldGrenadierAnubis>1.5</Rimgate_GoauldGrenadierAnubis>
+          <Rimgate_GoauldGrenadierApophis>1.5</Rimgate_GoauldGrenadierApophis>
+          <Rimgate_GoauldGrenadierRa>1.5</Rimgate_GoauldGrenadierRa>
           <Rimgate_GoauldRangedAnubis>10</Rimgate_GoauldRangedAnubis>
-          <Rimgate_JackalGuard>150</Rimgate_JackalGuard>
+          <Rimgate_GoauldRangedApophis>10</Rimgate_GoauldRangedApophis>
+          <Rimgate_GoauldRangedRa>10</Rimgate_GoauldRangedRa>
+          <Rimgate_JackalGuard>10</Rimgate_JackalGuard>
+          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
+          <Rimgate_HorusGuard>10</Rimgate_HorusGuard>
           <Rimgate_PrimeJackalGuard>1</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>1</Rimgate_PrimeHorusGuard>
+          <Rimgate_GoauldLeader>1</Rimgate_GoauldLeader>
         </options>
       </li>
       <li>
@@ -201,83 +136,7 @@
         </disallowedStrategies>
         <options>
           <Rimgate_GoauldMeleeAnubis>10</Rimgate_GoauldMeleeAnubis>
-        </options>
-      </li>
-      <li>
-        <!-- Normal fights, Kull only. Have fun! -->
-        <kindDef>Combat</kindDef>
-        <commonality>5</commonality>
-        <disallowedStrategies>
-          <li>Siege</li>
-        </disallowedStrategies>
-        <options>
-          <Rimgate_KullWarrior>5</Rimgate_KullWarrior>
-        </options>
-      </li>
-      <li>
-        <kindDef>Settlement</kindDef>
-        <options>
-          <Rimgate_Colonist>5</Rimgate_Colonist>
-          <Rimgate_GoauldSlave>5</Rimgate_GoauldSlave>
-          <Rimgate_GoauldMeleeAnubis>7</Rimgate_GoauldMeleeAnubis>
-          <Rimgate_GoauldRangedAnubis>15</Rimgate_GoauldRangedAnubis>
-          <Rimgate_JackalGuard>150</Rimgate_JackalGuard>
-          <Rimgate_PrimeJackalGuard>1</Rimgate_PrimeJackalGuard>
-        </options>
-      </li>
-    </pawnGroupMakers>
-  </FactionDef>
-
-  <FactionDef ParentName="Rimgate_GoauldFactionBase">
-    <defName>Rimgate_GoauldRa</defName>
-    <label>Horus Jaffas</label>
-    <description>Ra was the Goa'uld System Lord who personified the Egyptian sun god, and the first
-      to discover the Tau'ri. His mate was Hathor, by whom he had a son, Heru'ur, and his brother
-      was Apophis. His elite Jaffa were the Horus Guards. Because of his power, authority, and
-      cunning, Ra was the most powerful of the System Lords.</description>
-    <fixedName>System Lord Ra</fixedName>
-    <requiredCountAtGameStart>1</requiredCountAtGameStart>
-    <factionIconPath>UI/Icon/Map/RGRaBaseIcon</factionIconPath>
-    <pawnGroupMakers>
-      <!-- Normal fights, everything mixed in -->
-      <li>
-        <kindDef>Combat</kindDef>
-        <commonality>100</commonality>
-        <disallowedStrategies>
-          <li>Siege</li>
-        </disallowedStrategies>
-        <options>
-          <Rimgate_KullWarrior>1</Rimgate_KullWarrior>
-          <Rimgate_GoauldGrenadierRa>1.5</Rimgate_GoauldGrenadierRa>
-          <Rimgate_GoauldMeleeRa>7</Rimgate_GoauldMeleeRa>
-          <Rimgate_GoauldRangedRa>10</Rimgate_GoauldRangedRa>
-          <Rimgate_HorusGuard>150</Rimgate_HorusGuard>
-          <Rimgate_PrimeHorusGuard>1</Rimgate_PrimeHorusGuard>
-        </options>
-      </li>
-      <li>
-        <!-- Normal fights, ranged only -->
-        <kindDef>Combat</kindDef>
-        <commonality>80</commonality>
-        <disallowedStrategies>
-          <li>Siege</li>
-        </disallowedStrategies>
-        <options>
-          <Rimgate_KullWarrior>1</Rimgate_KullWarrior>
-          <Rimgate_GoauldGrenadierRa>1.5</Rimgate_GoauldGrenadierRa>
-          <Rimgate_GoauldRangedRa>10</Rimgate_GoauldRangedRa>
-          <Rimgate_HorusGuard>150</Rimgate_HorusGuard>
-          <Rimgate_PrimeHorusGuard>1</Rimgate_PrimeHorusGuard>
-        </options>
-      </li>
-      <li>
-        <!-- Normal fights, melee only -->
-        <kindDef>Combat</kindDef>
-        <commonality>20</commonality>
-        <disallowedStrategies>
-          <li>Siege</li>
-        </disallowedStrategies>
-        <options>
+          <Rimgate_GoauldMeleeApophis>10</Rimgate_GoauldMeleeApophis>
           <Rimgate_GoauldMeleeRa>10</Rimgate_GoauldMeleeRa>
         </options>
       </li>
@@ -295,14 +154,25 @@
       <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <Rimgate_Colonist>5</Rimgate_Colonist>
+          <Rimgate_GoauldColonist>5</Rimgate_GoauldColonist>
           <Rimgate_GoauldSlave>5</Rimgate_GoauldSlave>
+          <Rimgate_GoauldMeleeAnubis>7</Rimgate_GoauldMeleeAnubis>
+          <Rimgate_GoauldMeleeApophis>7</Rimgate_GoauldMeleeApophis>
           <Rimgate_GoauldMeleeRa>7</Rimgate_GoauldMeleeRa>
+          <Rimgate_GoauldRangedAnubis>15</Rimgate_GoauldRangedAnubis>
+          <Rimgate_GoauldRangedApophis>15</Rimgate_GoauldRangedApophis>
           <Rimgate_GoauldRangedRa>15</Rimgate_GoauldRangedRa>
-          <Rimgate_HorusGuard>150</Rimgate_HorusGuard>
+          <Rimgate_JackalGuard>10</Rimgate_JackalGuard>
+          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
+          <Rimgate_HorusGuard>10</Rimgate_HorusGuard>
+          <Rimgate_PrimeJackalGuard>1</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
           <Rimgate_PrimeHorusGuard>1</Rimgate_PrimeHorusGuard>
+          <Rimgate_GoauldLeader>20</Rimgate_GoauldLeader>
         </options>
       </li>
     </pawnGroupMakers>
   </FactionDef>
+
+
 </Defs>

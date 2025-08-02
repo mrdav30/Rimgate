@@ -83,6 +83,7 @@
     </graphicData>
     <size>(1,1)</size>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <useHitPoints>false</useHitPoints>
     <statBases>
       <WorkToBuild>0</WorkToBuild>
     </statBases>
@@ -94,6 +95,8 @@
     <designationCategory>Misc</designationCategory>
     <passability>Standable</passability>
     <pathCost>50</pathCost>
+    <hasInteractionCell>True</hasInteractionCell>
+    <surfaceType>Item</surfaceType>
     <inspectorTabs>
       <li>ITab_Bills</li>
     </inspectorTabs>
@@ -102,6 +105,7 @@
       <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
       <ai_chillDestination>false</ai_chillDestination>
       <ai_neverTrashThis>true</ai_neverTrashThis>
+      <workTableRoomRole>Kitchen</workTableRoomRole>
     </building>
     <researchPrerequisites>
       <li>Rimgate_MeatCultivation</li>

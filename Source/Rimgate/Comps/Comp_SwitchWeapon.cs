@@ -7,77 +7,88 @@ namespace Rimgate;
 
 public class Comp_SwitchWeapon : ThingComp
 {
-    private CompEquippable compEquippable;
-    public Dictionary<ThingDef, Thing> generatedWeapons;
-    private List<ThingDef> thingDefs;
-    private List<Thing> things;
+    public CompProperties_SwitchWeapon Props => (CompProperties_SwitchWeapon)this.props;
 
-    public CompProperties_SwitchWeapon Props => this.props as CompProperties_SwitchWeapon;
+    public ThingWithComps WeaponDef => this.parent;
 
-    private CompEquippable CompEquippable
-    {
-        get
-        {
-            if (compEquippable == null)
-                compEquippable = parent.GetComp<CompEquippable>();
-            return compEquippable;
-        }
-    }
+    public ThingWithComps CachedSwitchWeapon;
 
+    private Pawn _pawn;
     public Pawn Pawn
     {
         get
         {
-            if (CompEquippable.ParentHolder is not Pawn_EquipmentTracker parentHolder
-                || parentHolder.pawn == null) return null;
+            if (_pawn == null)
+            {
+                var equipable = parent.GetComp<CompEquippable>();
+                if(equipable.ParentHolder is Pawn_EquipmentTracker parentHolder)
+                    _pawn = parentHolder.pawn;
+            }
 
-            return parentHolder.pawn;
+            return _pawn;
         }
     }
 
     public IEnumerable<Gizmo> SwitchWeaponOptions()
     {
-        foreach (ThingDef thingDef in Props.weaponsToSwitch)
+        if (Pawn == null || !Pawn.IsPlayerControlled)
+            yield break;
+
+        ThingDef weaponDef = Props.weaponToSwitch;
+        yield return new Command_Action()
         {
-            ThingDef weaponDef = thingDef;
-            Command_Action commandAction = new Command_Action();
-            commandAction.defaultLabel = weaponDef.LabelCap;
-            commandAction.defaultDesc =  weaponDef.LabelCap;
-            commandAction.activateSound = SoundDefOf.Click;
-            commandAction.icon = weaponDef.uiIcon;
-            commandAction.action = (Action)(() =>
-            {
-                Pawn pawn = Pawn;
-                if (generatedWeapons == null)
-                    generatedWeapons = new Dictionary<ThingDef, Thing>();
-
-                Thing thing;
-                if (!generatedWeapons.TryGetValue(weaponDef, out thing))
-                {
-                    thing = ThingMaker.MakeThing(weaponDef, null);
-                    generatedWeapons[weaponDef] = thing;
-                }
-
-                generatedWeapons[parent.def] = parent;
-                ThingCompUtility.TryGetComp<Comp_SwitchWeapon>(thing).generatedWeapons = generatedWeapons;
-                pawn.equipment.Remove(parent);
-                pawn.equipment.AddEquipment(thing as ThingWithComps);
-            });
-
-            yield return (Gizmo)commandAction;
-        }
+            defaultLabel = "RG_SwitchWeaponCommand_Label".Translate(weaponDef.label),
+            defaultDesc = "RG_SwitchWeaponCommand_Desc".Translate(weaponDef.label),
+            activateSound = SoundDefOf.Click,
+            icon = weaponDef.uiIcon,
+            action = ToggleWeapon
+        };
     }
 
-    public virtual void PostExposeData()
+    public void ToggleWeapon()
     {
-        base.PostExposeData();
-        generatedWeapons?.Remove(parent.def);
-        Scribe_Collections.Look<ThingDef, Thing>(
-            ref generatedWeapons,
-            "generatedWeapons",
-            LookMode.Def,
-            LookMode.Deep,
-            ref thingDefs,
-            ref things);
+        if (this.Pawn == null || this.WeaponDef == null)
+            return;
+
+        GetOrCreateAlternate();
+
+        if (this.CachedSwitchWeapon == null)
+        {
+            if (RimgateMod.debug)
+                Log.Warning($"Rimgate :: unable to get switch weapon for {this.WeaponDef}");
+            return;
+        }
+
+        this.Pawn.equipment.Remove(this.WeaponDef);
+        this.Pawn.equipment.AddEquipment(this.CachedSwitchWeapon);
+    }
+
+    public ThingWithComps GetOrCreateAlternate()
+    {
+        // Make other version if needed
+        if (CachedSwitchWeapon == null)
+        {
+            if (RimgateMod.debug)
+                Log.Message($"Rimgate :: creating new switch weapon {Props.weaponToSwitch} for {WeaponDef}");
+
+            CachedSwitchWeapon = (ThingWithComps)ThingMaker.MakeThing(Props.weaponToSwitch, null);
+            if (CachedSwitchWeapon == null) return null;
+
+            CachedSwitchWeapon.compQuality = WeaponDef.compQuality;
+
+            // Copy material if stuffable
+            if (WeaponDef?.def.MadeFromStuff == true
+                && WeaponDef.Stuff != null
+                && CachedSwitchWeapon.def.MadeFromStuff)
+            {
+                CachedSwitchWeapon.SetStuffDirect(WeaponDef.Stuff);
+            }
+
+            Comp_SwitchWeapon comp = ThingCompUtility.TryGetComp<Comp_SwitchWeapon>(CachedSwitchWeapon);
+            if (comp != null)
+                comp.CachedSwitchWeapon ??= WeaponDef;
+        }
+
+        return CachedSwitchWeapon;
     }
 }

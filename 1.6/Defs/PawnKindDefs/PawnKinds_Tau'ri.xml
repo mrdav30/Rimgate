@@ -117,6 +117,7 @@
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriPistol_tag</li>
             <li>Rimgate_TauriShotgun_tag</li>
+            <li>Rimgate_TauriRocketLauncher_tag</li>
         </weaponTags>
         <apparelRequired>
             <li>Rimgate_TauriBallisticHelmet</li>

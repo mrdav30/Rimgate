@@ -1,52 +1,34 @@
 ﻿using HarmonyLib;
-using RimWorld;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
-using static UnityEngine.Networking.UnityWebRequest;
 
 namespace Rimgate.HarmonyPatches;
 
-// Disallow Drafting Sarcophagus Patients
 [HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]
 public static class Harmony_Pawn_GetGizmos
 {
-    static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)
+    public static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> gizmos, Pawn __instance)
     {
-        if (__instance == null 
-            || __instance.IsColonistPlayerControlled
-            || __instance.CurrentBed() is not Building_Bed_Sarcophagus)
-            return;
-
-        __result = PatchGetGizmos(__instance, __result);
-    }
-
-    static IEnumerable<Gizmo> PatchGetGizmos(Pawn pawn, IEnumerable<Gizmo> result)
-    {
-        foreach (var gizmo in result)
-        {
-            if (gizmo is Command_Toggle toggleCommand)
-            {
-                if (toggleCommand.defaultDesc == "CommandToggleDraftDesc".Translate())
-                {
-                    toggleCommand.Disable("RG_Sarcophagus_CommandGizmoDisabled_PatientReceivingTreatment".Translate(pawn.LabelShort, pawn.CurrentBed()));
-
-                    yield return toggleCommand;
-                    continue;
-                }
-            }
-
+        foreach (Gizmo gizmo in gizmos)
             yield return gizmo;
-        }
 
-        Pawn_EquipmentTracker equipment = pawn.equipment;
+        if (!__instance.IsColonistPlayerControlled)
+            yield break;
 
+        Pawn_EquipmentTracker equipment = __instance.equipment;
         Comp_SwitchWeapon comp = equipment != null
             ? ThingCompUtility.TryGetComp<Comp_SwitchWeapon>(equipment.Primary)
             : null;
         if (comp == null)
             yield break;
 
-        foreach (var gizmo in comp.SwitchWeaponOptions())
+        foreach (Gizmo gizmo in comp.SwitchWeaponOptions())
             yield return gizmo;
     }
 }
+

@@ -4,7 +4,7 @@
   <BodyPartDef>
     <defName>Rimgate_ReplicatorBase</defName>
     <label>thorax</label>
-    <hitPoints>40</hitPoints>
+    <hitPoints>60</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
     <skinCovered>false</skinCovered>
     <solid>true</solid>
@@ -65,7 +65,7 @@
   <BodyPartDef>
     <defName>Rimgate_ReplicatorLeg</defName>
     <label>leg</label>
-    <hitPoints>12</hitPoints>
+    <hitPoints>25</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
     <skinCovered>false</skinCovered>
     <solid>true</solid>

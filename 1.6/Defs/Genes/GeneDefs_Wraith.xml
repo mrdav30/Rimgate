@@ -77,7 +77,7 @@
     <defName>Rimgate_WraithPsychic</defName>
     <label>wraith psionics</label>
     <description>This gene enhances latent psychic sensitivity.</description>
-    <iconPath>UI/Icon/Gene/RGWraithPsychicGene</iconPath>
+    <iconPath>UI/Icon/Gene/RGWraithPsychicGeneIcon</iconPath>
     <displayCategory>Psychic</displayCategory>
     <statOffsets>
       <PsychicSensitivity>0.25</PsychicSensitivity>
@@ -133,11 +133,7 @@
   <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithAgeless</defName>
     <label>ageless</label>
-    <description>
-      This gene eliminates the aging process and extends life expectancy indefinitely. Starting at
-      the age of 13, carriers begin to biologically age slower. By 18, the aging process stops
-      completely.
-    </description>
+    <description> This gene eliminates the aging process and extends life expectancy indefinitely. Starting at the age of 13, carriers begin to biologically age slower. By 18, the aging process stops completely.</description>
     <iconPath>UI/Icon/Gene/RGWraithAgelessGeneIcon</iconPath>
     <displayCategory>Archite</displayCategory>
     <biologicalAgeTickFactorFromAgeCurve>
@@ -157,8 +153,7 @@
   <GeneDef>
     <defName>Rimgate_WraithLifeDrain</defName>
     <label>life drain</label>
-    <description>This gene allows the host to drain the life energy from other pawns, restoring
-      their own vitality.</description>
+    <description>This gene allows the host to drain the life energy from other pawns, restoring their own vitality.</description>
     <displayCategory>Ability</displayCategory>
     <iconPath>UI/Icon/Gene/RGWraithLifeDrainGeneIcon</iconPath>
     <abilities>
@@ -181,11 +176,7 @@
   <GeneDef>
     <defName>Rimgate_WraithCocoonTrap</defName>
     <label>cocoon trap</label>
-    <description>
-      This gene allows the host to release a sticky, web-like substance that encases their victims,
-      effectively putting them in a state of stasis, rendering them mostly immobile but still
-      alive.\n\nAlso very useful for wrapping up meat for later use.
-    </description>
+    <description>This gene allows the host to release a sticky, web-like substance that encases their victims, effectively putting them in a state of stasis, rendering them mostly immobile but still alive.\n\nAlso very useful for wrapping up meat for later use.</description>
     <displayCategory>Ability</displayCategory>
     <iconPath>UI/Icon/Gene/RGWraithCocoonTrapGeneIcon</iconPath>
     <abilities>

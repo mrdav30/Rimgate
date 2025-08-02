@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+
+  <FactionDef ParentName="PlayerFactionBase">
+    <defName>Rimgate_WraithPlayerColony</defName>
+    <label>Wraith Colony Co-Op</label>
+    <description>A community of cooperative Wraith.</description>
+    <isPlayer>true</isPlayer>
+    <basicMemberKind>Rimgate_WraithPlayer</basicMemberKind>
+    <pawnSingular>co-op jaffa</pawnSingular>
+    <pawnsPlural>co-op jaffas</pawnsPlural>
+    <techLevel>Ultra</techLevel>
+    <factionNameMaker>NamerFactionTribal</factionNameMaker>
+    <settlementNameMaker>NamerSettlementTribal</settlementNameMaker>
+    <allowedCultures>
+      <li>Rimgate_WraithCulture</li>
+    </allowedCultures>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>Military</li>
+          <li>Spacer</li>
+          <li>Offworld</li>
+          <li>Rimgate_WraithChildBackStory</li>
+          <li>Rimgate_WraithWarriorBackStory</li>
+        </categories>
+      </li>
+    </backstoryFilters>
+    <factionIconPath>World/WorldObjects/Expanding/Town</factionIconPath>
+    <startingResearchTags>
+      <li>TribalStart</li>
+      <li>ClassicStart</li>
+    </startingResearchTags>
+    <startingTechprintsResearchTags>
+      <li>TribalStart</li>
+      <li>ClassicStart</li>
+      <li>TribalStartTechprints</li>
+      <li>ClassicStartTechprints</li>
+    </startingTechprintsResearchTags>
+  </FactionDef>
+
+</Defs>
