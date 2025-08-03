@@ -606,7 +606,7 @@ public class Comp_Stargate : ThingComp
         Find.World.GetComponent<WorldComp_StargateAddresses>().RemoveAddress(gateAddress);
     }
 
-    public override void PostDeSpawn(Map previousMap, DestroyMode mode)
+    public override void PostDeSpawn(Map previousMap, DestroyMode mode = DestroyMode.Vanish)
     {
         base.PostDeSpawn(previousMap);
         CleanupGate();

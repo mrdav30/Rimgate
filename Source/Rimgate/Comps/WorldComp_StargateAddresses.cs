@@ -10,7 +10,7 @@ namespace Rimgate;
 
 public class WorldComp_StargateAddresses : WorldComponent
 {
-    public List<int> addressList = new List<int>();
+    public List<PlanetTile> addressList = new List<PlanetTile>();
 
     public WorldComp_StargateAddresses(World world) : base(world) { }
 
@@ -19,7 +19,7 @@ public class WorldComp_StargateAddresses : WorldComponent
         addressList.Remove(address);
     }
 
-    public void AddAddress(int address)
+    public void AddAddress(PlanetTile address)
     {
         if (!addressList.Contains(address))
             addressList.Add(address);
@@ -27,7 +27,7 @@ public class WorldComp_StargateAddresses : WorldComponent
 
     public void CleanupAddresses()
     {
-        foreach (int i in new List<int>(this.addressList))
+        foreach (var i in new List<PlanetTile>(this.addressList))
         {
             MapParent sgMap = Find.WorldObjects.MapParentAt(i);
             Site site = sgMap as Site;

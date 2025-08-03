@@ -36,6 +36,7 @@
       <Flammability>0.0</Flammability>
       <MeditationFocusStrength>0.25</MeditationFocusStrength>
       <Beauty>4</Beauty>
+      <Cleanliness>0.2</Cleanliness>
     </statBases>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <altitudeLayer>Building</altitudeLayer>
@@ -121,6 +122,7 @@
       <Flammability>0.0</Flammability>
       <MeditationFocusStrength>0.25</MeditationFocusStrength>
       <Beauty>4</Beauty>
+      <Cleanliness>0.2</Cleanliness>
     </statBases>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <altitudeLayer>Building</altitudeLayer>

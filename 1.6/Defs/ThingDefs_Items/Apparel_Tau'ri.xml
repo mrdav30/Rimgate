@@ -83,7 +83,6 @@
                 <Crafting>5</Crafting>
             </skillRequirements>
         </recipeMaker>
-        <uiIconScale>1.4</uiIconScale>
         <statBases>
             <WorkToMake>8000</WorkToMake>
             <MaxHitPoints>120</MaxHitPoints>

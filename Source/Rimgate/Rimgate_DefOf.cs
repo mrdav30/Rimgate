@@ -28,6 +28,8 @@ public static class Rimgate_DefOf
 
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
 
+    public static QuestScriptDef Rimgate_StargateSiteScript;
+
     public static SoundDef Rimgate_GoauldGuardHelmToggle;
     public static SoundDef Rimgate_IrisOpen;
     public static SoundDef Rimgate_IrisClose;

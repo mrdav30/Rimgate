@@ -31,8 +31,8 @@
 				<verbClass>Verb_LaunchProjectile</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<range>15.9</range>
-				<forcedMissRadius>1.9</forcedMissRadius>
-				<warmupTime>1.5</warmupTime>
+				<forcedMissRadius>1.5</forcedMissRadius>
+				<warmupTime>1.25</warmupTime>
 				<noiseRadius>4</noiseRadius>
 				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 				<soundCast>ThrowGrenade</soundCast>
@@ -85,20 +85,18 @@
 		<tickerType>Normal</tickerType>
 		<useHitPoints>False</useHitPoints>
 		<neverMultiSelect>True</neverMultiSelect>
-		<projectile>
-			<speed>12</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
 		<graphicData>
 			<texPath>Things/Projectile/RGWraithGrenadeProjectile</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>Transparent</shaderType>
 		</graphicData>
 		<projectile>
+			<speed>12</speed>
+			<arcHeightFactor>2</arcHeightFactor>
+			<shadowSize>0.4</shadowSize>
 			<explosionRadius>1.9</explosionRadius>
 			<damageDef>Bomb</damageDef>
-			<!-- Use default damage from explosion def -->
-			<explosionDelay>100</explosionDelay>
+			<explosionDelay>90</explosionDelay>
 		</projectile>
 	</ThingDef>
 
@@ -155,7 +153,7 @@
 			<AccuracyShort>0.71</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
 			<AccuracyLong>0.32</AccuracyLong>
-			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<Steel>100</Steel>
@@ -169,7 +167,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_WraithSpearGunProjectile</defaultProjectile>
 				<warmupTime>0.9</warmupTime>
-				<range>22.9</range>
+				<range>25.9</range>
 				<minRange>0.5</minRange>
 				<burstShotCount>1</burstShotCount>
 				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
@@ -217,10 +215,10 @@
 		<projectile>
 			<flyOverhead>false</flyOverhead>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>10</damageAmountBase>
-			<stoppingPower>1</stoppingPower>
+			<damageAmountBase>5</damageAmountBase>
+			<stoppingPower>1.5</stoppingPower>
 			<armorPenetrationBase>0.65</armorPenetrationBase>
-			<speed>55</speed>
+			<speed>70</speed>
 		</projectile>
 		<comps>
 			<li Class="Rimgate.CompProperties_AdditionalDamage">

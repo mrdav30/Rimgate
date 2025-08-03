@@ -8,15 +8,16 @@
     <label>Goa'uld Tel'tak</label>
     <description>A small Goa'uld transport ship capable of rapid atmospheric entry and launch.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
-    <size>(7,8)</size>
+    <size>(6,7)</size>
     <graphicData>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(12,9)</drawSize>
+      <drawSize>(8,8)</drawSize>
       <shadowData>
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
     </graphicData>
+    <defaultPlacingRot>East</defaultPlacingRot>
     <pathCost>50</pathCost>
     <drawOffscreen>true</drawOffscreen>
     <passability>PassThroughOnly</passability>
@@ -87,13 +88,13 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(12,9)</drawSize>
+      <drawSize>(8,8)</drawSize>
     </graphicData>
     <skyfaller>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>
-      <shadowSize>(12.5,9.5)</shadowSize>
+      <shadowSize>(8.5,8.5)</shadowSize>
       <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
       <rotationCurve>
         <points>
@@ -127,7 +128,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(12,9)</drawSize>
+      <drawSize>(8,8)</drawSize>
     </graphicData>
     <skyfaller>
       <reversed>true</reversed>
@@ -136,7 +137,7 @@
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>
       <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
-      <shadowSize>(12.5,9.5)</shadowSize>
+      <shadowSize>(8.5,8.5)</shadowSize>
       <motesPerCell>1</motesPerCell>
       <rotationCurve>
         <points>
@@ -176,6 +177,7 @@
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
     </graphicData>
+    <defaultPlacingRot>East</defaultPlacingRot>
     <pathCost>50</pathCost>
     <drawOffscreen>true</drawOffscreen>
     <passability>PassThroughOnly</passability>
@@ -325,15 +327,16 @@
     <label>Tau'ri Puddle Jumper</label>
     <description>A Tau'ri Puddle spacecraft equipped with a defense shield.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
-    <size>(4,7)</size>
+    <size>(3,6)</size>
     <graphicData>
       <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(6,8)</drawSize>
+      <drawSize>(5,8)</drawSize>
       <shadowData>
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
     </graphicData>
+    <defaultPlacingRot>East</defaultPlacingRot>
     <tickerType>Normal</tickerType>
     <fillPercent>0.4</fillPercent>
     <pathCost>50</pathCost>
@@ -430,13 +433,13 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(6,8)</drawSize>
+      <drawSize>(5,8)</drawSize>
     </graphicData>
     <skyfaller>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>
-      <shadowSize>(6.5,8.5)</shadowSize>
+      <shadowSize>(5.5,8.5)</shadowSize>
       <shadow>Things/Ship/PuddleJumper/RGTauriPuddleJumperShadow</shadow>
       <rotationCurve>
         <points>
@@ -470,7 +473,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(6,8)</drawSize>
+      <drawSize>(5,8)</drawSize>
     </graphicData>
     <skyfaller>
       <reversed>true</reversed>
@@ -479,7 +482,7 @@
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>
       <shadow>Things/Ship/PuddleJumper/RGTauriPuddleJumperShadow</shadow>
-      <shadowSize>(6.5,8.5)</shadowSize>
+      <shadowSize>(5.5,8.5)</shadowSize>
       <motesPerCell>1</motesPerCell>
       <rotationCurve>
         <points>

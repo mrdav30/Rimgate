@@ -325,6 +325,7 @@
         <Rimgate_KullWarrior>999</Rimgate_KullWarrior>
       </xenotypeChances>
     </xenotypeSet>
+    <useFactionXenotypes>false</useFactionXenotypes>
     <techHediffsTags Inherit="false">
       <li>Advanced</li>
       <li>ImplantEmpireCommon</li>

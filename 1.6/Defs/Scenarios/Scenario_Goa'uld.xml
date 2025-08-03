@@ -4,7 +4,7 @@
 	<ScenarioDef>
 		<defName>Rimgate_GoauldScenario</defName>
 		<label>Free Jaffa Nation</label>
-		<description>A group of five Jaffa have decided to rebel against the Supreme System Lord Ba'al and start a new colony against tyranny. It is time to spread the rebellion...</description>
+		<description>A group of Jaffa have decided to rebel against the Supreme System Lord Ba'al and start a new colony against tyranny. It is time to spread the rebellion...</description>
 		<scenario>
 			<summary>A group of rebellious Jaffa.</summary>
 			<playerFaction>
@@ -27,7 +27,7 @@
 				<!-- Config pages -->
 				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes">
 					<def>ConfigurePawnsXenotypes</def>
-					<pawnChoiceCount>10</pawnChoiceCount>
+					<pawnChoiceCount>8</pawnChoiceCount>
 					<overrideKinds>
 						<li>
 							<xenotype>Rimgate_GoauldJaffa</xenotype>
@@ -37,10 +37,16 @@
 					<xenotypeCounts>
 						<li>
 							<xenotype>Rimgate_GoauldJaffa</xenotype>
-							<count>6</count>
+							<count>3</count>
 							<description>non-baby jaffa</description>
 							<requiredAtStart>true</requiredAtStart>
 							<allowedDevelopmentalStages>Adult</allowedDevelopmentalStages>
+						</li>
+						<li>
+							<xenotype>Baseliner</xenotype>
+							<count>2</count>
+							<description>non-baby human</description>
+							<allowedDevelopmentalStages>Adult, Child</allowedDevelopmentalStages>
 						</li>
 					</xenotypeCounts>
 				</li>

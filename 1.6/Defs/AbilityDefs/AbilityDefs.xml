@@ -9,7 +9,7 @@
         <verbProperties>
             <verbClass>Verb_CastAbilityTouch</verbClass>
             <drawAimPie>false</drawAimPie>
-            <range>1.42</range>
+            <range>-1</range>
             <warmupTime>0.25</warmupTime>
             <soundCast>Rimgate_WraitDrainLifeCast</soundCast>
             <targetParams>
@@ -59,7 +59,7 @@
                 <canTargetBuildings>false</canTargetBuildings>
             </targetParams>
         </verbProperties>
-        <cooldownTicksRange>240</cooldownTicksRange>
+        <cooldownTicksRange>180</cooldownTicksRange>
         <aiCanUse>true</aiCanUse>
         <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
         <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
@@ -84,7 +84,7 @@
         <projectile>
             <flyOverhead>false</flyOverhead>
             <damageDef>Stun</damageDef>
-            <damageAmountBase>3</damageAmountBase>
+            <damageAmountBase>5</damageAmountBase>
             <speed>15</speed>
         </projectile>
         <comps>
