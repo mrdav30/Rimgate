@@ -11,20 +11,21 @@ namespace Rimgate;
 
 public class Comp_DialHomeDevice : ThingComp
 {
-    CompFacility compFacility;
-    public int lastDialledAddress;
+    public PlanetTile LastDialledAddress;
 
-    public CompProperties_DialHomeDevice Props => (CompProperties_DialHomeDevice)this.props;
+    public CompProperties_DialHomeDevice Props => (CompProperties_DialHomeDevice)props;
+
+    private CompFacility _compFacility;
 
     public Comp_Stargate GetLinkedStargate()
     {
         if (Props.selfDialler)
-            return this.parent.TryGetComp<Comp_Stargate>();
+            return parent.TryGetComp<Comp_Stargate>();
 
-        if (compFacility.LinkedBuildings.Count == 0)
+        if (_compFacility.LinkedBuildings.Count == 0)
             return null;
 
-        return compFacility.LinkedBuildings[0].TryGetComp<Comp_Stargate>();
+        return _compFacility.LinkedBuildings[0].TryGetComp<Comp_Stargate>();
     }
 
     public static Thing GetDHDOnMap(Map map)
@@ -50,7 +51,7 @@ public class Comp_DialHomeDevice : ThingComp
             if (Props.selfDialler)
                 return true;
 
-            if (compFacility.LinkedBuildings.Count == 0)
+            if (_compFacility.LinkedBuildings.Count == 0)
                 return false;
 
             return true;
@@ -60,7 +61,7 @@ public class Comp_DialHomeDevice : ThingComp
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
         base.PostSpawnSetup(respawningAfterLoad);
-        this.compFacility = this.parent.GetComp<CompFacility>();
+        _compFacility = parent.GetComp<CompFacility>();
     }
 
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
@@ -69,7 +70,7 @@ public class Comp_DialHomeDevice : ThingComp
             yield break;
 
         bool canReach = selPawn.CanReach(
-            this.parent.InteractionCell,
+            parent.InteractionCell,
             PathEndMode.Touch,
             Danger.Deadly,
             false,
@@ -80,7 +81,7 @@ public class Comp_DialHomeDevice : ThingComp
 
         if (Props.requiresPower)
         {
-            CompPowerTrader compPowerTrader = this.parent.TryGetComp<CompPowerTrader>();
+            CompPowerTrader compPowerTrader = parent.TryGetComp<CompPowerTrader>();
             if (compPowerTrader != null && !compPowerTrader.PowerOn)
             {
                 yield return new FloatMenuOption("Rimgate_CannotDialNoPower".Translate(), null);
@@ -92,7 +93,7 @@ public class Comp_DialHomeDevice : ThingComp
         if (stargate == null)
             yield break;
 
-        if (stargate.stargateIsActive)
+        if (stargate.StargateIsActive)
         {
             yield return new FloatMenuOption(
                 "Rimgate_CannotDialGateIsActive".Translate(),
@@ -103,31 +104,31 @@ public class Comp_DialHomeDevice : ThingComp
 
         WorldComp_StargateAddresses addressComp = Find.World.GetComponent<WorldComp_StargateAddresses>();
         addressComp.CleanupAddresses();
-        if (addressComp.addressList.Count < 2)
+        if (addressComp.AddressList.Count < 2)
         {
             yield return new FloatMenuOption("Rimgate_CannotDialNoDestinations".Translate(), null);
             yield break;
         }
 
-        if (stargate.ticksUntilOpen > -1)
+        if (stargate.TicksUntilOpen > -1)
         {
             yield return new FloatMenuOption("Rimgate_CannotDialIncoming".Translate(), null);
             yield break;
         }
 
-        foreach (int i in addressComp.addressList)
+        foreach (int i in addressComp.AddressList)
         {
-            if (i != stargate.gateAddress)
+            if (i != stargate.GateAddress)
             {
                 MapParent sgMap = Find.WorldObjects.MapParentAt(i);
                 yield return new FloatMenuOption(
                     "DialGate".Translate(Comp_Stargate.GetStargateDesignation(i), sgMap.Label),
                     () =>
                         {
-                            lastDialledAddress = i;
+                            LastDialledAddress = i;
                             Job job = JobMaker.MakeJob(
                                 DefDatabase<JobDef>.GetNamed("Rimgate_DialStargate"),
-                                this.parent);
+                                parent);
                             selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                         });
             }
@@ -139,7 +140,7 @@ public class Comp_DialHomeDevice : ThingComp
         foreach (Gizmo gizmo in base.CompGetGizmosExtra())
             yield return gizmo;
 
-        Comp_Stargate stargate = this.GetLinkedStargate();
+        Comp_Stargate stargate = GetLinkedStargate();
         if (stargate == null)
             yield break;
 
@@ -153,9 +154,9 @@ public class Comp_DialHomeDevice : ThingComp
         {
             stargate.CloseStargate(true);
         };
-        if (!stargate.stargateIsActive) 
+        if (!stargate.StargateIsActive) 
             command.Disable("Rimgate_GateIsNotActive".Translate());
-        else if (stargate.isRecievingGate)
+        else if (stargate.IsRecievingGate)
             command.Disable("Rimgate_CannotCloseIncoming".Translate());
 
         yield return command;

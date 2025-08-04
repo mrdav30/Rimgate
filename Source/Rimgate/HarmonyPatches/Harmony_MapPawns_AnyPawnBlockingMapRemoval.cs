@@ -22,7 +22,7 @@ public class Harmony_MapPawns_AnyPawnBlockingMapRemoval
         if (sgComp == null)
             return;
 
-        if (sgComp.stargateIsActive)
+        if (sgComp.StargateIsActive)
             __result = true;
     }
 }

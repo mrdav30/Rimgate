@@ -46,6 +46,10 @@ public class PlaceWorker_Stargate : PlaceWorker
         if (Comp_Stargate.GetStargateOnMap(map, thing) != null)
             return new AcceptanceReport("Rimgate_OnlyOneSGPerMap".Translate());
 
+        /*Pocket Maps do not have an associated PlanetTile, so no gate address, so stargates cannot work on them*/
+        if (map.IsPocketMap) 
+            return new AcceptanceReport("PocketMapNo".Translate());
+
         return true;
     }
 }

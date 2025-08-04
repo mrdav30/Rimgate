@@ -14,6 +14,6 @@ public class Dialog_RenameStargateSite : Dialog_Rename<WorldObject_PermanentStar
 
     public Dialog_RenameStargateSite(WorldObject_PermanentStargateSite sgSite) : base(sgSite)
     {
-        this.sgSite = sgSite;
+        sgSite = sgSite;
     }
 }

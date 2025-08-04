@@ -10,7 +10,7 @@ namespace Rimgate;
 
 public class CompTargetable_Stargate : CompTargetable
 {
-    protected override bool PlayerChoosesTarget { get { return true; } }
+    protected override bool PlayerChoosesTarget => true;
 
     protected override TargetingParameters GetTargetingParameters()
     {
@@ -22,7 +22,7 @@ public class CompTargetable_Stargate : CompTargetable
                 bool canTarget = x.Thing != null 
                     && sgComp != null 
                     && sgComp.Props.canHaveIris 
-                    && !sgComp.hasIris;
+                    && !sgComp.HasIris;
  
                 return canTarget;
             }

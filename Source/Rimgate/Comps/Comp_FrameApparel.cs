@@ -10,7 +10,7 @@ namespace Rimgate;
 
 public class Comp_FrameApparel : ThingComp
 {
-    public CompProperties_FrameApparel Props => (CompProperties_FrameApparel)this.props;
+    public CompProperties_FrameApparel Props => (CompProperties_FrameApparel)props;
 
     public override void Notify_Unequipped(Pawn pawn)
     {

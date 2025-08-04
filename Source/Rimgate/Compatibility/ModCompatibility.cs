@@ -39,7 +39,7 @@ public class ModCompatibility
             if (RimgateMod.debug)
                 Log.Message("Rimgate :: Dubs Bad Hygiene detected!");
 
-            // Conditionally patch WorkGiver_washPatient to ignore MedPods
+            // Conditionally patch WorkGiver_washPatient to ignore Sarcophaguss
             var workGiver_washPatientType = AccessTools.TypeByName("WorkGiver_washPatient");
             MethodInfo original = AccessTools.Method(workGiver_washPatientType, "ShouldBeWashedBySomeone");
             HarmonyMethod postfix = new HarmonyMethod(

@@ -75,13 +75,13 @@ public class CompProperties_ShieldEmitter : CompProperties
     public virtual void ResolveReferences(ThingDef parentDef)
     {
         base.ResolveReferences(parentDef);
-        this.startupSound ??= SoundDefOf.Power_OnSmall;
-        this.shutdownSound ??= SoundDefOf.Power_OffSmall;
-        this.impactSound ??= SoundDefOf.EnergyShield_AbsorbDamage;
-        this.breakSound ??= SoundDefOf.EnergyShield_Reset;
-        this.reactivateEffect ??= EffecterDefOf.ActivatorProximityTriggered;
-        this.overloadDamageType ??= DamageDefOf.EMP;
+        startupSound ??= SoundDefOf.Power_OnSmall;
+        shutdownSound ??= SoundDefOf.Power_OffSmall;
+        impactSound ??= SoundDefOf.EnergyShield_AbsorbDamage;
+        breakSound ??= SoundDefOf.EnergyShield_Reset;
+        reactivateEffect ??= EffecterDefOf.ActivatorProximityTriggered;
+        overloadDamageType ??= DamageDefOf.EMP;
     }
 
-    public CompProperties_ShieldEmitter() => this.compClass = typeof(Comp_ShieldEmitter);
+    public CompProperties_ShieldEmitter() => compClass = typeof(Comp_ShieldEmitter);
 }

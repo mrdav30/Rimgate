@@ -22,7 +22,7 @@ public static class SarcophagusHealthAIUtility
         // Is downed and not meant to be always downed (e.g. babies)
         bool isDowned = (patient.Downed && !LifeStageUtility.AlwaysDowned(patient));
 
-        // Has (visible) hediffs requiring tending (excluding those blacklisted or greylisted from MedPod treatment)
+        // Has (visible) hediffs requiring tending (excluding those blacklisted or greylisted from Sarcophagus treatment)
         bool hasTendableHediffs = patientHediffs.Any(x =>
             x.Visible
             && x.TendableNow()
@@ -35,7 +35,7 @@ public static class SarcophagusHealthAIUtility
         // Has immunizable but not yet immune hediffs
         bool hasImmunizableNotImmuneHediffs = patient.health.hediffSet.HasImmunizableNotImmuneHediff();
 
-        // Has (visible) hediffs causing sick thoughts (excluding those blacklisted or greylisted from MedPod treatment)
+        // Has (visible) hediffs causing sick thoughts (excluding those blacklisted or greylisted from Sarcophagus treatment)
         bool hasSickThoughtHediffs = patientHediffs.Any(x =>
             x.def.makesSickThought
             && x.Visible
@@ -48,18 +48,18 @@ public static class SarcophagusHealthAIUtility
             .ToList()
             .NullOrEmpty() && !neverTreatableHediffs.Contains(HediffDefOf.MissingBodyPart);
 
-        // Has permanent injuries (excluding those blacklisted from MedPod treatment)
+        // Has permanent injuries (excluding those blacklisted from Sarcophagus treatment)
         bool hasPermanentInjuries = patientHediffs.Any(x =>
             x.IsPermanent()
             && !neverTreatableHediffs.Contains(x.def));
 
-        // Has chronic diseases (excluding those blacklisted or greylisted from MedPod treatment)
+        // Has chronic diseases (excluding those blacklisted or greylisted from Sarcophagus treatment)
         bool hasChronicDiseases = patientHediffs.Any(x =>
             x.def.chronic
             && !neverTreatableHediffs.Contains(x.def)
             && !nonCriticalTreatableHediffs.Contains(x.def));
 
-        // Has addictions (excluding those blacklisted or greylisted from MedPod treatment)
+        // Has addictions (excluding those blacklisted or greylisted from Sarcophagus treatment)
         bool hasAddictions = patientHediffs.Any(x =>
             x.def.IsAddiction
             && !neverTreatableHediffs.Contains(x.def)
@@ -69,15 +69,15 @@ public static class SarcophagusHealthAIUtility
         if (patient.needs.TryGetNeed(Rimgate_DefOf.Rimgate_SarcophagusChemicalNeed, out var need)
             && need.CurLevel <= 0.5) hasSarcophagusNeed = true;
 
-        // Has hediffs that are always treatable by MedPods
+        // Has hediffs that are always treatable by Sarcophaguss
         bool hasAlwaysTreatableHediffs = patientHediffs.Any(x =>
             alwaysTreatableHediffs.Contains(x.def));
 
-        // Is already using a MedPod and has any greylisted hediffs
+        // Is already using a Sarcophagus and has any greylisted hediffs
         bool hasGreylistedHediffsDuringTreatment = patient.CurrentBed() == bedSarcophagus
             && patientHediffs.Any(x => nonCriticalTreatableHediffs.Contains(x.def));
 
-        // Does not have hediffs or traits that block the pawn from using MedPods
+        // Does not have hediffs or traits that block the pawn from using Sarcophaguss
         bool hasNoBlockingHediffsOrTraits = !HasUsageBlockingHediffs(patient, usageBlockingHediffs)
             && !HasUsageBlockingTraits(patient, usageBlockingTraits);
 

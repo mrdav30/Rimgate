@@ -8,12 +8,12 @@ namespace Rimgate;
 
 public class Projectile_AdditionalDamage : Bullet
 {
-    Comp_AdditionalDamage settings;
+    private Comp_AdditionalDamage _settings;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
-        settings = GetComp<Comp_AdditionalDamage>();
+        _settings = GetComp<Comp_AdditionalDamage>();
     }
 
     protected override void Impact(Thing hitThing, bool blockedByShield = false)
@@ -21,21 +21,21 @@ public class Projectile_AdditionalDamage : Bullet
         Map map = base.Map;
         base.Impact(hitThing);
         BattleLogEntry_RangedImpact battleLogEntry_RangedImpact = new BattleLogEntry_RangedImpact(
-            this.launcher,
+            launcher,
             hitThing,
-            this.intendedTarget.Thing,
+            intendedTarget.Thing,
             Rimgate_DefOf.Gun_Autopistol,
-            this.def,
-            this.targetCoverDef);
+            def,
+            targetCoverDef);
         Find.BattleLog.Add(battleLogEntry_RangedImpact);
         if (hitThing != null)
         {
-            DamageDef damageDef = this.def.projectile.damageDef;
+            DamageDef damageDef = def.projectile.damageDef;
             float amount = (float)base.DamageAmount;
             float armorPenetration = base.ArmorPenetration;
-            float y = this.ExactRotation.eulerAngles.y;
-            Thing launcher = this.launcher;
-            ThingDef equipmentDef = this.equipmentDef;
+            float y = ExactRotation.eulerAngles.y;
+            Thing launcher = base.launcher;
+            ThingDef equipmentDef = base.equipmentDef;
             DamageInfo dinfo = new DamageInfo(
                 damageDef,
                 amount,
@@ -45,21 +45,21 @@ public class Projectile_AdditionalDamage : Bullet
                 null,
                 null,
                 DamageInfo.SourceCategory.ThingOrUnknown,
-                this.intendedTarget.Thing);
+                intendedTarget.Thing);
             hitThing.TakeDamage(dinfo).AssociateWithLog(battleLogEntry_RangedImpact);
             Pawn pawn = hitThing as Pawn;
             if (pawn != null
                 && pawn.stances != null
-                && pawn.BodySize <= this.def.projectile.stoppingPower + 0.001f)
+                && pawn.BodySize <= def.projectile.stoppingPower + 0.001f)
             {
                 pawn.stances.stagger.StaggerFor(95);
             }
 
-            if (settings == null || settings.Props.damageType == null)
+            if (_settings == null || _settings.Props.damageType == null)
                 return;
 
             DamageInfo dinfo2 = new DamageInfo(
-                settings.Props.damageType,
+                _settings.Props.damageType,
                 amount / 2,
                 armorPenetration,
                 y,
@@ -67,17 +67,17 @@ public class Projectile_AdditionalDamage : Bullet
                 null,
                 null,
                 DamageInfo.SourceCategory.ThingOrUnknown,
-                this.intendedTarget.Thing);
+                intendedTarget.Thing);
             hitThing.TakeDamage(dinfo2).AssociateWithLog(battleLogEntry_RangedImpact);
         }
         else
         {
             SoundDefOf.BulletImpact_Ground.PlayOneShot(new TargetInfo(base.Position, map, false));
-            FleckMaker.Static(this.ExactPosition, map, FleckDefOf.ShotHit_Dirt, 1f);
+            FleckMaker.Static(ExactPosition, map, FleckDefOf.ShotHit_Dirt, 1f);
             if (base.Position.GetTerrain(map).takeSplashes)
             {
                 FleckMaker.WaterSplash(
-                    this.ExactPosition,
+                    ExactPosition,
                     map,
                     Mathf.Sqrt((float)base.DamageAmount) * 1f,
                     4f);

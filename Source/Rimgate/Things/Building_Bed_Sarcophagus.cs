@@ -209,7 +209,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield return new Command_Toggle
             {
                 defaultLabel = "RG_Sarcophagus_CommandGizmoAllowGuests_Label".Translate(),
-                defaultDesc = "RG_Sarcophagus_CommandGizmoAllowGuests_Desc".Translate(this.LabelCap),
+                defaultDesc = "RG_Sarcophagus_CommandGizmoAllowGuests_Desc".Translate(LabelCap),
                 isActive = () => allowGuests,
                 toggleAction = delegate
                 {

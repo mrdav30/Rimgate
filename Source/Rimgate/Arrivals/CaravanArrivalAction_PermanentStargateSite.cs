@@ -11,17 +11,18 @@ namespace Rimgate;
 
 public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
 {
-    MapParent arrivalSite;
+    private MapParent _arrivalSite;
 
-    public override string Label => "ApproachSite".Translate(arrivalSite.Label);
-    public override string ReportString => "ApproachingSite".Translate(arrivalSite.Label);
+    public override string Label => "ApproachSite".Translate(_arrivalSite.Label);
 
-    public CaravanArrivalAction_PermanentStargateSite(MapParent site) => arrivalSite = site;
+    public override string ReportString => "ApproachingSite".Translate(_arrivalSite.Label);
+
+    public CaravanArrivalAction_PermanentStargateSite(MapParent site) => _arrivalSite = site;
 
     public override FloatMenuAcceptanceReport StillValid(Caravan caravan, PlanetTile destinationTile)
     {
-        if (this.arrivalSite != null
-            && this.arrivalSite.Tile != destinationTile) return false;
+        if (_arrivalSite != null
+            && _arrivalSite.Tile != destinationTile) return false;
 
         return true;
     }
@@ -29,8 +30,8 @@ public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
     public override void Arrived(Caravan caravan)
     {
         Find.LetterStack.ReceiveLetter(
-            "LetterLabelCaravanEnteredMap".Translate(arrivalSite),
-            "LetterCaravanEnteredMap".Translate(caravan.Label, arrivalSite).CapitalizeFirst(),
+            "LetterLabelCaravanEnteredMap".Translate(_arrivalSite),
+            "LetterCaravanEnteredMap".Translate(caravan.Label, _arrivalSite).CapitalizeFirst(),
             LetterDefOf.NeutralEvent,
             caravan.PawnsListForReading);
 
@@ -38,10 +39,10 @@ public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
             {
                 Map map = null;
                 map = GetOrGenerateMapUtility.GetOrGenerateMap(
-                    arrivalSite.Tile,
+                    _arrivalSite.Tile,
                     new IntVec3(75, 1, 75),
-                    arrivalSite.def);
-                CaravanEnterMapUtility.Enter(caravan, arrivalSite.Map, CaravanEnterMode.Center);
+                    _arrivalSite.def);
+                CaravanEnterMapUtility.Enter(caravan, _arrivalSite.Map, CaravanEnterMode.Center);
             },
             "GeneratingMapForNewEncounter",
             false,
@@ -51,6 +52,6 @@ public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_References.Look(ref this.arrivalSite, "arrivalSite");
+        Scribe_References.Look(ref _arrivalSite, "_arrivalSite");
     }
 }

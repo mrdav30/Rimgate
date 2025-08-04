@@ -10,41 +10,42 @@ namespace Rimgate;
 
 public class JobDriver_InstallIris : JobDriver
 {
-    private const TargetIndex irisItem = TargetIndex.A;
-    private const TargetIndex targetStargate = TargetIndex.B;
+    private const TargetIndex _irisItem = TargetIndex.A;
+
+    private const TargetIndex _targetStargate = TargetIndex.B;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        this.job.count = 1;
-        Thing stargate = (Thing)this.job.GetTarget(targetStargate);
-        Thing iris = (Thing)this.job.GetTarget(irisItem);
-        return this.pawn.Reserve(stargate, this.job) 
-            && this.pawn.Reserve(iris, this.job);
+        job.count = 1;
+        Thing stargate = (Thing)job.GetTarget(_targetStargate);
+        Thing iris = (Thing)job.GetTarget(_irisItem);
+        return pawn.Reserve(stargate, job) 
+            && pawn.Reserve(iris, job);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        int useDuration = this.job.GetTarget(TargetIndex.A).Thing.TryGetComp<CompUsable>().Props.useDuration;
-        Thing iris = (Thing)this.job.GetTarget(irisItem);
+        int useDuration = job.GetTarget(TargetIndex.A).Thing.TryGetComp<CompUsable>().Props.useDuration;
+        Thing iris = (Thing)job.GetTarget(_irisItem);
 
-        this.FailOnDestroyedOrNull(targetStargate);
-        this.FailOnDestroyedNullOrForbidden(irisItem);
+        this.FailOnDestroyedOrNull(_targetStargate);
+        this.FailOnDestroyedNullOrForbidden(_irisItem);
 
-        yield return Toils_Goto.GotoThing(irisItem, PathEndMode.Touch);
-        yield return Toils_Haul.StartCarryThing(irisItem);
-        yield return Toils_Goto.GotoThing(targetStargate, PathEndMode.Touch);
+        yield return Toils_Goto.GotoThing(_irisItem, PathEndMode.Touch);
+        yield return Toils_Haul.StartCarryThing(_irisItem);
+        yield return Toils_Goto.GotoThing(_targetStargate, PathEndMode.Touch);
         Toil toil = Toils_General.Wait(useDuration);
-        toil.WithProgressBarToilDelay(targetStargate);
+        toil.WithProgressBarToilDelay(_targetStargate);
         toil.WithEffect(base.TargetThingB.def.repairEffect, TargetIndex.B);
         yield return toil;
         yield return new Toil
         {
             initAction = () =>
             {
-                Comp_Stargate gateComp = this.job.GetTarget(targetStargate).Thing.TryGetComp<Comp_Stargate>();
-                this.pawn.carryTracker.innerContainer.Remove(iris);
+                Comp_Stargate gateComp = job.GetTarget(_targetStargate).Thing.TryGetComp<Comp_Stargate>();
+                pawn.carryTracker.innerContainer.Remove(iris);
                 iris.Destroy();
-                gateComp.hasIris = true;
+                gateComp.HasIris = true;
             }
         };
 

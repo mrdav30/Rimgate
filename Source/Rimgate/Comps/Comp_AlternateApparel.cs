@@ -7,11 +7,11 @@ namespace Rimgate;
 
 public class Comp_AlternateApparel : ThingComp
 {
-    public CompProperties_AlternateApparel Props => (CompProperties_AlternateApparel)this.props;
+    public CompProperties_AlternateApparel Props => (CompProperties_AlternateApparel)props;
 
-    public Apparel ApparelDef => this.parent as Apparel;
+    public Apparel ApparelDef => parent as Apparel;
 
-    public Pawn Pawn => this.ApparelDef?.Wearer;
+    public Pawn Pawn => ApparelDef?.Wearer;
 
     public Apparel CachedAlternateHelmet;  // Either open or closed, whichever is not this
 

@@ -11,7 +11,10 @@ namespace Rimgate;
 public class CompProperties_ApplyHediff : CompProperties_AbilityEffect
 {
     public HediffDef hediffToReceive;
+
     public HediffDef hediffToGive;
+
     public int durationTime = 0;
+
     public List<StatModifier> durationTimeStatFactors = new List<StatModifier>();
 }

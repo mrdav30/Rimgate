@@ -14,5 +14,5 @@ public class CompProperties_AlternateApparel : CompProperties
     public string toggleUiIconPath;
     public bool isClosedState;
 
-    public CompProperties_AlternateApparel() => this.compClass = typeof(Comp_AlternateApparel);
+    public CompProperties_AlternateApparel() => compClass = typeof(Comp_AlternateApparel);
 }

@@ -84,7 +84,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
             }
         }
 
-        ShotReport shotReport = ShotReport.HitReportFor(caster, this, this.currentTarget);
+        ShotReport shotReport = ShotReport.HitReportFor(caster, this, currentTarget);
         Thing randomCoverToMissInto = shotReport.GetRandomCoverToMissInto();
         ThingDef def = randomCoverToMissInto?.def;
         if (!Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture))

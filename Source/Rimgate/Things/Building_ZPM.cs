@@ -60,31 +60,31 @@ public class Building_ZPM : Building
     {
         base.SpawnSetup(map, respawningAfterLoad);
 
-        this.power = base.GetComp<CompPowerBattery>();
-        this.maxDarkEnergy = (int)Math.Ceiling(this.power.Props.storedEnergyMax * 1.25);
+        power = base.GetComp<CompPowerBattery>();
+        maxDarkEnergy = (int)Math.Ceiling(power.Props.storedEnergyMax * 1.25);
     }
 
     public override void TickRare()
     {
-        if(this.power == null || this.power.PowerNet == null) return;
+        if(power == null || power.PowerNet == null) return;
 
         // Charge using all the excess energy on the grid.
-        if (this.power.PowerNet.CurrentEnergyGainRate() > 0.01f)
+        if (power.PowerNet.CurrentEnergyGainRate() > 0.01f)
             darkEnergyReserve += 100;
 
         if (darkEnergyReserve > maxDarkEnergy)
             darkEnergyReserve = maxDarkEnergy;
 
-        if (this.power.StoredEnergyPct < 0.75f && darkEnergyReserve >= 1000)
+        if (power.StoredEnergyPct < 0.75f && darkEnergyReserve >= 1000)
         {
-            this.power.AddEnergy(1000f);
+            power.AddEnergy(1000f);
             darkEnergyReserve -= 1000;
         }
 
         if (RimgateMod.debugPower)
         {
-            Log.Warning($"ZPM :: Current Energy Gain Rate: {this.power.PowerNet.CurrentEnergyGainRate()}");
-            Log.Warning($"ZPM :: Stored Energy: {this.power.StoredEnergy}");
+            Log.Warning($"ZPM :: Current Energy Gain Rate: {power.PowerNet.CurrentEnergyGainRate()}");
+            Log.Warning($"ZPM :: Stored Energy: {power.StoredEnergy}");
         }
 
         base.TickRare();
@@ -99,11 +99,11 @@ public class Building_ZPM : Building
         get
         {
             // For when it's minified or in a trade ship.
-            if (this.power == null)
+            if (power == null)
                 return base.DefaultGraphic;
 
-            // var chargePercent = (int) ((float) this.currentCapacitorCharge / (float) this.maxCapacitorCharge) * 100;
-            var chargePercent = (int)(this.power.StoredEnergyPct * 100);
+            // var chargePercent = (int) ((float) currentCapacitorCharge / (float) maxCapacitorCharge) * 100;
+            var chargePercent = (int)(power.StoredEnergyPct * 100);
             if (chargePercent <= 10)
                 return Building_ZPM.chargeGraphics["Depleted"];
             else if (chargePercent <= 25)
@@ -118,7 +118,7 @@ public class Building_ZPM : Building
     }
 
     public override string GetInspectString() => base.GetInspectString() 
-        + $"\nDark Energy Reserve: {this.darkEnergyReserve}/{this.maxDarkEnergy}";
+        + $"\nDark Energy Reserve: {darkEnergyReserve}/{maxDarkEnergy}";
 
     #endregion
 }

@@ -11,7 +11,8 @@ namespace Rimgate;
 public class CompProperties_FrameApparel : CompProperties
 {
     public List<string> requiredFrameDefNames;
+
     public string failReason = "requires equipped frame";
 
-    public CompProperties_FrameApparel() => this.compClass = typeof(Comp_FrameApparel);
+    public CompProperties_FrameApparel() => compClass = typeof(Comp_FrameApparel);
 }

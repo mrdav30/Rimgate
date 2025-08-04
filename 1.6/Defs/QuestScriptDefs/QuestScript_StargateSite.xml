@@ -9,16 +9,16 @@
 		<defaultChallengeRating>1</defaultChallengeRating>
 		<questNameRules>
 			<rulesStrings>
-				<li>questName->[ancient] Stargate [site]</li>
+				<li>questName->[ancient] stargate [site]</li>
 				<li>ancient->Ancient</li>
 				<li>ancient->Old</li>
 				<li>ancient->Abandoned</li>
 				<li>ancient->Forgotten</li>
-				<li>site->Site</li>
-				<li>site->Complex</li>
-				<li>site->Vault</li>
-				<li>site->Compound</li>
-				<li>site->Temple</li>
+				<li>site->site</li>
+				<li>site->complex</li>
+				<li>site->bault</li>
+				<li>site->compound</li>
+				<li>site->temple</li>
 			</rulesStrings>
 		</questNameRules>
 		<questDescriptionRules>

@@ -12,30 +12,33 @@ namespace Rimgate;
 
 public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 {
-    public string siteName;
-    public ThingDef gateDef;
-    public ThingDef dhdDef;
+    public string SiteName;
 
-    public override string Label => siteName == null ? base.Label : siteName;
+    public ThingDef GateDef;
 
+    public ThingDef DhdDef;
+
+    public override string Label => SiteName == null ? base.Label : SiteName;
 
     public string RenamableLabel
     {
         get => Label;
-        set => siteName = value;
+        set => SiteName = value;
     }
+
     public string BaseLabel => Label;
+
     public string InspectLabel => Label;
 
     public override string GetInspectString()
     {
-        return "Rimgate_GateAddress".Translate(Comp_Stargate.GetStargateDesignation(this.Tile));
+        return "Rimgate_GateAddress".Translate(Comp_Stargate.GetStargateDesignation(Tile));
     }
 
     public override void SpawnSetup()
     {
         base.SpawnSetup();
-        Find.World.GetComponent<WorldComp_StargateAddresses>().AddAddress(this.Tile);
+        Find.World.GetComponent<WorldComp_StargateAddresses>().AddAddress(Tile);
     }
 
     public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
@@ -55,49 +58,49 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
         foreach (var pawn in pawns)
             pawn.Destroy();
 
-        Thing gateOnMap = Comp_Stargate.GetStargateOnMap(this.Map);
-        Thing dhdOnMap = Comp_DialHomeDevice.GetDHDOnMap(this.Map);
+        Thing gateOnMap = Comp_Stargate.GetStargateOnMap(Map);
+        Thing dhdOnMap = Comp_DialHomeDevice.GetDHDOnMap(Map);
         if (RimgateMod.debug) 
-            Log.Message($"Rimgate :: perm sg site post map gen: dhddef={dhdDef} gatedef={gateDef} gateonmap={gateOnMap} dhdonmap={dhdOnMap}");
+            Log.Message($"Rimgate :: perm sg site post map gen: dhddef={DhdDef} gatedef={GateDef} gateonmap={gateOnMap} dhdonmap={dhdOnMap}");
 
         if (gateOnMap != null)
         {
             IntVec3 gatePos = gateOnMap.Position;
             gateOnMap.Destroy();
-            if (gateDef != null)
-                GenSpawn.Spawn(gateDef, gatePos, this.Map);
+            if (GateDef != null)
+                GenSpawn.Spawn(GateDef, gatePos, Map);
         }
 
         if (dhdOnMap != null)
         {
             IntVec3 dhdPos = dhdOnMap.Position;
             dhdOnMap.Destroy();
-            if (dhdDef != null) 
-                GenSpawn.Spawn(dhdDef, dhdPos, this.Map);
+            if (DhdDef != null) 
+                GenSpawn.Spawn(DhdDef, dhdPos, Map);
         }
     }
 
     public override void Notify_MyMapAboutToBeRemoved()
     {
-        Thing gateOnMap = Comp_Stargate.GetStargateOnMap(this.Map);
-        Thing dhdOnMap = Comp_DialHomeDevice.GetDHDOnMap(this.Map);
-        dhdDef = dhdOnMap == null ? null : dhdOnMap.def;
-        gateDef = gateOnMap == null ? null : gateOnMap.def;
+        Thing gateOnMap = Comp_Stargate.GetStargateOnMap(Map);
+        Thing dhdOnMap = Comp_DialHomeDevice.GetDHDOnMap(Map);
+        DhdDef = dhdOnMap == null ? null : dhdOnMap.def;
+        GateDef = gateOnMap == null ? null : gateOnMap.def;
 
         if (RimgateMod.debug)
-            Log.Message($"Rimgate :: perm map about to be removed: dhddef={dhdDef} gatedef={gateDef}");
+            Log.Message($"Rimgate :: perm map about to be removed: dhddef={DhdDef} gatedef={GateDef}");
     }
 
     public override void Notify_MyMapRemoved(Map map)
     {
         base.Notify_MyMapRemoved(map);
-        if (gateDef == null && dhdDef == null) { this.Destroy(); }
+        if (GateDef == null && DhdDef == null) { Destroy(); }
     }
 
     public override void Destroy()
     {
         base.Destroy();
-        Find.World.GetComponent<WorldComp_StargateAddresses>().RemoveAddress(this.Tile);
+        Find.World.GetComponent<WorldComp_StargateAddresses>().RemoveAddress(Tile);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -117,19 +120,19 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
     public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)
     {
         return CaravanArrivalActionUtility.GetFloatMenuOptions(
-            () => { return true; },
-            () => { return new CaravanArrivalAction_PermanentStargateSite(this); },
-            $"Approach {this.Label}",
+            () => true,
+            () => new CaravanArrivalAction_PermanentStargateSite(this),
+            $"Approach {Label}",
             caravan,
-            this.Tile,
+            Tile,
             this);
     }
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref this.siteName, "siteName");
-        Scribe_Defs.Look(ref this.dhdDef, "dhdDef");
-        Scribe_Defs.Look(ref this.gateDef, "gateDef");
+        Scribe_Values.Look(ref SiteName, "SiteName");
+        Scribe_Defs.Look(ref DhdDef, "DhdDef");
+        Scribe_Defs.Look(ref GateDef, "GateDef");
     }
 }

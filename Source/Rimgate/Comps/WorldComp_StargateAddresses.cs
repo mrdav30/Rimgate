@@ -10,46 +10,44 @@ namespace Rimgate;
 
 public class WorldComp_StargateAddresses : WorldComponent
 {
-    public List<PlanetTile> addressList = new List<PlanetTile>();
+    public List<PlanetTile> AddressList = new List<PlanetTile>();
 
     public WorldComp_StargateAddresses(World world) : base(world) { }
 
-    public void RemoveAddress(int address)
+    public void RemoveAddress(PlanetTile address)
     {
-        addressList.Remove(address);
+        AddressList.Remove(address);
     }
 
     public void AddAddress(PlanetTile address)
     {
-        if (!addressList.Contains(address))
-            addressList.Add(address);
+        if (!AddressList.Contains(address))
+            AddressList.Add(address);
     }
 
     public void CleanupAddresses()
     {
-        foreach (var i in new List<PlanetTile>(this.addressList))
+        foreach (var tile in new List<PlanetTile>(AddressList))
         {
-            MapParent sgMap = Find.WorldObjects.MapParentAt(i);
+            MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
             Site site = sgMap as Site;
 
-            if (sgMap == null)
+            if (sgMap == null || sgMap.HasMap)
                 continue;
 
-            if (!sgMap.HasMap 
-                && (
-                    site == null 
-                    || !site.MainSitePartDef.tags.Contains("StargateMod_StargateSite")
-                   ) 
-                && sgMap as WorldObject_PermanentStargateSite == null)
-            {
-                this.RemoveAddress(i);
-            }
+            bool noGate = sgMap == null 
+                || !sgMap.HasMap
+                    && sgMap is not WorldObject_PermanentStargateSite
+                    && (site == null 
+                        || !site.MainSitePartDef.tags.Contains("Rimgate_StargateSite"));
+            if (noGate)
+                RemoveAddress(tile);
         }
     }
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Collections.Look(ref addressList, "addressList");
+        Scribe_Collections.Look(ref AddressList, "AddressList");
     }
 }

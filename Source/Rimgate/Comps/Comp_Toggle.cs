@@ -8,15 +8,7 @@ namespace Rimgate;
 
 public class Comp_Toggle : ThingComp
 {
-    private bool switchOnInt = false;
-
-    private bool wantSwitchOn = false;
-
-    private Graphic offGraphic;
-
-    private Texture2D cachedCommandTex;
-
-    private const string OffGraphicSuffix = "_Off";
+    public const string OffGraphicSuffix = "_Off";
 
     public const string FlickedOnSignal = "FlickedOn";
 
@@ -24,26 +16,32 @@ public class Comp_Toggle : ThingComp
 
     private CompProperties_Toggle Props => (CompProperties_Toggle)props;
 
-    private Texture2D CommandTex
+    private bool _switchOnInt = false;
+
+    private bool _wantSwitchOn = false;
+
+    private Graphic _offGraphic;
+
+    private Texture2D _cachedCommandTex;
+
+    public Texture2D CommandTex
     {
         get
         {
-            if (cachedCommandTex == null)
-                cachedCommandTex = ContentFinder<Texture2D>.Get(Props.commandTexture);
-
-            return cachedCommandTex;
+            _cachedCommandTex ??= ContentFinder<Texture2D>.Get(Props.commandTexture);
+            return _cachedCommandTex;
         }
     }
 
     public bool SwitchIsOn
     {
-        get => switchOnInt;
+        get => _switchOnInt;
         set
         {
-            if (switchOnInt != value)
+            if (_switchOnInt != value)
             {
-                switchOnInt = value;
-                if (switchOnInt)
+                _switchOnInt = value;
+                if (_switchOnInt)
                     parent.BroadcastCompSignal("FlickedOn");
                 else
                     parent.BroadcastCompSignal("FlickedOff");
@@ -63,9 +61,9 @@ public class Comp_Toggle : ThingComp
             if (SwitchIsOn)
                 return parent.DefaultGraphic;
 
-            if (offGraphic == null)
+            if (_offGraphic == null)
             {
-                offGraphic = GraphicDatabase.Get(
+                _offGraphic = GraphicDatabase.Get(
                     parent.def.graphicData.graphicClass,
                     parent.def.graphicData.texPath + "_Off",
                     parent.def.graphicData.shaderType.Shader,
@@ -74,25 +72,25 @@ public class Comp_Toggle : ThingComp
                     parent.DrawColorTwo);
             }
 
-            return offGraphic;
+            return _offGraphic;
         }
     }
 
     public override void Initialize(CompProperties props)
     {
         base.Initialize(props);
-        switchOnInt = Props.defaultState;
-        wantSwitchOn = Props.defaultState;
+        _switchOnInt = Props.defaultState;
+        _wantSwitchOn = Props.defaultState;
     }
 
     public override void PostExposeData()
     {
         base.PostExposeData();
-        Scribe_Values.Look(ref switchOnInt, "switchOn", defaultValue: false);
-        Scribe_Values.Look(ref wantSwitchOn, "wantSwitchOn", defaultValue: false);
+        Scribe_Values.Look(ref _switchOnInt, "_switchOn", defaultValue: false);
+        Scribe_Values.Look(ref _wantSwitchOn, "_wantSwitchOn", defaultValue: false);
     }
 
-    public bool WantsFlick() => wantSwitchOn != switchOnInt;
+    public bool WantsFlick() => _wantSwitchOn != _switchOnInt;
 
     public void DoFlick()
     {
@@ -102,8 +100,8 @@ public class Comp_Toggle : ThingComp
 
     public void ResetToOn()
     {
-        switchOnInt = true;
-        wantSwitchOn = true;
+        _switchOnInt = true;
+        _wantSwitchOn = true;
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -115,10 +113,10 @@ public class Comp_Toggle : ThingComp
             command_Toggle.icon = CommandTex;
             command_Toggle.defaultLabel = Props.commandLabelKey.Translate(parent.Label);
             command_Toggle.defaultDesc = Props.commandDescKey.Translate(parent.Label);
-            command_Toggle.isActive = () => wantSwitchOn;
+            command_Toggle.isActive = () => _wantSwitchOn;
             command_Toggle.toggleAction = delegate
             {
-                wantSwitchOn = !wantSwitchOn;
+                _wantSwitchOn = !_wantSwitchOn;
                 UpdateFlickDesignation(parent);
             };
             yield return command_Toggle;

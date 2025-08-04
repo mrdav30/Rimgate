@@ -4,7 +4,6 @@ using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using UnityEngine;
 using Verse;
 
@@ -12,7 +11,7 @@ namespace Rimgate;
 
 public class CompAbilityEffect_ApplyHediffs : CompAbilityEffect
 {
-    public CompProperties_ApplyHediff Props => (CompProperties_ApplyHediff)this.props;
+    public CompProperties_ApplyHediff Props => (CompProperties_ApplyHediff)props;
 
     public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
     {
@@ -26,7 +25,7 @@ public class CompAbilityEffect_ApplyHediffs : CompAbilityEffect
                 parent.pawn,
                 Props.hediffToReceive,
                 null,
-                this.GetDurationForPawn(parent.pawn),
+                GetDurationForPawn(parent.pawn),
                 0);
 
         if (Props.hediffToGive == null)
@@ -36,7 +35,7 @@ public class CompAbilityEffect_ApplyHediffs : CompAbilityEffect
             target.Pawn,
             Props.hediffToGive,
             null,
-            this.GetDurationForPawn(target.Pawn),
+            GetDurationForPawn(target.Pawn),
             0);
     }
 

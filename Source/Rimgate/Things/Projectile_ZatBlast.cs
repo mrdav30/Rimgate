@@ -11,7 +11,7 @@ public class Projectile_ZatBlast : Bullet
     protected override void Impact(Thing hitThing, bool blockedByShield = false)
     {
         base.Impact(hitThing, false);
-        this.ZatBlastImpact(hitThing);
+        ZatBlastImpact(hitThing);
     }
 
     protected void ZatBlastImpact(Thing hitThing)

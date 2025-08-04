@@ -15,7 +15,7 @@ public class Comp_GlyphScrap : ThingComp
             yield break;
 
         bool canReach = selPawn.CanReach(
-            this.parent,
+            parent,
             PathEndMode.Touch,
             Danger.Deadly,
             false,
@@ -28,7 +28,7 @@ public class Comp_GlyphScrap : ThingComp
         {
             yield return new FloatMenuOption("Rimgate_DecodeSGSymbols".Translate(), () =>
             {
-                Job job = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("Rimgate_DecodeGlyphs"), this.parent);
+                Job job = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("Rimgate_DecodeGlyphs"), parent);
                 selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             });
         }

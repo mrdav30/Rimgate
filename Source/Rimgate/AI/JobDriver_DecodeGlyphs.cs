@@ -11,28 +11,35 @@ namespace Rimgate;
 
 public class JobDriver_DecodeGlyphs : JobDriver
 {
-    private const TargetIndex glyphScrapItem = TargetIndex.A;
-    private const int useDuration = 500;
+    private const TargetIndex _glyphScrapItem = TargetIndex.A;
+
+    private const int _useDuration = 500;
 
     private void GenerateStargateQuest()
     {
         Slate slate = new Slate();
-        QuestScriptDef questDef = DefDatabase<QuestScriptDef>.GetNamed("Rimgate_StargateSiteScript");
+        QuestScriptDef questDef = Rimgate_DefOf.Rimgate_StargateSiteScript;
+        if (questDef == null)
+        {
+            Log.Warning("Unable to locate quest def for a stargate site.");
+            return;
+        }
         Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(questDef, slate);
-        QuestUtility.SendLetterQuestAvailable(quest);
+        if (quest != null)
+            QuestUtility.SendLetterQuestAvailable(quest);
     }
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return this.pawn.Reserve(this.job.GetTarget(glyphScrapItem), this.job);
+        return pawn.Reserve(job.GetTarget(_glyphScrapItem), job);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        yield return Toils_Goto.GotoThing(glyphScrapItem, PathEndMode.Touch);
+        yield return Toils_Goto.GotoThing(_glyphScrapItem, PathEndMode.Touch);
 
-        Toil toil = Toils_General.Wait(useDuration);
-        toil.WithProgressBarToilDelay(glyphScrapItem);
+        Toil toil = Toils_General.Wait(_useDuration);
+        toil.WithProgressBarToilDelay(_glyphScrapItem);
         yield return toil;
         yield return new Toil
         {
@@ -40,11 +47,13 @@ public class JobDriver_DecodeGlyphs : JobDriver
             {
                 GenerateStargateQuest();
 
-                Thing glyphThing = this.job.GetTarget(glyphScrapItem).Thing;
+                Thing glyphThing = job.GetTarget(_glyphScrapItem).Thing;
                 if (glyphThing.stackCount > 1)
-                    glyphThing.stackCount -= 1;
-                else
-                    glyphThing.Destroy();
+                {
+                    Thing usedGlyphThing = glyphThing.SplitOff(1);
+                    if (!usedGlyphThing.DestroyedOrNull()) usedGlyphThing.Destroy();
+                }
+                else glyphThing.Destroy();
             }
         };
     }

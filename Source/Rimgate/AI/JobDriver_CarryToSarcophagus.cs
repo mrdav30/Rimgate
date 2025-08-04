@@ -14,14 +14,14 @@ public class JobDriver_CarryToSarcophagus : JobDriver
 {
     protected Pawn Patient => (Pawn)job.GetTarget(TargetIndex.A).Thing;
 
-    protected Building_Bed_Sarcophagus BedSarcophagus => (Building_Bed_Sarcophagus)job.GetTarget(TargetIndex.B).Thing;
+    protected Building_Bed_Sarcophagus Sarcophagus => (Building_Bed_Sarcophagus)job.GetTarget(TargetIndex.B).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
         Patient.ClearAllReservations();
         if (pawn.Reserve(Patient, job, 1, -1, null, errorOnFailed))
         {
-            return pawn.Reserve(BedSarcophagus, job, 1, 0, null, errorOnFailed);
+            return pawn.Reserve(Sarcophagus, job, 1, 0, null, errorOnFailed);
         }
 
         return false;
@@ -32,11 +32,11 @@ public class JobDriver_CarryToSarcophagus : JobDriver
         this.FailOnDestroyedOrNull(TargetIndex.A);
         this.FailOnDestroyedOrNull(TargetIndex.B);
         this.FailOnAggroMentalState(TargetIndex.A);
-        this.FailOn(() => !BedSarcophagus.Accepts(Patient));
+        this.FailOn(() => !Sarcophagus.Accepts(Patient));
         Toil goToTakee = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell)
             .FailOnDestroyedNullOrForbidden(TargetIndex.A)
             .FailOnDespawnedNullOrForbidden(TargetIndex.B)
-            .FailOn(() => BedSarcophagus.HasAnyContents)
+            .FailOn(() => Sarcophagus.HasAnyContents)
             .FailOn(() => !pawn.CanReach(Patient, PathEndMode.OnCell, Danger.Deadly))
             //    .FailOn(() => job.def == JobDefOf.Arrest && !Patient.CanBeArrestedBy(pawn))
             //    .FailOn(() => (job.def == JobDefOf.Rescue || job.def == JobDefOf.Capture) && !Patient.Downed)
@@ -55,7 +55,7 @@ public class JobDriver_CarryToSarcophagus : JobDriver
         yield return goToTakee;
         yield return startCarryingTakee;
         yield return goToThing;
-        Toil wait = Toils_General.Wait(BedSarcophagus.OpenTicks, TargetIndex.B);
+        Toil wait = Toils_General.Wait(Sarcophagus.OpenTicks, TargetIndex.B);
         wait.FailOnCannotTouch(TargetIndex.B, PathEndMode.Touch);
         wait.WithProgressBarToilDelay(TargetIndex.B);
         yield return wait;
@@ -63,7 +63,7 @@ public class JobDriver_CarryToSarcophagus : JobDriver
         Toil putInto = ToilMaker.MakeToil("PutIntoSarcophagus");
         putInto.initAction = () => 
         {
-            var sarcophagus = BedSarcophagus;
+            var sarcophagus = Sarcophagus;
             var taker = pawn;
             var takee = Patient;
 

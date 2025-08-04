@@ -13,10 +13,10 @@ public class DamageWorker_Siege : DamageWorker_AddInjury
     public override DamageWorker.DamageResult Apply(DamageInfo dinfo, Thing victim)
     {
         Building wall = victim as Building;
-        if ((wall != null) 
-            && (
-                (wall.def.building.isNaturalRock) || (wall.def == ThingDefOf.Wall)
-               ))
+        bool isWall = wall != null
+            && (wall.def.building.isNaturalRock 
+                || wall.def == ThingDefOf.Wall);
+        if (isWall)
         {
             DamageWorker.DamageResult damageResult = new DamageWorker.DamageResult();
             if (victim.SpawnedOrAnyParentSpawned)

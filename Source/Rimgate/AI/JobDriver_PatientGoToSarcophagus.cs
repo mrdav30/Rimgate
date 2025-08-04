@@ -8,11 +8,11 @@ namespace Rimgate;
 
 public class JobDriver_PatientGoToSarcophagus : JobDriver
 {
-    protected Building_Bed_Sarcophagus BedSarcophagus => (Building_Bed_Sarcophagus)job.GetTarget(TargetIndex.A).Thing;
+    protected Building_Bed_Sarcophagus Sarcophagus => (Building_Bed_Sarcophagus)job.GetTarget(TargetIndex.A).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(BedSarcophagus, job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(Sarcophagus, job, 1, -1, null, errorOnFailed);
     }
 
     public override bool CanBeginNowWhileLyingDown()
@@ -30,16 +30,16 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
         // or is no longer the right user type  for the patient
         this.FailOn(delegate
         {
-            return !BedSarcophagus.powerComp.PowerOn
-                || BedSarcophagus.HasAnyContents
-                || !BedSarcophagus.Accepts(pawn)
-                || !pawn.CanReach(BedSarcophagus, PathEndMode.Touch, Danger.Deadly) 
-                || !SarcophagusRestUtility.IsValidBedForUserType(BedSarcophagus, pawn);
+            return !Sarcophagus.powerComp.PowerOn
+                || Sarcophagus.HasAnyContents
+                || !Sarcophagus.Accepts(pawn)
+                || !pawn.CanReach(Sarcophagus, PathEndMode.Touch, Danger.Deadly) 
+                || !SarcophagusRestUtility.IsValidBedForUserType(Sarcophagus, pawn);
         });
 
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
 
-        Toil wait = Toils_General.Wait(BedSarcophagus.OpenTicks, TargetIndex.A);
+        Toil wait = Toils_General.Wait(Sarcophagus.OpenTicks, TargetIndex.A);
         wait.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
         wait.WithProgressBarToilDelay(TargetIndex.A);
         yield return wait;
@@ -47,7 +47,7 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
         Toil enter = ToilMaker.MakeToil("EnterSarcophagus");
         enter.initAction = () =>
         {
-            var sarcophagus = BedSarcophagus;
+            var sarcophagus = Sarcophagus;
             var actor = pawn;
 
             ((Entity)actor).DeSpawn((DestroyMode)0);

@@ -12,12 +12,12 @@ public class Building_Stargate : Building
 {
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        Comp_Stargate sgComp = this.GetComp<Comp_Stargate>();
+        Comp_Stargate sgComp = GetComp<Comp_Stargate>();
         foreach (Gizmo gizmo in base.GetGizmos())
         {
             if (gizmo is Command_LoadToTransporter)
             {
-                if (sgComp.stargateIsActive) { yield return gizmo; }
+                if (sgComp.StargateIsActive) { yield return gizmo; }
                 continue;
             }
             yield return gizmo;
@@ -28,7 +28,7 @@ public class Building_Stargate : Building
     {
         StringBuilder sb = new StringBuilder();
 
-        Comp_Stargate sgComp = this.GetComp<Comp_Stargate>();
+        Comp_Stargate sgComp = GetComp<Comp_Stargate>();
         sb.AppendLine(sgComp.GetInspectString());
 
         CompPowerTrader power = this.TryGetComp<CompPowerTrader>();

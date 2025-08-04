@@ -10,23 +10,23 @@ namespace Rimgate;
 
 public class JobDriver_EnterStargate : JobDriver
 {
-    private const TargetIndex stargateToEnter = TargetIndex.A;
+    private const TargetIndex _stargateToEnter = TargetIndex.A;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        this.FailOnDestroyedOrNull(stargateToEnter);
-        this.FailOn(() => !this.job.GetTarget(stargateToEnter).Thing.TryGetComp<Comp_Stargate>().stargateIsActive);
+        this.FailOnDestroyedOrNull(_stargateToEnter);
+        this.FailOn(() => !job.GetTarget(_stargateToEnter).Thing.TryGetComp<Comp_Stargate>().StargateIsActive);
 
-        yield return Toils_Goto.GotoCell(this.job.GetTarget(stargateToEnter).Thing.InteractionCell, PathEndMode.OnCell);
+        yield return Toils_Goto.GotoCell(job.GetTarget(_stargateToEnter).Thing.InteractionCell, PathEndMode.OnCell);
         yield return new Toil
         {
             initAction = () =>
             {
-                Comp_Stargate gateComp = this.job.GetTarget(stargateToEnter).Thing.TryGetComp<Comp_Stargate>();
-                this.pawn.DeSpawn(DestroyMode.Vanish);
-                gateComp.AddToSendBuffer(this.pawn);
+                Comp_Stargate gateComp = job.GetTarget(_stargateToEnter).Thing.TryGetComp<Comp_Stargate>();
+                pawn.DeSpawn(DestroyMode.Vanish);
+                gateComp.AddToSendBuffer(pawn);
             }
         };
 

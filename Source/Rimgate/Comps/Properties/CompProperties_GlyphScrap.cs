@@ -9,5 +9,5 @@ namespace Rimgate;
 
 public class CompProperties_GlyphScrap : CompProperties
 {
-    public CompProperties_GlyphScrap() => this.compClass = typeof(Comp_GlyphScrap);
+    public CompProperties_GlyphScrap() => compClass = typeof(Comp_GlyphScrap);
 }

@@ -7,11 +7,15 @@ namespace Rimgate;
 
 public class CompAbilityEffect_LaunchMultipleProjectile : CompAbilityEffect
 {
-    public bool firingNow = false;
-    public int projectilesFired = 0;
-    public int waitCounter = 0;
-    public const int ticksBetweenProjectiles = 30;
-    LocalTargetInfo targetVariable;
+    public bool FiringNow = false;
+
+    public int ProjectilesFired = 0;
+
+    public int WaitCounter = 0;
+
+    public const int TicksBetweenProjectiles = 30;
+
+    private LocalTargetInfo _targetVariable;
 
     public new CompProperties_MultipleProjectile Props => (CompProperties_MultipleProjectile)props;
 
@@ -25,7 +29,7 @@ public class CompAbilityEffect_LaunchMultipleProjectile : CompAbilityEffect
     private Projectile LaunchProjectile(LocalTargetInfo target)
     {
         Projectile projectile = null;
-        targetVariable = target;
+        _targetVariable = target;
         projectile = GenSpawn.Spawn(Props.projectile, parent.pawn.Position, parent.pawn.Map) as Projectile;
 
         if (target.HasThing)
@@ -41,7 +45,7 @@ public class CompAbilityEffect_LaunchMultipleProjectile : CompAbilityEffect
                 target.Cell,
                 ProjectileHitFlags.IntendedTarget);
 
-        firingNow = true;
+        FiringNow = true;
 
         return projectile;
     }
@@ -50,39 +54,39 @@ public class CompAbilityEffect_LaunchMultipleProjectile : CompAbilityEffect
     {
         base.CompTick();
 
-        if (!firingNow)
+        if (!FiringNow)
             return;
 
-        waitCounter++;
-        if (waitCounter > ticksBetweenProjectiles)
+        WaitCounter++;
+        if (WaitCounter > TicksBetweenProjectiles)
         {
             Projectile projectile = GenSpawn.Spawn(
                 Props.projectile,
                 parent.pawn.Position,
                 parent.pawn.Map) as Projectile;
 
-            if (targetVariable.HasThing)
+            if (_targetVariable.HasThing)
                 projectile?.Launch(parent.pawn,
                     parent.pawn.DrawPos,
-                    targetVariable.Thing,
-                    targetVariable.Thing,
+                    _targetVariable.Thing,
+                    _targetVariable.Thing,
                     ProjectileHitFlags.IntendedTarget);
             else
                 projectile?.Launch(parent.pawn,
                     parent.pawn.DrawPos,
-                    targetVariable.Cell,
-                    targetVariable.Cell,
+                    _targetVariable.Cell,
+                    _targetVariable.Cell,
                     ProjectileHitFlags.IntendedTarget);
 
-            projectilesFired++;
-            waitCounter = 0;
+            ProjectilesFired++;
+            WaitCounter = 0;
         }
 
-        if (projectilesFired >= Props.numberOfProjectiles - 1)
+        if (ProjectilesFired >= Props.numberOfProjectiles - 1)
         {
-            projectilesFired = 0;
-            waitCounter = 0;
-            firingNow = false;
+            ProjectilesFired = 0;
+            WaitCounter = 0;
+            FiringNow = false;
         }
     }
 }

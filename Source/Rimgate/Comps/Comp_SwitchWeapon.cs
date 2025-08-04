@@ -7,9 +7,9 @@ namespace Rimgate;
 
 public class Comp_SwitchWeapon : ThingComp
 {
-    public CompProperties_SwitchWeapon Props => (CompProperties_SwitchWeapon)this.props;
+    public CompProperties_SwitchWeapon Props => (CompProperties_SwitchWeapon)props;
 
-    public ThingWithComps WeaponDef => this.parent;
+    public ThingWithComps WeaponDef => parent;
 
     public ThingWithComps CachedSwitchWeapon;
 
@@ -21,8 +21,11 @@ public class Comp_SwitchWeapon : ThingComp
             if (_pawn == null)
             {
                 var equipable = parent.GetComp<CompEquippable>();
-                if(equipable.ParentHolder is Pawn_EquipmentTracker parentHolder)
+                if(equipable != null &&
+                    equipable.ParentHolder is Pawn_EquipmentTracker parentHolder)
+                {
                     _pawn = parentHolder.pawn;
+                }
             }
 
             return _pawn;
@@ -47,20 +50,20 @@ public class Comp_SwitchWeapon : ThingComp
 
     public void ToggleWeapon()
     {
-        if (this.Pawn == null || this.WeaponDef == null)
+        if (Pawn == null || WeaponDef == null)
             return;
 
         GetOrCreateAlternate();
 
-        if (this.CachedSwitchWeapon == null)
+        if (CachedSwitchWeapon == null)
         {
             if (RimgateMod.debug)
-                Log.Warning($"Rimgate :: unable to get switch weapon for {this.WeaponDef}");
+                Log.Warning($"Rimgate :: unable to get switch weapon for {WeaponDef}");
             return;
         }
 
-        this.Pawn.equipment.Remove(this.WeaponDef);
-        this.Pawn.equipment.AddEquipment(this.CachedSwitchWeapon);
+        Pawn.equipment.Remove(WeaponDef);
+        Pawn.equipment.AddEquipment(CachedSwitchWeapon);
     }
 
     public ThingWithComps GetOrCreateAlternate()

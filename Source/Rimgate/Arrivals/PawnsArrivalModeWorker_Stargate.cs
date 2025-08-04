@@ -17,8 +17,8 @@ public class PawnsArrivalModeWorker_Stargate : PawnsArrivalModeWorker
 
         Comp_Stargate sgComp = stargateOnMap.TryGetComp<Comp_Stargate>();
         sgComp.OpenStargateDelayed(-1, 450);
-        sgComp.ticksSinceBufferUnloaded = -150;
-        sgComp.isRecievingGate = true;
+        sgComp.TicksSinceBufferUnloaded = -150;
+        sgComp.IsRecievingGate = true;
         foreach (Pawn pawn in pawns)
             sgComp.AddToRecieveBuffer(pawn);
     }
@@ -32,7 +32,7 @@ public class PawnsArrivalModeWorker_Stargate : PawnsArrivalModeWorker
 
         bool isActive = stargateOnMap == null 
             || sgComp == null 
-            || sgComp.stargateIsActive;
+            || sgComp.StargateIsActive;
         if (isActive)
         {
             parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;

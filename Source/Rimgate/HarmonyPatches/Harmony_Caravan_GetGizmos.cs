@@ -63,8 +63,8 @@ public class Harmony_Caravan_GetGizmos
 
                 WorldObject_PermanentStargateSite wo = (WorldObject_PermanentStargateSite)WorldObjectMaker.MakeWorldObject(DefDatabase<WorldObjectDef>.GetNamed("Rimgate_PermanentStargateSite"));
                 wo.Tile = __instance.Tile;
-                wo.gateDef = gateDef;
-                wo.dhdDef = dhdDef;
+                wo.GateDef = gateDef;
+                wo.DhdDef = dhdDef;
                 Find.WorldObjects.Add(wo);
             },
             defaultLabel = "Rimgate_CreateSGSite".Translate(),

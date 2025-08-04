@@ -3,7 +3,7 @@
 
 	<SitePartDef>
 		<defName>Rimgate_StargateSite</defName>
-		<label>Ancient Stargate site</label>
+		<label>ancient stargate site</label>
 		<description>A remote, ancient site known to contain a stargate.</description>
 		<workerClass>Rimgate.SitePartWorker_Stargate</workerClass>
 		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>

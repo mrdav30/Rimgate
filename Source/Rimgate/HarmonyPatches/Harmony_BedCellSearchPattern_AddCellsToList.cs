@@ -9,7 +9,7 @@ using Verse;
 
 namespace Rimgate.HarmonyPatches;
 
-// Generate custom interaction cell locations for MedPods and VetPods
+// Generate custom interaction cell locations for Sarcophaguss and VetPods
 [HarmonyPatch(typeof(BedCellSearchPattern), nameof(BedCellSearchPattern.AddCellsToList))]
 public static class Harmony_BedCellSearchPattern_AddCellsToList
 {
