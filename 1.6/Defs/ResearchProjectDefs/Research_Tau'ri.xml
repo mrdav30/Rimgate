@@ -60,13 +60,25 @@
     <!-- ======== Buildings ========= -->
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_NaquadahRefinement</defName>
+        <label>Naquadah refinement</label>
+        <description>Learn how to refine raw Naquadah into Naquadria.</description>
+        <baseCost>3500</baseCost>
+        <prerequisites>
+            <li>Rimgate_TauriBasic</li>
+            <li>Rimgate_GoauldBasic</li>
+        </prerequisites>
+        <researchViewX>2</researchViewX>
+        <researchViewY>2</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_NaquadriaFiredGenerator</defName>
         <label>Naquadria generator</label>
         <description>Get access to the Naquadria fired generator.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
-            <li>Rimgate_TauriBasic</li>
-            <li>Rimgate_GoauldBasic</li>
+            <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
         <researchViewY>2</researchViewY>
@@ -80,7 +92,6 @@
         <techLevel>Spacer</techLevel>
         <prerequisites>
             <li>Rimgate_NaquadriaFiredGenerator</li>
-            <li>Rimgate_StargateMakingResearch</li>
             <li>ShipBasics</li>
         </prerequisites>
         <researchViewX>1</researchViewX>

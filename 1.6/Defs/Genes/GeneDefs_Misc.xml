@@ -25,8 +25,8 @@
 		<selectionWeight>0</selectionWeight>
 		<modExtensions>
 			<li Class="VEF.Genes.GeneExtension">
-                <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-                <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+				<backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+				<backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
 			</li>
 		</modExtensions>
 	</GeneDef>

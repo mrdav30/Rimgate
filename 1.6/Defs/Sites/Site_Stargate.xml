@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<SitePartDef>
@@ -11,7 +11,7 @@
 		<requiresFaction>true</requiresFaction>
 		<approachOrderString>Investigate {0}</approachOrderString>
 		<approachingReportString>Investigating {0}</approachingReportString>
-		<arrivedLetter>There is a Stargate in this area.</arrivedLetter>
+		<arrivedLetter>There is a stargate in this area.</arrivedLetter>
 		<arrivedLetterDef>NeutralEvent</arrivedLetterDef>
 		<wantsThreatPoints>true</wantsThreatPoints>
 		<minThreatPoints>90</minThreatPoints>
@@ -19,7 +19,7 @@
 			<li>Rimgate_StargateSite</li>
 		</tags>
 	</SitePartDef>
-	
+
 	<GenStepDef>
 		<defName>Rimgate_StargateSite</defName>
 		<linkWithSite>Rimgate_StargateSite</linkWithSite>

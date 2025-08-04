@@ -9,7 +9,7 @@
 
   <GeneDef Name="Rimgate_WraithGenesBase" Abstract="True">
     <displayCategory>Rimgate_WraithGenes</displayCategory>
-    <canGenerateInGeneSet>true</canGenerateInGeneSet>
+    <canGenerateInGeneSet>false</canGenerateInGeneSet>
   </GeneDef>
 
   <GeneDef ParentName="Rimgate_WraithGenesBase">

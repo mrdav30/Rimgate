@@ -18,7 +18,7 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 
     public ThingDef DhdDef;
 
-    public override string Label => SiteName == null ? base.Label : SiteName;
+    public override string Label => SiteName ?? base.Label;
 
     public string RenamableLabel
     {

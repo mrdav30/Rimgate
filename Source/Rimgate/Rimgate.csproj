@@ -389,7 +389,7 @@
     <Compile Include="UI\Gizmo_ShieldStatus.cs" />
     <Compile Include="UI\PlaceWorker_ShowTurretRadiusWithOffset.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
-    <Compile Include="QuestNodes\QuestNode_RemoveFromStargateAddresses.cs" />
+    <Compile Include="QuestNodes\QuestNode_AddStargateAddresses.cs" />
     <Compile Include="Sites\SitePartWorker_Stargate.cs" />
     <Compile Include="Comps\WorldComp_StargateAddresses.cs" />
     <Compile Include="Utilities\Utils.cs" />

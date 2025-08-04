@@ -8,13 +8,14 @@
 		<rotatable>false</rotatable>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<stealable>false</stealable>
-		<pathCost>3</pathCost>
 		<constructEffect>ConstructMetal</constructEffect>
 		<altitudeLayer>BuildingOnTop</altitudeLayer>
 		<fillPercent>0.20</fillPercent>
 		<canOverlapZones>true</canOverlapZones>
 		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-		<designationCategory>Misc</designationCategory>
+		<passability>PassThroughOnly</passability>
+		<castEdgeShadows>false</castEdgeShadows>
+		<pathCost>150</pathCost>
 		<thingCategories>
 			<li>Artifacts</li>
 		</thingCategories>
@@ -68,7 +69,6 @@
 			<Flammability>0</Flammability>
 			<Mass>290</Mass>
 		</statBases>
-		<designationCategory />
 		<size>(5,1)</size>
 		<comps>
 			<li Class="Rimgate.CompProperties_Stargate">
@@ -82,65 +82,6 @@
 				</linkableFacilities>
 			</li>
 		</comps>
-	</ThingDef>
-
-	<!-- ======= Stargate Adhoc ======= -->
-
-	<ThingDef ParentName="Rimgate_StargateBase">
-		<defName>Rimgate_AdhocStargate</defName>
-		<label>Makeshift stargate</label>
-		<description>A device used to transport people or resources between planets. This specific type of Stargate seems to be adapted to work on only one planet. This stargate in particular was made using easily available resources, but is quite unstable and unreliable, and also requires an external power source. It is both too weak and too small to have an iris. It has an integrated DHD. Make sure to get out of the way before it finishes dialling...\n"You wouldn't believe the things that you can make from the common, simple items lying around your planet. Which reminds me, you're going to need a new microwave."</description>
-		<graphicData>
-			<texPath>Things/Building/Misc/RGStargateAdhoc</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(3.5,3.5)</drawSize>
-			<drawOffset>(0,0,0.8)</drawOffset>
-		</graphicData>
-		<techLevel>Spacer</techLevel>
-		<killedLeavings>
-			<Steel>120</Steel>
-			<ComponentIndustrial>8</ComponentIndustrial>
-			<ComponentSpacer>1</ComponentSpacer>
-			<Rimgate_Naquadria>5</Rimgate_Naquadria>
-		</killedLeavings>
-		<statBases>
-			<MarketValue>1050</MarketValue>
-			<WorkToBuild>10000</WorkToBuild>
-			<MaxHitPoints>1500</MaxHitPoints>
-			<Flammability>0.3</Flammability>
-			<Mass>100</Mass>
-		</statBases>
-		<size>(3,1)</size>
-		<comps>
-			<li Class="Rimgate.CompProperties_Stargate">
-				<canHaveIris>False</canHaveIris>
-				<explodeOnUse>True</explodeOnUse>
-				<puddleTexture>Things/Building/Misc/RGEventHorizon</puddleTexture>
-				<puddleDrawSize>(5.3,5.3)</puddleDrawSize>
-				<vortexPattern>
-					<li>(0,0,0)</li>
-					<li>(0,0,-1)</li>
-					<li>(0,0,-2)</li>
-				</vortexPattern>
-			</li>
-			<li Class="Rimgate.CompProperties_DialHomeDevice">
-				<selfDialler>True</selfDialler>
-				<requiresPower>True</requiresPower>
-			</li>
-			<li Class="CompProperties_Explosive">
-				<explosiveRadius>3</explosiveRadius>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<wickTicks>250</wickTicks>
-				<chanceNeverExplodeFromDamage>1</chanceNeverExplodeFromDamage>
-			</li>
-			<li Class="CompProperties_Power">
-				<compClass>CompPowerTrader</compClass>
-				<basePowerConsumption>2000</basePowerConsumption>
-			</li>
-		</comps>
-		<researchPrerequisites>
-			<li>Rimgate_StargateMakingResearch</li>
-		</researchPrerequisites>
 	</ThingDef>
 
 	<!-- =============== DHD =============== -->

@@ -16,7 +16,7 @@
 				<li>ancient->Forgotten</li>
 				<li>site->site</li>
 				<li>site->complex</li>
-				<li>site->bault</li>
+				<li>site->vault</li>
 				<li>site->compound</li>
 				<li>site->temple</li>
 			</rulesStrings>
@@ -59,7 +59,7 @@
 							<tag>Rimgate_StargateSite</tag>
 						</li>
 						<li>
-							<tag>KCSG_EnemiesPresence</tag>
+							<tag>KCSG_EnnemiesPresence</tag>
 						</li>
 					</sitePartsTags>
 				</li>
@@ -83,7 +83,7 @@
 				</li>
 
 				<li Class="Rimgate.QuestNode_AddStargateAddresses">
-					<address>$siteTile</address>
+					<address>$site</address>
 					<remove>false</remove>
 				</li>
 
@@ -96,7 +96,7 @@
 						<nodes>
 							<li Class="QuestNode_Letter">
 								<label>Quest expired: [resolvedQuestName]</label>
-								<text> Intercepted communications indicate the site has been scavenged, including the stargate. The quest [resolvedQuestName] has expired.</text>
+								<text>Intercepted communications indicate the site has been scavenged, including the stargate. The quest [resolvedQuestName] has expired.</text>
 							</li>
 
 							<li Class="QuestNode_End">

@@ -19,14 +19,8 @@ public class JobDriver_DecodeGlyphs : JobDriver
     {
         Slate slate = new Slate();
         QuestScriptDef questDef = Rimgate_DefOf.Rimgate_StargateSiteScript;
-        if (questDef == null)
-        {
-            Log.Warning("Unable to locate quest def for a stargate site.");
-            return;
-        }
         Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(questDef, slate);
-        if (quest != null)
-            QuestUtility.SendLetterQuestAvailable(quest);
+        QuestUtility.SendLetterQuestAvailable(quest);
     }
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)

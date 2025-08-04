@@ -172,7 +172,7 @@
     <graphicData>
       <texPath>Things/Ship/Dart/RGWraithDart</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(5,6)</drawSize>
+      <drawSize>(3.5,5.5)</drawSize>
       <shadowData>
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
@@ -247,13 +247,13 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Dart/RGWraithDart</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(5,6)</drawSize>
+      <drawSize>(3.5,5.5)</drawSize>
     </graphicData>
     <skyfaller>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>
-      <shadowSize>(5.5,6.5)</shadowSize>
+      <shadowSize>(4,6)</shadowSize>
       <shadow>Things/Ship/Dart/RGWraithDartShadow</shadow>
       <rotationCurve>
         <points>
@@ -287,7 +287,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Dart/RGWraithDart</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(5,6)</drawSize>
+      <drawSize>(3.5,5.5)</drawSize>
     </graphicData>
     <skyfaller>
       <reversed>true</reversed>
@@ -296,7 +296,7 @@
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>
       <shadow>Things/Ship/Dart/RGWraithDartShadow</shadow>
-      <shadowSize>(5.5,6.5)</shadowSize>
+      <shadowSize>(4,6)</shadowSize>
       <motesPerCell>1</motesPerCell>
       <rotationCurve>
         <points>
@@ -331,7 +331,7 @@
     <graphicData>
       <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(5,8)</drawSize>
+      <drawSize>(5,8.5)</drawSize>
       <shadowData>
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
@@ -433,13 +433,13 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(5,8)</drawSize>
+      <drawSize>(5,8.5)</drawSize>
     </graphicData>
     <skyfaller>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>
-      <shadowSize>(5.5,8.5)</shadowSize>
+      <shadowSize>(5.5,9)</shadowSize>
       <shadow>Things/Ship/PuddleJumper/RGTauriPuddleJumperShadow</shadow>
       <rotationCurve>
         <points>
@@ -473,7 +473,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(5,8)</drawSize>
+      <drawSize>(5,8.5)</drawSize>
     </graphicData>
     <skyfaller>
       <reversed>true</reversed>
@@ -482,7 +482,7 @@
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>
       <shadow>Things/Ship/PuddleJumper/RGTauriPuddleJumperShadow</shadow>
-      <shadowSize>(5.5,8.5)</shadowSize>
+      <shadowSize>(5.5,9)</shadowSize>
       <motesPerCell>1</motesPerCell>
       <rotationCurve>
         <points>

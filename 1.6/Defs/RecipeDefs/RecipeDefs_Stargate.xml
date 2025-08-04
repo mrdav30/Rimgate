@@ -38,7 +38,15 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>500</count>
+				<count>250</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>150</count>
 			</li>
 			<li>
 				<filter>
@@ -46,7 +54,7 @@
 						<li>Uranium</li>
 					</thingDefs>
 				</filter>
-				<count>350</count>
+				<count>300</count>
 			</li>
 			<li>
 				<filter>
@@ -61,73 +69,6 @@
 			<Rimgate_IrisInstallKit>1</Rimgate_IrisInstallKit>
 		</products>
 		<researchPrerequisite>Rimgate_StargateIrisResearch</researchPrerequisite>
-	</RecipeDef>
-
-
-	<!-- ==================== Makeshift Stargate ==================== -->
-
-	<RecipeDef>
-		<defName>Rimgate_BuildMakeShiftStargate</defName>
-		<label>Build a make-shift Stargate</label>
-		<description>A device used to transport people or resources between planets. This specific
-			type of Stargate seems to be adapted to work on only one planet. This stargate in
-			particular was made using easily available resources, but is quite unstable and
-			unreliable, and also requires an external power source. It is both too weak and too
-			small to have an iris. It has an integrated DHD. Make sure to get out of the way before
-			it finishes dialling...\n"You wouldn't believe the things that you can make from the
-			common, simple items lying around your planet. Which reminds me, you're going to need a
-			new microwave."</description>
-		<jobString>Building make-shift stargate.</jobString>
-		<workAmount>10000</workAmount>
-		<unfinishedThingDef>Rimgate_UnfinishedMakeshiftStargate</unfinishedThingDef>
-		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-		<workSkill>Crafting</workSkill>
-		<effectWorking>Smith</effectWorking>
-		<soundWorking>Recipe_Machining</soundWorking>
-		<recipeUsers>
-			<li>FabricationBench</li>
-		</recipeUsers>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>120</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>8</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentSpacer</li>
-					</thingDefs>
-				</filter>
-				<count>1</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Rimgate_Naquadria</li>
-					</thingDefs>
-				</filter>
-				<count>5</count>
-			</li>
-		</ingredients>
-		<skillRequirements>
-			<Crafting>10</Crafting>
-		</skillRequirements>
-		<products>
-			<Rimgate_AdhocStargate>1</Rimgate_AdhocStargate>
-		</products>
-		<researchPrerequisite>Rimgate_StargateMakingResearch</researchPrerequisite>
 	</RecipeDef>
 
 </Defs>

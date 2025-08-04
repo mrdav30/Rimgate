@@ -31,19 +31,6 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
-
-	<!-- ==================== Stargate Creation ==================== -->
-
-	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_StargateMakingResearch</defName>
-		<label>Makeshift Stargate creation</label>
-		<description>The materials used to build the ancient stargates aren't available on this
-			planet, but we might be able to create a makeshift version.</description>
-		<baseCost>3500</baseCost>
-		<researchViewX>1.00</researchViewX>
-		<researchViewY>1.00</researchViewY>
-	</ResearchProjectDef>
-
 	<!-- ==================== Iris Research ==================== -->
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">

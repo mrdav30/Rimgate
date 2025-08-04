@@ -33,7 +33,7 @@
 		<products>
 			<Rimgate_Naquadria>5</Rimgate_Naquadria>
 		</products>
-		<researchPrerequisite>Rimgate_NaquadriaFiredGenerator</researchPrerequisite>
+		<researchPrerequisite>Rimgate_NaquadahRefinement</researchPrerequisite>
 	</RecipeDef>
 
 </Defs>
