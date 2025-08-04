@@ -145,15 +145,14 @@ public class Comp_Stargate : ThingComp
         glowComp.Props.glowRadius = GlowRadius;
         glowComp.PostSpawnSetup(false);
 
-        if (RimgateMod.debug)
+        if (RimgateMod.Debug)
             Log.Message($"Rimgate :: finished opening gate {parent}");
     }
 
     public void CloseStargate(bool closeOtherGate)
     {
         CompTransporter transComp = parent.GetComp<CompTransporter>();
-        if (transComp != null)
-            transComp.CancelLoad();
+        transComp?.CancelLoad();
 
         //clear buffers just in case
         foreach (Thing thing in _sendBuffer)
@@ -249,7 +248,7 @@ public class Comp_Stargate : ThingComp
 
         if (!connectedMap.HasMap)
         {
-            if (RimgateMod.debug)
+            if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: generating map for {connectedMap}");
 
             GetOrGenerateMapUtility.GetOrGenerateMap(
@@ -258,7 +257,7 @@ public class Comp_Stargate : ThingComp
                     ? new IntVec3(75, 1, 75)
                     : Find.World.info.initialMapSize, null);
 
-            if (RimgateMod.debug)
+            if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: finished generating map");
         }
 
@@ -270,7 +269,7 @@ public class Comp_Stargate : ThingComp
 
     private void PlayTeleportSound()
     {
-        DefDatabase<SoundDef>.GetNamed($"Rimgate_StargateTeleport{Rand.RangeInclusive(1, 4)}").PlayOneShot(SoundInfo.InMap(parent));
+        DefDatabase<SoundDef>.GetNamed($"Rimgate_StargateTeleport0{Rand.RangeInclusive(1, 4)}").PlayOneShot(SoundInfo.InMap(parent));
     }
 
     private void DoUnstableVortex()
@@ -350,85 +349,83 @@ public class Comp_Stargate : ThingComp
             }
         }
 
-        if (StargateIsActive)
+        if (!StargateIsActive) return;
+
+        if (!_irisIsActivated && TicksSinceOpened < 150 && TicksSinceOpened % 10 == 0)
+            DoUnstableVortex();
+
+        if (parent.Fogged())
+            FloodFillerFog.FloodUnfog(parent.Position, parent.Map);
+
+        Comp_Stargate sgComp = _connectedStargate.TryGetComp<Comp_Stargate>();
+        CompTransporter transComp = parent.GetComp<CompTransporter>();
+
+        if (transComp != null)
         {
-            if (!_irisIsActivated && TicksSinceOpened < 150 && TicksSinceOpened % 10 == 0)
-                DoUnstableVortex();
-
-            if (parent.Fogged())
-                FloodFillerFog.FloodUnfog(parent.Position, parent.Map);
-
-            Comp_Stargate sgComp = _connectedStargate.TryGetComp<Comp_Stargate>();
-
-            CompTransporter transComp = parent.GetComp<CompTransporter>();
-            if (transComp != null)
+            Thing thing = transComp.innerContainer.FirstOrFallback();
+            if (thing != null)
             {
-                Thing thing = transComp.innerContainer.FirstOrFallback();
-                if (thing != null)
-                {
-                    if (thing.Spawned)
-                        thing.DeSpawn();
+                if (thing.Spawned)
+                    thing.DeSpawn();
 
-                    AddToSendBuffer(thing);
-                    transComp.innerContainer.Remove(thing);
-                    //transComp.SubtractFromToLoadList(thing, thing.stackCount, false);
-                }
-                else if (transComp.LoadingInProgressOrReadyToLaunch
-                    && !transComp.AnyInGroupHasAnythingLeftToLoad)
+                AddToSendBuffer(thing);
+                transComp.innerContainer.Remove(thing);
+            }
+            else if (transComp.LoadingInProgressOrReadyToLaunch
+                && !transComp.AnyInGroupHasAnythingLeftToLoad)
+            {
+                transComp.CancelLoad();
+            }
+        }
+
+        if (_sendBuffer.Any())
+        {
+            if (!IsRecievingGate)
+            {
+                for (int i = 0; i <= _sendBuffer.Count; i++)
                 {
-                    transComp.CancelLoad();
+                    sgComp.AddToRecieveBuffer(_sendBuffer[i]);
+                    _sendBuffer.Remove(_sendBuffer[i]);
                 }
             }
-
-            if (_sendBuffer.Any())
+            else
             {
-                if (!IsRecievingGate)
+                for (int i = 0; i <= _sendBuffer.Count; i++)
                 {
-                    for (int i = 0; i <= _sendBuffer.Count; i++)
-                    {
-                        sgComp.AddToRecieveBuffer(_sendBuffer[i]);
-                        _sendBuffer.Remove(_sendBuffer[i]);
-                    }
-
-                }
-                else
-                {
-                    for (int i = 0; i <= _sendBuffer.Count; i++)
-                    {
-                        _sendBuffer[i].Kill();
-                        _sendBuffer.Remove(_sendBuffer[i]);
-                    }
+                    _sendBuffer[i].Kill();
+                    _sendBuffer.Remove(_sendBuffer[i]);
                 }
             }
+        }
 
-            if (_recvBuffer.Any() && TicksSinceBufferUnloaded > Rand.Range(10, 80))
+        if (_recvBuffer.Any() && TicksSinceBufferUnloaded > Rand.Range(10, 80))
+        {
+            TicksSinceBufferUnloaded = 0;
+            if (!_irisIsActivated)
             {
-                TicksSinceBufferUnloaded = 0;
-                if (!_irisIsActivated)
-                {
-                    GenSpawn.Spawn(_recvBuffer[0], parent.InteractionCell, parent.Map);
-                    _recvBuffer.Remove(_recvBuffer[0]);
-                    PlayTeleportSound();
-                }
-                else
-                {
-                    _recvBuffer[0].Kill();
-                    _recvBuffer.Remove(_recvBuffer[0]);
-                    Rimgate_DefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(parent));
-                }
+                GenSpawn.Spawn(_recvBuffer[0], parent.InteractionCell, parent.Map);
+                _recvBuffer.Remove(_recvBuffer[0]);
+                PlayTeleportSound();
             }
-
-            if (_connectedAddress == -1 && !_recvBuffer.Any())
-                CloseStargate(false);
-
-            TicksSinceBufferUnloaded++;
-            TicksSinceOpened++;
-            if (IsRecievingGate
-                && TicksSinceBufferUnloaded > 2500
-                && !_connectedStargate.TryGetComp<Comp_Stargate>().GateIsLoadingTransporter)
+            else
             {
-                CloseStargate(true);
+                _recvBuffer[0].Kill();
+                _recvBuffer.Remove(_recvBuffer[0]);
+                Rimgate_DefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(parent));
             }
+        }
+
+        if (_connectedAddress == -1 && !_recvBuffer.Any())
+            CloseStargate(false);
+
+        TicksSinceBufferUnloaded++;
+        TicksSinceOpened++;
+
+        if (IsRecievingGate
+            && TicksSinceBufferUnloaded > 2500
+            && !_connectedStargate.TryGetComp<Comp_Stargate>().GateIsLoadingTransporter)
+        {
+            CloseStargate(true);
         }
     }
 
@@ -440,11 +437,8 @@ public class Comp_Stargate : ThingComp
 
         if (StargateIsActive)
         {
-            if (_connectedStargate == null
-                && _connectedAddress != -1)
-            {
+            if (_connectedStargate == null && _connectedAddress != -1)
                 _connectedStargate = GetDialledStargate(_connectedAddress);
-            }
             _puddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
         }
 
@@ -454,7 +448,7 @@ public class Comp_Stargate : ThingComp
         if (transComp != null && transComp.innerContainer == null)
             transComp.innerContainer = new ThingOwner<Thing>(transComp);
 
-        if (RimgateMod.debug)
+        if (RimgateMod.Debug)
             Log.Message($"Rimgate :: compsg postspawnssetup: sgactive={StargateIsActive} connectgate={_connectedStargate} connectaddress={_connectedAddress}, mapparent={parent.Map.Parent}");
     }
 
@@ -552,7 +546,7 @@ public class Comp_Stargate : ThingComp
 
         yield return new FloatMenuOption("Rimgate_EnterStargateAction".Translate(), () =>
         {
-            Job job = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("Rimgate_EnterStargate"), parent);
+            Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_EnterStargate, parent);
             selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         });
         yield return new FloatMenuOption("Rimgate_BringPawnToGateAction".Translate(), () =>
@@ -567,7 +561,7 @@ public class Comp_Stargate : ThingComp
             Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo t)
             {
                 Job job = JobMaker.MakeJob(
-                    DefDatabase<JobDef>.GetNamed("Rimgate_BringToStargate"),
+                    Rimgate_DefOf.Rimgate_BringToStargate,
                     t.Thing,
                     parent);
                 selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
@@ -600,7 +594,7 @@ public class Comp_Stargate : ThingComp
         {
             foreach (Pawn selPawn in allowedPawns)
             {
-                Job job = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("Rimgate_EnterStargate"), parent);
+                Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_EnterStargate, parent);
                 selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             }
         });

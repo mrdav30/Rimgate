@@ -239,7 +239,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         if (gizmo != null)
             yield return gizmo;
 
-        if (RimgateMod.debug && CanOpen)
+        if (RimgateMod.Debug && CanOpen)
         {
             yield return new Command_Action
             {
@@ -320,7 +320,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
 
         stringBuilder.AppendInNewLine(inspectorStatus);
 
-        if (RimgateMod.debug)
+        if (RimgateMod.Debug)
         {
             stringBuilder.AppendInNewLine("DEBUG: "
                 + status.ToStringSafe()
@@ -507,7 +507,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                 break;
         }
 
-        if (RimgateMod.debug)
+        if (RimgateMod.Debug)
         {
             Log.Message(this + $" :: state change from {oldStatus.ToStringSafe().Colorize(Color.yellow)}"
                 + $" to {status.ToStringSafe().Colorize(Color.yellow)}");
@@ -714,7 +714,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         patientPawn.health.hediffSet.DirtyCache();
         patientPawn.health.CheckForStateChange(null, null);
 
-        if (RimgateMod.debug)
+        if (RimgateMod.Debug)
         {
             string message = finishTreatmentNormally
                 ? "NORMAL".Colorize(Color.green)
@@ -756,7 +756,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             // Interrupt treatment on power loss
             if (!powerComp.PowerOn)
             {
-                if (RimgateMod.debug)
+                if (RimgateMod.Debug)
                     Log.Message(this + $" :: Lost power while running (state: {status})");
 
                 DischargePatient(PatientPawn, false);
@@ -783,7 +783,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                             DbhCompatibility.SetHygieneNeedCurLevelPercentage(PatientPawn, 1f);
                         }
 
-                        if (RimgateMod.debug)
+                        if (RimgateMod.Debug)
                             Log.Message($"\t{PatientPawn} :: initial DiagnosingTicks = {DiagnosingTicks}");
 
                         SwitchState();
@@ -802,7 +802,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                         // Skip treatment if no treatable hediffs are found
                         if (patientTreatableHediffs.NullOrEmpty())
                         {
-                            if (RimgateMod.debug)
+                            if (RimgateMod.Debug)
                                 Log.Message(this + $" :: Ejecting patient as they have nothing to treat");
                             // if we're only using the sarcophagus for an addiction, adjust need
                             sarcophagusComp.HandleAfterEffects(PatientPawn, false);
@@ -818,7 +818,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                             // bigger pawns also take longer
                             HealingTicks = (int)Math.Ceiling(GetHediffNormalizedSeverity()
                                 * PatientBodySizeScaledMaxHealingTicks);
-                            if (RimgateMod.debug)
+                            if (RimgateMod.Debug)
                             {
                                 Log.Message($"\t{PatientPawn} :: first hediff HealingTicks = {HealingTicks}"
                                     + $" (hediff count: {patientTreatableHediffs.Count()})");
@@ -858,7 +858,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                             HealingTicks = (int)Math.Ceiling(GetHediffNormalizedSeverity()
                                 * PatientBodySizeScaledMaxHealingTicks);
 
-                            if (RimgateMod.debug)
+                            if (RimgateMod.Debug)
                             {
                                 Log.Message($"\t{PatientPawn} :: next hediff HealingTicks = {HealingTicks}"
                                     + $" (hediff count: {patientTreatableHediffs.Count()})");

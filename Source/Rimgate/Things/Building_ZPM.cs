@@ -81,7 +81,7 @@ public class Building_ZPM : Building
             darkEnergyReserve -= 1000;
         }
 
-        if (RimgateMod.debugPower)
+        if (RimgateMod.DebugZPM)
         {
             Log.Warning($"ZPM :: Current Energy Gain Rate: {power.PowerNet.CurrentEnergyGainRate()}");
             Log.Warning($"ZPM :: Stored Energy: {power.StoredEnergy}");

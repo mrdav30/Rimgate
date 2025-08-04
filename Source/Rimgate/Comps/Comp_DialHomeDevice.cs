@@ -116,22 +116,20 @@ public class Comp_DialHomeDevice : ThingComp
             yield break;
         }
 
-        foreach (int i in addressComp.AddressList)
+        foreach (PlanetTile tile in addressComp.AddressList)
         {
-            if (i != stargate.GateAddress)
-            {
-                MapParent sgMap = Find.WorldObjects.MapParentAt(i);
-                yield return new FloatMenuOption(
-                    "DialGate".Translate(Comp_Stargate.GetStargateDesignation(i), sgMap.Label),
-                    () =>
-                        {
-                            LastDialledAddress = i;
-                            Job job = JobMaker.MakeJob(
-                                DefDatabase<JobDef>.GetNamed("Rimgate_DialStargate"),
-                                parent);
-                            selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                        });
-            }
+            if (tile == stargate.GateAddress)
+                continue;
+
+            MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
+            yield return new FloatMenuOption(
+                "Rimgate_DialGate".Translate(Comp_Stargate.GetStargateDesignation(tile), sgMap.Label),
+                () =>
+                    {
+                        LastDialledAddress = tile;
+                        Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_DialStargate, parent);
+                        selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                    });
         }
     }
 
@@ -154,7 +152,7 @@ public class Comp_DialHomeDevice : ThingComp
         {
             stargate.CloseStargate(true);
         };
-        if (!stargate.StargateIsActive) 
+        if (!stargate.StargateIsActive)
             command.Disable("Rimgate_GateIsNotActive".Translate());
         else if (stargate.IsRecievingGate)
             command.Disable("Rimgate_CannotCloseIncoming".Translate());

@@ -22,13 +22,12 @@ public class PlaceWorker_Stargate : PlaceWorker
         foreach (CompProperties props in def.comps)
         {
             if (props is not CompProperties_Stargate sgProps)
-                return;
+                continue;
 
             List<IntVec3> pattern = new List<IntVec3>();
             foreach (IntVec3 vec in sgProps.vortexPattern)
-            {
                 pattern.Add(center + vec);
-            }
+
             GenDraw.DrawFieldEdges(pattern, Color.red);
             return;
         }

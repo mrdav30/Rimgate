@@ -21,7 +21,11 @@ public static class Rimgate_DefOf
     public static HediffDef Rimgate_SarcophagusHigh;
     public static HediffDef Rimgate_SarcophagusAddiction;
 
+    public static JobDef Rimgate_BringToStargate;
     public static JobDef Rimgate_CarryToSarcophagus;
+    public static JobDef Rimgate_DecodeGlyphs;
+    public static JobDef Rimgate_DialStargate;
+    public static JobDef Rimgate_EnterStargate;
     public static JobDef Rimgate_PatientGoToSarcophagus;
     public static JobDef Rimgate_RescueToSarcophagus;
     public static JobDef Rimgate_Toggle;
@@ -29,6 +33,10 @@ public static class Rimgate_DefOf
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
 
     public static QuestScriptDef Rimgate_StargateSiteScript;
+
+    public static RaidStrategyDef StageThenAttack;
+
+    public static ResearchProjectDef Rimgate_GlyphDeciphering;
 
     public static SoundDef Rimgate_GoauldGuardHelmToggle;
     public static SoundDef Rimgate_IrisOpen;
@@ -40,4 +48,7 @@ public static class Rimgate_DefOf
     public static SoundDef Rimgate_StargateClose;
 
     public static ThingDef Gun_Autopistol;
+    public static ThingDef Rimgate_MineableNaquadah;
+
+    public static ThingSetMakerDef Rimgate_Meteorite;
 }

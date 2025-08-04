@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!--================================ naquadah Ore ======================================-->
-	
+  <!--================================ naquadah Ore ======================================-->
+
   <ThingDef ParentName="RockBase">
     <defName>Rimgate_MineableNaquadah</defName>
     <label>Naquadah ore</label>
@@ -26,6 +26,7 @@
         <min>12</min>
         <max>24</max>
       </mineableScatterLumpSizeRange>
+      <veinMineable>true</veinMineable>
     </building>
   </ThingDef>
 

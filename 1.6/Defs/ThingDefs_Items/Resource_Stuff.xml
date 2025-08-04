@@ -29,6 +29,22 @@
     <thingCategories>
       <li>ResourcesRaw</li>
     </thingCategories>
+    <stuffProps>
+      <categories>
+        <li>Metallic</li>
+      </categories>
+      <commonality>0</commonality>
+      <constructEffect>ConstructMetal</constructEffect>
+      <color>(114,114,114)</color>
+      <soundImpactBullet>BulletImpact_Metal</soundImpactBullet>
+      <soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
+      <soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>
+      <statFactors>
+        <MaxHitPoints>2.0</MaxHitPoints>
+        <Beauty>2</Beauty>
+        <Flammability>0.2</Flammability>
+      </statFactors>
+    </stuffProps>
     <deepCommonality>6</deepCommonality>
     <deepCountPerPortion>45</deepCountPerPortion>
     <deepLumpSizeRange>

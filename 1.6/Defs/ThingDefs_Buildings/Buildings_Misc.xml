@@ -15,7 +15,7 @@
 		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
 		<passability>PassThroughOnly</passability>
 		<castEdgeShadows>false</castEdgeShadows>
-		<pathCost>150</pathCost>
+		<pathCost>3</pathCost>
 		<thingCategories>
 			<li>Artifacts</li>
 		</thingCategories>
@@ -50,6 +50,7 @@
 		<defName>Rimgate_Stargate</defName>
 		<label>Stargate</label>
 		<description>An ancient device used to transport people or resources between planets. This specific type of Stargate seems to be adapted to work on only one planet. \n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard...naked."</description>
+		<size>(5,1)</size>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGStargateAncient</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -69,7 +70,6 @@
 			<Flammability>0</Flammability>
 			<Mass>290</Mass>
 		</statBases>
-		<size>(5,1)</size>
 		<comps>
 			<li Class="Rimgate.CompProperties_Stargate">
 				<puddleTexture>Things/Building/Misc/RGEventHorizon</puddleTexture>
@@ -126,7 +126,7 @@
 		<killedLeavings>
 			<Rimgate_ZPM>1</Rimgate_ZPM>
 		</killedLeavings>
-		<killedLeavingsChance>0.05</killedLeavingsChance>
+		<killedLeavingsChance>0.005</killedLeavingsChance>
 		<statBases>
 			<MaxHitPoints>6000</MaxHitPoints>
 			<Flammability>0</Flammability>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_Meteorite</defName>
+    <root Class="Rimgate.ThingSetMaker_SpecialMeteorite" />
+  </ThingSetMakerDef>
+
+</Defs>

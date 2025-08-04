@@ -24,11 +24,11 @@ public class Comp_GlyphScrap : ThingComp
         if (!canReach)
             yield break;
 
-        if (DefDatabase<ResearchProjectDef>.GetNamed("Rimgate_GlyphDeciphering").IsFinished)
+        if (Rimgate_DefOf.Rimgate_GlyphDeciphering.IsFinished)
         {
             yield return new FloatMenuOption("Rimgate_DecodeSGSymbols".Translate(), () =>
             {
-                Job job = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("Rimgate_DecodeGlyphs"), parent);
+                Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_DecodeGlyphs, parent);
                 selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             });
         }

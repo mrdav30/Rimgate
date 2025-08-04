@@ -93,7 +93,7 @@
 
 	<ThingDef ParentName="Rimgate_MannedTurretBase">
 		<defName>Rimgate_M2Turret</defName>
-		<label>Manned M2 .50 Cal Machine Gun</label>
+		<label>manned M2 .50 Cal machine gun</label>
 		<description>A heavy machine gun used in mainly defensive measures by SGC personnel and SG
 			teams.</description>
 		<graphicData>

@@ -60,7 +60,7 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 
         Thing gateOnMap = Comp_Stargate.GetStargateOnMap(Map);
         Thing dhdOnMap = Comp_DialHomeDevice.GetDHDOnMap(Map);
-        if (RimgateMod.debug) 
+        if (RimgateMod.Debug) 
             Log.Message($"Rimgate :: perm sg site post map gen: dhddef={DhdDef} gatedef={GateDef} gateonmap={gateOnMap} dhdonmap={dhdOnMap}");
 
         if (gateOnMap != null)
@@ -87,7 +87,7 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
         DhdDef = dhdOnMap == null ? null : dhdOnMap.def;
         GateDef = gateOnMap == null ? null : gateOnMap.def;
 
-        if (RimgateMod.debug)
+        if (RimgateMod.Debug)
             Log.Message($"Rimgate :: perm map about to be removed: dhddef={DhdDef} gatedef={GateDef}");
     }
 

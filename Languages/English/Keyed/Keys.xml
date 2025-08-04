@@ -9,6 +9,13 @@
 	<RG_SwitchWeaponCommand_Label>Switch {0}</RG_SwitchWeaponCommand_Label>
 	<RG_SwitchWeaponCommand_Desc>Switch to {0}.</RG_SwitchWeaponCommand_Desc>
 
+	<!-- Incidents -->
+
+	<RG_LetterNaquadahAsteroid_Label>Naquadah asteroid</RG_LetterNaquadahAsteroid_Label>
+	<RG_LetterNaquadahAsteroid_Desc>A small asteroid of pure Naquadah has entered the atmosphere of this planet. Impact is imminent.</RG_LetterNaquadahAsteroid_Desc>
+
+	<RG_LetterRaidAstroid_Desc>A raid from {0} has arrived to capture the {1} that impacted nearby.</RG_LetterRaidAstroid_Desc>
+
 	<!-- Sarcophagus -->
 
 	<RG_Sarcophagus_InspectorStatus_NoPower>Error: No power</RG_Sarcophagus_InspectorStatus_NoPower>

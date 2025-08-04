@@ -94,7 +94,7 @@ public static class SarcophagusHealthAIUtility
             || hasAlwaysTreatableHediffs 
             || hasGreylistedHediffsDuringTreatment) && hasNoBlockingHediffsOrTraits;
 
-        if (RimgateMod.debug)
+        if (RimgateMod.Debug)
             Log.Message($"{patient} should use {bedSarcophagus}? = {result.ToStringYesNo()}\n"
                 + $"isDowned = {isDowned.ToStringYesNo()}\n"
                 + $"hasTendableHediffs = {hasTendableHediffs.ToStringYesNo()}\n"

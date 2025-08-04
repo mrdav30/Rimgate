@@ -40,7 +40,7 @@ public class Comp_AlternateApparel : ThingComp
         GetOrCreateAlternate();
         if (CachedAlternateHelmet == null)
         {
-            if (RimgateMod.debug)
+            if (RimgateMod.Debug)
                 Log.Warning($"Rimgate :: unable to get alternate headgear for {ApparelDef}");
             return;
         }
@@ -54,7 +54,7 @@ public class Comp_AlternateApparel : ThingComp
         // Make other version if needed
         if (CachedAlternateHelmet == null)
         {
-            if (RimgateMod.debug)
+            if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: creating new alternate helm {Props.attachedHeadgearDef} for {ApparelDef}");
 
             CachedAlternateHelmet = (Apparel)ThingMaker.MakeThing(Props.attachedHeadgearDef);

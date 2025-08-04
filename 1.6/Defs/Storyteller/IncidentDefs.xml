@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<IncidentDef>
+		<defName>Rimgate_Incident_NaquadahMeteorite</defName>
+		<label>naquadah meteorite</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>Rimgate.IncidentWorker_Asteroid</workerClass>
+		<baseChance>0.1</baseChance>
+		<minRefireDays>60</minRefireDays>
+	</IncidentDef>
+
+</Defs>

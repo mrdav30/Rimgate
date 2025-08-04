@@ -57,7 +57,7 @@ public class Comp_SwitchWeapon : ThingComp
 
         if (CachedSwitchWeapon == null)
         {
-            if (RimgateMod.debug)
+            if (RimgateMod.Debug)
                 Log.Warning($"Rimgate :: unable to get switch weapon for {WeaponDef}");
             return;
         }
@@ -71,7 +71,7 @@ public class Comp_SwitchWeapon : ThingComp
         // Make other version if needed
         if (CachedSwitchWeapon == null)
         {
-            if (RimgateMod.debug)
+            if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: creating new switch weapon {Props.weaponToSwitch} for {WeaponDef}");
 
             CachedSwitchWeapon = (ThingWithComps)ThingMaker.MakeThing(Props.weaponToSwitch, null);

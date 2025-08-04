@@ -25,7 +25,7 @@ public class Projectile_ZatBlast : Bullet
         if (zatShocked != null)
         {
             // If the pawn has already been shot with the zat gun, the second shot is fatal.
-            if (RimgateMod.debug)
+            if (RimgateMod.Debug)
                 Messages.Message("Rimgate :: Killing " + hitPawn.Name + " because of 2nd zat blast.", MessageTypeDefOf.NegativeEvent);
             hitPawn.Kill(null);
         }

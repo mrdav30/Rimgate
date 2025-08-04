@@ -11,8 +11,10 @@ public class RimgateMod : Mod
 {
     public static Harmony harmony;
 
-    public static bool debug = true;
-    public static bool debugPower = false;
+    public static bool Debug = true;
+    public static bool DebugZPM = false;
+
+    public static bool FlagAsteroids = true;
 
     public RimgateMod(ModContentPack pack) : base(pack)
     {
