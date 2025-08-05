@@ -385,25 +385,43 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             List<Hediff> blockedHediffs = new();
             myPawn.health.hediffSet.GetHediffs(ref blockedHediffs);
 
-            yield return new FloatMenuOption("UseMedicalBed".Translate() + " (" + "RG_Sarcophagus_FloatMenu_PatientWithHediffNotAllowed".Translate(blockedHediffs.First(h => UsageBlockingHediffs.Contains(h.def)).LabelCap) + ")", null);
+            string label = blockedHediffs
+                .First(h => UsageBlockingHediffs.Contains(h.def)).LabelCap;
+            yield return new FloatMenuOption(
+                "UseMedicalBed".Translate()
+                + $"({"RG_Sarcophagus_FloatMenu_PatientWithHediffNotAllowed".Translate(label)})",
+                null);
             yield break;
         }
 
         if (SarcophagusHealthAIUtility.HasUsageBlockingTraits(myPawn, UsageBlockingTraits))
         {
-            yield return new FloatMenuOption("UseMedicalBed".Translate() + " blocking traits (" + "RG_Sarcophagus_FloatMenu_PatientWithTraitNotAllowed".Translate(myPawn.story?.traits.allTraits.First(t => UsageBlockingTraits.Contains(t.def)).LabelCap) + ")", null);
+            string label = myPawn.story?.traits.allTraits
+                .First(t => UsageBlockingTraits.Contains(t.def)).LabelCap;
+            yield return new FloatMenuOption(
+                "UseMedicalBed".Translate()
+                + $" blocking traits ({"RG_Sarcophagus_FloatMenu_PatientWithTraitNotAllowed".Translate(label)})",
+                null);
             yield break;
         }
 
         if (!SarcophagusHealthAIUtility.IsValidXenotypeForSarcophagus(myPawn, DisallowedXenotypes))
         {
-            yield return new FloatMenuOption("UseMedicalBed".Translate() + " (" + "RG_Sarcophagus_FloatMenu_RaceNotAllowed".Translate(myPawn.genes?.Xenotype.label.CapitalizeFirst()) + ")", null);
+            string label = myPawn.genes?.Xenotype.label.CapitalizeFirst();
+            yield return new FloatMenuOption(
+                "UseMedicalBed".Translate()
+                + $" ({"RG_Sarcophagus_FloatMenu_RaceNotAllowed".Translate(label)})",
+                null);
             yield break;
         }
 
         if (!SarcophagusHealthAIUtility.IsValidRaceForSarcophagus(myPawn, DisallowedRaces))
         {
-            yield return new FloatMenuOption("UseMedicalBed".Translate() + " (" + "RG_Sarcophagus_FloatMenu_RaceNotAllowed".Translate(myPawn.def.label.CapitalizeFirst()) + ")", null);
+            string label = myPawn.def.label.CapitalizeFirst();
+            yield return new FloatMenuOption(
+                "UseMedicalBed".Translate()
+                + $" ({"RG_Sarcophagus_FloatMenu_RaceNotAllowed".Translate(label)})",
+                null);
             yield break;
         }
 
@@ -411,7 +429,10 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         {
             if (!powerComp.PowerOn)
             {
-                yield return new FloatMenuOption("UseMedicalBed".Translate() + " (" + "RG_Sarcophagus_FloatMenu_Unpowered".Translate() + ")", null);
+                yield return new FloatMenuOption(
+                    "UseMedicalBed".Translate()
+                    + $" ({"RG_Sarcophagus_FloatMenu_Unpowered".Translate()})",
+                    null);
                 yield break;
             }
 
@@ -423,13 +444,19 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
 
             if (!SarcophagusHealthAIUtility.HasAllowedMedicalCareCategory(myPawn))
             {
-                yield return new FloatMenuOption("UseMedicalBed".Translate() + " (" + "RG_Sarcophagus_FloatMenu_MedicalCareCategoryTooLow".Translate() + ")", null);
+                yield return new FloatMenuOption(
+                    "UseMedicalBed".Translate()
+                    + $" ({"RG_Sarcophagus_FloatMenu_MedicalCareCategoryTooLow".Translate()})",
+                    null);
                 yield break;
             }
         }
         else
         {
-            yield return new FloatMenuOption("UseMedicalBed".Translate() + " (" + "NotInjured".Translate() + ")", null);
+            yield return new FloatMenuOption(
+                "UseMedicalBed".Translate()
+                + $" ({"NotInjured".Translate()})",
+                null);
             yield break;
         }
 
@@ -446,17 +473,9 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                     null,
                     ignoreOtherReservations: true))
             {
-                if (myPawn.CurJobDef == JobDefOf.LayDown
-                    && myPawn.CurJob.GetTarget(TargetIndex.A).Thing == this)
-                {
-                    myPawn.CurJob.restUntilHealed = true;
-                }
-                else
-                {
-                    Job job = JobMaker.MakeJob(JobDefOf.LayDown, this);
-                    job.restUntilHealed = true;
-                    myPawn.jobs.TryTakeOrderedJob(job);
-                }
+                Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_PatientGoToSarcophagus, this);
+                job.restUntilHealed = true;
+                myPawn.jobs.TryTakeOrderedJob(job);
 
                 myPawn.mindState.ResetLastDisturbanceTick();
             }

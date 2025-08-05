@@ -20,11 +20,18 @@
     <combatPower>25</combatPower>
     <isFighter>false</isFighter>
     <gearHealthRange>0.2~2.0</gearHealthRange>
-    <apparelMoney>1500~2800</apparelMoney>
     <apparelTags>
       <li>Tribal</li>
       <li>Neolithic</li>
     </apparelTags>
+  </PawnKindDef>
+
+  <!-- ====== Goa'uld Civilian Classes ========= -->
+
+  <PawnKindDef ParentName="Rimgate_GoauldCivilianBase">
+    <defName>Rimgate_GoauldColonist</defName>
+    <label>colonist</label>
+    <apparelMoney>1500~2800</apparelMoney>
     <weaponMoney>270~1000</weaponMoney>
     <weaponTags>
       <li>Rimgate_GoauldWeapons_tag</li>
@@ -60,17 +67,15 @@
     </inventoryOptions>
   </PawnKindDef>
 
-  <!-- ====== Goa'uld Civilian Classes ========= -->
-
-  <PawnKindDef ParentName="Rimgate_GoauldCivilianBase">
-    <defName>Rimgate_GoauldColonist</defName>
-    <label>colonist</label>
-  </PawnKindDef>
-
   <PawnKindDef ParentName="Rimgate_GoauldCivilianBase">
     <defName>Rimgate_GoauldSlave</defName>
     <label>slave</label>
     <chemicalAddictionChance>0.5</chemicalAddictionChance>
+    <apparelMoney>270~900</apparelMoney>
+    <weaponMoney>270~900</weaponMoney>
+    <weaponTags>
+      <li>Tribal</li>
+    </weaponTags>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldBase">

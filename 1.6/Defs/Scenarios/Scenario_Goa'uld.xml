@@ -30,8 +30,8 @@
 					<pawnChoiceCount>8</pawnChoiceCount>
 					<overrideKinds>
 						<li>
-							<xenotype>Rimgate_GoauldJaffa</xenotype>
-							<pawnKind>Rimgate_GoauldPlayer</pawnKind>
+							<xenotype>Baseliner</xenotype>
+							<pawnKind>Rimgate_GoauldSlave</pawnKind>
 						</li>
 					</overrideKinds>
 					<xenotypeCounts>

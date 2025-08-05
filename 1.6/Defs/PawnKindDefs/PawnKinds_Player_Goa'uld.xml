@@ -54,4 +54,22 @@
     </techHediffsRequired>
   </PawnKindDef>
 
+  <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">
+    <defName>Rimgate_GoauldSlave</defName>
+    <label>slave</label>
+    <combatPower>25</combatPower>
+    <isFighter>false</isFighter>
+    <gearHealthRange>0.2~2.0</gearHealthRange>
+    <apparelTags>
+      <li>Tribal</li>
+      <li>Neolithic</li>
+    </apparelTags>
+    <chemicalAddictionChance>0.5</chemicalAddictionChance>
+    <apparelMoney>270~900</apparelMoney>
+    <weaponMoney>270~900</weaponMoney>
+    <weaponTags>
+      <li>Tribal</li>
+    </weaponTags>
+  </PawnKindDef>
+
 </Defs>
