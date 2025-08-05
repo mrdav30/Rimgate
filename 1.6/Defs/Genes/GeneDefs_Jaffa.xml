@@ -82,6 +82,9 @@
             <PainShockThreshold>0.40</PainShockThreshold>
             <HuntingStealth>1.75</HuntingStealth>
         </statFactors>
+        <statOffsets>
+            <ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+        </statOffsets>
         <symbolPack>
             <prefixSymbols>
                 <li>

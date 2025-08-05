@@ -99,6 +99,8 @@
     <weaponTags>
       <li>Rimgate_GoauldRanged_Tag</li>
     </weaponTags>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
     <apparelMoney>2300~7000</apparelMoney>
     <apparelTags>
       <li>Rimgate_GoauldPrimeApparel_tag</li>
@@ -162,6 +164,8 @@
     <maxGenerationAge>250</maxGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
     <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
     <apparelMoney>1500~3000</apparelMoney>
     <apparelTags>
       <li>Rimgate_GoauldApparel_tag</li>

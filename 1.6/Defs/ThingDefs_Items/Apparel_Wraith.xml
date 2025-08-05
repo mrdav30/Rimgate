@@ -61,8 +61,10 @@
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
 			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.67</VacuumResistance>
+			<ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
 		</equippedStatOffsets>
 		<apparel>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
 			<bodyPartGroups>
 				<li>FullHead</li>
 			</bodyPartGroups>

@@ -13,6 +13,7 @@
 			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
 		</descriptionHyperlinks>
 		<defaultLabelColor>(255, 0, 94)</defaultLabelColor>
+		<isBad>false</isBad>
 		<spawnThingOnRemoved>Rimgate_SymbioteImplant</spawnThingOnRemoved>
 		<countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
 		<comps>
@@ -57,8 +58,8 @@
 
 	<HediffDef>
 		<defName>Rimgate_SymbioteWithdrawal</defName>
-		<label>Goa'uld symbiote withdrawal</label>
-		<description>With the symbiote removed, the host's body begins to crash—systems falter, strength fades, and paranoia skyrockets.\nSymptoms include fatigue, tremors, organ failure, and regretting life choices involving glowing eyes.</description>
+		<label>symbiote withdrawal</label>
+		<description>With the symbiote removed, the host's body begins to crash—systems falter, strength fades, and paranoia skyrockets.\nSymptoms include fatigue, tremors, organ failure, rapid aging, and regretting life choices involving glowing eyes.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<initialSeverity>0.1</initialSeverity>
 		<lethalSeverity>1</lethalSeverity>
@@ -66,11 +67,7 @@
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>0.125</severityPerDay>
-			</li>
-			<li Class="HediffCompProperties_Disappears">
-				<!--  8 days  -->
-				<disappearsAfterTicks>480000</disappearsAfterTicks>
-				<showRemainingTime>true</showRemainingTime>
+				<showDaysToRecover>false</showDaysToRecover>
 			</li>
 			<li Class="HediffCompProperties_TendDuration">
 				<severityPerDayTended>-1</severityPerDayTended>
@@ -83,7 +80,7 @@
 				<lifeThreatening>true</lifeThreatening>
 				<painOffset>0.2</painOffset>
 				<statOffsets>
-					<RestFallRateFactor>1</RestFallRateFactor>
+					<RestFallRateFactor>1.5</RestFallRateFactor>
 					<ImmunityGainSpeed>0</ImmunityGainSpeed>
 					<InjuryHealingFactor>0</InjuryHealingFactor>
 				</statOffsets>
@@ -111,6 +108,7 @@
 	<HediffDef Name="Rimgate_JaffaForeheadSymbolBase" ParentName="ImplantHediffBase" Abstract="True">
 		<description>An embedded or branded emblem signifying servitude to a Goa’uld System Lord. While iconic and great for identifying whose boots you’re meant to lick, it also interferes with psionic clarity and makes you easier to spot in a crowd.\nBeauty is pain—and obedience.</description>
 		<defaultLabelColor>(0.7, 0.7, 0.1)</defaultLabelColor>
+		<isBad>false</isBad>
 		<stages>
 			<li>
 				<statOffsets>

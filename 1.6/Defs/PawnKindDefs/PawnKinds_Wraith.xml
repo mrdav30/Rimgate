@@ -93,6 +93,8 @@
     <invNutrition>2.55</invNutrition>
     <minGenerationAge>19</minGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
     <apparelMoney>1500~2500</apparelMoney>
     <weaponMoney>1200~1800</weaponMoney>
     <techHediffsMoney>1000~1500</techHediffsMoney>
