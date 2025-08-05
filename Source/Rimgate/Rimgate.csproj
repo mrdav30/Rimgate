@@ -311,8 +311,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abilities\CompAbilityEffect_ApplyNeed.cs" />
     <Compile Include="Abilities\CompAbilityEffect_LaunchMultipleProjectile.cs" />
     <Compile Include="Abilities\CompAbilityEffect_ApplyHediffs.cs" />
+    <Compile Include="Abilities\Properties\CompProperties_ApplyNeed.cs" />
     <Compile Include="AI\JobDriver_CarryToSarcophagus.cs" />
     <Compile Include="AI\JobDriver_Toggle.cs" />
     <Compile Include="Comps\Comp_AdditionalDamage.cs" />
@@ -348,7 +350,7 @@
     <Compile Include="Compatibility\EbfCompatibilityWrapper.cs" />
     <Compile Include="Compatibility\ModCompatibility.cs" />
     <Compile Include="Comps\Properties\CompProperties_AlternateApparel.cs" />
-    <Compile Include="Comps\Properties\CompProperties_GlyphScrap.cs" />
+    <Compile Include="Comps\Properties\CompProperties_GlyphParchment.cs" />
     <Compile Include="Comps\Properties\CompProperties_DHD.cs" />
     <Compile Include="Comps\Comp_AnimatedSarcophagus.cs" />
     <Compile Include="Comps\Properties\CompProperties_AnimatedSarcophagus.cs" />
@@ -375,7 +377,7 @@
     <Compile Include="Things\Building_Stargate.cs" />
     <Compile Include="Arrivals\CaravanArrivalAction_PermanentStargateSite.cs" />
     <Compile Include="Comps\Comp_DialHomeDevice.cs" />
-    <Compile Include="Comps\Comp_GlyphScrap.cs" />
+    <Compile Include="Comps\Comp_GlyphParchment.cs" />
     <Compile Include="Comps\Comp_Stargate.cs" />
     <Compile Include="Comps\CompTargetable_Stargate.cs" />
     <Compile Include="Things\Building_ZPM.cs" />

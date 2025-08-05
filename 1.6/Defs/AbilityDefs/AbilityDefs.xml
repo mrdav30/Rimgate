@@ -34,6 +34,10 @@
                 <hediffToGive>Rimgate_WraithLifeDrainTarget</hediffToGive>
                 <durationTime>120000</durationTime>
             </li>
+            <li Class="Rimgate.CompProperties_ApplyNeed">
+                <need>Food</need>
+                <levelRange>0.5~1</levelRange>
+            </li>
             <li Class="CompProperties_AbilityFleckOnTarget">
                 <fleckDef>PsycastPsychicEffect</fleckDef>
             </li>

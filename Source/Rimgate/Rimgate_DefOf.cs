@@ -30,6 +30,7 @@ public static class Rimgate_DefOf
     public static JobDef Rimgate_RescueToSarcophagus;
     public static JobDef Rimgate_Toggle;
 
+    public static NeedDef Food;
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
 
     public static QuestScriptDef Rimgate_StargateSiteScript;
