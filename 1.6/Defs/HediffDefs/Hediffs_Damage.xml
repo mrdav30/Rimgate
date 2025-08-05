@@ -7,7 +7,7 @@
         <defName>Rimgate_Staff_Weapon_Burn</defName>
         <label>Ma'Tok Burn</label>
         <labelNoun>a staff weapon burn</labelNoun>
-        <description>A burn casued by a staff weapon.</description>
+        <description>A searing plasma burn caused by a Ma'Tok staff weapon.\nNot as elegant as a Zat, but far more satisfying to the user—and far less to the recipient.</description>
         <comps>
             <li Class="HediffCompProperties_TendDuration">
                 <labelTendedWell>bandaged</labelTendedWell>
@@ -36,11 +36,10 @@
         <defName>Rimgate_ZatShock</defName>
         <label>Zat shock</label>
         <labelNoun>a shock</labelNoun>
-        <description>A state of shock in the brain and mind caused by the blast of a Goa'uld
-            Zat'nik'tel, this effect is debilitating until it wears off.</description>
+        <description>A neuroelectric shock induced by a Zat'nik'tel blast. Body goes limp, mind goes fuzzy, pants may be soiled. Effects are temporary—dignity, less so.</description>
         <comps>
             <li Class="HediffCompProperties_Disappears">
-                <disappearsAfterTicks>5000~7500</disappearsAfterTicks>
+                <disappearsAfterTicks>3000~5500</disappearsAfterTicks>
                 <showRemainingTime>true</showRemainingTime>
             </li>
         </comps>

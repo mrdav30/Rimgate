@@ -24,7 +24,7 @@
 
     <PawnKindDef ParentName="Rimgate_TauriBase">
         <defName>Rimgate_TauriScientist</defName>
-        <label>Tau'ri SGC scientist</label>
+        <label>Tau'ri scientist</label>
         <isFighter>false</isFighter>
         <requiredWorkTags>
             <li>Intellectual</li>
@@ -110,7 +110,7 @@
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCSoldier</defName>
-        <label>Tau'ri SGC team soldier</label>
+        <label>Tau'ri soldier</label>
         <combatPower>110</combatPower>
         <weaponTags>
             <li>Rimgate_TauriSubmachineGun_tag</li>
@@ -164,7 +164,7 @@
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSpecialForces</defName>
-        <label>Tau'ri SGC special forces</label>
+        <label>Tau'ri special forces</label>
         <race>Human</race>
         <combatPower>370</combatPower>
         <itemQuality>Good</itemQuality>
@@ -203,7 +203,7 @@
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriCommander</defName>
-        <label>Tau'ri SG team commander</label>
+        <label>Tau'ri commander</label>
         <factionLeader>true</factionLeader>
         <canBeSapper>true</canBeSapper>
         <combatPower>150</combatPower>

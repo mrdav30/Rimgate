@@ -4,7 +4,7 @@
     <AbilityDef>
         <defName>Rimgate_WraithLifeDrainAbility</defName>
         <label>drain life</label>
-        <description>Siphons vitality from a nearby source, transferring the target’s natural healing factor, movement speed, and consciousness to the caster for a full day. Considered an overtly hostile action.</description>
+        <description>Embrace your inner Wraith.\nDrains the life force from a nearby pawn, stealing their regeneration, speed, and brainpower for 24 glorious hours. Hostile? Absolutely. Morally questionable? Also yes. Delicious? Very.</description>
         <iconPath>UI/Icon/Ability/RGWraithDrainLifeIcon</iconPath>
         <verbProperties>
             <verbClass>Verb_CastAbilityTouch</verbClass>
@@ -17,7 +17,7 @@
                 <canTargetLocations>false</canTargetLocations>
                 <canTargetAnimals>false</canTargetAnimals>
                 <canTargetSelf>false</canTargetSelf>
-                <canTargetBuildings>false</canTargetBuildings> 
+                <canTargetBuildings>false</canTargetBuildings>
                 <canTargetMechs>false</canTargetMechs>
             </targetParams>
         </verbProperties>
@@ -30,7 +30,6 @@
         <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
         <comps>
             <li Class="Rimgate.CompProperties_ApplyHediff">
-                <compClass>Rimgate.CompAbilityEffect_ApplyHediffs</compClass>
                 <hediffToReceive>Rimgate_WraithLifeDrainRegen</hediffToReceive>
                 <hediffToGive>Rimgate_WraithLifeDrainTarget</hediffToGive>
                 <durationTime>120000</durationTime>
@@ -44,7 +43,7 @@
     <AbilityDef>
         <defName>Rimgate_WraithCocoonTrapAbility</defName>
         <label>cocoon trap</label>
-        <description>Release a sticky, web-like substance to cocoon victims for future feedings...\nThese webs will stun and burn the target.</description>
+        <description>Why kill your food when you can save it for later?\nLaunches sticky webs that wrap your victim up tighter than a low-quality sleeping bag, stunning and searing them in one fell swoop. Conveniently gift-wrapped for future snacking.</description>
         <iconPath>UI/Icon/Ability/RGWraithCocoonTrapIcon</iconPath>
         <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
         <verbProperties>

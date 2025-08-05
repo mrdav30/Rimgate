@@ -5,11 +5,11 @@
 	
 	<DamageDef>
 		<defName>Rimgate_KawooshExplosion</defName>
-		<label>Unstable Vortex</label>
+		<label>unstable vortex</label>
 		<workerClass>DamageWorker_AddInjury</workerClass>
 		<externalViolence>true</externalViolence>
 		<isExplosive>true</isExplosive>
-		<deathMessage>{0} has been vaporized in an unstable vortex.</deathMessage>
+		<deathMessage>{0} has been vaporized in an unstable stargate vortex.</deathMessage>
 		<hediff>Burn</hediff>
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Blunt</impactSoundType>

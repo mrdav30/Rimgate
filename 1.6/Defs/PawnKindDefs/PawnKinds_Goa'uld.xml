@@ -227,7 +227,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldRangedBase">
     <defName>Rimgate_GoauldRangedAnubis</defName>
-    <label>Anubis Jaffa Warrior</label>
+    <label>Anubis Jaffa warrior</label>
 
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
@@ -236,7 +236,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldRangedBase">
     <defName>Rimgate_GoauldRangedApophis</defName>
-    <label>Apophis Jaffa Warrior</label>
+    <label>Apophis Jaffa warrior</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantApophis</li>
     </techHediffsRequired>
@@ -244,7 +244,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldRangedBase">
     <defName>Rimgate_GoauldRangedRa</defName>
-    <label>Ra Jaffa Warrior</label>
+    <label>Ra Jaffa warrior</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantRa</li>
     </techHediffsRequired>
@@ -259,7 +259,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldMeleeBase">
     <defName>Rimgate_GoauldMeleeAnubis</defName>
-    <label>Anubis Jaffa Warrior</label>
+    <label>Anubis Jaffa warrior</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
     </techHediffsRequired>
@@ -267,7 +267,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldMeleeBase">
     <defName>Rimgate_GoauldMeleeApophis</defName>
-    <label>Apophis Jaffa Warrior</label>
+    <label>Apophis Jaffa warrior</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantApophis</li>
     </techHediffsRequired>
@@ -275,7 +275,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldMeleeBase">
     <defName>Rimgate_GoauldMeleeRa</defName>
-    <label>Ra Jaffa Warrior</label>
+    <label>Ra Jaffa warrior</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantRa</li>
     </techHediffsRequired>
@@ -290,7 +290,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldGrenadierBase">
     <defName>Rimgate_GoauldGrenadierAnubis</defName>
-    <label>Anubis Jaffa Warrior</label>
+    <label>Anubis Jaffa warrior</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
     </techHediffsRequired>
@@ -298,7 +298,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldGrenadierBase">
     <defName>Rimgate_GoauldGrenadierApophis</defName>
-    <label>Apophis Jaffa Warrior</label>
+    <label>Apophis Jaffa warrior</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantApophis</li>
     </techHediffsRequired>
@@ -306,7 +306,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldGrenadierBase">
     <defName>Rimgate_GoauldGrenadierRa</defName>
-    <label>Ra Jaffa Warrior</label>
+    <label>Ra Jaffa warrior</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantRa</li>
     </techHediffsRequired>
@@ -316,7 +316,7 @@
 
   <PawnKindDef Name="Rimgate_GoauldKull" ParentName="Rimgate_GoauldMilBase">
     <defName>Rimgate_KullWarrior</defName>
-    <label>Kull Warrior</label>
+    <label>Kull warrior</label>
     <combatPower>220</combatPower>
     <minGenerationAge>26</minGenerationAge>
     <gearHealthRange>0.8~3.5</gearHealthRange>
@@ -426,7 +426,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
     <defName>Rimgate_SerpentGuard</defName>
-    <label>Serpent Guard</label>
+    <label>serpent guard</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantApophis</li>
     </techHediffsRequired>
@@ -448,7 +448,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
     <defName>Rimgate_HorusGuard</defName>
-    <label>Horus Guard</label>
+    <label>falcon guard</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantRa</li>
     </techHediffsRequired>
@@ -470,7 +470,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
     <defName>Rimgate_JackalGuard</defName>
-    <label>Jackal Guard</label>
+    <label>jackal Guard</label>
     <techHediffsRequired>
       <li>Rimgate_JaffaForeheadSymbolImplantAnubis</li>
     </techHediffsRequired>

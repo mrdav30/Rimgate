@@ -6,7 +6,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_GoauldTeltak</defName>
     <label>Goa'uld Tel'tak</label>
-    <description>A small Goa'uld transport ship capable of rapid atmospheric entry and launch.</description>
+    <description>a compact Goa'uld transport craft built for swift infiltration, planetary landings, and discreet extractions. Lacks firepower—but makes up for it with sheer speed, stealth plating, and enough ego to carry a system lord.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <size>(6,7)</size>
     <graphicData>
@@ -26,7 +26,7 @@
     <receivesSignals>true</receivesSignals>
     <neverMultiSelect>true</neverMultiSelect>
     <statBases>
-      <MaxHitPoints>1400</MaxHitPoints>
+      <MaxHitPoints>4400</MaxHitPoints>
       <WorkToBuild>24000</WorkToBuild>
       <Mass>114514</Mass>
       <Flammability>0.5</Flammability>
@@ -166,7 +166,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithDart</defName>
     <label>Wraith Dart</label>
-    <description>Fast attack ship used by the Wraith for harvesting and ambush tactics.</description>
+    <description>razor-fast and biomechanically fused, the Wraith Dart excels at hit-and-run attacks, stasis harvesting, and sudden disappearances. Its sinister hum alone is enough to send villagers fleeing.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <size>(3,5)</size>
     <graphicData>
@@ -186,7 +186,7 @@
     <receivesSignals>true</receivesSignals>
     <neverMultiSelect>true</neverMultiSelect>
     <statBases>
-      <MaxHitPoints>1000</MaxHitPoints>
+      <MaxHitPoints>1500</MaxHitPoints>
       <WorkToBuild>24000</WorkToBuild>
       <Mass>114514</Mass>
       <Flammability>0.5</Flammability>
@@ -325,7 +325,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_TauriPuddleJumper</defName>
     <label>Tau'ri Puddle Jumper</label>
-    <description>A Tau'ri Puddle spacecraft equipped with a defense shield.</description>
+    <description>a marvel of Ancient engineering, retrofitted by the Tau'ri. Compact, shielded, and packed with tech most civilizations would kill for—literally. Perfect for stealth ops, last-minute escapes, or joyrides through wormholes.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <size>(4,6)</size>
     <graphicData>
@@ -350,7 +350,7 @@
     <neverMultiSelect>true</neverMultiSelect>
     <drawerType>MapMeshAndRealTime</drawerType>
     <statBases>
-      <MaxHitPoints>5000</MaxHitPoints>
+      <MaxHitPoints>3000</MaxHitPoints>
       <WorkToBuild>24000</WorkToBuild>
       <Mass>114514</Mass>
       <Flammability>0.5</Flammability>

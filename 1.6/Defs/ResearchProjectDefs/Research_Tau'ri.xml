@@ -22,7 +22,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriBasic</defName>
         <label>Tau'ri technology</label>
-        <description>Get access to Tau'ri technology.</description>
+        <description>begin adapting off-world Tau'ri tech: field equipment, comms, and just enough military-grade hardware to get the IOA very concerned.</description>
         <baseCost>1500</baseCost>
         <researchViewX>0</researchViewX>
         <researchViewY>2</researchViewY>
@@ -32,7 +32,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriArmors</defName>
         <label>Tau'ri Uniforms Armors</label>
-        <description>Uniforms used by the Tau'ri, Humans of Earth.</description>
+        <description>standard-issue SGC uniforms and armor rated for both firefights and diplomatic blunders. Includes extra pockets for snacks, Zat holsters, and moral ambiguity.</description>
         <baseCost>2500</baseCost>
         <researchViewX>0</researchViewX>
         <researchViewY>1</researchViewY>
@@ -47,7 +47,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriWeaponsTier1</defName>
         <label>Tau'ri Weapons</label>
-        <description>Weapons used by the Tau'ri, Humans of Earth.</description>
+        <description>Unlock pulse-pounding, projectile-slinging freedom—courtesy of Earth’s finest ballistic engineering.\nWarning: may provoke Goa’uld, Wraith, and anyone with plasma-based superiority complexes.</description>
         <baseCost>2500</baseCost>
         <researchViewX>1</researchViewX>
         <researchViewY>1</researchViewY>
@@ -62,7 +62,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_NaquadahRefinement</defName>
         <label>Naquadah refinement</label>
-        <description>Learn how to refine raw Naquadah into Naquadria.</description>
+        <description>learn to refine raw Naquadah into Naquadria—an unstable but potent power source.\nGreat for experimental engines, questionable ethics, and catastrophic explosions.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
             <li>Rimgate_TauriBasic</li>
@@ -75,7 +75,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_NaquadriaFiredGenerator</defName>
         <label>Naquadria generator</label>
-        <description>Get access to the Naquadria fired generator.</description>
+        <description>unlock a compact, high-yield power generator fueled by weaponized star dust. Enough energy to power a base—or vaporize one by accident.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
             <li>Rimgate_NaquadahRefinement</li>
@@ -87,7 +87,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriPuddleJumper</defName>
         <label>Tau'ri Puddle Jumper</label>
-        <description>Get access to the Tau'ri Puddle Jumper.</description>
+        <description>gain access to the Tau’ri-modified Puddle Jumper: a sleek, Ancient-engineered scout ship perfect for stealth insertions, rapid exfil, or crashing stylishly into alien ruins.</description>
         <baseCost>3500</baseCost>
         <techLevel>Spacer</techLevel>
         <prerequisites>

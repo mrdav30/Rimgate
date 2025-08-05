@@ -53,7 +53,7 @@
 	<ThingDef ParentName="Rimgate_JaffaHeadgearBase">
 		<defName>Rimgate_JaffaHelmet</defName>
 		<label>Jaffa helmet</label>
-		<description>This basic Jaffa helmet doesn't offer great protection, but it is light.</description>
+		<description>lightweight ceremonial headgear favored by Jaffa cannon fodder. Offers mild protection and maximum intimidation—mostly to unarmed colonists and small wildlife.</description>
 		<costList>
 			<Steel>25</Steel>
 			<ComponentIndustrial>1</ComponentIndustrial>
@@ -99,7 +99,7 @@
 	<ThingDef ParentName="Rimgate_JaffaHeadgearBase">
 		<defName>Rimgate_FirstPrimeHelmet</defName>
 		<label>First Prime helmet</label>
-		<description>This basic Goa'uld helmet doesn't offer great protection, but it is light.</description>
+		<description>ornate headwear for those promoted to yelling "Kree!" the loudest. A step up in looks, if not actual survivability. The gold accent says "First Prime"; the stats say "still squishy."</description>
 		<costList>
 			<Steel>50</Steel>
 			<ComponentIndustrial>1</ComponentIndustrial>
@@ -147,7 +147,7 @@
 	<ThingDef ParentName="Rimgate_JaffaHeadgearBase">
 		<defName>Rimgate_KullHelmet</defName>
 		<label>Kull helmet</label>
-		<description>The Kull helmets offer great protection while still being relatively light.</description>
+		<description>Forged for Anubis' unstoppable supersoldiers, this helmet shrugs off gunfire like your colonists shrug off mental breaks. Heavy, deadly, and suspiciously quiet.</description>
 		<costList>
 			<Plasteel>50</Plasteel>
 			<ComponentSpacer>1</ComponentSpacer>
@@ -261,7 +261,7 @@
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_HorusHelmet</defName>
 		<label>Horus helmet</label>
-		<description>This helmet is worn by the Goa'uld Horus Guards led by Supreme System Lord Ra. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>the signature helm of Ra’s elite peacocks—er, warriors. High shine, moderate armor, and excellent against everything but bullets. Just don’t try to look up stairs in it.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
 		</graphicData>
@@ -287,7 +287,7 @@
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_HorusHelmetOpen</defName>
 		<label>Horus helmet (open)</label>
-		<description>This helmet is worn by the Horus Guards led by Supreme System Lord Ra. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>for when you want to cosplay as a Space Falcon but still show off your luscious beard. Same sleek Horus look, 100% more chin exposure.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
 		</graphicData>
@@ -313,7 +313,7 @@
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeHorusHelmet</defName>
 		<label>First Prime Horus helmet</label>
-		<description>This helmet is worn by Supreme System Lord Ra and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>Ra’s personal blinged-out bucket. Only the most loyal—and loud—First Primes get to wear this. Good luck surviving the honor.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGHorusPrimeHelmet</texPath>
 		</graphicData>
@@ -339,7 +339,7 @@
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeHorusHelmetOpen</defName>
 		<label>First Prime Horus helmet (open)</label>
-		<description>This helmet is worn by Supreme System Lord Ra and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>same prestigious helm, just open-faced for when yelling “Jaffa, kree!” requires better airflow. Or when Ra wants to see your disappointed face after failure.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGHorusPrimeHelmet</texPath>
 		</graphicData>
@@ -367,7 +367,7 @@
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_JackalHelmet</defName>
 		<label>Jackal helmet</label>
-		<description>This helmet is worn by the Jackal Guards led by the Goa'uld Anubis. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>the unmistakable jackal-headed helm worn by Anubis' guards. Scary-looking, sure, but has the tactical sense of a fancy trash can lid.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</texPath>
 		</graphicData>
@@ -393,7 +393,7 @@
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_JackalHelmetOpen</defName>
 		<label>Jackal helmet (open)</label>
-		<description>This helmet is worn by the Jackal Guards led by the Goa'uld Anubis. Susceptibleto armor-piercing rounds, excellent against the rest.</description>
+		<description>open version of the jackal helm for guards who want to breathe, blink, or eat something without removing their entire personality.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</texPath>
 		</graphicData>
@@ -419,7 +419,7 @@
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeJackalHelmet</defName>
 		<label>First Prime Jackal helmet</label>
-		<description>This helmet is worn by the Goa'uld Anubis and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>worn by Anubis' most trusted murder machine. If you're sporting this, you're either elite—or about to be shot first in every raid.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</texPath>
 		</graphicData>
@@ -445,7 +445,7 @@
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeJackalHelmetOpen</defName>
 		<label>First Prime Jackal helmet (open)</label>
-		<description>This helmet is worn by the Jackal Guards led by the Goa'uld Anubis. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>same as the Prime version, but now you can grimace menacingly while being vaporized by a P90.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</texPath>
 		</graphicData>
@@ -473,7 +473,7 @@
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_SerpentHelmet</defName>
 		<label>Serpent helmet</label>
-		<description>This helmet is worn by the Serpent Guards led by the Goa'uld Apophis.</description>
+		<description>the hallmark helmet of Apophis' Serpent Guards. Stylish, sinister, and just slightly more protective than shouting “I have plot armor!”</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</texPath>
 		</graphicData>
@@ -492,7 +492,7 @@
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_SerpentHelmetOpen</defName>
 		<label>Serpent helmet (open)</label>
-		<description>This helmet is worn by the Serpent Guards led by the Goa'uld Apophis. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>serpent helm, de-snaked. Ideal for First Primes with strong jawlines or claustrophobia.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</texPath>
 		</graphicData>
@@ -518,7 +518,7 @@
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeSerpentHelmet</defName>
 		<label>First Prime Serpent helmet</label>
-		<description>This helmet is worn by the Goa'uld Apophis and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>only the most loyal warriors of Apophis get this helm. High rank, high honor, high likelihood of exploding on screen first.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</texPath>
 		</graphicData>
@@ -537,7 +537,7 @@
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
 		<defName>Rimgate_PrimeSerpentHelmetOpen</defName>
 		<label>First Prime Serpent helmet (open)</label>
-		<description>This helmet is worn by the Goa'uld Apophis and his First Prime. Susceptible to armor-piercing rounds, excellent against the rest.</description>
+		<description>the open-face Prime variant. It's regal, it's dramatic, and it lets you smirk just before your shield fails.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</texPath>
 		</graphicData>
@@ -620,7 +620,7 @@
 	<ThingDef ParentName="Rimgate_JaffaArmorBase">
 		<defName>Rimgate_JaffaArmor</defName>
 		<label>Jaffa armor</label>
-		<description>Powerful Jaffa armor worn by the warriors of every Goa'uld.</description>
+		<description>standard-issue Jaffa power armor: bulky, impressive, and likely to protect everything except your feelings. Bonus points if you shout “Shol'va!” mid-charge.</description>
 		<costList>
 			<Steel>175</Steel>
 			<ComponentIndustrial>5</ComponentIndustrial>
@@ -662,8 +662,8 @@
 
 	<ThingDef ParentName="Rimgate_JaffaArmorBase">
 		<defName>Rimgate_FirstPrimeArmor</defName>
-		<label>Goa'uld Prime armor</label>
-		<description>Powerful armor worn by the Goa'uld System Lords and their First Primes.</description>
+		<label>First Prime armor</label>
+		<description>reserved for System Lords and their shiny First Primes. Now you too can look both menacing and highly flammable in gold trim.</description>
 		<costList>
 			<Steel>175</Steel>
 			<ComponentIndustrial>5</ComponentIndustrial>
@@ -708,8 +708,8 @@
 
 	<ThingDef ParentName="Rimgate_JaffaArmorBase">
 		<defName>Rimgate_KullArmor</defName>
-		<label>Kull Armor</label>
-		<description>Advanced armor used by Kull warriors. Highly resistant to most conventional weapons, although it is very heavy.</description>
+		<label>Kull armor</label>
+		<description>heavy as a Goa’uld ego, this armor makes you practically bulletproof—and also the slowest thing on the map. Great for long walks... through enemy fire.</description>
 		<costList>
 			<Plasteel>110</Plasteel>
 			<ComponentSpacer>4</ComponentSpacer>
@@ -771,7 +771,7 @@
 	<ThingDef ParentName="Rimgate_JaffaArmorBase">
 		<defName>Rimgate_GoauldKaraKesh</defName>
 		<label>Goa'uld Kara Kesh</label>
-		<description>A projectile-repulsion hand device used by the Goa'uld. It will attempt to stop incoming projectiles or shrapnel, but does nothing against melee attacks or heat. It doesn't prevent the wearer from firing out, and shuts down instantly if hit by EMP.</description>
+		<description>the famous Goa’uld hand device. Stylishly zaps incoming bullets like a diva flicking lint. Useless in melee, allergic to EMPs, and completely unfair in tribal raids.</description>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
 			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>

@@ -71,7 +71,7 @@
   <FactionDef ParentName="Rimgate_GoauldFactionBase">
     <defName>Rimgate_GoauldBaal</defName>
     <label>Supreme System Lord Ba'aal</label>
-    <description>Ba'al was a Goa'uld System Lord who rose from an underlord in the Second Goa'uld Dynasty under Ra to a position of power among the System Lords in his own right. He was believed to have been destroyed...</description>
+    <description>Once a mid-tier underlord with a flair for drama, Ba’al clawed his way to the top of the System Lord pyramid scheme through cloning, cunning, and copious amounts of ego.\nHe may have been destroyed (allegedly), but Goa’uld never truly die—they just wait for a sequel.</description>
     <fixedName>Supreme System Lord Ba'aal</fixedName>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <factionIconPath>UI/Icon/Map/RGBaalBaseIcon</factionIconPath>

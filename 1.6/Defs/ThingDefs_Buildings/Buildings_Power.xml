@@ -6,7 +6,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_NaquadriaFiredGenerator</defName>
     <label>Naquadria generator</label>
-    <description>Produces power by consuming Naquadria. Must be periodically loaded with Naquadria by hand.</description>
+    <description>This compact reactor burns Naquadria like it’s going out of style—because it probably is. Delivers massive power output and only occasionally destabilizes spacetime. Handle with oven mitts and regret.</description>
     <thingClass>Building</thingClass>
     <size>(1,2)</size>
     <graphicData>
@@ -35,12 +35,14 @@
     <canOverlapZones>false</canOverlapZones>
     <costList>
       <Steel>125</Steel>
-      <ComponentIndustrial>2</ComponentIndustrial>
+      <Rimgate_Naquadah>50</Rimgate_Naquadah>
+      <ComponentIndustrial>5</ComponentIndustrial>
+      <ComponentSpacer>3</ComponentSpacer>
     </costList>
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerPlant</compClass>
-        <basePowerConsumption>-5000</basePowerConsumption>
+        <basePowerConsumption>-6500</basePowerConsumption>
         <transmitsPower>true</transmitsPower>
         <shortCircuitInRain>false</shortCircuitInRain>
       </li>
@@ -63,6 +65,14 @@
         <heatPerSecond>6</heatPerSecond>
       </li>
       <li Class="CompProperties_Breakdownable" />
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>7.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <explodeOnKilled>true</explodeOnKilled>
+        <startWickHitPointsPercent>0.99</startWickHitPointsPercent>
+        <chanceNeverExplodeFromDamage>0.8</chanceNeverExplodeFromDamage>
+      </li>
     </comps>
     <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
     <designationCategory>Power</designationCategory>
@@ -79,7 +89,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithGenerator</defName>
     <label>meat fired generator</label>
-    <description>Produces power by consuming meat. Must be periodically loaded with cocooned human meat by hand.</description>
+    <description>Wraith bio-reactor fueled by cocooned meat. It's eco-friendly if you don’t count the screaming. Converts protein into power with all the efficiency of a spacefaring predator race.</description>
     <thingClass>Building</thingClass>
     <size>(1,2)</size>
     <graphicData>
@@ -151,8 +161,8 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_ZPM</defName>
-    <label>Zero point module</label>
-    <description>Converts Dark Energy into electricity and stores amazing amounts of power. Solar flare proof.</description>
+    <label>zero point module</label>
+    <description>a self-contained miracle of Ancient technology, the ZPM draws energy from a subspace vacuum—basically infinite power in a shiny cylinder. Makes other batteries look like AA cells from a cereal box.</description>
     <thingClass>Rimgate.Building_ZPM</thingClass>
     <category>Building</category>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>

@@ -4,7 +4,7 @@
   <WorldObjectDef>
 	<defName>Rimgate_PermanentStargateSite</defName>
 	<label>new stargate site</label>
-	<description>A stargate site, created recently and mostly unknown to everyone but us.</description>
+	<description>a stargate site, setup recently and mostly unknown to everyone but us.</description>
 	<worldObjectClass>Rimgate.WorldObject_PermanentStargateSite</worldObjectClass>
 	<canHaveFaction>false</canHaveFaction>
 	<texture>World/WorldObjects/Sites/GenericSite</texture>

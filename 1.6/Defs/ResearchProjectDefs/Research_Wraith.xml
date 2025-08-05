@@ -22,7 +22,7 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithBasic</defName>
 		<label>Wraith technology</label>
-		<description>Get access to Wraith technology.</description>
+		<description>begin unlocking the secrets of Wraith bio-engineering—where everything is grown, pulsing, and slightly slimy.\nWarning: side effects may include telepathy and power hunger.</description>
 		<baseCost>1500</baseCost>
 		<researchViewX>2</researchViewX>
 		<researchViewY>2</researchViewY>
@@ -33,7 +33,7 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithArmorTier1</defName>
 		<label>Wraith armor</label>
-		<description>Research the basic Armor for the Wraith troops.</description>
+		<description>research armor grown from bio-organic materials tailored to Wraith physiology. Flexible, durable, and mildly unsettling to the touch.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithBasic</li>
@@ -46,7 +46,7 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithArmorTier2</defName>
 		<label>Wraith commander armor</label>
-		<description>Research specialized Armor for the Wraith troops.</description>
+		<description>develop specialized armor for Wraith leadership—more protection, more authority, and just enough grotesque ornamentation to say “I’m in charge” without speaking a word.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithArmorTier1</li>
@@ -60,7 +60,7 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithWeaponTier1</defName>
 		<label>Wraith weapons</label>
-		<description>Research the basic weapon for the Wraith troops.</description>
+		<description>reverse-engineer Wraith energy weapons—organic-looking tools of destruction designed for elegant disintegration and maximum dread.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithBasic</li>
@@ -75,7 +75,7 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_MeatCultivation</defName>
 		<label>Meat cultivation</label>
-		<description>Research how to reliably cultivate meat.</description>
+		<description>learn to bio-cultivate fresh, nutritious meat without hunting, farming, or asking permission from your livestock.\nA breakthrough in sustainable horror.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Hydroponics</li>
@@ -88,7 +88,7 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithGenerator</defName>
 		<label>Wraith Generator</label>
-		<description>Get access to the Wraith Biomass generator for a meat based power source.</description>
+		<description>unlock the Wraith biomass generator—a power source fueled by cultivated organic matter.\nEfficient, grotesque, and perfect for the energy needs of a species that eats people.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithBasic</li>
@@ -101,7 +101,7 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithDart</defName>
 		<label>Wraith Dart</label>
-		<description>Get access to the Wraith starfighter.</description>
+		<description>Gain access to the Wraith Dart: a fast, lightly-armored starfighter used for hit-and-run attacks and lifeform abductions.\nNot recommended for gentle landings or claustrophobic pilots.</description>
 		<baseCost>3500</baseCost>
 		<techLevel>Spacer</techLevel>
 		<prerequisites>

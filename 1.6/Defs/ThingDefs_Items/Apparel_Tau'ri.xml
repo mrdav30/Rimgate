@@ -8,7 +8,7 @@
     <ThingDef ParentName="ApparelMakeableBase">
         <defName>Rimgate_TauriSGTeamBDU</defName>
         <label>Tau'ri BDU</label>
-        <description>Military fatigues used by the Tau'ri SGC teams in the field.</description>
+        <description>standard field fatigues for SG teams. Durable, practical, and 100% cotton-blend—perfect for offworld diplomacy or high-stakes firefights with snake-worshiping megalomaniacs.\nBonus: now with just enough pockets to lose things in.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Torso/BDU/RGTauriBDUGreen</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -65,9 +65,8 @@
 
     <ThingDef ParentName="ArmorHelmetMakeableBase">
         <defName>Rimgate_TauriBallisticHelmet</defName>
-        <label>Tau'ri Ballistic Helmet</label>
-        <description>A lightweight combat helmet with a complex design, reinforced with plasteel.
-            Not effective against blunt weapons. This one is in an Olive Drab color.</description>
+        <label>Tau'ri ballistic helmet</label>
+        <description>tried-and-true combat brain bucket. Offers decent protection from energy blasts and bad decisions. Not great for blunt trauma—so maybe don't headbutt Jaffa.\nWorn in Olive Drab to blend into... alien deserts?</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Headgear/Ballistic/RGTauriBallisticHelmetOD</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -122,8 +121,8 @@
 
     <ThingDef ParentName="CowboyHat">
         <defName>Rimgate_TauriGreenCap</defName>
-        <label>Tau'ri Baseball Cap</label>
-        <description>An olive green baseball cap worn by Tau'ri SGC teams in the field.</description>
+        <label>Tau'ri baseball cap</label>
+        <description>the iconic Tau'ri baseball cap. Stylishly says, “I’m with the SGC,” while boosting your negotiation skills and forehead airflow.\nAlso known to mysteriously increase sarcasm output by 20%.</description>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
         </recipeMaker>
@@ -166,7 +165,7 @@
     <ThingDef ParentName="CowboyHat">
         <defName>Rimgate_TauriGreenBoonieHat</defName>
         <label>Tau'ri boonie hat</label>
-        <description>An olive green boonie cap worn in warm and hot climates by Tau'ri SGC teams.</description>
+        <description>essential gear for jungle planets, deserts, and anywhere the Stargate drops you without sunscreen. Keeps the sun out, the sass in.\nWarning: May cause wearer to spontaneously mutter 'Indeed.'</description>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
         </recipeMaker>
@@ -209,7 +208,7 @@
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TauriTacticalVest</defName>
         <label>Tau'ri tactical vest</label>
-        <description>Standard issue tactical vest issued to Tau'ri SGC teams.</description>
+        <description>SGC-issued tactical vest for hauling gear and stopping bullets (well, most of them).\nPairs nicely with a steady hand, quick reflexes, and mild paranoia.</description>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
@@ -269,8 +268,8 @@
 
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TacticalVestSteelPlateInsert</defName>
-        <label>Tau'ri Steel Plate</label>
-        <description>A steel plate insert for the standard tactical vest used by Tau'ri SGC Teams.</description>
+        <label>steel plate insert</label>
+        <description>steel plate insert for Tau'ri vests. Turns your ribcage into a glorified bunker wall.\nHeavy, loud, but delightfully ricochet-y.</description>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
@@ -330,9 +329,8 @@
 
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TacticalVestCompositePlateInsert</defName>
-        <label>Composite Plate</label>
-        <description>A composite plate insert for the standard tactical vest used by Tau'ri SGC
-            Teams.</description>
+        <label>composite plate insert</label>
+        <description>composite plate insert—because steel's too mainstream. Offers solid protection against heat and blunt trauma.\nApproved by SG-1’s fashion-forward scientists and tactical nerds alike.</description>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
@@ -393,8 +391,7 @@
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TauriTacticalBackpack</defName>
         <label>Tau'ri tactical backpack</label>
-        <description>Standard issue tactical pack issued to Tau'ri SGC teams that is used in
-            combination with tactical vests.</description>
+        <description>standard Tau'ri backpack for offworld excursions. Perfect for hauling rations, ammo, and that ancient alien device you definitely shouldn’t touch.\nRequires vest attachment because SGC frowns on space chiropractors.</description>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>

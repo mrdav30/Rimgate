@@ -5,8 +5,8 @@
 
   <ThingDef ParentName="FurnitureBase">
     <defName>Rimgate_GoauldSarcophagus</defName>
-    <label>Goa'uld Sarcophagus</label>
-    <description>Based on Ancient technology, the sarcophagus heals the human host body very efficiently...at a cost</description>
+    <label>Goa'uld sarcophagus</label>
+    <description>based on Ancient technology, the sarcophagus rapidly heals injuries and diseases with eerie precision. It also has a nasty habit of addicting users to immortality. Side effects include glowing eyes, god complexes, and moral decay. Use with caution... or embrace your inner System Lord.</description>
     <descriptionHyperlinks>
       <HediffDef>Rimgate_SarcophagusHigh</HediffDef>
       <HediffDef>Rimgate_SarcophagusAddiction</HediffDef>
@@ -16,7 +16,6 @@
     <graphicData>
       <texPath>Things/Building/Furniture/RGGoauldSarcophagus</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <color>(0.01, 0.01, 0.01)</color>
       <shaderType>CutoutComplex</shaderType>
       <drawSize>(1,2)</drawSize>
       <damageData>
@@ -54,7 +53,7 @@
       <bed_defaultMedical>true</bed_defaultMedical>
       <soundDispense>Rimgate_SarcophagusRunning</soundDispense>
     </building>
-    <castEdgeShadows>false</castEdgeShadows>
+    <castEdgeShadows>true</castEdgeShadows>
     <comps>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Breakdownable" />
@@ -132,8 +131,7 @@
     <fillPercent>0.4</fillPercent>
     <pathCost>60</pathCost>
     <leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
-    <staticSunShadowHeight>0.17</staticSunShadowHeight>
-    <castEdgeShadows>True</castEdgeShadows>
+    <staticSunShadowHeight>0.2</staticSunShadowHeight>
     <researchPrerequisites>
       <li>Rimgate_Sarcophagus</li>
     </researchPrerequisites>

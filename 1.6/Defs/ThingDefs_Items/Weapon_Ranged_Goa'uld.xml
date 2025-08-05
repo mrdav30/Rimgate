@@ -6,7 +6,7 @@
 	<ThingDef ParentName="BaseMakeableGrenade">
 		<defName>Rimgate_GoauldTokKal</defName>
 		<label>Goa'uld Tok'Kal</label>
-		<description>A stun grenade used by Jaffa warriors.</description>
+		<description>A Goa'uld-issued stun grenade used by Jaffa for crowd control, prisoner retrieval, or ruining your day.\nDoesn’t kill—just ensures you *wish* it had.</description>
 		<tickerType>Normal</tickerType>
 		<costList>
 			<Steel>20</Steel>
@@ -145,8 +145,7 @@
 	<ThingDef Name="Rimgate_GoauldMaTok" ParentName="Rimgate_GoauldGunBase">
 		<defName>Rimgate_GoauldMaTokBlue</defName>
 		<label>Ma'Tok staff</label>
-		<description>The Ma'Tok staff is the primary weapon of Jaffa warriors. The frame is
-			relatively simple, but the small power core is a closely-guarded Goa'uld secret.</description>
+		<description>The iconic staff weapon of the Jaffa. Fires devastating energy blasts and doubles as a blunt object for when diplomacy fails.\nLoud, flashy, and extremely compensatory.</description>
 		<costList>
 			<Steel>75</Steel>
 			<ComponentIndustrial>5</ComponentIndustrial>
@@ -240,9 +239,7 @@
 	<ThingDef ParentName="Rimgate_GoauldGunBase">
 		<defName>Rimgate_GoauldZat</defName>
 		<label>Zat'nik'tel</label>
-		<description>A weapon using a different form of energy, less powerful than that of a staff
-			weapon. Less destructive, but still quite deadly. One shot stuns, two shots kill. Rumors
-			of a third shot function are simple misinformation.</description>
+		<description>One shot: stun. Two shots: kill. Three shots? Doesn't exist.\nCompact, terrifying, and universally feared by SG teams and modded colonists alike.</description>
 		<costList>
 			<Steel>30</Steel>
 			<ComponentIndustrial>2</ComponentIndustrial>
@@ -329,7 +326,7 @@
 	<ThingDef ParentName="Rimgate_GoauldGunBase">
 		<defName>Rimgate_KullGun</defName>
 		<label>Kull weapon</label>
-		<description>The wrist gun is the primary weapon of kull warriors.</description>
+		<description>A devastating wrist-mounted weapon used by Kull warriors. Fires rapid energy bursts designed to overwhelm enemies and confidence alike.</description>
 		<techLevel>Spacer</techLevel>
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_GoauldWeaponTier2</researchPrerequisite>

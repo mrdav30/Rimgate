@@ -8,7 +8,7 @@
 	<ThingDef ParentName="BaseMakeableGrenade">
 		<defName>Rimgate_WraithGrenade</defName>
 		<label>Wraith grenade</label>
-		<description>A grenade used by the wraith warriors.</description>
+		<description>a biomechanical grenade used by Wraith warriors to flush prey out of cover—or into dinner.\nExplodes with a wet thump and questionable ethics.</description>
 		<tickerType>Normal</tickerType>
 		<costList>
 			<Steel>20</Steel>
@@ -79,7 +79,7 @@
 	<ThingDef>
 		<defName>Rimgate_WraithGrenadeProjectile</defName>
 		<thingClass>Projectile_Explosive</thingClass>
-		<label>Wraith Grenade</label>
+		<label>Wraith grenade</label>
 		<category>Projectile</category>
 		<altitudeLayer>Projectile</altitudeLayer>
 		<tickerType>Normal</tickerType>
@@ -138,8 +138,7 @@
 	<ThingDef ParentName="Rimgate_WraithGunBase">
 		<defName>Rimgate_WraithSpear</defName>
 		<label>Wraith spear gun</label>
-		<description>This is a wraith spear. It is used to stun humans. After they are captured they can be turned into food.</description>
-
+		<description>this grotesque biotech weapon launches stunning projectiles, ideal for disabling humans before mealtime.\nEfficient, cruel, and mildly drippy.</description>
 		<graphicData>
 			<texPath>Things/Item/Weapon/Ranged/RGWraithSpearGun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

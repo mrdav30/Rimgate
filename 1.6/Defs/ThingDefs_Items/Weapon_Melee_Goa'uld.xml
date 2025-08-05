@@ -7,9 +7,7 @@
         <defName>Rimgate_JaffaKnife</defName>
         <label>Jaffa knife</label>
         <techLevel>Medieval</techLevel>
-        <description>The knife has taken many forms, but the concept has always remained the same: A
-            handle for holding and a sharp edge for cutting. This style is a bit more ornate than
-            others, and are common among Jaffa.</description>
+        <description>A traditional Jaffa blade, as stylish as it is stabby. Elegant curves meet brutal function—perfect for close-quarters combat, ritual duels, or just reminding someone who the real Prime is.\nForged with pride, polished with ego.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Melee/RGJaffaKnife</texPath>
             <graphicClass>Graphic_Single</graphicClass>

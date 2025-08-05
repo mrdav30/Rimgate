@@ -4,7 +4,7 @@
 	<ScenarioDef>
 		<defName>Rimgate_GoauldScenario</defName>
 		<label>Free Jaffa Nation</label>
-		<description>A group of Jaffa have decided to rebel against the Supreme System Lord Ba'al and start a new colony against tyranny. It is time to spread the rebellion...</description>
+		<description>Once the iron fist of the Goa'uld, these Jaffa have broken their chains and declared independence. With symbiotes in their bellies and rebellion in their hearts, they now fight for freedom, honor, and the right to accessorize with staff weapons.</description>
 		<scenario>
 			<summary>A group of rebellious Jaffa.</summary>
 			<playerFaction>
@@ -58,7 +58,7 @@
 				<!-- Game start dialog -->
 				<li Class="ScenPart_GameStartDialog">
 					<def>GameStartDialog</def>
-					<text>There was no choice, after years of torment you and a few friends have decided to rebel against the tyranny of the Goa'uld.\n\nHowever, you are stranded on this planet. With no friends to turn to, you must build a new home first.</text>
+					<text>The gods were false.\n\nAfter a lifetime of serving the Goa’uld and calling tyranny divine, you and a handful of Jaffa finally said “enough.” No more bowing. No more glowing eyes. No more forced chanting in ancient dialects.\n\nNow, stranded on a remote world with only your wits, weapons, and an awkward mix of symbiotes and humans, you must build a new future. One not ruled by parasites in fancy hats.\n\nWelcome to the Free Jaffa Nation. Try not to die.</text>
 					<closeSound>GameStartSting</closeSound>
 				</li>
 				<!-- Player starting things -->

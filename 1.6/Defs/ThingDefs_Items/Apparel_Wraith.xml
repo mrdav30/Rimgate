@@ -34,7 +34,7 @@
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithHelmet</defName>
 		<label>Wraith solider helmet</label>
-		<description>This basic helmet is worn by all Wraith soldiers.</description>
+		<description>Standard issue cranial casing for your average Wraith footsoldier. Looks like alien exoskeleton, smells like biomass.\nSurprisingly breathable for something grown in a vat.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/WraithHelm/RGWraithHelmet</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -94,7 +94,7 @@
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithSoldierArmor</defName>
 		<label>Wraith soldier armor</label>
-		<description>Shell-like armor worn by Wraith soldiers.</description>
+		<description>Chitinous plating extruded from nightmares and grown with care. Offers solid protection and a mildly unsettling squelch sound when equipped.\nWorn by Wraith soldiers who prefer their armor organic and their enemies terrified.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -161,7 +161,7 @@
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithCommanderArmor</defName>
 		<label>Wraith commander armor</label>
-		<description>Light and stylish armor worn by higher ranking Wraith.</description>
+		<description>Elegant bio-armor for the discerning Wraith leader who wants to look good while draining life force.\nHigh resistance, high fashion—and guaranteed to ruin your colonist’s day from 40 tiles away.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/WraithCommander/RGWraithCommanderArmor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

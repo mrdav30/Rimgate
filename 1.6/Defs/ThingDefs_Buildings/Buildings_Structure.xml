@@ -6,7 +6,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_GoauldWall</defName>
     <label>Goa'uld wall</label>
-    <description>An impassable strong and beautiful wall. Capable of holding up a roof.</description>
+    <description>an immovable monument to Goa'uld hubris—equal parts barrier and flex. Holds up roofs, egos, and possibly entire civilizations.</description>
     <thingClass>Building</thingClass>
     <category>Building</category>
     <graphicData>
@@ -92,8 +92,8 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithHiveWall</defName>
-    <label>Wraith Hive wall</label>
-    <description>An impassable strong and beautiful wall. Capable of holding up a roof.</description>
+    <label>Wraith hive wall</label>
+    <description>a pulsating, organic wall born of Wraith biotech. It doesn't just hold up roofs—it whispers. Probably best not to listen.</description>
     <thingClass>Building</thingClass>
     <category>Building</category>
     <graphicData>

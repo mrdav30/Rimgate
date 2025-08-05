@@ -5,9 +5,9 @@
 
   <TerrainDef ParentName="FloorBase">
     <defName>Rimgate_HiveFloor</defName>
-    <label>Hive floor</label>
+    <label>hive floor</label>
     <renderPrecedence>250</renderPrecedence>
-    <description>Wraith Hive floor.</description>
+    <description>a disturbingly organic floor material cultivated aboard Wraith hive ships. Soft underfoot, slightly squishy, and unnervingly warm. It might be alive... but hey, it’s clean.</description>
     <texturePath>Things/Building/Floor/RGWraithHiveFloor</texturePath>
     <edgeType>Hard</edgeType>
     <color>(108,78,55)</color>

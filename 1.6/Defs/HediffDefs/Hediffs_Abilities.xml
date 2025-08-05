@@ -6,7 +6,7 @@
     <HediffDef>
         <defName>Rimgate_WraithLifeDrainTarget</defName>
         <label>life drained</label>
-        <description>weakness caused by vitality being stolen by a Wraith.</description>
+        <description>The telltale weakness of being fed on by a Wraith.\nVictims experience fatigue, tremors, and a general sense of “please don’t do that again.”</description>
         <!-- <hediffClass>Hediff_Injury</hediffClass> -->
         <hediffClass>HediffWithComps</hediffClass>
         <tendable>false</tendable>
@@ -41,7 +41,7 @@
     <HediffDef>
         <defName>Rimgate_WraithLifeDrainRegen</defName>
         <label>life-empowered</label>
-        <description>vitality drained from another person.</description>
+        <description>Vitality stolen from another being surges through this pawn, enhancing reflexes and healing rate.\nNot RDA-approved. But effective.</description>
         <hediffClass>HediffWithComps</hediffClass>
         <tendable>false</tendable>
         <isBad>false</isBad>
@@ -55,6 +55,7 @@
             <li>
                 <restFallFactor>0.5</restFallFactor>
                 <naturalHealingFactor>1.2</naturalHealingFactor>
+                <hungerRateFactorOffset>2.4</hungerRateFactorOffset>
                 <capMods>
                     <li>
                         <capacity>Moving</capacity>

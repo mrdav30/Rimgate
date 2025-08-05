@@ -4,7 +4,7 @@
   <FactionDef>
     <defName>Rimgate_WraithEmpire</defName>
     <label>Wraith Colony</label>
-    <description>A colony of the mysterious Wraith race.</description>
+    <description>A predatory, hive-based empire ruled by telepathic queens and fueled by the worst kind of diet plan—yours.\nIf diplomacy fails (it will), expect swarms of space-vampires with great hair and worse manners.</description>
     <pawnsPlural>Wraith</pawnsPlural>
     <requiredCountAtGameStart>0</requiredCountAtGameStart>
     <settlementGenerationWeight>0.25</settlementGenerationWeight>

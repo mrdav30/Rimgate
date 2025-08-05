@@ -2,7 +2,7 @@
 <Defs>
 	<TraderKindDef>
 		<defName>Rimgate_TauriTrader</defName>
-		<label>Tau'ri Trader</label>
+		<label>Tau'ri trader</label>
 		<orbital>true</orbital>
 		<commonality>0.3333</commonality>
 		<stockGenerators>

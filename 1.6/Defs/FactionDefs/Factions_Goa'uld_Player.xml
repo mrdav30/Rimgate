@@ -4,7 +4,7 @@
   <FactionDef ParentName="PlayerFactionBase">
     <defName>Rimgate_GoauldPlayerColony</defName>
     <label>Free Jaffa Nation</label>
-    <description>A colony of free Jaffa.</description>
+    <description>Once the iron fist of the Goa'uld, these Jaffa have broken their chains and declared independence. With symbiotes in their bellies and rebellion in their hearts, they now fight for freedom, honor, and the right to accessorize with staff weapons.</description>
     <isPlayer>true</isPlayer>
     <basicMemberKind>Rimgate_GoauldPlayer</basicMemberKind>
     <pawnSingular>free jaffa</pawnSingular>

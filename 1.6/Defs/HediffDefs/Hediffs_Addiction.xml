@@ -13,7 +13,7 @@
         <defName>Rimgate_SarcophagusChemicalNeed</defName>
         <needClass>Need_Chemical</needClass>
         <label>sarcophagus</label>
-        <description>This person's body is enhanced by the Goa'uld sarcophagus.\n\nWithout regular use of a sarcophagus, the user becomes continuously, violently insane and can eventually die.</description>
+        <description>This pawn’s physiology craves the regenerative effects of a Goa’uld sarcophagus.\nDeprivation results in rapid decline, violent instability, and a personality best described as border-line insane.</description>
         <listPriority>45</listPriority>
         <!-- <fallPerDay>0.333</fallPerDay> -->
     </NeedDef>
@@ -22,7 +22,7 @@
         <defName>Rimgate_SarcophagusHigh</defName>
         <hediffClass>Hediff_High</hediffClass>
         <label>sarcophagus high</label>
-        <description>Feeling a rush after using a Goa'uld sarcophagus. However, without regular use of a sarcophagus, the user will be driven to insanity.</description>
+        <description>A euphoric rush brought on by exposure to a Goa'uld sarcophagus.\nYou feel unstoppable—until you don’t.\nSide effects may include glowing arrogance and a god complex.</description>
         <defaultLabelColor>(1,1,0.5)</defaultLabelColor>
         <scenarioCanAdd>false</scenarioCanAdd>
         <maxSeverity>1.0</maxSeverity>
@@ -91,7 +91,7 @@
     <HediffDef ParentName="AddictionBase">
         <defName>Rimgate_SarcophagusAddiction</defName>
         <label>sarcophagus addiction</label>
-        <description>The consequence of using a Goa'uld sarcophagus. The effects decohere over time; only regular uses of a sarcophagus can prevent this process. \nBy neglecting this need, the victim can go insane and die.</description>
+        <description>Once you've tasted the sarcophagus, reality feels... lacking.\nWithout regular exposure, users spiral into madness, organ failure, and dramatic shouting matches with invisible gods.</description>
         <hediffClass>Hediff_Addiction</hediffClass>
         <chemicalNeed>Rimgate_SarcophagusChemicalNeed</chemicalNeed>
         <everCurableByItem>false</everCurableByItem>

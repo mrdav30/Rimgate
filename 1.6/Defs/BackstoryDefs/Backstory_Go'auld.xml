@@ -5,9 +5,9 @@
 
   <BackstoryDef>
     <defName>Rimgate_GoauldServant</defName>
-    <title>Goa'uld Servant</title>
-    <titleShort>Goauld Servant</titleShort>
-    <baseDesc>[PAWN_nameDef] grew up in the Goa'uld empire.</baseDesc>
+    <title>Goa'uld servant</title>
+    <titleShort>Goa'uld servant</titleShort>
+    <baseDesc>Born into the shadow of a self-proclaimed god, [PAWN_nameDef] spent their childhood groveling at the feet of glowing-eyed overlords. Polishing armor, fetching symbiote snacks, and learning never to make eye contact. A glamorous upbringing, really.</baseDesc>
     <slot>Childhood</slot>
     <spawnCategories>
       <li>Rimgate_GoauldChildBackstory</li>
@@ -20,7 +20,7 @@
     <defName>Rimgate_FirstPrime</defName>
     <title>First Prime</title>
     <titleShort>First Prime</titleShort>
-    <baseDesc>[PAWN_nameDef] is a First Prime for a Goa'uld System Lord.</baseDesc>
+    <baseDesc>As the First Prime of a System Lord, [PAWN_nameDef] served as enforcer, executioner, and occasional motivational speaker (with staff weapon). Feared by allies and enemies alike, they carried out divine will with zeal—and very little paperwork.</baseDesc>
     <slot>Adulthood</slot>
     <spawnCategories>
       <li>Rimgate_FirstPrimeBackstory</li>
@@ -52,8 +52,7 @@
     <defName>Rimgate_Jaffa</defName>
     <title>Jaffa</title>
     <titleShort>Jaffa</titleShort>
-    <baseDesc>[PAWN_nameDef] is a Jaffa. They are a specially bred race which serves as the soldiers
-      of the Goa'uld empire.</baseDesc>
+    <baseDesc>[PAWN_nameDef] was bred for strength, loyalty, and dramatic entrances. As a Jaffa, they carried a larval symbiote and a massive chip on their shoulder. Service to the Goa’uld was mandatory; personal opinions were not.</baseDesc>
     <slot>Adulthood</slot>
     <spawnCategories>
       <li>Rimgate_JaffaBackstory</li>
@@ -79,10 +78,9 @@
 
   <BackstoryDef>
     <defName>Rimgate_Slave</defName>
-    <title>Goa'uld Slave</title>
-    <titleShort>Goa'uld Slave</titleShort>
-    <baseDesc>[PAWN_nameDef] is a slave. They have no worth to the Goa'uld and fighting and
-      intellectual work is forbidden for them.</baseDesc>
+    <title>Goa'uld slave</title>
+    <titleShort>Goa'uld slave</titleShort>
+    <baseDesc>Chained by fate and fashion, [PAWN_nameDef] served the Goa’uld as a nameless, faceless laborer. Forbidden from fighting, learning, or even dreaming too loudly. Their daily highlight? Not being vaporized.</baseDesc>
     <slot>Adulthood</slot>
     <spawnCategories>
       <li>Rimgate_SlaveBackstory</li>

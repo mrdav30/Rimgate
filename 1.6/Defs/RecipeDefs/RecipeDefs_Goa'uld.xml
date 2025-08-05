@@ -5,8 +5,8 @@
 
 	<RecipeDef ParentName="SurgeryInstallImplantBase">
 		<defName>Rimgate_InstallSymbiote</defName>
-		<label>Install symbiote</label>
-		<description>Implant a Goa'uld symbiote into the host, granting enhanced health, strength, and regenerative properties.</description>
+		<label>install symbiote</label>
+		<description>implant a Goa'uld symbiote into the host, granting enhanced health, strength, and regenerative properties.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
 			<HediffDef>Rimgate_SymbioteImplant</HediffDef>
@@ -50,8 +50,11 @@
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveGoauldSymbiote</defName>
 		<label>remove Goa'uld symbiote</label>
-		<description>Remove a Goa'uld symbiote.</description>
-		<jobString>Removing Goa'uld symbiote.</jobString>
+		<description>remove a Goa'uld symbiote.</description>
+		<descriptionHyperlinks>
+			<HediffDef>Rimgate_SymbioteWithdrawal</HediffDef>
+		</descriptionHyperlinks>
+		<jobString>removing Goa'uld symbiote.</jobString>
 		<effectWorking>Surgery</effectWorking>
 		<soundWorking>Recipe_Machining</soundWorking>
 		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
@@ -82,7 +85,7 @@
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallJaffaForeheadSymbolAnubis</defName>
 		<label>install Anubis Jaffa mark</label>
-		<description>Install Anubis Jaffa mark.</description>
+		<description>install Anubis Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantAnubis</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantAnubis</HediffDef>
@@ -109,7 +112,7 @@
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveJaffaForeheadSymbolAnubis</defName>
 		<label>remove Anubis Jaffa mark</label>
-		<description>Remove Anubis Jaffa mark.</description>
+		<description>remove Anubis Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantAnubis</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantAnubis</HediffDef>
@@ -121,7 +124,7 @@
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallPrimeForeheadSymbolAnubis</defName>
 		<label>install Anubis First Prime mark</label>
-		<description>Install Anubis First Prime mark.</description>
+		<description>install Anubis First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantAnubis</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantAnubis</HediffDef>
@@ -148,7 +151,7 @@
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemovePrimeForeheadSymbolAnubis</defName>
 		<label>remove Anubis First Prime mark</label>
-		<description>Remove Anubis First Prime mark.</description>
+		<description>remove Anubis First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantAnubis</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantAnubis</HediffDef>
@@ -162,7 +165,7 @@
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallJaffaForeheadSymbolApophis</defName>
 		<label>install Apophis Jaffa mark</label>
-		<description>Install Apophis Jaffa mark.</description>
+		<description>install Apophis Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantApophis</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantApophis</HediffDef>
@@ -201,7 +204,7 @@
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallPrimeForeheadSymbolApophis</defName>
 		<label>install Anubis First Prime mark</label>
-		<description>Install Anubis First Prime mark.</description>
+		<description>install Anubis First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantApophis</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantApophis</HediffDef>
@@ -228,7 +231,7 @@
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemovePrimeForeheadSymbolApophis</defName>
 		<label>remove Apophis First Prime mark</label>
-		<description>Remove Apophis First Prime mark.</description>
+		<description>remove Apophis First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantApophis</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantApophis</HediffDef>
@@ -242,7 +245,7 @@
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallJaffaForeheadSymbolRa</defName>
 		<label>install Ra Jaffa mark</label>
-		<description>Install Ra Jaffa mark.</description>
+		<description>install Ra Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantRa</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantRa</HediffDef>
@@ -269,7 +272,7 @@
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveJaffaForeheadSymbolRa</defName>
 		<label>remove Ra Jaffa mark</label>
-		<description>Remove Ra Jaffa mark.</description>
+		<description>remove Ra Jaffa mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantRa</ThingDef>
 			<HediffDef>Rimgate_JaffaForeheadSymbolImplantRa</HediffDef>
@@ -281,7 +284,7 @@
 	<RecipeDef ParentName="Rimgate_InstallForeheadSymbolBase">
 		<defName>Rimgate_InstallPrimeForeheadSymbolRa</defName>
 		<label>install Ra First Prime mark</label>
-		<description>Install Ra First Prime mark.</description>
+		<description>install Ra First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantRa</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantRa</HediffDef>
@@ -308,7 +311,7 @@
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemovePrimeForeheadSymbolRa</defName>
 		<label>remove Ra First Prime mark</label>
-		<description>Remove Ra First Prime mark.</description>
+		<description>remove Ra First Prime mark.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantRa</ThingDef>
 			<HediffDef>Rimgate_PrimeForeheadSymbolImplantRa</HediffDef>

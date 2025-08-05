@@ -6,7 +6,7 @@
   <ThingDef ParentName="OrganicProductBase">
     <defName>Rimgate_CulturedMeat</defName>
     <label>cultured meat</label>
-    <description>Meat?...It's raw meat grown from a culture.</description>
+    <description>grown in a vat from Wraith biotech, this “meat” is technically food, arguably ethical, and absolutely disturbing.\nBest served raw.</description>
     <graphicData>
       <texPath>Things/Item/Resource/RGCultivatedMeat</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -43,7 +43,7 @@
   <ThingDef ParentName="OrganicProductBase">
     <defName>Rimgate_CocoonedMeat</defName>
     <label>cocooned meat</label>
-    <description>Raw meat wrapped in a neat cocoon so it won't spoil.</description>
+    <description>some meat, now lovingly wrapped in alien silk for freshness.\nSmells faintly of despair and industrial solvents. At least it won’t rot!</description>
     <graphicData>
       <texPath>Things/Item/Resource/RGCocoonedMeat</texPath>
       <graphicClass>Graphic_Single</graphicClass>

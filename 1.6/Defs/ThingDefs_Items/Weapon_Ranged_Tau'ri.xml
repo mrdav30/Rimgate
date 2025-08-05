@@ -6,7 +6,7 @@
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriP90Gun</defName>
         <label>P90</label>
-        <description>A compact, lightweight submachine gun chambered used by the Tau'ri. Fires fast and has a high capacity top loading mag.</description>
+        <description>a compact, top-loaded submachine gun favored by Tau'ri special forces.\nFires fast, hits hard, and eats through ammo.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriP90</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -86,7 +86,7 @@
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriM4A1Gun</defName>
         <label>M4A1</label>
-        <description>A general-purpose gas-operated assault rifle for field or urban combat used by Tau'ri SGC teams.</description>
+        <description>The standard issue M4A1—battle-tested, alien-blasted, and field-approved.\nPerfect for when diplomacy fails and the your enemies start chanting.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriM4A1</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -162,8 +162,8 @@
 
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriM4A1_M203Gun</defName>
-        <label>M4A1 with M203 Launcher</label>
-        <description>A general-purpose gas-operated assault rifle for field or urban combat used by Tau'ri SGC teams. This variation comes with an underbarrel M203 grenade launcher.</description>
+        <label>M4A1 w/ M203 Launcher</label>
+        <description>the M4A1, now with 100% more boom.\nIncludes an M203 launcher for when bullets just aren't persuasive enough.</description>
         <smeltable>false</smeltable>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriM4M203</texPath>
@@ -242,8 +242,8 @@
 
     <ThingDef ParentName="BaseGunWithQuality">
         <defName>Rimgate_TauriM4A1_M203_GrenadeLauncher</defName>
-        <label>M203 Underbarrel Launcher</label>
-        <description>A general-purpose gas-operated assault rifle for field or urban combat used by Tau'ri SGC teams. This variation comes with an underbarrel M203 grenade launcher.</description>
+        <label>M203 underbarrel launcher</label>
+        <description>the underbarrel M203 grenade launcher.\nFor those subtle conversations that start with a *thoom* and end with fire.</description>
         <smeltable>false</smeltable>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriM4M203</texPath>
@@ -310,7 +310,7 @@
 
     <ThingDef ParentName="BaseBullet">
         <defName>Rimgate_M203Projectile</defName>
-        <label>40mm Grenade</label>
+        <label>40mm grenade</label>
         <graphicData>
             <texPath>Things/Projectile/RG40mmGrenadeProjectile</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -329,7 +329,7 @@
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriM92A</defName>
         <label>Beretta M92A</label>
-        <description>An blowback-operated self-loading pistol. This is the standard sidearm for Tau'ri SGC teams.</description>
+        <description>a blowback-operated pistol carried by nearly every SG team member.\nCompact, reliable, and just stylish enough to look good when yelling “Cover me!”</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriBerettaM92APistol</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -404,7 +404,7 @@
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriUSAS12Shotgun</defName>
         <label>USAS 12</label>
-        <description>An automatic shotgun used by Tau'ri SGC teams.</description>
+        <description>a fully automatic shotgun used by Tau'ri when they really want enemies to stop existing.\nEspecially effective against doorways, Replicators, and bad attitudes.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriUSAS12Shotgun</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -482,8 +482,8 @@
 
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriRemington700Rifle</defName>
-        <label>sniper rifle</label>
-        <description>Standard bolt action sniper rifle used by Tau'ri SGC teams.</description>
+        <label>Remington 700</label>
+        <description>a bolt-action sniper rifle for when “over there” needs to become “no longer a threat.”, or you need to silently judge targets from half the map away.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriRemington700</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -560,8 +560,8 @@
 
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriAntiReplicatorGun</defName>
-        <label>Anti Replicator gun</label>
-        <description>A weapon used to disrupt the emp between Replicator blocks.</description>
+        <label>anti Replicator gun</label>
+        <description>reverse-engineered Tau'ri tech specifically designed to wreck Replicators.\nBreaks up block parties, one EMP burst at a time.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriAntiReplicatorGun</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -636,7 +636,7 @@
 
     <ThingDef ParentName="BaseBullet">
         <defName>Rimgate_AntiReplicatorProjectile</defName>
-        <label>Anti Replicator EMP</label>
+        <label>anti Replicator EMP</label>
         <graphicData>
             <texPath>Things/Projectile/Bullet_Small</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -653,7 +653,7 @@
     <ThingDef ParentName="BaseGun">
         <defName>Rimgate_TauriFIMStinger</defName>
         <label>FIM Stinger</label>
-        <description>An infantry air-defense weapon used to take out low flying targets by Tau'ri SGC teams, the upgraded and more modern version of the "FIM-43 Redeye".</description>
+        <description>the FIM Stinger: the Tau'ri’s polite way of saying “GTFO” to anything flying low.\nComes with explosive greetings and a side of regret.</description>
         <tickerType>Normal</tickerType>
         <techLevel>Industrial</techLevel>
         <smeltable>false</smeltable>
@@ -736,7 +736,7 @@
 
     <ThingDef ParentName="BaseBullet">
         <defName>Rimgate_FIMStingerProjectile</defName>
-        <label>Anti Air Missle</label>
+        <label>anti-air missle</label>
         <graphicData>
             <texPath>Things/Projectile/RGAAMissileProjectile</texPath>
             <graphicClass>Graphic_Single</graphicClass>

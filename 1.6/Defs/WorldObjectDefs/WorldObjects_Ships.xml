@@ -4,7 +4,7 @@
     <WorldObjectDef ParentName="ShuttleWorldObjectBase">
         <defName>Rimgate_GoauldTeltak</defName>
         <label>Goa'uld Tel'tak</label>
-        <description>A Goa'uld Tel'tak in flight.</description>
+        <description>a Goa'uld Tel'tak in flight.</description>
         <expandingIconTexture>UI/Icon/Map/RGGoauldTeltakShipIcon</expandingIconTexture>
         <expandingIconDrawSize>1</expandingIconDrawSize>
     </WorldObjectDef>
@@ -12,7 +12,7 @@
     <WorldObjectDef ParentName="ShuttleWorldObjectBase">
         <defName>Rimgate_WraithDart</defName>
         <label>Wraith Dart</label>
-        <description>A Wraith Dart in flight.</description>
+        <description>a Wraith Dart in flight.</description>
         <expandingIconTexture>UI/Icon/Map/RGWraithDartShipIcon</expandingIconTexture>
         <expandingIconDrawSize>1</expandingIconDrawSize>
     </WorldObjectDef>
@@ -20,7 +20,7 @@
     <WorldObjectDef ParentName="ShuttleWorldObjectBase">
         <defName>Rimgate_TauriPuddleJumper</defName>
         <label>Tau'ri Puddle Jumper</label>
-        <description>A Tau'ri Puddle Jumper in flight.</description>
+        <description>a Tau'ri Puddle Jumper in flight.</description>
         <expandingIconTexture>UI/Icon/Map/RGTauriPuddleJumperShipIcon</expandingIconTexture>
         <expandingIconDrawSize>1</expandingIconDrawSize>
     </WorldObjectDef>

@@ -7,7 +7,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class CompProperties_GlyphScrap : CompProperties
+public class CompProperties_GlyphParchment : CompProperties
 {
-    public CompProperties_GlyphScrap() => compClass = typeof(Comp_GlyphScrap);
+    public CompProperties_GlyphParchment() => compClass = typeof(Comp_GlyphParchment);
 }

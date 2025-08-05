@@ -5,7 +5,7 @@
 
     <DamageDef>
         <defName>Rimgate_StaffBlast</defName>
-        <label>Staff Blast</label>
+        <label>staff blast</label>
         <workerClass>DamageWorker_AddInjury</workerClass>
         <externalViolence>true</externalViolence>
         <deathMessage>{0} has been killed.</deathMessage>
@@ -22,7 +22,7 @@
 
     <DamageDef>
         <defName>Rimgate_ZatStun</defName>
-        <label>Zat Stun</label>
+        <label>zat stun</label>
         <workerClass>DamageWorker_Stun</workerClass>
         <externalViolence>true</externalViolence>
         <deathMessage>{0} has been stunned.</deathMessage>

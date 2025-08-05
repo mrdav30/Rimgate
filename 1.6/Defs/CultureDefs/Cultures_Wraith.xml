@@ -4,7 +4,7 @@
     <CultureDef>
         <defName>Rimgate_WraithCulture</defName>
         <label>hive culture</label>
-        <description>A culture similar to that of insects, with a clear division of roles and a hierarchical system led by queens.</description>
+        <description>Ruthlessly efficient and emotionally unavailable, this insectoid-inspired culture is built around hierarchy, obedience, and really bad small talk. Led by telepathic queens, every role is preordained—worker, warrior, or lunch.\nIdeal if you enjoy mindless conformity and snazzy hair.</description>
         <ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoAstropolitan</ideoNameMaker>
         <deityNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerDeityAstropolitan</deityNameMaker>
         <deityTypeMaker MayRequire="Ludeon.RimWorld.Ideology">DeityTypeMakerAstropolitan</deityTypeMaker>

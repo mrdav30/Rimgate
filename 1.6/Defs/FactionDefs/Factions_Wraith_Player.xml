@@ -5,7 +5,7 @@
   <FactionDef ParentName="PlayerFactionBase">
     <defName>Rimgate_WraithPlayerColony</defName>
     <label>Wraith Colony Co-Op</label>
-    <description>A community of cooperative Wraith.</description>
+    <description>Outcast from the Hive, this rogue Wraith colony seeks more than just prey—they seek purpose. Their hunger remains, but so does a glimmer of independence.\nWhether they build an empire or a buffet remains to be seen.</description>
     <isPlayer>true</isPlayer>
     <basicMemberKind>Rimgate_WraithPlayer</basicMemberKind>
     <pawnSingular>co-op jaffa</pawnSingular>

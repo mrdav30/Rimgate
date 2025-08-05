@@ -3,7 +3,7 @@
 
 	<WorkGiverDef>
 		<defName>AG_DoBillsWraith</defName>
-		<label>works at cocooning station</label>
+		<label>work at cocooning station</label>
 		<giverClass>Rimgate.WorkGiver_DoBill_Wraith</giverClass>
 		<workType>Crafting</workType>
 		<priorityInType>100</priorityInType>

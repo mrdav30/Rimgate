@@ -5,9 +5,9 @@
 
 	<RecipeDef>
 		<defName>Rimgate_MakeNaquadria</defName>
-		<label>Make Naquadria</label>
-		<description>Make a batch of Naquadria from Naquadah.</description>
-		<jobString>Making Naquadria.</jobString>
+		<label>refine Naquadria</label>
+		<description>make a batch of Naquadria from Naquadah.</description>
+		<jobString>making Naquadria.</jobString>
 		<effectWorking>Cremate</effectWorking>
 		<soundWorking>Recipe_Cremate</soundWorking>
 		<workAmount>2000</workAmount>

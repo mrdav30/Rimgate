@@ -20,7 +20,7 @@
 
 	<ThingDef ParentName="BaseBullet">
 		<defName>Rimgate_RailgunBullet</defName>
-		<label>Railgun Shell</label>
+		<label>railgun shell</label>
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -28,7 +28,7 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>35</damageAmountBase>
-			<armorPenetrationBase>0.75</armorPenetrationBase>
+			<armorPenetrationBase>0.95</armorPenetrationBase>
 			<speed>110</speed>
 		</projectile>
 	</ThingDef>
@@ -94,8 +94,7 @@
 	<ThingDef ParentName="Rimgate_MannedTurretBase">
 		<defName>Rimgate_M2Turret</defName>
 		<label>manned M2 .50 Cal machine gun</label>
-		<description>A heavy machine gun used in mainly defensive measures by SGC personnel and SG
-			teams.</description>
+		<description>a belt-fed brute of a machine gun, manned by the brave and backed by decades of battlefield legacy. Commonly deployed by SG teams to politely discourage alien threats.</description>
 		<graphicData>
 			<texPath>Things/Building/Security/M2HMG/RGM2Stand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -151,8 +150,8 @@
 
 	<ThingDef ParentName="Rimgate_MannedGunBase">
 		<defName>Rimgate_M2Gun</defName>
-		<label>M2 Heavy Machine Gun</label>
-		<description>A M2 HMG attached to a stand.</description>
+		<label>M2 heavy machine gun</label>
+		<description>a mounted M2 HMG—big, loud, and not interested in negotiations.</description>
 		<graphicData>
 			<texPath>Things/Building/Security/M2HMG/RGM2HMG</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -187,9 +186,8 @@
 
 	<ThingDef ParentName="Rimgate_MannedTurretBase">
 		<defName>Rimgate_M2TurretShield</defName>
-		<label>Manned M2 .50 Cal shielded Machine Gun</label>
-		<description>A heavy machine gun used in mainly defensive measures by SGC personnel and SG
-			teams equiped with a steel shield.</description>
+		<label>manned M2 .50 cal shielded machine gun</label>
+		<description>the M2 HMG’s more cautious cousin—equipped with a steel shield for when diplomacy fails and cover is optional.</description>
 		<graphicData>
 			<texPath>Things/Building/Security/M2HMG/RGM2Stand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -245,8 +243,8 @@
 
 	<ThingDef ParentName="Rimgate_MannedGunBase">
 		<defName>Rimgate_M2ShieldedGun</defName>
-		<label>M2 Heavy Machine Gun with Shield</label>
-		<description>A shielded M2 HMG attached to a stand.</description>
+		<label>m2 heavy machine gun with shield</label>
+		<description>a stand-mounted M2 HMG with integrated shielding, because sometimes suppressive fire should come with a splash of self-preservation.</description>
 		<graphicData>
 			<texPath>Things/Building/Security/M2HMG/RGM2ShieldHMG</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -335,9 +333,8 @@
 
 	<ThingDef ParentName="Rimgate_MannedRailgunTurretBase">
 		<defName>Rimgate_NaquadahRailgunTurret</defName>
-		<label>Manned Naquadah enhanced railgun</label>
-		<description>A heavy gun typically seen on the F302 fighter intercepters, and BC-303 and 304
-			class battle cruisers.</description>
+		<label>manned Naquadah enhanced railgun</label>
+		<description>A manned railgun enhanced with Naquadah—capable of turning Goa'uld armor into swiss cheese at 1,500 meters. Standard equipment on Earth’s finest spacefaring hardware.</description>
 		<graphicData>
 			<texPath>Things/Building/Security/NaquadahRailgun/RGNaquadahRailgunStand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -359,7 +356,7 @@
 				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
 				<fuelFilter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Rimgate_Naquadah</li>
 					</thingDefs>
 				</fuelFilter>
 				<fuelCapacity>10000</fuelCapacity>
@@ -375,9 +372,9 @@
 			</li>
 		</comps>
 		<costList>
-			<Steel>420</Steel>
+			<Steel>350</Steel>
+			<Rimgate_Naquadah>75</Rimgate_Naquadah>
 			<ComponentIndustrial>9</ComponentIndustrial>
-			<Rimgate_Naquadria>4</Rimgate_Naquadria>
 		</costList>
 		<building>
 			<turretTopDrawSize>6</turretTopDrawSize>
@@ -398,9 +395,8 @@
 
 	<ThingDef ParentName="Rimgate_MannedRailgunGunBase">
 		<defName>Rimgate_NaquadahRailgunGun</defName>
-		<label>Manned Naquadah enhanced railgun</label>
-		<description>A heavy gun typically seen on the F302 fighter intercepters, and BC-303 and 304
-			class battle cruisers.</description>
+		<label>manned Naquadah enhanced railgun</label>
+		<description>a heavy-duty Naquadah-infused railgun, borrowed from Earth’s battle cruisers and lovingly mounted for planetary defense. Overkill? Absolutely.</description>
 		<graphicData>
 			<texPath>Things/Building/Security/NaquadahRailgun/RGNaquadahRailgun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

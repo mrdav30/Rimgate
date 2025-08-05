@@ -22,7 +22,7 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldBasic</defName>
 		<label>Goa'uld technology</label>
-		<description>Get access to Goa'uld technology.</description>
+		<description>unlock foundational Goa'uld tech, including interface protocols, energy matrices, and that smug sense of superiority you've been missing.</description>
 		<baseCost>1500</baseCost>
 		<researchViewX>0</researchViewX>
 		<researchViewY>2</researchViewY>
@@ -33,7 +33,7 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier1</defName>
 		<label>Jaffa armor</label>
-		<description>Armors used by the Goa'uld and their Jaffa armies.</description>
+		<description>gain access to traditional Jaffa armor—ceremonial, intimidating, and surprisingly effective at deflecting bullets and compliments.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
@@ -44,8 +44,8 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier2</defName>
-		<label>Jaffa Guard armor</label>
-		<description>Specialized Armors used by the Goa'uld and their Jaffa armies.</description>
+		<label>Jaffa guard armor</label>
+		<description>unlock specialized armor worn by elite Jaffa guards and First Primes. Offers increased protection and 200% more self-importance.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldArmorTier1</li>
@@ -58,7 +58,7 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier3</defName>
 		<label>Kull armor</label>
-		<description>Research the Kull armor.</description>
+		<description>research the terrifying Kull battle armor—designed for invulnerability, intimidation, and ruining someone’s day at extreme range.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldArmorTier2</li>
@@ -72,7 +72,7 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldWeaponTier1</defName>
 		<label>Jaffa weapons</label>
-		<description>Weapons used by the Goa'uld and their Jaffa armies.</description>
+		<description>gain access to traditional Jaffa armaments, including staff weapons and Zat guns. Loud, flashy, and excellent at vaporizing subtlety.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
@@ -85,7 +85,7 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldWeaponTier2</defName>
 		<label>Kull weapons</label>
-		<description>Research the Kull weapons.</description>
+		<description>reverse-engineer the devastating weaponry of the Kull supersoldiers. Because if you can't stop them, you might as well outgun them.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldWeaponTier1</li>
@@ -99,7 +99,7 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTelTak</defName>
 		<label>Tel'tak</label>
-		<description>Get access to the Tel'tak transport ship.</description>
+		<description>unlock the Tel'tak—a stealth-capable transport ship ideal for reconnaissance, smuggling, or dramatic escape sequences.</description>
 		<baseCost>3000</baseCost>
 		<techLevel>Spacer</techLevel>
 		<prerequisites>
@@ -115,7 +115,7 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_Sarcophagus</defName>
 		<label>Sarcophagus</label>
-		<description>Get access to the Goa'uld sarcophagus.</description>
+		<description>gain access to the Goa’uld sarcophagus: the ultimate healing device. Restores health, revives the dying, and wrecks your personality over time. Win-win.</description>
 		<baseCost>3500</baseCost>
 		<techLevel>Ultra</techLevel>
 		<prerequisites>

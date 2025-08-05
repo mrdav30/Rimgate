@@ -4,8 +4,9 @@
 	<GeneDef>
 		<defName>Rimgate_CellularDegradation</defName>
 		<label>cellular degradation</label>
-		<description>Carriers of this gene are unstable at the cellular level and will age at extremely increased rate.</description>
+		<description>A byproduct of extreme genetic manipulation, this unstable gene causes accelerated aging and gradual systemic failure. Carriers burn bright—and fast.\nIdeal for supersoldiers with an expiration date.</description>
 		<iconPath>UI/Icon/Gene/RGCellularDegradationIcon</iconPath>
+		<canGenerateInGeneSet>true</canGenerateInGeneSet>
 		<exclusionTags>
 			<li>Aging</li>
 		</exclusionTags>

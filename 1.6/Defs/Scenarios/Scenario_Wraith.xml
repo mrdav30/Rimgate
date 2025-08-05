@@ -4,7 +4,7 @@
 	<ScenarioDef>
 		<defName>Rimgate_WraithScenario</defName>
 		<label>Wraith Co-Op</label>
-		<description>You and a small group of Wraith have crash landed after evading the Wraith Colony. Now your stuck on this plant...and hungry.\n\nIt is time to harvest...</description>
+		<description>Outcast from the Hive, this rogue Wraith colony seeks more than just prey—they seek purpose. Their hunger remains, but so does a glimmer of independence.\nWhether they build an empire or a buffet remains to be seen.</description>
 		<scenario>
 			<summary>A group of outcast Wraith have crash landed.</summary>
 			<playerFaction>
@@ -52,7 +52,7 @@
 				<!-- Game start dialog -->
 				<li Class="ScenPart_GameStartDialog">
 					<def>GameStartDialog</def>
-					<text>There was no choice, your Hive Ship was attacked and destroyed. Now you are stranded...and hungry.</text>
+					<text>The Hive is gone.\n\nYour ship was torn apart in the void, your kin scattered, and your queen—silent. All that remains are the gnawing pangs of hunger and the faintest trace of purpose.\n\nYou awaken in an unfamiliar land, your feeding reserves empty and the scent of prey in the air. You are Wraith, born to rule and feed. But here, on this backwater rock, you will have to adapt—or starve.\n\nLet the harvest begin.</text>
 					<closeSound>GameStartSting</closeSound>
 				</li>
 				<!-- Player pawns modifiers -->

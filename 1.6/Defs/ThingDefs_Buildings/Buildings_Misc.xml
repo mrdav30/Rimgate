@@ -48,8 +48,8 @@
 
 	<ThingDef ParentName="Rimgate_StargateBase">
 		<defName>Rimgate_Stargate</defName>
-		<label>Stargate</label>
-		<description>An ancient device used to transport people or resources between planets. This specific type of Stargate seems to be adapted to work on only one planet. \n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard...naked."</description>
+		<label>stargate</label>
+		<description>an ancient alien device used to transport people or resources between planets. This specific type of Stargate seems to be adapted to work on only one planet. \n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard...naked."</description>
 		<size>(5,1)</size>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGStargateAncient</texPath>
@@ -88,9 +88,8 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_DialHomeDevice</defName>
-		<label>Dial home device</label>
-		<description>An ancient device used to control a stargate.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
-		<thingClass>Building</thingClass>
+		<label>dial home device</label>
+		<description>an ancient alien control console designed to interface with a Stargate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
 		<rotatable>false</rotatable>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<stealable>false</stealable>

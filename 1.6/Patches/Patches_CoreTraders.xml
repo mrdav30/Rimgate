@@ -15,7 +15,7 @@
 					]/stockGenerators</xpath>
 				<value>
 					<li Class="StockGenerator_SingleDef">
-						<thingDef>Rimgate_GlyphScrap</thingDef>
+						<thingDef>Rimgate_GlyphParchment</thingDef>
 						<countRange>0~1</countRange>
 					</li>
 					<li Class="StockGenerator_BuySingleDef">

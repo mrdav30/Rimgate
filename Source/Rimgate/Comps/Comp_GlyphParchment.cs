@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Rimgate;
 
-public class Comp_GlyphScrap : ThingComp
+public class Comp_GlyphParchment : ThingComp
 {
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
     {

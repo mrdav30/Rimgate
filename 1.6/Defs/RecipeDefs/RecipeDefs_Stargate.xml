@@ -5,9 +5,9 @@
 
 	<RecipeDef>
 		<defName>Rimgate_MakeIrisInstallKit</defName>
-		<label>Make Iris installation kit</label>
-		<description>Make an Iris installation kit.</description>
-		<jobString>Making Iris installation kit.</jobString>
+		<label>make Iris installation kit</label>
+		<description>make an Iris installation kit.</description>
+		<jobString>making Iris installation kit.</jobString>
 		<workAmount>10000</workAmount>
 		<recipeUsers>
 			<li>FabricationBench</li>

@@ -8,7 +8,7 @@
 		<hediffClass>Rimgate.Hediff_GoauldSymbiote</hediffClass>
 		<label>Goa'uld symbiote</label>
 		<labelNoun>a Goa'uld symbiote</labelNoun>
-		<description>A Goa'uld symbiote.</description>
+		<description>A living parasite from the Goa’uld species, surgically implanted into the host’s body. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, senses, and a disturbing fondness for referring to yourself as a god.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
 		</descriptionHyperlinks>
@@ -58,7 +58,7 @@
 	<HediffDef>
 		<defName>Rimgate_SymbioteWithdrawal</defName>
 		<label>Goa'uld symbiote withdrawal</label>
-		<description>Goa'uld symbiote withdrawal.</description>
+		<description>With the symbiote removed, the host's body begins to crash—systems falter, strength fades, and paranoia skyrockets.\nSymptoms include fatigue, tremors, organ failure, and regretting life choices involving glowing eyes.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<initialSeverity>0.1</initialSeverity>
 		<lethalSeverity>1</lethalSeverity>
@@ -84,6 +84,8 @@
 				<painOffset>0.2</painOffset>
 				<statOffsets>
 					<RestFallRateFactor>1</RestFallRateFactor>
+					<ImmunityGainSpeed>0</ImmunityGainSpeed>
+					<InjuryHealingFactor>0</InjuryHealingFactor>
 				</statOffsets>
 				<capMods>
 					<li>
@@ -107,7 +109,7 @@
 	<!-- ==================== Jaffa Forehead Symbol Base ==================== -->
 
 	<HediffDef Name="Rimgate_JaffaForeheadSymbolBase" ParentName="ImplantHediffBase" Abstract="True">
-		<description>A surgically embedded or branded symbol on the forehead, marking the bearer as a servant of a Goa'uld. This iconic mark interferes slightly with psionic harmonics.</description>
+		<description>An embedded or branded emblem signifying servitude to a Goa’uld System Lord. While iconic and great for identifying whose boots you’re meant to lick, it also interferes with psionic clarity and makes you easier to spot in a crowd.\nBeauty is pain—and obedience.</description>
 		<defaultLabelColor>(0.7, 0.7, 0.1)</defaultLabelColor>
 		<stages>
 			<li>

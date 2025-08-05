@@ -71,12 +71,12 @@
 
   <PawnKindDef ParentName="Rimgate_WraithCivilianBase">
     <defName>Rimgate_WraithColonist</defName>
-    <label>Colonist</label>
+    <label>colonist</label>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_WraithCivilianBase">
     <defName>Rimgate_WraithSlave</defName>
-    <label>Slave</label>
+    <label>slave</label>
   </PawnKindDef>
 
   <!-- ============ Wraith Military Base ============ -->
@@ -126,7 +126,7 @@
 
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithSoldier</defName>
-    <label>Wraith Soldier</label>
+    <label>Wraith soldier</label>
     <combatPower>90</combatPower>
     <apparelTags>
       <li>Tribal</li>
@@ -153,7 +153,7 @@
 
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithCommander</defName>
-    <label>Wraith Commander</label>
+    <label>Wraith commander</label>
     <combatPower>135</combatPower>
     <backstoryFiltersOverride>
       <li>
@@ -219,7 +219,7 @@
 
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithQueen</defName>
-    <label>Wraith Queen</label>
+    <label>Wraith queen</label>
     <factionLeader>true</factionLeader>
     <minGenerationAge>26</minGenerationAge>
     <combatPower>220</combatPower>

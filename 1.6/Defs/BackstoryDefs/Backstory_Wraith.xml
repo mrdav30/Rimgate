@@ -5,9 +5,9 @@
 
   <BackstoryDef>
     <defName>Rimgate_WraithChild</defName>
-    <title>Wraith Child</title>
-    <titleShort>Wraith Child</titleShort>
-    <baseDesc>[PAWN_nameDef] grew up in the Wraith empire.</baseDesc>
+    <title>Wraith child</title>
+    <titleShort>Wraith child</titleShort>
+    <baseDesc>From their first breath, [PAWN_nameDef] was groomed in the cold corridors of a hive ship. Lessons included ambush tactics, sarcasm, and how to drain life energy without spilling too much. Playtime was... intense.</baseDesc>
     <slot>Childhood</slot>
     <spawnCategories>
       <li>Rimgate_WraithChildBackStory</li>
@@ -18,9 +18,9 @@
 
   <BackstoryDef>
     <defName>Rimgate_WraithQueen</defName>
-    <title>Wraith Queen</title>
-    <titleShort>Wraith Queen</titleShort>
-    <baseDesc>[PAWN_nameDef] is a Hive Queen. They rule the wraith empire.</baseDesc>
+    <title>Wraith queen</title>
+    <titleShort>Wraith queen</titleShort>
+    <baseDesc>[PAWN_nameDef] is a Hive Queen—ruler, strategist, and fashion icon of the Wraith empire. They command with elegance, cruelty, and a voice that can flay egos at fifty paces. Their hive is their kingdom, and everyone else is just takeout.</baseDesc>
     <slot>Adulthood</slot>
     <spawnCategories>
       <li>Rimgate_WraithQueenBackStory</li>
@@ -50,9 +50,9 @@
 
   <BackstoryDef>
     <defName>Rimgate_WraithCommander</defName>
-    <title>Wraith Commander</title>
+    <title>Wraith commander</title>
     <titleShort>Wraith Commander</titleShort>
-    <baseDesc>[PAWN_nameDef] is a wraith commander. They assit the hive queen. </baseDesc>
+    <baseDesc>[PAWN_nameDef] earned their rank through cunning, combat, and impressive hair. As second-in-command to a Hive Queen, they manage logistics, motivate troops, and occasionally remind subordinates not to eat each other without permission.</baseDesc>
     <slot>Adulthood</slot>
     <spawnCategories>
       <li>Rimgate_WraithCommanderBackStory</li>
@@ -69,9 +69,9 @@
 
   <BackstoryDef>
     <defName>Rimgate_WraithWarrior</defName>
-    <title>Wraith Warrior</title>
-    <titleShort>Wraith Warrior</titleShort>
-    <baseDesc>[PAWN_nameDef] is a warrior. They are the military cast of the wraith empire.</baseDesc>
+    <title>Wraith warrior</title>
+    <titleShort>Wraith warrior</titleShort>
+    <baseDesc>[PAWN_nameDef] lives for the hunt. As a warrior caste member, they specialize in ambushes, close-quarters brutality, and deeply unsettling stares. Thinking is optional—fighting is not.</baseDesc>
     <slot>Adulthood</slot>
     <spawnCategories>
       <li>Rimgate_WraithWarriorBackStory</li>

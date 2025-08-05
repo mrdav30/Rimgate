@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
+
   <CultureDef>
     <defName>Rimgate_Jaffari</defName>
     <label>Jaffari</label>
-    <description>Egyptian culture common amoung Jaffa factions.</description>
+    <description>Influenced by ancient Earth’s Egyptian aesthetic—with more symbiotes and fewer OSHA regulations—the Jaffari culture values loyalty, honor, and a good back tattoo. It’s all pyramids, posturing, and praising glowing-eyed gods.\nGreat for those who like their tyranny with style.</description>
     <pawnNameMaker>Rimgate_NamerPersonJaffaM</pawnNameMaker>
     <pawnNameMakerFemale>Rimgate_NamerPersonJaffaF</pawnNameMakerFemale>
     <ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoRustican</ideoNameMaker>
@@ -55,4 +56,5 @@
       </li>
     </styleItemTags>
   </CultureDef>
+
 </Defs>

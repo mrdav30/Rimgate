@@ -10,8 +10,7 @@
 		<tab>Rimgate_ResearchTab</tab>
 		<defName>Rimgate_GlyphDeciphering</defName>
 		<label>Glyph deciphering</label>
-		<description>The glyphs both engraved on Stargates and on mysterious scraps of paper have
-			meaning. Deciphering them and locating where they go may unlock a new way of travel.</description>
+		<description>the symbols etched into Stargates—and scribbled across ominous scrolls—aren’t just artistic flair. Decoding them may unlock a galaxy-spanning transit network. Or a death trap. Possibly both.</description>
 		<baseCost>2000</baseCost>
 		<techLevel>Medieval</techLevel>
 		<researchViewX>0.00</researchViewX>
@@ -36,9 +35,7 @@
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateIrisAlloyResearch</defName>
 		<label>Plasteel alloys</label>
-		<description>A material with incredible strength can made by combining Plasteel, Uranium and
-			Steel. Even though it is too atomically unstable to use as a building material, its
-			low-friction nature could be used to make an aperture to cover a stargate.</description>
+		<description>by combining Plasteel, Uranium, Naquadah, and Steel, our scientists have created an absurdly strong, absurdly unstable alloy.\nToo volatile for furniture, perfect for high-stakes wormhole shielding.</description>
 		<baseCost>4000</baseCost>
 		<researchViewX>1.00</researchViewX>
 		<researchViewY>0.00</researchViewY>
@@ -47,10 +44,7 @@
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateIrisResearch</defName>
 		<label>Irises</label>
-		<description>Experimentation reveals that a barrier placed microns from the event horizon of
-			a stargate would stop almost anything from reintegrating. Using the low-friction alloy
-			we discovered, we could make an aperture to cover the stargate and prevent people
-			invading our base through it.</description>
+		<description>by placing an ultra-thin barrier mere microns from a stargate's event horizon, we can prevent reintegration of inbound matter.\nIn simpler terms: unwanted guests go *splat*. Handy.</description>
 		<baseCost>6000</baseCost>
 		<prerequisites>
 			<li>Rimgate_StargateIrisAlloyResearch</li>

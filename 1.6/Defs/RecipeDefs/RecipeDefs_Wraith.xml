@@ -6,8 +6,8 @@
 	<RecipeDef>
 		<defName>Rimgate_MakeMeatCocoon</defName>
 		<label>Cocoon meat</label>
-		<description>Make a batch of cocooned meat.</description>
-		<jobString>Making cocooned meat.</jobString>
+		<description>make a batch of cocooned meat.</description>
+		<jobString>making cocooned meat.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<workAmount>450</workAmount>
@@ -96,8 +96,8 @@
 	<RecipeDef>
 		<defName>Rimgate_WraithMakeMeatCocoon</defName>
 		<label>Cocoon meat</label>
-		<description>Make a batch of cocooned meat.</description>
-		<jobString>Making cocooned meat.</jobString>
+		<description>make a batch of cocooned meat.</description>
+		<jobString>making cocooned meat.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<workAmount>250</workAmount>
@@ -131,8 +131,8 @@
 	<RecipeDef>
 		<defName>Rimgate_WraithMakeMeatCocoon_x4</defName>
 		<label>Cocoon meat x4</label>
-		<description>Make a batch of cocooned meat.</description>
-		<jobString>Making cocooned meat.</jobString>
+		<description>make a batch of cocooned meat.</description>
+		<jobString>making cocooned meat.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<workAmount>600</workAmount>
@@ -167,15 +167,16 @@
 
 	<RecipeDef>
 		<defName>Rimgate_MakeCocoonedMeatBiomass</defName>
-		<label>Make Biomass from cocooned meat</label>
-		<description>Make a batch of Biomass.</description>
-		<jobString>Making Biomass.</jobString>
+		<label>make Biomass from cocooned meat</label>
+		<description>make a batch of Biomass.</description>
+		<jobString>making Biomass.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<workAmount>450</workAmount>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<recipeUsers>
 			<li>TableButcher</li>
+			<li>Rimgate_CocoonStation</li>
 		</recipeUsers>
 		<ingredients>
 			<li>
@@ -200,9 +201,9 @@
 
 	<RecipeDef>
 		<defName>Rimgate_MakeMeatBiomass</defName>
-		<label>Make Biomass from meat</label>
-		<description>Make a batch of Biomass from meat.</description>
-		<jobString>Making Biomass.</jobString>
+		<label>make Biomass from meat</label>
+		<description>make a batch of Biomass from meat.</description>
+		<jobString>making biomass.</jobString>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
@@ -211,6 +212,7 @@
 		<ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
 		<recipeUsers>
 			<li>TableButcher</li>
+			<li>Rimgate_CocoonStation</li>
 		</recipeUsers>
 		<ingredients>
 			<li>

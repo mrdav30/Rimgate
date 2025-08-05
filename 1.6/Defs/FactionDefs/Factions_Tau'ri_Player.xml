@@ -4,7 +4,7 @@
   <FactionDef ParentName="PlayerFactionBase">
     <defName>Rimgate_TauriPlayerColony</defName>
     <label>rogue SG team</label>
-    <description>A group of stranded rogue SGC team members.</description>
+    <description>Once members of a sanctioned Stargate Command unit, these soldiers have gone rogue—whether by choice, accident, or a shady mission no one wants to talk about.\nCut off from command and stranded light-years from Earth, they operate independently under the radar... and with a lot fewer rules.</description>
     <isPlayer>true</isPlayer>
     <basicMemberKind>Rimgate_TauriPlayer</basicMemberKind>
     <pawnSingular>SGC team member</pawnSingular>

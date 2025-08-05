@@ -23,7 +23,7 @@
 		</questNameRules>
 		<questDescriptionRules>
 			<rulesStrings>
-				<li>questDescription(askerIsNull==true)->We have found a site containing a stargate. It may contain treasure guarded by ancient enemies, or it may contain nothing.\n\nIn either case, the stargate there will be extremely useful if we can retrieve it.</li>
+				<li>questDescription(askerIsNull==true)->We have identified the location of an ancient structure housing what appears to be a dormant stargate.\n\nWhether it’s a forgotten relic, a trap, or the galaxy’s worst Airbnb, it’s worth checking out. Bring weapons—and a good translator.</li>
 			</rulesStrings>
 		</questDescriptionRules>
 		<root Class="QuestNode_Sequence">
@@ -96,7 +96,7 @@
 						<nodes>
 							<li Class="QuestNode_Letter">
 								<label>Quest expired: [resolvedQuestName]</label>
-								<text>Intercepted communications indicate the site has been scavenged, including the stargate. The quest [resolvedQuestName] has expired.</text>
+								<text>By the time you mobilized, others had already stripped the site bare.\n\nThe stargate is gone, the tech looted, and the opportunity lost.\n\nNext time, bring snacks and move faster.</text>
 							</li>
 
 							<li Class="QuestNode_End">

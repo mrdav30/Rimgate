@@ -6,8 +6,7 @@
   <ThingDef ParentName="ResourceBase">
     <defName>Rimgate_Naquadah</defName>
     <label>Naquadah</label>
-    <description>A combustible grayish material. Its energetic density is perfect for advanced power
-      generation.</description>
+    <description>this dense, gray mineral powers everything from hand weapons to planetary extinction events. Works equally well as a power source or a reason your base exploded. Handle with smug superiority.</description>
     <graphicData>
       <texPath>Things/Item/Resource/RGNaquadah</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -58,7 +57,7 @@
   <ThingDef ParentName="ResourceBase">
     <defName>Rimgate_Naquadria</defName>
     <label>Naquadria</label>
-    <description>Enriched radioactive product of Naquadah refinement.</description>
+    <description>a highly enriched, dangerously unstable derivative of Naquadah. Perfect for experiments that end in glorious explosions—or annihilating your base if you sneeze too hard.</description>
     <graphicData>
       <texPath>Things/Item/Resource/RGNaquadria</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -93,8 +92,7 @@
   <ThingDef ParentName="ResourceBase">
     <defName>Rimgate_Biomass</defName>
     <label>Biomass</label>
-    <description>Biomass is produceed out of human meat and necessary to build most Wraith
-      technology.</description>
+    <description>a squishy, processed pulp of organic matter. Mostly meat. Essential for crafting Wraith biotech and excellent for ruining appetites.\nSmells like victory... and protein.</description>
     <graphicData>
       <texPath>Things/Item/Resource/RGBiomass</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -121,9 +119,9 @@
   <!-- ==================== Stargate Glyph ==================== -->
 
   <ThingDef ParentName="ResourceBase">
-    <defName>Rimgate_GlyphScrap</defName>
-    <label>Stargate glyph slab</label>
-    <description>A mysterious cracked stone with stargate symbols engraved on it.\n\n"Dial it up!"</description>
+    <defName>Rimgate_GlyphParchment</defName>
+    <label>glyph parchment</label>
+    <description>A weathered parchment embossed with mysterious stargate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.</description>
     <thingClass>ThingWithComps</thingClass>
     <graphicData>
       <texPath>Things/Item/Resource/RGGlyphScrap</texPath>
@@ -149,7 +147,7 @@
       <li>RewardStandardHighFreq</li>
     </thingSetMakerTags>
     <comps>
-      <li Class="Rimgate.CompProperties_GlyphScrap" />
+      <li Class="Rimgate.CompProperties_GlyphParchment" />
     </comps>
   </ThingDef>
 
@@ -158,8 +156,7 @@
   <ThingDef ParentName="ResourceBase">
     <defName>Rimgate_IrisInstallKit</defName>
     <label>Iris installation kit</label>
-    <description>A kit containing all of the pre-assembled materials needed to install an iris on a
-      stargate.\n\n"We have in place an impenetrable shield called an iris."</description>
+    <description>a high-tech deployment kit for installing an iris over a stargate.\nTurns your wormhole into a one-way trip—great for defense, less great for diplomacy.</description>
     <thingClass>ThingWithComps</thingClass>
     <graphicData>
       <texPath>Things/Item/Resource/RGIrisUpgradeKit</texPath>

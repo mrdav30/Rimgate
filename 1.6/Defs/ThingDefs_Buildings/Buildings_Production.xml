@@ -5,8 +5,8 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithMeatLab</defName>
-    <label>Meat lab</label>
-    <description>Grows meat quickly in an artificial nutrient bath. Requires power to work; meat will die if power is cut.</description>
+    <label>meat lab</label>
+    <description>a bio-organic chamber that cultivates meat at an alarming rate using nutrient baths and questionable ethics. Wraith tech at its finest—perfect for those who think farms are too mainstream.</description>
     <thingClass>Rimgate.Building_MeatLab</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/MeatLab/RGMeatLab</texPath>
@@ -74,8 +74,8 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_CocoonStation</defName>
-    <description>An area in which colonists with the ability to make a cocoon can efficiently cocoon meat.</description>
-    <label>Cocoon Spot</label>
+    <description>A specialized spot for cocooning meat in an efficient, disturbingly clinical manner. Because nothing says "advanced civilization" like wrapping your food in a sticky alien silk sac.</description>
+    <label>cocoon spot</label>
     <thingClass>Building_WorkTable</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/RGCocooningSpot</texPath>

@@ -4,7 +4,7 @@
 	<ScenarioDef>
 		<defName>Rimgate_SGCTeamScenario</defName>
 		<label>Rogue SGC Team</label>
-		<description>You didn't think it was a good idea to try to steal a Puddle jumper. Now you and your fellow smugglers are on the run from the SGC and stuck on a mysterious planet. Set up a camp, survive, and maybe find some more booty to smuggle.</description>
+		<description>Once members of a sanctioned Stargate Command unit, these soldiers have gone rogue—whether by choice, accident, or a shady mission no one wants to talk about.\nCut off from command and stranded light-years from Earth, they operate independently under the radar... and with a lot fewer rules.</description>
 		<scenario>
 			<summary>A rogue SGC unit on the run.</summary>
 			<playerFaction>
@@ -36,7 +36,7 @@
 							<requiredAtStart>true</requiredAtStart>
 						</li>
 					</kindCounts>
-				</li> 
+				</li>
 				<!-- Player starting stuff spawn method-->
 				<li Class="ScenPart_PlayerPawnsArriveMethod">
 					<def>PlayerPawnsArriveMethod</def>
@@ -45,7 +45,7 @@
 				<!-- Game start dialog -->
 				<li Class="ScenPart_GameStartDialog">
 					<def>GameStartDialog</def>
-					<text>You and your fellow rouge SG teammates have escaped pursuit and landed the Puddle Jumper you stole on the closest viable planet. It is time to set up a camp and wait for the rescue team...if one ever comes.\n\nMeanwhile, explore the planet and maybe look for more booty.</text>
+					<text>You stole a Puddle Jumper. It wasn’t *technically* your fault—but the SGC didn't see it that way.\n\nBranded rogue agents and pursued across the stars, you made a blind jump to the nearest habitable system. The good news? You made it. The bad news? You're stranded.\n\nDon’t expect help from the Tau’ri outpost—they’ve disavowed you to save face. You’re on your own now. Survive, adapt, and maybe prove that going rogue was the right call.\n\nOr at least more fun.</text>
 					<closeSound>GameStartSting</closeSound>
 				</li>
 				<!-- Player starting things -->

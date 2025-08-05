@@ -15,7 +15,7 @@
   <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithBeauty</defName>
     <label>wraith beauty</label>
-    <description>This gene enhances the pawn's appearance to a captivating alien standard.</description>
+    <description>Alien. Alluring. Absolutely unsettling. This gene sculpts the host into the Wraith ideal of beauty—piercing eyes, haunting elegance, and not a beard in sight. Perfect for hypnotizing prey... or scaring children.</description>
     <iconPath>UI/Icon/Gene/RGWraithBeautyGeneIcon</iconPath>
     <displayCategory>Cosmetic</displayCategory>
     <statOffsets>
@@ -59,7 +59,7 @@
   <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithMovement</defName>
     <label>wraith mobility</label>
-    <description>This gene enhances neuromuscular efficiency, increasing movement speed.</description>
+    <description>Enhanced neuromuscular pathways allow the host to move with unnatural speed and grace. Whether stalking prey or running from enemies, this gene ensures you get there first—or get away faster.</description>
     <iconPath>UI/Icon/Gene/RGWraithMovementGeneIcon</iconPath>
     <displayCategory>Movement</displayCategory>
     <statOffsets>
@@ -76,7 +76,7 @@
   <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithPsychic</defName>
     <label>wraith psionics</label>
-    <description>This gene enhances latent psychic sensitivity.</description>
+    <description>Taps into latent psychic potential, allowing subtle telepathic influence and increased mental awareness. Useful for coordinating hive minds—or just being the creepiest thing in the room without saying a word.</description>
     <iconPath>UI/Icon/Gene/RGWraithPsychicGeneIcon</iconPath>
     <displayCategory>Psychic</displayCategory>
     <statOffsets>
@@ -91,29 +91,9 @@
   </GeneDef>
 
   <GeneDef ParentName="Rimgate_WraithGenesBase">
-    <defName>Rimgate_WraithMiner</defName>
-    <label>wraith digger</label>
-    <description>This gene improves muscle endurance for excavation tasks.</description>
-    <iconPath>UI/Icon/Gene/RGWraithMinerGeneIcon</iconPath>
-    <displayCategory>Miscellaneous</displayCategory>
-    <statOffsets>
-      <MiningSpeed>0.2</MiningSpeed>
-    </statOffsets>
-    <modExtensions>
-      <li Class="VEF.Genes.GeneExtension">
-        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
-      </li>
-    </modExtensions>
-  </GeneDef>
-
-  <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithCannibal</defName>
     <label>wraith carnivore</label>
-    <description>
-      This gene enables a preference for humanoid flesh, and negates negative thoughts from
-      cannibalism.
-    </description>
+    <description>Grants an unapologetic taste for humanoid flesh and removes all moral hesitation about acquiring it.\nWhether you call it feeding, harvesting, or brunch, Wraith don’t judge. They just chew.</description>
     <iconPath>UI/Icon/Gene/RGWraithCannibalGeneIcon</iconPath>
     <displayCategory>Violence</displayCategory>
     <forcedTraits>
@@ -133,7 +113,7 @@
   <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithAgeless</defName>
     <label>ageless</label>
-    <description> This gene eliminates the aging process and extends life expectancy indefinitely. Starting at the age of 13, carriers begin to biologically age slower. By 18, the aging process stops completely.</description>
+    <description>Time means nothing to the Wraith. This gene halts biological aging entirely, allowing the host to live indefinitely—provided they keep feeding, of course.\nWrinkles are for mortals.</description>
     <iconPath>UI/Icon/Gene/RGWraithAgelessGeneIcon</iconPath>
     <displayCategory>Archite</displayCategory>
     <biologicalAgeTickFactorFromAgeCurve>
@@ -153,7 +133,7 @@
   <GeneDef>
     <defName>Rimgate_WraithLifeDrain</defName>
     <label>life drain</label>
-    <description>This gene allows the host to drain the life energy from other pawns, restoring their own vitality.</description>
+    <description>Allows the host to drain life essence directly from another pawn, replenishing their own strength, speed, and vitality. A deeply intimate and wildly horrifying method of staying alive.\nWraith wellness starts with a good meal—and you’re it.</description>
     <displayCategory>Ability</displayCategory>
     <iconPath>UI/Icon/Gene/RGWraithLifeDrainGeneIcon</iconPath>
     <abilities>
@@ -176,7 +156,7 @@
   <GeneDef>
     <defName>Rimgate_WraithCocoonTrap</defName>
     <label>cocoon trap</label>
-    <description>This gene allows the host to release a sticky, web-like substance that encases their victims, effectively putting them in a state of stasis, rendering them mostly immobile but still alive.\n\nAlso very useful for wrapping up meat for later use.</description>
+    <description>Enables the production of organic webbing to ensnare prey in a semi-living stasis. Victims remain immobile, conscious, and wonderfully fresh for later consumption.\nBecause refrigeration is overrated.</description>
     <displayCategory>Ability</displayCategory>
     <iconPath>UI/Icon/Gene/RGWraithCocoonTrapGeneIcon</iconPath>
     <abilities>
