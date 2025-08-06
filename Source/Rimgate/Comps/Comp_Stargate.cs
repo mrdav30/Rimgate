@@ -83,7 +83,7 @@ public class Comp_Stargate : ThingComp
 
     private List<Thing> _sendBuffer = new List<Thing>();
 
-    private List<Thing> _recvBuffer = new List<Thing>();
+    private Queue<Thing> _recvBuffer = new Queue<Thing>();
 
     private bool _irisIsActivated = false;
 
@@ -93,9 +93,9 @@ public class Comp_Stargate : ThingComp
 
     public Thing ConnectedStargate;
 
-    private PlanetTile _queuedAddress;
+    public Sustainer PuddleSustainer;
 
-    private Sustainer _puddleSustainer;
+    private PlanetTile _queuedAddress;
 
     private Graphic _stargatePuddle;
 
@@ -111,7 +111,7 @@ public class Comp_Stargate : ThingComp
 
     public void OpenStargate(PlanetTile address)
     {
-        Thing gate = GetDialedStargate(address);
+        Thing gate = GetorCreateReceivingStargate(address);
         bool invalid = address.Valid
             && (gate == null || gate.TryGetComp<Comp_Stargate>().StargateIsActive);
         if (invalid)
@@ -128,14 +128,7 @@ public class Comp_Stargate : ThingComp
 
         if (ConnectedAddress.Valid)
         {
-            ConnectedStargate = GetDialedStargate(ConnectedAddress);
-            if (ConnectedStargate == null)
-            {
-                StargateIsActive = false;
-                ConnectedAddress = PlanetTile.Invalid;
-                Log.Error($"Rimgate :: unable to locate connected stargate {parent}");
-                return;
-            }
+            ConnectedStargate = gate;
 
             Comp_Stargate sgComp = ConnectedStargate.TryGetComp<Comp_Stargate>();
             sgComp.StargateIsActive = true;
@@ -143,7 +136,7 @@ public class Comp_Stargate : ThingComp
             sgComp.ConnectedAddress = GateAddress;
             sgComp.ConnectedStargate = parent;
 
-            sgComp._puddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(sgComp.parent));
+            sgComp.PuddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(sgComp.parent));
             Rimgate_DefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(sgComp.parent));
 
             CompGlower otherGlowComp = sgComp.parent.GetComp<CompGlower>();
@@ -151,7 +144,7 @@ public class Comp_Stargate : ThingComp
             otherGlowComp.PostSpawnSetup(false);
         }
 
-        _puddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
+        PuddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
         Rimgate_DefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(parent));
 
         CompGlower glowComp = parent.GetComp<CompGlower>();
@@ -191,8 +184,8 @@ public class Comp_Stargate : ThingComp
         if (sgComp != null)
             puddleCloseDef.PlayOneShot(SoundInfo.InMap(sgComp.parent));
 
-        if (_puddleSustainer != null)
-            _puddleSustainer.End();
+        if (PuddleSustainer != null)
+            PuddleSustainer.End();
 
         CompGlower glowComp = parent.GetComp<CompGlower>();
         glowComp.Props.glowRadius = 0;
@@ -248,9 +241,9 @@ public class Comp_Stargate : ThingComp
         return designation;
     }
 
-    private Thing GetDialedStargate(PlanetTile address)
+    private Thing GetorCreateReceivingStargate(PlanetTile address)
     {
-        if (address < 0)
+        if (!address.Valid)
             return null;
 
         MapParent connectedMap = Find.WorldObjects.MapParentAt(address);
@@ -266,11 +259,9 @@ public class Comp_Stargate : ThingComp
                 Log.Message($"Rimgate :: generating map for {connectedMap}");
 
             GetOrGenerateMapUtility.GetOrGenerateMap(
-                connectedMap.Tile,
-                connectedMap as WorldObject_PermanentStargateSite != null
-                    ? new IntVec3(75, 1, 75)
-                    : Find.World.info.initialMapSize,
-                null);
+                    connectedMap.Tile,
+                    Find.World.info.initialMapSize,
+                    null);
 
             if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: finished generating map");
@@ -325,7 +316,7 @@ public class Comp_Stargate : ThingComp
 
     public void AddToRecieveBuffer(Thing thing)
     {
-        _recvBuffer.Add(thing);
+        _recvBuffer.Enqueue(thing);
     }
 
     #region Comp Overrides
@@ -397,37 +388,34 @@ public class Comp_Stargate : ThingComp
         {
             if (!IsReceivingGate)
             {
-                for (int i = 0; i <= _sendBuffer.Count; i++)
-                {
-                    sgComp.AddToRecieveBuffer(_sendBuffer[i]);
-                    _sendBuffer.Remove(_sendBuffer[i]);
-                }
+                foreach (var item in _sendBuffer)
+                    sgComp.AddToRecieveBuffer(item);
             }
             else
             {
-                for (int i = 0; i <= _sendBuffer.Count; i++)
-                {
-                    _sendBuffer[i].Kill();
-                    _sendBuffer.Remove(_sendBuffer[i]);
-                }
+                foreach (var item in _sendBuffer)
+                    item.Kill();
             }
+            _sendBuffer.Clear();
         }
 
         if (_recvBuffer.Any() && TicksSinceBufferUnloaded > Rand.Range(10, 80))
         {
             TicksSinceBufferUnloaded = 0;
+            var thing = _recvBuffer.Peek(); // check without removing
+
             if (!_irisIsActivated)
             {
-                GenSpawn.Spawn(_recvBuffer[0], parent.InteractionCell, parent.Map);
-                _recvBuffer.Remove(_recvBuffer[0]);
+                GenSpawn.Spawn(thing, parent.InteractionCell, parent.Map);
                 PlayTeleportSound();
             }
             else
             {
-                _recvBuffer[0].Kill();
-                _recvBuffer.Remove(_recvBuffer[0]);
+                thing.Kill();
                 Rimgate_DefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(parent));
             }
+
+            _recvBuffer.Dequeue(); // remove after handling
         }
 
         if (!ConnectedAddress.Valid && !_recvBuffer.Any())
@@ -453,15 +441,9 @@ public class Comp_Stargate : ThingComp
         if (StargateIsActive)
         {
             if (ConnectedStargate == null && ConnectedAddress.Valid)
-                ConnectedStargate = GetDialedStargate(ConnectedAddress);
-            _puddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
+                ConnectedStargate = GetorCreateReceivingStargate(ConnectedAddress);
+            PuddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
         }
-
-        //fix nullreferenceexception that happens when the innercontainer disappears for some reason,
-        //hopefully this doesn't end up causing a bug that will take hours to track down ;)
-        CompTransporter transComp = parent.GetComp<CompTransporter>();
-        if (transComp != null && transComp.innerContainer == null)
-            transComp.innerContainer = new ThingOwner<Thing>(transComp);
 
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: compsg postspawnssetup: sgactive={StargateIsActive} connectgate={ConnectedStargate} connectaddress={ConnectedAddress}, mapparent={parent.Map.Parent}");

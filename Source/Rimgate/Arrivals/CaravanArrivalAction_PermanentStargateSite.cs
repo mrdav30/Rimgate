@@ -37,10 +37,9 @@ public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
 
         LongEventHandler.QueueLongEvent(() =>
             {
-                Map map = null;
-                map = GetOrGenerateMapUtility.GetOrGenerateMap(
+                Map map = GetOrGenerateMapUtility.GetOrGenerateMap(
                     _arrivalSite.Tile,
-                    new IntVec3(75, 1, 75),
+                    Find.World.info.initialMapSize,
                     _arrivalSite.def);
                 CaravanEnterMapUtility.Enter(caravan, _arrivalSite.Map, CaravanEnterMode.Center);
             },

@@ -18,17 +18,21 @@ public class SitePartWorker_Stargate : SitePartWorker
 
     public override void PostMapGenerate(Map map)
     {
-        base.PostMapGenerate(map);
         if (map == null)
         {
-            Log.Error("Rimgate :: SitePartWorker map was null on PostMapGenerate. That makes no sense.");
+            Log.Error("Rimgate :: SitePartWorker map was null on PostMapGenerate.");
             return;
         }
 
         Thing gateOnMap = Comp_Stargate.GetStargateOnMap(map);
-        var VortexCells = gateOnMap.TryGetComp<Comp_Stargate>().VortexCells;
+        if (gateOnMap == null)
+        {
+            Log.Error("Rimgate :: SitePartWorker gateOnMap was null on PostMapGenerate.");
+            return;
+        }
 
-        //move pawns away from vortex
+        // move pawns away from vortex
+        var VortexCells = gateOnMap.TryGetComp<Comp_Stargate>().VortexCells;
         foreach (Pawn pawn in map.mapPawns.AllPawns)
         {
             Room pawnRoom = pawn.Position.GetRoom(pawn.Map);

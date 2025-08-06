@@ -19,6 +19,17 @@ public class Building_Stargate : Building
         base.SpawnSetup(map, respawningAfterLoad);
         PowerComp = GetComp<CompPowerTrader>();
         StargateComp = GetComp<Comp_Stargate>();
+
+        //fix nullreferenceexception that happens when
+        //the innercontainer disappears for some reason
+        CompTransporter transComp = GetComp<CompTransporter>();
+        if (transComp != null && transComp.innerContainer == null)
+        {
+            if (RimgateMod.Debug)
+                Log.Warning($"Rimgate :: attempting to fix null container for {this.ThingID}");
+            transComp.innerContainer = new ThingOwner<Thing>(transComp);
+        }
+
     }
 
     protected override void Tick()
