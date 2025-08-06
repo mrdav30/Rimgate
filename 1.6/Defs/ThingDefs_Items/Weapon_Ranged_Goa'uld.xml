@@ -276,6 +276,9 @@
 				<soundCast>Rimgate_ZatShot</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
+				<targetParams>
+					<canTargetCorpses>true</canTargetCorpses>
+				</targetParams>
 			</li>
 		</verbs>
 		<tools>

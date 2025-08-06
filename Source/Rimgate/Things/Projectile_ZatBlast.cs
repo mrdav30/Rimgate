@@ -16,8 +16,17 @@ public class Projectile_ZatBlast : Bullet
 
     protected void ZatBlastImpact(Thing hitThing)
     {
-        if (Props == null || hitThing == null || hitThing is not Pawn hitPawn)
+        if (Props == null || hitThing == null) return;
+
+        Corpse corpse = hitThing as Corpse ?? (hitThing as Pawn)?.Corpse;
+        if(corpse != null)
+        {
+            // Destroy any dead corpse regardless of whether or not it was hit by a zat gun.
+            corpse.Destroy();
             return;
+        }
+
+        if (hitThing is not Pawn hitPawn) return;
 
         Hediff zatShocked = hitPawn.health?.hediffSet?.GetFirstHediffOfDef(Rimgate_DefOf.Rimgate_ZatShock);
 
@@ -30,14 +39,7 @@ public class Projectile_ZatBlast : Bullet
             hitPawn.Kill(null);
         }
         else
-        {
-            // Destroy any dead corpse regardless of whether or not it was hit by a zat gun.
-            if (hitPawn.Dead)
-            {
-                hitPawn.Corpse.Destroy();
-                return;
-            }
-
+        {           
             float rand = Rand.Value;
             if (rand > Props.addHediffChance)
                 return;
