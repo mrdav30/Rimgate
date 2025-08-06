@@ -71,7 +71,7 @@
         <explosiveDamageType>Bomb</explosiveDamageType>
         <explodeOnKilled>true</explodeOnKilled>
         <startWickHitPointsPercent>0.99</startWickHitPointsPercent>
-        <chanceNeverExplodeFromDamage>0.8</chanceNeverExplodeFromDamage>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
       </li>
     </comps>
     <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>

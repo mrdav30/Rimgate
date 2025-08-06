@@ -10,6 +10,7 @@
     <forceNormalGearQuality>true</forceNormalGearQuality>
     <initialWillRange>0~0</initialWillRange>
     <humanPregnancyChance>0.06</humanPregnancyChance>
+    <initialResistanceRange>13~21</initialResistanceRange>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">
@@ -23,7 +24,6 @@
       </xenotypeChances>
     </xenotypeSet>
     <useFactionXenotypes>false</useFactionXenotypes>
-    <initialResistanceRange>13~21</initialResistanceRange>
     <minGenerationAge>21</minGenerationAge>
     <maxGenerationAge>250</maxGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
@@ -55,7 +55,7 @@
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">
-    <defName>Rimgate_GoauldSlave</defName>
+    <defName>Rimgate_GoauldPlayerSlave</defName>
     <label>slave</label>
     <combatPower>25</combatPower>
     <isFighter>false</isFighter>

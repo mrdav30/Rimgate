@@ -42,6 +42,9 @@
         <techHediffsTags Inherit="False">
             <li>Rimgate_JaffaForeheadSymbol_tag</li>
         </techHediffsTags>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_GoauldArmorTier2</researchPrerequisite>
+        </recipeMaker>
     </ThingDef>
 
     <ThingDef Name="Rimgate_PrimeForeheadSymbolImplantBase" ParentName="BodyPartBionicBase" Abstract="True">
@@ -56,6 +59,9 @@
         <techHediffsTags Inherit="False">
             <li>Rimgate_PrimeForeheadSymbol_tag</li>
         </techHediffsTags>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
+        </recipeMaker>
     </ThingDef>
 
     <!-- =========== Anubis =========== -->

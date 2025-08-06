@@ -110,6 +110,11 @@
 					<thingDef>ShipChunk</thingDef>
 					<count>4</count>
 				</li>
+				<li Class="ScenPart_ScatterThingsNearPlayerStart">
+					<def>ScatterThingsNearPlayerStart</def>
+					<thingDef>Rimgate_GlyphParchment</thingDef>
+					<count>1</count>
+				</li>
 				<!-- Starting research -->
 				<li Class="ScenPart_StartingResearch">
 					<def>StartingResearch</def>

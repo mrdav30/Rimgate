@@ -109,14 +109,6 @@
 		<description>An embedded or branded emblem signifying servitude to a Goa’uld System Lord. While iconic and great for identifying whose boots you’re meant to lick, it also interferes with psionic clarity and makes you easier to spot in a crowd.\nBeauty is pain—and obedience.</description>
 		<defaultLabelColor>(0.7, 0.7, 0.1)</defaultLabelColor>
 		<isBad>false</isBad>
-		<stages>
-			<li>
-				<statOffsets>
-					<PawnBeauty>-1</PawnBeauty>
-					<PsychicSensitivity>-0.25</PsychicSensitivity>
-				</statOffsets>
-			</li>
-		</stages>
 		<duplicationAllowed>false</duplicationAllowed>
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
@@ -129,6 +121,15 @@
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantAnubis</ThingDef>
 		</descriptionHyperlinks>
+		<stages>
+			<li>
+				<statOffsets>
+					<PawnBeauty>-4</PawnBeauty>
+					<PainShockThreshold>0.10</PainShockThreshold>
+					<PsychicSensitivity>0.15</PsychicSensitivity>
+				</statOffsets>
+			</li>
+		</stages>
 		<renderNodeProperties>
 			<li>
 				<debugLabel>Jaffa Anubis mark</debugLabel>
@@ -163,6 +164,15 @@
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantAnubis</ThingDef>
 		</descriptionHyperlinks>
+		<stages>
+			<li>
+				<statOffsets>
+					<PawnBeauty>-4</PawnBeauty>
+					<PainShockThreshold>0.20</PainShockThreshold>
+					<PsychicSensitivity>0.30</PsychicSensitivity>
+				</statOffsets>
+			</li>
+		</stages>
 		<renderNodeProperties>
 			<li>
 				<debugLabel>Prime Anubis forehead symbol</debugLabel>
@@ -199,6 +209,16 @@
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantApophis</ThingDef>
 		</descriptionHyperlinks>
+		<stages>
+			<li>
+				<statOffsets>
+					<PawnBeauty>-4</PawnBeauty>
+					<PsychicSensitivity>-0.15</PsychicSensitivity>
+					<MeleeHitChance>0.08</MeleeHitChance>
+					<MentalBreakThreshold>-0.05</MentalBreakThreshold>
+				</statOffsets>
+			</li>
+		</stages>
 		<renderNodeProperties>
 			<li>
 				<debugLabel>Jaffa Apophis mark</debugLabel>
@@ -233,6 +253,16 @@
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantApophis</ThingDef>
 		</descriptionHyperlinks>
+		<stages>
+			<li>
+				<statOffsets>
+					<PawnBeauty>-4</PawnBeauty>
+					<PsychicSensitivity>-0.25</PsychicSensitivity>
+					<MeleeHitChance>0.16</MeleeHitChance>
+					<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+				</statOffsets>
+			</li>
+		</stages>
 		<renderNodeProperties>
 			<li>
 				<debugLabel>Prime Apophis mark</debugLabel>
@@ -269,6 +299,15 @@
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_JaffaForeheadSymbolImplantRa</ThingDef>
 		</descriptionHyperlinks>
+		<stages>
+			<li>
+				<statOffsets>
+					<PsychicSensitivity>-0.15</PsychicSensitivity>
+					<SocialImpact>0.15</SocialImpact>
+					<TradePriceImprovement>0.05</TradePriceImprovement>
+				</statOffsets>
+			</li>
+		</stages>
 		<renderNodeProperties>
 			<li>
 				<debugLabel>Jaffa Ra mark</debugLabel>
@@ -303,6 +342,15 @@
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimeForeheadSymbolImplantRa</ThingDef>
 		</descriptionHyperlinks>
+		<stages>
+			<li>
+				<statOffsets>
+					<PsychicSensitivity>-0.25</PsychicSensitivity>
+					<SocialImpact>0.30</SocialImpact>
+					<TradePriceImprovement>0.10</TradePriceImprovement>
+				</statOffsets>
+			</li>
+		</stages>
 		<renderNodeProperties>
 			<li>
 				<debugLabel>Prime Ra mark</debugLabel>
