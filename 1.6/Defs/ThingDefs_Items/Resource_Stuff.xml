@@ -177,7 +177,7 @@
     <comps>
       <li Class="CompProperties_Usable">
         <useJob>Rimgate_InstallIris</useJob>
-        <useLabel>Install iris</useLabel>
+        <useLabel>install Iris</useLabel>
         <useDuration>5000</useDuration>
       </li>
       <li Class="CompProperties_Targetable">

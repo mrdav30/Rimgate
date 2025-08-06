@@ -103,8 +103,8 @@ public class Comp_DialHomeDevice : ThingComp
         }
 
         WorldComp_StargateAddresses addressComp = Find.World.GetComponent<WorldComp_StargateAddresses>();
-        addressComp.CleanupAddresses();
-        if (addressComp.AddressList.Count < 2)
+        addressComp?.CleanupAddresses();
+        if (addressComp == null || addressComp.AddressList.Count < 2)
         {
             yield return new FloatMenuOption("Rimgate_CannotDialNoDestinations".Translate(), null);
             yield break;
@@ -122,8 +122,9 @@ public class Comp_DialHomeDevice : ThingComp
                 continue;
 
             MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
+            string designation = Comp_Stargate.GetStargateDesignation(tile);
             yield return new FloatMenuOption(
-                "Rimgate_DialGate".Translate(Comp_Stargate.GetStargateDesignation(tile), sgMap.Label),
+                "Rimgate_DialGate".Translate(designation, sgMap.Label),
                 () =>
                     {
                         LastDialledAddress = tile;
@@ -154,7 +155,7 @@ public class Comp_DialHomeDevice : ThingComp
         };
         if (!stargate.StargateIsActive)
             command.Disable("Rimgate_GateIsNotActive".Translate());
-        else if (stargate.IsRecievingGate)
+        else if (stargate.IsReceivingGate)
             command.Disable("Rimgate_CannotCloseIncoming".Translate());
 
         yield return command;

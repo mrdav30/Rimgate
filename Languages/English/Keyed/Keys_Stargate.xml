@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
 	<Rimgate_Incoming>incoming</Rimgate_Incoming>
 	<Rimgate_Outgoing>outgoing</Rimgate_Outgoing>
 	<Rimgate_IrisClosed>CLOSED</Rimgate_IrisClosed>
 	<Rimgate_IrisOpen>OPEN</Rimgate_IrisOpen>
-	
+
 	<Rimgate_OnlyOneSGPerMap>Only one of this kind of building can be built per map.</Rimgate_OnlyOneSGPerMap>
 	<Rimgate_GateDialFailed>Could not activate stargate: Recieving gate no longer exists or is currently in use.</Rimgate_GateDialFailed>
 	<Rimgate_GateIsNotActive>Stargate is not active.</Rimgate_GateIsNotActive>
@@ -16,12 +16,12 @@
 	<Rimgate_CannotDialNoPower>Cannot dial: no power</Rimgate_CannotDialNoPower>
 	<Rimgate_NoGateInCaravan>Stargate required in caravan inventory.</Rimgate_NoGateInCaravan>
 	<Rimgate_RespawnGateString>Please respawn this gate (and its accompanying DHD) using devmode, as an update has broken it.</Rimgate_RespawnGateString>
-	
+
 	<Rimgate_GateAddress>Stargate address: {0}</Rimgate_GateAddress>
 	<Rimgate_ConnectedToGate>Connected to stargate: {0} ({1})</Rimgate_ConnectedToGate>
 	<Rimgate_IrisStatus>Iris is [{0}]</Rimgate_IrisStatus>
 	<Rimgate_TimeUntilGateLock>Time until lock: {0}</Rimgate_TimeUntilGateLock>
-	
+
 	<Rimgate_OpenCloseIris>Open/close iris</Rimgate_OpenCloseIris>
 	<Rimgate_OpenCloseIrisDesc>Open or close this stargate's iris.</Rimgate_OpenCloseIrisDesc>
 	<Rimgate_CloseStargate>Close stargate</Rimgate_CloseStargate>
@@ -30,12 +30,15 @@
 	<Rimgate_CreateSGSiteDesc>Create a new stargate site at this location.</Rimgate_CreateSGSiteDesc>
 	<Rimgate_RenameGateSite>Rename stargate site</Rimgate_RenameGateSite>
 	<Rimgate_RenameGateSiteDesc>Rename this stargate site to a more recognizable name.</Rimgate_RenameGateSiteDesc>
-	
+
 	<Rimgate_EnterStargateAction>Enter stargate</Rimgate_EnterStargateAction>
+	<Rimgate_EnterReceivingStargateAction>Vaporize yourself</Rimgate_EnterReceivingStargateAction>
 	<Rimgate_EnterStargateWithSelectedAction>Enter stargate with selected</Rimgate_EnterStargateWithSelectedAction>
+	<Rimgate_EnterReceivingStargateWithSelectedAction>Vaporize yourself with selected</Rimgate_EnterReceivingStargateWithSelectedAction>
 	<Rimgate_BringPawnToGateAction>Bring downed pawn to stargate</Rimgate_BringPawnToGateAction>
+	<Rimgate_BringPawnToReceivingGateAction>Vaporize downed pawn</Rimgate_BringPawnToReceivingGateAction>
 	<Rimgate_DialGate>Dial {0} ({1})</Rimgate_DialGate>
 	<Rimgate_DecodeSGSymbols>Decode symbols</Rimgate_DecodeSGSymbols>
 	<Rimgate_CannotDecodeSGSymbols>Decode symbols (glyph deciphering not researched)</Rimgate_CannotDecodeSGSymbols>
-	
+
 </LanguageData>

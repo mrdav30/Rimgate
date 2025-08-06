@@ -412,6 +412,5 @@
     <Compile Include="Comps\Comp_Sarcophagus.cs" />
     <Compile Include="Utilities\SarcophagusHealthAIUtility.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

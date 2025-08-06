@@ -12,6 +12,8 @@ public class CompProperties_Stargate : CompProperties
 {
     public bool canHaveIris = true;
 
+    public float irisPowerConsumption = 0;
+
     public bool explodeOnUse = false;
 
     public string puddleTexture;

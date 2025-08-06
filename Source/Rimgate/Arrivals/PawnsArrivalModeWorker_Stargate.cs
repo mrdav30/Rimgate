@@ -18,7 +18,7 @@ public class PawnsArrivalModeWorker_Stargate : PawnsArrivalModeWorker
         Comp_Stargate sgComp = stargateOnMap.TryGetComp<Comp_Stargate>();
         sgComp.OpenStargateDelayed(-1, 450);
         sgComp.TicksSinceBufferUnloaded = -150;
-        sgComp.IsRecievingGate = true;
+        sgComp.IsReceivingGate = true;
         foreach (Pawn pawn in pawns)
             sgComp.AddToRecieveBuffer(pawn);
     }
