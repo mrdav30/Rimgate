@@ -8,15 +8,16 @@
         <fixedName>Tau'ri</fixedName>
         <pawnsPlural>Tau'ri</pawnsPlural>
         <requiredCountAtGameStart>1</requiredCountAtGameStart>
+        <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
         <settlementGenerationWeight>1.0</settlementGenerationWeight>
         <canMakeRandomly>true</canMakeRandomly>
         <canSiege>true</canSiege>
         <canStageAttacks>true</canStageAttacks>
+        <autoFlee>false</autoFlee>
         <leaderTitle>Commander</leaderTitle>
         <factionNameMaker>NamerFactionOutlander</factionNameMaker>
         <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
         <techLevel>Spacer</techLevel>
-        <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
         <naturalEnemy>false</naturalEnemy>
         <mustStartOneEnemy>false</mustStartOneEnemy>
         <raidCommonalityFromPointsCurve>

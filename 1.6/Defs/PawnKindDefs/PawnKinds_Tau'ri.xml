@@ -207,7 +207,7 @@
         <factionLeader>true</factionLeader>
         <canBeSapper>true</canBeSapper>
         <combatPower>150</combatPower>
-        <itemQuality>Excellent</itemQuality>
+        <itemQuality>Good</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriPistol_tag</li>

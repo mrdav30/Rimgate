@@ -8,8 +8,10 @@
     <settlementGenerationWeight>1</settlementGenerationWeight>
     <canSiege>false</canSiege>
     <canStageAttacks>true</canStageAttacks>
+    <autoFlee>false</autoFlee>
     <leaderTitle>Under Lord</leaderTitle>
     <techLevel>Ultra</techLevel>
+    <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
     <xenotypeSet Inherit="False">
       <xenotypeChances>
@@ -73,8 +75,10 @@
     <label>Supreme System Lord Ba'aal</label>
     <description>Once a mid-tier underlord with a flair for drama, Ba’al clawed his way to the top of the System Lord pyramid scheme through cloning, cunning, and copious amounts of ego.\nHe may have been destroyed (allegedly), but Goa’uld never truly die—they just wait for a sequel.</description>
     <fixedName>Supreme System Lord Ba'aal</fixedName>
-    <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <factionIconPath>UI/Icon/Map/RGBaalBaseIcon</factionIconPath>
+    <permanentEnemyToEveryoneExcept>
+      <li>Rimgate_GoauldBaal</li>
+    </permanentEnemyToEveryoneExcept>
     <pawnGroupMakers>
       <!-- Normal fights, everything mixed in -->
       <li>
@@ -84,23 +88,23 @@
           <li>Siege</li>
         </disallowedStrategies>
         <options>
-          <Rimgate_KullWarrior>1</Rimgate_KullWarrior>
-          <Rimgate_GoauldMeleeAnubis>7</Rimgate_GoauldMeleeAnubis>
-          <Rimgate_GoauldMeleeApophis>7</Rimgate_GoauldMeleeApophis>
-          <Rimgate_GoauldMeleeRa>7</Rimgate_GoauldMeleeRa>
-          <Rimgate_GoauldRangedAnubis>10</Rimgate_GoauldRangedAnubis>
-          <Rimgate_GoauldRangedApophis>10</Rimgate_GoauldRangedApophis>
-          <Rimgate_GoauldRangedRa>10</Rimgate_GoauldRangedRa>
-          <Rimgate_GoauldGrenadierAnubis>1.5</Rimgate_GoauldGrenadierAnubis>
-          <Rimgate_GoauldGrenadierApophis>1.5</Rimgate_GoauldGrenadierApophis>
-          <Rimgate_GoauldGrenadierRa>1.5</Rimgate_GoauldGrenadierRa>
-          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
-          <Rimgate_JackalGuard>10</Rimgate_JackalGuard>
-          <Rimgate_HorusGuard>10</Rimgate_HorusGuard>
-          <Rimgate_PrimeJackalGuard>1</Rimgate_PrimeJackalGuard>
-          <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>1</Rimgate_PrimeHorusGuard>
-          <Rimgate_GoauldLeader>1</Rimgate_GoauldLeader>
+          <Rimgate_KullWarrior>200</Rimgate_KullWarrior>
+          <Rimgate_GoauldMeleeAnubis>100</Rimgate_GoauldMeleeAnubis>
+          <Rimgate_GoauldMeleeApophis>100</Rimgate_GoauldMeleeApophis>
+          <Rimgate_GoauldMeleeRa>100</Rimgate_GoauldMeleeRa>
+          <Rimgate_GoauldRangedAnubis>100</Rimgate_GoauldRangedAnubis>
+          <Rimgate_GoauldRangedApophis>100</Rimgate_GoauldRangedApophis>
+          <Rimgate_GoauldRangedRa>100</Rimgate_GoauldRangedRa>
+          <Rimgate_GoauldGrenadierAnubis>120</Rimgate_GoauldGrenadierAnubis>
+          <Rimgate_GoauldGrenadierApophis>120</Rimgate_GoauldGrenadierApophis>
+          <Rimgate_GoauldGrenadierRa>120</Rimgate_GoauldGrenadierRa>
+          <Rimgate_SerpentGuard>140</Rimgate_SerpentGuard>
+          <Rimgate_JackalGuard>140</Rimgate_JackalGuard>
+          <Rimgate_HorusGuard>140</Rimgate_HorusGuard>
+          <Rimgate_PrimeJackalGuard>180</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>180</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>180</Rimgate_PrimeHorusGuard>
+          <Rimgate_GoauldLeader>180</Rimgate_GoauldLeader>
         </options>
       </li>
       <li>
@@ -111,20 +115,20 @@
           <li>Siege</li>
         </disallowedStrategies>
         <options>
-          <Rimgate_KullWarrior>1</Rimgate_KullWarrior>
-          <Rimgate_GoauldGrenadierAnubis>1.5</Rimgate_GoauldGrenadierAnubis>
-          <Rimgate_GoauldGrenadierApophis>1.5</Rimgate_GoauldGrenadierApophis>
-          <Rimgate_GoauldGrenadierRa>1.5</Rimgate_GoauldGrenadierRa>
-          <Rimgate_GoauldRangedAnubis>10</Rimgate_GoauldRangedAnubis>
-          <Rimgate_GoauldRangedApophis>10</Rimgate_GoauldRangedApophis>
-          <Rimgate_GoauldRangedRa>10</Rimgate_GoauldRangedRa>
-          <Rimgate_JackalGuard>10</Rimgate_JackalGuard>
-          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
-          <Rimgate_HorusGuard>10</Rimgate_HorusGuard>
-          <Rimgate_PrimeJackalGuard>1</Rimgate_PrimeJackalGuard>
-          <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>1</Rimgate_PrimeHorusGuard>
-          <Rimgate_GoauldLeader>1</Rimgate_GoauldLeader>
+          <Rimgate_KullWarrior>200</Rimgate_KullWarrior>
+          <Rimgate_GoauldRangedAnubis>100</Rimgate_GoauldRangedAnubis>
+          <Rimgate_GoauldRangedApophis>100</Rimgate_GoauldRangedApophis>
+          <Rimgate_GoauldRangedRa>100</Rimgate_GoauldRangedRa>
+          <Rimgate_GoauldGrenadierAnubis>120</Rimgate_GoauldGrenadierAnubis>
+          <Rimgate_GoauldGrenadierApophis>120</Rimgate_GoauldGrenadierApophis>
+          <Rimgate_GoauldGrenadierRa>120</Rimgate_GoauldGrenadierRa>
+          <Rimgate_SerpentGuard>140</Rimgate_SerpentGuard>
+          <Rimgate_JackalGuard>140</Rimgate_JackalGuard>
+          <Rimgate_HorusGuard>140</Rimgate_HorusGuard>
+          <Rimgate_PrimeJackalGuard>180</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>180</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>180</Rimgate_PrimeHorusGuard>
+          <Rimgate_GoauldLeader>180</Rimgate_GoauldLeader>
         </options>
       </li>
       <li>
@@ -135,9 +139,9 @@
           <li>Siege</li>
         </disallowedStrategies>
         <options>
-          <Rimgate_GoauldMeleeAnubis>10</Rimgate_GoauldMeleeAnubis>
-          <Rimgate_GoauldMeleeApophis>10</Rimgate_GoauldMeleeApophis>
-          <Rimgate_GoauldMeleeRa>10</Rimgate_GoauldMeleeRa>
+          <Rimgate_GoauldMeleeAnubis>100</Rimgate_GoauldMeleeAnubis>
+          <Rimgate_GoauldMeleeApophis>100</Rimgate_GoauldMeleeApophis>
+          <Rimgate_GoauldMeleeRa>100</Rimgate_GoauldMeleeRa>
         </options>
       </li>
       <li>
@@ -148,7 +152,7 @@
           <li>Siege</li>
         </disallowedStrategies>
         <options>
-          <Rimgate_KullWarrior>5</Rimgate_KullWarrior>
+          <Rimgate_KullWarrior>160</Rimgate_KullWarrior>
         </options>
       </li>
       <li>
@@ -156,19 +160,23 @@
         <options>
           <Rimgate_GoauldColonist>5</Rimgate_GoauldColonist>
           <Rimgate_GoauldSlave>5</Rimgate_GoauldSlave>
-          <Rimgate_GoauldMeleeAnubis>7</Rimgate_GoauldMeleeAnubis>
-          <Rimgate_GoauldMeleeApophis>7</Rimgate_GoauldMeleeApophis>
-          <Rimgate_GoauldMeleeRa>7</Rimgate_GoauldMeleeRa>
-          <Rimgate_GoauldRangedAnubis>15</Rimgate_GoauldRangedAnubis>
-          <Rimgate_GoauldRangedApophis>15</Rimgate_GoauldRangedApophis>
-          <Rimgate_GoauldRangedRa>15</Rimgate_GoauldRangedRa>
-          <Rimgate_JackalGuard>10</Rimgate_JackalGuard>
-          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
-          <Rimgate_HorusGuard>10</Rimgate_HorusGuard>
-          <Rimgate_PrimeJackalGuard>1</Rimgate_PrimeJackalGuard>
-          <Rimgate_PrimeSerpentGuard>1</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>1</Rimgate_PrimeHorusGuard>
-          <Rimgate_GoauldLeader>20</Rimgate_GoauldLeader>
+          <Rimgate_KullWarrior>200</Rimgate_KullWarrior>
+          <Rimgate_GoauldMeleeAnubis>100</Rimgate_GoauldMeleeAnubis>
+          <Rimgate_GoauldMeleeApophis>100</Rimgate_GoauldMeleeApophis>
+          <Rimgate_GoauldMeleeRa>100</Rimgate_GoauldMeleeRa>
+          <Rimgate_GoauldRangedAnubis>100</Rimgate_GoauldRangedAnubis>
+          <Rimgate_GoauldRangedApophis>100</Rimgate_GoauldRangedApophis>
+          <Rimgate_GoauldRangedRa>100</Rimgate_GoauldRangedRa>
+          <Rimgate_GoauldGrenadierAnubis>120</Rimgate_GoauldGrenadierAnubis>
+          <Rimgate_GoauldGrenadierApophis>120</Rimgate_GoauldGrenadierApophis>
+          <Rimgate_GoauldGrenadierRa>120</Rimgate_GoauldGrenadierRa>
+          <Rimgate_SerpentGuard>140</Rimgate_SerpentGuard>
+          <Rimgate_JackalGuard>140</Rimgate_JackalGuard>
+          <Rimgate_HorusGuard>140</Rimgate_HorusGuard>
+          <Rimgate_PrimeJackalGuard>180</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>180</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>180</Rimgate_PrimeHorusGuard>
+          <Rimgate_GoauldLeader>180</Rimgate_GoauldLeader>
         </options>
       </li>
     </pawnGroupMakers>

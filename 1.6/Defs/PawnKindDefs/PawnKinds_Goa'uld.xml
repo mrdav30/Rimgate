@@ -98,7 +98,7 @@
     <techHediffsRequired>
       <li>Rimgate_SymbioteImplant</li>
     </techHediffsRequired>
-    <itemQuality>Excellent</itemQuality>
+    <itemQuality>Good</itemQuality>
     <gearHealthRange>0.7~2.3</gearHealthRange>
     <weaponMoney>750~2500</weaponMoney>
     <weaponTags>
@@ -171,16 +171,16 @@
     <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
     <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
-    <apparelMoney>1500~3000</apparelMoney>
+    <apparelMoney>1500~4000</apparelMoney>
     <apparelTags>
       <li>Rimgate_GoauldApparel_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_JaffaArmor</li>
     </apparelRequired>
-    <weaponMoney>1200~2000</weaponMoney>
+    <weaponMoney>1200~4000</weaponMoney>
     <techHediffsChance>1</techHediffsChance>
-    <techHediffsMoney>1000~2000</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
+    <techHediffsMoney>1000~2500</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
     <techHediffsTags>
       <li>Simple</li>
       <li>Common</li>
@@ -326,7 +326,7 @@
   <PawnKindDef Name="Rimgate_GoauldKull" ParentName="Rimgate_GoauldMilBase">
     <defName>Rimgate_KullWarrior</defName>
     <label>Kull warrior</label>
-    <combatPower>220</combatPower>
+    <combatPower>250</combatPower>
     <minGenerationAge>26</minGenerationAge>
     <gearHealthRange>0.8~3.5</gearHealthRange>
     <xenotypeSet Inherit="False">
@@ -341,7 +341,7 @@
       <li>AdvancedWeapon</li>
       <li>Rimgate_GoauldSymbiote_tag</li>
     </techHediffsTags>
-    <itemQuality>Excellent </itemQuality>
+    <itemQuality>Good</itemQuality>
     <apparelMoney>2500~4200</apparelMoney>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags Inherit="False">
@@ -370,7 +370,7 @@
   <!-- === Jaffa Guard Base === -->
 
   <PawnKindDef Name="Rimgate_GoauldGuardBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
-    <combatPower>100</combatPower>
+    <combatPower>160</combatPower>
     <initialWillRange>3~6</initialWillRange>
     <initialResistanceRange>55~64</initialResistanceRange>
     <itemQuality>Good</itemQuality>
@@ -387,15 +387,15 @@
     <apparelTags>
       <li>Rimgate_GoauldGuardApparel_tag</li>
     </apparelTags>
-    <weaponMoney>1200~2500</weaponMoney>
+    <weaponMoney>1200~4500</weaponMoney>
     <weaponTags>
       <li>Rimgate_GoauldWeapons_tag</li>
     </weaponTags>
   </PawnKindDef>
 
   <PawnKindDef Name="Rimgate_PrimeBase" ParentName="Rimgate_GoauldGuardBase" Abstract="True">
-    <combatPower>150</combatPower>
-    <itemQuality>Excellent</itemQuality>
+    <combatPower>220</combatPower>
+    <itemQuality>Good</itemQuality>
     <backstoryFiltersOverride>
       <li>
         <categoriesChildhood>

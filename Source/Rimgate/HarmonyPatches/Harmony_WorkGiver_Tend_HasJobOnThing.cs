@@ -14,7 +14,7 @@ public static class WorkGiver_Tend_HasJobOnThing_HasJobOnThing
     {
         Pawn patient = t as Pawn;
         if (patient.CurrentBed() is Building_Bed_Sarcophagus bedSarcophagus 
-            && bedSarcophagus.powerComp.PowerOn)
+            && bedSarcophagus.PowerComp.PowerOn)
         {
             __result = false;
         }

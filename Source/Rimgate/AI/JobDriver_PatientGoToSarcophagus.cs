@@ -30,7 +30,7 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
         // or is no longer the right user type  for the patient
         this.FailOn(delegate
         {
-            return !Sarcophagus.powerComp.PowerOn
+            return !Sarcophagus.PowerComp.PowerOn
                 || Sarcophagus.HasAnyContents
                 || !Sarcophagus.Accepts(pawn)
                 || !pawn.CanReach(Sarcophagus, PathEndMode.Touch, Danger.Deadly) 

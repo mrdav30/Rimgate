@@ -157,7 +157,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>750</MarketValue>
+			<MarketValue>1200</MarketValue>
 			<WorkToMake>28250</WorkToMake>
 			<MaxHitPoints>250</MaxHitPoints>
 			<Mass>2</Mass>
@@ -197,7 +197,7 @@
 			<Rimgate_Naquadah>2</Rimgate_Naquadah>
 		</costList>
 		<statBases>
-			<MarketValue>1400</MarketValue>
+			<MarketValue>950</MarketValue>
 			<MaxHitPoints>200</MaxHitPoints>
 			<WorkToMake>7500</WorkToMake>
 			<Mass>1.5</Mass>
@@ -227,7 +227,7 @@
 	<ThingDef Name="Rimgate_OpenGuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearBase" Abstract="True">
 		<smeltable>false</smeltable>
 		<statBases>
-			<MarketValue>1400</MarketValue>
+			<MarketValue>950</MarketValue>
 			<MaxHitPoints>100</MaxHitPoints>
 			<Mass>1.5</Mass>
 			<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
@@ -265,7 +265,7 @@
 			<Gold>15</Gold>
 		</costList>
 		<statBases>
-			<MarketValue>2400</MarketValue>
+			<MarketValue>1200</MarketValue>
 			<MaxHitPoints>250</MaxHitPoints>
 			<WorkToMake>9500</WorkToMake>
 			<Mass>2.5</Mass>
@@ -290,7 +290,7 @@
 	<ThingDef Name="Rimgate_OpenPrimeGuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearBase" Abstract="True">
 		<smeltable>false</smeltable>
 		<statBases>
-			<MarketValue>2400</MarketValue>
+			<MarketValue>1200</MarketValue>
 			<MaxHitPoints>150</MaxHitPoints>
 			<Mass>2.5</Mass>
 			<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
@@ -661,7 +661,7 @@
 			<texPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmor</texPath>
 		</graphicData>
 		<statBases>
-			<MarketValue>1500</MarketValue>
+			<MarketValue>750</MarketValue>
 			<MaxHitPoints>280</MaxHitPoints>
 			<WorkToMake>12500</WorkToMake>
 			<Mass>15</Mass>
@@ -706,7 +706,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>2000</MarketValue>
+			<MarketValue>1200</MarketValue>
 			<MaxHitPoints>300</MaxHitPoints>
 			<WorkToMake>12500</WorkToMake>
 			<Mass>17</Mass>
@@ -751,7 +751,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>1500</MarketValue>
+			<MarketValue>2500</MarketValue>
 			<MaxHitPoints>350</MaxHitPoints>
 			<WorkToMake>12500</WorkToMake>
 			<Mass>17</Mass>

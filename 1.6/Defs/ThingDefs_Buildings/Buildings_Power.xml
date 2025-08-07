@@ -190,7 +190,7 @@
     <statBases>
       <WorkToMake>30000</WorkToMake>
       <MaxHitPoints>1000000</MaxHitPoints>
-      <MarketValue>10000.5</MarketValue>
+      <MarketValue>25000</MarketValue>
       <Flammability>0.0</Flammability>
       <Mass>20</Mass>
     </statBases>

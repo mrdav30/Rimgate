@@ -24,7 +24,7 @@ public static class Harmony_FeedingUtilities
     public static void Postfix(ref bool __result, Pawn p)
     {
         if (p.CurrentBed() is Building_Bed_Sarcophagus bedSarcophagus 
-            && bedSarcophagus.powerComp.PowerOn)
+            && bedSarcophagus.PowerComp.PowerOn)
         {
             __result = false;
         }

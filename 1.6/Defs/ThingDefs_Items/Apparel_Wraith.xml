@@ -45,7 +45,7 @@
 			<Rimgate_Biomass>10</Rimgate_Biomass>
 		</costList>
 		<statBases>
-			<MarketValue>11000</MarketValue>
+			<MarketValue>650</MarketValue>
 			<MaxHitPoints>80</MaxHitPoints>
 			<WorkToMake>1000</WorkToMake>
 			<Mass>0.5</Mass>
@@ -110,7 +110,7 @@
 			<li>ApparelArmor</li>
 		</thingCategories>
 		<statBases>
-			<MarketValue>30000</MarketValue>
+			<MarketValue>700</MarketValue>
 			<MaxHitPoints>200</MaxHitPoints>
 			<WorkToMake>12500</WorkToMake>
 			<Mass>4</Mass>
@@ -178,7 +178,7 @@
 			<li>ApparelArmor</li>
 		</thingCategories>
 		<statBases>
-			<MarketValue>30000</MarketValue>
+			<MarketValue>900</MarketValue>
 			<MaxHitPoints>300</MaxHitPoints>
 			<WorkToMake>12500</WorkToMake>
 			<Mass>4</Mass>

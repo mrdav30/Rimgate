@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Verse;
 
 namespace Rimgate;
@@ -12,6 +13,22 @@ namespace Rimgate;
 public class CompAbilityEffect_ApplyHediffs : CompAbilityEffect
 {
     public CompProperties_ApplyHediff Props => (CompProperties_ApplyHediff)props;
+
+    public override bool AICanTargetNow(LocalTargetInfo target)
+    {
+        Pawn pawn = parent.pawn;
+        Pawn pawn2 = target.Pawn;
+        if (pawn == null || pawn.ThingID == pawn2.ThingID)
+            return false;
+
+        if(Props.rangeLimit > 0)
+        {
+            var distance = pawn.Position.DistanceToSquared(pawn2.Position);
+            return distance <= (Props.rangeLimit * Props.rangeLimit);
+        }
+
+        return true;
+    }
 
     public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
     {
@@ -53,7 +70,8 @@ public class CompAbilityEffect_ApplyHediffs : CompAbilityEffect
         float current,
         IEnumerable<StatModifier> statFactors)
     {
-        return statFactors.Aggregate(current, (float current, StatModifier statFactor) => {
+        return statFactors.Aggregate(current, (float current, StatModifier statFactor) =>
+        {
             return statFactor.value >= 0f
                 ? current * (pawn.GetStatValue(statFactor.stat) * statFactor.value)
                 : current / (pawn.GetStatValue(statFactor.stat) * Math.Abs(statFactor.value));

@@ -370,7 +370,7 @@
         <interceptGroundProjectiles>true</interceptGroundProjectiles>
         <podBlocker>false</podBlocker>
         <resetTime>4000</resetTime>
-        <fuelConsumptionRate>0.05</fuelConsumptionRate>
+        <fuelConsumptionRate>0.025</fuelConsumptionRate>
         <stressPerDamage>0.02</stressPerDamage>
         <empDamageFactor>4.5</empDamageFactor>
         <shieldOverloadThreshold>0.9</shieldOverloadThreshold>

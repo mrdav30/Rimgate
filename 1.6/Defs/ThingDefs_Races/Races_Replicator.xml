@@ -72,6 +72,7 @@
       <thinkTreeConstant>MechConstant</thinkTreeConstant>
       <intelligence>ToolUser</intelligence>
       <nameCategory>NoName</nameCategory>
+      <nameGenerator Inherit="false" />
 
       <soundMeleeHitPawn>Pawn_Melee_MechanoidSlash_HitPawn</soundMeleeHitPawn>
       <soundMeleeHitBuilding>Pawn_Melee_MechanoidSlash_HitBuilding</soundMeleeHitBuilding>

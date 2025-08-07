@@ -6,16 +6,17 @@
     <label>Wraith Colony</label>
     <description>A predatory, hive-based empire ruled by telepathic queens and fueled by the worst kind of diet plan—yours.\nIf diplomacy fails (it will), expect swarms of space-vampires with great hair and worse manners.</description>
     <pawnsPlural>Wraith</pawnsPlural>
-    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <requiredCountAtGameStart>1</requiredCountAtGameStart>
+    <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
     <settlementGenerationWeight>0.25</settlementGenerationWeight>
-    <canMakeRandomly>true</canMakeRandomly>
-    <canSiege>true</canSiege>
+    <canMakeRandomly>false</canMakeRandomly>
+    <canSiege>false</canSiege>
     <canStageAttacks>true</canStageAttacks>
+    <autoFlee>false</autoFlee>
     <leaderTitle>Queen</leaderTitle>
     <fixedName>Wraith Domain</fixedName>
     <settlementNameMaker>NamerSettlementTribal</settlementNameMaker>
     <techLevel>Ultra</techLevel>
-    <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
     <xenotypeSet Inherit="False">
       <xenotypeChances>
         <Rimgate_Wraith>999</Rimgate_Wraith>
@@ -26,7 +27,6 @@
     </allowedCultures>
     <factionIconPath>UI/Icon/Map/RGWraithBaseIcon</factionIconPath>
     <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
-    <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
     <backstoryFilters>
       <li>
         <categories>

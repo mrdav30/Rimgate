@@ -86,17 +86,21 @@
     <useHitPoints>false</useHitPoints>
     <statBases>
       <WorkToBuild>0</WorkToBuild>
+      <Beauty>5</Beauty>
+      <WorkTableWorkSpeedFactor>1.25</WorkTableWorkSpeedFactor>
     </statBases>
     <placeWorkers>
       <li>PlaceWorker_PreventInteractionSpotOverlap</li>
     </placeWorkers>
     <useHitPoints>false</useHitPoints>
     <scatterableOnMapGen>false</scatterableOnMapGen>
-    <designationCategory>Misc</designationCategory>
+    <designationCategory>Production</designationCategory>
     <passability>Standable</passability>
     <pathCost>50</pathCost>
     <hasInteractionCell>True</hasInteractionCell>
     <surfaceType>Item</surfaceType>
+    <canOverlapZones>false</canOverlapZones>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <inspectorTabs>
       <li>ITab_Bills</li>
     </inspectorTabs>
@@ -105,7 +109,12 @@
       <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
       <ai_chillDestination>false</ai_chillDestination>
       <ai_neverTrashThis>true</ai_neverTrashThis>
+      <forceShowRoomStats>true</forceShowRoomStats>
       <workTableRoomRole>Kitchen</workTableRoomRole>
+      <workTableNotInRoomRoleFactor>1</workTableNotInRoomRoleFactor>
+      <buildingTags>
+        <li>Production</li>
+      </buildingTags>
     </building>
     <researchPrerequisites>
       <li>Rimgate_MeatCultivation</li>

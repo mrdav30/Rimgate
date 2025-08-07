@@ -9,24 +9,12 @@
         <li>name->[comboname] [RG_GoauldLast]</li>
         <li>comboname-&gt;[RG_Goauld_FirstPartM][RG_Goauld_SecondPartM]</li>
       </rulesStrings>
-      <rulesRaw>
-        <li Class="Rule_File">
-          <keyword>RG_GoauldFirstM</keyword>
-          <path>NameBanks/Goauld/Names_First_GoauldM</path>
-        </li>
-        <li Class="Rule_File">
-          <keyword>RG_GoauldLast</keyword>
-          <path>NameBanks/Goauld/Names_Last_Goauld</path>
-        </li>
-        <li Class="Rule_File">
-          <keyword>RG_Goauld_FirstPartM</keyword>
-          <path>NameBanks/Goauld/Names_FirstPart_GoauldM</path>
-        </li>
-        <li Class="Rule_File">
-          <keyword>RG_Goauld_SecondPartM</keyword>
-          <path>NameBanks/Goauld/Names_SecondPart_GoauldM</path>
-        </li>
-      </rulesRaw>
+      <rulesFiles>
+        <li>RG_GoauldFirstM->NameBanks/Goauld/Names_First_GoauldM</li>
+        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Goauld</li>
+        <li>RG_Goauld_FirstPartM->NameBanks/Goauld/Names_FirstPart_GoauldM</li>
+        <li>RG_Goauld_SecondPartM->NameBanks/Goauld/Names_SecondPart_GoauldM</li>
+      </rulesFiles>
     </rulePack>
   </RulePackDef>
 
@@ -38,24 +26,43 @@
         <li>name->[comboname] [RG_GoauldLast]</li>
         <li>comboname-&gt;[RG_Goauld_FirstPartF][RG_Goauld_SecondPartF]</li>
       </rulesStrings>
-      <rulesRaw>
-        <li Class="Rule_File">
-          <keyword>RG_GoauldFirstF</keyword>
-          <path>NameBanks/Goauld/Names_First_GoauldF</path>
-        </li>
-        <li Class="Rule_File">
-          <keyword>RG_GoauldLast</keyword>
-          <path>NameBanks/Goauld/Names_Last_Goauld</path>
-        </li>
-        <li Class="Rule_File">
-          <keyword>RG_Goauld_FirstPartF</keyword>
-          <path>NameBanks/Goauld/Names_FirstPart_GoauldF</path>
-        </li>
-        <li Class="Rule_File">
-          <keyword>RG_Goauld_SecondPartF</keyword>
-          <path>NameBanks/Goauld/Names_SecondPart_GoauldF</path>
-        </li>
-      </rulesRaw>
+      <rulesFiles>
+        <li>RG_GoauldFirstF->NameBanks/Goauld/Names_First_GoauldF</li>
+        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Goauld</li>
+        <li>RG_Goauld_FirstPartF->NameBanks/Goauld/Names_FirstPart_GoauldF</li>
+        <li>RG_Goauld_SecondPartF->NameBanks/Goauld/Names_SecondPart_GoauldF</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimgate_NamerKull</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=5)->[KullName]</li>
+        <li>r_name->[KullCodeName]</li>
+
+        <li>KullName(p=3)->[Gore]</li>
+        <li>KullName(p=3)->[KullCodename]</li>
+        <li>KullName->[Weapon]</li>
+        <li>KullName->[ConceptBadass]</li>
+
+        <li>KullCodeName(p=2)->[RomanNumeral]</li>
+        <li>KullCodeName->[kull_serial]</li>
+
+        <li>kull_serial->[maybe_letter][Digit][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][Digit][Digit][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][Digit][Digit][Digit][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][RomanNumeral][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][RomanNumeral][Digit][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][Digit][RomanNumeral][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][Digit][RomanNumeral][Digit][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][RomanNumeral][Digit][RomanNumeral][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][RomanNumeral][Digit][Digit][RomanNumeral][maybe_letter]</li>
+      </rulesStrings>
+      <rulesFiles>
+        <li>KullCodename->NameBanks/Goauld/Names_Kull_Unisex</li>
+      </rulesFiles>
     </rulePack>
   </RulePackDef>
 

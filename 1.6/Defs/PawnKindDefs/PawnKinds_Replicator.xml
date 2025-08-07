@@ -7,7 +7,7 @@
         <race>Rimgate_Replicator</race>
         <defaultFactionType>Rimgate_Replicator</defaultFactionType>
         <aiAvoidCover>true</aiAvoidCover>
-        <combatPower>160</combatPower>
+        <combatPower>90</combatPower>
         <lifeStages>
             <li>
                 <bodyGraphicData>

@@ -27,7 +27,7 @@
         <description>Engineered by the Goa'uld as near-unstoppable supersoldiers, Kull are living weapons bred in vats and stripped of fear, empathy, or questionable morals.\nPowerful, fast, and aging like discount yogurt.</description>
         <iconPath>UI/Icon/Xenotype/RGKullXenotypeIcon</iconPath>
         <inheritable>true</inheritable>
-        <nameMaker>NamerMech</nameMaker>
+        <nameMaker>Rimgate_NamerKull</nameMaker>
         <chanceToUseNameMaker>1</chanceToUseNameMaker>
         <genes>
             <li>Eyes_Gray</li>
@@ -68,6 +68,7 @@
             <li>ArchiteMetabolism</li>
             <li>DarkVision</li>
             <li>MeleeDamage_Strong</li>
+            <li>Pain_Reduced</li>
             <li>Rimgate_WraithMovement</li>
             <li>Rimgate_WraithPsychic</li>
             <li>Rimgate_WraithCannibal</li>

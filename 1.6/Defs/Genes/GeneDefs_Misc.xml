@@ -15,12 +15,12 @@
 		<biostatCpx>1</biostatCpx>
 		<biostatMet>-1</biostatMet>
 		<customEffectDescriptions>
-			<li>Age will advance 75% faster.</li>
+			<li>Age will advance 275% faster.</li>
 		</customEffectDescriptions>
 		<biologicalAgeTickFactorFromAgeCurve>
 			<points>
-				<li>(13, 1.75)</li>
-				<li>(18, 1.75)</li>
+				<li>(13, 2.75)</li>
+				<li>(18, 2.75)</li>
 			</points>
 		</biologicalAgeTickFactorFromAgeCurve>
 		<selectionWeight>0</selectionWeight>

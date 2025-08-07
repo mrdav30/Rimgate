@@ -41,7 +41,7 @@ public static class SarcophagusRestUtility
 
         if (bedSarcophagus.ForColonists 
             && (!pawn.IsColonist || pawn.GuestStatus == GuestStatus.Guest) 
-            && !bedSarcophagus.allowGuests)
+            && !bedSarcophagus.AllowGuests)
         {
             return false;
         }
@@ -58,7 +58,7 @@ public static class SarcophagusRestUtility
         if (bedSarcophagus == null)
             return false;
 
-        if (!bedSarcophagus.powerComp.PowerOn)
+        if (!bedSarcophagus.PowerComp.PowerOn)
             return false;
 
         if (bedSarcophagus.IsForbidden(travelerPawn))

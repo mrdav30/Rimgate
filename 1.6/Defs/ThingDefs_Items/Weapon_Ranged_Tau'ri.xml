@@ -669,7 +669,7 @@
         </recipeMaker>
         <statBases>
             <WorkToMake>80000</WorkToMake>
-            <MarketValue>650</MarketValue>
+            <MarketValue>950</MarketValue>
             <Mass>5</Mass>
             <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
         </statBases>

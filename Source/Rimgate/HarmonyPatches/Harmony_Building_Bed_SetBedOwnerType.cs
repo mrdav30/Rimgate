@@ -14,7 +14,7 @@ public static class Harmony_Building_Bed_SetBedOwnerType
         if (__instance is Building_Bed_Sarcophagus bedSarcophagus 
             && __instance.ForOwnerType != BedOwnerType.Colonist) 
         {
-            bedSarcophagus.allowGuests = false;
+            bedSarcophagus.AllowGuests = false;
         }
     }
 }

@@ -10,11 +10,11 @@ namespace Rimgate;
 
 public class Building_MeatLab : Building_PlantGrower
 {
-    private static Dictionary<string, Graphic> growGraphics = new Dictionary<string, Graphic>();
+    private static Dictionary<string, Graphic> growGraphics = new();
 
-    CompPowerTrader power;
+    private CompPowerTrader _power;
 
-    Plant plant;
+    private Plant _plant;
 
     static Building_MeatLab()
     {
@@ -47,16 +47,16 @@ public class Building_MeatLab : Building_PlantGrower
     {
         base.SpawnSetup(map, respawningAfterLoad);
 
-        power = base.GetComp<CompPowerTrader>();
+        _power = base.GetComp<CompPowerTrader>();
     }
 
     public override void TickRare()
     {
-        if (power == null 
-            || power.PowerNet == null
+        if (_power == null 
+            || _power.PowerNet == null
             || !PlantsOnMe.Any()) return;
 
-        plant = PlantsOnMe.First() ?? null;
+        _plant = PlantsOnMe.First() ?? null;
 
         base.TickRare();
     }
@@ -66,10 +66,10 @@ public class Building_MeatLab : Building_PlantGrower
         get
         {
             // For when it's minified or in a trade ship.
-            if (plant == null)
+            if (_plant == null)
                 return Building_MeatLab.growGraphics["empty"];
 
-            var growthPercent = Mathf.FloorToInt((plant.Growth + 0.0001f) * 100f);
+            var growthPercent = Mathf.FloorToInt((_plant.Growth + 0.0001f) * 100f);
             if (growthPercent <= 10)
                 return Building_MeatLab.growGraphics["empty"];
             else if (growthPercent <= 25)
@@ -85,8 +85,8 @@ public class Building_MeatLab : Building_PlantGrower
 
     public override string GetInspectString()
     {
-        return plant != null
-            ? $"{base.GetInspectString()}\n{plant.GetInspectString() ?? string.Empty}"
+        return _plant != null
+            ? $"{base.GetInspectString()}\n{_plant.GetInspectString() ?? string.Empty}"
             : base.GetInspectString();
     }
 }

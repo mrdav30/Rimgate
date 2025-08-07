@@ -396,7 +396,7 @@ public class Comp_ShieldEmitter : ThingComp
 
     public void UpdateFuelUsage()
     {
-        if (!Active)
+        if (!Active || !parent.IsHashIntervalTick(2))
             return;
 
         FuelComp.ConsumeFuel(Props.fuelConsumptionRate);
@@ -470,8 +470,7 @@ public class Comp_ShieldEmitter : ThingComp
                     Overloaded = false;
             }
         }
-
-        if (FuelComp != null && PowerTrader == null)
+        else if (FuelComp != null && PowerTrader == null)
         {
             UpdateFuelUsage();
             if (Overloaded && FuelComp.HasFuel)

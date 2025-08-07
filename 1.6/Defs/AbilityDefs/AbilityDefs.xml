@@ -9,7 +9,7 @@
         <verbProperties>
             <verbClass>Verb_CastAbilityTouch</verbClass>
             <drawAimPie>false</drawAimPie>
-            <range>-1</range>
+            <range>-1</range> 
             <warmupTime>0.25</warmupTime>
             <soundCast>Rimgate_WraitDrainLifeCast</soundCast>
             <targetParams>
@@ -19,7 +19,7 @@
                 <canTargetSelf>false</canTargetSelf>
                 <canTargetBuildings>false</canTargetBuildings>
                 <canTargetMechs>false</canTargetMechs>
-            </targetParams>
+            </targetParams>  
         </verbProperties>
         <cooldownTicksRange>120000</cooldownTicksRange>
         <jobDef>CastAbilityOnThingMelee</jobDef>
@@ -33,6 +33,7 @@
                 <hediffToReceive>Rimgate_WraithLifeDrainRegen</hediffToReceive>
                 <hediffToGive>Rimgate_WraithLifeDrainTarget</hediffToGive>
                 <durationTime>120000</durationTime>
+                <rangeLimit>6.0</rangeLimit>
             </li>
             <li Class="Rimgate.CompProperties_ApplyNeed">
                 <need>Food</need>
@@ -62,7 +63,7 @@
                 <canTargetBuildings>false</canTargetBuildings>
             </targetParams>
         </verbProperties>
-        <cooldownTicksRange>180</cooldownTicksRange>
+        <cooldownTicksRange>280</cooldownTicksRange>
         <aiCanUse>true</aiCanUse>
         <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
         <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
