@@ -34,7 +34,7 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
                 || Sarcophagus.HasAnyContents
                 || !Sarcophagus.Accepts(pawn)
                 || !pawn.CanReach(Sarcophagus, PathEndMode.Touch, Danger.Deadly) 
-                || !SarcophagusRestUtility.IsValidBedForUserType(Sarcophagus, pawn);
+                || !RimgateRestUtility.IsValidBedForUserType(Sarcophagus, pawn);
         });
 
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);

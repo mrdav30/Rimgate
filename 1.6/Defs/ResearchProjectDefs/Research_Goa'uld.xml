@@ -25,7 +25,7 @@
 		<description>unlock foundational Goa'uld tech, including interface protocols, energy matrices, and that smug sense of superiority you've been missing.</description>
 		<baseCost>1500</baseCost>
 		<researchViewX>0</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
 	<!-- ======== Armor ========= -->
@@ -38,7 +38,7 @@
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
 		</prerequisites>
-		<researchViewX>0</researchViewX>
+		<researchViewX>1</researchViewX>
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
@@ -51,7 +51,7 @@
 			<li>Rimgate_GoauldArmorTier1</li>
 			<li>ReconArmor</li>
 		</prerequisites>
-		<researchViewX>0</researchViewX>
+		<researchViewX>2</researchViewX>
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
@@ -63,7 +63,7 @@
 		<prerequisites>
 			<li>Rimgate_GoauldArmorTier2</li>
 		</prerequisites>
-		<researchViewX>2</researchViewX>
+		<researchViewX>3</researchViewX>
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
@@ -78,8 +78,8 @@
 			<li>Rimgate_GoauldBasic</li>
 			<li>PrecisionRifling</li>
 		</prerequisites>
-		<researchViewX>0</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewX>1</researchViewX>
+		<researchViewY>2</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
@@ -91,7 +91,7 @@
 			<li>Rimgate_GoauldWeaponTier1</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>2</researchViewY>
 	</ResearchProjectDef>
 
 	<!-- ======== Buildings ========= -->
@@ -107,8 +107,8 @@
 			<li>Rimgate_NaquadriaFiredGenerator</li>
 			<li>ShipBasics</li>
 		</prerequisites>
-		<researchViewX>1</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewX>3</researchViewX>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
 

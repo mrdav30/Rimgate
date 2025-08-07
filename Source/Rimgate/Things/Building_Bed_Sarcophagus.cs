@@ -383,7 +383,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             && RestUtility.CanUseBedEver(myPawn, def);
         if (!canShowOptions) yield break;
 
-        if (SarcophagusHealthAIUtility.HasUsageBlockingHediffs(myPawn, UsageBlockingHediffs))
+        if (RimgateHealthUtility.HasUsageBlockingHediffs(myPawn, UsageBlockingHediffs))
         {
             List<Hediff> blockedHediffs = new();
             myPawn.health.hediffSet.GetHediffs(ref blockedHediffs);
@@ -397,7 +397,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield break;
         }
 
-        if (SarcophagusHealthAIUtility.HasUsageBlockingTraits(myPawn, UsageBlockingTraits))
+        if (RimgateHealthUtility.HasUsageBlockingTraits(myPawn, UsageBlockingTraits))
         {
             string label = myPawn.story?.traits.allTraits
                 .First(t => UsageBlockingTraits.Contains(t.def)).LabelCap;
@@ -408,7 +408,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield break;
         }
 
-        if (!SarcophagusHealthAIUtility.IsValidXenotypeForSarcophagus(myPawn, DisallowedXenotypes))
+        if (!RimgateHealthUtility.IsValidXenotypeForSarcophagus(myPawn, DisallowedXenotypes))
         {
             string label = myPawn.genes?.Xenotype.label.CapitalizeFirst();
             yield return new FloatMenuOption(
@@ -418,7 +418,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield break;
         }
 
-        if (!SarcophagusHealthAIUtility.IsValidRaceForSarcophagus(myPawn, DisallowedRaces))
+        if (!RimgateHealthUtility.IsValidRaceForSarcophagus(myPawn, DisallowedRaces))
         {
             string label = myPawn.def.label.CapitalizeFirst();
             yield return new FloatMenuOption(
@@ -428,7 +428,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield break;
         }
 
-        if (SarcophagusHealthAIUtility.ShouldSeekSarcophagusRest(myPawn, this))
+        if (RimgateHealthUtility.ShouldSeekSarcophagusRest(myPawn, this))
         {
             if (!PowerComp.PowerOn)
             {
@@ -445,7 +445,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                 yield break;
             }
 
-            if (!SarcophagusHealthAIUtility.HasAllowedMedicalCareCategory(myPawn))
+            if (!RimgateHealthUtility.HasAllowedMedicalCareCategory(myPawn))
             {
                 yield return new FloatMenuOption(
                     "UseMedicalBed".Translate()

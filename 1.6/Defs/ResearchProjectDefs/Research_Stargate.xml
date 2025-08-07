@@ -30,11 +30,11 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
-	<!-- ==================== Iris Research ==================== -->
+	<!-- ==================== Research ==================== -->
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_StargateIrisAlloyResearch</defName>
-		<label>Plasteel alloys</label>
+		<defName>Rimgate_StargateAlloyResearch</defName>
+		<label>ancient alloys</label>
 		<description>by combining Plasteel, Uranium, Naquadah, and Steel, our scientists have created an absurdly strong, absurdly unstable alloy.\nToo volatile for furniture, perfect for high-stakes wormhole shielding.</description>
 		<baseCost>4000</baseCost>
 		<researchViewX>1.00</researchViewX>
@@ -47,7 +47,7 @@
 		<description>by placing an ultra-thin barrier mere microns from a stargate's event horizon, we can prevent reintegration of inbound matter.\nIn simpler terms: unwanted guests go *splat*. Handy.</description>
 		<baseCost>6000</baseCost>
 		<prerequisites>
-			<li>Rimgate_StargateIrisAlloyResearch</li>
+			<li>Rimgate_StargateAlloyResearch</li>
 		</prerequisites>
 		<researchViewX>2.00</researchViewX>
 		<researchViewY>0.00</researchViewY>

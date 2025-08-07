@@ -58,7 +58,6 @@
 	<RG_Sarcophagus_Letter_TraitRemoved_Label>Trait(s) removed</RG_Sarcophagus_Letter_TraitRemoved_Label>
 	<RG_Sarcophagus_Letter_TraitRemoved_Desc>{PAWN_labelShort} has had the following trait(s) removed via Sarcophagus treatment:\n</RG_Sarcophagus_Letter_TraitRemoved_Desc>
 
-
 	<!-- Shield -->
 
 	<RG_ShieldGenRadiusLabel>Set Radius</RG_ShieldGenRadiusLabel>
@@ -75,5 +74,8 @@
 	<RG_ToggleLabel>Toggle {0}</RG_ToggleLabel>
 	<RG_ToggleDescription>Designate {0} to be toggled. A colonist will come soon to toggle the switch.</RG_ToggleDescription>
 
+	<!-- Misc -->
+
+	<RG_HealedDiseases>{0_nameDef}'s was healed of all diseases.</RG_HealedDiseases>
 
 </LanguageData>

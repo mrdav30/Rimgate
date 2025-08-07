@@ -6,7 +6,7 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public static class SarcophagusRestUtility
+public static class RimgateRestUtility
 {
     private static List<ThingDef> sarcophagusDefsBestToWorst => 
         sarcophagusDefsBestToWorstCached ??= RestUtility.AllBedDefBestToWorst
@@ -89,22 +89,22 @@ public static class SarcophagusRestUtility
         if (!IsValidBedForUserType(bedSarcophagus, patientPawn))
             return false;
 
-        if (!SarcophagusHealthAIUtility.ShouldSeekSarcophagusRest(patientPawn, bedSarcophagus))
+        if (!RimgateHealthUtility.ShouldSeekSarcophagusRest(patientPawn, bedSarcophagus))
             return false;
 
-        if (!SarcophagusHealthAIUtility.HasAllowedMedicalCareCategory(patientPawn))
+        if (!RimgateHealthUtility.HasAllowedMedicalCareCategory(patientPawn))
             return false;
 
-        if (!SarcophagusHealthAIUtility.IsValidRaceForSarcophagus(patientPawn, bedSarcophagus.DisallowedRaces))
+        if (!RimgateHealthUtility.IsValidRaceForSarcophagus(patientPawn, bedSarcophagus.DisallowedRaces))
             return false;
 
-        if (!SarcophagusHealthAIUtility.IsValidXenotypeForSarcophagus(patientPawn, bedSarcophagus.DisallowedXenotypes))
+        if (!RimgateHealthUtility.IsValidXenotypeForSarcophagus(patientPawn, bedSarcophagus.DisallowedXenotypes))
             return false;
 
-        if (SarcophagusHealthAIUtility.HasUsageBlockingHediffs(patientPawn, bedSarcophagus.UsageBlockingHediffs))
+        if (RimgateHealthUtility.HasUsageBlockingHediffs(patientPawn, bedSarcophagus.UsageBlockingHediffs))
             return false;
 
-        if (SarcophagusHealthAIUtility.HasUsageBlockingTraits(patientPawn, bedSarcophagus.UsageBlockingTraits))
+        if (RimgateHealthUtility.HasUsageBlockingTraits(patientPawn, bedSarcophagus.UsageBlockingTraits))
             return false;
 
         if (bedSarcophagus.Aborted) 

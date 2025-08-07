@@ -60,6 +60,20 @@
     <!-- ======== Buildings ========= -->
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_TretoninSynthesis</defName>
+        <label>Tretonin synthesis</label>
+        <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
+        <baseCost>3500</baseCost>
+        <prerequisites>
+            <li>MedicineProduction</li>
+            <li>Rimgate_TauriBasic</li>
+            <li>Rimgate_GoauldBasic</li>
+        </prerequisites>
+        <researchViewX>2</researchViewX>
+        <researchViewY>2</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_NaquadahRefinement</defName>
         <label>Naquadah refinement</label>
         <description>learn to refine raw Naquadah into Naquadria—an unstable but potent power source.\nGreat for experimental engines, questionable ethics, and catastrophic explosions.</description>

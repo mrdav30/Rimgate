@@ -24,11 +24,11 @@ public static class Harmony_RestUtility_CanUseBedNow
             // Sarcophagus is not forbidden for the pawn
             && !bedSarcophagus.IsForbidden(pawn) 
             // Pawn actually has a medical need for a Sarcophagus
-            && SarcophagusHealthAIUtility.ShouldSeekSarcophagusRest(pawn, bedSarcophagus)
+            && RimgateHealthUtility.ShouldSeekSarcophagusRest(pawn, bedSarcophagus)
             // Pawn has medical care category that allows Sarcophagus use
-            && SarcophagusHealthAIUtility.HasAllowedMedicalCareCategory(pawn)
+            && RimgateHealthUtility.HasAllowedMedicalCareCategory(pawn)
             // Pawn type (colonist, slave, prisoner, guest) matches bedtype
-            && SarcophagusRestUtility.IsValidBedForUserType(bedSarcophagus, pawn)
+            && RimgateRestUtility.IsValidBedForUserType(bedSarcophagus, pawn)
             // Sarcophagus hasn't been aborted
             && !bedSarcophagus.Aborted;
     }

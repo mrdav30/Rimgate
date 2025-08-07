@@ -18,7 +18,8 @@ internal static class Utils
         Pawn targetPawn,
         HediffDef hediffDef,
         BodyPartRecord bodyPart,
-        int duration, float severity)
+        int duration,
+        float severity)
     {
         Hediff hediff = HediffMaker.MakeHediff(hediffDef, targetPawn, bodyPart);
 

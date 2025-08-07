@@ -45,6 +45,7 @@
 			<Medicine>5</Medicine>
 		</skillRequirements>
 		<addsHediff>Rimgate_SymbioteImplant</addsHediff>
+		<researchPrerequisite>Rimgate_GoauldBasic</researchPrerequisite>
 	</RecipeDef>
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
@@ -67,6 +68,7 @@
 		</skillRequirements>
 		<surgerySuccessChanceFactor>0.5</surgerySuccessChanceFactor>
 		<addsHediff>Rimgate_SymbioteWithdrawal</addsHediff>
+		<researchPrerequisite>Rimgate_GoauldBasic</researchPrerequisite>
 	</RecipeDef>
 
 	<!-- ==================== Jaffa forehead Symbol Base ==================== -->

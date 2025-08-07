@@ -336,6 +336,7 @@
     <Compile Include="HarmonyPatches\Harmony_Pawn_GetGizmos.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_TryGetAttackVerb.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility_TuckIntoBed.cs" />
+    <Compile Include="Hediffs\IngestionOutcomeDoer_HealAllDisease.cs" />
     <Compile Include="Incidents\IncidentWorker_Asteroid.cs" />
     <Compile Include="Incidents\ThingSetMaker_SpecialMeteorite.cs" />
     <Compile Include="Misc\HediffGiver_AtAge.cs" />
@@ -371,7 +372,7 @@
     <Compile Include="HarmonyPatches\Harmony_WorkGiver_Tend_HasJobOnThing.cs" />
     <Compile Include="Hediffs\HediffComp_GoauldSymbiote.cs" />
     <Compile Include="Hediffs\Properties\HediffCompProperties_GoauldSymbiote.cs" />
-    <Compile Include="Things\Hediff_GoauldSymbiote.cs" />
+    <Compile Include="Hediffs\Hediff_GoauldSymbiote.cs" />
     <Compile Include="AI\JobDriver_PatientGoToSarcophagus.cs" />
     <Compile Include="AI\JobGiver_PatientGoToSarcophagus.cs" />
     <Compile Include="Things\Building_Stargate.cs" />
@@ -400,7 +401,7 @@
     <Compile Include="Verbs\Verb_LaunchWithOffset.cs" />
     <Compile Include="World\WorldObject_PermanentStargateSite.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />
-    <Compile Include="Utilities\SarcophagusRestUtility.cs" />
+    <Compile Include="Utilities\RimgateRestUtility.cs" />
     <Compile Include="AI\WorkGiver_DoctorCarryFromBedToSarcophagus.cs" />
     <Compile Include="AI\WorkGiver_DoctorRescueToSarcophagus.cs" />
     <Compile Include="AI\WorkGiver_PatientGoToSarcophagus.cs" />
@@ -410,7 +411,7 @@
     <Compile Include="Rimgate_DefOf.cs" />
     <Compile Include="Comps\Properties\CompProperties_Sarcophagus.cs" />
     <Compile Include="Comps\Comp_Sarcophagus.cs" />
-    <Compile Include="Utilities\SarcophagusHealthAIUtility.cs" />
+    <Compile Include="Utilities\RimgateHealthUtility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

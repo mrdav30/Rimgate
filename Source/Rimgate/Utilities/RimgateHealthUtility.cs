@@ -6,7 +6,7 @@ using Verse;
 
 namespace Rimgate;
 
-public static class SarcophagusHealthAIUtility
+public static class RimgateHealthUtility
 {
     public static bool ShouldSeekSarcophagusRest(Pawn patient, Building_Bed_Sarcophagus bedSarcophagus)
     {
@@ -144,5 +144,62 @@ public static class SarcophagusHealthAIUtility
     public static bool HasUsageBlockingTraits(Pawn patientPawn, List<TraitDef> usageBlockingTraits)
     {
         return patientPawn.story?.traits.allTraits.Any(x => usageBlockingTraits.Contains(x.def)) ?? false;
+    }
+
+
+    public static bool HasImmunizableHediffs(
+        Pawn pawn,
+        List<HediffDef> inclusions = null,
+        List<HediffDef> exclusions = null)
+    {
+        var result = FindImmunizableHediffs(pawn, inclusions, exclusions);
+        return result != null && result.Count > 0;
+    }
+
+    public static List<Hediff> FindImmunizableHediffs(
+        Pawn pawn,
+        List<HediffDef> inclusions = null,
+        List<HediffDef> exclusions = null)
+    {
+        List<Hediff> hediffs = new();
+        List<Hediff> allHediffs = pawn.health.hediffSet.hediffs;
+        for (int i = 0; i < allHediffs.Count; i++)
+        {
+            Hediff current = allHediffs[i];
+
+            if (inclusions != null && inclusions.Contains(current.def))
+            {
+                hediffs.Add(current);
+                continue;
+            }
+
+            bool isViable = current.Visible
+                && current.def.everCurableByItem
+                && current.TryGetComp<HediffComp_Immunizable>() != null
+                && !current.FullyImmune();
+            if (isViable)
+            {
+                if (exclusions != null
+                    && exclusions.Contains(current.def)) continue;
+
+                hediffs.Add(allHediffs[i]);
+            }
+        }
+
+        return hediffs;
+    }
+
+    public static void FixImmunizableHealthConditions(
+        Pawn pawn,
+        List<HediffDef> inclusions = null,
+        List<HediffDef> exclusions = null)
+    {
+        List<Hediff> hediffs = FindImmunizableHediffs(pawn, inclusions, exclusions);
+
+        if (hediffs == null || hediffs.Count == 0)
+            return;
+
+        foreach (var hediff in hediffs)
+            HealthUtility.Cure(hediff);
     }
 }

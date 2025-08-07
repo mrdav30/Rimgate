@@ -27,7 +27,7 @@ namespace Rimgate;
 		if (!warden.CanReserve(prisoner))
 			return null;
 
-            Building_Bed_Sarcophagus bed = SarcophagusRestUtility.FindBestSarcophagus(warden, prisoner);
+            Building_Bed_Sarcophagus bed = RimgateRestUtility.FindBestSarcophagus(warden, prisoner);
 		if (bed != null 
 			&& !bed.HasAnyContents
 			&& prisoner.CanReserve(bed))

@@ -42,8 +42,9 @@
     </statBases>
     <constructEffect>ConstructMetal</constructEffect>
     <costList>
-      <Steel>350</Steel>
-      <Gold>25</Gold>
+      <Steel>750</Steel>
+      <Gold>250</Gold>
+      <Rimgate_Naquadah>50</Rimgate_Naquadah>
       <MedicineUltratech>5</MedicineUltratech>
       <ComponentSpacer>10</ComponentSpacer>
       <Rimgate_Naquadria>4</Rimgate_Naquadria>
@@ -78,6 +79,7 @@
           <li>Sterilized</li>
           <li>Rimgate_SarcophagusHigh</li>
           <li>Rimgate_SarcophagusAddiction</li>
+          <li>Rimgate_TretoninAddiction</li>
         </neverTreatableHediffs>
         <nonCriticalTreatableHediffs>
           <li>AlcoholHigh</li>

@@ -61,29 +61,43 @@
 		<label>symbiote withdrawal</label>
 		<description>With the symbiote removed, the host's body begins to crash—systems falter, strength fades, and paranoia skyrockets.\nSymptoms include fatigue, tremors, organ failure, rapid aging, and regretting life choices involving glowing eyes.</description>
 		<hediffClass>HediffWithComps</hediffClass>
-		<initialSeverity>0.1</initialSeverity>
+		<chronic>true</chronic>
+		<minSeverity>0.001</minSeverity>
+		<initialSeverity>0.01</initialSeverity>
 		<lethalSeverity>1</lethalSeverity>
+		<everCurableByItem>false</everCurableByItem>
 		<tendable>true</tendable>
 		<comps>
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>0.125</severityPerDay>
-				<showDaysToRecover>false</showDaysToRecover>
+			<li Class="HediffCompProperties_Immunizable">
+				<severityPerDayNotImmune>0.25</severityPerDayNotImmune>
 			</li>
 			<li Class="HediffCompProperties_TendDuration">
-				<severityPerDayTended>-1</severityPerDayTended>
-				<baseTendDurationHours>48</baseTendDurationHours>
+				<severityPerDayTended>-0.8</severityPerDayTended>
+				<baseTendDurationHours>23</baseTendDurationHours>
 			</li>
 		</comps>
 		<stages>
 			<li>
-				<label>extreme</label>
-				<lifeThreatening>true</lifeThreatening>
-				<painOffset>0.2</painOffset>
-				<statOffsets>
-					<RestFallRateFactor>1.5</RestFallRateFactor>
+				<label>minor</label>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<statFactors>
+					<RestFallRateFactor>0.5</RestFallRateFactor>
 					<ImmunityGainSpeed>0</ImmunityGainSpeed>
 					<InjuryHealingFactor>0</InjuryHealingFactor>
-				</statOffsets>
+				</statFactors>
+			</li>
+			<li>
+				<label>extreme</label>
+				<minSeverity>0.5</minSeverity>
+				<lifeThreatening>true</lifeThreatening>
+				<deathMtbDays>10</deathMtbDays>
+				<painOffset>0.25</painOffset>
+				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
+				<statFactors>
+					<RestFallRateFactor>0.5</RestFallRateFactor>
+					<ImmunityGainSpeed>0</ImmunityGainSpeed>
+					<InjuryHealingFactor>0</InjuryHealingFactor>
+				</statFactors>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
@@ -102,6 +116,23 @@
 		</stages>
 		<duplicationAllowed>false</duplicationAllowed>
 	</HediffDef>
+
+
+	<ThoughtDef>
+		<defName>Rimgate_SymbioteWithdrawal</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>Rimgate_SymbioteWithdrawal</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+		<durationDays>7</durationDays>
+		<stages>
+			<li>
+				<label>symbiote withdrawal</label>
+				<description>You’ve lost a part of yourself—literally. The voice is gone, the strength is fading, and your eyes won't glow anymore. Feels bad, kree.</description>
+				<baseMoodEffect>-11</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 
 	<!-- ==================== Jaffa Forehead Symbol Base ==================== -->
 

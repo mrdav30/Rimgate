@@ -26,6 +26,9 @@
         <techHediffsTags>
             <li>Rimgate_GoauldSymbiote_tag</li>
         </techHediffsTags>
+        <thingSetMakerTags>
+            <li>RewardStandardLowFreq</li>
+        </thingSetMakerTags>
     </ThingDef>
 
     <!-- ==================== Jaffa Forehead Symbol Base ==================== -->

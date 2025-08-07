@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- ==================== Stargate Glyph ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_GlyphParchment</defName>
+        <label>glyph parchment</label>
+        <description>A weathered parchment embossed with mysterious stargate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.</description>
+        <thingClass>ThingWithComps</thingClass>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGGlyphScrap</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stackLimit>1</stackLimit>
+        <tradeNeverStack>true</tradeNeverStack>
+        <useHitPoints>true</useHitPoints>
+        <statBases>
+            <MarketValue>900</MarketValue>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Mass>80</Mass>
+            <Flammability>0</Flammability>
+        </statBases>
+        <techLevel>Medieval</techLevel>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <tradeTags>
+            <li>ExoticMisc</li>
+        </tradeTags>
+        <thingSetMakerTags>
+            <li>RewardStandardHighFreq</li>
+        </thingSetMakerTags>
+        <comps>
+            <li Class="Rimgate.CompProperties_GlyphParchment" />
+        </comps>
+    </ThingDef>
+
+    <!-- ==================== Iris ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_IrisInstallKit</defName>
+        <label>Iris installation kit</label>
+        <description>a high-tech deployment kit for installing an iris over a stargate.\nTurns your wormhole into a one-way trip—great for defense, less great for diplomacy.</description>
+        <thingClass>ThingWithComps</thingClass>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGIrisUpgradeKit</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stackLimit>1</stackLimit>
+        <useHitPoints>true</useHitPoints>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Mass>80</Mass>
+            <Flammability>0</Flammability>
+        </statBases>
+        <techLevel>Spacer</techLevel>
+        <thingCategories>
+            <li>Manufactured</li>
+        </thingCategories>
+        <tradeability>None</tradeability>
+        <comps>
+            <li Class="CompProperties_Usable">
+                <useJob>Rimgate_InstallIris</useJob>
+                <useLabel>install Iris</useLabel>
+                <useDuration>5000</useDuration>
+            </li>
+            <li Class="CompProperties_Targetable">
+                <compClass>Rimgate.CompTargetable_Stargate</compClass>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="MechSerumBase">
+        <defName>Rimgate_Tretonin</defName>
+        <label>Tretonin</label>
+        <description>feeling sick, dying of alien withdrawals, or just done with having an immune system?\nTry Tretonin! It’s a miracle cure—if you don’t mind needing it forever.\nSide effects may include dependency and an unshakable desperation.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGTretonin</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stackLimit>10</stackLimit>
+        <statBases>
+            <MarketValue>1300</MarketValue>
+        </statBases>
+        <thingCategories>
+            <li>Drugs</li>
+        </thingCategories>
+        <tradeability>Sellable</tradeability>
+        <ingestible>
+            <drugCategory>Medical</drugCategory>
+            <foodType>Fluid, Processed</foodType>
+            <joyKind>Chemical</joyKind>
+            <joy>0.2</joy>
+            <baseIngestTicks>210</baseIngestTicks>
+            <nurseable>false</nurseable>
+            <preferability>NeverForNutrition</preferability>
+            <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+            <defaultNumToIngestAtOnce>1</defaultNumToIngestAtOnce>
+            <ingestSound>Ingest_Drink</ingestSound>
+            <ingestHoldOffsetStanding>
+                <northDefault>
+                    <offset>(0.18,0,0)</offset>
+                </northDefault>
+            </ingestHoldOffsetStanding>
+            <ingestCommandString>Drink {0}</ingestCommandString>
+            <ingestReportString>Drinking {0}.</ingestReportString>
+            <ingestHoldUsesTable>false</ingestHoldUsesTable>
+            <outcomeDoers>
+                <li Class="Rimgate.IngestionOutcomeDoer_HealAllDisease">
+                    <inclusions>
+                        <li>Rimgate_SymbioteWithdrawal</li>
+                    </inclusions>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
+            <recipeUsers>
+                <li>DrugLab</li>
+            </recipeUsers>
+            <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+            <workSkill>Intellectual</workSkill>
+            <skillRequirements>
+                <Crafting>5</Crafting>
+                <Intellectual>8</Intellectual>
+            </skillRequirements>
+            <bulkRecipeCount>4</bulkRecipeCount>
+            <displayPriority>2020</displayPriority>
+        </recipeMaker>
+        <costList>
+            <MedicineUltratech>1</MedicineUltratech>
+            <Rimgate_Naquadah>4</Rimgate_Naquadah>
+        </costList>
+        <comps>
+            <li Class="CompProperties_Drug">
+                <chemical>Rimgate_TretoninChemical</chemical>
+                <addictiveness>1.00</addictiveness>
+                <needLevelOffset>0.9</needLevelOffset>
+                <listOrder>1020</listOrder>
+            </li>
+            <li Class="CompProperties_UseEffectPlaySound">
+                <soundOnUsed>MechSerumUsed</soundOnUsed>
+            </li>
+            <li Class="CompProperties_UseEffectDestroySelf" />
+        </comps>
+        <thingSetMakerTags>
+            <li>RewardStandardCore</li>
+        </thingSetMakerTags>
+    </ThingDef>
+
+</Defs>
