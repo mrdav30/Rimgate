@@ -28,9 +28,23 @@
     <statBases>
       <MaxHitPoints>4400</MaxHitPoints>
       <WorkToBuild>24000</WorkToBuild>
-      <Mass>114514</Mass>
+      <Mass>450</Mass>
       <Flammability>0.5</Flammability>
+      <Comfort>0.75</Comfort>
     </statBases>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(2, 0, 0)</interactionCellOffset>
+    <selectable>true</selectable>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <preventSkyfallersLandingOn>true</preventSkyfallersLandingOn>
+    <drawerType>RealtimeOnly</drawerType>
+    <repairEffect>ConstructMetal</repairEffect>
+    <building>
+      <claimable>false</claimable>
+      <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+      <isInert>true</isInert>
+    </building>
     <designationCategory>Odyssey</designationCategory>
     <costList>
       <Steel>1500</Steel>
@@ -50,9 +64,14 @@
         <worldObjectDef>Rimgate_GoauldTeltak</worldObjectDef>
         <cooldownTicks>4000</cooldownTicks>
         <fixedLaunchDistanceMax>80</fixedLaunchDistanceMax>
+        <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
       </li>
       <li Class="CompProperties_Transporter">
-        <massCapacity>8500</massCapacity>
+        <massCapacity>2200</massCapacity>
+        <max1PerGroup>true</max1PerGroup>
+        <canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+        <pawnLoadedSound>Shuttle_PawnLoaded</pawnLoadedSound>
+        <pawnExitSound>Shuttle_PawnExit</pawnExitSound>
         <showMassInInspectString>true</showMassInInspectString>
       </li>
       <li Class="CompProperties_Refuelable">
@@ -68,11 +87,16 @@
         <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
         <autoRefuelPercent>1</autoRefuelPercent>
         <showFuelGizmo>true</showFuelGizmo>
+        <drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+        <canEjectFuel>true</canEjectFuel>
       </li>
     </comps>
     <inspectorTabs>
       <li>ITab_ContentsTransporter</li>
     </inspectorTabs>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
     <researchPrerequisites>
       <li>Rimgate_GoauldTelTak</li>
     </researchPrerequisites>
@@ -188,9 +212,23 @@
     <statBases>
       <MaxHitPoints>1500</MaxHitPoints>
       <WorkToBuild>24000</WorkToBuild>
-      <Mass>114514</Mass>
+      <Mass>150</Mass>
       <Flammability>0.5</Flammability>
+      <Comfort>0.65</Comfort>
     </statBases>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(2, 0, 0)</interactionCellOffset>
+    <selectable>true</selectable>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <preventSkyfallersLandingOn>true</preventSkyfallersLandingOn>
+    <drawerType>RealtimeOnly</drawerType>
+    <repairEffect>ConstructMetal</repairEffect>
+    <building>
+      <claimable>false</claimable>
+      <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+      <isInert>true</isInert>
+    </building>
     <designationCategory>Odyssey</designationCategory>
     <costList>
       <Steel>100</Steel>
@@ -210,9 +248,14 @@
         <worldObjectDef>Rimgate_WraithDart</worldObjectDef>
         <cooldownTicks>2500</cooldownTicks>
         <fixedLaunchDistanceMax>65</fixedLaunchDistanceMax>
+        <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
       </li>
       <li Class="CompProperties_Transporter">
-        <massCapacity>300</massCapacity>
+        <massCapacity>150</massCapacity>
+        <max1PerGroup>true</max1PerGroup>
+        <canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+        <pawnLoadedSound>Shuttle_PawnLoaded</pawnLoadedSound>
+        <pawnExitSound>Shuttle_PawnExit</pawnExitSound>
         <showMassInInspectString>true</showMassInInspectString>
       </li>
       <li Class="CompProperties_Refuelable">
@@ -228,6 +271,8 @@
         <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
         <autoRefuelPercent>1</autoRefuelPercent>
         <showFuelGizmo>true</showFuelGizmo>
+        <drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+        <canEjectFuel>true</canEjectFuel>
       </li>
     </comps>
     <inspectorTabs>
@@ -236,6 +281,9 @@
     <researchPrerequisites>
       <li>Rimgate_WraithDart</li>
     </researchPrerequisites>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
     <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
   </ThingDef>
 
@@ -337,7 +385,7 @@
       </shadowData>
     </graphicData>
     <!-- <uiIconPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</uiIconPath> -->
-    <uiIconScale>0.9</uiIconScale>
+    <!-- <uiIconScale>0.9</uiIconScale> -->
     <defaultPlacingRot>East</defaultPlacingRot>
     <tickerType>Normal</tickerType>
     <fillPercent>0.4</fillPercent>
@@ -348,13 +396,30 @@
     <altitudeLayer>Building</altitudeLayer>
     <receivesSignals>true</receivesSignals>
     <neverMultiSelect>true</neverMultiSelect>
-    <drawerType>MapMeshAndRealTime</drawerType>
+
+    <preventDroppingThingsOn>true</preventDroppingThingsOn>
+    <blockWind>true</blockWind>
     <statBases>
       <MaxHitPoints>3000</MaxHitPoints>
       <WorkToBuild>24000</WorkToBuild>
-      <Mass>114514</Mass>
+      <Mass>250</Mass>
       <Flammability>0.5</Flammability>
+      <Comfort>0.65</Comfort>
     </statBases>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(2, 0, 0)</interactionCellOffset>
+    <selectable>true</selectable>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <preventSkyfallersLandingOn>true</preventSkyfallersLandingOn>
+    <drawerType>RealtimeOnly</drawerType>
+    <repairEffect>ConstructMetal</repairEffect>
+    <building>
+      <claimable>false</claimable>
+      <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+      <isInert>true</isInert>
+    </building>
+
     <designationCategory>Odyssey</designationCategory>
     <costList>
       <Steel>750</Steel>
@@ -393,9 +458,14 @@
         <worldObjectDef>Rimgate_TauriPuddleJumper</worldObjectDef>
         <cooldownTicks>3000</cooldownTicks>
         <fixedLaunchDistanceMax>70</fixedLaunchDistanceMax>
+        <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
       </li>
       <li Class="CompProperties_Transporter">
-        <massCapacity>4400</massCapacity>
+        <massCapacity>1100</massCapacity>
+        <max1PerGroup>true</max1PerGroup>
+        <canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+        <pawnLoadedSound>Shuttle_PawnLoaded</pawnLoadedSound>
+        <pawnExitSound>Shuttle_PawnExit</pawnExitSound>
         <showMassInInspectString>true</showMassInInspectString>
       </li>
       <li Class="CompProperties_Refuelable">
@@ -411,6 +481,8 @@
         <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
         <autoRefuelPercent>1</autoRefuelPercent>
         <showFuelGizmo>true</showFuelGizmo>
+        <drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+        <canEjectFuel>true</canEjectFuel>
       </li>
       <li Class="Rimgate.CompProperties_Toggle">
         <compClass>Rimgate.Comp_Toggle</compClass>
@@ -421,6 +493,9 @@
     <inspectorTabs>
       <li>ITab_ContentsTransporter</li>
     </inspectorTabs>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
     <researchPrerequisites>
       <li>Rimgate_TauriPuddleJumper</li>
     </researchPrerequisites>

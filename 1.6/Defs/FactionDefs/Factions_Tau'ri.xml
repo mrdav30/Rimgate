@@ -9,7 +9,7 @@
         <pawnsPlural>Tau'ri</pawnsPlural>
         <requiredCountAtGameStart>1</requiredCountAtGameStart>
         <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
-        <settlementGenerationWeight>1.0</settlementGenerationWeight>
+        <settlementGenerationWeight>0.25</settlementGenerationWeight>
         <canMakeRandomly>true</canMakeRandomly>
         <canSiege>true</canSiege>
         <canStageAttacks>true</canStageAttacks>
@@ -31,11 +31,11 @@
         </raidCommonalityFromPointsCurve>
         <raidLootValueFromPointsCurve>
             <points>
-                <li>(35, 8)</li>
-                <li>(100, 60)</li>
-                <li>(1000, 250)</li>
-                <li>(2000, 400)</li>
-                <li>(4000, 500)</li>
+                <li>(35, 15)</li>
+                <li>(100, 120)</li>
+                <li>(1000, 500)</li>
+                <li>(2000, 800)</li>
+                <li>(4000, 1000)</li>
             </points>
         </raidLootValueFromPointsCurve>
         <maxPawnCostPerTotalPointsCurve>

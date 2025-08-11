@@ -72,6 +72,8 @@
     <designationCategory>Production</designationCategory>
   </ThingDef>
 
+  <!-- ======================= Cocoon station ======================= -->
+
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_CocoonStation</defName>
     <description>A specialized spot for cocooning meat in an efficient, disturbingly clinical manner. Because nothing says "advanced civilization" like wrapping your food in a sticky alien silk sac.</description>
@@ -119,6 +121,92 @@
     <researchPrerequisites>
       <li>Rimgate_MeatCultivation</li>
     </researchPrerequisites>
+  </ThingDef>
+
+  <!-- ======================= Composition bench ======================= -->
+
+  <ThingDef ParentName="BenchBase">
+    <defName>Rimgate_CompositionBench</defName>
+    <label>composition bench</label>
+    <description>A hybrid workbench slapped together with Tau'ri ingenuity and way too many tool slots.\nTurns raw materials into marvels of modern warfare—just don’t forget to plug it in.</description>
+    <thingClass>Building_WorkTable</thingClass>
+    <size>(3,1)</size>
+    <graphicData>
+      <texPath>Things/Building/Production/RGCompositionBench</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(3.5,1.5)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToBuild>8000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Cleanliness>-2</Cleanliness>
+      <WorkTableWorkSpeedFactor>1.25</WorkTableWorkSpeedFactor>
+    </statBases>
+    <fillPercent>0.5</fillPercent>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <hasInteractionCell>true</hasInteractionCell>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Production</designationCategory>
+    <surfaceType>Item</surfaceType>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    <minifiedDef />
+    <thingCategories Inherit="false" />
+    <costList>
+      <Steel>450</Steel>
+      <Plasteel>50</Plasteel>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>10</ComponentSpacer>
+    </costList>
+    <castEdgeShadows>true</castEdgeShadows>
+    <staticSunShadowHeight>0.20</staticSunShadowHeight>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <comps>
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>ToolCabinet</li>
+        </linkableFacilities>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>600</basePowerConsumption>
+        <shortCircuitInRain>true</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Breakdownable" />
+    </comps>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <workTableRoomRole>Workshop</workTableRoomRole>
+      <workTableNotInRoomRoleFactor>0.8</workTableNotInRoomRoleFactor>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_ShowFacilitiesConnections</li>
+    </placeWorkers>
+    <researchPrerequisites>
+      <li>Machining</li>
+      <li>Rimgate_TauriBasic</li>
+    </researchPrerequisites>
+    <modExtensions>
+      <li Class="VEF.Buildings.RecipeInheritanceExtension">
+        <inheritRecipesFrom>
+          <li>TableMachining</li>
+          <li>FabricationBench</li>
+        </inheritRecipesFrom>
+      </li>
+    </modExtensions>
   </ThingDef>
 
 </Defs>

@@ -5,49 +5,54 @@ using Verse;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Tilemaps;
 
 namespace Rimgate;
 
 public class WorldComp_StargateAddresses : WorldComponent
 {
-    public List<PlanetTile> AddressList = new List<PlanetTile>();
+    private const string StargateTag = "Rimgate_StargateSite";
+
+    private List<PlanetTile> _addressList = new();
+
+    public List<PlanetTile> AddressList => _addressList;
+
+    public int AddressCount => _addressList.Count;
 
     public WorldComp_StargateAddresses(World world) : base(world) { }
 
-    public void RemoveAddress(PlanetTile address)
-    {
-        AddressList.Remove(address);
-    }
-
     public void AddAddress(PlanetTile address)
     {
-        if (!AddressList.Contains(address))
-            AddressList.Add(address);
+        if (!_addressList.Contains(address))
+            _addressList.Add(address);
+    }
+
+    public void RemoveAddress(PlanetTile address)
+    {
+        _addressList.Remove(address);
     }
 
     public void CleanupAddresses()
     {
-        foreach (var tile in new List<PlanetTile>(AddressList))
+        _addressList.RemoveAll(tile => !IsValidAddress(tile));
+    }
+
+    private static bool IsValidAddress(PlanetTile address)
+    {
+        var mp = Find.WorldObjects.MapParentAt(address);
+        return mp switch
         {
-            MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
-            Site site = sgMap as Site;
-
-            if (sgMap == null || sgMap.HasMap)
-                continue;
-
-            bool noGate = sgMap == null 
-                || !sgMap.HasMap
-                    && sgMap is not WorldObject_PermanentStargateSite
-                    && (site == null 
-                        || !site.MainSitePartDef.tags.Contains("Rimgate_StargateSite"));
-            if (noGate)
-                RemoveAddress(tile);
-        }
+            null => false,
+            { HasMap: true } => true,
+            WorldObject_PermanentStargateSite => true,
+            Site s when s.MainSitePartDef?.tags?.Contains(StargateTag) == true => true,
+            _ => false
+        };
     }
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Collections.Look(ref AddressList, "AddressList");
+        Scribe_Collections.Look(ref _addressList, "_addressList");
     }
 }

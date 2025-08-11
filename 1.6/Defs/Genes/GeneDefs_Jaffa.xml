@@ -49,11 +49,13 @@
         <biostatCpx>3</biostatCpx>
         <displayCategory>Violence</displayCategory>
         <statFactors>
-            <MeleeHitChance>1.15</MeleeHitChance>
-            <MeleeDodgeChance>1.15</MeleeDodgeChance>
-            <ShootingAccuracyPawn>1.15</ShootingAccuracyPawn>
-            <AimingDelayFactor>0.85</AimingDelayFactor>
+            <AimingDelayFactor>0.9</AimingDelayFactor>
         </statFactors>
+        <statOffsets>
+            <MeleeHitChance>4</MeleeHitChance>
+            <MeleeDodgeChance>15</MeleeDodgeChance>
+            <ShootingAccuracyPawn>6</ShootingAccuracyPawn>
+        </statOffsets>
         <disabledWorkTags>
             <li>Caring</li>
             <li>Mining</li>
@@ -77,12 +79,12 @@
         <biostatMet>-6</biostatMet>
         <displayCategory>Violence</displayCategory>
         <statFactors>
-            <MentalBreakThreshold>-0.30</MentalBreakThreshold>
-            <PainShockThreshold>0.40</PainShockThreshold>
             <HuntingStealth>1.25</HuntingStealth>
             <PilotingAbility>2</PilotingAbility>
         </statFactors>
         <statOffsets>
+            <PainShockThreshold>0.5</PainShockThreshold>
+            <MentalBreakThreshold>-0.19</MentalBreakThreshold>
             <ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
         </statOffsets>
         <symbolPack>

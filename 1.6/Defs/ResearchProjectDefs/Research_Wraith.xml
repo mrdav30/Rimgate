@@ -24,8 +24,8 @@
 		<label>Wraith technology</label>
 		<description>begin unlocking the secrets of Wraith bio-engineering—where everything is grown, pulsing, and slightly slimy.\nWarning: side effects may include telepathy and power hunger.</description>
 		<baseCost>1500</baseCost>
-		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewX>0</researchViewX>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
 	<!-- ======== Armor ========= -->
@@ -39,7 +39,7 @@
 			<li>Rimgate_WraithBasic</li>
 			<li>ReconArmor</li>
 		</prerequisites>
-		<researchViewX>0</researchViewX>
+		<researchViewX>1</researchViewX>
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
@@ -51,7 +51,7 @@
 		<prerequisites>
 			<li>Rimgate_WraithArmorTier1</li>
 		</prerequisites>
-		<researchViewX>0</researchViewX>
+		<researchViewX>2</researchViewX>
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
@@ -66,8 +66,8 @@
 			<li>Rimgate_WraithBasic</li>
 			<li>PrecisionRifling</li>
 		</prerequisites>
-		<researchViewX>0</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewX>1</researchViewX>
+		<researchViewY>2</researchViewY>
 	</ResearchProjectDef>
 
 	<!-- ======== Buildings ========= -->
@@ -82,7 +82,7 @@
 			<li>Rimgate_WraithBasic</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -94,8 +94,8 @@
 			<li>Rimgate_WraithBasic</li>
 			<li>Rimgate_MeatCultivation</li>
 		</prerequisites>
-		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewX>3</researchViewX>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -105,12 +105,11 @@
 		<baseCost>3500</baseCost>
 		<techLevel>Spacer</techLevel>
 		<prerequisites>
-			<li>Rimgate_WraithBasic</li>
 			<li>Rimgate_WraithGenerator</li>
 			<li>ShipBasics</li>
 		</prerequisites>
-		<researchViewX>1</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewX>4</researchViewX>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
 </Defs>

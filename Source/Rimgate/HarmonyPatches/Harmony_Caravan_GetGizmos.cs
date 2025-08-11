@@ -23,10 +23,10 @@ public class Harmony_Caravan_GetGizmos
         foreach (Thing thing in __instance.AllThings)
         {
             Thing inner = thing.GetInnerIfMinified();
-            if (inner != null)
+            if (inner != null && inner.TryGetComp<Comp_Stargate>() != null)
             {
-                if (inner.TryGetComp<Comp_Stargate>() != null)
-                    containsStargate = true; break;
+                containsStargate = true;
+                break;
             }
         }
 
@@ -53,7 +53,8 @@ public class Harmony_Caravan_GetGizmos
                 for (int i = 0; i < things.Count(); i++)
                 {
                     Thing inner = things[i].GetInnerIfMinified();
-                    if (inner != null && inner.TryGetComp<Comp_DialHomeDevice>() != null
+                    if (inner != null 
+                        && inner.TryGetComp<Comp_DialHomeDevice>() != null
                         && inner.def.thingClass != typeof(Building_Stargate))
                     {
                         dhdDef = inner.def; things[i].holdingOwner.Remove(things[i]);

@@ -204,6 +204,9 @@
 				<cooldownTime>1.6</cooldownTime>
 			</li>
 		</tools>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
 	</ThingDef>
 
 	<ThingDef ParentName="Rimgate_GoauldMaTok">
@@ -239,7 +242,7 @@
 	<ThingDef ParentName="Rimgate_GoauldGunBase">
 		<defName>Rimgate_GoauldZat</defName>
 		<label>Zat'nik'tel</label>
-		<description>One shot: stun. Two shots: kill. Three shots? Doesn't exist.\nCompact, terrifying, and universally feared by SG teams and modded colonists alike.</description>
+		<description>One shot: stun. Two shots: kill. Three shots? Only one way to find out.\nCompact, terrifying, and universally feared by SG teams and modded colonists alike.</description>
 		<costList>
 			<Steel>30</Steel>
 			<ComponentIndustrial>2</ComponentIndustrial>
@@ -300,6 +303,9 @@
 				<cooldownTime>1.6</cooldownTime>
 			</li>
 		</tools>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
 	</ThingDef>
 
 	<!-- ====== Zat'nik'tel Projectile ====== -->

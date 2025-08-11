@@ -68,11 +68,14 @@ public class Building_Stargate : Building
 
     public override string GetInspectString()
     {
+        if (StargateComp == null)
+            return string.Empty;
+
         StringBuilder sb = new StringBuilder();
 
         sb.AppendLine(StargateComp.GetInspectString());
 
-        if (PowerComp != null)
+        if (StargateComp.HasIris && PowerComp != null)
             sb.AppendLine(PowerComp.CompInspectStringExtra());
         
         return sb.ToString().TrimEndNewlines();

@@ -11,6 +11,8 @@
 	<Rimgate_GateIsNotActive>Stargate is not active.</Rimgate_GateIsNotActive>
 	<Rimgate_CannotCloseIncoming>Cannot disengage an incoming wormhole.</Rimgate_CannotCloseIncoming>
 	<Rimgate_CannotDialGateIsActive>Cannot dial: stargate is already active</Rimgate_CannotDialGateIsActive>
+	<Rimgate_CannotDialNoGate>Cannot dial: no stargate connected</Rimgate_CannotDialNoGate>
+	<Rimgate_CannotDialNoReach>Cannot dial: cannot reach the DHD</Rimgate_CannotDialNoReach>
 	<Rimgate_CannotDialNoDestinations>Cannot dial: no available destinations</Rimgate_CannotDialNoDestinations>
 	<Rimgate_CannotDialIncoming>Cannot dial: incoming wormhole</Rimgate_CannotDialIncoming>
 	<Rimgate_CannotDialNoPower>Cannot dial: no power</Rimgate_CannotDialNoPower>

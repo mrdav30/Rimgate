@@ -5,7 +5,7 @@
 
   <FactionDef Name="Rimgate_GoauldFactionBase" Abstract="True">
     <pawnsPlural>Goa'uld</pawnsPlural>
-    <settlementGenerationWeight>1</settlementGenerationWeight>
+    <settlementGenerationWeight>0.25</settlementGenerationWeight>
     <canSiege>false</canSiege>
     <canStageAttacks>true</canStageAttacks>
     <autoFlee>false</autoFlee>
@@ -49,11 +49,11 @@
     </raidCommonalityFromPointsCurve>
     <raidLootValueFromPointsCurve>
       <points>
-        <li>(35, 8)</li>
-        <li>(100, 60)</li>
-        <li>(1000, 250)</li>
-        <li>(2000, 400)</li>
-        <li>(4000, 500)</li>
+        <li>(35, 15)</li>
+        <li>(100, 120)</li>
+        <li>(1000, 500)</li>
+        <li>(2000, 800)</li>
+        <li>(4000, 1000)</li>
       </points>
     </raidLootValueFromPointsCurve>
     <maxPawnCostPerTotalPointsCurve>

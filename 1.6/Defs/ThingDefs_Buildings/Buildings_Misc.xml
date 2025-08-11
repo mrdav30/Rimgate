@@ -86,6 +86,7 @@
 			<li Class="CompProperties_AffectedByFacilities">
 				<linkableFacilities>
 					<li>Rimgate_DialHomeDevice</li>
+					<li>Rimgate_TauriDialHomeDevice</li>
 				</linkableFacilities>
 			</li>
 		</comps>
@@ -95,14 +96,15 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_DialHomeDevice</defName>
+		<thingClass>Building</thingClass>
 		<label>dial home device</label>
 		<description>an ancient alien control console designed to interface with a Stargate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
 		<rotatable>false</rotatable>
 		<minifiedDef>MinifiedThing</minifiedDef>
-		<stealable>false</stealable>
+		<minifiedDrawScale>0.5</minifiedDrawScale>
+		<stealable>true</stealable>
 		<passability>Impassable</passability>
 		<constructEffect>ConstructMetal</constructEffect>
-		<uiIconScale>0.65</uiIconScale>
 		<fillPercent>0.40</fillPercent>
 		<canOverlapZones>true</canOverlapZones>
 		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -140,6 +142,74 @@
 		</statBases>
 		<size>(1,1)</size>
 		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+	</ThingDef>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_TauriDialHomeDevice</defName>
+		<thingClass>Building</thingClass>
+		<label>dial home device</label>
+		<description>a field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. Also bolted down better than the last one.</description>
+		<rotatable>false</rotatable>
+		<size>(1,1)</size>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGTauriDHD</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<stealable>false</stealable>
+		<passability>PassThroughOnly</passability>
+		<constructEffect>ConstructMetal</constructEffect>
+		<uiIconScale>0.65</uiIconScale>
+		<fillPercent>0.40</fillPercent>
+		<canOverlapZones>true</canOverlapZones>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<tickerType>Never</tickerType>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
+		<building>
+			<ai_neverTrashThis>true</ai_neverTrashThis>
+		</building>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+		<designationCategory>Misc</designationCategory>
+		<costList>
+			<Steel>300</Steel>
+			<Gold>100</Gold>
+			<Rimgate_Naquadah>50</Rimgate_Naquadah>
+			<ComponentIndustrial>60</ComponentIndustrial>
+			<ComponentSpacer>25</ComponentSpacer>
+		</costList>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+		<comps>
+			<li Class="CompProperties_Facility" />
+			<li Class="CompProperties_Flickable" />
+			<li Class="Rimgate.CompProperties_DialHomeDevice">
+				<requiresPower>true</requiresPower>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<shortCircuitInRain>false</shortCircuitInRain>
+				<basePowerConsumption>800</basePowerConsumption>
+			</li>
+		</comps>
+		<statBases>
+			<MaxHitPoints>3000</MaxHitPoints>
+			<Flammability>0.4</Flammability>
+			<WorkToBuild>14000</WorkToBuild>
+			<Mass>30</Mass>
+		</statBases>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<researchPrerequisites>
+			<li>Rimgate_StargateReplacementDHDResearch</li>
+		</researchPrerequisites>
 	</ThingDef>
 
 </Defs>

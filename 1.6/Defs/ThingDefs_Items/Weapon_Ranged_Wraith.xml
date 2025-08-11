@@ -197,6 +197,9 @@
 		<weaponTags>
 			<li>Rimgate_WraithSpear_tag</li>
 		</weaponTags>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
 	</ThingDef>
 
 	<!-- ====== Wraith Spear Gun Projectile ====== -->

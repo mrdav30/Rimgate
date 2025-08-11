@@ -53,4 +53,16 @@
 		<researchViewY>0.00</researchViewY>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_StargateReplacementDHDResearch</defName>
+		<label>replacement DHD</label>
+		<description>By studying salvaged Stargate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.\nNote: SGC officially recommends bolting this one to the floor.</description>
+		<baseCost>4000</baseCost>
+		<prerequisites>
+			<li>Rimgate_StargateAlloyResearch</li>
+		</prerequisites>
+		<researchViewX>2.00</researchViewX>
+		<researchViewY>1.00</researchViewY>
+	</ResearchProjectDef>
+
 </Defs>

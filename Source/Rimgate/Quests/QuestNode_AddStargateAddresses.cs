@@ -19,12 +19,14 @@ public class QuestNode_AddStargateAddresses : QuestNode
         PlanetTile tile = site.Tile;
 
         WorldComp_StargateAddresses sgWorldComp = Find.World.GetComponent<WorldComp_StargateAddresses>();
-        if (sgWorldComp != null)
+        if (sgWorldComp == null)
         {
-            sgWorldComp.CleanupAddresses();
-            if (remove.GetValue(slate)) sgWorldComp.AddressList.Remove(tile);
-            else sgWorldComp.AddressList.Add(tile);
+            Log.Error("Rimgate :: QuestNode_AddStargateAddresses tried to get WorldComp_StargateAddresses but it was null.");
+            return;
         }
-        else Log.Error("Rimgate :: QuestNode_AddStargateAddresses tried to get WorldComp_StargateAddresses but it was null.");
+
+        sgWorldComp.CleanupAddresses();
+        if (remove.GetValue(slate)) sgWorldComp.RemoveAddress(tile);
+        else sgWorldComp.AddAddress(tile);
     }
 }

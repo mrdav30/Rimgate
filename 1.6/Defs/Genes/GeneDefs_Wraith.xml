@@ -19,7 +19,7 @@
     <iconPath>UI/Icon/Gene/RGWraithBeautyGeneIcon</iconPath>
     <displayCategory>Cosmetic</displayCategory>
     <statOffsets>
-      <Beauty>2</Beauty>
+      <Beauty>6</Beauty>
     </statOffsets>
     <hairColorOverride>(250, 250, 250)</hairColorOverride>
     <hairTagFilter>
@@ -80,7 +80,7 @@
     <iconPath>UI/Icon/Gene/RGWraithPsychicGeneIcon</iconPath>
     <displayCategory>Psychic</displayCategory>
     <statOffsets>
-      <PsychicSensitivity>0.25</PsychicSensitivity>
+      <PsychicSensitivity>0.35</PsychicSensitivity>
     </statOffsets>
     <modExtensions>
       <li Class="VEF.Genes.GeneExtension">

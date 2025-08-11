@@ -22,7 +22,7 @@ public static class Harmony_JobMaker_MakeJob_Rescue
             && targetB.Thing is Building_Bed_Sarcophagus sarcophagus)
         {
             __result.def = Rimgate_DefOf.Rimgate_RescueToSarcophagus;
-        } 
+        }
     }
 }
 

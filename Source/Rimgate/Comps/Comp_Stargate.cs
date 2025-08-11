@@ -230,12 +230,13 @@ public class Comp_Stargate : ThingComp
 
     public static string GetStargateDesignation(PlanetTile address)
     {
-        if (address < 0)
+        if (!address.Valid)
             return "UnknownLower".Translate();
 
         Rand.PushState(address);
         //pattern: P(num)(char)-(num)(num)(num)
-        string designation = $"P{Rand.RangeInclusive(0, 9)}{Alpha[Rand.RangeInclusive(0, 25)]}"
+        string designation = 
+            $"P{Rand.RangeInclusive(0, 9)}{Alpha[Rand.RangeInclusive(0, 25)]}"
             + $"-{Rand.RangeInclusive(0, 9)}{Rand.RangeInclusive(0, 9)}{Rand.RangeInclusive(0, 9)}";
         Rand.PopState();
         return designation;

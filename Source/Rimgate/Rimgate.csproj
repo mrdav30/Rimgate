@@ -352,7 +352,7 @@
     <Compile Include="Compatibility\ModCompatibility.cs" />
     <Compile Include="Comps\Properties\CompProperties_AlternateApparel.cs" />
     <Compile Include="Comps\Properties\CompProperties_GlyphParchment.cs" />
-    <Compile Include="Comps\Properties\CompProperties_DHD.cs" />
+    <Compile Include="Comps\Properties\CompProperties_DialHomeDevice.cs" />
     <Compile Include="Comps\Comp_AnimatedSarcophagus.cs" />
     <Compile Include="Comps\Properties\CompProperties_AnimatedSarcophagus.cs" />
     <Compile Include="Comps\Properties\CompProperties_TreatmentRestrictions.cs" />

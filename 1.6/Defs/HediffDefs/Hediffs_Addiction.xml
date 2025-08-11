@@ -113,7 +113,7 @@
                 <hungerRateFactorOffset>0.5</hungerRateFactorOffset>
                 <socialFightChanceFactor>3.0</socialFightChanceFactor>
                 <statFactors>
-                    <RestFallRateFactor>0.33</RestFallRateFactor>
+                    <RestFallRateFactor>1.5</RestFallRateFactor>
                 </statFactors>
                 <capMods>
                     <li>
