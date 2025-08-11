@@ -58,6 +58,63 @@
 	<RG_Sarcophagus_Letter_TraitRemoved_Label>Trait(s) removed</RG_Sarcophagus_Letter_TraitRemoved_Label>
 	<RG_Sarcophagus_Letter_TraitRemoved_Desc>{PAWN_labelShort} has had the following trait(s) removed via Sarcophagus treatment:\n</RG_Sarcophagus_Letter_TraitRemoved_Desc>
 
+	<!-- Stargate -->
+
+	<RG_GateAddress>Stargate address: {0}</RG_GateAddress>
+
+	<RG_IncomingConnection>incoming</RG_IncomingConnection>
+	<RG_OutgoingConnection>outgoing</RG_OutgoingConnection>
+	<RG_ConnectedToGate>Connected to stargate: {0} ({1})</RG_ConnectedToGate>
+	<RG_IrisOpenStatus>OPENED</RG_IrisOpenStatus>
+	<RG_IrisClosedStatus>CLOSED</RG_IrisClosedStatus>
+	<RG_IrisStatus>Iris is [{0}]</RG_IrisStatus>
+	<RG_TimeUntilGateLock>Time until lock: {0}</RG_TimeUntilGateLock>
+
+	<RG_OpenIris>Open</RG_OpenIris>
+	<RG_CloseIris>Close</RG_CloseIris>
+	<RG_ToggleIris>{0} iris</RG_ToggleIris>
+	<RG_ToggleIrisDesc>{0} this stargate's iris.</RG_ToggleIrisDesc>
+
+	<RG_OnlyOneSGPerMap>Only one of this kind of building can be built per map.</RG_OnlyOneSGPerMap>
+	<RG_GateDialFailed>Could not activate stargate: Recieving gate no longer exists or is currently in use.</RG_GateDialFailed>
+
+	<RG_EnterStargateAction>Enter stargate</RG_EnterStargateAction>
+	<RG_EnterReceivingStargateAction>Vaporize yourself</RG_EnterReceivingStargateAction>
+	<RG_EnterReceivingStargateWithSelectedAction>Vaporize yourself with selected</RG_EnterReceivingStargateWithSelectedAction>
+	<RG_EnterStargateWithSelectedAction>Enter stargate with selected</RG_EnterStargateWithSelectedAction>
+	<RG_BringPawnToReceivingGateAction>Vaporize downed pawn</RG_BringPawnToReceivingGateAction>
+	<RG_BringPawnToGateAction>Bring downed pawn to stargate</RG_BringPawnToGateAction>
+
+	<RG_RespawnGateString>Please respawn this gate (and its accompanying DHD) using devmode, as an update has broken it.</RG_RespawnGateString>
+
+	<!-- Stargate Caravan -->
+
+	<RG_NoGateInCaravan>Stargate required in caravan inventory.</RG_NoGateInCaravan>
+	<RG_CreateSGSite>Create new stargate site</RG_CreateSGSite>
+	<RG_CreateSGSiteDesc>Create a new stargate site at this location.</RG_CreateSGSiteDesc>
+	<RG_RenameGateSite>Rename stargate site</RG_RenameGateSite>
+	<RG_RenameGateSiteDesc>Rename this stargate site to a more recognizable name.</RG_RenameGateSiteDesc>
+
+	<!-- Stargate Glyphs -->
+
+	<RG_DecodeSGSymbols>Decode symbols</RG_DecodeSGSymbols>
+	<RG_CannotDecodeSGSymbols>Decode symbols (glyph deciphering not researched)</RG_CannotDecodeSGSymbols>
+
+	<!-- DHD-->
+
+	<RG_CannotDialNoGate>Cannot dial: no stargate connected</RG_CannotDialNoGate>
+	<RG_CannotDialNoReach>Cannot dial: cannot reach the DHD</RG_CannotDialNoReach>
+	<RG_CannotDialNoPower>Cannot dial: no power</RG_CannotDialNoPower>
+	<RG_CannotDialGateIsActive>Cannot dial: stargate is already active</RG_CannotDialGateIsActive>
+	<RG_CannotDialNoDestinations>Cannot dial: no available destinations</RG_CannotDialNoDestinations>
+	<RG_CannotDialIncoming>Cannot dial: incoming wormhole</RG_CannotDialIncoming>
+
+	<RG_DialGate>Dial {0} ({1})</RG_DialGate>
+	<RG_CloseStargate>Close stargate</RG_CloseStargate>
+	<RG_CloseStargateDesc>Close the linked stargate.</RG_CloseStargateDesc>
+	<RG_GateIsNotActive>Stargate is not active.</RG_GateIsNotActive>
+	<RG_CannotCloseIncoming>Cannot disengage an incoming wormhole.</RG_CannotCloseIncoming>
+
 	<!-- Shield -->
 
 	<RG_ShieldGenRadiusLabel>Set Radius</RG_ShieldGenRadiusLabel>

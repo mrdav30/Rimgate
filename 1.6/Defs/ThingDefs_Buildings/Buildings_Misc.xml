@@ -131,6 +131,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(2,2)</drawSize>
 		</graphicData>
+		<uiIconScale>0.5</uiIconScale>
 		<killedLeavings>
 			<Rimgate_ZPM>1</Rimgate_ZPM>
 		</killedLeavings>
@@ -160,7 +161,7 @@
 		<stealable>false</stealable>
 		<passability>PassThroughOnly</passability>
 		<constructEffect>ConstructMetal</constructEffect>
-		<uiIconScale>0.65</uiIconScale>
+		<uiIconScale>0.5</uiIconScale>
 		<fillPercent>0.40</fillPercent>
 		<canOverlapZones>true</canOverlapZones>
 		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>

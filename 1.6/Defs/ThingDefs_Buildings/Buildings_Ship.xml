@@ -8,11 +8,11 @@
     <label>Goa'uld Tel'tak</label>
     <description>a compact Goa'uld transport craft built for swift infiltration, planetary landings, and discreet extractions. Lacks firepower—but makes up for it with sheer speed, stealth plating, and enough ego to carry a system lord.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
-    <size>(6,7)</size>
+    <size>(5,5)</size>
     <graphicData>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(6.5,7.5)</drawSize>
+      <drawSize>(6.5,6)</drawSize>
       <shadowData>
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
@@ -33,7 +33,7 @@
       <Comfort>0.75</Comfort>
     </statBases>
     <hasInteractionCell>true</hasInteractionCell>
-    <interactionCellOffset>(2, 0, 0)</interactionCellOffset>
+    <interactionCellOffset>(3, 0, 0)</interactionCellOffset>
     <selectable>true</selectable>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
@@ -101,7 +101,6 @@
       <li>Rimgate_GoauldTelTak</li>
     </researchPrerequisites>
     <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
-    <interactionCellOffset>(2, 0, 0)</interactionCellOffset>
   </ThingDef>
 
   <ThingDef ParentName="ShuttleSkyfallerBase">
@@ -112,13 +111,13 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(6.5,7.5)</drawSize>
+      <drawSize>(6.5,6)</drawSize>
     </graphicData>
     <skyfaller>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>
-      <shadowSize>(7,8)</shadowSize>
+      <shadowSize>(7,6.5)</shadowSize>
       <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
       <rotationCurve>
         <points>
@@ -152,7 +151,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(6.5,7.5)</drawSize>
+      <drawSize>(6.5,6)</drawSize>
     </graphicData>
     <skyfaller>
       <reversed>true</reversed>
@@ -161,7 +160,7 @@
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>
       <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
-      <shadowSize>(7,8)</shadowSize>
+      <shadowSize>(7,6.5)</shadowSize>
       <motesPerCell>1</motesPerCell>
       <rotationCurve>
         <points>
@@ -192,7 +191,7 @@
     <label>Wraith Dart</label>
     <description>razor-fast and biomechanically fused, the Wraith Dart excels at hit-and-run attacks, stasis harvesting, and sudden disappearances. Its sinister hum alone is enough to send villagers fleeing.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
-    <size>(3,5)</size>
+    <size>(3,4)</size>
     <graphicData>
       <texPath>Things/Ship/Dart/RGWraithDart</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -217,7 +216,7 @@
       <Comfort>0.65</Comfort>
     </statBases>
     <hasInteractionCell>true</hasInteractionCell>
-    <interactionCellOffset>(2, 0, 0)</interactionCellOffset>
+    <interactionCellOffset>(2, 0, 1)</interactionCellOffset>
     <selectable>true</selectable>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
@@ -379,13 +378,11 @@
     <graphicData>
       <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(5,6)</drawSize>
+      <drawSize>(4.5,7.5)</drawSize>
       <shadowData>
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
     </graphicData>
-    <!-- <uiIconPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</uiIconPath> -->
-    <!-- <uiIconScale>0.9</uiIconScale> -->
     <defaultPlacingRot>East</defaultPlacingRot>
     <tickerType>Normal</tickerType>
     <fillPercent>0.4</fillPercent>
@@ -396,7 +393,6 @@
     <altitudeLayer>Building</altitudeLayer>
     <receivesSignals>true</receivesSignals>
     <neverMultiSelect>true</neverMultiSelect>
-
     <preventDroppingThingsOn>true</preventDroppingThingsOn>
     <blockWind>true</blockWind>
     <statBases>
@@ -407,7 +403,7 @@
       <Comfort>0.65</Comfort>
     </statBases>
     <hasInteractionCell>true</hasInteractionCell>
-    <interactionCellOffset>(2, 0, 0)</interactionCellOffset>
+    <interactionCellOffset>(0, 0, -3)</interactionCellOffset>
     <selectable>true</selectable>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
@@ -419,7 +415,6 @@
       <destroySound>BuildingDestroyed_Metal_Big</destroySound>
       <isInert>true</isInert>
     </building>
-
     <designationCategory>Odyssey</designationCategory>
     <costList>
       <Steel>750</Steel>
@@ -510,13 +505,13 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(5,6)</drawSize>
+      <drawSize>(4.5,7)</drawSize>
     </graphicData>
     <skyfaller>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>
-      <shadowSize>(5.5,6.5)</shadowSize>
+      <shadowSize>(5,7.5)</shadowSize>
       <shadow>Things/Ship/PuddleJumper/RGTauriPuddleJumperShadow</shadow>
       <rotationCurve>
         <points>
@@ -550,7 +545,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(5,6)</drawSize>
+      <drawSize>(4.5,7)</drawSize>
     </graphicData>
     <skyfaller>
       <reversed>true</reversed>
@@ -559,7 +554,7 @@
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>
       <shadow>Things/Ship/PuddleJumper/RGTauriPuddleJumperShadow</shadow>
-      <shadowSize>(5.5,6.5)</shadowSize>
+      <shadowSize>(5,7.5)</shadowSize>
       <motesPerCell>1</motesPerCell>
       <rotationCurve>
         <points>

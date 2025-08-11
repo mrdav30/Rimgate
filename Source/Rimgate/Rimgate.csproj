@@ -316,7 +316,12 @@
     <Compile Include="Abilities\CompAbilityEffect_ApplyHediffs.cs" />
     <Compile Include="Abilities\Properties\CompProperties_ApplyNeed.cs" />
     <Compile Include="AI\JobDriver_CarryToSarcophagus.cs" />
+    <Compile Include="AI\JobDriver_ToggleIris.cs" />
+    <Compile Include="AI\JobDriver_CloseStargate.cs" />
     <Compile Include="AI\JobDriver_Toggle.cs" />
+    <Compile Include="AI\WorkGiver_ToggleIris.cs" />
+    <Compile Include="AI\WorkGiver_Toggle.cs" />
+    <Compile Include="AI\WorkGiver_CloseStargate.cs" />
     <Compile Include="Comps\Comp_AdditionalDamage.cs" />
     <Compile Include="Comps\Comp_Toggle.cs" />
     <Compile Include="Comps\Comp_ShieldEmitter.cs" />

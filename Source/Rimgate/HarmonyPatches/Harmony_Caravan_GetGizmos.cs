@@ -68,13 +68,13 @@ public class Harmony_Caravan_GetGizmos
                 wo.DhdDef = dhdDef;
                 Find.WorldObjects.Add(wo);
             },
-            defaultLabel = "Rimgate_CreateSGSite".Translate(),
-            defaultDesc = "Rimgate_CreateSGSiteDesc".Translate()
+            defaultLabel = "RG_CreateSGSite".Translate(),
+            defaultDesc = "RG_CreateSGSiteDesc".Translate()
         };
 
         StringBuilder reason = new StringBuilder();
         if (!containsStargate)
-            command.Disable("Rimgate_NoGateInCaravan".Translate());
+            command.Disable("RG_NoGateInCaravan".Translate());
         else if (!TileFinder.IsValidTileForNewSettlement(__instance.Tile, reason))
             command.Disable(reason.ToString());
 

@@ -113,8 +113,8 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
         {
             icon = ContentFinder<Texture2D>.Get("UI/Buttons/Rename"),
             action = () => { Find.WindowStack.Add(new Dialog_RenameStargateSite(this)); },
-            defaultLabel = "Rimgate_RenameGateSite".Translate(),
-            defaultDesc = "Rimgate_RenameGateSiteDesc".Translate()
+            defaultLabel = "RG_RenameGateSite".Translate(),
+            defaultDesc = "RG_RenameGateSiteDesc".Translate()
         };
     }
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <DesignationDef>
+    <defName>Rimgate_DesignationToggle</defName>
+    <texturePath>Designations/Flick</texturePath>
+    <targetType>Thing</targetType>
+    <designateCancelable>false</designateCancelable>
+  </DesignationDef>
+
+  <DesignationDef>
+    <defName>Rimgate_DesignationCloseStargate</defName>
+    <texturePath>Designations/Flick</texturePath>
+    <targetType>Thing</targetType>
+    <designateCancelable>false</designateCancelable>
+  </DesignationDef>
+
+  <DesignationDef>
+    <defName>Rimgate_DesignationToggleIris</defName>
+    <texturePath>Designations/Flick</texturePath>
+    <targetType>Thing</targetType>
+    <designateCancelable>false</designateCancelable>
+  </DesignationDef>
+
+</Defs>

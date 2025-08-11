@@ -14,6 +14,10 @@ public static class Rimgate_DefOf
 
     public static ChemicalDef Rimgate_SarcophagusChemical;
 
+    public static DesignationDef Rimgate_DesignationToggle;
+    public static DesignationDef Rimgate_DesignationToggleIris;
+    public static DesignationDef Rimgate_DesignationCloseStargate;
+
     public static GeneDef Rimgate_WraithCocoonTrap;
 
     public static HediffDef Rimgate_SymbioteWithdrawal;
@@ -23,6 +27,8 @@ public static class Rimgate_DefOf
 
     public static JobDef Rimgate_BringToStargate;
     public static JobDef Rimgate_CarryToSarcophagus;
+    public static JobDef Rimgate_CloseStargate;
+    public static JobDef Rimgate_ToggleIris;
     public static JobDef Rimgate_DecodeGlyphs;
     public static JobDef Rimgate_DialStargate;
     public static JobDef Rimgate_EnterStargate;

@@ -44,6 +44,20 @@
 	</JobDef>
 
 	<JobDef>
+		<defName>Rimgate_CloseStargate</defName>
+		<driverClass>Rimgate.JobDriver_CloseStargate</driverClass>
+		<reportString>closing stargate connection.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_ToggleIris</defName>
+		<driverClass>Rimgate.JobDriver_ToggleIris</driverClass>
+		<reportString>toggle stargate iris.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
 		<defName>Rimgate_BringToStargate</defName>
 		<driverClass>Rimgate.JobDriver_BringToStargate</driverClass>
 		<reportString>Bringing TargetA to TargetB.</reportString>

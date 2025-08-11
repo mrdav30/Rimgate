@@ -26,13 +26,13 @@ public class Comp_GlyphParchment : ThingComp
 
         if (Rimgate_DefOf.Rimgate_GlyphDeciphering.IsFinished)
         {
-            yield return new FloatMenuOption("Rimgate_DecodeSGSymbols".Translate(), () =>
+            yield return new FloatMenuOption("RG_DecodeSGSymbols".Translate(), () =>
             {
                 Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_DecodeGlyphs, parent);
                 selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             });
         }
         else
-            yield return new FloatMenuOption("Rimgate_CannotDecodeSGSymbols".Translate(), null);
+            yield return new FloatMenuOption("RG_CannotDecodeSGSymbols".Translate(), null);
     }
 }

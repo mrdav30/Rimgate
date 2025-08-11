@@ -20,8 +20,8 @@ public class Building_Stargate : Building
         PowerComp = GetComp<CompPowerTrader>();
         StargateComp = GetComp<Comp_Stargate>();
 
-        //fix nullreferenceexception that happens when
-        //the innercontainer disappears for some reason
+        // fix nullreferenceexception that happens when
+        // the innercontainer disappears for some reason
         CompTransporter transComp = GetComp<CompTransporter>();
         if (transComp != null && transComp.innerContainer == null)
         {
@@ -46,7 +46,7 @@ public class Building_Stargate : Building
 
             StargateComp.HasPower = PowerComp.PowerOn;
             if (!StargateComp.HasPower && StargateComp.IsIrisActivated)
-                StargateComp.ForceOpenIris();
+                StargateComp.ToggleIris();
         }
         else
             PowerComp.PowerOutput = -PowerComp.Props.PowerConsumption;

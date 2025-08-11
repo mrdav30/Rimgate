@@ -25,21 +25,3 @@ public static class Harmony_JobMaker_MakeJob_Rescue
         }
     }
 }
-
-[HarmonyPatch(typeof(JobMaker), nameof(JobMaker.MakeJob), new Type[] {
-    typeof(JobDef),
-    typeof(LocalTargetInfo)})]
-public static class Harmony_JobMaker_MakeJob_Flick
-{
-    static void Postfix(
-        ref Job __result,
-        JobDef def,
-        LocalTargetInfo targetA)
-    {
-        if (def == JobDefOf.Flick
-            && targetA.Thing.HasComp<Comp_Toggle>())
-        {
-            __result.def = Rimgate_DefOf.Rimgate_Toggle;
-        }
-    }
-}

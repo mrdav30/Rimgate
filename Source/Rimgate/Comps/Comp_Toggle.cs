@@ -117,16 +117,14 @@ public class Comp_Toggle : ThingComp
             command_Toggle.toggleAction = delegate
             {
                 _wantSwitchOn = !_wantSwitchOn;
-                UpdateFlickDesignation(parent);
+                Designation designation = parent.Map.designationManager.DesignationOn(parent, Rimgate_DefOf.Rimgate_DesignationToggle);
+
+                if (designation == null)
+                    parent.Map.designationManager.AddDesignation(new Designation(parent, Rimgate_DefOf.Rimgate_DesignationToggle));
+                else
+                    designation?.Delete();
             };
             yield return command_Toggle;
         }
-    }
-
-    public static void UpdateFlickDesignation(Thing t)
-    {
-        Designation designation = t.Map.designationManager.DesignationOn(t, DesignationDefOf.Flick);
-        if (designation == null)
-            t.Map.designationManager.AddDesignation(new Designation(t, DesignationDefOf.Flick));
     }
 }

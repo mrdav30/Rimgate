@@ -81,6 +81,33 @@ public class Comp_Stargate : ThingComp
         }
     }
 
+    public CompTransporter Transporter
+    {
+        get
+        {
+            _cachedtransComp ??= parent.GetComp<CompTransporter>();
+            return _cachedtransComp;
+        }
+    }
+
+    public CompGlower Glower
+    {
+        get
+        {
+            _cachedglowComp ??= parent.GetComp<CompGlower>();
+            return _cachedglowComp;
+        }
+    }
+
+    public CompExplosive Explosive
+    {
+        get
+        {
+            _cachedexplosiveComp ??= parent.GetComp<CompExplosive>();
+            return _cachedexplosiveComp;
+        }
+    }
+
     private List<Thing> _sendBuffer = new List<Thing>();
 
     private Queue<Thing> _recvBuffer = new Queue<Thing>();
@@ -88,6 +115,10 @@ public class Comp_Stargate : ThingComp
     private bool _irisIsActivated = false;
 
     public bool IsIrisActivated => _irisIsActivated;
+
+    public bool _wantsIrisToggled;
+
+    public bool WantsIrisClosed => _wantsIrisToggled;
 
     public PlanetTile ConnectedAddress = PlanetTile.Invalid;
 
@@ -100,6 +131,12 @@ public class Comp_Stargate : ThingComp
     private Graphic _stargatePuddle;
 
     private Graphic _stargateIris;
+
+    private CompTransporter _cachedtransComp;
+
+    private CompGlower _cachedglowComp;
+
+    private CompExplosive _cachedexplosiveComp;
 
     #region DHD Controls
 
@@ -117,7 +154,7 @@ public class Comp_Stargate : ThingComp
         if (invalid)
         {
             Messages.Message(
-                "Rimgate_GateDialFailed".Translate(),
+                "RG_GateDialFailed".Translate(),
                 MessageTypeDefOf.NegativeEvent);
             Rimgate_DefOf.Rimgate_StargateFailDial.PlayOneShot(SoundInfo.InMap(parent));
             return;
@@ -147,9 +184,11 @@ public class Comp_Stargate : ThingComp
         PuddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
         Rimgate_DefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(parent));
 
-        CompGlower glowComp = parent.GetComp<CompGlower>();
-        glowComp.Props.glowRadius = GlowRadius;
-        glowComp.PostSpawnSetup(false);
+        if(Glower != null)
+        {
+            Glower.Props.glowRadius = GlowRadius;
+            Glower.PostSpawnSetup(false);
+        }
 
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: finished opening gate {parent}");
@@ -157,8 +196,7 @@ public class Comp_Stargate : ThingComp
 
     public void CloseStargate(bool closeOtherGate)
     {
-        CompTransporter transComp = parent.GetComp<CompTransporter>();
-        transComp?.CancelLoad();
+        Transporter?.CancelLoad();
 
         //clear buffers just in case
         foreach (Thing thing in _sendBuffer)
@@ -187,19 +225,21 @@ public class Comp_Stargate : ThingComp
         if (PuddleSustainer != null)
             PuddleSustainer.End();
 
-        CompGlower glowComp = parent.GetComp<CompGlower>();
-        glowComp.Props.glowRadius = 0;
-        glowComp.PostSpawnSetup(false);
+        if(Glower != null)
+        {
+            Glower.Props.glowRadius = 0;
+            Glower.PostSpawnSetup(false);
+        }
 
         if (Props.explodeOnUse)
         {
-            CompExplosive explosive = parent.TryGetComp<CompExplosive>();
-            if (explosive == null)
+
+            if (Explosive == null)
             {
                 Log.Warning($"Rimgate :: Stargate {parent.ThingID} has the explodeOnUse tag set to true but doesn't have CompExplosive.");
             }
             else
-                explosive.StartWick();
+                Explosive.StartWick();
         }
 
         StargateIsActive = false;
@@ -364,29 +404,27 @@ public class Comp_Stargate : ThingComp
         if (parent.Fogged())
             FloodFillerFog.FloodUnfog(parent.Position, parent.Map);
 
-        Comp_Stargate sgComp = ConnectedStargate.TryGetComp<Comp_Stargate>();
-        CompTransporter transComp = parent.GetComp<CompTransporter>();
-
-        if (transComp != null)
+        if (Transporter != null)
         {
-            Thing thing = transComp.innerContainer.FirstOrFallback();
+            Thing thing = Transporter.innerContainer.FirstOrFallback();
             if (thing != null)
             {
                 if (thing.Spawned)
                     thing.DeSpawn();
 
                 AddToSendBuffer(thing);
-                transComp.innerContainer.Remove(thing);
+                Transporter.innerContainer.Remove(thing);
             }
-            else if (transComp.LoadingInProgressOrReadyToLaunch
-                && !transComp.AnyInGroupHasAnythingLeftToLoad)
+            else if (Transporter.LoadingInProgressOrReadyToLaunch
+                && !Transporter.AnyInGroupHasAnythingLeftToLoad)
             {
-                transComp.CancelLoad();
+                Transporter.CancelLoad();
             }
         }
 
         if (_sendBuffer.Any())
         {
+            Comp_Stargate sgComp = ConnectedStargate.TryGetComp<Comp_Stargate>();
             if (!IsReceivingGate)
             {
                 foreach (var item in _sendBuffer)
@@ -454,35 +492,35 @@ public class Comp_Stargate : ThingComp
     {
         StringBuilder sb = new StringBuilder();
         string address = GetStargateDesignation(GateAddress);
-        sb.AppendLine("Rimgate_GateAddress".Translate(address));
+        sb.AppendLine("RG_GateAddress".Translate(address));
         if (!StargateIsActive)
             sb.AppendLine("InactiveFacility".Translate().CapitalizeFirst());
         else
         {
             string connectAddress = GetStargateDesignation(ConnectedAddress);
-            string connectLabel = IsReceivingGate
-                ? "Rimgate_Incoming".Translate()
-                : "Rimgate_Outgoing".Translate();
-            sb.AppendLine("Rimgate_ConnectedToGate".Translate(connectAddress, connectLabel));
+            var connectLabel = (IsReceivingGate 
+                ? "RG_IncomingConnection" 
+                : "RG_OutgoingConnection").Translate();
+            sb.AppendLine("RG_ConnectedToGate".Translate(connectAddress, connectLabel));
         }
 
         if (HasIris)
         {
-            string irisLabel = _irisIsActivated
-                ? "Rimgate_IrisClosed".Translate()
-                : "Rimgate_IrisOpen".Translate();
-            sb.AppendLine("Rimgate_IrisStatus".Translate(irisLabel));
+            var irisLabel = (_irisIsActivated 
+                ? "RG_IrisClosedStatus" 
+                : "RG_IrisOpenStatus").Translate();
+            sb.AppendLine("RG_IrisStatus".Translate(irisLabel));
         }
 
         if (TicksUntilOpen > 0)
-            sb.AppendLine("Rimgate_TimeUntilGateLock".Translate(TicksUntilOpen.ToStringTicksToPeriod()));
+            sb.AppendLine("RG_TimeUntilGateLock".Translate(TicksUntilOpen.ToStringTicksToPeriod()));
 
         return sb.ToString().TrimEndNewlines();
     }
 
-    public void ForceOpenIris()
+    public void ToggleIris()
     {
-        _irisIsActivated = false;
+        _irisIsActivated = !_irisIsActivated;
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -492,18 +530,25 @@ public class Comp_Stargate : ThingComp
 
         if (Props.canHaveIris && HasIris)
         {
-            Command_Action command = new Command_Action
+            var action = (_irisIsActivated 
+                ? "RG_OpenIris" 
+                : "RG_CloseIris").Translate();
+            Command_Toggle command = new Command_Toggle
             {
-                defaultLabel = "Rimgate_OpenCloseIris".Translate(),
-                defaultDesc = "Rimgate_OpenCloseIrisDesc".Translate(),
+                defaultLabel = "RG_ToggleIris".Translate(action),
+                defaultDesc = "RG_ToggleIrisDesc".Translate(action),
                 icon = ContentFinder<Texture2D>.Get(Props.irisTexture, true),
-                action = delegate ()
+                isActive = () => _wantsIrisToggled,
+                toggleAction = delegate
                 {
-                    _irisIsActivated = !_irisIsActivated;
-                    if (_irisIsActivated)
-                        Rimgate_DefOf.Rimgate_IrisOpen.PlayOneShot(SoundInfo.InMap(parent));
+                    _wantsIrisToggled = !_wantsIrisToggled;
+
+                    Designation designation = parent.Map.designationManager.DesignationOn(parent, Rimgate_DefOf.Rimgate_DesignationToggleIris);
+
+                    if (designation == null)
+                        parent.Map.designationManager.AddDesignation(new Designation(parent, Rimgate_DefOf.Rimgate_DesignationToggleIris));
                     else
-                        Rimgate_DefOf.Rimgate_IrisClose.PlayOneShot(SoundInfo.InMap(parent));
+                        designation?.Delete();
                 }
             };
 
@@ -541,6 +586,16 @@ public class Comp_Stargate : ThingComp
         yield return commandDevMode;
     }
 
+    public void DoToggleIris()
+    {
+        _irisIsActivated = !_irisIsActivated;
+        _wantsIrisToggled = false;
+        if (_irisIsActivated)
+            Rimgate_DefOf.Rimgate_IrisOpen.PlayOneShot(SoundInfo.InMap(parent));
+        else
+            Rimgate_DefOf.Rimgate_IrisClose.PlayOneShot(SoundInfo.InMap(parent));
+    }
+
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
     {
         if (!StargateIsActive || _irisIsActivated)
@@ -558,18 +613,18 @@ public class Comp_Stargate : ThingComp
             yield break;
 
 
-        var enterLabel = IsReceivingGate
-            ? "Rimgate_EnterReceivingStargateAction".Translate()
-            : "Rimgate_EnterStargateAction".Translate();
+        var enterLabel = (IsReceivingGate
+            ? "RG_EnterReceivingStargateAction"
+            : "RG_EnterStargateAction").Translate();
         yield return new FloatMenuOption(enterLabel, () =>
         {
             Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_EnterStargate, parent);
             selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         });
 
-        var bringLabel = IsReceivingGate
-            ? "Rimgate_BringPawnToReceivingGateAction".Translate()
-            : "Rimgate_BringPawnToGateAction".Translate();
+        var bringLabel = (IsReceivingGate
+            ? "RG_BringPawnToReceivingGateAction"
+            : "RG_BringPawnToGateAction").Translate();
         yield return new FloatMenuOption(bringLabel, () =>
         {
             TargetingParameters targetingParameters = new TargetingParameters()
@@ -611,9 +666,9 @@ public class Comp_Stargate : ThingComp
                 allowedPawns.Add(selPawn);
         }
 
-        var label = IsReceivingGate
-            ? "Rimgate_EnterReceivingStargateWithSelectedAction".Translate()
-            : "Rimgate_EnterStargateWithSelectedAction".Translate();
+        var label = (IsReceivingGate
+            ? "RG_EnterReceivingStargateWithSelectedAction"
+            : "RG_EnterStargateWithSelectedAction").Translate();
         yield return new FloatMenuOption(label, () =>
         {
             foreach (Pawn selPawn in allowedPawns)
@@ -653,6 +708,7 @@ public class Comp_Stargate : ThingComp
         Scribe_Values.Look(ref IsReceivingGate, "IsRecievingGate");
         Scribe_Values.Look(ref HasIris, "HasIris");
         Scribe_Values.Look(ref _irisIsActivated, "_irisIsActivated");
+        Scribe_Values.Look(ref _wantsIrisToggled, "_wantsIrisToggled");
         Scribe_Values.Look(ref TicksSinceOpened, "TicksSinceOpened");
         Scribe_Values.Look(ref ConnectedAddress, "_connectedAddress");
         Scribe_References.Look(ref ConnectedStargate, "_connectedStargate");
@@ -662,7 +718,7 @@ public class Comp_Stargate : ThingComp
 
     public override string CompInspectStringExtra()
     {
-        return base.CompInspectStringExtra() + "Rimgate_RespawnGateString".Translate();
+        return base.CompInspectStringExtra() + "RG_RespawnGateString".Translate();
     }
     #endregion
 }

@@ -19,6 +19,10 @@ public class Comp_DialHomeDevice : ThingComp
 
     private CompPowerTrader _powerComp;
 
+    private bool _wantGateClosed;
+
+    public bool WantsGateClosed => _wantGateClosed;
+
     public bool IsConnectedToStargate
     {
         get
@@ -45,7 +49,7 @@ public class Comp_DialHomeDevice : ThingComp
         if (!IsConnectedToStargate)
         {
             yield return new FloatMenuOption(
-                "Rimgate_CannotDialNoGate".Translate(),
+                "RG_CannotDialNoGate".Translate(),
                 null);
             yield break;
         }
@@ -60,7 +64,7 @@ public class Comp_DialHomeDevice : ThingComp
         if (!canReach)
         {
             yield return new FloatMenuOption(
-                "Rimgate_CannotDialNoReach".Translate(),
+                "RG_CannotDialNoReach".Translate(),
                 null);
             yield break;
         }
@@ -70,25 +74,16 @@ public class Comp_DialHomeDevice : ThingComp
             && !_powerComp.PowerOn)
         {
             yield return new FloatMenuOption(
-                "Rimgate_CannotDialNoPower".Translate(),
+                "RG_CannotDialNoPower".Translate(),
                 null);
             yield break;
         }
 
         Comp_Stargate stargate = GetLinkedStargate();
-
-        if (stargate == null)
-        {
-            yield return new FloatMenuOption(
-                "Rimgate_CannotDialNoGate".Translate(),
-                null);
-            yield break;
-        }
-
         if (stargate.StargateIsActive)
         {
             yield return new FloatMenuOption(
-                "Rimgate_CannotDialGateIsActive".Translate(),
+                "RG_CannotDialGateIsActive".Translate(),
                 null);
 
             yield break;
@@ -100,7 +95,7 @@ public class Comp_DialHomeDevice : ThingComp
         if (addressComp.AddressCount < 2) // home + another site
         {
             yield return new FloatMenuOption(
-                "Rimgate_CannotDialNoDestinations".Translate(),
+                "RG_CannotDialNoDestinations".Translate(),
                 null);
             yield break;
         }
@@ -108,7 +103,7 @@ public class Comp_DialHomeDevice : ThingComp
         if (stargate.TicksUntilOpen > -1)
         {
             yield return new FloatMenuOption(
-                "Rimgate_CannotDialIncoming".Translate(),
+                "RG_CannotDialIncoming".Translate(),
                 null);
             yield break;
         }
@@ -122,8 +117,9 @@ public class Comp_DialHomeDevice : ThingComp
             string designation = Comp_Stargate.GetStargateDesignation(tile);
 
             yield return new FloatMenuOption(
-                "Rimgate_DialGate".Translate(designation, sgMap.Label),
-                () => {
+                "RG_DialGate".Translate(designation, sgMap.Label),
+                () =>
+                {
                     LastDialledAddress = tile;
                     Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_DialStargate, parent);
                     selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
@@ -140,23 +136,43 @@ public class Comp_DialHomeDevice : ThingComp
         if (stargate == null)
             yield break;
 
-        Command_Action command = new Command_Action
+        Command_Toggle command = new Command_Toggle
         {
-            defaultLabel = "Rimgate_CloseStargate".Translate(),
-            defaultDesc = "Rimgate_CloseStargateDesc".Translate(),
-            icon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel", true)
+            defaultLabel = "RG_CloseStargate".Translate(),
+            defaultDesc = "RG_CloseStargateDesc".Translate(),
+            icon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel", true),
+            isActive = () => _wantGateClosed,
+            toggleAction = delegate
+            {
+                _wantGateClosed = !_wantGateClosed;
+
+                Designation designation = parent.Map.designationManager.DesignationOn(parent, Rimgate_DefOf.Rimgate_DesignationCloseStargate);
+
+                if (designation == null)
+                   parent.Map.designationManager.AddDesignation(new Designation(parent, Rimgate_DefOf.Rimgate_DesignationCloseStargate));
+                else
+                    designation?.Delete();
+            }
         };
-        command.action = delegate ()
-        {
-            stargate.CloseStargate(true);
-        };
+
         if (!stargate.StargateIsActive)
-            command.Disable("Rimgate_GateIsNotActive".Translate());
+            command.Disable("RG_GateIsNotActive".Translate());
         else if (stargate.IsReceivingGate)
-            command.Disable("Rimgate_CannotCloseIncoming".Translate());
+            command.Disable("RG_CannotCloseIncoming".Translate());
 
         yield return command;
     }
+
+    public void DoCloseGate()
+    {
+        Comp_Stargate stargate = GetLinkedStargate();
+        if (stargate == null)
+            return;
+
+        _wantGateClosed = false;
+        stargate.CloseStargate(true);
+    }
+
     public Comp_Stargate GetLinkedStargate()
     {
         if (Props.selfDialler)
@@ -168,7 +184,7 @@ public class Comp_DialHomeDevice : ThingComp
         return _facilityComp.LinkedBuildings[0].TryGetComp<Comp_Stargate>();
     }
 
-    public static Thing GetDHDOnMap(Map map)
+    public static Thing GetDhdOnMap(Map map)
     {
         Thing dhdOnMap = null;
         foreach (Thing thing in map.listerThings.AllThings)
@@ -182,5 +198,5 @@ public class Comp_DialHomeDevice : ThingComp
         }
 
         return dhdOnMap;
-    }
+    }  
 }
