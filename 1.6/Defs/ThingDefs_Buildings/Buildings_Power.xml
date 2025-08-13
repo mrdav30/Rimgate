@@ -18,6 +18,7 @@
         <offset>(-0.03,0,-0.1)</offset>
       </shadowData>
     </graphicData>
+    <minifiedDef>MinifiedThing</minifiedDef>
     <uiIconPath>Things/Building/Power/NaquadriaGenerator/RGNaquadriaFiredGenerator</uiIconPath>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
@@ -101,6 +102,7 @@
         <offset>(-0.03,0,-0.1)</offset>
       </shadowData>
     </graphicData>
+    <minifiedDef>MinifiedThing</minifiedDef>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
     <pathCost>150</pathCost>
@@ -180,7 +182,7 @@
     <stackLimit>1</stackLimit>
     <minifiedDef>MinifiedThing</minifiedDef>
     <thingCategories>
-      <li>BuildingsPower</li>
+      <li>Artifacts</li>
     </thingCategories>
     <altitudeLayer>Building</altitudeLayer>
     <castEdgeShadows>true</castEdgeShadows>

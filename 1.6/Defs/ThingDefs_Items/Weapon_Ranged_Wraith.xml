@@ -217,7 +217,7 @@
 		<projectile>
 			<flyOverhead>false</flyOverhead>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>5</damageAmountBase>
+			<damageAmountBase>10</damageAmountBase>
 			<stoppingPower>1.5</stoppingPower>
 			<armorPenetrationBase>0.65</armorPenetrationBase>
 			<speed>70</speed>
