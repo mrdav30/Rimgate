@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <PawnKindDef ParentName="BaseMechanoidKind">
+        <defName>Rimgate_Replicator</defName>
+        <label>replicator</label>
+        <race>Rimgate_Replicator</race>
+        <defaultFactionType>Rimgate_Replicator</defaultFactionType>
+        <aiAvoidCover>true</aiAvoidCover>
+        <combatPower>90</combatPower>
+        <lifeStages>
+            <li MayRequire="Ludeon.RimWorld.Biotech">
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
+                    <drawSize>1.45</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
+                    <drawSize>1.45</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+        </lifeStages>
+        <isGoodBreacher>true</isGoodBreacher>
+        <weaponMoney>9999~9999</weaponMoney>
+        <weaponTags />
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="BaseMechanoidKind">
+        <defName>Rimgate_Malp</defName>
+        <label>MALP</label>
+        <race>Rimgate_Malp</race>
+        <weaponMoney>9999~9999</weaponMoney>
+        <combatPower>400</combatPower>
+        <weaponTags></weaponTags>
+        <techHediffsChance MayRequire="Ludeon.RimWorld.Biotech">1</techHediffsChance>
+        <techHediffsMoney>9999~9999</techHediffsMoney>
+        <controlGroupPortraitZoom>0.8</controlGroupPortraitZoom>
+        <allowInMechClusters>false</allowInMechClusters>
+        <combatPower>250</combatPower>
+        <lifeStages>
+            <li MayRequire="Ludeon.RimWorld.Biotech">
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Malp/RGMalp</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>3</drawSize>
+                    <shadowData>
+                        <volume>(0.6, 0.8, 0.6)</volume>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Malp/RGMalp</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>3</drawSize>
+                    <shadowData>
+                        <volume>(0.6, 0.8, 0.6)</volume>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+        </lifeStages>
+        <controlGroupPortraitZoom>0.65</controlGroupPortraitZoom>
+    </PawnKindDef>
+
+</Defs>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <BodyPartGroupDef>
+        <defName>Rimgate_MalpGrappleClaw</defName>
+        <label>MALP grapple arm claw</label>
+        <labelShort>grapple arm claw</labelShort>
+    </BodyPartGroupDef>
+
+    <BodyPartDef>
+        <defName>Rimgate_MalpGrappleArm</defName>
+        <label>grapple arm</label>
+        <hitPoints>40</hitPoints>
+        <frostbiteVulnerability>5</frostbiteVulnerability>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <alive>false</alive>
+        <bleedRate>0</bleedRate>
+        <tags>
+            <li>ManipulationLimbCore</li>
+        </tags>
+    </BodyPartDef>
+
+    <BodyPartDef>
+        <defName>Rimgate_MalpGrappleClaw</defName>
+        <label>grapple arm claw</label>
+        <hitPoints>30</hitPoints>
+        <frostbiteVulnerability>5</frostbiteVulnerability>
+        <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+        <skinCovered>false</skinCovered>
+        <solid>true</solid>
+        <alive>false</alive>
+        <bleedRate>0</bleedRate>
+    </BodyPartDef>
+
+</Defs>

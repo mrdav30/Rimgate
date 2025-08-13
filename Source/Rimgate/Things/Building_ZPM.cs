@@ -7,11 +7,12 @@ using RimWorld;
 
 namespace Rimgate;
 
+[StaticConstructorOnStartup]
 public class Building_ZPM : Building
 {
     public const int ZpmAdditionDistance = 3;
 
-    private static Dictionary<string, Graphic> _chargeGraphics = new();
+    public static Dictionary<string, Graphic> ChargeGraphics = new();
 
     private CompPowerBattery _powerComp;
 
@@ -20,7 +21,7 @@ public class Building_ZPM : Building
 
     static Building_ZPM()
     {
-        if (Building_ZPM._chargeGraphics.Any())
+        if (Building_ZPM.ChargeGraphics.Any())
             return;
 
         string[] powerStates = { "Depleted", "25%", "50%", "75%", "Full" };
@@ -41,7 +42,7 @@ public class Building_ZPM : Building
                 null);
 
             graphic.Init(request);
-            _chargeGraphics.Add(powerState, graphic);
+            ChargeGraphics.Add(powerState, graphic);
         }
     }
 
@@ -96,15 +97,15 @@ public class Building_ZPM : Building
             // var chargePercent = (int) ((float) currentCapacitorCharge / (float) maxCapacitorCharge) * 100;
             var chargePercent = (int)(_powerComp.StoredEnergyPct * 100);
             if (chargePercent <= 10)
-                return Building_ZPM._chargeGraphics["Depleted"];
+                return Building_ZPM.ChargeGraphics["Depleted"];
             else if (chargePercent <= 25)
-                return Building_ZPM._chargeGraphics["25%"];
+                return Building_ZPM.ChargeGraphics["25%"];
             else if (chargePercent <= 50)
-                return Building_ZPM._chargeGraphics["50%"];
+                return Building_ZPM.ChargeGraphics["50%"];
             else if (chargePercent <= 75)
-                return Building_ZPM._chargeGraphics["75%"];
+                return Building_ZPM.ChargeGraphics["75%"];
             else
-                return Building_ZPM._chargeGraphics["Full"];
+                return Building_ZPM.ChargeGraphics["Full"];
         }
     }
 

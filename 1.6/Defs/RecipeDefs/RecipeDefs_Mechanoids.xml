@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RecipeDef ParentName="BaseMechanoidRecipe">
+        <defName>Rimgate_Malp</defName>
+        <label>MALP</label>
+        <description>Gestate a MALP.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_Malp</ThingDef>
+        </descriptionHyperlinks>
+        <gestationCycles>5</gestationCycles>
+        <ingredients Inherit="False">
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Plasteel</li>
+                    </thingDefs>
+                </filter>
+                <count>125</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>75</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentIndustrial</li>
+                    </thingDefs>
+                </filter>
+                <count>20</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Gold</li>
+                    </thingDefs>
+                </filter>
+                <count>25</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentSpacer</li>
+                    </thingDefs>
+                </filter>
+                <count>5</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SubcoreRegular</li>
+                    </thingDefs>
+                </filter>
+                <count>4</count>
+            </li>
+        </ingredients>
+        <products>
+            <Rimgate_Malp>1</Rimgate_Malp>
+        </products>
+        <researchPrerequisite>Rimgate_MalpGestation</researchPrerequisite>
+    </RecipeDef>
+
+    <!-- Resurrection -->
+
+    <RecipeDef ParentName="BaseMechanoidRecipe">
+        <defName>Rimgate_ResurrectMalp</defName>
+        <label>resurrect MALP</label>
+        <description>Resurrect a friendly MALP.</description>
+        <gestationCycles>3</gestationCycles>
+        <mechResurrection>true</mechResurrection>
+        <jobString>Resurrecting mech.</jobString>
+        <fixedIngredientFilter>
+            <specialFiltersToAllow>
+                <li>AllowCorpsesMechFriendly</li>
+            </specialFiltersToAllow>
+        </fixedIngredientFilter>
+        <forceHiddenSpecialFilters>
+            <li>AllowCorpsesMechFriendly</li>
+        </forceHiddenSpecialFilters>
+        <researchPrerequisite>Rimgate_MalpGestation</researchPrerequisite>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>Corpses</li>
+                    </categories>
+                </filter>
+                <count>1</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>100</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Plasteel</li>
+                    </thingDefs>
+                </filter>
+                <count>125</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentIndustrial</li>
+                    </thingDefs>
+                </filter>
+                <count>10</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SubcoreRegular</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Corpse_Rimgate_Malp</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
+
+</Defs>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <BodyDef>
+        <defName>Rimgate_Malp</defName>
+        <label>MALP</label>
+        <corePart>
+            <def>MechanicalThorax</def>
+            <height>Middle</height>
+            <depth>Outside</depth>
+            <parts>
+                <li>
+                    <def>MechanicalNeck</def>
+                    <coverage>0.10</coverage>
+                    <height>Top</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalHead</def>
+                            <coverage>0.80</coverage>
+                            <groups>
+                                <li>HeadAttackTool</li>
+                            </groups>
+                            <parts>
+                                <li>
+                                    <def>ArtificialBrain</def>
+                                    <coverage>0.10</coverage>
+                                    <depth>Inside</depth>
+                                </li>
+                                <li>
+                                    <def>SightSensor</def>
+                                    <customLabel>left sight sensor</customLabel>
+                                    <coverage>0.13</coverage>
+                                </li>
+                                <li>
+                                    <def>SightSensor</def>
+                                    <customLabel>right sight sensor</customLabel>
+                                    <coverage>0.13</coverage>
+                                </li>
+                                <li>
+                                    <def>HearingSensor</def>
+                                    <customLabel>satellite relay</customLabel>
+                                    <coverage>0.20</coverage>
+                                </li>
+                                <li>
+                                    <def>SmellSensor</def>
+                                    <coverage>0.10</coverage>
+                                </li>
+                            </parts>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>MechanicalShoulder</def>
+                    <customLabel>grapple arm join</customLabel>
+                    <coverage>0.17</coverage>
+                    <parts>
+                        <li>
+                            <def>Rimgate_MalpGrappleArm</def>
+                            <customLabel>grapple arm</customLabel>
+                            <coverage>0.85</coverage>
+                            <parts>
+                                <li>
+                                    <def>Rimgate_MalpGrappleClaw</def>
+                                    <customLabel>grapple arm claw</customLabel>
+                                    <coverage>0.2</coverage>
+                                    <height>Bottom</height>
+                                    <groups>
+                                        <li>Rimgate_MalpGrappleClaw</li>
+                                    </groups>
+                                </li>
+                            </parts>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>MechanicalLeg</def>
+                    <customLabel>front axle</customLabel>
+                    <coverage>0.2</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>left tire</customLabel>
+                            <coverage>0.1</coverage>
+                        </li>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>right tire</customLabel>
+                            <coverage>0.1</coverage>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>MechanicalLeg</def>
+                    <customLabel>center axle</customLabel>
+                    <coverage>0.2</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>left tire</customLabel>
+                            <coverage>0.1</coverage>
+                        </li>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>right tire</customLabel>
+                            <coverage>0.1</coverage>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>MechanicalLeg</def>
+                    <customLabel>rear axle</customLabel>
+                    <coverage>0.2</coverage>
+                    <height>Bottom</height>
+                    <parts>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>left tire</customLabel>
+                            <coverage>0.1</coverage>
+                        </li>
+                        <li>
+                            <def>MechanicalFoot</def>
+                            <customLabel>right tire</customLabel>
+                            <coverage>0.1</coverage>
+                        </li>
+                    </parts>
+                </li>
+                <li>
+                    <def>Reactor</def>
+                    <coverage>0.06</coverage>
+                    <depth>Inside</depth>
+                </li>
+                <li>
+                    <def>FluidReprocessor</def>
+                    <coverage>0.04</coverage>
+                    <depth>Inside</depth>
+                </li>
+            </parts>
+        </corePart>
+    </BodyDef>
+
+
+</Defs>

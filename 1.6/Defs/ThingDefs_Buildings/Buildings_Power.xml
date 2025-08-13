@@ -19,6 +19,9 @@
       </shadowData>
     </graphicData>
     <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsPower</li>
+    </thingCategories>
     <uiIconPath>Things/Building/Power/NaquadriaGenerator/RGNaquadriaFiredGenerator</uiIconPath>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
@@ -30,6 +33,7 @@
       <MaxHitPoints>350</MaxHitPoints>
       <WorkToBuild>3000</WorkToBuild>
       <Flammability>1.0</Flammability>
+      <Mass>30</Mass>
       <Beauty>-25</Beauty>
     </statBases>
     <tickerType>Normal</tickerType>
@@ -103,6 +107,9 @@
       </shadowData>
     </graphicData>
     <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsPower</li>
+    </thingCategories>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
     <pathCost>150</pathCost>
@@ -113,6 +120,7 @@
       <MaxHitPoints>350</MaxHitPoints>
       <WorkToBuild>3000</WorkToBuild>
       <Flammability>1.0</Flammability>
+      <Mass>30</Mass>
       <Beauty>-25</Beauty>
     </statBases>
     <tickerType>Normal</tickerType>

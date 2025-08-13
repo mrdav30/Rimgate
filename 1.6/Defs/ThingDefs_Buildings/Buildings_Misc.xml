@@ -9,7 +9,7 @@
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<stealable>false</stealable>
 		<constructEffect>ConstructMetal</constructEffect>
-		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<altitudeLayer>ItemImportant</altitudeLayer>
 		<fillPercent>0.20</fillPercent>
 		<canOverlapZones>true</canOverlapZones>
 		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>

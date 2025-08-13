@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="MechGestator"]/recipes</xpath>
+        <order>Prepend</order>
+        <value>
+            <li>Rimgate_Malp</li>
+            <li>Rimgate_ResurrectMalp</li>
+        </value>
+    </Operation>
+</Patch>

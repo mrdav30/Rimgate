@@ -111,7 +111,7 @@
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCSoldier</defName>
         <label>Tau'ri soldier</label>
-        <combatPower>110</combatPower>
+        <combatPower>80</combatPower>
         <weaponTags>
             <li>Rimgate_TauriSubmachineGun_tag</li>
             <li>Rimgate_TauriAssaultRifle_tag</li>
@@ -134,7 +134,7 @@
         <defName>Rimgate_TauriRifleman</defName>
         <label>Tau'ri rifleman</label>
         <race>Human</race>
-        <combatPower>245</combatPower>
+        <combatPower>110</combatPower>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
         </weaponTags>
@@ -166,7 +166,7 @@
         <defName>Rimgate_TauriSpecialForces</defName>
         <label>Tau'ri special forces</label>
         <race>Human</race>
-        <combatPower>370</combatPower>
+        <combatPower>120</combatPower>
         <itemQuality>Good</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriShotgun_tag</li>

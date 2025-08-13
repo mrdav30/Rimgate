@@ -71,6 +71,8 @@
         </comps>
     </ThingDef>
 
+    <!-- ==================== Tretonin ==================== -->
+
     <ThingDef ParentName="MechSerumBase">
         <defName>Rimgate_Tretonin</defName>
         <label>Tretonin</label>
@@ -147,6 +149,39 @@
         <thingSetMakerTags>
             <li>RewardStandardCore</li>
         </thingSetMakerTags>
+    </ThingDef>
+
+    <!-- ==================== Meat ==================== -->
+
+    <ThingDef ParentName="OrganicProductBase">
+        <defName>Rimgate_CocoonedMeat</defName>
+        <label>cocooned meat</label>
+        <description>some meat, now lovingly wrapped in alien silk for freshness.\nSmells faintly of despair and industrial solvents. At least it won’t rot!</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGCocoonedMeat</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <ingestible>
+            <foodType>Kibble</foodType>
+            <preferability>RawBad</preferability>
+            <ingestEffect>EatMeat</ingestEffect>
+            <ingestSound>RawMeat_Eat</ingestSound>
+            <tasteThought>AteRawFood</tasteThought>
+        </ingestible>
+        <socialPropernessMatters>true</socialPropernessMatters>
+        <statBases>
+            <DeteriorationRate Inherit="False">0</DeteriorationRate>
+            <Nutrition>0.20</Nutrition>
+            <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+            <MarketValue>2</MarketValue>
+            <MaxHitPoints>60</MaxHitPoints>
+            <Flammability>1.0</Flammability>
+            <Mass>0.25</Mass>
+        </statBases>
+        <thingCategories>
+            <li>MeatRaw</li>
+        </thingCategories>
+        <tickerType>Rare</tickerType>
     </ThingDef>
 
 </Defs>

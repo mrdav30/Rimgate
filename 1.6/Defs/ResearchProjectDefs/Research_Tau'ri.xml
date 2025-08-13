@@ -74,6 +74,19 @@
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_MalpGestation</defName>
+        <label>MALP mech tech</label>
+        <description>Unlock the secrets of building your own MALP — a rugged, remote-controlled explorer that bravely goes where your colonists won’t. Comes with wheels, sensors, and zero complaints about working conditions.</description>
+        <baseCost>3500</baseCost>
+        <prerequisites>
+            <li>Rimgate_TauriBasic</li>
+            <li>StandardMechtech</li>
+        </prerequisites>
+        <researchViewX>2</researchViewX>
+        <researchViewY>0</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_NaquadahRefinement</defName>
         <label>Naquadah refinement</label>
         <description>learn to refine raw Naquadah into Naquadria—an unstable but potent power source.\nGreat for experimental engines, questionable ethics, and catastrophic explosions.</description>

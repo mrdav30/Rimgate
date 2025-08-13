@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- ============================== Beds ============================== -->
+  <!-- Sarcophagus -->
 
   <ThingDef ParentName="FurnitureBase">
     <defName>Rimgate_GoauldSarcophagus</defName>
@@ -139,6 +139,110 @@
     </researchPrerequisites>
     <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
     <techLevel>Ultra</techLevel>
+  </ThingDef>
+
+  <!-- Throne -->
+
+  <ThingDef ParentName="FurnitureWithQualityBase">
+    <defName>Rimgate_GoauldThrone</defName>
+    <label>Goa'uld throne</label>
+    <description>Once graced by the golden posterior of a self-proclaimed god, this majestic Goa’uld throne is less “furniture” and more “divine flex.” Forged from arrogance and overdesigned with an absurd number of comfort features — including integrated body massagers, an atmospheric pressure bidet, and a modesty-preserving nanosteam shower — it’s perfect for those who like to rule, gloat, and exfoliate at the same time.\n\nJust don’t let a Tok’ra sit in it. Ever.</description>
+    <castEdgeShadows>False</castEdgeShadows>
+    <size>(3,2)</size>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
+    <statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+      <WorkToBuild>40000</WorkToBuild>
+      <Mass>100</Mass>
+      <Flammability>1.0</Flammability>
+      <Beauty>60</Beauty>
+      <Comfort>2</Comfort>
+      <MeditationFocusStrength MayRequire="Ludeon.RimWorld.Royalty">0.15</MeditationFocusStrength>
+    </statBases>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
+    <costStuffCount>150</costStuffCount>
+    <costList>
+      <Steel>200</Steel>
+      <Gold>100</Gold>
+    </costList>
+    <building>
+      <isSittable>true</isSittable>
+      <paintable>true</paintable>
+      <buildingSizeCategory>Medium</buildingSizeCategory>
+    </building>
+    <uiIconOffset>(0, 0.04)</uiIconOffset>
+    <uiIconScale>1</uiIconScale>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <graphicData>
+      <drawSize>(3,3)</drawSize>
+      <texPath>Things/Building/Furniture/RGGoauldThrone</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <shadowData>
+        <volume>(2.1,0.5,1.5)</volume>
+      </shadowData>
+      <damageData>
+        <rect>(0.1,0.1,2.8,1.8)</rect>
+      </damageData>
+    </graphicData>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <drawGUIOverlayQuality>false</drawGUIOverlayQuality>
+    <rotatable>false</rotatable>
+    <altitudeLayer>Building</altitudeLayer>
+    <category>Building</category>
+    <hasInteractionCell>true</hasInteractionCell>
+    <thingClass>Building_Throne</thingClass>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <pathCost>30</pathCost>
+    <fillPercent>0.4</fillPercent>
+    <thingSetMakerTags>
+      <li>RewardStandardQualitySuper</li>
+    </thingSetMakerTags>
+    <researchPrerequisites>
+      <li>ComplexFurniture</li>
+      <li>Rimgate_GoauldBasic</li>
+    </researchPrerequisites>
+    <ritualFocus MayRequire="Ludeon.RimWorld.Royalty">
+      <spectateDistance>2</spectateDistance>
+      <allowedSpectateSides>Up</allowedSpectateSides>
+    </ritualFocus>
+    <placeWorkers>
+      <li MayRequire="Ludeon.RimWorld.Royalty">PlaceWorker_RitualFocus</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>True</drawPlaceWorkersWhileSelected>
+    <comps>
+      <li Class="CompProperties_AssignableToPawn" MayRequire="Ludeon.RimWorld.Royalty">
+        <drawAssignmentOverlay>true</drawAssignmentOverlay>
+        <compClass>CompAssignableToPawn_Throne</compClass>
+        <noAssignablePawnsDesc>Throne ownership requires a person with a royal title.</noAssignablePawnsDesc>
+      </li>
+      <li Class="CompProperties_MeditationFocus" MayRequire="Ludeon.RimWorld.Royalty">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Dignified</li>
+        </focusTypes>
+        <offsets>
+          <li Class="FocusStrengthOffset_ThroneSatisfiesRequirements">
+            <offset>0.08</offset>
+          </li>
+          <li Class="FocusStrengthOffset_RoomImpressiveness">
+            <curve>
+              <points>
+                <li>(0, -0.05)</li>
+                <li>(30, 0.00)</li>
+                <li>(60, 0.04)</li>
+                <li>(100, 0.08)</li>
+                <li>(170, 0.10)</li>
+              </points>
+            </curve>
+          </li>
+        </offsets>
+      </li>
+    </comps>
   </ThingDef>
 
 </Defs>

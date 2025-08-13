@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <ThingDef ParentName="BaseMechanoid">
+        <defName>Rimgate_Replicator</defName>
+        <label>Replicator</label>
+        <description>a mechanical, spider-like creature composed of self-replicating blocks of metal. Highly adaptable and extremely dangerous, specializing in rapid approach and close-range combat.</description>
+        <tools>
+            <li>
+                <label>left blade</label>
+                <capacities>
+                    <li>Cut</li>
+                    <li>Stab</li>
+                    <li>Rimgate_SiegeBlunt</li>
+                </capacities>
+                <power>20</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+            </li>
+            <li>
+                <label>right blade</label>
+                <capacities>
+                    <li>Cut</li>
+                    <li>Stab</li>
+                    <li>Rimgate_SiegeBlunt</li>
+                </capacities>
+                <power>20</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+            </li>
+            <li>
+                <label>head</label>
+                <capacities>
+                    <li>Blunt</li>
+                    <li>Rimgate_SiegeBlunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                <chanceFactor>0.2</chanceFactor>
+            </li>
+            <li>
+                <label>cutting mandibles</label>
+                <capacities>
+                    <li>Cut</li>
+                    <li>Rimgate_SiegeBlunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.5</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+            </li>
+        </tools>
+        <statBases>
+            <MarketValue>350</MarketValue>
+            <ArmorRating_Sharp>0.56</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.20</ArmorRating_Heat>
+            <PsychicSensitivity>0.75</PsychicSensitivity>
+            <MoveSpeed>4.7</MoveSpeed>
+            <Flammability>0.1</Flammability>
+            <BandwidthCost MayRequire="Ludeon.Rimworld.Biotech">4</BandwidthCost>
+            <MoveSpeed>4.5</MoveSpeed>
+        </statBases>
+        <race>
+            <body>Rimgate_Replicator</body>
+            <thinkTreeMain>Mechanoid</thinkTreeMain>
+            <thinkTreeConstant>MechConstant</thinkTreeConstant>
+            <intelligence>ToolUser</intelligence>
+            <nameCategory>NoName</nameCategory>
+            <nameGenerator Inherit="false" />
+
+            <soundMeleeHitPawn>Pawn_Melee_MechanoidSlash_HitPawn</soundMeleeHitPawn>
+            <soundMeleeHitBuilding>Pawn_Melee_MechanoidSlash_HitBuilding</soundMeleeHitBuilding>
+            <soundMeleeMiss>Pawn_Melee_MechanoidSlash_Miss</soundMeleeMiss>
+
+            <meatLabel>metal bits</meatLabel>
+
+            <baseBodySize>1.0</baseBodySize>
+            <baseHealthScale>1.32</baseHealthScale>
+
+            <gestationPeriodDays>0</gestationPeriodDays>
+
+            <lifeStageAges>
+                <li>
+                    <def>MechanoidFullyFormed</def>
+                    <minAge>0</minAge>
+                    <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+                    <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+                    <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+                </li>
+                <li MayRequire="Ludeon.RimWorld.Biotech">
+                    <def>MechanoidFullyFormed</def>
+                    <minAge>100</minAge>
+                    <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+                    <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+                    <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+                </li>
+            </lifeStageAges>
+            <mechWeightClass>Medium</mechWeightClass>
+        </race>
+        <butcherProducts>
+            <Steel>20</Steel>
+            <Plasteel>5</Plasteel>
+            <ComponentIndustrial>1</ComponentIndustrial>
+        </butcherProducts>
+        <tradeTags>
+            <li>Mechanoid</li>
+        </tradeTags>
+    </ThingDef>
+
+    <ThingDef ParentName="BaseMechanoid">
+        <defName>Rimgate_Malp</defName>
+        <label>MALP</label>
+        <description>The Mobile Analytic Laboratory Probe, or M.A.L.P., is a reconnaissance probe employed by the Tau'ri to determine if the conditions on the other side of an active wormhole are safe before sending a team through.</description>
+        <statBases>
+            <WorkSpeedGlobal>3</WorkSpeedGlobal>
+            <FoodPoisonChance>0</FoodPoisonChance>
+            <MarketValue>17777</MarketValue>
+            <MoveSpeed>6.30</MoveSpeed>
+            <ControlTakingTime>23</ControlTakingTime>
+            <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+            <BandwidthCost>2</BandwidthCost>
+            <EnergyShieldEnergyMax>7</EnergyShieldEnergyMax>
+            <MechEnergyLossPerHP>0.7</MechEnergyLossPerHP>
+            <CleaningSpeed>2</CleaningSpeed>
+            <MiningSpeed>2</MiningSpeed>
+            <ConstructionSpeed>2</ConstructionSpeed>
+            <SmeltingSpeed>2</SmeltingSpeed>
+            <DeepDrillingSpeed>2</DeepDrillingSpeed>
+            <GeneralLaborSpeed>2</GeneralLaborSpeed>
+            <ConstructSuccessChance>2</ConstructSuccessChance>
+        </statBases>
+        <race>
+            <intelligence>ToolUser</intelligence>
+            <thinkTreeMain>Mechanoid</thinkTreeMain>
+            <mechWeightClass>Medium</mechWeightClass>
+        </race>
+        <butcherProducts>
+            <Steel>100</Steel>
+            <Plasteel>100</Plasteel>
+            <Gold>100</Gold>
+            <ComponentSpacer>1</ComponentSpacer>
+        </butcherProducts>
+        <race>
+            <body>Rimgate_Malp</body>
+            <baseBodySize>3</baseBodySize>
+            <baseHealthScale>2.32</baseHealthScale>
+            <mechEnabledWorkTypes>
+                <li>Crafting</li>
+                <li>Hauling</li>
+                <li>Firefighter</li>
+                <li>Mining</li>
+                <li>Cleaning</li>
+                <li>Construction</li>
+                <li>BasicWorker</li>
+            </mechEnabledWorkTypes>
+            <mechWorkTypePriorities>
+                <Cleaning>4</Cleaning>
+                <Hauling>4</Hauling>
+                <BasicWorker>4</BasicWorker>
+            </mechWorkTypePriorities>
+            <mechFixedSkillLevel>8</mechFixedSkillLevel>
+            <lifeStageAges>
+                <li MayRequire="Ludeon.RimWorld.Biotech">
+                    <def>MechanoidFullyFormed</def>
+                    <minAge>0</minAge>
+                    <soundWounded>Pawn_Mech_Tunneler_Wounded</soundWounded>
+                    <soundDeath>Pawn_Mech_Tunneler_Death</soundDeath>
+                    <soundCall>Pawn_Mech_Tunneler_Call</soundCall>
+                </li>
+                <li>
+                    <def>MechanoidFullyFormed</def>
+                    <minAge>100</minAge>
+                    <soundWounded>Pawn_Mech_Tunneler_Wounded</soundWounded>
+                    <soundDeath>Pawn_Mech_Tunneler_Death</soundDeath>
+                    <soundCall>Pawn_Mech_Tunneler_Call</soundCall>
+                </li>
+            </lifeStageAges>
+        </race>
+        <tools>
+            <li>
+                <label>grapple arm claw</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>1.7</cooldownTime>
+                <linkedBodyPartsGroup>Rimgate_MalpGrappleClaw</linkedBodyPartsGroup>
+                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+            </li>
+        </tools>
+        <comps>
+            <li Class="CompProperties_Shield" />
+        </comps>
+    </ThingDef>
+
+
+</Defs>
