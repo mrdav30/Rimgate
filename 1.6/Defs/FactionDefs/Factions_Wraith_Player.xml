@@ -19,11 +19,10 @@
     <backstoryFilters>
       <li>
         <categories>
-          <li>Military</li>
-          <li>Spacer</li>
-          <li>Offworld</li>
           <li>Rimgate_WraithChildBackStory</li>
-          <li>Rimgate_WraithWarriorBackStory</li>
+          <li>Rimgate_WraithAdultBackstory</li>
+          <li>Rimgate_WraithCommanderBackStory</li>
+          <li>Rimgate_WraithQueenBackStory</li>
         </categories>
       </li>
     </backstoryFilters>

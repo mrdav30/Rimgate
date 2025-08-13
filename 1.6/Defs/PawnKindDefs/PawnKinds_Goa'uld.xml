@@ -76,6 +76,13 @@
     <weaponTags>
       <li>Tribal</li>
     </weaponTags>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesAdulthood>
+          <li>Rimgate_SlaveBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldBase">
@@ -138,6 +145,17 @@
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesChildhood>
+          <li>Rimgate_GoauldChildBackstory</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_FirstPrimeBackstory</li>
+          <li>Rimgate_GoauldAdultBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
     <skills>
       <li>
         <skill>Shooting</skill>

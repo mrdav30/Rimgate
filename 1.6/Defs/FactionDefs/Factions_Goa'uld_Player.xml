@@ -18,11 +18,9 @@
     <backstoryFilters>
       <li>
         <categories>
-          <li>Military</li>
-          <li>Spacer</li>
-          <li>Offworld</li>
           <li>Rimgate_GoauldChildBackstory</li>
-          <li>Rimgate_JaffaBackstory</li>
+          <li>Rimgate_GoauldAdultBackstory</li>
+          <li>Rimgate_FirstPrimeBackstory</li>
           <li>Rimgate_GoauldSlaveBackstory</li>
         </categories>
       </li>

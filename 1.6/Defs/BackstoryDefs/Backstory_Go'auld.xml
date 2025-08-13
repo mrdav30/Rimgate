@@ -14,7 +14,75 @@
     </spawnCategories>
   </BackstoryDef>
 
+  <BackstoryDef>
+    <defName>Rimgate_TempleAcolyte</defName>
+    <title>Temple Acolyte</title>
+    <titleShort>Temple Acolyte</titleShort>
+    <baseDesc>Raised in a pyramid temple deep in the jungle, [PAWN_nameDef] memorized endless chants, rituals, and the importance of never asking “who made the gods?”. They spent most of their youth polishing golden idols and translating "divine" gibberish.</baseDesc>
+    <slot>Childhood</slot>
+    <spawnCategories>
+      <li>Rimgate_GoauldChildBackstory</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_LarvalHost</defName>
+    <title>Larval Host</title>
+    <titleShort>Larval Host</titleShort>
+    <baseDesc>From a young age, [PAWN_nameDef] was chosen to incubate larval symbiotes—a sacred and gooey duty. Most of their childhood was spent in medical labs, nutrient baths, and dealing with chronic stomach growls that weren’t entirely theirs.</baseDesc>
+    <slot>Childhood</slot>
+    <spawnCategories>
+      <li>Rimgate_GoauldChildBackstory</li>
+    </spawnCategories>
+  </BackstoryDef>
+
   <!-- ======== Adult ========= -->
+
+  <BackstoryDef>
+    <defName>Rimgate_TokRaSpy</defName>
+    <title>Tok’ra infiltrator</title>
+    <titleShort>Tok’ra spy</titleShort>
+    <baseDesc>[PAWN_nameDef] walked the razor’s edge between gods and rebellion. Posing as a loyal servant of the Goa’uld, they passed secrets to the Tok’ra network by night. Their past is a tangle of false identities, whispered codes, and narrow escapes.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Social>8</Social>
+      <Intellectual>6</Intellectual>
+      <Shooting>4</Shooting>
+      <Medicine>2</Medicine>
+      <Construction>-6</Construction>
+      <Mining>-6</Mining>
+    </skillGains>
+    <forcedTraits>
+      <Undergrounder>0</Undergrounder>
+      <Nerves>2</Nerves>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_SystemLordClerk</defName>
+    <title>System Lord’s clerk</title>
+    <titleShort>Goa’uld clerk</titleShort>
+    <baseDesc>Not all served the Goa’uld with a staff weapon. [PAWN_nameDef] managed supply chains, tribute tallies, and the divine calendar. Accidentally miscounting a shipment of Naquadah often meant a swift trip to the sarcophagus—if lucky.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Intellectual>6</Intellectual>
+      <Crafting>4</Crafting>
+      <Social>4</Social>
+      <Cooking>2</Cooking>
+      <Shooting>-6</Shooting>
+      <Melee>-6</Melee>
+    </skillGains>
+    <forcedTraits>
+      <Neurotic>2</Neurotic>
+      <Greedy>0</Greedy>
+    </forcedTraits>
+  </BackstoryDef>
 
   <BackstoryDef>
     <defName>Rimgate_FirstPrime</defName>
@@ -28,14 +96,10 @@
     <skillGains>
       <Melee>12</Melee>
       <Shooting>12</Shooting>
-      <Mining>-12</Mining>
       <Cooking>-12</Cooking>
       <Plants>-12</Plants>
-      <Animals>12</Animals>
-      <Crafting>12</Crafting>
-      <Artistic>12</Artistic>
-      <Medicine>12</Medicine>
-      <Social>12</Social>
+      <Animals>6</Animals>
+      <Crafting>6</Crafting>
       <Intellectual>12</Intellectual>
     </skillGains>
     <forcedTraits>
@@ -55,19 +119,15 @@
     <baseDesc>[PAWN_nameDef] was bred for strength, loyalty, and dramatic entrances. As a Jaffa, they carried a larval symbiote and a massive chip on their shoulder. Service to the Goa’uld was mandatory; personal opinions were not.</baseDesc>
     <slot>Adulthood</slot>
     <spawnCategories>
-      <li>Rimgate_JaffaBackstory</li>
+      <li>Rimgate_GoauldAdultBackstory</li>
     </spawnCategories>
     <skillGains>
       <Melee>6</Melee>
       <Shooting>6</Shooting>
-      <Mining>-12</Mining>
       <Cooking>0</Cooking>
       <Plants>-12</Plants>
       <Animals>4</Animals>
       <Crafting>4</Crafting>
-      <Artistic>4</Artistic>
-      <Medicine>4</Medicine>
-      <Social>4</Social>
       <Intellectual>0</Intellectual>
     </skillGains>
     <forcedTraits>

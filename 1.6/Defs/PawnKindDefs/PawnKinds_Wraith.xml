@@ -160,9 +160,7 @@
     <backstoryFiltersOverride>
       <li>
         <categoriesChildhood>
-          <li>Military</li>
-          <li>Spacer</li>
-          <li>Offworld</li>
+          <li>Rimgate_WraithChildBackStory</li>
         </categoriesChildhood>
         <categoriesAdulthood>
           <li>Rimgate_WraithCommanderBackStory</li>
