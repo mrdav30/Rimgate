@@ -185,7 +185,7 @@
 						<li>Rimgate_CocoonedMeat</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>5</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -194,7 +194,41 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Rimgate_Biomass>20</Rimgate_Biomass>
+			<Rimgate_Biomass>5</Rimgate_Biomass>
+		</products>
+		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeCocoonedMeatBiomass_4x</defName>
+		<label>make Biomass from cocooned meat x4</label>
+		<description>make a batch of Biomass.</description>
+		<jobString>making Biomass.</jobString>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>450</workAmount>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>TableButcher</li>
+			<li>Rimgate_CocoonStation</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_CocoonedMeat</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_CocoonedMeat</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_Biomass>25</Rimgate_Biomass>
 		</products>
 		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
 	</RecipeDef>
@@ -221,7 +255,7 @@
 						<li>MeatRaw</li>
 					</categories>
 				</filter>
-				<count>5</count>
+				<count>10</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -243,7 +277,57 @@
 		</defaultIngredientFilter>
 		<workSkill>Cooking</workSkill>
 		<products>
-			<Rimgate_Biomass>20</Rimgate_Biomass>
+			<Rimgate_Biomass>5</Rimgate_Biomass>
+		</products>
+		<workSkill>Cooking</workSkill>
+		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeMeatBiomass_x4</defName>
+		<label>make Biomass from meat x4</label>
+		<description>make a batch of Biomass from meat.</description>
+		<jobString>making biomass.</jobString>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>450</workAmount>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+		<recipeUsers>
+			<li>TableButcher</li>
+			<li>Rimgate_CocoonStation</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</filter>
+				<count>40</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+			<specialFiltersToDisallow>
+			</specialFiltersToDisallow>
+		</fixedIngredientFilter>
+		<defaultIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+			<disallowedCategories>
+				<li>EggsFertilized</li>
+			</disallowedCategories>
+			<disallowedThingDefs>
+			</disallowedThingDefs>
+		</defaultIngredientFilter>
+		<workSkill>Cooking</workSkill>
+		<products>
+			<Rimgate_Biomass>25</Rimgate_Biomass>
 		</products>
 		<workSkill>Cooking</workSkill>
 		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>

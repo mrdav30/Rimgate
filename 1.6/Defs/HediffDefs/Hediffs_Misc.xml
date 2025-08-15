@@ -3,8 +3,8 @@
 
     <HediffDef>
         <defName>Hediff_ClonedTracker</defName>
-        <label>clone tracker</label>
-        <description>This hediff stores tracking data to determine clone generations.</description>
+        <label>clone tracker (hidden)</label>
+        <description>This hediff stores tracking data to determine how many times this pawn has been cloned.</description>
         <hediffClass>Rimgate.Hediff_ClonedTracker</hediffClass>
         <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
         <isBad>false</isBad>
@@ -12,8 +12,8 @@
 
     <HediffDef>
         <defName>Rimgate_Clone</defName>
-        <label>clone</label>
-        <description>A clone.</description>
+        <label>clone (hidden)</label>
+        <description>Another happy accident of mad science. Don't worry — they only think they’re the original.</description>
         <hediffClass>Rimgate.Hediff_Clone</hediffClass>
         <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
         <isBad>false</isBad>

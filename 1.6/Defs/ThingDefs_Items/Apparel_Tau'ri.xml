@@ -347,10 +347,10 @@
         <statBases>
             <WorkToMake>1000</WorkToMake>
             <MaxHitPoints>75</MaxHitPoints>
-            <Mass>3</Mass>
+            <Mass>2</Mass>
             <Flammability>0</Flammability>
-            <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
-            <ArmorRating_Blunt>0.26</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.45</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.7</ArmorRating_Blunt>
             <ArmorRating_Heat>0.8</ArmorRating_Heat>
             <Insulation_Cold>1</Insulation_Cold>
             <EquipDelay>5</EquipDelay>
@@ -359,7 +359,7 @@
             <li>ApparelArmor</li>
         </thingCategories>
         <costList>
-            <Steel>60</Steel>
+            <Plasteel>60</Plasteel>
         </costList>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>

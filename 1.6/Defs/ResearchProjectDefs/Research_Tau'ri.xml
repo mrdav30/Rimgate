@@ -26,6 +26,12 @@
         <baseCost>1500</baseCost>
         <researchViewX>0</researchViewX>
         <researchViewY>1</researchViewY>
+        <techprintCount>1</techprintCount>
+        <techprintCommonality>3</techprintCommonality>
+        <techprintMarketValue>3000</techprintMarketValue>
+        <heldByFactionCategoryTags>
+            <li>Rimgate_TauriFaction</li>
+        </heldByFactionCategoryTags>
     </ResearchProjectDef>
 
     <!-- ======== Tau'ri Armor ========= -->
@@ -46,7 +52,7 @@
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriWeaponsTier1</defName>
-        <label>Tau'ri Weapons</label>
+        <label>Tau'ri weapons I</label>
         <description>Unlock pulse-pounding, projectile-slinging freedom—courtesy of Earth’s finest ballistic engineering.\nWarning: may provoke Goa’uld, Wraith, and anyone with plasma-based superiority complexes.</description>
         <baseCost>2500</baseCost>
         <researchViewX>1</researchViewX>
@@ -57,21 +63,20 @@
         </prerequisites>
     </ResearchProjectDef>
 
-    <!-- ======== Buildings ========= -->
-
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
-        <defName>Rimgate_TretoninSynthesis</defName>
-        <label>Tretonin synthesis</label>
-        <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
-        <baseCost>3500</baseCost>
-        <prerequisites>
-            <li>MedicineProduction</li>
-            <li>Rimgate_TauriBasic</li>
-            <li>Rimgate_GoauldBasic</li>
-        </prerequisites>
+        <defName>Rimgate_TauriWeaponsTier2</defName>
+        <label>Tau'ri weapons II</label>
+        <description>Unlock pulse-pounding, projectile-slinging freedom—courtesy of Earth’s finest ballistic engineering.\nWarning: may provoke Goa’uld, Wraith, and anyone with plasma-based superiority complexes.</description>
+        <baseCost>2500</baseCost>
         <researchViewX>2</researchViewX>
-        <researchViewY>1</researchViewY>
+        <researchViewY>2</researchViewY>
+        <prerequisites>
+            <li>PrecisionRifling</li>
+            <li>Rimgate_TauriBasic</li>
+        </prerequisites>
     </ResearchProjectDef>
+
+    <!-- ======== Buildings ========= -->
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_MalpGestation</defName>
@@ -95,8 +100,8 @@
             <li>Rimgate_TauriBasic</li>
             <li>Rimgate_GoauldBasic</li>
         </prerequisites>
-        <researchViewX>2</researchViewX>
-        <researchViewY>2</researchViewY>
+        <researchViewX>3</researchViewX>
+        <researchViewY>1</researchViewY>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
@@ -107,8 +112,8 @@
         <prerequisites>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
-        <researchViewX>3</researchViewX>
-        <researchViewY>2</researchViewY>
+        <researchViewX>4</researchViewX>
+        <researchViewY>1</researchViewY>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
@@ -121,7 +126,20 @@
             <li>Rimgate_NaquadriaFiredGenerator</li>
             <li>ShipBasics</li>
         </prerequisites>
-        <researchViewX>4</researchViewX>
+        <researchViewX>5</researchViewX>
+        <researchViewY>1</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_TretoninSynthesis</defName>
+        <label>Tretonin synthesis</label>
+        <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
+        <baseCost>3500</baseCost>
+        <prerequisites>
+            <li>MedicineProduction</li>
+            <li>Rimgate_NaquadahRefinement</li>
+        </prerequisites>
+        <researchViewX>2</researchViewX>
         <researchViewY>2</researchViewY>
     </ResearchProjectDef>
 

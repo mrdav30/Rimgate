@@ -135,6 +135,7 @@
       <li>Neolithic</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
       <li>Rimgate_WraithHeadgear_tag</li>
+      <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_WraithSoldierArmor</li>
@@ -176,6 +177,7 @@
       <li>SpacerMilitary</li>
       <li>Rimgate_WraithHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
+      <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_WraithHelmet</li>

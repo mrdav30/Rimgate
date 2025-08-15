@@ -358,7 +358,7 @@
     <Compile Include="Hediffs\IngestionOutcomeDoer_HealAllDisease.cs" />
     <Compile Include="Incidents\IncidentWorker_Asteroid.cs" />
     <Compile Include="Incidents\IncidentWorker_KillAllClonesNow.cs" />
-    <Compile Include="Incidents\ThingSetMaker_SpecialMeteorite.cs" />
+    <Compile Include="ThingSetMakers\ThingSetMaker_SpecialMeteorite.cs" />
     <Compile Include="Misc\HediffGiver_AtAge.cs" />
     <Compile Include="Abilities\Properties\CompProperties_MultipleProjectile.cs" />
     <Compile Include="Misc\Projectile_ZatBlast_Extension.cs" />

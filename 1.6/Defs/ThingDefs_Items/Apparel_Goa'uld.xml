@@ -870,6 +870,9 @@
 		<thingCategories Inherit="False">
 			<li>ApparelUtility</li>
 		</thingCategories>
+		<thingSetMakerTags>
+			<li>RewardStandardLowFreq</li>
+		</thingSetMakerTags>
 	</ThingDef>
 
 </Defs>

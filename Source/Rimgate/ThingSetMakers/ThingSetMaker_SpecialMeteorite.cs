@@ -21,8 +21,8 @@ public class ThingSetMaker_SpecialMeteorite : ThingSetMaker
 
     public static void Reset()
     {
-        ThingSetMaker_SpecialMeteorite.NonSmoothedMineables.Clear();
-        ThingSetMaker_SpecialMeteorite.NonSmoothedMineables.AddRange(
+        NonSmoothedMineables.Clear();
+        NonSmoothedMineables.AddRange(
             from x in DefDatabase<ThingDef>.AllDefsListForReading
             where x.mineable && x != ThingDefOf.CollapsedRocks && !x.IsSmoothed
             select x);
@@ -34,7 +34,7 @@ public class ThingSetMaker_SpecialMeteorite : ThingSetMaker
         int randomInRange = ((countRange == null)
             ? ThingSetMaker_SpecialMeteorite.MineablesCountRange
             : countRange.Value).RandomInRange;
-        ThingDef def = this.FindRandomMineableDef();
+        ThingDef def = Rimgate_DefOf.Rimgate_MineableNaquadah;
         for (int i = 0; i < randomInRange; i++)
         {
             Building building = (Building)ThingMaker.MakeThing(def, null);
@@ -54,14 +54,6 @@ public class ThingSetMaker_SpecialMeteorite : ThingSetMaker
         }
     }
 
-    private ThingDef FindRandomMineableDef()
-    {
-        return Rimgate_DefOf.Rimgate_MineableNaquadah;
-    }
-
-    protected override IEnumerable<ThingDef> AllGeneratableThingsDebugSub(ThingSetMakerParams parms)
-    {
-        return ThingSetMaker_SpecialMeteorite.NonSmoothedMineables;
-    }
+    protected override IEnumerable<ThingDef> AllGeneratableThingsDebugSub(ThingSetMakerParams parms) => NonSmoothedMineables;
 }
 

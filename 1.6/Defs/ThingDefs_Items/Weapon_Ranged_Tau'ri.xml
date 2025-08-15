@@ -427,7 +427,7 @@
             <ComponentIndustrial>6</ComponentIndustrial>
         </costList>
         <recipeMaker>
-            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier2</researchPrerequisite>
             <skillRequirements>
                 <Crafting>5</Crafting>
             </skillRequirements>
@@ -494,7 +494,7 @@
             <li>RangedHeavy</li>
         </weaponClasses>
         <recipeMaker>
-            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier2</researchPrerequisite>
             <skillRequirements>
                 <Crafting>7</Crafting>
             </skillRequirements>
@@ -569,7 +569,7 @@
         <uiIconScale>1.5</uiIconScale>
         <soundInteract>Interact_Autopistol</soundInteract>
         <recipeMaker>
-            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier2</researchPrerequisite>
             <skillRequirements>
                 <Crafting>4</Crafting>
             </skillRequirements>
@@ -662,7 +662,7 @@
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <recipeMaker>
-            <researchPrerequisite>Rimgate_TauriWeaponsTier1</researchPrerequisite>
+            <researchPrerequisite>Rimgate_TauriWeaponsTier2</researchPrerequisite>
             <skillRequirements>
                 <Crafting>15</Crafting>
             </skillRequirements>

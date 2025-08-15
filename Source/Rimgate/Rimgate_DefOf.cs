@@ -65,7 +65,10 @@ public static class Rimgate_DefOf
 
     public static RaidStrategyDef StageThenAttack;
 
+    public static ResearchProjectDef Rimgate_GoauldBasic;
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
+    public static ResearchProjectDef Rimgate_TauriBasic;
+    public static ResearchProjectDef Rimgate_WraithBasic;
     public static ResearchProjectDef Rimgate_WraithCloneGenome;
     public static ResearchProjectDef Rimgate_WraithCloneFull;
     public static ResearchProjectDef Rimgate_WraithCloneEnhancement;

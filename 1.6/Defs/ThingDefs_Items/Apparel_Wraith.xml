@@ -199,7 +199,7 @@
 			<EquipDelay>3</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>-0.10</MoveSpeed>
+			<MoveSpeed>0.10</MoveSpeed>
 			<ComfyTemperatureMin>-5</ComfyTemperatureMin>
 			<MentalBreakThreshold>-0.1</MentalBreakThreshold>
 			<PainShockThreshold>0.15</PainShockThreshold>
@@ -266,6 +266,7 @@
 			<EquipDelay>3</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
+			<MoveSpeed>0.15</MoveSpeed>
 			<ComfyTemperatureMin>-10</ComfyTemperatureMin>
 			<MentalBreakThreshold>-0.15</MentalBreakThreshold>
 			<PainShockThreshold>0.15</PainShockThreshold>
@@ -298,6 +299,72 @@
 				<Crafting>5</Crafting>
 			</skillRequirements>
 		</recipeMaker>
+	</ThingDef>
+
+	<!-- ========= Wraith communication device ========= -->
+
+	<ThingDef ParentName="Rimgate_WraithArmorBase">
+		<defName>Rimgate_WraithCommunicationDevice</defName>
+		<label>Wraith communication device</label>
+		<description>Wraith-built synaptic interface for coordinating mechs, hacking systems, and maybe ordering takeout from the hive mind.</description>
+		<recipeMaker>
+			<unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+			<researchPrerequisite>Rimgate_WraithCommunicationDevice</researchPrerequisite>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<skillRequirements>
+				<Crafting>10</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<costList>
+			<ComponentSpacer>2</ComponentSpacer>
+			<Steel>25</Steel>
+			<Plasteel>25</Plasteel>
+			<Rimgate_Biomass>5</Rimgate_Biomass>
+		</costList>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Utility/RGWraithCommunicatonDevice</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>1.5</Mass>
+			<WorkToMake>14000</WorkToMake>
+			<Flammability>0.4</Flammability>
+			<EquipDelay>2</EquipDelay>
+		</statBases>
+		<tradeability>Sellable</tradeability>
+		<generateAllowChance>0.15</generateAllowChance>
+		<equippedStatOffsets>
+			<MechBandwidth MayRequire="Ludeon.RimWorld.Biotech">6</MechBandwidth>
+			<MechControlGroups MayRequire="Ludeon.RimWorld.Biotech">1</MechControlGroups>
+			<HackingSpeed>0.25</HackingSpeed>
+			<HackingStealth>0.25</HackingStealth>
+			<ResearchSpeed>0.25</ResearchSpeed>
+		</equippedStatOffsets>
+		<apparel>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
+			<careIfDamaged>false</careIfDamaged>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups Inherit="false">
+				<li>Waist</li>
+			</bodyPartGroups>
+			<layers Inherit="false">
+				<li>Belt</li>
+			</layers>
+			<tags>
+				<li>Rimgate_WraithUtility_tag</li>
+			</tags>
+		</apparel>
+		<tickerType>Normal</tickerType>
+		<thingCategories Inherit="False">
+			<li>ApparelUtility</li>
+		</thingCategories>
+		<thingSetMakerTags>
+			<li>RewardStandardLowFreq</li>
+		</thingSetMakerTags>
 	</ThingDef>
 
 </Defs>
