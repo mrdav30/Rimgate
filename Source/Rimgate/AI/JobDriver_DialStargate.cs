@@ -10,20 +10,20 @@ namespace Rimgate;
 
 public class JobDriver_DialStargate : JobDriver
 {
-    protected Thing DHD => job.GetTarget(TargetIndex.A).Thing;
+    private Thing _dhd => job.GetTarget(TargetIndex.A).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(DHD, job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(_dhd, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        Comp_DialHomeDevice dhdComp = DHD.TryGetComp<Comp_DialHomeDevice>();
+        Comp_DialHomeDevice dhdComp = _dhd.TryGetComp<Comp_DialHomeDevice>();
         this.FailOnDestroyedOrNull(TargetIndex.A);
         this.FailOn(() => dhdComp.GetLinkedStargate().StargateIsActive);
 
-        yield return Toils_Goto.GotoCell(DHD.InteractionCell, PathEndMode.OnCell);
+        yield return Toils_Goto.GotoCell(_dhd.InteractionCell, PathEndMode.OnCell);
         yield return new Toil
         {
             initAction = () =>

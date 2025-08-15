@@ -9,7 +9,7 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch(typeof(Building_Bed), nameof(Building_Bed.SetBedOwnerTypeByInterface))]
 public static class Harmony_Building_Bed_SetBedOwnerType
 {
-    static void Postfix(Building_Bed __instance)
+    public static void Postfix(Building_Bed __instance)
     {
         if (__instance is Building_Bed_Sarcophagus bedSarcophagus 
             && __instance.ForOwnerType != BedOwnerType.Colonist) 

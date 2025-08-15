@@ -134,6 +134,7 @@
       <li>Tribal</li>
       <li>Neolithic</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
+      <li>Rimgate_WraithHeadgear_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_WraithSoldierArmor</li>
@@ -173,7 +174,7 @@
     <apparelTags>
       <li>IndustrialMilitaryAdvanced</li>
       <li>SpacerMilitary</li>
-      <li>Rimgate_WraithSoldierApparel_tag</li>
+      <li>Rimgate_WraithHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
     </apparelTags>
     <apparelRequired>
@@ -183,6 +184,7 @@
     <weaponMoney>1200~2000</weaponMoney>
     <weaponTags>
       <li>Rimgate_WraithSpear_tag</li>
+      <li>Rimgate_WraithHandBlaster_tag</li>
     </weaponTags>
     <techHediffsMoney>2000~3000</techHediffsMoney>
     <techHediffsChance>1</techHediffsChance>
@@ -238,7 +240,7 @@
     <apparelTags>
       <li>IndustrialMilitaryAdvanced</li>
       <li>SpacerMilitary</li>
-      <li>Rimgate_WraithSoldierApparel_tag</li>
+      <li>Rimgate_WraithHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
     </apparelTags>
     <apparelRequired>
@@ -249,6 +251,7 @@
     <weaponMoney>1600~2000</weaponMoney>
     <weaponTags>
       <li>Rimgate_WraithSpear_tag</li>
+      <li>Rimgate_WraithHandBlaster_tag</li>
     </weaponTags>
     <techHediffsMoney>2000~3000</techHediffsMoney>
     <techHediffsChance>1</techHediffsChance>

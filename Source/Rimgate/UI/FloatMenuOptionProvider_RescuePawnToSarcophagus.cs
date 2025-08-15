@@ -58,14 +58,14 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
                 null);
         }
 
-        if (!RimgateHealthUtility.ShouldSeekSarcophagusRest(clickedPawn, bedSarcophagus)
+        if (!SarcophagusUtility.ShouldSeekSarcophagus(clickedPawn, bedSarcophagus)
             || clickedPawn.InBed()
             || clickedPawn.mindState.WillJoinColonyIfRescued)
         {
             return null;
         }
 
-        if (RimgateHealthUtility.HasUsageBlockingHediffs(clickedPawn, bedSarcophagus.UsageBlockingHediffs))
+        if (HealthUtility.HasUsageBlockingHediffs(clickedPawn, bedSarcophagus.UsageBlockingHediffs))
         {
             List<Hediff> blockedHediffs = new();
             clickedPawn.health.hediffSet.GetHediffs(ref blockedHediffs);
@@ -78,7 +78,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
                 null);
         }
 
-        if (RimgateHealthUtility.HasUsageBlockingTraits(clickedPawn, bedSarcophagus.UsageBlockingTraits))
+        if (HealthUtility.HasUsageBlockingTraits(clickedPawn, bedSarcophagus.UsageBlockingTraits))
         {
             return new FloatMenuOption(
                 "CannotRescuePawn".Translate(clickedPawn.Named("PAWN")) + ": "
@@ -88,7 +88,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
                 null);
         }
 
-        if (!RimgateHealthUtility.IsValidRaceForSarcophagus(clickedPawn, bedSarcophagus.DisallowedRaces))
+        if (!SarcophagusUtility.IsValidRaceFor(clickedPawn, bedSarcophagus.DisallowedRaces))
         {
             return new FloatMenuOption(
                 "CannotRescuePawn".Translate(clickedPawn.Named("PAWN")) + ": "
@@ -96,7 +96,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
                 null);
         }
 
-        if (!RimgateHealthUtility.IsValidXenotypeForSarcophagus(clickedPawn, bedSarcophagus.DisallowedXenotypes))
+        if (!SarcophagusUtility.IsValidXenotypeFor(clickedPawn, bedSarcophagus.DisallowedXenotypes))
         {
             return new FloatMenuOption(
                 "CannotRescuePawn".Translate(clickedPawn.Named("PAWN")) + ": "
@@ -120,7 +120,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
                     "RG_Sarcophagus_FloatMenu_Rescue".Translate(clickedPawn.LabelCap, clickedPawn),
                     delegate
                     {
-                        Building_Bed_Sarcophagus bedSarcophagus = RimgateRestUtility.FindBestSarcophagus(rescuer, clickedPawn);
+                        Building_Bed_Sarcophagus bedSarcophagus = SarcophagusUtility.FindBestSarcophagus(rescuer, clickedPawn);
 
                         // Display message on top screen if no valid Sarcophagus is found
                         if (bedSarcophagus == null)
@@ -131,9 +131,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
                                         ? "PrisonerLower".Translate()
                                         : "Colonist".Translate();
 
-                            string reason = !clickedPawn.RaceProps.Animal
-                                ? ((string)"RG_Sarcophagus_Message_CannotRescue_NoSarcophagus".Translate(pawnType.ToLower()))
-                                : ((string)"RG_Sarcophagus_Message_CannotRescue_NoVetPod".Translate());
+                            var reason = "RG_Sarcophagus_Message_CannotRescue_NoSarcophagus".Translate(pawnType.ToLower());
                             Messages.Message("CannotRescue".Translate() + ": " + reason,
                                 clickedPawn,
                                 MessageTypeDefOf.RejectInput,

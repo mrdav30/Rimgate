@@ -20,10 +20,6 @@
 	<ResearchProjectDef Name="Rimgate_ResearchBase" Abstract="True">
 		<tab>Rimgate_ResearchTab</tab>
 		<techLevel>Industrial</techLevel>
-		<prerequisites>
-			<li>AdvancedFabrication</li>
-			<li>Rimgate_GlyphDeciphering</li>
-		</prerequisites>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<requiredResearchFacilities>
 			<li>MultiAnalyzer</li>
@@ -39,6 +35,10 @@
 		<baseCost>4000</baseCost>
 		<researchViewX>1.00</researchViewX>
 		<researchViewY>0.00</researchViewY>
+		<prerequisites>
+			<li>AdvancedFabrication</li>
+			<li>Rimgate_GlyphDeciphering</li>
+		</prerequisites>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">

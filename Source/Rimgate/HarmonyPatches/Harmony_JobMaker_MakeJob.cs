@@ -12,7 +12,7 @@ namespace Rimgate.HarmonyPatches;
     typeof(LocalTargetInfo)})]
 public static class Harmony_JobMaker_MakeJob_Rescue
 {
-    static void Postfix(
+    public static void Postfix(
         ref Job __result,
         JobDef def,
         LocalTargetInfo targetA,

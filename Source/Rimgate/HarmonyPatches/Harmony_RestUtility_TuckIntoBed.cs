@@ -22,7 +22,7 @@ public static class Harmony_RestUtility_TuckIntoBed
     {
         if (bed is Building_Bed_Sarcophagus bedSarcophagus)
         {
-            RimgateRestUtility.PutIntoSarcophagus(bedSarcophagus, taker, takee, true);
+            SarcophagusUtility.PutIntoSarcophagus(bedSarcophagus, taker, takee, true);
 
             return false;
         }

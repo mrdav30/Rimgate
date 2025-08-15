@@ -30,7 +30,7 @@ public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_C
             });
     }
 
-    static void Postfix(ref FloatMenuOption __result, Pawn clickedPawn)
+    public static void Postfix(ref FloatMenuOption __result, Pawn clickedPawn)
     {
         if (clickedPawn != null
             && clickedPawn.CurrentBed() is Building_Bed_Sarcophagus)
@@ -67,7 +67,7 @@ public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_C
             (Type[])null);
     }
 
-    private static void Postfix(ref FloatMenuOption __result, Thing clickedThing)
+    public static void Postfix(ref FloatMenuOption __result, Thing clickedThing)
     {
         // Extra check to make sure the clicked target is actually a pawn
         if (clickedThing != null 

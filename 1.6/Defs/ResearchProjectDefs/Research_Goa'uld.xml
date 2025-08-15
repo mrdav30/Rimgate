@@ -32,7 +32,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier1</defName>
-		<label>Goa'uld armor Tier I</label>
+		<label>Goa'uld armor I</label>
 		<description>gain access to traditional Jaffa armor—ceremonial, intimidating, and surprisingly effective at deflecting bullets and compliments.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
@@ -44,7 +44,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier2</defName>
-		<label>Goa'uld armor Tier II</label>
+		<label>Goa'uld armor II</label>
 		<description>unlock specialized armor worn by elite Jaffa guards and First Primes. Offers increased protection and 200% more self-importance.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
@@ -57,7 +57,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier3</defName>
-		<label>Goa'uld armor Tier III</label>
+		<label>Goa'uld armor III</label>
 		<description>research the terrifying Kull battle armor—designed for invulnerability, intimidation, and ruining someone’s day at extreme range.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>

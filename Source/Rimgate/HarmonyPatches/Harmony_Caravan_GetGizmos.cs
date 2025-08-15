@@ -14,7 +14,7 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch(typeof(Caravan), "GetGizmos")]
 public class Harmony_Caravan_GetGizmos
 {
-    static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> gizmos, Caravan __instance)
+    public static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> gizmos, Caravan __instance)
     {
         foreach (Gizmo gizmo in gizmos)
             yield return gizmo;

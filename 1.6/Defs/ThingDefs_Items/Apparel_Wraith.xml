@@ -5,6 +5,7 @@
 	<!-- ============ Wraith Apparel Base ============ -->
 
 	<ThingDef Name="Rimgate_WraithArmorBase" ParentName="ApparelBase" Abstract="True">
+		<techLevel>Spacer</techLevel>
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
@@ -29,7 +30,7 @@
 		</tradeTags>
 	</ThingDef>
 
-	<!-- ========= Wraith Helmet ========= -->
+	<!-- ========= Wraith headgear ========= -->
 
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithHelmet</defName>
@@ -64,6 +65,11 @@
 			<ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
 		</equippedStatOffsets>
 		<apparel>
+			<parentTagDef>ApparelHead</parentTagDef>
+			<renderSkipFlags>
+				<li>Beard</li>
+				<li>Eyes</li>
+			</renderSkipFlags>
 			<immuneToToxGasExposure>true</immuneToToxGasExposure>
 			<bodyPartGroups>
 				<li>FullHead</li>
@@ -73,7 +79,7 @@
 				<li>Overhead</li>
 			</layers>
 			<tags>
-				<li>Rimgate_WraithSoldierApparel_tag</li>
+				<li>Rimgate_WraithHeadgear_tag</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -83,6 +89,76 @@
 		<thingCategories>
 			<li>ArmorHeadgear</li>
 		</thingCategories>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_WraithArmorTier1</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_WraithArmorBase">
+		<defName>Rimgate_WraithGoggles</defName>
+		<label>goggles</label>
+		<description>Standard-issue optics for Wraith soldiers who need to look cool and see through three dimensions of prey at once. Offers modest protection against sand, smoke, and sass. Possibly grafted directly to your skull. Don’t ask how you’re supposed to take them off—you’re not.</description>
+		<thingCategories>
+			<li>Headgear</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/WraithGoggles/RGWraithGoggles</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.9</drawSize>
+		</graphicData>
+		<uiIconScale>1.15</uiIconScale>
+		<stuffCategories>
+			<li>Fabric</li>
+		</stuffCategories>
+		<costStuffCount>20</costStuffCount>
+		<statBases>
+			<WorkToMake>1400</WorkToMake>
+			<MaxHitPoints>80</MaxHitPoints>
+			<Mass>0.08</Mass>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.05</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.05</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.5</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<PainShockThreshold>0.05</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+			<ToxicEnvironmentResistance>0.35</ToxicEnvironmentResistance>
+		</equippedStatOffsets>
+		<apparel>
+			<parentTagDef>ApparelHead</parentTagDef>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/WraithGoggles/RGWraithGoggles</wornGraphicPath>
+			<renderSkipFlags>
+				<li>None</li>
+			</renderSkipFlags>
+			<drawData>
+				<dataNorth>
+					<layer>-3</layer>
+				</dataNorth>
+			</drawData>
+			<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>Rimgate_WraithHeadgear_tag</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<forceEyesVisibleForRotations>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</forceEyesVisibleForRotations>
+		</apparel>
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_WraithArmorTier1</researchPrerequisite>
 			<skillRequirements>

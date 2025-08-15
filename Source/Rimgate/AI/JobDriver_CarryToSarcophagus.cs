@@ -20,9 +20,7 @@ public class JobDriver_CarryToSarcophagus : JobDriver
     {
         Patient.ClearAllReservations();
         if (pawn.Reserve(Patient, job, 1, -1, null, errorOnFailed))
-        {
             return pawn.Reserve(Sarcophagus, job, 1, 0, null, errorOnFailed);
-        }
 
         return false;
     }
@@ -67,7 +65,7 @@ public class JobDriver_CarryToSarcophagus : JobDriver
             var taker = pawn;
             var takee = Patient;
 
-            RimgateRestUtility.PutIntoSarcophagus(sarcophagus, taker, takee, true);
+            SarcophagusUtility.PutIntoSarcophagus(sarcophagus, taker, takee, true);
         };
         putInto.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return putInto;

@@ -13,7 +13,7 @@ namespace Rimgate;
 
 public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, ISearchableContents
 {
-    public CompPowerTrader PowerComp;
+    public CompPowerTrader Power;
 
     public Comp_Sarcophagus SarcophagusComp;
 
@@ -81,13 +81,13 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
 
     protected bool _contentsKnown;
 
-    public virtual int OpenTicks => 250;
+    public int OpenTicks => 250;
 
     public Pawn PatientPawn => _innerContainer.Count > 0
         ? (Pawn)_innerContainer[0]
         : null;
 
-    public virtual bool CanOpen => HasAnyContents;
+    public bool CanOpen => HasAnyContents;
 
     public bool HasAnyContents => _innerContainer.Count > 0;
 
@@ -113,7 +113,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         base.SpawnSetup(map, respawningAfterLoad);
 
         Medical = true; // Always ensure sarcophagus is medical bed (compat fix for SOS2)
-        PowerComp = GetComp<CompPowerTrader>();
+        Power = GetComp<CompPowerTrader>();
         SarcophagusComp = GetComp<Comp_Sarcophagus>();
         RestrictionComp = GetComp<Comp_TreatmentRestrictions>();
 
@@ -137,14 +137,15 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
-        if (PowerComp.PowerOn
+        if (Power.PowerOn
             && (Status == SarcophagusStatus.DiagnosisFinished
                 || Status == SarcophagusStatus.HealingStarted
                 || Status == SarcophagusStatus.HealingFinished))
         {
             DischargePatient(PatientPawn, false);
-            EjectContents();
         }
+
+        EjectContents();
 
         ForOwnerType = BedOwnerType.Colonist;
         Medical = false;
@@ -174,7 +175,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
     {
         string medicalToggleStr = "CommandBedSetAsMedicalLabel".Translate();
 
-        if(gizmosToDisableWhileInUse is null)
+        if (gizmosToDisableWhileInUse is null)
         {
             string flickablePowerToggleStr = "CommandDesignateTogglePowerLabel".Translate();
             string allowToggleStr = "CommandAllow".Translate();
@@ -262,7 +263,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         if (ParentHolder != null && !(ParentHolder is Map))
             return string.Empty;
 
-        stringBuilder.AppendInNewLine(PowerComp.CompInspectStringExtra());
+        stringBuilder.AppendInNewLine(Power.CompInspectStringExtra());
 
         if (def.building.bed_humanlike)
         {
@@ -286,7 +287,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             }
         }
 
-        if (!PowerComp.PowerOn)
+        if (!Power.PowerOn)
             inspectorStatus = "RG_Sarcophagus_InspectorStatus_NoPower"
                 .Translate();
         else
@@ -341,12 +342,12 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
     }
 
-    public virtual bool Accepts(Thing pawn)
+    public bool Accepts(Thing pawn)
     {
         return _innerContainer.CanAcceptAnyOf(pawn, false);
     }
 
-    public virtual bool TryAcceptPawn(Thing pawn, bool allowSpecialEffects = true)
+    public bool TryAcceptPawn(Thing pawn, bool allowSpecialEffects = true)
     {
         if (!Accepts(pawn))
             return false;
@@ -383,7 +384,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             && RestUtility.CanUseBedEver(myPawn, def);
         if (!canShowOptions) yield break;
 
-        if (RimgateHealthUtility.HasUsageBlockingHediffs(myPawn, UsageBlockingHediffs))
+        if (HealthUtility.HasUsageBlockingHediffs(myPawn, UsageBlockingHediffs))
         {
             List<Hediff> blockedHediffs = new();
             myPawn.health.hediffSet.GetHediffs(ref blockedHediffs);
@@ -397,7 +398,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield break;
         }
 
-        if (RimgateHealthUtility.HasUsageBlockingTraits(myPawn, UsageBlockingTraits))
+        if (HealthUtility.HasUsageBlockingTraits(myPawn, UsageBlockingTraits))
         {
             string label = myPawn.story?.traits.allTraits
                 .First(t => UsageBlockingTraits.Contains(t.def)).LabelCap;
@@ -408,7 +409,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield break;
         }
 
-        if (!RimgateHealthUtility.IsValidXenotypeForSarcophagus(myPawn, DisallowedXenotypes))
+        if (!SarcophagusUtility.IsValidXenotypeFor(myPawn, DisallowedXenotypes))
         {
             string label = myPawn.genes?.Xenotype.label.CapitalizeFirst();
             yield return new FloatMenuOption(
@@ -418,7 +419,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield break;
         }
 
-        if (!RimgateHealthUtility.IsValidRaceForSarcophagus(myPawn, DisallowedRaces))
+        if (!SarcophagusUtility.IsValidRaceFor(myPawn, DisallowedRaces))
         {
             string label = myPawn.def.label.CapitalizeFirst();
             yield return new FloatMenuOption(
@@ -428,9 +429,9 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield break;
         }
 
-        if (RimgateHealthUtility.ShouldSeekSarcophagusRest(myPawn, this))
+        if (SarcophagusUtility.ShouldSeekSarcophagus(myPawn, this))
         {
-            if (!PowerComp.PowerOn)
+            if (!Power.PowerOn)
             {
                 yield return new FloatMenuOption(
                     "UseMedicalBed".Translate()
@@ -445,7 +446,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                 yield break;
             }
 
-            if (!RimgateHealthUtility.HasAllowedMedicalCareCategory(myPawn))
+            if (!HealthUtility.HasAllowedMedicalCareCategory(myPawn))
             {
                 yield return new FloatMenuOption(
                     "UseMedicalBed".Translate()
@@ -530,10 +531,8 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         }
 
         if (RimgateMod.Debug)
-        {
             Log.Message(this + $" :: state change from {oldStatus.ToStringSafe().Colorize(Color.yellow)}"
                 + $" to {Status.ToStringSafe().Colorize(Color.yellow)}");
-        }
     }
 
     public bool IsSarcophagusInUse()
@@ -759,15 +758,15 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         if (Status == SarcophagusStatus.DiagnosisStarted
             || Status == SarcophagusStatus.DiagnosisFinished)
         {
-            PowerComp.PowerOutput = -DiagnosingPowerConsumption;
+            Power.PowerOutput = -DiagnosingPowerConsumption;
         }
         else if (Status == SarcophagusStatus.HealingStarted
             || Status == SarcophagusStatus.HealingFinished)
         {
-            PowerComp.PowerOutput = -HealingPowerConsumption;
+            Power.PowerOutput = -HealingPowerConsumption;
         }
         else
-            PowerComp.PowerOutput = -PowerComp.Props.PowerConsumption;
+            Power.PowerOutput = -Power.Props.PowerConsumption;
 
         // Main patient treatment cycle logic
         if (PatientPawn != null)
@@ -776,7 +775,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             PatientBodySizeScaledMaxHealingTicks = (int)(MaxHealingTicks * PatientPawn.BodySize);
 
             // Interrupt treatment on power loss
-            if (!PowerComp.PowerOn)
+            if (!Power.PowerOn)
             {
                 if (RimgateMod.Debug)
                     Log.Message(this + $" :: Lost power while running (state: {Status})");
@@ -927,7 +926,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                 }
             }
         }
-        else
+        else if (Status != SarcophagusStatus.Idle)
         {
             Reset();
             Aborted = false;
@@ -951,7 +950,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         return base.ClaimableBy(fac);
     }
 
-    public virtual void Open()
+    public void Open()
     {
         if (!HasAnyContents)
             return;
@@ -972,7 +971,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
         Reset();
     }
 
-    public virtual void EjectContents()
+    public void EjectContents()
     {
         _innerContainer.TryDropAll(
             InteractionCell,
@@ -991,7 +990,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             if (mode != DestroyMode.Deconstruct)
             {
                 foreach (Pawn p in _innerContainer)
-                    HealthUtility.DamageUntilDowned(p);
+                    Verse.HealthUtility.DamageUntilDowned(p);
             }
 
             if (PatientPawn != null)

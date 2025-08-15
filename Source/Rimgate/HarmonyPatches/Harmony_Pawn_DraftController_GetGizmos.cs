@@ -9,7 +9,7 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch(typeof(Pawn_DraftController), "GetGizmos")]
 public static class Harmony_Pawn_DraftController_GetGizmos
 {
-    static void Postfix(Pawn_DraftController __instance, ref IEnumerable<Gizmo> __result)
+    public static void Postfix(Pawn_DraftController __instance, ref IEnumerable<Gizmo> __result)
     {
         if (__instance == null
             || __instance.pawn.IsColonistPlayerControlled

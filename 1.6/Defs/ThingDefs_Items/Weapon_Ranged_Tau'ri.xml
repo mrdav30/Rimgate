@@ -32,7 +32,7 @@
             <AccuracyShort>0.70</AccuracyShort>
             <AccuracyMedium>0.40</AccuracyMedium>
             <AccuracyLong>0.30</AccuracyLong>
-            <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>1.19</RangedWeapon_Cooldown>
         </statBases>
         <costList>
             <Steel>75</Steel>
@@ -108,7 +108,7 @@
             <AccuracyShort>0.80</AccuracyShort>
             <AccuracyMedium>0.60</AccuracyMedium>
             <AccuracyLong>0.55</AccuracyLong>
-            <RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
         </statBases>
         <equippedAngleOffset>45</equippedAngleOffset>
         <costList>
@@ -186,7 +186,7 @@
             <AccuracyShort>0.80</AccuracyShort>
             <AccuracyMedium>0.60</AccuracyMedium>
             <AccuracyLong>0.55</AccuracyLong>
-            <RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
         </statBases>
         <equippedAngleOffset>45</equippedAngleOffset>
         <costList>
@@ -260,7 +260,7 @@
             <AccuracyShort>0.65</AccuracyShort>
             <AccuracyMedium>0.45</AccuracyMedium>
             <AccuracyLong>0.25</AccuracyLong>
-            <RangedWeapon_Cooldown>2.9</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
         </statBases>
         <equippedAngleOffset>45</equippedAngleOffset>
         <verbs>
@@ -356,7 +356,7 @@
             <AccuracyShort>0.75</AccuracyShort>
             <AccuracyMedium>0.45</AccuracyMedium>
             <AccuracyLong>0.35</AccuracyLong>
-            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
         </statBases>
         <costList>
             <Steel>30</Steel>
@@ -509,7 +509,7 @@
             <AccuracyShort>0.75</AccuracyShort>
             <AccuracyMedium>0.86</AccuracyMedium>
             <AccuracyLong>0.90</AccuracyLong>
-            <RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>1.79</RangedWeapon_Cooldown>
         </statBases>
         <costList>
             <Steel>60</Steel>
@@ -671,7 +671,7 @@
             <WorkToMake>80000</WorkToMake>
             <MarketValue>950</MarketValue>
             <Mass>5</Mass>
-            <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
         </statBases>
         <costList>
             <Steel>50</Steel>

@@ -12,7 +12,7 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch(typeof(MapPawns), nameof(MapPawns.AnyPawnBlockingMapRemoval), MethodType.Getter)]
 public class Harmony_MapPawns_AnyPawnBlockingMapRemoval
 {
-    static void Postfix(Map ___map, ref bool __result)
+    public static void Postfix(Map ___map, ref bool __result)
     {
         Thing sgThing = Comp_Stargate.GetStargateOnMap(___map);
         if (sgThing == null)

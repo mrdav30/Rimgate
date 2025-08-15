@@ -207,7 +207,7 @@
 	<ThingDef ParentName="BaseBullet">
 		<defName>Rimgate_WraithSpearGunProjectile</defName>
 		<label>Wraith spear gun shot</label>
-		<description>bullet</description>
+		<description>bio-plasma</description>
 		<thingClass>Rimgate.Projectile_AdditionalDamage</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/RGWraithSpearGunProjectile</texPath>
@@ -229,5 +229,92 @@
 			</li>
 		</comps>
 	</ThingDef>
+
+	<!-- ====== Wraith Handblaster ====== -->
+
+	<ThingDef ParentName="Rimgate_WraithGunBase">
+		<defName>Rimgate_WraithHandBlaster</defName>
+		<label>Wraith hand blaster</label>
+		<description>A grotesque biotech sidearm used by Wraith commanders and scouts. It emits searing plasma pulses that burn flesh, ignite tempers, and occasionally the shrubbery. Compact, deadly, and annoyingly moist.</description>
+		<graphicData>
+			<texPath>Things/Item/Weapon/Ranged/RGWraithHandBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_ChargeRifle</soundInteract>
+		<statBases>
+			<MarketValue>520</MarketValue>
+			<WorkToMake>24000</WorkToMake>
+			<Mass>0.9</Mass>
+			<AccuracyTouch>0.95</AccuracyTouch>
+			<AccuracyShort>0.78</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.25</AccuracyLong>
+			<RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>60</Steel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Rimgate_Biomass>35</Rimgate_Biomass>
+		</costList>
+		<equippedAngleOffset>25</equippedAngleOffset>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_WraithHandBlasterProjectile</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>18.9</range>
+				<minRange>0.5</minRange>
+				<burstShotCount>3</burstShotCount>
+				<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+				<soundCast>Shot_ChargeBlaster</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>6</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>butt</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>1.1</cooldownTime>
+			</li>
+		</tools>
+		<weaponTags>
+			<li>Rimgate_WraithHandBlaster_tag</li>
+		</weaponTags>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_WraithHandBlasterProjectile</defName>
+		<label>Wraith blaster shot</label>
+		<description>bio-plasma</description>
+		<thingClass>Rimgate.Projectile_AdditionalDamage</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/RGWraithHandBlasterProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>8</damageAmountBase>
+			<stoppingPower>0.6</stoppingPower>
+			<armorPenetrationBase>0.35</armorPenetrationBase>
+			<speed>55</speed>
+		</projectile>
+		<comps>
+			<li Class="Rimgate.CompProperties_AdditionalDamage">
+				<compClass>Rimgate.Comp_AdditionalDamage</compClass>
+				<damageType>Stun</damageType>
+			</li>
+		</comps>
+	</ThingDef>
+
 
 </Defs>

@@ -143,7 +143,7 @@
         <fuelCapacity>25.0</fuelCapacity>
         <fuelFilter>
           <thingDefs>
-            <li>Rimgate_CocoonedMeat</li>
+            <li>Rimgate_Biomass</li>
           </thingDefs>
         </fuelFilter>
       </li>

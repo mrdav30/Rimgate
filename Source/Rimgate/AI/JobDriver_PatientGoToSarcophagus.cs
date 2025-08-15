@@ -30,11 +30,11 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
         // or is no longer the right user type  for the patient
         this.FailOn(delegate
         {
-            return !Sarcophagus.PowerComp.PowerOn
+            return !Sarcophagus.Power.PowerOn
                 || Sarcophagus.HasAnyContents
                 || !Sarcophagus.Accepts(pawn)
                 || !pawn.CanReach(Sarcophagus, PathEndMode.Touch, Danger.Deadly) 
-                || !RimgateRestUtility.IsValidBedForUserType(Sarcophagus, pawn);
+                || !SarcophagusUtility.IsValidForUserType(Sarcophagus, pawn);
         });
 
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);

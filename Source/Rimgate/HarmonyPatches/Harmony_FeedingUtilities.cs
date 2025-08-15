@@ -19,12 +19,12 @@ public static class Harmony_FeedingUtilities
     }
 
     // Run this before Dubs Bad Hygiene, so that the mod's associated
-    // administer fluid jobs are skipped when the patient is on a Sarcophagus
+    // administer fluid jobs are skipped when the patient is in a Sarcophagus
     [HarmonyBefore(new string[] { "Dubwise.DubsBadHygiene" })]
     public static void Postfix(ref bool __result, Pawn p)
     {
         if (p.CurrentBed() is Building_Bed_Sarcophagus bedSarcophagus 
-            && bedSarcophagus.PowerComp.PowerOn)
+            && bedSarcophagus.Power.PowerOn)
         {
             __result = false;
         }
