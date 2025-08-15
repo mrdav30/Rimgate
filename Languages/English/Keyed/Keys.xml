@@ -58,6 +58,45 @@
 	<RG_Sarcophagus_Letter_TraitRemoved_Label>Trait(s) removed</RG_Sarcophagus_Letter_TraitRemoved_Label>
 	<RG_Sarcophagus_Letter_TraitRemoved_Desc>{PAWN_labelShort} has had the following trait(s) removed via Sarcophagus treatment:\n</RG_Sarcophagus_Letter_TraitRemoved_Desc>
 
+	<!-- Cloning pod -->
+
+	<RG_CarryToCloningPod>Carry {1_labelShort} to cloning pod</RG_CarryToCloningPod>
+	<RG_NoCloningPod>No available cryptosleep casket.</RG_NoCloningPod>
+	<RG_CannotCarryToCloningPod>Cannot carry to cryptosleep casket</RG_CannotCarryToCloningPod>
+
+	<RG_CloneOccupantGenes>Create genome-only blank clone of {0}</RG_CloneOccupantGenes>
+	<RG_CloneOccupantFull>Deep scan and fully clone {0}</RG_CloneOccupantFull>
+	<RG_CloneOccupantSoldier>Create combatant-imprinted clone of {0}</RG_CloneOccupantSoldier>
+	<RG_CloneReconstructDead>Create reconstructed clone of {0}</RG_CloneReconstructDead>
+
+	<RG_CannotUseNotBiologic>Cannot use (not biologic)</RG_CannotUseNotBiologic>
+	<RG_CannotUseMedicineTooLow>Cannot clone (requires medicine - 10)</RG_CannotUseMedicineTooLow>
+	<RG_CannotUseFuelLow>Cannot clone (not filled)</RG_CannotUseFuelLow>
+	<RG_CannotUseNoPower>Cloning pod not powered</RG_CannotUseNoPower>
+	<RG_EnterCloningPod>Enter cloning pod</RG_EnterCloningPod>
+	<RG_LetterCloneMajorFailureLabel>Major Cloning Failure</RG_LetterCloneMajorFailureLabel>
+	<RG_LetterCloneHostDiedDesc>The clone host died in the cloning process.</RG_LetterCloneHostDiedDesc>
+	<RG_LetterCloneDiedDesc>The clone died in the cloning process.</RG_LetterCloneDiedDesc>
+	<RG_LetterIdiotCloneDesc>Something went wrong in the cloning process; {0} seems less intelligent than they should be.</RG_LetterIdiotCloneDesc>
+	<RG_LetterInsaneCloneDesc>The clone has gone insane during the cloning process!</RG_LetterInsaneCloneDesc>
+	<RG_LetterCloneMinorFailureLabel>Minor Cloning Failure</RG_LetterCloneMinorFailureLabel>
+	<RG_LetterAlbinoBodyDesc>The clone came out albino!</RG_LetterAlbinoBodyDesc>
+	<RG_LetterBonusGenesDesc>The clone somehow received additional random genes in the cloning process.</RG_LetterBonusGenesDesc>
+	<RG_LetterRandomTraitsDesc>The clone somehow received a random set of traits in the cloning process.</RG_LetterRandomTraitsDesc>
+	<RG_LetterGenderSwapDesc>The clone swapped genders in the cloning process!</RG_LetterGenderSwapDesc>
+
+	<RG_LetterHostClonedLabel>Cloning Operation Complete</RG_LetterHostClonedLabel>
+	<RG_LetterHostClonedGenomeDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nSince only the genome was cloned, they have new passions and may have gained the Fast Learner trait. Although the replicant will start with 0 skills, they can quickly learn.</RG_LetterHostClonedGenomeDesc>
+	<RG_LetterHostClonedFullDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nYou have created a deep scan clone, your replicant should be very close to the original - save a lack of old health conditions and some deterioration of skills.</RG_LetterHostClonedFullDesc>
+	<RG_LetterHostClonedEnhancedDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nYou have constructed an enhanced clone.  The memory of the host was wiped and they were imprinted with combat training and a high tolerance of poor conditions.</RG_LetterHostClonedEnhancedDesc>
+	<RG_LetterHostClonedReconstructedDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nYou have reconstructed a colonists from old remains, your replicant should be very close to the original - save a lack of old health conditions and some deterioration of skills.</RG_LetterHostClonedReconstructedDesc>
+
+	<RG_LetterClonesDiedLabel>Mass Clone Failure</RG_LetterClonesDiedLabel>
+	<RG_LetterClonesDiedLabelDesc>It appears that all clones have undergone spontaneous total failure. Whether this was caused by an archotech, problems in the supply chain, or by defective equipment is unknown. The manufacturer isn't returning calls. </RG_LetterClonesDiedLabelDesc>
+
+	<RG_CommandCloningPodEjectLabel>Eject host</RG_CommandCloningPodEjectLabel>
+	<RG_CommandCloningPodEjectDesc>Wake up the cloning host and eject them.</RG_CommandCloningPodEjectDesc>
+
 	<!-- Stargate -->
 
 	<RG_GateAddress>Stargate address: {0}</RG_GateAddress>

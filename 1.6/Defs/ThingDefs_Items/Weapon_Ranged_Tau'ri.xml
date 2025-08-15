@@ -43,7 +43,7 @@
                 <verbClass>Verb_Shoot</verbClass>
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Bullet_HeavySMG</defaultProjectile>
-                <warmupTime>0.9</warmupTime>
+                <warmupTime>0.8</warmupTime>
                 <range>24.9</range>
                 <burstShotCount>6</burstShotCount>
                 <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
@@ -120,7 +120,7 @@
                 <verbClass>Verb_Shoot</verbClass>
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Bullet_AssaultRifle</defaultProjectile>
-                <warmupTime>1.0</warmupTime>
+                <warmupTime>0.9</warmupTime>
                 <range>31.9</range>
                 <burstShotCount>4</burstShotCount>
                 <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
@@ -199,7 +199,7 @@
                 <verbClass>Verb_Shoot</verbClass>
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Bullet_AssaultRifle</defaultProjectile>
-                <warmupTime>1.0</warmupTime>
+                <warmupTime>0.9</warmupTime>
                 <range>31.9</range>
                 <burstShotCount>4</burstShotCount>
                 <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
@@ -268,7 +268,7 @@
                 <verbClass>Verb_Shoot</verbClass>
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Rimgate_M203Projectile</defaultProjectile>
-                <warmupTime>2.9</warmupTime>
+                <warmupTime>1.5</warmupTime>
                 <range>17.9</range>
                 <forcedMissRadius>0.9</forcedMissRadius>
                 <soundCast>Rimgate_M203Shot</soundCast>
@@ -444,7 +444,7 @@
                 <verbClass>Verb_Shoot</verbClass>
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Bullet_Shotgun</defaultProjectile>
-                <warmupTime>1</warmupTime>
+                <warmupTime>0.9</warmupTime>
                 <burstShotCount>3</burstShotCount>
                 <ticksBetweenBurstShots>18</ticksBetweenBurstShots>
                 <range>15.9</range>
@@ -520,7 +520,7 @@
                 <verbClass>Verb_Shoot</verbClass>
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Bullet_SniperRifle</defaultProjectile>
-                <warmupTime>3.0</warmupTime>
+                <warmupTime>1.9</warmupTime>
                 <range>48.9</range>
                 <soundCast>Shot_SniperRifle</soundCast>
                 <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -700,7 +700,7 @@
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Rimgate_FIMStingerProjectile</defaultProjectile>
                 <forcedMissRadius>1.5</forcedMissRadius>
-                <warmupTime>4</warmupTime>
+                <warmupTime>3.5</warmupTime>
                 <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
                 <range>45.9</range>
                 <soundCast>InfernoCannon_Fire</soundCast>

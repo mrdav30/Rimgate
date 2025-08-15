@@ -85,7 +85,7 @@ public static class SarcophagusUtility
         if (!ShouldSeekSarcophagus(patient, sarcophagus))
             return false;
 
-        if (!HealthUtility.HasAllowedMedicalCareCategory(patient))
+        if (!MedicalUtility.HasAllowedMedicalCareCategory(patient))
             return false;
 
         if (!IsValidRaceFor(patient, sarcophagus.DisallowedRaces))
@@ -94,10 +94,10 @@ public static class SarcophagusUtility
         if (!IsValidXenotypeFor(patient, sarcophagus.DisallowedXenotypes))
             return false;
 
-        if (HealthUtility.HasUsageBlockingHediffs(patient, sarcophagus.UsageBlockingHediffs))
+        if (MedicalUtility.HasUsageBlockingHediffs(patient, sarcophagus.UsageBlockingHediffs))
             return false;
 
-        if (HealthUtility.HasUsageBlockingTraits(patient, sarcophagus.UsageBlockingTraits))
+        if (MedicalUtility.HasUsageBlockingTraits(patient, sarcophagus.UsageBlockingTraits))
             return false;
 
         if (sarcophagus.Aborted)
@@ -182,8 +182,8 @@ public static class SarcophagusUtility
             && patientHediffs.Any(x => nonCriticalTreatableHediffs.Contains(x.def));
 
         // Does not have hediffs or traits that block the pawn from using Sarcophaguss
-        bool hasNoBlockingHediffsOrTraits = !HealthUtility.HasUsageBlockingHediffs(patient, usageBlockingHediffs)
-            && !HealthUtility.HasUsageBlockingTraits(patient, usageBlockingTraits);
+        bool hasNoBlockingHediffsOrTraits = !MedicalUtility.HasUsageBlockingHediffs(patient, usageBlockingHediffs)
+            && !MedicalUtility.HasUsageBlockingTraits(patient, usageBlockingTraits);
 
         bool result = (isDowned
             || hasTendableHediffs

@@ -27,6 +27,60 @@
 		<carryThingAfterJob>true</carryThingAfterJob>
 	</JobDef>
 
+	<!-- Cloning Pod -->
+
+	<JobDef>
+		<defName>Rimgate_EnterCloningPod</defName>
+		<driverClass>Rimgate.JobDriver_EnterCloningPod</driverClass>
+		<reportString>entering cloning pod.</reportString>
+		<taleOnCompletion>EnteredCloningPod</taleOnCompletion>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CloneOccupantGenes</defName>
+		<driverClass>Rimgate.JobDriver_CloneOccupantGenes</driverClass>
+		<reportString>cloning by genome only.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CloneOccupantFull</defName>
+		<driverClass>Rimgate.JobDriver_CloneOccupantFull</driverClass>
+		<reportString>deep-scan cloning.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CloneOccupantSoldier</defName>
+		<driverClass>Rimgate.JobDriver_CloneOccupantSoldier</driverClass>
+		<reportString>reforging.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CloneReconstructDead</defName>
+		<driverClass>Rimgate.JobDriver_CloneReconstructDead</driverClass>
+		<reportString>reconstructing.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CarryToCloningPod</defName>
+		<driverClass>Rimgate.JobDriver_CarryToCloningPod</driverClass>
+		<reportString>carrying TargetA to cloning pod.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+		<taleOnCompletion>PutIntoCloningPod</taleOnCompletion>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CarryCorpseToCloningPod</defName>
+		<driverClass>Rimgate.JobDriver_CarryCorpseToCloningPod</driverClass>
+		<reportString>carrying TargetA to cloning pod.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+		<taleOnCompletion>PutIntoCloningPod</taleOnCompletion>
+	</JobDef>
+
 	<!-- Stargate -->
 
 	<JobDef>

@@ -6,7 +6,7 @@ using Verse;
 
 namespace Rimgate;
 
-public static class HealthUtility
+public static class MedicalUtility
 {
     public static bool HasAllowedMedicalCareCategory(Pawn pawn)
     {

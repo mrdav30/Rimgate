@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <FactionDef>
+    <FactionDef ParentName="FactionBase">
         <defName>Rimgate_TauriFaction</defName>
         <label>Tau'ri</label>
         <description>Technologically savvy, diplomatically flexible, and very confused about how they ended up as galactic peacekeepers.\nHailing from Earth, the Tau’ri mix advanced weaponry with stubborn optimism and a love of offworld coffee.\nWill trade science for bullets—or vice versa.</description>

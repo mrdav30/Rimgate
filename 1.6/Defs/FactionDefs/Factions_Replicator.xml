@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<FactionDef>
+	<FactionDef ParentName="FactionBase">
 		<defName>Rimgate_Replicator</defName>
 		<label>Replicator Hive</label>
 		<description>Endlessly multiplying murder machines with a taste for metal and no appreciation for personal space.\nThey don’t sleep, they don’t eat, and they really don’t want to be friends. Ever.</description>

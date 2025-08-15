@@ -18,16 +18,38 @@ public static class Rimgate_DefOf
     public static DesignationDef Rimgate_DesignationToggleIris;
     public static DesignationDef Rimgate_DesignationCloseStargate;
 
+    public static EffecterDef Rimgate_ClonePod_Idle;
+    public static EffecterDef Rimgate_ClonePod_Operating;
+
+    [MayRequireBiotech]
+    public static GeneDef Skin_SheerWhite;
+    [MayRequireBiotech]
+    public static GeneDef Hair_SnowWhite;
+    [MayRequireBiotech]
+    public static GeneDef Eyes_Red;
+    [MayRequireBiotech]
     public static GeneDef Rimgate_WraithCocoonTrap;
 
-    public static HediffDef Rimgate_SymbioteWithdrawal;
-    public static HediffDef Rimgate_ZatShock;
+    public static HediffDef Rimgate_Clone;
+    public static HediffDef Hediff_ClonedTracker;
+    public static HediffDef Rimgate_ClonePodSickness;
+    public static HediffDef Rimgate_Enduring;
     public static HediffDef Rimgate_SarcophagusHigh;
     public static HediffDef Rimgate_SarcophagusAddiction;
+    public static HediffDef Rimgate_SymbioteWithdrawal;
+    public static HediffDef Rimgate_SystemShock;
+    public static HediffDef Rimgate_ZatShock;
 
     public static JobDef Rimgate_BringToStargate;
     public static JobDef Rimgate_CarryToSarcophagus;
+    public static JobDef Rimgate_CarryToCloningPod;
+    public static JobDef Rimgate_CarryCorpseToCloningPod;
     public static JobDef Rimgate_CloseStargate;
+    public static JobDef Rimgate_CloneOccupantGenes;
+    public static JobDef Rimgate_CloneOccupantFull;
+    public static JobDef Rimgate_CloneOccupantSoldier;
+    public static JobDef Rimgate_CloneReconstructDead;
+    public static JobDef Rimgate_EnterCloningPod;
     public static JobDef Rimgate_ToggleIris;
     public static JobDef Rimgate_DecodeGlyphs;
     public static JobDef Rimgate_DialStargate;
@@ -44,6 +66,10 @@ public static class Rimgate_DefOf
     public static RaidStrategyDef StageThenAttack;
 
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
+    public static ResearchProjectDef Rimgate_WraithCloneGenome;
+    public static ResearchProjectDef Rimgate_WraithCloneFull;
+    public static ResearchProjectDef Rimgate_WraithCloneEnhancement;
+    public static ResearchProjectDef Rimgate_WraithCloneCorpse;
 
     public static SoundDef Rimgate_GoauldGuardHelmToggle;
     public static SoundDef Rimgate_IrisOpen;
@@ -53,6 +79,9 @@ public static class Rimgate_DefOf
     public static SoundDef Rimgate_StargateFailDial;
     public static SoundDef Rimgate_StargateIdle;
     public static SoundDef Rimgate_StargateClose;
+
+    public static TattooDef NoTattoo_Body;
+    public static TattooDef NoTattoo_Face;
 
     public static ThingDef Gun_Autopistol;
     public static ThingDef Rimgate_MineableNaquadah;

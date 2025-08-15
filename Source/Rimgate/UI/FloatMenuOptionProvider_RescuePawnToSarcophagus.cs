@@ -65,7 +65,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
             return null;
         }
 
-        if (HealthUtility.HasUsageBlockingHediffs(clickedPawn, bedSarcophagus.UsageBlockingHediffs))
+        if (MedicalUtility.HasUsageBlockingHediffs(clickedPawn, bedSarcophagus.UsageBlockingHediffs))
         {
             List<Hediff> blockedHediffs = new();
             clickedPawn.health.hediffSet.GetHediffs(ref blockedHediffs);
@@ -78,7 +78,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
                 null);
         }
 
-        if (HealthUtility.HasUsageBlockingTraits(clickedPawn, bedSarcophagus.UsageBlockingTraits))
+        if (MedicalUtility.HasUsageBlockingTraits(clickedPawn, bedSarcophagus.UsageBlockingTraits))
         {
             return new FloatMenuOption(
                 "CannotRescuePawn".Translate(clickedPawn.Named("PAWN")) + ": "

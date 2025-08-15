@@ -26,7 +26,7 @@ public static class Harmony_RestUtility_CanUseBedNow
             // Pawn actually has a medical need for a Sarcophagus
             && SarcophagusUtility.ShouldSeekSarcophagus(pawn, bedSarcophagus)
             // Pawn has medical care category that allows Sarcophagus use
-            && HealthUtility.HasAllowedMedicalCareCategory(pawn)
+            && MedicalUtility.HasAllowedMedicalCareCategory(pawn)
             // Pawn type (colonist, slave, prisoner, guest) matches bedtype
             && SarcophagusUtility.IsValidForUserType(bedSarcophagus, pawn)
             // Sarcophagus hasn't been aborted

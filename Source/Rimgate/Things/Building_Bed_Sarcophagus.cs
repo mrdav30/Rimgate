@@ -11,6 +11,17 @@ using Rimgate;
 
 namespace Rimgate;
 
+public enum SarcophagusStatus
+{
+    Idle = 0,
+    DiagnosisStarted,
+    DiagnosisFinished,
+    HealingStarted,
+    HealingFinished,
+    PatientDischarged,
+    Error
+}
+
 public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, ISearchableContents
 {
     public CompPowerTrader Power;
@@ -59,17 +70,6 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
     public bool AllowGuests = false;
 
     public bool Aborted = false;
-
-    public enum SarcophagusStatus
-    {
-        Idle = 0,
-        DiagnosisStarted,
-        DiagnosisFinished,
-        HealingStarted,
-        HealingFinished,
-        PatientDischarged,
-        Error
-    }
 
     public SarcophagusStatus Status = SarcophagusStatus.Idle;
 
@@ -384,7 +384,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             && RestUtility.CanUseBedEver(myPawn, def);
         if (!canShowOptions) yield break;
 
-        if (HealthUtility.HasUsageBlockingHediffs(myPawn, UsageBlockingHediffs))
+        if (MedicalUtility.HasUsageBlockingHediffs(myPawn, UsageBlockingHediffs))
         {
             List<Hediff> blockedHediffs = new();
             myPawn.health.hediffSet.GetHediffs(ref blockedHediffs);
@@ -398,7 +398,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
             yield break;
         }
 
-        if (HealthUtility.HasUsageBlockingTraits(myPawn, UsageBlockingTraits))
+        if (MedicalUtility.HasUsageBlockingTraits(myPawn, UsageBlockingTraits))
         {
             string label = myPawn.story?.traits.allTraits
                 .First(t => UsageBlockingTraits.Contains(t.def)).LabelCap;
@@ -446,7 +446,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                 yield break;
             }
 
-            if (!HealthUtility.HasAllowedMedicalCareCategory(myPawn))
+            if (!MedicalUtility.HasAllowedMedicalCareCategory(myPawn))
             {
                 yield return new FloatMenuOption(
                     "UseMedicalBed".Translate()

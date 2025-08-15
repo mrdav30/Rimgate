@@ -13,7 +13,7 @@ internal static class CloneUtility
 {
     public static void Clone(Building_WraithCloningPod pod, CloneType cloneType)
     {
-        Pawn innerPawn = pod.GetInnerPawn();
+        Pawn innerPawn = pod.InnerPawn;
         if (innerPawn == null || !innerPawn.RaceProps.Humanlike)
         {
             if (RimgateMod.Debug)
@@ -460,10 +460,15 @@ internal static class CloneUtility
             last = ((NameTriple)pawn.Name).Last;
 
         Hediff_ClonedTracker clonedTrackerHediff = GetClonedTrackerHediff(innerPawn);
-        ++clonedTrackerHediff.TimesCloned;
+        if (clonedTrackerHediff.TimesCloned > 1)
+            ++clonedTrackerHediff.TimesCloned;
+
+        Hediff_Clone hostCloneHeddif = GetCloneHediff(innerPawn);
 
         Hediff_Clone cloneHediff = GetCloneHediff(pawn);
-        cloneHediff.CloneGeneration = clonedTrackerHediff.TimesCloned;
+        cloneHediff.CloneGeneration = hostCloneHeddif != null
+            ? ++hostCloneHeddif.CloneGeneration
+            : 1;
 
         System.Random random2 = new();
         string str = IsCloneName(last)

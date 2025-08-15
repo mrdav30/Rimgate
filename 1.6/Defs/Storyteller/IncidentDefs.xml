@@ -2,7 +2,7 @@
 <Defs>
 
 	<IncidentDef>
-		<defName>Rimgate_Incident_NaquadahMeteorite</defName>
+		<defName>Rimgate_IncidentNaquadahMeteorite</defName>
 		<label>naquadah meteorite</label>
 		<category>Misc</category>
 		<targetTags>
@@ -11,6 +11,18 @@
 		<workerClass>Rimgate.IncidentWorker_Asteroid</workerClass>
 		<baseChance>0.1</baseChance>
 		<minRefireDays>60</minRefireDays>
+	</IncidentDef>
+
+	<IncidentDef>
+		<defName>Rimgate_KillAllClonesNow</defName>
+		<label>mass clone failure</label>
+		<workerClass>Rimgate.IncidentWorker_KillAllClonesNow</workerClass>
+		<category>Misc</category>
+		<baseChance>0.1</baseChance>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<minRefireDays>20</minRefireDays>
 	</IncidentDef>
 
 </Defs>

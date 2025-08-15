@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<BackstoryDef>
+		<defName>Rimgate_DamagedClone</defName>
+		<title>damaged clone</title>
+		<titleShort>replicant</titleShort>
+		<description>[PAWN_nameDef] is an artificially grown copy of someone. Unfortunately, due to problems in the cloning process, [PAWN_pronoun] is damaged mentally and physically.</description>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>Pirate</li>
+			<li>Outlander</li>
+			<li>Rimgate_WraithClone</li>
+		</spawnCategories>
+	</BackstoryDef>
+
+	<BackstoryDef>
+		<defName>Rimgate_Clone</defName>
+		<title>colony replicant</title>
+		<titleShort>replicant</titleShort>
+		<description>[PAWN_nameDef] is an artificially grown copy of someone. Despite taking [PAWN_possessive] appearance from another, [PAWN_pronoun] is a unique individual. [PAWN_nameDef] doesn't have the skills of [PAWN_possessive] genetic parent, but [PAWN_pronoun] can learn at a quickened rate.</description>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>Pirate</li>
+			<li>Outlander</li>
+			<li>Rimgate_WraithClone</li>
+		</spawnCategories>
+	</BackstoryDef>
+
+	<BackstoryDef>
+		<defName>Rimgate_EnhancedClone</defName>
+		<title>enhanced replicant</title>
+		<titleShort>e-replicant</titleShort>
+		<description>[PAWN_nameDef] is an artificially grown copy of someone for a single purpose. [PAWN_possessive] memory wiped and imprinted with combat training, [PAWN_pronoun] also has high tolerance of poor conditions.</description>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>Pirate</li>
+			<li>Outlander</li>
+			<li>Rimgate_WraithClone</li>
+		</spawnCategories>
+	</BackstoryDef>
+
+
+</Defs>

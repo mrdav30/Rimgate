@@ -3,7 +3,7 @@
 
   <!-- ============================ Goa'uld Faction Base ========================== -->
 
-  <FactionDef Name="Rimgate_GoauldFactionBase" Abstract="True">
+  <FactionDef Name="Rimgate_GoauldFactionBase" ParentName="FactionBase" Abstract="True">
     <pawnsPlural>Goa'uld</pawnsPlural>
     <settlementGenerationWeight>0.25</settlementGenerationWeight>
     <canSiege>false</canSiege>

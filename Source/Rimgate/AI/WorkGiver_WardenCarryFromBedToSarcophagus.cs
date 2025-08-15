@@ -30,7 +30,7 @@ public class WorkGiver_WardenCarryFromBedToSarcophagus : WorkGiver_Warden
         Building_Bed_Sarcophagus bed = SarcophagusUtility.FindBestSarcophagus(warden, prisoner);
         if (bed != null
             && SarcophagusUtility.ShouldSeekSarcophagus(prisoner, bed)
-            && HealthUtility.HasAllowedMedicalCareCategory(prisoner)
+            && MedicalUtility.HasAllowedMedicalCareCategory(prisoner)
             && prisoner.CanReserve(bed))
         {
             Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_CarryToSarcophagus, prisoner, bed);

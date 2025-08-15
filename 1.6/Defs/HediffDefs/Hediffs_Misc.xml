@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <HediffDef>
+        <defName>Hediff_ClonedTracker</defName>
+        <label>clone tracker</label>
+        <description>This hediff stores tracking data to determine clone generations.</description>
+        <hediffClass>Rimgate.Hediff_ClonedTracker</hediffClass>
+        <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
+        <isBad>false</isBad>
+    </HediffDef>
+
+    <HediffDef>
+        <defName>Rimgate_Clone</defName>
+        <label>clone</label>
+        <description>A clone.</description>
+        <hediffClass>Rimgate.Hediff_Clone</hediffClass>
+        <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
+        <isBad>false</isBad>
+    </HediffDef>
+
+    <HediffDef ParentName="DiseaseBase">
+        <defName>Rimgate_SystemShock</defName>
+        <label>clone activation shock</label>
+        <labelNoun>activation shock</labelNoun>
+        <description>The patient's nervous system is acclimating to activation and overwhelming sensory inputs, limiting coherent cognition.</description>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>
+                    <min>20000</min>
+                    <max>35000</max>
+                </disappearsAfterTicks>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.1</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <HediffDef ParentName="DiseaseBase">
+        <defName>Rimgate_ClonePodSickness</defName>
+        <label>clone pod sickness</label>
+        <description>After-effects of using a cloning pod. The process suspends and replaces many bodily functions in order to prevent aging and death. Upon exiting, the body takes time to restart and rebalance its natural metabolic processes and purge the agents that assist with the cloning process. While this is ongoing, the patient suffers from nausea, dizziness, and a sense of fuzziness in the mind - amplifieds further from the strain of cloning preparation.</description>
+        <makesSickThought>true</makesSickThought>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>
+                    <min>10000</min>
+                    <max>40000</max>
+                </disappearsAfterTicks>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <vomitMtbDays>0.125</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <postFactor>0.8</postFactor>
+                    </li>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <postFactor>0.5</postFactor>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <postFactor>0.5</postFactor>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <HediffDef ParentName="DiseaseBase">
+        <defName>Rimgate_Enduring</defName>
+        <label>enduring</label>
+        <description>Cloned to be slightly faster, have improved vision and reflexes, and are more resilient.</description>
+        <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
+        <isBad>false</isBad>
+        <stages>
+            <li>
+                <painOffset>-0.5</painOffset>
+                <statOffsets>
+                    <MeleeHitChance>2</MeleeHitChance>
+                    <MeleeDodgeChance>2</MeleeDodgeChance>
+                    <ShootingAccuracyPawn>2</ShootingAccuracyPawn>
+                    <MoveSpeed>1</MoveSpeed>
+                    <InjuryHealingFactor>0.5</InjuryHealingFactor>
+                </statOffsets>
+            </li>
+        </stages>
+    </HediffDef>
+
+</Defs>

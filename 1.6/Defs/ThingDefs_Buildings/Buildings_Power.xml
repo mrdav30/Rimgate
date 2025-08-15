@@ -227,7 +227,6 @@
       <ComponentSpacer>12</ComponentSpacer>
     </costList>
     <hasInteractionCell>False</hasInteractionCell>
-    <designationCategory>Power</designationCategory>
     <staticSunShadowHeight>0.75</staticSunShadowHeight>
   </ThingDef>
 

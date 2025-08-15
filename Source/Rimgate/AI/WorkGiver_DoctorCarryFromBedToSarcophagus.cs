@@ -39,7 +39,7 @@ public class WorkGiver_DoctorCarryFromBedToSarcophagus
         Building_Bed_Sarcophagus bedSarcophagus = SarcophagusUtility.FindBestSarcophagus(pawn, patient);
         if (bedSarcophagus != null 
             && SarcophagusUtility.ShouldSeekSarcophagus(patient, bedSarcophagus) 
-            && HealthUtility.HasAllowedMedicalCareCategory(patient) 
+            && MedicalUtility.HasAllowedMedicalCareCategory(patient) 
             && patient.CanReserve(bedSarcophagus))
         {
             return true;

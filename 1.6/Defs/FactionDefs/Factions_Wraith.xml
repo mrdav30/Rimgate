@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <FactionDef>
+  <FactionDef ParentName="FactionBase">
     <defName>Rimgate_WraithEmpire</defName>
     <label>Wraith Colony</label>
     <description>A predatory, hive-based empire ruled by telepathic queens and fueled by the worst kind of diet plan—yours.\nIf diplomacy fails (it will), expect swarms of space-vampires with great hair and worse manners.</description>
@@ -31,6 +31,7 @@
       <li>
         <categories>
           <li>Rimgate_WraithChildBackStory</li>
+          <li>Rimgate_WraithClone</li>
           <li>Rimgate_WraithAdultBackstory</li>
         </categories>
       </li>
