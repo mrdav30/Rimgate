@@ -798,11 +798,11 @@
 
 	<ThingDef ParentName="Rimgate_JaffaArmorBase">
 		<defName>Rimgate_GoauldKaraKesh</defName>
-		<label>Goa'uld Kara Kesh</label>
+		<label>Goa'uld Kara kesh</label>
 		<description>the famous Goa’uld hand device. Stylishly zaps incoming bullets like a diva flicking lint. Useless in melee, allergic to EMPs, and completely unfair in tribal raids.</description>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
-			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldKaraKesh</researchPrerequisite>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
 			<effectWorking>Smith</effectWorking>
@@ -822,6 +822,8 @@
 			<texPath>Things/Item/Apparel/Utility/RGGoauldKaraKesh</texPath>
 		</graphicData>
 		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1500</MarketValue>
 			<Mass>1.5</Mass>
 			<WorkToMake>14000</WorkToMake>
 			<Flammability>0.4</Flammability>
@@ -865,6 +867,35 @@
 				<minShieldSize>1.4</minShieldSize>
 				<maxShieldSize>1.8</maxShieldSize>
 				<disableRotation>true</disableRotation>
+			</li>
+			<li Class="CompProperties_CompAnalyzableUnlockResearch">
+				<analysisID>1000200</analysisID>
+
+				<!-- Analyzable -->
+
+				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+				<analysisDurationHours>0.5</analysisDurationHours>
+				<destroyedOnAnalyzed>false</destroyedOnAnalyzed>
+				<completedLetterLabel>Goa'uld Kara kesh studied: {RESEARCH} unlocked</completedLetterLabel>
+				<completedLetter>By studying the Goa'uld Kara kesh, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
+				<completedLetterDef>PositiveEvent</completedLetterDef>
+
+				<!-- Interactable -->
+
+				<activateTexPath>UI/Icons/Study</activateTexPath>
+
+				<activateLabelString>Analyze...</activateLabelString>
+				<activateDescString>Analyze the Goa'uld Kara kesh.</activateDescString>
+				<jobString>Analyze Goa'uld Kara kesh</jobString>
+				<guiLabelString>Choose who should analyze this</guiLabelString>
+				<inspectString>Can be analyzed by a colonist.</inspectString>
+
+				<targetingParameters>
+					<canTargetBuildings>false</canTargetBuildings>
+					<canTargetAnimals>false</canTargetAnimals>
+					<canTargetMechs>false</canTargetMechs>
+					<onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+				</targetingParameters>
 			</li>
 		</comps>
 		<thingCategories Inherit="False">

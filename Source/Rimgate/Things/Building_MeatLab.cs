@@ -85,8 +85,14 @@ public class Building_MeatLab : Building_PlantGrower
 
     public override string GetInspectString()
     {
-        return _plant != null
-            ? $"{base.GetInspectString()}\n{_plant.GetInspectString() ?? string.Empty}"
-            : base.GetInspectString();
+        string text = base.GetInspectString();
+
+        if (base.Spawned && _plant != null)
+        {
+            if (!text.NullOrEmpty())
+                text += "\n";
+            text += _plant.GetInspectString();
+        }
+        return text;
     }
 }

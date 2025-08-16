@@ -88,7 +88,7 @@
 	<RG_LetterHostClonedLabel>Cloning Operation Complete</RG_LetterHostClonedLabel>
 	<RG_LetterHostClonedGenomeDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nSince only the genome was cloned, they have new passions and may have gained the Fast Learner trait. Although the replicant will start with 0 skills, they can quickly learn.</RG_LetterHostClonedGenomeDesc>
 	<RG_LetterHostClonedFullDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nYou have created a deep scan clone, your replicant should be very close to the original - save a lack of old health conditions and some deterioration of skills.</RG_LetterHostClonedFullDesc>
-	<RG_LetterHostClonedEnhancedDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nYou have constructed an enhanced clone.  The memory of the host was wiped and they were imprinted with combat training and a high tolerance of poor conditions.</RG_LetterHostClonedEnhancedDesc>
+	<RG_LetterHostClonedEnhancedDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nYou have constructed an enhanced clone. The memory of the host was wiped and they were imprinted with combat training and a high tolerance of poor conditions.</RG_LetterHostClonedEnhancedDesc>
 	<RG_LetterHostClonedReconstructedDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nYou have reconstructed a colonists from old remains, your replicant should be very close to the original - save a lack of old health conditions and some deterioration of skills.</RG_LetterHostClonedReconstructedDesc>
 
 	<RG_LetterClonesDiedLabel>Mass Clone Failure</RG_LetterClonesDiedLabel>
@@ -170,8 +170,26 @@
 	<RG_ToggleLabel>Toggle {0}</RG_ToggleLabel>
 	<RG_ToggleDescription>Designate {0} to be toggled. A colonist will come soon to toggle the switch.</RG_ToggleDescription>
 
-	<!-- Misc -->
+	<!-- Tretonin -->
 
 	<RG_HealedDiseases>{0_nameDef}'s was healed of all diseases.</RG_HealedDiseases>
+
+	<!-- Notes -->
+
+	<RG_ScribbledNote1>Too late, offworlders. The treasure is gone, and so are we. Also, your door code was embarrassingly easy to guess.</RG_ScribbledNote1>
+	<RG_ScribbledNote2>I needed it more than you. By the time you read this, I’ll be light-years away, probably drunk on fermented space cactus.</RG_ScribbledNote2>
+	<RG_ScribbledNote3>You were warned. Next time, maybe guard your ancient tech with more than a single dead rat and a rusty turret.</RG_ScribbledNote3>
+	<RG_ScribbledNote4>This isn't a trap. Seriously. Definitely not booby-trapped. Why are you still reading this?</RG_ScribbledNote4>
+	<RG_ScribbledNote5>I borrowed the artifact. You’ll get it back once I’m done not being vaporized by angry Goa'uld.</RG_ScribbledNote5>
+	<RG_ScribbledNote6>Found it first. Claimed salvage rights. May or may not be cursed. Good luck.</RG_ScribbledNote6>
+	<RG_ScribbledNote7>Leave now if you value your organs. The last guy who opened the crate got hugged by a Wraith. Permanently.</RG_ScribbledNote7>
+	<RG_ScribbledNote8>Sorry, no loot today. I sold it for a shiny rock and half a sandwich. No regrets.</RG_ScribbledNote8>
+	<RG_ScribbledNote9>By the time you decrypt this, I’ll be in orbit. Or dead. Depends on how angry the replicator was.</RG_ScribbledNote9>
+	<RG_ScribbledNote10>This note is all that remains. The rest is stashed in a stargate buffer... somewhere. Enjoy your scavenger hunt.</RG_ScribbledNote10>
+	<RG_ScribbledNote11>If you're reading this, the trap didn't work. Again. I really need better bait than empty promises and ancient tech.</RG_ScribbledNote11>
+	<RG_ScribbledNote12>The crate was full of bugs. Literal ones. I took the good stuff and left the infestation as a gift. You're welcome.</RG_ScribbledNote12>
+	<RG_ScribbledNote13>Technically, this was never your loot. It belonged to the Ancients. I’m just doing my part to return it to their hidden stash. Somewhere. Probably.</RG_ScribbledNote13>
+	<RG_ScribbledNote14>The Wraith came. I left. If you find anything useful, it's probably a trap. Or my leftover lunch. Don't mix them up.</RG_ScribbledNote14>
+	<RG_ScribbledNote15>Glorious treasure was here. Then I remembered how much I hate sharing. Enjoy this commemorative piece of disappointment.</RG_ScribbledNote15>
 
 </LanguageData>

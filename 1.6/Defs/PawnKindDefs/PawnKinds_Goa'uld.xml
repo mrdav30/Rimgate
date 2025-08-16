@@ -113,7 +113,7 @@
     </weaponTags>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
     <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
-    <apparelMoney>2300~7000</apparelMoney>
+    <apparelMoney>4300~7000</apparelMoney>
     <apparelTags>
       <li>Rimgate_GoauldPrimeApparel_tag</li>
       <li>Rimgate_GoauldKaraKesh_tag</li>

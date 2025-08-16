@@ -31,7 +31,6 @@
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
 			<li>Rimgate_GoauldBaal</li>
-			<li>Rimgate_TauriFaction</li>
 		</heldByFactionCategoryTags>
 	</ResearchProjectDef>
 
@@ -72,6 +71,34 @@
 		</prerequisites>
 		<researchViewX>3</researchViewX>
 		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_GoauldKaraKesh</defName>
+		<label>Kara kesh</label>
+		<description>Gain insight into how to construct your own Kara kesh, the Goa'uld multifunctional apparatus also known as a hand or ribbon device.</description>
+		<baseCost>5000</baseCost>
+		<prerequisites>
+			<li>Rimgate_GoauldArmorTier3</li>
+		</prerequisites>
+		<researchViewX>4</researchViewX>
+		<researchViewY>0</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_GoauldKaraKesh</li>
+		</requiredAnalyzed>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Kara kesh device</li>
+
+				<li>subject_story->salvaged a shattered Kara kesh from the ruins of a Goa'uld outpost</li>
+				<li>subject_story->witnessed a Goa’uld commander disintegrate a foe with a mere gesture</li>
+				<li>subject_story->analyzed the residual naquadah energy signature embedded in the control crystals</li>
+				<li>subject_story->decoded a partial system log referencing "Pain Induction Mode"</li>
+
+				<li>subject_gerund->reverse-engineering a Kara kesh</li>
+			</rulesStrings>
+		</generalRules>
+
 	</ResearchProjectDef>
 
 	<!-- ======== Weapon ========= -->
@@ -116,6 +143,12 @@
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>1</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_GoauldBaal</li>
+		</heldByFactionCategoryTags>
 	</ResearchProjectDef>
 
 
@@ -133,6 +166,12 @@
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>3</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_GoauldBaal</li>
+		</heldByFactionCategoryTags>
 	</ResearchProjectDef>
 
 </Defs>

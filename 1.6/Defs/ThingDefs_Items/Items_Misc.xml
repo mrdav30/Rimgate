@@ -36,6 +36,45 @@
         </comps>
     </ThingDef>
 
+
+    <!-- ==================== Scrap note ==================== -->
+
+    <ThingDef>
+        <defName>Rimgate_ScrapNote</defName>
+        <category>Item</category>
+        <label>scribbled note</label>
+        <description>(intentionally left blank)</description>
+        <thingClass>Rimgate.Item_ScrapNote</thingClass>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGGlyphScrap</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stackLimit>1</stackLimit>
+        <altitudeLayer>Item</altitudeLayer>
+        <useHitPoints>true</useHitPoints>
+        <tradeNeverStack>true</tradeNeverStack>
+        <isUnfinishedThing>true</isUnfinishedThing>
+        <scatterableOnMapGen>false</scatterableOnMapGen>
+        <selectable>true</selectable>
+        <tradeability>None</tradeability>
+        <drawerType>MapMeshOnly</drawerType>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <DeteriorationRate>2.0</DeteriorationRate>
+            <Beauty>-8</Beauty>
+            <Mass>1</Mass>
+        </statBases>
+        <comps>
+            <li Class="CompProperties_Forbiddable" />
+        </comps>
+        <alwaysHaulable>true</alwaysHaulable>
+        <rotatable>false</rotatable>
+        <pathCost>14</pathCost>
+        <thingCategories>
+            <li>Unfinished</li>
+        </thingCategories>
+    </ThingDef>
+
     <!-- ==================== Iris ==================== -->
 
     <ThingDef ParentName="ResourceBase">

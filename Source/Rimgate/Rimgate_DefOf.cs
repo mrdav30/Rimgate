@@ -68,11 +68,16 @@ public static class Rimgate_DefOf
     public static ResearchProjectDef Rimgate_GoauldBasic;
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
     public static ResearchProjectDef Rimgate_TauriBasic;
+    public static ResearchProjectDef Rimgate_GoauldTelTak;
+    public static ResearchProjectDef Rimgate_Sarcophagus;
+    public static ResearchProjectDef Rimgate_TauriPuddleJumper;
+    public static ResearchProjectDef Rimgate_TretoninSynthesis;
     public static ResearchProjectDef Rimgate_WraithBasic;
     public static ResearchProjectDef Rimgate_WraithCloneGenome;
     public static ResearchProjectDef Rimgate_WraithCloneFull;
     public static ResearchProjectDef Rimgate_WraithCloneEnhancement;
     public static ResearchProjectDef Rimgate_WraithCloneCorpse;
+    public static ResearchProjectDef Rimgate_WraithDart;
 
     public static SoundDef Rimgate_GoauldGuardHelmToggle;
     public static SoundDef Rimgate_IrisOpen;
@@ -87,7 +92,10 @@ public static class Rimgate_DefOf
     public static TattooDef NoTattoo_Face;
 
     public static ThingDef Gun_Autopistol;
+    public static ThingDef Rimgate_GlyphParchment;
     public static ThingDef Rimgate_MineableNaquadah;
+    public static ThingDef Rimgate_ScrapNote;
+    public static ThingDef Rimgate_SymbioteImplant;
 
     public static ThingSetMakerDef Rimgate_Meteorite;
 }

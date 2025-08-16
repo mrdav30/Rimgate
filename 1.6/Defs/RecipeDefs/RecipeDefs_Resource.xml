@@ -36,4 +36,443 @@
 		<researchPrerequisite>Rimgate_NaquadahRefinement</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- ==================== Tretonin ==================== -->
+
+	<RecipeDef>
+		<defName>Rimgate_MakeTretonin</defName>
+		<label>refine Tretonin</label>
+		<description>make a batch of Tretonin from a Goa'uld symbiote.</description>
+		<jobString>making Tretonin.</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
+		<workAmount>2000</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>DrugLab</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_SymbioteImplant</li>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_SymbioteImplant</li>
+				<li>Rimgate_Naquadah</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_Tretonin>5</Rimgate_Tretonin>
+		</products>
+		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
+	</RecipeDef>
+
+	<!-- ==================== Iris Stuff ==================== -->
+
+	<RecipeDef>
+		<defName>Rimgate_MakeIrisInstallKit</defName>
+		<label>make Iris installation kit</label>
+		<description>make an Iris installation kit.</description>
+		<jobString>making Iris installation kit.</jobString>
+		<workAmount>10000</workAmount>
+		<recipeUsers>
+			<li>FabricationBench</li>
+		</recipeUsers>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<effectWorking>Smelt</effectWorking>
+		<soundWorking>Recipe_Machining</soundWorking>
+		<skillRequirements>
+			<Crafting>10</Crafting>
+		</skillRequirements>
+		<workSkill>Crafting</workSkill>
+		<unfinishedThingDef>Rimgate_UnfinishedIrisInstallKit</unfinishedThingDef>
+		<recipeUsers>
+			<li>FabricationBench</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>250</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>150</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>300</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>200</count>
+			</li>
+		</ingredients>
+		<products>
+			<Rimgate_IrisInstallKit>1</Rimgate_IrisInstallKit>
+		</products>
+		<researchPrerequisite>Rimgate_StargateIrisResearch</researchPrerequisite>
+	</RecipeDef>
+
+	<!-- ==================== Meat Cocoon ==================== -->
+
+	<RecipeDef>
+		<defName>Rimgate_MakeMeatCocoon</defName>
+		<label>Cocoon meat</label>
+		<description>make a batch of cocooned meat.</description>
+		<jobString>making cocooned meat.</jobString>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>450</workAmount>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>ButcherSpot</li>
+			<li>TableButcher</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<customSummary>protein</customSummary>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<customSummary>cloth</customSummary>
+					<categories>
+						<li>Cloth</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+				<li>Cloth</li>
+			</categories>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_CocoonedMeat>1</Rimgate_CocoonedMeat>
+		</products>
+		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeMeatCocoon_x4</defName>
+		<label>Cocoon meat x4</label>
+		<description>Make a batch of cocooned meat.</description>
+		<jobString>Making cocooned meat.</jobString>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>900</workAmount>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>ButcherSpot</li>
+			<li>TableButcher</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<customSummary>protein</customSummary>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<customSummary>cloth</customSummary>
+					<categories>
+						<li>Cloth</li>
+					</categories>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+				<li>Cloth</li>
+			</categories>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_CocoonedMeat>4</Rimgate_CocoonedMeat>
+		</products>
+		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_WraithMakeMeatCocoon</defName>
+		<label>Cocoon meat</label>
+		<description>make a batch of cocooned meat.</description>
+		<jobString>making cocooned meat.</jobString>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>250</workAmount>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>Rimgate_CocoonStation</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<customSummary>protein</customSummary>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+				<li>Cloth</li>
+			</categories>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_CocoonedMeat>1</Rimgate_CocoonedMeat>
+		</products>
+		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_WraithMakeMeatCocoon_x4</defName>
+		<label>Cocoon meat x4</label>
+		<description>make a batch of cocooned meat.</description>
+		<jobString>making cocooned meat.</jobString>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>600</workAmount>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>Rimgate_CocoonStation</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<customSummary>protein</customSummary>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+				<li>Cloth</li>
+			</categories>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_CocoonedMeat>4</Rimgate_CocoonedMeat>
+		</products>
+		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
+	</RecipeDef>
+
+	<!-- ==================== Biomass ==================== -->
+
+	<RecipeDef>
+		<defName>Rimgate_MakeCocoonedMeatBiomass</defName>
+		<label>make Biomass from cocooned meat</label>
+		<description>make a batch of Biomass.</description>
+		<jobString>making Biomass.</jobString>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>450</workAmount>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>TableButcher</li>
+			<li>Rimgate_CocoonStation</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_CocoonedMeat</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_CocoonedMeat</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_Biomass>5</Rimgate_Biomass>
+		</products>
+		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeCocoonedMeatBiomass_4x</defName>
+		<label>make Biomass from cocooned meat x4</label>
+		<description>make a batch of Biomass.</description>
+		<jobString>making Biomass.</jobString>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>450</workAmount>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>TableButcher</li>
+			<li>Rimgate_CocoonStation</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_CocoonedMeat</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_CocoonedMeat</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_Biomass>25</Rimgate_Biomass>
+		</products>
+		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeMeatBiomass</defName>
+		<label>make Biomass from meat</label>
+		<description>make a batch of Biomass from meat.</description>
+		<jobString>making biomass.</jobString>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>450</workAmount>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+		<recipeUsers>
+			<li>TableButcher</li>
+			<li>Rimgate_CocoonStation</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+			<specialFiltersToDisallow>
+			</specialFiltersToDisallow>
+		</fixedIngredientFilter>
+		<defaultIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+			<disallowedCategories>
+				<li>EggsFertilized</li>
+			</disallowedCategories>
+			<disallowedThingDefs>
+			</disallowedThingDefs>
+		</defaultIngredientFilter>
+		<workSkill>Cooking</workSkill>
+		<products>
+			<Rimgate_Biomass>5</Rimgate_Biomass>
+		</products>
+		<workSkill>Cooking</workSkill>
+		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeMeatBiomass_x4</defName>
+		<label>make Biomass from meat x4</label>
+		<description>make a batch of Biomass from meat.</description>
+		<jobString>making biomass.</jobString>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>450</workAmount>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+		<recipeUsers>
+			<li>TableButcher</li>
+			<li>Rimgate_CocoonStation</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</filter>
+				<count>40</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+			<specialFiltersToDisallow>
+			</specialFiltersToDisallow>
+		</fixedIngredientFilter>
+		<defaultIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+			<disallowedCategories>
+				<li>EggsFertilized</li>
+			</disallowedCategories>
+			<disallowedThingDefs>
+			</disallowedThingDefs>
+		</defaultIngredientFilter>
+		<workSkill>Cooking</workSkill>
+		<products>
+			<Rimgate_Biomass>25</Rimgate_Biomass>
+		</products>
+		<workSkill>Cooking</workSkill>
+		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+	</RecipeDef>
+
 </Defs>

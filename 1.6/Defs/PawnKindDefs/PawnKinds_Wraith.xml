@@ -171,7 +171,7 @@
     </backstoryFiltersOverride>
     <gearHealthRange>1~3.3</gearHealthRange>
     <itemQuality>Good</itemQuality>
-    <apparelMoney>1000~3500</apparelMoney>
+    <apparelMoney>1000~4500</apparelMoney>
     <apparelTags>
       <li>IndustrialMilitaryAdvanced</li>
       <li>SpacerMilitary</li>
@@ -249,7 +249,7 @@
       <li>Rimgate_WraithHelmet</li>
       <li>Rimgate_WraithCommanderArmor</li>
     </apparelRequired>
-    <apparelMoney>2500~4200</apparelMoney>
+    <apparelMoney>4500~5200</apparelMoney>
     <weaponMoney>1600~2000</weaponMoney>
     <weaponTags>
       <li>Rimgate_WraithSpear_tag</li>

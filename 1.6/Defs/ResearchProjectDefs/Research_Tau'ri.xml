@@ -71,8 +71,7 @@
         <researchViewX>2</researchViewX>
         <researchViewY>2</researchViewY>
         <prerequisites>
-            <li>PrecisionRifling</li>
-            <li>Rimgate_TauriBasic</li>
+            <li>Rimgate_TauriWeaponsTier1</li>
         </prerequisites>
     </ResearchProjectDef>
 
@@ -128,6 +127,12 @@
         </prerequisites>
         <researchViewX>5</researchViewX>
         <researchViewY>1</researchViewY>
+        <techprintCount>1</techprintCount>
+        <techprintCommonality>3</techprintCommonality>
+        <techprintMarketValue>3000</techprintMarketValue>
+        <heldByFactionCategoryTags>
+            <li>Rimgate_TauriFaction</li>
+        </heldByFactionCategoryTags>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
@@ -137,10 +142,17 @@
         <baseCost>3500</baseCost>
         <prerequisites>
             <li>MedicineProduction</li>
+            <li>Rimgate_GoauldBasic</li>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
-        <researchViewX>2</researchViewX>
+        <researchViewX>3</researchViewX>
         <researchViewY>2</researchViewY>
+        <techprintCount>1</techprintCount>
+        <techprintCommonality>3</techprintCommonality>
+        <techprintMarketValue>3000</techprintMarketValue>
+        <heldByFactionCategoryTags>
+            <li>Rimgate_TauriFaction</li>
+        </heldByFactionCategoryTags>
     </ResearchProjectDef>
 
 </Defs>

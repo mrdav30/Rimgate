@@ -6,4 +6,9 @@
     <root Class="Rimgate.ThingSetMaker_SpecialMeteorite" />
   </ThingSetMakerDef>
 
+  <ThingSetMakerDef>
+    <defName>Rimgate_Techprints</defName>
+    <root Class="Rimgate.ThingSetMaker_RimgateTech" />
+  </ThingSetMakerDef>
+
 </Defs>
