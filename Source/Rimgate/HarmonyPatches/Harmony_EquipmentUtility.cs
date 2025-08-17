@@ -11,7 +11,7 @@ using static UnityEngine.Networking.UnityWebRequest;
 namespace Rimgate.HarmonyPatches;
 
 [HarmonyPatch(typeof(EquipmentUtility), "CanEquip")]
-public static class Harmony_EquipmentUtility_CanEquip
+public static class Harmony_EquipmentUtility
 {
     public static void PostFix(Thing thing, Pawn pawn, ref string cantReason, ref bool checkBonded)
     {

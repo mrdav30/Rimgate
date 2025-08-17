@@ -6,7 +6,7 @@ using Verse;
 namespace Rimgate.HarmonyPatches;
 
 [HarmonyPatch(typeof(PawnGenerator), "GeneratePawnRelations")]
-public static class Harmony_PawnGenerator_GeneratePawnRelations
+public static class Harmony_PawnGenerator
 {
     [HarmonyPostfix]
     public static void GeneratePawnRelationsPatch(Pawn pawn, ref PawnGenerationRequest request)

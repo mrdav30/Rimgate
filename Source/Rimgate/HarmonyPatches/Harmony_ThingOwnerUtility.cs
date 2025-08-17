@@ -6,7 +6,7 @@ using Verse;
 namespace Rimgate.HarmonyPatches;
 
 [HarmonyPatch(typeof(ThingOwnerUtility), nameof(ThingOwnerUtility.ContentsSuspended))]
-public static class Harmony_ThingOwnerUtility_ContentsSuspended
+public static class Harmony_ThingOwnerUtility
 {
     [HarmonyPrefix]
     [HarmonyPriority(700)]

@@ -7,7 +7,7 @@ namespace Rimgate.HarmonyPatches;
 
 // Disallow Drafting Sarcophagus Patients
 [HarmonyPatch(typeof(Pawn_DraftController), "GetGizmos")]
-public static class Harmony_Pawn_DraftController_GetGizmos
+public static class Harmony_Pawn_DraftController
 {
     public static void Postfix(Pawn_DraftController __instance, ref IEnumerable<Gizmo> __result)
     {

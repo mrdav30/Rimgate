@@ -96,6 +96,7 @@ public static class Rimgate_DefOf
     public static ThingDef Rimgate_MineableNaquadah;
     public static ThingDef Rimgate_ScrapNote;
     public static ThingDef Rimgate_SymbioteImplant;
+    public static ThingDef Rimgate_Malp;
 
     public static ThingSetMakerDef Rimgate_Meteorite;
 }

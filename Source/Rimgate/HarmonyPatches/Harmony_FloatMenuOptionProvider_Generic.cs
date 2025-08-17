@@ -10,7 +10,7 @@ namespace Rimgate.HarmonyPatches;
 
 // Remove any arresting/carrying options for patients already lying on sarcophagi
 [HarmonyPatch]
-public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_ClickedPawn_SkipForSarcophagi
+public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_ClickedPawn
 {
     static IEnumerable<MethodBase> TargetMethods()
     {
@@ -42,7 +42,7 @@ public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_C
 
 // Remove any stripping/tending options for patients already lying on sarcophagi
 [HarmonyPatch]
-public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_ClickedThing_SkipForSarcophagi
+public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_ClickedThing
 {
     private static IEnumerable<MethodBase> TargetMethods()
     {

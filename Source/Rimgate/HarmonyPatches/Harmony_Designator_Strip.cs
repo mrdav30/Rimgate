@@ -5,7 +5,7 @@ using Verse;
 namespace Rimgate.HarmonyPatches;
 
 [HarmonyPatch(typeof(Designator_Strip), "CanDesignateThing")]
-public static class Harmony_Designator_Strip_CanDesignateThing
+public static class Harmony_Designator_Strip
 {
     public static void Postfix(ref AcceptanceReport __result, Thing t)
     {
