@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- Structures -->
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_DialHomeDevice</defName>
+        <thing>Rimgate_DialHomeDevice</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Stargate</defName>
+        <thing>Rimgate_Stargate</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldWall</defName>
+        <thing>Rimgate_GoauldWall</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithHiveWall</defName>
+        <thing>Rimgate_WraithHiveWall</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_HiveFloor</defName>
+        <thing>Rimgate_HiveFloor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithGenerator</defName>
+        <thing>Rimgate_WraithGenerator</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_NaquadriaFiredGenerator</defName>
+        <thing>Rimgate_NaquadriaFiredGenerator</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldThrone</defName>
+        <thing>Rimgate_GoauldThrone</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldSarcophagus</defName>
+        <thing>Rimgate_GoauldSarcophagus</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CompositionBench</defName>
+        <thing>Rimgate_CompositionBench</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithMeatLab</defName>
+        <thing>Rimgate_WraithMeatLab</thing>
+    </KCSG.SymbolDef>
+
+    <!-- Items -->
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GlyphParchment</defName>
+        <thing>Rimgate_GlyphParchment</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Naquadah</defName>
+        <thing>Rimgate_Naquadah</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Naquadria</defName>
+        <thing>Rimgate_Naquadria</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ZPM</defName>
+        <thing>Rimgate_ZPM</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CocoonedMeat</defName>
+        <thing>Rimgate_CocoonedMeat</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SymbioteImplant</defName>
+        <thing>Rimgate_SymbioteImplant</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldZat</defName>
+        <thing>Rimgate_GoauldZat</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldKaraKesh</defName>
+        <thing>Rimgate_GoauldKaraKesh</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_JaffaArmor</defName>
+        <thing>Rimgate_JaffaArmor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_FirstPrimeArmor</defName>
+        <thing>Rimgate_FirstPrimeArmor</thing>
+    </KCSG.SymbolDef>
+
+    <!-- Enemies -->
+
+    <KCSG.SymbolDef>
+        <defName>WraithAncientCryptosleepCasket</defName>
+        <thing>AncientCryptosleepCasket</thing>
+        <containPawnKindAnyOf>
+            <li>Rimgate_WraithSoldier</li>
+            <li>Rimgate_WraithCommander</li>
+            <li>Rimgate_WraithQueen</li>
+        </containPawnKindAnyOf>
+        <faction>Rimgate_WraithEmpire</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Replicator</defName>
+        <pawnKindDef>Rimgate_Replicator</pawnKindDef>
+        <faction>Rimgate_Replicator</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_KullWarrior</defName>
+        <pawnKindDef>Rimgate_KullWarrior</pawnKindDef>
+        <faction>Rimgate_GoauldBaal</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <!-- Techprints-->
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TechprintCrate</defName>
+        <thing>Rimgate_SupplyCrate</thing>
+        <thingSetMakerDef>Rimgate_Techprints</thingSetMakerDef>
+        <thingSetMakerDefForPlayer>Rimgate_Techprints</thingSetMakerDefForPlayer>
+    </KCSG.SymbolDef>
+
+</Defs>

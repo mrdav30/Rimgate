@@ -43,14 +43,19 @@ public class ThingSetMaker_RimgateTech : ThingSetMaker
             Rimgate_DefOf.Rimgate_ScrapNote
         };
 
-        IntRange intRange = new IntRange(0, 20);
+        IntRange intRange = new IntRange(0, 30);
         int chance = intRange.RandomInRange;
 
         if (chance <= 8)
         {
             ResearchProjectDef chosenDef = chance <= ResearchDefs.Count ? ResearchDefs[chance] : null;
             if (chosenDef != null && !chosenDef.IsFinished)
-                outThings.Add(ThingMaker.MakeThing(ThingDefs[chance]));
+            {
+                ThingDef thingDef = chance <= ThingDefs.Count ? ThingDefs[chance] : null;
+                if (thingDef != null)
+                    outThings.Add(ThingMaker.MakeThing(thingDef));
+            }
+
         }
         else if (chance < 11)
         {
@@ -60,7 +65,7 @@ public class ThingSetMaker_RimgateTech : ThingSetMaker
 
             return;
         }
-        else if (chance < 16)
+        else if (chance < 26)
             outThings.Add(ThingMaker.MakeThing(Rimgate_DefOf.Rimgate_ScrapNote));
     }
 

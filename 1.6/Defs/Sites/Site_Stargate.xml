@@ -31,6 +31,10 @@
 				<li>Rimgate_StructureIndustrialTown</li>
 				<li>Rimgate_StructureBarrenGate</li>
 				<li>Rimgate_StructureJadeHenge</li>
+				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
+				<li>Rimgate_StructureGoauldNaquadahStorehouse</li>
+				<li>Rimgate_StructureTauriForwardOutpost</li>
+				<li>Rimgate_StructureWraithHibernationSite</li>
 			</structureLayoutDefs>
 		</genStep>
 	</GenStepDef>
