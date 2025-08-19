@@ -4,7 +4,7 @@
 	<FactionDef ParentName="FactionBase">
 		<defName>Rimgate_Replicator</defName>
 		<label>Replicator Hive</label>
-		<description>Endlessly multiplying murder machines with a taste for metal and no appreciation for personal space.\nThey don’t sleep, they don’t eat, and they really don’t want to be friends. Ever.</description>
+		<description>Endlessly multiplying murder machines with a taste for metal and zero interest in friendship.\nThe mini-gate lock fascinates them: they strip DHDs and control crystals for seed code, then reproduce until the map looks like a stainless-steel buffet.</description>
 		<pawnSingular>Replicator</pawnSingular>
 		<pawnsPlural>Relicators</pawnsPlural>
 		<requiredCountAtGameStart>1</requiredCountAtGameStart>

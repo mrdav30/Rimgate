@@ -37,31 +37,39 @@
 
   <RulePackDef>
     <defName>Rimgate_NamerKull</defName>
+    <include>
+      <li>GlobalUtility</li>
+    </include>
     <rulePack>
       <rulesStrings>
-        <li>r_name(p=5)->[KullName]</li>
-        <li>r_name->[KullCodeName]</li>
+        <li>name->[RG_KullName]</li>
 
-        <li>KullName(p=3)->[Gore]</li>
-        <li>KullName(p=3)->[KullCodename]</li>
-        <li>KullName->[Weapon]</li>
-        <li>KullName->[ConceptBadass]</li>
+        <li>RG_KullName->[Gore]-[kull_serial</li>
+        <li>RG_KullName->[RG_KullCodeName]</li>
+        <li>RG_KullName->[Weapon]-[kull_serial]</li>
+        <li>RG_KullName->[ConceptBadass]-[kull_serial</li>
+        <li>RG_KullName->[RG_KullUnisexName] [kull_serial]</li>
 
-        <li>KullCodeName(p=2)->[RomanNumeral]</li>
-        <li>KullCodeName->[kull_serial]</li>
+        <li>RG_KullCodeName->[RomanNumeral]</li>
+        <li>RG_KullCodeName->[kull_serial]</li>
 
-        <li>kull_serial->[maybe_letter][Digit][maybe_letter]</li>
-        <li>kull_serial->[maybe_letter][Digit][Digit][maybe_letter]</li>
-        <li>kull_serial->[maybe_letter][Digit][Digit][Digit][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][maybe_numbers][maybe_letter]</li>
         <li>kull_serial->[maybe_letter][RomanNumeral][maybe_letter]</li>
         <li>kull_serial->[maybe_letter][RomanNumeral][Digit][maybe_letter]</li>
         <li>kull_serial->[maybe_letter][Digit][RomanNumeral][maybe_letter]</li>
         <li>kull_serial->[maybe_letter][Digit][RomanNumeral][Digit][maybe_letter]</li>
         <li>kull_serial->[maybe_letter][RomanNumeral][Digit][RomanNumeral][maybe_letter]</li>
-        <li>kull_serial->[maybe_letter][RomanNumeral][Digit][Digit][RomanNumeral][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][RomanNumeral][maybe_numbers][RomanNumeral][maybe_letter]</li>
+
+        <li>maybe_letter->[Letter]</li>
+        <li>maybe_letter->[Letter][Letter]</li>
+
+        <li>maybe_numbers->[Digit]</li>
+        <li>maybe_numbers->[Digit][Digit]</li>
+        <li>maybe_numbers->[Digit][Digit][Digit]</li>
       </rulesStrings>
       <rulesFiles>
-        <li>KullCodename->NameBanks/Goauld/Names_Kull_Unisex</li>
+        <li>RG_KullUnisexName->NameBanks/Goauld/Names_Kull_Unisex</li>
       </rulesFiles>
     </rulePack>
   </RulePackDef>

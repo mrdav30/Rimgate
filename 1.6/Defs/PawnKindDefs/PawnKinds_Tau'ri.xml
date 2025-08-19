@@ -12,11 +12,12 @@
         <apparelTags>
             <li>Rimgate_TauriApparel_tag</li>
         </apparelTags>
-        <techHediffsChance>0.05</techHediffsChance>
+        <techHediffsChance>0.39</techHediffsChance>
+        <techHediffsMoney>900~1520</techHediffsMoney>
         <techHediffsTags>
-            <li>Simple</li>
-            <li>Advanced</li>
             <li>ImplantEmpireCommon</li>
+            <li>Advanced</li>
+            <li>AdvancedWeapon</li>
         </techHediffsTags>
         <biocodeWeaponChance>0.2</biocodeWeaponChance>
         <itemQuality>Normal</itemQuality>
@@ -33,7 +34,7 @@
         <weaponTags>
             <li>MedievalMeleeBasic</li>
         </weaponTags>
-        <apparelMoney>300~600</apparelMoney>
+        <apparelMoney>300~900</apparelMoney>
         <apparelRequired>
             <li>Rimgate_TauriSGTeamBDU</li>
         </apparelRequired>
@@ -192,7 +193,7 @@
         </inventoryOptions>
         <gearHealthRange>0.8~2.3</gearHealthRange>
         <weaponMoney>1500~2450</weaponMoney>
-        <apparelMoney>1250~2400</apparelMoney>
+        <apparelMoney>2250~3400</apparelMoney>
         <skills>
             <li>
                 <skill>Shooting</skill>
@@ -232,10 +233,6 @@
                 </li>
             </subOptionsChooseOne>
         </inventoryOptions>
-        <techHediffsChance>0.12</techHediffsChance>
-        <techHediffsTags>
-            <li>Advanced</li>
-        </techHediffsTags>
         <skills>
             <li>
                 <skill>Shooting</skill>

@@ -123,8 +123,7 @@
             <ControlTakingTime>23</ControlTakingTime>
             <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
             <ArmorRating_Sharp>0.8</ArmorRating_Sharp>
-            <BandwidthCost>2</BandwidthCost>
-            <EnergyShieldEnergyMax>7</EnergyShieldEnergyMax>
+            <BandwidthCost>3</BandwidthCost>
             <MechEnergyLossPerHP>0.7</MechEnergyLossPerHP>
             <CleaningSpeed>2</CleaningSpeed>
             <MiningSpeed>2</MiningSpeed>
@@ -133,6 +132,8 @@
             <DeepDrillingSpeed>2</DeepDrillingSpeed>
             <GeneralLaborSpeed>2</GeneralLaborSpeed>
             <ConstructSuccessChance>2</ConstructSuccessChance>
+            <EnergyShieldRechargeRate>1.1</EnergyShieldRechargeRate>
+            <EnergyShieldEnergyMax>1.4</EnergyShieldEnergyMax>
         </statBases>
         <race>
             <intelligence>ToolUser</intelligence>
@@ -148,7 +149,7 @@
         <race>
             <body>Rimgate_Malp</body>
             <baseBodySize>3</baseBodySize>
-            <baseHealthScale>2.32</baseHealthScale>
+            <baseHealthScale>1.32</baseHealthScale>
             <mechEnabledWorkTypes>
                 <li>Crafting</li>
                 <li>Hauling</li>

@@ -4,7 +4,7 @@
   <FactionDef ParentName="FactionBase">
     <defName>Rimgate_WraithEmpire</defName>
     <label>Wraith Colony</label>
-    <description>A predatory, hive-based empire ruled by telepathic queens and fueled by the worst kind of diet plan—yours.\nIf diplomacy fails (it will), expect swarms of space-vampires with great hair and worse manners.</description>
+    <description>A predatory hive ruled by telepathic queens and the worst diet plan—yours.\nCut off from the wider hive by the private gate lattice, this splinter feeds, studies, and schemes: piggyback on the Archotech signal or turn the local biosphere into a snack bar while they keep trying.</description>
     <pawnsPlural>Wraith</pawnsPlural>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
@@ -73,18 +73,18 @@
       <li>
         <kindDef>Combat</kindDef>
         <options>
-          <Rimgate_WraithSoldier>130</Rimgate_WraithSoldier>
-          <Rimgate_WraithCommander>150</Rimgate_WraithCommander>
-          <Rimgate_WraithQueen>170</Rimgate_WraithQueen>
+          <Rimgate_WraithSoldier>13</Rimgate_WraithSoldier>
+          <Rimgate_WraithCommander>10</Rimgate_WraithCommander>
+          <Rimgate_WraithQueen>6</Rimgate_WraithQueen>
         </options>
       </li>
       <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <Rimgate_WraithColonist>50</Rimgate_WraithColonist>
-          <Rimgate_WraithSoldier>100</Rimgate_WraithSoldier>
-          <Rimgate_WraithCommander>130</Rimgate_WraithCommander>
-          <Rimgate_WraithQueen>170</Rimgate_WraithQueen>
+          <Rimgate_WraithColonist>10</Rimgate_WraithColonist>
+          <Rimgate_WraithSoldier>15</Rimgate_WraithSoldier>
+          <Rimgate_WraithCommander>10</Rimgate_WraithCommander>
+          <Rimgate_WraithQueen>8</Rimgate_WraithQueen>
         </options>
       </li>
     </pawnGroupMakers>

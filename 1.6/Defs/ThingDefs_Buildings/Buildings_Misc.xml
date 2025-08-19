@@ -48,8 +48,8 @@
 
 	<ThingDef ParentName="Rimgate_StargateBase">
 		<defName>Rimgate_Stargate</defName>
-		<label>stargate</label>
-		<description>an ancient alien device used to transport people or resources between planets. This specific type of Stargate seems to be adapted to work on only one planet. \n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard...naked."</description>
+		<label>Stargate</label>
+		<description>An ancient alien construct capable of instantaneous travel between worlds. Unlike the grand Stargates spoken of in legend, this variant appears smaller and curiously constrained—its connections are locked into a closed, local network. Attempts to dial off-world simply fail, as though some unseen architect sealed them from the broader lattice of gates. Scholars whisper that the Archotechs themselves may have adapted these devices, limiting them to planetary-scale transit for reasons beyond human comprehension.\n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard... naked."</description>
 		<size>(5,1)</size>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGStargateAncient</texPath>
@@ -97,8 +97,8 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_DialHomeDevice</defName>
 		<thingClass>Building</thingClass>
-		<label>dial home device</label>
-		<description>an ancient alien control console designed to interface with a Stargate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
+		<label>Dial home device</label>
+		<description>An ancient alien control console designed to interface with a Stargate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
 		<rotatable>false</rotatable>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<minifiedDrawScale>0.5</minifiedDrawScale>
@@ -148,8 +148,8 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_TauriDialHomeDevice</defName>
 		<thingClass>Building</thingClass>
-		<label>dial home device</label>
-		<description>a field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. Also bolted down better than the last one.</description>
+		<label>Dial home device</label>
+		<description>A field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. Also bolted down better than the last one.</description>
 		<rotatable>false</rotatable>
 		<size>(1,1)</size>
 		<graphicData>
@@ -217,7 +217,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_WraithCloningPod</defName>
-		<label>cloning pod</label>
+		<label>Cloning pod</label>
 		<description>A tall, grotesque biotank filled with fluorescent goo and questionable ethics. The Wraith cloning pod allows rapid gestation of bioengineered pawns. Just add biomass and a touch of hubris.\n\nRequires a skilled Doctor's time and a lot of power to operate.</description>
 		<thingClass>Rimgate.Building_WraithCloningPod</thingClass>
 		<containedPawnsSelectable>true</containedPawnsSelectable>
@@ -301,7 +301,7 @@
 	<!-- ======================= Supply crate ======================= -->
 
 	<ThingDef Name="Rimgate_SupplyCrateBase" ParentName="CrateBase" Abstract="True">
-		<label>supply crate</label>
+		<label>Supply crate</label>
 		<description>A small crate that's still sealed. There may be valuables inside.</description>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGSupplyCrate_Filled</texPath>

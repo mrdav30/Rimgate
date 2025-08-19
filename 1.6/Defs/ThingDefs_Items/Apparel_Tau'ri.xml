@@ -10,7 +10,7 @@
         <label>Tau'ri BDU</label>
         <description>standard field fatigues for SG teams. Durable, practical, and 100% cotton-blend—perfect for offworld diplomacy or high-stakes firefights with snake-worshiping megalomaniacs.\nBonus: now with just enough pockets to lose things in.</description>
         <graphicData>
-            <texPath>Things/Item/Apparel/Torso/BDU/RGTauriBDUGreen</texPath>
+            <texPath>Things/Item/Apparel/Torso/BDU/RGTauriBDU</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <costList>
@@ -44,7 +44,7 @@
                 <li>Arms</li>
                 <li>Legs</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Item/Apparel/Torso/BDU/RGTauriBDUGreen</wornGraphicPath>
+            <wornGraphicPath>Things/Item/Apparel/Torso/BDU/RGTauriBDU</wornGraphicPath>
             <layers>
                 <li>OnSkin</li>
             </layers>
@@ -68,12 +68,9 @@
         <label>Tau'ri ballistic helmet</label>
         <description>tried-and-true combat brain bucket. Offers decent protection from energy blasts and bad decisions. Not great for blunt trauma—so maybe don't headbutt Jaffa.\nWorn in Olive Drab to blend into... alien deserts?</description>
         <graphicData>
-            <texPath>Things/Item/Apparel/Headgear/Ballistic/RGTauriBallisticHelmetOD</texPath>
+            <texPath>Things/Item/Apparel/Headgear/Ballistic/RGTauriBallisticHelmet</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
-        <apparel>
-            <wornGraphicPath>Things/Item/Apparel/Headgear/Ballistic/RGTauriBallisticHelmetOD</wornGraphicPath>
-        </apparel>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
@@ -104,7 +101,7 @@
             <bodyPartGroups>
                 <li>UpperHead</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Item/Apparel/Headgear/Ballistic/RGTauriBallisticHelmetOD</wornGraphicPath>
+            <wornGraphicPath>Things/Item/Apparel/Headgear/Ballistic/RGTauriBallisticHelmet</wornGraphicPath>
             <layers>
                 <li>Overhead</li>
             </layers>
@@ -127,7 +124,7 @@
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
         </recipeMaker>
         <graphicData>
-            <texPath>Things/Item/Apparel/Headgear/Cap/RGTauriBaseballCapGreen</texPath>
+            <texPath>Things/Item/Apparel/Headgear/Cap/RGTauriBaseballCap</texPath>
         </graphicData>
         <costList>
             <Cloth>20</Cloth>
@@ -149,7 +146,7 @@
         </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
-            <wornGraphicPath>Things/Item/Apparel/Headgear/Cap/RGTauriBaseballCapGreen</wornGraphicPath>
+            <wornGraphicPath>Things/Item/Apparel/Headgear/Cap/RGTauriBaseballCap</wornGraphicPath>
             <tags>
                 <li>Rimgate_TauriApparel_tag</li>
             </tags>
@@ -170,7 +167,7 @@
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
         </recipeMaker>
         <graphicData>
-            <texPath>Things/Item/Apparel/Headgear/Boonie/RGBoonieHatGreen</texPath>
+            <texPath>Things/Item/Apparel/Headgear/Boonie/RGBoonieHat</texPath>
         </graphicData>
         <costList>
             <Cloth>20</Cloth>
@@ -192,7 +189,7 @@
         </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
-            <wornGraphicPath>Things/Item/Apparel/Headgear/Boonie/RGBoonieHatGreen</wornGraphicPath>
+            <wornGraphicPath>Things/Item/Apparel/Headgear/Boonie/RGBoonieHat</wornGraphicPath>
             <tags>
                 <li>Rimgate_TauriApparel_tag</li>
             </tags>

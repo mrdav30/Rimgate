@@ -19,6 +19,7 @@
         <cornerBR>Damage/Corner</cornerBR>
       </damageData>
     </graphicData>
+    <drawerType>RealtimeOnly</drawerType>
     <techLevel>Spacer</techLevel>
     <stackLimit>1</stackLimit>
     <minifiedDef>MinifiedThing</minifiedDef>

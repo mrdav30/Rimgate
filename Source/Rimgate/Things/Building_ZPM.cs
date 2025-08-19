@@ -10,9 +10,9 @@ namespace Rimgate;
 [StaticConstructorOnStartup]
 public class Building_ZPM : Building
 {
-    public const int ZpmAdditionDistance = 3;
-
     public static Dictionary<string, Graphic> ChargeGraphics = new();
+
+    public const int ZpmAdditionDistance = 3;
 
     private CompPowerBattery _powerComp;
 

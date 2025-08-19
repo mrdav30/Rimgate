@@ -4,7 +4,7 @@
     <FactionDef ParentName="FactionBase">
         <defName>Rimgate_TauriFaction</defName>
         <label>Tau'ri</label>
-        <description>Technologically savvy, diplomatically flexible, and very confused about how they ended up as galactic peacekeepers.\nHailing from Earth, the Tau’ri mix advanced weaponry with stubborn optimism and a love of offworld coffee.\nWill trade science for bullets—or vice versa.</description>
+        <description>Technologically savvy, diplomatically flexible, and accidentally in charge of galactic cleanup.\nThis underfunded SGC detachment maps the locked mini-gate network and keeps it out of tyrant tentacles.\nOfficial mission: survey and aid. Unofficial: beat Ba’al and the Wraith to the Archotech backdoor—and try not to misdial into a star.</description>
         <fixedName>Tau'ri</fixedName>
         <pawnsPlural>Tau'ri</pawnsPlural>
         <requiredCountAtGameStart>1</requiredCountAtGameStart>
@@ -77,28 +77,31 @@
             <li>
                 <kindDef>Combat</kindDef>
                 <options>
-                    <Rimgate_TauriSGCSoldier>100</Rimgate_TauriSGCSoldier>
-                    <Rimgate_TauriRifleman>120</Rimgate_TauriRifleman>
-                    <Rimgate_TauriSpecialForces>140</Rimgate_TauriSpecialForces>
-                    <Rimgate_TauriCommander>160</Rimgate_TauriCommander>
+                    <Rimgate_TauriSGCSoldier>10</Rimgate_TauriSGCSoldier>
+                    <Rimgate_TauriRifleman>12</Rimgate_TauriRifleman>
+                    <Rimgate_TauriSpecialForces>8</Rimgate_TauriSpecialForces>
+                    <Rimgate_TauriCommander>3</Rimgate_TauriCommander>
+                    <Rimgate_Malp>5</Rimgate_Malp>
                 </options>
             </li>
             <li>
                 <kindDef>Peaceful</kindDef>
                 <options>
-                    <Rimgate_TauriScientist>80</Rimgate_TauriScientist>
-                    <Rimgate_TauriSGCSoldier>40</Rimgate_TauriSGCSoldier>
-                    <Rimgate_TauriCommander>20</Rimgate_TauriCommander>
+                    <Rimgate_TauriScientist>8</Rimgate_TauriScientist>
+                    <Rimgate_TauriSGCSoldier>15</Rimgate_TauriSGCSoldier>
+                    <Rimgate_TauriCommander>3</Rimgate_TauriCommander>
+                    <Rimgate_Malp>5</Rimgate_Malp>
                 </options>
             </li>
             <li>
                 <kindDef>Settlement</kindDef>
                 <options>
-                    <Rimgate_TauriScientist>60</Rimgate_TauriScientist>
-                    <Rimgate_TauriSGCSoldier>60</Rimgate_TauriSGCSoldier>
-                    <Rimgate_TauriRifleman>60</Rimgate_TauriRifleman>
-                    <Rimgate_TauriSpecialForces>60</Rimgate_TauriSpecialForces>
-                    <Rimgate_TauriCommander>60</Rimgate_TauriCommander>
+                    <Rimgate_TauriScientist>10</Rimgate_TauriScientist>
+                    <Rimgate_TauriSGCSoldier>10</Rimgate_TauriSGCSoldier>
+                    <Rimgate_TauriRifleman>12</Rimgate_TauriRifleman>
+                    <Rimgate_TauriSpecialForces>15</Rimgate_TauriSpecialForces>
+                    <Rimgate_TauriCommander>5</Rimgate_TauriCommander>
+                    <Rimgate_Malp>8</Rimgate_Malp>
                 </options>
             </li>
             <li>
@@ -112,6 +115,7 @@
                 <guards>
                     <Rimgate_TauriSGCSoldier>2</Rimgate_TauriSGCSoldier>
                     <Rimgate_TauriRifleman>2</Rimgate_TauriRifleman>
+                    <Rimgate_Malp>1</Rimgate_Malp>
                 </guards>
             </li>
         </pawnGroupMakers>

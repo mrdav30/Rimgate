@@ -515,6 +515,7 @@
             <Steel>60</Steel>
             <ComponentIndustrial>8</ComponentIndustrial>
         </costList>
+        <equippedAngleOffset>45</equippedAngleOffset>
         <verbs>
             <li>
                 <verbClass>Verb_Shoot</verbClass>
