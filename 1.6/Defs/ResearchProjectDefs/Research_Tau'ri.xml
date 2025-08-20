@@ -25,7 +25,7 @@
         <description>begin adapting off-world Tau'ri tech: field equipment, comms, and just enough military-grade hardware to get the IOA very concerned.</description>
         <baseCost>1500</baseCost>
         <researchViewX>0</researchViewX>
-        <researchViewY>1</researchViewY>
+        <researchViewY>2.5</researchViewY>
         <techprintCount>1</techprintCount>
         <techprintCommonality>3</techprintCommonality>
         <techprintMarketValue>3000</techprintMarketValue>
@@ -56,7 +56,7 @@
         <description>Unlock pulse-pounding, projectile-slinging freedom—courtesy of Earth’s finest ballistic engineering.\nWarning: may provoke Goa’uld, Wraith, and anyone with plasma-based superiority complexes.</description>
         <baseCost>2500</baseCost>
         <researchViewX>1</researchViewX>
-        <researchViewY>2</researchViewY>
+        <researchViewY>1</researchViewY>
         <prerequisites>
             <li>PrecisionRifling</li>
             <li>Rimgate_TauriBasic</li>
@@ -69,9 +69,35 @@
         <description>Unlock pulse-pounding, projectile-slinging freedom—courtesy of Earth’s finest ballistic engineering.\nWarning: may provoke Goa’uld, Wraith, and anyone with plasma-based superiority complexes.</description>
         <baseCost>2500</baseCost>
         <researchViewX>2</researchViewX>
-        <researchViewY>2</researchViewY>
+        <researchViewY>1</researchViewY>
         <prerequisites>
             <li>Rimgate_TauriWeaponsTier1</li>
+        </prerequisites>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_TauriTurretsTier1</defName>
+        <label>Tau'ri turrets I</label>
+        <description>Field up your defenses the Tau’ri way: a manned, shielded M2 that turns negotiations into noise. Teaches emplacement, feed, and “brace for recoil.”</description>
+        <baseCost>2500</baseCost>
+        <researchViewX>1</researchViewX>
+        <researchViewY>2</researchViewY>
+        <prerequisites>
+            <li>GunTurrets</li>
+            <li>Rimgate_TauriWeaponsTier1</li>
+        </prerequisites>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_TauriTurretsTier2</defName>
+        <label>Tau'ri turrets II</label>
+        <description>Apply refined naquadah to rail physics and call it “security.” Unlocks a manned railgun that ventilates armor and egos at extreme range.</description>
+        <baseCost>2500</baseCost>
+        <researchViewX>2</researchViewX>
+        <researchViewY>2</researchViewY>
+        <prerequisites>
+            <li>Rimgate_TauriTurretsTier1</li>
+            <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
     </ResearchProjectDef>
 
@@ -86,8 +112,8 @@
             <li>Rimgate_TauriBasic</li>
             <li>StandardMechtech</li>
         </prerequisites>
-        <researchViewX>2</researchViewX>
-        <researchViewY>0</researchViewY>
+        <researchViewX>1</researchViewX>
+        <researchViewY>3</researchViewY>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
@@ -99,8 +125,8 @@
             <li>Rimgate_TauriBasic</li>
             <li>Rimgate_GoauldBasic</li>
         </prerequisites>
-        <researchViewX>3</researchViewX>
-        <researchViewY>1</researchViewY>
+        <researchViewX>1</researchViewX>
+        <researchViewY>4</researchViewY>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
@@ -111,8 +137,8 @@
         <prerequisites>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
-        <researchViewX>4</researchViewX>
-        <researchViewY>1</researchViewY>
+        <researchViewX>2</researchViewX>
+        <researchViewY>4</researchViewY>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
@@ -125,8 +151,8 @@
             <li>Rimgate_NaquadriaFiredGenerator</li>
             <li>ShipBasics</li>
         </prerequisites>
-        <researchViewX>5</researchViewX>
-        <researchViewY>1</researchViewY>
+        <researchViewX>3</researchViewX>
+        <researchViewY>4</researchViewY>
         <techprintCount>1</techprintCount>
         <techprintCommonality>3</techprintCommonality>
         <techprintMarketValue>3000</techprintMarketValue>
@@ -145,8 +171,8 @@
             <li>Rimgate_GoauldBasic</li>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
-        <researchViewX>3</researchViewX>
-        <researchViewY>2</researchViewY>
+        <researchViewX>1</researchViewX>
+        <researchViewY>5</researchViewY>
         <techprintCount>1</techprintCount>
         <techprintCommonality>3</techprintCommonality>
         <techprintMarketValue>3000</techprintMarketValue>

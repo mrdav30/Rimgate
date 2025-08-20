@@ -124,6 +124,9 @@
 	<RG_BringPawnToReceivingGateAction>Vaporize downed pawn</RG_BringPawnToReceivingGateAction>
 	<RG_BringPawnToGateAction>Bring downed pawn to stargate</RG_BringPawnToGateAction>
 
+	<RG_FailReasonGateInactive>not active.</RG_FailReasonGateInactive>
+	<RG_FailReasonGateIrisClosed>iris closed.</RG_FailReasonGateIrisClosed>
+
 	<RG_RespawnGateString>Please respawn this gate (and its accompanying DHD) using devmode, as an update has broken it.</RG_RespawnGateString>
 
 	<!-- Stargate Caravan -->

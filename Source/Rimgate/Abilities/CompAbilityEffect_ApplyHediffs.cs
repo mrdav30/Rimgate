@@ -16,9 +16,13 @@ public class CompAbilityEffect_ApplyHediffs : CompAbilityEffect
 
     public override bool AICanTargetNow(LocalTargetInfo target)
     {
-        Pawn pawn = parent.pawn;
+        Pawn pawn = parent?.pawn;
         Pawn pawn2 = target.Pawn;
-        if (pawn == null || pawn.ThingID == pawn2.ThingID)
+        if (pawn == null 
+            || pawn2 == null 
+            || pawn2.Dead
+            || pawn2.RaceProps.IsMechanoid
+            ||  pawn.ThingID == pawn2.ThingID)
             return false;
 
         if(Props.rangeLimit > 0)

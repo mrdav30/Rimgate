@@ -17,7 +17,7 @@ public class JobDriver_EnterStargate : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDestroyedOrNull(TargetIndex.A);
-        this.FailOn(() => !StargateToEnter.TryGetComp<Comp_Stargate>().StargateIsActive);
+        this.FailOn(() => !StargateToEnter.TryGetComp<Comp_Stargate>().IsActive);
 
         yield return Toils_Goto.GotoCell(StargateToEnter.InteractionCell, PathEndMode.OnCell);
         yield return new Toil
@@ -25,6 +25,7 @@ public class JobDriver_EnterStargate : JobDriver
             initAction = () =>
             {
                 Comp_Stargate gateComp = StargateToEnter.TryGetComp<Comp_Stargate>();
+                if (gateComp == null) return;
                 pawn.DeSpawn();
                 gateComp.AddToSendBuffer(pawn);
             }

@@ -32,7 +32,7 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 
     public override string GetInspectString()
     {
-        return "Rimgate_GateAddress".Translate(Comp_Stargate.GetStargateDesignation(Tile));
+        return "Rimgate_GateAddress".Translate(StargateUtility.GetStargateDesignation(Tile));
     }
 
     public override void SpawnSetup()
@@ -58,7 +58,7 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
         foreach (var pawn in pawns)
             pawn.Destroy();
 
-        Thing gateOnMap = Comp_Stargate.GetStargateOnMap(Map);
+        Thing gateOnMap = StargateUtility.GetStargateOnMap(Map);
         Thing dhdOnMap = Comp_DialHomeDevice.GetDhdOnMap(Map);
         if (RimgateMod.Debug) 
             Log.Message($"Rimgate :: perm sg site post map gen: dhddef={DhdDef} gatedef={GateDef} gateonmap={gateOnMap} dhdonmap={dhdOnMap}");
@@ -82,7 +82,7 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 
     public override void Notify_MyMapAboutToBeRemoved()
     {
-        Thing gateOnMap = Comp_Stargate.GetStargateOnMap(Map);
+        Thing gateOnMap = StargateUtility.GetStargateOnMap(Map);
         Thing dhdOnMap = Comp_DialHomeDevice.GetDhdOnMap(Map);
         DhdDef = dhdOnMap == null ? null : dhdOnMap.def;
         GateDef = gateOnMap == null ? null : gateOnMap.def;

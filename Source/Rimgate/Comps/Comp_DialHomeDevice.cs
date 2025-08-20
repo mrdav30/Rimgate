@@ -80,7 +80,7 @@ public class Comp_DialHomeDevice : ThingComp
         }
 
         Comp_Stargate stargate = GetLinkedStargate();
-        if (stargate.StargateIsActive)
+        if (stargate.IsActive)
         {
             yield return new FloatMenuOption(
                 "RG_CannotDialGateIsActive".Translate(),
@@ -114,7 +114,7 @@ public class Comp_DialHomeDevice : ThingComp
                 continue;
 
             MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
-            string designation = Comp_Stargate.GetStargateDesignation(tile);
+            string designation = StargateUtility.GetStargateDesignation(tile);
 
             yield return new FloatMenuOption(
                 "RG_DialGate".Translate(designation, sgMap.Label),
@@ -155,7 +155,7 @@ public class Comp_DialHomeDevice : ThingComp
             }
         };
 
-        if (!stargate.StargateIsActive)
+        if (!stargate.IsActive)
             command.Disable("RG_GateIsNotActive".Translate());
         else if (stargate.IsReceivingGate)
             command.Disable("RG_CannotCloseIncoming".Translate());

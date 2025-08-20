@@ -74,7 +74,7 @@
 			<li Class="Rimgate.CompProperties_Stargate">
 				<puddleTexture>Things/Building/Misc/RGEventHorizon</puddleTexture>
 				<irisTexture>Things/Building/Misc/RGIris</irisTexture>
-				<puddleDrawSize>(8.7,8.7)</puddleDrawSize>
+				<puddleDrawSize>(5.3,5.3)</puddleDrawSize>
 				<irisPowerConsumption>500</irisPowerConsumption>
 			</li>
 			<li Class="CompProperties_Power">
@@ -96,7 +96,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_DialHomeDevice</defName>
-		<thingClass>Building</thingClass>
+		<thingClass>Rimgate.Building_DHD</thingClass>
 		<label>Dial home device</label>
 		<description>An ancient alien control console designed to interface with a Stargate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
 		<rotatable>false</rotatable>

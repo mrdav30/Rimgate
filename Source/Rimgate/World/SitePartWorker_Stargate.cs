@@ -12,7 +12,7 @@ public class SitePartWorker_Stargate : SitePartWorker
     public override string GetPostProcessedThreatLabel(Site site, SitePart sitePart)
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("Rimgate_GateAddress".Translate(Comp_Stargate.GetStargateDesignation(site.Tile)));
+        sb.Append("Rimgate_GateAddress".Translate(StargateUtility.GetStargateDesignation(site.Tile)));
         return sb.ToString();
     }
 
@@ -24,7 +24,7 @@ public class SitePartWorker_Stargate : SitePartWorker
             return;
         }
 
-        Thing gateOnMap = Comp_Stargate.GetStargateOnMap(map);
+        Thing gateOnMap = StargateUtility.GetStargateOnMap(map);
         if (gateOnMap == null)
         {
             Log.Error("Rimgate :: SitePartWorker gateOnMap was null on PostMapGenerate.");
@@ -33,9 +33,13 @@ public class SitePartWorker_Stargate : SitePartWorker
 
         // move pawns away from vortex
         var VortexCells = gateOnMap.TryGetComp<Comp_Stargate>().VortexCells;
-        foreach (Pawn pawn in map.mapPawns.AllPawns)
+        foreach (Pawn pawn in map.mapPawns?.AllPawns)
         {
+            if (pawn.Map == null) continue;
+
             Room pawnRoom = pawn.Position.GetRoom(pawn.Map);
+            if (pawnRoom == null) continue;
+
             var cells = GenRadial.RadialCellsAround(pawn.Position, 9, true)
                 .Where(c => c.InBounds(map)
                     && c.Walkable(map)

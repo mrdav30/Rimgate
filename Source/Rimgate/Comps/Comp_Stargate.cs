@@ -15,15 +15,13 @@ public class Comp_Stargate : ThingComp
 {
     public const int GlowRadius = 10;
 
-    public const string Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
     public int TicksSinceBufferUnloaded;
 
     public int TicksSinceOpened;
 
     public PlanetTile GateAddress;
 
-    public bool StargateIsActive = false;
+    public bool IsActive = false;
 
     public bool IsReceivingGate;
 
@@ -112,9 +110,9 @@ public class Comp_Stargate : ThingComp
 
     private Queue<Thing> _recvBuffer = new Queue<Thing>();
 
-    private bool _irisIsActivated = false;
+    private bool _isIrisActivated = false;
 
-    public bool IsIrisActivated => _irisIsActivated;
+    public bool IsIrisActivated => _isIrisActivated;
 
     public bool _wantsIrisToggled;
 
@@ -150,7 +148,7 @@ public class Comp_Stargate : ThingComp
     {
         Thing gate = GetorCreateReceivingStargate(address);
         bool invalid = address.Valid
-            && (gate == null || gate.TryGetComp<Comp_Stargate>().StargateIsActive);
+            && (gate == null || gate.TryGetComp<Comp_Stargate>().IsActive);
         if (invalid)
         {
             Messages.Message(
@@ -160,7 +158,7 @@ public class Comp_Stargate : ThingComp
             return;
         }
 
-        StargateIsActive = true;
+        IsActive = true;
         ConnectedAddress = address;
 
         if (ConnectedAddress.Valid)
@@ -168,7 +166,7 @@ public class Comp_Stargate : ThingComp
             ConnectedStargate = gate;
 
             Comp_Stargate sgComp = ConnectedStargate.TryGetComp<Comp_Stargate>();
-            sgComp.StargateIsActive = true;
+            sgComp.IsActive = true;
             sgComp.IsReceivingGate = true;
             sgComp.ConnectedAddress = GateAddress;
             sgComp.ConnectedStargate = parent;
@@ -242,7 +240,7 @@ public class Comp_Stargate : ThingComp
                 Explosive.StartWick();
         }
 
-        StargateIsActive = false;
+        IsActive = false;
         TicksSinceBufferUnloaded = 0;
         TicksSinceOpened = 0;
         ConnectedAddress = PlanetTile.Invalid;
@@ -251,36 +249,6 @@ public class Comp_Stargate : ThingComp
     }
 
     #endregion
-
-    public static Thing GetStargateOnMap(Map map, Thing thingToIgnore = null)
-    {
-        Thing gateOnMap = null;
-        foreach (Thing thing in map.listerThings.AllThings)
-        {
-            if (thing != thingToIgnore
-                && thing.def.thingClass == typeof(Building_Stargate))
-            {
-                gateOnMap = thing;
-                break;
-            }
-        }
-
-        return gateOnMap;
-    }
-
-    public static string GetStargateDesignation(PlanetTile address)
-    {
-        if (!address.Valid)
-            return "UnknownLower".Translate();
-
-        Rand.PushState(address);
-        //pattern: P(num)(char)-(num)(num)(num)
-        string designation = 
-            $"P{Rand.RangeInclusive(0, 9)}{Alpha[Rand.RangeInclusive(0, 25)]}"
-            + $"-{Rand.RangeInclusive(0, 9)}{Rand.RangeInclusive(0, 9)}{Rand.RangeInclusive(0, 9)}";
-        Rand.PopState();
-        return designation;
-    }
 
     private Thing GetorCreateReceivingStargate(PlanetTile address)
     {
@@ -309,7 +277,7 @@ public class Comp_Stargate : ThingComp
         }
 
         Map map = connectedMap.Map;
-        Thing gate = GetStargateOnMap(map);
+        Thing gate = StargateUtility.GetStargateOnMap(map);
 
         return gate;
     }
@@ -365,18 +333,24 @@ public class Comp_Stargate : ThingComp
     public override void PostDraw()
     {
         base.PostDraw();
-        if (_irisIsActivated)
+        if (_isIrisActivated)
         {
+            Vector3 offset = Rimgate_DefOf.Rimgate_Stargate.graphicData.drawOffset;
+            offset.y -= 0.01f;
+
             StargateIris.Draw(
-                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) - (Vector3.one * 0.01f),
+                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) + offset,
                 Rot4.North,
                 parent);
         }
 
-        if (StargateIsActive)
+        if (IsActive)
         {
+            Vector3 offset = Rimgate_DefOf.Rimgate_Stargate.graphicData.drawOffset;
+            offset.y -= 0.02f;
+
             StargatePuddle.Draw(
-                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) - (Vector3.one * 0.02f),
+                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) + offset,
                 Rot4.North,
                 parent);
         }
@@ -396,9 +370,9 @@ public class Comp_Stargate : ThingComp
             }
         }
 
-        if (!StargateIsActive) return;
+        if (!IsActive) return;
 
-        if (!_irisIsActivated && TicksSinceOpened < 150 && TicksSinceOpened % 10 == 0)
+        if (!_isIrisActivated && TicksSinceOpened < 150 && TicksSinceOpened % 10 == 0)
             DoUnstableVortex();
 
         if (parent.Fogged())
@@ -443,7 +417,7 @@ public class Comp_Stargate : ThingComp
             TicksSinceBufferUnloaded = 0;
             var thing = _recvBuffer.Peek(); // check without removing
 
-            if (!_irisIsActivated)
+            if (!_isIrisActivated)
             {
                 GenSpawn.Spawn(thing, parent.InteractionCell, parent.Map);
                 PlayTeleportSound();
@@ -477,7 +451,7 @@ public class Comp_Stargate : ThingComp
         GateAddress = parent.Map.Tile;
         Find.World.GetComponent<WorldComp_StargateAddresses>().AddAddress(GateAddress);
 
-        if (StargateIsActive)
+        if (IsActive)
         {
             if (ConnectedStargate == null && ConnectedAddress.Valid)
                 ConnectedStargate = GetorCreateReceivingStargate(ConnectedAddress);
@@ -485,19 +459,19 @@ public class Comp_Stargate : ThingComp
         }
 
         if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: compsg postspawnssetup: sgactive={StargateIsActive} connectgate={ConnectedStargate} connectaddress={ConnectedAddress}, mapparent={parent.Map.Parent}");
+            Log.Message($"Rimgate :: compsg postspawnssetup: sgactive={IsActive} connectgate={ConnectedStargate} connectaddress={ConnectedAddress}, mapparent={parent.Map.Parent}");
     }
 
     public string GetInspectString()
     {
         StringBuilder sb = new StringBuilder();
-        string address = GetStargateDesignation(GateAddress);
+        string address = StargateUtility.GetStargateDesignation(GateAddress);
         sb.AppendLine("RG_GateAddress".Translate(address));
-        if (!StargateIsActive)
+        if (!IsActive)
             sb.AppendLine("InactiveFacility".Translate().CapitalizeFirst());
         else
         {
-            string connectAddress = GetStargateDesignation(ConnectedAddress);
+            string connectAddress = StargateUtility.GetStargateDesignation(ConnectedAddress);
             var connectLabel = (IsReceivingGate 
                 ? "RG_IncomingConnection" 
                 : "RG_OutgoingConnection").Translate();
@@ -506,7 +480,7 @@ public class Comp_Stargate : ThingComp
 
         if (HasIris)
         {
-            var irisLabel = (_irisIsActivated 
+            var irisLabel = (_isIrisActivated 
                 ? "RG_IrisClosedStatus" 
                 : "RG_IrisOpenStatus").Translate();
             sb.AppendLine("RG_IrisStatus".Translate(irisLabel));
@@ -520,7 +494,7 @@ public class Comp_Stargate : ThingComp
 
     public void ToggleIris()
     {
-        _irisIsActivated = !_irisIsActivated;
+        _isIrisActivated = !_isIrisActivated;
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -530,7 +504,7 @@ public class Comp_Stargate : ThingComp
 
         if (Props.canHaveIris && HasIris)
         {
-            var action = (_irisIsActivated 
+            var action = (_isIrisActivated 
                 ? "RG_OpenIris" 
                 : "RG_CloseIris").Translate();
             Command_Toggle command = new Command_Toggle
@@ -588,97 +562,12 @@ public class Comp_Stargate : ThingComp
 
     public void DoToggleIris()
     {
-        _irisIsActivated = !_irisIsActivated;
+        _isIrisActivated = !_isIrisActivated;
         _wantsIrisToggled = false;
-        if (_irisIsActivated)
+        if (_isIrisActivated)
             Rimgate_DefOf.Rimgate_IrisOpen.PlayOneShot(SoundInfo.InMap(parent));
         else
             Rimgate_DefOf.Rimgate_IrisClose.PlayOneShot(SoundInfo.InMap(parent));
-    }
-
-    public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
-    {
-        if (!StargateIsActive || _irisIsActivated)
-            yield break;
-
-        bool canReach = selPawn.CanReach(
-            parent,
-            PathEndMode.Touch,
-            Danger.Deadly,
-            false,
-            false,
-            TraverseMode.ByPawn);
-
-        if (!canReach)
-            yield break;
-
-
-        var enterLabel = (IsReceivingGate
-            ? "RG_EnterReceivingStargateAction"
-            : "RG_EnterStargateAction").Translate();
-        yield return new FloatMenuOption(enterLabel, () =>
-        {
-            Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_EnterStargate, parent);
-            selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-        });
-
-        var bringLabel = (IsReceivingGate
-            ? "RG_BringPawnToReceivingGateAction"
-            : "RG_BringPawnToGateAction").Translate();
-        yield return new FloatMenuOption(bringLabel, () =>
-        {
-            TargetingParameters targetingParameters = new TargetingParameters()
-            {
-                onlyTargetIncapacitatedPawns = true,
-                canTargetBuildings = false,
-                canTargetItems = true,
-            };
-
-            Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo t)
-            {
-                Job job = JobMaker.MakeJob(
-                    Rimgate_DefOf.Rimgate_BringToStargate,
-                    t.Thing,
-                    parent);
-                selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-            });
-        });
-
-        yield break;
-    }
-
-    public override IEnumerable<FloatMenuOption> CompMultiSelectFloatMenuOptions(IEnumerable<Pawn> selPawns)
-    {
-        if (!StargateIsActive)
-            yield break;
-
-        List<Pawn> allowedPawns = new List<Pawn>();
-        foreach (Pawn selPawn in selPawns)
-        {
-            bool canReach = selPawn.CanReach(
-                parent,
-                PathEndMode.Touch,
-                Danger.Deadly,
-                false,
-                false,
-                TraverseMode.ByPawn);
-            if (canReach)
-                allowedPawns.Add(selPawn);
-        }
-
-        var label = (IsReceivingGate
-            ? "RG_EnterReceivingStargateWithSelectedAction"
-            : "RG_EnterStargateWithSelectedAction").Translate();
-        yield return new FloatMenuOption(label, () =>
-        {
-            foreach (Pawn selPawn in allowedPawns)
-            {
-                Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_EnterStargate, parent);
-                selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-            }
-        });
-
-        yield break;
     }
 
     private void CleanupGate()
@@ -704,10 +593,10 @@ public class Comp_Stargate : ThingComp
     public override void PostExposeData()
     {
         base.PostExposeData();
-        Scribe_Values.Look(ref StargateIsActive, "StargateIsActive");
+        Scribe_Values.Look(ref IsActive, "StargateIsActive");
         Scribe_Values.Look(ref IsReceivingGate, "IsRecievingGate");
         Scribe_Values.Look(ref HasIris, "HasIris");
-        Scribe_Values.Look(ref _irisIsActivated, "_irisIsActivated");
+        Scribe_Values.Look(ref _isIrisActivated, "_irisIsActivated");
         Scribe_Values.Look(ref _wantsIrisToggled, "_wantsIrisToggled");
         Scribe_Values.Look(ref TicksSinceOpened, "TicksSinceOpened");
         Scribe_Values.Look(ref ConnectedAddress, "_connectedAddress");

@@ -1,43 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- ======================= Bullets ======================= -->
+	<!-- ======================= M2 =======================  -->
 
-	<ThingDef ParentName="BaseBullet">
-		<defName>Rimgate_50CalBullet</defName>
-		<label>.50 BMG bullet</label>
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>20</damageAmountBase>
-			<armorPenetrationBase>0.75</armorPenetrationBase>
-			<speed>105</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseBullet">
-		<defName>Rimgate_RailgunBullet</defName>
-		<label>railgun shell</label>
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>35</damageAmountBase>
-			<armorPenetrationBase>0.95</armorPenetrationBase>
-			<speed>110</speed>
-		</projectile>
-	</ThingDef>
-
-	<!-- ======================= Manned Turrets ======================= -->
-
-	<!-- =========== M2 Turret Base  ===========  -->
-
-	<ThingDef ParentName="BuildingBase" Name="Rimgate_MannedTurretBase" Abstract="true">
+	<ThingDef Name="Rimgate_MannedTurretBase" ParentName="BuildingBase" Abstract="true">
 		<thingClass>Building_TurretGun</thingClass>
 		<drawerType>MapMeshAndRealTime</drawerType>
 		<thingCategories>
@@ -76,9 +42,7 @@
 		</placeWorkers>
 	</ThingDef>
 
-	<!-- ============ M2 Turret Gun Base ============ -->
-
-	<ThingDef ParentName="BaseWeaponTurret" Name="Rimgate_MannedGunBase" Abstract="true">
+	<ThingDef Name="Rimgate_MannedGunBase" ParentName="BaseWeaponTurret" Abstract="true">
 		<soundInteract>Interact_Rifle</soundInteract>
 		<destroyOnDrop>true</destroyOnDrop>
 		<tradeability>None</tradeability>
@@ -89,23 +53,23 @@
 		</statBases>
 	</ThingDef>
 
-	<!-- ====== Manned M2 Turret ====== -->
+	<!-- ====== M2 Turret ====== -->
 
 	<ThingDef ParentName="Rimgate_MannedTurretBase">
 		<defName>Rimgate_M2Turret</defName>
-		<label>manned M2 .50 Cal machine gun</label>
-		<description>a belt-fed brute of a machine gun, manned by the brave and backed by decades of battlefield legacy. Commonly deployed by SG teams to politely discourage alien threats.</description>
+		<label>manned M2 .50 cal shielded machine gun</label>
+		<description>a belt-fed brute of a machine gun—equipped with a steel shield for when diplomacy fails and cover is optional. Manned by the brave and backed by decades of battlefield legacy.\nCommonly deployed by SG teams to politely discourage alien threats.</description>
 		<graphicData>
-			<texPath>Things/Building/Security/M2HMG/RGM2Stand</texPath>
+			<texPath>Things/Building/Security/RGTurretStand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
 			<drawSize>(1.5,1.5)</drawSize>
 			<damageData>
 				<rect>(0.2,0.2,0.6,0.6)</rect>
 			</damageData>
 		</graphicData>
-		<uiIconPath>Things/Building/Security/M2HMG/RGM2HMG</uiIconPath>
+		<uiIconPath>Things/Building/Security/RGM2HMG</uiIconPath>
 		<statBases>
-			<MaxHitPoints>250</MaxHitPoints>
+			<MaxHitPoints>350</MaxHitPoints>
 			<WorkToBuild>10000</WorkToBuild>
 			<Mass>52</Mass>
 		</statBases>
@@ -127,11 +91,12 @@
 				<factorByDifficulty>true</factorByDifficulty>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
-				<fuelIconPath>Things/Building/Security/M2HMG/RGAmmo</fuelIconPath>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
 			</li>
 		</comps>
 		<costList>
-			<Steel>280</Steel>
+			<Steel>250</Steel>
+			<Plasteel>25</Plasteel>
 			<ComponentIndustrial>6</ComponentIndustrial>
 		</costList>
 		<building>
@@ -139,7 +104,7 @@
 			<turretBurstCooldownTime>1.875</turretBurstCooldownTime>
 		</building>
 		<researchPrerequisites>
-			<li>GunTurrets</li>
+			<li>Rimgate_TauriTurretsTier1</li>
 		</researchPrerequisites>
 		<tradeTags>
 			<li>Rimgate_TauriHMGTurret</li>
@@ -153,7 +118,7 @@
 		<label>M2 heavy machine gun</label>
 		<description>a mounted M2 HMG—big, loud, and not interested in negotiations.</description>
 		<graphicData>
-			<texPath>Things/Building/Security/M2HMG/RGM2HMG</texPath>
+			<texPath>Things/Building/Security/RGM2HMG</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(2.25,2.25)</drawSize>
 		</graphicData>
@@ -182,102 +147,26 @@
 		</verbs>
 	</ThingDef>
 
-	<!-- ====== Manned M2 Shield Turret ====== -->
+	<!-- ====== .50 cal bullet ====== -->
 
-	<ThingDef ParentName="Rimgate_MannedTurretBase">
-		<defName>Rimgate_M2TurretShield</defName>
-		<label>manned M2 .50 cal shielded machine gun</label>
-		<description>the M2 HMG’s more cautious cousin—equipped with a steel shield for when diplomacy fails and cover is optional.</description>
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_50CalBullet</defName>
+		<label>.50 BMG bullet</label>
 		<graphicData>
-			<texPath>Things/Building/Security/M2HMG/RGM2Stand</texPath>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(1.5,1.5)</drawSize>
-			<damageData>
-				<rect>(0.2,0.2,0.6,0.6)</rect>
-			</damageData>
-		</graphicData>
-		<uiIconPath>Things/Building/Security/M2HMG/RGM2ShieldHMG</uiIconPath>
-		<statBases>
-			<MaxHitPoints>250</MaxHitPoints>
-			<WorkToBuild>10000</WorkToBuild>
-			<Mass>52</Mass>
-		</statBases>
-		<comps>
-			<li Class="CompProperties_Refuelable">
-				<fuelLabel>Shots until barrel change</fuelLabel>
-				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
-				<fuelFilter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</fuelFilter>
-				<fuelCapacity>10000</fuelCapacity>
-				<initialFuelPercent>1</initialFuelPercent>
-				<autoRefuelPercent>0.75</autoRefuelPercent>
-				<showFuelGizmo>true</showFuelGizmo>
-				<minimumFueledThreshold>1</minimumFueledThreshold>
-				<fuelMultiplier>250</fuelMultiplier>
-				<factorByDifficulty>true</factorByDifficulty>
-				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
-				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
-				<fuelIconPath>Things/Building/Security/RG_Ammo</fuelIconPath>
-			</li>
-		</comps>
-		<costList>
-			<Steel>280</Steel>
-			<ComponentIndustrial>6</ComponentIndustrial>
-		</costList>
-		<building>
-			<turretGunDef>Rimgate_M2ShieldedGun</turretGunDef>
-			<turretBurstCooldownTime>1.875</turretBurstCooldownTime>
-		</building>
-		<researchPrerequisites>
-			<li>GunTurrets</li>
-		</researchPrerequisites>
-		<tradeTags>
-			<li>Rimgate_TauriHMGTurret</li>
-		</tradeTags>
-	</ThingDef>
-
-	<!-- ====== M2 Gun with Shield ====== -->
-
-	<ThingDef ParentName="Rimgate_MannedGunBase">
-		<defName>Rimgate_M2ShieldedGun</defName>
-		<label>m2 heavy machine gun with shield</label>
-		<description>a stand-mounted M2 HMG with integrated shielding, because sometimes suppressive fire should come with a splash of self-preservation.</description>
-		<graphicData>
-			<texPath>Things/Building/Security/M2HMG/RGM2ShieldHMG</texPath>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(2.25,2.25)</drawSize>
 		</graphicData>
-		<statBases>
-			<AccuracyTouch>0.90</AccuracyTouch>
-			<AccuracyShort>0.80</AccuracyShort>
-			<AccuracyMedium>0.65</AccuracyMedium>
-			<AccuracyLong>0.35</AccuracyLong>
-			<RangedWeapon_Cooldown>0.66</RangedWeapon_Cooldown>
-			<Mass>38</Mass>
-		</statBases>
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>Rimgate_50CalBullet</defaultProjectile>
-				<warmupTime>1.5</warmupTime>
-				<range>42</range>
-				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-				<burstShotCount>10</burstShotCount>
-				<soundCast>RG_M2Shot</soundCast>
-				<soundCastTail>GunTail_Heavy</soundCastTail>
-				<muzzleFlashScale>13</muzzleFlashScale>
-				<consumeFuelPerShot>1</consumeFuelPerShot>
-			</li>
-		</verbs>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBase>0.75</armorPenetrationBase>
+			<speed>105</speed>
+		</projectile>
 	</ThingDef>
 
-	<!-- =========== Railgun Turret Base  ===========  -->
+	<!-- ======================= Railgun =======================  -->
 
-	<ThingDef ParentName="BuildingBase" Name="Rimgate_MannedRailgunTurretBase" Abstract="true">
+	<ThingDef Name="Rimgate_MannedRailgunTurretBase" ParentName="BuildingBase" Abstract="true">
 		<thingClass>Building_TurretGun</thingClass>
 		<drawerType>MapMeshAndRealTime</drawerType>
 		<thingCategories>
@@ -316,9 +205,7 @@
 		</placeWorkers>
 	</ThingDef>
 
-	<!-- =========== Railgun Turret Gun Base  ===========  -->
-
-	<ThingDef ParentName="BaseWeaponTurret" Name="Rimgate_MannedRailgunGunBase" Abstract="true">
+	<ThingDef Name="Rimgate_MannedRailgunGunBase" ParentName="BaseWeaponTurret" Abstract="true">
 		<soundInteract>Interact_Rifle</soundInteract>
 		<destroyOnDrop>true</destroyOnDrop>
 		<tradeability>None</tradeability>
@@ -329,22 +216,22 @@
 		</statBases>
 	</ThingDef>
 
-	<!-- ====== Manned Railgun Turret ====== -->
+	<!-- ====== Railgun Turret ====== -->
 
 	<ThingDef ParentName="Rimgate_MannedRailgunTurretBase">
 		<defName>Rimgate_NaquadahRailgunTurret</defName>
 		<label>manned Naquadah enhanced railgun</label>
 		<description>A manned railgun enhanced with Naquadah—capable of turning Goa'uld armor into swiss cheese at 1,500 meters. Standard equipment on Earth’s finest spacefaring hardware.</description>
 		<graphicData>
-			<texPath>Things/Building/Security/NaquadahRailgun/RGNaquadahRailgunStand</texPath>
+			<texPath>Things/Building/Security/RGTurretStand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(2.5,2.5)</drawSize>
+			<drawSize>(3,3)</drawSize>
 			<damageData>
 				<rect>(0.2,0.2,0.6,0.6)</rect>
 			</damageData>
 		</graphicData>
 		<size>(3,3)</size>
-		<uiIconPath>Things/Building/Security/NaquadahRailgun/RGNaquadahRailgun</uiIconPath>
+		<uiIconPath>Things/Building/Security/RGNaquadahRailgun</uiIconPath>
 		<statBases>
 			<MaxHitPoints>500</MaxHitPoints>
 			<WorkToBuild>30000</WorkToBuild>
@@ -368,23 +255,21 @@
 				<factorByDifficulty>true</factorByDifficulty>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
-				<fuelIconPath>Things/Building/Security/NaquadahRailgun/RGRailgunAmmo</fuelIconPath>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
 			</li>
 		</comps>
 		<costList>
-			<Steel>350</Steel>
+			<Steel>300</Steel>
 			<Rimgate_Naquadah>75</Rimgate_Naquadah>
-			<ComponentIndustrial>9</ComponentIndustrial>
+			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<building>
-			<turretTopDrawSize>6</turretTopDrawSize>
+			<turretTopDrawSize>5.5</turretTopDrawSize>
 			<turretGunDef>Rimgate_NaquadahRailgunGun</turretGunDef>
 			<turretBurstCooldownTime>1.875</turretBurstCooldownTime>
 		</building>
 		<researchPrerequisites>
-			<li>GunTurrets</li>
-			<li>Rimgate_GoauldBasic</li>
-			<li>Rimgate_TauriWeaponsTier1</li>
+			<li>Rimgate_TauriTurretsTier2</li>
 		</researchPrerequisites>
 		<tradeTags>
 			<li>Rimgate_TauriRailgunTurret</li>
@@ -398,7 +283,7 @@
 		<label>manned Naquadah enhanced railgun</label>
 		<description>a heavy-duty Naquadah-infused railgun, borrowed from Earth’s battle cruisers and lovingly mounted for planetary defense. Overkill? Absolutely.</description>
 		<graphicData>
-			<texPath>Things/Building/Security/NaquadahRailgun/RGNaquadahRailgun</texPath>
+			<texPath>Things/Building/Security/RGNaquadahRailgun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(2,2)</drawSize>
 		</graphicData>
@@ -425,6 +310,195 @@
 				<consumeFuelPerShot>1</consumeFuelPerShot>
 			</li>
 		</verbs>
+	</ThingDef>
+
+	<!-- ====== Railgun bullet ====== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_RailgunBullet</defName>
+		<label>railgun shell</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationBase>0.95</armorPenetrationBase>
+			<speed>110</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ======================= Staff cannon =======================  -->
+
+	<ThingDef Name="Rimgate_MannedStaffCannonTurretBase" ParentName="BuildingBase" Abstract="true">
+		<thingClass>Building_TurretGun</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<altitudeLayer>Building</altitudeLayer>
+		<stealable>false</stealable>
+		<rotatable>true</rotatable>
+		<statBases>
+			<Flammability>0.15</Flammability>
+			<Beauty>-20</Beauty>
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-2)</interactionCellOffset>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Breakdownable" />
+			<li Class="CompProperties_Mannable">
+				<manWorkType>Violent</manWorkType>
+			</li>
+		</comps>
+		<passability>PassThroughOnly</passability>
+		<pathCost>80</pathCost>
+		<fillPercent>0.85</fillPercent>
+		<castEdgeShadows>true</castEdgeShadows>
+		<hasTooltip>true</hasTooltip>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<placeWorkers>
+			<li>PlaceWorker_TurretTop</li>
+			<li>Rimgate.PlaceWorker_ShowTurretRadiusWithOffset</li>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+	</ThingDef>
+
+	<ThingDef Name="Rimgate_MannedStaffCannonGunBase" ParentName="BaseWeaponTurret" Abstract="true">
+		<soundInteract>Interact_ChargeLance</soundInteract>
+		<destroyOnDrop>true</destroyOnDrop>
+		<tradeability>None</tradeability>
+		<useHitPoints>false</useHitPoints>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Flammability>0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<!-- ====== Staff cannon Turret ====== -->
+
+	<ThingDef ParentName="Rimgate_MannedStaffCannonTurretBase">
+		<defName>Rimgate_StaffCannonTurret</defName>
+		<label>manned staff cannon</label>
+		<description>A ship-grade staff weapon grafted onto a field tripod—manned, mean, and hungry for naquadah. Lobs incandescent plasma in punishing bursts when “Jaffa, kree” needs to be said at 1200 RPM.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/RGTurretStand</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(2.3,2.3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+		</graphicData>
+		<size>(3,3)</size>
+		<uiIconPath>Things/Building/Security/RGStaffCannon</uiIconPath>
+		<statBases>
+			<MaxHitPoints>460</MaxHitPoints>
+			<WorkToBuild>22000</WorkToBuild>
+			<Mass>88</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>8000</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>220</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<costList>
+			<Steel>260</Steel>
+			<Rimgate_Naquadah>50</Rimgate_Naquadah>
+			<ComponentIndustrial>8</ComponentIndustrial>
+		</costList>
+		<building>
+			<turretTopDrawSize>4.5</turretTopDrawSize>
+			<turretGunDef>Rimgate_StaffCannonGun</turretGunDef>
+			<turretBurstCooldownTime>2.2</turretBurstCooldownTime>
+		</building>
+		<researchPrerequisites>
+			<li>Rimgate_GoauldTurretsTier1</li>
+		</researchPrerequisites>
+		<tradeTags>
+			<li>Rimgate_GoauldStaffCannonTurret</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- ====== Staff cannon gun ====== -->
+
+	<ThingDef ParentName="Rimgate_MannedStaffCannonGunBase">
+		<defName>Rimgate_StaffCannonGun</defName>
+		<label>manned staff cannon</label>
+		<description>The business end of a Goa’uld staff cannon: searing plasma volleys with siege-tier reach. Slow to wind up, terrifying to watch, excellent at making cover feel optional.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/RGStaffCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.55</AccuracyLong>
+			<RangedWeapon_Cooldown>1.20</RangedWeapon_Cooldown>
+			<Mass>36</Mass>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Rimgate.Verb_LaunchWithOffset</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_StaffCannonBullet</defaultProjectile>
+				<warmupTime>2.2</warmupTime>
+				<range>38</range>
+				<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>Rimgate_GoauldMaTokShot</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- ====== Staff cannon bullet ====== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_StaffCannonBullet</defName>
+		<label>staff cannon blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/RGStaffCannonProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationBase>0.55</armorPenetrationBase>
+			<speed>95</speed>
+			<explosionRadius>1.25</explosionRadius>            <!-- small splash to punish clumps -->
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+			<explosionChanceToStartFire>0.5</explosionChanceToStartFire>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+			<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.30</preExplosionSpawnChance>
+		</projectile>
 	</ThingDef>
 
 </Defs>

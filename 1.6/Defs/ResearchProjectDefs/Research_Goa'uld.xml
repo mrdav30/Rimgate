@@ -25,7 +25,7 @@
 		<description>unlock foundational Goa'uld tech, including interface protocols, energy matrices, and that smug sense of superiority you've been missing.</description>
 		<baseCost>1500</baseCost>
 		<researchViewX>0</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>2.5</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
@@ -113,7 +113,7 @@
 			<li>PrecisionRifling</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
@@ -125,6 +125,20 @@
 			<li>Rimgate_GoauldWeaponTier1</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
+		<researchViewY>1</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_GoauldTurretsTier1</defName>
+		<label>Staff Cannon</label>
+		<description>Scale up staff-weapon physics into a manned emplacement. Unlocks the Goa’uld staff cannon—because sometimes diplomacy needs a sun-hot punctuation mark.</description>
+		<baseCost>2500</baseCost>
+		<prerequisites>
+			<li>GunTurrets</li>
+			<li>Rimgate_GoauldWeaponTier1</li>
+			<li>Rimgate_NaquadahRefinement</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
 		<researchViewY>2</researchViewY>
 	</ResearchProjectDef>
 
@@ -141,8 +155,8 @@
 			<li>Rimgate_NaquadriaFiredGenerator</li>
 			<li>ShipBasics</li>
 		</prerequisites>
-		<researchViewX>2</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewX>1</researchViewX>
+		<researchViewY>4</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
@@ -165,7 +179,7 @@
 			<li>SterileMaterials</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>5</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>

@@ -21,7 +21,7 @@ public class JobDriver_DialStargate : JobDriver
     {
         Comp_DialHomeDevice dhdComp = _dhd.TryGetComp<Comp_DialHomeDevice>();
         this.FailOnDestroyedOrNull(TargetIndex.A);
-        this.FailOn(() => dhdComp.GetLinkedStargate().StargateIsActive);
+        this.FailOn(() => dhdComp.GetLinkedStargate().IsActive);
 
         yield return Toils_Goto.GotoCell(_dhd.InteractionCell, PathEndMode.OnCell);
         yield return new Toil

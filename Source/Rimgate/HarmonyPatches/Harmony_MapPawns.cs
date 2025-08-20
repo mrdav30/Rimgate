@@ -14,7 +14,7 @@ public class Harmony_MapPawns
 {
     public static void Postfix(Map ___map, ref bool __result)
     {
-        Thing sgThing = Comp_Stargate.GetStargateOnMap(___map);
+        Thing sgThing = StargateUtility.GetStargateOnMap(___map);
         if (sgThing == null)
             return;
 
@@ -22,7 +22,7 @@ public class Harmony_MapPawns
         if (sgComp == null)
             return;
 
-        if (sgComp.StargateIsActive)
+        if (sgComp.IsActive)
             __result = true;
     }
 }

@@ -29,7 +29,7 @@ public class JobDriver_BringToStargate : JobDriver
         this.FailOnDestroyedOrNull(_targetStargate);
         this.FailOnDestroyedNullOrForbidden(_thingToHaul);
         this.FailOn(() => 
-            !job.GetTarget(_targetStargate).Thing.TryGetComp<Comp_Stargate>().StargateIsActive);
+            !job.GetTarget(_targetStargate).Thing.TryGetComp<Comp_Stargate>().IsActive);
 
         if (thing as Pawn != null)
             this.FailOnMobile(_thingToHaul);

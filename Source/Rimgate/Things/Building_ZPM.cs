@@ -42,6 +42,7 @@ public class Building_ZPM : Building
                 null);
 
             graphic.Init(request);
+            graphic.data.drawOffset = Rimgate_DefOf.Rimgate_ZPM.graphicData.drawOffset;
             ChargeGraphics.Add(powerState, graphic);
         }
     }

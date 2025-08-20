@@ -362,8 +362,10 @@
     <Compile Include="Misc\Projectile_ZatBlast_Extension.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_RimgateTech.cs" />
     <Compile Include="Things\Building_MeatLab.cs" />
+    <Compile Include="Things\Building_DHD.cs" />
     <Compile Include="Things\Building_WraithCloningPod.cs" />
     <Compile Include="Things\Item_ScrapNote.cs" />
+    <Compile Include="Things\Pawn_MALP.cs" />
     <Compile Include="Things\Projectile_AdditionalDamage.cs" />
     <Compile Include="Things\Projectile_ZatBlast.cs" />
     <Compile Include="Things\Building_Bed_Sarcophagus.cs" />
@@ -412,12 +414,14 @@
     <Compile Include="AI\JobDriver_InstallIris.cs" />
     <Compile Include="Arrivals\PawnsArrivalModeWorker_Stargate.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_CarryCorpseToCloningPod.cs" />
+    <Compile Include="UI\FloatMenuOptionProvider_EnterStargate.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_CarryToCloningPod.cs" />
     <Compile Include="UI\Gizmo_ShieldStatus.cs" />
     <Compile Include="UI\PlaceWorker_ShowTurretRadiusWithOffset.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
     <Compile Include="Quests\QuestNode_AddStargateAddresses.cs" />
-    <Compile Include="Sites\SitePartWorker_Stargate.cs" />
+    <Compile Include="Utilities\StargateUtility.cs" />
+    <Compile Include="World\SitePartWorker_Stargate.cs" />
     <Compile Include="Utilities\CloneUtility.cs" />
     <Compile Include="Rimgate_Settings.cs" />
     <Compile Include="World\WorldComp_StargateAddresses.cs" />
