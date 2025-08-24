@@ -38,7 +38,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier1</defName>
-		<label>Goa'uld armor I</label>
+		<label>Jaffa armor</label>
 		<description>gain access to traditional Jaffa armor—ceremonial, intimidating, and surprisingly effective at deflecting bullets and compliments.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
@@ -50,7 +50,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier2</defName>
-		<label>Goa'uld armor II</label>
+		<label>Goa'uld guard armor</label>
 		<description>unlock specialized armor worn by elite Jaffa guards and First Primes. Offers increased protection and 200% more self-importance.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
@@ -63,7 +63,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTier3</defName>
-		<label>Goa'uld armor III</label>
+		<label>First Prime armor</label>
 		<description>research the terrifying Kull battle armor—designed for invulnerability, intimidation, and ruining someone’s day at extreme range.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
@@ -101,6 +101,34 @@
 
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_KullArmor</defName>
+		<label>Kull armor</label>
+		<description>Crack the secrets of Kull supersoldier plating: a naquadah-infused, self-stiffening composite that treats small arms like weather. Learn to fabricate the overlapping plates and the power harness that drives them. Heavy, hungry, and hilariously overkill—just how the Goa’uld like their fashion.</description>
+		<baseCost>5000</baseCost>
+		<prerequisites>
+			<li>Rimgate_GoauldArmorTier3</li>
+		</prerequisites>
+		<researchViewX>4</researchViewX>
+		<researchViewY>1</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_KullArmor</li>
+		</requiredAnalyzed>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Kull armor</li>
+
+				<li>subject_story->salvaged overlapping plates and found a phase-tuned composite woven with naquadah microfilaments</li>
+				<li>subject_story->observed self-sealing behavior under stress and logged rapid microfracture recovery</li>
+				<li>subject_story->reverse-engineered the power harness that stiffens the suit and feeds the ablative layers</li>
+				<li>subject_story->ran live-fire trials; bullets complained, lasers sulked, testers requested lighter lunch</li>
+
+				<li>subject_gerund->fabricating naquadah-infused Kull composite plating and power harnesses</li>
+			</rulesStrings>
+		</generalRules>
+
+	</ResearchProjectDef>
+
 	<!-- ======== Weapon ========= -->
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
@@ -126,6 +154,21 @@
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>1</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_KullGun</li>
+		</requiredAnalyzed>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Kull armor</li>
+
+				<li>subject_story->recovered a scorched Kull cannon from a fallen supersoldier and stripped the emitter assembly</li>
+				<li>subject_story->mapped the plasma confinement field and noted catastrophic heat bleed into non-Goa’uld housings</li>
+				<li>subject_story->identified a naquadah-doped capacitor bank cycling at inhuman discharge rates</li>
+				<li>subject_story->replaced the control crystal array with a safer Tau’ri trigger interface (safer, not safe)</li>
+
+				<li>subject_gerund->adapting Kull plasma drivers for field manufacture</li>
+			</rulesStrings>
+		</generalRules>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">

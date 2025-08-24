@@ -6,7 +6,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_GoauldWall</defName>
     <label>Goa'uld wall</label>
-    <description>an immovable monument to Goa'uld hubris—equal parts barrier and flex. Holds up roofs, egos, and possibly entire civilizations.</description>
+    <description>An immovable monument to Goa'uld hubris—equal parts barrier and flex. Holds up roofs, egos, and possibly entire civilizations.</description>
     <thingClass>Building</thingClass>
     <category>Building</category>
     <graphicData>
@@ -29,12 +29,15 @@
         <edgeRight>Damage/Edge</edgeRight>
       </damageData>
     </graphicData>
+    <replaceTags>
+      <li>Wall</li>
+    </replaceTags>
     <uiIconPath>UI/Icon/Building/RGGoauldWallIcon</uiIconPath>
     <statBases>
-      <MaxHitPoints>500</MaxHitPoints>
-      <WorkToBuild>500</WorkToBuild>
+      <MaxHitPoints>850</MaxHitPoints>
+      <WorkToBuild>1675</WorkToBuild>
       <Flammability>0.0</Flammability>
-      <MeditationFocusStrength>0.25</MeditationFocusStrength>
+      <MeditationFocusStrength>0.45</MeditationFocusStrength>
       <Beauty>4</Beauty>
       <Cleanliness>0.2</Cleanliness>
     </statBases>
@@ -45,6 +48,7 @@
     <castEdgeShadows>true</castEdgeShadows>
     <fillPercent>1</fillPercent>
     <coversFloor>true</coversFloor>
+    <drawStyleCategory>Walls</drawStyleCategory>
     <tickerType>Never</tickerType>
     <rotatable>false</rotatable>
     <selectable>true</selectable>
@@ -55,17 +59,23 @@
     <staticSunShadowHeight>1.0</staticSunShadowHeight>
     <blockLight>true</blockLight>
     <canOverlapZones>false</canOverlapZones>
-    <fertility>0</fertility>
     <building>
+      <isWall>true</isWall>
+      <supportsWallAttachments>true</supportsWallAttachments>
+      <isAirtight>true</isAirtight>
       <isInert>true</isInert>
       <isPlaceOverableWall>true</isPlaceOverableWall>
-      <ai_chillDestination>false</ai_chillDestination>
       <blueprintGraphicData>
         <texPath>Things/Building/Linked/Wall_Blueprint_Atlas</texPath>
       </blueprintGraphicData>
       <relatedBuildCommands>
         <li>Door</li>
         <li>Autodoor</li>
+        <li>OrnateDoor</li>
+        <li MayRequire="Ludeon.RimWorld.Anomaly">SecurityDoor</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">VacBarrier</li>
+        <li>Cooler</li>
+        <li>Vent</li>
       </relatedBuildCommands>
     </building>
     <damageMultipliers>
@@ -80,7 +90,8 @@
     </damageMultipliers>
     <designationHotKey>Misc3</designationHotKey>
     <costList>
-      <Steel>3</Steel>
+      <Steel>2</Steel>
+      <Gold>1</Gold>
       <Rimgate_Naquadah>2</Rimgate_Naquadah>
     </costList>
     <researchPrerequisites>
@@ -93,7 +104,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithHiveWall</defName>
     <label>Wraith hive wall</label>
-    <description>a pulsating, organic wall born of Wraith biotech. It doesn't just hold up roofs—it whispers. Probably best not to listen.</description>
+    <description>A pulsating, organic wall born of Wraith biotech. It doesn't just hold up roofs—it whispers. Probably best not to listen.</description>
     <thingClass>Building</thingClass>
     <category>Building</category>
     <graphicData>
@@ -115,14 +126,17 @@
         <edgeRight>Damage/Edge</edgeRight>
       </damageData>
     </graphicData>
+    <replaceTags>
+      <li>Wall</li>
+    </replaceTags>
     <uiIconPath>UI/Icon/Building/RGWraithHiveWallIcon</uiIconPath>
     <statBases>
-      <MaxHitPoints>500</MaxHitPoints>
-      <WorkToBuild>500</WorkToBuild>
-      <Flammability>0.0</Flammability>
-      <MeditationFocusStrength>0.25</MeditationFocusStrength>
       <Beauty>4</Beauty>
-      <Cleanliness>0.2</Cleanliness>
+      <MaxHitPoints>1000</MaxHitPoints>
+      <WorkToBuild>1550</WorkToBuild>
+      <Flammability>0.25</Flammability>
+      <MeditationFocusStrength>0.35</MeditationFocusStrength>
+      <Cleanliness>-0.2</Cleanliness>
     </statBases>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <altitudeLayer>Building</altitudeLayer>
@@ -131,6 +145,7 @@
     <castEdgeShadows>true</castEdgeShadows>
     <fillPercent>1</fillPercent>
     <coversFloor>true</coversFloor>
+    <drawStyleCategory>Walls</drawStyleCategory>
     <tickerType>Never</tickerType>
     <rotatable>false</rotatable>
     <selectable>true</selectable>
@@ -141,17 +156,23 @@
     <staticSunShadowHeight>1.0</staticSunShadowHeight>
     <blockLight>true</blockLight>
     <canOverlapZones>false</canOverlapZones>
-    <fertility>0</fertility>
     <building>
+      <isWall>true</isWall>
+      <supportsWallAttachments>true</supportsWallAttachments>
+      <isAirtight>true</isAirtight>
       <isInert>true</isInert>
       <isPlaceOverableWall>true</isPlaceOverableWall>
-      <ai_chillDestination>false</ai_chillDestination>
       <blueprintGraphicData>
         <texPath>Things/Building/Linked/Wall_Blueprint_Atlas</texPath>
       </blueprintGraphicData>
       <relatedBuildCommands>
         <li>Door</li>
         <li>Autodoor</li>
+        <li>OrnateDoor</li>
+        <li MayRequire="Ludeon.RimWorld.Anomaly">SecurityDoor</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">VacBarrier</li>
+        <li>Cooler</li>
+        <li>Vent</li>
       </relatedBuildCommands>
     </building>
     <damageMultipliers>
@@ -167,7 +188,8 @@
     <designationHotKey>Misc3</designationHotKey>
     <costList>
       <Steel>3</Steel>
-      <Rimgate_Biomass>2</Rimgate_Biomass>
+      <Rimgate_Naquadah>1</Rimgate_Naquadah>
+      <Rimgate_Biomass>5</Rimgate_Biomass>
     </costList>
     <researchPrerequisites>
       <li>Rimgate_WraithBasic</li>

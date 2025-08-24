@@ -98,9 +98,9 @@
           <Rimgate_SerpentGuard>6</Rimgate_SerpentGuard>
           <Rimgate_JackalGuard>6</Rimgate_JackalGuard>
           <Rimgate_HorusGuard>6</Rimgate_HorusGuard>
-          <Rimgate_PrimeJackalGuard>4</Rimgate_PrimeJackalGuard>
-          <Rimgate_PrimeSerpentGuard>4</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>4</Rimgate_PrimeHorusGuard>
+          <Rimgate_PrimeJackalGuard>2</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>2</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>2</Rimgate_PrimeHorusGuard>
           <Rimgate_GoauldLeader>1</Rimgate_GoauldLeader>
         </options>
       </li>
@@ -122,9 +122,9 @@
           <Rimgate_SerpentGuard>8</Rimgate_SerpentGuard>
           <Rimgate_JackalGuard>8</Rimgate_JackalGuard>
           <Rimgate_HorusGuard>8</Rimgate_HorusGuard>
-          <Rimgate_PrimeJackalGuard>4</Rimgate_PrimeJackalGuard>
-          <Rimgate_PrimeSerpentGuard>4</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>4</Rimgate_PrimeHorusGuard>
+          <Rimgate_PrimeJackalGuard>2</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>2</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>2</Rimgate_PrimeHorusGuard>
           <Rimgate_GoauldLeader>1</Rimgate_GoauldLeader>
         </options>
       </li>
@@ -155,7 +155,7 @@
       <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <Rimgate_GoauldColonist>10</Rimgate_GoauldColonist>
+          <Rimgate_GoauldColonist>15</Rimgate_GoauldColonist>
           <Rimgate_GoauldSlave>10</Rimgate_GoauldSlave>
           <Rimgate_KullWarrior>2.5</Rimgate_KullWarrior>
           <Rimgate_GoauldMeleeAnubis>5</Rimgate_GoauldMeleeAnubis>
@@ -167,9 +167,9 @@
           <Rimgate_SerpentGuard>15</Rimgate_SerpentGuard>
           <Rimgate_JackalGuard>15</Rimgate_JackalGuard>
           <Rimgate_HorusGuard>15</Rimgate_HorusGuard>
-          <Rimgate_PrimeJackalGuard>12</Rimgate_PrimeJackalGuard>
-          <Rimgate_PrimeSerpentGuard>12</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>12</Rimgate_PrimeHorusGuard>
+          <Rimgate_PrimeJackalGuard>6</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>6</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>6</Rimgate_PrimeHorusGuard>
           <Rimgate_GoauldLeader>8</Rimgate_GoauldLeader>
         </options>
       </li>

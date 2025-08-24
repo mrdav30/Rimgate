@@ -44,10 +44,10 @@
       <rulesStrings>
         <li>name->[RG_KullName]</li>
 
-        <li>RG_KullName->[Gore]-[kull_serial</li>
+        <li>RG_KullName->[Gore]-[kull_serial]</li>
         <li>RG_KullName->[RG_KullCodeName]</li>
         <li>RG_KullName->[Weapon]-[kull_serial]</li>
-        <li>RG_KullName->[ConceptBadass]-[kull_serial</li>
+        <li>RG_KullName->[ConceptBadass]-[kull_serial]</li>
         <li>RG_KullName->[RG_KullUnisexName] [kull_serial]</li>
 
         <li>RG_KullCodeName->[RomanNumeral]</li>

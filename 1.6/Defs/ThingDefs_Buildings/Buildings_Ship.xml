@@ -295,7 +295,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Dart/RGWraithDart</texPath>
       <shaderType>CutoutComplex</shaderType>
-     <drawSize>(3,5)</drawSize>
+      <drawSize>(3,5)</drawSize>
     </graphicData>
     <skyfaller>
       <anticipationSound>Shuttle_Landing</anticipationSound>
@@ -335,7 +335,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Dart/RGWraithDart</texPath>
       <shaderType>CutoutComplex</shaderType>
-     <drawSize>(3,5)</drawSize>
+      <drawSize>(3,5)</drawSize>
     </graphicData>
     <skyfaller>
       <reversed>true</reversed>
@@ -373,7 +373,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_TauriPuddleJumper</defName>
     <label>Tau'ri Puddle Jumper</label>
-    <description>a marvel of Ancient engineering, retrofitted by the Tau'ri. Compact, shielded, and packed with tech most civilizations would kill for—literally. Perfect for stealth ops, last-minute escapes, or joyrides through wormholes.</description>
+    <description>A marvel of Ancient engineering, retrofitted by the Tau’ri. Compact and equipped with a powerful deflector shield, the Puddle Jumper excels at stealth ops, extractions, and rapid deployment. Unfortunately, the Jumper’s hull dimensions mean it cannot fit through the smaller Stargates scattered across the Rim, limiting its use to planetary travel and spaceflight.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <size>(3,6)</size>
     <graphicData>

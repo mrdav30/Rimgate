@@ -185,7 +185,7 @@
       <texPath>Things/Building/Power/ZPM/RGZPM</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(1,2)</drawSize>
-      <drawOffset>(0,0,0.25)</drawOffset>
+      <drawOffset>(0,0,0.40)</drawOffset>
       <shadowData>
         <volume>(0.27,0.25,0.27)</volume>
       </shadowData>

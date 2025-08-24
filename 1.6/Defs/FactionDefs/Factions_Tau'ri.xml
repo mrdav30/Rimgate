@@ -81,7 +81,7 @@
                     <Rimgate_TauriRifleman>12</Rimgate_TauriRifleman>
                     <Rimgate_TauriSpecialForces>8</Rimgate_TauriSpecialForces>
                     <Rimgate_TauriCommander>3</Rimgate_TauriCommander>
-                    <Rimgate_Malp>5</Rimgate_Malp>
+                    <Rimgate_Malp>2.5</Rimgate_Malp>
                 </options>
             </li>
             <li>
@@ -90,7 +90,7 @@
                     <Rimgate_TauriScientist>8</Rimgate_TauriScientist>
                     <Rimgate_TauriSGCSoldier>15</Rimgate_TauriSGCSoldier>
                     <Rimgate_TauriCommander>3</Rimgate_TauriCommander>
-                    <Rimgate_Malp>5</Rimgate_Malp>
+                    <Rimgate_Malp>2.5</Rimgate_Malp>
                 </options>
             </li>
             <li>
@@ -101,7 +101,7 @@
                     <Rimgate_TauriRifleman>12</Rimgate_TauriRifleman>
                     <Rimgate_TauriSpecialForces>15</Rimgate_TauriSpecialForces>
                     <Rimgate_TauriCommander>5</Rimgate_TauriCommander>
-                    <Rimgate_Malp>8</Rimgate_Malp>
+                    <Rimgate_Malp>4.5</Rimgate_Malp>
                 </options>
             </li>
             <li>
@@ -111,11 +111,11 @@
                 </traders>
                 <carriers>
                     <Muffalo>2</Muffalo>
+                    <Rimgate_Malp>1</Rimgate_Malp>
                 </carriers>
                 <guards>
                     <Rimgate_TauriSGCSoldier>2</Rimgate_TauriSGCSoldier>
                     <Rimgate_TauriRifleman>2</Rimgate_TauriRifleman>
-                    <Rimgate_Malp>1</Rimgate_Malp>
                 </guards>
             </li>
         </pawnGroupMakers>

@@ -106,7 +106,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_MalpGestation</defName>
         <label>MALP mech tech</label>
-        <description>Unlock the secrets of building your own MALP — a rugged, remote-controlled explorer that bravely goes where your colonists won’t. Comes with wheels, sensors, and zero complaints about working conditions.</description>
+        <description>Unlock the secrets of Tau’ri engineering with the MALP — a rugged, shielded exploration probe that operates beyond normal mechinator limits. While the Tau’ri keep their full control systems classified, they’ve released enough blueprints for colonists to assemble a serviceable copy. It won’t complain about shifts, gets along fine with radiation, and doubles as the first “volunteer” through any Stargate.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
             <li>Rimgate_TauriBasic</li>
@@ -114,6 +114,12 @@
         </prerequisites>
         <researchViewX>1</researchViewX>
         <researchViewY>3</researchViewY>
+        <techprintCount>1</techprintCount>
+        <techprintCommonality>3</techprintCommonality>
+        <techprintMarketValue>3000</techprintMarketValue>
+        <heldByFactionCategoryTags>
+            <li>Rimgate_TauriFaction</li>
+        </heldByFactionCategoryTags>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
@@ -144,7 +150,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriPuddleJumper</defName>
         <label>Tau'ri Puddle Jumper</label>
-        <description>gain access to the Tau’ri-modified Puddle Jumper: a sleek, Ancient-engineered scout ship perfect for stealth insertions, rapid exfil, or crashing stylishly into alien ruins.</description>
+        <description>Unlock Tau’ri plans for a Puddle Jumper—an Ancient scout ship refitted with a deflector shield, VTOL agility, and just enough documentation to build it (but not to fly it through wormholes). The Tau’ri withheld the Ancient navigation suite, and this model can’t fit through the Rim’s undersized, Archotech-locked Stargates anyway. Ideal for stealth insertions, rapid exfil, and planetary/orbital hops—less ideal for “dial-and-dash.”</description>
         <baseCost>3500</baseCost>
         <techLevel>Spacer</techLevel>
         <prerequisites>
@@ -173,12 +179,22 @@
         </prerequisites>
         <researchViewX>1</researchViewX>
         <researchViewY>5</researchViewY>
-        <techprintCount>1</techprintCount>
-        <techprintCommonality>3</techprintCommonality>
-        <techprintMarketValue>3000</techprintMarketValue>
-        <heldByFactionCategoryTags>
-            <li>Rimgate_TauriFaction</li>
-        </heldByFactionCategoryTags>
+        <requiredAnalyzed>
+            <li>Rimgate_SymbioteImplant</li>
+        </requiredAnalyzed>
+        <generalRules>
+            <rulesStrings>
+                <li>subject->Goa'uld symbiote</li>
+
+                <li>subject_story->extracted larval enzymes from a recovered symbiote and mapped their effects on host immunity</li>
+                <li>subject_story->observed a Jaffa host resisting sepsis via symbiote-mediated immune modulation and recorded biomarkers</li>
+                <li>subject_story->isolated a naquadah-binding carrier protein that distributes enzymes system-wide</li>
+                <li>subject_story->reproduced the enzyme cascade in vitro; early trials cured disease but caused acute dependency</li>
+                <li>subject_story->cross-referenced Tok'ra field notes on rejection, dosing, and withdrawal mitigation</li>
+
+                <li>subject_gerund->synthesizing Tretonin from symbiote-enzyme analogs</li>
+            </rulesStrings>
+        </generalRules>
     </ResearchProjectDef>
 
 </Defs>

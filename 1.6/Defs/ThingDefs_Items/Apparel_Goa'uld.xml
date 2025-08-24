@@ -5,7 +5,7 @@
 
 	<!-- ============ Jaffa Helm Base ============ -->
 
-	<ThingDef Name="Rimgate_JaffaHeadgearBase" ParentName="ApparelBase" Abstract="True">
+	<ThingDef Name="Rimgate_GoauldHeadgearBase" ParentName="ApparelBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -41,7 +41,7 @@
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Name="Rimgate_JaffaHeadgearMakerBase" ParentName="Rimgate_JaffaHeadgearBase" Abstract="True">
+	<ThingDef Name="Rimgate_GoauldHeadgearMakerBase" ParentName="Rimgate_GoauldHeadgearBase" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
@@ -60,7 +60,7 @@
 
 	<!-- ====== Goa'uld Helmet ====== -->
 
-	<ThingDef ParentName="Rimgate_JaffaHeadgearMakerBase">
+	<ThingDef ParentName="Rimgate_GoauldHeadgearMakerBase">
 		<defName>Rimgate_JaffaHelmet</defName>
 		<label>Jaffa helmet</label>
 		<description>lightweight ceremonial headgear favored by Jaffa cannon fodder. Offers mild protection and maximum intimidation—mostly to unarmed colonists and small wildlife.</description>
@@ -99,7 +99,7 @@
 		</apparel>
 	</ThingDef>
 
-	<ThingDef ParentName="Rimgate_JaffaHeadgearMakerBase">
+	<ThingDef ParentName="Rimgate_GoauldHeadgearMakerBase">
 		<defName>Rimgate_FirstPrimeHelmet</defName>
 		<label>First Prime helmet</label>
 		<description>ornate headwear for those promoted to yelling "Kree!" the loudest. A step up in looks, if not actual survivability. The gold accent says "First Prime"; the stats say "still squishy."</description>
@@ -140,7 +140,7 @@
 
 	<!-- ====== Kull Helmet ====== -->
 
-	<ThingDef ParentName="Rimgate_JaffaHeadgearMakerBase">
+	<ThingDef ParentName="Rimgate_GoauldHeadgearMakerBase">
 		<defName>Rimgate_KullHelmet</defName>
 		<label>Kull helmet</label>
 		<description>Forged for Anubis' unstoppable supersoldiers, this helmet shrugs off gunfire like your colonists shrug off mental breaks. Heavy, deadly, and suspiciously quiet.</description>
@@ -150,7 +150,7 @@
 			<Rimgate_Naquadah>50</Rimgate_Naquadah>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
+			<researchPrerequisite>Rimgate_KullArmor</researchPrerequisite>
 		</recipeMaker>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/KullHelm/RGKullHelmet</texPath>
@@ -187,7 +187,7 @@
 
 	<!-- ============ Guard Helm Base ============ -->
 
-	<ThingDef Name="Rimgate_GuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearMakerBase" Abstract="True">
+	<ThingDef Name="Rimgate_GuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearMakerBase" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_GoauldArmorTier2</researchPrerequisite>
 		</recipeMaker>
@@ -224,7 +224,7 @@
 		</apparel>
 	</ThingDef>
 
-	<ThingDef Name="Rimgate_OpenGuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearBase" Abstract="True">
+	<ThingDef Name="Rimgate_OpenGuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearBase" Abstract="True">
 		<smeltable>false</smeltable>
 		<statBases>
 			<MarketValue>950</MarketValue>
@@ -254,7 +254,7 @@
 		</apparel>
 	</ThingDef>
 
-	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearMakerBase" Abstract="True">
+	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearMakerBase" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
 		</recipeMaker>
@@ -287,7 +287,7 @@
 		</apparel>
 	</ThingDef>
 
-	<ThingDef Name="Rimgate_OpenPrimeGuardHeadgearBase" ParentName="Rimgate_JaffaHeadgearBase" Abstract="True">
+	<ThingDef Name="Rimgate_OpenPrimeGuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearBase" Abstract="True">
 		<smeltable>false</smeltable>
 		<statBases>
 			<MarketValue>1200</MarketValue>
@@ -741,10 +741,11 @@
 		<costList>
 			<Plasteel>110</Plasteel>
 			<ComponentSpacer>4</ComponentSpacer>
-			<Rimgate_Naquadah>75</Rimgate_Naquadah>
+			<Rimgate_Naquadah>50</Rimgate_Naquadah>
+			<Synthread>25</Synthread>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
+			<researchPrerequisite>Rimgate_KullArmor</researchPrerequisite>
 		</recipeMaker>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/Kull/RGKullArmor</texPath>
@@ -790,6 +791,35 @@
 				<minShieldSize>1.4</minShieldSize>
 				<maxShieldSize>1.8</maxShieldSize>
 				<disableRotation>true</disableRotation>
+			</li>
+			<li Class="CompProperties_CompAnalyzableUnlockResearch">
+				<analysisID>1000400</analysisID>
+
+				<!-- Analyzable -->
+
+				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+				<analysisDurationHours>0.5</analysisDurationHours>
+				<destroyedOnAnalyzed>false</destroyedOnAnalyzed>
+				<completedLetterLabel>Kull armor studied: {RESEARCH} unlocked</completedLetterLabel>
+				<completedLetter>By studying the Kull's armor, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
+				<completedLetterDef>PositiveEvent</completedLetterDef>
+
+				<!-- Interactable -->
+
+				<activateTexPath>UI/Icons/Study</activateTexPath>
+
+				<activateLabelString>Analyze...</activateLabelString>
+				<activateDescString>Analyze the Kull's armor.</activateDescString>
+				<jobString>Analyze Kull armor</jobString>
+				<guiLabelString>Choose who should analyze this</guiLabelString>
+				<inspectString>Can be analyzed by a colonist.</inspectString>
+
+				<targetingParameters>
+					<canTargetBuildings>false</canTargetBuildings>
+					<canTargetAnimals>false</canTargetAnimals>
+					<canTargetMechs>false</canTargetMechs>
+					<onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+				</targetingParameters>
 			</li>
 		</comps>
 	</ThingDef>

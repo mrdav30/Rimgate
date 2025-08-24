@@ -114,7 +114,7 @@
     <ThingDef ParentName="BaseMechanoid">
         <defName>Rimgate_Malp</defName>
         <label>MALP</label>
-        <description>The Mobile Analytic Laboratory Probe, or M.A.L.P., is a reconnaissance probe employed by the Tau'ri to determine if the conditions on the other side of an active wormhole are safe before sending a team through.</description>
+        <description>The Mobile Analytic Laboratory Probe (M.A.L.P.) was originally designed as an uncrewed scout platform, used by the Tau’ri to probe hostile or unknown environments through a Stargate before risking a manned expedition.\n\nThis Rimworld-adapted chassis has been retrofitted with a compact energy shield emitter, allowing it to shrug off incoming fire far beyond what its survey frame was meant to endure. Thanks to advanced long-range transmitters, this model operates without the usual command bandwidth tether—making it the only mechanoid capable of autonomous deployment across any distance, even beyond traditional mechinator control range.\n\nThough the Tau’ri were reluctant to share control protocols, they eventually released stripped-down blueprints that allow colonists to build and deploy MALPs as field assets. It is a gift of convenience with a touch of condescension: the machine can be constructed, fueled, and maintained by outsiders, but never truly commanded as the Tau’ri do. In effect, it is both a tool of exploration and a quiet reminder of who still holds the upper hand in technology.</description>
         <statBases>
             <WorkSpeedGlobal>3</WorkSpeedGlobal>
             <FoodPoisonChance>0</FoodPoisonChance>
