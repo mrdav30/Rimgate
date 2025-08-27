@@ -60,7 +60,7 @@
 		<label>manned M2 .50 cal shielded machine gun</label>
 		<description>a belt-fed brute of a machine gun—equipped with a steel shield for when diplomacy fails and cover is optional. Manned by the brave and backed by decades of battlefield legacy.\nCommonly deployed by SG teams to politely discourage alien threats.</description>
 		<graphicData>
-			<texPath>Things/Building/Security/RGTurretStand</texPath>
+			<texPath>Things/Building/Security/RGM2HMGStand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
 			<drawSize>(1.5,1.5)</drawSize>
 			<damageData>
@@ -223,7 +223,7 @@
 		<label>manned Naquadah enhanced railgun</label>
 		<description>A manned railgun enhanced with Naquadah—capable of turning Goa'uld armor into swiss cheese at 1,500 meters. Standard equipment on Earth’s finest spacefaring hardware.</description>
 		<graphicData>
-			<texPath>Things/Building/Security/RGTurretStand</texPath>
+			<texPath>Things/Building/Security/RGNaquadahRailgunStand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
 			<drawSize>(3,3)</drawSize>
 			<damageData>
@@ -388,7 +388,7 @@
 		<label>manned staff cannon</label>
 		<description>A ship-grade staff weapon grafted onto a field tripod—manned, mean, and hungry for naquadah. Lobs incandescent plasma in punishing bursts when “Jaffa, kree” needs to be said at 1200 RPM.</description>
 		<graphicData>
-			<texPath>Things/Building/Security/RGTurretStand</texPath>
+			<texPath>Things/Building/Security/RGStaffCannonStand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
 			<drawSize>(2.3,2.3)</drawSize>
 			<damageData>
@@ -473,6 +473,121 @@
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>12</muzzleFlashScale>
 				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- ====== Auto Staff cannon turret ====== -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_AutoStaffCannonTurret</defName>
+		<label>auto staff cannon</label>
+		<description>An autonomous Goa’uld staff cannon upgraded with forbidden ion-focusing tech of unknown origin. The result: blisteringly precise plasma bursts that chew through shields and laugh at cover. Field units arrive pre-keyed and self-scorch their cores on capture. Very good at making trespassers reconsider their life choices.</description>
+		<thingClass>Building_TurretGun</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<drawHighlight>true</drawHighlight>
+		<drawHighlightOnlyForHostile>true</drawHighlightOnlyForHostile>
+		<graphicData>
+			<texPath>Things/Building/Security/RGStaffCannonStand</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(2,2)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(1.5,0.35,1.4)</volume>
+				<offset>(0,0,-0.05)</offset>
+			</shadowData>
+		</graphicData>
+		<receivesSignals>true</receivesSignals>
+		<altitudeLayer>Building</altitudeLayer>
+		<stealable>false</stealable>
+		<rotatable>true</rotatable>
+		<size>(2,2)</size>
+		<statBases>
+			<MaxHitPoints>380</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<Mass>100</Mass>
+			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+			<Beauty>-20</Beauty>
+		</statBases>
+		<damageMultipliers>
+			<li>
+				<damageDef>Flame</damageDef>
+				<multiplier>0</multiplier>
+			</li>
+		</damageMultipliers>
+		<tickerType>Normal</tickerType>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<wickTicks>240</wickTicks>
+				<explosiveRadius>5.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+			</li>
+			<li Class="CompProperties_Stunnable">
+				<affectedDamageDefs>
+					<li>Stun</li>
+					<li>EMP</li>
+				</affectedDamageDefs>
+				<adaptableDamageDefs>
+					<li>EMP</li>
+				</adaptableDamageDefs>
+			</li>
+			<li Class="CompProperties_AmbientSound">
+				<sound>MechTurretBig_Call</sound>
+			</li>
+		</comps>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<fillPercent>0.5</fillPercent>
+		<killedLeavings>
+			<ChunkSlagSteel>1</ChunkSlagSteel>
+		</killedLeavings>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<building>
+			<combatPower>190</combatPower>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<turretGunDef>Rimgate_AutoStaffCannonGun</turretGunDef>
+			<turretTopDrawSize>4.25</turretTopDrawSize>
+			<turretBurstCooldownTime>2.2</turretBurstCooldownTime>
+		</building>
+		<uiIconScale>0.95</uiIconScale>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>Rimgate_AutoStaffCannonGun</defName>
+		<label>auto staff cannon</label>
+		<graphicData>
+			<texPath>Things/Building/Security/RGStaffCannonAuto</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.75, 1.75)</drawSize>
+		</graphicData>
+		<destroyOnDrop>true</destroyOnDrop>
+		<statBases>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.55</AccuracyLong>
+			<RangedWeapon_Cooldown>1.20</RangedWeapon_Cooldown>
+			<Mass>36</Mass>
+		</statBases>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+		<verbs>
+			<li>
+				<verbClass>Rimgate.Verb_LaunchWithOffset</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_StaffCannonBullet</defaultProjectile>
+				<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+				<warmupTime>2.2</warmupTime>
+				<range>38</range>
+				<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>Rimgate_GoauldMaTokShot</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
 			</li>
 		</verbs>
 	</ThingDef>

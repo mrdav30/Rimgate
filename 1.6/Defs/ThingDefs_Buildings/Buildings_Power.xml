@@ -89,6 +89,53 @@
     <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
   </ThingDef>
 
+  <!-- =============== Industrial Naquadria Generator ======== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
+    <label>Industrial Naquadria generator</label>
+    <description>A massive, hardened power core designed to keep Tau’ri Stargate facilities online no matter what comes through. Fueled by volatile naquadria, it produces enough output to light a small city—or vaporize one if mishandled. Redundant shielding keeps colonists mostly safe, though the hum in the walls might shorten lifespans by a decade or two. But hey—at least the lights stay on.</description>
+    <graphicData>
+      <texPath>Things/Building/Power/NaquadriaGenerator/RGIndustrialNaquadriaFiredGenerator</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3,2)</drawSize>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <size>(3,2)</size>
+    <statBases>
+      <MaxHitPoints>5000</MaxHitPoints>
+      <Flammability>0</Flammability>
+    </statBases>
+    <building>
+      <claimable>false</claimable>
+      <isInert>true</isInert>
+      <alwaysDeconstructible>true</alwaysDeconstructible>
+      <canLandGravshipOn>true</canLandGravshipOn>
+    </building>
+    <noRightClickDraftAttack>true</noRightClickDraftAttack>
+    <passability>Impassable</passability>
+    <canOverlapZones>false</canOverlapZones>
+    <altitudeLayer>Building</altitudeLayer>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>-13000</basePowerConsumption>
+        <shortCircuitInRain>true</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>6</heatPerSecond>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(217,112,33,0)</glowColor>
+      </li>
+    </comps>
+    <passability>PassThroughOnly</passability>
+    <pathCost>150</pathCost>
+  </ThingDef>
+
   <!-- =============== Wraith Generator ======== -->
 
   <ThingDef ParentName="BuildingBase">
@@ -231,7 +278,6 @@
       <ComponentSpacer>12</ComponentSpacer>
     </costList>
     <hasInteractionCell>False</hasInteractionCell>
-    <!-- <staticSunShadowHeight>0.75</staticSunShadowHeight> -->
   </ThingDef>
 
 </Defs>

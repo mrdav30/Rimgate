@@ -141,7 +141,7 @@
     <techLevel>Ultra</techLevel>
   </ThingDef>
 
-  <!-- Throne -->
+  <!-- Goa'uld Throne -->
 
   <ThingDef ParentName="FurnitureWithQualityBase">
     <defName>Rimgate_GoauldThrone</defName>

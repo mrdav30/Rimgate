@@ -333,4 +333,79 @@
 		<defName>Rimgate_SupplyCrate</defName>
 	</ThingDef>
 
+	<!-- Tau'ri Desks -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_TauriResearchDesk</defName>
+		<label>Research desk</label>
+		<description>A sturdy Tau’ri research station outfitted with a humming computer terminal. Once used to crunch alien data and autopsy reports, now it mostly just hums ominously. Whoever sat here probably knew too much—or not enough.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/Desks/RGTauriDesk</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(4,3.5)</drawSize>
+		</graphicData>
+		<size>(3,1)</size>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>0.2</Flammability>
+			<Mass>17.5</Mass>
+		</statBases>
+		<fillPercent>0.4</fillPercent>
+		<castEdgeShadows>True</castEdgeShadows>
+		<staticSunShadowHeight>0.2</staticSunShadowHeight>
+		<surfaceType>Item</surfaceType>
+		<building>
+			<claimable>false</claimable>
+			<isInert>true</isInert>
+			<alwaysDeconstructible>true</alwaysDeconstructible>
+			<canLandGravshipOn>true</canLandGravshipOn>
+		</building>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<passability>Impassable</passability>
+		<canOverlapZones>false</canOverlapZones>
+		<altitudeLayer>Building</altitudeLayer>
+	</ThingDef>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_TauriDraftingDesk</defName>
+		<label>Blueprint Table</label>
+		<description>A Tau’ri drafting table covered in glowing blueprints and half-finished schematics. Once used to map out offworld bases, Naquadah reactors, and questionable field gear. Powered lights still flicker across the glass surface, as if waiting for the next great mistake to be designed here.</description>
+		<graphicData>
+			<texPath>Things/Building/Furniture/Desks/RGTauriDraftingDesk</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<size>(1,1)</size>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>0.2</Flammability>
+			<Mass>13.95</Mass>
+		</statBases>
+		<building>
+			<claimable>false</claimable>
+			<isInert>true</isInert>
+			<alwaysDeconstructible>true</alwaysDeconstructible>
+			<canLandGravshipOn>true</canLandGravshipOn>
+		</building>
+		<fillPercent>0.4</fillPercent>
+		<castEdgeShadows>True</castEdgeShadows>
+		<staticSunShadowHeight>0.2</staticSunShadowHeight>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<passability>Impassable</passability>
+		<canOverlapZones>false</canOverlapZones>
+		<altitudeLayer>Building</altitudeLayer>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>5</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(200,230,230,0)</glowColor>
+			</li>
+		</comps>
+	</ThingDef>
+
 </Defs>

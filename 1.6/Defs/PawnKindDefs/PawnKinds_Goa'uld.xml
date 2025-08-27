@@ -85,12 +85,7 @@
     </backstoryFiltersOverride>
   </PawnKindDef>
 
-  <PawnKindDef ParentName="Rimgate_GoauldBase">
-    <defName>Rimgate_GoauldLeader</defName>
-    <label>under lord</label>
-    <factionLeader>true</factionLeader>
-    <minGenerationAge>39</minGenerationAge>
-    <maxGenerationAge>100</maxGenerationAge>
+  <PawnKindDef Name="Rimagate_GoauldBoss" ParentName="Rimgate_GoauldBase" Abstract="True">
     <isFighter>true</isFighter>
     <canBeSapper>true</canBeSapper>
     <combatPower>150</combatPower>
@@ -106,8 +101,8 @@
       <li>Rimgate_SymbioteImplant</li>
     </techHediffsRequired>
     <itemQuality>Good</itemQuality>
-    <gearHealthRange>0.7~2.3</gearHealthRange>
-    <weaponMoney>750~2500</weaponMoney>
+    <gearHealthRange>1.0~2.3</gearHealthRange>
+    <weaponMoney>1200~4500</weaponMoney>
     <weaponTags>
       <li>Rimgate_GoauldRanged_Tag</li>
     </weaponTags>
@@ -166,6 +161,25 @@
         <range>12~20</range>
       </li>
     </skills>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimagate_GoauldBoss">
+    <defName>Rimgate_GoauldLeader</defName>
+    <label>under lord</label>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>39</minGenerationAge>
+    <maxGenerationAge>100</maxGenerationAge>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimagate_GoauldBoss">
+    <defName>Rimgate_CrazedUnderLord</defName>
+    <label>forgotten under lord</label>
+    <minGenerationAge>69</minGenerationAge>
+    <maxGenerationAge>100</maxGenerationAge>
+    <forcedAddictions>
+      <li>Rimgate_SarcophagusChemical</li>
+    </forcedAddictions>
+    <chemicalAddictionChance>1.0</chemicalAddictionChance>
   </PawnKindDef>
 
   <!-- ============ Goa'uld Military Base ============ -->

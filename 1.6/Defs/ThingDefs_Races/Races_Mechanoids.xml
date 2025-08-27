@@ -99,7 +99,7 @@
                     <soundCall>Pawn_Mech_Scyther_Call</soundCall>
                 </li>
             </lifeStageAges>
-            <mechWeightClass>Medium</mechWeightClass>
+            <mechWeightClass>Light</mechWeightClass>
         </race>
         <butcherProducts>
             <Steel>20</Steel>

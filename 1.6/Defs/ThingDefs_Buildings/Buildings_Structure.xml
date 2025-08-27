@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- ================ Goauld =================== -->
+  <!-- ================ Goauld wall =================== -->
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_GoauldWall</defName>
@@ -99,7 +99,7 @@
     </researchPrerequisites>
   </ThingDef>
 
-  <!-- ================ Wraith =================== -->
+  <!-- ================ Wraith wall =================== -->
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithHiveWall</defName>
@@ -194,6 +194,63 @@
     <researchPrerequisites>
       <li>Rimgate_WraithBasic</li>
     </researchPrerequisites>
+  </ThingDef>
+
+  <!-- ================ Jammed Door =================== -->
+
+  <ThingDef ParentName="Door">
+    <defName>Rimgate_JammedDoor</defName>
+    <description>A heavy blast door, bent and jammed beyond normal operation. Once meant to seal corridors from enemy incursion—or something worse—it now hums faintly with locked hydraulics. Forcing it open may yield forgotten rooms… or reveal why it was sealed in the first place.</description>
+    <destroyable>false</destroyable>
+    <thingClass>Building_JammedDoor</thingClass>
+    <useHitPoints>false</useHitPoints>
+    <designationCategory IsNull="True" />
+    <graphicData>
+      <texPath>Things/Building/Structure/RGJammedDoor_Mover</texPath>
+      <ignoreThingDrawColor>true</ignoreThingDrawColor>
+    </graphicData>
+    <statBases>
+      <Flammability>0</Flammability>
+    </statBases>
+    <building>
+      <paintable>false</paintable>
+      <deconstructible>false</deconstructible>
+      <claimable>false</claimable>
+      <neverBuildable>true</neverBuildable>
+      <isAirtight>true</isAirtight>
+    </building>
+    <comps Inherit="False">
+      <li Class="CompProperties_LabyrinthDoor">
+        <jammed>
+          <texPath>Things/Building/Structure/RGJammedDoor</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <ignoreThingDrawColor>true</ignoreThingDrawColor>
+        </jammed>
+
+        <unlockedChance>0.3</unlockedChance>
+
+        <!-- Interactable -->
+
+        <activeTicks>1</activeTicks>
+        <ticksToActivate>3600</ticksToActivate>
+        <activateTexPath>UI/Commands/ForceOpenDoor</activateTexPath>
+
+        <activateLabelString>Force open...</activateLabelString>
+        <activateDescString>Choose someone to force this door open.</activateDescString>
+        <guiLabelString>Choose who should do this</guiLabelString>
+        <jobString>Force this door open</jobString>
+        <activatingStringPending>forcing door open</activatingStringPending>
+        <activatingString>forcing door open: {1}s</activatingString>
+        <messageCompletedString>{PAWN_nameDef} has successfully forced the door open.</messageCompletedString>
+
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
+    </comps>
   </ThingDef>
 
 </Defs>
