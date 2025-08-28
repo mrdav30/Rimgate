@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -39,6 +40,36 @@ internal static class Utils
 
         targetPawn.health.AddHediff(hediff);
         return targetPawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
+    }
+
+    public static bool CanUseFaction(Faction f, bool allowNeolithic = true)
+    {
+        if (f == null) return false;
+        if (f.temporary) return false;
+        if (f.defeated) return false;
+        if (f.IsPlayer) return false;
+
+        // Only humanlike factions or mechanoids
+        if (!(f.def.humanlikeFaction || f == Faction.OfMechanoids)) return false;
+
+        // Optional Neolithic filter
+        if (!allowNeolithic && f.def.techLevel == TechLevel.Neolithic) return false;
+
+        // Hidden factions are excluded, except mechanoids (keep your intent)
+        if (f.Hidden && f != Faction.OfMechanoids) return false;
+
+        // Must actually be hostile to the player right now
+        return f.HostileTo(Faction.OfPlayer);
+    }
+
+    public static bool TryFindEnemyFaction(out Faction faction, bool allowNeolithic = true)
+    {
+        var candidates = Find.FactionManager.AllFactions.Where(f => CanUseFaction(f, allowNeolithic));
+        // Flat random:
+        return candidates.TryRandomElement(out faction);
+
+        // Or weighted (example; adjust weight source as you like):
+        // return candidates.TryRandomElementByWeight(f => f.def.raidCommonalityFromPointsCurve?.Evaluate(1000f) ?? 1f, out faction);
     }
 
     internal static void ThrowDebugText(string text, Vector3 drawPos, Map map)

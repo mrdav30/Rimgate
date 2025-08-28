@@ -73,9 +73,8 @@ public class IncidentWorker_Asteroid : IncidentWorker
     {
         if (mapParent != null && mapParent.HasMap)
         {
-            TryFindEnemyFaction(out var enemyFaction);
-
-            if (enemyFaction == null) return;
+            if (!Utils.TryFindEnemyFaction(out Faction enemyFaction))
+                return;
 
             IncidentParms incidentParms = new IncidentParms();
             incidentParms.forced = true;
@@ -97,25 +96,5 @@ public class IncidentWorker_Asteroid : IncidentWorker
             if (incidentDef.Worker.CanFireNow(incidentParms))
                 incidentDef.Worker.TryExecute(incidentParms);
         }
-    }
-
-    private bool CanUseFaction(Faction f)
-    {
-        bool isValid = !f.temporary
-            && !f.defeated
-            && !f.IsPlayer
-            && (f.def.humanlikeFaction || f == Faction.OfMechanoids)
-            && (!f.Hidden || f == Faction.OfMechanoids);
-        if (isValid)
-            return f.HostileTo(Faction.OfPlayer);
-
-        return false;
-    }
-
-    private bool TryFindEnemyFaction(out Faction enemyFaction)
-    {
-        return Find.FactionManager.AllFactions
-            .Where(CanUseFaction)
-            .TryRandomElement(out enemyFaction);
     }
 }

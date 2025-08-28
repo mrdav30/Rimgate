@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace Rimgate;
 
@@ -17,6 +18,8 @@ public static class Rimgate_DefOf
     public static DesignationDef Rimgate_DesignationToggle;
     public static DesignationDef Rimgate_DesignationToggleIris;
     public static DesignationDef Rimgate_DesignationCloseStargate;
+
+    public static DutyDef Rimgate_MaraudColony;
 
     public static EffecterDef Rimgate_ClonePod_Idle;
     public static EffecterDef Rimgate_ClonePod_Operating;
@@ -40,6 +43,8 @@ public static class Rimgate_DefOf
     public static HediffDef Rimgate_SystemShock;
     public static HediffDef Rimgate_ZatShock;
 
+    public static IncidentDef Rimgate_Marauders;
+
     public static JobDef Rimgate_BringToStargate;
     public static JobDef Rimgate_CarryToSarcophagus;
     public static JobDef Rimgate_CarryToCloningPod;
@@ -61,8 +66,10 @@ public static class Rimgate_DefOf
     public static NeedDef Food;
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
 
+    public static QuestScriptDef Rimgate_ProtectZPM;
     public static QuestScriptDef Rimgate_StargateSiteScript;
 
+    public static RaidStrategyDef ImmediateAttackSmart;
     public static RaidStrategyDef StageThenAttack;
 
     public static ResearchProjectDef Rimgate_GoauldBasic;

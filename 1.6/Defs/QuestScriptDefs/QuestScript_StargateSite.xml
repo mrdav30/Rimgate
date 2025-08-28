@@ -9,16 +9,18 @@
 		<defaultChallengeRating>1</defaultChallengeRating>
 		<questNameRules>
 			<rulesStrings>
-				<li>questName->[ancient] stargate [site]</li>
-				<li>ancient->Ancient</li>
-				<li>ancient->Old</li>
-				<li>ancient->Abandoned</li>
-				<li>ancient->Forgotten</li>
+				<li>questName->[adj] stargate [site]</li>
+				<li>adj->Ancient</li>
+				<li>adj->Old</li>
+				<li>adj->Abandoned</li>
+				<li>adj->Forgotten</li>
 				<li>site->site</li>
 				<li>site->complex</li>
-				<li>site->vault</li>
-				<li>site->compound</li>
-				<li>site->temple</li>
+				<li>site->spot</li>
+				<li>site->place</li>
+				<li>site->location</li>
+				<li>site->plot</li>
+				<li>site->point</li>
 			</rulesStrings>
 		</questNameRules>
 		<questDescriptionRules>
@@ -31,6 +33,7 @@
 				<li Class="QuestNode_SubScript">
 					<def>Util_GetDefaultRewardValueFromPoints</def>
 				</li>
+
 				<li Class="QuestNode_GetMap" />
 
 				<li Class="QuestNode_IsSet">
@@ -59,6 +62,10 @@
 							<tag>Rimgate_StargateSite</tag>
 						</li>
 						<li>
+							<tag>Rimgate_StargateTrapSite</tag>
+							<chance>0.1</chance>
+						</li>
+						<li>
 							<tag>KCSG_EnnemiesPresence</tag>
 						</li>
 					</sitePartsTags>
@@ -85,6 +92,13 @@
 				<li Class="Rimgate.QuestNode_AddStargateAddresses">
 					<address>$site</address>
 					<remove>false</remove>
+				</li>
+
+				<li Class="Rimgate.QuestNode_RaidStargateComplex">
+					<address>$site</address>
+					<excludeTags>
+						<li>Rimgate_StargateTrapSite</li>
+					</excludeTags>
 				</li>
 
 				<li Class="QuestNode_WorldObjectTimeout">

@@ -92,7 +92,7 @@
 	<RG_LetterHostClonedReconstructedDesc>Your colony has a new clone, {0}! They will need some time to recover from the shocks and stresses associated with the cloning process.\n\nYou have reconstructed a colonists from old remains, your replicant should be very close to the original - save a lack of old health conditions and some deterioration of skills.</RG_LetterHostClonedReconstructedDesc>
 
 	<RG_LetterClonesDiedLabel>Mass Clone Failure</RG_LetterClonesDiedLabel>
-	<RG_LetterClonesDiedLabelDesc>It appears that all clones have undergone spontaneous total failure. Whether this was caused by an archotech, problems in the supply chain, or by defective equipment is unknown. The manufacturer isn't returning calls. </RG_LetterClonesDiedLabelDesc>
+	<RG_LetterClonesDiedDesc>It appears that all clones have undergone spontaneous total failure. Whether this was caused by an archotech, problems in the supply chain, or by defective equipment is unknown. The manufacturer isn't returning calls. </RG_LetterClonesDiedDesc>
 
 	<RG_CommandCloningPodEjectLabel>Eject host</RG_CommandCloningPodEjectLabel>
 	<RG_CommandCloningPodEjectDesc>Wake up the cloning host and eject them.</RG_CommandCloningPodEjectDesc>
@@ -129,6 +129,8 @@
 
 	<RG_RespawnGateString>Please respawn this gate (and its accompanying DHD) using devmode, as an update has broken it.</RG_RespawnGateString>
 
+	<RG_LetterRaidStargateComplexDesc>Raiders from {0} have arrived at the Stargate complex drawn by whispers of relics, resources, or perhaps the secrets of the Archotech-locked gate network itself.</RG_LetterRaidStargateComplexDesc>
+
 	<!-- Stargate Caravan -->
 
 	<RG_NoGateInCaravan>Stargate required in caravan inventory.</RG_NoGateInCaravan>
@@ -156,6 +158,14 @@
 	<RG_CloseStargateDesc>Close the linked stargate.</RG_CloseStargateDesc>
 	<RG_GateIsNotActive>Stargate is not active.</RG_GateIsNotActive>
 	<RG_CannotCloseIncoming>Cannot disengage an incoming wormhole.</RG_CannotCloseIncoming>
+
+	<!-- ZPM Raid Quest -->
+
+	<RG_LetterRaidZpmProtectDesc>A raid from {0} has zeroed in on your ZPM’s energy signature. They’ve arrived to seize it — and they won’t ask nicely.</RG_LetterRaidZpmProtectDesc>
+
+	<!-- Marauders -->
+
+	<RG_LetterMaraudersDesc>A group of marauders from {0} have arrived nearby.\nThey will attempt to destroy your colony down, stealing whatever they can before they leave.\nPrepare a defense or attack them preemptively.</RG_LetterMaraudersDesc>
 
 	<!-- Shield -->
 

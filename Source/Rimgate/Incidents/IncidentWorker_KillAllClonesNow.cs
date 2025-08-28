@@ -28,7 +28,7 @@ public class IncidentWorker_KillAllClonesNow : IncidentWorker
         if (num > 0)
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterClonesDiedLabel"),
-                Translator.Translate("RG_LetterClonesDiedLabelDesc"),
+                Translator.Translate("RG_LetterClonesDiedDesc"),
                 LetterDefOf.ThreatBig,
                 null,
                 null,

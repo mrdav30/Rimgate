@@ -4,6 +4,9 @@ using System.Linq;
 using Verse;
 using UnityEngine;
 using RimWorld;
+using RimWorld.QuestGen;
+using System.Text;
+using Verse.Noise;
 
 namespace Rimgate;
 
@@ -14,10 +17,17 @@ public class Building_ZPM : Building
 
     public const int ZpmAdditionDistance = 3;
 
+    public bool IsBroadcasting => _isBroadcasting;
+
     private CompPowerBattery _powerComp;
 
     private int _darkEnergyReserve = 7500;
+
     private int _maxDarkEnergy = -1;
+
+    private bool _isBroadcasting;
+
+    private bool _wasConnectedLastTick;
 
     static Building_ZPM()
     {
@@ -47,19 +57,46 @@ public class Building_ZPM : Building
         }
     }
 
-    #region Override
-
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
 
         _powerComp = base.GetComp<CompPowerBattery>();
         _maxDarkEnergy = (int)Math.Ceiling(_powerComp.Props.storedEnergyMax * 1.25);
+
+        bool connected = _powerComp != null && _powerComp.PowerNet != null;
+        if (Faction == Faction.OfPlayer
+            && !_isBroadcasting
+            && connected)
+        {
+            _isBroadcasting = true;
+            map.GetComponent<MapComponent_ZpmRaidTracker>()?.NotifyZpmBeganBroadcast();
+        }
+
+        _wasConnectedLastTick = connected;
     }
 
     public override void TickRare()
     {
-        if (_powerComp == null || _powerComp.PowerNet == null) return;
+        bool connected = _powerComp != null && _powerComp.PowerNet != null;
+        if (connected != _wasConnectedLastTick && Faction == Faction.OfPlayer)
+        {
+            var tracker = Map?.GetComponent<MapComponent_ZpmRaidTracker>();
+            if (connected && !_isBroadcasting)
+            {
+                _isBroadcasting = true;
+                tracker?.NotifyZpmBeganBroadcast();
+            }
+            else if (!connected && _isBroadcasting)
+            {
+                _isBroadcasting = false;
+                tracker?.NotifyZpmEndedBroadcast();
+            }
+            _wasConnectedLastTick = connected;
+        }
+
+        if (!connected)
+            return;
 
         // Charge using all the excess energy on the grid.
         if (_powerComp.PowerNet.CurrentEnergyGainRate() > 0.01f)
@@ -83,9 +120,34 @@ public class Building_ZPM : Building
         base.TickRare();
     }
 
-    #endregion
+    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+    {
+        if (Faction == Faction.OfPlayer && _isBroadcasting)
+        {
+            _isBroadcasting = false;
+            Map.GetComponent<MapComponent_ZpmRaidTracker>()?.NotifyZpmEndedBroadcast();
+        }
+        base.DeSpawn(mode);
+    }
 
-    #region Graphics-text
+    public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+    {
+        if (Faction == Faction.OfPlayer && _isBroadcasting)
+        {
+            _isBroadcasting = false;
+            Map.GetComponent<MapComponent_ZpmRaidTracker>()?.NotifyZpmEndedBroadcast();
+        }
+        base.Destroy(mode);
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref _isBroadcasting, "_isBroadcasting");
+        Scribe_Values.Look(ref _wasConnectedLastTick, "_wasConnectedLastTick");
+        Scribe_Values.Look(ref _maxDarkEnergy, "_maxDarkEnergy");
+        Scribe_Values.Look(ref _darkEnergyReserve, "_darkEnergyReserve");
+    }
 
     public override Graphic Graphic
     {
@@ -110,8 +172,35 @@ public class Building_ZPM : Building
         }
     }
 
-    public override string GetInspectString() => base.GetInspectString()
-        + $"\nDark Energy Reserve: {_darkEnergyReserve}/{_maxDarkEnergy}";
+    public override string GetInspectString()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.Append(base.GetInspectString());
+        if (_powerComp != null)
+        {
+            if (stringBuilder.Length > 0)
+                stringBuilder.AppendLine();
 
-    #endregion
+            string text = $"Dark Energy Reserve: {_darkEnergyReserve}/{_maxDarkEnergy}";
+            stringBuilder.Append(text);
+        }
+
+        return stringBuilder.ToString();
+    }
+
+    public static Thing FindZpmOnMap(Map map, Thing thingToIgnore = null)
+    {
+        Thing zpmOnMap = null;
+        foreach (Thing thing in map.listerThings.AllThings)
+        {
+            if (thing != thingToIgnore
+                && thing.def == Rimgate_DefOf.Rimgate_ZPM)
+            {
+                zpmOnMap = thing;
+                break;
+            }
+        }
+
+        return zpmOnMap;
+    }
 }

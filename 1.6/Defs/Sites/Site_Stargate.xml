@@ -3,8 +3,8 @@
 
 	<SitePartDef>
 		<defName>Rimgate_StargateSite</defName>
-		<label>ancient stargate site</label>
-		<description>A remote, ancient site known to contain a stargate.</description>
+		<label>Stargate location</label>
+		<description>A remote site known to contain a stargate.</description>
 		<workerClass>Rimgate.SitePartWorker_Stargate</workerClass>
 		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
 		<expandingIconTexture>UI/Icon/Map/RGStargateComplexSiteIcon</expandingIconTexture>
@@ -18,6 +18,11 @@
 		<tags>
 			<li>Rimgate_StargateSite</li>
 		</tags>
+		<excludesTags>
+			<li>
+				Rimgate_StargateTrapSite
+			</li>
+		</excludesTags>
 	</SitePartDef>
 
 	<GenStepDef>
@@ -29,12 +34,49 @@
 				<li>Rimgate_StructureSGC</li>
 				<li>Rimgate_StructureAbydosTemple</li>
 				<li>Rimgate_StructureIndustrialTown</li>
-				<li>Rimgate_StructureBarrenGate</li>
 				<li>Rimgate_StructureJadeHenge</li>
-				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
+				<li>Rimgate_StructureGoauldLostBase</li>
 				<li>Rimgate_StructureGoauldNaquadahStorehouse</li>
 				<li>Rimgate_StructureTauriForwardOutpost</li>
 				<li>Rimgate_StructureWraithHibernationSite</li>
+				<li>Rimgate_StructureWraithHiveSiteAlpha</li>
+				<li>Rimgate_StructureBarrenGate</li>
+				<li>Rimgate_StructureBarrenGateNoDHD</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
+
+	<SitePartDef>
+		<defName>Rimgate_StargateTrapSite</defName>
+		<label>Stargate location</label>
+		<description>A remote site known to contain a stargate.</description>
+		<workerClass>Rimgate.SitePartWorker_Stargate</workerClass>
+		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+		<expandingIconTexture>UI/Icon/Map/RGStargateComplexSiteIcon</expandingIconTexture>
+		<requiresFaction>true</requiresFaction>
+		<approachOrderString>Investigate {0}</approachOrderString>
+		<approachingReportString>Investigating {0}</approachingReportString>
+		<arrivedLetter>There is a stargate in this area.</arrivedLetter>
+		<arrivedLetterDef>NeutralEvent</arrivedLetterDef>
+		<wantsThreatPoints>true</wantsThreatPoints>
+		<minThreatPoints>90</minThreatPoints>
+		<tags>
+			<li>Rimgate_StargateTrapSite</li>
+		</tags>
+		<excludesTags>
+			<li>
+				Rimgate_StargateSite
+			</li>
+		</excludesTags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_StargateTrapSite</defName>
+		<linkWithSite>Rimgate_StargateTrapSite</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<structureLayoutDefs>
+				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
 			</structureLayoutDefs>
 		</genStep>
 	</GenStepDef>

@@ -219,7 +219,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_ZPM</defName>
     <label>zero point module</label>
-    <description>a self-contained miracle of Ancient technology, the ZPM draws energy from a subspace vacuum—basically infinite power in a shiny cylinder. Makes other batteries look like AA cells from a cereal box.</description>
+    <description>A self-contained miracle of Ancient technology, the ZPM draws energy from a subspace vacuum—basically infinite power in a shiny cylinder. Makes other batteries look like AA cells from a cereal box.\n\nUnfortunately, such limitless energy is impossible to hide. Once installed in a power network, its archotech-grade signature will leak into the sky, luring factions across the Rim to your colony’s doorstep. Power eternal… and trouble unending.\n\nIt doesn’t just light cities. It lights up the galaxy’s radar.</description>
     <thingClass>Rimgate.Building_ZPM</thingClass>
     <category>Building</category>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>

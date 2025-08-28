@@ -25,4 +25,22 @@
 		<minRefireDays>20</minRefireDays>
 	</IncidentDef>
 
+	<IncidentDef>
+		<defName>Rimgate_Marauders</defName>
+		<minRefireDays>120</minRefireDays>
+		<label>marauders</label>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<letterLabel>Marauders</letterLabel>
+		<letterDef>ThreatBig</letterDef>
+		<workerClass>Rimgate.IncidentWorker_Marauders</workerClass>
+		<baseChance>0.3</baseChance>
+		<category>ThreatBig</category>
+		<pointsScaleable>true</pointsScaleable>
+		<tale>Raid</tale>
+		<ignoreRecentSelectionWeighting>true</ignoreRecentSelectionWeighting>
+		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
+	</IncidentDef>
+
 </Defs>
