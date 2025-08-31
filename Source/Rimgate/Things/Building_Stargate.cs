@@ -9,37 +9,31 @@ using UnityEngine;
 
 namespace Rimgate;
 
-[StaticConstructorOnStartup]
 public class Building_Stargate : Building
 {
     public CompPowerTrader PowerComp;
 
     public Comp_Stargate StargateComp;
 
-    public static Graphic ActiveGateGraphic = null;
-
-    static Building_Stargate()
+    public Graphic ActiveGateGraphic
     {
-        if (ActiveGateGraphic != null)
-            return;
+        get
+        {
+            _activeGraphic ??= GraphicDatabase.Get<Graphic_Single>(
+                StargateComp.Props.activeTexture,
+                ShaderDatabase.DefaultShader,
+                new Vector2(5.3f, 5.3f),
+                Color.white,
+                Color.white,
+                new());
 
-        ActiveGateGraphic = new Graphic_Single();
+            _activeGraphic.data.drawOffset = Rimgate_DefOf.Rimgate_Stargate.graphicData.drawOffset;
 
-        GraphicRequest request = new GraphicRequest(
-            Type.GetType("Graphic_Single"),
-            $"Things/Building/Misc/RGStargateAncient_Active",
-            ShaderDatabase.DefaultShader,
-            new Vector2(5.3f, 5.3f),
-            Color.white,
-            Color.white,
-            new GraphicData(),
-            0,
-            null,
-            null);
-
-        ActiveGateGraphic.Init(request);
-        ActiveGateGraphic.data.drawOffset = Rimgate_DefOf.Rimgate_Stargate.graphicData.drawOffset;
+            return _activeGraphic;
+        }
     }
+
+    private Graphic _activeGraphic;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {

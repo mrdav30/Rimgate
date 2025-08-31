@@ -30,7 +30,9 @@ public class Item_ScrapNote : ThingWithComps
 
     private int _keyIndex = -1;
 
-    public override string DescriptionFlavor => NoteKeys[_keyIndex].Translate();
+    public override string DescriptionFlavor => _keyIndex > -1 
+        ? NoteKeys[_keyIndex].Translate()
+        : string.Empty;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -38,7 +40,7 @@ public class Item_ScrapNote : ThingWithComps
 
         if (NoteKeys.Length > 0)
         {
-            IntRange intRange = new IntRange(0, 9);
+            IntRange intRange = new IntRange(0, 14);
             _keyIndex = intRange.RandomInRange;
         }
     }

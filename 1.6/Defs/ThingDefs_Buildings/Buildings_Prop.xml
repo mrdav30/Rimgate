@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- Tau'ri Desks -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_TauriResearchDesk</defName>
+        <label>Research desk</label>
+        <description>A sturdy Tau’ri research station outfitted with a humming computer terminal. Once used to crunch alien data and autopsy reports, now it mostly just hums ominously. Whoever sat here probably knew too much—or not enough.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGTauriDesk</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
+            <drawSize>(4,3.5)</drawSize>
+        </graphicData>
+        <size>(3,1)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>17.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <castEdgeShadows>True</castEdgeShadows>
+        <staticSunShadowHeight>0.2</staticSunShadowHeight>
+        <surfaceType>Item</surfaceType>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <noRightClickDraftAttack>true</noRightClickDraftAttack>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+    </ThingDef>
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_TauriDraftingDesk</defName>
+        <label>Blueprint Table</label>
+        <description>A Tau’ri drafting table covered in glowing blueprints and half-finished schematics. Once used to map out offworld bases, Naquadah reactors, and questionable field gear. Powered lights still flicker across the glass surface, as if waiting for the next great mistake to be designed here.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGTauriDraftingDesk</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <size>(1,1)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>13.95</Mass>
+        </statBases>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <fillPercent>0.4</fillPercent>
+        <castEdgeShadows>True</castEdgeShadows>
+        <staticSunShadowHeight>0.2</staticSunShadowHeight>
+        <noRightClickDraftAttack>true</noRightClickDraftAttack>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+        <comps>
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <basePowerConsumption>5</basePowerConsumption>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>2</glowRadius>
+                <glowColor>(200,230,230,0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- Wraith Table -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_WraithTable</defName>
+        <label>Wraith table</label>
+        <description>A biomass-grown slab shaped into a ritual table, its surface pulsing with faint organic patterns and a central seal-like disc. To outsiders it resembles a primitive calendar or altar, but the Wraith use it as both a star chart and a focus for their hive rituals. When touched, the surface quivers faintly, as though alive, whispering in a tongue only the hive truly understands.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGWraithTable</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <size>(1,1)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <WorkToBuild>4000</WorkToBuild>
+            <Flammability>1</Flammability>
+            <Beauty>15</Beauty>
+            <MarketValue>850</MarketValue>
+            <Mass>28.5</Mass>
+        </statBases>
+        <building>
+            <claimable>true</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <fillPercent>0.4</fillPercent>
+        <castEdgeShadows>True</castEdgeShadows>
+        <staticSunShadowHeight>0.2</staticSunShadowHeight>
+        <noRightClickDraftAttack>true</noRightClickDraftAttack>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+    </ThingDef>
+
+    <!-- =============== DHD =============== -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DialHomeDeviceDestroyed</defName>
+        <label>ruined dial home device</label>
+        <description>A shattered relic of alien engineering once used to command a Stargate. Its crystals are burnt out, its control ring frozen in place—no dialing, no escape, just a reminder of what was lost. Scavengers might still pry a trace of naquadah from its husk, but it will never open a wormhole again.</description>
+        <rotatable>false</rotatable>
+        <stealable>false</stealable>
+        <passability>Impassable</passability>
+        <constructEffect>ConstructMetal</constructEffect>
+        <fillPercent>0.40</fillPercent>
+        <canOverlapZones>true</canOverlapZones>
+        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <tickerType>Never</tickerType>
+        <building>
+            <claimable>false</claimable>
+            <ai_neverTrashThis>true</ai_neverTrashThis>
+            <neverBuildable>true</neverBuildable>
+        </building>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGDHD_Destroyed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <killedLeavings>
+            <Rimgate_Naquadah>1</Rimgate_Naquadah>
+        </killedLeavings>
+        <killedLeavingsChance>0.1</killedLeavingsChance>
+        <statBases>
+            <MaxHitPoints>2500</MaxHitPoints>
+            <Flammability>0</Flammability>
+            <Mass>45</Mass>
+        </statBases>
+        <size>(1,1)</size>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    </ThingDef>
+
+</Defs>

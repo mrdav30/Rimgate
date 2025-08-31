@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- =============== Stargate Base =============== -->
+
+    <ThingDef Name="Rimgate_StargateBase" ParentName="BuildingBase" Abstract="True">
+        <thingClass>Rimgate.Building_Stargate</thingClass>
+        <rotatable>false</rotatable>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <stealable>false</stealable>
+        <constructEffect>ConstructMetal</constructEffect>
+        <altitudeLayer>ItemImportant</altitudeLayer>
+        <fillPercent>0.20</fillPercent>
+        <canOverlapZones>true</canOverlapZones>
+        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+        <passability>PassThroughOnly</passability>
+        <castEdgeShadows>false</castEdgeShadows>
+        <pathCost>3</pathCost>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <tickerType>Normal</tickerType>
+        <drawerType>RealtimeOnly</drawerType>
+        <hasInteractionCell>True</hasInteractionCell>
+        <interactionCellOffset>(0,0,0)</interactionCellOffset>
+        <building>
+            <ai_neverTrashThis>true</ai_neverTrashThis>
+        </building>
+        <placeWorkers>
+            <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+            <li>Rimgate.PlaceWorker_Stargate</li>
+        </placeWorkers>
+        <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>0</glowRadius> <!-- This is changed in C# -->
+                <glowColor>(115,171,224,0)</glowColor>
+            </li>
+            <li Class="CompProperties_Transporter">
+                <max1PerGroup>true</max1PerGroup>
+                <massCapacity>999999</massCapacity>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ======= Stargate Ancient ======= -->
+
+    <ThingDef ParentName="Rimgate_StargateBase">
+        <defName>Rimgate_Stargate</defName>
+        <label>Dwarfgate</label>
+        <description>An ancient alien construct capable of instantaneous transit—but unlike the legendary Stargates of myth, these “Dwarfgates” are smaller, dimmer cousins. Their wormhole lattice is sealed into a closed planetary network; attempts to dial off-world fizzle as if an unseen hand blocks the path.
+            \n\nRumors whisper that the Archotechs themselves tampered with them, corralling their use to a single world for inscrutable ends. Stranger still, scattered reports claim there are hundreds of such gates buried across the Rim—drawing fortune-seekers, warlords, and scholars alike to uncover the reason why they were left here… and what they are meant to protect.
+            \n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard... naked."</description>
+        <size>(5,1)</size>
+        <graphicData>
+            <texPath>Things/Building/Artifact/RGStargateAncient</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5.3,5.3)</drawSize>
+            <drawOffset>(0,0,1.2)</drawOffset>
+        </graphicData>
+        <techLevel>Archotech</techLevel>
+        <killedLeavings>
+            <Steel>120</Steel>
+            <ComponentIndustrial>8</ComponentIndustrial>
+            <ComponentSpacer>1</ComponentSpacer>
+            <Rimgate_Naquadria>5</Rimgate_Naquadria>
+        </killedLeavings>
+        <statBases>
+            <MarketValue>30000</MarketValue>
+            <MaxHitPoints>6000</MaxHitPoints>
+            <Flammability>0</Flammability>
+            <Mass>290</Mass>
+        </statBases>
+        <comps>
+            <li Class="Rimgate.CompProperties_Stargate">
+                <puddleTexture>FX/RGEventHorizon</puddleTexture>
+                <irisTexture>Things/Building/Misc/RGIris</irisTexture>
+                <activeTexture>Things/Building/Artifact/RGStargateAncient_Active</activeTexture>
+                <activeTexture></activeTexture>
+                <puddleDrawSize>(5.3,5.3)</puddleDrawSize>
+                <irisPowerConsumption>500</irisPowerConsumption>
+            </li>
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <shortCircuitInRain>false</shortCircuitInRain>
+                <basePowerConsumption>0</basePowerConsumption>
+                <showPowerNeededIfOff>false</showPowerNeededIfOff>
+            </li>
+            <li Class="CompProperties_AffectedByFacilities">
+                <linkableFacilities>
+                    <li>Rimgate_DialHomeDevice</li>
+                    <li>Rimgate_TauriDialHomeDevice</li>
+                </linkableFacilities>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- =============== DHD =============== -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DialHomeDevice</defName>
+        <thingClass>Rimgate.Building_DHD</thingClass>
+        <label>Dial home device</label>
+        <description>An ancient alien control console designed to interface with a Stargate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
+        <rotatable>false</rotatable>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <minifiedDrawScale>0.5</minifiedDrawScale>
+        <stealable>true</stealable>
+        <passability>Impassable</passability>
+        <constructEffect>ConstructMetal</constructEffect>
+        <fillPercent>0.40</fillPercent>
+        <canOverlapZones>true</canOverlapZones>
+        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+        <altitudeLayer>BuildingOnTop</altitudeLayer>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <tickerType>Never</tickerType>
+        <hasInteractionCell>True</hasInteractionCell>
+        <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+        <building>
+            <ai_neverTrashThis>true</ai_neverTrashThis>
+        </building>
+        <placeWorkers>
+            <li>PlaceWorker_ShowFacilitiesConnections</li>
+            <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+        </placeWorkers>
+        <comps>
+            <li Class="CompProperties_Facility" />
+            <li Class="Rimgate.CompProperties_DialHomeDevice">
+                <activeTexture>Things/Building/Artifact/RGDHD_Active</activeTexture>
+            </li>
+        </comps>
+        <graphicData>
+            <texPath>Things/Building/Artifact/RGDHD</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <uiIconScale>0.5</uiIconScale>
+        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+        <killedLeavings>
+            <Rimgate_ZPM>1</Rimgate_ZPM>
+        </killedLeavings>
+        <killedLeavingsChance>0.005</killedLeavingsChance>
+        <statBases>
+            <MaxHitPoints>6000</MaxHitPoints>
+            <Flammability>0</Flammability>
+            <Mass>60</Mass>
+        </statBases>
+        <size>(1,1)</size>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    </ThingDef>
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_TauriDialHomeDevice</defName>
+        <thingClass>Building</thingClass>
+        <label>Dial home device</label>
+        <description>A field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. Also bolted down better than the last one.</description>
+        <rotatable>false</rotatable>
+        <size>(1,1)</size>
+        <graphicData>
+            <texPath>Things/Building/Misc/RGTauriDHD</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <stealable>false</stealable>
+        <passability>PassThroughOnly</passability>
+        <constructEffect>ConstructMetal</constructEffect>
+        <uiIconScale>0.5</uiIconScale>
+        <fillPercent>0.40</fillPercent>
+        <canOverlapZones>true</canOverlapZones>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <tickerType>Never</tickerType>
+        <hasInteractionCell>True</hasInteractionCell>
+        <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+        <altitudeLayer>BuildingOnTop</altitudeLayer>
+        <thingCategories>
+            <li>BuildingsMisc</li>
+        </thingCategories>
+        <building>
+            <ai_neverTrashThis>true</ai_neverTrashThis>
+        </building>
+        <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+        <designationCategory>Misc</designationCategory>
+        <costList>
+            <Steel>300</Steel>
+            <Gold>100</Gold>
+            <Rimgate_Naquadah>50</Rimgate_Naquadah>
+            <ComponentIndustrial>60</ComponentIndustrial>
+            <ComponentSpacer>25</ComponentSpacer>
+        </costList>
+        <placeWorkers>
+            <li>PlaceWorker_ShowFacilitiesConnections</li>
+            <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+        </placeWorkers>
+        <comps>
+            <li Class="CompProperties_Facility" />
+            <li Class="CompProperties_Flickable" />
+            <li Class="Rimgate.CompProperties_DialHomeDevice">
+                <requiresPower>true</requiresPower>
+            </li>
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <shortCircuitInRain>false</shortCircuitInRain>
+                <basePowerConsumption>800</basePowerConsumption>
+            </li>
+        </comps>
+        <statBases>
+            <MaxHitPoints>3000</MaxHitPoints>
+            <Flammability>0.4</Flammability>
+            <WorkToBuild>14000</WorkToBuild>
+            <Mass>30</Mass>
+        </statBases>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <researchPrerequisites>
+            <li>Rimgate_StargateReplacementDHDResearch</li>
+        </researchPrerequisites>
+    </ThingDef>
+
+</Defs>

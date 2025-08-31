@@ -227,7 +227,7 @@
           <ignoreThingDrawColor>true</ignoreThingDrawColor>
         </jammed>
 
-        <unlockedChance>0.3</unlockedChance>
+        <unlockedChance>0.15</unlockedChance>
 
         <!-- Interactable -->
 

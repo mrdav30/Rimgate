@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <LifeStageDef>
+        <defName>Rimgate_MechanoidFullyFormedCaravan</defName>
+        <label>fully-formed</label>
+        <visible>false</visible>
+        <caravanRideable>true</caravanRideable>
+    </LifeStageDef>
+
+</Defs>

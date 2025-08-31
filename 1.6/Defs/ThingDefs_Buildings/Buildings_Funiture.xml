@@ -12,12 +12,12 @@
       <HediffDef>Rimgate_SarcophagusAddiction</HediffDef>
     </descriptionHyperlinks>
     <thingClass>Rimgate.Building_Bed_Sarcophagus</thingClass>
-    <size>(1,2)</size>
+    <size>(2,3)</size>
     <graphicData>
       <texPath>Things/Building/Furniture/RGGoauldSarcophagus</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(1,2)</drawSize>
+      <drawSize>(2,3)</drawSize>
       <damageData>
         <rect>(0,0.04,1,1.89)</rect>
       </damageData>
@@ -34,11 +34,7 @@
       <Mass>400</Mass>
       <Beauty>20</Beauty>
       <Flammability>0.2</Flammability>
-      <BedRestEffectiveness>1</BedRestEffectiveness>
       <Comfort>0.95</Comfort>
-      <ImmunityGainSpeedFactor>1.5</ImmunityGainSpeedFactor>
-      <MedicalTendQualityOffset>0.25</MedicalTendQualityOffset>
-      <SurgerySuccessChanceFactor>1.25</SurgerySuccessChanceFactor>
     </statBases>
     <constructEffect>ConstructMetal</constructEffect>
     <costList>

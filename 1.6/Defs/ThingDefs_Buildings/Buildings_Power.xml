@@ -98,10 +98,10 @@
     <graphicData>
       <texPath>Things/Building/Power/NaquadriaGenerator/RGIndustrialNaquadriaFiredGenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(3,2)</drawSize>
+      <drawSize>(5,2.5)</drawSize>
     </graphicData>
     <rotatable>false</rotatable>
-    <size>(3,2)</size>
+    <size>(5,2)</size>
     <statBases>
       <MaxHitPoints>5000</MaxHitPoints>
       <Flammability>0</Flammability>
@@ -116,6 +116,7 @@
     <passability>Impassable</passability>
     <canOverlapZones>false</canOverlapZones>
     <altitudeLayer>Building</altitudeLayer>
+    <tickerType>Normal</tickerType>
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
@@ -127,12 +128,19 @@
         <compClass>CompHeatPusherPowered</compClass>
         <heatPerSecond>6</heatPerSecond>
       </li>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>680</wickTicks>
+        <explosiveRadius>12.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <explodeOnKilled>true</explodeOnKilled>
+        <startWickHitPointsPercent>0.45</startWickHitPointsPercent>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+      </li>
       <li Class="CompProperties_Glower">
         <glowRadius>1</glowRadius>
         <glowColor>(217,112,33,0)</glowColor>
       </li>
     </comps>
-    <passability>PassThroughOnly</passability>
     <pathCost>150</pathCost>
   </ThingDef>
 

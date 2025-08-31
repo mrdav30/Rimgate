@@ -13,5 +13,7 @@ public class CompProperties_DialHomeDevice : CompProperties
 
     public bool requiresPower = false;
 
+    public string activeTexture;
+
     public CompProperties_DialHomeDevice() => compClass = typeof(Comp_DialHomeDevice);
 }

@@ -20,6 +20,8 @@ public class CompProperties_Stargate : CompProperties
 
     public string irisTexture;
 
+    public string activeTexture;
+
     public Vector2 puddleDrawSize;
 
     public List<IntVec3> vortexPattern = new List<IntVec3>
