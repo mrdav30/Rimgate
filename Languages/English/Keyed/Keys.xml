@@ -167,6 +167,11 @@
 
 	<RG_LetterMaraudersDesc>A group of marauders from {0} have arrived nearby.\nThey will attempt to destroy your colony down, stealing whatever they can before they leave.\nPrepare a defense or attack them preemptively.</RG_LetterMaraudersDesc>
 
+	<!-- Proximity Alarm -->
+
+	<RG_MessageSleepingPawnsAlerted>Enemies have woken from hibernation.</RG_MessageSleepingPawnsAlerted>
+	<RG_MessageSleepingThreatDelayActivated>Enemies will wake up in {1}.</RG_MessageSleepingThreatDelayActivated>
+
 	<!-- Shield -->
 
 	<RG_ShieldGenRadiusLabel>Set Radius</RG_ShieldGenRadiusLabel>
