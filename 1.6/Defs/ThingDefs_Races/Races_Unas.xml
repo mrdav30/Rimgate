@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <ThingDef Name="Rimgate_Unas" ParentName="AnimalThingBase">
+        <defName>Rimgate_Unas</defName>
+        <label>Unas</label>
+        <description>A towering, reptilian humanoid press-ganged by the Goa'uld for hard labor and shock troops. These Unas have been gene-edited and fitted with crude cortical dampeners to blunt higher cognition—cheap obedience over culture. Fierce, durable, and trainable, but quick to rage if mistreated.</description>
+
+        <statBases>
+            <MoveSpeed>4.5</MoveSpeed>
+            <MarketValue>800</MarketValue>
+            <ComfyTemperatureMin>-15</ComfyTemperatureMin>
+            <ComfyTemperatureMax>45</ComfyTemperatureMax>
+            <Wildness>0.85</Wildness>
+            <FilthRate>1</FilthRate>
+            <!-- Modest natural armor to reflect thick scales -->
+            <ArmorRating_Heat>0.54</ArmorRating_Heat>
+            <ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.72</ArmorRating_Sharp>
+            <MeleeDodgeChance>15</MeleeDodgeChance>
+            <PsychicSensitivity>2</PsychicSensitivity>
+            <ToxicResistance>0.90</ToxicResistance>
+            <MeatAmount>70</MeatAmount>
+            <PainShockThreshold>100</PainShockThreshold>
+            <InjuryHealingFactor>2</InjuryHealingFactor>
+        </statBases>
+
+        <!-- Big, nasty melee suite -->
+        <tools>
+            <li>
+                <label>clawed fist</label>
+                <capacities>
+                    <li>Scratch</li>
+                </capacities>
+                <power>27</power>
+                <cooldownTime>0.85</cooldownTime>
+                <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+            </li>
+            <li>
+                <label>clawed fist</label>
+                <capacities>
+                    <li>Scratch</li>
+                </capacities>
+                <power>27</power>
+                <cooldownTime>0.85</cooldownTime>
+                <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+            </li>
+            <li>
+                <label>bite</label>
+                <capacities>
+                    <li>Bite</li>
+                </capacities>
+                <power>13</power>
+                <cooldownTime>1.45</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <chanceFactor>0.5</chanceFactor>
+            </li>
+            <li>
+                <label>head slam</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>1.55</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                <chanceFactor>0.15</chanceFactor>
+            </li>
+        </tools>
+
+        <race>
+            <mechEnabledWorkTypes>
+                <li>PlantCutting</li>
+                <li>Growing</li>
+                <li>Mining</li>
+                <li>Hauling</li>
+                <li>Construction</li>
+                <li>Cleaning</li>
+                <li>Firefighter</li>
+            </mechEnabledWorkTypes>
+
+            <thinkTreeMain>Animal</thinkTreeMain>
+            <intelligence>Animal</intelligence>
+
+            <intelligence>ToolUser</intelligence>
+            <canOpenFactionlessDoors>true</canOpenFactionlessDoors>
+
+            <body>Rimgate_UnasBody</body>
+            <renderTree>Animal</renderTree>
+            <predator>true</predator>
+            <maxPreyBodySize>3</maxPreyBodySize>
+            <baseBodySize>1.6</baseBodySize>
+            <baseHungerRate>0.55</baseHungerRate>
+            <baseHealthScale>3.52</baseHealthScale>
+            <packAnimal>true</packAnimal>
+
+            <foodType>OmnivoreRoughAnimal</foodType>
+            <leatherDef>Leather_Lizard</leatherDef>
+
+            <!-- Trainable as labor/bruiser; lore: conditioned obedience -->
+            <trainability>Advanced</trainability>
+
+            <isImmuneToInfections>true</isImmuneToInfections>
+
+            <specialTrainables>
+                <li MayRequire="Ludeon.RimWorld.Odyssey">Dig</li>
+                <li MayRequire="Ludeon.RimWorld.Odyssey">Forage</li>
+                <li MayRequire="Ludeon.RimWorld.Odyssey">AttackTarget</li>
+                <li MayRequire="Ludeon.RimWorld.Odyssey">TerrorRoar</li>
+            </specialTrainables>
+
+            <manhunterOnTameFailChance>0.25</manhunterOnTameFailChance>
+            <manhunterOnDamageChance>0.45</manhunterOnDamageChance>
+            <canBeVacuumBurnt>false</canBeVacuumBurnt>
+
+            <gestationPeriodDays>12</gestationPeriodDays>
+            <lifeExpectancy>5000</lifeExpectancy>
+
+            <soundEating>Herbivore_Eat</soundEating>
+            <soundMeleeDodge>Pawn_MeleeDodge</soundMeleeDodge>
+
+            <lifeStageAges>
+                <li>
+                    <def>AnimalBaby</def>
+                    <minAge>0</minAge>
+                </li>
+                <li>
+                    <def>AnimalJuvenile</def>
+                    <minAge>0.25</minAge>
+                </li>
+                <li>
+                    <def>AnimalAdult</def>
+                    <minAge>0.5</minAge>
+                    <soundWounded>Pawn_Iguana_Wounded</soundWounded>
+                    <soundDeath>Pawn_Iguana_Death</soundDeath>
+                    <soundCall>Pawn_Iguana_Call</soundCall>
+                    <soundAngry>Pawn_Iguana_Angry</soundAngry>
+                </li>
+            </lifeStageAges>
+
+        </race>
+
+        <tradeTags>
+            <li>AnimalExotic</li>
+        </tradeTags>
+
+        <recipes>
+            <li>Rimgate_InstallSymbiote</li>
+            <li>Rimgate_RemoveGoauldSymbiote</li>
+        </recipes>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_Unas">
+        <defName>Rimgate_Unas_BerserkerRace</defName>
+
+        <race>
+            <packAnimal>false</packAnimal>
+        </race>
+
+        <comps>
+            <li Class="VEF.AnimalBehaviours.CompProperties_InitialMentalState">
+                <mentalstate>ManhunterPermanent</mentalstate>
+            </li>
+        </comps>
+    </ThingDef>
+
+</Defs>
