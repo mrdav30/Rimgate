@@ -22,7 +22,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriBasic</defName>
         <label>Tau'ri technology</label>
-        <description>begin adapting off-world Tau'ri tech: field equipment, comms, and just enough military-grade hardware to get the IOA very concerned.</description>
+        <description>Begin adapting off-world Tau'ri tech: field equipment, comms, and just enough military-grade hardware to get the IOA very concerned.</description>
         <baseCost>1500</baseCost>
         <researchViewX>0</researchViewX>
         <researchViewY>2.5</researchViewY>
@@ -32,13 +32,16 @@
         <heldByFactionCategoryTags>
             <li>Rimgate_TauriFaction</li>
         </heldByFactionCategoryTags>
+        <tags>
+            <li>Rimgate_TechprintPool</li>
+        </tags>
     </ResearchProjectDef>
 
     <!-- ======== Tau'ri Armor ========= -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriArmors</defName>
         <label>Tau'ri Uniforms</label>
-        <description>standard-issue SGC uniforms and armor rated for both firefights and diplomatic blunders. Includes extra pockets for snacks, Zat holsters, and moral ambiguity.</description>
+        <description>Standard-issue SGC uniforms and armor rated for both firefights and diplomatic blunders. Includes extra pockets for snacks, Zat holsters, and moral ambiguity.</description>
         <baseCost>2500</baseCost>
         <researchViewX>1</researchViewX>
         <researchViewY>0</researchViewY>
@@ -120,12 +123,15 @@
         <heldByFactionCategoryTags>
             <li>Rimgate_TauriFaction</li>
         </heldByFactionCategoryTags>
+        <tags>
+            <li>Rimgate_TechprintPool</li>
+        </tags>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_NaquadahRefinement</defName>
         <label>Naquadah refinement</label>
-        <description>learn to refine raw Naquadah into Naquadria—an unstable but potent power source.\nGreat for experimental engines, questionable ethics, and catastrophic explosions.</description>
+        <description>Learn to refine raw Naquadah into Naquadria—an unstable but potent power source.\nGreat for experimental engines, questionable ethics, and catastrophic explosions.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
             <li>Rimgate_TauriBasic</li>
@@ -138,7 +144,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_NaquadriaFiredGenerator</defName>
         <label>Naquadria generator</label>
-        <description>unlock a compact, high-yield power generator fueled by weaponized star dust. Enough energy to power a base—or vaporize one by accident.</description>
+        <description>Unlock a compact, high-yield power generator fueled by weaponized star dust. Enough energy to power a base—or vaporize one by accident.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
             <li>Rimgate_NaquadahRefinement</li>
@@ -165,6 +171,9 @@
         <heldByFactionCategoryTags>
             <li>Rimgate_TauriFaction</li>
         </heldByFactionCategoryTags>
+        <tags>
+            <li>Rimgate_TechprintPool</li>
+        </tags>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">

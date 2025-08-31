@@ -49,7 +49,6 @@
             <li MayRequire="Ludeon.RimWorld.Biotech">
                 <bodyGraphicData>
                     <texPath>Things/Pawn/Mechanoid/Malp/RGMalp</texPath>
-                    <graphicClass>Graphic_Multi</graphicClass>
                     <drawSize>3</drawSize>
                     <shadowData>
                         <volume>(0.6, 0.8, 0.6)</volume>
@@ -59,7 +58,6 @@
             <li>
                 <bodyGraphicData>
                     <texPath>Things/Pawn/Mechanoid/Malp/RGMalp</texPath>
-                    <graphicClass>Graphic_Multi</graphicClass>
                     <drawSize>3</drawSize>
                     <shadowData>
                         <volume>(0.6, 0.8, 0.6)</volume>

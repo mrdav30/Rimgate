@@ -8,7 +8,62 @@
 
   <ThingSetMakerDef>
     <defName>Rimgate_Techprints</defName>
-    <root Class="Rimgate.ThingSetMaker_RimgateTech" />
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <!-- Bucket: tagged techprints -->
+        <li>
+          <weight>5</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_TechprintsByTag">
+            <techprintTags>
+              <li>Rimgate_TechprintPool</li> <!-- ResearchProjectTagDef defName -->
+            </techprintTags>
+            <marketValueFactor>1.0</marketValueFactor>
+            <requirePrereqsCompleted>false</requirePrereqsCompleted>
+            <!-- You can also pass ThingSetMakerParams from a parent caller (countRange/totalMarketValueRange).
+               If you want a fixed count here, wrap this in ThingSetMaker_Conditional/StackCount.-->
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: glyphs/schematics -->
+        <li>
+          <weight>2</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_GlyphParchment</li>
+                  <li>Schematic</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: scrap notes -->
+        <li>
+          <weight>6</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_ScrapNote</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: empty -->
+        <li>
+          <weight>3</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
+        </li>
+
+      </options>
+    </root>
   </ThingSetMakerDef>
 
 </Defs>
