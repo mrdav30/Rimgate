@@ -59,7 +59,7 @@
                 <li>ElectricSmithy</li>
                 <li>FueledSmithy</li>
             </recipeUsers>
-            <researchPrerequisite>Rimgate_GoauldWeaponTier1</researchPrerequisite>
+            <researchPrerequisite>Rimgate_GoauldWeaponTierOne</researchPrerequisite>
             <skillRequirements>
                 <Crafting>3</Crafting>
             </skillRequirements>

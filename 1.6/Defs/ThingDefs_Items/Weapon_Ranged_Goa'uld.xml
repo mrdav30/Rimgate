@@ -65,7 +65,7 @@
 				<li>FabricationBench</li>
 			</recipeUsers>
 			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
-			<researchPrerequisite>Rimgate_GoauldWeaponTier1</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldWeaponTierOne</researchPrerequisite>
 		</recipeMaker>
 		<tradeTags>
 			<li>Rimgate_GoauldWeaponsTrade_tag</li>
@@ -129,7 +129,7 @@
 			<recipeUsers>
 				<li>FabricationBench</li>
 			</recipeUsers>
-			<researchPrerequisite>Rimgate_GoauldWeaponTier1</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldWeaponTierOne</researchPrerequisite>
 		</recipeMaker>
 		<graphicData>
 			<drawSize>1</drawSize>
@@ -338,7 +338,7 @@
 		<description>A devastating wrist-mounted weapon used by Kull warriors. Fires rapid energy bursts designed to overwhelm enemies and confidence alike.</description>
 		<techLevel>Spacer</techLevel>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldWeaponTier2</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldWeaponTierTwo</researchPrerequisite>
 		</recipeMaker>
 		<costList>
 			<Plasteel>50</Plasteel>

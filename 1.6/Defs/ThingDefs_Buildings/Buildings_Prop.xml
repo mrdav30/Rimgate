@@ -153,4 +153,73 @@
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     </ThingDef>
 
+    <!-- =============== Force Field Door =============== -->
+
+    <ThingDef ParentName="DoorBase">
+        <defName>Rimgate_ForceFieldDoor</defName>
+        <label>force field</label>
+        <description>A humming energy barrier. Red when locked, blue when hacked and safe to pass.</description>
+        <thingClass>Rimgate.Building_HackableForceField</thingClass>
+        <designationCategory IsNull="True" />
+        <rotatable>true</rotatable>
+
+        <graphicData>
+            <texPath>Things/Building/Prop/RGForceField_BarrierBlue</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+            <drawSize>(1.6,1.6)</drawSize>
+            <damageData>
+                <enabled>false</enabled>
+            </damageData>
+        </graphicData>
+
+        <statBases>
+            <MaxHitPoints>6000</MaxHitPoints>
+            <Flammability>0</Flammability>
+        </statBases>
+
+        <useBlueprintGraphicAsGhost>true</useBlueprintGraphicAsGhost>
+
+        <building>
+            <paintable>false</paintable>
+            <deconstructible>false</deconstructible>
+            <neverBuildable>true</neverBuildable>
+            <isAirtight>true</isAirtight>
+            <isSupportDoor>true</isSupportDoor>
+            <doorTopGraphic>
+                <texPath>Things/Building/Prop/RGBForceFieldDoor_Top</texPath>
+                <graphicClass>Graphic_Multi</graphicClass>
+                <drawSize>(1.6,1.6)</drawSize>
+            </doorTopGraphic>
+            <doorTopHorizontalOffset>(0,0,-0.025)</doorTopHorizontalOffset>
+            <expandHomeArea>false</expandHomeArea>
+        </building>
+
+        <stuffCategories Inherit="False" />
+        <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
+
+        <comps>
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Hackable">
+                <defence>2400</defence>
+                <effectHacking>HackingTerminal</effectHacking>
+                <lockoutDurationHoursRange>2~3</lockoutDurationHoursRange>
+                <notHackedInspectString>Barrier is locked. Hack to disperse.</notHackedInspectString>
+                <hackedInspectString>Barrier dispersed. Safe to pass.</hackedInspectString>
+                <hackedMessage>{HACKER_labelShort} disabled the defensive force field.</hackedMessage>
+                <showProgressAfterHackCompletion>false</showProgressAfterHackCompletion>
+
+                <unhackedGraphicData>
+                    <texPath>Things/Building/Prop/RGForceField_BarrierRed</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>TransparentPostLight</shaderType>
+                    <drawSize>(1.6,1.6)</drawSize>
+                </unhackedGraphicData>
+                <!-- <unhackedGraphicOffset>(0,0.1,0)</unhackedGraphicOffset> -->
+                <graphicDrawerType>RealtimeOnly</graphicDrawerType>
+            </li>
+        </comps>
+    </ThingDef>
+
+
 </Defs>

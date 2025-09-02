@@ -149,7 +149,8 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithGenerator</defName>
     <label>meat fired generator</label>
-    <description>Wraith bio-reactor fueled by cocooned meat. It's eco-friendly if you don’t count the screaming. Converts protein into power with all the efficiency of a spacefaring predator race.</description>
+    <label>biomass generator</label>
+    <description>A living power plant of Wraith design, its chambers packed with seething, organic matter that slowly digests biomass into raw energy. Though grotesque, it is brutally efficient—turning anything that once lived into fuel. The soft glow and faint chitter of its innards remind you this is less a machine than a creature chained to a wall.</description>
     <thingClass>Building</thingClass>
     <size>(1,2)</size>
     <graphicData>

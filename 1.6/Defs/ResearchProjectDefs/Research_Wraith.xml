@@ -40,7 +40,7 @@
 	<!-- ======== Armor ========= -->
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
-		<defName>Rimgate_WraithArmorTier1</defName>
+		<defName>Rimgate_WraithArmorTierOne</defName>
 		<label>Wraith armor I</label>
 		<description>Research armor grown from bio-organic materials tailored to Wraith physiology. Flexible, durable, and mildly unsettling to the touch.</description>
 		<baseCost>2500</baseCost>
@@ -53,12 +53,12 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
-		<defName>Rimgate_WraithArmorTier2</defName>
+		<defName>Rimgate_WraithArmorTierTwo</defName>
 		<label>Wraith armor II</label>
 		<description>Develop specialized armor for Wraith leadership—more protection, more authority, and just enough grotesque ornamentation to say “I’m in charge” without speaking a word.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
-			<li>Rimgate_WraithArmorTier1</li>
+			<li>Rimgate_WraithArmorTierOne</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0</researchViewY>
@@ -67,7 +67,7 @@
 	<!-- ======== Weapon ========= -->
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
-		<defName>Rimgate_WraithWeaponTier1</defName>
+		<defName>Rimgate_WraithWeaponTierOne</defName>
 		<label>Wraith weapons</label>
 		<description>Reverse-engineer Wraith energy weapons—organic-looking tools of destruction designed for elegant disintegration and maximum dread.</description>
 		<baseCost>2500</baseCost>
@@ -85,7 +85,7 @@
 		<description>Reverse-engineer Wraith neural interface tech to bend machines to your will. Great for remote control, terrible for privacy.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
-			<li>Rimgate_WraithWeaponTier1</li>
+			<li>Rimgate_WraithWeaponTierOne</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>1</researchViewY>

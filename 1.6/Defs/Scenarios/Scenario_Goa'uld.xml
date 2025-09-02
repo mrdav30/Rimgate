@@ -319,11 +319,11 @@
 				</li>
 				<li Class="ScenPart_StartingResearch">
 					<def>StartingResearch</def>
-					<project>Rimgate_GoauldArmorTier1</project>
+					<project>Rimgate_GoauldArmorTierOne</project>
 				</li>
 				<li Class="ScenPart_StartingResearch">
 					<def>StartingResearch</def>
-					<project>Rimgate_GoauldWeaponTier1</project>
+					<project>Rimgate_GoauldWeaponTierOne</project>
 				</li>
 				<!-- Layers -->
 				<li MayRequire="Ludeon.RimWorld.Odyssey" Class="ScenPart_PlanetLayer">

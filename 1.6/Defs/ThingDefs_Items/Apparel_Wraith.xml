@@ -90,7 +90,7 @@
 			<li>ArmorHeadgear</li>
 		</thingCategories>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithArmorTier1</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
@@ -160,7 +160,7 @@
 			</forceEyesVisibleForRotations>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithArmorTier1</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
@@ -227,7 +227,7 @@
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithArmorTier1</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
@@ -294,7 +294,7 @@
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithArmorTier2</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithArmorTierTwo</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>

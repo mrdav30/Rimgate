@@ -371,6 +371,7 @@
     <Compile Include="Abilities\Properties\CompProperties_MultipleProjectile.cs" />
     <Compile Include="Misc\Projectile_ZatBlast_Extension.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_TechprintsByTag.cs" />
+    <Compile Include="Things\Building_HackableForceField.cs" />
     <Compile Include="Things\Building_MeatLab.cs" />
     <Compile Include="Things\Building_DHD.cs" />
     <Compile Include="Things\Building_WraithCloningPod.cs" />

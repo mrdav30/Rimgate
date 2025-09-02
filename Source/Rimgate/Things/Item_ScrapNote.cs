@@ -1,53 +1,102 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 
-namespace Rimgate;
-
-public class Item_ScrapNote : ThingWithComps
+namespace Rimgate
 {
-    public static string[] NoteKeys = new string[15]
+    // Mod extension: defines which keyed notes this item can pull from
+    public class Rimgate_ScrapNoteExt : DefModExtension
     {
-        "RG_ScribbledNote1",
-        "RG_ScribbledNote2",
-        "RG_ScribbledNote3",
-        "RG_ScribbledNote4",
-        "RG_ScribbledNote5",
-        "RG_ScribbledNote6",
-        "RG_ScribbledNote7",
-        "RG_ScribbledNote8",
-        "RG_ScribbledNote9",
-        "RG_ScribbledNote10",
-        "RG_ScribbledNote11",
-        "RG_ScribbledNote12",
-        "RG_ScribbledNote13",
-        "RG_ScribbledNote14",
-        "RG_ScribbledNote15",
-    };
-
-    private int _keyIndex = -1;
-
-    public override string DescriptionFlavor => _keyIndex > -1 
-        ? NoteKeys[_keyIndex].Translate()
-        : string.Empty;
-
-    public override void SpawnSetup(Map map, bool respawningAfterLoad)
-    {
-        base.SpawnSetup(map, respawningAfterLoad);
-
-        if (NoteKeys.Length > 0)
-        {
-            IntRange intRange = new IntRange(0, 14);
-            _keyIndex = intRange.RandomInRange;
-        }
+        public List<string> keys;
     }
 
-    public override void ExposeData()
+    public class Item_ScrapNote : ThingWithComps
     {
-        base.ExposeData();
-        Scribe_Values.Look(ref _keyIndex, "_keyIndex", -1);
+        private int _keyIndex = -1;
+
+        private List<string> KeyPool
+        {
+            get
+            {
+                var ext = def?.GetModExtension<Rimgate_ScrapNoteExt>();
+                return (ext?.keys != null && ext.keys.Count > 0)
+                    ? ext.keys
+                    : new List<string>(); // Empty list means no usable notes
+            }
+        }
+
+        private string CurrentKeyOrNull
+        {
+            get
+            {
+                var pool = KeyPool;
+                if (pool.Count == 0) return null;
+
+                // Clamp index in case defs changed since save
+                if (_keyIndex < 0 || _keyIndex >= pool.Count)
+                {
+                    _keyIndex = 0;
+                }
+
+                return pool[_keyIndex];
+            }
+        }
+
+        public override string DescriptionFlavor
+        {
+            get
+            {
+                var key = CurrentKeyOrNull;
+                if (key.NullOrEmpty())
+                {
+                    return "A scrap of paper with illegible scribbles.";
+                }
+                return key.Translate();
+            }
+        }
+
+        public override void PostMake()
+        {
+            base.PostMake();
+            EnsureKeySelected();
+        }
+
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            EnsureKeySelected();
+        }
+
+        private void EnsureKeySelected()
+        {
+            if (_keyIndex >= 0) return;
+
+            var pool = KeyPool;
+            if (pool.Count > 0)
+            {
+                _keyIndex = Rand.Range(0, pool.Count);
+            }
+            else
+            {
+                _keyIndex = -1; // No valid key
+            }
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref _keyIndex, "_keyIndex", -1);
+
+            // Clamp after load
+            var pool = KeyPool;
+            if (pool.Count == 0)
+            {
+                _keyIndex = -1;
+            }
+            else if (_keyIndex < 0 || _keyIndex >= pool.Count)
+            {
+                _keyIndex = Mathf.Clamp(_keyIndex, 0, pool.Count - 1);
+            }
+        }
     }
 }

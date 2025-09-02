@@ -104,7 +104,7 @@
 			<turretBurstCooldownTime>1.875</turretBurstCooldownTime>
 		</building>
 		<researchPrerequisites>
-			<li>Rimgate_TauriTurretsTier1</li>
+			<li>Rimgate_TauriTurretsTierOne</li>
 		</researchPrerequisites>
 		<tradeTags>
 			<li>Rimgate_TauriHMGTurret</li>
@@ -181,7 +181,7 @@
 			<Beauty>-20</Beauty>
 		</statBases>
 		<tickerType>Normal</tickerType>
-		<techLevel>Industrial</techLevel>
+		<techLevel>Spacer</techLevel>
 		<hasInteractionCell>True</hasInteractionCell>
 		<interactionCellOffset>(-1,0,0)</interactionCellOffset>
 		<comps>
@@ -269,7 +269,7 @@
 			<turretBurstCooldownTime>1.875</turretBurstCooldownTime>
 		</building>
 		<researchPrerequisites>
-			<li>Rimgate_TauriTurretsTier2</li>
+			<li>Rimgate_TauriTurretsTierTwo</li>
 		</researchPrerequisites>
 		<tradeTags>
 			<li>Rimgate_TauriRailgunTurret</li>
@@ -434,7 +434,7 @@
 			<turretBurstCooldownTime>2.2</turretBurstCooldownTime>
 		</building>
 		<researchPrerequisites>
-			<li>Rimgate_GoauldTurretsTier1</li>
+			<li>Rimgate_GoauldTurretsTierOne</li>
 		</researchPrerequisites>
 		<tradeTags>
 			<li>Rimgate_GoauldStaffCannonTurret</li>
@@ -481,7 +481,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_AutoStaffCannonTurret</defName>
-		<label>auto staff cannon</label>
+		<label>Auto staff cannon</label>
 		<description>An autonomous Goa’uld staff cannon upgraded with forbidden ion-focusing tech of unknown origin. The result: blisteringly precise plasma bursts that chew through shields and laugh at cover. Field units arrive pre-keyed and self-scorch their cores on capture. Very good at making trespassers reconsider their life choices.</description>
 		<thingClass>Building_TurretGun</thingClass>
 		<drawerType>MapMeshAndRealTime</drawerType>
@@ -490,7 +490,7 @@
 		<graphicData>
 			<texPath>Things/Building/Security/RGStaffCannonStand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(2,2)</drawSize>
+			<drawSize>(1.5,1.5)</drawSize>
 			<damageData>
 				<rect>(0.2,0.2,0.6,0.6)</rect>
 			</damageData>
@@ -504,6 +504,7 @@
 		<stealable>false</stealable>
 		<rotatable>true</rotatable>
 		<size>(2,2)</size>
+		<uiIconPath>Things/Building/Security/RGStaffCannonAuto</uiIconPath>
 		<statBases>
 			<MaxHitPoints>380</MaxHitPoints>
 			<Flammability>0</Flammability>
@@ -518,6 +519,7 @@
 			</li>
 		</damageMultipliers>
 		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
 		<comps>
 			<li Class="CompProperties_Explosive">
 				<wickTicks>240</wickTicks>
@@ -525,6 +527,9 @@
 				<explosiveDamageType>Bomb</explosiveDamageType>
 				<chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
 			</li>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Breakdownable" />
 			<li Class="CompProperties_Stunnable">
 				<affectedDamageDefs>
 					<li>Stun</li>
@@ -537,6 +542,25 @@
 			<li Class="CompProperties_AmbientSound">
 				<sound>MechTurretBig_Call</sound>
 			</li>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>8000</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>220</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
 		</comps>
 		<passability>PassThroughOnly</passability>
 		<pathCost>50</pathCost>
@@ -545,14 +569,30 @@
 			<ChunkSlagSteel>1</ChunkSlagSteel>
 		</killedLeavings>
 		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<costList>
+			<Steel>260</Steel>
+			<Rimgate_Naquadah>75</Rimgate_Naquadah>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<ComponentSpacer>4</ComponentSpacer>
+			<AIPersonaCore>1</AIPersonaCore>
+		</costList>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
 		<building>
 			<combatPower>190</combatPower>
 			<ai_combatDangerous>true</ai_combatDangerous>
 			<turretGunDef>Rimgate_AutoStaffCannonGun</turretGunDef>
-			<turretTopDrawSize>4.25</turretTopDrawSize>
+			<turretTopDrawSize>3</turretTopDrawSize>
 			<turretBurstCooldownTime>2.2</turretBurstCooldownTime>
 		</building>
 		<uiIconScale>0.95</uiIconScale>
+		<researchPrerequisites>
+			<li>Rimgate_GoauldTurretsTierTwo</li>
+		</researchPrerequisites>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseWeaponTurret">
@@ -561,7 +601,7 @@
 		<graphicData>
 			<texPath>Things/Building/Security/RGStaffCannonAuto</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(1.75, 1.75)</drawSize>
+			<drawSize>(1.5, 1.5)</drawSize>
 		</graphicData>
 		<destroyOnDrop>true</destroyOnDrop>
 		<statBases>

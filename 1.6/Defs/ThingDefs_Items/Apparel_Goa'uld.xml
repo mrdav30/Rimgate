@@ -54,7 +54,7 @@
 				<li>FabricationBench</li>
 			</recipeUsers>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-			<researchPrerequisite>Rimgate_GoauldArmorTier1</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldArmorTierOne</researchPrerequisite>
 		</recipeMaker>
 	</ThingDef>
 
@@ -189,7 +189,7 @@
 
 	<ThingDef Name="Rimgate_GuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearMakerBase" Abstract="True">
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTier2</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
 		</recipeMaker>
 		<costList>
 			<Steel>75</Steel>
@@ -256,7 +256,7 @@
 
 	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearMakerBase" Abstract="True">
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldArmorTierThree</researchPrerequisite>
 		</recipeMaker>
 		<costList>
 			<Steel>85</Steel>
@@ -655,7 +655,7 @@
 			<Rimgate_Naquadah>10</Rimgate_Naquadah>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTier1</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldArmorTierOne</researchPrerequisite>
 		</recipeMaker>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmor</texPath>
@@ -699,7 +699,7 @@
 			<Rimgate_Naquadah>10</Rimgate_Naquadah>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTier2</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
 		</recipeMaker>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/Prime/RGPrimeArmor</texPath>

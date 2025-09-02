@@ -59,9 +59,9 @@
         <tradeability>None</tradeability>
         <drawerType>MapMeshOnly</drawerType>
         <statBases>
-            <MaxHitPoints>50</MaxHitPoints>
+            <MaxHitPoints>5</MaxHitPoints>
             <DeteriorationRate>2.0</DeteriorationRate>
-            <Beauty>-8</Beauty>
+            <Beauty>0</Beauty>
             <Mass>1</Mass>
         </statBases>
         <comps>
@@ -73,6 +73,27 @@
         <thingCategories>
             <li>Unfinished</li>
         </thingCategories>
+        <modExtensions>
+            <li Class="Rimgate.Rimgate_ScrapNoteExt">
+                <keys>
+                    <li>RG_ScribbledNote1</li>
+                    <li>RG_ScribbledNote2</li>
+                    <li>RG_ScribbledNote3</li>
+                    <li>RG_ScribbledNote4</li>
+                    <li>RG_ScribbledNote5</li>
+                    <li>RG_ScribbledNote6</li>
+                    <li>RG_ScribbledNote7</li>
+                    <li>RG_ScribbledNote8</li>
+                    <li>RG_ScribbledNote9</li>
+                    <li>RG_ScribbledNote10</li>
+                    <li>RG_ScribbledNote11</li>
+                    <li>RG_ScribbledNote12</li>
+                    <li>RG_ScribbledNote13</li>
+                    <li>RG_ScribbledNote14</li>
+                    <li>RG_ScribbledNote15</li>
+                </keys>
+            </li>
+        </modExtensions>
     </ThingDef>
 
     <!-- ==================== Iris ==================== -->

@@ -77,7 +77,7 @@
             <li>Rimgate_JaffaForeheadSymbol_tag</li>
         </techHediffsTags>
         <recipeMaker>
-            <researchPrerequisite>Rimgate_GoauldArmorTier2</researchPrerequisite>
+            <researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
         </recipeMaker>
     </ThingDef>
 
@@ -94,7 +94,7 @@
             <li>Rimgate_PrimeForeheadSymbol_tag</li>
         </techHediffsTags>
         <recipeMaker>
-            <researchPrerequisite>Rimgate_GoauldArmorTier3</researchPrerequisite>
+            <researchPrerequisite>Rimgate_GoauldArmorTierThree</researchPrerequisite>
         </recipeMaker>
     </ThingDef>
 

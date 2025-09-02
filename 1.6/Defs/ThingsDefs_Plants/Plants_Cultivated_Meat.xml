@@ -6,8 +6,8 @@
 	<ThingDef>
 		<defName>Rimgate_CulturedMeatCrop</defName>
 		<thingClass>Rimgate.Plant_MeatPlant</thingClass>
-		<label>cultivated meat.</label>
-		<description>meat? Long growth process but high nutrition value.</description>
+		<label>Cultivated meat.</label>
+		<description>Meat? Long growth process but high nutrition value.</description>
 		<category>Plant</category>
 		<altitudeLayer>LowPlant</altitudeLayer>
 		<useHitPoints>True</useHitPoints>
