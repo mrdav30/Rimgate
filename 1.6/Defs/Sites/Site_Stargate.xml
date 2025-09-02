@@ -31,15 +31,23 @@
 		<order>450</order>
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<structureLayoutDefs>
-				<li>Rimgate_StructureSGC</li>
+				<!-- Goa'uld -->
 				<li>Rimgate_StructureAbydosTemple</li>
-				<li>Rimgate_StructureIndustrialTown</li>
-				<li>Rimgate_StructureJadeHenge</li>
 				<li>Rimgate_StructureGoauldLostBase</li>
 				<li>Rimgate_StructureGoauldNaquadahStorehouse</li>
+				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
+				<!-- Tau'ri -->
+				<li>Rimgate_StructureSGC</li>
+				<li>Rimgate_StructureIndustrialTown</li>
 				<li>Rimgate_StructureTauriForwardOutpost</li>
+				<li>Rimgate_StructureTauriLostBase</li>
+				<!-- Wraith -->
 				<li>Rimgate_StructureWraithHibernationSite</li>
 				<li>Rimgate_StructureWraithHiveSiteAlpha</li>
+				<li>Rimgate_StructureWraithHiveSiteBravo</li>
+				<li>Rimgate_StructureWraithHiveSiteCharlie</li>
+				<!-- Misc -->
+				<li>Rimgate_StructureJadeHenge</li>
 				<li>Rimgate_StructureBarrenGate</li>
 				<li>Rimgate_StructureBarrenGateNoDHD</li>
 			</structureLayoutDefs>
@@ -76,7 +84,8 @@
 		<order>450</order>
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<structureLayoutDefs>
-				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
+				<li>Rimgate_StructureMazeAlpha</li>
+				<li>Rimgate_StructureMazeBravo</li>
 			</structureLayoutDefs>
 		</genStep>
 	</GenStepDef>

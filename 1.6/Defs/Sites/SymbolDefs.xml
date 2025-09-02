@@ -39,6 +39,16 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_ZPM</defName>
+        <thing>Rimgate_ZPM</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
+        <thing>Rimgate_IndustrialNaquadriaFiredGenerator</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_GoauldThrone</defName>
         <thing>Rimgate_GoauldThrone</thing>
     </KCSG.SymbolDef>
@@ -56,6 +66,69 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_WraithMeatLab</defName>
         <thing>Rimgate_WraithMeatLab</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CocoonStation</defName>
+        <thing>Rimgate_CocoonStation</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithCloningPod</defName>
+        <thing>Rimgate_WraithCloningPod</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_M2Turret</defName>
+        <thing>Rimgate_M2Turret</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_AutoStaffCannonTurret</defName>
+        <thing>Rimgate_AutoStaffCannonTurret</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_JammedDoor</defName>
+        <thing>Rimgate_JammedDoor</thing>
+        <stuff>Steel</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ForceFieldDoor</defName>
+        <thing>Rimgate_ForceFieldDoor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CryptosleepProximityAlarm</defName>
+        <thing>Rimgate_CryptosleepProximityAlarm</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithDart</defName>
+        <thing>Rimgate_WraithDart</thing>
+    </KCSG.SymbolDef>
+
+    <!-- Props -->
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriResearchDesk</defName>
+        <thing>Rimgate_TauriResearchDesk</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriDraftingDesk</defName>
+        <thing>Rimgate_TauriDraftingDesk</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithTable</defName>
+        <thing>Rimgate_WraithTable</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_DialHomeDeviceDestroyed</defName>
+        <thing>Rimgate_DialHomeDeviceDestroyed</thing>
     </KCSG.SymbolDef>
 
     <!-- Items -->
@@ -76,13 +149,18 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
-        <defName>Rimgate_ZPM</defName>
-        <thing>Rimgate_ZPM</thing>
+        <defName>Rimgate_CocoonedMeat</defName>
+        <thing>Rimgate_CocoonedMeat</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
-        <defName>Rimgate_CocoonedMeat</defName>
-        <thing>Rimgate_CocoonedMeat</thing>
+        <defName>Rimgate_Biomass</defName>
+        <thing>Rimgate_Biomass</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CulturedMeat</defName>
+        <thing>Rimgate_CulturedMeat</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -93,6 +171,11 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_GoauldZat</defName>
         <thing>Rimgate_GoauldZat</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldMaTokViolet</defName>
+        <thing>Rimgate_GoauldMaTokViolet</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -110,6 +193,86 @@
         <thing>Rimgate_FirstPrimeArmor</thing>
     </KCSG.SymbolDef>
 
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithCommanderArmor</defName>
+        <thing>Rimgate_WraithCommanderArmor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithGoggles</defName>
+        <thing>Rimgate_WraithGoggles</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithSpear</defName>
+        <thing>Rimgate_WraithSpear</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithHandBlaster</defName>
+        <thing>Rimgate_WraithHandBlaster</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithCommunicationDevice</defName>
+        <thing>Rimgate_WraithCommunicationDevice</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriTacticalVest</defName>
+        <thing>Rimgate_TauriTacticalVest</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TacticalVestSteelPlateInsert</defName>
+        <thing>Rimgate_TacticalVestSteelPlateInsert</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TacticalVestCompositePlateInsert</defName>
+        <thing>Rimgate_TacticalVestCompositePlateInsert</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriBallisticHelmet</defName>
+        <thing>Rimgate_TauriBallisticHelmet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriFIMStinger</defName>
+        <thing>Rimgate_TauriFIMStinger</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriM92A</defName>
+        <thing>Rimgate_TauriM92A</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriM4A1Gun</defName>
+        <thing>Rimgate_TauriM4A1Gun</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriM4A1_M203Gun</defName>
+        <thing>Rimgate_TauriM4A1_M203Gun</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriUSAS12Shotgun</defName>
+        <thing>Rimgate_TauriUSAS12Shotgun</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriAntiReplicatorGun</defName>
+        <thing>Rimgate_TauriAntiReplicatorGun</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriP90Gun</defName>
+        <thing>Rimgate_TauriP90Gun</thing>
+    </KCSG.SymbolDef>
+
     <!-- Enemies -->
 
     <KCSG.SymbolDef>
@@ -122,6 +285,15 @@
         </containPawnKindAnyOf>
         <faction>Rimgate_WraithEmpire</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithSoldier</defName>
+        <pawnKindDef>Rimgate_WraithSoldier</pawnKindDef>
+        <faction>Rimgate_WraithEmpire</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -129,6 +301,28 @@
         <pawnKindDef>Rimgate_Replicator</pawnKindDef>
         <faction>Rimgate_Replicator</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Unas_Standard</defName>
+        <pawnKindDef>Rimgate_Unas_Standard</pawnKindDef>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Unas_Berserker</defName>
+        <pawnKindDef>Rimgate_Unas_Berserker</pawnKindDef>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldRangedApophis</defName>
+        <pawnKindDef>Rimgate_GoauldRangedApophis</pawnKindDef>
+        <faction>Rimgate_GoauldBaal</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -136,6 +330,23 @@
         <pawnKindDef>Rimgate_KullWarrior</pawnKindDef>
         <faction>Rimgate_GoauldBaal</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CrazedUnderLord</defName>
+        <pawnKindDef>Rimgate_CrazedUnderLord</pawnKindDef>
+        <faction>Rimgate_GoauldBaal</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriSGCSoldier</defName>
+        <pawnKindDef>Rimgate_TauriSGCSoldier</pawnKindDef>
+        <faction>Rimgate_TauriFaction</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <!-- Techprints-->
@@ -145,6 +356,34 @@
         <thing>Rimgate_SupplyCrate</thing>
         <thingSetMakerDef>Rimgate_Techprints</thingSetMakerDef>
         <thingSetMakerDefForPlayer>Rimgate_Techprints</thingSetMakerDefForPlayer>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_LootCrateAlpha</defName>
+        <thing>Rimgate_SupplyCrate</thing>
+        <thingSetMakerDef>Rimgate_StargateComplexLootAlpha</thingSetMakerDef>
+        <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootAlpha</thingSetMakerDefForPlayer>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_LootCrateBravo</defName>
+        <thing>Rimgate_SupplyCrate</thing>
+        <thingSetMakerDef>Rimgate_StargateComplexLootBravo</thingSetMakerDef>
+        <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootBravo</thingSetMakerDefForPlayer>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_LootCrateCharlie</defName>
+        <thing>Rimgate_SupplyCrate</thing>
+        <thingSetMakerDef>Rimgate_StargateComplexLootCharlie</thingSetMakerDef>
+        <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootCharlie</thingSetMakerDefForPlayer>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WeaponStash</defName>
+        <thing>Rimgate_SupplyCrate</thing>
+        <thingSetMakerDef>Rimgate_WeaponStash</thingSetMakerDef>
+        <thingSetMakerDefForPlayer>Rimgate_WeaponStash</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
 </Defs>
