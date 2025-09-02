@@ -135,7 +135,7 @@
 
 	<!-- ====== Wraith Spear Gun ====== -->
 
-	<ThingDef ParentName="Rimgate_WraithGunBase">
+	<ThingDef Name="Rimgate_WraithSpear" ParentName="Rimgate_WraithGunBase">
 		<defName>Rimgate_WraithSpear</defName>
 		<label>Wraith spear gun</label>
 		<description>this grotesque biotech weapon launches stunning projectiles, ideal for disabling humans before mealtime.\nEfficient, cruel, and mildly drippy.</description>
@@ -202,6 +202,57 @@
 		</thingSetMakerTags>
 	</ThingDef>
 
+	<ThingDef ParentName="Rimgate_WraithSpear">
+		<defName>Rimgate_WraithSpear_Unique</defName>
+		<label>unique spear gun</label>
+		<description>A spear gun with customized parts.</description>
+		<!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+		<!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+		<comps Inherit="False">
+			<li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Styleable" />
+			<li Class="CompProperties_Biocodable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+			<li Class="CompProperties_UniqueWeapon">
+				<weaponCategories>
+					<li>Ranged</li>
+					<li>Gun</li>
+					<li>Sighted</li>
+					<li>Rifle</li>
+					<li>BurstFire</li>
+					<li>LowStoppingPower</li>
+					<li>PulseCharge</li>
+					<li>Attachable</li>
+				</weaponCategories>
+				<namerLabels>
+					<li>charge rifle</li>
+				</namerLabels>
+			</li>
+		</comps>
+		<generateAllowChance>0</generateAllowChance>
+		<possessionCount>0</possessionCount>
+		<tradeability>Sellable</tradeability>
+		<thingSetMakerTags Inherit="False">
+			<li>RewardStandardLowFreq</li>
+			<li>UniqueWeapon</li>
+		</thingSetMakerTags>
+		<recipeMaker Inherit="False" IsNull="True" />
+		<thingCategories Inherit="False">
+			<li>WeaponsUnique</li>
+		</thingCategories>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_WraithSpear</ThingDef>
+		</descriptionHyperlinks>
+	</ThingDef>
+
 	<!-- ====== Wraith Spear Gun Projectile ====== -->
 
 	<ThingDef ParentName="BaseBullet">
@@ -232,7 +283,7 @@
 
 	<!-- ====== Wraith Handblaster ====== -->
 
-	<ThingDef ParentName="Rimgate_WraithGunBase">
+	<ThingDef Name="Rimgate_WraithHandBlaster" ParentName="Rimgate_WraithGunBase">
 		<defName>Rimgate_WraithHandBlaster</defName>
 		<label>Wraith hand blaster</label>
 		<description>A grotesque biotech sidearm used by Wraith commanders and scouts. It emits searing plasma pulses that burn flesh, ignite tempers, and occasionally the shrubbery. Compact, deadly, and annoyingly moist.</description>
@@ -289,6 +340,57 @@
 			<li>RewardStandardQualitySuper</li>
 		</thingSetMakerTags>
 	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_WraithHandBlaster">
+		<defName>Rimgate_WraithHandBlaster_Unique</defName>
+		<label>unique hand blaster</label>
+		<description>A hand blaster with customized parts.</description>
+		<!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+		<!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+		<comps Inherit="False">
+			<li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Styleable" />
+			<li Class="CompProperties_Biocodable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+			<li Class="CompProperties_UniqueWeapon">
+				<weaponCategories>
+					<li>Ranged</li>
+					<li>Gun</li>
+					<li>BurstFire</li>
+					<li>BeamWeapon</li>
+				</weaponCategories>
+				<namerLabels>
+					<li>repeater</li>
+					<li>beam repeater</li>
+					<li>beamgun</li>
+				</namerLabels>
+			</li>
+		</comps>
+		<generateAllowChance>0</generateAllowChance>
+		<possessionCount>0</possessionCount>
+		<tradeability>Sellable</tradeability>
+		<thingSetMakerTags Inherit="False">
+			<li>RewardStandardLowFreq</li>
+			<li>UniqueWeapon</li>
+		</thingSetMakerTags>
+		<recipeMaker Inherit="False" IsNull="True" />
+		<thingCategories Inherit="False">
+			<li>WeaponsUnique</li>
+		</thingCategories>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_WraithHandBlaster</ThingDef>
+		</descriptionHyperlinks>
+	</ThingDef>
+
+	<!-- ====== Wraith hand blaster Projectile ====== -->
 
 	<ThingDef ParentName="BaseBullet">
 		<defName>Rimgate_WraithHandBlasterProjectile</defName>

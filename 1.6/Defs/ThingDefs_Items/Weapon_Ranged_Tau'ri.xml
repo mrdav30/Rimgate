@@ -3,7 +3,7 @@
 
     <!-- ============ P-90 ============ -->
 
-    <ThingDef ParentName="BaseHumanMakeableGun">
+    <ThingDef Name="Rimgate_TauriP90Gun" ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriP90Gun</defName>
         <label>P90</label>
         <description>a compact, top-loaded submachine gun favored by Tau'ri special forces.\nFires fast, hits hard, and eats through ammo.</description>
@@ -81,9 +81,61 @@
         </tradeTags>
     </ThingDef>
 
+    <ThingDef ParentName="Rimgate_TauriP90Gun">
+        <defName>Rimgate_TauriP90Gun_Unique</defName>
+        <label>unique P90</label>
+        <description>A P90 with customized parts.</description>
+        <!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+        <!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+        <comps Inherit="False">
+            <li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Styleable" />
+            <li Class="CompProperties_Biocodable" />
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+            <li Class="CompProperties_Art">
+                <nameMaker>NamerArtWeaponGun</nameMaker>
+                <descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+                <minQualityForArtistic>Excellent</minQualityForArtistic>
+            </li>
+            <li Class="CompProperties_UniqueWeapon">
+                <weaponCategories>
+                    <li>Ranged</li>
+                    <li>BulletFiring</li>
+                    <li>Gun</li>
+                    <li>Sighted</li>
+                    <li>BurstFire</li>
+                    <li>LowStoppingPower</li>
+                    <li>Attachable</li>
+                </weaponCategories>
+                <namerLabels>
+                    <li>heavy SMG</li>
+                    <li>SMG</li>
+                    <li>chugger</li>
+                </namerLabels>
+            </li>
+        </comps>
+        <generateAllowChance>0</generateAllowChance>
+        <possessionCount>0</possessionCount>
+        <tradeability>Sellable</tradeability>
+        <thingSetMakerTags Inherit="False">
+            <li>RewardStandardLowFreq</li>
+            <li>UniqueWeapon</li>
+        </thingSetMakerTags>
+        <recipeMaker Inherit="False" IsNull="True" />
+        <thingCategories Inherit="False">
+            <li>WeaponsUnique</li>
+        </thingCategories>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriP90Gun</ThingDef>
+        </descriptionHyperlinks>
+    </ThingDef>
+
     <!-- ============ M4-A1 ============ -->
 
-    <ThingDef ParentName="BaseHumanMakeableGun">
+    <ThingDef Name="Rimgate_TauriM4A1Gun" ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriM4A1Gun</defName>
         <label>M4A1</label>
         <description>The standard issue M4A1—battle-tested, alien-blasted, and field-approved.\nPerfect for when diplomacy fails and the your enemies start chanting.</description>
@@ -156,6 +208,62 @@
             <li>Rimgate_TauriWeaponsTradeTag</li>
             <li>ExoticMisc</li>
         </tradeTags>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_TauriM4A1Gun">
+        <defName>Rimgate_TauriM4A1Gun_Unique</defName>
+        <label>unique M4A1</label>
+        <description>A M4A1 with customized parts.</description>
+        <!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+        <!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+        <comps Inherit="False">
+            <li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Styleable" />
+            <li Class="CompProperties_Biocodable" />
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+            <li Class="CompProperties_Art">
+                <nameMaker>NamerArtWeaponGun</nameMaker>
+                <descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+                <minQualityForArtistic>Excellent</minQualityForArtistic>
+            </li>
+            <li Class="CompProperties_UniqueWeapon">
+                <weaponCategories>
+                    <li>Ranged</li>
+                    <li>BulletFiring</li>
+                    <li>Gun</li>
+                    <li>Sighted</li>
+                    <li>Rifle</li>
+                    <li>BurstFire</li>
+                    <li>LowStoppingPower</li>
+                    <li>Attachable</li>
+                </weaponCategories>
+                <namerLabels>
+                    <li>assault rifle</li>
+                    <li>carbine</li>
+                    <li>battle rifle</li>
+                    <li>war rifle</li>
+                    <li>wargun</li>
+                    <li>fusil</li>
+                </namerLabels>
+            </li>
+        </comps>
+        <generateAllowChance>0</generateAllowChance>
+        <possessionCount>0</possessionCount>
+        <tradeability>Sellable</tradeability>
+        <thingSetMakerTags Inherit="False">
+            <li>RewardStandardLowFreq</li>
+            <li>UniqueWeapon</li>
+        </thingSetMakerTags>
+        <recipeMaker Inherit="False" IsNull="True" />
+        <thingCategories Inherit="False">
+            <li>WeaponsUnique</li>
+        </thingCategories>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriM4A1Gun</ThingDef>
+        </descriptionHyperlinks>
     </ThingDef>
 
     <!-- ============ M4-A1_M203_AR ============ -->
@@ -401,7 +509,7 @@
 
     <!-- ========= USAS 12 ========= -->
 
-    <ThingDef ParentName="BaseHumanMakeableGun">
+    <ThingDef Name="Rimgate_TauriUSAS12Shotgun" ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriUSAS12Shotgun</defName>
         <label>USAS 12</label>
         <description>a fully automatic shotgun used by Tau'ri when they really want enemies to stop existing.\nEspecially effective against doorways, Replicators, and bad attitudes.</description>
@@ -478,9 +586,64 @@
         </tradeTags>
     </ThingDef>
 
+    <ThingDef ParentName="Rimgate_TauriUSAS12Shotgun">
+        <defName>Rimgate_TauriUSAS12Shotgun_Unique</defName>
+        <label>unique USAS 12</label>
+        <description>A USAS 12 with customized parts.</description>
+        <!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+        <!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+        <comps Inherit="False">
+            <li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Styleable" />
+            <li Class="CompProperties_Biocodable" />
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+            <li Class="CompProperties_Art">
+                <nameMaker>NamerArtWeaponGun</nameMaker>
+                <descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+                <minQualityForArtistic>Excellent</minQualityForArtistic>
+            </li>
+            <li Class="CompProperties_UniqueWeapon">
+                <weaponCategories>
+                    <li>Ranged</li>
+                    <li>PelletFiring</li>
+                    <li>Gun</li>
+                    <li>Shotgun</li>
+                    <li>BurstFire</li>
+                    <li>Attachable</li>
+                </weaponCategories>
+                <namerLabels>
+                    <li>chain shotgun</li>
+                    <li>shotgun</li>
+                    <li>chainshot</li>
+                    <li>blaster</li>
+                    <li>blaststick</li>
+                    <li>sweeper</li>
+                    <li>gutspewer</li>
+                </namerLabels>
+            </li>
+        </comps>
+        <generateAllowChance>0</generateAllowChance>
+        <possessionCount>0</possessionCount>
+        <tradeability>Sellable</tradeability>
+        <thingSetMakerTags Inherit="False">
+            <li>RewardStandardLowFreq</li>
+            <li>UniqueWeapon</li>
+        </thingSetMakerTags>
+        <recipeMaker Inherit="False" IsNull="True" />
+        <thingCategories Inherit="False">
+            <li>WeaponsUnique</li>
+        </thingCategories>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriUSAS12Shotgun</ThingDef>
+        </descriptionHyperlinks>
+    </ThingDef>
+
     <!-- ========= Remington_700 ========= -->
 
-    <ThingDef ParentName="BaseHumanMakeableGun">
+    <ThingDef Name="Rimgate_TauriRemington700Rifle" ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_TauriRemington700Rifle</defName>
         <label>Remington 700</label>
         <description>a bolt-action sniper rifle for when “over there” needs to become “no longer a threat.”, or you need to silently judge targets from half the map away.</description>
@@ -555,6 +718,61 @@
             <li>Rimgate_TauriWeaponsTradeTag</li>
             <li>ExoticMisc</li>
         </tradeTags>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_TauriRemington700Rifle">
+        <defName>Rimgate_TauriRemington700Rifle_Unique</defName>
+        <label>unique Remington 700</label>
+        <description>A Remington 700 with customized parts.</description>
+        <!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+        <!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+        <comps Inherit="False">
+            <li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Styleable" />
+            <li Class="CompProperties_Biocodable" />
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+            <li Class="CompProperties_Art">
+                <nameMaker>NamerArtWeaponGun</nameMaker>
+                <descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+                <minQualityForArtistic>Excellent</minQualityForArtistic>
+            </li>
+            <li Class="CompProperties_UniqueWeapon">
+                <weaponCategories>
+                    <li>Ranged</li>
+                    <li>BulletFiring</li>
+                    <li>Gun</li>
+                    <li>Scoped</li>
+                    <li>Rifle</li>
+                </weaponCategories>
+                <namerLabels>
+                    <li>sniper rifle</li>
+                    <li>precision rifle</li>
+                    <li>marksman rifle</li>
+                    <li>sniper</li>
+                    <li>headshotter</li>
+                    <li>snipegun</li>
+                    <li>stalker</li>
+                    <li>assassinator</li>
+                </namerLabels>
+            </li>
+        </comps>
+        <generateAllowChance>0</generateAllowChance>
+        <possessionCount>0</possessionCount>
+        <tradeability>Sellable</tradeability>
+        <thingSetMakerTags Inherit="False">
+            <li>RewardStandardLowFreq</li>
+            <li>UniqueWeapon</li>
+        </thingSetMakerTags>
+        <recipeMaker Inherit="False" IsNull="True" />
+        <thingCategories Inherit="False">
+            <li>WeaponsUnique</li>
+        </thingCategories>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriRemington700Rifle</ThingDef>
+        </descriptionHyperlinks>
     </ThingDef>
 
     <!-- ========= Anti Replicator Gun ========= -->

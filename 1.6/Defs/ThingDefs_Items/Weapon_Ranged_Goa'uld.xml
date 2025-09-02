@@ -217,6 +217,52 @@
 		</graphicData>
 	</ThingDef>
 
+	<ThingDef ParentName="Rimgate_GoauldMaTok">
+		<defName>Rimgate_GoauldMaTokBlue_Unique</defName>
+		<label>unique Ma'Tok staff</label>
+		<description>The iconic staff weapon of the Jaffa with customized parts.</description>
+		<!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+		<!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+		<comps Inherit="False">
+			<li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Styleable" />
+			<li Class="CompProperties_Biocodable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+			<li Class="CompProperties_UniqueWeapon">
+				<weaponCategories>
+					<li>Ranged</li>
+					<li>Gun</li>
+					<li>PulseCharge</li>
+				</weaponCategories>
+				<namerLabels>
+					<li>charge lance</li>
+				</namerLabels>
+			</li>
+		</comps>
+		<generateAllowChance>0</generateAllowChance>
+		<possessionCount>0</possessionCount>
+		<tradeability>Sellable</tradeability>
+		<thingSetMakerTags Inherit="False">
+			<li>RewardStandardLowFreq</li>
+			<li>UniqueWeapon</li>
+		</thingSetMakerTags>
+		<recipeMaker Inherit="False" IsNull="True" />
+		<thingCategories Inherit="False">
+			<li>WeaponsUnique</li>
+		</thingCategories>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_GoauldMaTokBlue</ThingDef>
+		</descriptionHyperlinks>
+	</ThingDef>
+
 	<!-- ====== Ma'Tok Projectile ====== -->
 
 	<ThingDef ParentName="BaseBullet">
@@ -332,9 +378,9 @@
 
 	<!-- ========= Kull ========= -->
 
-	<ThingDef ParentName="Rimgate_GoauldGunBase">
+	<ThingDef Name="Rimgate_KullGun" ParentName="Rimgate_GoauldGunBase">
 		<defName>Rimgate_KullGun</defName>
-		<label>Kull weapon</label>
+		<label>Kull wrist gun</label>
 		<description>A devastating wrist-mounted weapon used by Kull warriors. Fires rapid energy bursts designed to overwhelm enemies and confidence alike.</description>
 		<techLevel>Spacer</techLevel>
 		<recipeMaker>
@@ -428,6 +474,55 @@
 				</targetingParameters>
 			</li>
 		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_KullGun">
+		<defName>Rimgate_KullGun_Unique</defName>
+		<label>unique Kull wrist gun</label>
+		<description>A wrist-mounted weapon with customized parts.</description>
+		<!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+		<!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+		<comps Inherit="False">
+			<li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Styleable" />
+			<li Class="CompProperties_Biocodable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+			<li Class="CompProperties_UniqueWeapon">
+				<weaponCategories>
+					<li>Ranged</li>
+					<li>Gun</li>
+					<li>BurstFire</li>
+					<li>BeamWeapon</li>
+				</weaponCategories>
+				<namerLabels>
+					<li>repeater</li>
+					<li>beam repeater</li>
+					<li>beamgun</li>
+				</namerLabels>
+			</li>
+		</comps>
+		<generateAllowChance>0</generateAllowChance>
+		<possessionCount>0</possessionCount>
+		<tradeability>Sellable</tradeability>
+		<thingSetMakerTags Inherit="False">
+			<li>RewardStandardLowFreq</li>
+			<li>UniqueWeapon</li>
+		</thingSetMakerTags>
+		<recipeMaker Inherit="False" IsNull="True" />
+		<thingCategories Inherit="False">
+			<li>WeaponsUnique</li>
+		</thingCategories>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_KullGun</ThingDef>
+		</descriptionHyperlinks>
 	</ThingDef>
 
 	<!-- ====== Kull Projectile ====== -->
