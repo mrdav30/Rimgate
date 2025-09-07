@@ -8,6 +8,7 @@
     <label>Goa'uld Tel'tak</label>
     <description>a compact Goa'uld transport craft built for swift infiltration, planetary landings, and discreet extractions. Lacks firepower—but makes up for it with sheer speed, stealth plating, and enough ego to carry a system lord.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
+    <preventDroppingThingsOn>true</preventDroppingThingsOn>
     <size>(6,6)</size>
     <graphicData>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
@@ -192,6 +193,7 @@
     <label>Wraith Dart</label>
     <description>razor-fast and biomechanically fused, the Wraith Dart excels at hit-and-run attacks, stasis harvesting, and sudden disappearances. Its sinister hum alone is enough to send villagers fleeing.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
+    <preventDroppingThingsOn>true</preventDroppingThingsOn>
     <size>(3,5)</size>
     <graphicData>
       <texPath>Things/Ship/Dart/RGWraithDart</texPath>

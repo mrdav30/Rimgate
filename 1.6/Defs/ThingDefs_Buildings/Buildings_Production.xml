@@ -95,7 +95,6 @@
     <placeWorkers>
       <li>PlaceWorker_PreventInteractionSpotOverlap</li>
     </placeWorkers>
-    <useHitPoints>false</useHitPoints>
     <scatterableOnMapGen>false</scatterableOnMapGen>
     <designationCategory>Production</designationCategory>
     <passability>Standable</passability>

@@ -846,7 +846,7 @@
 			<ComponentSpacer>2</ComponentSpacer>
 			<Steel>25</Steel>
 			<Plasteel>25</Plasteel>
-			<Rimgate_Naquadria>1</Rimgate_Naquadria>
+			<Rimgate_Naquadria>2</Rimgate_Naquadria>
 		</costList>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Utility/RGGoauldKaraKesh</texPath>

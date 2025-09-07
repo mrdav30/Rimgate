@@ -12,7 +12,9 @@
 		<tickerType>Normal</tickerType>
 		<costList>
 			<Steel>20</Steel>
-			<Chemfuel>80</Chemfuel>
+			<Chemfuel>40</Chemfuel>
+			<Rimgate_Naquadah>10</Rimgate_Naquadah>
+			<Rimgate_Biomass>10</Rimgate_Biomass>
 		</costList>
 		<graphicData>
 			<texPath>Things/Item/Weapon/Grenade/RGWraithGrenade</texPath>
@@ -157,6 +159,7 @@
 		<costList>
 			<Steel>100</Steel>
 			<ComponentIndustrial>2</ComponentIndustrial>
+			<Rimgate_Naquadria>4</Rimgate_Naquadria>
 			<Rimgate_Biomass>50</Rimgate_Biomass>
 		</costList>
 		<equippedAngleOffset>45</equippedAngleOffset>
@@ -306,6 +309,7 @@
 			<Steel>60</Steel>
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Rimgate_Biomass>35</Rimgate_Biomass>
+			<Rimgate_Naquadria>2</Rimgate_Naquadria>
 		</costList>
 		<equippedAngleOffset>25</equippedAngleOffset>
 		<verbs>

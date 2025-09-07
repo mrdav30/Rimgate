@@ -16,7 +16,7 @@
                         <li>Plasteel</li>
                     </thingDefs>
                 </filter>
-                <count>125</count>
+                <count>225</count>
             </li>
             <li>
                 <filter>
@@ -24,7 +24,7 @@
                         <li>Steel</li>
                     </thingDefs>
                 </filter>
-                <count>75</count>
+                <count>125</count>
             </li>
             <li>
                 <filter>
@@ -54,6 +54,14 @@
                 <filter>
                     <thingDefs>
                         <li>SubcoreRegular</li>
+                    </thingDefs>
+                </filter>
+                <count>4</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_Naquadria</li>
                     </thingDefs>
                 </filter>
                 <count>4</count>

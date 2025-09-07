@@ -813,6 +813,7 @@
             <Steel>20</Steel>
             <ComponentIndustrial>7</ComponentIndustrial>
             <ComponentSpacer>2</ComponentSpacer>
+            <Rimgate_Naquadria>2</Rimgate_Naquadria>
         </costList>
         <verbs>
             <li>

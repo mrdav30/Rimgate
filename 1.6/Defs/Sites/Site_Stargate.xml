@@ -47,9 +47,16 @@
 				<li>Rimgate_StructureWraithHiveSiteBravo</li>
 				<li>Rimgate_StructureWraithHiveSiteCharlie</li>
 				<!-- Misc -->
-				<li>Rimgate_StructureJadeHenge</li>
+				<li>Rimgate_StructureAncientComplexAlpha</li>
+				<li>Rimgate_StructureAncientComplexBravo</li>
+				<li>Rimgate_StructureAncientComplexCharlie</li>
 				<li>Rimgate_StructureBarrenGate</li>
 				<li>Rimgate_StructureBarrenGateNoDHD</li>
+				<li>Rimgate_StructureCavernAlpha</li>
+				<li>Rimgate_StructureMechHiveAlpha</li>
+				<li>Rimgate_StructureJadeHengeAlpha</li>
+				<li>Rimgate_StructureJadeHengeBravo</li>
+				<li>Rimgate_StructureUnasVillage</li>
 			</structureLayoutDefs>
 		</genStep>
 	</GenStepDef>

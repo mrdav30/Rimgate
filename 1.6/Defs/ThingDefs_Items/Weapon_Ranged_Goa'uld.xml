@@ -10,8 +10,8 @@
 		<tickerType>Normal</tickerType>
 		<costList>
 			<Steel>20</Steel>
-			<Chemfuel>80</Chemfuel>
-			<Rimgate_Naquadah>2</Rimgate_Naquadah>
+			<Chemfuel>65</Chemfuel>
+			<Rimgate_Naquadah>10</Rimgate_Naquadah>
 		</costList>
 		<graphicData>
 			<texPath>Things/Item/Weapon/Grenade/RGGoauldTokkal</texPath>
@@ -149,7 +149,7 @@
 		<costList>
 			<Steel>75</Steel>
 			<ComponentIndustrial>5</ComponentIndustrial>
-			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+			<Rimgate_Naquadah>15</Rimgate_Naquadah>
 		</costList>
 		<graphicData>
 			<texPath>Things/Item/Weapon/Ranged/RGGoauldMaTokStaffBlue</texPath>
@@ -292,7 +292,7 @@
 		<costList>
 			<Steel>30</Steel>
 			<ComponentIndustrial>2</ComponentIndustrial>
-			<Rimgate_Naquadah>2</Rimgate_Naquadah>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
 		</costList>
 		<graphicData>
 			<texPath>Things/Item/Weapon/Ranged/RGGoauldZat</texPath>
@@ -380,7 +380,7 @@
 
 	<ThingDef Name="Rimgate_KullGun" ParentName="Rimgate_GoauldGunBase">
 		<defName>Rimgate_KullGun</defName>
-		<label>Kull wrist gun</label>
+		<label>Plasma repeater</label>
 		<description>A devastating wrist-mounted weapon used by Kull warriors. Fires rapid energy bursts designed to overwhelm enemies and confidence alike.</description>
 		<techLevel>Spacer</techLevel>
 		<recipeMaker>
@@ -389,7 +389,7 @@
 		<costList>
 			<Plasteel>50</Plasteel>
 			<ComponentSpacer>1</ComponentSpacer>
-			<Rimgate_Naquadah>25</Rimgate_Naquadah>
+			<Rimgate_Naquadria>4</Rimgate_Naquadria>
 		</costList>
 		<graphicData>
 			<texPath>Things/Item/Weapon/Ranged/RGKullGun</texPath>

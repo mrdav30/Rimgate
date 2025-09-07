@@ -87,39 +87,4 @@
 		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
 	</ThingDef>
 
-	<!-- ======================= Supply crate ======================= -->
-
-	<ThingDef Name="Rimgate_SupplyCrateBase" ParentName="CrateBase" Abstract="True">
-		<label>Supply crate</label>
-		<description>A small crate that's still sealed. There may be valuables inside.</description>
-		<graphicData>
-			<texPath>Things/Building/Misc/RGSupplyCrate_Filled</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(1,1)</drawSize>
-		</graphicData>
-		<size>(1, 1)</size>
-		<fillPercent>0.3</fillPercent>
-		<statBases>
-			<MaxHitPoints>50</MaxHitPoints>
-		</statBases>
-		<rotatable>false</rotatable>
-		<comps>
-			<li Class="CompProperties_EmptyStateGraphic">
-				<graphicData>
-					<texPath>Things/Building/Misc/RGSupplyCrate_Empty</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-					<drawSize>(1,1)</drawSize>
-				</graphicData>
-			</li>
-			<li Class="CompProperties_Glower">
-				<glowRadius>3</glowRadius>
-				<glowColor>(239,133,50,0)</glowColor>
-			</li>
-		</comps>
-	</ThingDef>
-
-	<ThingDef ParentName="Rimgate_SupplyCrateBase">
-		<defName>Rimgate_SupplyCrate</defName>
-	</ThingDef>
-
 </Defs>

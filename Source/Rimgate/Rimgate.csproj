@@ -333,6 +333,7 @@
     <Compile Include="AI\WorkGiver_ToggleIris.cs" />
     <Compile Include="AI\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGiver_CloseStargate.cs" />
+    <Compile Include="Comps\Comp_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Comp_AlarmOpenCaskets.cs" />
     <Compile Include="Comps\Properties\CompProperties_ProximityAlarm.cs" />
     <Compile Include="Comps\Comp_AdditionalDamage.cs" />
@@ -343,6 +344,7 @@
     <Compile Include="Abilities\Properties\CompProperties_ApplyHediff.cs" />
     <Compile Include="AI\WorkerGiver_DoBill_Wraith.cs" />
     <Compile Include="Comps\Properties\CompProperties_CloningPod.cs" />
+    <Compile Include="Comps\Properties\CompProperties_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Properties\CompProperties_Toggle.cs" />
     <Compile Include="Comps\Properties\CompProperties_FrameApparel.cs" />
     <Compile Include="Comps\Properties\CompProperties_ShieldEmitter.cs" />

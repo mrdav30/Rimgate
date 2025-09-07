@@ -72,6 +72,7 @@
         </statBases>
         <costList>
             <Steel>1</Steel>
+            <Rimgate_Naquadah>1</Rimgate_Naquadah>
         </costList>
         <techHediffsTags Inherit="False">
             <li>Rimgate_JaffaForeheadSymbol_tag</li>
@@ -89,6 +90,7 @@
         </statBases>
         <costList>
             <Gold>1</Gold>
+            <Rimgate_Naquadah>1</Rimgate_Naquadah>
         </costList>
         <techHediffsTags Inherit="False">
             <li>Rimgate_PrimeForeheadSymbol_tag</li>

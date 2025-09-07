@@ -95,6 +95,18 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_SecretDoor_Slate</defName>
+        <thing>Rimgate_SecretDoor</thing>
+        <stuff>BlocksSlate</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_NaquadahColumn</defName>
+        <thing>Column</thing>
+        <stuff>Rimgate_Naquadah</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_ForceFieldDoor</defName>
         <thing>Rimgate_ForceFieldDoor</thing>
     </KCSG.SymbolDef>
@@ -129,6 +141,26 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_DialHomeDeviceDestroyed</defName>
         <thing>Rimgate_DialHomeDeviceDestroyed</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_DestroyedGeothermalGenerator</defName>
+        <thing>Rimgate_DestroyedGeothermalGenerator</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_DestroyedDesk</defName>
+        <thing>Rimgate_DestroyedDesk</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_AncientReplicatorVat_EmptySmall</defName>
+        <thing>Rimgate_AncientReplicatorVat_EmptySmall</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ScrapNote</defName>
+        <thing>Rimgate_ScrapNote</thing>
     </KCSG.SymbolDef>
 
     <!-- Items -->
@@ -349,7 +381,107 @@
         <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
-    <!-- Techprints-->
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Mech_Scyther</defName>
+        <pawnKindDef>Mech_Scyther</pawnKindDef>
+        <faction>Mechanoid</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Mech_Lancer</defName>
+        <pawnKindDef>Mech_Lancer</pawnKindDef>
+        <faction>Mechanoid</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Mech_CentipedeBlaster</defName>
+        <pawnKindDef>Mech_CentipedeBlaster</pawnKindDef>
+        <faction>Mechanoid</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Mech_Pikeman</defName>
+        <pawnKindDef>Mech_Pikeman</pawnKindDef>
+        <faction>Mechanoid</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Bulbfreak</defName>
+        <pawnKindDef>Bulbfreak</pawnKindDef>
+        <faction>Entities</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Trispike</defName>
+        <pawnKindDef>Trispike</pawnKindDef>
+        <faction>Entities</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Fingerspike</defName>
+        <pawnKindDef>Fingerspike</pawnKindDef>
+        <faction>Entities</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_AncientCryptosleepCasket</defName>
+        <thing>AncientCryptosleepCasket</thing>
+        <containPawnKindAnyOf>
+            <li>AncientSoldier_Leader</li>
+            <li>AncientSoldier</li>
+        </containPawnKindAnyOf>
+        <faction>AncientsHostile</faction>
+        <!-- <spawnPartOfFaction>false</spawnPartOfFaction> -->
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_AncientMechGestatorTank</defName>
+        <thing>Rimgate_AncientMechGestatorTank</thing>
+        <!-- <spawnPartOfFaction>false</spawnPartOfFaction> -->
+        <faction>AncientsHostile</faction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_AncientReplicatorVat_Small</defName>
+        <thing>Rimgate_AncientReplicatorVat_Small</thing>
+        <!-- <spawnPartOfFaction>false</spawnPartOfFaction> -->
+        <faction>AncientsHostile</faction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Cow</defName>
+        <pawnKindDef>Cow</pawnKindDef>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Chicken</defName>
+        <pawnKindDef>Chicken</pawnKindDef>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Rat</defName>
+        <pawnKindDef>Rat</pawnKindDef>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <!-- Loot crates -->
 
     <KCSG.SymbolDef>
         <defName>Rimgate_TechprintCrate</defName>
@@ -360,30 +492,37 @@
 
     <KCSG.SymbolDef>
         <defName>Rimgate_LootCrateAlpha</defName>
-        <thing>Rimgate_SupplyCrate</thing>
+        <thing>Rimgate_SupplyCrateGreen</thing>
         <thingSetMakerDef>Rimgate_StargateComplexLootAlpha</thingSetMakerDef>
         <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootAlpha</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_LootCrateBravo</defName>
-        <thing>Rimgate_SupplyCrate</thing>
+        <thing>Rimgate_SupplyCrateOrange</thing>
         <thingSetMakerDef>Rimgate_StargateComplexLootBravo</thingSetMakerDef>
         <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootBravo</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_LootCrateCharlie</defName>
-        <thing>Rimgate_SupplyCrate</thing>
+        <thing>Rimgate_SupplyCrateYellow</thing>
         <thingSetMakerDef>Rimgate_StargateComplexLootCharlie</thingSetMakerDef>
         <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootCharlie</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_WeaponStash</defName>
-        <thing>Rimgate_SupplyCrate</thing>
+        <thing>Rimgate_SupplyCrateRed</thing>
         <thingSetMakerDef>Rimgate_WeaponStash</thingSetMakerDef>
         <thingSetMakerDefForPlayer>Rimgate_WeaponStash</thingSetMakerDefForPlayer>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_LootCrateNatural</defName>
+        <thing>Rimgate_SupplyCrateStone</thing>
+        <thingSetMakerDef>Rimgate_StargateComplexLootCharlie</thingSetMakerDef>
+        <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootCharlie</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
 </Defs>

@@ -159,7 +159,7 @@
 
         <comps>
             <li Class="VEF.AnimalBehaviours.CompProperties_InitialMentalState">
-                <mentalstate>ManhunterPermanent</mentalstate>
+                <mentalstate>BerserkPermanent</mentalstate>
             </li>
         </comps>
     </ThingDef>
