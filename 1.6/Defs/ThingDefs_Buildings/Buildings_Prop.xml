@@ -342,13 +342,10 @@
         </stuffCategories>
         <costStuffCount>25</costStuffCount>
 
-
         <!-- Outer “mover” shell that picks up stuff color -->
         <graphicData>
             <texPath>Things/Building/Structure/RGSecretDoorRock_Mover</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <!-- <shaderType>CutoutComplex</shaderType> -->
-            <!-- <ignoreThingDrawColor>false</ignoreThingDrawColor> -->
         </graphicData>
 
         <comps Inherit="False">
@@ -357,8 +354,6 @@
                 <jammed>
                     <texPath>Things/Building/Structure/RGSecretDoorRock_Jammed</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
-                    <!-- <shaderType>CutoutComplex</shaderType> -->
-                    <!-- <ignoreThingDrawColor>false</ignoreThingDrawColor> -->
                 </jammed>
 
                 <!-- Interaction / command UI -->

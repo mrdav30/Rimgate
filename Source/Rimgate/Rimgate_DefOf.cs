@@ -101,6 +101,7 @@ public static class Rimgate_DefOf
     public static ThingDef Gun_Autopistol;
     public static ThingDef Rimgate_GlyphParchment;
     public static ThingDef Rimgate_MineableNaquadah;
+    public static ThingDef Rimgate_SecretDoor;
     public static ThingDef Rimgate_ScrapNote;
     public static ThingDef Rimgate_Stargate;
     public static ThingDef Rimgate_SymbioteImplant;
