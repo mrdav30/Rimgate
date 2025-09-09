@@ -118,7 +118,6 @@
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriPistol_tag</li>
             <li>Rimgate_TauriShotgun_tag</li>
-            <li>Rimgate_TauriRocketLauncher_tag</li>
         </weaponTags>
         <apparelRequired>
             <li>Rimgate_TauriBallisticHelmet</li>
@@ -127,6 +126,24 @@
             <li>
                 <skill>Shooting</skill>
                 <range>5~8</range>
+            </li>
+        </skills>
+    </PawnKindDef>
+
+        <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
+        <defName>Rimgate_TauriSGCRocketman</defName>
+        <label>Tau'ri soldier</label>
+        <combatPower>120</combatPower>
+        <weaponTags>
+            <li>Rimgate_TauriRocketLauncher_tag</li>
+        </weaponTags>
+        <apparelRequired>
+            <li>Rimgate_TauriBallisticHelmet</li>
+        </apparelRequired>
+        <skills>
+            <li>
+                <skill>Shooting</skill>
+                <range>5~14</range>
             </li>
         </skills>
     </PawnKindDef>
