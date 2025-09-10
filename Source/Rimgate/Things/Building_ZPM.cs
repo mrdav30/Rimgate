@@ -52,7 +52,7 @@ public class Building_ZPM : Building
                 null);
 
             graphic.Init(request);
-            graphic.data.drawOffset = Rimgate_DefOf.Rimgate_ZPM.graphicData.drawOffset;
+            graphic.data.drawOffset = RimgateDefOf.Rimgate_ZPM.graphicData.drawOffset;
             ChargeGraphics.Add(powerState, graphic);
         }
     }
@@ -194,7 +194,7 @@ public class Building_ZPM : Building
         foreach (Thing thing in map.listerThings.AllThings)
         {
             if (thing != thingToIgnore
-                && thing.def == Rimgate_DefOf.Rimgate_ZPM)
+                && thing.def == RimgateDefOf.Rimgate_ZPM)
             {
                 zpmOnMap = thing;
                 break;

@@ -26,7 +26,7 @@ public class Comp_AlternateApparel : ThingComp
         {
             defaultLabel = "RG_ToggleableHeadgearCommand_Label".Translate(apparelDef.label + label),
             defaultDesc = "RG_ToggleableHeadgearCommand_Desc".Translate(apparelDef.label + label),
-            activateSound = Rimgate_DefOf.Rimgate_GoauldGuardHelmToggle,
+            activateSound = RimgateDefOf.Rimgate_GoauldGuardHelmToggle,
             icon = Props.attachedHeadgearDef.uiIcon,
             action = ToggleHeadgear
         };

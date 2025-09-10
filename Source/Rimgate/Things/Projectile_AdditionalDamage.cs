@@ -24,7 +24,7 @@ public class Projectile_AdditionalDamage : Bullet
             launcher,
             hitThing,
             intendedTarget.Thing,
-            Rimgate_DefOf.Gun_Autopistol,
+            RimgateDefOf.Gun_Autopistol,
             def,
             targetCoverDef);
         Find.BattleLog.Add(battleLogEntry_RangedImpact);

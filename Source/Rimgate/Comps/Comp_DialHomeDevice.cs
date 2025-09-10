@@ -121,7 +121,7 @@ public class Comp_DialHomeDevice : ThingComp
                 () =>
                 {
                     LastDialledAddress = tile;
-                    Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_DialStargate, parent);
+                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialStargate, parent);
                     selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                 });
         }
@@ -140,16 +140,16 @@ public class Comp_DialHomeDevice : ThingComp
         {
             defaultLabel = "RG_CloseStargate".Translate(),
             defaultDesc = "RG_CloseStargateDesc".Translate(),
-            icon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel", true),
+            icon = RimgateTex.CancelCommandTex,
             isActive = () => _wantGateClosed,
             toggleAction = delegate
             {
                 _wantGateClosed = !_wantGateClosed;
 
-                Designation designation = parent.Map.designationManager.DesignationOn(parent, Rimgate_DefOf.Rimgate_DesignationCloseStargate);
+                Designation designation = parent.Map.designationManager.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationCloseStargate);
 
                 if (designation == null)
-                   parent.Map.designationManager.AddDesignation(new Designation(parent, Rimgate_DefOf.Rimgate_DesignationCloseStargate));
+                   parent.Map.designationManager.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationCloseStargate));
                 else
                     designation?.Delete();
             }

@@ -10,7 +10,7 @@ public class JobGiver_PatientGoToSarcophagus : ThinkNode_JobGiver
     {
         Building_Bed_Sarcophagus bed = SarcophagusUtility.FindBestSarcophagus(pawn, pawn);
         return bed != null && !bed.HasAnyContents
-            ? JobMaker.MakeJob(Rimgate_DefOf.Rimgate_PatientGoToSarcophagus, bed) 
+            ? JobMaker.MakeJob(RimgateDefOf.Rimgate_PatientGoToSarcophagus, bed) 
             : null;
     }
 }

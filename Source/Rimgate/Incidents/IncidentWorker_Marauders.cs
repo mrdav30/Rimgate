@@ -31,7 +31,7 @@ public class IncidentWorker_Marauders : IncidentWorker_RaidEnemy
     public override void ResolveRaidStrategy(IncidentParms parms, PawnGroupKindDef groupKind)
     {
         if (parms.raidStrategy == null)
-            parms.raidStrategy = Rimgate_DefOf.ImmediateAttackSmart;
+            parms.raidStrategy = RimgateDefOf.ImmediateAttackSmart;
     }
 
     public override void ResolveRaidArriveMode(IncidentParms parms)
@@ -124,7 +124,7 @@ public class IncidentWorker_Marauders : IncidentWorker_RaidEnemy
             {
                 int num = !Rand.Chance(0.3f) ? 0 : 1;
                 pawn.mindState.duty = num == 0
-                    ? new PawnDuty(Rimgate_DefOf.Rimgate_MaraudColony, target)
+                    ? new PawnDuty(RimgateDefOf.Rimgate_MaraudColony, target)
                     : new PawnDuty(DutyDefOf.AssaultColony);
             }
             else

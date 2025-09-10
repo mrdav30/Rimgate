@@ -30,7 +30,7 @@ public class LordToil_MaraudColony : LordToil
             var pawn = lord.ownedPawns[i];
             if (pawn.mindState == null) continue;
 
-            var duty = new PawnDuty(Rimgate_DefOf.Rimgate_MaraudColony)
+            var duty = new PawnDuty(RimgateDefOf.Rimgate_MaraudColony)
             {
                 attackDownedIfStarving = _attackDownedIfStarving,
                 pickupOpportunisticWeapon = _canPickUpOpportunisticWeapons

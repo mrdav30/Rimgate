@@ -100,4 +100,35 @@
         </stages>
     </HediffDef>
 
+    <!-- Mobile Container debuffs -->
+
+    <!-- TODO: add Biotech’s hediff render nodes to draw the cart overlay when carried -->
+    <HediffDef>
+        <defName>Rimgate_PushingCart</defName>
+        <label>pushing a cart</label>
+        <description>The strain of pushing a loaded cart reduces movement speed.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <tendable>false</tendable>
+        <stages>
+            <li>
+                <statFactors>
+                    <MoveSpeed>0.97</MoveSpeed>
+                </statFactors>
+            </li> <!-- light -->
+            <li>
+                <minSeverity>0.33</minSeverity>
+                <statFactors>
+                    <MoveSpeed>0.93</MoveSpeed>
+                </statFactors>
+            </li>
+            <li>
+                <minSeverity>0.66</minSeverity>
+                <statFactors>
+                    <MoveSpeed>0.88</MoveSpeed>
+                </statFactors>
+            </li> <!-- heavy -->
+        </stages>
+    </HediffDef>
+
+
 </Defs>

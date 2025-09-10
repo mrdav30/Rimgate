@@ -21,7 +21,7 @@ static class PatchMechanitorTracker_DrawCommandRadius
         {
             if (selectedPawns[i].GetOverseer() == __instance.Pawn
                 && selectedPawns[i].Drafted
-                && selectedPawns[i].def == Rimgate_DefOf.Rimgate_Malp)
+                && selectedPawns[i].def == RimgateDefOf.Rimgate_Malp)
             {
                 return false;
             }

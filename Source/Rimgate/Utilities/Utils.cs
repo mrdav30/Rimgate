@@ -1,21 +1,110 @@
 ﻿using RimWorld;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace Rimgate;
 
 internal static class Utils
 {
-    internal static bool HasActiveGene(this Pawn pawn, GeneDef geneDef)
+    public static Pawn ClosestTo(this IEnumerable<Pawn> pawns, IntVec3 c)
+    {
+        Pawn best = null; var bestDist = 999999;
+        foreach (var p in pawns)
+        {
+            var d = p.Position.DistanceToSquared(c);
+            if (d < bestDist) { bestDist = d; best = p; }
+        }
+        return best;
+    }
+
+    public static bool PawnIncapableOfHauling(Pawn p, out string reason)
+    {
+        reason = null;
+        // Vanilla uses both WorkTags and WorkType
+        if (p.WorkTagIsDisabled(WorkTags.ManualDumb) || p.WorkTypeIsDisabled(WorkTypeDefOf.Hauling))
+        {
+            reason = "RG_IncapableOf".Translate(p.LabelShort, WorkTypeDefOf.Hauling.gerundLabel).CapitalizeFirst();
+            return true;
+        }
+
+        // also block if Manipulation is missing
+        if (!p.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+        {
+            reason = "RG_IncapableOf".Translate(p.LabelShort, PawnCapacityDefOf.Manipulation.label).CapitalizeFirst();
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool IsGoodSpawnCell(IntVec3 c, Map map)
+    {
+        if (!c.InBounds(map)) return false;
+        if (!c.Standable(map)) return false;              // avoids walls, pawns, etc.
+        if (c.Filled(map)) return false;                  // no buildings/solid things
+        return true;
+    }
+
+    // Prefer the cell in front of pawn; then other cardinals; else nearby radius.
+    public static IntVec3 BestDropCellNearPawn(Pawn p)
+    {
+        var map = p.Map;
+        var front = p.Position + p.Rotation.FacingCell;
+        if (IsGoodSpawnCell(front, map)) return front;
+
+        // try other cardinals in rotation order: right, back, left
+        for (int i = 1; i < 4; i++)
+        {
+            var r = new Rot4((p.Rotation.AsInt + i) % 4);
+            var c = p.Position + r.FacingCell;
+            if (IsGoodSpawnCell(c, map)) return c;
+        }
+
+        // small radial fallback
+        foreach (var c in GenRadial.RadialCellsAround(p.Position, 2f, useCenter: false))
+            if (IsGoodSpawnCell(c, map)) return c;
+
+        // last resort: current cell (should be rare)
+        return p.Position;
+    }
+
+
+    // Pick a good stand cell (adjacent to dest, reachable, closest to pawn)
+    public static IntVec3 FindStandCellFor(Pawn pawn, IntVec3 dest, Map map, IntVec3 from)
+    {
+        if (pawn == null || pawn.health.Downed) return from;
+
+        IntVec3 best = dest; float bestDist = float.MaxValue;
+        foreach (var c in GenAdj.CellsAdjacentCardinal(dest, Rot4.North, new IntVec2(1, 1)))
+        {
+            if (!c.InBounds(map) || c.Impassable(map)) continue;
+            if (!map.reachability.CanReach(from, c, PathEndMode.Touch, TraverseParms.For(pawn))) continue;
+            float d = c.DistanceTo(from);
+            if (d < bestDist) { best = c; bestDist = d; }
+        }
+        // fallback: stand on current cell if nothing else
+        return IsGoodSpawnCell(best, map) ? best : from;
+    }
+
+    public static Rot4 RotationFacingFor(IntVec3 from, IntVec3 to)
+    {
+        var v = to - from;
+        if (Mathf.Abs(v.x) > Mathf.Abs(v.z)) return v.x >= 0 ? Rot4.East : Rot4.West;
+        return v.z >= 0 ? Rot4.North : Rot4.South;
+    }
+
+    public static bool HasActiveGene(this Pawn pawn, GeneDef geneDef)
     {
         if (geneDef is null) return false;
         if (pawn.genes is null) return false;
         return pawn.genes.GetGene(geneDef)?.Active ?? false;
     }
 
-    internal static Hediff ApplyHediff(
+    public static Hediff ApplyHediff(
         Pawn targetPawn,
         HediffDef hediffDef,
         BodyPartRecord bodyPart,

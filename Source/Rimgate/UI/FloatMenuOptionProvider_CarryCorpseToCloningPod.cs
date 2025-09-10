@@ -34,7 +34,7 @@ public class FloatMenuOptionProvider_HandleCorpse : FloatMenuOptionProvider
                 cloningPod = Building_WraithCloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn, ignoreOtherReservations: true);
             }
 
-            Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_CarryCorpseToCloningPod, corpse, cloningPod);
+            Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryCorpseToCloningPod, corpse, cloningPod);
             job.count = 1;
             context.FirstSelectedPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         };

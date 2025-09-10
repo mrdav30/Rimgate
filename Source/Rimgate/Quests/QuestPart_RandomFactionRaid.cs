@@ -52,7 +52,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
         incidentParms.customLetterText = signal.args.GetFormattedText(customLetterText).Resolve();
 
         attackTargets = map.listerThings
-            .ThingsOfDef(Rimgate_DefOf.Rimgate_ZPM)
+            .ThingsOfDef(RimgateDefOf.Rimgate_ZPM)
             .Where(p => p.Faction == Faction.OfPlayer 
                 && p.Spawned 
                 && (p is Building_ZPM b ? b.IsBroadcasting : true))
@@ -64,7 +64,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
         if (arrivalMode != null)
             incidentParms.raidArrivalMode = arrivalMode;
 
-        IncidentDef incidentDef = Rimgate_DefOf.Rimgate_Marauders;
+        IncidentDef incidentDef = RimgateDefOf.Rimgate_Marauders;
         if (raidStrategy != null)
             incidentParms.raidStrategy = raidStrategy;
 

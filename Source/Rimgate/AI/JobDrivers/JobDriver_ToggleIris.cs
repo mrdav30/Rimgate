@@ -1,11 +1,10 @@
-﻿using RimWorld;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
 namespace Rimgate;
 
-public class JobDriver_Toggle : JobDriver
+public class JobDriver_ToggleIris : JobDriver
 {
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -15,7 +14,7 @@ public class JobDriver_Toggle : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDespawnedOrNull(TargetIndex.A);
-        this.FailOn(() => base.Map.designationManager.DesignationOn(base.TargetThingA, Rimgate_DefOf.Rimgate_DesignationToggle) == null);
+        this.FailOn(() => base.Map.designationManager.DesignationOn(base.TargetThingA, RimgateDefOf.Rimgate_DesignationToggleIris) == null);
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
         yield return Toils_General.Wait(15).FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
         Toil finalize = ToilMaker.MakeToil("MakeNewToils");
@@ -25,15 +24,11 @@ public class JobDriver_Toggle : JobDriver
             ThingWithComps thingWithComps = (ThingWithComps)actor.CurJob.targetA.Thing;
             for (int i = 0; i < thingWithComps.AllComps.Count; i++)
             {
-                if (thingWithComps.AllComps[i] is Comp_Toggle compFlickable 
-                    && compFlickable.WantsFlick())
-                {
-                    compFlickable.DoFlick();
-                }
+                if (thingWithComps.AllComps[i] is Comp_Stargate stargate && stargate.WantsIrisClosed)
+                    stargate.DoToggleIris();
             }
 
-            actor.records.Increment(RecordDefOf.SwitchesFlicked);
-            base.Map.designationManager.DesignationOn(thingWithComps, Rimgate_DefOf.Rimgate_DesignationToggle)?.Delete();
+            base.Map.designationManager.DesignationOn(thingWithComps, RimgateDefOf.Rimgate_DesignationToggleIris)?.Delete();
         };
         finalize.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return finalize;

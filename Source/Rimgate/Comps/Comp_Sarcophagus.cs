@@ -14,7 +14,7 @@ public class Comp_Sarcophagus : ThingComp
         if (!Props.applyAddictionHediff || !patient.RaceProps.IsFlesh)
             return;
 
-        Hediff_Addiction hediff_Addiction = AddictionUtility.FindAddictionHediff(patient, Rimgate_DefOf.Rimgate_SarcophagusChemical);
+        Hediff_Addiction hediff_Addiction = AddictionUtility.FindAddictionHediff(patient, RimgateDefOf.Rimgate_SarcophagusChemical);
 
         if (hediff_Addiction != null)
             hediff_Addiction.Severity += Props.existingAddictionSeverityOffset;
@@ -33,17 +33,17 @@ public class Comp_Sarcophagus : ThingComp
     {
         if (Rand.Value >= Props.addictiveness) return;
 
-        patient.health.AddHediff(Rimgate_DefOf.Rimgate_SarcophagusAddiction);
+        patient.health.AddHediff(RimgateDefOf.Rimgate_SarcophagusAddiction);
         if (PawnUtility.ShouldSendNotificationAbout(patient))
         {
             Find.LetterStack.ReceiveLetter(
                 "LetterLabelNewlyAddicted"
-                    .Translate(Rimgate_DefOf.Rimgate_SarcophagusChemical.label)
+                    .Translate(RimgateDefOf.Rimgate_SarcophagusChemical.label)
                     .CapitalizeFirst(),
                 "LetterNewlyAddicted"
                     .Translate(
                         patient.LabelShort,
-                        Rimgate_DefOf.Rimgate_SarcophagusChemical.label,
+                        RimgateDefOf.Rimgate_SarcophagusChemical.label,
                         patient.Named("PAWN"))
                             .AdjustedFor(patient)
                             .CapitalizeFirst(),
@@ -56,13 +56,13 @@ public class Comp_Sarcophagus : ThingComp
 
     public void AdjustChemicalNeed(Pawn patient)
     {
-        if (!patient.needs.TryGetNeed(Rimgate_DefOf.Rimgate_SarcophagusChemicalNeed, out var need))
+        if (!patient.needs.TryGetNeed(RimgateDefOf.Rimgate_SarcophagusChemicalNeed, out var need))
             return;
 
         float effect = Props.needLevelOffset;
         AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(
             patient,
-            Rimgate_DefOf.Rimgate_SarcophagusChemical,
+            RimgateDefOf.Rimgate_SarcophagusChemical,
             ref effect,
             applyGeneToleranceFactor: false);
         need.CurLevel += effect;
@@ -70,13 +70,13 @@ public class Comp_Sarcophagus : ThingComp
 
     public void ApplyHigh(Pawn patient)
     {
-        if (patient.health.hediffSet.HasHediff(Rimgate_DefOf.Rimgate_SarcophagusHigh))
+        if (patient.health.hediffSet.HasHediff(RimgateDefOf.Rimgate_SarcophagusHigh))
             return;
 
         Pawn_HealthTracker pht = patient.health;
-        Hediff hediff = HediffMaker.MakeHediff(Rimgate_DefOf.Rimgate_SarcophagusHigh, patient);
+        Hediff hediff = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SarcophagusHigh, patient);
         float effect = Props.severity <= 0f
-            ? Rimgate_DefOf.Rimgate_SarcophagusHigh.initialSeverity
+            ? RimgateDefOf.Rimgate_SarcophagusHigh.initialSeverity
             : Props.severity;
         AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(
             patient,

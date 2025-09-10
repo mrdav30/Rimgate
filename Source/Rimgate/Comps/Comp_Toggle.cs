@@ -117,10 +117,10 @@ public class Comp_Toggle : ThingComp
             command_Toggle.toggleAction = delegate
             {
                 _wantSwitchOn = !_wantSwitchOn;
-                Designation designation = parent.Map.designationManager.DesignationOn(parent, Rimgate_DefOf.Rimgate_DesignationToggle);
+                Designation designation = parent.Map.designationManager.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationToggle);
 
                 if (designation == null)
-                    parent.Map.designationManager.AddDesignation(new Designation(parent, Rimgate_DefOf.Rimgate_DesignationToggle));
+                    parent.Map.designationManager.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationToggle));
                 else
                     designation?.Delete();
             };

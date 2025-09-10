@@ -24,11 +24,11 @@ public class Comp_GlyphParchment : ThingComp
         if (!canReach)
             yield break;
 
-        if (Rimgate_DefOf.Rimgate_GlyphDeciphering.IsFinished)
+        if (RimgateDefOf.Rimgate_GlyphDeciphering.IsFinished)
         {
             yield return new FloatMenuOption("RG_DecodeSGSymbols".Translate(), () =>
             {
-                Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_DecodeGlyphs, parent);
+                Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DecodeGlyphs, parent);
                 selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             });
         }

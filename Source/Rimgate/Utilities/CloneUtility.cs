@@ -184,9 +184,9 @@ internal static class CloneUtility
         {
             if (flag2)
             {
-                pawn.genes.AddGene(Rimgate_DefOf.Skin_SheerWhite, true);
-                pawn.genes.AddGene(Rimgate_DefOf.Eyes_Red, true);
-                pawn.genes.AddGene(Rimgate_DefOf.Hair_SnowWhite, true);
+                pawn.genes.AddGene(RimgateDefOf.Skin_SheerWhite, true);
+                pawn.genes.AddGene(RimgateDefOf.Eyes_Red, true);
+                pawn.genes.AddGene(RimgateDefOf.Hair_SnowWhite, true);
             }
 
             List<Gene> sourceXenogenes = innerPawn.genes.Xenogenes;
@@ -275,8 +275,8 @@ internal static class CloneUtility
         story2.favoriteColor = story1.favoriteColor;
         story2.furDef = story1.furDef;
         story2.headType = story1.headType;
-        pawn.style.BodyTattoo = Rimgate_DefOf.NoTattoo_Body;
-        pawn.style.FaceTattoo = Rimgate_DefOf.NoTattoo_Face;
+        pawn.style.BodyTattoo = RimgateDefOf.NoTattoo_Body;
+        pawn.style.FaceTattoo = RimgateDefOf.NoTattoo_Face;
         if (RimgateModSettings.CloneTattoos)
         {
             pawn.style.BodyTattoo = innerPawn.style.BodyTattoo;
@@ -421,7 +421,7 @@ internal static class CloneUtility
         {
             if (pawn.RaceProps.IsFlesh)
             {
-                pawn.health.AddHediff(Rimgate_DefOf.Rimgate_Clone);
+                pawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
                 pawn.health.AddHediff(HediffDefOf.Scaria);
             }
         }
@@ -429,19 +429,19 @@ internal static class CloneUtility
         {
             if (pawn.RaceProps.IsFlesh)
             {
-                pawn.health.AddHediff(Rimgate_DefOf.Rimgate_Clone);
+                pawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
                 pawn.health.AddHediff(HediffDefOf.Dementia);
-                pawn.health.AddHediff(Rimgate_DefOf.Rimgate_ClonePodSickness);
-                pawn.health.AddHediff(Rimgate_DefOf.Rimgate_SystemShock);
+                pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
+                pawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
             }
         }
         else if (pawn.RaceProps.IsFlesh)
         {
-            pawn.health.AddHediff(Rimgate_DefOf.Rimgate_Clone);
-            pawn.health.AddHediff(Rimgate_DefOf.Rimgate_ClonePodSickness);
-            pawn.health.AddHediff(Rimgate_DefOf.Rimgate_SystemShock);
+            pawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
+            pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
+            pawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
             if (cloneType == CloneType.Enhanced)
-                pawn.health.AddHediff(Rimgate_DefOf.Rimgate_Enduring);
+                pawn.health.AddHediff(RimgateDefOf.Rimgate_Enduring);
         }
 
         if (innerPawn.mutant != null)
@@ -632,19 +632,19 @@ internal static class CloneUtility
 
     internal static Hediff_ClonedTracker GetClonedTrackerHediff(Pawn pawn)
     {
-        if (!pawn.health.hediffSet.HasHediff(Rimgate_DefOf.Hediff_ClonedTracker))
-            pawn.health.AddHediff(Rimgate_DefOf.Hediff_ClonedTracker);
-        return pawn.health.hediffSet.GetFirstHediffOfDef(Rimgate_DefOf.Hediff_ClonedTracker) as Hediff_ClonedTracker;
+        if (!pawn.health.hediffSet.HasHediff(RimgateDefOf.Hediff_ClonedTracker))
+            pawn.health.AddHediff(RimgateDefOf.Hediff_ClonedTracker);
+        return pawn.health.hediffSet.GetFirstHediffOfDef(RimgateDefOf.Hediff_ClonedTracker) as Hediff_ClonedTracker;
     }
 
     internal static Hediff_Clone GetCloneHediff(Pawn pawn)
     {
-        return pawn.health.hediffSet.GetFirstHediffOfDef(Rimgate_DefOf.Rimgate_Clone) as Hediff_Clone;
+        return pawn.health.hediffSet.GetFirstHediffOfDef(RimgateDefOf.Rimgate_Clone) as Hediff_Clone;
     }
 
     internal static bool HasCloneHediff(Pawn pawn)
     {
         return pawn != null
-            && pawn.health.hediffSet.HasHediff(Rimgate_DefOf.Rimgate_Clone);
+            && pawn.health.hediffSet.HasHediff(RimgateDefOf.Rimgate_Clone);
     }
 }

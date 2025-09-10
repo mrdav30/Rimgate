@@ -32,7 +32,7 @@ public class Harmony_Caravan_GetGizmos
 
         Command_Action command = new Command_Action
         {
-            icon = ContentFinder<Texture2D>.Get("UI/Icon/Map/RGStargatePermanentSiteIcon", true),
+            icon = RimgateTex.PermanentSiteCommandTex,
             action = () =>
             {
                 ThingDef gateDef = null;

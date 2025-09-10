@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public class WorkGiver_CloseStargate : WorkGiver_Scanner
+public class WorkGiver_Toggle : WorkGiver_Scanner
 {
     public override PathEndMode PathEndMode => PathEndMode.Touch;
 
@@ -16,7 +16,7 @@ public class WorkGiver_CloseStargate : WorkGiver_Scanner
 
     public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
     {
-        foreach (Designation item in pawn.Map.designationManager.designationsByDef[Rimgate_DefOf.Rimgate_DesignationCloseStargate])
+        foreach (Designation item in pawn.Map.designationManager.designationsByDef[RimgateDefOf.Rimgate_DesignationToggle])
         {
             yield return item.target.Thing;
         }
@@ -24,12 +24,12 @@ public class WorkGiver_CloseStargate : WorkGiver_Scanner
 
     public override bool ShouldSkip(Pawn pawn, bool forced = false)
     {
-        return !pawn.Map.designationManager.AnySpawnedDesignationOfDef(Rimgate_DefOf.Rimgate_DesignationCloseStargate);
+        return !pawn.Map.designationManager.AnySpawnedDesignationOfDef(RimgateDefOf.Rimgate_DesignationToggle);
     }
 
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        if (pawn.Map.designationManager.DesignationOn(t, Rimgate_DefOf.Rimgate_DesignationCloseStargate) == null)
+        if (pawn.Map.designationManager.DesignationOn(t, RimgateDefOf.Rimgate_DesignationToggle) == null)
         {
             return false;
         }
@@ -44,6 +44,6 @@ public class WorkGiver_CloseStargate : WorkGiver_Scanner
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        return JobMaker.MakeJob(Rimgate_DefOf.Rimgate_CloseStargate, t);
+        return JobMaker.MakeJob(RimgateDefOf.Rimgate_Toggle, t);
     }
 }

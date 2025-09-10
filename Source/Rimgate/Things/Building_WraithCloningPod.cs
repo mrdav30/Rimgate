@@ -29,8 +29,11 @@ public enum CloneType
     Reconstruct,
 }
 
+[StaticConstructorOnStartup]
 public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWithDrawnPawn, ISearchableContents, IOpenable
 {
+    public static readonly Texture2D EjectCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGWraithCloningPodEjectIcon");
+
     protected ThingOwner innerContainer;
 
     protected bool contentsKnown;
@@ -354,7 +357,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
                 yield break;
             }
 
-            JobDef jobDef = Rimgate_DefOf.Rimgate_EnterCloningPod;
+            JobDef jobDef = RimgateDefOf.Rimgate_EnterCloningPod;
             yield return FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(
                     "RG_EnterCloningPod".Translate(),
@@ -379,7 +382,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
 
         if (!cloningPod.InnerPawn.Dead)
         {
-            JobDef jobDefGenome = Rimgate_DefOf.Rimgate_CloneOccupantGenes;
+            JobDef jobDefGenome = RimgateDefOf.Rimgate_CloneOccupantGenes;
             yield return FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(
                     "RG_CloneOccupantGenes".Translate(cloningPod.InnerPawn.LabelCap),
@@ -393,10 +396,10 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
                 "ReservedBy",
                 null);
 
-            if (!Rimgate_DefOf.Rimgate_WraithCloneFull.IsFinished)
+            if (!RimgateDefOf.Rimgate_WraithCloneFull.IsFinished)
                 yield break;
 
-            JobDef jobDefFull = Rimgate_DefOf.Rimgate_CloneOccupantFull;
+            JobDef jobDefFull = RimgateDefOf.Rimgate_CloneOccupantFull;
             yield return FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(
                     "RG_CloneOccupantFull".Translate(cloningPod.InnerPawn.LabelCap),
@@ -410,10 +413,10 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
                 "ReservedBy",
                 null);
 
-            if (!Rimgate_DefOf.Rimgate_WraithCloneEnhancement.IsFinished)
+            if (!RimgateDefOf.Rimgate_WraithCloneEnhancement.IsFinished)
                 yield break;
 
-            JobDef jobDefSoldier = Rimgate_DefOf.Rimgate_CloneOccupantSoldier;
+            JobDef jobDefSoldier = RimgateDefOf.Rimgate_CloneOccupantSoldier;
             yield return FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(
                     "RG_CloneOccupantSoldier".Translate(cloningPod.InnerPawn.LabelCap),
@@ -429,10 +432,10 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
         }
         else
         {
-            if (!Rimgate_DefOf.Rimgate_WraithCloneCorpse.IsFinished)
+            if (!RimgateDefOf.Rimgate_WraithCloneCorpse.IsFinished)
                 yield break;
 
-            JobDef jobDefReconstruct = Rimgate_DefOf.Rimgate_CloneReconstructDead;
+            JobDef jobDefReconstruct = RimgateDefOf.Rimgate_CloneReconstructDead;
             yield return FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(
                     "RG_CloneReconstructDead".Translate(cloningPod.InnerPawn.LabelCap),
@@ -470,7 +473,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
                 defaultLabel = "RG_CommandCloningPodEjectLabel".Translate(),
                 defaultDesc = "RG_CommandCloningPodEjectDesc".Translate(),
                 hotKey = KeyBindingDefOf.Misc1,
-                icon = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGWraithCloningPodEjectIcon", true)
+                icon = EjectCommandTex
             };
 
             if (innerContainer.Count == 0)
@@ -494,7 +497,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
             PawnComponentsUtility.AddComponentsForSpawn(pawn);
             pawn.filth.GainFilth(filthSlime);
             if (pawn.RaceProps.IsFlesh)
-                pawn.health.AddHediff(Rimgate_DefOf.Rimgate_ClonePodSickness, null, null, null);
+                pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness, null, null, null);
 
         }
         if (!Destroyed)

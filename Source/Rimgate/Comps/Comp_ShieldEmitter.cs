@@ -15,6 +15,10 @@ public class Comp_ShieldEmitter : ThingComp
 
     public static readonly Material ForceFieldConeMat = MaterialPool.MatFrom("Other/ForceFieldCone", ShaderDatabase.MoteGlow);
 
+    public static readonly Texture2D ShieldRadiusCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGShieldRadius");
+
+    public static readonly Texture2D ShieldVisibilityCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGShieldVisibility");
+
     public static readonly MaterialPropertyBlock MatPropertyBlock = new MaterialPropertyBlock();
 
     public static readonly Color InactiveColor = new Color(0.2f, 0.2f, 0.2f);
@@ -644,7 +648,7 @@ public class Comp_ShieldEmitter : ThingComp
                 Command_Action commandAction = new Command_Action();
                 commandAction.defaultLabel = Translator.Translate("RG_ShieldGenRadiusLabel");
                 commandAction.defaultDesc = Translator.Translate("RG_ShieldGenRadiusDescription");
-                commandAction.icon = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGShieldRadius", true);
+                commandAction.icon = ShieldRadiusCommandTex;
                 commandAction.action = () =>
                 {
                     Find.WindowStack.Add(new Dialog_Slider(
@@ -661,7 +665,7 @@ public class Comp_ShieldEmitter : ThingComp
             commandToggle.defaultLabel = Translator.Translate("RG_ShieldGenToggleVisibility");
             commandToggle.defaultDesc = Translator.Translate("RG_ShieldGenToggleVisibilityDesc");
             commandToggle.isActive = () => _showShieldToggle;
-            commandToggle.icon = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGShieldVisibility", true);
+            commandToggle.icon = ShieldVisibilityCommandTex;
             commandToggle.toggleAction = () => _showShieldToggle = !_showShieldToggle;
             yield return commandToggle;
         }

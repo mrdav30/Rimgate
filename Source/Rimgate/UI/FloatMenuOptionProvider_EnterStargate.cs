@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -52,47 +53,55 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
                 tmpGateEnteringPawns.Add(validSelectedPawn);
         }
 
-        if (tmpGateEnteringPawns.NullOrEmpty())
-            yield break;
-
-        var enterLabel = (gate.StargateComp.IsReceivingGate
-            ? "RG_EnterReceivingStargateAction"
-            : "RG_EnterStargateAction").Translate();
-
-        yield return new FloatMenuOption(enterLabel, () =>
+        if (!tmpGateEnteringPawns.NullOrEmpty())
         {
-            foreach (Pawn enteringPawn in tmpGateEnteringPawns)
-            {
-                Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_EnterStargate, gate);
-                job.playerForced = true;
-                enteringPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-            }
-        }, MenuOptionPriority.High);
+            var enterLabel = (gate.StargateComp.IsReceivingGate
+               ? "RG_EnterReceivingStargateAction"
+               : "RG_EnterStargateAction").Translate();
 
-        if (context.IsMultiselect)
-            yield break;
-
-        var bringLabel = (gate.StargateComp.IsReceivingGate
-            ? "RG_BringPawnToReceivingGateAction"
-            : "RG_BringPawnToGateAction").Translate();
-        yield return new FloatMenuOption(bringLabel, () =>
-        {
-            TargetingParameters targetingParameters = new TargetingParameters()
+            yield return new FloatMenuOption(enterLabel, () =>
             {
-                onlyTargetIncapacitatedPawns = true,
-                canTargetBuildings = false,
-                canTargetItems = true,
-            };
+                foreach (Pawn enteringPawn in tmpGateEnteringPawns)
+                {
+                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_EnterStargate, gate);
+                    job.playerForced = true;
+                    enteringPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                }
+            }, MenuOptionPriority.High);
 
-            Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo t)
+            if (context.IsMultiselect)
+                yield break;
+
+            var bringLabel = (gate.StargateComp.IsReceivingGate
+                ? "RG_EnterReceivingStargateWithSelectedAction"
+                : "RG_EnterStargateWithSelectedAction").Translate();
+            yield return new FloatMenuOption(bringLabel, () =>
             {
-                Job job = JobMaker.MakeJob(
-                    Rimgate_DefOf.Rimgate_BringToStargate,
-                    t.Thing,
-                    gate);
-                context.FirstSelectedPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                TargetingParameters targetingParameters = new TargetingParameters()
+                {
+                    onlyTargetIncapacitatedPawns = true,
+                    canTargetBuildings = true,
+                    canTargetItems = true,
+                };
+
+                Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo t)
+                {
+                    if (t != null && t.Thing is Building_MobileContainer container)
+                    {
+                        var comp = container.GetComp<Comp_MobileContainer>();
+                        // send a push job targeting the *gate thing*
+                        comp.AssignPushJob(new LocalTargetInfo(gate), dump: false, context.FirstSelectedPawn);
+                        return;
+                    }
+
+                    Job job = JobMaker.MakeJob(
+                        RimgateDefOf.Rimgate_BringToStargate,
+                        t.Thing,
+                        gate);
+                    context.FirstSelectedPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                });
             });
-        });
+        }
     }
 
     private static bool CanEnterGate(Pawn pawn, Building_Stargate gate)

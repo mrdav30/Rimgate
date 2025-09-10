@@ -21,7 +21,7 @@ public static class Harmony_JobMaker_MakeJob
         if (def == JobDefOf.Rescue
             && targetB.Thing is Building_Bed_Sarcophagus sarcophagus)
         {
-            __result.def = Rimgate_DefOf.Rimgate_RescueToSarcophagus;
+            __result.def = RimgateDefOf.Rimgate_RescueToSarcophagus;
         }
     }
 }

@@ -141,7 +141,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
                         {
                             // Assign a Sarcophagus rescue job to the pawn
                             Job job = JobMaker.MakeJob(
-                                Rimgate_DefOf.Rimgate_RescueToSarcophagus,
+                                RimgateDefOf.Rimgate_RescueToSarcophagus,
                                 clickedPawn,
                                 bedSarcophagus);
                             job.count = 1;

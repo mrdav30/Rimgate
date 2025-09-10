@@ -5,12 +5,12 @@ using Verse.AI;
 namespace Rimgate;
 
 [DefOf]
-public static class Rimgate_DefOf
+public static class RimgateDefOf
 {
-    static Rimgate_DefOf()
+    static RimgateDefOf()
     {
         DefOfHelper.EnsureInitializedInCtor(typeof(SoundDefOf));
-        DefOfHelper.EnsureInitializedInCtor(typeof(Rimgate_DefOf));
+        DefOfHelper.EnsureInitializedInCtor(typeof(RimgateDefOf));
     }
 
     public static ChemicalDef Rimgate_SarcophagusChemical;
@@ -37,6 +37,7 @@ public static class Rimgate_DefOf
     public static HediffDef Hediff_ClonedTracker;
     public static HediffDef Rimgate_ClonePodSickness;
     public static HediffDef Rimgate_Enduring;
+    public static HediffDef Rimgate_PushingCart;
     public static HediffDef Rimgate_SarcophagusHigh;
     public static HediffDef Rimgate_SarcophagusAddiction;
     public static HediffDef Rimgate_SymbioteWithdrawal;
@@ -54,14 +55,17 @@ public static class Rimgate_DefOf
     public static JobDef Rimgate_CloneOccupantFull;
     public static JobDef Rimgate_CloneOccupantSoldier;
     public static JobDef Rimgate_CloneReconstructDead;
-    public static JobDef Rimgate_EnterCloningPod;
-    public static JobDef Rimgate_ToggleIris;
     public static JobDef Rimgate_DecodeGlyphs;
     public static JobDef Rimgate_DialStargate;
     public static JobDef Rimgate_EnterStargate;
+    public static JobDef Rimgate_EnterCloningPod;
+    public static JobDef Rimgate_HaulToContainer;
     public static JobDef Rimgate_PatientGoToSarcophagus;
+    public static JobDef Rimgate_PushMobileContainer;
+    public static JobDef Rimgate_PushAndDumpMobileContainer;
     public static JobDef Rimgate_RescueToSarcophagus;
     public static JobDef Rimgate_Toggle;
+    public static JobDef Rimgate_ToggleIris;
 
     public static NeedDef Food;
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
@@ -100,12 +104,15 @@ public static class Rimgate_DefOf
 
     public static ThingDef Gun_Autopistol;
     public static ThingDef Rimgate_GlyphParchment;
+    public static ThingDef Rimgate_Malp;
     public static ThingDef Rimgate_MineableNaquadah;
+    public static ThingDef Rimgate_MobileCartProxy;
+    public static ThingDef Rimgate_PushedCartVisual;
     public static ThingDef Rimgate_SecretDoor;
     public static ThingDef Rimgate_ScrapNote;
     public static ThingDef Rimgate_Stargate;
     public static ThingDef Rimgate_SymbioteImplant;
-    public static ThingDef Rimgate_Malp;
+    public static ThingDef Rimgate_Wheelbarrow;
     public static ThingDef Rimgate_ZPM;
 
     public static ThingSetMakerDef Rimgate_Meteorite;

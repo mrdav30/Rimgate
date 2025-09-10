@@ -33,7 +33,7 @@ public class WorkGiver_WardenCarryFromBedToSarcophagus : WorkGiver_Warden
             && MedicalUtility.HasAllowedMedicalCareCategory(prisoner)
             && prisoner.CanReserve(bed))
         {
-            Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_CarryToSarcophagus, prisoner, bed);
+            Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryToSarcophagus, prisoner, bed);
             job.count = 1;
             return job;
         }

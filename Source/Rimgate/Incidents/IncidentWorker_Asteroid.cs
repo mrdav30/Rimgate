@@ -23,7 +23,7 @@ public class IncidentWorker_Asteroid : IncidentWorker
         if (!this.TryFindCell(out intVec, map))
             return false;
 
-        List<Thing> list = Rimgate_DefOf.Rimgate_Meteorite.root.Generate();
+        List<Thing> list = RimgateDefOf.Rimgate_Meteorite.root.Generate();
         SkyfallerMaker.SpawnSkyfaller(ThingDefOf.MeteoriteIncoming, list, intVec, map);
         Find.LetterStack.ReceiveLetter(
             "RG_LetterNaquadahAsteroid_Label".Translate(),
@@ -82,12 +82,12 @@ public class IncidentWorker_Asteroid : IncidentWorker
             incidentParms.points = StorytellerUtility.DefaultThreatPointsNow(mapParent.Map);
             incidentParms.faction = enemyFaction;
             incidentParms.customLetterLabel = "Raid".Translate() + ": " + enemyFaction.Name;
-            incidentParms.customLetterText = "RG_LetterRaidAstroid_Desc".Translate(enemyFaction.NameColored, Rimgate_DefOf.Rimgate_MineableNaquadah.LabelCap).Resolve();
+            incidentParms.customLetterText = "RG_LetterRaidAstroid_Desc".Translate(enemyFaction.NameColored, RimgateDefOf.Rimgate_MineableNaquadah.LabelCap).Resolve();
             incidentParms.attackTargets = targets;
             incidentParms.generateFightersOnly = true;
             incidentParms.sendLetter = true;
             incidentParms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
-            incidentParms.raidStrategy = Rimgate_DefOf.StageThenAttack;
+            incidentParms.raidStrategy = RimgateDefOf.StageThenAttack;
             incidentParms.points = Mathf.Max(
                 incidentParms.points,
                 enemyFaction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));

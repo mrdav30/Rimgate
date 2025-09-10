@@ -14,7 +14,7 @@ public class JobDriver_CloseStargate : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDespawnedOrNull(TargetIndex.A);
-        this.FailOn(() => base.Map.designationManager.DesignationOn(base.TargetThingA, Rimgate_DefOf.Rimgate_DesignationCloseStargate) == null);
+        this.FailOn(() => base.Map.designationManager.DesignationOn(base.TargetThingA, RimgateDefOf.Rimgate_DesignationCloseStargate) == null);
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
         yield return Toils_General.Wait(15).FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
         Toil finalize = ToilMaker.MakeToil("MakeNewToils");
@@ -28,7 +28,7 @@ public class JobDriver_CloseStargate : JobDriver
                     dhd.DoCloseGate();
             }
 
-            base.Map.designationManager.DesignationOn(thingWithComps, Rimgate_DefOf.Rimgate_DesignationCloseStargate)?.Delete();
+            base.Map.designationManager.DesignationOn(thingWithComps, RimgateDefOf.Rimgate_DesignationCloseStargate)?.Delete();
         };
         finalize.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return finalize;

@@ -32,7 +32,7 @@ namespace Rimgate;
 			&& !bed.HasAnyContents
 			&& prisoner.CanReserve(bed))
 		{
-			Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_RescueToSarcophagus, prisoner, bed);
+			Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_RescueToSarcophagus, prisoner, bed);
 			job.count = 1;
 			return job;
 		}

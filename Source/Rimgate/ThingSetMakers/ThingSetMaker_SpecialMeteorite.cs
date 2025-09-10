@@ -34,7 +34,7 @@ public class ThingSetMaker_SpecialMeteorite : ThingSetMaker
         int randomInRange = ((countRange == null)
             ? ThingSetMaker_SpecialMeteorite.MineablesCountRange
             : countRange.Value).RandomInRange;
-        ThingDef def = Rimgate_DefOf.Rimgate_MineableNaquadah;
+        ThingDef def = RimgateDefOf.Rimgate_MineableNaquadah;
         for (int i = 0; i < randomInRange; i++)
         {
             Building building = (Building)ThingMaker.MakeThing(def, null);

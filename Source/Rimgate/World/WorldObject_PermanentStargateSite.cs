@@ -111,7 +111,7 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 
         yield return new Command_Action
         {
-            icon = ContentFinder<Texture2D>.Get("UI/Buttons/Rename"),
+            icon = RimgateTex.RenameCommandTex,
             action = () => { Find.WindowStack.Add(new Dialog_RenameStargateSite(this)); },
             defaultLabel = "RG_RenameGateSite".Translate(),
             defaultDesc = "RG_RenameGateSiteDesc".Translate()

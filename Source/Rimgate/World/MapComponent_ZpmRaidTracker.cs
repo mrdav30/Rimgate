@@ -24,7 +24,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
     private void RebuildFromMapState()
     {
         int countOnMap = map.listerThings
-            .ThingsOfDef(Rimgate_DefOf.Rimgate_ZPM)
+            .ThingsOfDef(RimgateDefOf.Rimgate_ZPM)
             .Count(t => t.Faction == Faction.OfPlayer && t.Spawned &&
                         (t is Building_ZPM b ? b.IsBroadcasting : true));
 
@@ -61,7 +61,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
         slate.Set("map", map);
         slate.Set("points", StorytellerUtility.DefaultThreatPointsNow(map));
 
-        Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(Rimgate_DefOf.Rimgate_ProtectZPM, slate);
+        Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(RimgateDefOf.Rimgate_ProtectZPM, slate);
         QuestUtility.SendLetterQuestAvailable(quest);
         _questCached = quest;
         _questId = quest.id;

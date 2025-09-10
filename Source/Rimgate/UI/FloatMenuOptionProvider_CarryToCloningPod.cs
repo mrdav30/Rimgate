@@ -77,7 +77,7 @@ public class FloatMenuOptionProvider_CarryToCloningPod : FloatMenuOptionProvider
             }
             else
             {
-                Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_CarryToCloningPod, clickedPawn, cloningPod);
+                Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryToCloningPod, clickedPawn, cloningPod);
                 job.count = 1;
                 context.FirstSelectedPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             }

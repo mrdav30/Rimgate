@@ -47,7 +47,7 @@ public class Building_DHD : Building
         {
             Comp_Stargate stargate = DialHomeDevice.GetLinkedStargate();
 
-            return stargate == null || !stargate.IsActive
+            return stargate == null || !stargate.parent.Spawned || !stargate.IsActive
                 ? base.DefaultGraphic
                 : ActiveGateGraphic;
         }

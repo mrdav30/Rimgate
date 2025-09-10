@@ -154,7 +154,7 @@ public class Comp_Stargate : ThingComp
             Messages.Message(
                 "RG_GateDialFailed".Translate(),
                 MessageTypeDefOf.NegativeEvent);
-            Rimgate_DefOf.Rimgate_StargateFailDial.PlayOneShot(SoundInfo.InMap(parent));
+            RimgateDefOf.Rimgate_StargateFailDial.PlayOneShot(SoundInfo.InMap(parent));
             return;
         }
 
@@ -171,18 +171,18 @@ public class Comp_Stargate : ThingComp
             sgComp.ConnectedAddress = GateAddress;
             sgComp.ConnectedStargate = parent;
 
-            sgComp.PuddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(sgComp.parent));
-            Rimgate_DefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(sgComp.parent));
+            sgComp.PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(sgComp.parent));
+            RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(sgComp.parent));
 
             CompGlower otherGlowComp = sgComp.parent.GetComp<CompGlower>();
             otherGlowComp.Props.glowRadius = GlowRadius;
             otherGlowComp.PostSpawnSetup(false);
         }
 
-        PuddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
-        Rimgate_DefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(parent));
+        PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
+        RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(parent));
 
-        if(Glower != null)
+        if (Glower != null)
         {
             Glower.Props.glowRadius = GlowRadius;
             Glower.PostSpawnSetup(false);
@@ -215,7 +215,7 @@ public class Comp_Stargate : ThingComp
                 sgComp.CloseStargate(false);
         }
 
-        SoundDef puddleCloseDef = Rimgate_DefOf.Rimgate_StargateClose;
+        SoundDef puddleCloseDef = RimgateDefOf.Rimgate_StargateClose;
         puddleCloseDef.PlayOneShot(SoundInfo.InMap(parent));
         if (sgComp != null)
             puddleCloseDef.PlayOneShot(SoundInfo.InMap(sgComp.parent));
@@ -223,7 +223,7 @@ public class Comp_Stargate : ThingComp
         if (PuddleSustainer != null)
             PuddleSustainer.End();
 
-        if(Glower != null)
+        if (Glower != null)
         {
             Glower.Props.glowRadius = 0;
             Glower.PostSpawnSetup(false);
@@ -335,7 +335,7 @@ public class Comp_Stargate : ThingComp
         base.PostDraw();
         if (_isIrisActivated)
         {
-            Vector3 offset = Rimgate_DefOf.Rimgate_Stargate.graphicData.drawOffset;
+            Vector3 offset = RimgateDefOf.Rimgate_Stargate.graphicData.drawOffset;
             offset.y -= 0.01f;
 
             StargateIris.Draw(
@@ -346,7 +346,7 @@ public class Comp_Stargate : ThingComp
 
         if (IsActive)
         {
-            Vector3 offset = Rimgate_DefOf.Rimgate_Stargate.graphicData.drawOffset;
+            Vector3 offset = RimgateDefOf.Rimgate_Stargate.graphicData.drawOffset;
             offset.y -= 0.02f;
 
             StargatePuddle.Draw(
@@ -419,13 +419,26 @@ public class Comp_Stargate : ThingComp
 
             if (!_isIrisActivated)
             {
-                GenSpawn.Spawn(thing, parent.InteractionCell, parent.Map);
+                // Buildings (e.g., carts) must NOT spawn exactly on the gate/edifices.
+                // Prefer “near” placement with a predicate to avoid edifice tiles.
+                IntVec3 drop = parent.InteractionCell;
+                Map map = parent.Map;
+
+                Predicate<IntVec3> good =
+                c => c.InBounds(map)
+                              && c != parent.Position // never on the gate’s own cell
+                              && c.Standable(map)
+                              && map.edificeGrid[c] == null; // avoid any building cell
+
+                // as a very last resort, try raw spawn at the interaction cell (should be rare)
+                if (!GenPlace.TryPlaceThing(thing, drop, map, ThingPlaceMode.Near, out _, null, good))
+                    GenSpawn.Spawn(thing, drop, map);
                 PlayTeleportSound();
             }
             else
             {
                 thing.Kill();
-                Rimgate_DefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(parent));
+                RimgateDefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(parent));
             }
 
             _recvBuffer.Dequeue(); // remove after handling
@@ -455,7 +468,7 @@ public class Comp_Stargate : ThingComp
         {
             if (ConnectedStargate == null && ConnectedAddress.Valid)
                 ConnectedStargate = GetorCreateReceivingStargate(ConnectedAddress);
-            PuddleSustainer = Rimgate_DefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
+            PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
         }
 
         if (RimgateMod.Debug)
@@ -472,16 +485,16 @@ public class Comp_Stargate : ThingComp
         else
         {
             string connectAddress = StargateUtility.GetStargateDesignation(ConnectedAddress);
-            var connectLabel = (IsReceivingGate 
-                ? "RG_IncomingConnection" 
+            var connectLabel = (IsReceivingGate
+                ? "RG_IncomingConnection"
                 : "RG_OutgoingConnection").Translate();
             sb.AppendLine("RG_ConnectedToGate".Translate(connectAddress, connectLabel));
         }
 
         if (HasIris)
         {
-            var irisLabel = (_isIrisActivated 
-                ? "RG_IrisClosedStatus" 
+            var irisLabel = (_isIrisActivated
+                ? "RG_IrisClosedStatus"
                 : "RG_IrisOpenStatus").Translate();
             sb.AppendLine("RG_IrisStatus".Translate(irisLabel));
         }
@@ -504,8 +517,8 @@ public class Comp_Stargate : ThingComp
 
         if (Props.canHaveIris && HasIris)
         {
-            var action = (_isIrisActivated 
-                ? "RG_OpenIris" 
+            var action = (_isIrisActivated
+                ? "RG_OpenIris"
                 : "RG_CloseIris").Translate();
             Command_Toggle command = new Command_Toggle
             {
@@ -517,10 +530,10 @@ public class Comp_Stargate : ThingComp
                 {
                     _wantsIrisToggled = !_wantsIrisToggled;
 
-                    Designation designation = parent.Map.designationManager.DesignationOn(parent, Rimgate_DefOf.Rimgate_DesignationToggleIris);
+                    Designation designation = parent.Map.designationManager.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationToggleIris);
 
                     if (designation == null)
-                        parent.Map.designationManager.AddDesignation(new Designation(parent, Rimgate_DefOf.Rimgate_DesignationToggleIris));
+                        parent.Map.designationManager.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationToggleIris));
                     else
                         designation?.Delete();
                 }
@@ -565,9 +578,9 @@ public class Comp_Stargate : ThingComp
         _isIrisActivated = !_isIrisActivated;
         _wantsIrisToggled = false;
         if (_isIrisActivated)
-            Rimgate_DefOf.Rimgate_IrisOpen.PlayOneShot(SoundInfo.InMap(parent));
+            RimgateDefOf.Rimgate_IrisOpen.PlayOneShot(SoundInfo.InMap(parent));
         else
-            Rimgate_DefOf.Rimgate_IrisClose.PlayOneShot(SoundInfo.InMap(parent));
+            RimgateDefOf.Rimgate_IrisClose.PlayOneShot(SoundInfo.InMap(parent));
     }
 
     private void CleanupGate()

@@ -15,7 +15,7 @@ static class PatchMechanitorUtility_InMechanitorCommandRange
         ref bool __result
         )
     {
-        if (mech != null && mech.def == Rimgate_DefOf.Rimgate_Malp)
+        if (mech != null && mech.def == RimgateDefOf.Rimgate_Malp)
         {
             __result = true;
             return false;

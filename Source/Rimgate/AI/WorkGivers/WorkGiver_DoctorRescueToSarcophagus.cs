@@ -41,7 +41,7 @@ public class WorkGiver_DoctorRescueToSarcophagus : WorkGiver_RescueDowned
 		if(bed == null || bed.HasAnyContents)
 			return null;
 
-        Job job = JobMaker.MakeJob(Rimgate_DefOf.Rimgate_RescueToSarcophagus, patient, bed);
+        Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_RescueToSarcophagus, patient, bed);
 		job.count = 1;
 		return job;
 	}

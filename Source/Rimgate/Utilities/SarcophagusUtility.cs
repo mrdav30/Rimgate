@@ -170,7 +170,7 @@ public static class SarcophagusUtility
             && !nonCriticalTreatableHediffs.Contains(x.def));
 
         bool hasSarcophagusNeed = false;
-        if (patient.needs.TryGetNeed(Rimgate_DefOf.Rimgate_SarcophagusChemicalNeed, out var need)
+        if (patient.needs.TryGetNeed(RimgateDefOf.Rimgate_SarcophagusChemicalNeed, out var need)
             && need.CurLevel <= 0.5) hasSarcophagusNeed = true;
 
         // Has hediffs that are always treatable by Sarcophaguss

@@ -28,7 +28,7 @@ public class Projectile_ZatBlast : Bullet
 
         if (hitThing is not Pawn hitPawn) return;
 
-        Hediff zatShocked = hitPawn.health?.hediffSet?.GetFirstHediffOfDef(Rimgate_DefOf.Rimgate_ZatShock);
+        Hediff zatShocked = hitPawn.health?.hediffSet?.GetFirstHediffOfDef(RimgateDefOf.Rimgate_ZatShock);
 
         float randomSeverity = Rand.Range(0.15f, 0.30f);
         if (zatShocked != null)
@@ -64,7 +64,7 @@ public class Projectile_ZatBlast : Bullet
             if (psychicSensitivity < -1 || Rand.Value < oddsOfHangover)
                 hitPawn.health?.AddHediff(HediffDefOf.PsychicHangover, null, null);
 
-            hediff = HediffMaker.MakeHediff(Rimgate_DefOf.Rimgate_ZatShock, hitPawn);
+            hediff = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_ZatShock, hitPawn);
             hediff.Severity = randomSeverity;
             hitPawn.health.AddHediff(hediff);
         }

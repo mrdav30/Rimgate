@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using RimWorld;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
 namespace Rimgate;
 
-public class JobDriver_ToggleIris : JobDriver
+public class JobDriver_Toggle : JobDriver
 {
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -14,7 +15,7 @@ public class JobDriver_ToggleIris : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDespawnedOrNull(TargetIndex.A);
-        this.FailOn(() => base.Map.designationManager.DesignationOn(base.TargetThingA, Rimgate_DefOf.Rimgate_DesignationToggleIris) == null);
+        this.FailOn(() => base.Map.designationManager.DesignationOn(base.TargetThingA, RimgateDefOf.Rimgate_DesignationToggle) == null);
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
         yield return Toils_General.Wait(15).FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
         Toil finalize = ToilMaker.MakeToil("MakeNewToils");
@@ -24,11 +25,15 @@ public class JobDriver_ToggleIris : JobDriver
             ThingWithComps thingWithComps = (ThingWithComps)actor.CurJob.targetA.Thing;
             for (int i = 0; i < thingWithComps.AllComps.Count; i++)
             {
-                if (thingWithComps.AllComps[i] is Comp_Stargate stargate && stargate.WantsIrisClosed)
-                    stargate.DoToggleIris();
+                if (thingWithComps.AllComps[i] is Comp_Toggle compFlickable 
+                    && compFlickable.WantsFlick())
+                {
+                    compFlickable.DoFlick();
+                }
             }
 
-            base.Map.designationManager.DesignationOn(thingWithComps, Rimgate_DefOf.Rimgate_DesignationToggleIris)?.Delete();
+            actor.records.Increment(RecordDefOf.SwitchesFlicked);
+            base.Map.designationManager.DesignationOn(thingWithComps, RimgateDefOf.Rimgate_DesignationToggle)?.Delete();
         };
         finalize.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return finalize;

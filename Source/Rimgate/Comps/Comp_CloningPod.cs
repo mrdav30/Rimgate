@@ -49,7 +49,7 @@ public class Comp_CloningPod : ThingComp
         {
             if (_idleEffecter == null)
             {
-                _idleEffecter = Rimgate_DefOf.Rimgate_ClonePod_Idle.Spawn();
+                _idleEffecter = RimgateDefOf.Rimgate_ClonePod_Idle.Spawn();
                 ColorizeEffecter(_idleEffecter, IdleCycleColor);
                 _idleEffecter.Trigger(parent, new TargetInfo(parent.InteractionCell, parent.Map));
             }
@@ -75,7 +75,7 @@ public class Comp_CloningPod : ThingComp
                 {
                     if (_operatingEffecter == null)
                     {
-                        _operatingEffecter = Rimgate_DefOf.Rimgate_ClonePod_Operating.Spawn();
+                        _operatingEffecter = RimgateDefOf.Rimgate_ClonePod_Operating.Spawn();
                         ColorizeEffecter(_operatingEffecter, OperatingColor);
                         _operatingEffecter.Trigger(parent, new TargetInfo(parent.InteractionCell, parent.Map));
                     }

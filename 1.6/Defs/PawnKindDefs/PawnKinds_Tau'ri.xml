@@ -130,10 +130,11 @@
         </skills>
     </PawnKindDef>
 
-        <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
+    <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCRocketman</defName>
         <label>Tau'ri soldier</label>
         <combatPower>120</combatPower>
+        <weaponMoney>1200~2500</weaponMoney>
         <weaponTags>
             <li>Rimgate_TauriRocketLauncher_tag</li>
         </weaponTags>
@@ -170,7 +171,7 @@
             </subOptionsChooseOne>
         </inventoryOptions>
         <gearHealthRange>0.75~2.3</gearHealthRange>
-        <weaponMoney>1000~2260</weaponMoney>
+        <weaponMoney>1200~2560</weaponMoney>
         <apparelMoney>1000~2180</apparelMoney>
         <skills>
             <li>

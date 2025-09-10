@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
+  <!-- Stargate -->
+
   <WorkGiverDef>
     <defName>Rimgate_CloseStargate</defName>
     <label>close stargate</label>
@@ -8,17 +10,6 @@
     <workType>BasicWorker</workType>
     <verb>close stargate connection</verb>
     <gerund>closing stargate connection</gerund>
-    <canBeDoneWhileDrafted>true</canBeDoneWhileDrafted>
-    <priorityInType>100</priorityInType>
-  </WorkGiverDef>
-
-  <WorkGiverDef>
-    <defName>Rimgate_Toggle</defName>
-    <label>toggle switch</label>
-    <giverClass>Rimgate.WorkGiver_Toggle</giverClass>
-    <workType>BasicWorker</workType>
-    <verb>toggle switch</verb>
-    <gerund>toggling switch</gerund>
     <canBeDoneWhileDrafted>true</canBeDoneWhileDrafted>
     <priorityInType>100</priorityInType>
   </WorkGiverDef>
@@ -32,23 +23,6 @@
     <gerund>toggling iris</gerund>
     <canBeDoneWhileDrafted>true</canBeDoneWhileDrafted>
     <priorityInType>100</priorityInType>
-  </WorkGiverDef>
-
-  <WorkGiverDef>
-    <defName>Rimgate_DoBillsWraith</defName>
-    <label>work at cocooning station</label>
-    <giverClass>Rimgate.WorkGiver_DoBill_Wraith</giverClass>
-    <workType>Crafting</workType>
-    <priorityInType>100</priorityInType>
-    <fixedBillGiverDefs>
-      <li>Rimgate_CocoonStation</li>
-    </fixedBillGiverDefs>
-    <verb>work at</verb>
-    <gerund>working at</gerund>
-    <requiredCapacities>
-      <li>Manipulation</li>
-    </requiredCapacities>
-    <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
 
   <!-- Sarcophagus -->
@@ -81,6 +55,50 @@
     </requiredCapacities>
     <priorityInType>115</priorityInType>
     <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <!-- Misc -->
+
+  <WorkGiverDef>
+    <defName>Rimgate_DoBillsWraith</defName>
+    <label>work at cocooning station</label>
+    <giverClass>Rimgate.WorkGiver_DoBillWraith</giverClass>
+    <workType>Crafting</workType>
+    <priorityInType>100</priorityInType>
+    <fixedBillGiverDefs>
+      <li>Rimgate_CocoonStation</li>
+    </fixedBillGiverDefs>
+    <verb>work at</verb>
+    <gerund>working at</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Rimgate_Toggle</defName>
+    <label>toggle switch</label>
+    <giverClass>Rimgate.WorkGiver_Toggle</giverClass>
+    <workType>BasicWorker</workType>
+    <verb>toggle switch</verb>
+    <gerund>toggling switch</gerund>
+    <canBeDoneWhileDrafted>true</canBeDoneWhileDrafted>
+    <priorityInType>100</priorityInType>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Rimgate_LoadContainer</defName>
+    <label>load cart</label>
+    <giverClass>Rimgate.WorkGiver_LoadContainer</giverClass>
+    <workType>Hauling</workType>
+    <verb>load</verb>
+    <gerund>loading</gerund>
+    <canBeDoneWhileDrafted>true</canBeDoneWhileDrafted>
+    <priorityInType>1</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
   </WorkGiverDef>
 
 </Defs>

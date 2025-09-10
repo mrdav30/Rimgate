@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+    <ThingDef ParentName="BaseBear">
+        <defName>Rimgate_ManhunterKodiak</defName>
+        <label>kodiak bear</label>
+        <description>A huge omnivorous mammal adapted for cold climates. Bears' thick blubber and fur keeps them warm in winter.\n\nWhile their usual diet consists of fish, berries, honey, and scavenged meat, the kodiak is capable of using its massive strength and deadly claws to kill live prey. They are startlingly quick for such lumbering creatures.</description>
+        <statBases>
+            <Wildness>0.8</Wildness>
+        </statBases>
+        <tools Inherit="False">
+            <li>
+                <label>left claw</label>
+                <labelNoLocation>claw</labelNoLocation>
+                <capacities>
+                    <li>Scratch</li>
+                </capacities>
+                <power>24</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+                <surpriseAttack>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>Stun</def>
+                            <amount>17</amount>
+                        </li>
+                    </extraMeleeDamages>
+                </surpriseAttack>
+            </li>
+            <li>
+                <label>right claw</label>
+                <labelNoLocation>claw</labelNoLocation>
+                <capacities>
+                    <li>Scratch</li>
+                </capacities>
+                <power>24</power>
+                <cooldownTime>2</cooldownTime>
+                <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+                <surpriseAttack>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>Stun</def>
+                            <amount>17</amount>
+                        </li>
+                    </extraMeleeDamages>
+                </surpriseAttack>
+            </li>
+            <li>
+                <capacities>
+                    <li>Bite</li>
+                </capacities>
+                <power>28.6</power>
+                <cooldownTime>2.4</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <chanceFactor>0.5</chanceFactor>
+                <surpriseAttack>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>Stun</def>
+                            <amount>17</amount>
+                        </li>
+                    </extraMeleeDamages>
+                </surpriseAttack>
+            </li>
+            <li>
+                <label>head</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>15</power>
+                <cooldownTime>1.9</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                <chanceFactor>0.2</chanceFactor>
+            </li>
+        </tools>
+        <race>
+            <meatLabel>bear meat</meatLabel>
+            <baseBodySize>3.15</baseBodySize>
+            <baseHealthScale>3.5</baseHealthScale>
+        </race>
+        <tradeTags Inherit="False" />
+        <comps>
+            <li Class="VEF.AnimalBehaviours.CompProperties_InitialMentalState">
+                <mentalstate>ManhunterPermanent</mentalstate>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <PawnKindDef ParentName="BearBase">
+        <defName>Rimgate_ManhunterKodiak</defName>
+        <label>kodiak bear</label>
+        <race>Rimgate_ManhunterKodiak</race>
+        <lifeStages>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Animal/Bear/Bear</texPath>
+                    <drawSize>1.7</drawSize>
+                    <color>(89,58,34)</color>
+                    <shadowData>
+                        <volume>(0.4, 0.3, 0.3)</volume>
+                        <offset>(0,0,-0.2)</offset>
+                    </shadowData>
+                </bodyGraphicData>
+                <dessicatedBodyGraphicData>
+                    <texPath>Things/Pawn/Animal/Bear/Dessicated_Bear</texPath>
+                    <drawSize>1.7</drawSize>
+                </dessicatedBodyGraphicData>
+                <swimmingGraphicData>
+                    <texPath>Things/Pawn/Animal/Bear/SwimmingBear</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <color>(89,58,34)</color>
+                    <drawSize>1.7</drawSize>
+                </swimmingGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Animal/Bear/Bear</texPath>
+                    <drawSize>2.5</drawSize>
+                    <color>(89,58,34)</color>
+                    <shadowData>
+                        <volume>(0.6, 0.45, 0.45)</volume>
+                        <offset>(0,0,-0.25)</offset>
+                    </shadowData>
+                </bodyGraphicData>
+                <dessicatedBodyGraphicData>
+                    <texPath>Things/Pawn/Animal/Bear/Dessicated_Bear</texPath>
+                    <drawSize>2.5</drawSize>
+                </dessicatedBodyGraphicData>
+                <swimmingGraphicData>
+                    <texPath>Things/Pawn/Animal/Bear/SwimmingBear</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>2.5</drawSize>
+                    <color>(89,58,34)</color>
+                </swimmingGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Animal/Bear/Bear</texPath>
+                    <drawSize>3.2</drawSize>
+                    <color>(89,58,34)</color>
+                    <shadowData>
+                        <volume>(0.8, 0.6, 0.6)</volume>
+                        <offset>(0,0,-0.3)</offset>
+                    </shadowData>
+                </bodyGraphicData>
+                <dessicatedBodyGraphicData>
+                    <texPath>Things/Pawn/Animal/Bear/Dessicated_Bear</texPath>
+                    <drawSize>3.2</drawSize>
+                </dessicatedBodyGraphicData>
+                <swimmingGraphicData>
+                    <texPath>Things/Pawn/Animal/Bear/SwimmingBear</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>3.2</drawSize>
+                    <color>(89,58,34)</color>
+                </swimmingGraphicData>
+            </li>
+        </lifeStages>
+    </PawnKindDef>
+</Defs>

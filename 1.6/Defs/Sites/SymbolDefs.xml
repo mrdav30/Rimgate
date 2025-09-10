@@ -481,6 +481,12 @@
         <spawnPartOfFaction>false</spawnPartOfFaction>
     </KCSG.SymbolDef>
 
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ManhunterKodiak</defName>
+        <pawnKindDef>Rimgate_ManhunterKodiak</pawnKindDef>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+    
     <!-- Loot crates -->
 
     <KCSG.SymbolDef>

@@ -16,7 +16,7 @@ public class Hediff_GoauldSymbiote : Hediff_Implant
         for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++)
         {
             Hediff hediff = pawn.health.hediffSet.hediffs[i];
-            if (hediff.def == Rimgate_DefOf.Rimgate_SymbioteWithdrawal)
+            if (hediff.def == RimgateDefOf.Rimgate_SymbioteWithdrawal)
                 pawn.health.RemoveHediff(hediff);
         }
     }
@@ -29,10 +29,10 @@ public class Hediff_GoauldSymbiote : Hediff_Implant
         base.PostRemoved();
 
         // Apply fatal withdrawal hediff
-        if (pawn.health.hediffSet.HasHediff(Rimgate_DefOf.Rimgate_SymbioteWithdrawal))
+        if (pawn.health.hediffSet.HasHediff(RimgateDefOf.Rimgate_SymbioteWithdrawal))
             return;
 
-        var hediff = HediffMaker.MakeHediff(Rimgate_DefOf.Rimgate_SymbioteWithdrawal, pawn);
+        var hediff = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SymbioteWithdrawal, pawn);
         pawn.health.AddHediff(hediff);
     }
 }

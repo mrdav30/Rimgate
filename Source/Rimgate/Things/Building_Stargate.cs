@@ -27,13 +27,23 @@ public class Building_Stargate : Building
                 Color.white,
                 new());
 
-            _activeGraphic.data.drawOffset = Rimgate_DefOf.Rimgate_Stargate.graphicData.drawOffset;
+            _activeGraphic.data.drawOffset = RimgateDefOf.Rimgate_Stargate.graphicData.drawOffset;
 
             return _activeGraphic;
         }
     }
 
     private Graphic _activeGraphic;
+
+    public override Graphic Graphic
+    {
+        get
+        {
+            return !StargateComp.IsActive
+                ? base.DefaultGraphic
+                : ActiveGateGraphic;
+        }
+    }
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -84,16 +94,6 @@ public class Building_Stargate : Building
                 continue;
             }
             yield return gizmo;
-        }
-    }
-
-    public override Graphic Graphic
-    {
-        get
-        {
-            return !StargateComp.IsActive
-                ? base.DefaultGraphic
-                : ActiveGateGraphic;
         }
     }
 

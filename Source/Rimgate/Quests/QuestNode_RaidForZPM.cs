@@ -83,8 +83,8 @@ public class QuestNode_RaidForZPM : QuestNode
         randomRaid.mapParent = map.Parent;
         randomRaid.pointsRange = new FloatRange(num * _minRaidThreatPointsFactor, num * _maxRaidThreatPointsFactor);
         randomRaid.arrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
-        randomRaid.raidStrategy = Rimgate_DefOf.ImmediateAttackSmart;
-        randomRaid.targetDefs = new List<ThingDef> { Rimgate_DefOf.Rimgate_ZPM };
+        randomRaid.raidStrategy = RimgateDefOf.ImmediateAttackSmart;
+        randomRaid.targetDefs = new List<ThingDef> { RimgateDefOf.Rimgate_ZPM };
         randomRaid.useLetterKey = "RG_LetterRaidZpmProtectDesc";
         randomRaid.generateFightersOnly = true;
         randomRaid.fallbackToPlayerHomeMap = true;

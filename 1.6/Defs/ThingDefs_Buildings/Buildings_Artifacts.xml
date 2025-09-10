@@ -77,7 +77,6 @@
                 <puddleTexture>FX/RGEventHorizon</puddleTexture>
                 <irisTexture>Things/Building/Misc/RGIris</irisTexture>
                 <activeTexture>Things/Building/Artifact/RGStargateAncient_Active</activeTexture>
-                <activeTexture></activeTexture>
                 <puddleDrawSize>(5.3,5.3)</puddleDrawSize>
                 <irisPowerConsumption>500</irisPowerConsumption>
             </li>

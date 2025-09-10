@@ -18,7 +18,7 @@ public class JobDriver_DecodeGlyphs : JobDriver
     private void GenerateStargateQuest()
     {
         Slate slate = new Slate();
-        QuestScriptDef questDef = Rimgate_DefOf.Rimgate_StargateSiteScript;
+        QuestScriptDef questDef = RimgateDefOf.Rimgate_StargateSiteScript;
         Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(questDef, slate);
         QuestUtility.SendLetterQuestAvailable(quest);
     }
