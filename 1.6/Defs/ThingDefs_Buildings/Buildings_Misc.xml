@@ -146,7 +146,7 @@
 	</ThingDef>
 
 	<!-- Invisible, non-selectable attachment that only draws -->
-	<ThingDef>
+	<ThingDef Name="Rimgate_PushedCartVisual">
 		<defName>Rimgate_PushedCartVisual</defName>
 		<label>pushed cart visual</label>
 		<thingClass>Rimgate.Thing_PushedCartVisual</thingClass>
@@ -164,7 +164,7 @@
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_Wheelbarrow</defName>
 		<label>wheelbarrow</label>
-		<description>A hand-pushed carrier with a small bed and a squeaky wheel. Slower to push, but sturdy and great for dragging loot back to your home.</description>
+		<description>A hand-pushed carrier with a small bed and a squeaky wheel. Slow to push, but sturdy and great for hauling stuff around. \nNot suitable for caravaning</description>
 		<graphicData>
 			<texPath>Things/Building/MobileContainer/RGWheelbarrow</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -188,67 +188,112 @@
 		<techLevel>Industrial</techLevel>
 		<comps>
 			<li Class="Rimgate.CompProperties_MobileContainer">
-				<frontOffset>1.0</frontOffset>
-				<moveSpeedFactorWhilePushing>0.85</moveSpeedFactorWhilePushing>
-				<requiresPower>false</requiresPower>
+				<slowdownSeverity>0.80</slowdownSeverity>
 				<canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
-				<showMassInInspectString>true</showMassInInspectString>
 				<massCapacity>60</massCapacity>
 			</li>
 		</comps>
 	</ThingDef>
 
 	<!-- T2: Tracked haul cart -->
-	<!-- <ThingDef ParentName="Rimgate_MobileContainerBase">
+	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_MobileTrackedCart</defName>
 		<label>tracked haul cart</label>
-		<description>A rugged cart on tank tracks. Better stability and capacity; still needs a pusher to move.</description>
+		<description>A rugged cart on tank tracks fitted with a storage container on top. Better stability and capacity; still needs a pusher to move.\nNot suitable for caravaning</description>
 		<graphicData>
-			<texPath>Things/Building/MobileContainers/RG_TrackedCart</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(1.3,1.3)</drawSize>
-		</graphicData>
-		<statBases>
-			<Mass>35</Mass>
-			<MaxHitPoints>200</MaxHitPoints>
-		</statBases>
-		<comps>
-			<li Class="Rimgate.CompProperties_MobileContainer">
-				<frontOffset>1.0</frontOffset>
-				<moveSpeedFactorWhilePushing>0.9</moveSpeedFactorWhilePushing>
-				<massCapacityBonus>150</massCapacityBonus>
-			</li>
-		</comps>
-	</ThingDef> -->
-
-	<!-- T3: Hover skid (spacer): requires power -->
-	<!-- <ThingDef ParentName="Rimgate_MobileContainerBase">
-		<defName>Rimgate_MobileHoverSkid</defName>
-		<label>hover skid</label>
-		<description>A grav-skid platform with inertial dampers. Glides where the pusher walks; high capacity, low friction, needs power.</description>
-		<graphicData>
-			<texPath>Things/Building/MobileContainers/RG_HoverSkid</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(1.4,1.4)</drawSize>
+			<texPath>Things/Building/MobileContainer/RGTrackedCart</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(1.5,1.5)</drawSize>
 		</graphicData>
 		<statBases>
 			<Mass>28</Mass>
+			<Flammability>0.3</Flammability>
 			<MaxHitPoints>180</MaxHitPoints>
 		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>25</costStuffCount>
+		<costList>
+			<Steel>30</Steel>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
 		<comps>
-			<li Class="CompProperties_Power">
-				<compClass>CompPowerTrader</compClass>
-				<basePowerConsumption>50</basePowerConsumption>
-				<shortCircuitInRain>false</shortCircuitInRain>
-			</li>
 			<li Class="Rimgate.CompProperties_MobileContainer">
-				<frontOffset>1.0</frontOffset>
-				<moveSpeedFactorWhilePushing>0.98</moveSpeedFactorWhilePushing>
-				<massCapacityBonus>240</massCapacityBonus>
-				<requiresPower>true</requiresPower>
+				<slowdownSeverity>0.50</slowdownSeverity>
+				<canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+				<massCapacity>150</massCapacity>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<fuelConsumptionRate>100.0</fuelConsumptionRate>
+				<fuelCapacity>15.0</fuelCapacity>
+				<fuelFilter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</fuelFilter>
+			</li>
+			<li Class="CompProperties_Breakdownable" />
+		</comps>
+	</ThingDef>
+
+	<!-- T3: Hover skid (spacer): requires power -->
+	<ThingDef ParentName="Rimgate_MobileContainerBase">
+		<defName>Rimgate_MobileHoverSkid</defName>
+		<label>hover skid</label>
+		<description>A grav-skid platform with inertial dampers and fitted with a hermetically sealed crate on top. Glides where the pusher walks; high capacity, low friction. \nNot suitable for caravaning</description>
+		<graphicData>
+			<texPath>Things/Building/MobileContainer/RGHoverSkid</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(1.5,1.5)</drawSize>
+		</graphicData>
+		<statBases>
+			<Mass>28</Mass>
+			<Flammability>0.3</Flammability>
+			<MaxHitPoints>180</MaxHitPoints>
+		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>25</costStuffCount>
+		<costList>
+			<Steel>30</Steel>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<comps>
+			<li Class="Rimgate.CompProperties_MobileContainer">
+				<slowdownSeverity>0.10</slowdownSeverity>
+				<shouldTickContents>false</shouldTickContents>
+				<canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+				<massCapacity>240</massCapacity>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<fuelConsumptionRate>80.0</fuelConsumptionRate>
+				<fuelCapacity>10.0</fuelCapacity>
+				<fuelFilter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</fuelFilter>
+			</li>
+			<li Class="CompProperties_Breakdownable" />
+			<li Class="CompProperties_Explosive">
+				<wickTicks>220</wickTicks>
+				<explosiveRadius>4.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explodeOnKilled>true</explodeOnKilled>
+				<startWickHitPointsPercent>0.69</startWickHitPointsPercent>
+				<chanceNeverExplodeFromDamage>0.25</chanceNeverExplodeFromDamage>
 			</li>
 		</comps>
-		<techLevel>Spacer</techLevel>
-	</ThingDef> -->
+	</ThingDef>
 
 </Defs>

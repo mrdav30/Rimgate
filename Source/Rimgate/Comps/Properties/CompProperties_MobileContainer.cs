@@ -12,16 +12,14 @@ public class CompProperties_MobileContainer : CompProperties
 
     public float frontOffset = 1.0f;  // how far in front of pusher to draw/spawn
 
-    public float moveSpeedFactorWhilePushing = 0.9f; // pusher slowdown
+    public float slowdownSeverity = 0.1f; // pusher slowdown
 
     // only items within this radius are eligible
     public float loadRadius = 25f;
 
-    public bool requiresPower = false;
-
     public bool shouldTickContents = true;
 
-    public bool showMassInInspectString;
+    public bool showMassInInspectString = true;
 
     public int stallFinalizeDelayTicks = 600;  // ~10s at 60 tps
 

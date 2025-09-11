@@ -27,6 +27,10 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
 
     public Pawn Pusher;
 
+    public float PushingFuel;  // current fuel while proxy is carried
+
+    public float FuelPerTick; // cached per-tick rate during push
+
     public ThingDef SavedStuff; // original stuff
 
     public int SavedHitPoints;
@@ -39,8 +43,6 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
 
     private List<Thing> _tmpThings = new();
 
-    private static List<Comp_MobileContainer> _tmpContainersInGroup = new();
-
     private bool _massDirty = true;
 
     private float _cachedMassUsage;
@@ -49,7 +51,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
 
     private const int StallFinalizeDelayTicks = 600; // ~10 sec at 60 ticks/sec
 
-    private Thing_PushedCartVisual _pushVisual;
+    private CompRefuelable _cachedRefuelable;
 
     public Map Map => parent.MapHeld;
 
@@ -78,7 +80,6 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
     }
 
     public bool LoadingInProgress => LeftToLoad != null && LeftToLoad.Any(t => t.CountToTransfer > 0);
-
 
     public bool AnyPawnCanLoadAnythingNow
     {
@@ -137,19 +138,29 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         }
     }
 
-    // Slowdown factor → severity (0..1)
-    public float SlowdownSeverity => 1f - Mathf.Clamp01(Props.moveSpeedFactorWhilePushing);
+    // Slowdown severity (0..1)
+    public float SlowdownSeverity => Props.slowdownSeverity;
 
-    public CompProperties_MobileContainer Props => (CompProperties_MobileContainer)props;
+    public bool UsesFuelWhilePushing => parent.GetComp<CompRefuelable>() != null;
 
-    public bool PowerOk
+    public CompRefuelable Refuelable
     {
         get
         {
-            var power = parent.GetComp<CompPowerTrader>();
-            return power == null || power.PowerOn || !Props.requiresPower;
+            _cachedRefuelable ??= parent.GetComp<CompRefuelable>();
+            return _cachedRefuelable;
         }
     }
+
+    public float ConsumptionRatePerTick => Refuelable?.Props?.fuelConsumptionRate / GenDate.TicksPerDay ?? 0f;
+
+    public bool FuelOK => Refuelable == null || Refuelable.HasFuel;
+
+    public bool IsProxyRefuelable => FuelPerTick > 0f;
+
+    public bool ProxyFuelOk => !IsProxyRefuelable || PushingFuel > 0f;
+
+    public CompProperties_MobileContainer Props => (CompProperties_MobileContainer)props;
 
     public Comp_MobileContainer()
     {
@@ -191,14 +202,16 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
             FinalizeShortfall();
     }
 
-    public override void CompTickRare()
+    public void Attach(Pawn pawn)
     {
-        base.CompTickRare();
-        if (IsAttached && !PowerOk)
-            Detach(); // optional, keeps state consistent if power cuts during idle
+        if (Utils.PawnIncapableOfHauling(pawn, out string reason))
+        {
+            Messages.Message(reason, parent, MessageTypeDefOf.RejectInput);
+            return;
+        }
+        Pusher = pawn;
     }
 
-    public void Attach(Pawn pawn) => Pusher = pawn;
     public void Detach() => Pusher = null;
 
     public override void PostExposeData()
@@ -230,6 +243,8 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         Scribe_Values.Look(ref _stalledSinceTick, "_stalledSinceTick", defaultValue: -1);
         Scribe_Values.Look(ref MassCapacityOverride, "MassCapacityOverride", 0f);
         Scribe_References.Look(ref Pusher, "Pusher");
+        Scribe_Values.Look(ref PushingFuel, "PushingFuel", 0f);
+        Scribe_Values.Look(ref FuelPerTick, "FuelPerTick", 0f);
         Scribe_Defs.Look(ref SavedStuff, "SavedStuff");
         Scribe_Values.Look(ref SavedHitPoints, "SavedHitPoints", 0);
         Scribe_Values.Look(ref SavedDrawColor, "SavedDrawColor", default);
@@ -311,7 +326,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         yield return new Command_Target
         {
             defaultLabel = "RG_CommandPushLabel".Translate(),
-            defaultDesc = "RG_CommandPushDesc".Translate(),
+            defaultDesc = "RG_CommandPushDesc".Translate(parent.LabelShort),
             icon = PushCommandTex,
             targetingParams = new TargetingParameters { canTargetLocations = true, canTargetBuildings = true },
             Disabled = LoadingInProgress,
@@ -327,7 +342,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         yield return new Command_Target
         {
             defaultLabel = "RG_CommandPushAndDumpLabel".Translate(),
-            defaultDesc = "RG_CommandPushAndDumpDesc".Translate(),
+            defaultDesc = "RG_CommandPushAndDumpDesc".Translate(parent.LabelShort),
             icon = PushAndDumpCommandTex,
             targetingParams = new TargetingParameters { canTargetLocations = true },
             Disabled = LoadingInProgress,
@@ -388,23 +403,48 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         Pawn pawn = forcedPawn ?? ChoosePusher(dest.Cell.IsValid ? dest.Cell : parent.Position);
         if (pawn == null)
         {
-            Messages.Message("RG_MessageNoPawnToPush".Translate(), parent, MessageTypeDefOf.RejectInput);
+            Messages.Message("RG_MessageNoPawnToPush".Translate(parent.LabelShort),
+                parent,
+                MessageTypeDefOf.RejectInput);
             return;
         }
 
-        var def = dump ? RimgateDefOf.Rimgate_PushAndDumpMobileContainer
-                       : RimgateDefOf.Rimgate_PushMobileContainer;
+        if (!dest.HasThing && !pawn.CanReserveAndReach(dest, PathEndMode.Touch, Danger.Deadly))
+        {
+            Messages.Message("RG_CannotReachDestination".Translate(), parent, MessageTypeDefOf.RejectInput);
+            return;
+        }
+
+        if (!FuelOK)
+        {
+            Messages.Message("RG_CartNoFuel".Translate(parent.LabelShort), parent, MessageTypeDefOf.RejectInput);
+            return;
+        }
+
+        LocalTargetInfo targetInfo = null;
+        var def = RimgateDefOf.Rimgate_PushMobileContainer;
+        // If a gate was clicked, store it directly in targetC; otherwise use the cell
+        if (dest.HasThing)
+        {
+            if (dest.Thing is not Building_Stargate sg)
+            {
+                Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), parent, MessageTypeDefOf.RejectInput);
+                return;
+            }
+
+            targetInfo = dest.Thing;
+            if (!dump) def = RimgateDefOf.Rimgate_EnterStargateWithContainer;
+        }
+        else
+        {
+            targetInfo = dest.Cell;
+            if(dump) def = RimgateDefOf.Rimgate_PushAndDumpMobileContainer;
+        }
 
         var job = JobMaker.MakeJob(def, parent);
         job.playerForced = forcedPawn != null; // only forced if user prioritized a specific pawn
         job.ignoreForbidden = true;
-
-        // If a gate was clicked, store it directly in targetC; otherwise use the cell
-        if (dest.HasThing && dest.Thing is Building_Stargate)
-            job.SetTarget(TargetIndex.C, dest.Thing);
-        else
-            job.targetC = dest.Cell;
-
+        job.targetC = targetInfo;
 
         pawn.jobs.TryTakeOrderedJob(job, JobTag.MiscWork);
     }
@@ -421,6 +461,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         {
             if (p.Dead || p.Downed) continue;
             if (!p.CanReserveAndReach(parent, PathEndMode.Touch, Danger.Deadly)) continue;
+            if (Utils.PawnIncapableOfHauling(p, out _)) continue;
 
             // favor someone close to cart and not far from destination
             float score = p.Position.DistanceToSquared(parent.Position) + 0.5f * p.Position.DistanceToSquared(dest);
@@ -443,8 +484,6 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("Contents".Translate() + ": " + InnerContainer.ContentsString.CapitalizeFirst());
-        if (Props.requiresPower)
-            sb.AppendLine($"Power: {(PowerOk ? "Online" : "Offline")}");
         if (Props.showMassInInspectString)
         {
             TaggedString taggedString = "Mass".Translate() + ": "
@@ -455,8 +494,8 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
                 : ((string)taggedString));
         }
 
-        sb.AppendLine().Append(LoadingInProgress 
-            ? "RG_CartStatusLoading".Translate() 
+        sb.AppendLine().Append(LoadingInProgress
+            ? "RG_CartStatusLoading".Translate()
             : "RG_CartStatusIdle".Translate());
 
         return sb.ToString();
@@ -624,22 +663,5 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
 
         var paint = cart.TryGetComp<CompColorable>();
         SavedHasPaint = paint != null && paint.Active;
-    }
-
-    public void StartPushVisual(Pawn pawn, ThingDef cartDef, Color drawA, Color drawB)
-    {
-        if (_pushVisual != null && !_pushVisual.Destroyed) return;
-        var vis = (Thing_PushedCartVisual)GenSpawn.Spawn(RimgateDefOf.Rimgate_PushedCartVisual,
-            pawn.Position, pawn.Map, WipeMode.Vanish);
-        vis.Init(pawn, cartDef, Props?.frontOffset ?? 1.0f, drawA, drawB);
-        vis.AttachTo(pawn);
-        _pushVisual = vis;
-    }
-
-    public void StopPushVisual()
-    {
-        if (_pushVisual != null && !_pushVisual.Destroyed)
-            _pushVisual.Destroy(DestroyMode.Vanish);
-        _pushVisual = null;
-    }
+    }  
 }

@@ -49,6 +49,8 @@ public class Comp_ShieldEmitter : ThingComp
 
     private bool _showShieldToggle;
 
+    private float ConsumptionRatePerTick => Props.fuelConsumptionRate / 60000f;
+
     private CompPowerTrader _cachedPowerComp;
 
     private Comp_Toggle _cachedFlickableComp;
@@ -403,7 +405,7 @@ public class Comp_ShieldEmitter : ThingComp
         if (!Active || !parent.IsHashIntervalTick(2))
             return;
 
-        FuelComp.ConsumeFuel(Props.fuelConsumptionRate);
+        FuelComp.ConsumeFuel(ConsumptionRatePerTick);
     }
 
     public override void CompTick()

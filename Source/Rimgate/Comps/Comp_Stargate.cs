@@ -197,11 +197,12 @@ public class Comp_Stargate : ThingComp
         Transporter?.CancelLoad();
 
         //clear buffers just in case
+        var drop = Utils.BestDropCellNearThing(parent);
         foreach (Thing thing in _sendBuffer)
-            GenSpawn.Spawn(thing, parent.InteractionCell, parent.Map);
+            GenSpawn.Spawn(thing, drop, parent.Map);
 
         foreach (Thing thing in _recvBuffer)
-            GenSpawn.Spawn(thing, parent.InteractionCell, parent.Map);
+            GenSpawn.Spawn(thing, drop, parent.Map);
 
         Comp_Stargate sgComp = null;
         if (closeOtherGate)
@@ -421,18 +422,8 @@ public class Comp_Stargate : ThingComp
             {
                 // Buildings (e.g., carts) must NOT spawn exactly on the gate/edifices.
                 // Prefer “near” placement with a predicate to avoid edifice tiles.
-                IntVec3 drop = parent.InteractionCell;
-                Map map = parent.Map;
-
-                Predicate<IntVec3> good =
-                c => c.InBounds(map)
-                              && c != parent.Position // never on the gate’s own cell
-                              && c.Standable(map)
-                              && map.edificeGrid[c] == null; // avoid any building cell
-
-                // as a very last resort, try raw spawn at the interaction cell (should be rare)
-                if (!GenPlace.TryPlaceThing(thing, drop, map, ThingPlaceMode.Near, out _, null, good))
-                    GenSpawn.Spawn(thing, drop, map);
+                var drop = Utils.BestDropCellNearThing(parent);
+                GenSpawn.Spawn(thing, drop, parent.Map);
                 PlayTeleportSound();
             }
             else

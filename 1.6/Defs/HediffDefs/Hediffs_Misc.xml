@@ -110,23 +110,26 @@
         <hediffClass>HediffWithComps</hediffClass>
         <tendable>false</tendable>
         <stages>
+            <!-- light -->
             <li>
+                <minSeverity>0.1</minSeverity>
                 <statFactors>
                     <MoveSpeed>0.97</MoveSpeed>
                 </statFactors>
-            </li> <!-- light -->
+            </li>
             <li>
-                <minSeverity>0.33</minSeverity>
+                <minSeverity>0.5</minSeverity>
                 <statFactors>
                     <MoveSpeed>0.93</MoveSpeed>
                 </statFactors>
             </li>
+            <!-- heavy -->
             <li>
-                <minSeverity>0.66</minSeverity>
+                <minSeverity>0.8</minSeverity>
                 <statFactors>
                     <MoveSpeed>0.88</MoveSpeed>
                 </statFactors>
-            </li> <!-- heavy -->
+            </li>
         </stages>
     </HediffDef>
 

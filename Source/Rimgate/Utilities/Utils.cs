@@ -50,26 +50,26 @@ internal static class Utils
     }
 
     // Prefer the cell in front of pawn; then other cardinals; else nearby radius.
-    public static IntVec3 BestDropCellNearPawn(Pawn p)
+    public static IntVec3 BestDropCellNearThing(Thing t)
     {
-        var map = p.Map;
-        var front = p.Position + p.Rotation.FacingCell;
-        if (IsGoodSpawnCell(front, map)) return front;
+        var map = t.Map;
+        var from = t.def.hasInteractionCell ? t.InteractionCell : t.Position + t.Rotation.FacingCell;
+        if (from != t.Position && IsGoodSpawnCell(from, map)) return from;
 
         // try other cardinals in rotation order: right, back, left
         for (int i = 1; i < 4; i++)
         {
-            var r = new Rot4((p.Rotation.AsInt + i) % 4);
-            var c = p.Position + r.FacingCell;
-            if (IsGoodSpawnCell(c, map)) return c;
+            var r = new Rot4((t.Rotation.AsInt + i) % 4);
+            var c = t.Position + r.FacingCell;
+            if (c != t.Position && IsGoodSpawnCell(c, map)) return c;
         }
 
         // small radial fallback
-        foreach (var c in GenRadial.RadialCellsAround(p.Position, 2f, useCenter: false))
-            if (IsGoodSpawnCell(c, map)) return c;
+        foreach (var c in GenRadial.RadialCellsAround(t.Position, 2f, useCenter: false))
+            if (c != t.Position && IsGoodSpawnCell(c, map)) return c;
 
         // last resort: current cell (should be rare)
-        return p.Position;
+        return t.Position;
     }
 
 

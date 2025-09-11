@@ -26,7 +26,7 @@ public class WorkGiver_PushMobileContainer : WorkGiver_Scanner
 
         if (comp.LoadingInProgress) return false;
         if (!pawn.CanReserveAndReach(t, PathEndMode.Touch, Danger.Deadly)) return false;
-        if (!comp.PowerOk) return false;
+        if (!comp.FuelOK) return false;
 
         // If not forced, require either being the attached pusher or no pusher
         if (!forced && comp.Pusher != null && comp.Pusher != pawn)
