@@ -227,4 +227,26 @@
         </generalRules>
     </ResearchProjectDef>
 
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_TrackedCart</defName>
+        <label>Tracked cart</label>
+        <description>Blueprints for a compact, tracked haul platform—part motor-pool ingenuity, part “don’t ask what’s in the crate.” Chemfuel-powered, stable on rough ground, and perfect for dragging too much loot back to base without rupturing a colonist’s spine.</description>
+        <baseCost>1500</baseCost>
+        <prerequisites>
+            <li>Rimgate_TauriBasic</li>
+            <li>BiofuelRefining</li>
+        </prerequisites>
+        <researchViewX>3</researchViewX>
+        <researchViewY>5</researchViewY>
+        <techprintCount>1</techprintCount>
+        <techprintCommonality>3</techprintCommonality>
+        <techprintMarketValue>3000</techprintMarketValue>
+        <heldByFactionCategoryTags>
+            <li>Rimgate_TauriFaction</li>
+        </heldByFactionCategoryTags>
+        <tags>
+            <li>Rimgate_TechprintPool</li>
+        </tags>
+    </ResearchProjectDef>
+
 </Defs>

@@ -137,6 +137,10 @@
       <Social>-4</Social>
       <Intellectual>8</Intellectual>
     </skillGains>
+    <forcedTraits>
+      <TooSmart />
+      <FastLearner />
+    </forcedTraits>
   </BackstoryDef>
 
   <BackstoryDef>
@@ -154,6 +158,10 @@
       <Social>8</Social>
       <Intellectual>5</Intellectual>
     </skillGains>
+    <forcedTraits>
+      <Bloodlust>0</Bloodlust>
+      <Nerves>2</Nerves>
+    </forcedTraits>
   </BackstoryDef>
 
   <BackstoryDef>
@@ -172,7 +180,7 @@
       <Plants>-6</Plants>
     </skillGains>
     <forcedTraits>
-      <Tough>0</Tough>
+      <Tough />
     </forcedTraits>
   </BackstoryDef>
 
@@ -194,6 +202,7 @@
     <forcedTraits>
       <Neurotic>2</Neurotic>
       <CreepyBreathing>0</CreepyBreathing>
+      <PsychicSensitivity>1</PsychicSensitivity>
     </forcedTraits>
   </BackstoryDef>
 

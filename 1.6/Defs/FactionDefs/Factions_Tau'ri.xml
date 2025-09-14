@@ -18,6 +18,16 @@
         <factionNameMaker>NamerFactionOutlander</factionNameMaker>
         <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
         <techLevel>Spacer</techLevel>
+        <xenotypeSet Inherit="False">
+            <xenotypeChances>
+                <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.05</Neanderthal>
+                <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+                <Genie MayRequire="Ludeon.RimWorld.Biotech">0.10</Genie>
+                <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.025</Starjack>
+                <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.05</Highmate>
+                <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+            </xenotypeChances>
+        </xenotypeSet>
         <naturalEnemy>false</naturalEnemy>
         <mustStartOneEnemy>false</mustStartOneEnemy>
         <raidCommonalityFromPointsCurve>

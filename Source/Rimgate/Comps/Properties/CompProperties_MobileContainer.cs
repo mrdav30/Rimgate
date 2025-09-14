@@ -8,7 +8,7 @@ public class CompProperties_MobileContainer : CompProperties
 {
     public float massCapacity = 150f;
 
-    public bool canChangeAssignedThingsAfterStarting;
+    public bool canChangeAssignedThingsAfterStarting = true;
 
     public float frontOffset = 1.0f;  // how far in front of pusher to draw/spawn
 

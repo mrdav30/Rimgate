@@ -51,6 +51,7 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_GoauldThrone</defName>
         <thing>Rimgate_GoauldThrone</thing>
+        <stuff>Leather_Panthera</stuff>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -90,7 +91,7 @@
 
     <KCSG.SymbolDef>
         <defName>Rimgate_JammedDoor</defName>
-        <thing>Rimgate_JammedDoor</thing>
+        <thing>Rimgate_JammedBlastDoor</thing>
         <stuff>Steel</stuff>
     </KCSG.SymbolDef>
 
@@ -350,6 +351,28 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldColonist</defName>
+        <pawnKindDef>Rimgate_GoauldColonist</pawnKindDef>
+        <faction>Rimgate_GoauldBaal</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldSlave</defName>
+        <pawnKindDef>Rimgate_GoauldSlave</pawnKindDef>
+        <faction>Rimgate_GoauldBaal</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldSlaveDriver</defName>
+        <pawnKindDef>Rimgate_GoauldSlaveDriver</pawnKindDef>
+        <faction>Rimgate_GoauldBaal</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_GoauldRangedApophis</defName>
         <pawnKindDef>Rimgate_GoauldRangedApophis</pawnKindDef>
         <faction>Rimgate_GoauldBaal</faction>
@@ -486,7 +509,7 @@
         <pawnKindDef>Rimgate_ManhunterKodiak</pawnKindDef>
         <spawnPartOfFaction>false</spawnPartOfFaction>
     </KCSG.SymbolDef>
-    
+
     <!-- Loot crates -->
 
     <KCSG.SymbolDef>

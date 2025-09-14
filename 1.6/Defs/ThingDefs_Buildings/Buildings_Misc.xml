@@ -164,7 +164,7 @@
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_Wheelbarrow</defName>
 		<label>wheelbarrow</label>
-		<description>A hand-pushed carrier with a small bed and a squeaky wheel. Slow to push, but sturdy and great for hauling stuff around. \nNot suitable for caravaning</description>
+		<description>A hand-pushed carrier with a small bed and a squeaky wheel. Slow, sturdy, and perfect for early hauling chores. Not suitable for caravaning.</description>
 		<graphicData>
 			<texPath>Things/Building/MobileContainer/RGWheelbarrow</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -188,18 +188,20 @@
 		<techLevel>Industrial</techLevel>
 		<comps>
 			<li Class="Rimgate.CompProperties_MobileContainer">
-				<slowdownSeverity>0.80</slowdownSeverity>
-				<canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
-				<massCapacity>60</massCapacity>
+				<slowdownSeverity>0.85</slowdownSeverity>
+				<massCapacity>75</massCapacity>
 			</li>
 		</comps>
+		<researchPrerequisites>
+			<li>Smithing</li>
+		</researchPrerequisites>
 	</ThingDef>
 
 	<!-- T2: Tracked haul cart -->
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_MobileTrackedCart</defName>
 		<label>tracked haul cart</label>
-		<description>A rugged cart on tank tracks fitted with a storage container on top. Better stability and capacity; still needs a pusher to move.\nNot suitable for caravaning</description>
+		<description>A rugged tank-tracked carrier with a bolted-down crate. Better stability and capacity than a wheelbarrow; still needs a pusher. A favorite in Tau’ri motor pools for moving “classified boxes” from one locked door to another. Not suitable for caravaning.</description>
 		<graphicData>
 			<texPath>Things/Building/MobileContainer/RGTrackedCart</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -223,14 +225,13 @@
 		<techLevel>Industrial</techLevel>
 		<comps>
 			<li Class="Rimgate.CompProperties_MobileContainer">
-				<slowdownSeverity>0.50</slowdownSeverity>
-				<canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
-				<massCapacity>150</massCapacity>
+				<slowdownSeverity>0.55</slowdownSeverity>
+				<massCapacity>200</massCapacity>
 			</li>
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
-				<fuelConsumptionRate>100.0</fuelConsumptionRate>
-				<fuelCapacity>15.0</fuelCapacity>
+				<fuelConsumptionRate>135.0</fuelConsumptionRate>
+				<fuelCapacity>10.0</fuelCapacity>
 				<fuelFilter>
 					<thingDefs>
 						<li>Chemfuel</li>
@@ -239,13 +240,16 @@
 			</li>
 			<li Class="CompProperties_Breakdownable" />
 		</comps>
+		<researchPrerequisites>
+			<li>Rimgate_TrackedCart</li>
+		</researchPrerequisites>
 	</ThingDef>
 
 	<!-- T3: Hover skid (spacer): requires power -->
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_MobileHoverSkid</defName>
 		<label>hover skid</label>
-		<description>A grav-skid platform with inertial dampers and fitted with a hermetically sealed crate on top. Glides where the pusher walks; high capacity, low friction. \nNot suitable for caravaning</description>
+		<description>A grav-skid with inertial dampers and a sealed crate. It glides where the pusher walks—high capacity, near-frictionless handling. Rumor says the focusing ring is Naquadah-based, which would explain why it hums like a Stargate room on standby. Not suitable for caravaning.</description>
 		<graphicData>
 			<texPath>Things/Building/MobileContainer/RGHoverSkid</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -255,7 +259,7 @@
 		<statBases>
 			<Mass>28</Mass>
 			<Flammability>0.3</Flammability>
-			<MaxHitPoints>180</MaxHitPoints>
+			<MaxHitPoints>160</MaxHitPoints>
 		</statBases>
 		<stuffCategories>
 			<li>Metallic</li>
@@ -266,18 +270,17 @@
 			<Rimgate_Naquadah>5</Rimgate_Naquadah>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
-		<techLevel>Industrial</techLevel>
+		<techLevel>Spacer</techLevel>
 		<comps>
 			<li Class="Rimgate.CompProperties_MobileContainer">
-				<slowdownSeverity>0.10</slowdownSeverity>
+				<slowdownSeverity>0.15</slowdownSeverity>
 				<shouldTickContents>false</shouldTickContents>
-				<canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
-				<massCapacity>240</massCapacity>
+				<massCapacity>320</massCapacity>
 			</li>
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
-				<fuelConsumptionRate>80.0</fuelConsumptionRate>
-				<fuelCapacity>10.0</fuelCapacity>
+				<fuelConsumptionRate>115.0</fuelConsumptionRate>
+				<fuelCapacity>5.0</fuelCapacity>
 				<fuelFilter>
 					<thingDefs>
 						<li>Rimgate_Naquadah</li>
@@ -287,13 +290,16 @@
 			<li Class="CompProperties_Breakdownable" />
 			<li Class="CompProperties_Explosive">
 				<wickTicks>220</wickTicks>
-				<explosiveRadius>4.9</explosiveRadius>
+				<explosiveRadius>2.8</explosiveRadius>
 				<explosiveDamageType>Bomb</explosiveDamageType>
 				<explodeOnKilled>true</explodeOnKilled>
-				<startWickHitPointsPercent>0.69</startWickHitPointsPercent>
-				<chanceNeverExplodeFromDamage>0.25</chanceNeverExplodeFromDamage>
+				<startWickHitPointsPercent>0.8</startWickHitPointsPercent>
+				<chanceNeverExplodeFromDamage>0.35</chanceNeverExplodeFromDamage>
 			</li>
 		</comps>
+		<researchPrerequisites>
+			<li>Rimgate_TrackedCart</li>
+		</researchPrerequisites>
 	</ThingDef>
 
 </Defs>

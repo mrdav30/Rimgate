@@ -74,6 +74,7 @@
         <kindDef>Combat</kindDef>
         <options>
           <Rimgate_WraithSoldier>13</Rimgate_WraithSoldier>
+          <Rimgate_WraithAssassin>8</Rimgate_WraithAssassin>
           <Rimgate_WraithCommander>10</Rimgate_WraithCommander>
           <Rimgate_WraithQueen>6</Rimgate_WraithQueen>
         </options>
@@ -83,6 +84,7 @@
         <options>
           <Rimgate_WraithColonist>10</Rimgate_WraithColonist>
           <Rimgate_WraithSoldier>15</Rimgate_WraithSoldier>
+          <Rimgate_WraithAssassin>8</Rimgate_WraithAssassin>
           <Rimgate_WraithCommander>10</Rimgate_WraithCommander>
           <Rimgate_WraithQueen>8</Rimgate_WraithQueen>
         </options>

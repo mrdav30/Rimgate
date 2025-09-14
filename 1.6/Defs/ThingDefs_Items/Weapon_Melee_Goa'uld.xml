@@ -66,4 +66,94 @@
         </recipeMaker>
     </ThingDef>
 
+    <ThingDef ParentName="BaseWeapon">
+        <defName>Rimgate_RodOfAnguish</defName>
+        <label>rod of anguish</label>
+        <description>A cruel Goa’uld control rod that channels a focused pain field on contact. It leaves little lasting injury—but wrings screams, buckles knees, and short-outs crude circuitry. Favored by Jaffa overseers who want obedience more than corpses.</description>
+
+        <techLevel>Spacer</techLevel>
+        <smeltable>false</smeltable>
+        <burnableByRecipe>false</burnableByRecipe>
+        <weaponClasses>
+            <li>Melee</li>
+        </weaponClasses>
+        <relicChance>1</relicChance>
+        <inspectorTabs>
+            <li>ITab_Art</li>
+        </inspectorTabs>
+
+        <weaponClasses>
+            <li>MeleeBlunt</li>
+        </weaponClasses>
+
+        <!-- Visuals -->
+        <graphicData>
+            <texPath>Things/Item/Weapon/Melee/RGRodOfAnguish</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <uiIconScale>1.6</uiIconScale>
+        <equippedAngleOffset>-35</equippedAngleOffset>
+
+        <!-- Not craftable, not generally tradeable (spawn it only) -->
+        <tradeability>None</tradeability>
+
+        <weaponTags>
+            <li>Rimgate_RodOfAnguish_tag</li>
+            <li>UltratechMelee</li>
+        </weaponTags>
+
+        <costStuffCount>80</costStuffCount>
+        <stuffCategories>
+            <li>Metallic</li>
+        </stuffCategories>
+
+        <statBases>
+            <Mass>1.4</Mass>
+            <MarketValue>1900</MarketValue>
+        </statBases>
+
+        <tools>
+            <!-- Primary strike: blunt impact + pain/stun rider -->
+            <li>
+                <label>shock pulse</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>10</power>                 <!-- modest physical damage -->
+                <cooldownTime>1.55</cooldownTime> <!-- snappy -->
+                <chanceFactor>1.0</chanceFactor>
+
+                <!-- Riders: brief stun + tiny EMP splash so mechs/gear hiccup -->
+                <extraMeleeDamages>
+                    <li>
+                        <def>Stun</def>
+                        <amount>12</amount>           <!-- ~0.6–1.2 sec typical -->
+                    </li>
+                    <li>
+                        <def>EMP</def>
+                        <amount>5</amount>            <!-- small mech disruption -->
+                    </li>
+                </extraMeleeDamages>
+
+                <!-- Sneak attack hurts more and really locks them down -->
+                <surpriseAttack>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>Stun</def>
+                            <amount>25</amount>
+                        </li>
+                        <li>
+                            <def>EMP</def>
+                            <amount>12</amount>
+                        </li>
+                    </extraMeleeDamages>
+                </surpriseAttack>
+            </li>
+        </tools>
+
+        <equippedStatOffsets>
+            <MeleeHitChance>0.04</MeleeHitChance>
+        </equippedStatOffsets>
+    </ThingDef>
+
 </Defs>

@@ -261,4 +261,26 @@
 		</tags>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_HoverSkid</defName>
+		<label>Hover skid</label>
+		<description>Reverse-engineer a gravitic cargo skid with Naquadah focusing rails. It floats wherever the handler steps, turning backbreaking salvage runs into a glide. Handle with care—if the field collapses under load, everything goes up in a very educational flash.</description>
+		<baseCost>1500</baseCost>
+		<prerequisites>
+			<li>Rimgate_GoauldBasic</li>
+			<li>AdvancedFabrication</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>5</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_GoauldBaal</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+	</ResearchProjectDef>
+
 </Defs>

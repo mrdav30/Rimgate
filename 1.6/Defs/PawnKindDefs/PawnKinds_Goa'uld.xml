@@ -14,27 +14,35 @@
     <itemQuality>Normal</itemQuality>
   </PawnKindDef>
 
-  <!-- ============ Goa'uld Civilian Base ============ -->
-
-  <PawnKindDef Name="Rimgate_GoauldCivilianBase" ParentName="Rimgate_GoauldBase" Abstract="True">
-    <combatPower>25</combatPower>
-    <isFighter>false</isFighter>
-    <gearHealthRange>0.2~2.0</gearHealthRange>
-    <apparelTags>
-      <li>Tribal</li>
-      <li>Neolithic</li>
-    </apparelTags>
-  </PawnKindDef>
-
   <!-- ====== Goa'uld Civilian Classes ========= -->
 
-  <PawnKindDef ParentName="Rimgate_GoauldCivilianBase">
+  <PawnKindDef Name="Rimgate_GoauldColonistBase" ParentName="Rimgate_GoauldBase">
     <defName>Rimgate_GoauldColonist</defName>
     <label>colonist</label>
+    <combatPower>25</combatPower>
+    <isFighter>false</isFighter>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.15</Neanderthal>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.15</Pigskin>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.15</Yttakin>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.15</Dirtmole>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.15</Highmate>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+      </xenotypeChances>
+    </xenotypeSet>
+    <gearHealthRange>0.2~2.0</gearHealthRange>
     <apparelMoney>1500~2800</apparelMoney>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
+    </apparelTags>
     <weaponMoney>270~1000</weaponMoney>
     <weaponTags>
-      <li>Rimgate_GoauldWeapons_tag</li>
+      <li>Gun</li>
     </weaponTags>
     <techHediffsChance>0.06</techHediffsChance>
     <techHediffsMoney>50~600</techHediffsMoney>
@@ -67,15 +75,29 @@
     </inventoryOptions>
   </PawnKindDef>
 
-  <PawnKindDef ParentName="Rimgate_GoauldCivilianBase">
+  <PawnKindDef ParentName="Rimgate_GoauldBase">
     <defName>Rimgate_GoauldSlave</defName>
     <label>slave</label>
+    <combatPower>22</combatPower>
+    <isFighter>false</isFighter>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.15</Neanderthal>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.15</Pigskin>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.15</Yttakin>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.15</Dirtmole>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.15</Highmate>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+      </xenotypeChances>
+    </xenotypeSet>
     <chemicalAddictionChance>0.5</chemicalAddictionChance>
     <apparelMoney>270~900</apparelMoney>
-    <weaponMoney>270~900</weaponMoney>
-    <weaponTags>
+    <apparelTags>
       <li>Tribal</li>
-    </weaponTags>
+    </apparelTags>
     <backstoryFiltersOverride>
       <li>
         <categoriesAdulthood>
@@ -85,8 +107,85 @@
     </backstoryFiltersOverride>
   </PawnKindDef>
 
+  <PawnKindDef ParentName="Rimgate_GoauldBase">
+    <defName>Rimgate_GoauldSlaveDriver</defName>
+    <label>slave driver</label>
+    <combatPower>55</combatPower>
+    <isFighter>true</isFighter>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.15</Highmate>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+      </xenotypeChances>
+    </xenotypeSet>
+    <requiredWorkTags>
+      <li>Social</li>
+    </requiredWorkTags>
+    <gearHealthRange>0.7~1.4</gearHealthRange>
+    <initialWillRange>4~6</initialWillRange>
+    <initialResistanceRange>50~80</initialResistanceRange>
+    <apparelMoney>500~1200</apparelMoney>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <weaponMoney>2000~3900</weaponMoney>
+    <weaponTags Inherit="False">
+      <li>Rimgate_RodOfAnguish_tag</li>
+    </weaponTags>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesAdulthood>
+          <li>Rimgate_SlaveDriverBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
+    <inventoryOptions>
+      <skipChance>0.9</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Beer</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>3</max>
+          </countRange>
+        </li>
+        <li>
+          <thingDef>SmokeleafJoint</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>2</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <skills>
+      <li>
+        <skill>Melee</skill>
+        <range>4~7</range>
+      </li>
+      <li>
+        <skill>Social</skill>
+        <range>6~10</range>
+      </li>
+      <li>
+        <skill>Animals</skill>
+        <range>2~5</range>
+      </li>
+    </skills>
+  </PawnKindDef>
+
   <PawnKindDef Name="Rimagate_GoauldBoss" ParentName="Rimgate_GoauldBase" Abstract="True">
     <isFighter>true</isFighter>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Rimgate_GoauldJaffa>999</Rimgate_GoauldJaffa>
+      </xenotypeChances>
+    </xenotypeSet>
     <canBeSapper>true</canBeSapper>
     <combatPower>150</combatPower>
     <techHediffsChance>1</techHediffsChance>
@@ -294,6 +393,8 @@
   <PawnKindDef Name="Rimgate_GoauldMeleeBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
     <combatPower>75</combatPower>
     <weaponTags>
+      <li>NeolithicMeleeAdvanced</li>
+      <li>MedievalMeleeAdvanced</li>
       <li>Rimgate_GoauldMelee_tag</li>
     </weaponTags>
   </PawnKindDef>

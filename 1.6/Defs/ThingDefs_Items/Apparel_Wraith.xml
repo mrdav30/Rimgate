@@ -294,7 +294,7 @@
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithArmorTierTwo</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
@@ -398,6 +398,143 @@
 				</targetingParameters>
 			</li>
 		</comps>
+	</ThingDef>
+
+	<!-- ========= Wraith Shield ========= -->
+
+	<ThingDef ParentName="BaseMeleeWeapon_Blunt_Quality">
+		<defName>Rimgate_WraithForceBuckler</defName>
+		<label>force buckler</label>
+		<description>A compact Wraith repulsor emitter bound into a forearm buckler. It projects a tight, reactive barrier that swats aside bullets and turns blades—until its field dips, at which point it’s little more than a heavy cuff. Favored by Wraith assassins who close the distance fast, break lines, and finish the job in a blur of claws and static.</description>
+		<thingClass>VEF.Apparels.Apparel_Shield</thingClass>
+		<techLevel>Spacer</techLevel>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Shield/RGWraithEnergyShield</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.5</drawSize>
+		</graphicData>
+		<equippedAngleOffset>0</equippedAngleOffset>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_WraithArmorTierTwo</researchPrerequisite>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<skillRequirements>
+				<Crafting>7</Crafting>
+			</skillRequirements>
+			<recipeUsers Inherit="False">
+				<li>FabricationBench</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<ComponentSpacer>4</ComponentSpacer>
+			<Plasteel>75</Plasteel>
+			<Uranium>25</Uranium>
+			<Rimgate_Naquadria>5</Rimgate_Naquadria>
+		</costList>
+		<thingCategories Inherit="False">
+			<li>VFEC_Shields</li>
+		</thingCategories>
+		<apparel>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
+			<careIfDamaged>false</careIfDamaged>
+			<wearPerDay>0</wearPerDay>
+			<bodyPartGroups>
+				<li>LeftHand</li>
+			</bodyPartGroups>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<layers>
+				<li>VFEC_OuterShell</li>
+			</layers>
+			<tags>
+				<li>Rimgate_WraithForceBuckler_tag</li>
+			</tags>
+		</apparel>
+		<statBases>
+			<MaxHitPoints>210</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.2</ArmorRating_Heat>
+			<WorkToMake>60000</WorkToMake>
+			<Mass>2</Mass>
+		</statBases>
+		<equippedStatOffsets>
+			<PainShockThreshold>0.05</PainShockThreshold>
+			<ShootingAccuracyPawn>-3</ShootingAccuracyPawn>
+			<MeleeDodgeChance>1</MeleeDodgeChance>
+		</equippedStatOffsets>
+		<tools>
+			<li>
+				<label>center</label>
+				<labelUsedInLogging>false</labelUsedInLogging>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+		<tickerType>Normal</tickerType>
+		<comps>
+			<li Class="VEF.Apparels.CompProperties_Shield">
+				<shieldTags>
+					<li>SpacerMilitary</li>
+				</shieldTags>
+				<useDeflectMetalEffect>true</useDeflectMetalEffect>
+				<coveredBodyPartGroups>
+					<li>Neck</li>
+					<li>Torso</li>
+					<li>Arms</li>
+					<li>Hands</li>
+					<li>Legs</li>
+				</coveredBodyPartGroups>
+				<offHandGraphicData>
+					<texPath>Things/Item/Apparel/Shield/RGWraithEnergyShield</texPath>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<shaderType>TransparentPostLight</shaderType>
+					<drawSize>1.5</drawSize>
+				</offHandGraphicData>
+				<offHandHoldOffset>
+					<northDefault>
+						<offset>(-0.3, 0, 0.3)</offset>
+						<behind>true</behind>
+					</northDefault>
+					<east>
+						<offset>(-0.1, 0, 0.1)</offset>
+						<!-- ? ? height -->
+						<behind>true</behind>
+					</east>
+					<south>
+						<offset>(0.3, -0.04, 0.2)</offset>
+						<!-- width ? height -->
+					</south>
+					<west>
+						<offset>(0.1, 0, 0.1)</offset>
+					</west>
+				</offHandHoldOffset>
+			</li>
+			<li Class="VEF.Apparels.CompProperties_ShieldBubble">
+				<compClass>VEF.Apparels.CompShieldBubble</compClass>
+				<blockRangedAttack>true</blockRangedAttack>
+				<blockMeleeAttack>true</blockMeleeAttack>
+				<showWhenDrafted>false</showWhenDrafted>
+				<showOnHostiles>false</showOnHostiles>
+				<showOnNeutralInCombat>false</showOnNeutralInCombat>
+				<EnergyShieldRechargeRate>0.2</EnergyShieldRechargeRate>
+				<EnergyShieldEnergyMax>100</EnergyShieldEnergyMax>
+				<minShieldSize>1.4</minShieldSize>
+				<maxShieldSize>1.8</maxShieldSize>
+				<disableRotation>true</disableRotation>
+			</li>
+		</comps>
+		<tradeTags>
+			<li>Rimgate_WraithApparelTrade_tag</li>
+			<li>ExoticMisc</li>
+			<li>Artifact</li>
+		</tradeTags>
 	</ThingDef>
 
 </Defs>

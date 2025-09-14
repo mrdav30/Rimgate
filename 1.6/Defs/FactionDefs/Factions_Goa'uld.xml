@@ -13,11 +13,6 @@
     <techLevel>Ultra</techLevel>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
-    <xenotypeSet Inherit="False">
-      <xenotypeChances>
-        <Rimgate_GoauldJaffa>999</Rimgate_GoauldJaffa>
-      </xenotypeChances>
-    </xenotypeSet>
     <backstoryFilters>
       <li>
         <categories>
@@ -126,19 +121,6 @@
           <Rimgate_PrimeSerpentGuard>2</Rimgate_PrimeSerpentGuard>
           <Rimgate_PrimeHorusGuard>2</Rimgate_PrimeHorusGuard>
           <Rimgate_GoauldLeader>1</Rimgate_GoauldLeader>
-        </options>
-      </li>
-      <li>
-        <!-- Normal fights, melee only -->
-        <kindDef>Combat</kindDef>
-        <commonality>20</commonality>
-        <disallowedStrategies>
-          <li>Siege</li>
-        </disallowedStrategies>
-        <options>
-          <Rimgate_GoauldMeleeAnubis>10</Rimgate_GoauldMeleeAnubis>
-          <Rimgate_GoauldMeleeApophis>10</Rimgate_GoauldMeleeApophis>
-          <Rimgate_GoauldMeleeRa>10</Rimgate_GoauldMeleeRa>
         </options>
       </li>
       <li>

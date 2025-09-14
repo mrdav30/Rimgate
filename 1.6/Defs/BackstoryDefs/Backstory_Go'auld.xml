@@ -131,7 +131,7 @@
       <Intellectual>0</Intellectual>
     </skillGains>
     <forcedTraits>
-      <Beauty>2</Beauty>
+      <Beauty>1</Beauty>
       <Greedy>0</Greedy>
     </forcedTraits>
   </BackstoryDef>
@@ -161,7 +161,74 @@
     </skillGains>
     <forcedTraits>
       <Ascetic>0</Ascetic>
-      <Jealous>0</Jealous>
+      <Wimp>0</Wimp>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_SlaveDriver</defName>
+    <title>Slave driver</title>
+    <titleShort>Slave driver</titleShort>
+    <baseDesc>Armed with a cruel rod of anguish and crueler orders, [PAWN_nameDef] was tasked with keeping miners and laborers in line. Their life was measured in screams per hour, not hours per shift. They learned how to instill fear, not how to lift a pick.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+      <li>Rimgate_SlaveDriverBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Social>4</Social>
+      <Melee>6</Melee>
+      <Mining>-6</Mining>
+      <Plants>-6</Plants>
+      <Artistic>-6</Artistic>
+    </skillGains>
+    <forcedTraits>
+      <Bloodlust>0</Bloodlust>
+      <Nerves>2</Nerves>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_OverseerLackey</defName>
+    <title>Overseer’s lackey</title>
+    <titleShort>Lackey</titleShort>
+    <baseDesc>Not all who served the Goa’uld held a weapon. [PAWN_nameDef] carried whips, schedules, and buckets of water for the “real” enforcers. They became adept at surviving by standing just far enough behind authority.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+      <li>Rimgate_SlaveDriverBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Social>2</Social>
+      <Crafting>2</Crafting>
+      <Construction>-4</Construction>
+      <Intellectual>-4</Intellectual>
+    </skillGains>
+    <forcedTraits>
+      <Greedy>0</Greedy>
+      <Industriousness>2</Industriousness>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_BrokenOverseer</defName>
+    <title>Broken overseer</title>
+    <titleShort>Broken overseer</titleShort>
+    <baseDesc>Once entrusted with enforcing the System Lord’s will, [PAWN_nameDef] eventually fell from grace—whether from pity, defiance, or sheer exhaustion. Branded and discarded, they drift between fear of punishment and memories of the screams they once commanded.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+      <li>Rimgate_SlaveDriverBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Social>-2</Social>
+      <Melee>2</Melee>
+      <Mining>2</Mining>
+      <Intellectual>-6</Intellectual>
+    </skillGains>
+    <forcedTraits>
+      <Nerves>-1</Nerves>
+      <Neurotic>2</Neurotic>
     </forcedTraits>
   </BackstoryDef>
 

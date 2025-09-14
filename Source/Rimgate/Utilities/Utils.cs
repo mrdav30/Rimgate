@@ -72,7 +72,6 @@ internal static class Utils
         return t.Position;
     }
 
-
     // Pick a good stand cell (adjacent to dest, reachable, closest to pawn)
     public static IntVec3 FindStandCellFor(Pawn pawn, IntVec3 dest, Map map, IntVec3 from)
     {

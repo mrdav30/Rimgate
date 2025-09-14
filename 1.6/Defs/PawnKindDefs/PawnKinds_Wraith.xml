@@ -135,7 +135,6 @@
       <li>Neolithic</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
       <li>Rimgate_WraithHeadgear_tag</li>
-      <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_WraithSoldierArmor</li>
@@ -151,6 +150,33 @@
       <li>
         <skill>Melee</skill>
         <range>5~8</range>
+      </li>
+    </skills>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_WraithMilBase">
+    <defName>Rimgate_WraithAssassin</defName>
+    <label>Wraith assassin</label>
+    <combatPower>110</combatPower>
+    <apparelTags>
+      <li>Tribal</li>
+      <li>Neolithic</li>
+      <li>Rimgate_WraithSoldierApparel_tag</li>
+      <li>Rimgate_WraithForceBuckler_tag</li>
+      <li>Rimgate_WraithHeadgear_tag</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Rimgate_WraithSoldierArmor</li>
+      <li>Rimgate_WraithGoggles</li>
+      <li>Rimgate_WraithForceBuckler</li>
+    </apparelRequired>
+    <weaponTags>
+      <li>Spear</li>
+    </weaponTags>
+    <skills>
+      <li>
+        <skill>Melee</skill>
+        <range>8~15</range>
       </li>
     </skills>
   </PawnKindDef>
@@ -244,6 +270,7 @@
       <li>SpacerMilitary</li>
       <li>Rimgate_WraithHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
+      <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_WraithHelmet</li>

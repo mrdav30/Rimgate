@@ -114,20 +114,20 @@
             <li>
                 <minSeverity>0.1</minSeverity>
                 <statFactors>
-                    <MoveSpeed>0.97</MoveSpeed>
+                    <MoveSpeed>0.98</MoveSpeed>
                 </statFactors>
             </li>
             <li>
                 <minSeverity>0.5</minSeverity>
                 <statFactors>
-                    <MoveSpeed>0.93</MoveSpeed>
+                    <MoveSpeed>0.92</MoveSpeed>
                 </statFactors>
             </li>
             <!-- heavy -->
             <li>
                 <minSeverity>0.8</minSeverity>
                 <statFactors>
-                    <MoveSpeed>0.88</MoveSpeed>
+                    <MoveSpeed>0.85</MoveSpeed>
                 </statFactors>
             </li>
         </stages>
