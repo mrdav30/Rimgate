@@ -11,7 +11,7 @@ public static class Patch_CompLabyrinthDoor_DrawJammed
     private static bool IsSecretDoor(Thing thing)
     {
         // Resolve once, then cache to avoid string compares every frame.
-        return thing?.def == RimgateDefOf.Rimgate_SecretDoor;
+        return thing?.def == RimgateDefOf.Rimgate_SecretDoor || thing?.def == RimgateDefOf.Rimgate_JammedBlastDoor;
     }
 
     // Return false to skip vanilla; true to let vanilla run.

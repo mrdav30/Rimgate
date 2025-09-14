@@ -288,11 +288,15 @@
         <label>jammed blast door</label>
         <description>A heavy blast door, bent and jammed beyond normal operation. Once meant to seal corridors from enemy incursion—or something worse—it now hums with locked hydraulics. Forcing it open may reveal why it was sealed.</description>
 
-        <!-- “Mover” shell (non-tinted); Anomaly-style -->
+        <stuffCategories Inherit="False">
+            <li>Metallic</li>
+        </stuffCategories>
+        <costStuffCount>25</costStuffCount>
+
+        <!-- “Mover” shell -->
         <graphicData>
             <texPath>Things/Building/Structure/RGBlastDoor_Mover</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <ignoreThingDrawColor>true</ignoreThingDrawColor>
         </graphicData>
 
         <comps Inherit="False">
@@ -301,7 +305,6 @@
                 <jammed>
                     <texPath>Things/Building/Structure/RGBlastDoor_Jammed</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
-                    <ignoreThingDrawColor>true</ignoreThingDrawColor>
                 </jammed>
 
                 <!-- Interaction / command UI -->
@@ -337,12 +340,11 @@
 
         <!-- Allow stone tinting -->
         <stuffCategories Inherit="False">
-            <li>Metallic</li>
             <li>Stony</li>
         </stuffCategories>
         <costStuffCount>25</costStuffCount>
 
-        <!-- Outer “mover” shell that picks up stuff color -->
+        <!-- Outer “mover” shell -->
         <graphicData>
             <texPath>Things/Building/Structure/RGSecretDoorRock_Mover</texPath>
             <graphicClass>Graphic_Single</graphicClass>
