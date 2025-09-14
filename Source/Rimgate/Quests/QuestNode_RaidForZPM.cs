@@ -55,7 +55,7 @@ public class QuestNode_RaidForZPM : QuestNode
         QuestPart_Delay questPart_Delay = new QuestPart_Delay();
         questPart_Delay.delayTicks = _raidDelayTicksRange.RandomInRange;
         questPart_Delay.alertLabel = "QuestPartRaidsDelay".Translate();
-        questPart_Delay.alertExplanation = "QuestPartRaidsDelayDesc".Translate();
+        questPart_Delay.alertExplanation = "RG_RaidZpmDelayDesc".Translate();
         questPart_Delay.ticksLeftAlertCritical = 60000;
         questPart_Delay.inSignalEnable = QuestGen.slate.Get<string>("inSignal");
         questPart_Delay.alertCulprits.Add(zpm);
@@ -84,8 +84,9 @@ public class QuestNode_RaidForZPM : QuestNode
         randomRaid.pointsRange = new FloatRange(num * _minRaidThreatPointsFactor, num * _maxRaidThreatPointsFactor);
         randomRaid.arrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
         randomRaid.raidStrategy = RimgateDefOf.ImmediateAttackSmart;
-        randomRaid.targetDefs = new List<ThingDef> { RimgateDefOf.Rimgate_ZPM };
-        randomRaid.useLetterKey = "RG_LetterRaidZpmProtectDesc";
+        randomRaid.TargetDefs = new List<ThingDef> { RimgateDefOf.Rimgate_ZPM };
+        randomRaid.TargetPredicate = (t) => t is Building_ZPM zpm && zpm.IsBroadcasting;
+        randomRaid.UseLetterKey = "RG_LetterRaidZpmProtectDesc";
         randomRaid.generateFightersOnly = true;
         randomRaid.fallbackToPlayerHomeMap = true;
         quest.AddPart(randomRaid);

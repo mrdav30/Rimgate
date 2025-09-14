@@ -5,6 +5,7 @@ using RimWorld;
 using RimWorld.Planet;
 using RimWorld.QuestGen;
 using Verse;
+using Verse.Noise;
 
 namespace Rimgate;
 
@@ -25,18 +26,26 @@ public class QuestNode_RaidStargateComplex : QuestNode
 
     protected override bool TestRunInt(Slate slate)
     {
-        return TryFindEnemyFaction(out _);
+        if(!Utils.TryFindEnemyFaction(out _))
+            return false;
+
+        List<string> exclusions = excludeTags.GetValue(slate).ToList();
+        IEnumerable<SitePartDef> sitePartDefs = slate.Get<IEnumerable<SitePartDef>>("sitePartDefs");
+        if (exclusions != null && exclusions.Any() && sitePartDefs != null)
+        {
+            if (!sitePartDefs.Where(p => p != null && CanRaid(p, exclusions)).Any())
+                return false;
+        }
+
+        return true;
     }
 
     protected override void RunInt()
     {
-        if (!TryFindEnemyFaction(out var enemyFaction))
-            return;
-
         Slate slate = QuestGen.slate;
         List<string> exclusions = excludeTags.GetValue(slate).ToList();
         IEnumerable<SitePartDef> sitePartDefs = slate.Get<IEnumerable<SitePartDef>>("sitePartDefs");
-        if (exclusions != null && sitePartDefs != null)
+        if (exclusions != null && exclusions.Any() && sitePartDefs != null)
         {
             if (!sitePartDefs.Where(p => p != null && CanRaid(p, exclusions)).Any())
                 return;
@@ -56,23 +65,19 @@ public class QuestNode_RaidStargateComplex : QuestNode
         if (component != null)
         {
             component.alertRaidsArrivingIn = true;
-            component.delayRangeHours = new FloatRange(1f, 3f);
+            component.delayRangeHours = new FloatRange(0.10f, 0.5f);
         }
 
         if (Find.Storyteller.difficulty.allowViolentQuests && Rand.Chance(0.5f))
         {
-            var customLetterLabel = "Raid".Translate() + ": " + enemyFaction.Name;
-            var customLetterText = "RG_LetterRaidStargateComplexDesc".Translate(enemyFaction.NameColored).Resolve();
-
-            quest.RandomRaid(
-                site,
-                _randomPointsFactorRange * num2,
-                enemyFaction,
-                null,
-                PawnsArrivalModeDefOf.EdgeWalkIn,
-                RaidStrategyDefOf.ImmediateAttack,
-                customLetterLabel,
-                customLetterText);
+            QuestPart_RandomFactionRaid randomRaid = new QuestPart_RandomFactionRaid();
+            randomRaid.mapParent = site;
+            randomRaid.pointsRange = _randomPointsFactorRange * num2;
+            randomRaid.arrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+            randomRaid.raidStrategy = RimgateDefOf.ImmediateAttackSmart;
+            randomRaid.UseLetterKey = "RG_LetterRaidStargateComplexDesc";
+            randomRaid.generateFightersOnly = true;
+            quest.AddPart(randomRaid);
         }
     }
 
@@ -85,11 +90,5 @@ public class QuestNode_RaidStargateComplex : QuestNode
         }
 
         return true;
-    }
-
-    private bool TryFindEnemyFaction(out Faction enemyFaction)
-    {
-        enemyFaction = Find.FactionManager.RandomRaidableEnemyFaction();
-        return enemyFaction != null;
     }
 }

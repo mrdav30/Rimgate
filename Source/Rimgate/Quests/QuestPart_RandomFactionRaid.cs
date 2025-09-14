@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
@@ -11,11 +12,11 @@ namespace Rimgate;
 
 public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
 {
-    public string useLetterKey;
+    public string UseLetterKey = "RG_LetterMaraudersDesc";
 
-    public List<ThingDef> targetDefs;
+    public List<ThingDef> TargetDefs;
 
-    private Faction _cachedFaction;
+    public Predicate<Thing> TargetPredicate;
 
     public override void Notify_QuestSignalReceived(Signal signal)
     {
@@ -31,32 +32,40 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
 
         if (faction == null)
         {
-            if (!Utils.TryFindEnemyFaction(out _cachedFaction, false))
+            if (!Utils.TryFindEnemyFaction(out faction, false))
                 return;
-            customLetterLabel = "Raid".Translate() + ": " + _cachedFaction.Name;
-            customLetterText = useLetterKey.Translate(_cachedFaction.NameColored).Resolve();
         }
-        else
-            _cachedFaction = faction;
+
+        customLetterLabel ??= "Raid".Translate() + ": " + faction.Name;
+        customLetterText ??= UseLetterKey.Translate(faction.NameColored).Resolve();
 
         Map map = mapParent.Map;
         IncidentParms incidentParms = new IncidentParms();
         incidentParms.forced = true;
         incidentParms.quest = quest;
         incidentParms.target = map;
-        incidentParms.points = useCurrentThreatPoints 
-            ? (StorytellerUtility.DefaultThreatPointsNow(map) * currentThreatPointsFactor) 
+        incidentParms.points = useCurrentThreatPoints
+            ? (StorytellerUtility.DefaultThreatPointsNow(map) * currentThreatPointsFactor)
             : pointsRange.RandomInRange;
-        incidentParms.faction = _cachedFaction;
+        incidentParms.faction = faction;
         incidentParms.customLetterLabel = signal.args.GetFormattedText(customLetterLabel);
         incidentParms.customLetterText = signal.args.GetFormattedText(customLetterText).Resolve();
 
-        attackTargets = map.listerThings
-            .ThingsOfDef(RimgateDefOf.Rimgate_ZPM)
-            .Where(p => p.Faction == Faction.OfPlayer 
-                && p.Spawned 
-                && (p is Building_ZPM b ? b.IsBroadcasting : true))
-            .ToList();
+        if (TargetDefs != null)
+        {
+            attackTargets ??= new List<Thing>();
+            for (int i = 0; i <= TargetDefs.Count; i++)
+            {
+                var foundTargets = map.listerThings
+                    .ThingsOfDef(TargetDefs[i])
+                    .Where(p => p.Faction == Faction.OfPlayer
+                        && p.Spawned
+                        && (TargetPredicate != null ? TargetPredicate(p) : true))
+                    .ToList();
+                if (foundTargets.Any())
+                    attackTargets.AddRange(foundTargets);
+            }
+        }
 
         incidentParms.attackTargets = attackTargets;
         incidentParms.generateFightersOnly = generateFightersOnly;
@@ -65,22 +74,16 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
             incidentParms.raidArrivalMode = arrivalMode;
 
         IncidentDef incidentDef = RimgateDefOf.Rimgate_Marauders;
-        if (raidStrategy != null)
-            incidentParms.raidStrategy = raidStrategy;
+        incidentParms.raidStrategy = raidStrategy;
 
-        if (_cachedFaction != null)
+        if (faction != null)
         {
             incidentParms.points = Mathf.Max(
                 incidentParms.points,
-                _cachedFaction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
+                faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
         }
 
         if (incidentDef.Worker.CanFireNow(incidentParms))
             incidentDef.Worker.TryExecute(incidentParms);
-    }
-
-    private void FindTargetsOnMap(Map map)
-    {
-
     }
 }

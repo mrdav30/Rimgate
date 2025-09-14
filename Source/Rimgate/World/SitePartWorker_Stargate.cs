@@ -35,9 +35,7 @@ public class SitePartWorker_Stargate : SitePartWorker
         var VortexCells = gateOnMap.TryGetComp<Comp_Stargate>().VortexCells;
         foreach (Pawn pawn in map.mapPawns?.AllPawns)
         {
-            if (pawn.Map == null) continue;
-
-            Room pawnRoom = pawn.Position.GetRoom(pawn.Map);
+            Room pawnRoom = pawn.Position.GetRoom(map);
             if (pawnRoom == null) continue;
 
             var cells = GenRadial.RadialCellsAround(pawn.Position, 9, true)

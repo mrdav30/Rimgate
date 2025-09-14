@@ -159,6 +159,7 @@
 
 	<!-- ZPM Raid Quest -->
 
+	<RG_RaidZpmDelayDesc>Your ZPM is broadcasting a strong signal that anyone can hone in on.\n\nRaids will start arriving in {0}.\n\nThe raiders will target your ZPM and attempt to seize it.</RG_RaidZpmDelayDesc>
 	<RG_LetterRaidZpmProtectDesc>A raid from {0} has zeroed in on your ZPM’s energy signature. They’ve arrived to seize it — and they won’t ask nicely.</RG_LetterRaidZpmProtectDesc>
 
 	<!-- Marauders -->
