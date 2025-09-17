@@ -102,6 +102,12 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_SecretDoor_Granite</defName>
+        <thing>Rimgate_SecretDoor</thing>
+        <stuff>BlocksGranite</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_NaquadahColumn</defName>
         <thing>Column</thing>
         <stuff>Rimgate_Naquadah</stuff>
@@ -147,6 +153,11 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_DestroyedGeothermalGenerator</defName>
         <thing>Rimgate_DestroyedGeothermalGenerator</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ToxicSpout</defName>
+        <thing>Rimgate_ToxicSpout</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

@@ -6,7 +6,7 @@
 		<label>Stargate location</label>
 		<description>A remote site known to contain a stargate.</description>
 		<workerClass>Rimgate.SitePartWorker_Stargate</workerClass>
-		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+		<siteTexture>UI/Icon/Map/RGStargateComplexSiteIcon</siteTexture>
 		<expandingIconTexture>UI/Icon/Map/RGStargateComplexSiteIcon</expandingIconTexture>
 		<requiresFaction>true</requiresFaction>
 		<approachOrderString>Investigate {0}</approachOrderString>
@@ -15,14 +15,27 @@
 		<arrivedLetterDef>NeutralEvent</arrivedLetterDef>
 		<wantsThreatPoints>true</wantsThreatPoints>
 		<minThreatPoints>90</minThreatPoints>
+		<!-- <lootTable>
+			<li>
+				<thing>Steel</thing>
+				<weight>1</weight>
+			</li>
+			<li>
+				<thing>Gold</thing>
+				<weight>0.25</weight>
+			</li>
+			<li>
+				<thing>Silver</thing>
+				<weight>0.25</weight>
+			</li>
+			<li>
+				<thing>ComponentIndustrial</thing>
+				<weight>0.5</weight>
+			</li>
+		</lootTable> -->
 		<tags>
 			<li>Rimgate_StargateSite</li>
 		</tags>
-		<excludesTags>
-			<li>
-				Rimgate_StargateTrapSite
-			</li>
-		</excludesTags>
 	</SitePartDef>
 
 	<GenStepDef>
@@ -32,20 +45,20 @@
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<structureLayoutDefs>
 				<!-- Goa'uld -->
-				<li>Rimgate_StructureAbydosTemple</li>
 				<li>Rimgate_StructureGoauldLostBase</li>
 				<li>Rimgate_StructureGoauldNaquadahStorehouse</li>
 				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
+				<li>Rimgate_StructureGoauldTemple</li>
 				<!-- Tau'ri -->
 				<li>Rimgate_StructureSGC</li>
 				<li>Rimgate_StructureIndustrialTown</li>
 				<li>Rimgate_StructureTauriForwardOutpost</li>
 				<li>Rimgate_StructureTauriLostBase</li>
 				<!-- Wraith -->
-				<li>Rimgate_StructureWraithHibernationSite</li>
 				<li>Rimgate_StructureWraithHiveSiteAlpha</li>
 				<li>Rimgate_StructureWraithHiveSiteBravo</li>
 				<li>Rimgate_StructureWraithHiveSiteCharlie</li>
+				<li>Rimgate_StructureWraithHiveSiteDelta</li>
 				<!-- Misc -->
 				<li>Rimgate_StructureAncientComplexAlpha</li>
 				<li>Rimgate_StructureAncientComplexBravo</li>
@@ -53,46 +66,12 @@
 				<li>Rimgate_StructureBarrenGate</li>
 				<li>Rimgate_StructureBarrenGateNoDHD</li>
 				<li>Rimgate_StructureCavernAlpha</li>
+				<li>Rimgate_StructureMazeAlpha</li>
+				<li>Rimgate_StructureMazeBravo</li>
 				<li>Rimgate_StructureMechHiveAlpha</li>
 				<li>Rimgate_StructureJadeHengeAlpha</li>
 				<li>Rimgate_StructureJadeHengeBravo</li>
 				<li>Rimgate_StructureUnasVillage</li>
-			</structureLayoutDefs>
-		</genStep>
-	</GenStepDef>
-
-	<SitePartDef>
-		<defName>Rimgate_StargateTrapSite</defName>
-		<label>Stargate location</label>
-		<description>A remote site known to contain a stargate.</description>
-		<workerClass>Rimgate.SitePartWorker_Stargate</workerClass>
-		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
-		<expandingIconTexture>UI/Icon/Map/RGStargateComplexSiteIcon</expandingIconTexture>
-		<requiresFaction>true</requiresFaction>
-		<approachOrderString>Investigate {0}</approachOrderString>
-		<approachingReportString>Investigating {0}</approachingReportString>
-		<arrivedLetter>There is a stargate in this area.</arrivedLetter>
-		<arrivedLetterDef>NeutralEvent</arrivedLetterDef>
-		<wantsThreatPoints>true</wantsThreatPoints>
-		<minThreatPoints>90</minThreatPoints>
-		<tags>
-			<li>Rimgate_StargateTrapSite</li>
-		</tags>
-		<excludesTags>
-			<li>
-				Rimgate_StargateSite
-			</li>
-		</excludesTags>
-	</SitePartDef>
-
-	<GenStepDef>
-		<defName>Rimgate_StargateTrapSite</defName>
-		<linkWithSite>Rimgate_StargateTrapSite</linkWithSite>
-		<order>450</order>
-		<genStep Class="KCSG.GenStep_CustomStructureGen">
-			<structureLayoutDefs>
-				<li>Rimgate_StructureMazeAlpha</li>
-				<li>Rimgate_StructureMazeBravo</li>
 			</structureLayoutDefs>
 		</genStep>
 	</GenStepDef>
