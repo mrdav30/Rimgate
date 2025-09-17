@@ -71,6 +71,7 @@
             <MaxHitPoints>6000</MaxHitPoints>
             <Flammability>0</Flammability>
             <Mass>290</Mass>
+            <MeditationFocusStrength>0.24</MeditationFocusStrength>
         </statBases>
         <comps>
             <li Class="Rimgate.CompProperties_Stargate">
@@ -91,6 +92,26 @@
                     <li>Rimgate_DialHomeDevice</li>
                     <li>Rimgate_TauriDialHomeDevice</li>
                 </linkableFacilities>
+            </li>
+            <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                    <li>Natural</li>
+                    <li>Void</li>
+                </focusTypes>
+                <offsets>
+                    <li Class="FocusStrengthOffset_BuildingDefsLit">
+                        <defs>
+                            <li>Rimgate_DialHomeDevice</li>
+                        </defs>
+                        <offsetPerBuilding>0.05</offsetPerBuilding>
+                        <radius>9.9</radius>
+                        <maxBuildings>1</maxBuildings>
+                        <explanationKey>MeditationFocusPerBuilding</explanationKey>
+                        <explanationKeyAbstract>MeditationFocusPerBuildingAbstract</explanationKeyAbstract>
+                        <drawRingRadius>false</drawRingRadius>
+                    </li>
+                </offsets>
             </li>
         </comps>
     </ThingDef>

@@ -322,7 +322,7 @@
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
 		<defName>Rimgate_HorusHelmet</defName>
 		<label>Horus helmet</label>
-		<description>the signature helm of Ra’s elite peacocks—er, warriors. High shine, moderate armor, and excellent against everything but bullets. Just don’t try to look up stairs in it.</description>
+		<description>The signature helm of Ra’s elite peacocks—er, warriors. High shine, moderate armor, and excellent against everything but bullets. Just don’t try to look up stairs in it.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
 		</graphicData>
@@ -338,9 +338,9 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_HorusHelmetOpen</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</toggleUiIconPath>
-				<isClosedState>true</isClosedState>
+				<alternateDef>Rimgate_HorusHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
 			</li>
 		</comps>
 	</ThingDef>
@@ -348,7 +348,7 @@
 	<ThingDef ParentName="Rimgate_OpenGuardHeadgearBase">
 		<defName>Rimgate_HorusHelmetOpen</defName>
 		<label>Horus helmet (open)</label>
-		<description>for when you want to cosplay as a Space Falcon but still show off your luscious beard. Same sleek Horus look, 100% more chin exposure.</description>
+		<description>For when you want to cosplay as a Space Falcon but still show off your luscious beard. Same sleek Horus look, 100% more chin exposure.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
 		</graphicData>
@@ -357,8 +357,8 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_HorusHelmet</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</toggleUiIconPath>
+				<alternateDef>Rimgate_HorusHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
 			</li>
 		</comps>
 	</ThingDef>
@@ -382,9 +382,9 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_PrimeHorusHelmetOpen</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGPrimeGuardHelmetOpen</toggleUiIconPath>
-				<isClosedState>true</isClosedState>
+				<alternateDef>Rimgate_PrimeHorusHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
 			</li>
 		</comps>
 	</ThingDef>
@@ -404,8 +404,8 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_PrimeHorusHelmet</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGHorusPrimeHelmet</toggleUiIconPath>
+				<alternateDef>Rimgate_PrimeHorusHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
 			</li>
 		</comps>
 	</ThingDef>
@@ -431,9 +431,9 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_JackalHelmetOpen</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</toggleUiIconPath>
-				<isClosedState>true</isClosedState>
+				<alternateDef>Rimgate_JackalHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
 			</li>
 		</comps>
 	</ThingDef>
@@ -453,8 +453,8 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_JackalHelmet</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</toggleUiIconPath>
+				<alternateDef>Rimgate_JackalHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
 			</li>
 		</comps>
 	</ThingDef>
@@ -478,9 +478,9 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_PrimeJackalHelmetOpen</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGPrimeGuardHelmetOpen</toggleUiIconPath>
-				<isClosedState>true</isClosedState>
+				<alternateDef>Rimgate_PrimeJackalHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
 			</li>
 		</comps>
 	</ThingDef>
@@ -500,8 +500,8 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_PrimeJackalHelmet</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</toggleUiIconPath>
+				<alternateDef>Rimgate_PrimeJackalHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
 			</li>
 		</comps>
 	</ThingDef>
@@ -520,9 +520,9 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_SerpentHelmetOpen</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</toggleUiIconPath>
-				<isClosedState>true</isClosedState>
+				<alternateDef>Rimgate_SerpentHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
 			</li>
 		</comps>
 	</ThingDef>
@@ -542,8 +542,8 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_SerpentHelmet</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</toggleUiIconPath>
+				<alternateDef>Rimgate_SerpentHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
 			</li>
 		</comps>
 	</ThingDef>
@@ -560,9 +560,9 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_PrimeSerpentHelmetOpen</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGPrimeGuardHelmetOpen</toggleUiIconPath>
-				<isClosedState>true</isClosedState>
+				<alternateDef>Rimgate_PrimeSerpentHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
 			</li>
 		</comps>
 	</ThingDef>
@@ -582,8 +582,8 @@
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<attachedHeadgearDef>Rimgate_PrimeSerpentHelmet</attachedHeadgearDef>
-				<toggleUiIconPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</toggleUiIconPath>
+				<alternateDef>Rimgate_PrimeSerpentHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
 			</li>
 		</comps>
 	</ThingDef>

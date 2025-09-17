@@ -3,11 +3,8 @@
 
 	<!-- Apparel/Equipment Control -->
 
-	<RG_ToggleableHeadgearCommand_Label>Wear {0}</RG_ToggleableHeadgearCommand_Label>
-	<RG_ToggleableHeadgearCommand_Desc>Toggle wearing {0}.</RG_ToggleableHeadgearCommand_Desc>
-
-	<RG_SwitchWeaponCommand_Label>Switch {0}</RG_SwitchWeaponCommand_Label>
-	<RG_SwitchWeaponCommand_Desc>Switch to {0}.</RG_SwitchWeaponCommand_Desc>
+	<RG_SwitchToCommandLabel>Switch {0}</RG_SwitchToCommandLabel>
+	<RG_SwitchToCommand_Desc>Switch to {0}.</RG_SwitchToCommand_Desc>
 
 	<!-- Incidents -->
 

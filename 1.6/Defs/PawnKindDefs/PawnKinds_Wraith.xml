@@ -23,26 +23,8 @@
     <combatPower>25</combatPower>
     <isFighter>false</isFighter>
     <gearHealthRange>0.2~2.0</gearHealthRange>
-    <apparelMoney>300~900</apparelMoney>
+    <apparelMoney>200~1000</apparelMoney>
     <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
-    <apparelTags>
-      <li>Tribal</li>
-      <li>Neolithic</li>
-    </apparelTags>
-    <weaponMoney>100~550</weaponMoney>
-    <weaponTags>
-      <li>Gun</li>
-      <li>NeolithicMeleeBasic</li>
-      <li>NeolithicMeleeAdvanced</li>
-    </weaponTags>
-    <techHediffsMoney>
-      <min>200</min>
-      <max>300</max>
-    </techHediffsMoney>
-    <techHediffsTags>
-      <li>Simple</li>
-    </techHediffsTags>
-    <techHediffsChance>0.51</techHediffsChance>
     <invNutrition>2.55</invNutrition>
     <inventoryOptions>
       <skipChance>0.75</skipChance>
@@ -72,11 +54,30 @@
   <PawnKindDef ParentName="Rimgate_WraithCivilianBase">
     <defName>Rimgate_WraithColonist</defName>
     <label>colonist</label>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <weaponMoney>100~550</weaponMoney>
+    <weaponTags>
+      <li>Gun</li>
+      <li>NeolithicMeleeBasic</li>
+      <li>NeolithicMeleeAdvanced</li>
+    </weaponTags>
+    <techHediffsMoney>200~300</techHediffsMoney>
+    <techHediffsTags>
+      <li>Simple</li>
+    </techHediffsTags>
+    <techHediffsChance>0.15</techHediffsChance>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_WraithCivilianBase">
     <defName>Rimgate_WraithSlave</defName>
     <label>slave</label>
+    <apparelTags>
+      <li>Tribal</li>
+      <li>Neolithic</li>
+    </apparelTags>
   </PawnKindDef>
 
   <!-- ============ Wraith Military Base ============ -->
@@ -93,16 +94,30 @@
     <invNutrition>2.55</invNutrition>
     <minGenerationAge>19</minGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
+    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
     <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
-    <apparelMoney>1500~2500</apparelMoney>
-    <weaponMoney>1200~1800</weaponMoney>
+    <apparelMoney>1250~2500</apparelMoney>
+    <specificApparelRequirements>
+      <li>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <apparelLayer>OnSkin</apparelLayer>
+        <stuff>Synthread</stuff>
+      </li>
+      <li>
+        <bodyPartGroup>Legs</bodyPartGroup>
+        <apparelLayer>OnSkin</apparelLayer>
+        <stuff>Synthread</stuff>
+      </li>
+    </specificApparelRequirements>
+    <weaponMoney>1100~2500</weaponMoney>
     <techHediffsMoney>1000~1500</techHediffsMoney>
-    <techHediffsChance>0.73</techHediffsChance>
+    <techHediffsChance>0.4</techHediffsChance>
     <techHediffsTags>
       <li>Advanced</li>
     </techHediffsTags>
     <combatEnhancingDrugsCount>0~2</combatEnhancingDrugsCount>
+    <biocodeWeaponChance>0.15</biocodeWeaponChance>
     <inventoryOptions>
       <skipChance>0.8</skipChance>
       <subOptionsChooseOne>
@@ -157,7 +172,10 @@
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithAssassin</defName>
     <label>Wraith assassin</label>
-    <combatPower>110</combatPower>
+    <combatPower>150</combatPower>
+    <apparelMoney>5000~8000</apparelMoney>
+    <weaponMoney>2200~3800</weaponMoney>
+    <techHediffsMoney>2000~2500</techHediffsMoney>
     <apparelTags>
       <li>Tribal</li>
       <li>Neolithic</li>
@@ -197,11 +215,12 @@
     </backstoryFiltersOverride>
     <gearHealthRange>1~3.3</gearHealthRange>
     <itemQuality>Good</itemQuality>
-    <apparelMoney>1000~4500</apparelMoney>
+    <apparelMoney>6000~9000</apparelMoney>
     <apparelTags>
       <li>IndustrialMilitaryAdvanced</li>
       <li>SpacerMilitary</li>
       <li>Rimgate_WraithHeadgear_tag</li>
+      <li>Rimgate_WraithEliteHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
       <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
@@ -209,13 +228,13 @@
       <li>Rimgate_WraithHelmet</li>
       <li>Rimgate_WraithCommanderArmor</li>
     </apparelRequired>
-    <weaponMoney>1200~2000</weaponMoney>
+    <weaponMoney>3000~3500</weaponMoney>
     <weaponTags>
       <li>Rimgate_WraithSpear_tag</li>
       <li>Rimgate_WraithHandBlaster_tag</li>
     </weaponTags>
-    <techHediffsMoney>2000~3000</techHediffsMoney>
-    <techHediffsChance>1</techHediffsChance>
+    <techHediffsMoney>1000~4000</techHediffsMoney>
+    <techHediffsChance>0.62</techHediffsChance>
     <inventoryOptions>
       <skipChance>0.8</skipChance>
       <subOptionsChooseOne>
@@ -265,25 +284,26 @@
     </backstoryFiltersOverride>
     <gearHealthRange>0.8~3.5</gearHealthRange>
     <itemQuality>Good</itemQuality>
+    <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags>
       <li>IndustrialMilitaryAdvanced</li>
       <li>SpacerMilitary</li>
-      <li>Rimgate_WraithHeadgear_tag</li>
+      <li>Rimgate_WraithEliteHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
       <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
     <apparelRequired>
-      <li>Rimgate_WraithHelmet</li>
+      <li>RG_WraithCirclet</li>
       <li>Rimgate_WraithCommanderArmor</li>
     </apparelRequired>
-    <apparelMoney>4500~5200</apparelMoney>
-    <weaponMoney>1600~2000</weaponMoney>
+    <apparelMoney>7000~10000</apparelMoney>
+    <weaponMoney>1550~2700</weaponMoney>
     <weaponTags>
       <li>Rimgate_WraithSpear_tag</li>
       <li>Rimgate_WraithHandBlaster_tag</li>
     </weaponTags>
-    <techHediffsMoney>2000~3000</techHediffsMoney>
-    <techHediffsChance>1</techHediffsChance>
+    <techHediffsMoney>1000~4000</techHediffsMoney>
+    <techHediffsChance>0.62</techHediffsChance>
     <skills>
       <li>
         <skill>Shooting</skill>

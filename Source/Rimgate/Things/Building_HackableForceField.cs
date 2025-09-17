@@ -48,7 +48,9 @@ public class Building_HackableForceField : Building_SupportedDoor, IHackable
     public override bool BlocksPawn(Pawn p)
     {
         // Still honor base checks (downed pawns etc.), but *only* if the field is “down”
-        return IsPowered && !Locked && base.BlocksPawn(p);
+        if (IsPowered && Locked) return true;
+
+        return base.BlocksPawn(p);
     }
 
     public void OnLockedOut(Pawn pawn = null)

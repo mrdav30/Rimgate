@@ -63,21 +63,18 @@ public static class Harmony_Pawn_TryGetAttackVerb
         if (comp == null)
             return;
 
-        if (comp.Props.weaponToSwitch != pawn.equipment?.Primary.def && comp.CachedSwitchWeapon == null)
-            comp.GetOrCreateAlternate();
-
-        if (comp.CachedSwitchWeapon == null) return;
+        var alternate = comp.GetOrCreateAlternate();
+        if (alternate == null) return;
 
         if (!pawn.equipment.PrimaryEq.PrimaryVerb.CanHitTarget(target)
             || Rand.Chance(0.1f))
         {
-            Verb primaryVerb = ThingCompUtility.TryGetComp<CompEquippable>(comp.CachedSwitchWeapon).PrimaryVerb;
+            Verb primaryVerb = ThingCompUtility.TryGetComp<CompEquippable>(alternate).PrimaryVerb;
             primaryVerb.caster = pawn;
             if (!primaryVerb.CanHitTargetFrom(pawn.Position, target))
                 return;
 
-            pawn.equipment.Remove(pawn.equipment.Primary);
-            pawn.equipment.AddEquipment(comp.CachedSwitchWeapon);
+            comp.ToggleWeapon();
         }
     }
 }

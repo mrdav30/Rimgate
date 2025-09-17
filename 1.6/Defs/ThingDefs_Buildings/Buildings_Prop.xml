@@ -133,6 +133,7 @@
             <Beauty>15</Beauty>
             <MarketValue>850</MarketValue>
             <Mass>28.5</Mass>
+            <MeditationFocusStrength>0.22</MeditationFocusStrength>
         </statBases>
         <building>
             <claimable>true</claimable>
@@ -140,7 +141,10 @@
             <neverBuildable>true</neverBuildable>
             <alwaysDeconstructible>true</alwaysDeconstructible>
             <canLandGravshipOn>true</canLandGravshipOn>
+            <ai_chillDestination>false</ai_chillDestination>
         </building>
+        <hasInteractionCell>True</hasInteractionCell>
+        <interactionCellOffset>(0,0,-1)</interactionCellOffset>
         <fillPercent>0.4</fillPercent>
         <castEdgeShadows>True</castEdgeShadows>
         <staticSunShadowHeight>0.2</staticSunShadowHeight>
@@ -148,6 +152,19 @@
         <passability>Impassable</passability>
         <canOverlapZones>false</canOverlapZones>
         <altitudeLayer>Building</altitudeLayer>
+        <comps>
+            <li Class="CompProperties_AssignableToPawn">
+                <drawUnownedAssignmentOverlay>false</drawUnownedAssignmentOverlay>
+                <compClass>CompAssignableToPawn_MeditationSpot</compClass>
+            </li>
+            <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                    <li>Void</li>
+                    <li>Morbid</li>
+                </focusTypes>
+            </li>
+        </comps>
     </ThingDef>
 
     <!-- =============== DHD =============== -->
@@ -594,6 +611,47 @@
             <ai_chillDestination>false</ai_chillDestination>
             <destroySound>BuildingDestroyed_Metal_Big</destroySound>
         </building>
+    </ThingDef>
+
+    <!-- Tox Geyser -->
+
+    <ThingDef ParentName="BaseAncientVentThing">
+        <defName>Rimgate_ToxicSpout</defName>
+        <label>toxic spout</label>
+        <description>A naturally-occurring break in the ground from which toxic fumes escape from an underground megastructure. It will regularly cause toxic fallout in the area.</description>
+        <graphicData>
+            <texPath>Things/Building/GeothermalVent</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5,5)</drawSize>
+        </graphicData>
+        <size>(5,5)</size>
+        <comps>
+            <li Class="CompProperties_AncientVentEmitter">
+                <compClass>CompAncientToxVent</compClass>
+                <conditionToCause>ToxicFallout</conditionToCause>
+                <onDurationMtbDays>12</onDurationMtbDays>
+                <offDurationMtbDays>1</offDurationMtbDays>
+                <heatToPush>60</heatToPush>
+                <startupMessageKey>AncientToxVentStartUp</startupMessageKey>
+                <shutdownMessageKey>AncientToxVentShutdown</shutdownMessageKey>
+                <activeInspectStringKey>AncientToxVentActive</activeInspectStringKey>
+                <activeSound>AncientVent_Ambient</activeSound>
+            </li>
+            <li Class="CompProperties_FleckEmitterLongTerm">
+                <fleckDef>AncientToxicCloud</fleckDef>
+                <spawnRadius>1.5</spawnRadius>
+                <spawnChance>0.05</spawnChance>
+                <spawnOffsetFromCenter>(0.0,0.0,0.0)</spawnOffsetFromCenter>
+                <prewarmCycles>1.0</prewarmCycles>
+                <fleckScale>2.0</fleckScale>
+                <minRotationRate>-20.0</minRotationRate>
+                <maxRotationRate>20.0</maxRotationRate>
+                <minVelocityAngle>-20.0</minVelocityAngle>
+                <maxVelocityAngle>20.0</maxVelocityAngle>
+                <minVelocitySpeed>0.0</minVelocitySpeed>
+                <maxVelocitySpeed>0.1</maxVelocitySpeed>
+            </li>
+        </comps>
     </ThingDef>
 
     <!-- ======================= Supply crate ======================= -->

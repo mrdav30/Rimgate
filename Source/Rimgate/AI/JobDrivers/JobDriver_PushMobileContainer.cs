@@ -284,9 +284,6 @@ public class JobDriver_PushMobileContainer : JobDriver
         // Make cart with original stuff (if any), then spawn that instance
         var made = (Building_MobileContainer)ThingMaker.MakeThing(cartDef, pcomp.SavedStuff);
         made.HitPoints = Mathf.Clamp(pcomp.SavedHitPoints, 1, made.MaxHitPoints);
-        made.HitPoints = Mathf.Clamp(pcomp.SavedHitPoints > 0
-            ? pcomp.SavedHitPoints
-            : made.MaxHitPoints, 1, made.MaxHitPoints);
 
         if (spawn)
         {

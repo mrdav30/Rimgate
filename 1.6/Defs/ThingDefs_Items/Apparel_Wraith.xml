@@ -167,6 +167,76 @@
 		</recipeMaker>
 	</ThingDef>
 
+	<ThingDef ParentName="HatMakeableBase">
+		<defName>RG_WraithCirclet</defName>
+		<label>circlet</label>
+		<description>A ceremonial circlet worn only by Wraith queens and their chosen commanders. Forged from naquadah filigree fused with living biomass, the circlet amplifies psionic projection and lends its wearer an unsettling gravitas. To those who serve, it is a symbol of command and terror; to those who resist, a reminder that even a glance from the throne can feel like a blade at the throat.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/WraithCirclet/RGWraithCirclet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<techLevel>Spacer</techLevel>
+		<tradeability>Sellable</tradeability>
+		<generateCommonality>0.3</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>12</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>10</costStuffCount>
+		<costList>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+			<Rimgate_Biomass>1</Rimgate_Biomass>
+		</costList>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>4800</WorkToMake>
+			<Mass>0.1</Mass>
+			<ArmorRating_Sharp>0</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0</ArmorRating_Blunt>
+			<ArmorRating_Heat>0</ArmorRating_Heat>
+			<Insulation_Cold>0</Insulation_Cold>
+			<Insulation_Heat>0</Insulation_Heat>
+			<EquipDelay>0.2</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<SocialImpact>0.20</SocialImpact>
+			<TradePriceImprovement>0.20</TradePriceImprovement>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.3</SlaveSuppressionOffset>
+			<PsychicSensitivityOffset>0.2</PsychicSensitivityOffset>
+			<PsychicEntropyRecoveryRate>0.07</PsychicEntropyRecoveryRate>
+		</equippedStatOffsets>
+		<thingCategories Inherit="False">
+			<li>Headgear</li>
+		</thingCategories>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/WraithCirclet/RGWraithCirclet</wornGraphicPath>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<renderSkipFlags>
+				<li>None</li>
+			</renderSkipFlags>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<tags>
+				<li>Rimgate_WraithEliteHeadgear_tag</li>
+			</tags>
+		</apparel>
+		<tradeTags>
+			<li>Rimgate_WraithApparelTrade_tag</li>
+			<li>ExoticMisc</li>
+			<li>Artifact</li>
+		</tradeTags>
+	</ThingDef>
+
 	<!-- ========= Wraith Soldier Armor ========= -->
 
 	<ThingDef ParentName="Rimgate_WraithArmorBase">

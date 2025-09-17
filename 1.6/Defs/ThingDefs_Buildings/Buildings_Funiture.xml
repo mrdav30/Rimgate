@@ -153,7 +153,7 @@
       <Flammability>1.0</Flammability>
       <Beauty>60</Beauty>
       <Comfort>2</Comfort>
-      <MeditationFocusStrength MayRequire="Ludeon.RimWorld.Royalty">0.15</MeditationFocusStrength>
+      <MeditationFocusStrength>0.15</MeditationFocusStrength>
     </statBases>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <stuffCategories>
@@ -168,13 +168,14 @@
     <building>
       <isSittable>true</isSittable>
       <paintable>true</paintable>
+      <ai_chillDestination>false</ai_chillDestination>
       <buildingSizeCategory>Medium</buildingSizeCategory>
     </building>
     <uiIconOffset>(0, 0.04)</uiIconOffset>
     <uiIconScale>1</uiIconScale>
     <defaultPlacingRot>South</defaultPlacingRot>
     <graphicData>
-      <drawSize>(3,3)</drawSize>
+      <drawSize>(4,4)</drawSize>
       <texPath>Things/Building/Furniture/RGGoauldThrone</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <shaderType>CutoutComplex</shaderType>
@@ -188,21 +189,21 @@
     <drawGUIOverlay>true</drawGUIOverlay>
     <drawGUIOverlayQuality>false</drawGUIOverlayQuality>
     <rotatable>false</rotatable>
-    <altitudeLayer>Building</altitudeLayer>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
     <category>Building</category>
     <hasInteractionCell>true</hasInteractionCell>
-    <thingClass>Building_Throne</thingClass>
+    <!-- <thingClass>Building_Throne</thingClass> -->
     <socialPropernessMatters>true</socialPropernessMatters>
     <pathCost>30</pathCost>
     <fillPercent>0.4</fillPercent>
     <thingSetMakerTags>
-      <li>RewardStandardQualitySuper</li>
+      <li>RewardStandardLowFreq</li>
     </thingSetMakerTags>
     <researchPrerequisites>
       <li>ComplexFurniture</li>
       <li>Rimgate_GoauldBasic</li>
     </researchPrerequisites>
-    <ritualFocus MayRequire="Ludeon.RimWorld.Royalty">
+    <ritualFocus>
       <spectateDistance>2</spectateDistance>
       <allowedSpectateSides>Up</allowedSpectateSides>
     </ritualFocus>
@@ -211,19 +212,40 @@
     </placeWorkers>
     <drawPlaceWorkersWhileSelected>True</drawPlaceWorkersWhileSelected>
     <comps>
-      <li Class="CompProperties_AssignableToPawn" MayRequire="Ludeon.RimWorld.Royalty">
-        <drawAssignmentOverlay>true</drawAssignmentOverlay>
-        <compClass>CompAssignableToPawn_Throne</compClass>
-        <noAssignablePawnsDesc>Throne ownership requires a person with a royal title.</noAssignablePawnsDesc>
+      <li Class="CompProperties_AssignableToPawn">
+        <drawUnownedAssignmentOverlay>false</drawUnownedAssignmentOverlay>
+        <compClass>CompAssignableToPawn_MeditationSpot</compClass>
       </li>
-      <li Class="CompProperties_MeditationFocus" MayRequire="Ludeon.RimWorld.Royalty">
+      <!-- <li Class="CompProperties_UsesMeditationFocus"/> -->
+      <li Class="CompProperties_MeditationFocus">
         <statDef>MeditationFocusStrength</statDef>
         <focusTypes>
           <li>Dignified</li>
+          <li>Artistic</li>
         </focusTypes>
         <offsets>
-          <li Class="FocusStrengthOffset_ThroneSatisfiesRequirements">
-            <offset>0.08</offset>
+          <li Class="FocusStrengthOffset_BuildingDefs">
+            <defs>
+              <li>Brazier</li>
+            </defs>
+            <offsetPerBuilding>0.02</offsetPerBuilding>
+            <radius>9.9</radius>
+            <maxBuildings>4</maxBuildings>
+            <explanationKey>MeditationFocusPerBuilding</explanationKey>
+            <explanationKeyAbstract>MeditationFocusPerBuildingAbstract</explanationKeyAbstract>
+          </li>
+          <li Class="FocusStrengthOffset_Quality">
+            <curve>
+              <points>
+                <li>(0,0.12)</li> <!-- awful -->
+                <li>(1,0.16)</li> <!-- poor -->
+                <li>(2,0.20)</li> <!-- normal -->
+                <li>(3,0.22)</li> <!-- good -->
+                <li>(4,0.24)</li> <!-- excellent -->
+                <li>(5,0.26)</li> <!-- masterwork -->
+                <li>(6,0.28)</li> <!-- legendary -->
+              </points>
+            </curve>
           </li>
           <li Class="FocusStrengthOffset_RoomImpressiveness">
             <curve>

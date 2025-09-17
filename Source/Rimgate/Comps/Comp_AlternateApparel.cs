@@ -1,5 +1,7 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 using Verse.Sound;
 
@@ -9,72 +11,74 @@ public class Comp_AlternateApparel : ThingComp
 {
     public CompProperties_AlternateApparel Props => (CompProperties_AlternateApparel)props;
 
-    public Apparel ApparelDef => parent as Apparel;
+    public Apparel Apparel => parent as Apparel;
 
-    public Pawn Pawn => ApparelDef?.Wearer;
+    public Pawn Pawn => Apparel?.Wearer;
 
-    public Apparel CachedAlternateHelmet;  // Either open or closed, whichever is not this
+    // Either open or closed, whichever is not this
+    private Apparel _cachedAlternate;
 
     public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
     {
         if (Pawn == null || !Pawn.IsPlayerControlled)
             yield break;
 
-        ThingDef apparelDef = Props.attachedHeadgearDef;
-        string label = !Props.isClosedState ? " (close)" : "";
+        string label = Props.alternateDef.label;
         yield return new Command_Action
         {
-            defaultLabel = "RG_ToggleableHeadgearCommand_Label".Translate(apparelDef.label + label),
-            defaultDesc = "RG_ToggleableHeadgearCommand_Desc".Translate(apparelDef.label + label),
-            activateSound = RimgateDefOf.Rimgate_GoauldGuardHelmToggle,
-            icon = Props.attachedHeadgearDef.uiIcon,
-            action = ToggleHeadgear
+            defaultLabel = "RG_SwitchToCommandLabel".Translate(label),
+            defaultDesc = "RG_SwitchToCommand_Desc".Translate(label),
+            activateSound = Props.toggleSound ?? SoundDefOf.Click,
+            icon = Props.alternateDef.uiIcon,
+            action = ToggleApparelSwitch
         };
     }
 
-    private void ToggleHeadgear()
+    private void ToggleApparelSwitch()
     {
-        if (Pawn == null || ApparelDef == null)
+        if (Pawn == null || Apparel == null)
             return;
 
         GetOrCreateAlternate();
-        if (CachedAlternateHelmet == null)
+        if (_cachedAlternate == null)
         {
             if (RimgateMod.Debug)
-                Log.Warning($"Rimgate :: unable to get alternate headgear for {ApparelDef}");
+                Log.Warning($"Rimgate :: unable to get alternate for {Apparel}");
             return;
         }
 
-        // Equip the new helmet
-        Pawn.apparel.Wear(CachedAlternateHelmet, dropReplacedApparel: false);
+        // Equip the alternate
+        Pawn.apparel.Wear(_cachedAlternate, dropReplacedApparel: false);
     }
 
     private Apparel GetOrCreateAlternate()
     {
         // Make other version if needed
-        if (CachedAlternateHelmet == null)
+        if (_cachedAlternate == null)
         {
             if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: creating new alternate helm {Props.attachedHeadgearDef} for {ApparelDef}");
+                Log.Message($"Rimgate :: creating new alternate {Props.alternateDef} for {Apparel}");
 
-            CachedAlternateHelmet = (Apparel)ThingMaker.MakeThing(Props.attachedHeadgearDef);
-            if (CachedAlternateHelmet == null) return null;
-
-            CachedAlternateHelmet.compQuality = ApparelDef.compQuality;
-
-            // Copy material if stuffable
-            if (ApparelDef?.def.MadeFromStuff == true
-                && ApparelDef.Stuff != null
-                && CachedAlternateHelmet.def.MadeFromStuff)
-            {
-                CachedAlternateHelmet.SetStuffDirect(ApparelDef.Stuff);
-            }
-
-            Comp_AlternateApparel comp = ThingCompUtility.TryGetComp<Comp_AlternateApparel>(CachedAlternateHelmet);
-            if (comp != null)
-                comp.CachedAlternateHelmet ??= ApparelDef;
+            _cachedAlternate = (Apparel)ThingMaker.MakeThing(Props.alternateDef);
+            if (_cachedAlternate == null) return null;
         }
 
-        return CachedAlternateHelmet;
+        _cachedAlternate.compQuality = Apparel.compQuality;
+
+        // Copy material if stuffable
+        if (Apparel?.def.MadeFromStuff == true
+            && Apparel.Stuff != null
+            && _cachedAlternate.def.MadeFromStuff)
+        {
+            _cachedAlternate.SetStuffDirect(Apparel.Stuff);
+        }
+
+        _cachedAlternate.HitPoints = Apparel.HitPoints;
+
+        Comp_AlternateApparel comp = ThingCompUtility.TryGetComp<Comp_AlternateApparel>(_cachedAlternate);
+        if (comp != null)
+            comp._cachedAlternate ??= Apparel;
+
+        return _cachedAlternate;
     }
 }

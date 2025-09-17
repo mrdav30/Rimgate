@@ -87,33 +87,36 @@
             <li>
                 <kindDef>Combat</kindDef>
                 <options>
+                    <Rimgate_TauriRifleman>14</Rimgate_TauriRifleman>
                     <Rimgate_TauriSGCSoldier>10</Rimgate_TauriSGCSoldier>
-                    <Rimgate_TauriRifleman>12</Rimgate_TauriRifleman>
-                    <Rimgate_TauriSGCRocketman>6</Rimgate_TauriSGCRocketman>
-                    <Rimgate_TauriSpecialForces>8</Rimgate_TauriSpecialForces>
-                    <Rimgate_TauriCommander>3</Rimgate_TauriCommander>
-                    <Rimgate_Malp>2.5</Rimgate_Malp>
+                    <Rimgate_TauriSGCRocketman>4</Rimgate_TauriSGCRocketman>
+                    <Rimgate_TauriSpecialForces>5</Rimgate_TauriSpecialForces>
+                    <Rimgate_TauriCommander>1</Rimgate_TauriCommander>
+                    <!-- Rare mech support; keeps average at ~0–1 per raid -->
+                    <Rimgate_Malp>0.35</Rimgate_Malp>
+                    <Mech_Scyther>0.5</Mech_Scyther>
                 </options>
             </li>
             <li>
                 <kindDef>Peaceful</kindDef>
                 <options>
-                    <Rimgate_TauriScientist>8</Rimgate_TauriScientist>
-                    <Rimgate_TauriSGCSoldier>15</Rimgate_TauriSGCSoldier>
-                    <Rimgate_TauriCommander>3</Rimgate_TauriCommander>
-                    <Rimgate_Malp>2.5</Rimgate_Malp>
+                    <Rimgate_TauriScientist>12</Rimgate_TauriScientist>
+                    <Rimgate_TauriSGCSoldier>6</Rimgate_TauriSGCSoldier>
+                    <Rimgate_TauriSpecialForces>5</Rimgate_TauriSpecialForces>
+                    <Rimgate_Malp>0.2</Rimgate_Malp>
                 </options>
             </li>
             <li>
                 <kindDef>Settlement</kindDef>
                 <options>
-                    <Rimgate_TauriScientist>10</Rimgate_TauriScientist>
+                    <Rimgate_TauriRifleman>14</Rimgate_TauriRifleman>
                     <Rimgate_TauriSGCSoldier>10</Rimgate_TauriSGCSoldier>
-                    <Rimgate_TauriRifleman>12</Rimgate_TauriRifleman>
-                    <Rimgate_TauriSGCRocketman>12</Rimgate_TauriSGCRocketman>
-                    <Rimgate_TauriSpecialForces>15</Rimgate_TauriSpecialForces>
-                    <Rimgate_TauriCommander>5</Rimgate_TauriCommander>
-                    <Rimgate_Malp>4.5</Rimgate_Malp>
+                    <Rimgate_TauriSGCRocketman>6</Rimgate_TauriSGCRocketman>
+                    <Rimgate_TauriSpecialForces>6</Rimgate_TauriSpecialForces>
+                    <Rimgate_TauriScientist>8</Rimgate_TauriScientist>
+                    <Rimgate_TauriCommander>2</Rimgate_TauriCommander>
+                    <!-- Occasionally parked at outposts -->
+                    <Rimgate_Malp>0.8</Rimgate_Malp>
                 </options>
             </li>
             <li>
@@ -123,7 +126,8 @@
                 </traders>
                 <carriers>
                     <Muffalo>2</Muffalo>
-                    <Rimgate_Malp>1</Rimgate_Malp>
+                    <!-- Rare techy caravan helper -->
+                    <Rimgate_Malp>0.4</Rimgate_Malp>
                 </carriers>
                 <guards>
                     <Rimgate_TauriSGCSoldier>2</Rimgate_TauriSGCSoldier>

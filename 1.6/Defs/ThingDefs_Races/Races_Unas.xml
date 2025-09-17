@@ -18,7 +18,7 @@
             <ArmorRating_Blunt>0.80</ArmorRating_Blunt>
             <ArmorRating_Sharp>0.72</ArmorRating_Sharp>
             <MeleeDodgeChance>15</MeleeDodgeChance>
-            <PsychicSensitivity>2</PsychicSensitivity>
+            <PsychicSensitivity>0.75</PsychicSensitivity>
             <ToxicResistance>0.90</ToxicResistance>
             <MeatAmount>70</MeatAmount>
             <PainShockThreshold>100</PainShockThreshold>
@@ -152,9 +152,13 @@
 
     <ThingDef ParentName="Rimgate_Unas">
         <defName>Rimgate_Unas_BerserkerRace</defName>
-
+        <statBases>
+            <MoveSpeed>5.0</MoveSpeed>
+            <MeleeDodgeChance>20</MeleeDodgeChance>
+        </statBases>
         <race>
             <packAnimal>false</packAnimal>
+            <baseHealthScale>4</baseHealthScale>
         </race>
 
         <comps>

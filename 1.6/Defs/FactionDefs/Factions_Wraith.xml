@@ -42,11 +42,12 @@
     </permanentEnemyToEveryoneExcept>
     <raidCommonalityFromPointsCurve>
       <points>
-        <li>(300, 0)</li>
-        <li>(700, 1)</li>
-        <li>(1400, 1.8)</li>
-        <li>(2800, 2.2)</li>
-        <li>(4000, 2.6)</li>
+        <li>(150, 0)</li>
+        <li>(400, 0.6)</li>
+        <li>(800, 1.2)</li>
+        <li>(1600, 1.8)</li>
+        <li>(3000, 2.4)</li>
+        <li>(4500, 2.8)</li>
       </points>
     </raidCommonalityFromPointsCurve>
     <allowedArrivalTemperatureRange>-50~45</allowedArrivalTemperatureRange>
@@ -54,17 +55,19 @@
       <points>
         <li>(35, 15)</li>
         <li>(100, 120)</li>
-        <li>(1000, 500)</li>
-        <li>(2000, 800)</li>
-        <li>(4000, 1000)</li>
+        <li>(1000, 520)</li>
+        <li>(2000, 850)</li>
+        <li>(4000, 1125)</li>
       </points>
     </raidLootValueFromPointsCurve>
     <maxPawnCostPerTotalPointsCurve>
       <points>
-        <li>(0,35)</li>
-        <li>(70, 50)</li>
-        <li>(700, 100)</li>
-        <li>(1300, 150)</li>
+        <!-- keep early raids to Soldiers/occasional Commander -->
+        <li>(0, 55)</li>
+        <li>(400, 90)</li>     <!-- let Soldiers (90 cp) be common -->
+        <li>(1200, 135)</li>   <!-- allow Commanders at ~1.2k pts -->
+        <li>(2200, 170)</li>   <!-- Assassins mix in -->
+        <li>(3500, 240)</li>   <!-- Queens viable late -->
         <li>(100000, 10000)</li>
       </points>
     </maxPawnCostPerTotalPointsCurve>
@@ -72,21 +75,40 @@
     <pawnGroupMakers>
       <li>
         <kindDef>Combat</kindDef>
+        <disallowedStrategies>
+          <li>Siege</li> <!-- fits the Wraith vibe; they rush/board more than siege -->
+        </disallowedStrategies>
         <options>
-          <Rimgate_WraithSoldier>13</Rimgate_WraithSoldier>
-          <Rimgate_WraithAssassin>8</Rimgate_WraithAssassin>
-          <Rimgate_WraithCommander>10</Rimgate_WraithCommander>
-          <Rimgate_WraithQueen>6</Rimgate_WraithQueen>
+          <!-- Weighted by cost: Soldier (cheap) is backbone -->
+          <Rimgate_WraithSoldier>60</Rimgate_WraithSoldier>     <!-- 90 cp -->
+          <Rimgate_WraithCommander>25</Rimgate_WraithCommander> <!-- 135 cp -->
+          <Rimgate_WraithAssassin>12</Rimgate_WraithAssassin>   <!-- 150 cp -->
+          <!-- Rare boss piece in normal raids; budget-gated by curve -->
+          <Rimgate_WraithQueen>3</Rimgate_WraithQueen>          <!-- 220 cp -->
         </options>
+        <maxTotalPoints>5000</maxTotalPoints>
+      </li>
+      <li>
+        <kindDef>Combat</kindDef>
+        <commonality>0.9</commonality>
+        <options>
+          <Rimgate_WraithSoldier>35</Rimgate_WraithSoldier>
+          <Rimgate_WraithCommander>30</Rimgate_WraithCommander>
+          <Rimgate_WraithAssassin>22</Rimgate_WraithAssassin>
+          <Rimgate_WraithQueen>13</Rimgate_WraithQueen>
+        </options>
+        <disallowedStrategies>
+          <li>Siege</li> <!-- fits the Wraith vibe; they rush/board more than siege -->
+        </disallowedStrategies>
       </li>
       <li>
         <kindDef>Settlement</kindDef>
         <options>
-          <Rimgate_WraithColonist>10</Rimgate_WraithColonist>
-          <Rimgate_WraithSoldier>15</Rimgate_WraithSoldier>
-          <Rimgate_WraithAssassin>8</Rimgate_WraithAssassin>
-          <Rimgate_WraithCommander>10</Rimgate_WraithCommander>
-          <Rimgate_WraithQueen>8</Rimgate_WraithQueen>
+          <Rimgate_WraithColonist>8</Rimgate_WraithColonist>
+          <Rimgate_WraithSoldier>18</Rimgate_WraithSoldier>
+          <Rimgate_WraithAssassin>7</Rimgate_WraithAssassin>
+          <Rimgate_WraithCommander>8</Rimgate_WraithCommander>
+          <Rimgate_WraithQueen>4</Rimgate_WraithQueen>
         </options>
       </li>
     </pawnGroupMakers>

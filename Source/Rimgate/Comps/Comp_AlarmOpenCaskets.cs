@@ -184,7 +184,9 @@ namespace Rimgate
             if (!_sent && Props.radius > 0)
                 return "radius".Translate().CapitalizeFirst() + ": " + Props.radius.ToString("F0");
 
-            return "expired".Translate().CapitalizeFirst();
+            return _sent
+                ? "Active".Translate().CapitalizeFirst()
+                : "expired".Translate().CapitalizeFirst();
         }
 
         public override void PostExposeData()

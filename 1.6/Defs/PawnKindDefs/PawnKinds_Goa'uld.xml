@@ -112,6 +112,7 @@
     <label>slave driver</label>
     <combatPower>55</combatPower>
     <isFighter>true</isFighter>
+    <useFactionXenotypes>false</useFactionXenotypes>
     <xenotypeSet>
       <xenotypeChances>
         <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
@@ -127,12 +128,16 @@
     <gearHealthRange>0.7~1.4</gearHealthRange>
     <initialWillRange>4~6</initialWillRange>
     <initialResistanceRange>50~80</initialResistanceRange>
-    <apparelMoney>500~1200</apparelMoney>
+    <apparelMoney>800~1500</apparelMoney>
     <apparelTags>
       <li>Neolithic</li>
       <li>IndustrialBasic</li>
       <li>IndustrialAdvanced</li>
     </apparelTags>
+    <apparelRequired>
+      <li>Apparel_CowboyHat</li>
+      <li>Apparel_Duster</li>
+    </apparelRequired>
     <weaponMoney>2000~3900</weaponMoney>
     <weaponTags Inherit="False">
       <li>Rimgate_RodOfAnguish_tag</li>
@@ -302,14 +307,14 @@
     <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
     <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
-    <apparelMoney>1500~4000</apparelMoney>
+    <apparelMoney>5000~8000</apparelMoney>
     <apparelTags>
       <li>Rimgate_GoauldApparel_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_JaffaArmor</li>
     </apparelRequired>
-    <weaponMoney>1200~4000</weaponMoney>
+    <weaponMoney>1100~2500</weaponMoney>
     <techHediffsChance>1</techHediffsChance>
     <techHediffsMoney>1000~2500</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
     <techHediffsTags>
@@ -359,7 +364,7 @@
   <!-- ====== Goa'uld Military classes ========= -->
 
   <PawnKindDef Name="Rimgate_GoauldRangedBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
-    <combatPower>90</combatPower>
+    <combatPower>100</combatPower>
     <weaponTags>
       <li>Rimgate_GoauldRanged_Tag</li>
     </weaponTags>
@@ -391,7 +396,7 @@
   </PawnKindDef>
 
   <PawnKindDef Name="Rimgate_GoauldMeleeBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
-    <combatPower>75</combatPower>
+    <combatPower>90</combatPower>
     <weaponTags>
       <li>NeolithicMeleeAdvanced</li>
       <li>MedievalMeleeAdvanced</li>
@@ -459,9 +464,10 @@
   <PawnKindDef Name="Rimgate_GoauldKull" ParentName="Rimgate_GoauldMilBase">
     <defName>Rimgate_KullWarrior</defName>
     <label>Kull warrior</label>
-    <combatPower>250</combatPower>
+    <combatPower>175</combatPower>
     <minGenerationAge>26</minGenerationAge>
     <gearHealthRange>0.8~3.5</gearHealthRange>
+    <useFactionXenotypes>false</useFactionXenotypes>
     <xenotypeSet Inherit="False">
       <xenotypeChances>
         <Rimgate_KullWarrior>999</Rimgate_KullWarrior>
@@ -475,7 +481,7 @@
       <li>Rimgate_GoauldSymbiote_tag</li>
     </techHediffsTags>
     <itemQuality>Good</itemQuality>
-    <apparelMoney>2500~4200</apparelMoney>
+    <apparelMoney>6000~9000</apparelMoney>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags Inherit="False">
       <li>Rimgate_KullApparel_tag</li>
@@ -484,7 +490,7 @@
       <li>Rimgate_KullArmor</li>
       <li>Rimgate_KullHelmet</li>
     </apparelRequired>
-    <weaponMoney>2000~3000</weaponMoney>
+    <weaponMoney>2600~3100</weaponMoney>
     <weaponTags Inherit="False">
       <li>Rimgate_KullRanged_tag</li>
     </weaponTags>
@@ -503,7 +509,7 @@
   <!-- === Jaffa Guard Base === -->
 
   <PawnKindDef Name="Rimgate_GoauldGuardBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
-    <combatPower>160</combatPower>
+    <combatPower>135</combatPower>
     <initialWillRange>3~6</initialWillRange>
     <initialResistanceRange>55~64</initialResistanceRange>
     <itemQuality>Good</itemQuality>
@@ -515,20 +521,30 @@
       <li>Rimgate_GoauldSymbiote_tag</li>
       <li>Rimgate_JaffaForeheadSymbol_tag</li>
     </techHediffsTags>
-    <apparelMoney>2300~7000</apparelMoney>
+    <apparelMoney>7000~10000</apparelMoney>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags>
       <li>Rimgate_GoauldGuardApparel_tag</li>
     </apparelTags>
-    <weaponMoney>1200~4500</weaponMoney>
+    <weaponMoney>3000~3500</weaponMoney>
     <weaponTags>
       <li>Rimgate_GoauldWeapons_tag</li>
     </weaponTags>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>8~16</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>8~16</range>
+      </li>
+    </skills>
   </PawnKindDef>
 
   <PawnKindDef Name="Rimgate_PrimeBase" ParentName="Rimgate_GoauldGuardBase" Abstract="True">
-    <combatPower>220</combatPower>
-    <itemQuality>Good</itemQuality>
+    <combatPower>150</combatPower>
+    <itemQuality>Excellent</itemQuality>
     <backstoryFiltersOverride>
       <li>
         <categoriesChildhood>
@@ -552,16 +568,6 @@
     <apparelRequired Inherit="false">
       <li>Rimgate_FirstPrimeArmor</li>
     </apparelRequired>
-    <skills>
-      <li>
-        <skill>Shooting</skill>
-        <range>8~16</range>
-      </li>
-      <li>
-        <skill>Melee</skill>
-        <range>8~16</range>
-      </li>
-    </skills>
   </PawnKindDef>
 
   <!-- Jaffa Guards -->

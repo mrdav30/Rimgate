@@ -9,10 +9,7 @@
         <chemicalAddictionChance>0.01</chemicalAddictionChance>
         <initialWillRange>1~2</initialWillRange>
         <initialResistanceRange>15~45</initialResistanceRange>
-        <apparelTags>
-            <li>Rimgate_TauriApparel_tag</li>
-        </apparelTags>
-        <techHediffsChance>0.39</techHediffsChance>
+        <techHediffsChance>0.15</techHediffsChance>
         <techHediffsMoney>900~1520</techHediffsMoney>
         <techHediffsTags>
             <li>ImplantEmpireCommon</li>
@@ -33,12 +30,17 @@
         <combatPower>20</combatPower>
         <weaponTags>
             <li>MedievalMeleeBasic</li>
+            <li>Gun</li>
         </weaponTags>
-        <apparelMoney>300~900</apparelMoney>
+        <apparelMoney>200~1000</apparelMoney>
+        <apparelTags>
+            <li>IndustrialBasic</li>
+            <li>IndustrialAdvanced</li>
+        </apparelTags>
         <apparelRequired>
             <li>Rimgate_TauriSGTeamBDU</li>
         </apparelRequired>
-        <weaponMoney>40~200</weaponMoney>
+        <weaponMoney>2600~3100</weaponMoney>
         <backstoryFiltersOverride>
             <li>
                 <categoriesAdulthood>
@@ -76,11 +78,8 @@
         </requiredWorkTags>
         <invNutrition>2.25</invNutrition>
         <gearHealthRange>0.6~1.3</gearHealthRange>
-        <apparelMoney>800~1800</apparelMoney>
-        <weaponMoney>900~1500</weaponMoney>
-        <apparelRequired>
-            <li>Rimgate_TauriSGTeamBDU</li>
-        </apparelRequired>
+        <apparelMoney>1250~2500</apparelMoney>
+        <weaponMoney>2600~3100</weaponMoney>
         <apparelTags>
             <li>IndustrialMilitaryAdvanced</li>
             <li>SpacerMilitary</li>
@@ -88,6 +87,10 @@
             <li>Rimgate_TauriTacticalVest</li>
             <li>Rimgate_TauriBackpack_tag</li>
         </apparelTags>
+        <apparelRequired>
+            <li>Rimgate_TauriSGTeamBDU</li>
+            <li>Rimgate_TauriTacticalVest</li>
+        </apparelRequired>
         <inventoryOptions>
             <skipChance>0.7</skipChance>
             <subOptionsChooseOne>
@@ -133,8 +136,9 @@
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCRocketman</defName>
         <label>Tau'ri soldier</label>
-        <combatPower>120</combatPower>
-        <weaponMoney>1200~2500</weaponMoney>
+        <combatPower>135</combatPower>
+        <weaponMoney>3000~3500</weaponMoney>
+        <apparelMoney>2300~3450</apparelMoney>
         <weaponTags>
             <li>Rimgate_TauriRocketLauncher_tag</li>
         </weaponTags>
@@ -153,13 +157,13 @@
         <defName>Rimgate_TauriRifleman</defName>
         <label>Tau'ri rifleman</label>
         <race>Human</race>
-        <combatPower>110</combatPower>
+        <combatPower>120</combatPower>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
         </weaponTags>
         <apparelRequired>
-            <li>Rimgate_TauriTacticalVest</li>
             <li>Rimgate_TauriBallisticHelmet</li>
+            <li>Rimgate_TacticalVestSteelPlateInsert</li>
         </apparelRequired>
         <inventoryOptions>
             <skipChance>0.9</skipChance>
@@ -171,12 +175,12 @@
             </subOptionsChooseOne>
         </inventoryOptions>
         <gearHealthRange>0.75~2.3</gearHealthRange>
-        <weaponMoney>1200~2560</weaponMoney>
-        <apparelMoney>1000~2180</apparelMoney>
+        <weaponMoney>1550~2700</weaponMoney>
+        <apparelMoney>2300~3450</apparelMoney>
         <skills>
             <li>
                 <skill>Shooting</skill>
-                <range>5~12</range>
+                <range>8~12</range>
             </li>
         </skills>
     </PawnKindDef>
@@ -185,14 +189,13 @@
         <defName>Rimgate_TauriSpecialForces</defName>
         <label>Tau'ri special forces</label>
         <race>Human</race>
-        <combatPower>120</combatPower>
+        <combatPower>150</combatPower>
         <itemQuality>Good</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriShotgun_tag</li>
             <li>Rimgate_Tauri_SniperRifle</li>
         </weaponTags>
         <apparelRequired>
-            <li>Rimgate_TauriTacticalVest</li>
             <li>Rimgate_TauriGreenBoonieHat</li>
             <li>Rimgate_TacticalVestCompositePlateInsert</li>
             <li>Rimgate_TauriTacticalBackpack</li>
@@ -210,14 +213,30 @@
             </subOptionsChooseOne>
         </inventoryOptions>
         <gearHealthRange>0.8~2.3</gearHealthRange>
-        <weaponMoney>1500~2450</weaponMoney>
-        <apparelMoney>2250~3400</apparelMoney>
+        <weaponMoney>3000~3500</weaponMoney>
+        <apparelMoney>7000~10000</apparelMoney>
+        <techHediffsMoney>1000~4000</techHediffsMoney>
+        <techHediffsMaxAmount>4</techHediffsMaxAmount>
         <skills>
             <li>
                 <skill>Shooting</skill>
                 <range>8~16</range>
             </li>
+            <li>
+                <skill>Melee</skill>
+                <range>8~13</range>
+            </li>
         </skills>
+        <techHediffsRequired>
+            <li>BionicEye</li>
+            <li>BionicEye</li>
+            <li>StoneskinGland</li>
+        </techHediffsRequired>
+        <disallowedTraits>
+            <li>Wimp</li>
+            <li>Nudist</li>
+            <li>BodyPurist</li>
+        </disallowedTraits>
     </PawnKindDef>
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
@@ -233,12 +252,11 @@
         </weaponTags>
         <apparelRequired>
             <li>Rimgate_TauriGreenCap</li>
-            <li>Rimgate_TauriTacticalVest</li>
             <li>Rimgate_TacticalVestCompositePlateInsert</li>
         </apparelRequired>
         <gearHealthRange>0.85~3.5</gearHealthRange>
-        <weaponMoney>2350~3500</weaponMoney>
-        <apparelMoney>2300~3450</apparelMoney>
+        <weaponMoney>3000~3500</weaponMoney>
+        <apparelMoney>7000~10000</apparelMoney>
         <inventoryOptions>
             <skipChance>0.8</skipChance>
             <subOptionsChooseOne>
@@ -254,9 +272,14 @@
         <skills>
             <li>
                 <skill>Shooting</skill>
-                <range>8~16</range>
+                <range>11~16</range>
+            </li>
+            <li>
+                <skill>Melee</skill>
+                <range>8~13</range>
             </li>
         </skills>
+
     </PawnKindDef>
 
 </Defs>

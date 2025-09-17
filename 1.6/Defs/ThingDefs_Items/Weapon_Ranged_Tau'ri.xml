@@ -341,7 +341,7 @@
         </tools>
         <comps>
             <li Class="Rimgate.CompProperties_SwitchWeapon">
-                <weaponToSwitch>Rimgate_TauriM4A1_M203_GrenadeLauncher</weaponToSwitch>
+                <alternateDef>Rimgate_TauriM4A1_M203_GrenadeLauncher</alternateDef>
             </li>
         </comps>
     </ThingDef>
@@ -409,7 +409,7 @@
         </tools>
         <comps>
             <li Class="Rimgate.CompProperties_SwitchWeapon">
-                <weaponToSwitch>Rimgate_TauriM4A1_M203Gun</weaponToSwitch>
+                <alternateDef>Rimgate_TauriM4A1_M203Gun</alternateDef>
             </li>
         </comps>
     </ThingDef>

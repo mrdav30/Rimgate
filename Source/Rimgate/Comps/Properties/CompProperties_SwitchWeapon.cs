@@ -4,7 +4,7 @@ namespace Rimgate;
 
 public class CompProperties_SwitchWeapon : CompProperties
 {
-    public ThingDef weaponToSwitch;
+    public ThingDef alternateDef;
 
     public CompProperties_SwitchWeapon() => compClass = typeof(Comp_SwitchWeapon);
 }
