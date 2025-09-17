@@ -65,4 +65,25 @@
 		<researchViewY>1.00</researchViewY>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_SubspaceMasking</defName>
+		<label>subspace masking</label>
+		<description>Reverse-engineer Ancient carrier-noise and Tau’ri signal hygiene to hide a ZPM’s telltale subspace bleed. Not true invisibility—just enough distortion to keep opportunists from triangulating your base every other day.</description>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Rimgate_StargateAlloyResearch</li>
+		</prerequisites>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>0.50</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_TauriFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+	</ResearchProjectDef>
+
 </Defs>

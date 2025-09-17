@@ -29,6 +29,11 @@ public class Building_ZPM : Building
 
     private bool _wasConnectedLastTick;
 
+    private MapComponent_ZpmRaidTracker Tracker
+       => _tracker ??= Map?.GetComponent<MapComponent_ZpmRaidTracker>();
+
+    private MapComponent_ZpmRaidTracker _tracker;
+
     static Building_ZPM()
     {
         if (Building_ZPM.ChargeGraphics.Any())
@@ -70,7 +75,7 @@ public class Building_ZPM : Building
             && connected)
         {
             _isBroadcasting = true;
-            map.GetComponent<MapComponent_ZpmRaidTracker>()?.NotifyZpmBeganBroadcast();
+            Tracker?.NotifyZpmBeganBroadcast();
         }
 
         _wasConnectedLastTick = connected;
@@ -81,16 +86,15 @@ public class Building_ZPM : Building
         bool connected = _powerComp != null && _powerComp.PowerNet != null;
         if (connected != _wasConnectedLastTick && Faction == Faction.OfPlayer)
         {
-            var tracker = Map?.GetComponent<MapComponent_ZpmRaidTracker>();
             if (connected && !_isBroadcasting)
             {
                 _isBroadcasting = true;
-                tracker?.NotifyZpmBeganBroadcast();
+                Tracker?.NotifyZpmBeganBroadcast();
             }
             else if (!connected && _isBroadcasting)
             {
                 _isBroadcasting = false;
-                tracker?.NotifyZpmEndedBroadcast();
+                Tracker?.NotifyZpmEndedBroadcast();
             }
             _wasConnectedLastTick = connected;
         }
@@ -113,8 +117,8 @@ public class Building_ZPM : Building
 
         if (RimgateMod.DebugZPM)
         {
-            Log.Warning($"ZPM :: Current Energy Gain Rate: {_powerComp.PowerNet.CurrentEnergyGainRate()}");
-            Log.Warning($"ZPM :: Stored Energy: {_powerComp.StoredEnergy}");
+            Log.Message($"ZPM :: Current Energy Gain Rate: {_powerComp.PowerNet.CurrentEnergyGainRate()}");
+            Log.Message($"ZPM :: Stored Energy: {_powerComp.StoredEnergy}");
         }
 
         base.TickRare();
@@ -183,6 +187,16 @@ public class Building_ZPM : Building
 
             string text = $"Dark Energy Reserve: {_darkEnergyReserve}/{_maxDarkEnergy}";
             stringBuilder.Append(text);
+        }
+
+        if(Tracker != null)
+        {
+            if (stringBuilder.Length > 0)
+                stringBuilder.AppendLine();
+            stringBuilder.Append(
+                Tracker.SuppressionActive
+                ? "RG_ZPMsSignalBlocked".Translate()
+                : "RG_ZPMsSignalUnblocked".Translate());
         }
 
         return stringBuilder.ToString();

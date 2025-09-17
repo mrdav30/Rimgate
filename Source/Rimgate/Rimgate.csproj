@@ -340,6 +340,7 @@
     <Compile Include="Comps\Comp_MobileContainer.cs" />
     <Compile Include="Comps\Comp_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Comp_AlarmOpenCaskets.cs" />
+    <Compile Include="Comps\Comp_ZpmSignalScrambler.cs" />
     <Compile Include="Comps\Properties\CompProperties_MobileContainer.cs" />
     <Compile Include="Comps\Properties\CompProperties_ProximityAlarm.cs" />
     <Compile Include="Comps\Comp_AdditionalDamage.cs" />
@@ -357,6 +358,7 @@
     <Compile Include="Comps\Properties\CompProperties_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
+    <Compile Include="Comps\Properties\CompProperties_ZpmSignalScrambler.cs" />
     <Compile Include="HarmonyPatches\Harmony_BedCellSearchPattern.cs" />
     <Compile Include="HarmonyPatches\Harmony_CompLabyrinthDoor_DrawJammed.cs" />
     <Compile Include="HarmonyPatches\Harmony_EquipmentUtility.cs" />

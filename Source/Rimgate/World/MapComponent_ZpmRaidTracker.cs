@@ -7,11 +7,15 @@ namespace Rimgate;
 
 public class MapComponent_ZpmRaidTracker : MapComponent
 {
+    public bool SuppressionActive => _suppressionActive;
+
     private int _questId = -1;      
     
     private int _activeZpmCount; 
     
     private Quest _questCached;
+
+    private bool _suppressionActive;
 
     public MapComponent_ZpmRaidTracker(Map map) : base(map) { }
 
@@ -19,18 +23,42 @@ public class MapComponent_ZpmRaidTracker : MapComponent
     {
         base.FinalizeInit();
         RebuildFromMapState();
+        if (_suppressionActive)
+            EndQuestIfNoZpm(); // ensure no lingering quest after load
+    }
+
+    public void SetSuppressionActive(bool active)
+    {
+        if (_suppressionActive == active) return;
+        _suppressionActive = active;
+
+        if(RimgateMod.Debug)
+            Log.Message($"Setting ZPM raid suppression to {_suppressionActive}.");
+
+        // Kill the quest if it’s running; ZPMs are “masked”.
+        if (_suppressionActive)
+            EndQuestIfNoZpm(); // no raids while masked
+        else // If any broadcasting ZPMs exist, (re)start the quest loop.
+            RebuildFromMapState();
     }
 
     private void RebuildFromMapState()
     {
-        int countOnMap = map.listerThings
-            .ThingsOfDef(RimgateDefOf.Rimgate_ZPM)
-            .Count(t => t.Faction == Faction.OfPlayer && t.Spawned &&
-                        (t is Building_ZPM b ? b.IsBroadcasting : true));
+        if (map == null) return;
 
-        _activeZpmCount = countOnMap;
-        if (_activeZpmCount > 0) StartQuestIfNeeded();
-        else EndQuestIfNoZpm();
+        int physicalCount = map.listerThings
+            .ThingsOfDef(RimgateDefOf.Rimgate_ZPM)
+            .Count(t => t.Faction == Faction.OfPlayer
+                     && t.Spawned
+                     && (t is Building_ZPM b ? b.IsBroadcasting : true));
+
+        // If shroud is active, treat as zero “active” ZPMs for the quest
+        _activeZpmCount = _suppressionActive ? 0 : physicalCount;
+
+        if (_activeZpmCount > 0)
+            StartQuestIfNeeded();
+        else
+            EndQuestIfNoZpm();
     }
 
     public override void ExposeData()
@@ -38,6 +66,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
         base.ExposeData();
         Scribe_Values.Look(ref _questId, "_questId");
         Scribe_Values.Look(ref _activeZpmCount, "_activeZpmCount");
+        Scribe_Values.Look(ref _suppressionActive, "_suppressionActive");
     }
 
     private Quest ResolveQuest()
@@ -53,6 +82,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
 
     private void StartQuestIfNeeded()
     {
+        if (_suppressionActive) return;
         if (_activeZpmCount <= 0) return;
         if (ResolveQuest() != null) return;
 
@@ -69,11 +99,16 @@ public class MapComponent_ZpmRaidTracker : MapComponent
 
     private void EndQuestIfNoZpm()
     {
-        if (_activeZpmCount > 0) return;
+        Log.Message($"Ending quest with zpm count: {_activeZpmCount}.");
+
+        if (_activeZpmCount > 0 && !_suppressionActive) return;
 
         var quest = ResolveQuest();
         if (quest != null && quest.State == QuestState.Ongoing)
+        {
             quest.End(QuestEndOutcome.Fail, false, false);
+            Log.Message($"quest ended.");
+        }
 
         _questCached = null;
         _questId = -1;

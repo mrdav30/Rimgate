@@ -159,6 +159,16 @@
 	<RG_RaidZpmDelayDesc>Your ZPM is broadcasting a strong signal that anyone can hone in on.\n\nRaids will start arriving in {0}.\n\nThe raiders will target your ZPM and attempt to seize it.</RG_RaidZpmDelayDesc>
 	<RG_LetterRaidZpmProtectDesc>A raid from {0} has zeroed in on your ZPM’s energy signature. They’ve arrived to seize it — and they won’t ask nicely.</RG_LetterRaidZpmProtectDesc>
 
+	<!-- ZPM signal jammer -->
+
+	<RG_JammerActive>Subspace masking: active</RG_JammerActive>
+	<RG_LinkedZPMs>linked ZPMs: {0}</RG_LinkedZPMs>
+	<RG_JammerInactive>Subspace masking: offline</RG_JammerInactive>
+	<RG_JammerNoLink>no link</RG_JammerNoLink>
+
+	<RG_ZPMsSignalBlocked>Broadcast masked by subspace shroud</RG_ZPMsSignalBlocked>
+	<RG_ZPMsSignalUnblocked>Signal bleeding into subspace</RG_ZPMsSignalUnblocked>
+
 	<!-- Marauders -->
 
 	<RG_LetterMaraudersDesc>A group of marauders from {0} have arrived nearby.\nThey will attempt to destroy your colony down, stealing whatever they can before they leave.\nPrepare a defense or attack them preemptively.</RG_LetterMaraudersDesc>

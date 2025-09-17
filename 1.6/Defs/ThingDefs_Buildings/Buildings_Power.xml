@@ -276,6 +276,11 @@
         <shortCircuitInRain>false</shortCircuitInRain>
       </li>
       <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>Rimgate_SubspaceShroudEmitter</li>
+        </linkableFacilities>
+      </li>
     </comps>
     <costList>
       <Steel>2000</Steel>
@@ -287,6 +292,66 @@
       <ComponentSpacer>12</ComponentSpacer>
     </costList>
     <hasInteractionCell>False</hasInteractionCell>
+  </ThingDef>
+
+  <!-- ======================= ZPM signal shield ======================= -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_SubspaceShroudEmitter</defName>
+    <label>subspace shroud emitter</label>
+    <description>A compact field generator that floods nearby space-time with carrier noise, masking a ZPM’s archotech power signature. While powered, linked ZPMs won’t broadcast a raid-magnet of a beacon. Tau’ri engineers call it “a blanket for your sun-in-a-can.”\n\nMust be linked to a ZPM to function. Once synchronized, it masks all ZPMs on this map.</description>
+    <size>(1,1)</size>
+    <rotatable>false</rotatable>
+    <category>Building</category>
+    <graphicData>
+      <texPath>Things/Building/Power/RGSubspaceShroud</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.1,1.1)</drawSize>
+    </graphicData>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
+    <selectable>true</selectable>
+    <tickerType>Normal</tickerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <statBases>
+      <MaxHitPoints>160</MaxHitPoints>
+      <WorkToBuild>1800</WorkToBuild>
+      <Flammability>0</Flammability>
+      <Mass>8</Mass>
+      <Beauty>-2</Beauty>
+    </statBases>
+    <costList>
+      <Steel>40</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+      <Rimgate_Naquadah>5</Rimgate_Naquadah>
+    </costList>
+    <placeWorkers>
+      <li>PlaceWorker_ShowFacilitiesConnections</li>
+    </placeWorkers>
+    <designationCategory>Power</designationCategory>
+    <researchPrerequisites>
+      <li>Rimgate_SubspaceMasking</li>
+    </researchPrerequisites>
+    <comps>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>200</basePowerConsumption>
+        <shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>2</glowRadius>
+        <glowColor>(120,200,255,0)</glowColor>
+      </li>
+      <li Class="CompProperties_Facility">
+        <!-- it’s just a link anchor -->
+        <maxSimultaneous>99</maxSimultaneous>
+        <mustBePlacedAdjacent>true</mustBePlacedAdjacent>
+        <showMaxSimultaneous>false</showMaxSimultaneous>
+      </li>
+      <!-- toggles ZPM-raid suppression on this map while powered -->
+      <li Class="Rimgate.CompProperties_ZpmSignalScrambler" />
+    </comps>
   </ThingDef>
 
 </Defs>

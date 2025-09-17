@@ -87,7 +87,7 @@
 		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
 	</ThingDef>
 
-	<!-- Mobile Containers -->
+	<!-- ======================= Mobile Containers ======================= -->
 
 	<!-- ABSTRACT base for all mobile containers -->
 	<ThingDef Name="Rimgate_MobileContainerBase" ParentName="BuildingBase" Abstract="True">
