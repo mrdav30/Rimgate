@@ -46,16 +46,6 @@ public class JobDriver_EnterCloningPod : JobDriver
                     action();
                     return;
                 }
-
-                WindowStack windowStack = Find.WindowStack;
-                TaggedString taggedString = TranslatorFormattedStringExtensions.Translate("CasketWarning", NamedArgumentUtility.Named(actor, "PAWN"));
-                Dialog_MessageBox confirmation = Dialog_MessageBox.CreateConfirmation(
-                    taggedString.AdjustedFor(actor, "PAWN", true),
-                    action,
-                    false,
-                    null,
-                    WindowLayer.Dialog);
-                windowStack.Add(confirmation);
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };

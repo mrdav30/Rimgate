@@ -18,6 +18,7 @@
         <offset>(-0.03,0,-0.1)</offset>
       </shadowData>
     </graphicData>
+    <defaultPlacingRot>East</defaultPlacingRot>
     <minifiedDef>MinifiedThing</minifiedDef>
     <thingCategories>
       <li>BuildingsPower</li>
