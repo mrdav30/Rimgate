@@ -12,17 +12,20 @@
 		<containedPawnsSelectable>true</containedPawnsSelectable>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGWraithCloningPod</texPath>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(1, 3)</drawSize>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2, 3)</drawSize>
+			<drawOffset>(0,0,0.25)</drawOffset>
 			<shadowData>
 				<volume>(0.83, 0.3, 1.7)</volume>
 			</shadowData>
 		</graphicData>
+		<uiIconPath>Things/Building/Misc/RGWraithCloningPodIcon</uiIconPath>
+		<castEdgeShadows>true</castEdgeShadows>
 		<researchPrerequisites>
 			<li>Rimgate_WraithCloneGenome</li>
 		</researchPrerequisites>
 		<castEdgeShadows>false</castEdgeShadows>
-		<altitudeLayer>Building</altitudeLayer>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
 		<stealable>false</stealable>
 		<passability>PassThroughOnly</passability>
 		<pathCost>70</pathCost>
@@ -41,11 +44,11 @@
 		</thingCategories>
 		<tickerType>Normal</tickerType>
 		<drawerType>RealtimeOnly</drawerType>
-		<size>(1,3)</size>
+		<size>(2,2)</size>
 		<designationCategory>Misc</designationCategory>
 		<hasInteractionCell>true</hasInteractionCell>
-		<interactionCellOffset>(0,0,2)</interactionCellOffset>
-		<defaultPlacingRot>South</defaultPlacingRot>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<rotatable>false</rotatable>
 		<building>
 			<ai_chillDestination>false</ai_chillDestination>
 			<uninstallWork>1800</uninstallWork>
@@ -78,7 +81,25 @@
 				<basePowerConsumption>5000</basePowerConsumption>
 				<idlePowerDraw>50</idlePowerDraw>
 			</li>
-			<li Class="Rimgate.CompProperties_CloningPod" />
+			<li Class="Rimgate.CompProperties_CloningPod">
+				<backgroundGraphicData>
+					<texPath>FX/RGClonePodBackground</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>(2, 3)</drawSize>
+				</backgroundGraphicData>
+				<fullGraphicData>
+					<texPath>FX/RGClonePodFull</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>TransparentPostLight</shaderType>
+					<drawSize>(2, 3)</drawSize>
+				</fullGraphicData>
+				<emptyGraphicData>
+					<texPath>FX/RGClonePodEmpty</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>TransparentPostLight</shaderType>
+					<drawSize>(2, 3)</drawSize>
+				</emptyGraphicData>
+			</li>
 		</comps>
 		<placeWorkers>
 			<li>PlaceWorker_PreventInteractionSpotOverlap</li>

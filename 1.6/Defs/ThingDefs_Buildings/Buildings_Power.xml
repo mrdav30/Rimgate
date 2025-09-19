@@ -13,10 +13,6 @@
       <texPath>Things/Building/Power/NaquadriaGenerator/RGNaquadriaFiredGenerator</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(2,2)</drawSize>
-      <shadowData>
-        <volume>(1.93,1,1.69)</volume>
-        <offset>(-0.03,0,-0.1)</offset>
-      </shadowData>
     </graphicData>
     <defaultPlacingRot>East</defaultPlacingRot>
     <minifiedDef>MinifiedThing</minifiedDef>

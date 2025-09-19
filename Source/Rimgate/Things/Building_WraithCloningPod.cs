@@ -58,7 +58,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
 
     public float HeldPawnDrawPos_Y => DrawPos.y - 0.03658537f;
 
-    public float HeldPawnBodyAngle => Rotation.Opposite.AsAngle;
+    public float HeldPawnBodyAngle => Rotation.AsAngle;
 
     public PawnPosture HeldPawnPosture => PawnPosture.LayingOnGroundFaceUp;
 

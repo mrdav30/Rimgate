@@ -9,13 +9,9 @@ namespace Rimgate;
 [StaticConstructorOnStartup]
 public class Comp_CloningPod : ThingComp
 {
-    public static readonly Material BackgroundMat = SolidColorMaterials.NewSolidColorMaterial(
-        new Color(0.082f, 0.078f, 0.063f),
-        ShaderDatabase.SolidColorBehind);
+    public static Color IdleCycleColor = new Color(0.9f, 1f, 0.16f);// new Color(0.321f, 1f, 1f);
 
-    public static Color IdleCycleColor = new Color(0.321f, 1f, 1f);
-
-    public static Color OperatingColor = new Color(0.267f, 0.792f, 0.969f);
+    public static Color OperatingColor = new Color(0.89f, 0.24f, 0.04f);// new Color(0.267f, 0.792f, 0.969f);
 
     public bool PowerOn => _clonePod != null && _clonePod.Power.PowerOn;
 
@@ -24,6 +20,22 @@ public class Comp_CloningPod : ThingComp
     public CompProperties_CloningPod Props => (CompProperties_CloningPod)props;
 
     private Building_WraithCloningPod _clonePod;
+
+    public Graphic FullGraphic => _cachedFullGraphic ??= Props.fullGraphicData.Graphic;
+
+    public Graphic _cachedFullGraphic;
+
+    public Graphic EmptyGraphic => _cachedEmptyGraphic ??= Props.emptyGraphicData.Graphic;
+
+    public Graphic _cachedEmptyGraphic;
+
+    private Mesh BackgroundMesh => _cachedMesh ??= Props.backgroundGraphicData?.Graphic.MeshAt(parent.Rotation);
+
+    private Mesh _cachedMesh;
+
+    private Material BackgroundMat => _cachedMaterial ??= Props.backgroundGraphicData?.Graphic.MatAt(parent.Rotation, null);
+
+    private Material _cachedMaterial;
 
     private Effecter _idleEffecter;
 
@@ -51,10 +63,14 @@ public class Comp_CloningPod : ThingComp
             {
                 _idleEffecter = RimgateDefOf.Rimgate_ClonePod_Idle.Spawn();
                 ColorizeEffecter(_idleEffecter, IdleCycleColor);
-                _idleEffecter.Trigger(parent, new TargetInfo(parent.InteractionCell, parent.Map));
+                _idleEffecter.Trigger(
+                    new TargetInfo(parent),
+                    new TargetInfo(parent.InteractionCell, parent.Map));
             }
 
-            _idleEffecter.EffectTick(parent, new TargetInfo(parent.InteractionCell, parent.Map));
+            _idleEffecter.EffectTick(
+                new TargetInfo(parent),
+                new TargetInfo(parent.InteractionCell, parent.Map));
         }
 
         if (!_clonePod.IsWorking)
@@ -62,27 +78,28 @@ public class Comp_CloningPod : ThingComp
             _operatingEffecter?.Cleanup();
             _operatingEffecter = null;
         }
-        else
+        else if (_clonePod.RemainingWork > 0f)
         {
-            if (_clonePod.RemainingWork > 0f)
+            if (!PowerOn)
             {
-                if (!PowerOn)
-                {
-                    _operatingEffecter?.Cleanup();
-                    _operatingEffecter = null;
-                }
-                else
-                {
-                    if (_operatingEffecter == null)
-                    {
-                        _operatingEffecter = RimgateDefOf.Rimgate_ClonePod_Operating.Spawn();
-                        ColorizeEffecter(_operatingEffecter, OperatingColor);
-                        _operatingEffecter.Trigger(parent, new TargetInfo(parent.InteractionCell, parent.Map));
-                    }
-
-                    _operatingEffecter.EffectTick(parent, new TargetInfo(parent.InteractionCell, parent.Map));
-                }
+                _operatingEffecter?.Cleanup();
+                _operatingEffecter = null;
+                return;
             }
+
+            IntVec3 operatingPos = (parent.DrawPos + parent.def.graphicData.drawOffset).ToIntVec3();
+            if (_operatingEffecter == null)
+            {
+                _operatingEffecter = RimgateDefOf.Rimgate_ClonePod_Operating.Spawn();
+                ColorizeEffecter(_operatingEffecter, OperatingColor);
+                _operatingEffecter.Trigger(
+                    new TargetInfo(parent),
+                    new TargetInfo(operatingPos, parent.Map));
+            }
+
+            _operatingEffecter.EffectTick(
+                new TargetInfo(parent),
+                new TargetInfo(operatingPos, parent.Map));
         }
     }
 
@@ -91,58 +108,61 @@ public class Comp_CloningPod : ThingComp
         foreach (SubEffecter child in effecter.children)
         {
             if (child is SubEffecter_Sprayer subEffecter_Sprayer)
-            {
                 subEffecter_Sprayer.colorOverride = color * child.def.color;
-            }
         }
     }
 
     public override void PostDraw()
     {
         base.PostDraw();
-        Rot4 rotation = parent.Rotation;
-        Vector3 s = new Vector3(parent.def.graphicData.drawSize.x * 0.8f, 1f, parent.def.graphicData.drawSize.y * 0.8f);
-        Vector3 drawPos = parent.DrawPos;
 
-        Graphics.DrawMesh(MeshPool.plane10, Matrix4x4.TRS(drawPos, rotation.AsQuat, s), BackgroundMat, 0);
+        Vector3 drawPos = parent.DrawPos + parent.def.graphicData.drawOffset;
 
-        if (_clonePod.HasAnyContents)
+        Vector3 panePos = drawPos;
+        panePos.y = parent.def.altitudeLayer.AltitudeFor() + 0.01f;
+
+        if (Fueled)
         {
-            Pawn occupant = _clonePod.InnerPawn;
-            Vector3 drawLoc = parent.InteractionCell.ToVector3();
-
-            if (rotation == Rot4.South)
-            {
-                drawLoc += new Vector3(0.5f, 0.0f, 2f);
-            }
-            else if (rotation == Rot4.West)
-            {
-                drawLoc += new Vector3(2f, 0.0f, 0.35f);
-            }
-            else if (rotation == Rot4.North)
-            {
-                drawLoc += new Vector3(0.5f, 0.0f, -0.9f);
-            }
-            else if (rotation == Rot4.East)
-            {
-                drawLoc += new Vector3(-1f, 0.0f, 0.35f);
-            }
-            else drawLoc = parent.DrawPos;
-
-            float offset = 0;
-            if (_clonePod.IsWorking)
-                offset = FloatingOffset(_clonePod.RemainingWork);
-
-            if (rotation == Rot4.East || rotation == Rot4.West)
-            {
-                drawLoc.x += offset;
-                drawLoc.z += 0.2f;
-            }
-            else
-                drawLoc.z += offset;
-
-            occupant.Drawer.renderer.RenderPawnAt(drawLoc, null, neverAimWeapon: true);
+            FullGraphic.Draw(
+                panePos,
+                parent.Rotation,
+                parent);
         }
+        else
+        {
+            EmptyGraphic.Draw(
+            panePos,
+            parent.Rotation,
+            parent);
+        }
+
+        if (Props.backgroundGraphicData != null)
+        {
+            Vector3 backgroundPos = drawPos;
+            backgroundPos.y -= 2.0f;
+
+            Graphics.DrawMesh(
+                BackgroundMesh,
+                backgroundPos,
+                parent.Rotation.AsQuat,
+                BackgroundMat,
+                0);
+        }
+
+        if (!_clonePod.HasAnyContents) return;
+
+        Pawn occupant = _clonePod.InnerPawn;
+        drawPos += new Vector3(0.15f, 0.0f, -0.15f);
+
+        float pawnOffset = 0;
+        if (_clonePod.IsWorking)
+            pawnOffset = FloatingOffset(_clonePod.RemainingWork);
+        drawPos.z += pawnOffset;
+
+        occupant.Drawer.renderer.RenderPawnAt(
+            drawPos,
+            Rot4.East,
+            neverAimWeapon: true);
     }
 
     public static float FloatingOffset(float tickOffset)
@@ -159,5 +179,5 @@ public class Comp_CloningPod : ThingComp
         _operatingEffecter = null;
         _idleEffecter?.Cleanup();
         _idleEffecter = null;
-    }   
+    }
 }

@@ -99,16 +99,11 @@ public class MapComponent_ZpmRaidTracker : MapComponent
 
     private void EndQuestIfNoZpm()
     {
-        Log.Message($"Ending quest with zpm count: {_activeZpmCount}.");
-
         if (_activeZpmCount > 0 && !_suppressionActive) return;
 
         var quest = ResolveQuest();
         if (quest != null && quest.State == QuestState.Ongoing)
-        {
-            quest.End(QuestEndOutcome.Fail, false, false);
-            Log.Message($"quest ended.");
-        }
+            quest.End(QuestEndOutcome.Fail, false, false); 
 
         _questCached = null;
         _questId = -1;
