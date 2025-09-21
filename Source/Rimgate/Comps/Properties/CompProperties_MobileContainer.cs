@@ -15,7 +15,7 @@ public class CompProperties_MobileContainer : CompProperties
     public float slowdownSeverity = 0.1f; // pusher slowdown
 
     // only items within this radius are eligible
-    public float loadRadius = 25f;
+    public float loadRadius = 10f;
 
     public bool shouldTickContents = true;
 

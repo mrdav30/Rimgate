@@ -459,7 +459,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         Pawn best = null; float bestScore = float.MaxValue;
         foreach (var p in map.mapPawns.FreeColonistsSpawned)
         {
-            if (p.Dead || p.Downed) continue;
+            if (p.Dead || p.Downed || p.Drafted) continue;
             if (!p.CanReserveAndReach(parent, PathEndMode.Touch, Danger.Deadly)) continue;
             if (Utils.PawnIncapableOfHauling(p, out _)) continue;
 
