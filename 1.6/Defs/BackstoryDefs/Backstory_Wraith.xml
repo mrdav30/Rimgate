@@ -47,6 +47,54 @@
     </spawnCategories>
   </BackstoryDef>
 
+  <BackstoryDef>
+    <defName>Rimgate_WraithHiveChorale</defName>
+    <title>Hive chorale</title>
+    <titleShort>Hive chorale</titleShort>
+    <baseDesc>Raised to “sing” the hive’s psionic resonance, [PAWN_nameDef] spent their youth humming alien chords in endless chambers. The melodies sharpened focus, tuned instincts, and occasionally drove weaker spawnlings insane.</baseDesc>
+    <slot>Childhood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithChildBackStory</li>
+    </spawnCategories>
+    <skillGains>
+      <Artistic>3</Artistic>
+      <Social>-2</Social>
+      <Intellectual>2</Intellectual>
+    </skillGains>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithBoneForager</defName>
+    <title>Bone forager</title>
+    <titleShort>Bone forager</titleShort>
+    <baseDesc>Before learning the elegance of feeding, [PAWN_nameDef] scoured husks for marrow and chitin. Every cracked rib was a lesson in anatomy and every discarded corpse, a practice subject.</baseDesc>
+    <slot>Childhood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithChildBackStory</li>
+    </spawnCategories>
+    <skillGains>
+      <Medicine>3</Medicine>
+      <Social>-3</Social>
+      <Plants>2</Plants>
+    </skillGains>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithHiveJester</defName>
+    <title>Hive jester</title>
+    <titleShort>Hive jester</titleShort>
+    <baseDesc>Some spawnlings survived not by strength, but by entertaining their brood with cruel games. [PAWN_nameDef] learned wit as sharp as claws, distracting stronger peers from tearing them apart.</baseDesc>
+    <slot>Childhood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithChildBackStory</li>
+    </spawnCategories>
+    <skillGains>
+      <Artistic>2</Artistic>
+      <Social>3</Social>
+      <Melee>-2</Melee>
+    </skillGains>
+  </BackstoryDef>
+
   <!-- ======== Adult ========= -->
 
   <BackstoryDef>
@@ -204,6 +252,70 @@
       <CreepyBreathing>0</CreepyBreathing>
       <PsychicSensitivity>1</PsychicSensitivity>
     </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithShadowblade</defName>
+    <title>Shadowblade</title>
+    <titleShort>Shadowblade</titleShort>
+    <baseDesc>Trained to strike unseen, [PAWN_nameDef] blended stealth with precision feeding. Entire villages vanished overnight without alarm—only a faint shimmer in the air betrayed their passing.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Melee>6</Melee>
+      <Shooting>3</Shooting>
+      <Intellectual>-4</Intellectual>
+    </skillGains>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithBiomancer</defName>
+    <title>Biomancer</title>
+    <titleShort>Biomancer</titleShort>
+    <baseDesc>Experimenting with hive biomass vats, [PAWN_nameDef] reshaped flesh like clay. Some creations thrived, others screamed until they dissolved, but each experiment deepened their mastery.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Crafting>5</Crafting>
+      <Medicine>6</Medicine>
+      <Intellectual>4</Intellectual>
+    </skillGains>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithSoulHarrower</defName>
+    <title>Soul harrower</title>
+    <titleShort>Soul harrower</titleShort>
+    <baseDesc>Where others feasted quickly, [PAWN_nameDef] prolonged the process—torturing prey with psychic echoes while draining them. Victims were left hollow, their last moments stretched into eternity.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Social>5</Social>
+      <Artistic>-4</Artistic>
+      <Intellectual>3</Intellectual>
+    </skillGains>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_WraithHiveStrategist</defName>
+    <title>Hive strategist</title>
+    <titleShort>Hive strategist</titleShort>
+    <baseDesc>[PAWN_nameDef] served as a tactical advisor, moving warriors like pieces on a living board. Cold logic and ruthless calculation turned battlefields into banquets.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_WraithAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Melee>2</Melee>
+      <Social>4</Social>
+      <Intellectual>6</Intellectual>
+    </skillGains>
   </BackstoryDef>
 
 </Defs>

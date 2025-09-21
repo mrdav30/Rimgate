@@ -36,6 +36,59 @@
     </spawnCategories>
   </BackstoryDef>
 
+  <BackstoryDef>
+    <defName>Rimgate_TempleArchivistChild</defName>
+    <title>temple archivist’s ward</title>
+    <titleShort>archivist’s ward</titleShort>
+    <baseDesc>Raised in a pyramid’s dust-choked archives, [PAWN_nameDef] learned to copy “divine” decrees and catalogue tribute. The real lessons were in reading between lines—and ducking thrown scepters.</baseDesc>
+    <slot>Childhood</slot>
+    <shuffleable>true</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldChildBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Intellectual>3</Intellectual>
+      <Artistic>1</Artistic>
+      <Construction>-2</Construction>
+      <Melee>-2</Melee>
+    </skillGains>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_PyramidScullion</defName>
+    <title>pyramid scullion</title>
+    <titleShort>scullion</titleShort>
+    <baseDesc>Cookfires, spilled broth, and shouted orders—[PAWN_nameDef] grew up in a palace kitchen feeding armies and egos. They learned timing, poison-spotting, and the art of being invisible.</baseDesc>
+    <slot>Childhood</slot>
+    <shuffleable>true</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldChildBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Cooking>4</Cooking>
+      <Social>1</Social>
+      <Shooting>-2</Shooting>
+      <Intellectual>-2</Intellectual>
+    </skillGains>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_TrainingYardPage</defName>
+    <title>training-yard page</title>
+    <titleShort>yard page</titleShort>
+    <baseDesc>Too small to fight, big enough to fetch. [PAWN_nameDef] hauled practice staves, reset targets, and watched Jaffa drills until every barked order lived in their bones.</baseDesc>
+    <slot>Childhood</slot>
+    <shuffleable>true</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldChildBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Melee>2</Melee>
+      <Shooting>1</Shooting>
+      <Plants>-2</Plants>
+    </skillGains>
+  </BackstoryDef>
+
   <!-- ======== Adult ========= -->
 
   <BackstoryDef>
@@ -82,34 +135,6 @@
       <Neurotic>2</Neurotic>
       <Greedy>0</Greedy>
     </forcedTraits>
-  </BackstoryDef>
-
-  <BackstoryDef>
-    <defName>Rimgate_FirstPrime</defName>
-    <title>First Prime</title>
-    <titleShort>First Prime</titleShort>
-    <baseDesc>As the First Prime of a System Lord, [PAWN_nameDef] served as enforcer, executioner, and occasional motivational speaker (with staff weapon). Feared by allies and enemies alike, they carried out divine will with zeal—and very little paperwork.</baseDesc>
-    <slot>Adulthood</slot>
-    <spawnCategories>
-      <li>Rimgate_FirstPrimeBackstory</li>
-    </spawnCategories>
-    <skillGains>
-      <Melee>12</Melee>
-      <Shooting>12</Shooting>
-      <Cooking>-12</Cooking>
-      <Plants>-12</Plants>
-      <Animals>6</Animals>
-      <Crafting>6</Crafting>
-      <Intellectual>12</Intellectual>
-    </skillGains>
-    <forcedTraits>
-      <Beauty>2</Beauty>
-      <Greedy>0</Greedy>
-      <Psychopath>0</Psychopath>
-    </forcedTraits>
-    <workDisables>
-      <li>ManualDumb</li>
-    </workDisables>
   </BackstoryDef>
 
   <BackstoryDef>
@@ -229,6 +254,208 @@
     <forcedTraits>
       <Nerves>-1</Nerves>
       <Neurotic>2</Neurotic>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_PyramidArtificer</defName>
+    <title>pyramid artificer</title>
+    <titleShort>artificer</titleShort>
+    <baseDesc>Idols don’t polish themselves. [PAWN_nameDef] gilded masks, etched Naquadah filigree, and repaired parade armor for officers who never said “thank you.” Their hands remember fine work—so does their back.</baseDesc>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Crafting>6</Crafting>
+      <Artistic>3</Artistic>
+      <Construction>2</Construction>
+      <Melee>-2</Melee>
+      <Shooting>-2</Shooting>
+    </skillGains>
+    <forcedTraits>
+      <Neurotic>1</Neurotic>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_SarcophagusAttendant</defName>
+    <title>sarcophagus attendant</title>
+    <titleShort>sarcophagus attendant</titleShort>
+    <baseDesc>Night shifts in a whispering chamber. [PAWN_nameDef] kept a resurrection sarcophagus humming—monitoring crystal arrays, cleaning ichor, and ignoring who climbed in or crawled out.</baseDesc>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Medicine>4</Medicine>
+      <Intellectual>3</Intellectual>
+      <Crafting>2</Crafting>
+      <Social>-2</Social>
+      <Plants>-2</Plants>
+    </skillGains>
+    <forcedTraits>
+      <NightOwl>0</NightOwl>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_PitFighterPressed</defName>
+    <title>pressed pit-fighter</title>
+    <titleShort>pit-fighter</titleShort>
+    <baseDesc>Entertainment for gods is expensive in blood. [PAWN_nameDef] fought in ritual arenas—wood against bronze, bronze against plasma. They survived by moving first and thinking last.</baseDesc>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Melee>8</Melee>
+      <Shooting>2</Shooting>
+      <Social>-3</Social>
+      <Intellectual>-4</Intellectual>
+    </skillGains>
+    <forcedTraits>
+      <Bloodlust>0</Bloodlust>
+      <Tough>0</Tough>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_NaquadahSmuggler</defName>
+    <title>Naquadah smuggler</title>
+    <titleShort>smuggler</titleShort>
+    <baseDesc>Between tribute convoys and black-market caches, [PAWN_nameDef] learned routes the overseers didn’t know. Bribes, lies, and quick feet kept them alive—most days.</baseDesc>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Social>5</Social>
+      <Shooting>3</Shooting>
+      <Animals>1</Animals>
+      <Construction>-3</Construction>
+    </skillGains>
+    <forcedTraits>
+      <Greedy>0</Greedy>
+      <FastLearner>0</FastLearner>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_PalaceArchitect</defName>
+    <title>palace architect</title>
+    <titleShort>architect</titleShort>
+    <baseDesc>Vaults, kill-corridors, and glorious acoustics. [PAWN_nameDef] drafted strongholds to flatter egos and funnel rebels into crossfire. Their blueprints always included an escape route—personal habit.</baseDesc>
+    <slot>Adulthood</slot>
+    <shuffleable>false</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Construction>8</Construction>
+      <Intellectual>4</Intellectual>
+      <Artistic>2</Artistic>
+      <Melee>-2</Melee>
+    </skillGains>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_TaxCollector</defName>
+    <title>tribute collector</title>
+    <titleShort>collector</titleShort>
+    <baseDesc>With a ledger in one hand and armed escorts behind, [PAWN_nameDef] toured vassal worlds, squeezing grain, ore, and obedience from the fearful. They learned to spot lies and weigh silence.</baseDesc>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Social>6</Social>
+      <Animals>2</Animals>
+      <Shooting>2</Shooting>
+      <Plants>-2</Plants>
+    </skillGains>
+    <workDisables>Caring</workDisables>
+    <forcedTraits>
+      <Greedy>0</Greedy>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_PenitentScribe</defName>
+    <title>penitent scribe</title>
+    <titleShort>penitent</titleShort>
+    <baseDesc>One wrong word about a god’s divinity earned [PAWN_nameDef] a lifetime copying confessions in a dungeon archive. They honed patience, neat handwriting, and a permanent flinch.</baseDesc>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_GoauldAdultBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Intellectual>6</Intellectual>
+      <Crafting>2</Crafting>
+      <Social>-3</Social>
+      <Melee>-2</Melee>
+    </skillGains>
+    <forcedTraits>
+      <Wimp>0</Wimp>
+      <Nerves>-1</Nerves>
+    </forcedTraits>
+  </BackstoryDef>
+
+  <!-- ================= First Prime ================= -->
+
+  <BackstoryDef>
+    <defName>Rimgate_FirstPrime</defName>
+    <title>First Prime</title>
+    <titleShort>First Prime</titleShort>
+    <baseDesc>As the First Prime of a System Lord, [PAWN_nameDef] served as enforcer, executioner, and occasional motivational speaker (with staff weapon). Feared by allies and enemies alike, they carried out divine will with zeal—and very little paperwork.</baseDesc>
+    <slot>Adulthood</slot>
+    <spawnCategories>
+      <li>Rimgate_FirstPrimeBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Melee>12</Melee>
+      <Shooting>12</Shooting>
+      <Cooking>-12</Cooking>
+      <Plants>-12</Plants>
+      <Animals>6</Animals>
+      <Crafting>6</Crafting>
+      <Intellectual>12</Intellectual>
+    </skillGains>
+    <forcedTraits>
+      <Beauty>2</Beauty>
+      <Greedy>0</Greedy>
+      <Psychopath>0</Psychopath>
+    </forcedTraits>
+    <workDisables>
+      <li>ManualDumb</li>
+    </workDisables>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>Rimgate_KaraKeshAdept</defName>
+    <title>kara kesh adept</title>
+    <titleShort>hand-device adept</titleShort>
+    <baseDesc>Chosen to wield a kara kesh, [PAWN_nameDef] trained to turn thought into force—pinning, tossing, and crushing on command. The gods admired results, not restraint.</baseDesc>
+    <slot>Adulthood</slot>
+    <shuffleable>false</shuffleable>
+    <spawnCategories>
+      <li>Rimgate_FirstPrimeBackstory</li>
+    </spawnCategories>
+    <skillGains>
+      <Social>4</Social>
+      <Shooting>2</Shooting>
+      <Melee>4</Melee>
+      <Intellectual>2</Intellectual>
+    </skillGains>
+    <forcedTraits>
+      <Bloodlust>0</Bloodlust>
+      <Psychopath>0</Psychopath>
     </forcedTraits>
   </BackstoryDef>
 
