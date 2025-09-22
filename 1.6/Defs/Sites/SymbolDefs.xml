@@ -24,8 +24,19 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_NaquadahColumn</defName>
+        <thing>Column</thing>
+        <stuff>Rimgate_Naquadah</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_HiveFloor</defName>
         <thing>Rimgate_HiveFloor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_MineableNaquadah</defName>
+        <thing>Rimgate_MineableNaquadah</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -108,9 +119,9 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
-        <defName>Rimgate_NaquadahColumn</defName>
-        <thing>Column</thing>
-        <stuff>Rimgate_Naquadah</stuff>
+        <defName>Rimgate_SecretDoor_Sandstone</defName>
+        <thing>Rimgate_SecretDoor</thing>
+        <stuff>BlocksSandstone</stuff>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -126,6 +137,11 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_WraithDart</defName>
         <thing>Rimgate_WraithDart</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Wheelbarrow</defName>
+        <thing>Rimgate_Wheelbarrow</thing>
     </KCSG.SymbolDef>
 
     <!-- Props -->
@@ -469,6 +485,13 @@
         <faction>Entities</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ShamblerSoldier</defName>
+        <pawnKindDef>ShamblerSoldier</pawnKindDef>
+        <faction>Entities</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
