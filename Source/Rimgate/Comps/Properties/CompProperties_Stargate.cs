@@ -16,13 +16,11 @@ public class CompProperties_Stargate : CompProperties
 
     public bool explodeOnUse = false;
 
-    public string puddleTexture;
+    public GraphicData puddleGraphicData;
 
-    public string irisTexture;
+    public GraphicData irisGraphicData;
 
     public string activeTexture;
-
-    public Vector2 puddleDrawSize;
 
     public List<IntVec3> vortexPattern = new List<IntVec3>
     {

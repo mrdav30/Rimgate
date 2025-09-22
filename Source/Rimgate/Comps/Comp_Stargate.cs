@@ -33,32 +33,9 @@ public class Comp_Stargate : ThingComp
 
     public CompProperties_Stargate Props => (CompProperties_Stargate)props;
 
-    public Graphic StargatePuddle
-    {
-        get
-        {
-            _stargatePuddle ??= GraphicDatabase.Get<Graphic_Single>(
-                Props.puddleTexture,
-                ShaderDatabase.Mote,
-                Props.puddleDrawSize,
-                Color.white);
+    public Graphic StargatePuddle => _stargatePuddle ??= Props.puddleGraphicData.Graphic;
 
-            return _stargatePuddle;
-        }
-    }
-    public Graphic StargateIris
-    {
-        get
-        {
-            _stargateIris ??= GraphicDatabase.Get<Graphic_Single>(
-                Props.irisTexture,
-                ShaderDatabase.Mote,
-                Props.puddleDrawSize,
-                Color.white);
-
-            return _stargateIris;
-        }
-    }
+    public Graphic StargateIris => _stargateIris ??= Props.irisGraphicData.Graphic;
 
     public bool GateIsLoadingTransporter
     {
@@ -347,7 +324,7 @@ public class Comp_Stargate : ThingComp
 
         if (IsActive)
         {
-            Vector3 offset = RimgateDefOf.Rimgate_Stargate.graphicData.drawOffset;
+            Vector3 offset = parent.def.graphicData.drawOffset;
             offset.y -= 0.02f;
 
             StargatePuddle.Draw(
@@ -515,7 +492,7 @@ public class Comp_Stargate : ThingComp
             {
                 defaultLabel = "RG_ToggleIris".Translate(action),
                 defaultDesc = "RG_ToggleIrisDesc".Translate(action),
-                icon = ContentFinder<Texture2D>.Get(Props.irisTexture, true),
+                icon = ContentFinder<Texture2D>.Get(Props.irisGraphicData.texPath, true),
                 isActive = () => _wantsIrisToggled,
                 toggleAction = delegate
                 {

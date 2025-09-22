@@ -9,11 +9,11 @@
     <description>a compact Goa'uld transport craft built for swift infiltration, planetary landings, and discreet extractions. Lacks firepower—but makes up for it with sheer speed, stealth plating, and enough ego to carry a system lord.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <preventDroppingThingsOn>true</preventDroppingThingsOn>
-    <size>(6,6)</size>
+    <size>(5,6)</size>
     <graphicData>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(7,6.5)</drawSize>
+      <drawSize>(6,6)</drawSize>
       <shadowData>
         <volume>(0.8, 0.6, 0.8)</volume>
       </shadowData>
@@ -113,13 +113,13 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(7,6.5)</drawSize>
+      <drawSize>(6,6)</drawSize>
     </graphicData>
     <skyfaller>
       <anticipationSound>Shuttle_Landing</anticipationSound>
       <anticipationSoundTicks>100</anticipationSoundTicks>
       <ticksToImpactRange>160~200</ticksToImpactRange>
-      <shadowSize>(7.5,7)</shadowSize>
+      <shadowSize>(6.5,6.5)</shadowSize>
       <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
       <rotationCurve>
         <points>
@@ -153,7 +153,7 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(7,6.5)</drawSize>
+      <drawSize>(6,6)</drawSize>
     </graphicData>
     <skyfaller>
       <reversed>true</reversed>
@@ -162,7 +162,7 @@
       <ticksToImpactRange>-40~-15</ticksToImpactRange>
       <moteSpawnTime>0.05</moteSpawnTime>
       <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
-      <shadowSize>(7.5,7)</shadowSize>
+      <shadowSize>(6.5,6.5)</shadowSize>
       <motesPerCell>1</motesPerCell>
       <rotationCurve>
         <points>

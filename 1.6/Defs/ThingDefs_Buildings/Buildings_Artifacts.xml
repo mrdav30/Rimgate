@@ -75,10 +75,19 @@
         </statBases>
         <comps>
             <li Class="Rimgate.CompProperties_Stargate">
-                <puddleTexture>FX/RGEventHorizon</puddleTexture>
-                <irisTexture>Things/Building/Misc/RGIris</irisTexture>
+				<puddleGraphicData>
+					<texPath>FX/RGEventHorizon</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>Mote</shaderType>
+					<drawSize>(5.3,5.3)</drawSize>
+				</puddleGraphicData>
+                <irisGraphicData>
+					<texPath>Things/Building/Misc/RGIris</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>Mote</shaderType>
+					<drawSize>(5.3,5.3)</drawSize>
+				</irisGraphicData>
                 <activeTexture>Things/Building/Artifact/RGStargateAncient_Active</activeTexture>
-                <puddleDrawSize>(5.3,5.3)</puddleDrawSize>
                 <irisPowerConsumption>500</irisPowerConsumption>
             </li>
             <li Class="CompProperties_Power">
