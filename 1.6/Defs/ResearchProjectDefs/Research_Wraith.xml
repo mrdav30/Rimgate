@@ -194,7 +194,6 @@
 		<description>Unlock the Wraith biomass generator—a power source fueled by cultivated organic matter.\nEfficient, grotesque, and perfect for the energy needs of a species that eats people.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
-			<li>Rimgate_WraithBasic</li>
 			<li>Rimgate_MeatCultivation</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>

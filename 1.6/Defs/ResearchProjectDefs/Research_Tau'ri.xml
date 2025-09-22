@@ -236,8 +236,8 @@
             <li>Rimgate_TauriBasic</li>
             <li>BiofuelRefining</li>
         </prerequisites>
-        <researchViewX>3</researchViewX>
-        <researchViewY>5</researchViewY>
+        <researchViewX>1</researchViewX>
+        <researchViewY>6</researchViewY>
         <techprintCount>1</techprintCount>
         <techprintCommonality>3</techprintCommonality>
         <techprintMarketValue>3000</techprintMarketValue>

@@ -70,4 +70,42 @@
         </stages>
     </HediffDef>
 
+    <!-- Psylink on Spawn -->
+
+    <HediffDef>
+        <defName>Rimgate_InitPsylink</defName>
+        <label>psionic attunement</label>
+        <description>This hediff adds psylink levels to a pawn then removes itself.</description>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <isBad>false</isBad>
+        <tendable>false</tendable>
+        <initialSeverity>0.1</initialSeverity>
+        <hediffClass>HediffWithComps</hediffClass>
+        <comps>
+            <li Class="Rimgate.HediffCompProperties_GivePsylinkOnAdded">
+                <!-- tuning per pawnkind -->
+                <minLevel>2</minLevel>
+                <maxLevel>4</maxLevel>
+                <extraPsycasts>1~3</extraPsycasts>
+                <!-- Optional filter so only “control/disruption” flavored casts are picked -->
+                <!-- You may also create your own tag strings and add them to AbilityDefs -->
+                <!-- <abilityTags>
+                    <li>Calm</li>
+                    <li>Shock</li>
+                    <li>Vertigo</li>
+                    <li>Chaos</li>
+                </abilityTags> -->
+            </li>
+        </comps>
+        <!-- Keep it effectively invisible to players -->
+        <stages>
+            <li>
+                <label>attuning</label>
+                <minSeverity>0</minSeverity>
+                <becomeVisible>false</becomeVisible>
+                <capMods />
+            </li>
+        </stages>
+    </HediffDef>
+
 </Defs>

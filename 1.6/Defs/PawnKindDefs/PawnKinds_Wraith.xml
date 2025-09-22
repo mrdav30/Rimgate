@@ -176,6 +176,12 @@
     <apparelMoney>5000~8000</apparelMoney>
     <weaponMoney>2200~3800</weaponMoney>
     <techHediffsMoney>2000~2500</techHediffsMoney>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_InitPsylink</def>
+        <severity>0.1</severity>
+      </li>
+    </startingHediffs>
     <apparelTags>
       <li>Tribal</li>
       <li>Neolithic</li>
@@ -235,6 +241,12 @@
     </weaponTags>
     <techHediffsMoney>1000~4000</techHediffsMoney>
     <techHediffsChance>0.62</techHediffsChance>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_InitPsylink</def>
+        <severity>0.1</severity>
+      </li>
+    </startingHediffs>
     <inventoryOptions>
       <skipChance>0.8</skipChance>
       <subOptionsChooseOne>
@@ -304,6 +316,12 @@
     </weaponTags>
     <techHediffsMoney>1000~4000</techHediffsMoney>
     <techHediffsChance>0.62</techHediffsChance>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_InitPsylink</def>
+        <severity>0.1</severity>
+      </li>
+    </startingHediffs>
     <skills>
       <li>
         <skill>Shooting</skill>

@@ -73,8 +73,8 @@
 		<prerequisites>
 			<li>Rimgate_StargateAlloyResearch</li>
 		</prerequisites>
-		<researchViewX>3.00</researchViewX>
-		<researchViewY>0.50</researchViewY>
+		<researchViewX>2</researchViewX>
+		<researchViewY>2</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>

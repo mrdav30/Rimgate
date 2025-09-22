@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using static HarmonyLib.Code;
 
 namespace Rimgate;
 
@@ -101,6 +102,13 @@ internal static class Utils
         if (geneDef is null) return false;
         if (pawn.genes is null) return false;
         return pawn.genes.GetGene(geneDef)?.Active ?? false;
+    }
+
+    public static bool HasActiveGene(this Pawn pawn, string geneDefName)
+    {
+        if (string.IsNullOrEmpty(geneDefName)) return false;
+        if (pawn.genes is null) return false;
+        return pawn.genes?.GetGene(DefDatabase<GeneDef>.GetNamedSilentFail(geneDefName))?.Active ?? false;
     }
 
     public static Hediff ApplyHediff(

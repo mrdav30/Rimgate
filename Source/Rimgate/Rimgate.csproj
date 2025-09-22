@@ -367,9 +367,11 @@
     <Compile Include="HarmonyPatches\Harmony_PawnGenerator.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_MechanitorTracker.cs" />
     <Compile Include="HarmonyPatches\Harmony_ThingOwnerUtility.cs" />
+    <Compile Include="Hediffs\HediffComp_GivePsylinkOnAdded.cs" />
     <Compile Include="Hediffs\Hediff_Clone.cs" />
     <Compile Include="Hediffs\Hediff_ClonedTracker.cs" />
     <Compile Include="Hediffs\IngestionOutcomeDoer_HealAllDisease.cs" />
+    <Compile Include="Hediffs\Properties\HediffCompProperties_GivePsylinkOnAdded.cs" />
     <Compile Include="Incidents\IncidentWorker_Asteroid.cs" />
     <Compile Include="Incidents\IncidentWorker_KillAllClonesNow.cs" />
     <Compile Include="Incidents\IncidentWorker_Marauders.cs" />
