@@ -55,15 +55,6 @@ public class Projectile_ZatBlast : Bullet
                 psychicSensitivity = psychicSensitivityTrait.Degree;
             }
 
-            float oddsOfCatatonia = 0.15f;
-            float oddsOfHangover = 0.20f;
-            if (psychicSensitivity > 0 || Rand.Value <= oddsOfCatatonia)
-                hitPawn.health?.AddHediff(HediffDefOf.CatatonicBreakdown, null, null);
-
-            // Chance of just having a "psycic hangover."
-            if (psychicSensitivity < -1 || Rand.Value < oddsOfHangover)
-                hitPawn.health?.AddHediff(HediffDefOf.PsychicHangover, null, null);
-
             hediff = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_ZatShock, hitPawn);
             hediff.Severity = randomSeverity;
             hitPawn.health.AddHediff(hediff);
