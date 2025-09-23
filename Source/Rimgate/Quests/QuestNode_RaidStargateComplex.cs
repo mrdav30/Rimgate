@@ -43,10 +43,10 @@ public class QuestNode_RaidStargateComplex : QuestNode
     protected override void RunInt()
     {
         Slate slate = QuestGen.slate;
-        List<string> exclusions = excludeTags.GetValue(slate).ToList();
-        IEnumerable<SitePartDef> sitePartDefs = slate.Get<IEnumerable<SitePartDef>>("sitePartDefs");
-        if (exclusions != null && exclusions.Any() && sitePartDefs != null)
+        var exclusions = excludeTags.GetValue(slate);
+        if (exclusions != null && exclusions.Any())
         {
+            var sitePartDefs = slate.Get<IEnumerable<SitePartDef>>("sitePartDefs");
             if (!sitePartDefs.Where(p => p != null && CanRaid(p, exclusions)).Any())
                 return;
         }
@@ -74,6 +74,8 @@ public class QuestNode_RaidStargateComplex : QuestNode
             randomRaid.mapParent = site;
             randomRaid.pointsRange = _randomPointsFactorRange * num2;
             randomRaid.arrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+            randomRaid.UseStargateIfAvailable = true;
+            randomRaid.AllowNeolithic = true;
             randomRaid.raidStrategy = RimgateDefOf.ImmediateAttackSmart;
             randomRaid.UseLetterKey = "RG_LetterRaidStargateComplexDesc";
             randomRaid.generateFightersOnly = true;
@@ -81,11 +83,11 @@ public class QuestNode_RaidStargateComplex : QuestNode
         }
     }
 
-    public bool CanRaid(SitePartDef part, List<string> exclusions)
+    public bool CanRaid(SitePartDef part, IEnumerable<string> exclusions)
     {
-        for (int i = 0; i < exclusions.Count; i++)
+        foreach (string exclusion in exclusions)
         {
-            if (part.tags.Contains(exclusions[i]))
+            if (part.tags.Contains(exclusion))
                 return false;
         }
 

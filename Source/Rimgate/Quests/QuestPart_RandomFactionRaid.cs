@@ -18,8 +18,15 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
 
     public Predicate<Thing> TargetPredicate;
 
+    public bool AllowNeolithic;
+
+    public bool UseStargateIfAvailable;
+
     public override void Notify_QuestSignalReceived(Signal signal)
     {
+        if (signal.tag != inSignal)
+            return;
+
         if (fallbackToPlayerHomeMap
             && (mapParent == null || !mapParent.HasMap)
             && Find.AnyPlayerHomeMap != null)
@@ -27,17 +34,14 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
             mapParent = Find.AnyPlayerHomeMap.Parent;
         }
 
-        if (signal.tag != inSignal || mapParent == null || !mapParent.HasMap)
+        if (mapParent == null || !mapParent.HasMap)
             return;
 
-        if (faction == null)
-        {
-            if (!Utils.TryFindEnemyFaction(out faction, false))
-                return;
-        }
+        if (!Utils.TryFindEnemyFaction(out faction, AllowNeolithic))
+            return;
 
-        customLetterLabel ??= "Raid".Translate() + ": " + faction.Name;
-        customLetterText ??= UseLetterKey.Translate(faction.NameColored).Resolve();
+        customLetterLabel = "Raid".Translate() + ": " + faction.Name;
+        customLetterText = UseLetterKey.Translate(faction.NameColored).Resolve();
 
         Map map = mapParent.Map;
         IncidentParms incidentParms = new IncidentParms();
@@ -48,16 +52,20 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
             ? (StorytellerUtility.DefaultThreatPointsNow(map) * currentThreatPointsFactor)
             : pointsRange.RandomInRange;
         incidentParms.faction = faction;
-        incidentParms.customLetterLabel = signal.args.GetFormattedText(customLetterLabel);
-        incidentParms.customLetterText = signal.args.GetFormattedText(customLetterText).Resolve();
+        incidentParms.customLetterLabel = customLetterLabel;
+        incidentParms.customLetterText = customLetterText;
 
         if (TargetDefs != null)
         {
             attackTargets ??= new List<Thing>();
-            for (int i = 0; i <= TargetDefs.Count; i++)
+            attackTargets.Clear();
+            for (int i = 0; i < TargetDefs.Count; i++)
             {
+                var target = TargetDefs[i];
+                if (target == null) continue;
+
                 var foundTargets = map.listerThings
-                    .ThingsOfDef(TargetDefs[i])
+                    .ThingsOfDef(target)
                     .Where(p => p.Faction == Faction.OfPlayer
                         && p.Spawned
                         && (TargetPredicate != null ? TargetPredicate(p) : true))
@@ -65,12 +73,26 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
                 if (foundTargets.Any())
                     attackTargets.AddRange(foundTargets);
             }
+
+            Log.Message($"found {attackTargets.Count} - {attackTargets[0]}");
         }
 
         incidentParms.attackTargets = attackTargets;
         incidentParms.generateFightersOnly = generateFightersOnly;
         incidentParms.sendLetter = sendLetter;
-        if (arrivalMode != null)
+
+        if (UseStargateIfAvailable)
+        {
+            var sg = StargateUtility.GetStargateOnMap(map) as Building_Stargate;
+            bool isValid = sg != null
+                && !sg.StargateComp.IsActive
+                && !sg.StargateComp.IsIrisActivated;
+            if (isValid)
+                incidentParms.raidArrivalMode = RimgateDefOf.Rimgate_StargateEnterMode;
+            else
+                incidentParms.raidArrivalMode = arrivalMode;
+        }
+        else
             incidentParms.raidArrivalMode = arrivalMode;
 
         IncidentDef incidentDef = RimgateDefOf.Rimgate_Marauders;
@@ -85,5 +107,12 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
 
         if (incidentDef.Worker.CanFireNow(incidentParms))
             incidentDef.Worker.TryExecute(incidentParms);
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref AllowNeolithic, "AllowNeolithic");
+        Scribe_Values.Look(ref UseStargateIfAvailable, "UseStargateIfAvailable");
     }
 }
