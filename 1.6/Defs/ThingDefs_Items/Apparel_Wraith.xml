@@ -168,7 +168,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="HatMakeableBase">
-		<defName>RG_WraithCirclet</defName>
+		<defName>Rimgate_WraithCirclet</defName>
 		<label>circlet</label>
 		<description>A ceremonial circlet worn only by Wraith queens and their chosen commanders. Forged from naquadah filigree fused with living biomass, the circlet amplifies psionic projection and lends its wearer an unsettling gravitas. To those who serve, it is a symbol of command and terror; to those who resist, a reminder that even a glance from the throne can feel like a blade at the throat.</description>
 		<graphicData>

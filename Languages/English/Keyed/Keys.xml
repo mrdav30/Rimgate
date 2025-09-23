@@ -116,8 +116,8 @@
 
 	<RG_EnterStargateAction>Enter dwarfgate</RG_EnterStargateAction>
 	<RG_EnterReceivingStargateAction>Vaporize yourself</RG_EnterReceivingStargateAction>
-	<RG_EnterReceivingStargateWithSelectedAction>Vaporize yourself with selected</RG_EnterReceivingStargateWithSelectedAction>
-	<RG_EnterStargateWithSelectedAction>Enter dwarfgate with selected</RG_EnterStargateWithSelectedAction>
+	<RG_BringToReceivingStargate>Vaporize selected in dwarfgate</RG_BringToReceivingStargate>
+	<RG_BringToStargate>Bring selected to dwarfgate</RG_BringToStargate>
 
 	<RG_FailReasonGateInactive>not active.</RG_FailReasonGateInactive>
 	<RG_FailReasonGateIrisClosed>iris closed.</RG_FailReasonGateIrisClosed>

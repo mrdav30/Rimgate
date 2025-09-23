@@ -231,7 +231,6 @@
       <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
     <apparelRequired>
-      <li>Rimgate_WraithHelmet</li>
       <li>Rimgate_WraithCommanderArmor</li>
     </apparelRequired>
     <weaponMoney>3000~3500</weaponMoney>
@@ -282,6 +281,7 @@
     <defName>Rimgate_WraithQueen</defName>
     <label>Wraith queen</label>
     <factionLeader>true</factionLeader>
+    <fixedGender>Female</fixedGender>
     <minGenerationAge>26</minGenerationAge>
     <combatPower>220</combatPower>
     <backstoryFiltersOverride>
@@ -298,14 +298,14 @@
     <itemQuality>Good</itemQuality>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags>
-      <li>IndustrialMilitaryAdvanced</li>
-      <li>SpacerMilitary</li>
+      <li>Tribal</li>
+      <li>Neolithic</li>
       <li>Rimgate_WraithEliteHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
       <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
     <apparelRequired>
-      <li>RG_WraithCirclet</li>
+      <li>Rimgate_WraithCirclet</li>
       <li>Rimgate_WraithCommanderArmor</li>
     </apparelRequired>
     <apparelMoney>7000~10000</apparelMoney>

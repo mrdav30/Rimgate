@@ -29,7 +29,7 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 
     public override string GetInspectString()
     {
-        return "Rimgate_GateAddress".Translate(StargateUtility.GetStargateDesignation(Tile));
+        return "RG_GateAddress".Translate(StargateUtility.GetStargateDesignation(Tile));
     }
 
     public override void SpawnSetup()

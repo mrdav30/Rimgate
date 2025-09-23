@@ -12,7 +12,7 @@ public class SitePartWorker_Stargate : SitePartWorker
     public override string GetPostProcessedThreatLabel(Site site, SitePart sitePart)
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("Rimgate_GateAddress".Translate(StargateUtility.GetStargateDesignation(site.Tile)));
+        sb.Append("RG_GateAddress".Translate(StargateUtility.GetStargateDesignation(site.Tile)));
         return sb.ToString();
     }
 

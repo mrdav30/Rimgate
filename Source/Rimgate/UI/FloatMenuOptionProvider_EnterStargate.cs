@@ -73,25 +73,38 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
                 yield break;
 
             var bringLabel = (gate.StargateComp.IsReceivingGate
-                ? "RG_EnterReceivingStargateWithSelectedAction"
-                : "RG_EnterStargateWithSelectedAction").Translate();
+                ? "RG_BringToReceivingStargate"
+                : "RG_BringToStargate").Translate();
             yield return new FloatMenuOption(bringLabel, () =>
             {
                 TargetingParameters targetingParameters = new TargetingParameters()
                 {
+                    canTargetPawns = true,
+                    canTargetCorpses = true,
                     onlyTargetIncapacitatedPawns = true,
                     canTargetBuildings = true,
                     canTargetItems = true,
+                    canTargetPlants = true,
+                    canTargetFires = true,
+                    mapObjectTargetsMustBeAutoAttackable = false
                 };
 
                 Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo t)
                 {
-                    if (t != null && t.Thing is Building_MobileContainer container)
+                    if(t.Thing != null)
                     {
-                        var comp = container.GetComp<Comp_MobileContainer>();
-                        // send a push job targeting the *gate thing*
-                        comp.AssignPushJob(new LocalTargetInfo(gate), dump: false, context.FirstSelectedPawn);
-                        return;
+                        if (!t.Thing.def.Claimable) return;
+
+                        if (t.Thing is Building_MobileContainer container)
+                        {
+                            var comp = container.GetComp<Comp_MobileContainer>();
+                            // send a push job targeting the *gate thing*
+                            comp.AssignPushJob(
+                                new LocalTargetInfo(gate),
+                                dump: false,
+                                context.FirstSelectedPawn);
+                            return;
+                        }
                     }
 
                     Job job = JobMaker.MakeJob(
