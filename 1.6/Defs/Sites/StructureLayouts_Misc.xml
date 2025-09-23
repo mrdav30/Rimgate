@@ -3,6 +3,27 @@
 
 	<KCSG.StructureLayoutDef>
 		<defName>Rimgate_StructureJadeHengeAlpha</defName>
+		<terrainGrid>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		</terrainGrid>
 		<layouts>
 			<li>
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
@@ -30,6 +51,25 @@
 
 	<KCSG.StructureLayoutDef>
 		<defName>Rimgate_StructureJadeHengeBravo</defName>
+		<terrainGrid>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.</li>
+			<li>.,.,.,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,., ,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		</terrainGrid>
 		<layouts>
 			<li>
 				<li>.,.,.,.,.,.,.,.,Plant_GrassAnima,Plant_GrassAnima,Plant_GrassAnima,.,.,.,.,.,.,.,.,.,.,.,.</li>
@@ -55,6 +95,23 @@
 
 	<KCSG.StructureLayoutDef>
 		<defName>Rimgate_StructureBarrenGate</defName>
+		<terrainGrid>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		</terrainGrid>
 		<layouts>
 			<li>
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
@@ -78,6 +135,23 @@
 
 	<KCSG.StructureLayoutDef>
 		<defName>Rimgate_StructureBarrenGateNoDHD</defName>
+		<terrainGrid>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		</terrainGrid>
 		<layouts>
 			<li>
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
@@ -1593,11 +1667,11 @@
 			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,MossyTerrain,.,.,.,.,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,MossyTerrain,.,.,.,.,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,MossyTerrain,.,.,MossyTerrain,.,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,MossyTerrain,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,MossyTerrain,.,.,.,.,.,MossyTerrain,MossyTerrain,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,MossyTerrain,.,.,.,.,MossyTerrain,.,.,.,.,.,.,MossyTerrain,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 		</terrainGrid>
@@ -1660,13 +1734,13 @@
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,AncientLongCrate,.,Plant_Brambles,.,Plant_Brambles,.,ChunkSlate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,.,.,.,Plant_Brambles,Plant_Brambles,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,.,.,Plant_Brambles,Plant_Brambles,.,Plant_Chokevine,Plant_Brambles,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,.,.,Plant_Brambles,.,.,Plant_Brambles,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Plant_Brambles,Plant_Brambles,Plant_Brambles,Plant_Chokevine,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,Slate,.,.,Plant_Brambles,Plant_Brambles,Plant_Brambles,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Slate,Slate,Slate,.,.,Plant_Brambles,.,Plant_Brambles,Plant_Brambles,Plant_Brambles,Plant_Brambles,Plant_Brambles,Plant_Brambles,.,.,.,.,.,Slate,Slate,Slate,Slate,Slate,Slate,Slate,.,.,Plant_Brambles,Rimgate_DialHomeDevice,Plant_Brambles,Plant_Brambles,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Slate,Slate,Slate,.,.,Plant_Brambles,.,Plant_Brambles,Plant_Brambles,Plant_Brambles,Plant_Brambles,Plant_Brambles,Plant_Brambles,.,Plant_Chokevine,.,.,.,Slate,Slate,Slate,Slate,Slate,Slate,Slate,.,.,Plant_Brambles,Rimgate_DialHomeDevice,Plant_Brambles,Plant_Brambles,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Brambles,.,Plant_Brambles,Plant_Brambles,.,Plant_Brambles,.,.,.,.,.,Plant_Chokevine,.,Slate,Slate,Slate,Slate,Plant_Brambles,Plant_Brambles,.,.,Plant_Brambles,Plant_Brambles,Plant_Brambles,Plant_Brambles,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Chokevine,Plant_Chokevine,.,.,.,Plant_Brambles,.,Plant_Brambles,.,Plant_Brambles,Plant_Brambles,Slate,.,.,Slate,Plant_Chokevine,Plant_Chokevine,.,.,.,Slate,Slate,Slate,Slate,Slate,.,Plant_Brambles,Plant_Brambles,.,.,Plant_Brambles,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Brambles,NatureShrine_Large_Obsidian,Plant_Brambles,Plant_Brambles,Plant_Brambles,.,.,Slate,Slate,Slate,Slate,Plant_Chokevine,NatureShrine_Small_WoodLog,.,.,.,Slate,Slate,Slate,Slate,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Brambles,Plant_Brambles,.,.,.,.,Plant_Brambles,Plant_Chokevine,TorchLamp,.,Plant_Chokevine,.,Plant_Chokevine,.,.,.,.,Plant_Chokevine,Slate,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Brambles,.,.,.,Plant_Brambles,.,.,.,.,.,.,.,.,.,Slate,Slate,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Brambles,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Chokevine,.,.,Rimgate_Stargate,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Brambles,NatureShrine_Large_Obsidian,.,Plant_Brambles,Plant_Brambles,.,.,Slate,Slate,Slate,Slate,Plant_Chokevine,NatureShrine_Small_WoodLog,.,.,.,Slate,Slate,Slate,Slate,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Chokevine,.,.,.,.,.,Plant_Brambles,Plant_Chokevine,TorchLamp,.,Plant_Chokevine,.,.,.,.,.,.,Plant_Chokevine,Slate,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Chokevine,Plant_Brambles,.,.,.,Plant_Brambles,.,.,.,.,.,.,.,.,.,Slate,Slate,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Chokevine,.,.,Plant_Brambles,.,.,.,.,.,.,.,Plant_Chokevine,.,.,.,.,.,.,.,.,Plant_Chokevine,.,.,Rimgate_Stargate,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,Plant_Brambles,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 			</li>
 
