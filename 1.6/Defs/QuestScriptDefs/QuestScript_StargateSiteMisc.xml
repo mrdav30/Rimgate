@@ -2,30 +2,25 @@
 <Defs>
 
 	<QuestScriptDef>
-		<defName>Rimgate_StargateSiteScript</defName>
+		<defName>Rimgate_StargateSiteMiscScript</defName>
 		<rootSelectionWeight>0.6</rootSelectionWeight>
 		<rootMinPoints>0</rootMinPoints>
 		<autoAccept>true</autoAccept>
 		<defaultChallengeRating>1</defaultChallengeRating>
 		<questNameRules>
 			<rulesStrings>
-				<li>questName->[adj] stargate [site]</li>
-				<li>adj->Ancient</li>
-				<li>adj->Old</li>
-				<li>adj->Abandoned</li>
+				<li>questName->[adj] glyph [site]</li>
 				<li>adj->Forgotten</li>
+				<li>adj->Hidden</li>
+				<li>adj->Nameless</li>
 				<li>site->site</li>
-				<li>site->complex</li>
-				<li>site->spot</li>
-				<li>site->place</li>
 				<li>site->location</li>
-				<li>site->plot</li>
 				<li>site->point</li>
 			</rulesStrings>
 		</questNameRules>
 		<questDescriptionRules>
 			<rulesStrings>
-				<li>questDescription(askerIsNull==true)->We have identified the location of an ancient structure housing what appears to be a dormant stargate.\n\nWhether it’s a forgotten relic, a trap, or the galaxy’s worst Airbnb, it’s worth checking out. Bring weapons—and a good translator.</li>
+				<li>questDescription(askerIsNull==true)->The glyph sequence decodes to a location, but records are sparse.\n\nIt may be nothing but ruins. Or it may be the sort of “nothing” that eats expeditions whole.\n\nYour only way to know is to step through.</li>
 			</rulesStrings>
 		</questDescriptionRules>
 		<root Class="QuestNode_Sequence">
@@ -59,11 +54,7 @@
 					<storeFactionAs>siteFaction</storeFactionAs>
 					<sitePartsTags>
 						<li>
-							<tag>Rimgate_StargateSite</tag>
-						</li>
-						<li>
-							<tag>Rimgate_StargateTrapSite</tag>
-							<chance>0.1</chance>
+							<tag>Rimgate_StargateSiteMisc</tag>
 						</li>
 						<li>
 							<tag>KCSG_EnnemiesPresence</tag>
@@ -96,9 +87,6 @@
 
 				<li Class="Rimgate.QuestNode_RaidStargateComplex">
 					<address>$site</address>
-					<excludeTags>
-						<li>Rimgate_StargateTrapSite</li>
-					</excludeTags>
 				</li>
 
 				<li Class="QuestNode_WorldObjectTimeout">

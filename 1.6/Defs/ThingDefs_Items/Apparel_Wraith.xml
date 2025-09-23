@@ -34,7 +34,7 @@
 
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithHelmet</defName>
-		<label>Wraith solider helmet</label>
+		<label>Wraith soldier helmet</label>
 		<description>Standard issue cranial casing for your average Wraith footsoldier. Looks like alien exoskeleton, smells like biomass.\nSurprisingly breathable for something grown in a vat.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/WraithHelm/RGWraithHelmet</texPath>

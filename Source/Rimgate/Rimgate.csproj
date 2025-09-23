@@ -375,6 +375,7 @@
     <Compile Include="Incidents\IncidentWorker_Asteroid.cs" />
     <Compile Include="Incidents\IncidentWorker_KillAllClonesNow.cs" />
     <Compile Include="Incidents\IncidentWorker_Marauders.cs" />
+    <Compile Include="Quests\QuestNode_GetFactionOfDef.cs" />
     <Compile Include="Quests\QuestNode_RaidForZPM.cs" />
     <Compile Include="Quests\QuestNode_RaidStargateComplex.cs" />
     <Compile Include="Quests\QuestPart_RandomFactionRaid.cs" />

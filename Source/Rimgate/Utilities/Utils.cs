@@ -11,6 +11,17 @@ namespace Rimgate;
 
 internal static class Utils
 {
+    private static Faction _ofReplicators;
+
+    public static Faction OfReplicators
+    {
+        get
+        {
+            _ofReplicators ??= Find.FactionManager.FirstFactionOfDef(RimgateDefOf.Rimgate_Replicator);
+            return _ofReplicators;
+        }
+    }
+
     public static Pawn ClosestTo(this IEnumerable<Pawn> pawns, IntVec3 c)
     {
         Pawn best = null; var bestDist = 999999;
@@ -146,12 +157,12 @@ internal static class Utils
         if (f.IsPlayer) return false;
 
         // Only humanlike factions or mechanoids
-        if (!(f.def.humanlikeFaction || f == Faction.OfMechanoids)) return false;
+        if (!(f.def.humanlikeFaction || f == Faction.OfMechanoids || f == OfReplicators)) return false;
 
         // Optional Neolithic filter
         if (!allowNeolithic && f.def.techLevel == TechLevel.Neolithic) return false;
 
-        // Hidden factions are excluded, except mechanoids (keep your intent)
+        // Hidden factions are excluded, except mechanoids
         if (f.Hidden && f != Faction.OfMechanoids) return false;
 
         // Must actually be hostile to the player right now
@@ -160,7 +171,8 @@ internal static class Utils
 
     public static bool TryFindEnemyFaction(out Faction faction, bool allowNeolithic = true)
     {
-        var candidates = Find.FactionManager.AllFactions.Where(f => CanUseFaction(f, allowNeolithic));
+        var candidates = Find.FactionManager.AllFactions
+            .Where(f => CanUseFaction(f, allowNeolithic));
         // Flat random:
         return candidates.TryRandomElement(out faction);
 

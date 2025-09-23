@@ -24,6 +24,8 @@ public static class RimgateDefOf
     public static EffecterDef Rimgate_ClonePod_Idle;
     public static EffecterDef Rimgate_ClonePod_Operating;
 
+    public static FactionDef Rimgate_Replicator;
+
     [MayRequireBiotech]
     public static GeneDef Skin_SheerWhite;
     [MayRequireBiotech]
@@ -72,7 +74,12 @@ public static class RimgateDefOf
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
 
     public static QuestScriptDef Rimgate_ProtectZPM;
-    public static QuestScriptDef Rimgate_StargateSiteScript;
+    public static QuestScriptDef Rimgate_StargateSiteMiscScript;
+    public static QuestScriptDef Rimgate_StargateSiteGoauldScript;
+    public static QuestScriptDef Rimgate_StargateSiteTauriScript;
+    public static QuestScriptDef Rimgate_StargateSiteWraithScript;
+
+    public static PawnsArrivalModeDef Rimgate_StargateEnterMode;
 
     public static RaidStrategyDef ImmediateAttackSmart;
     public static RaidStrategyDef StageThenAttack;

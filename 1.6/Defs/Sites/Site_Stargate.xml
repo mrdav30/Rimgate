@@ -1,20 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<SitePartDef>
-		<defName>Rimgate_StargateSite</defName>
-		<label>Stargate location</label>
-		<description>A remote site known to contain a stargate.</description>
-		<workerClass>Rimgate.SitePartWorker_Stargate</workerClass>
-		<siteTexture>UI/Icon/Map/RGStargateComplexSiteIcon</siteTexture>
-		<expandingIconTexture>UI/Icon/Map/RGStargateComplexSiteIcon</expandingIconTexture>
-		<requiresFaction>true</requiresFaction>
-		<approachOrderString>Investigate {0}</approachOrderString>
-		<approachingReportString>Investigating {0}</approachingReportString>
-		<arrivedLetter>There is a stargate in this area.</arrivedLetter>
-		<arrivedLetterDef>NeutralEvent</arrivedLetterDef>
-		<wantsThreatPoints>true</wantsThreatPoints>
-		<minThreatPoints>90</minThreatPoints>
+	<!-- Tau'ri -->
+
+	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+		<defName>Rimgate_StargateSiteTauri</defName>
+		<tags>
+			<li>Rimgate_StargateSiteTauri</li>
+			<li>Rimgate_StargateSite</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_StargateSiteTauri</defName>
+		<linkWithSite>Rimgate_StargateSiteTauri</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<structureLayoutDefs>
+				<!-- Tau'ri -->
+				<li>Rimgate_StructureSGC</li>
+				<li>Rimgate_StructureIndustrialTown</li>
+				<li>Rimgate_StructureTauriForwardOutpost</li>
+				<li>Rimgate_StructureTauriLostBase</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
+
+	<SitePartDef ParentName="Rimgate_SoldierBase">
+		<defName>Rimgate_SoldierReplicator</defName>
+		<tags>
+			<li>Rimgate_SoldierReplicator</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_SoldierReplicator</defName>
+		<linkWithSite>Rimgate_SoldierReplicator</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_EnnemiesPresence">
+			<forcedfaction>Rimgate_Replicator</forcedfaction>
+			<defaultPointsRange>90~90</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<!-- Goa'uld -->
+
+	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+		<defName>Rimgate_StargateSiteGoauld</defName>
+		<tags>
+			<li>Rimgate_StargateSiteGoauld</li>
+			<li>Rimgate_StargateSite</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_StargateSiteGoauld</defName>
+		<linkWithSite>Rimgate_StargateSiteGoauld</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<structureLayoutDefs>
+				<!-- Goa'uld -->
+				<li>Rimgate_StructureGoauldLostBase</li>
+				<li>Rimgate_StructureGoauldNaquadahStorehouse</li>
+				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
+				<li>Rimgate_StructureGoauldTemple</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
+
+	<SitePartDef ParentName="Rimgate_SoldierBase">
+		<defName>Rimgate_SoldierGoauld</defName>
+		<tags>
+			<li>Rimgate_SoldierGoauld</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_SoldierGoauld</defName>
+		<linkWithSite>Rimgate_SoldierGoauld</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_EnnemiesPresence">
+			<forcedfaction>Rimgate_GoauldBaal</forcedfaction>
+			<defaultPointsRange>90~90</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<!-- Wraith -->
+
+	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+		<defName>Rimgate_StargateSiteWraith</defName>
+		<tags>
+			<li>Rimgate_StargateSiteWraith</li>
+			<li>Rimgate_StargateSite</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_StargateSiteWraith</defName>
+		<linkWithSite>Rimgate_StargateSiteWraith</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<structureLayoutDefs>
+				<!-- Wraith -->
+				<li>Rimgate_StructureWraithHiveSiteAlpha</li>
+				<li>Rimgate_StructureWraithHiveSiteBravo</li>
+				<li>Rimgate_StructureWraithHiveSiteCharlie</li>
+				<li>Rimgate_StructureWraithHiveSiteDelta</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
+
+	<SitePartDef ParentName="Rimgate_SoldierBase">
+		<defName>Rimgate_SoldierWraith</defName>
+		<tags>
+			<li>Rimgate_SoldierWraith</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_SoldierWraith</defName>
+		<linkWithSite>Rimgate_SoldierWraith</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_EnnemiesPresence">
+			<forcedfaction>Rimgate_WraithEmpire</forcedfaction>
+			<defaultPointsRange>90~90</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<!-- Misc -->
+
+	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+		<defName>Rimgate_StargateSiteMisc</defName>
 		<!-- <lootTable>
 			<li>
 				<thing>Steel</thing>
@@ -34,31 +150,17 @@
 			</li>
 		</lootTable> -->
 		<tags>
+			<li>Rimgate_StargateSiteMisc</li>
 			<li>Rimgate_StargateSite</li>
 		</tags>
 	</SitePartDef>
 
 	<GenStepDef>
-		<defName>Rimgate_StargateSite</defName>
-		<linkWithSite>Rimgate_StargateSite</linkWithSite>
+		<defName>Rimgate_StargateSiteMisc</defName>
+		<linkWithSite>Rimgate_StargateSiteMisc</linkWithSite>
 		<order>450</order>
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<structureLayoutDefs>
-				<!-- Goa'uld -->
-				<li>Rimgate_StructureGoauldLostBase</li>
-				<li>Rimgate_StructureGoauldNaquadahStorehouse</li>
-				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
-				<li>Rimgate_StructureGoauldTemple</li>
-				<!-- Tau'ri -->
-				<li>Rimgate_StructureSGC</li>
-				<li>Rimgate_StructureIndustrialTown</li>
-				<li>Rimgate_StructureTauriForwardOutpost</li>
-				<li>Rimgate_StructureTauriLostBase</li>
-				<!-- Wraith -->
-				<li>Rimgate_StructureWraithHiveSiteAlpha</li>
-				<li>Rimgate_StructureWraithHiveSiteBravo</li>
-				<li>Rimgate_StructureWraithHiveSiteCharlie</li>
-				<li>Rimgate_StructureWraithHiveSiteDelta</li>
 				<!-- Misc -->
 				<li>Rimgate_StructureAncientComplexAlpha</li>
 				<li>Rimgate_StructureAncientComplexBravo</li>

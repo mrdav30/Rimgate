@@ -63,9 +63,7 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
 
         // Seed psyfocus (optional)
         if (Props.initialPsyfocus >= 0f)
-        {
             pawn.psychicEntropy?.TryAddEntropy(Props.initialPsyfocus);
-        }
 
         MarkDoneAndRemove();
     }
