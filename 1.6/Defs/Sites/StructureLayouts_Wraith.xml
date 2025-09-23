@@ -1200,16 +1200,16 @@
 				<li>Granite,Granite,Granite,Granite,.,Granite,Granite,.,Granite,.,.,Granite,Granite,Granite,.,Granite,.</li>
 				<li>Granite,Granite,Granite,Granite,Granite,Granite,Granite,Granite,Granite,Granite,Granite,Granite,Granite,Granite,Granite,Granite,.</li>
 				<li>Granite,Granite,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Granite,Granite</li>
-				<li>.,Granite,Rimgate_WraithHiveWall,Rimgate_TechprintCrate,.,Shelf_Steel_North,.,.,Rimgate_LootCrateAlpha,Rimgate_LootCrateCharlie,.,.,Shelf_Steel_North,.,Rimgate_WraithHiveWall,Granite,Granite</li>
+				<li>.,Granite,Rimgate_WraithHiveWall,Rimgate_TechprintCrate,.,Shelf_Steel_North,.,.,Rimgate_LootCrateAlpha,Rimgate_LootCrateCharlie,Rimgate_LootCrateBravo,.,Shelf_Steel_North,.,Rimgate_WraithHiveWall,Granite,Granite</li>
 				<li>.,Granite,Rimgate_WraithHiveWall,AncientSealedCrate,Rimgate_WraithSoldier,.,.,.,.,.,.,.,.,.,Rimgate_WraithHiveWall,Granite,Granite</li>
 				<li>.,Granite,Rimgate_WraithHiveWall,AncientSealedCrate,.,.,.,.,.,.,.,.,.,Shelf_Steel_West,Rimgate_WraithHiveWall,Granite,.</li>
-				<li>Granite,Granite,Rimgate_WraithHiveWall,.,.,AncientCryptosleepCasket_South,.,WraithAncientCryptosleepCasket_South,.,WraithAncientCryptosleepCasket_South,.,WraithAncientCryptosleepCasket_South,.,.,Rimgate_WraithHiveWall,Granite,.</li>
+				<li>Granite,Granite,Rimgate_WraithHiveWall,.,.,WraithAncientCryptosleepCasket_South,.,WraithAncientCryptosleepCasket_South,.,WraithAncientCryptosleepCasket_South,.,WraithAncientCryptosleepCasket_South,.,.,Rimgate_WraithHiveWall,Granite,.</li>
 				<li>Granite,Granite,Rimgate_WraithHiveWall,Shelf_Steel_East,.,AncientFuelNode,AncientLargeCrate,AncientFuelNode,.,AncientFuelNode,.,AncientFuelNode,.,.,Rimgate_WraithHiveWall,Granite,.</li>
 				<li>Granite,Granite,Rimgate_WraithHiveWall,.,.,WraithAncientCryptosleepCasket,.,WraithAncientCryptosleepCasket,.,WraithAncientCryptosleepCasket,.,WraithAncientCryptosleepCasket,.,AncientLongCrate,Rimgate_WraithHiveWall,Granite,.</li>
-				<li>Granite,Granite,Rimgate_WraithHiveWall,.,.,.,.,.,.,.,.,.,.,.,Rimgate_WraithHiveWall,Granite,.</li>
+				<li>Granite,Granite,Rimgate_WraithHiveWall,.,.,.,.,.,.,.,.,.,.,Rimgate_LootCrateAlpha,Rimgate_WraithHiveWall,Granite,.</li>
 				<li>Granite,Granite,Rimgate_WraithHiveWall,Rimgate_WraithTable_West,.,.,.,.,.,.,.,.,.,Rimgate_WraithTable_East,Rimgate_WraithHiveWall,Granite,.</li>
 				<li>Granite,Granite,Rimgate_WraithHiveWall,.,.,.,.,.,Rimgate_CryptosleepProximityAlarm,AncientWoodenCrate,.,.,.,.,Rimgate_WraithHiveWall,Granite,Granite</li>
-				<li>Granite,Granite,Rimgate_WraithHiveWall,Rimgate_WraithTable_North,.,.,.,,AncientMetalCrate,AncientSmallCrate,AncientWoodenCrate,.,.,Rimgate_WraithTable_North,Rimgate_WraithHiveWall,Granite,Granite</li>
+				<li>Granite,Granite,Rimgate_WraithHiveWall,Rimgate_WraithTable_North,.,.,.,AncientSmallCrate,AncientMetalCrate,Rimgate_LootCrateBravo,AncientWoodenCrate,.,.,Rimgate_WraithTable_North,Rimgate_WraithHiveWall,Granite,Granite</li>
 				<li>.,Granite,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Autodoor_Plasteel,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Rimgate_WraithHiveWall,Granite,Granite</li>
 				<li>.,Granite,Rimgate_WraithHiveWall,.,.,.,.,.,.,.,.,.,.,Granite,Granite,Granite,.</li>
 				<li>Granite,Granite,Rimgate_WraithHiveWall,.,.,.,.,.,.,.,Rimgate_WraithMeatLab,Rimgate_WraithMeatLab,.,.,Granite,Granite,.</li>

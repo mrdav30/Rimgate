@@ -344,7 +344,6 @@
             <li>Rimgate_WraithQueen</li>
         </containPawnKindAnyOf>
         <faction>Rimgate_WraithEmpire</faction>
-        <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
@@ -502,34 +501,29 @@
             <li>AncientSoldier</li>
         </containPawnKindAnyOf>
         <faction>AncientsHostile</faction>
-        <!-- <spawnPartOfFaction>false</spawnPartOfFaction> -->
         <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_AncientMechGestatorTank</defName>
         <thing>Rimgate_AncientMechGestatorTank</thing>
-        <!-- <spawnPartOfFaction>false</spawnPartOfFaction> -->
-        <faction>AncientsHostile</faction>
+        <faction>Mechanoid</faction>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_AncientReplicatorVat_Small</defName>
         <thing>Rimgate_AncientReplicatorVat_Small</thing>
-        <!-- <spawnPartOfFaction>false</spawnPartOfFaction> -->
-        <faction>AncientsHostile</faction>
+        <faction>Rimgate_Replicator</faction>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_Cow</defName>
         <pawnKindDef>Cow</pawnKindDef>
-        <spawnPartOfFaction>false</spawnPartOfFaction>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_Chicken</defName>
         <pawnKindDef>Chicken</pawnKindDef>
-        <spawnPartOfFaction>false</spawnPartOfFaction>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
