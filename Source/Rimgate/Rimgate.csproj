@@ -338,10 +338,12 @@
     <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CloseStargate.cs" />
     <Compile Include="Comps\Comp_MobileContainer.cs" />
+    <Compile Include="Comps\Comp_PersistentMentalState.cs" />
     <Compile Include="Comps\Comp_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Comp_AlarmOpenCaskets.cs" />
     <Compile Include="Comps\Comp_ZpmSignalScrambler.cs" />
     <Compile Include="Comps\Properties\CompProperties_MobileContainer.cs" />
+    <Compile Include="Comps\Properties\CompProperties_PersistentMentalState.cs" />
     <Compile Include="Comps\Properties\CompProperties_ProximityAlarm.cs" />
     <Compile Include="Comps\Comp_AdditionalDamage.cs" />
     <Compile Include="Comps\Comp_CloningPod.cs" />

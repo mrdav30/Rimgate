@@ -138,6 +138,10 @@
                 </li>
             </lifeStageAges>
 
+            <hediffGiverSets Inherit="false">
+                <li>Rimgate_OrganicLongLived</li>
+            </hediffGiverSets>
+
         </race>
 
         <tradeTags>
@@ -162,8 +166,8 @@
         </race>
 
         <comps>
-            <li Class="VEF.AnimalBehaviours.CompProperties_InitialMentalState">
-                <mentalstate>BerserkPermanent</mentalstate>
+            <li Class="Rimgate.CompProperties_PersistentMentalState">
+                <mentalState>BerserkPermanent</mentalState>
             </li>
         </comps>
     </ThingDef>
