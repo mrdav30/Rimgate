@@ -38,7 +38,8 @@
 			<harvestFailable>false</harvestFailable>
 			<dieIfNoSunlight>false</dieIfNoSunlight>
 			<allowAutoCut>false</allowAutoCut>
-			<dieIfLeafless>true</dieIfLeafless>
+			<dieIfLeafless>false</dieIfLeafless>
+			<pollution>Any</pollution>
 			<harvestTag>Standard</harvestTag>
 			<harvestedThingDef>Rimgate_CulturedMeat</harvestedThingDef>
 			<harvestYield>28</harvestYield>
