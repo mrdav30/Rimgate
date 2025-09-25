@@ -17,6 +17,8 @@ public static class RimgateTex
 
     public static readonly Texture2D PermanentSiteCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Map/RGStargatePermanentSiteIcon");
 
+    public static readonly Texture2D AbandonStargateSite = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGAbandonStargateSiteIcon");
+
     public static Graphic EmptyGraphic
     {
         get

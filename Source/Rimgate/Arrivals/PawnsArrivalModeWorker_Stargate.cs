@@ -13,9 +13,10 @@ public class PawnsArrivalModeWorker_Stargate : PawnsArrivalModeWorker
     public override void Arrive(List<Pawn> pawns, IncidentParms parms)
     {
         Map map = (Map)parms.target;
-        Thing stargateOnMap = StargateUtility.GetStargateOnMap(map);
+        Building_Stargate stargateOnMap = StargateUtility.GetStargateOnMap(map);
+        Comp_StargateControl sgComp = stargateOnMap?.StargateControl;
+        if (sgComp == null) return;
 
-        Comp_Stargate sgComp = stargateOnMap.TryGetComp<Comp_Stargate>();
         sgComp.OpenStargateDelayed(-1, 450);
         sgComp.TicksSinceBufferUnloaded = -150;
         sgComp.IsReceivingGate = true;
@@ -27,13 +28,10 @@ public class PawnsArrivalModeWorker_Stargate : PawnsArrivalModeWorker
     {
         Map map = (Map)parms.target;
         parms.spawnRotation = Rot4.South;
-        Thing stargateOnMap = StargateUtility.GetStargateOnMap(map);
-        Comp_Stargate sgComp = stargateOnMap == null ? null : stargateOnMap.TryGetComp<Comp_Stargate>();
+        Building_Stargate stargateOnMap = StargateUtility.GetStargateOnMap(map);
+        Comp_StargateControl sgComp = stargateOnMap?.StargateControl;
 
-        bool isActive = stargateOnMap == null 
-            || sgComp == null 
-            || sgComp.IsActive;
-        if (isActive)
+        if (sgComp == null || sgComp.IsActive)
         {
             parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
             return parms.raidArrivalMode.Worker.TryResolveRaidSpawnCenter(parms);

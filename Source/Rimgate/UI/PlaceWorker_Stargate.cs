@@ -21,7 +21,7 @@ public class PlaceWorker_Stargate : PlaceWorker
         base.DrawGhost(def, center, rot, ghostCol, thing);
         foreach (CompProperties props in def.comps)
         {
-            if (props is not CompProperties_Stargate sgProps)
+            if (props is not CompProperties_StargateControl sgProps)
                 continue;
 
             List<IntVec3> pattern = new List<IntVec3>();

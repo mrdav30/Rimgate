@@ -12,11 +12,11 @@ namespace Rimgate;
 
 public class Building_DHD : Building
 {
-    public Comp_DialHomeDevice DialHomeDevice
+    public Comp_DHDControl DialHomeDevice
     {
         get
         {
-            _cachedDialHomeDevice ??= GetComp<Comp_DialHomeDevice>();
+            _cachedDialHomeDevice ??= GetComp<Comp_DHDControl>();
             return _cachedDialHomeDevice;
         }
     }
@@ -39,13 +39,13 @@ public class Building_DHD : Building
 
     private Graphic _activeGraphic;
 
-    private Comp_DialHomeDevice _cachedDialHomeDevice;
+    private Comp_DHDControl _cachedDialHomeDevice;
 
     public override Graphic Graphic
     {
         get
         {
-            Comp_Stargate stargate = DialHomeDevice.GetLinkedStargate();
+            Comp_StargateControl stargate = DialHomeDevice.GetLinkedStargate();
 
             return stargate == null || !stargate.parent.Spawned || !stargate.IsActive
                 ? base.DefaultGraphic

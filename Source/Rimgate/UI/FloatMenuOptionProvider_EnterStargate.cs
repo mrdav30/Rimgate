@@ -25,13 +25,13 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
         if (gate == null)
             yield break;
 
-        if (!gate.StargateComp.IsActive)
+        if (!gate.StargateControl.IsActive)
         {
             yield return new FloatMenuOption("CannotEnterPortal".Translate(gate.Label) + ": " + "RG_FailReasonGateInactive".Translate(), null);
             yield break;
         }
 
-        if (gate.StargateComp.IsIrisActivated)
+        if (gate.StargateControl.IsIrisActivated)
         {
             yield return new FloatMenuOption("CannotEnterPortal".Translate(gate.Label) + ": " + "RG_FailReasonGateIrisClosed".Translate(), null);
             yield break;
@@ -55,7 +55,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
 
         if (!tmpGateEnteringPawns.NullOrEmpty())
         {
-            var enterLabel = (gate.StargateComp.IsReceivingGate
+            var enterLabel = (gate.StargateControl.IsReceivingGate
                ? "RG_EnterReceivingStargateAction"
                : "RG_EnterStargateAction").Translate();
 
@@ -72,7 +72,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
             if (context.IsMultiselect)
                 yield break;
 
-            var bringLabel = (gate.StargateComp.IsReceivingGate
+            var bringLabel = (gate.StargateControl.IsReceivingGate
                 ? "RG_BringToReceivingStargate"
                 : "RG_BringToStargate").Translate();
             yield return new FloatMenuOption(bringLabel, () =>

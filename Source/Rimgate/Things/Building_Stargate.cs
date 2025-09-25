@@ -11,16 +11,57 @@ namespace Rimgate;
 
 public class Building_Stargate : Building
 {
-    public CompPowerTrader PowerComp;
+    public CompPowerTrader PowerTrader
+    {
+        get
+        {
+            _cachedPowerTrader ??= GetComp<CompPowerTrader>();
+            return _cachedPowerTrader;
+        }
+    }
 
-    public Comp_Stargate StargateComp;
+    public CompTransporter Transporter
+    {
+        get
+        {
+            _cachedTransporter ??= GetComp<CompTransporter>();
+            return _cachedTransporter;
+        }
+    }
+
+    public Comp_StargateControl StargateControl
+    {
+        get
+        {
+            _cachedStargate ??= GetComp<Comp_StargateControl>();
+            return _cachedStargate;
+        }
+    }
+
+    public CompGlower Glower
+    {
+        get
+        {
+            _cachedGlowComp ??= GetComp<CompGlower>();
+            return _cachedGlowComp;
+        }
+    }
+
+    public CompExplosive Explosive
+    {
+        get
+        {
+            _cachedexplosiveComp ??= GetComp<CompExplosive>();
+            return _cachedexplosiveComp;
+        }
+    }
 
     public Graphic ActiveGateGraphic
     {
         get
         {
             _activeGraphic ??= GraphicDatabase.Get<Graphic_Single>(
-                StargateComp.Props.activeTexture,
+                StargateControl.Props.activeTexture,
                 ShaderDatabase.DefaultShader,
                 new Vector2(5.3f, 5.3f),
                 Color.white,
@@ -33,13 +74,23 @@ public class Building_Stargate : Building
         }
     }
 
+    private CompPowerTrader _cachedPowerTrader;
+
+    private CompTransporter _cachedTransporter;
+
+    private Comp_StargateControl _cachedStargate;
+
+    private CompGlower _cachedGlowComp;
+
+    private CompExplosive _cachedexplosiveComp;
+
     private Graphic _activeGraphic;
 
     public override Graphic Graphic
     {
         get
         {
-            return !StargateComp.IsActive
+            return !StargateControl.IsActive
                 ? base.DefaultGraphic
                 : ActiveGateGraphic;
         }
@@ -48,17 +99,14 @@ public class Building_Stargate : Building
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
-        PowerComp = GetComp<CompPowerTrader>();
-        StargateComp = GetComp<Comp_Stargate>();
 
         // fix nullreferenceexception that happens when
         // the innercontainer disappears for some reason
-        CompTransporter transComp = GetComp<CompTransporter>();
-        if (transComp != null && transComp.innerContainer == null)
+        if (Transporter != null && Transporter.innerContainer == null)
         {
             if (RimgateMod.Debug)
                 Log.Warning($"Rimgate :: attempting to fix null container for {this.ThingID}");
-            transComp.innerContainer = new ThingOwner<Thing>(transComp);
+            _cachedTransporter.innerContainer = new ThingOwner<Thing>(_cachedTransporter);
         }
 
     }
@@ -67,20 +115,20 @@ public class Building_Stargate : Building
     {
         base.Tick();
 
-        if (StargateComp == null || PowerComp == null)
+        if (StargateControl == null || PowerTrader == null)
             return;
 
-        if (StargateComp.HasIris)
+        if (StargateControl.HasIris)
         {
-            float powerConsumption = -(StargateComp.Props.irisPowerConsumption + PowerComp.Props.PowerConsumption);
-            PowerComp.PowerOutput = powerConsumption;
+            float powerConsumption = -(StargateControl.Props.irisPowerConsumption + PowerTrader.Props.PowerConsumption);
+            PowerTrader.PowerOutput = powerConsumption;
 
-            StargateComp.HasPower = PowerComp.PowerOn;
-            if (!StargateComp.HasPower && StargateComp.IsIrisActivated)
-                StargateComp.ToggleIris();
+            StargateControl.HasPower = PowerTrader.PowerOn;
+            if (!StargateControl.HasPower && StargateControl.IsIrisActivated)
+                StargateControl.ToggleIris();
         }
         else
-            PowerComp.PowerOutput = -PowerComp.Props.PowerConsumption;
+            PowerTrader.PowerOutput = -PowerTrader.Props.PowerConsumption;
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -89,7 +137,7 @@ public class Building_Stargate : Building
         {
             if (gizmo is Command_LoadToTransporter)
             {
-                if (StargateComp.IsActive)
+                if (StargateControl.IsActive)
                     yield return gizmo;
                 continue;
             }
@@ -99,15 +147,15 @@ public class Building_Stargate : Building
 
     public override string GetInspectString()
     {
-        if (StargateComp == null)
+        if (StargateControl == null)
             return string.Empty;
 
         StringBuilder sb = new StringBuilder();
 
-        sb.AppendLine(StargateComp.GetInspectString());
+        sb.AppendLine(StargateControl.GetInspectString());
 
-        if (StargateComp.HasIris && PowerComp != null)
-            sb.AppendLine(PowerComp.CompInspectStringExtra());
+        if (StargateControl.HasIris && PowerTrader != null)
+            sb.AppendLine(PowerTrader.CompInspectStringExtra());
 
         return sb.ToString().TrimEndNewlines();
     }

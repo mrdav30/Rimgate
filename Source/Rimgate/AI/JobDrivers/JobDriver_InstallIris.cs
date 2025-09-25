@@ -42,7 +42,7 @@ public class JobDriver_InstallIris : JobDriver
         {
             initAction = () =>
             {
-                Comp_Stargate gateComp = job.GetTarget(_targetStargate).Thing.TryGetComp<Comp_Stargate>();
+                Comp_StargateControl gateComp = job.GetTarget(_targetStargate).Thing.TryGetComp<Comp_StargateControl>();
                 pawn.carryTracker.innerContainer.Remove(iris);
                 iris.Destroy();
                 gateComp.HasIris = true;

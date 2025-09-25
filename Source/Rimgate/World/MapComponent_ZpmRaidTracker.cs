@@ -9,13 +9,13 @@ public class MapComponent_ZpmRaidTracker : MapComponent
 {
     public bool SuppressionActive => _suppressionActive;
 
-    private int _questId = -1;      
-    
-    private int _activeZpmCount; 
-    
-    private Quest _questCached;
+    private int _activeZpmCount;
 
     private bool _suppressionActive;
+
+    private Quest _questCached;
+
+    private int _questId = -1;
 
     public MapComponent_ZpmRaidTracker(Map map) : base(map) { }
 

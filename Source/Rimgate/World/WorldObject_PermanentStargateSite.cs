@@ -41,7 +41,8 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
     public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
     {
         alsoRemoveWorldObject = false;
-        return !Map.mapPawns.AnyPawnBlockingMapRemoval;
+        return !StargateUtility.ActiveGateOnMap(Map)
+            && !Map.mapPawns.AnyPawnBlockingMapRemoval;
     }
 
     // source: https://github.com/AndroidQuazar/VanillaExpandedFramework/blob/4331195034c15a18930b85c5f5671ff890e6776a/Source/Outposts/Outpost/Outpost_Attacks.cs.
@@ -55,8 +56,8 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
         foreach (var pawn in pawns)
             pawn.Destroy();
 
-        Thing gateOnMap = StargateUtility.GetStargateOnMap(Map);
-        Thing dhdOnMap = Comp_DialHomeDevice.GetDhdOnMap(Map);
+        Building_Stargate gateOnMap = StargateUtility.GetStargateOnMap(Map);
+        Building_DHD dhdOnMap = StargateUtility.GetDhdOnMap(Map);
         if (RimgateMod.Debug) 
             Log.Message($"Rimgate :: perm sg site post map gen: dhddef={DhdDef} gatedef={GateDef} gateonmap={gateOnMap} dhdonmap={dhdOnMap}");
 
@@ -79,10 +80,10 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 
     public override void Notify_MyMapAboutToBeRemoved()
     {
-        Thing gateOnMap = StargateUtility.GetStargateOnMap(Map);
-        Thing dhdOnMap = Comp_DialHomeDevice.GetDhdOnMap(Map);
-        DhdDef = dhdOnMap == null ? null : dhdOnMap.def;
-        GateDef = gateOnMap == null ? null : gateOnMap.def;
+        Building_Stargate gateOnMap = StargateUtility.GetStargateOnMap(Map);
+        Building_DHD dhdOnMap = StargateUtility.GetDhdOnMap(Map);
+        DhdDef = dhdOnMap?.def;
+        GateDef = gateOnMap?.def;
 
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: perm map about to be removed: dhddef={DhdDef} gatedef={GateDef}");

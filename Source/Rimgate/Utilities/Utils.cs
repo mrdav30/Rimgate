@@ -66,6 +66,7 @@ internal static class Utils
     {
         var map = t.Map;
         var from = t.def.hasInteractionCell ? t.InteractionCell : t.Position + t.Rotation.FacingCell;
+        if (map == null) return from;
         if (from != t.Position && IsGoodSpawnCell(from, map)) return from;
 
         // try other cardinals in rotation order: right, back, left

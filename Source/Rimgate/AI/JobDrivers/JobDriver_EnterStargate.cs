@@ -17,14 +17,14 @@ public class JobDriver_EnterStargate : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDestroyedOrNull(TargetIndex.A);
-        this.FailOn(() => !StargateToEnter.TryGetComp<Comp_Stargate>().IsActive);
+        this.FailOn(() => !StargateToEnter.TryGetComp<Comp_StargateControl>().IsActive);
 
         yield return Toils_Goto.GotoCell(StargateToEnter.InteractionCell, PathEndMode.OnCell);
         yield return new Toil
         {
             initAction = () =>
             {
-                Comp_Stargate gateComp = StargateToEnter.TryGetComp<Comp_Stargate>();
+                Comp_StargateControl gateComp = StargateToEnter.TryGetComp<Comp_StargateControl>();
                 if (gateComp == null) return;
                 pawn.DeSpawn();
                 gateComp.AddToSendBuffer(pawn);

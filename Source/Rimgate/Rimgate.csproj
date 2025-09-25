@@ -362,6 +362,7 @@
     <Compile Include="Comps\Comp_FrameApparel.cs" />
     <Compile Include="Comps\Properties\CompProperties_ZpmSignalScrambler.cs" />
     <Compile Include="HarmonyPatches\Harmony_BedCellSearchPattern.cs" />
+    <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
     <Compile Include="HarmonyPatches\Harmony_CompLabyrinthDoor_DrawJammed.cs" />
     <Compile Include="HarmonyPatches\Harmony_EquipmentUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_JobMaker_MakeJob.cs" />
@@ -377,6 +378,7 @@
     <Compile Include="Incidents\IncidentWorker_Asteroid.cs" />
     <Compile Include="Incidents\IncidentWorker_KillAllClonesNow.cs" />
     <Compile Include="Incidents\IncidentWorker_Marauders.cs" />
+    <Compile Include="Quests\QuestNode_GenerateStargateSite.cs" />
     <Compile Include="Quests\QuestNode_GetFactionOfDef.cs" />
     <Compile Include="Quests\QuestNode_RaidForZPM.cs" />
     <Compile Include="Quests\QuestNode_RaidStargateComplex.cs" />
@@ -415,7 +417,6 @@
     <Compile Include="HarmonyPatches\Harmony_Designator_Strip.cs" />
     <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
     <Compile Include="HarmonyPatches\Harmony_FloatMenuOptionProvider_Generic.cs" />
-    <Compile Include="HarmonyPatches\Harmony_MapPawns.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_DraftController.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility.cs" />
@@ -429,7 +430,7 @@
     <Compile Include="Arrivals\CaravanArrivalAction_PermanentStargateSite.cs" />
     <Compile Include="Comps\Comp_DialHomeDevice.cs" />
     <Compile Include="Comps\Comp_GlyphParchment.cs" />
-    <Compile Include="Comps\Comp_Stargate.cs" />
+    <Compile Include="Comps\Comp_StargateControl.cs" />
     <Compile Include="Comps\CompTargetable_Stargate.cs" />
     <Compile Include="Things\Building_ZPM.cs" />
     <Compile Include="Things\Plant_MeatPlant.cs" />
@@ -453,7 +454,6 @@
     <Compile Include="UI\ITab_MobileContainer.cs" />
     <Compile Include="UI\PlaceWorker_ShowTurretRadiusWithOffset.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
-    <Compile Include="Quests\QuestNode_AddStargateAddresses.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
     <Compile Include="Utilities\StargateUtility.cs" />
     <Compile Include="World\MapComponent_ZpmRaidTracker.cs" />
@@ -463,6 +463,7 @@
     <Compile Include="World\WorldComp_StargateAddresses.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="Verbs\Verb_LaunchWithOffset.cs" />
+    <Compile Include="World\WorldObject_StargateSite.cs" />
     <Compile Include="World\WorldObject_PermanentStargateSite.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />
     <Compile Include="Utilities\SarcophagusUtility.cs" />

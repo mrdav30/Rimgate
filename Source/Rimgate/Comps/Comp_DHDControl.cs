@@ -9,11 +9,11 @@ using System.Linq;
 
 namespace Rimgate;
 
-public class Comp_DialHomeDevice : ThingComp
+public class Comp_DHDControl : ThingComp
 {
     public PlanetTile LastDialledAddress;
 
-    public CompProperties_DialHomeDevice Props => (CompProperties_DialHomeDevice)props;
+    public CompProperties_DHDControl Props => (CompProperties_DHDControl)props;
 
     private CompFacility _facilityComp;
 
@@ -79,7 +79,7 @@ public class Comp_DialHomeDevice : ThingComp
             yield break;
         }
 
-        Comp_Stargate stargate = GetLinkedStargate();
+        Comp_StargateControl stargate = GetLinkedStargate();
         if (stargate.IsActive)
         {
             yield return new FloatMenuOption(
@@ -132,7 +132,7 @@ public class Comp_DialHomeDevice : ThingComp
         foreach (Gizmo gizmo in base.CompGetGizmosExtra())
             yield return gizmo;
 
-        Comp_Stargate stargate = GetLinkedStargate();
+        Comp_StargateControl stargate = GetLinkedStargate();
         if (stargate == null)
             yield break;
 
@@ -165,7 +165,7 @@ public class Comp_DialHomeDevice : ThingComp
 
     public void DoCloseGate()
     {
-        Comp_Stargate stargate = GetLinkedStargate();
+        Comp_StargateControl stargate = GetLinkedStargate();
         if (stargate == null)
             return;
 
@@ -173,30 +173,14 @@ public class Comp_DialHomeDevice : ThingComp
         stargate.CloseStargate(true);
     }
 
-    public Comp_Stargate GetLinkedStargate()
+    public Comp_StargateControl GetLinkedStargate()
     {
         if (Props.selfDialler)
-            return parent.TryGetComp<Comp_Stargate>();
+            return parent.TryGetComp<Comp_StargateControl>();
 
         if (_facilityComp == null || _facilityComp.LinkedBuildings.Count == 0)
             return null;
 
-        return _facilityComp.LinkedBuildings[0].TryGetComp<Comp_Stargate>();
+        return _facilityComp.LinkedBuildings[0].TryGetComp<Comp_StargateControl>();
     }
-
-    public static Thing GetDhdOnMap(Map map)
-    {
-        Thing dhdOnMap = null;
-        foreach (Thing thing in map.listerThings.AllThings)
-        {
-            if (thing.TryGetComp<Comp_DialHomeDevice>() != null
-                && thing.def.thingClass != typeof(Building_Stargate))
-            {
-                dhdOnMap = thing;
-                break;
-            }
-        }
-
-        return dhdOnMap;
-    }  
 }

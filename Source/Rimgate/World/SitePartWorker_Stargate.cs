@@ -24,7 +24,7 @@ public class SitePartWorker_Stargate : SitePartWorker
             return;
         }
 
-        Thing gateOnMap = StargateUtility.GetStargateOnMap(map);
+        Building_Stargate gateOnMap = StargateUtility.GetStargateOnMap(map);
         if (gateOnMap == null)
         {
             Log.Error("Rimgate :: SitePartWorker gateOnMap was null on PostMapGenerate.");
@@ -32,7 +32,7 @@ public class SitePartWorker_Stargate : SitePartWorker
         }
 
         // move pawns away from vortex
-        var VortexCells = gateOnMap.TryGetComp<Comp_Stargate>().VortexCells;
+        var VortexCells = gateOnMap.TryGetComp<Comp_StargateControl>().VortexCells;
         foreach (Pawn pawn in map.mapPawns?.AllPawns)
         {
             Room pawnRoom = pawn.Position.GetRoom(map);

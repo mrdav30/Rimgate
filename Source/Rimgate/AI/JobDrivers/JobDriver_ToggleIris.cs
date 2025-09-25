@@ -24,7 +24,7 @@ public class JobDriver_ToggleIris : JobDriver
             ThingWithComps thingWithComps = (ThingWithComps)actor.CurJob.targetA.Thing;
             for (int i = 0; i < thingWithComps.AllComps.Count; i++)
             {
-                if (thingWithComps.AllComps[i] is Comp_Stargate stargate && stargate.WantsIrisClosed)
+                if (thingWithComps.AllComps[i] is Comp_StargateControl stargate && stargate.WantsIrisClosed)
                     stargate.DoToggleIris();
             }
 

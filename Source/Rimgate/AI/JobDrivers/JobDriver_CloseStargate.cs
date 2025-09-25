@@ -24,7 +24,7 @@ public class JobDriver_CloseStargate : JobDriver
             ThingWithComps thingWithComps = (ThingWithComps)actor.CurJob.targetA.Thing;
             for (int i = 0; i < thingWithComps.AllComps.Count; i++)
             {
-                if (thingWithComps.AllComps[i] is Comp_DialHomeDevice dhd && dhd.WantsGateClosed)
+                if (thingWithComps.AllComps[i] is Comp_DHDControl dhd && dhd.WantsGateClosed)
                     dhd.DoCloseGate();
             }
 

@@ -8,7 +8,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class CompProperties_Stargate : CompProperties
+public class CompProperties_StargateControl : CompProperties
 {
     public bool canHaveIris = true;
 
@@ -39,5 +39,5 @@ public class CompProperties_Stargate : CompProperties
         new IntVec3(0,0,-3)
     };
 
-    public CompProperties_Stargate() => compClass = typeof(Comp_Stargate);
+    public CompProperties_StargateControl() => compClass = typeof(Comp_StargateControl);
 }

@@ -6,7 +6,7 @@
 		<rootSelectionWeight>0.6</rootSelectionWeight>
 		<rootMinPoints>0</rootMinPoints>
 		<autoAccept>true</autoAccept>
-		<defaultChallengeRating>1</defaultChallengeRating>
+		<defaultChallengeRating>2</defaultChallengeRating>
 		<questNameRules>
 			<rulesStrings>
 				<li>questName->[adj] glyph [site]</li>
@@ -75,7 +75,7 @@
 				</li>
 
 				<li Class="QuestNode_SubScript">
-					<def>Util_GenerateSite</def>
+					<def>Util_GenerateStargateSite</def>
 					<parms>
 						<hiddenSitePartsPossible>true</hiddenSitePartsPossible>
 					</parms>
@@ -85,11 +85,6 @@
 					<worldObjects>$site</worldObjects>
 				</li>
 
-				<li Class="Rimgate.QuestNode_AddStargateAddresses">
-					<address>$site</address>
-					<remove>false</remove>
-				</li>
-
 				<li Class="Rimgate.QuestNode_RaidStargateComplex">
 					<address>$site</address>
 				</li>
@@ -97,8 +92,7 @@
 				<li Class="QuestNode_WorldObjectTimeout">
 					<worldObject>$site</worldObject>
 					<isQuestTimeout>true</isQuestTimeout>
-					<delayTicks>1800000</delayTicks>
-					<inSignalDisable>site.MapGenerated</inSignalDisable>
+					<delayTicks>900000</delayTicks>
 					<node Class="QuestNode_Sequence">
 						<nodes>
 							<li Class="QuestNode_Letter">
@@ -117,6 +111,7 @@
 					<worldObject>$site</worldObject>
 					<node Class="QuestNode_End" />
 				</li>
+				
 			</nodes>
 		</root>
 	</QuestScriptDef>

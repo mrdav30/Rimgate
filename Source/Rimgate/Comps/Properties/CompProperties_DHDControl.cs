@@ -7,7 +7,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class CompProperties_DialHomeDevice : CompProperties
+public class CompProperties_DHDControl : CompProperties
 {
     public bool selfDialler = false;
 
@@ -15,5 +15,5 @@ public class CompProperties_DialHomeDevice : CompProperties
 
     public string activeTexture;
 
-    public CompProperties_DialHomeDevice() => compClass = typeof(Comp_DialHomeDevice);
+    public CompProperties_DHDControl() => compClass = typeof(Comp_DHDControl);
 }

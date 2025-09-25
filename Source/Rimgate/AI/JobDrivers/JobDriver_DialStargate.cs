@@ -19,7 +19,7 @@ public class JobDriver_DialStargate : JobDriver
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        Comp_DialHomeDevice dhdComp = _dhd.TryGetComp<Comp_DialHomeDevice>();
+        Comp_DHDControl dhdComp = _dhd.TryGetComp<Comp_DHDControl>();
         this.FailOnDestroyedOrNull(TargetIndex.A);
         this.FailOn(() => dhdComp.GetLinkedStargate().IsActive);
 
@@ -28,7 +28,7 @@ public class JobDriver_DialStargate : JobDriver
         {
             initAction = () =>
             {
-                Comp_Stargate linkedStargate = dhdComp.GetLinkedStargate();
+                Comp_StargateControl linkedStargate = dhdComp.GetLinkedStargate();
                 linkedStargate.OpenStargateDelayed(dhdComp.LastDialledAddress, 200);
             }
         };

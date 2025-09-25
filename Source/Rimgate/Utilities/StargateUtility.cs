@@ -12,20 +12,46 @@ public static class StargateUtility
 {
     public const string Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    public static Thing GetStargateOnMap(Map map, Thing thingToIgnore = null)
+    public static Building_Stargate GetStargateOnMap(
+        Map map,
+        Thing thingToIgnore = null)
     {
-        Thing gateOnMap = null;
+        Building_Stargate gateOnMap = null;
         foreach (Thing thing in map.listerThings.AllThings)
         {
             if (thing != thingToIgnore
-                && thing.def.thingClass == typeof(Building_Stargate))
+                && thing is Building_Stargate bsg)
             {
-                gateOnMap = thing;
+                gateOnMap = bsg;
                 break;
             }
         }
 
         return gateOnMap;
+    }
+
+
+    public static Building_DHD GetDhdOnMap(Map map)
+    {
+        Building_DHD dhdOnMap = null;
+        foreach (Thing thing in map.listerThings.AllThings)
+        {
+            if (thing is Building_DHD bdhd)
+            {
+                dhdOnMap = bdhd;
+                break;
+            }
+        }
+
+        return dhdOnMap;
+    }
+
+    public static bool ActiveGateOnMap(Map map)
+    {
+        Building_Stargate gate = StargateUtility.GetStargateOnMap(map);
+        if (gate == null) return false;
+        if (gate.StargateControl == null) return false;
+        return gate.StargateControl.IsActive;
     }
 
     public static string GetStargateDesignation(PlanetTile address)

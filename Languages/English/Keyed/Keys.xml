@@ -124,6 +124,9 @@
 
 	<RG_RespawnGateString>Please respawn this gate (and its accompanying DHD) using devmode, as an update has broken it.</RG_RespawnGateString>
 
+	<RG_AbandonQuestSiteLabel>Abandon site</RG_AbandonQuestSiteLabel>
+	<RG_AbandonQuestSiteDesc>Shut down the link and forget this site. The quest will end.</RG_AbandonQuestSiteDesc>
+
 	<RG_LetterRaidStargateComplexDesc>Raiders from {0} have arrived at the Dwarfgate complex drawn by whispers of relics, resources, or perhaps the secrets of the Archotech-locked gate network itself.</RG_LetterRaidStargateComplexDesc>
 
 	<!-- Stargate Caravan -->

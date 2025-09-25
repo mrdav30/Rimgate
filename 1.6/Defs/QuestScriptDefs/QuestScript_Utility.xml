@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <QuestScriptDef>
+    <defName>Util_GenerateStargateSite</defName>
+    <root Class="Rimgate.QuestNode_GenerateStargateSite">
+      <sitePartsParams>$sitePartsParams</sitePartsParams>
+      <hiddenSitePartsPossible>$hiddenSitePartsPossible</hiddenSitePartsPossible>
+      <storeAs>site</storeAs>
+      <faction>$siteFaction</faction>
+      <tile>$siteTile</tile>
+      <singleSitePartRules>
+        <rulesStrings>
+          <li>root(priority=1,sitePart==PossibleUnknownThreatMarker)->there may be an (*Threat)unknown threat(/Threat)</li>
+          <li>root->there's a [label]</li>
+        </rulesStrings>
+      </singleSitePartRules>
+    </root>
+  </QuestScriptDef>
+
+</Defs>

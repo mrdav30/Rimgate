@@ -74,7 +74,7 @@
             <MeditationFocusStrength>0.24</MeditationFocusStrength>
         </statBases>
         <comps>
-            <li Class="Rimgate.CompProperties_Stargate">
+            <li Class="Rimgate.CompProperties_StargateControl">
 				<puddleGraphicData>
 					<texPath>FX/RGEventHorizon</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
@@ -158,7 +158,7 @@
         </placeWorkers>
         <comps>
             <li Class="CompProperties_Facility" />
-            <li Class="Rimgate.CompProperties_DialHomeDevice">
+            <li Class="Rimgate.CompProperties_DHDControl">
                 <activeTexture>Things/Building/Artifact/RGDHD_Active</activeTexture>
             </li>
         </comps>
@@ -229,7 +229,7 @@
         <comps>
             <li Class="CompProperties_Facility" />
             <li Class="CompProperties_Flickable" />
-            <li Class="Rimgate.CompProperties_DialHomeDevice">
+            <li Class="Rimgate.CompProperties_DHDControl">
                 <requiresPower>true</requiresPower>
             </li>
             <li Class="CompProperties_Power">

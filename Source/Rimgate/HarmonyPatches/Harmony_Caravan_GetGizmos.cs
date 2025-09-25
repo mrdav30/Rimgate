@@ -23,7 +23,7 @@ public class Harmony_Caravan_GetGizmos
         foreach (Thing thing in __instance.AllThings)
         {
             Thing inner = thing.GetInnerIfMinified();
-            if (inner != null && inner.TryGetComp<Comp_Stargate>() != null)
+            if (inner != null && inner.TryGetComp<Comp_StargateControl>() != null)
             {
                 containsStargate = true;
                 break;
@@ -54,7 +54,7 @@ public class Harmony_Caravan_GetGizmos
                 {
                     Thing inner = things[i].GetInnerIfMinified();
                     if (inner != null 
-                        && inner.TryGetComp<Comp_DialHomeDevice>() != null
+                        && inner.TryGetComp<Comp_DHDControl>() != null
                         && inner.def.thingClass != typeof(Building_Stargate))
                     {
                         dhdDef = inner.def; things[i].holdingOwner.Remove(things[i]);
@@ -62,7 +62,7 @@ public class Harmony_Caravan_GetGizmos
                     }
                 }
 
-                WorldObject_PermanentStargateSite wo = (WorldObject_PermanentStargateSite)WorldObjectMaker.MakeWorldObject(DefDatabase<WorldObjectDef>.GetNamed("Rimgate_PermanentStargateSite"));
+                WorldObject_PermanentStargateSite wo = WorldObjectMaker.MakeWorldObject(RimgateDefOf.Rimgate_PermanentStargateSite) as WorldObject_PermanentStargateSite;
                 wo.Tile = __instance.Tile;
                 wo.GateDef = gateDef;
                 wo.DhdDef = dhdDef;

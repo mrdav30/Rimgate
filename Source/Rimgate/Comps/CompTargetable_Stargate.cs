@@ -18,7 +18,7 @@ public class CompTargetable_Stargate : CompTargetable
         {
             validator = (TargetInfo x) =>
             {
-                Comp_Stargate sgComp = x.Thing.TryGetComp<Comp_Stargate>();
+                Comp_StargateControl sgComp = x.Thing.TryGetComp<Comp_StargateControl>();
                 bool canTarget = x.Thing != null 
                     && sgComp != null 
                     && sgComp.Props.canHaveIris 
