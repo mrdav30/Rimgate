@@ -94,25 +94,29 @@
 					<preferCloserTiles>false</preferCloserTiles>
 				</li>
 
-				<li Class="Rimgate.QuestNode_GetFactionOfDef">
-					<factionDef>Rimgate_GoauldBaal</factionDef>
-					<storeAs>enemyFaction</storeAs>
-				</li>
 
 				<li Class="QuestNode_RandomNode">
 					<nodes>
 						<!-- Goa'uld -->
-						<li Class="QuestNode_GetSitePartDefsByTagsAndFaction">
-							<storeAs>sitePartDefs</storeAs>
-							<storeFactionAs>siteFaction</storeFactionAs>
-							<sitePartsTags>
-								<li>
-									<tag>Rimgate_StargateSiteGoauld</tag>
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="Rimgate.QuestNode_GetFactionOfDef">
+									<factionDef>Rimgate_GoauldBaal</factionDef>
+									<storeAs>enemyFaction</storeAs>
 								</li>
-								<li>
-									<tag>Rimgate_SoldierGoauld</tag>
+								<li Class="QuestNode_GetSitePartDefsByTagsAndFaction">
+									<storeAs>sitePartDefs</storeAs>
+									<storeFactionAs>siteFaction</storeFactionAs>
+									<sitePartsTags>
+										<li>
+											<tag>Rimgate_StargateSiteGoauld</tag>
+										</li>
+										<li>
+											<tag>Rimgate_SoldierGoauld</tag>
+										</li>
+									</sitePartsTags>
 								</li>
-							</sitePartsTags>
+							</nodes>
 						</li>
 						<!-- Misc -->
 						<li Class="QuestNode_GetSitePartDefsByTagsAndFaction">
@@ -150,21 +154,28 @@
 							</sitePartsTags>
 						</li>
 						<!-- Wraith -->
-						<li Class="QuestNode_GetSitePartDefsByTagsAndFaction">
-							<storeAs>sitePartDefs</storeAs>
-							<storeFactionAs>siteFaction</storeFactionAs>
-							<sitePartsTags>
-								<li>
-									<tag>Rimgate_StargateSiteWraith</tag>
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="Rimgate.QuestNode_GetFactionOfDef">
+									<factionDef>Rimgate_WraithEmpire</factionDef>
+									<storeAs>enemyFaction</storeAs>
 								</li>
-								<li>
-									<tag>Rimgate_SoldierWraith</tag>
+								<li Class="QuestNode_GetSitePartDefsByTagsAndFaction">
+									<storeAs>sitePartDefs</storeAs>
+									<storeFactionAs>siteFaction</storeFactionAs>
+									<sitePartsTags>
+										<li>
+											<tag>Rimgate_StargateSiteWraith</tag>
+										</li>
+										<li>
+											<tag>Rimgate_SoldierWraith</tag>
+										</li>
+									</sitePartsTags>
 								</li>
-							</sitePartsTags>
+							</nodes>
 						</li>
 					</nodes>
 				</li>
-
 
 				<li Class="QuestNode_GetDefaultSitePartsParams">
 					<tile>$siteTile</tile>
