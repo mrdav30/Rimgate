@@ -38,7 +38,7 @@ public class WorldObject_QuestStargateSite : Site
         }
     }
 
-    public void HideSiteMap()
+    public void ToggleSiteMap()
     {
         if (Map == null || !_mapHidden) return;
         Find.ColonistBar.MarkColonistsDirty();
@@ -71,7 +71,22 @@ public class WorldObject_QuestStargateSite : Site
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        foreach (var g in base.GetGizmos()) yield return g;
+        foreach (var g in base.GetGizmos())
+        {
+            // lock "CommandShowMap" behind research
+            if (base.HasMap 
+                && !RimgateDefOf.Rimgate_WraithModificationEquipment.IsFinished)
+            {
+                if (g is Command_Action ca)
+                {
+                    var lbl = ca.defaultLabel ?? string.Empty;
+                    if (lbl == "CommandShowMap".Translate())
+                        continue;
+                }
+            }
+
+            yield return g;
+        }
 
         yield return new Command_Action
         {

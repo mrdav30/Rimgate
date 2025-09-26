@@ -197,8 +197,7 @@ public class Comp_StargateControl : ThingComp
 
     private Building_Stargate GetorCreateReceivingStargate(PlanetTile address)
     {
-        if (!address.Valid)
-            return null;
+        if (!address.Valid) return null;
 
         MapParent connectedSite = Find.WorldObjects.MapParentAt(address);
         if (connectedSite == null)
@@ -223,7 +222,7 @@ public class Comp_StargateControl : ThingComp
                 Log.Message($"Rimgate :: finished generating map");
         }
         else if (connectedSite is WorldObject_QuestStargateSite wos)
-            wos.HideSiteMap();
+            wos.ToggleSiteMap();
 
         Map map = connectedSite.Map;
         Building_Stargate gate = StargateUtility.GetStargateOnMap(map);

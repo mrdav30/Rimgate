@@ -9,7 +9,7 @@
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
         <constructEffect>ConstructMetal</constructEffect>
-        <altitudeLayer>Building</altitudeLayer>
+        <altitudeLayer>BuildingBelowTop</altitudeLayer>
         <fillPercent>0.20</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -22,6 +22,7 @@
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
         <tickerType>Normal</tickerType>
         <drawerType>RealtimeOnly</drawerType>
+        <preventDroppingThingsOn>true</preventDroppingThingsOn>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,0)</interactionCellOffset>
         <building>
@@ -92,6 +93,7 @@
                     <texPath>Things/Building/Artifact/RGStargateAncient_Active</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
                     <drawSize>(5.3,5.3)</drawSize>
+                    <drawOffset>(0,0,1.2)</drawOffset>
                     <addTopAltitudeBias>true</addTopAltitudeBias>
                 </activeGraphicData>
                 <irisPowerConsumption>500</irisPowerConsumption>
@@ -155,7 +157,8 @@
         <fillPercent>0.40</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-        <altitudeLayer>Building</altitudeLayer>
+        <altitudeLayer>ItemImportant</altitudeLayer>
+        <preventDroppingThingsOn>true</preventDroppingThingsOn>
         <thingCategories>
             <li>Artifacts</li>
         </thingCategories>
@@ -171,7 +174,9 @@
             <li>PlaceWorker_PreventInteractionSpotOverlap</li>
         </placeWorkers>
         <comps>
-            <li Class="CompProperties_Facility" />
+            <li Class="CompProperties_Facility">
+                <requiresLOS>false</requiresLOS>
+            </li>
             <li Class="Rimgate.CompProperties_DHDControl">
                 <activeGraphicData>
                     <texPath>Things/Building/Artifact/RGDHD_Active</texPath>
@@ -218,7 +223,8 @@
         <tickerType>Never</tickerType>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-        <altitudeLayer>Building</altitudeLayer>
+        <altitudeLayer>ItemImportant</altitudeLayer>
+        <preventDroppingThingsOn>true</preventDroppingThingsOn>
         <thingCategories>
             <li>BuildingsMisc</li>
         </thingCategories>
@@ -240,7 +246,9 @@
             <li>PlaceWorker_PreventInteractionSpotOverlap</li>
         </placeWorkers>
         <comps>
-            <li Class="CompProperties_Facility" />
+            <li Class="CompProperties_Facility">
+                <requiresLOS>false</requiresLOS>
+            </li>
             <li Class="CompProperties_Flickable" />
             <li Class="Rimgate.CompProperties_DHDControl">
                 <requiresPower>true</requiresPower>

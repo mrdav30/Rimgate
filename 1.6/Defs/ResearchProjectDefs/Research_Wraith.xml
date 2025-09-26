@@ -223,4 +223,27 @@
 		</tags>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithModificationEquipment</defName>
+		<label>Wraith Modification Equipment</label>
+		<description>Adaptations of Wraith neural interface rigs and sensory dampening gear.\n\nWith this knowledge, your scientists can alter Stargate control systems to block long-range subspace "backscatter," preventing unauthorized remote peeks into connected sites. Only after this research can your colony safely observe both ends of an active wormhole.</description>
+		<baseCost>3500</baseCost>
+		<techLevel>Spacer</techLevel>
+		<prerequisites>
+			<li>Rimgate_SubspaceMasking</li>
+			<li>Rimgate_WraithCommunicationDevice</li>
+		</prerequisites>
+		<researchViewX>3</researchViewX>
+		<researchViewY>1</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithEmpire</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+	</ResearchProjectDef>
+
 </Defs>
