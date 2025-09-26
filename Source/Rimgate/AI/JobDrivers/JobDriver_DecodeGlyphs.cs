@@ -15,22 +15,10 @@ public class JobDriver_DecodeGlyphs : JobDriver
 
     private const int _useDuration = 500;
 
-    private static List<QuestScriptDef> _candidates;
-
     private void GenerateStargateQuest()
     {
         Slate slate = new Slate();
-        _candidates ??= new List<QuestScriptDef>()
-        {
-            RimgateDefOf.Rimgate_StargateSiteMiscScript,
-            RimgateDefOf.Rimgate_StargateSiteGoauldScript,
-            RimgateDefOf.Rimgate_StargateSiteTauriScript,
-            RimgateDefOf.Rimgate_StargateSiteWraithScript
-        };
-
-        QuestScriptDef questDef = _candidates.RandomElement();
-
-        Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(questDef, slate);
+        Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(RimgateDefOf.Rimgate_StargateQuestScript, slate);
         QuestUtility.SendLetterQuestAvailable(quest);
     }
 

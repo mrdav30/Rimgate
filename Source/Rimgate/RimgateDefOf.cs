@@ -74,10 +74,7 @@ public static class RimgateDefOf
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
 
     public static QuestScriptDef Rimgate_ProtectZPM;
-    public static QuestScriptDef Rimgate_StargateSiteMiscScript;
-    public static QuestScriptDef Rimgate_StargateSiteGoauldScript;
-    public static QuestScriptDef Rimgate_StargateSiteTauriScript;
-    public static QuestScriptDef Rimgate_StargateSiteWraithScript;
+    public static QuestScriptDef Rimgate_StargateQuestScript;
 
     public static PawnsArrivalModeDef Rimgate_StargateEnterMode;
 
