@@ -42,6 +42,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_PushingCart;
     public static HediffDef Rimgate_SarcophagusHigh;
     public static HediffDef Rimgate_SarcophagusAddiction;
+    public static HediffDef Rimgate_SymbioteImplant;
     public static HediffDef Rimgate_SymbioteWithdrawal;
     public static HediffDef Rimgate_SystemShock;
     public static HediffDef Rimgate_ZatShock;
@@ -101,16 +102,13 @@ public static class RimgateDefOf
 
     public static ThingDef Gun_Autopistol;
     public static ThingDef Rimgate_DialHomeDevice;
-    public static ThingDef Rimgate_GlyphParchment;
     public static ThingDef Rimgate_JammedBlastDoor;
     public static ThingDef Rimgate_Malp;
     public static ThingDef Rimgate_MineableNaquadah;
     public static ThingDef Rimgate_MobileCartProxy;
     public static ThingDef Rimgate_PushedCartVisual;
     public static ThingDef Rimgate_SecretDoor;
-    public static ThingDef Rimgate_ScrapNote;
     public static ThingDef Rimgate_Stargate;
-    public static ThingDef Rimgate_SymbioteImplant;
     public static ThingDef Rimgate_Wheelbarrow;
     public static ThingDef Rimgate_ZPM;
 

@@ -386,7 +386,7 @@
     <Compile Include="RimgateTex.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_None.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_SpecialMeteorite.cs" />
-    <Compile Include="Misc\HediffGiver_AtAge.cs" />
+    <Compile Include="Hediffs\HediffGiver_AtAge.cs" />
     <Compile Include="Abilities\Properties\CompProperties_MultipleProjectile.cs" />
     <Compile Include="Misc\Projectile_ZatBlast_Extension.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_TechprintsByTag.cs" />
@@ -437,6 +437,8 @@
     <Compile Include="Things\ThingOwner_Container.cs" />
     <Compile Include="Things\Thing_MobileCartProxy.cs" />
     <Compile Include="Things\Thing_PushedCartVisual.cs" />
+    <Compile Include="ThoughtWorkers\ThoughtWorker_Opinion_SymbioteKinship.cs" />
+    <Compile Include="ThoughtWorkers\ThoughtWorker_Opinion_SymbioteHostility.cs" />
     <Compile Include="UI\Command_LoadToContainer.cs" />
     <Compile Include="UI\Dialog_LoadContainers.cs" />
     <Compile Include="UI\Dialog_RenameStargateSite.cs" />

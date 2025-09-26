@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- Sarcophagus -->
+
+    <ThoughtDef>
+        <defName>Rimgate_SarcophagusHigh</defName>
+        <workerClass>ThoughtWorker_Hediff</workerClass>
+        <hediff>Rimgate_SarcophagusHigh</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+        <stages>
+            <li>
+                <label>high on life</label>
+                <description>I'm feeling like a brand new me! Let's do this!</description>
+                <baseMoodEffect>35</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Rimgate_SarcophagusWithdrawal</defName>
+        <workerClass>ThoughtWorker_Hediff</workerClass>
+        <hediff>Rimgate_SarcophagusAddiction</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+        <stages>
+            <li>
+                <visible>false</visible>
+            </li>
+            <li>
+                <label>sarcophagus withdrawal</label>
+                <description>I'm feeling delusional and forgetful...I bet a Sarcophagus would fix this.</description>
+                <baseMoodEffect>-22</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Symbiote -->
+
+    <ThoughtDef>
+        <defName>Rimgate_SymbioteImplant</defName>
+        <workerClass>ThoughtWorker_Hediff</workerClass>
+        <hediff>Rimgate_SymbioteWithdrawal</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <durationDays>-1</durationDays>
+        <stackLimit>1</stackLimit>
+        <stages>
+            <li>
+                <label>god-complex</label>
+                <description>Your symbiote feeds you power… and delusions of grandeur. Mortals around you should kneel.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Rimgate_SymbioteWithdrawalThought</defName>
+        <workerClass>ThoughtWorker_Hediff</workerClass>
+        <hediff>Rimgate_SymbioteWithdrawal</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+        <!-- <durationDays>7</durationDays> -->
+        <stages>
+            <li>
+                <label>symbiote withdrawal</label>
+                <description>You’ve lost a part of yourself—literally. The voice is gone, the strength is fading, and your eyes won't glow anymore. Feels bad, kree.</description>
+                <baseMoodEffect>-11</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Non-hosts dislike the arrogance of hosts -->
+    <ThoughtDef>
+        <defName>Rimgate_Opinion_SymbioteHostility</defName>
+        <thoughtClass>Thought_SituationalSocial</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_Opinion_SymbioteHostility</workerClass>
+        <durationDays>-1</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Masochist</li>
+            <li>Kind</li>
+            <li>Bloodlust</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>bearing a symbiote</label>
+                <description>This pawn regards the host as unsettling and overbearing—part person, part parasite.</description>
+                <baseOpinionOffset>-8</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Hosts feel a mild kinship with other hosts -->
+    <ThoughtDef>
+        <defName>Rimgate_Opinion_SymbioteKinship</defName>
+        <thoughtClass>Thought_SituationalSocial</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_Opinion_SymbioteKinship</workerClass>
+        <durationDays>-1</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>shared power</label>
+                <description>Another bearer of the symbiote. Power recognizes power.</description>
+                <baseOpinionOffset>5</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

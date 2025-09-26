@@ -28,10 +28,10 @@
 				<!-- <label>symbiote host</label> -->
 				<painFactor>0.5</painFactor>
 				<hungerRateFactor>0.25</hungerRateFactor> <!-- Eats 25% less -->
-				<foodPoisoningChanceFactor>0</foodPoisoningChanceFactor>
+				<foodPoisoningChanceFactor>0</foodPoisoningChanceFactor> <!-- Not here -->
 				<statFactors>
-					<ImmunityGainSpeed>2</ImmunityGainSpeed>
-					<InjuryHealingFactor>5</InjuryHealingFactor>
+					<ImmunityGainSpeed>2</ImmunityGainSpeed> <!-- Immunity 200% more -->
+					<InjuryHealingFactor>5</InjuryHealingFactor> <!-- Heals 500% more -->
 					<RestFallRateFactor>0.5</RestFallRateFactor> <!-- Sleeps 50% less -->
 				</statFactors>
 				<capMods>
@@ -52,6 +52,11 @@
 						<offset>0.25</offset>
 					</li>
 				</capMods>
+				<statOffsets>
+					<PsychicSensitivity>0.20</PsychicSensitivity>
+					<MentalBreakThreshold>0.05</MentalBreakThreshold>
+					<SocialImpact>0.10</SocialImpact>
+				</statOffsets>
 			</li>
 		</stages>
 		<tags>
@@ -129,22 +134,6 @@
 		</stages>
 		<duplicationAllowed>false</duplicationAllowed>
 	</HediffDef>
-
-	<ThoughtDef>
-		<defName>Rimgate_SymbioteWithdrawalThought</defName>
-		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>Rimgate_SymbioteWithdrawal</hediff>
-		<validWhileDespawned>true</validWhileDespawned>
-		<developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
-		<!-- <durationDays>7</durationDays> -->
-		<stages>
-			<li>
-				<label>symbiote withdrawal</label>
-				<description>You’ve lost a part of yourself—literally. The voice is gone, the strength is fading, and your eyes won't glow anymore. Feels bad, kree.</description>
-				<baseMoodEffect>-11</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
 
 	<!-- ==================== Jaffa Forehead Symbol Base ==================== -->
 

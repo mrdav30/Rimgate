@@ -75,21 +75,6 @@
         </stages>
     </HediffDef>
 
-    <ThoughtDef>
-        <defName>Rimgate_SarcophagusHigh</defName>
-        <workerClass>ThoughtWorker_Hediff</workerClass>
-        <hediff>Rimgate_SarcophagusHigh</hediff>
-        <validWhileDespawned>true</validWhileDespawned>
-        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
-        <stages>
-            <li>
-                <label>high on life</label>
-                <description>I'm feeling like a brand new me! Let's do this!</description>
-                <baseMoodEffect>35</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
-
     <HediffDef ParentName="AddictionBase">
         <defName>Rimgate_SarcophagusAddiction</defName>
         <label>Sarcophagus addiction</label>
@@ -150,24 +135,6 @@
             </li>
         </stages>
     </HediffDef>
-
-    <ThoughtDef>
-        <defName>Rimgate_SarcophagusWithdrawal</defName>
-        <workerClass>ThoughtWorker_Hediff</workerClass>
-        <hediff>Rimgate_SarcophagusAddiction</hediff>
-        <validWhileDespawned>true</validWhileDespawned>
-        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
-        <stages>
-            <li>
-                <visible>false</visible>
-            </li>
-            <li>
-                <label>sarcophagus withdrawal</label>
-                <description>I'm feeling delusional and forgetful...I bet a Sarcophagus would fix this.</description>
-                <baseMoodEffect>-22</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
 
     <!-- Tretonin -->
 
