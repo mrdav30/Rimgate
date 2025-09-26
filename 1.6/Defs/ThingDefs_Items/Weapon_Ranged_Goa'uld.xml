@@ -45,7 +45,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<range>15.9</range>
 				<forcedMissRadius>1.9</forcedMissRadius>
-				<warmupTime>1.5</warmupTime>
+				<warmupTime>1.9</warmupTime>
 				<noiseRadius>4</noiseRadius>
 				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 				<soundCast>ThrowGrenade</soundCast>
@@ -96,6 +96,8 @@
 			<flyOverhead>false</flyOverhead>
 			<explosionRadius>1.9</explosionRadius>
 			<damageDef>Stun</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<stoppingPower>1</stoppingPower>
 			<explosionDelay>100</explosionDelay>
 		</projectile>
 		<comps>
