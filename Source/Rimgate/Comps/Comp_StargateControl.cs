@@ -225,7 +225,9 @@ public class Comp_StargateControl : ThingComp
             wos.ToggleSiteMap();
 
         Map map = connectedSite.Map;
-        Building_Stargate gate = StargateUtility.GetStargateOnMap(map);
+
+        // ensure a valid gate and a DHD exist(and link)
+        var gate = StargateUtility.EnsureGateAndDhd(map);
 
         return gate;
     }
@@ -287,7 +289,7 @@ public class Comp_StargateControl : ThingComp
             offset.y -= 0.01f;
 
             StargateIris.Draw(
-                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) + offset,
+                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingBelowTop) + offset,
                 Rot4.North,
                 parent);
         }
@@ -298,7 +300,7 @@ public class Comp_StargateControl : ThingComp
             offset.y -= 0.02f;
 
             StargatePuddle.Draw(
-                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) + offset,
+                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingBelowTop) + offset,
                 Rot4.North,
                 parent);
         }

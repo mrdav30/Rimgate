@@ -57,7 +57,7 @@ public class Building_Stargate : Building
         }
     }
 
-    public Graphic ActiveGraphic => _activeGraphic ??= StargateControl?.Props?.irisGraphicData.Graphic;
+    public Graphic ActiveGraphic => _activeGraphic ??= StargateControl?.Props?.activeGraphicData.Graphic;
 
     private CompPowerTrader _cachedPowerTrader;
 

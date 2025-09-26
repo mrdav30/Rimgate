@@ -9,7 +9,7 @@
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
         <constructEffect>ConstructMetal</constructEffect>
-        <altitudeLayer>BuildingBelowTop</altitudeLayer>
+        <altitudeLayer>BuildingOnTop</altitudeLayer>
         <fillPercent>0.20</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -144,7 +144,6 @@
             <texPath>Things/Building/Artifact/RGDHD</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <drawSize>(2,2)</drawSize>
-            <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <size>(1,1)</size>
         <uiIconScale>0.5</uiIconScale>
@@ -182,7 +181,6 @@
                     <texPath>Things/Building/Artifact/RGDHD_Active</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
                     <drawSize>(2,2)</drawSize>
-                    <addTopAltitudeBias>true</addTopAltitudeBias>
                 </activeGraphicData>
             </li>
         </comps>
@@ -210,7 +208,6 @@
             <texPath>Things/Building/Misc/RGTauriDHD</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <drawSize>(2,2)</drawSize>
-            <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
