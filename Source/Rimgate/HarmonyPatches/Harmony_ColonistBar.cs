@@ -48,7 +48,7 @@ public static class Harmony_ColonistBar
         {
             var m = e.map;
             if (m == null) continue;
-            if (m.info?.parent is not WorldObject_StargateSite) continue;
+            if (m.info?.parent is not WorldObject_QuestStargateSite) continue;
 
             bool showThisMap = Rimgate.StargateUtility.ActiveGateOnMap(m)
                 || (m.mapPawns?.AnyPawnBlockingMapRemoval ?? false);

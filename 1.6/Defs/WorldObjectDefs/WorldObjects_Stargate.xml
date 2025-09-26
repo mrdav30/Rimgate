@@ -2,9 +2,9 @@
 <Defs>
 
 	<WorldObjectDef ParentName="StaticWorldObjectBase">
-		<defName>Rimgate_StargateSite</defName>
+		<defName>Rimgate_QuestStargateSite</defName>
 		<label>dwarfgate site</label>
-		<worldObjectClass>Rimgate.WorldObject_StargateSite</worldObjectClass>
+		<worldObjectClass>Rimgate.WorldObject_QuestStargateSite</worldObjectClass>
 		<expandingIcon>true</expandingIcon>
 		<expandingIconPriority>70</expandingIconPriority>
 		<comps>

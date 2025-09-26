@@ -214,13 +214,15 @@ public class Comp_StargateControl : ThingComp
 
             GetOrGenerateMapUtility.GetOrGenerateMap(
                 connectedSite.Tile,
-                Find.World.info.initialMapSize,
+                connectedSite is WorldObject_PermanentStargateSite
+                        ? Utils.SmallestMapSize
+                        : Find.World.info.initialMapSize,
                 null);
 
             if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: finished generating map");
         }
-        else if (connectedSite is WorldObject_StargateSite wos)
+        else if (connectedSite is WorldObject_QuestStargateSite wos)
             wos.HideSiteMap();
 
         Map map = connectedSite.Map;

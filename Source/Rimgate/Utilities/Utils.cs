@@ -22,6 +22,8 @@ internal static class Utils
         }
     }
 
+    public static readonly IntVec3 SmallestMapSize = new IntVec3(75, 1, 75);
+
     public static Pawn ClosestTo(this IEnumerable<Pawn> pawns, IntVec3 c)
     {
         Pawn best = null; var bestDist = 999999;

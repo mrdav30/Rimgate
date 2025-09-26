@@ -11,7 +11,7 @@ namespace Rimgate;
 
 public class WorldComp_StargateAddresses : WorldComponent
 {
-    private const string StargateTag = "Rimgate_StargateSite";
+    private const string StargateTag = "Rimgate_QuestStargateSite";
 
     private List<PlanetTile> _addressList = new();
 

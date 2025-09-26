@@ -7,7 +7,7 @@
 		<defName>Rimgate_StargateSiteTauri</defName>
 		<tags>
 			<li>Rimgate_StargateSiteTauri</li>
-			<li>Rimgate_StargateSite</li>
+			<li>Rimgate_QuestStargateSite</li>
 		</tags>
 	</SitePartDef>
 
@@ -49,7 +49,7 @@
 		<defName>Rimgate_StargateSiteGoauld</defName>
 		<tags>
 			<li>Rimgate_StargateSiteGoauld</li>
-			<li>Rimgate_StargateSite</li>
+			<li>Rimgate_QuestStargateSite</li>
 		</tags>
 	</SitePartDef>
 
@@ -91,7 +91,7 @@
 		<defName>Rimgate_StargateSiteWraith</defName>
 		<tags>
 			<li>Rimgate_StargateSiteWraith</li>
-			<li>Rimgate_StargateSite</li>
+			<li>Rimgate_QuestStargateSite</li>
 		</tags>
 	</SitePartDef>
 
@@ -151,7 +151,7 @@
 		</lootTable> -->
 		<tags>
 			<li>Rimgate_StargateSiteMisc</li>
-			<li>Rimgate_StargateSite</li>
+			<li>Rimgate_QuestStargateSite</li>
 		</tags>
 	</SitePartDef>
 

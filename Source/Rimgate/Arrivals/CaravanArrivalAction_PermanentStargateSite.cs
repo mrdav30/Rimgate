@@ -39,7 +39,7 @@ public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
             {
                 Map map = GetOrGenerateMapUtility.GetOrGenerateMap(
                     _arrivalSite.Tile,
-                    Find.World.info.initialMapSize,
+                    Utils.SmallestMapSize,
                     _arrivalSite.def);
                 CaravanEnterMapUtility.Enter(caravan, _arrivalSite.Map, CaravanEnterMode.Center);
             },

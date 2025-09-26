@@ -8,7 +8,7 @@ using Verse.Noise;
 
 namespace Rimgate;
 
-public class WorldObject_StargateSite : Site
+public class WorldObject_QuestStargateSite : Site
 {
     public int QuestId = -1;
 

@@ -48,9 +48,9 @@ public class QuestNode_GenerateStargateSite : QuestNode
             faction.GetValue(slate),
             hiddenSitePartsPossible.GetValue(slate),
             singleSitePartRules.GetValue(slate),
-            RimgateDefOf.Rimgate_StargateSite);
+            RimgateDefOf.Rimgate_QuestStargateSite);
 
-        if(site is not WorldObject_StargateSite wos)
+        if(site is not WorldObject_QuestStargateSite wos)
         {
             Log.Error($"Rimgate :: Quest did not generate site successfully");
             QuestGen.quest.End(QuestEndOutcome.Fail);

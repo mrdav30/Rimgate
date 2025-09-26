@@ -405,11 +405,11 @@
     <Compile Include="Compatibility\ModCompatibility.cs" />
     <Compile Include="Comps\Properties\CompProperties_AlternateApparel.cs" />
     <Compile Include="Comps\Properties\CompProperties_GlyphParchment.cs" />
-    <Compile Include="Comps\Properties\CompProperties_DialHomeDevice.cs" />
+    <Compile Include="Comps\Properties\CompProperties_DHDControl.cs" />
     <Compile Include="Comps\Comp_AnimatedSarcophagus.cs" />
     <Compile Include="Comps\Properties\CompProperties_AnimatedSarcophagus.cs" />
     <Compile Include="Comps\Properties\CompProperties_TreatmentRestrictions.cs" />
-    <Compile Include="Comps\Properties\CompProperties_Stargate.cs" />
+    <Compile Include="Comps\Properties\CompProperties_StargateControl.cs" />
     <Compile Include="Comps\Comp_AlternateApparel.cs" />
     <Compile Include="Comps\Comp_TreatmentRestrictions.cs" />
     <Compile Include="DamageWorkers\DamageWorker_Siege.cs" />
@@ -428,7 +428,7 @@
     <Compile Include="AI\JobGivers\JobGiver_PatientGoToSarcophagus.cs" />
     <Compile Include="Things\Building_Stargate.cs" />
     <Compile Include="Arrivals\CaravanArrivalAction_PermanentStargateSite.cs" />
-    <Compile Include="Comps\Comp_DialHomeDevice.cs" />
+    <Compile Include="Comps\Comp_DHDControl.cs" />
     <Compile Include="Comps\Comp_GlyphParchment.cs" />
     <Compile Include="Comps\Comp_StargateControl.cs" />
     <Compile Include="Comps\CompTargetable_Stargate.cs" />
@@ -463,7 +463,7 @@
     <Compile Include="World\WorldComp_StargateAddresses.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="Verbs\Verb_LaunchWithOffset.cs" />
-    <Compile Include="World\WorldObject_StargateSite.cs" />
+    <Compile Include="World\WorldObject_QuestStargateSite.cs" />
     <Compile Include="World\WorldObject_PermanentStargateSite.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />
     <Compile Include="Utilities\SarcophagusUtility.cs" />

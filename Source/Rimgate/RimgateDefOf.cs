@@ -126,6 +126,6 @@ public static class RimgateDefOf
 
     public static ThingSetMakerDef Rimgate_Meteorite;
 
-    public static WorldObjectDef Rimgate_StargateSite;
+    public static WorldObjectDef Rimgate_QuestStargateSite;
     public static WorldObjectDef Rimgate_PermanentStargateSite;
 }
