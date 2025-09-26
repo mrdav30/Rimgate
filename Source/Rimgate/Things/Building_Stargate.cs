@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using static HarmonyLib.Code;
 
 namespace Rimgate;
 
@@ -56,23 +57,7 @@ public class Building_Stargate : Building
         }
     }
 
-    public Graphic ActiveGateGraphic
-    {
-        get
-        {
-            _activeGraphic ??= GraphicDatabase.Get<Graphic_Single>(
-                StargateControl.Props.activeTexture,
-                ShaderDatabase.DefaultShader,
-                new Vector2(5.3f, 5.3f),
-                Color.white,
-                Color.white,
-                new());
-
-            _activeGraphic.data.drawOffset = RimgateDefOf.Rimgate_Stargate.graphicData.drawOffset;
-
-            return _activeGraphic;
-        }
-    }
+    public Graphic ActiveGraphic => _activeGraphic ??= StargateControl?.Props?.irisGraphicData.Graphic;
 
     private CompPowerTrader _cachedPowerTrader;
 
@@ -90,9 +75,10 @@ public class Building_Stargate : Building
     {
         get
         {
+            if (ActiveGraphic == null) return base.DefaultGraphic;
             return !StargateControl.IsActive
                 ? base.DefaultGraphic
-                : ActiveGateGraphic;
+                : ActiveGraphic;
         }
     }
 

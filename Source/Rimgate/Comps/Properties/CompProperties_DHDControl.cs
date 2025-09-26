@@ -13,7 +13,7 @@ public class CompProperties_DHDControl : CompProperties
 
     public bool requiresPower = false;
 
-    public string activeTexture;
+    public GraphicData activeGraphicData;
 
     public CompProperties_DHDControl() => compClass = typeof(Comp_DHDControl);
 }

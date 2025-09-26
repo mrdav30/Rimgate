@@ -21,21 +21,7 @@ public class Building_DHD : Building
         }
     }
 
-    public Graphic ActiveGateGraphic
-    {
-        get
-        {
-            _activeGraphic ??= GraphicDatabase.Get<Graphic_Single>(
-                _cachedDialHomeDevice.Props.activeTexture,
-                ShaderDatabase.DefaultShader,
-                new Vector2(2, 2),
-                Color.white,
-                Color.white,
-                new());
-
-            return _activeGraphic;
-        }
-    }
+    public Graphic ActiveGraphic => _activeGraphic ??= DialHomeDevice?.Props?.activeGraphicData.Graphic;
 
     private Graphic _activeGraphic;
 
@@ -46,10 +32,10 @@ public class Building_DHD : Building
         get
         {
             Comp_StargateControl stargate = DialHomeDevice.GetLinkedStargate();
-
+            if (ActiveGraphic == null) return base.DefaultGraphic;
             return stargate == null || !stargate.parent.Spawned || !stargate.IsActive
                 ? base.DefaultGraphic
-                : ActiveGateGraphic;
+                : ActiveGraphic;
         }
     }
 }

@@ -9,7 +9,7 @@
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
         <constructEffect>ConstructMetal</constructEffect>
-        <altitudeLayer>ItemImportant</altitudeLayer>
+        <altitudeLayer>Building</altitudeLayer>
         <fillPercent>0.20</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -58,6 +58,7 @@
             <graphicClass>Graphic_Single</graphicClass>
             <drawSize>(5.3,5.3)</drawSize>
             <drawOffset>(0,0,1.2)</drawOffset>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <techLevel>Archotech</techLevel>
         <killedLeavings>
@@ -75,19 +76,24 @@
         </statBases>
         <comps>
             <li Class="Rimgate.CompProperties_StargateControl">
-				<puddleGraphicData>
-					<texPath>FX/RGEventHorizon</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
+                <puddleGraphicData>
+                    <texPath>FX/RGEventHorizon</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
                     <shaderType>Mote</shaderType>
-					<drawSize>(5.3,5.3)</drawSize>
-				</puddleGraphicData>
+                    <drawSize>(5.3,5.3)</drawSize>
+                </puddleGraphicData>
                 <irisGraphicData>
-					<texPath>Things/Building/Misc/RGIris</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
+                    <texPath>Things/Building/Misc/RGIris</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
                     <shaderType>Mote</shaderType>
-					<drawSize>(5.3,5.3)</drawSize>
-				</irisGraphicData>
-                <activeTexture>Things/Building/Artifact/RGStargateAncient_Active</activeTexture>
+                    <drawSize>(5.3,5.3)</drawSize>
+                </irisGraphicData>
+                <activeGraphicData>
+                    <texPath>Things/Building/Artifact/RGStargateAncient_Active</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <drawSize>(5.3,5.3)</drawSize>
+                    <addTopAltitudeBias>true</addTopAltitudeBias>
+                </activeGraphicData>
                 <irisPowerConsumption>500</irisPowerConsumption>
             </li>
             <li Class="CompProperties_Power">
@@ -132,6 +138,14 @@
         <thingClass>Rimgate.Building_DHD</thingClass>
         <label>Dial home device</label>
         <description>An ancient alien control console designed to interface with a Stargate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
+        <graphicData>
+            <texPath>Things/Building/Artifact/RGDHD</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(2,2)</drawSize>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
+        </graphicData>
+        <size>(1,1)</size>
+        <uiIconScale>0.5</uiIconScale>
         <rotatable>false</rotatable>
         <minifiedDef>MinifiedThing</minifiedDef>
         <minifiedDrawScale>0.5</minifiedDrawScale>
@@ -141,7 +155,7 @@
         <fillPercent>0.40</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-        <altitudeLayer>BuildingOnTop</altitudeLayer>
+        <altitudeLayer>Building</altitudeLayer>
         <thingCategories>
             <li>Artifacts</li>
         </thingCategories>
@@ -159,15 +173,14 @@
         <comps>
             <li Class="CompProperties_Facility" />
             <li Class="Rimgate.CompProperties_DHDControl">
-                <activeTexture>Things/Building/Artifact/RGDHD_Active</activeTexture>
+                <activeGraphicData>
+                    <texPath>Things/Building/Artifact/RGDHD_Active</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <drawSize>(2,2)</drawSize>
+                    <addTopAltitudeBias>true</addTopAltitudeBias>
+                </activeGraphicData>
             </li>
         </comps>
-        <graphicData>
-            <texPath>Things/Building/Artifact/RGDHD</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(2,2)</drawSize>
-        </graphicData>
-        <uiIconScale>0.5</uiIconScale>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
         <killedLeavings>
             <Rimgate_ZPM>1</Rimgate_ZPM>
@@ -178,7 +191,6 @@
             <Flammability>0</Flammability>
             <Mass>60</Mass>
         </statBases>
-        <size>(1,1)</size>
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     </ThingDef>
 
@@ -193,6 +205,7 @@
             <texPath>Things/Building/Misc/RGTauriDHD</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <drawSize>(2,2)</drawSize>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
@@ -205,7 +218,7 @@
         <tickerType>Never</tickerType>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-        <altitudeLayer>BuildingOnTop</altitudeLayer>
+        <altitudeLayer>Building</altitudeLayer>
         <thingCategories>
             <li>BuildingsMisc</li>
         </thingCategories>

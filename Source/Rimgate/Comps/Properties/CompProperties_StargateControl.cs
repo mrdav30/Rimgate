@@ -20,7 +20,7 @@ public class CompProperties_StargateControl : CompProperties
 
     public GraphicData irisGraphicData;
 
-    public string activeTexture;
+    public GraphicData activeGraphicData;
 
     public List<IntVec3> vortexPattern = new List<IntVec3>
     {

@@ -242,6 +242,7 @@
       <shadowData>
         <volume>(0.27,0.25,0.27)</volume>
       </shadowData>
+      <addTopAltitudeBias>true</addTopAltitudeBias>
     </graphicData>
     <techLevel>Archotech</techLevel>
     <stackLimit>1</stackLimit>
@@ -249,7 +250,7 @@
     <thingCategories>
       <li>Artifacts</li>
     </thingCategories>
-    <altitudeLayer>ItemImportant</altitudeLayer>
+    <altitudeLayer>Building</altitudeLayer>
     <castEdgeShadows>true</castEdgeShadows>
     <fillPercent>1</fillPercent>
     <specialDisplayRadius>1</specialDisplayRadius>
