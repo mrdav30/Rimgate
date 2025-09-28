@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <PawnKindDef ParentName="BaseMechanoidKind">
+    <PawnKindDef Name="Rimgate_ReplicatorBase" ParentName="BaseMechanoidKind">
         <defName>Rimgate_Replicator</defName>
         <label>replicator</label>
         <race>Rimgate_Replicator</race>
@@ -32,6 +32,104 @@
         <weaponMoney>9999~9999</weaponMoney>
         <weaponTags />
     </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_ReplicatorBase">
+        <defName>Rimgate_ReplicatorPlasteel</defName>
+        <label>replicator (plasteel)</label>
+        <race>Rimgate_ReplicatorPlasteel</race>
+        <combatPower>110</combatPower>
+        <abilities>
+            <li>Rimgate_ReplicatorSpikeAbility</li>
+        </abilities>
+        <lifeStages Inherit="false">
+            <li MayRequire="Ludeon.RimWorld.Biotech">
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
+                    <drawSize>1.55</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(160,178,181)</color>
+                </bodyGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
+                    <drawSize>1.55</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(160,178,181)</color>
+                </bodyGraphicData>
+            </li>
+        </lifeStages>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_ReplicatorBase">
+        <defName>Rimgate_ReplicatorUranium</defName>
+        <label>replicator (uranium)</label>
+        <race>Rimgate_ReplicatorUranium</race>
+        <combatPower>110</combatPower>
+        <abilities>
+            <li>Rimgate_ReplicatorSpikeAbility</li>
+        </abilities>
+        <lifeStages Inherit="false">
+            <li MayRequire="Ludeon.RimWorld.Biotech">
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
+                    <drawSize>1.55</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(100,100,100)</color>
+                </bodyGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
+                    <drawSize>1.55</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(100,100,100)</color>
+                </bodyGraphicData>
+            </li>
+        </lifeStages>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_ReplicatorBase">
+        <defName>Rimgate_ReplicatorNaquadah</defName>
+        <label>replicator (naquadah)</label>
+        <race>Rimgate_ReplicatorNaquadah</race>
+        <combatPower>125</combatPower>
+        <abilities>
+            <li>Rimgate_ReplicatorPsyspikeAbility</li>
+        </abilities>
+        <lifeStages Inherit="false">
+            <li MayRequire="Ludeon.RimWorld.Biotech">
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
+                    <drawSize>1.55</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(114,114,114)</color>
+                </bodyGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/Replicator/RGReplicator</texPath>
+                    <drawSize>1.55</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(114,114,114)</color>
+                </bodyGraphicData>
+            </li>
+        </lifeStages>
+    </PawnKindDef>
+
+    <!-- MALP -->
 
     <PawnKindDef ParentName="BaseMechanoidKind">
         <defName>Rimgate_Malp</defName>

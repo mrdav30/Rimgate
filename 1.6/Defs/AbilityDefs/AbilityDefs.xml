@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+    <!-- Wraith Life Drain -->
+
     <AbilityDef>
         <defName>Rimgate_WraithLifeDrainAbility</defName>
         <label>drain life</label>
@@ -9,7 +11,7 @@
         <verbProperties>
             <verbClass>Verb_CastAbilityTouch</verbClass>
             <drawAimPie>false</drawAimPie>
-            <range>-1</range> 
+            <range>-1</range>
             <warmupTime>0.25</warmupTime>
             <soundCast>Rimgate_WraitDrainLifeCast</soundCast>
             <targetParams>
@@ -19,7 +21,7 @@
                 <canTargetSelf>false</canTargetSelf>
                 <canTargetBuildings>false</canTargetBuildings>
                 <canTargetMechs>false</canTargetMechs>
-            </targetParams>  
+            </targetParams>
         </verbProperties>
         <cooldownTicksRange>120000</cooldownTicksRange>
         <jobDef>CastAbilityOnThingMelee</jobDef>
@@ -45,6 +47,8 @@
         </comps>
     </AbilityDef>
 
+    <!-- Wraith Cocoon Trap -->
+
     <AbilityDef>
         <defName>Rimgate_WraithCocoonTrapAbility</defName>
         <label>cocoon trap</label>
@@ -63,7 +67,7 @@
                 <canTargetBuildings>false</canTargetBuildings>
             </targetParams>
         </verbProperties>
-        <cooldownTicksRange>320</cooldownTicksRange>
+        <cooldownTicksRange>420</cooldownTicksRange>
         <aiCanUse>true</aiCanUse>
         <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
         <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
@@ -71,7 +75,7 @@
             <li Class="Rimgate.CompProperties_MultipleProjectile">
                 <compClass>Rimgate.CompAbilityEffect_LaunchMultipleProjectile</compClass>
                 <projectile>Rimgate_WraithWeb</projectile>
-                <numberOfProjectiles>3</numberOfProjectiles>
+                <numberOfProjectiles>2</numberOfProjectiles>
             </li>
         </comps>
     </AbilityDef>
@@ -97,6 +101,85 @@
                 <damageType>Burn</damageType>
             </li>
         </comps>
+    </ThingDef>
+
+    <!-- Replicator Spike -->
+
+    <AbilityDef>
+        <defName>Rimgate_ReplicatorSpikeAbility</defName>
+        <label>spike launch</label>
+        <description>Launch a metal spike at a target.</description>
+        <cooldownTicksRange>120</cooldownTicksRange>
+        <aiCanUse>true</aiCanUse>
+        <hostile>true</hostile>
+        <verbProperties>
+            <verbClass>Verb_AbilityShoot</verbClass>
+            <warmupTime>0.5</warmupTime>
+            <soundCast>Ability_SpineLaunch</soundCast>
+            <ai_IsWeapon>false</ai_IsWeapon>
+            <range>12.9</range>
+            <defaultProjectile>Rimgate_ReplicatorSpike</defaultProjectile>
+        </verbProperties>
+    </AbilityDef>
+
+    <ThingDef ParentName="BaseBullet">
+        <defName>Rimgate_ReplicatorSpike</defName>
+        <label>spike</label>
+        <graphicData>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>RangedStab</damageDef>
+            <damageAmountBase>9</damageAmountBase>
+            <armorPenetrationBase>1</armorPenetrationBase>
+            <stoppingPower>1</stoppingPower>
+            <speed>65</speed>
+        </projectile>
+        <graphicData>
+            <texPath>Things/Projectile/RGReplicatorSpikeProjectile</texPath>
+        </graphicData>
+    </ThingDef>
+
+    <AbilityDef>
+        <defName>Rimgate_ReplicatorPsyspikeAbility</defName>
+        <label>psyspikes</label>
+        <description>Launch a pair of psy-infused metal spikes at a target.</description>
+        <writeCombatLog>True</writeCombatLog>
+        <showPsycastEffects>False</showPsycastEffects>
+        <cooldownTicksRange>90~180</cooldownTicksRange> <!-- 1.5 to 3 seconds -->
+        <aiCanUse>true</aiCanUse>
+        <hostile>true</hostile>
+        <verbProperties>
+            <verbClass>Verb_AbilityShoot</verbClass>
+            <defaultProjectile>Bullet_ReplicatorPsyspike</defaultProjectile>
+            <range>16.9</range>
+            <soundCast>Heatspikes_Shot</soundCast>
+            <soundCastTail>Heatspikes_Tail</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+            <warmupTime>0</warmupTime>
+            <burstShotCount>2</burstShotCount>
+            <accuracyTouch>0.9</accuracyTouch>
+            <accuracyShort>0.8</accuracyShort>
+            <accuracyMedium>0.7</accuracyMedium>
+            <accuracyLong>0.6</accuracyLong>
+            <ai_IsWeapon>false</ai_IsWeapon>
+        </verbProperties>
+    </AbilityDef>
+
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_ReplicatorPsyspike</defName>
+        <label>psyspike shot</label>
+        <graphicData>
+            <texPath>Things/Projectile/RGReplicatorPsyspikeProjectile</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+        </graphicData>
+        <projectile>
+            <damageDef>EnergyBolt</damageDef>
+            <damageAmountBase>9</damageAmountBase>
+            <speed>90</speed>
+        </projectile>
     </ThingDef>
 
 </Defs>

@@ -30,7 +30,7 @@ public class Projectile_ZatBlast : Bullet
 
         Hediff zatShocked = hitPawn.health?.hediffSet?.GetFirstHediffOfDef(RimgateDefOf.Rimgate_ZatShock);
 
-        float randomSeverity = Rand.Range(0.15f, 0.30f);
+        float randomSeverity = Props.severityRange.RandomInRange;
         if (zatShocked != null)
         {
             // If the pawn has already been shot with the zat gun, the second shot is fatal.

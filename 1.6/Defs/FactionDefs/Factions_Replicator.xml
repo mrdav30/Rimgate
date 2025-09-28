@@ -48,6 +48,9 @@
 				<commonality>100</commonality>
 				<options>
 					<Rimgate_Replicator>40</Rimgate_Replicator>
+					<Rimgate_ReplicatorUranium>20</Rimgate_ReplicatorUranium>
+					<Rimgate_ReplicatorPlasteel>20</Rimgate_ReplicatorPlasteel>
+					<Rimgate_ReplicatorNaquadah>10</Rimgate_ReplicatorNaquadah>
 				</options>
 			</li>
 			<li>
@@ -55,6 +58,9 @@
 				<commonality>100</commonality>
 				<options>
 					<Rimgate_Replicator>400</Rimgate_Replicator>
+					<Rimgate_ReplicatorUranium>200</Rimgate_ReplicatorUranium>
+					<Rimgate_ReplicatorPlasteel>200</Rimgate_ReplicatorPlasteel>
+					<Rimgate_ReplicatorNaquadah>100</Rimgate_ReplicatorNaquadah>
 				</options>
 			</li>
 			<li>
@@ -62,6 +68,9 @@
 				<commonality>100</commonality>
 				<options>
 					<Rimgate_Replicator>800</Rimgate_Replicator>
+					<Rimgate_ReplicatorUranium>400</Rimgate_ReplicatorUranium>
+					<Rimgate_ReplicatorPlasteel>400</Rimgate_ReplicatorPlasteel>
+					<Rimgate_ReplicatorNaquadah>200</Rimgate_ReplicatorNaquadah>
 				</options>
 			</li>
 		</pawnGroupMakers>
