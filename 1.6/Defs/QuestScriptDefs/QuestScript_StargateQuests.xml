@@ -10,8 +10,8 @@
 		<questNameRules>
 			<rulesStrings>
 				<li>questName->[adj] glyph [site]</li>
-				<li>questName->[adj] forward [site]</li>
-				<li>questName->[adj] stargate [site]</li>
+				<li>questName->[adj] dwarfgate [site]</li>
+				<li>questName->[adj] gate [site]</li>
 
 				<li>adj->Forbidden</li>
 				<li>adj->Shrouded</li>

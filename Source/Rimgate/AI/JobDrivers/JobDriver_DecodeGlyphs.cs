@@ -15,11 +15,22 @@ public class JobDriver_DecodeGlyphs : JobDriver
 
     private const int _useDuration = 500;
 
-    private void GenerateStargateQuest()
+    // returns true if we actually spawned a new quest
+    private bool TryStartStargateQuest()
     {
-        Slate slate = new Slate();
+        // Hard cap: only one SG site quest at a time
+        if (StargateUtility.HasActiveStargateQuest())
+        {
+            Messages.Message("RG_MessageSGQuestAlreadyActive".Translate(),
+                             MessageTypeDefOf.RejectInput,
+                             historical: false);
+            return false;
+        }
+
+        var slate = new Slate();
         Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(RimgateDefOf.Rimgate_StargateQuestScript, slate);
         QuestUtility.SendLetterQuestAvailable(quest);
+        return true;
     }
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -31,22 +42,25 @@ public class JobDriver_DecodeGlyphs : JobDriver
     {
         yield return Toils_Goto.GotoThing(_glyphScrapItem, PathEndMode.Touch);
 
-        Toil toil = Toils_General.Wait(_useDuration);
-        toil.WithProgressBarToilDelay(_glyphScrapItem);
-        yield return toil;
+        Toil wait = Toils_General.Wait(_useDuration);
+        wait.WithProgressBarToilDelay(_glyphScrapItem);
+        yield return wait;
+
         yield return new Toil
         {
             initAction = () =>
             {
-                GenerateStargateQuest();
+                if (!TryStartStargateQuest()) return;
 
                 Thing glyphThing = job.GetTarget(_glyphScrapItem).Thing;
                 if (glyphThing.stackCount > 1)
                 {
-                    Thing usedGlyphThing = glyphThing.SplitOff(1);
-                    if (!usedGlyphThing.DestroyedOrNull()) usedGlyphThing.Destroy();
+                    Thing used = glyphThing.SplitOff(1);
+                    if (!used.DestroyedOrNull()) 
+                        used.Destroy();
                 }
-                else glyphThing.Destroy();
+                else 
+                    glyphThing.Destroy();
             }
         };
     }
