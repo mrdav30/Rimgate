@@ -9,7 +9,6 @@
 		<expandingIconPriority>70</expandingIconPriority>
 		<comps>
 			<li Class="WorldObjectCompProperties_FormCaravan" />
-			<li Class="WorldObjectCompProperties_TimedDetectionRaids" />
 			<li Class="WorldObjectCompProperties_EnterCooldown" />
 		</comps>
 		<IncidentTargetTags>

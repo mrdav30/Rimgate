@@ -1,101 +1,91 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using RimWorld;
+﻿using RimWorld;
 using RimWorld.Planet;
 using RimWorld.QuestGen;
+using System.Collections.Generic;
+using UnityEngine;
 using Verse;
-using Verse.Noise;
 
 namespace Rimgate;
 
+/// Drives “timed detection” raids for a Stargate site, 
+/// without using the vanilla TimedDetectionRaids WO comp.
+/// Triggers on site.MapGenerated and then repeats on an interval until quest end.
 public class QuestNode_RaidStargateComplex : QuestNode
 {
-    public SlateRef<Site> address;
+    // ~0.25–0.5 day after map gen
+    private static readonly IntRange InitialDelay = new IntRange(9000, 18000);
 
-    public SlateRef<float> immediateRaidChance;
+    // ~1–1.5 days between raids
+    private static readonly IntRange Interval = new IntRange(60000, 90000);
 
-    public SlateRef<IEnumerable<string>> excludeTags;
-
-    private static readonly SimpleCurve ThreatPointsOverPointsCurve = new SimpleCurve
-    {
-        new CurvePoint(35f, 38.5f),
-        new CurvePoint(400f, 165f),
-        new CurvePoint(10000f, 4125f)
-    };
-
-    private static FloatRange _randomPointsFactorRange = new FloatRange(0.9f, 1.1f);
+    private static readonly FloatRange RaidPointsFactor = new FloatRange(0.85f, 1.10f);
 
     protected override bool TestRunInt(Slate slate)
     {
-        if(!Utils.TryFindEnemyFaction(out _))
+        if (!Find.Storyteller.difficulty.allowViolentQuests)
             return false;
 
-        List<string> exclusions = excludeTags.GetValue(slate).ToList();
-        IEnumerable<SitePartDef> sitePartDefs = slate.Get<IEnumerable<SitePartDef>>("sitePartDefs");
-        if (exclusions != null && exclusions.Any() && sitePartDefs != null)
-        {
-            if (!sitePartDefs.Where(p => p != null && CanRaid(p, exclusions)).Any())
-                return false;
-        }
+        // Must have enemy factions available
+        if (!Utils.TryFindEnemyFaction(out _))
+            return false;
 
-        return true;
+        // Need a site target (map may or may not exist yet)
+        var site = slate.Get<Site>("site");
+        return site != null;
     }
 
     protected override void RunInt()
     {
-        Slate slate = QuestGen.slate;
-        var exclusions = excludeTags.GetValue(slate);
-        if (exclusions != null && exclusions.Any())
-        {
-            var sitePartDefs = slate.Get<IEnumerable<SitePartDef>>("sitePartDefs");
-            if (!sitePartDefs.Where(p => p != null && CanRaid(p, exclusions)).Any())
-                return;
-        }
-
         Quest quest = QuestGen.quest;
-        Site site = address.GetValue(slate);
+        Slate slate = QuestGen.slate;
 
-        QuestGen.GenerateNewSignal("RaidArrives");
+        // shouldn’t happen if TestRunInt passed
+        var site = slate.Get<Site>("site");
+        if (site == null)
+            return;
 
-        float num = slate.Get("points", 1f);
-        float num2 = Find.Storyteller.difficulty.allowViolentQuests
-            ? ThreatPointsOverPointsCurve.Evaluate(num)
-            : 1f;
+        // We’ll key everything off the site’s signals site.MapGenerated is the *first* kick.
+        // From there we run a repeating interval signal.
+        string startSignal = QuestGenUtility.HardcodedSignalWithQuestID("site.MapGenerated");
+        string triggerRaidSignal = QuestGen.GenerateNewSignal("StargateComplex.TriggerRaid");
+        string questEndSignal = QuestGenUtility.HardcodedSignalWithQuestID("stargate.site.QuestEnd");
 
-        TimedDetectionRaids component = site.GetComponent<TimedDetectionRaids>();
-        if (component != null)
+        // Stop raids if the site goes away (destroyed/abandoned)
+        string siteRemovedSignal = QuestGenUtility.HardcodedSignalWithQuestID("site.MapRemoved");
+
+        var repeater = new QuestPart_DelayedPassOutInterval
         {
-            component.alertRaidsArrivingIn = true;
-            component.delayRangeHours = new FloatRange(0.10f, 0.5f);
-        }
+            inSignalEnable = startSignal,  // still gated by site.MapGenerated
+            InSignalsDisable = { questEndSignal, siteRemovedSignal },
+            OutSignals = { triggerRaidSignal },
+            InitialDelayTicks = InitialDelay.RandomInRange,
+            TicksInterval = Interval
+        };
+        quest.AddPart(repeater);
 
-        float chance = immediateRaidChance.GetValue(slate);
-        if (chance == 0) 
-            chance = 0.5f;
-        if (Find.Storyteller.difficulty.allowViolentQuests && Rand.Chance(chance))
+        // 2) Actual raid executor (reusing your RandomFactionRaid part)
+        var raid = new QuestPart_RandomFactionRaid
         {
-            QuestPart_RandomFactionRaid randomRaid = new QuestPart_RandomFactionRaid();
-            randomRaid.mapParent = site;
-            randomRaid.pointsRange = _randomPointsFactorRange * num2;
-            randomRaid.arrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
-            randomRaid.UseStargateIfAvailable = true;
-            randomRaid.AllowNeolithic = true;
-            randomRaid.raidStrategy = RimgateDefOf.ImmediateAttackSmart;
-            randomRaid.UseLetterKey = "RG_LetterRaidStargateComplexDesc";
-            randomRaid.generateFightersOnly = true;
-            quest.AddPart(randomRaid);
-        }
-    }
+            inSignal = triggerRaidSignal,
+            mapParent = site,
+            pointsRange = RaidPointsFactor,
+            AllowNeolithic = false,
+            UseStargateIfAvailable = true,
+            arrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn,
+            raidStrategy = RimgateDefOf.ImmediateAttackSmart,
+            generateFightersOnly = true,
+            fallbackToPlayerHomeMap = false,
+            UseLetterKey = "RG_LetterRaidStargateComplexDesc"
+        };
 
-    public bool CanRaid(SitePartDef part, IEnumerable<string> exclusions)
-    {
-        foreach (string exclusion in exclusions)
-        {
-            if (part.tags.Contains(exclusion))
-                return false;
-        }
+        quest.AddPart(raid);
 
-        return true;
+        // 3) Clean stops: end the raid loop when site map removed or quest
+        // ends by any other path
+        quest.End(QuestEndOutcome.Fail, 0, null, questEndSignal, QuestPart.SignalListenMode.OngoingOnly, sendStandardLetter: false);
+        quest.End(QuestEndOutcome.Fail, 0, null, siteRemovedSignal, QuestPart.SignalListenMode.OngoingOnly, sendStandardLetter: false);
+
+        // Surface a couple values to slate
+        slate.Set("raidIntervalAvg", Interval.Average);
     }
 }

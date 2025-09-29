@@ -48,9 +48,10 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
         incidentParms.forced = true;
         incidentParms.quest = quest;
         incidentParms.target = map;
+        float pts = StorytellerUtility.DefaultThreatPointsNow(map);
         incidentParms.points = useCurrentThreatPoints
-            ? (StorytellerUtility.DefaultThreatPointsNow(map) * currentThreatPointsFactor)
-            : pointsRange.RandomInRange;
+            ? pts * currentThreatPointsFactor
+            : pts * pointsRange.RandomInRange;
         incidentParms.faction = faction;
         incidentParms.customLetterLabel = customLetterLabel;
         incidentParms.customLetterText = customLetterText;

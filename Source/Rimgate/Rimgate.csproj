@@ -382,6 +382,7 @@
     <Compile Include="Quests\QuestNode_GetFactionOfDef.cs" />
     <Compile Include="Quests\QuestNode_RaidForZPM.cs" />
     <Compile Include="Quests\QuestNode_RaidStargateComplex.cs" />
+    <Compile Include="Quests\QuestPart_DelayedPassOutInterval.cs" />
     <Compile Include="Quests\QuestPart_RandomFactionRaid.cs" />
     <Compile Include="RimgateTex.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_None.cs" />

@@ -215,10 +215,8 @@
 					<worldObjects>$site</worldObjects>
 				</li>
 
-				<li Class="Rimgate.QuestNode_RaidStargateComplex">
-					<address>$site</address>
-					<immediateRaidChance>0.75</immediateRaidChance>
-				</li>
+				<!-- Start custom detection raids once the site map generates -->
+				<li Class="Rimgate.QuestNode_RaidStargateComplex" />
 
 				<li Class="QuestNode_WorldObjectTimeout">
 					<worldObject>$site</worldObject>
