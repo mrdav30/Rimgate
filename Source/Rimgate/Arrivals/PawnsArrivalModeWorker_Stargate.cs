@@ -21,7 +21,7 @@ public class PawnsArrivalModeWorker_Stargate : PawnsArrivalModeWorker
         sgComp.TicksSinceBufferUnloaded = -150;
         sgComp.IsReceivingGate = true;
         foreach (Pawn pawn in pawns)
-            sgComp.AddToRecieveBuffer(pawn);
+            sgComp.AddToReceiveBuffer(pawn);
     }
 
     public override bool TryResolveRaidSpawnCenter(IncidentParms parms)

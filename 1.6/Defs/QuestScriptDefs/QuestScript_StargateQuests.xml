@@ -94,7 +94,6 @@
 					<preferCloserTiles>false</preferCloserTiles>
 				</li>
 
-
 				<li Class="QuestNode_RandomNode">
 					<nodes>
 						<!-- Goa'uld -->
@@ -113,6 +112,27 @@
 										</li>
 										<li>
 											<tag>Rimgate_SoldierGoauld</tag>
+										</li>
+									</sitePartsTags>
+								</li>
+							</nodes>
+						</li>
+						<!-- Mech -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="Rimgate.QuestNode_GetFactionOfDef">
+									<factionDef>Mechanoid</factionDef>
+									<storeAs>enemyFaction</storeAs>
+								</li>
+								<li Class="QuestNode_GetSitePartDefsByTagsAndFaction">
+									<storeAs>sitePartDefs</storeAs>
+									<storeFactionAs>siteFaction</storeFactionAs>
+									<sitePartsTags>
+										<li>
+											<tag>Rimgate_StargateSiteMech</tag>
+										</li>
+										<li>
+											<tag>Rimgate_SoldierMech</tag>
 										</li>
 									</sitePartsTags>
 								</li>
@@ -197,6 +217,7 @@
 
 				<li Class="Rimgate.QuestNode_RaidStargateComplex">
 					<address>$site</address>
+					<immediateRaidChance>0.75</immediateRaidChance>
 				</li>
 
 				<li Class="QuestNode_WorldObjectTimeout">

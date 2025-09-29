@@ -8,6 +8,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net.NetworkInformation;
+using System.Security.Cryptography;
 
 namespace Rimgate;
 
@@ -57,9 +59,11 @@ public class Comp_StargateControl : ThingComp
         }
     }
 
-    private List<Thing> _sendBuffer = new List<Thing>();
+    private List<Thing> _sendBuffer;
 
-    private Queue<Thing> _recvBuffer = new Queue<Thing>();
+    private HashSet<int> _redraftOnArrival;
+
+    private Queue<Thing> _recvBuffer;
 
     private bool _isIrisActivated = false;
 
@@ -146,11 +150,22 @@ public class Comp_StargateControl : ThingComp
 
         //clear buffers just in case
         var drop = Utils.BestDropCellNearThing(parent);
-        foreach (Thing thing in _sendBuffer)
-            GenSpawn.Spawn(thing, drop, parent.Map);
 
-        foreach (Thing thing in _recvBuffer)
-            GenSpawn.Spawn(thing, drop, parent.Map);
+        if (_sendBuffer?.Any() == true)
+        {
+            foreach (Thing thing in _sendBuffer)
+                GenSpawn.Spawn(thing, drop, parent.Map);
+            _sendBuffer.Clear();
+        }
+
+        if (_recvBuffer?.Any() == true)
+        {
+            foreach (Thing thing in _recvBuffer)
+                GenSpawn.Spawn(thing, drop, parent.Map);
+            _recvBuffer.Clear();
+        }
+
+        _redraftOnArrival?.Clear();
 
         Comp_StargateControl otherSgComp = null;
         if (closeOtherGate)
@@ -269,13 +284,97 @@ public class Comp_StargateControl : ThingComp
 
     public void AddToSendBuffer(Thing thing)
     {
+        _sendBuffer ??= new();
         _sendBuffer.Add(thing);
+
+        // redraft flag travels as an ID on the destination comp
+        Comp_StargateControl dest = ConnectedStargate?.StargateControl;
+        if (dest != null && ShouldRedraftAfterSpawn(thing))
+            dest.MarkRedraftOnArrival(thing);
+
         PlayTeleportSound();
     }
 
-    public void AddToRecieveBuffer(Thing thing)
+    private void BeamSendBufferTo()
     {
+        Comp_StargateControl dest = ConnectedStargate.StargateControl;
+
+        for (int i = 0; i < _sendBuffer.Count; i++)
+        {
+            Thing t = _sendBuffer[i];
+
+            if (IsReceivingGate)
+            {
+                t.Kill();
+                continue;
+            }
+
+            dest.AddToReceiveBuffer(t);
+        }
+
+        _sendBuffer.Clear();
+    }
+
+    private static bool ShouldRedraftAfterSpawn(Thing t)
+    {
+        if (t is not Pawn p) return false;
+        if (p.Faction != Faction.OfPlayer) return false;
+        if (p.Downed) return false;
+        if (p.drafter == null) return false;
+        if (!p.Drafted) return false;
+        return true;
+    }
+
+    public void MarkRedraftOnArrival(Thing t)
+    {
+        _redraftOnArrival ??= new();
+        _redraftOnArrival.Add(t.thingIDNumber);
+    }
+
+    public void AddToReceiveBuffer(Thing thing)
+    {
+        _recvBuffer ??= new();
         _recvBuffer.Enqueue(thing);
+    }
+
+    private void SpawnFromReceiveBuffer()
+    {
+        TicksSinceBufferUnloaded = 0;
+
+        // check without removing
+        Thing t = _recvBuffer.Peek();
+        if(t == null || t.Destroyed)
+        {
+            _recvBuffer.Dequeue();
+            return;
+        }
+
+        if (!_isIrisActivated)
+        {
+            // Buildings (e.g., carts) must NOT spawn exactly on the gate/edifices.
+            IntVec3 drop = Utils.BestDropCellNearThing(parent);
+            var spawned = GenSpawn.Spawn(t, drop, parent.Map);
+            PlayTeleportSound();
+
+            // Cleanly re-draft on arrival
+            if (spawned is Pawn p && _redraftOnArrival?.Remove(p.thingIDNumber) == true)
+            {
+                // avoid lingering pre-teleport jobs
+                p.jobs?.StopAll();
+                if (p.drafter != null)
+                    p.drafter.Drafted = true;
+                // hold position for a tick; avoids “wander”
+                p.pather?.StopDead();
+            }
+        }
+        else
+        {
+            t.Kill();
+            RimgateDefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(parent));
+        }
+
+        // remove after handling
+        _recvBuffer.Dequeue();
     }
 
     #region Comp Overrides
@@ -346,56 +445,26 @@ public class Comp_StargateControl : ThingComp
             }
         }
 
-        if (_sendBuffer.Any())
+        if (_sendBuffer?.Any() == true)
+            BeamSendBufferTo();
+
+        if (_recvBuffer?.Any() == true)
         {
-            Comp_StargateControl sgComp = ConnectedStargate.StargateControl;
-            if (!IsReceivingGate)
-            {
-                foreach (var item in _sendBuffer)
-                    sgComp.AddToRecieveBuffer(item);
-            }
-            else
-            {
-                foreach (var item in _sendBuffer)
-                    item.Kill();
-            }
-            _sendBuffer.Clear();
+            if (TicksSinceBufferUnloaded > Rand.Range(10, 80))
+                SpawnFromReceiveBuffer();
+
+            if (!ConnectedAddress.Valid)
+                CloseStargate();
         }
-
-        if (_recvBuffer.Any() && TicksSinceBufferUnloaded > Rand.Range(10, 80))
-        {
-            TicksSinceBufferUnloaded = 0;
-            var thing = _recvBuffer.Peek(); // check without removing
-
-            if (!_isIrisActivated)
-            {
-                // Buildings (e.g., carts) must NOT spawn exactly on the gate/edifices.
-                // Prefer "near" placement with a predicate to avoid edifice tiles.
-                var drop = Utils.BestDropCellNearThing(parent);
-                GenSpawn.Spawn(thing, drop, parent.Map);
-                PlayTeleportSound();
-            }
-            else
-            {
-                thing.Kill();
-                RimgateDefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(parent));
-            }
-
-            _recvBuffer.Dequeue(); // remove after handling
-        }
-
-        if (!ConnectedAddress.Valid && !_recvBuffer.Any())
-            CloseStargate();
 
         TicksSinceBufferUnloaded++;
         TicksSinceOpened++;
 
-        if (IsReceivingGate
+        bool shouldClose = IsReceivingGate
             && TicksSinceBufferUnloaded > _idleTimeout
-            && !ConnectedStargate.StargateControl.GateIsLoadingTransporter)
-        {
+            && !ConnectedStargate.StargateControl.GateIsLoadingTransporter;
+        if (shouldClose)
             CloseStargate(true);
-        }
     }
 
     public override void PostSpawnSetup(bool respawningAfterLoad)
@@ -493,6 +562,7 @@ public class Comp_StargateControl : ThingComp
     public override void PostExposeData()
     {
         base.PostExposeData();
+
         Scribe_Values.Look(ref IsActive, "StargateIsActive");
         Scribe_Values.Look(ref IsReceivingGate, "IsRecievingGate");
         Scribe_Values.Look(ref HasIris, "HasIris");
@@ -501,8 +571,29 @@ public class Comp_StargateControl : ThingComp
         Scribe_Values.Look(ref TicksSinceOpened, "TicksSinceOpened");
         Scribe_Values.Look(ref ConnectedAddress, "_connectedAddress");
         Scribe_References.Look(ref ConnectedStargate, "_connectedStargate");
-        Scribe_Collections.Look(ref _recvBuffer, "_recvBuffer", LookMode.GlobalTargetInfo);
-        Scribe_Collections.Look(ref _sendBuffer, "_sendBuffer", LookMode.GlobalTargetInfo);
+
+        // --- SEND buffer (List<Thing>) ---
+        Scribe_Collections.Look(ref _sendBuffer, "_sendBuffer", LookMode.Reference);
+        if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            _sendBuffer = _sendBuffer?.Where(t => t != null).ToList() ?? new List<Thing>();
+
+        // --- RECV buffer (Queue<Thing>) via temp list ---
+        List<Thing> recvList = null;
+        if (Scribe.mode == LoadSaveMode.Saving)
+            recvList = _recvBuffer?.Where(t => t != null).ToList();
+
+        Scribe_Collections.Look(ref recvList, "_recvBuffer_list", LookMode.Reference);
+        if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            _recvBuffer = new Queue<Thing>(recvList?.Where(t => t != null) ?? Enumerable.Empty<Thing>());
+
+        // --- Redraft set (HashSet<int>) via temp list ---
+        List<int> redraftList = null;
+        if (Scribe.mode == LoadSaveMode.Saving && _redraftOnArrival != null)
+            redraftList = _redraftOnArrival.ToList();
+
+        Scribe_Collections.Look(ref redraftList, "redraftOnArrival_list", LookMode.Value);
+        if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            _redraftOnArrival = redraftList != null ? new HashSet<int>(redraftList) : null;
     }
 
     public override string CompInspectStringExtra()
@@ -551,10 +642,9 @@ public class Comp_StargateControl : ThingComp
     {
         _isIrisActivated = !_isIrisActivated;
         _wantsIrisToggled = false;
-        if (_isIrisActivated)
-            RimgateDefOf.Rimgate_IrisOpen.PlayOneShot(SoundInfo.InMap(parent));
-        else
-            RimgateDefOf.Rimgate_IrisClose.PlayOneShot(SoundInfo.InMap(parent));
+        var snd = _isIrisActivated ? RimgateDefOf.Rimgate_IrisClose
+                                   : RimgateDefOf.Rimgate_IrisOpen;
+        snd.PlayOneShot(SoundInfo.InMap(parent));
     }
 
     public void CleanupGate()

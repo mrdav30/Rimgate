@@ -158,8 +158,8 @@ public class JobDriver_PushMobileContainer : JobDriver
 
                     if(job.def == RimgateDefOf.Rimgate_EnterStargateWithContainer)
                     {
-                        pawn.DeSpawn();
                         sg.AddToSendBuffer(pawn);
+                        pawn.DeSpawn();
                         EndJobWith(JobCondition.Succeeded);
                     }
 

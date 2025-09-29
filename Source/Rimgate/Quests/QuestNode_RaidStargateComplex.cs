@@ -13,6 +13,8 @@ public class QuestNode_RaidStargateComplex : QuestNode
 {
     public SlateRef<Site> address;
 
+    public SlateRef<float> immediateRaidChance;
+
     public SlateRef<IEnumerable<string>> excludeTags;
 
     private static readonly SimpleCurve ThreatPointsOverPointsCurve = new SimpleCurve
@@ -68,7 +70,10 @@ public class QuestNode_RaidStargateComplex : QuestNode
             component.delayRangeHours = new FloatRange(0.10f, 0.5f);
         }
 
-        if (Find.Storyteller.difficulty.allowViolentQuests && Rand.Chance(0.5f))
+        float chance = immediateRaidChance.GetValue(slate);
+        if (chance == 0) 
+            chance = 0.5f;
+        if (Find.Storyteller.difficulty.allowViolentQuests && Rand.Chance(chance))
         {
             QuestPart_RandomFactionRaid randomRaid = new QuestPart_RandomFactionRaid();
             randomRaid.mapParent = site;

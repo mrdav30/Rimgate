@@ -26,8 +26,8 @@ public class JobDriver_EnterStargate : JobDriver
             {
                 Comp_StargateControl gateComp = StargateToEnter.TryGetComp<Comp_StargateControl>();
                 if (gateComp == null) return;
-                pawn.DeSpawn();
                 gateComp.AddToSendBuffer(pawn);
+                pawn.DeSpawn();
             }
         };
 
