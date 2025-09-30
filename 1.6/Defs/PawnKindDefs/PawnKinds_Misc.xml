@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
+    <!-- Unas -->
+
     <PawnKindDef Name="Rimgate_UnasKindBase" ParentName="AnimalKindBase" Abstract="True">
         <combatPower>220</combatPower>
         <ecoSystemWeight>0.3</ecoSystemWeight>
@@ -107,6 +109,120 @@
                 </dessicatedBodyGraphicData>
             </li>
         </lifeStages>
+    </PawnKindDef>
+
+    <!-- Man in Red -->
+
+    <PawnKindDef>
+        <defName>Rimgate_TreasureHunter</defName>
+        <label>treasure hunter D</label>
+        <race>Human</race>
+        <defaultFactionDef>Rimgate_TreasureHuntersHostile</defaultFactionDef>
+        <combatPower>85</combatPower>
+        <minGenerationAge>20</minGenerationAge>
+        <maxGenerationAge>55</maxGenerationAge>
+        <isFighter>true</isFighter>
+        <chemicalAddictionChance>0.05</chemicalAddictionChance>
+        <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality>
+        <backstoryFiltersOverride>
+            <li>
+                <categories>
+                    <li>Offworld</li>
+                    <li>Outlander</li>
+                    <li>Outsider</li>
+                </categories>
+            </li>
+        </backstoryFiltersOverride>
+        <requiredWorkTags>
+            <li>Violent</li>
+            <li>Caring</li>
+        </requiredWorkTags>
+        <invNutrition>10.0</invNutrition>
+        <inventoryOptions>
+            <subOptionsTakeAll>
+                <li>
+                    <thingDef>MedicineUltratech</thingDef>
+                    <countRange>5</countRange>
+                </li>
+                <li>
+                    <thingDef>Rimgate_ScrapNote</thingDef>
+                    <countRange>1</countRange>
+                </li>
+            </subOptionsTakeAll>
+        </inventoryOptions>
+        <gearHealthRange>1~1</gearHealthRange>
+        <itemQuality>Good</itemQuality>
+        <weaponMoney>1200~3500</weaponMoney>
+        <weaponTags>
+            <li>Rimgate_KullRanged_tag</li>
+            <li>Rimgate_TauriShotgun_tag</li>
+            <li>Rimgate_WraithHandBlaster</li>
+        </weaponTags>
+        <forceWeaponQuality>Excellent</forceWeaponQuality>
+        <startingHediffs>
+            <li>
+                <def>Hediff_ClonedTracker</def>
+            </li>
+            <li>
+                <def>Rimgate_Clone</def>
+            </li>
+        </startingHediffs>
+        <techHediffsMoney>1000~2000</techHediffsMoney>
+        <techHediffsTags>
+            <li>Simple</li>
+            <li>Advanced</li>
+            <li>AdvancedWeapon</li>
+        </techHediffsTags>
+        <apparelMoney>1200~3200</apparelMoney>
+        <apparelTags>
+            <li>IndustrialBasic</li>
+            <li>IndustrialAdvanced</li>
+        </apparelTags>
+        <apparelRequired>
+            <li>Apparel_CollarShirt</li>
+            <li>Apparel_Pants</li>
+            <li>Apparel_Duster</li>
+            <li>Apparel_FlakVest</li>
+            <li>Apparel_CowboyHat</li>
+        </apparelRequired>
+        <specificApparelRequirements>
+            <li>
+                <bodyPartGroup>UpperHead</bodyPartGroup>
+                <stuff>DevilstrandCloth</stuff>
+            </li>
+            <li>
+                <bodyPartGroup>Torso</bodyPartGroup>
+                <stuff>DevilstrandCloth</stuff>
+            </li>
+            <li>
+                <bodyPartGroup>Legs</bodyPartGroup>
+                <stuff>DevilstrandCloth</stuff>
+            </li>
+        </specificApparelRequirements>
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+        <apparelColor>(1, 0, 0)</apparelColor> <!-- Matches favoriteColor -->
+        <ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
+        <favoriteColor MayRequire="Ludeon.RimWorld.Ideology">Red</favoriteColor>
+        <combatEnhancingDrugsChance>0.5</combatEnhancingDrugsChance>
+        <combatEnhancingDrugsCount>1~2</combatEnhancingDrugsCount>
+        <initialWillRange>0~0</initialWillRange>
+        <initialResistanceRange>0~2</initialResistanceRange>
+        <humanPregnancyChance>0</humanPregnancyChance>
+        <skills>
+            <li>
+                <skill>Shooting</skill>
+                <range>8~11</range>
+            </li>
+            <li>
+                <skill>Melee</skill>
+                <range>8~11</range>
+            </li>
+            <li>
+                <skill>Medicine</skill>
+                <range>8~11</range>
+            </li>
+        </skills>
     </PawnKindDef>
 
 </Defs>
