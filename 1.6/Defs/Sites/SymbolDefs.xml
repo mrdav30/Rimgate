@@ -30,6 +30,12 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_SculptureLarge_Naquadah</defName>
+        <thing>SculptureLarge</thing>
+        <stuff>Rimgate_Naquadah</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_HiveFloor</defName>
         <thing>Rimgate_HiveFloor</thing>
     </KCSG.SymbolDef>
@@ -336,6 +342,14 @@
     <!-- Enemies -->
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_TreasureHunter</defName>
+        <pawnKindDef>Rimgate_TreasureHunter</pawnKindDef>
+        <faction>Rimgate_TreasureHuntersHostile</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>false</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>WraithAncientCryptosleepCasket</defName>
         <thing>AncientCryptosleepCasket</thing>
         <containPawnKindAnyOf>
@@ -494,6 +508,27 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_Chimera</defName>
+        <pawnKindDef>Chimera</pawnKindDef>
+        <faction>Entities</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Sightstealer</defName>
+        <pawnKindDef>Sightstealer</pawnKindDef>
+        <faction>Entities</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Revenant</defName>
+        <pawnKindDef>Revenant</pawnKindDef>
+        <faction>Entities</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_AncientCryptosleepCasket</defName>
         <thing>AncientCryptosleepCasket</thing>
         <containPawnKindAnyOf>
@@ -519,6 +554,11 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_Cow</defName>
         <pawnKindDef>Cow</pawnKindDef>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Horse</defName>
+        <pawnKindDef>Horse</pawnKindDef>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

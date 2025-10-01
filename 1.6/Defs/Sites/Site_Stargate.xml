@@ -210,6 +210,7 @@
 				<li>Rimgate_StructureAncientComplexAlpha</li>
 				<li>Rimgate_StructureAncientComplexBravo</li>
 				<li>Rimgate_StructureAncientComplexCharlie</li>
+				<li>Rimgate_StructureAncientComplexDelta</li>
 				<li>Rimgate_StructureBarrenGate</li>
 				<li>Rimgate_StructureBarrenGateNoDHD</li>
 				<li>Rimgate_StructureCavernAlpha</li>
@@ -218,6 +219,8 @@
 				<li>Rimgate_StructureNaquadahMine</li>
 				<li>Rimgate_StructureJadeHengeAlpha</li>
 				<li>Rimgate_StructureJadeHengeBravo</li>
+				<li>Rimgate_StructureStrangeVillageAlpha</li>
+				<li>Rimgate_StructureStrangeVillageBravo</li>
 				<li>Rimgate_StructureUnasVillage</li>
 			</structureLayoutDefs>
 		</genStep>
