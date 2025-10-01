@@ -18,7 +18,7 @@ public class IncidentWorker_KillAllClonesNow : IncidentWorker
         int num = 0;
         foreach (Pawn pawn in list)
         {
-            if (CloneUtility.HasCloneHediff(pawn))
+            if (Utils.HasHediff<Hediff_Clone>(pawn))
             {
                 KillPawn(pawn);
                 ++num;

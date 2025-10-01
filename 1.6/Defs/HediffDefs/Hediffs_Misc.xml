@@ -21,6 +21,20 @@
         <isBad>false</isBad>
     </HediffDef>
 
+    <HediffDef>
+        <defName>Rimgate_CloneRandom</defName>
+        <label>clone (hidden)</label>
+        <description>Another happy accident of mad science. Don't worry — they only think they’re the original.</description>
+        <hediffClass>Rimgate.Hediff_Clone</hediffClass>
+        <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
+        <isBad>false</isBad>
+        <comps>
+            <li>
+                <compClass>Rimgate.HediffComp_RandomCloneGeneration</compClass>
+            </li>
+        </comps>
+    </HediffDef>
+
     <HediffDef ParentName="DiseaseBase">
         <defName>Rimgate_SystemShock</defName>
         <label>clone activation shock</label>
@@ -102,7 +116,6 @@
 
     <!-- Mobile Container debuffs -->
 
-    <!-- TODO: add Biotech’s hediff render nodes to draw the cart overlay when carried -->
     <HediffDef>
         <defName>Rimgate_PushingCart</defName>
         <label>pushing a cart</label>

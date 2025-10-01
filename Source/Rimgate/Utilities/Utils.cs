@@ -125,6 +125,24 @@ internal static class Utils
         return pawn.genes?.GetGene(DefDatabase<GeneDef>.GetNamedSilentFail(geneDefName))?.Active ?? false;
     }
 
+    public static bool HasHediff<T>(Pawn pawn) where T : Hediff
+    {
+        HediffSet set = pawn?.health?.hediffSet;
+        if (set is null) return false;
+
+        return set.HasHediff<T>();
+    }
+
+    public static T GetHediff<T>(Pawn pawn) where T : Hediff
+    {
+        HediffSet set = pawn?.health?.hediffSet;
+        if (set is null) return null;
+
+        if(set.TryGetHediff<T>(out T result))
+            return result;
+        return null;
+    }
+
     public static Hediff ApplyHediff(
         Pawn targetPawn,
         HediffDef hediffDef,

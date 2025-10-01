@@ -459,13 +459,13 @@ internal static class CloneUtility
         if (last.Length == 0)
             last = ((NameTriple)pawn.Name).Last;
 
-        Hediff_ClonedTracker clonedTrackerHediff = GetClonedTrackerHediff(innerPawn);
-        if (clonedTrackerHediff.TimesCloned > 1)
-            ++clonedTrackerHediff.TimesCloned;
+        Hediff_ClonedTracker clonedTracker = GetOrAddTracker(innerPawn);
+        if (clonedTracker.TimesCloned > 1)
+            ++clonedTracker.TimesCloned;
 
-        Hediff_Clone hostCloneHeddif = GetCloneHediff(innerPawn);
+        Hediff_Clone hostCloneHeddif = Utils.GetHediff<Hediff_Clone>(innerPawn);
 
-        Hediff_Clone cloneHediff = GetCloneHediff(pawn);
+        Hediff_Clone cloneHediff = Utils.GetHediff<Hediff_Clone>(pawn);
         cloneHediff.CloneGeneration = hostCloneHeddif != null
             ? ++hostCloneHeddif.CloneGeneration
             : 1;
@@ -476,7 +476,7 @@ internal static class CloneUtility
             : first.Length <= 0 || last.Length <= 0
                 ? $"{RandomLetters()}-{$"{random2.Next(65536 /*0x010000*/):X4}"}"
                 : $"{first.Substring(0, 1).ToUpper()}{last.Substring(0, 1).ToUpper()}-{$"{random2.Next(65536 /*0x010000*/):X4}"}";
-        pawn.Name = (Name)new NameTriple(first, $"{nick}-{clonedTrackerHediff.TimesCloned.ToString()}", str);
+        pawn.Name = (Name)new NameTriple(first, $"{nick}-{clonedTracker.TimesCloned.ToString()}", str);
         pawn.Drawer.renderer.SetAllGraphicsDirty();
         GenSpawn.Spawn(pawn, pod.Position, pod.Map, WipeMode.Vanish);
         SoundStarter.PlayOneShot(
@@ -630,21 +630,10 @@ internal static class CloneUtility
         return str2 + str3;
     }
 
-    internal static Hediff_ClonedTracker GetClonedTrackerHediff(Pawn pawn)
+    internal static Hediff_ClonedTracker GetOrAddTracker(Pawn pawn)
     {
-        if (!pawn.health.hediffSet.HasHediff(RimgateDefOf.Hediff_ClonedTracker))
+        if (!Utils.HasHediff<Hediff_ClonedTracker>(pawn))
             pawn.health.AddHediff(RimgateDefOf.Hediff_ClonedTracker);
-        return pawn.health.hediffSet.GetFirstHediffOfDef(RimgateDefOf.Hediff_ClonedTracker) as Hediff_ClonedTracker;
-    }
-
-    internal static Hediff_Clone GetCloneHediff(Pawn pawn)
-    {
-        return pawn.health.hediffSet.GetFirstHediffOfDef(RimgateDefOf.Rimgate_Clone) as Hediff_Clone;
-    }
-
-    internal static bool HasCloneHediff(Pawn pawn)
-    {
-        return pawn != null
-            && pawn.health.hediffSet.HasHediff(RimgateDefOf.Rimgate_Clone);
+        return Utils.GetHediff<Hediff_ClonedTracker>(pawn);
     }
 }

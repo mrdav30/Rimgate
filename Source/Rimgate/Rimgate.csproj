@@ -370,11 +370,12 @@
     <Compile Include="HarmonyPatches\Harmony_PawnGenerator.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_MechanitorTracker.cs" />
     <Compile Include="HarmonyPatches\Harmony_ThingOwnerUtility.cs" />
-    <Compile Include="Hediffs\HediffComp_GivePsylinkOnAdded.cs" />
+    <Compile Include="Hediffs\Comps\HediffComp_RandomCloneGeneration.cs" />
+    <Compile Include="Hediffs\Comps\HediffComp_GivePsylinkOnAdded.cs" />
     <Compile Include="Hediffs\Hediff_Clone.cs" />
     <Compile Include="Hediffs\Hediff_ClonedTracker.cs" />
     <Compile Include="Hediffs\IngestionOutcomeDoer_HealAllDisease.cs" />
-    <Compile Include="Hediffs\Properties\HediffCompProperties_GivePsylinkOnAdded.cs" />
+    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_GivePsylinkOnAdded.cs" />
     <Compile Include="Incidents\IncidentWorker_Asteroid.cs" />
     <Compile Include="Incidents\IncidentWorker_KillAllClonesNow.cs" />
     <Compile Include="Incidents\IncidentWorker_Marauders.cs" />
@@ -389,7 +390,6 @@
     <Compile Include="ThingSetMakers\ThingSetMaker_SpecialMeteorite.cs" />
     <Compile Include="Hediffs\HediffGiver_AtAge.cs" />
     <Compile Include="Abilities\Properties\CompProperties_MultipleProjectile.cs" />
-    <Compile Include="Misc\Projectile_ZatBlast_Extension.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_TechprintsByTag.cs" />
     <Compile Include="Things\Building_HackableForceField.cs" />
     <Compile Include="Things\Building_MeatLab.cs" />
@@ -422,8 +422,8 @@
     <Compile Include="HarmonyPatches\Harmony_Pawn_DraftController.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_WorkGiver_Tend.cs" />
-    <Compile Include="Hediffs\HediffComp_GoauldSymbiote.cs" />
-    <Compile Include="Hediffs\Properties\HediffCompProperties_GoauldSymbiote.cs" />
+    <Compile Include="Hediffs\Comps\HediffComp_GoauldSymbiote.cs" />
+    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_GoauldSymbiote.cs" />
     <Compile Include="Hediffs\Hediff_GoauldSymbiote.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_PatientGoToSarcophagus.cs" />
     <Compile Include="AI\JobGivers\JobGiver_PatientGoToSarcophagus.cs" />
