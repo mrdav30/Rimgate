@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <QuestScriptDef>
+        <defName>Rimgate_TreasureVaultQuest</defName>
+		<rootSelectionWeight>0</rootSelectionWeight>
+        <isRootSpecial>true</isRootSpecial>
+        <autoAccept>true</autoAccept>
+        <defaultChallengeRating>4</defaultChallengeRating>
+
+        <questNameRules>
+            <rulesStrings>
+                <li>questName->[adj] vault [place]</li>
+                <li>adj->Hidden</li>
+                <li>adj->Uncharted</li>
+                <li>adj->Sealed</li>
+                <li>adj->Forgotten</li>
+                <li>adj->Nameless</li>
+                <li>place->complex</li>
+                <li>place->citadel</li>
+                <li>place->stronghold</li>
+                <li>place->sanctum</li>
+                <li>place->vault</li>
+            </rulesStrings>
+        </questNameRules>
+
+        <questDescriptionRules>
+            <rulesStrings>
+                <li>questDescription->Assembled coordinates reveal a fortified dwarfgate vault.\n\nTelemetry hints at automated defenses, deadfall corridors, and a familiar biometric signature… the original hunter might be waiting inside.\n\nThe only way in is through.</li>
+                <li>questDescription->The cipher resolves into a sealed site around a gate. Power readings suggest both old and improvised security.\n\nSomeone’s been here recently—and intends to come back.</li>
+            </rulesStrings>
+        </questDescriptionRules>
+
+        <root Class="QuestNode_Sequence">
+            <nodes>
+
+                <li Class="QuestNode_SubScript">
+                    <def>Util_GetDefaultRewardValueFromPoints</def>
+                </li>
+
+                <li Class="QuestNode_GetMap" />
+
+                <li Class="QuestNode_IsSet">
+                    <name>asker</name>
+                    <elseNode Class="QuestNode_RandomNode">
+                        <nodes>
+                            <li Class="QuestNode_Set">
+                                <name>askerIsNull</name>
+                                <value>true</value>
+                                <selectionWeight>0.4</selectionWeight>
+                            </li>
+                        </nodes>
+                    </elseNode>
+                </li>
+
+                <li Class="QuestNode_GetSiteTile">
+                    <storeAs>siteTile</storeAs>
+                    <preferCloserTiles>false</preferCloserTiles>
+                </li>
+
+                <li Class="QuestNode_GetSitePartDefsByTagsAndFaction">
+                    <storeAs>sitePartDefs</storeAs>
+                    <sitePartsTags>
+                        <li>
+                            <tag>Rimgate_StargateSiteVault</tag>
+                        </li>
+                    </sitePartsTags>
+                </li>
+
+                <li Class="QuestNode_GetDefaultSitePartsParams">
+                    <tile>$siteTile</tile>
+                    <sitePartDefs>$sitePartDefs</sitePartDefs>
+                    <storeSitePartsParamsAs>sitePartsParams</storeSitePartsParamsAs>
+                </li>
+
+                <li Class="QuestNode_SubScript">
+                    <def>Util_GenerateStargateSite</def>
+                    <parms>
+                        <hiddenSitePartsPossible>false</hiddenSitePartsPossible>
+                    </parms>
+                </li>
+
+                <li Class="QuestNode_SpawnWorldObjects">
+                    <worldObjects>$site</worldObjects>
+                </li>
+
+                <li Class="QuestNode_WorldObjectTimeout">
+                    <worldObject>$site</worldObject>
+                    <isQuestTimeout>true</isQuestTimeout>
+                    <delayTicks>900000</delayTicks>
+                    <node Class="QuestNode_End">
+                        <outcome>Fail</outcome>
+                    </node>
+                </li>
+
+                <li Class="QuestNode_NoWorldObject">
+                    <worldObject>$site</worldObject>
+                    <node Class="QuestNode_End" />
+                </li>
+
+            </nodes>
+        </root>
+    </QuestScriptDef>
+
+</Defs>

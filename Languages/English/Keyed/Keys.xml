@@ -144,6 +144,11 @@
 	<RG_CannotDecode_SGQuestActive>Cannot decode: A site quest is already active.</RG_CannotDecode_SGQuestActive>
 	<RG_MessageSGQuestAlreadyActive>A dwarfgate site is already active. Complete or abandon it before decoding another address.</RG_MessageSGQuestAlreadyActive>
 
+	<!-- Ciphers -->
+
+	<RG_CannotDecodeCipherResearch>Cannot decode: {0} not researched</RG_CannotDecodeCipherResearch>
+	<RG_CannotDecodeCipherCount>Need at least {Props.requiredCount} {parent.LabelShort} (you have {have}).</RG_CannotDecodeCipherCount>
+
 	<!-- DHD-->
 
 	<RG_CannotDialNoGate>Cannot dial: no dwarfgate connected</RG_CannotDialNoGate>
@@ -239,14 +244,14 @@
 	<RG_ScribbledNote4>This isn't a trap. Seriously. Definitely not booby-trapped. Why are you still reading this?</RG_ScribbledNote4>
 	<RG_ScribbledNote5>I borrowed the artifact. You’ll get it back once I’m done not being vaporized by angry Goa'uld.</RG_ScribbledNote5>
 	<RG_ScribbledNote6>Found it first. Claimed salvage rights. May or may not be cursed. Good luck.</RG_ScribbledNote6>
-	<RG_ScribbledNote7>Leave now if you value your organs. The last guy who opened the crate got hugged by a Wraith. Permanently.</RG_ScribbledNote7>
+	<RG_ScribbledNote7>Leave now if you value your organs. The last guy who opened the crate got hugged...Permanently.</RG_ScribbledNote7>
 	<RG_ScribbledNote8>Sorry, no loot today. I sold it for a shiny rock and half a sandwich. No regrets.</RG_ScribbledNote8>
-	<RG_ScribbledNote9>By the time you decrypt this, I’ll be in orbit. Or dead. Depends on how angry the replicator was.</RG_ScribbledNote9>
+	<RG_ScribbledNote9>By the time you decrypt this, I’ll be in orbit. Or dead. Depends on how angry my partner is.</RG_ScribbledNote9>
 	<RG_ScribbledNote10>This note is all that remains. The rest is stashed in a dwarfgate buffer... somewhere. Enjoy your scavenger hunt.</RG_ScribbledNote10>
 	<RG_ScribbledNote11>If you're reading this, the trap didn't work. Again. I really need better bait than empty promises and ancient tech.</RG_ScribbledNote11>
 	<RG_ScribbledNote12>The crate was full of bugs. Literal ones. I took the good stuff and left the infestation as a gift. You're welcome.</RG_ScribbledNote12>
 	<RG_ScribbledNote13>Technically, this was never your loot. It belonged to the Ancients. I’m just doing my part to return it to their hidden stash. Somewhere. Probably.</RG_ScribbledNote13>
-	<RG_ScribbledNote14>The Wraith came. I left. If you find anything useful, it's probably a trap. Or my leftover lunch. Don't mix them up.</RG_ScribbledNote14>
-	<RG_ScribbledNote15>Glorious treasure was here. Then I remembered how much I hate sharing. Enjoy this commemorative piece of disappointment.</RG_ScribbledNote15>
+	<RG_ScribbledNote14>Someone came. I left. If you find anything useful, it's probably a trap. Or my leftover lunch. Don't mix them up.</RG_ScribbledNote14>
+	<RG_ScribbledNote15>Glorious treasure was here. I remembered how much I hate sharing but felt I needed to leave something. Enjoy this commemorative piece of disappointment.</RG_ScribbledNote15>
 
 </LanguageData>

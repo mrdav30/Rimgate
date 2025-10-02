@@ -80,7 +80,7 @@
                 <puddleGraphicData>
                     <texPath>FX/RGEventHorizon</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
-                    <shaderType>Mote</shaderType>
+                    <shaderType>TransparentPostLight</shaderType>
                     <drawSize>(5.3,5.3)</drawSize>
                 </puddleGraphicData>
                 <irisGraphicData>

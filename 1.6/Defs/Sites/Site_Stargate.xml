@@ -226,4 +226,28 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- Vault quest -->
+
+	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+		<defName>Rimgate_StargateSiteVault</defName>
+		<tags>
+			<li>Rimgate_StargateSiteVault</li>
+			<li>Rimgate_QuestStargateSite</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_StargateSiteVault</defName>
+		<linkWithSite>Rimgate_StargateSiteVault</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<fullClear>true</fullClear>
+			<structureLayoutDefs>
+				<!-- Misc -->
+				<li>Rimgate_StructureUnasVillage</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
+
+
 </Defs>

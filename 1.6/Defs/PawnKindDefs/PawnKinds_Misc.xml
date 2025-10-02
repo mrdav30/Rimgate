@@ -142,11 +142,16 @@
             <subOptionsTakeAll>
                 <li>
                     <thingDef>MedicineUltratech</thingDef>
-                    <countRange>5</countRange>
+                    <countRange>2</countRange>
                 </li>
                 <li>
                     <thingDef>Rimgate_ScrapNote</thingDef>
                     <countRange>1</countRange>
+                </li>
+                <li>
+                    <thingDef>Rimgate_TreasureCipherFragment</thingDef>
+                    <countRange>1</countRange>
+                    <skipChance>0.65</skipChance>
                 </li>
             </subOptionsTakeAll>
         </inventoryOptions>
@@ -158,13 +163,13 @@
             <li>Rimgate_TauriShotgun_tag</li>
             <li>Rimgate_WraithHandBlaster</li>
         </weaponTags>
-        <forceWeaponQuality>Excellent</forceWeaponQuality>
+        <forceWeaponQuality>Good</forceWeaponQuality>
         <startingHediffs>
             <li>
                 <def>Hediff_ClonedTracker</def>
             </li>
             <li>
-                <def>Rimgate_Clone</def>
+                <def>Rimgate_CloneRandom</def>
             </li>
         </startingHediffs>
         <techHediffsMoney>1000~2000</techHediffsMoney>

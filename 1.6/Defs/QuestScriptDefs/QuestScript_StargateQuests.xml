@@ -3,10 +3,11 @@
 
 	<QuestScriptDef>
 		<defName>Rimgate_StargateQuestScript</defName>
-		<rootSelectionWeight>0.6</rootSelectionWeight>
-		<rootMinPoints>0</rootMinPoints>
+		<rootSelectionWeight>0</rootSelectionWeight>
+        <isRootSpecial>true</isRootSpecial>
 		<autoAccept>true</autoAccept>
 		<defaultChallengeRating>2</defaultChallengeRating>
+
 		<questNameRules>
 			<rulesStrings>
 				<li>questName->[adj] glyph [site]</li>
@@ -60,6 +61,7 @@
 
 			</rulesStrings>
 		</questNameRules>
+
 		<questDescriptionRules>
 			<rulesStrings>
 				<li>questDescription->A sequence of glyphs leads to a site of unusual construction.\n\nThe architecture resembles something far older than your colony, and its purpose is unclear. Vault? Temple? Prison?\n\nOne thing is certain: whatever lies beyond was meant to remain sealed.</li>
@@ -68,6 +70,7 @@
 				<li>questDescription->The glyphs describe a structure surrounding a dormant stargate.\n\nIt hums faintly with a resonance you can almost feel in your skull. Whether it is an abandoned lair, or something still stirring within, is impossible to tell from here.\n\nIt’s worth investigating, but be prepared for anything.</li>
 			</rulesStrings>
 		</questDescriptionRules>
+
 		<root Class="QuestNode_Sequence">
 			<nodes>
 				<li Class="QuestNode_SubScript">
@@ -217,6 +220,15 @@
 
 				<!-- Start custom detection raids once the site map generates -->
 				<li Class="Rimgate.QuestNode_RaidStargateComplex" />
+
+				<li Class="Rimgate.QuestNode_SpawnPawnsOnMap">
+					<inSignal>site.MapGenerated</inSignal>
+					<countRange>0~2</countRange> <!-- 0–2 by default -->
+					<factionDef>Rimgate_TreasureHuntersHostile</factionDef>
+					<pawnKind>Rimgate_TreasureHunter</pawnKind>
+					<skipChance>0.5</skipChance>
+					<spawnNearGate>true</spawnNearGate>
+				</li>
 
 				<li Class="QuestNode_WorldObjectTimeout">
 					<worldObject>$site</worldObject>

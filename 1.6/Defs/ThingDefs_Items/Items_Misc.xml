@@ -32,7 +32,9 @@
             <li>RewardStandardHighFreq</li>
         </thingSetMakerTags>
         <comps>
-            <li Class="Rimgate.CompProperties_GlyphParchment" />
+            <li>
+                <compClass>Rimgate.Comp_GlyphParchment</compClass>
+            </li>
         </comps>
     </ThingDef>
 
@@ -96,6 +98,41 @@
         </modExtensions>
     </ThingDef>
 
+    <!-- Cipher -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_TreasureCipherFragment</defName>
+        <label>cipher fragment</label>
+        <description>A fractured slice of an encoded starmap—coordinates, signatures, and an Archotech checksum that hurts to look at. Three fragments can be assembled into a coherent path to a hidden vault.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGTreasureCipherFragment</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <stackLimit>1</stackLimit>
+        <tradeability>Sellable</tradeability>
+        <statBases>
+            <MarketValue>400</MarketValue>
+            <Mass>0.1</Mass>
+        </statBases>
+        <comps>
+            <li Class="CompProperties_Usable">
+                <useLabel>Assemble cipher</useLabel>
+                <useJob>UseItem</useJob>
+                <showUseGizmo>true</showUseGizmo>
+            </li>
+            <li Class="Rimgate.CompProperties_AssembleAndStartQuest">
+                <requiredCount>3</requiredCount>
+                <requiredProjectDef>Rimgate_GlyphDeciphering</requiredProjectDef>
+                <questScript>Rimgate_TreasureVaultQuest</questScript>
+                <letterLabel>Assembled Vault Cipher</letterLabel>
+                <letterText>The fragments lock together and the interface resolves into a full set of coordinates.\n\nA dwarfgate vault awaits—if you can reach it.</letterText>
+            </li>
+        </comps>
+    </ThingDef>
+
     <!-- ==================== Iris ==================== -->
 
     <ThingDef ParentName="ResourceBase">
@@ -122,8 +159,9 @@
         <comps>
             <li Class="CompProperties_Usable">
                 <useJob>Rimgate_InstallIris</useJob>
-                <useLabel>install Iris</useLabel>
+                <useLabel>Install Iris</useLabel>
                 <useDuration>5000</useDuration>
+                <showUseGizmo>true</showUseGizmo>
             </li>
             <li Class="CompProperties_Targetable">
                 <compClass>Rimgate.CompTargetable_Stargate</compClass>
