@@ -147,7 +147,7 @@
 	<!-- Ciphers -->
 
 	<RG_CannotDecodeCipherResearch>Cannot decode: {0} not researched</RG_CannotDecodeCipherResearch>
-	<RG_CannotDecodeCipherCount>Need at least {Props.requiredCount} {parent.LabelShort} (you have {have}).</RG_CannotDecodeCipherCount>
+	<RG_CannotDecodeCipherCount>Need at least {0} {1} (you have {2}).</RG_CannotDecodeCipherCount>
 
 	<!-- DHD-->
 

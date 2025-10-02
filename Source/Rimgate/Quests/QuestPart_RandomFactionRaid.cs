@@ -96,7 +96,6 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
         else
             incidentParms.raidArrivalMode = arrivalMode;
 
-        IncidentDef incidentDef = RimgateDefOf.Rimgate_Marauders;
         incidentParms.raidStrategy = raidStrategy;
 
         if (faction != null)
@@ -106,6 +105,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
                 faction.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat));
         }
 
+        IncidentDef incidentDef = RimgateDefOf.Rimgate_Marauders;
         if (incidentDef.Worker.CanFireNow(incidentParms))
             incidentDef.Worker.TryExecute(incidentParms);
     }

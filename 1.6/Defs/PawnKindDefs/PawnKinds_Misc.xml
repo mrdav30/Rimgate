@@ -172,9 +172,9 @@
                 <def>Rimgate_CloneRandom</def>
             </li>
         </startingHediffs>
-        <techHediffsMoney>1000~2000</techHediffsMoney>
+        <techHediffsChance>0.5</techHediffsChance>
+        <techHediffsMoney>1000~2500</techHediffsMoney>
         <techHediffsTags>
-            <li>Simple</li>
             <li>Advanced</li>
             <li>AdvancedWeapon</li>
         </techHediffsTags>

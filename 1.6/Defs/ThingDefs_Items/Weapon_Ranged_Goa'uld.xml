@@ -179,7 +179,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_MaTokProjectile</defaultProjectile>
 				<warmupTime>1.0</warmupTime>
-				<range>31</range>
+				<range>25.9</range>
 				<burstShotCount>1</burstShotCount>
 				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 				<soundCast>Rimgate_GoauldMaTokShot</soundCast>

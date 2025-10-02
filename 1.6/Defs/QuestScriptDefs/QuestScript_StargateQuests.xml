@@ -223,7 +223,7 @@
 
 				<li Class="Rimgate.QuestNode_SpawnPawnsOnMap">
 					<inSignal>site.MapGenerated</inSignal>
-					<countRange>0~2</countRange> <!-- 0–2 by default -->
+					<countRange>0~1</countRange> <!-- 0–2 by default -->
 					<factionDef>Rimgate_TreasureHuntersHostile</factionDef>
 					<pawnKind>Rimgate_TreasureHunter</pawnKind>
 					<skipChance>0.5</skipChance>

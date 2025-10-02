@@ -448,13 +448,16 @@ public class Comp_StargateControl : ThingComp
         if (_sendBuffer?.Any() == true)
             BeamSendBufferTo();
 
-        if (_recvBuffer?.Any() == true)
+        if (!ConnectedAddress.Valid && _recvBuffer?.Any() == false)
         {
-            if (TicksSinceBufferUnloaded > Rand.Range(10, 80))
-                SpawnFromReceiveBuffer();
+            CloseStargate();
+            return;
+        }
 
-            if (!ConnectedAddress.Valid)
-                CloseStargate();
+        if (_recvBuffer?.Any() == true 
+            && TicksSinceBufferUnloaded > Rand.Range(10, 80))
+        {
+            SpawnFromReceiveBuffer();
         }
 
         TicksSinceBufferUnloaded++;
