@@ -18,7 +18,7 @@ public static class Harmony_PawnGenerator
         {
             if (relative == null
                 || !(relative.Name is NameTriple name)
-                || !Utils.HasHediff<Hediff_Clone>(pawn))
+                || !pawn.HasHediff<Hediff_Clone>())
                 break;
 
             foreach (PawnRelationDef relation in PawnRelationUtility.GetRelations(pawn, relative))

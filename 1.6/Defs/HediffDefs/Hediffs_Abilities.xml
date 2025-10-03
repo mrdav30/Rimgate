@@ -97,7 +97,7 @@
                 </abilityTags> -->
             </li>
         </comps>
-        <!-- Keep it effectively invisible to players -->
+        <!-- Keep it invisible to players -->
         <stages>
             <li>
                 <label>attuning</label>

@@ -114,6 +114,8 @@ public static class RimgateDefOf
 
     public static ThingSetMakerDef Rimgate_Meteorite;
 
+    public static XenotypeDef Rimgate_Wraith;
+
     public static WorldObjectDef Rimgate_QuestStargateSite;
     public static WorldObjectDef Rimgate_PermanentStargateSite;
 }

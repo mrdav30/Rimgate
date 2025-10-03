@@ -463,9 +463,9 @@ internal static class CloneUtility
         if (clonedTracker.TimesCloned > 1)
             ++clonedTracker.TimesCloned;
 
-        Hediff_Clone hostCloneHeddif = Utils.GetHediff<Hediff_Clone>(innerPawn);
+        Hediff_Clone hostCloneHeddif = innerPawn.GetHediff<Hediff_Clone>();
 
-        Hediff_Clone cloneHediff = Utils.GetHediff<Hediff_Clone>(pawn);
+        Hediff_Clone cloneHediff = pawn.GetHediff<Hediff_Clone>();
         cloneHediff.CloneGeneration = hostCloneHeddif != null
             ? ++hostCloneHeddif.CloneGeneration
             : 1;
@@ -632,8 +632,8 @@ internal static class CloneUtility
 
     internal static Hediff_ClonedTracker GetOrAddTracker(Pawn pawn)
     {
-        if (!Utils.HasHediff<Hediff_ClonedTracker>(pawn))
+        if (!pawn.HasHediff<Hediff_ClonedTracker>())
             pawn.health.AddHediff(RimgateDefOf.Hediff_ClonedTracker);
-        return Utils.GetHediff<Hediff_ClonedTracker>(pawn);
+        return pawn.GetHediff<Hediff_ClonedTracker>();
     }
 }

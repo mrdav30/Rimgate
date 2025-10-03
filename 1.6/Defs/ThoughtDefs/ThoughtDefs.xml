@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <!-- Sarcophagus -->
+    <!-- =============== Sarcophagus =============== -->
 
     <ThoughtDef>
         <defName>Rimgate_SarcophagusHigh</defName>
@@ -36,7 +36,7 @@
         </stages>
     </ThoughtDef>
 
-    <!-- Symbiote -->
+    <!-- =============== Symbiote =============== -->
 
     <ThoughtDef>
         <defName>Rimgate_SymbioteImplant</defName>
@@ -113,5 +113,56 @@
             </li>
         </stages>
     </ThoughtDef>
+
+    <!-- =============== ARCHOTECH IDOL OF RESONANCE =============== -->
+
+    <!-- General calm: refreshable small memory so it sticks while in range -->
+    <ThoughtDef>
+        <defName>Rimgate_ResonanceCalm</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>0.1</durationDays> <!-- ~25 sec; comp keeps refreshing -->
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>false</validWhileDespawned>
+        <stages>
+            <li>
+                <label>calmed by resonance</label>
+                <description>The idol’s harmonic field eases the mind and steadies the hands.</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Wraith variant: identical magnitude, different flavor -->
+    <ThoughtDef>
+        <defName>Rimgate_ResonanceWraithSatiation</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>0.1</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>false</validWhileDespawned>
+        <stages>
+            <li>
+                <label>hunger quieted by resonance</label>
+                <description>The idol’s pulse dampens the endless gnawing hunger, if only for a while.</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Occasional spooky downside -->
+    <ThoughtDef>
+        <defName>Rimgate_ResonanceStaticVoices</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>0.5</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>false</validWhileDespawned>
+        <stages>
+            <li>
+                <label>voices in the static</label>
+                <description>There’s something in the harmonics—shapes in the white-noise, like a whisper behind the skull.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
 
 </Defs>

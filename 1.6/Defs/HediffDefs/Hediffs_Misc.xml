@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <!-- Clone stuff -->
+    <!-- =============== Clones =============== -->
 
     <HediffDef>
         <defName>Hediff_ClonedTracker</defName>
@@ -114,7 +114,7 @@
         </stages>
     </HediffDef>
 
-    <!-- Mobile Container debuffs -->
+    <!-- =============== Mobile Container debuffs =============== -->
 
     <HediffDef>
         <defName>Rimgate_PushingCart</defName>
@@ -146,5 +146,62 @@
         </stages>
     </HediffDef>
 
+
+    <!-- =============== ARCHOTECH IDOL OF RESONANCE =============== -->
+
+    <!-- Hidden short-duration buffs the comp refreshes -->
+
+    <HediffDef>
+        <defName>Rimgate_ResonanceFieldBuff</defName>
+        <label>resonance field</label>
+        <description>The idol’s harmonic field eases the mind and steadies the hands.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <tendable>false</tendable>
+        <initialSeverity>0.1</initialSeverity>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>1200</disappearsAfterTicks>
+                <showRemainingTime>false</showRemainingTime>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <becomeVisible>false</becomeVisible> <!-- Keep it invisible to players -->
+                <statOffsets>
+                    <MoveSpeed>0.05</MoveSpeed>  <!-- +5% -->
+                    <MentalBreakThreshold>-0.10</MentalBreakThreshold> <!-- 10% easier to avoid breaks -->
+                    <PsychicSensitivity>0.05</PsychicSensitivity>
+                </statOffsets>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <HediffDef>
+        <defName>Rimgate_ResonanceHostBoost</defName>
+        <label>resonance attunement</label>
+        <description>The idol’s harmonic field eases the mind of your symbiote.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <tendable>false</tendable>
+        <initialSeverity>0.1</initialSeverity>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>1200</disappearsAfterTicks>
+                <showRemainingTime>false</showRemainingTime>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <becomeVisible>false</becomeVisible> <!-- Keep it invisible to players -->
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>0.10</offset> <!-- Goa'uld host synergy -->
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
 
 </Defs>

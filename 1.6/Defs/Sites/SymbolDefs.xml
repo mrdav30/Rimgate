@@ -350,15 +350,25 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
-        <defName>WraithAncientCryptosleepCasket</defName>
+        <defName>Rimgate_CryptosleepCasket_Wraith</defName>
         <thing>AncientCryptosleepCasket</thing>
         <containPawnKindAnyOf>
             <li>Rimgate_WraithSoldier</li>
             <li>Rimgate_WraithCommander</li>
-            <li>Rimgate_WraithQueen</li>
+            <li>Rimgate_WraithAssassin</li>
         </containPawnKindAnyOf>
         <faction>Rimgate_WraithEmpire</faction>
         <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CryptosleepCasket_Hunter</defName>
+        <thing>AncientCryptosleepCasket</thing>
+        <containPawnKindAnyOf>
+            <li>Rimgate_TreasureHunter</li>
+        </containPawnKindAnyOf>
+        <faction>Rimgate_TreasureHuntersHostile</faction>
+        <defendSpawnPoint>false</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

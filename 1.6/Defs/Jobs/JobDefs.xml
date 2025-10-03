@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- Sarcophagus -->
+	<!-- =============== Sarcophagus =============== -->
 
 	<JobDef>
 		<defName>Rimgate_CarryToSarcophagus</defName>
@@ -27,7 +27,7 @@
 		<carryThingAfterJob>true</carryThingAfterJob>
 	</JobDef>
 
-	<!-- Cloning Pod -->
+	<!-- =============== Cloning Pod =============== -->
 
 	<JobDef>
 		<defName>Rimgate_EnterCloningPod</defName>
@@ -81,7 +81,7 @@
 		<taleOnCompletion>PutIntoCloningPod</taleOnCompletion>
 	</JobDef>
 
-	<!-- Stargate -->
+	<!-- =============== Stargate =============== -->
 
 	<JobDef>
 		<defName>Rimgate_EnterStargate</defName>
@@ -132,14 +132,7 @@
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 
-	<!-- Misc -->
-
-	<JobDef>
-		<defName>Rimgate_Toggle</defName>
-		<driverClass>Rimgate.JobDriver_Toggle</driverClass>
-		<reportString>toggling switch.</reportString>
-		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-	</JobDef>
+	<!-- =============== Mobile Container =============== -->
 
 	<JobDef>
 		<defName>Rimgate_HaulToContainer</defName>
@@ -177,6 +170,30 @@
 		<casualInterruptible>true</casualInterruptible>
 		<alwaysShowWeapon>false</alwaysShowWeapon>
 		<dropThingBeforeJob>true</dropThingBeforeJob>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<!-- =============== Joy =============== -->
+
+	<JobDef>
+		<defName>Rimgate_MesmerizedResonanceIdol</defName>
+		<driverClass>JobDriver_WatchBuilding</driverClass>
+		<reportString>mesmerized by TargetA.</reportString>
+		<joyDuration>4000</joyDuration>
+		<joyMaxParticipants>5</joyMaxParticipants>
+		<joySkill>Intellectual</joySkill>
+		<joyXpPerTick>0.004</joyXpPerTick>
+		<joyKind>Meditative</joyKind>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+		<isCrawlingIfDowned>false</isCrawlingIfDowned>
+	</JobDef>
+
+	<!-- =============== Misc =============== -->
+
+	<JobDef>
+		<defName>Rimgate_Toggle</defName>
+		<driverClass>Rimgate.JobDriver_Toggle</driverClass>
+		<reportString>toggling switch.</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 

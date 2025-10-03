@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Analytics;
 using Verse;
 using Verse.AI;
 using static HarmonyLib.Code;
@@ -111,7 +112,7 @@ internal static class Utils
         return v.z >= 0 ? Rot4.North : Rot4.South;
     }
 
-    public static bool HasActiveGene(this Pawn pawn, GeneDef geneDef)
+    public static bool HasActiveGeneOf(this Pawn pawn, GeneDef geneDef)
     {
         if (geneDef is null) return false;
         if (pawn.genes is null) return false;
@@ -125,7 +126,22 @@ internal static class Utils
         return pawn.genes?.GetGene(DefDatabase<GeneDef>.GetNamedSilentFail(geneDefName))?.Active ?? false;
     }
 
-    public static bool HasHediff<T>(Pawn pawn) where T : Hediff
+    public static bool IsXenoTypeOf(this Pawn pawn, XenotypeDef xenotypeDef)
+    {
+        if (xenotypeDef is null) return false;
+        if (pawn.genes is null) return false;
+        return pawn.genes.Xenotype == xenotypeDef;
+    }
+
+    public static bool HasHediff(this Pawn pawn, HediffDef def)
+    {
+        HediffSet set = pawn?.health?.hediffSet;
+        if (set is null || def is null) return false;
+
+        return set.HasHediff(def);
+    }
+
+    public static bool HasHediff<T>(this Pawn pawn) where T : Hediff
     {
         HediffSet set = pawn?.health?.hediffSet;
         if (set is null) return false;
@@ -133,7 +149,17 @@ internal static class Utils
         return set.HasHediff<T>();
     }
 
-    public static T GetHediff<T>(Pawn pawn) where T : Hediff
+    public static Hediff GetHediff(this Pawn pawn, HediffDef def)
+    {
+        HediffSet set = pawn?.health?.hediffSet;
+        if (set is null || def is null) return null;
+
+        if (set.TryGetHediff(def, out Hediff result))
+            return result;
+        return null;
+    }
+
+    public static T GetHediff<T>(this Pawn pawn) where T : Hediff
     {
         HediffSet set = pawn?.health?.hediffSet;
         if (set is null) return null;
@@ -144,13 +170,13 @@ internal static class Utils
     }
 
     public static Hediff ApplyHediff(
-        Pawn targetPawn,
+        this Pawn pawn,
         HediffDef hediffDef,
         BodyPartRecord bodyPart,
         int duration,
         float severity)
     {
-        Hediff hediff = HediffMaker.MakeHediff(hediffDef, targetPawn, bodyPart);
+        Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn, bodyPart);
 
         if (severity > float.Epsilon)
             hediff.Severity = severity;
@@ -166,8 +192,8 @@ internal static class Utils
             }
         }
 
-        targetPawn.health.AddHediff(hediff);
-        return targetPawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
+        pawn.health.AddHediff(hediff);
+        return pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
     }
 
     public static bool CanUseFaction(Faction f, bool allowNeolithic = true)

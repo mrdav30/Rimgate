@@ -340,6 +340,7 @@
     <Compile Include="Comps\CompUseEffect_AssembleAndStartQuest.cs" />
     <Compile Include="Comps\Comp_MobileContainer.cs" />
     <Compile Include="Comps\Comp_PersistentMentalState.cs" />
+    <Compile Include="Comps\Comp_ResonanceIdol.cs" />
     <Compile Include="Comps\Comp_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Comp_AlarmOpenCaskets.cs" />
     <Compile Include="Comps\Comp_ZpmSignalScrambler.cs" />
@@ -355,6 +356,7 @@
     <Compile Include="Abilities\Properties\CompProperties_ApplyHediff.cs" />
     <Compile Include="AI\WorkGivers\WorkerGiver_DoBill_Wraith.cs" />
     <Compile Include="Comps\Properties\CompProperties_CloningPod.cs" />
+    <Compile Include="Comps\Properties\CompProperties_ResonanceIdol.cs" />
     <Compile Include="Comps\Properties\CompProperties_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Properties\CompProperties_Toggle.cs" />
     <Compile Include="Comps\Properties\CompProperties_FrameApparel.cs" />
@@ -459,6 +461,7 @@
     <Compile Include="UI\Gizmo_ShieldStatus.cs" />
     <Compile Include="UI\ITab_MobileContainer.cs" />
     <Compile Include="UI\PlaceWorker_ShowTurretRadiusWithOffset.cs" />
+    <Compile Include="UI\PlaceWorker_ResonanceIdol.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
     <Compile Include="Utilities\StargateUtility.cs" />

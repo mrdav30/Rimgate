@@ -1,11 +1,6 @@
-﻿using System;
-using RimWorld;
-using Verse;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using Verse;
 
 namespace Rimgate;
 
@@ -44,7 +39,8 @@ public class PlaceWorker_Stargate : PlaceWorker
         if (StargateUtility.GetStargateOnMap(map, thing) != null)
             return new AcceptanceReport("RG_OnlyOneSGPerMap".Translate());
 
-        /*Pocket Maps do not have an associated PlanetTile, so no gate address, so stargates cannot work on them*/
+        // Pocket Maps do not have an associated PlanetTile, 
+        // so no gate address, so stargates cannot work on them
         if (map.IsPocketMap) 
             return new AcceptanceReport("PocketMapNo".Translate());
 

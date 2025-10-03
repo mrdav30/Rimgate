@@ -144,6 +144,7 @@
             <texPath>Things/Building/Artifact/RGDHD</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <drawSize>(2,2)</drawSize>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <size>(1,1)</size>
         <uiIconScale>0.5</uiIconScale>
@@ -156,7 +157,7 @@
         <fillPercent>0.40</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-        <altitudeLayer>ItemImportant</altitudeLayer>
+        <altitudeLayer>Building</altitudeLayer>
         <preventDroppingThingsOn>true</preventDroppingThingsOn>
         <thingCategories>
             <li>Artifacts</li>
@@ -181,6 +182,7 @@
                     <texPath>Things/Building/Artifact/RGDHD_Active</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
                     <drawSize>(2,2)</drawSize>
+                    <addTopAltitudeBias>true</addTopAltitudeBias>
                 </activeGraphicData>
             </li>
         </comps>
@@ -208,6 +210,7 @@
             <texPath>Things/Building/Misc/RGTauriDHD</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <drawSize>(2,2)</drawSize>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
@@ -220,7 +223,7 @@
         <tickerType>Never</tickerType>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-        <altitudeLayer>ItemImportant</altitudeLayer>
+        <altitudeLayer>Building</altitudeLayer>
         <preventDroppingThingsOn>true</preventDroppingThingsOn>
         <thingCategories>
             <li>BuildingsMisc</li>
@@ -266,6 +269,81 @@
         <researchPrerequisites>
             <li>Rimgate_StargateReplacementDHDResearch</li>
         </researchPrerequisites>
+    </ThingDef>
+
+    <!-- =============== ARCHOTECH IDOL OF RESONANCE =============== -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_ArchotechIdolOfResonance</defName>
+        <label>archotech idol of resonance</label>
+        <description>A compact ancient artifact that hums in subspace harmonics. Nearby minds settle into an effortless focus—mood stabilizes, steps feel lighter, and even the stubborn find resolve. But listen too long and the static whispers back.</description>
+        <category>Building</category>
+        <thingClass>Building</thingClass>
+        <selectable>true</selectable>
+        <drawPlaceWorkersWhileSelected>false</drawPlaceWorkersWhileSelected>
+        <altitudeLayer>Building</altitudeLayer>
+        <rotatable>false</rotatable>
+        <size>(1,1)</size>
+        <graphicData>
+            <texPath>Things/Building/Artifact/RGArchotechIdolOfResonance</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+        <techLevel>Archotech</techLevel>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <tradeability>None</tradeability>
+        <tradeTags Inherit="False" />
+        <tradeNeverStack>true</tradeNeverStack>
+        <tickerType>Rare</tickerType>
+        <pathCost>0</pathCost>
+        <neverMultiSelect>true</neverMultiSelect>
+        <useHitPoints>false</useHitPoints>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <statBases>
+            <Beauty>25</Beauty>
+            <Flammability>0</Flammability>
+            <MarketValue>8000</MarketValue>
+            <Mass>8</Mass>
+        </statBases>
+        <building>
+            <joyKind>Meditative</joyKind>
+            <watchBuildingStandDistanceRange>1~5</watchBuildingStandDistanceRange>
+            <watchBuildingStandRectWidth>1</watchBuildingStandRectWidth>
+            <watchBuildingInSameRoom>true</watchBuildingInSameRoom>
+            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+            <deconstructible>false</deconstructible>
+            <claimable>true</claimable>
+        </building>
+        <comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>3</glowRadius>
+                <glowColor>(120, 200, 255, 0)</glowColor>
+            </li>
+            <li Class="Rimgate.CompProperties_ResonanceIdol">
+                <!-- gameplay tuning -->
+                <radius>16</radius>
+                <refreshTicks>1200</refreshTicks> <!-- ~20s; re-applied by comp to keep buff alive -->
+                <negativeThoughtMtbDays>12</negativeThoughtMtbDays>
+
+                <!-- hediffs applied (hidden) -->
+                <fieldBuffHediff>Rimgate_ResonanceFieldBuff</fieldBuffHediff>
+                <hostBoostHediff>Rimgate_ResonanceHostBoost</hostBoostHediff>
+
+                <!-- thoughts -->
+                <thoughtNear>Rimgate_ResonanceCalm</thoughtNear>
+                <thoughtNearForWraith>Rimgate_ResonanceWraithSatiation</thoughtNearForWraith>
+                <thoughtNegative>Rimgate_ResonanceStaticVoices</thoughtNegative>
+            </li>
+        </comps>
+        <placeWorkers>
+            <li>Rimgate.PlaceWorker_ResonanceIdol</li>
+            <li>Rimgate.PlaceWorker_Stargate</li>
+        </placeWorkers>
+        <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
     </ThingDef>
 
 </Defs>

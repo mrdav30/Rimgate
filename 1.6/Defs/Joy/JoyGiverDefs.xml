@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <JoyGiverDef>
+        <defName>Rimgate_MesmerizedResonanceIdol</defName>
+        <giverClass>JoyGiver_WatchBuilding</giverClass>
+        <baseChance>3.5</baseChance>
+        <requireChair>false</requireChair>
+        <desireSit>false</desireSit>
+        <canDoWhileInBed>true</canDoWhileInBed>
+        <thingDefs>
+            <li>Rimgate_ArchotechIdolOfResonance</li>
+        </thingDefs>
+        <jobDef>Rimgate_MesmerizedResonanceIdol</jobDef>
+        <joyKind>Meditative</joyKind>
+    </JoyGiverDef>
+
+</Defs>

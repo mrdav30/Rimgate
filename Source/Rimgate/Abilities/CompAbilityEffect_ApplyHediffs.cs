@@ -42,8 +42,7 @@ public class CompAbilityEffect_ApplyHediffs : CompAbilityEffect
             return;
 
         if (Props.hediffToReceive != null)
-            Utils.ApplyHediff(
-                parent.pawn,
+            parent.pawn.ApplyHediff(
                 Props.hediffToReceive,
                 null,
                 GetDurationForPawn(parent.pawn),
@@ -52,8 +51,7 @@ public class CompAbilityEffect_ApplyHediffs : CompAbilityEffect
         if (Props.hediffToGive == null)
             return;
 
-        Utils.ApplyHediff(
-            target.Pawn,
+        target.Pawn.ApplyHediff(
             Props.hediffToGive,
             null,
             GetDurationForPawn(target.Pawn),
