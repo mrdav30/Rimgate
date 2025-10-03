@@ -372,6 +372,17 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_AncientCryptosleepCasket</defName>
+        <thing>AncientCryptosleepCasket</thing>
+        <containPawnKindAnyOf>
+            <li>AncientSoldier_Leader</li>
+            <li>AncientSoldier</li>
+        </containPawnKindAnyOf>
+        <faction>AncientsHostile</faction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_WraithSoldier</defName>
         <pawnKindDef>Rimgate_WraithSoldier</pawnKindDef>
         <faction>Rimgate_WraithEmpire</faction>
@@ -536,17 +547,6 @@
         <pawnKindDef>Revenant</pawnKindDef>
         <faction>Entities</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
-    </KCSG.SymbolDef>
-
-    <KCSG.SymbolDef>
-        <defName>Rimgate_AncientCryptosleepCasket</defName>
-        <thing>AncientCryptosleepCasket</thing>
-        <containPawnKindAnyOf>
-            <li>AncientSoldier_Leader</li>
-            <li>AncientSoldier</li>
-        </containPawnKindAnyOf>
-        <faction>AncientsHostile</faction>
-        <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

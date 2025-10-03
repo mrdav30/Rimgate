@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <!-- Tau'ri Desks -->
+    <!-- ================ Tau'ri Desks ================ -->
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_TauriResearchDesk</defName>
@@ -78,7 +78,7 @@
         </comps>
     </ThingDef>
 
-    <!-- Destroyed Desk -->
+    <!-- ================ Destroyed Desk ================ -->
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DestroyedDesk</defName>
@@ -113,7 +113,7 @@
         <altitudeLayer>Building</altitudeLayer>
     </ThingDef>
 
-    <!-- Wraith Table -->
+    <!-- ================ Wraith Table ================ -->
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_WraithTable</defName>
@@ -182,16 +182,19 @@
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
         <tickerType>Never</tickerType>
+        <altitudeLayer>Building</altitudeLayer>
         <building>
             <repairable>false</repairable>
             <claimable>false</claimable>
             <ai_neverTrashThis>true</ai_neverTrashThis>
             <neverBuildable>true</neverBuildable>
+            <isInert>true</isInert>
         </building>
         <graphicData>
             <texPath>Things/Building/Prop/RGDHD_Destroyed</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <drawSize>(2,2)</drawSize>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <killedLeavings>
             <Rimgate_Naquadah>1</Rimgate_Naquadah>
@@ -401,7 +404,7 @@
         </comps>
     </ThingDef>
 
-    <!-- Mech Gestator Tank -->
+    <!-- ================c Mech Gestator Tank ================ -->
 
     <ThingDef Name="Rimgate_AncientGestatorBase" ParentName="AncientMechBuildingBase" Abstract="True">
         <defName>Rimgate_AncientGestatorBase</defName>
@@ -570,7 +573,7 @@
         <size>(1,1)</size>
     </ThingDef>
 
-    <!-- Destroyed Generator -->
+    <!-- ================ Destroyed Generator ================ -->
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DestroyedGeothermalGenerator</defName>
@@ -616,7 +619,7 @@
         </building>
     </ThingDef>
 
-    <!-- Tox Geyser -->
+    <!-- ================ Tox Geyser ================ -->
 
     <ThingDef ParentName="BaseAncientVentThing">
         <defName>Rimgate_ToxicSpout</defName>

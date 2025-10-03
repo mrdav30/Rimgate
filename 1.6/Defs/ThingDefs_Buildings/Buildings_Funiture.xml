@@ -178,6 +178,7 @@
       <drawSize>(4,4)</drawSize>
       <texPath>Things/Building/Furniture/RGGoauldThrone</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
+      <addTopAltitudeBias>true</addTopAltitudeBias>
       <shaderType>CutoutComplex</shaderType>
       <shadowData>
         <volume>(2.1,0.5,1.5)</volume>
@@ -189,10 +190,9 @@
     <drawGUIOverlay>true</drawGUIOverlay>
     <drawGUIOverlayQuality>false</drawGUIOverlayQuality>
     <rotatable>false</rotatable>
-    <altitudeLayer>BuildingOnTop</altitudeLayer>
+    <altitudeLayer>Building</altitudeLayer>
     <category>Building</category>
     <hasInteractionCell>true</hasInteractionCell>
-    <!-- <thingClass>Building_Throne</thingClass> -->
     <socialPropernessMatters>true</socialPropernessMatters>
     <pathCost>30</pathCost>
     <fillPercent>0.4</fillPercent>
