@@ -257,6 +257,11 @@
         <gearHealthRange>0.85~3.5</gearHealthRange>
         <weaponMoney>3000~3500</weaponMoney>
         <apparelMoney>7000~10000</apparelMoney>
+        <startingHediffs>
+            <li>
+                <def>Rimgate_Unrecruitable</def>
+            </li>
+        </startingHediffs>
         <inventoryOptions>
             <skipChance>0.8</skipChance>
             <subOptionsChooseOne>

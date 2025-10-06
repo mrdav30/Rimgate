@@ -321,6 +321,9 @@
         <def>Rimgate_InitPsylink</def>
         <severity>0.1</severity>
       </li>
+      <li>
+        <def>Rimgate_Unrecruitable</def>
+      </li>
     </startingHediffs>
     <skills>
       <li>

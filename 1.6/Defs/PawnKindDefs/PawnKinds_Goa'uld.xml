@@ -204,6 +204,11 @@
     <techHediffsRequired>
       <li>Rimgate_SymbioteImplant</li>
     </techHediffsRequired>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_Unrecruitable</def>
+      </li>
+    </startingHediffs>
     <itemQuality>Good</itemQuality>
     <gearHealthRange>1.0~2.3</gearHealthRange>
     <weaponMoney>1200~4500</weaponMoney>

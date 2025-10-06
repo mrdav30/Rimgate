@@ -204,4 +204,28 @@
         </stages>
     </HediffDef>
 
+    <!-- =============== Unrecruitable =============== -->
+
+    <HediffDef>
+        <defName>Rimgate_Unrecruitable</defName>
+        <label>unwavering loyalty</label>
+        <description>This pawn’s conditioning prevents defection or recruitment by any means.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <tendable>false</tendable>
+        <stages>
+            <li>
+                <becomeVisible>false</becomeVisible> <!-- Keep it invisible to players -->
+                <statOffsets>
+                    <MentalBreakThreshold>-0.04</MentalBreakThreshold>
+                </statOffsets>
+            </li>
+        </stages>
+        <comps>
+            <li>
+                <compClass>Rimgate.HediffComp_Unrecruitable</compClass>
+            </li>
+        </comps>
+    </HediffDef>
+
 </Defs>

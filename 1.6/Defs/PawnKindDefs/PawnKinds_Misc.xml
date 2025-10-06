@@ -184,6 +184,9 @@
             <li>
                 <def>Rimgate_Enduring</def>
             </li>
+            <li>
+                <def>Rimgate_Unrecruitable</def>
+            </li>
         </startingHediffs>
         <techHediffsChance>0.7</techHediffsChance>
         <techHediffsMoney>3000~4500</techHediffsMoney>
@@ -324,14 +327,17 @@
             <li>ArchotechEye</li>
             <li>ArchotechEye</li>
             <li>ArchotechArm</li>
-            <li>ArchotechArm</li>
-            <li>ArchotechLeg</li>
             <li>ArchotechLeg</li>
             <li>StoneskinGland</li>
         </techHediffsRequired>
         <techHediffsDisallowTags>
             <li>PainCauser</li>
         </techHediffsDisallowTags>
+        <startingHediffs>
+            <li>
+                <def>Rimgate_Unrecruitable</def>
+            </li>
+        </startingHediffs>
         <apparelMoney>6800~9500</apparelMoney>
         <apparelTags>
             <li>IndustrialAdvanced</li>

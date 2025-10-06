@@ -378,6 +378,7 @@
     <Compile Include="HarmonyPatches\Harmony_ThingOwnerUtility.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_RandomCloneGeneration.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_GivePsylinkOnAdded.cs" />
+    <Compile Include="Hediffs\Comps\HediffComp_Unrecruitable.cs" />
     <Compile Include="Hediffs\Hediff_Clone.cs" />
     <Compile Include="Hediffs\Hediff_ClonedTracker.cs" />
     <Compile Include="Hediffs\IngestionOutcomeDoer_HealAllDisease.cs" />
