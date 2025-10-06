@@ -172,9 +172,8 @@
 	<!-- ZPM signal jammer -->
 
 	<RG_JammerActive>Subspace masking: active</RG_JammerActive>
-	<RG_LinkedZPMs>linked ZPMs: {0}</RG_LinkedZPMs>
 	<RG_JammerInactive>Subspace masking: offline</RG_JammerInactive>
-	<RG_JammerNoLink>no link</RG_JammerNoLink>
+	<RG_JammerNoLink>not linked</RG_JammerNoLink>
 
 	<RG_ZPMsSignalBlocked>Broadcast masked by subspace shroud</RG_ZPMsSignalBlocked>
 	<RG_ZPMsSignalUnblocked>Signal bleeding into subspace</RG_ZPMsSignalUnblocked>

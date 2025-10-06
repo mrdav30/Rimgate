@@ -62,11 +62,10 @@ public class Comp_ZpmSignalScrambler : ThingComp
         bool powered = Power == null || Power.PowerOn;
         int linkCount = Facility?.LinkedBuildings?.Count(f => f.def == RimgateDefOf.Rimgate_ZPM) ?? 0;
 
-        // e.g., “Jammer: Active (linked ZPMs: 1)” / “Jammer: Inactive (no link)”
         if (!powered) 
             return "RG_JammerInactive".Translate() + $" ({"NoPower".Translate()})";
         return (linkCount > 0)
-            ? "RG_JammerActive".Translate() + $" ({"RG_LinkedZPMs".Translate(linkCount)})"
+            ? "RG_JammerActive".Translate()
             : "RG_JammerInactive".Translate() + $" ({"RG_JammerNoLink".Translate()})";
     }
 }

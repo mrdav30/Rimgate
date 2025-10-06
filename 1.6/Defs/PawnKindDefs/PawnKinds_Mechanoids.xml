@@ -138,6 +138,7 @@
         <weaponMoney>9999~9999</weaponMoney>
         <combatPower>400</combatPower>
         <weaponTags></weaponTags>
+        <aiAvoidCover>true</aiAvoidCover>
         <techHediffsChance MayRequire="Ludeon.RimWorld.Biotech">1</techHediffsChance>
         <techHediffsMoney>9999~9999</techHediffsMoney>
         <controlGroupPortraitZoom>0.8</controlGroupPortraitZoom>

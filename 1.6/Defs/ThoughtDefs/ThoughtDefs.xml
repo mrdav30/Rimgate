@@ -114,6 +114,27 @@
         </stages>
     </ThoughtDef>
 
+    <!-- Mild, situational debuff for hosts with a pouch but no symbiote -->
+    <ThoughtDef>
+        <defName>Rimgate_PouchFeelsEmpty</defName>
+        <thoughtClass>Thought_Situational</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_SymbiotePouchEmpty</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <developmentalStageFilter>Child, Adult</developmentalStageFilter>
+        <stackLimit>1</stackLimit>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Ascetic</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>pouch aches</label>
+                <description>The engineered chamber in their abdomen feels hollow and restless without a resident symbiote.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
     <!-- =============== ARCHOTECH IDOL OF RESONANCE =============== -->
 
     <!-- General calm: refreshable small memory so it sticks while in range -->

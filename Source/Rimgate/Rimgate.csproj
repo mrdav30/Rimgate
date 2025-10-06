@@ -445,6 +445,7 @@
     <Compile Include="Things\Thing_PushedCartVisual.cs" />
     <Compile Include="ThoughtWorkers\ThoughtWorker_Opinion_SymbioteKinship.cs" />
     <Compile Include="ThoughtWorkers\ThoughtWorker_Opinion_SymbioteHostility.cs" />
+    <Compile Include="ThoughtWorkers\ThoughtWorker_SymbiotePouchEmpty.cs" />
     <Compile Include="UI\Command_LoadToContainer.cs" />
     <Compile Include="UI\Dialog_LoadContainers.cs" />
     <Compile Include="UI\Dialog_RenameStargateSite.cs" />

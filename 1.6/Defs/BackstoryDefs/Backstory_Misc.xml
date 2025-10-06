@@ -6,6 +6,7 @@
 		<title>damaged clone</title>
 		<titleShort>replicant</titleShort>
 		<description>[PAWN_nameDef] is an artificially grown copy of someone. Unfortunately, due to problems in the cloning process, [PAWN_pronoun] is damaged mentally and physically.</description>
+		<slot>Childhood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
 		<spawnCategories>
@@ -20,6 +21,7 @@
 		<title>colony replicant</title>
 		<titleShort>replicant</titleShort>
 		<description>[PAWN_nameDef] is an artificially grown copy of someone. Despite taking [PAWN_possessive] appearance from another, [PAWN_pronoun] is a unique individual. [PAWN_nameDef] doesn't have the skills of [PAWN_possessive] genetic parent, but [PAWN_pronoun] can learn at a quickened rate.</description>
+		<slot>Childhood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
 		<spawnCategories>
@@ -34,6 +36,7 @@
 		<title>enhanced replicant</title>
 		<titleShort>e-replicant</titleShort>
 		<description>[PAWN_nameDef] is an artificially grown copy of someone for a single purpose. [PAWN_possessive] memory wiped and imprinted with combat training, [PAWN_pronoun] also has high tolerance of poor conditions.</description>
+		<slot>Childhood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
 		<spawnCategories>

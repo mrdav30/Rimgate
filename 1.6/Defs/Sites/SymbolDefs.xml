@@ -342,14 +342,6 @@
     <!-- Enemies -->
 
     <KCSG.SymbolDef>
-        <defName>Rimgate_TreasureHunter</defName>
-        <pawnKindDef>Rimgate_TreasureHunter</pawnKindDef>
-        <faction>Rimgate_TreasureHuntersHostile</faction>
-        <spawnPartOfFaction>false</spawnPartOfFaction>
-        <defendSpawnPoint>false</defendSpawnPoint>
-    </KCSG.SymbolDef>
-
-    <KCSG.SymbolDef>
         <defName>Rimgate_CryptosleepCasket_Wraith</defName>
         <thing>AncientCryptosleepCasket</thing>
         <containPawnKindAnyOf>
@@ -372,6 +364,16 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_CryptosleepPod_Hunter</defName>
+        <thing>AncientCryptosleepPod</thing>
+        <containPawnKindAnyOf>
+            <li>Rimgate_TreasureHunter</li>
+        </containPawnKindAnyOf>
+        <faction>Rimgate_TreasureHuntersHostile</faction>
+        <defendSpawnPoint>false</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_AncientCryptosleepCasket</defName>
         <thing>AncientCryptosleepCasket</thing>
         <containPawnKindAnyOf>
@@ -380,6 +382,14 @@
         </containPawnKindAnyOf>
         <faction>AncientsHostile</faction>
         <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TreasureHunter</defName>
+        <pawnKindDef>Rimgate_TreasureHunter</pawnKindDef>
+        <faction>Rimgate_TreasureHuntersHostile</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>false</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

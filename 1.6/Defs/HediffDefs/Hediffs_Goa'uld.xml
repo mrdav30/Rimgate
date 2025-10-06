@@ -3,6 +3,30 @@
 
 	<!-- ==================== Symbiote ==================== -->
 
+	<HediffDef ParentName="AddedBodyPartBase">
+		<defName>Rimgate_SymbiotePouch</defName>
+		<label>symbiote pouch</label>
+		<labelNoun>a symbiote pouch</labelNoun>
+		<description>An artificially grown chamber beneath the stomach, sealed with living tissue. Warm, vascular, and unnervingly receptive, it is the perfect cradle for a Goa’uld symbiote. While it offers protection against common gut afflictions, it forever brands the host as bound to alien biology.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
+		</descriptionHyperlinks>
+		<organicAddedBodypart>true</organicAddedBodypart>
+		<defaultInstallPart>Stomach</defaultInstallPart>
+		<stages>
+			<li>
+				<painOffset>0.08</painOffset>
+				<foodPoisoningChanceFactor>0</foodPoisoningChanceFactor>
+				<makeImmuneTo>
+					<li>GutWorms</li>
+				</makeImmuneTo>
+			</li>
+		</stages>
+		<addedPartProps>
+			<solid>true</solid>
+		</addedPartProps>
+	</HediffDef>
+
 	<HediffDef>
 		<defName>Rimgate_SymbioteImplant</defName>
 		<hediffClass>Rimgate.Hediff_GoauldSymbiote</hediffClass>
@@ -12,8 +36,10 @@
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
 		</descriptionHyperlinks>
+		<defaultInstallPart>Torso</defaultInstallPart>
 		<defaultLabelColor>(255, 0, 94)</defaultLabelColor>
 		<isBad>false</isBad>
+		<duplicationAllowed>false</duplicationAllowed>
 		<spawnThingOnRemoved>Rimgate_SymbioteImplant</spawnThingOnRemoved>
 		<countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
 		<comps>
@@ -28,7 +54,6 @@
 				<!-- <label>symbiote host</label> -->
 				<painFactor>0.5</painFactor>
 				<hungerRateFactor>0.25</hungerRateFactor> <!-- Eats 25% less -->
-				<foodPoisoningChanceFactor>0</foodPoisoningChanceFactor> <!-- Not here -->
 				<statFactors>
 					<ImmunityGainSpeed>2</ImmunityGainSpeed> <!-- Immunity 200% more -->
 					<InjuryHealingFactor>5</InjuryHealingFactor> <!-- Heals 500% more -->
@@ -143,6 +168,7 @@
 		<isBad>false</isBad>
 		<duplicationAllowed>false</duplicationAllowed>
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+		<defaultInstallPart>Head</defaultInstallPart>
 	</HediffDef>
 
 	<!-- =========== Anubis =========== -->

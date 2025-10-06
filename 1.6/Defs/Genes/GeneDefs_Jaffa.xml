@@ -36,6 +36,28 @@
     </GeneDef>
 
     <GeneDef ParentName="Rimgate_JaffaGenesBase">
+        <defName>Rimgate_SymbiotePouch</defName>
+        <label>symbiote pouch</label>
+        <description>This gene rewrites the host’s anatomy to form a specialized abdominal pouch. Once considered a grotesque mark of servitude to the Goa’uld, it is also a symbol of power—granting the bearer the ability to house a living symbiote within. Without a symbiote, the pouch lies dormant, a hollow reminder of dependency.</description>
+        <iconPath>UI/Icon/Gene/RGJaffaLongevityGeneIcon</iconPath>
+        <displayCategory>Archite</displayCategory>
+        <modExtensions>
+            <li Class="VEF.Genes.GeneExtension">
+                <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+                <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+                <hediffsToBodyParts>
+                    <li>
+                        <hediff>Rimgate_SymbiotePouch</hediff>
+                        <bodyparts>
+                            <li>Stomach</li>
+                        </bodyparts>
+                    </li>
+                </hediffsToBodyParts>
+            </li>
+        </modExtensions>
+    </GeneDef>
+
+    <GeneDef ParentName="Rimgate_JaffaGenesBase">
         <defName>Rimgate_JaffaCombatDiscipline</defName>
         <label>combat discipline</label>
         <description>Bred for war and obedience, carriers of this gene exhibit elite combat reflexes and tactical focus. Also exhibit zero interest in art, chit-chat, or anything remotely civilian. They didn’t come here to talk.</description>

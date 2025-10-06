@@ -37,7 +37,7 @@
 			</li>
 		</ingredients>
 		<appliedOnFixedBodyParts>
-			<li>Stomach</li>
+			<li>Torso</li>
 		</appliedOnFixedBodyParts>
 		<targetsBodyPart>true</targetsBodyPart>
 		<anesthetize>true</anesthetize>
