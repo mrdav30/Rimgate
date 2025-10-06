@@ -214,11 +214,11 @@
         <categoriesChildhood>
           <li>Rimgate_WraithChildBackStory</li>
         </categoriesChildhood>
-        <categoriesAdulthood>
-          <li>Rimgate_WraithCommanderBackStory</li>
-        </categoriesAdulthood>
       </li>
     </backstoryFiltersOverride>
+    <fixedAdultBackstories>
+      <li>Rimgate_WraithCommander</li>
+    </fixedAdultBackstories>
     <gearHealthRange>1~3.3</gearHealthRange>
     <itemQuality>Good</itemQuality>
     <apparelMoney>6000~9000</apparelMoney>
@@ -289,11 +289,11 @@
         <categoriesChildhood>
           <li>Rimgate_WraithChildBackStory</li>
         </categoriesChildhood>
-        <categoriesAdulthood>
-          <li>Rimgate_WraithQueenBackStory</li>
-        </categoriesAdulthood>
       </li>
     </backstoryFiltersOverride>
+    <fixedAdultBackstories>
+      <li>Rimgate_WraithQueen</li>
+    </fixedAdultBackstories>
     <gearHealthRange>0.8~3.5</gearHealthRange>
     <itemQuality>Good</itemQuality>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>

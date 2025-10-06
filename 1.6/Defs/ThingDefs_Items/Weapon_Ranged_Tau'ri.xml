@@ -890,7 +890,7 @@
         <statBases>
             <WorkToMake>80000</WorkToMake>
             <MarketValue>950</MarketValue>
-            <Mass>5</Mass>
+            <Mass>6</Mass>
             <RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
         </statBases>
         <costList>
@@ -923,6 +923,7 @@
                 <warmupTime>3.5</warmupTime>
                 <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
                 <range>45.9</range>
+                <burstShotCount>1</burstShotCount>
                 <soundCast>InfernoCannon_Fire</soundCast>
                 <soundCastTail>GunTail_Heavy</soundCastTail>
                 <onlyManualCast>true</onlyManualCast>
@@ -937,10 +938,10 @@
             <li>
                 <label>barrel</label>
                 <capacities>
-
+                    <li>Blunt</li>
                 </capacities>
-                <power>11.7</power>
-                <cooldownTime>2.6</cooldownTime>
+                <power>10.5</power>
+                <cooldownTime>2.2</cooldownTime>
             </li>
         </tools>
         <comps>

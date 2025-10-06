@@ -476,7 +476,7 @@
 		<defName>Rimgate_WraithForceBuckler</defName>
 		<label>force buckler</label>
 		<description>A compact Wraith repulsor emitter bound into a forearm buckler. It projects a tight, reactive barrier that swats aside bullets and turns blades—until its field dips, at which point it’s little more than a heavy cuff. Favored by Wraith assassins who close the distance fast, break lines, and finish the job in a blur of claws and static.</description>
-		<thingClass>VEF.Apparels.Apparel_Shield</thingClass>
+		<thingClass>Rimgate.Apparel_WraithForceBuckler</thingClass>
 		<techLevel>Spacer</techLevel>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Shield/RGWraithEnergyShield</texPath>

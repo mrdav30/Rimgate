@@ -399,6 +399,7 @@
     <Compile Include="Hediffs\HediffGiver_AtAge.cs" />
     <Compile Include="Abilities\Properties\CompProperties_MultipleProjectile.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_TechprintsByTag.cs" />
+    <Compile Include="Things\Apparel_WraithForceBuckler.cs" />
     <Compile Include="Things\Building_HackableForceField.cs" />
     <Compile Include="Things\Building_MeatLab.cs" />
     <Compile Include="Things\Building_DHD.cs" />
