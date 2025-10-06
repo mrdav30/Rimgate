@@ -9,7 +9,7 @@ public class QuestNode_GetFactionOfDef : QuestNode
     public SlateRef<FactionDef> factionDef;
     public SlateRef<string> storeAs;
 
-    protected override void RunInt() => Resolve(RimWorld.QuestGen.QuestGen.slate);
+    protected override void RunInt() => Resolve(QuestGen.slate);
 
     protected override bool TestRunInt(Slate slate) => Resolve(slate);
 

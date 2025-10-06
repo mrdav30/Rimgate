@@ -9,6 +9,7 @@
 		<pawnsPlural>Relicators</pawnsPlural>
 		<requiredCountAtGameStart>1</requiredCountAtGameStart>
 		<maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
+		<displayInFactionSelection>false</displayInFactionSelection>
 		<fixedName>A Replicator Hive</fixedName>
 		<raidCommonalityFromPointsCurve>
 			<points>

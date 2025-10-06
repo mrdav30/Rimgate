@@ -61,6 +61,11 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_SubspaceShroudEmitter</defName>
+        <thing>Rimgate_SubspaceShroudEmitter</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
         <thing>Rimgate_IndustrialNaquadriaFiredGenerator</thing>
     </KCSG.SymbolDef>
@@ -74,6 +79,11 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_GoauldSarcophagus</defName>
         <thing>Rimgate_GoauldSarcophagus</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ArchotechIdolOfResonance</defName>
+        <thing>Rimgate_ArchotechIdolOfResonance</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -390,6 +400,14 @@
         <faction>Rimgate_TreasureHuntersHostile</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>false</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TreasureHunterBoss</defName>
+        <pawnKindDef>Rimgate_TreasureHunterBoss</pawnKindDef>
+        <faction>Rimgate_TreasureHuntersHostile</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

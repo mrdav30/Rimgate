@@ -229,7 +229,7 @@ public class Comp_StargateControl : ThingComp
             GetOrGenerateMapUtility.GetOrGenerateMap(
                 connectedSite.Tile,
                 connectedSite is WorldObject_PermanentStargateSite
-                        ? Utils.SmallestMapSize
+                        ? RimgateMod.MinMapSize
                         : Find.World.info.initialMapSize,
                 null);
 

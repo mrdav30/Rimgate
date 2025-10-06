@@ -127,8 +127,8 @@
                 <requiredCount>3</requiredCount>
                 <requiredProjectDef>Rimgate_GlyphDeciphering</requiredProjectDef>
                 <questScript>Rimgate_TreasureVaultQuest</questScript>
-                <letterLabel>Assembled Vault Cipher</letterLabel>
-                <letterText>The fragments lock together and the interface resolves into a full set of coordinates.\n\nA dwarfgate vault awaits—if you can reach it.</letterText>
+                <letterLabel>RG_CipherLetterLabel</letterLabel>
+                <letterText>RG_CipherLetterText</letterText>
             </li>
         </comps>
     </ThingDef>

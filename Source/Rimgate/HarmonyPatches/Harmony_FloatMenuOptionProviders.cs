@@ -12,7 +12,8 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch]
 public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_ClickedPawn
 {
-    static IEnumerable<MethodBase> TargetMethods()
+    [HarmonyTargetMethods]
+    private static IEnumerable<MethodBase> TargetMethods()
     {
         yield return AccessTools.Method(
             typeof(FloatMenuOptionProvider_Arrest),
@@ -44,27 +45,26 @@ public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_C
 [HarmonyPatch]
 public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_ClickedThing
 {
+    [HarmonyTargetMethods]
     private static IEnumerable<MethodBase> TargetMethods()
     {
-        yield return (MethodBase)AccessTools.Method(
+        yield return AccessTools.Method(
             typeof(FloatMenuOptionProvider_Strip),
             "GetSingleOptionFor",
             new Type[2]
             {
               typeof (Thing),
               typeof (FloatMenuContext)
-            },
-            (Type[])null);
+            });
 
-        yield return (MethodBase)AccessTools.Method(
+        yield return AccessTools.Method(
             typeof(FloatMenuOptionProvider_DraftedTend),
             "GetSingleOptionFor",
             new Type[2]
             {
               typeof (Thing),
               typeof (FloatMenuContext)
-            },
-            (Type[])null);
+            });
     }
 
     public static void Postfix(ref FloatMenuOption __result, Thing clickedThing)

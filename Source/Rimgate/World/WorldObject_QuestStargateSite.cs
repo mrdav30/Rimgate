@@ -123,6 +123,8 @@ public class WorldObject_QuestStargateSite : Site
             }
         };
 
+        if (!base.HasMap) yield break;
+
         if (Map.mapPawns.AnyPawnBlockingMapRemoval)
         {
             abandon.Disabled = true;

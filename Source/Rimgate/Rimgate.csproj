@@ -369,6 +369,8 @@
     <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
     <Compile Include="HarmonyPatches\Harmony_CompLabyrinthDoor_DrawJammed.cs" />
     <Compile Include="HarmonyPatches\Harmony_EquipmentUtility.cs" />
+    <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
+    <Compile Include="HarmonyPatches\Harmony_SiteMakerHelper.cs" />
     <Compile Include="HarmonyPatches\Harmony_JobMaker_MakeJob.cs" />
     <Compile Include="HarmonyPatches\Harmony_MechanitorUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_PawnGenerator.cs" />
@@ -421,8 +423,7 @@
     <Compile Include="DamageWorkers\DamageWorker_Siege.cs" />
     <Compile Include="HarmonyPatches\Harmony_Building_Bed.cs" />
     <Compile Include="HarmonyPatches\Harmony_Designator_Strip.cs" />
-    <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
-    <Compile Include="HarmonyPatches\Harmony_FloatMenuOptionProvider_Generic.cs" />
+    <Compile Include="HarmonyPatches\Harmony_FloatMenuOptionProviders.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_DraftController.cs" />
     <Compile Include="HarmonyPatches\Harmony_RestUtility.cs" />
@@ -465,6 +466,7 @@
     <Compile Include="UI\PlaceWorker_ResonanceIdol.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
+    <Compile Include="Utilities\RimgateFactionDefOf.cs" />
     <Compile Include="Utilities\StargateUtility.cs" />
     <Compile Include="World\MapComponent_ZpmRaidTracker.cs" />
     <Compile Include="World\SitePartWorker_Stargate.cs" />
@@ -483,7 +485,7 @@
     <Compile Include="AI\WorkGivers\WorkGiver_WardenCarryFromBedToSarcophagus.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_WardenRescueToSarcophagus.cs" />
     <Compile Include="RimgateMod.cs" />
-    <Compile Include="RimgateDefOf.cs" />
+    <Compile Include="Utilities\RimgateDefOf.cs" />
     <Compile Include="Comps\Properties\CompProperties_Sarcophagus.cs" />
     <Compile Include="Comps\Comp_Sarcophagus.cs" />
     <Compile Include="Utilities\MedicalUtility.cs" />

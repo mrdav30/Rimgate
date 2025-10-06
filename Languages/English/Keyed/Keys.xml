@@ -149,6 +149,9 @@
 	<RG_CannotDecodeCipherResearch>Cannot decode: {0} not researched</RG_CannotDecodeCipherResearch>
 	<RG_CannotDecodeCipherCount>Need at least {0} {1} (you have {2}).</RG_CannotDecodeCipherCount>
 
+	<RG_CipherLetterLabel>Assembled Vault Cipher</RG_CipherLetterLabel>
+	<RG_CipherLetterText>The fragments lock together and the interface resolves into a full set of coordinates.\n\nThe treasure hunter's vault awaits—if you can reach it.</RG_CipherLetterText>
+
 	<!-- DHD-->
 
 	<RG_CannotDialNoGate>Cannot dial: no dwarfgate connected</RG_CannotDialNoGate>

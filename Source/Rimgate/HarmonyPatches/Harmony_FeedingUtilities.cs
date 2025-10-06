@@ -12,6 +12,7 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch]
 public static class Harmony_FeedingUtilities
 {
+    [HarmonyTargetMethods]
     public static IEnumerable<MethodInfo> TargetMethods()
     {
         yield return AccessTools.Method(typeof(FeedPatientUtility), "ShouldBeFed");

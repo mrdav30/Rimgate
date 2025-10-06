@@ -25,6 +25,8 @@ public static class RimgateDefOf
     public static EffecterDef Rimgate_ClonePod_Operating;
 
     public static FactionDef Rimgate_Replicator;
+    public static FactionDef Rimgate_TreasureHunters;
+    public static FactionDef Rimgate_TreasureHuntersHostile;
 
     [MayRequireBiotech]
     public static GeneDef Skin_SheerWhite;

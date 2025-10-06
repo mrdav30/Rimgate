@@ -24,6 +24,7 @@
 				<li>Rimgate_StructureTauriForwardOutpost</li>
 				<li>Rimgate_StructureTauriLostBase</li>
 			</structureLayoutDefs>
+			<preventBridgeable>true</preventBridgeable>
 		</genStep>
 	</GenStepDef>
 
@@ -67,6 +68,7 @@
 				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
 				<li>Rimgate_StructureGoauldTemple</li>
 			</structureLayoutDefs>
+			<preventBridgeable>true</preventBridgeable>
 		</genStep>
 	</GenStepDef>
 
@@ -110,6 +112,7 @@
 				<li>Rimgate_StructureWraithHiveSiteCharlie</li>
 				<li>Rimgate_StructureWraithHiveSiteDelta</li>
 			</structureLayoutDefs>
+			<preventBridgeable>true</preventBridgeable>
 		</genStep>
 	</GenStepDef>
 
@@ -151,6 +154,7 @@
 				<li>Rimgate_StructureMechHiveAlpha</li>
 				<li>Rimgate_StructureMechHiveBravo</li>
 			</structureLayoutDefs>
+			<preventBridgeable>true</preventBridgeable>
 		</genStep>
 	</GenStepDef>
 
@@ -224,6 +228,7 @@
 				<li>Rimgate_StructureStrangeVillageCharlie</li>
 				<li>Rimgate_StructureUnasVillage</li>
 			</structureLayoutDefs>
+			<preventBridgeable>true</preventBridgeable>
 		</genStep>
 	</GenStepDef>
 
@@ -244,9 +249,9 @@
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<fullClear>true</fullClear>
 			<structureLayoutDefs>
-				<!-- Misc -->
-				<li>Rimgate_StructureUnasVillage</li>
+				<li>Rimgate_StructureTreasureVault</li>
 			</structureLayoutDefs>
+			<preventBridgeable>true</preventBridgeable>
 		</genStep>
 	</GenStepDef>
 

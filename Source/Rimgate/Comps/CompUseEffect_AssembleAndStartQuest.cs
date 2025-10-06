@@ -50,14 +50,17 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
         }
 
         // 3) Start quest
-        var slate = new RimWorld.QuestGen.Slate();
+        var slate = new Slate();
         var quest = QuestUtility.GenerateQuestAndMakeAvailable(Props.questScript, slate);
         QuestUtility.SendLetterQuestAvailable(quest);
 
         // 4) Optional extra letter
         if (!Props.letterLabel.NullOrEmpty())
         {
-            Find.LetterStack.ReceiveLetter(Props.letterLabel, Props.letterText, LetterDefOf.PositiveEvent);
+            Find.LetterStack.ReceiveLetter(
+                Props.letterLabel.Translate(),
+                Props.letterText.Translate(),
+                LetterDefOf.PositiveEvent);
         }
     }
 

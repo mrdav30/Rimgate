@@ -10,7 +10,8 @@ using Verse;
 namespace Rimgate.HarmonyPatches;
 
 [HarmonyPatch(
-    typeof(Pawn_MechanitorTracker), nameof(Pawn_MechanitorTracker.DrawCommandRadius),
+    typeof(Pawn_MechanitorTracker),
+    nameof(Pawn_MechanitorTracker.DrawCommandRadius),
     new Type[] { })]
 static class PatchMechanitorTracker_DrawCommandRadius
 {

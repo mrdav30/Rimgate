@@ -3,10 +3,10 @@
 
     <QuestScriptDef>
         <defName>Rimgate_TreasureVaultQuest</defName>
-		<rootSelectionWeight>0</rootSelectionWeight>
+        <rootSelectionWeight>0</rootSelectionWeight>
         <isRootSpecial>true</isRootSpecial>
         <autoAccept>true</autoAccept>
-        <defaultChallengeRating>4</defaultChallengeRating>
+        <defaultChallengeRating>5</defaultChallengeRating>
 
         <questNameRules>
             <rulesStrings>
@@ -42,14 +42,9 @@
 
                 <li Class="QuestNode_IsSet">
                     <name>asker</name>
-                    <elseNode Class="QuestNode_RandomNode">
-                        <nodes>
-                            <li Class="QuestNode_Set">
-                                <name>askerIsNull</name>
-                                <value>true</value>
-                                <selectionWeight>0.4</selectionWeight>
-                            </li>
-                        </nodes>
+                    <elseNode Class="QuestNode_Set">
+                        <name>askerIsNull</name>
+                        <value>true</value>
                     </elseNode>
                 </li>
 
@@ -58,8 +53,14 @@
                     <preferCloserTiles>false</preferCloserTiles>
                 </li>
 
+                <li Class="Rimgate.QuestNode_GetFactionOfDef">
+                    <factionDef>Rimgate_TreasureHuntersHostile</factionDef>
+                    <storeAs>enemyFaction</storeAs>
+                </li>
+
                 <li Class="QuestNode_GetSitePartDefsByTagsAndFaction">
                     <storeAs>sitePartDefs</storeAs>
+                    <storeFactionAs>siteFaction</storeFactionAs>
                     <sitePartsTags>
                         <li>
                             <tag>Rimgate_StargateSiteVault</tag>
@@ -69,6 +70,7 @@
 
                 <li Class="QuestNode_GetDefaultSitePartsParams">
                     <tile>$siteTile</tile>
+                    <faction>$siteFaction</faction>
                     <sitePartDefs>$sitePartDefs</sitePartDefs>
                     <storeSitePartsParamsAs>sitePartsParams</storeSitePartsParamsAs>
                 </li>
@@ -76,7 +78,7 @@
                 <li Class="QuestNode_SubScript">
                     <def>Util_GenerateStargateSite</def>
                     <parms>
-                        <hiddenSitePartsPossible>false</hiddenSitePartsPossible>
+                        <hiddenSitePartsPossible>true</hiddenSitePartsPossible>
                     </parms>
                 </li>
 

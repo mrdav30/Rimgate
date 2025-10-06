@@ -11,8 +11,6 @@ namespace Rimgate;
 
 public class WorldComp_StargateAddresses : WorldComponent
 {
-    private const string StargateTag = "Rimgate_QuestStargateSite";
-
     private List<PlanetTile> _addressList = new();
 
     public List<PlanetTile> AddressList => _addressList;
@@ -39,7 +37,7 @@ public class WorldComp_StargateAddresses : WorldComponent
 
     private static bool IsStargateQuestSite(Site site)
     {
-        return site?.MainSitePartDef?.tags?.Contains(StargateTag) == true;
+        return site?.MainSitePartDef?.tags?.Contains(RimgateMod.StargateQuestTag) == true;
     }
 
     private static bool SiteHasPlayerPresence(Site site)

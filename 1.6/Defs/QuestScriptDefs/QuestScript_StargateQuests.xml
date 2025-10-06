@@ -73,24 +73,20 @@
 
 		<root Class="QuestNode_Sequence">
 			<nodes>
+
 				<li Class="QuestNode_SubScript">
 					<def>Util_GetDefaultRewardValueFromPoints</def>
 				</li>
 
 				<li Class="QuestNode_GetMap" />
 
-				<li Class="QuestNode_IsSet">
-					<name>asker</name>
-					<elseNode Class="QuestNode_RandomNode">
-						<nodes>
-							<li Class="QuestNode_Set">
-								<name>askerIsNull</name>
-								<value>true</value>
-								<selectionWeight>0.4</selectionWeight>
-							</li>
-						</nodes>
-					</elseNode>
-				</li>
+                <li Class="QuestNode_IsSet">
+                    <name>asker</name>
+                    <elseNode Class="QuestNode_Set">
+                        <name>askerIsNull</name>
+                        <value>true</value>
+                    </elseNode>
+                </li>
 
 				<li Class="QuestNode_GetSiteTile">
 					<storeAs>siteTile</storeAs>

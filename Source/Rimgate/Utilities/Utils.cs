@@ -12,19 +12,6 @@ namespace Rimgate;
 
 internal static class Utils
 {
-    private static Faction _ofReplicators;
-
-    public static Faction OfReplicators
-    {
-        get
-        {
-            _ofReplicators ??= Find.FactionManager.FirstFactionOfDef(RimgateDefOf.Rimgate_Replicator);
-            return _ofReplicators;
-        }
-    }
-
-    public static readonly IntVec3 SmallestMapSize = new IntVec3(75, 1, 75);
-
     public static Pawn ClosestTo(this IEnumerable<Pawn> pawns, IntVec3 c)
     {
         Pawn best = null; var bestDist = 999999;
@@ -204,7 +191,7 @@ internal static class Utils
         if (f.IsPlayer) return false;
 
         // Only humanlike factions or mechanoids
-        if (!(f.def.humanlikeFaction || f == Faction.OfMechanoids || f == OfReplicators)) return false;
+        if (!(f.def.humanlikeFaction || f == Faction.OfMechanoids || f == RimgateFactionDefOf.OfReplicators)) return false;
 
         // Optional Neolithic filter
         if (!allowNeolithic && f.def.techLevel == TechLevel.Neolithic) return false;

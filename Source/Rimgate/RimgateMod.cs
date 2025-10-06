@@ -16,6 +16,10 @@ public class RimgateMod : Mod
 
     public static bool FlagAsteroids = true;
 
+    public static readonly IntVec3 MinMapSize = new IntVec3(75, 1, 75);
+
+    public const string StargateQuestTag = "Rimgate_QuestStargateSite";
+
     public RimgateMod(ModContentPack pack) : base(pack)
     {
         try
