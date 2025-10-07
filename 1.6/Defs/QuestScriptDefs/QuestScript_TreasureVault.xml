@@ -10,7 +10,7 @@
 
         <questNameRules>
             <rulesStrings>
-                <li>questName->[adj] vault [place]</li>
+                <li>questName->[adj] [place]</li>
                 <li>adj->Hidden</li>
                 <li>adj->Uncharted</li>
                 <li>adj->Sealed</li>

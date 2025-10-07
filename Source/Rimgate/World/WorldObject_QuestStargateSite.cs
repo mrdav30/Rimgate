@@ -119,13 +119,14 @@ public class WorldObject_QuestStargateSite : Site
             {
                 var quest = ResolveQuest();
                 if (quest != null && quest.State == QuestState.Ongoing)
+                {
                     quest.End(QuestEndOutcome.Fail, false, false);
+                    CheckRemoveMapNow();
+                }
             }
         };
 
-        if (!base.HasMap) yield break;
-
-        if (Map.mapPawns.AnyPawnBlockingMapRemoval)
+        if (Map?.mapPawns?.AnyPawnBlockingMapRemoval == true)
         {
             abandon.Disabled = true;
             abandon.disabledReason = "Disabled: There are colonists on the map.";
@@ -140,7 +141,9 @@ public class WorldObject_QuestStargateSite : Site
         if (QuestId == -1) return null;
 
         _questCached = Find.QuestManager.QuestsListForReading
-            .FirstOrDefault(q => q.id == QuestId && q.State == QuestState.Ongoing);
+            .FirstOrDefault(q => 
+                q.id == QuestId 
+                && q.State == QuestState.Ongoing);
         if (_questCached == null) QuestId = -1; // stale id
         return _questCached;
     }

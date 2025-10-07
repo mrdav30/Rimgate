@@ -23,6 +23,7 @@
 				<li>Rimgate_StructureIndustrialTown</li>
 				<li>Rimgate_StructureTauriForwardOutpost</li>
 				<li>Rimgate_StructureTauriLostBase</li>
+				<li>Rimgate_StructureTauriResearchCenter</li>
 			</structureLayoutDefs>
 			<preventBridgeable>true</preventBridgeable>
 		</genStep>
@@ -250,6 +251,7 @@
 			<fullClear>true</fullClear>
 			<structureLayoutDefs>
 				<li>Rimgate_StructureTreasureVault</li>
+				<li>Rimgate_StructureAbandonedVault</li>
 			</structureLayoutDefs>
 			<preventBridgeable>true</preventBridgeable>
 		</genStep>

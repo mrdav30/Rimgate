@@ -202,16 +202,21 @@
         <thing>Rimgate_AncientReplicatorVat_EmptySmall</thing>
     </KCSG.SymbolDef>
 
-    <KCSG.SymbolDef>
-        <defName>Rimgate_ScrapNote</defName>
-        <thing>Rimgate_ScrapNote</thing>
-    </KCSG.SymbolDef>
-
     <!-- Items -->
 
     <KCSG.SymbolDef>
         <defName>Rimgate_GlyphParchment</defName>
         <thing>Rimgate_GlyphParchment</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ScrapNote</defName>
+        <thing>Rimgate_ScrapNote</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ScrapNotice</defName>
+        <thing>Rimgate_ScrapNotice</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -383,6 +388,20 @@
         <defendSpawnPoint>false</defendSpawnPoint>
     </KCSG.SymbolDef>
 
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CryptosleepPod_Tauri</defName>
+        <thing>AncientCryptosleepPod</thing>
+        <containPawnKindAnyOf>
+            <li>Rimgate_TauriSGCSoldier</li>
+            <li>Rimgate_TauriSGCRocketman</li>
+            <li>Rimgate_TauriRifleman</li>
+            <li>Rimgate_TauriSpecialForces</li>
+        </containPawnKindAnyOf>
+        <faction>Rimgate_TauriFaction</faction>
+        <defendSpawnPoint>false</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
     <KCSG.SymbolDef>
         <defName>Rimgate_AncientCryptosleepCasket</defName>
         <thing>AncientCryptosleepCasket</thing>
@@ -494,6 +513,14 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_TauriScientist</defName>
+        <pawnKindDef>Rimgate_TauriScientist</pawnKindDef>
+        <faction>Rimgate_TauriFaction</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>false</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_Mech_Scyther</defName>
         <pawnKindDef>Mech_Scyther</pawnKindDef>
         <faction>Mechanoid</faction>
@@ -520,6 +547,14 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_Mech_Pikeman</defName>
         <pawnKindDef>Mech_Pikeman</pawnKindDef>
+        <faction>Mechanoid</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Mech_Warqueen</defName>
+        <pawnKindDef>Mech_Warqueen</pawnKindDef>
         <faction>Mechanoid</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>true</defendSpawnPoint>

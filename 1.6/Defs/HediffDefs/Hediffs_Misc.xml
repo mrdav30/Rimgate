@@ -10,6 +10,8 @@
         <hediffClass>Rimgate.Hediff_ClonedTracker</hediffClass>
         <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
         <isBad>false</isBad>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <HediffDef>
@@ -19,6 +21,8 @@
         <hediffClass>Rimgate.Hediff_Clone</hediffClass>
         <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
         <isBad>false</isBad>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <HediffDef>
@@ -33,6 +37,8 @@
                 <compClass>Rimgate.HediffComp_RandomCloneGeneration</compClass>
             </li>
         </comps>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <HediffDef ParentName="DiseaseBase">
@@ -58,6 +64,8 @@
                 </capMods>
             </li>
         </stages>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <HediffDef ParentName="DiseaseBase">
@@ -92,6 +100,8 @@
                 </capMods>
             </li>
         </stages>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <HediffDef ParentName="DiseaseBase">
@@ -112,6 +122,8 @@
                 </statOffsets>
             </li>
         </stages>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <!-- =============== Mobile Container debuffs =============== -->
@@ -226,6 +238,8 @@
                 <compClass>Rimgate.HediffComp_Unrecruitable</compClass>
             </li>
         </comps>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
 </Defs>

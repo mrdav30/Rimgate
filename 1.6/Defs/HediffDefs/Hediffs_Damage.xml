@@ -53,6 +53,8 @@
                 </capMods>
             </li>
         </stages>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
 </Defs>
