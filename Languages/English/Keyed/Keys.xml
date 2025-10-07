@@ -141,7 +141,7 @@
 
 	<RG_DecodeSGSymbols>Decode symbols</RG_DecodeSGSymbols>
 	<RG_CannotDecodeSGSymbols>Cannot decode: glyph deciphering not researched</RG_CannotDecodeSGSymbols>
-	<RG_CannotDecode_SGQuestActive>Cannot decode: A site quest is already active.</RG_CannotDecode_SGQuestActive>
+	<RG_CannotDecode_QuestActive>Cannot decode: quest site already active.</RG_CannotDecode_QuestActive>
 	<RG_MessageSGQuestAlreadyActive>A dwarfgate site is already active. Complete or abandon it before decoding another address.</RG_MessageSGQuestAlreadyActive>
 
 	<!-- Ciphers -->

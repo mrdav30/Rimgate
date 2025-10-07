@@ -154,15 +154,4 @@ public static class StargateUtility
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: Spawned a fallback DHD at {near} on {map}.");
     }
-
-    public static bool HasActiveStargateQuest()
-    {
-        var def = RimgateDefOf.Rimgate_StargateQuestScript;
-        if (def == null) return false;
-
-        return Find.QuestManager.QuestsListForReading
-            .Any(q => q != null
-                      && q.State == QuestState.Ongoing
-                      && q.root == def);
-    }
 }

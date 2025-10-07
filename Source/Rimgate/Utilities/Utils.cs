@@ -183,6 +183,16 @@ internal static class Utils
         return pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
     }
 
+    public static bool HasActiveQuestOf(QuestScriptDef def)
+    {
+        if (def == null) return false;
+
+        return Find.QuestManager.QuestsListForReading
+            .Any(q => q != null
+                      && q.State == QuestState.Ongoing
+                      && q.root == def);
+    }
+
     public static bool CanUseFaction(Faction f, bool allowNeolithic = true)
     {
         if (f == null) return false;

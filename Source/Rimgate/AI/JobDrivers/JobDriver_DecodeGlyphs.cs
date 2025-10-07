@@ -19,7 +19,7 @@ public class JobDriver_DecodeGlyphs : JobDriver
     private bool TryStartStargateQuest()
     {
         // Hard cap: only one SG site quest at a time
-        if (StargateUtility.HasActiveStargateQuest())
+        if (Utils.HasActiveQuestOf(RimgateDefOf.Rimgate_StargateQuestScript))
         {
             Messages.Message("RG_MessageSGQuestAlreadyActive".Translate(),
                              MessageTypeDefOf.RejectInput,

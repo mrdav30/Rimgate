@@ -18,6 +18,11 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
             return new AcceptanceReport("RG_CannotDecodeCipherResearch".Translate(Props.requiredProjectDef.label));
         }
 
+        if (Utils.HasActiveQuestOf(Props.questScript))
+        {
+            return new AcceptanceReport("RG_CannotDecode_QuestActive".Translate());
+        }
+
         int have = TotalFragmentsInPlayer();
         if (have < Props.requiredCount)
         {

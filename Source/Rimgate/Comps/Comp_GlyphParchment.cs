@@ -24,9 +24,9 @@ public class Comp_GlyphParchment : ThingComp
             yield break;
         }
 
-        if (StargateUtility.HasActiveStargateQuest())
+        if (Utils.HasActiveQuestOf(RimgateDefOf.Rimgate_StargateQuestScript))
         {
-            yield return new FloatMenuOption("RG_CannotDecode_SGQuestActive".Translate(), null);
+            yield return new FloatMenuOption("RG_CannotDecode_QuestActive".Translate(), null);
             yield break;
         }
 
