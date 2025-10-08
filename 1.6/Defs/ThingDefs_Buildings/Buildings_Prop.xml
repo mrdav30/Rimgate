@@ -167,7 +167,7 @@
         </comps>
     </ThingDef>
 
-    <!-- =============== DHD =============== -->
+    <!-- =============== Destroyed DHD =============== -->
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DialHomeDeviceDestroyed</defName>
@@ -571,6 +571,36 @@
             <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <size>(1,1)</size>
+    </ThingDef>
+
+    <!-- ================ Destroyed Malp ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedMalp</defName>
+        <label>ancient MALP</label>
+        <description>A ruined Tau'ri MALP. It is now completely inoperable. Its usable parts were smashed or looted long ago.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGMALP_Destroyed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>3.5</drawSize>
+        </graphicData>
+        <size>(3,1)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>30.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
     </ThingDef>
 
     <!-- ================ Destroyed Generator ================ -->

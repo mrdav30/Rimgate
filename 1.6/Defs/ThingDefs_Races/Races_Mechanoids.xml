@@ -394,7 +394,19 @@
             </li>
         </tools>
         <comps>
-            <li Class="CompProperties_Shield" />
+            <li Class="VEF.Apparels.CompProperties_ShieldBubble">
+                <compClass>VEF.Apparels.CompShieldBubble</compClass>
+                <blockRangedAttack>true</blockRangedAttack>
+                <blockMeleeAttack>true</blockMeleeAttack>
+                <showWhenDrafted>false</showWhenDrafted>
+                <showOnHostiles>false</showOnHostiles>
+                <showOnNeutralInCombat>false</showOnNeutralInCombat>
+                <EnergyShieldRechargeRate>0.2</EnergyShieldRechargeRate>
+                <EnergyShieldEnergyMax>200</EnergyShieldEnergyMax>
+                <minShieldSize>1.4</minShieldSize>
+                <maxShieldSize>1.8</maxShieldSize>
+                <disableRotation>true</disableRotation>
+            </li>
         </comps>
     </ThingDef>
 
