@@ -121,16 +121,18 @@
             <li>
                 <kindDef>Trader</kindDef>
                 <traders>
-                    <Rimgate_TauriScientist>1</Rimgate_TauriScientist>
+                    <Rimgate_TauriTrader>1</Rimgate_TauriTrader>
                 </traders>
                 <carriers>
-                    <Muffalo>2</Muffalo>
-                    <!-- Rare techy caravan helper -->
-                    <Rimgate_Malp>0.4</Rimgate_Malp>
+                    <Muffalo>4</Muffalo>
+                    <Dromedary>3</Dromedary>
+                    <Alpaca>2</Alpaca>
+                    <Elephant>1</Elephant>
                 </carriers>
                 <guards>
-                    <Rimgate_TauriSGCSoldier>2</Rimgate_TauriSGCSoldier>
-                    <Rimgate_TauriRifleman>2</Rimgate_TauriRifleman>
+                    <Rimgate_TauriSGCSoldier>4</Rimgate_TauriSGCSoldier>
+                    <Rimgate_TauriRifleman>7</Rimgate_TauriRifleman>
+                    <Rimgate_Malp>0.4</Rimgate_Malp>
                 </guards>
             </li>
         </pawnGroupMakers>

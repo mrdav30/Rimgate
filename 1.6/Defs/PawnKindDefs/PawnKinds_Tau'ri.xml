@@ -29,8 +29,7 @@
         </requiredWorkTags>
         <combatPower>20</combatPower>
         <weaponTags>
-            <li>MedievalMeleeBasic</li>
-            <li>Gun</li>
+            <li>IndustrialGunAdvanced</li>
         </weaponTags>
         <apparelMoney>200~1000</apparelMoney>
         <apparelTags>
@@ -40,6 +39,9 @@
         <apparelRequired>
             <li>Rimgate_TauriSGTeamBDU</li>
         </apparelRequired>
+        <apparelDisallowTags>
+            <li>Western</li>
+        </apparelDisallowTags>
         <weaponMoney>2600~3100</weaponMoney>
         <backstoryFiltersOverride>
             <li>
@@ -67,6 +69,48 @@
                 </li>
             </subOptionsChooseOne>
         </inventoryOptions>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_TauriBase">
+        <defName>Rimgate_TauriTrader</defName>
+        <label>Tau'ri trader</label>
+        <trader>true</trader>
+        <isFighter>false</isFighter>
+        <chemicalAddictionChance>0.1</chemicalAddictionChance>
+        <combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance>
+        <invNutrition>2.55</invNutrition>
+        <itemQuality>Normal</itemQuality>
+        <inventoryOptions>
+            <skipChance>0.70</skipChance>
+            <subOptionsTakeAll>
+                <li>
+                    <thingDef>Silver</thingDef>
+                    <countRange>30~100</countRange>
+                </li>
+            </subOptionsTakeAll>
+        </inventoryOptions>
+        <combatPower>40</combatPower>
+        <weaponTags>
+            <li>IndustrialGunAdvanced</li>
+        </weaponTags>
+        <weaponMoney>1100~3500</weaponMoney>
+        <apparelMoney>1250~2500</apparelMoney>
+        <apparelTags>
+            <li>IndustrialBasic</li>
+            <li>IndustrialAdvanced</li>
+            <li>IndustrialMilitaryBasic</li>
+            <li>IndustrialMilitaryAdvanced</li>
+        </apparelTags>
+        <apparelRequired>
+            <li>Rimgate_TauriSGTeamBDU</li>
+        </apparelRequired>
+        <apparelDisallowTags>
+            <li>Western</li>
+        </apparelDisallowTags>
+        <techHediffsChance>0.15</techHediffsChance>
+        <techHediffsMoney>1000~1800</techHediffsMoney>
+        <initialWillRange>3~5</initialWillRange>
+        <initialResistanceRange>16~25</initialResistanceRange>
     </PawnKindDef>
 
     <PawnKindDef Name="Rimgate_TauriUniformedBase" ParentName="Rimgate_TauriBase" Abstract="True">
