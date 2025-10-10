@@ -135,6 +135,29 @@
         </stages>
     </ThoughtDef>
 
+    <!-- =============== Wraith Hive =============== -->
+
+    <ThoughtDef>
+        <defName>Rimgate_HiveChat</defName>
+        <thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+        <stackLimit>300</stackLimit>
+        <maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+        <socialTargetDevelopmentalStageFilter>Baby, Child, Adult</socialTargetDevelopmentalStageFilter>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li MayRequire="Ludeon.RimWorld.Anomaly">Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>shared the hum</label>
+                <baseOpinionOffset>0.44</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
     <!-- =============== ARCHOTECH IDOL OF RESONANCE =============== -->
 
     <!-- General calm: refreshable small memory so it sticks while in range -->
@@ -184,6 +207,5 @@
             </li>
         </stages>
     </ThoughtDef>
-
 
 </Defs>
