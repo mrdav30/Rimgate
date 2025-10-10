@@ -188,7 +188,11 @@
     <isFighter>true</isFighter>
     <xenotypeSet Inherit="False">
       <xenotypeChances>
-        <Rimgate_GoauldJaffa>999</Rimgate_GoauldJaffa>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+        <Rimgate_GoauldJaffa>0.15</Rimgate_GoauldJaffa>
       </xenotypeChances>
     </xenotypeSet>
     <canBeSapper>true</canBeSapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <ThingDef ParentName="ArtBuildingBase">
+        <defName>Rimgate_GoauldSculpture</defName>
+        <label>Goa'uld sculpture</label>
+        <description>A gilt idol worked in naquadah-veined gold, its planes cut with knife-sharp hieroglyphs. The script praises distant “lords” and seems to rearrange itself when no one is watching. Standing near it straightens backs and quiets whispers. Slaves linger longer in fearful obedience.</description>
+
+        <!-- Not buildable or craftable; loot-only -->
+        <designationCategory IsNull="True" />
+        <building>
+            <neverBuildable>true</neverBuildable>
+            <deconstructible>false</deconstructible>
+            <claimable>true</claimable>
+        </building>
+        <costList /> <!-- none -->
+
+        <graphicData>
+            <graphicClass>Graphic_Random</graphicClass>
+            <texPath>Things/Building/Art/RGSculptureGoauld</texPath>
+            <drawSize>(3,3)</drawSize>
+        </graphicData>
+        <rotatable>false</rotatable>
+        <fillPercent>0.5</fillPercent>
+        <uiIconScale>0.66</uiIconScale>
+
+        <!-- Lootable, but not tradable in normal markets -->
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <tradeability>None</tradeability>
+        <thingCategories>
+            <li>BuildingsArt</li>
+        </thingCategories>
+
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <Mass>15</Mass>
+            <Beauty>55</Beauty>
+            <TerrorSource MayRequire="Ludeon.RimWorld.Ideology">25</TerrorSource>
+            <MeditationFocusStrength>0.20</MeditationFocusStrength>
+        </statBases>
+
+        <!-- Pure Art -->
+        <comps Inherit="False">
+
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+
+            <li Class="CompProperties_Art">
+                <nameMaker>NamerArt_GoauldSculpture</nameMaker>
+                <descriptionMaker>ArtDescription_GoauldSculpture</descriptionMaker>
+                <minQualityForArtistic>Awful</minQualityForArtistic>
+                <canBeEnjoyedAsArt>true</canBeEnjoyedAsArt>
+            </li>
+
+        </comps>
+
+        <placeWorkers />
+    </ThingDef>
+
+</Defs>

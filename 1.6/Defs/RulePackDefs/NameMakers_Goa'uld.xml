@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+  <!-- Pawns -->
+
   <RulePackDef>
     <defName>Rimgate_NamerPersonJaffaM</defName>
     <rulePack>
@@ -71,6 +73,140 @@
       <rulesFiles>
         <li>RG_KullUnisexName->NameBanks/Goauld/Names_Kull_Unisex</li>
       </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+  <!-- Art -->
+
+  <RulePackDef>
+    <defName>NamerArt_GoauldSculpture</defName>
+    <include>
+      <!-- Keep vanilla hooks so colonist names / places can flow in -->
+      <li>NamerArtCommon</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <!-- Titles -->
+        <li>art_name_root->[gold_title] [of_praise]</li>
+        <li>art_name_root->[gold_title] of [goauld_name]</li>
+        <li>art_name_root->[hieroglyphic_title] of [dominion]</li>
+        <li>art_name_root->[symbol_title] of [system_power]</li>
+        <li>art_name_root->[desert_title] of [eternity_phrase]</li>
+
+        <!-- Building blocks -->
+        <li>gold_title->Gilded Edict</li>
+        <li>gold_title->Golden Decree</li>
+        <li>gold_title->Naquadah Oath</li>
+        <li>gold_title->Sun-blessed Icon</li>
+
+        <li>hieroglyphic_title->Hieroglyphic Command</li>
+        <li>hieroglyphic_title->Script of Dominion</li>
+        <li>hieroglyphic_title->Inscribed Mandate</li>
+        <li>hieroglyphic_title->Tablet of Obedience</li>
+
+        <li>symbol_title->Eye of Authority</li>
+        <li>symbol_title->Serpent’s Claim</li>
+        <li>symbol_title->Jackal’s Boast</li>
+        <li>symbol_title->Chevron Seal</li>
+
+        <li>desert_title->Dune Throne</li>
+        <li>desert_title->Starlit Pyramid</li>
+        <li>desert_title->Mirage of Power</li>
+
+        <li>of_praise->the Divine Host</li>
+        <li>of_praise->the Eternal Court</li>
+        <li>of_praise->those Who Kneel</li>
+        <li>of_praise->the Silent Millions</li>
+
+        <li>dominion->Submission</li>
+        <li>dominion->Silence</li>
+        <li>dominion->Loyalty</li>
+        <li>dominion->The Outer Worlds</li>
+
+        <li>system_power->the System Lords</li>
+        <li>system_power->the Celestial Court</li>
+
+        <!-- Goa’uld touchstones (lightly veiled) -->
+        <li>goauld_name->Ra</li>
+        <li>goauld_name->Apophis</li>
+        <li>goauld_name->Anubis</li>
+        <li>goauld_name->Hathor</li>
+        <li>goauld_name->Baal</li>
+
+        <li>eternity_phrase->Endless Day</li>
+        <li>eternity_phrase->Unbroken Rule</li>
+        <li>eternity_phrase->Ten Thousand Years</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>ArtDescription_GoauldSculpture</defName>
+    <rulePack>
+      <rulesStrings>
+        <!-- Entry sentences -->
+        <li>physical_description_root->This [gold_sculpture] [depicts] [image]. [desc_sentence_group]</li>
+        <li>physical_description_root->On this [gold_sculpture] is a [depiction] of [image]. [desc_sentence_group]</li>
+        <li>physical_description_root->This [gold_sculpture] bears [hieroglyphs] praising [subject_power]. [desc_sentence_group]</li>
+
+        <!-- Nouns -->
+        <li>gold_sculpture->gold sculpture</li>
+        <li>gold_sculpture->naquadah-veined carving</li>
+        <li>gold_sculpture->gilded idol</li>
+        <li>gold_sculpture->hammered gold relief</li>
+
+        <!-- Verbs -->
+        <li>depicts->depicts</li>
+        <li>depicts->shows</li>
+        <li>depicts->portrays</li>
+
+        <li>depiction->relief</li>
+        <li>depiction->panel</li>
+        <li>depiction->frieze</li>
+
+        <!-- Glyphs + subject -->
+        <li>hieroglyphs->cramped hieroglyphs</li>
+        <li>hieroglyphs->knife-sharp hieroglyphs</li>
+        <li>hieroglyphs->well-worn hieroglyphs</li>
+        <li>hieroglyphs->freshly cut hieroglyphs</li>
+
+        <li>subject_power->the System Lords</li>
+        <li>subject_power->the Eternal Court</li>
+        <li>subject_power->the Serpent Throne</li>
+
+        <!-- Images (Goa’uld, but RimWorld-toned) -->
+        <li>image->a jackal-masked figure enthroned above a pyramid field</li>
+        <li>image->a serpent-crowned ruler accepting kneeling warriors</li>
+        <li>image->a star-gate ring with lit chevrons beneath a desert sky</li>
+        <li>image->a sarcophagus radiating halos of light and fear</li>
+        <li>image->a fleet shadow crossing a sun-blasted world</li>
+        <li>image->bound captives presented before a golden dais</li>
+        <li>image->a priest carving glyphs into polished plates</li>
+        <li>image->a line of Jaffa bearing banners and shock staves</li>
+
+        <!-- Follow-ups: material, mood, menace -->
+        <li>desc_sentence_group->[material_clause] [mood_clause] [menace_clause]</li>
+
+        <li>material_clause->Fine [inlay] edges the grooves.</li>
+        <li>material_clause->The gold is [finish] and heavy.</li>
+        <li>material_clause->Hairline cracks reveal [inlay] beneath the gilt.</li>
+
+        <li>inlay->black naquadah</li>
+        <li>inlay->dark lapis</li>
+        <li>inlay->obsidian glass</li>
+
+        <li>finish->mirror-bright</li>
+        <li>finish->dented</li>
+        <li>finish->thumb-worn</li>
+
+        <li>mood_clause->The angles catch torchlight like a watchful eye.</li>
+        <li>mood_clause->The glyphs seem to arrange themselves when no one looks.</li>
+        <li>mood_clause->A faint metallic tang hangs in the air.</li>
+
+        <li>menace_clause->Onlookers feel their backs straighten unbidden.</li>
+        <li>menace_clause->Standing nearby invites careful silence.</li>
+        <li>menace_clause->Something about it discourages disobedience.</li>
+      </rulesStrings>
     </rulePack>
   </RulePackDef>
 
