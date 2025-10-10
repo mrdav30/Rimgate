@@ -134,7 +134,7 @@
         </thingCategories>
     </ThingDef>
 
-    <!-- Cipher -->
+    <!-- ==================== Cipher ==================== -->
 
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_TreasureCipherFragment</defName>
@@ -297,7 +297,9 @@
         </graphicData>
         <ingestible>
             <foodType>Kibble</foodType>
-            <preferability>RawBad</preferability>
+            <preferability>MealFine</preferability>
+            <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+            <defaultNumToIngestAtOnce>1</defaultNumToIngestAtOnce>
             <ingestEffect>EatMeat</ingestEffect>
             <ingestSound>RawMeat_Eat</ingestSound>
             <tasteThought>AteRawFood</tasteThought>
@@ -315,7 +317,6 @@
         <thingCategories>
             <li>MeatRaw</li>
         </thingCategories>
-        <tickerType>Rare</tickerType>
     </ThingDef>
 
 </Defs>

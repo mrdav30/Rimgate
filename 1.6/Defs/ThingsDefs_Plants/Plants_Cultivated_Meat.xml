@@ -38,6 +38,7 @@
 			<harvestFailable>false</harvestFailable>
 			<dieIfNoSunlight>false</dieIfNoSunlight>
 			<allowAutoCut>false</allowAutoCut>
+			<maxMeshCount>1</maxMeshCount>
 			<dieIfLeafless>false</dieIfLeafless>
 			<pollution>Any</pollution>
 			<harvestTag>Standard</harvestTag>
@@ -52,7 +53,7 @@
 			<harvestWork>190</harvestWork>
 			<sowWork>260</sowWork>
 			<topWindExposure>0</topWindExposure>
-			<visualSizeRange>0.3~0.8</visualSizeRange>
+			<visualSizeRange>1~1</visualSizeRange>
 			<purpose>Food</purpose>
 			<minGrowthTemperature>-35</minGrowthTemperature>
 			<maxGrowthTemperature>75</maxGrowthTemperature>

@@ -146,96 +146,6 @@
 	<!-- ==================== Meat Cocoon ==================== -->
 
 	<RecipeDef>
-		<defName>Rimgate_MakeMeatCocoon</defName>
-		<label>Cocoon meat</label>
-		<description>make a batch of cocooned meat.</description>
-		<jobString>making cocooned meat.</jobString>
-		<effectWorking>ButcherFlesh</effectWorking>
-		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>450</workAmount>
-		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
-		<recipeUsers>
-			<li>ButcherSpot</li>
-			<li>TableButcher</li>
-		</recipeUsers>
-		<ingredients>
-			<li>
-				<filter>
-					<customSummary>protein</customSummary>
-					<categories>
-						<li>MeatRaw</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-			<li>
-				<filter>
-					<customSummary>cloth</customSummary>
-					<categories>
-						<li>Cloth</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<categories>
-				<li>MeatRaw</li>
-				<li>Cloth</li>
-			</categories>
-		</fixedIngredientFilter>
-		<products>
-			<Rimgate_CocoonedMeat>1</Rimgate_CocoonedMeat>
-		</products>
-		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
-	</RecipeDef>
-
-	<RecipeDef>
-		<defName>Rimgate_MakeMeatCocoon_x4</defName>
-		<label>Cocoon meat x4</label>
-		<description>Make a batch of cocooned meat.</description>
-		<jobString>Making cocooned meat.</jobString>
-		<effectWorking>ButcherFlesh</effectWorking>
-		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>900</workAmount>
-		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
-		<recipeUsers>
-			<li>ButcherSpot</li>
-			<li>TableButcher</li>
-		</recipeUsers>
-		<ingredients>
-			<li>
-				<filter>
-					<customSummary>protein</customSummary>
-					<categories>
-						<li>MeatRaw</li>
-					</categories>
-				</filter>
-				<count>4</count>
-			</li>
-			<li>
-				<filter>
-					<customSummary>cloth</customSummary>
-					<categories>
-						<li>Cloth</li>
-					</categories>
-				</filter>
-				<count>4</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<categories>
-				<li>MeatRaw</li>
-				<li>Cloth</li>
-			</categories>
-		</fixedIngredientFilter>
-		<products>
-			<Rimgate_CocoonedMeat>4</Rimgate_CocoonedMeat>
-		</products>
-		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
-	</RecipeDef>
-
-	<RecipeDef>
 		<defName>Rimgate_WraithMakeMeatCocoon</defName>
 		<label>Cocoon meat</label>
 		<description>make a batch of cocooned meat.</description>
@@ -261,7 +171,6 @@
 		<fixedIngredientFilter>
 			<categories>
 				<li>MeatRaw</li>
-				<li>Cloth</li>
 			</categories>
 		</fixedIngredientFilter>
 		<products>
@@ -296,7 +205,6 @@
 		<fixedIngredientFilter>
 			<categories>
 				<li>MeatRaw</li>
-				<li>Cloth</li>
 			</categories>
 		</fixedIngredientFilter>
 		<products>

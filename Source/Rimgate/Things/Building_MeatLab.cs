@@ -56,14 +56,21 @@ public class Building_MeatLab : Building_PlantGrower
     {
         base.TickRare();
 
-        if(_plant != null) return;
-        foreach(Plant plant in PlantsOnMe)
+        // Refresh cache if it's missing, despawned, on another map, or destroyed
+        if (_plant == null 
+            || !_plant.Spawned 
+            || _plant.Map != Map 
+            || _plant.Destroyed)
         {
-            if(plant is Plant_MeatPlant pmp)
+            _plant = null;
+            foreach (Plant plant in PlantsOnMe)
             {
-                _plant = pmp;
-                break;
-            }         
+                if (plant is Plant_MeatPlant pmp && pmp.Spawned && pmp.Map == Map)
+                {
+                    _plant = pmp;
+                    break;
+                }
+            }
         }
     }
 
@@ -71,21 +78,16 @@ public class Building_MeatLab : Building_PlantGrower
     {
         get
         {
-            // For when it's minified or in a trade ship.
-            if (_plant == null)
-                return Building_MeatLab._growGraphics["empty"];
+            // Show “empty” when no valid, spawned plant is present
+            if (_plant == null || !_plant.Spawned || _plant.Map != Map)
+                return _growGraphics["empty"];
 
             var growthPercent = Mathf.FloorToInt((_plant.Growth + 0.0001f) * 100f);
-            if (growthPercent <= 10)
-                return Building_MeatLab._growGraphics["empty"];
-            else if (growthPercent <= 25)
-                return Building_MeatLab._growGraphics["25%"];
-            else if (growthPercent <= 50)
-                return Building_MeatLab._growGraphics["50%"];
-            else if (growthPercent <= 75)
-                return Building_MeatLab._growGraphics["75%"];
-            else
-                return Building_MeatLab._growGraphics["100%"];
+            if (growthPercent <= 10) return _growGraphics["empty"];
+            if (growthPercent <= 25) return _growGraphics["25%"];
+            if (growthPercent <= 50) return _growGraphics["50%"];
+            if (growthPercent <= 75) return _growGraphics["75%"];
+            return _growGraphics["100%"];
         }
     }
 
@@ -93,10 +95,10 @@ public class Building_MeatLab : Building_PlantGrower
     {
         string text = base.GetInspectString();
 
-        if (Spawned && _plant != null)
+        // Only append plant inspect if it’s actually spawned on this map
+        if (Spawned && _plant != null && _plant.Spawned && _plant.Map == Map)
         {
-            if (!text.NullOrEmpty())
-                text += "\n";
+            if (!text.NullOrEmpty()) text += "\n";
             text += _plant.GetInspectString();
         }
         return text;
