@@ -36,6 +36,11 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldSculpture</defName>
+        <thing>Rimgate_GoauldSculpture</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_HiveFloor</defName>
         <thing>Rimgate_HiveFloor</thing>
     </KCSG.SymbolDef>
@@ -198,6 +203,11 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_DestroyedMalp</defName>
+        <thing>Rimgate_DestroyedMalp</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_AncientReplicatorVat_EmptySmall</defName>
         <thing>Rimgate_AncientReplicatorVat_EmptySmall</thing>
     </KCSG.SymbolDef>
@@ -267,6 +277,26 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_JaffaArmor</defName>
         <thing>Rimgate_JaffaArmor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_JaffaHelmet</defName>
+        <thing>Rimgate_JaffaHelmet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_JackalHelmet</defName>
+        <thing>Rimgate_JackalHelmet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SerpentHelmet</defName>
+        <thing>Rimgate_SerpentHelmet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_HorusHelmet</defName>
+        <thing>Rimgate_HorusHelmet</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -489,6 +519,30 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_SerpentGuard</defName>
+        <pawnKindDef>Rimgate_SerpentGuard</pawnKindDef>
+        <faction>Rimgate_GoauldBaal</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_JackalGuard</defName>
+        <pawnKindDef>Rimgate_JackalGuard</pawnKindDef>
+        <faction>Rimgate_GoauldBaal</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_HorusGuard</defName>
+        <pawnKindDef>Rimgate_HorusGuard</pawnKindDef>
+        <faction>Rimgate_GoauldBaal</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_KullWarrior</defName>
         <pawnKindDef>Rimgate_KullWarrior</pawnKindDef>
         <faction>Rimgate_GoauldBaal</faction>
@@ -517,7 +571,7 @@
         <pawnKindDef>Rimgate_TauriScientist</pawnKindDef>
         <faction>Rimgate_TauriFaction</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
-        <defendSpawnPoint>false</defendSpawnPoint>
+        <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

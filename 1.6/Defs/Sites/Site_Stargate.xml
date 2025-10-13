@@ -68,6 +68,7 @@
 				<li>Rimgate_StructureGoauldNaquadahStorehouse</li>
 				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
 				<li>Rimgate_StructureGoauldTemple</li>
+				<li>Rimgate_StructureGoauldHatak</li>
 			</structureLayoutDefs>
 			<preventBridgeable>true</preventBridgeable>
 		</genStep>
@@ -219,14 +220,16 @@
 				<li>Rimgate_StructureBarrenGate</li>
 				<li>Rimgate_StructureBarrenGateNoDHD</li>
 				<li>Rimgate_StructureCavernAlpha</li>
+				<li>Rimgate_StructureJadeHengeAlpha</li>
+				<li>Rimgate_StructureJadeHengeBravo</li>
 				<li>Rimgate_StructureMazeAlpha</li>
 				<li>Rimgate_StructureMazeBravo</li>
 				<li>Rimgate_StructureNaquadahMine</li>
-				<li>Rimgate_StructureJadeHengeAlpha</li>
-				<li>Rimgate_StructureJadeHengeBravo</li>
+				<li>Rimgate_StructureRansackedVilla</li>
 				<li>Rimgate_StructureStrangeVillageAlpha</li>
 				<li>Rimgate_StructureStrangeVillageBravo</li>
 				<li>Rimgate_StructureStrangeVillageCharlie</li>
+				<li>Rimgate_StructureTraderOutpost</li>
 				<li>Rimgate_StructureUnasVillage</li>
 			</structureLayoutDefs>
 			<preventBridgeable>true</preventBridgeable>
