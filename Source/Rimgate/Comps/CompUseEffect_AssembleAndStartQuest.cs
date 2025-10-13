@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using RimWorld.QuestGen;
@@ -49,8 +50,9 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
             foreach (var thing in candidates)
             {
                 if (needed <= 0) break;
-                thing.SplitOff(1).Destroy();
-                needed -= 1;
+                int take = Math.Min(needed, thing.stackCount);
+                thing.SplitOff(take).Destroy(DestroyMode.Vanish);
+                needed -= take;
             }
         }
 

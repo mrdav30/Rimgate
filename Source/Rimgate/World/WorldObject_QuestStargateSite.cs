@@ -96,7 +96,7 @@ public class WorldObject_QuestStargateSite : Site
         foreach (var g in base.GetGizmos())
         {
             // lock "CommandShowMap" behind research
-            if (base.HasMap 
+            if (base.HasMap
                 && !RimgateDefOf.Rimgate_WraithModificationEquipment.IsFinished)
             {
                 if (g is Command_Action ca)
@@ -121,7 +121,9 @@ public class WorldObject_QuestStargateSite : Site
                 if (quest != null && quest.State == QuestState.Ongoing)
                 {
                     quest.End(QuestEndOutcome.Fail, false, false);
-                    CheckRemoveMapNow();
+                    if (HasMap)
+                        Current.Game.DeinitAndRemoveMap(Map, notifyPlayer: true);
+                    Destroy();
                 }
             }
         };
@@ -141,8 +143,8 @@ public class WorldObject_QuestStargateSite : Site
         if (QuestId == -1) return null;
 
         _questCached = Find.QuestManager.QuestsListForReading
-            .FirstOrDefault(q => 
-                q.id == QuestId 
+            .FirstOrDefault(q =>
+                q.id == QuestId
                 && q.State == QuestState.Ongoing);
         if (_questCached == null) QuestId = -1; // stale id
         return _questCached;
