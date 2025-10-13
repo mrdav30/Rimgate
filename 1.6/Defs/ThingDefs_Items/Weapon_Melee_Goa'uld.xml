@@ -71,19 +71,19 @@
         <label>rod of anguish</label>
         <description>A cruel Goa’uld control rod that channels a focused pain field on contact. It leaves little lasting injury—but wrings screams, buckles knees, and short-outs crude circuitry. Favored by Jaffa overseers who want obedience more than corpses.</description>
 
-        <techLevel>Spacer</techLevel>
+        <techLevel>Ultra</techLevel>
         <smeltable>false</smeltable>
         <burnableByRecipe>false</burnableByRecipe>
-        <weaponClasses>
-            <li>Melee</li>
-        </weaponClasses>
-        <relicChance>1</relicChance>
+
+        <relicChance>3</relicChance>
         <inspectorTabs>
             <li>ITab_Art</li>
         </inspectorTabs>
 
         <weaponClasses>
             <li>MeleeBlunt</li>
+            <li>Melee</li>
+            <li>Ultratech</li>
         </weaponClasses>
 
         <!-- Visuals -->
@@ -97,9 +97,12 @@
         <!-- Not craftable, not generally tradeable (spawn it only) -->
         <tradeability>None</tradeability>
 
+        <thingSetMakerTags>
+            <li>RewardStandardLowFreq</li>
+        </thingSetMakerTags>
+
         <weaponTags>
             <li>Rimgate_RodOfAnguish_tag</li>
-            <li>UltratechMelee</li>
         </weaponTags>
 
         <costStuffCount>80</costStuffCount>
@@ -154,6 +157,17 @@
         <equippedStatOffsets>
             <MeleeHitChance>0.04</MeleeHitChance>
         </equippedStatOffsets>
+
+        <comps>
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+            <li Class="CompProperties_Art">
+                <nameMaker>NamerArtWeaponMelee</nameMaker>
+                <descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
+                <minQualityForArtistic>Excellent</minQualityForArtistic>
+            </li>
+        </comps>
     </ThingDef>
 
 </Defs>
