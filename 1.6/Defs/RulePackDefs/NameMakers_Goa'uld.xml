@@ -80,10 +80,6 @@
 
   <RulePackDef>
     <defName>NamerArt_GoauldSculpture</defName>
-    <include>
-      <!-- Keep vanilla hooks so colonist names / places can flow in -->
-      <li>NamerArtCommon</li>
-    </include>
     <rulePack>
       <rulesStrings>
         <!-- Titles -->
