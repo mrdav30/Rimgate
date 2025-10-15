@@ -30,7 +30,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateAlloyResearch</defName>
-		<label>ancient alloys</label>
+		<label>Ancient alloys</label>
 		<description>By combining Plasteel, Uranium, Naquadah, and Steel, our scientists have created an absurdly strong, absurdly unstable alloy.\nToo volatile for furniture, perfect for high-stakes wormhole shielding.</description>
 		<baseCost>4000</baseCost>
 		<researchViewX>1.00</researchViewX>
@@ -55,7 +55,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateReplacementDHDResearch</defName>
-		<label>replacement DHD</label>
+		<label>Replacement DHD</label>
 		<description>By studying salvaged Stargate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.\nNote: SGC officially recommends bolting this one to the floor.</description>
 		<baseCost>4000</baseCost>
 		<prerequisites>
@@ -66,15 +66,64 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_SubspaceMasking</defName>
-		<label>subspace masking</label>
-		<description>Reverse-engineer Ancient carrier-noise and Tau’ri signal hygiene to hide a ZPM’s telltale subspace bleed. Not true invisibility—just enough distortion to keep opportunists from triangulating your base every other day.</description>
-		<baseCost>3500</baseCost>
+		<defName>Rimgate_ZPMIntegration</defName>
+		<label>ZPM fundamentals</label>
+		<description>Decode Ancient supervisory fields and safety interlocks to bind a ZPM into modern distributions without catastrophic feedback. Until this is understood, a ZPM will remain inert when connected.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>2000</baseCost>
 		<prerequisites>
+			<li>Electricity</li>
 			<li>Rimgate_StargateAlloyResearch</li>
 		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>3</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_ZPM</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: ZPM</discoveredLetterTitle>
+		<discoveredLetterText>When your scientists finally cracked the containment lattice schematics, the lab went silent.
+			Every reading, every oscillation, every micro-field pointed to one conclusion: this was no ordinary crystal lattice.
+			The ZPM’s inner structure is a sealed universe—an engineered pocket of subspace siphoning the quantum foam itself.
+
+			Your researchers now understand the basic interlocks required to awaken such a device without annihilating half the map.
+			Once integrated into a power grid, a ZPM will initialize and begin harnessing and storing energy on a scale previously thought impossible.
+
+			Be warned: this brilliance does not go unnoticed. The moment the containment field hums to life, eyes will turn toward your colony.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Zero Point Module</li>
+				<li>subject->ZPM</li>
+				<li>subject_adj->Ancient</li>
+				<li>subject_adj->archotech</li>
+				<li>subject_adj->forbidden</li>
+
+				<li>subject_story->an artifact sealed in a lattice of pure energy, humming with impossible stillness</li>
+				<li>subject_story->a power source so stable it defies entropy itself</li>
+				<li>subject_story->a relic from a civilization that bent the vacuum to its will</li>
+				<li>subject_story->a crystalline core suspended between universes, its heart beating in subspace</li>
+				<li>subject_story->a device older than recorded history, yet perfect beyond modern comprehension</li>
+				<li>subject_story->a cylinder of light and silence, pulsing with the echoes of creation</li>
+
+				<li>subject_gerund->decoding Ancient containment matrices</li>
+				<li>subject_gerund->stabilizing subspace manifolds</li>
+				<li>subject_gerund->translating the control glyphs of the Ancients</li>
+				<li>subject_gerund->aligning field harmonics to quantum lattice constants</li>
+				<li>subject_gerund->disentangling zero-point field feedback loops</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_SubspaceMasking</defName>
+		<label>Subspace masking</label>
+		<description>Reverse-engineer Ancient carrier-noise and Tau’ri signal hygiene to hide a ZPM’s telltale subspace bleed. Not true invisibility—just enough distortion to keep opportunists from triangulating your base every other day.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Rimgate_ZPMIntegration</li>
+		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>3</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
@@ -84,6 +133,21 @@
 		<tags>
 			<li>Rimgate_TechprintPool</li>
 		</tags>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ParallelSubspaceCoupling</defName>
+		<label>parallel subspace coupling</label>
+		<description>Exploit cross-brane phase offsets to alternate a ZPM’s vacuum tap between adjacent subspace pockets. This doesn’t “refill” a ZPM so much as rotate where it drinks from. The math is ugly; the hum is beautiful.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>3600</baseCost>
+		<prerequisites>
+			<li>Rimgate_ZPMIntegration</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>4</researchViewY>
+		<discoveredLetterTitle>About: Phase Diverter</discoveredLetterTitle>
+		<discoveredLetterText>By expressing vacuum fluctuations across parallel subspace branes, your engineers can “phase-hop” a ZPM’s intake. Connected ZPMs will now gradually replenish reserves while a diverter runs on the same power net. Don’t stare at the interference fringes too long.</discoveredLetterText>
 	</ResearchProjectDef>
 
 </Defs>

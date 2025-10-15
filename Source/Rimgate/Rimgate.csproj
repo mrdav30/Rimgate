@@ -364,17 +364,18 @@
     <Compile Include="Comps\Properties\CompProperties_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
-    <Compile Include="Comps\Properties\CompProperties_ZpmSignalScrambler.cs" />
     <Compile Include="HarmonyPatches\Harmony_BedCellSearchPattern.cs" />
     <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
     <Compile Include="HarmonyPatches\Harmony_CompLabyrinthDoor_DrawJammed.cs" />
     <Compile Include="HarmonyPatches\Harmony_EquipmentUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
+    <Compile Include="HarmonyPatches\Harmony_PowerNet.cs" />
     <Compile Include="HarmonyPatches\Harmony_SiteMakerHelper.cs" />
     <Compile Include="HarmonyPatches\Harmony_JobMaker_MakeJob.cs" />
     <Compile Include="HarmonyPatches\Harmony_MechanitorUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_PawnGenerator.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_MechanitorTracker.cs" />
+    <Compile Include="HarmonyPatches\Harmony_ShortCircuitUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_ThingOwnerUtility.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_RandomCloneGeneration.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_GivePsylinkOnAdded.cs" />
@@ -469,6 +470,7 @@
     <Compile Include="UI\PlaceWorker_ShowTurretRadiusWithOffset.cs" />
     <Compile Include="UI\PlaceWorker_ResonanceIdol.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
+    <Compile Include="UI\PlaceWorker_ZpmClusterHint.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
     <Compile Include="Utilities\RimgateFactionDefOf.cs" />
     <Compile Include="Utilities\StargateUtility.cs" />

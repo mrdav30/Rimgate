@@ -798,8 +798,7 @@
 				<!-- Analyzable -->
 
 				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
-				<analysisDurationHours>0.5</analysisDurationHours>
-				<destroyedOnAnalyzed>false</destroyedOnAnalyzed>
+				<analysisDurationHours>6</analysisDurationHours>
 				<completedLetterLabel>Kull armor studied: {RESEARCH} unlocked</completedLetterLabel>
 				<completedLetter>By studying the Kull's armor, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
@@ -810,7 +809,7 @@
 
 				<activateLabelString>Analyze...</activateLabelString>
 				<activateDescString>Analyze the Kull's armor.</activateDescString>
-				<jobString>Analyze Kull armor</jobString>
+				<jobString>Analyzing Kull armor</jobString>
 				<guiLabelString>Choose who should analyze this</guiLabelString>
 				<inspectString>Can be analyzed by a colonist.</inspectString>
 
@@ -904,8 +903,7 @@
 				<!-- Analyzable -->
 
 				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
-				<analysisDurationHours>0.5</analysisDurationHours>
-				<destroyedOnAnalyzed>false</destroyedOnAnalyzed>
+				<analysisDurationHours>9</analysisDurationHours>
 				<completedLetterLabel>Goa'uld Kara kesh studied: {RESEARCH} unlocked</completedLetterLabel>
 				<completedLetter>By studying the Goa'uld Kara kesh, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
@@ -916,7 +914,7 @@
 
 				<activateLabelString>Analyze...</activateLabelString>
 				<activateDescString>Analyze the Goa'uld Kara kesh.</activateDescString>
-				<jobString>Analyze Goa'uld Kara kesh</jobString>
+				<jobString>Analyzing Goa'uld Kara kesh</jobString>
 				<guiLabelString>Choose who should analyze this</guiLabelString>
 				<inspectString>Can be analyzed by a colonist.</inspectString>
 

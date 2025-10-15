@@ -20,8 +20,6 @@ public class Comp_ZpmSignalScrambler : ThingComp
 
     private CompPowerTrader _cachedPower;
 
-    public CompProperties_ZpmSignalScrambler Props => (CompProperties_ZpmSignalScrambler)props;
-
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
         base.PostSpawnSetup(respawningAfterLoad);

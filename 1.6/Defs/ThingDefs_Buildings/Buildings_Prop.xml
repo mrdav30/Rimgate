@@ -337,7 +337,7 @@
                 <activateLabelString>Force open...</activateLabelString>
                 <activateDescString>Choose someone to force this door open.</activateDescString>
                 <guiLabelString>Choose who should do this</guiLabelString>
-                <jobString>Force this door open</jobString>
+                <jobString>Forcing open door</jobString>
                 <activatingStringPending>forcing door open</activatingStringPending>
                 <activatingString>forcing door open: {1}s</activatingString>
                 <messageCompletedString>{PAWN_nameDef} has successfully forced the door open.</messageCompletedString>
@@ -388,7 +388,7 @@
                 <activateLabelString>Force open...</activateLabelString>
                 <activateDescString>Choose someone to pry the panel loose.</activateDescString>
                 <guiLabelString>Choose who should do this</guiLabelString>
-                <jobString>Pry the hidden panel</jobString>
+                <jobString>Prying the hidden panel</jobString>
                 <activatingStringPending>prying</activatingStringPending>
                 <activatingString>prying: {1}s</activatingString>
                 <messageCompletedString>{PAWN_nameDef} has revealed a hidden passage.</messageCompletedString>

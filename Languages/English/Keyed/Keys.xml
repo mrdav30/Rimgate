@@ -167,6 +167,11 @@
 	<RG_GateIsNotActive>Dwarfgate is not active.</RG_GateIsNotActive>
 	<RG_CannotCloseIncoming>Cannot disengage an incoming wormhole.</RG_CannotCloseIncoming>
 
+	<!-- ZPM -->
+
+	<RG_ZpmDarkEnergyReserve>Dark Energy Reserve: {0} / {1}</RG_ZpmDarkEnergyReserve>
+	<RG_ZpmSynergyBonus>Cluster synergy: +{0}%</RG_ZpmSynergyBonus>
+
 	<!-- ZPM Raid Quest -->
 
 	<RG_RaidZpmDelayDesc>Your ZPM is broadcasting a strong signal that anyone can hone in on.\n\nRaids will start arriving in {0}.\n\nThe raiders will target your ZPM and attempt to seize it.</RG_RaidZpmDelayDesc>

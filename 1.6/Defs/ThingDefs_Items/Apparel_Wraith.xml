@@ -444,8 +444,7 @@
 				<!-- Analyzable -->
 
 				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
-				<analysisDurationHours>0.5</analysisDurationHours>
-				<destroyedOnAnalyzed>false</destroyedOnAnalyzed>
+				<analysisDurationHours>10</analysisDurationHours>
 				<completedLetterLabel>Wraith comm device studied: {RESEARCH} unlocked</completedLetterLabel>
 				<completedLetter>By studying the Wraith comm device, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
@@ -456,7 +455,7 @@
 
 				<activateLabelString>Analyze...</activateLabelString>
 				<activateDescString>Analyze the Wraith comm device.</activateDescString>
-				<jobString>Analyze Wraith comm device</jobString>
+				<jobString>Analyzing Wraith comm device</jobString>
 				<guiLabelString>Choose who should analyze this</guiLabelString>
 				<inspectString>Can be analyzed by a colonist.</inspectString>
 

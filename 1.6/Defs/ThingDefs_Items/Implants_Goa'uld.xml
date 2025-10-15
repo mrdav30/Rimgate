@@ -36,8 +36,7 @@
                 <!-- Analyzable -->
 
                 <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
-                <analysisDurationHours>0.5</analysisDurationHours>
-                <destroyedOnAnalyzed>false</destroyedOnAnalyzed>
+                <analysisDurationHours>6</analysisDurationHours>
                 <completedLetterLabel>Goa'uld Symbiote studied: {RESEARCH} unlocked</completedLetterLabel>
                 <completedLetter>By studying a Goa'uld Symbiote, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
                 <completedLetterDef>PositiveEvent</completedLetterDef>
@@ -48,7 +47,7 @@
 
                 <activateLabelString>Analyze...</activateLabelString>
                 <activateDescString>Analyze a Goa'uld Symbiote.</activateDescString>
-                <jobString>Analyze Goa'uld Symbiote</jobString>
+                <jobString>Analyzing Goa'uld Symbiote</jobString>
                 <guiLabelString>Choose who should analyze this</guiLabelString>
                 <inspectString>Can be analyzed by a colonist.</inspectString>
 

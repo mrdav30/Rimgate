@@ -15,7 +15,15 @@ public class Comp_DHDControl : ThingComp
 
     public CompProperties_DHDControl Props => (CompProperties_DHDControl)props;
 
+    private CompFacility Facility 
+        => _facilityComp ?? parent.GetComp<CompFacility>();
+
     private CompFacility _facilityComp;
+
+    private CompPowerTrader PowerTrader
+    => !Props.requiresPower 
+        ? null
+        : _powerComp ?? parent.GetComp<CompPowerTrader>();
 
     private CompPowerTrader _powerComp;
 
@@ -30,18 +38,9 @@ public class Comp_DHDControl : ThingComp
             if (Props.selfDialler)
                 return true;
 
-            return _facilityComp != null
-                && _facilityComp.LinkedBuildings.Count > 0;
+            return Facility != null
+                && Facility.LinkedBuildings.Count > 0;
         }
-    }
-
-    public override void PostSpawnSetup(bool respawningAfterLoad)
-    {
-        base.PostSpawnSetup(respawningAfterLoad);
-        _facilityComp = parent.GetComp<CompFacility>();
-
-        if (Props.requiresPower)
-            _powerComp = parent.TryGetComp<CompPowerTrader>();
     }
 
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
@@ -70,8 +69,7 @@ public class Comp_DHDControl : ThingComp
         }
 
         if (Props.requiresPower
-            && _powerComp != null
-            && !_powerComp.PowerOn)
+            && !(PowerTrader?.PowerOn == true))
         {
             yield return new FloatMenuOption(
                 "RG_CannotDialNoPower".Translate(),
@@ -178,9 +176,9 @@ public class Comp_DHDControl : ThingComp
         if (Props.selfDialler)
             return parent.TryGetComp<Comp_StargateControl>();
 
-        if (_facilityComp == null || _facilityComp.LinkedBuildings.Count == 0)
+        if (Facility?.LinkedBuildings.Count == 0)
             return null;
 
-        return _facilityComp.LinkedBuildings[0].TryGetComp<Comp_StargateControl>();
+        return Facility.LinkedBuildings[0].TryGetComp<Comp_StargateControl>();
     }
 }

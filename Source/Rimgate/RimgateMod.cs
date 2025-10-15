@@ -12,7 +12,6 @@ public class RimgateMod : Mod
     public static Harmony harmony;
 
     public static bool Debug = true;
-    public static bool DebugZPM = false;
 
     public static bool FlagAsteroids = true;
 

@@ -176,6 +176,7 @@
         <comps>
             <li Class="CompProperties_Facility">
                 <requiresLOS>false</requiresLOS>
+                <maxSimultaneous>1</maxSimultaneous>
             </li>
             <li Class="Rimgate.CompProperties_DHDControl">
                 <activeGraphicData>
@@ -248,6 +249,7 @@
         <comps>
             <li Class="CompProperties_Facility">
                 <requiresLOS>false</requiresLOS>
+                <maxSimultaneous>1</maxSimultaneous>
             </li>
             <li Class="CompProperties_Flickable" />
             <li Class="Rimgate.CompProperties_DHDControl">

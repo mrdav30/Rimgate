@@ -74,8 +74,6 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
                 if (foundTargets.Any())
                     attackTargets.AddRange(foundTargets);
             }
-
-            Log.Message($"found {attackTargets.Count} - {attackTargets[0]}");
         }
 
         incidentParms.attackTargets = attackTargets;

@@ -88,10 +88,12 @@ public static class RimgateDefOf
     public static RaidStrategyDef StageThenAttack;
 
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
+    public static ResearchProjectDef Rimgate_ParallelSubspaceCoupling;
     public static ResearchProjectDef Rimgate_WraithCloneFull;
     public static ResearchProjectDef Rimgate_WraithCloneEnhancement;
     public static ResearchProjectDef Rimgate_WraithCloneCorpse;
     public static ResearchProjectDef Rimgate_WraithModificationEquipment;
+    public static ResearchProjectDef Rimgate_ZPMIntegration;
 
     public static SoundDef Rimgate_GoauldGuardHelmToggle;
     public static SoundDef Rimgate_IrisOpen;
@@ -114,6 +116,7 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_PushedCartVisual;
     public static ThingDef Rimgate_SecretDoor;
     public static ThingDef Rimgate_Stargate;
+    public static ThingDef Rimgate_SubspacePhaseDiverter;
     public static ThingDef Rimgate_Wheelbarrow;
     public static ThingDef Rimgate_ZPM;
 

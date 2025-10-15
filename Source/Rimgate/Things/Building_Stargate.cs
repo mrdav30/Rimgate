@@ -12,50 +12,19 @@ namespace Rimgate;
 
 public class Building_Stargate : Building
 {
-    public CompPowerTrader PowerTrader
-    {
-        get
-        {
-            _cachedPowerTrader ??= GetComp<CompPowerTrader>();
-            return _cachedPowerTrader;
-        }
-    }
+    public CompPowerTrader PowerTrader 
+        => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
-    public CompTransporter Transporter
-    {
-        get
-        {
-            _cachedTransporter ??= GetComp<CompTransporter>();
-            return _cachedTransporter;
-        }
-    }
+    public CompTransporter Transporter 
+        => _cachedTransporter ??= GetComp<CompTransporter>();
 
-    public Comp_StargateControl StargateControl
-    {
-        get
-        {
-            _cachedStargate ??= GetComp<Comp_StargateControl>();
-            return _cachedStargate;
-        }
-    }
+    public Comp_StargateControl StargateControl 
+        => _cachedStargate ??= GetComp<Comp_StargateControl>();
 
-    public CompGlower Glower
-    {
-        get
-        {
-            _cachedGlowComp ??= GetComp<CompGlower>();
-            return _cachedGlowComp;
-        }
-    }
+    public CompGlower Glower => 
+        _cachedGlowComp ??= GetComp<CompGlower>();
 
-    public CompExplosive Explosive
-    {
-        get
-        {
-            _cachedexplosiveComp ??= GetComp<CompExplosive>();
-            return _cachedexplosiveComp;
-        }
-    }
+    public CompExplosive Explosive => _cachedexplosiveComp ??= GetComp<CompExplosive>();
 
     public Graphic ActiveGraphic => _activeGraphic ??= StargateControl?.Props?.activeGraphicData.Graphic;
 
