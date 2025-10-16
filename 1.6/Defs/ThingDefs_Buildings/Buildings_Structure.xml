@@ -196,4 +196,199 @@
     </researchPrerequisites>
   </ThingDef>
 
+  <!-- =============== Force Field Door =============== -->
+
+  <ThingDef ParentName="DoorBase">
+    <defName>Rimgate_ForceFieldDoor</defName>
+    <label>force field</label>
+    <description>A humming energy barrier. Red when locked, blue when hacked and safe to pass.</description>
+    <thingClass>Rimgate.Building_HackableForceField</thingClass>
+    <destroyable>false</destroyable>
+    <designationCategory IsNull="True" />
+    <rotatable>true</rotatable>
+    <graphicData>
+      <texPath>Things/Building/Structure/RGForceField_BarrierBlue</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>(1.6,1.6)</drawSize>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+    </graphicData>
+    <useHitPoints>false</useHitPoints>
+    <statBases>
+      <Flammability>0</Flammability>
+    </statBases>
+    <building>
+      <paintable>false</paintable>
+      <deconstructible>false</deconstructible>
+      <claimable>false</claimable>
+      <neverBuildable>true</neverBuildable>
+      <isAirtight>true</isAirtight>
+      <isSupportDoor>true</isSupportDoor>
+      <doorTopGraphic>
+        <texPath>Things/Building/Structure/RGBForceFieldDoor_Top</texPath>
+        <graphicClass>Graphic_Multi</graphicClass>
+        <drawSize>(1.6,1.6)</drawSize>
+      </doorTopGraphic>
+      <doorTopHorizontalOffset>(0,0,-0.025)</doorTopHorizontalOffset>
+      <expandHomeArea>false</expandHomeArea>
+    </building>
+
+    <stuffCategories Inherit="False" />
+    <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
+
+    <comps>
+      <li Class="CompProperties_Hackable">
+        <defence>2400</defence>
+        <effectHacking>HackingTerminal</effectHacking>
+        <lockoutDurationHoursRange>2~3</lockoutDurationHoursRange>
+        <notHackedInspectString>Barrier is locked. Hack to disperse.</notHackedInspectString>
+        <hackedInspectString>Barrier dispersed. Safe to pass.</hackedInspectString>
+        <hackedMessage>{HACKER_labelShort} disabled the defensive force field.</hackedMessage>
+        <showProgressAfterHackCompletion>false</showProgressAfterHackCompletion>
+
+        <unhackedGraphicData>
+          <texPath>Things/Building/Structure/RGForceField_BarrierRed</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>TransparentPostLight</shaderType>
+          <drawSize>(1.6,1.6)</drawSize>
+        </unhackedGraphicData>
+        <!-- <unhackedGraphicOffset>(0,0.1,0)</unhackedGraphicOffset> -->
+        <graphicDrawerType>RealtimeOnly</graphicDrawerType>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ================ Jammed Doors =================== -->
+
+  <!-- ===== Jammed door: abstract base you can inherit for any “pry-to-open” door ===== -->
+  <ThingDef Name="Rimgate_JammedDoorBase" ParentName="Door" Abstract="True">
+    <defName>Rimgate_JammedDoorBase</defName>
+    <label>jammed door (base)</label>
+    <description>An inoperable, sealed door that must be forced open. Indestructible and airtight until someone spends time prying it loose.</description>
+
+    <!-- Indestructible / not buildable / airtight -->
+    <destroyable>false</destroyable>
+    <useHitPoints>false</useHitPoints>
+    <designationCategory IsNull="True" />
+    <thingClass>Building_JammedDoor</thingClass>
+    <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
+
+    <statBases>
+      <Flammability>0</Flammability>
+    </statBases>
+
+    <building>
+      <!-- <paintable>false</paintable> -->
+      <deconstructible>false</deconstructible>
+      <claimable>false</claimable>
+      <neverBuildable>true</neverBuildable>
+      <isAirtight>true</isAirtight>
+      <canPlaceOverWall>true</canPlaceOverWall>
+    </building>
+
+  </ThingDef>
+
+  <ThingDef ParentName="Rimgate_JammedDoorBase">
+    <defName>Rimgate_JammedBlastDoor</defName>
+    <label>jammed blast door</label>
+    <description>A heavy blast door, bent and jammed beyond normal operation. Once meant to seal corridors from enemy incursion—or something worse—it now hums with locked hydraulics. Forcing it open may reveal why it was sealed.</description>
+
+    <stuffCategories Inherit="False">
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>25</costStuffCount>
+
+    <!-- “Mover” shell -->
+    <graphicData>
+      <texPath>Things/Building/Structure/RGBlastDoor_Mover</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+
+    <comps Inherit="False">
+      <li Class="CompProperties_LabyrinthDoor">
+        <!-- Jammed fill (non-tinted) -->
+        <jammed>
+          <texPath>Things/Building/Structure/RGBlastDoor_Jammed</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </jammed>
+
+        <!-- Interaction / command UI -->
+        <activeTicks>1</activeTicks>
+        <!-- Slight chance it spawns already open -->
+        <unlockedChance>0.15</unlockedChance>
+        <ticksToActivate>3600</ticksToActivate> <!-- 1 in-game hour -->
+
+        <activateTexPath>UI/Commands/ForceOpenDoor</activateTexPath>
+        <activateLabelString>Force open...</activateLabelString>
+        <activateDescString>Choose someone to force this door open.</activateDescString>
+        <guiLabelString>Choose who should do this</guiLabelString>
+        <jobString>Forcing open door</jobString>
+        <activatingStringPending>forcing door open</activatingStringPending>
+        <activatingString>forcing door open: {1}s</activatingString>
+        <messageCompletedString>{PAWN_nameDef} has successfully forced the door open.</messageCompletedString>
+
+        <!-- Only pick colonists -->
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimgate_JammedDoorBase">
+    <defName>Rimgate_SecretDoor</defName>
+    <label>secret door</label>
+    <description>A disguised, jammed panel cut to mimic the surrounding wall. Looks like solid rock until someone starts prying. Indestructible and airtight until forced open.</description>
+
+    <!-- Allow stone tinting -->
+    <stuffCategories Inherit="False">
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>25</costStuffCount>
+
+    <!-- Outer “mover” shell -->
+    <graphicData>
+      <texPath>Things/Building/Structure/RGSecretDoorRock_Mover</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+
+    <comps Inherit="False">
+      <li Class="CompProperties_LabyrinthDoor">
+        <!-- Jammed fill (also tinted by stuff) -->
+        <jammed>
+          <texPath>Things/Building/Structure/RGSecretDoorRock_Jammed</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </jammed>
+
+        <!-- Interaction / command UI -->
+        <activeTicks>1</activeTicks>
+        <!-- Tighter: most are locked -->
+        <unlockedChance>0.05</unlockedChance>
+        <ticksToActivate>4800</ticksToActivate> <!-- a bit longer to pry a hidden slab -->
+
+        <activateTexPath>UI/Commands/ForceOpenDoor</activateTexPath>
+        <activateLabelString>Force open...</activateLabelString>
+        <activateDescString>Choose someone to pry the panel loose.</activateDescString>
+        <guiLabelString>Choose who should do this</guiLabelString>
+        <jobString>Prying the hidden panel</jobString>
+        <activatingStringPending>prying</activatingStringPending>
+        <activatingString>prying: {1}s</activatingString>
+        <messageCompletedString>{PAWN_nameDef} has revealed a hidden passage.</messageCompletedString>
+
+        <!-- Only pick colonists -->
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
+    </comps>
+  </ThingDef>
+
 </Defs>

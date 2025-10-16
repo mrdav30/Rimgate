@@ -399,12 +399,8 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
-        <defName>Rimgate_CryptosleepCasket_Hunter</defName>
-        <thing>AncientCryptosleepCasket</thing>
-        <containPawnKindAnyOf>
-            <li>Rimgate_TreasureHunter</li>
-        </containPawnKindAnyOf>
-        <faction>Rimgate_TreasureHuntersHostile</faction>
+        <defName>Rimgate_WraithCocoonPod</defName>
+        <thing>Rimgate_WraithCocoonPod</thing>
         <defendSpawnPoint>false</defendSpawnPoint>
     </KCSG.SymbolDef>
 
@@ -415,9 +411,8 @@
             <li>Rimgate_TreasureHunter</li>
         </containPawnKindAnyOf>
         <faction>Rimgate_TreasureHuntersHostile</faction>
-        <defendSpawnPoint>false</defendSpawnPoint>
+        <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
-
 
     <KCSG.SymbolDef>
         <defName>Rimgate_CryptosleepPod_Tauri</defName>
@@ -429,7 +424,7 @@
             <li>Rimgate_TauriSpecialForces</li>
         </containPawnKindAnyOf>
         <faction>Rimgate_TauriFaction</faction>
-        <defendSpawnPoint>false</defendSpawnPoint>
+        <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

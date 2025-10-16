@@ -412,6 +412,7 @@
     <Compile Include="Things\Building_DHD.cs" />
     <Compile Include="Things\Building_MobileContainer.cs" />
     <Compile Include="Things\Building_WraithCloningPod.cs" />
+    <Compile Include="Things\Building_WraithCocoonPod.cs" />
     <Compile Include="Things\Item_ScrapNote.cs" />
     <Compile Include="Things\Projectile_AdditionalDamage.cs" />
     <Compile Include="Things\Projectile_ZatBlast.cs" />
