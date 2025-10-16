@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <GeneCategoryDef>
-    <defName>Rimgate_WraithGenes</defName>
-    <label>Wraith</label>
-    <displayPriorityInXenotype>1201</displayPriorityInXenotype>
-  </GeneCategoryDef>
-
   <GeneDef Name="Rimgate_WraithGenesBase" Abstract="True">
-    <displayCategory>Rimgate_WraithGenes</displayCategory>
     <canGenerateInGeneSet>false</canGenerateInGeneSet>
   </GeneDef>
 
@@ -91,26 +84,6 @@
   </GeneDef>
 
   <GeneDef ParentName="Rimgate_WraithGenesBase">
-    <defName>Rimgate_WraithCannibal</defName>
-    <label>wraith carnivore</label>
-    <description>Grants an unapologetic taste for humanoid flesh and removes all moral hesitation about acquiring it.\nWhether you call it feeding, harvesting, or brunch, Wraith don’t judge. They just chew.</description>
-    <iconPath>UI/Icon/Gene/RGWraithCannibalGeneIcon</iconPath>
-    <displayCategory>Violence</displayCategory>
-    <forcedTraits>
-      <li>
-        <def>Cannibal</def>
-        <degree>0</degree>
-      </li>
-    </forcedTraits>
-    <modExtensions>
-      <li Class="VEF.Genes.GeneExtension">
-        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
-      </li>
-    </modExtensions>
-  </GeneDef>
-
-  <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithAgeless</defName>
     <label>ageless</label>
     <description>Time means nothing to the Wraith. This gene halts biological aging entirely, allowing the host to live indefinitely—provided they keep feeding, of course.\nWrinkles are for mortals.</description>
@@ -130,10 +103,43 @@
     </modExtensions>
   </GeneDef>
 
+  <GeneDef ParentName="Rimgate_WraithGenesBase">
+    <defName>Rimgate_WraithEssence</defName>
+    <label>essence metabolism</label>
+    <description>Replaces food with a parasitic essence reserve. If the reserve runs low, the host weakens rapidly and becomes irritable until they feed again...or die.</description>
+    <geneClass>Rimgate.Gene_WraithEssence</geneClass>
+
+    <resourceGizmoType>Rimgate.GeneGizmo_ResourceEssence</resourceGizmoType>
+    <resourceLabel>essence</resourceLabel>
+     <resourceDescription>A reserve of biological essence that fuels the wraith's unnatural metabolism. When it runs low, the wraith becomes weak and irritable until they feed again.</resourceDescription>
+    <resourceGizmoThresholds>
+      <li>0.25</li>
+      <li>0.5</li>
+      <li>0.75</li>
+    </resourceGizmoThresholds>
+    <showGizmoOnWorldView>false</showGizmoOnWorldView>
+    <showGizmoWhenDrafted>false</showGizmoWhenDrafted>
+
+    <!-- Baseline decay: ~2%/day (tune) -->
+    <resourceLossPerDay>0.02</resourceLossPerDay>
+
+    <iconPath>UI/Icon/Gene/RGWraithEssence</iconPath>
+    <displayCategory>Rimgate_Metabolism</displayCategory>
+    <displayOrderInCategory>-5</displayOrderInCategory>
+
+    <minAgeActive>18</minAgeActive>
+    <disablesNeeds>
+      <li>Food</li>
+    </disablesNeeds>
+    <biostatCpx>1</biostatCpx>
+    <biostatMet>1</biostatMet>
+  </GeneDef>
+
   <GeneDef>
     <defName>Rimgate_WraithLifeDrain</defName>
     <label>life drain</label>
     <description>Allows the host to drain life essence directly from another pawn, replenishing their own strength, speed, and vitality. A deeply intimate and wildly horrifying method of staying alive.\nWraith wellness starts with a good meal—and you’re it.</description>
+    <minAgeActive>18</minAgeActive>
     <displayCategory>Ability</displayCategory>
     <iconPath>UI/Icon/Gene/RGWraithLifeDrainGeneIcon</iconPath>
     <abilities>
@@ -157,6 +163,7 @@
     <defName>Rimgate_WraithCocoonTrap</defName>
     <label>cocoon trap</label>
     <description>Enables the production of organic webbing to ensnare prey in a semi-living stasis. Victims remain immobile, conscious, and wonderfully fresh for later consumption.\nBecause refrigeration is overrated.</description>
+    <minAgeActive>18</minAgeActive>
     <displayCategory>Ability</displayCategory>
     <iconPath>UI/Icon/Gene/RGWraithCocoonTrapGeneIcon</iconPath>
     <abilities>

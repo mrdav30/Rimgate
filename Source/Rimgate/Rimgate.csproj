@@ -311,10 +311,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abilities\CompAbilityEffect_ApplyNeed.cs" />
+    <Compile Include="Abilities\CompAbilityEffect_AdjustGeneResourceOnCast.cs" />
     <Compile Include="Abilities\CompAbilityEffect_LaunchMultipleProjectile.cs" />
-    <Compile Include="Abilities\CompAbilityEffect_ApplyHediffs.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_ApplyNeed.cs" />
+    <Compile Include="Abilities\CompAbilityEffect_ApplyHediff.cs" />
+    <Compile Include="Abilities\Properties\CompProperties_AdjustGeneResourceOnCast.cs" />
+    <Compile Include="Abilities\Properties\CompProperties_AdjustNeedOnCast.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryCorpseToCloningPod.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryToCloningPod.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryToSarcophagus.cs" />
@@ -337,6 +338,7 @@
     <Compile Include="AI\WorkGivers\WorkGiver_ToggleIris.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CloseStargate.cs" />
+    <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
     <Compile Include="Comps\CompUseEffect_AssembleAndStartQuest.cs" />
     <Compile Include="Comps\Comp_MobileContainer.cs" />
     <Compile Include="Comps\Comp_PersistentMentalState.cs" />
@@ -364,6 +366,7 @@
     <Compile Include="Comps\Properties\CompProperties_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
+    <Compile Include="Genes\Gene_WraithEssence.cs" />
     <Compile Include="HarmonyPatches\Harmony_BedCellSearchPattern.cs" />
     <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
     <Compile Include="HarmonyPatches\Harmony_CompLabyrinthDoor_DrawJammed.cs" />
@@ -396,6 +399,7 @@
     <Compile Include="Quests\QuestPart_RandomFactionRaid.cs" />
     <Compile Include="Quests\QuestPart_SpawnPawnsOnSignal.cs" />
     <Compile Include="RimgateTex.cs" />
+    <Compile Include="Social\ThoughtWorker_WraithEssenceCraving.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_None.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_SpecialMeteorite.cs" />
     <Compile Include="Hediffs\HediffGiver_AtAge.cs" />
@@ -465,6 +469,7 @@
     <Compile Include="UI\FloatMenuOptionProvider_CarryCorpseToCloningPod.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_EnterStargate.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_CarryToCloningPod.cs" />
+    <Compile Include="UI\GeneGizmo_ResourceEssence.cs" />
     <Compile Include="UI\Gizmo_ShieldStatus.cs" />
     <Compile Include="UI\ITab_MobileContainer.cs" />
     <Compile Include="UI\PlaceWorker_ShowTurretRadiusWithOffset.cs" />

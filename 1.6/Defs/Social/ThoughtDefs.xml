@@ -60,7 +60,6 @@
         <hediff>Rimgate_SymbioteWithdrawal</hediff>
         <validWhileDespawned>true</validWhileDespawned>
         <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
-        <!-- <durationDays>7</durationDays> -->
         <stages>
             <li>
                 <label>symbiote withdrawal</label>
@@ -154,6 +153,20 @@
             <li>
                 <label>shared the hum</label>
                 <baseOpinionOffset>0.44</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Rimgate_WraithEssenceCraving</defName>
+        <thoughtClass>Thought_Situational</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_WraithEssenceCraving</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>essence cravings</label>
+                <description>The hum beneath the skin is fading. Instinct gnaws, urging the hunt—someone here must have what I need.</description>
+                <baseMoodEffect>-8</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

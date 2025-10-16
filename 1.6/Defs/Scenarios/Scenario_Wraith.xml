@@ -55,23 +55,6 @@
 					<text>The Hive is gone.\n\nYour ship was torn apart in the void, your kin scattered, and your queen—silent. All that remains are the gnawing pangs of hunger and the faintest trace of purpose.\n\nYou awaken in an unfamiliar land, your feeding reserves empty and the scent of prey in the air. You are Wraith, born to rule and feed. But here, on this backwater rock, you will have to adapt—or starve.\n\nLet the harvest begin.</text>
 					<closeSound>GameStartSting</closeSound>
 				</li>
-				<!-- Player pawns modifiers -->
-				<li Class="ScenPart_ForcedHediff">
-					<def>ForcedHediff</def>
-					<visible>false</visible>
-					<context>PlayerStarter</context>
-					<chance>0.5</chance>
-					<hediff>Malnutrition</hediff>
-					<severityRange>0.4~1</severityRange>
-				</li>
-				<li Class="ScenPart_SetNeedLevel">
-					<def>SetNeedLevel</def>
-					<visible>false</visible>
-					<context>PlayerStarter</context>
-					<chance>1.0</chance>
-					<need>Food</need>
-					<levelRange>0~0.1</levelRange>
-				</li>
 				<!-- Player starting things -->
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>

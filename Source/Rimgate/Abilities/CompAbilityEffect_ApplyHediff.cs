@@ -10,7 +10,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class CompAbilityEffect_ApplyHediffs : CompAbilityEffect
+public class CompAbilityEffect_ApplyHediff : CompAbilityEffect
 {
     public CompProperties_ApplyHediff Props => (CompProperties_ApplyHediff)props;
 

@@ -50,6 +50,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_SymbiotePouch;
     public static HediffDef Rimgate_SymbioteWithdrawal;
     public static HediffDef Rimgate_SystemShock;
+    public static HediffDef Rimgate_WraithEssenceDeficit;
     public static HediffDef Rimgate_ZatShock;
 
     public static IncidentDef Rimgate_Marauders;

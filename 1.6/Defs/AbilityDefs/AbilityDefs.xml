@@ -23,7 +23,7 @@
                 <canTargetMechs>false</canTargetMechs>
             </targetParams>
         </verbProperties>
-        <cooldownTicksRange>120000</cooldownTicksRange>
+        <cooldownTicksRange>30000</cooldownTicksRange>
         <jobDef>CastAbilityOnThingMelee</jobDef>
         <aiCanUse>true</aiCanUse>
         <hostile>true</hostile>
@@ -34,12 +34,14 @@
             <li Class="Rimgate.CompProperties_ApplyHediff">
                 <hediffToReceive>Rimgate_WraithLifeDrainRegen</hediffToReceive>
                 <hediffToGive>Rimgate_WraithLifeDrainTarget</hediffToGive>
-                <durationTime>120000</durationTime>
+                <durationTime>60000</durationTime>
                 <rangeLimit>6.0</rangeLimit>
             </li>
-            <li Class="Rimgate.CompProperties_ApplyNeed">
-                <need>Food</need>
-                <levelRange>0.5~1</levelRange>
+            <li Class="Rimgate.CompProperties_AdjustGeneResourceOnCast">
+                <geneDef>Rimgate_WraithEssence</geneDef>
+                <amount>0.35</amount> <!-- ~35% per drain; ~3 to fill up -->
+                <affects>Caster</affects>
+                <onlyIfTargetHarmed>true</onlyIfTargetHarmed>
             </li>
             <li Class="CompProperties_AbilityFleckOnTarget">
                 <fleckDef>PsycastPsychicEffect</fleckDef>

@@ -16,14 +16,14 @@
                 <severityPerDay>-0.10</severityPerDay> <!-- Passive health drain -->
             </li>
             <li Class="HediffCompProperties_Disappears">
-                <disappearsAfterTicks>120000</disappearsAfterTicks> <!-- 20 secs -->
+                <disappearsAfterTicks>120000</disappearsAfterTicks> <!-- 2 days -->
                 <showRemainingTime>true</showRemainingTime>
             </li>
         </comps>
         <stages>
             <li>
-                <restFallFactor>2</restFallFactor>
-                <naturalHealingFactor>0.8</naturalHealingFactor>
+                <restFallFactor>5</restFallFactor>
+                <naturalHealingFactor>0.65</naturalHealingFactor>
                 <capMods>
                     <li>
                         <capacity>Moving</capacity>

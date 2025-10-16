@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <!-- =================== Goa'uld-Jaffa Xenotype =================== -->
+    <!-- =================== Jaffa =================== -->
 
     <XenotypeDef>
         <defName>Rimgate_GoauldJaffa</defName>
@@ -21,6 +21,8 @@
             <li>Rimgate_JaffaCombatDiscipline</li>
         </genes>
     </XenotypeDef>
+
+    <!-- =================== Kull =================== -->
 
     <XenotypeDef>
         <defName>Rimgate_KullWarrior</defName>
@@ -49,6 +51,8 @@
         </genes>
     </XenotypeDef>
 
+    <!-- =================== Wraith =================== -->
+
     <XenotypeDef>
         <defName>Rimgate_Wraith</defName>
         <label>Wraith</label>
@@ -65,16 +69,16 @@
             <li>Rimgate_WraithBeauty</li>
 
             <!-- Core Traits -->
-            <li>Rimgate_WraithAgeless</li>
             <li>Neversleep</li>
             <li>ArchiteMetabolism</li>
             <li>DarkVision</li>
             <li>MeleeDamage_Strong</li>
             <li>Pain_Reduced</li>
             <li>Robust</li>
+            <li>Rimgate_WraithEssence</li>
+            <li>Rimgate_WraithAgeless</li>
             <li>Rimgate_WraithMovement</li>
             <li>Rimgate_WraithPsychic</li>
-            <li>Rimgate_WraithCannibal</li>
             <li>Rimgate_WraithLifeDrain</li>
             <li>Rimgate_WraithCocoonTrap</li>
         </genes>

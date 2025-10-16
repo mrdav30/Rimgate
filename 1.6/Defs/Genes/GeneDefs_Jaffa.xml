@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <GeneCategoryDef>
-        <defName>Rimgate_JaffaGenes</defName>
-        <label>Goa'uld</label>
-        <displayPriorityInXenotype>1101</displayPriorityInXenotype>
-    </GeneCategoryDef>
-
     <GeneDef Name="Rimgate_JaffaGenesBase" Abstract="True">
-        <displayCategory>Rimgate_JaffaGenes</displayCategory>
         <canGenerateInGeneSet>false</canGenerateInGeneSet>
     </GeneDef>
 

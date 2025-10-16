@@ -20,5 +20,5 @@ public class CompProperties_ApplyHediff : CompProperties_AbilityEffect
 
     public List<StatModifier> durationTimeStatFactors = new List<StatModifier>();
 
-    public CompProperties_ApplyHediff() => compClass = typeof(CompAbilityEffect_ApplyHediffs);
+    public CompProperties_ApplyHediff() => compClass = typeof(CompAbilityEffect_ApplyHediff);
 }

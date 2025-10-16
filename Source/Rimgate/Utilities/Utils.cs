@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Analytics;
 using Verse;
@@ -106,11 +107,29 @@ internal static class Utils
         return pawn.genes.GetGene(geneDef)?.Active ?? false;
     }
 
-    public static bool HasActiveGene(this Pawn pawn, string geneDefName)
+    public static bool HasActiveGene(this Pawn pawn, string def)
     {
-        if (string.IsNullOrEmpty(geneDefName)) return false;
+        if (string.IsNullOrEmpty(def)) return false;
         if (pawn.genes is null) return false;
-        return pawn.genes?.GetGene(DefDatabase<GeneDef>.GetNamedSilentFail(geneDefName))?.Active ?? false;
+        return pawn.genes?.GetGene(DefDatabase<GeneDef>.GetNamedSilentFail(def))?.Active ?? false;
+    }
+
+    public static Gene GetActiveGene(this Pawn pawn, GeneDef def)
+    {
+        if (pawn.genes is null) return null;
+        var gene = pawn.genes.GetGene(def);
+        return gene == null || !gene.Active
+            ? null
+            : gene;
+    }
+
+    public static T GetActiveGene<T>(this Pawn pawn) where T : Gene
+    {
+        if (pawn.genes is null) return null;
+        var gene = pawn.genes.GetFirstGeneOfType<T>();
+        return gene == null || !gene.Active
+            ? null
+            : gene;
     }
 
     public static bool IsXenoTypeOf(this Pawn pawn, XenotypeDef xenotypeDef)
@@ -172,7 +191,8 @@ internal static class Utils
         {
             foreach (HediffComp comp in hediffWithComps.comps)
             {
-                if (duration > 0 && comp is HediffComp_Disappears hediffComp_Disappears)
+                if (duration > 0 
+                    && comp is HediffComp_Disappears hediffComp_Disappears)
                 {
                     hediffComp_Disappears.ticksToDisappear = duration;
                 }
