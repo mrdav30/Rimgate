@@ -43,4 +43,45 @@
 		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
 	</IncidentDef>
 
+	<!-- via Stargate -->
+
+	<IncidentDef>
+		<defName>Rimgate_StargatePsychicDrone</defName>
+		<label>stargate psychic drone</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>Rimgate.IncidentWorker_StargatePsychicDrone</workerClass>
+		<baseChance>0.8</baseChance>
+		<minRefireDays>15</minRefireDays>
+		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
+	</IncidentDef>
+
+	<IncidentDef>
+		<defName>Rimgate_StargateToxicFallout</defName>
+		<label>stargate toxic fallout</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>Rimgate.IncidentWorker_StargateToxicFallout</workerClass>
+		<baseChance>0.35</baseChance>
+		<minRefireDays>30</minRefireDays>
+		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
+	</IncidentDef>
+
+	<IncidentDef>
+		<defName>Rimgate_StargateHeatWave</defName>
+		<label>stargate heat wave</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>Rimgate.IncidentWorker_StargateHeatWave</workerClass>
+		<baseChance>0.45</baseChance>
+		<minRefireDays>25</minRefireDays>
+		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
+	</IncidentDef>
+
 </Defs>

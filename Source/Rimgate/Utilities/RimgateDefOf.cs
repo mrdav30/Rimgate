@@ -28,6 +28,10 @@ public static class RimgateDefOf
     public static FactionDef Rimgate_TreasureHunters;
     public static FactionDef Rimgate_TreasureHuntersHostile;
 
+    public static GameConditionDef Rimgate_StargatePsychicDrone;
+    public static GameConditionDef Rimgate_StargateToxicFallout;
+    public static GameConditionDef Rimgate_StargateHeatWave;
+
     [MayRequireBiotech]
     public static GeneDef Skin_SheerWhite;
     [MayRequireBiotech]

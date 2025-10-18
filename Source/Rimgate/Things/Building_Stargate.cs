@@ -12,16 +12,16 @@ namespace Rimgate;
 
 public class Building_Stargate : Building
 {
-    public CompPowerTrader PowerTrader 
+    public CompPowerTrader PowerTrader
         => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
-    public CompTransporter Transporter 
+    public CompTransporter Transporter
         => _cachedTransporter ??= GetComp<CompTransporter>();
 
-    public Comp_StargateControl StargateControl 
+    public Comp_StargateControl StargateControl
         => _cachedStargate ??= GetComp<Comp_StargateControl>();
 
-    public CompGlower Glower => 
+    public CompGlower Glower =>
         _cachedGlowComp ??= GetComp<CompGlower>();
 
     public CompExplosive Explosive => _cachedexplosiveComp ??= GetComp<CompExplosive>();
@@ -88,14 +88,24 @@ public class Building_Stargate : Building
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
+        bool blockInteractions = StargateControl != null 
+            && (StargateControl.IsActive 
+                || StargateControl.ExternalHoldCount > 0);
+        string why = "RG_StargateHeldCannotReinstall".Translate();
+
         foreach (Gizmo gizmo in base.GetGizmos())
         {
-            if (gizmo is Command_LoadToTransporter)
+            if (gizmo is Command_LoadToTransporter 
+                && !StargateControl.IsActive) continue;
+
+            if (blockInteractions 
+                && gizmo is Designator_Install dInstall)
             {
-                if (StargateControl.IsActive)
-                    yield return gizmo;
+                dInstall.Disable(why);
+                yield return dInstall;
                 continue;
             }
+
             yield return gizmo;
         }
     }

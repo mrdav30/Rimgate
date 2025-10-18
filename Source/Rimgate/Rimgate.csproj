@@ -370,6 +370,7 @@
     <Compile Include="HarmonyPatches\Harmony_BedCellSearchPattern.cs" />
     <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
     <Compile Include="HarmonyPatches\Harmony_CompLabyrinthDoor_DrawJammed.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Designator_Uninstall.cs" />
     <Compile Include="HarmonyPatches\Harmony_EquipmentUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
     <Compile Include="HarmonyPatches\Harmony_PowerNet.cs" />
@@ -387,9 +388,12 @@
     <Compile Include="Hediffs\Hediff_ClonedTracker.cs" />
     <Compile Include="Hediffs\IngestionOutcomeDoer_HealAllDisease.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_GivePsylinkOnAdded.cs" />
-    <Compile Include="Incidents\IncidentWorker_Asteroid.cs" />
-    <Compile Include="Incidents\IncidentWorker_KillAllClonesNow.cs" />
-    <Compile Include="Incidents\IncidentWorker_Marauders.cs" />
+    <Compile Include="Storyteller\GameCondition_StargateHeatWave.cs" />
+    <Compile Include="Storyteller\GameCondition_StargatePsychicDrone.cs" />
+    <Compile Include="Storyteller\GameCondition_StargateToxicFallout.cs" />
+    <Compile Include="Storyteller\IncidentWorker_Asteroid.cs" />
+    <Compile Include="Storyteller\IncidentWorker_KillAllClonesNow.cs" />
+    <Compile Include="Storyteller\IncidentWorker_Marauders.cs" />
     <Compile Include="Quests\QuestNode_GenerateStargateSite.cs" />
     <Compile Include="Quests\QuestNode_GetFactionOfDef.cs" />
     <Compile Include="Quests\QuestNode_RaidForZPM.cs" />
@@ -400,6 +404,9 @@
     <Compile Include="Quests\QuestPart_SpawnPawnsOnSignal.cs" />
     <Compile Include="RimgateTex.cs" />
     <Compile Include="Social\ThoughtWorker_WraithEssenceCraving.cs" />
+    <Compile Include="Storyteller\IncidentWorker_StargateHeatWave.cs" />
+    <Compile Include="Storyteller\IncidentWorker_StargatePsychicDrone.cs" />
+    <Compile Include="Storyteller\IncidentWorker_StargateToxicFallout.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_None.cs" />
     <Compile Include="ThingSetMakers\ThingSetMaker_SpecialMeteorite.cs" />
     <Compile Include="Hediffs\HediffGiver_AtAge.cs" />

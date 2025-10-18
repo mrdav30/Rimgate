@@ -1,0 +1,32 @@
+﻿using RimWorld;
+using Verse;
+using System.Linq;
+
+namespace Rimgate;
+
+public class IncidentWorker_StargateHeatWave : IncidentWorker
+{
+    protected override bool CanFireNowSub(IncidentParms parms)
+    {
+        if (!base.CanFireNowSub(parms)) return false;
+        var map = parms.target as Map;
+        if (map == null) return false;
+        return map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Stargate)
+                   .OfType<Building_Stargate>()
+                   .Any();
+    }
+
+    protected override bool TryExecuteWorker(IncidentParms parms)
+    {
+        var map = (Map)parms.target;
+        // ~1–2 days
+        int ticks = GenDate.TicksPerDay * Rand.RangeInclusive(1, 2);
+        var cond = (GameCondition_StargateHeatWave)GameConditionMaker
+            .MakeCondition(RimgateDefOf.Rimgate_StargateHeatWave, ticks);
+        map.gameConditionManager.RegisterCondition(cond);
+
+        SendStandardLetter(cond.LabelCap, cond.LetterText, cond.def.letterDef, parms, LookTargets.Invalid);
+
+        return true;
+    }
+}

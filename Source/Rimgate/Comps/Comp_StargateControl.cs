@@ -35,6 +35,8 @@ public class Comp_StargateControl : ThingComp
 
     public int TicksUntilOpen = -1;
 
+    public int ExternalHoldCount;
+
     public CompProperties_StargateControl Props => (CompProperties_StargateControl)props;
 
     public Graphic StargatePuddle => _stargatePuddle ??= Props.puddleGraphicData.Graphic;
@@ -140,6 +142,29 @@ public class Comp_StargateControl : ThingComp
 
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: finished opening gate {parent}");
+    }
+
+    public void PushExternalHold() => ExternalHoldCount++;
+    public void PopExternalHold() { 
+        if (ExternalHoldCount > 0) 
+            ExternalHoldCount--; 
+    }
+
+    public void ForceLocalOpenAsReceiver()
+    {
+        if (IsActive && IsReceivingGate) return;
+
+        IsActive = true;
+        IsReceivingGate = true;
+        ConnectedAddress = PlanetTile.Invalid;
+        ConnectedStargate = null;  // local-only, no remote
+        PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
+        RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(parent));
+        if (Parent?.Glower != null)
+        {
+            Parent.Glower.Props.glowRadius = 10;
+            Parent.Glower.PostSpawnSetup(false);
+        }
     }
 
     public void CloseStargate(bool closeOtherGate = false)
@@ -463,9 +488,14 @@ public class Comp_StargateControl : ThingComp
         TicksSinceBufferUnloaded++;
         TicksSinceOpened++;
 
+        bool otherLoading = ConnectedStargate != null
+            && ConnectedStargate.StargateControl.GateIsLoadingTransporter;
+
         bool shouldClose = IsReceivingGate
+            && ExternalHoldCount == 0
             && TicksSinceBufferUnloaded > _idleTimeout
-            && !ConnectedStargate.StargateControl.GateIsLoadingTransporter;
+            && !otherLoading;
+
         if (shouldClose)
             CloseStargate(true);
     }
