@@ -374,6 +374,7 @@
     <Compile Include="HarmonyPatches\Harmony_EquipmentUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
     <Compile Include="HarmonyPatches\Harmony_PowerNet.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Psycast.cs" />
     <Compile Include="HarmonyPatches\Harmony_SiteMakerHelper.cs" />
     <Compile Include="HarmonyPatches\Harmony_JobMaker_MakeJob.cs" />
     <Compile Include="HarmonyPatches\Harmony_MechanitorUtility.cs" />

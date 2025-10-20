@@ -489,6 +489,11 @@
       <li>AdvancedWeapon</li>
       <li>Rimgate_GoauldSymbiote_tag</li>
     </techHediffsTags>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_Unrecruitable</def>
+      </li>
+    </startingHediffs>
     <itemQuality>Good</itemQuality>
     <apparelMoney>6000~9000</apparelMoney>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>

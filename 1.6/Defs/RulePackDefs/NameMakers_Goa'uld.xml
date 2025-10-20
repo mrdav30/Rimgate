@@ -83,11 +83,11 @@
     <rulePack>
       <rulesStrings>
         <!-- Titles -->
-        <li>art_name_root->[gold_title] [of_praise]</li>
-        <li>art_name_root->[gold_title] of [goauld_name]</li>
-        <li>art_name_root->[hieroglyphic_title] of [dominion]</li>
-        <li>art_name_root->[symbol_title] of [system_power]</li>
-        <li>art_name_root->[desert_title] of [eternity_phrase]</li>
+        <li>r_art_name->[gold_title] [of_praise]</li>
+        <li>r_art_name->[gold_title] of [goauld_name]</li>
+        <li>r_art_name->[hieroglyphic_title] of [dominion]</li>
+        <li>r_art_name->[symbol_title] of [system_power]</li>
+        <li>r_art_name->[desert_title] of [eternity_phrase]</li>
 
         <!-- Building blocks -->
         <li>gold_title->Gilded Edict</li>
