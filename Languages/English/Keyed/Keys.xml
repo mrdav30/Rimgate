@@ -112,9 +112,12 @@
 	<RG_ToggleIrisDesc>{0} this Dwarfgate's iris.</RG_ToggleIrisDesc>
 
 	<RG_OnlyOneSGPerMap>Only one of this kind of building can be built per map.</RG_OnlyOneSGPerMap>
+	<RG_PocketMapDisallowed>Dwarfgates cannot be placed on pocket maps.</RG_PocketMapDisallowed>
 	<RG_StargateHeldCannotUninstall>Cannot uninstall: Dwarfgate is currently active.</RG_StargateHeldCannotUninstall>
 	<RG_StargateHeldCannotReinstall>Cannot reinstall: Dwarfgate is currently active.</RG_StargateHeldCannotReinstall>
 	<RG_GateDialFailed>Could not activate Dwarfgate: Recieving gate no longer exists or is currently in use.</RG_GateDialFailed>
+
+	<RG_GeneratingStargateSite>Generating stargate site</RG_GeneratingStargateSite>
 
 	<RG_EnterStargateAction>Enter Dwarfgate</RG_EnterStargateAction>
 	<RG_EnterReceivingStargateAction>Vaporize yourself</RG_EnterReceivingStargateAction>

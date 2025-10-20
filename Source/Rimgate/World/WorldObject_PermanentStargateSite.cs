@@ -11,10 +11,6 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 {
     public string SiteName;
 
-    public ThingDef GateDef;
-
-    public ThingDef DhdDef;
-
     public override string Label => SiteName ?? base.Label;
 
     public string RenamableLabel
@@ -40,59 +36,51 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
 
     public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
     {
-        alsoRemoveWorldObject = false;
+        Building_Stargate gateOnMap = Building_Stargate.GetStargateOnMap(Map);
+        Building_DHD dhdOnMap = Building_DHD.GetDhdOnMap(Map);
+        alsoRemoveWorldObject = gateOnMap == null && dhdOnMap == null;
         return !StargateUtility.ActiveGateOnMap(Map)
             && !Map.mapPawns.AnyPawnBlockingMapRemoval;
     }
 
-    // source: https://github.com/AndroidQuazar/VanillaExpandedFramework/blob/4331195034c15a18930b85c5f5671ff890e6776a/Source/Outposts/Outpost/Outpost_Attacks.cs.
     public override void PostMapGenerate()
     {
         base.PostMapGenerate();
 
         var pawns = Map.mapPawns.AllPawns
-            .Where(p => p.RaceProps.Humanlike || p.HostileTo(Faction))
+            .Where(p => p.RaceProps.Humanlike || p.HostileTo(Faction.OfPlayer))
             .ToList();
         foreach (var pawn in pawns)
             pawn.Destroy();
 
-        Building_Stargate gateOnMap = StargateUtility.GetStargateOnMap(Map);
-        Building_DHD dhdOnMap = StargateUtility.GetDhdOnMap(Map);
-        if (RimgateMod.Debug) 
-            Log.Message($"Rimgate :: perm sg site post map gen: dhddef={DhdDef} gatedef={GateDef} gateonmap={gateOnMap} dhdonmap={dhdOnMap}");
+        Building_Stargate gateOnMap = Building_Stargate.GetStargateOnMap(Map);
+        Building_DHD dhdOnMap = Building_DHD.GetDhdOnMap(Map);
+        if (RimgateMod.Debug)
+            Log.Message($"Rimgate :: perm sg site post map gen: gateonmap={gateOnMap} dhdonmap={dhdOnMap}");
 
         if (gateOnMap != null)
         {
             IntVec3 gatePos = gateOnMap.Position;
             gateOnMap.Destroy();
-            if (GateDef != null)
-                GenSpawn.Spawn(GateDef, gatePos, Map);
+            var spawnedSG = GenSpawn.Spawn(RimgateDefOf.Rimgate_Stargate, gatePos, Map);
+            spawnedSG.SetFaction(Faction.OfPlayer);
         }
 
         if (dhdOnMap != null)
         {
             IntVec3 dhdPos = dhdOnMap.Position;
             dhdOnMap.Destroy();
-            if (DhdDef != null) 
-                GenSpawn.Spawn(DhdDef, dhdPos, Map);
+                var spawnedDHD = GenSpawn.Spawn(RimgateDefOf.Rimgate_DialHomeDevice, dhdPos, Map);
+                spawnedDHD.SetFaction(Faction.OfPlayer);
         }
-    }
-
-    public override void Notify_MyMapAboutToBeRemoved()
-    {
-        Building_Stargate gateOnMap = StargateUtility.GetStargateOnMap(Map);
-        Building_DHD dhdOnMap = StargateUtility.GetDhdOnMap(Map);
-        DhdDef = dhdOnMap?.def;
-        GateDef = gateOnMap?.def;
-
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: perm map about to be removed: dhddef={DhdDef} gatedef={GateDef}");
     }
 
     public override void Notify_MyMapRemoved(Map map)
     {
         base.Notify_MyMapRemoved(map);
-        if (GateDef == null && DhdDef == null)
+        Building_Stargate gateOnMap = Building_Stargate.GetStargateOnMap(Map);
+        Building_DHD dhdOnMap = Building_DHD.GetDhdOnMap(Map);
+        if (gateOnMap == null && dhdOnMap == null)
             Destroy();
     }
 
@@ -131,7 +119,5 @@ public class WorldObject_PermanentStargateSite : MapParent, IRenameable
     {
         base.ExposeData();
         Scribe_Values.Look(ref SiteName, "SiteName");
-        Scribe_Defs.Look(ref DhdDef, "DhdDef");
-        Scribe_Defs.Look(ref GateDef, "GateDef");
     }
 }

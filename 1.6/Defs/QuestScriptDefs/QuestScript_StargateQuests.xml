@@ -7,7 +7,7 @@
         <isRootSpecial>true</isRootSpecial>
 		<autoAccept>true</autoAccept>
 		<defaultChallengeRating>2</defaultChallengeRating>
-
+		<randomlySelectable>false</randomlySelectable>
 		<questNameRules>
 			<rulesStrings>
 				<li>questName->[adj] glyph [site]</li>
@@ -91,6 +91,18 @@
 				<li Class="QuestNode_GetSiteTile">
 					<storeAs>siteTile</storeAs>
 					<preferCloserTiles>false</preferCloserTiles>
+					<selectLandmarkChance>0.3</selectLandmarkChance>
+					<allowedLandmarks>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">DryLake</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Wetland</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Valley</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Chasm</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Cliffs</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Hollow</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">TerraformingScar</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Dunes</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">AncientHeatVent</li>
+					</allowedLandmarks>
 				</li>
 
 				<li Class="QuestNode_RandomNode">
@@ -222,7 +234,7 @@
 					<countRange>0~1</countRange> <!-- 0–2 by default -->
 					<factionDef>Rimgate_TreasureHuntersHostile</factionDef>
 					<pawnKind>Rimgate_TreasureHunter</pawnKind>
-					<skipChance>0.5</skipChance>
+					<skipChance>0.45</skipChance>
 					<spawnNearGate>true</spawnNearGate>
 				</li>
 

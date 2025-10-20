@@ -21,10 +21,7 @@ public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
 
     public override FloatMenuAcceptanceReport StillValid(Caravan caravan, PlanetTile destinationTile)
     {
-        if (_arrivalSite != null
-            && _arrivalSite.Tile != destinationTile) return false;
-
-        return true;
+        return _arrivalSite == null || _arrivalSite.Tile == destinationTile;
     }
 
     public override void Arrived(Caravan caravan)

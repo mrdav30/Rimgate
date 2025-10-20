@@ -15,12 +15,12 @@ public class Comp_DHDControl : ThingComp
 
     public CompProperties_DHDControl Props => (CompProperties_DHDControl)props;
 
-    private CompFacility Facility 
+    public CompFacility Facility 
         => _facilityComp ?? parent.GetComp<CompFacility>();
 
     private CompFacility _facilityComp;
 
-    private CompPowerTrader PowerTrader
+    public CompPowerTrader PowerTrader
     => !Props.requiresPower 
         ? null
         : _powerComp ?? parent.GetComp<CompPowerTrader>();
@@ -38,90 +38,7 @@ public class Comp_DHDControl : ThingComp
             if (Props.selfDialler)
                 return true;
 
-            return Facility != null
-                && Facility.LinkedBuildings.Count > 0;
-        }
-    }
-
-    public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
-    {
-        if (!IsConnectedToStargate)
-        {
-            yield return new FloatMenuOption(
-                "RG_CannotDialNoGate".Translate(),
-                null);
-            yield break;
-        }
-
-        bool canReach = selPawn.CanReach(
-            parent.InteractionCell,
-            PathEndMode.Touch,
-            Danger.Deadly,
-            false,
-            false,
-            TraverseMode.ByPawn);
-        if (!canReach)
-        {
-            yield return new FloatMenuOption(
-                "RG_CannotDialNoReach".Translate(),
-                null);
-            yield break;
-        }
-
-        if (Props.requiresPower
-            && !(PowerTrader?.PowerOn == true))
-        {
-            yield return new FloatMenuOption(
-                "RG_CannotDialNoPower".Translate(),
-                null);
-            yield break;
-        }
-
-        Comp_StargateControl stargate = GetLinkedStargate();
-        if (stargate.IsActive)
-        {
-            yield return new FloatMenuOption(
-                "RG_CannotDialGateIsActive".Translate(),
-                null);
-
-            yield break;
-        }
-
-        WorldComp_StargateAddresses addressComp = Find.World.GetComponent<WorldComp_StargateAddresses>();
-
-        addressComp.CleanupAddresses();
-        if (addressComp.AddressCount < 2) // home + another site
-        {
-            yield return new FloatMenuOption(
-                "RG_CannotDialNoDestinations".Translate(),
-                null);
-            yield break;
-        }
-
-        if (stargate.TicksUntilOpen > -1)
-        {
-            yield return new FloatMenuOption(
-                "RG_CannotDialIncoming".Translate(),
-                null);
-            yield break;
-        }
-
-        foreach (PlanetTile tile in addressComp.AddressList)
-        {
-            if (tile == stargate.GateAddress)
-                continue;
-
-            MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
-            string designation = StargateUtility.GetStargateDesignation(tile);
-
-            yield return new FloatMenuOption(
-                "RG_DialGate".Translate(designation, sgMap.Label),
-                () =>
-                {
-                    LastDialledAddress = tile;
-                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialStargate, parent);
-                    selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                });
+            return Facility?.LinkedBuildings.Count > 0;
         }
     }
 

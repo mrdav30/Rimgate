@@ -82,7 +82,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
 
         if (UseStargateIfAvailable)
         {
-            var sg = StargateUtility.GetStargateOnMap(map);
+            var sg = Building_Stargate.GetStargateOnMap(map);
             bool isValid = sg != null
                 && !sg.StargateControl.IsActive
                 && !sg.StargateControl.IsIrisActivated;

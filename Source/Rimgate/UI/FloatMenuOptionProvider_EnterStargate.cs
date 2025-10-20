@@ -22,7 +22,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
         Building_Stargate gate = clickedThing as Building_Stargate;
-        if (gate == null)
+        if (gate == null || gate.StargateControl == null)
             yield break;
 
         if (!gate.StargateControl.IsActive)

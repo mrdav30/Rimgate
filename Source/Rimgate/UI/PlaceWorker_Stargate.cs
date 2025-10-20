@@ -36,13 +36,13 @@ public class PlaceWorker_Stargate : PlaceWorker
         Thing thingToIgnore = null,
         Thing thing = null)
     {
-        if (StargateUtility.GetStargateOnMap(map, thing) != null)
+        if (Building_Stargate.GetStargateOnMap(map, thing) != null)
             return new AcceptanceReport("RG_OnlyOneSGPerMap".Translate());
 
         // Pocket Maps do not have an associated PlanetTile, 
         // so no gate address, so stargates cannot work on them
         if (map.IsPocketMap) 
-            return new AcceptanceReport("PocketMapNo".Translate());
+            return new AcceptanceReport("RG_PocketMapDisallowed".Translate());
 
         return true;
     }

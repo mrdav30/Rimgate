@@ -35,16 +35,14 @@ public class Harmony_Caravan_GetGizmos
             icon = RimgateTex.PermanentSiteCommandTex,
             action = () =>
             {
-                ThingDef gateDef = null;
-                ThingDef dhdDef = null;
-
                 List<Thing> things = __instance.AllThings.ToList();
                 for (int i = 0; i < things.Count(); i++)
                 {
                     Thing inner = things[i].GetInnerIfMinified();
-                    if (inner != null && inner.def.thingClass == typeof(Building_Stargate))
+                    if (inner != null 
+                        && inner.def.thingClass == typeof(Building_Stargate))
                     {
-                        gateDef = inner.def; things[i].holdingOwner.Remove(things[i]);
+                        things[i].holdingOwner.Remove(things[i]);
                         break;
                     }
                 }
@@ -54,18 +52,15 @@ public class Harmony_Caravan_GetGizmos
                 {
                     Thing inner = things[i].GetInnerIfMinified();
                     if (inner != null 
-                        && inner.TryGetComp<Comp_DHDControl>() != null
-                        && inner.def.thingClass != typeof(Building_Stargate))
+                        && inner.def.thingClass == typeof(Building_DHD))
                     {
-                        dhdDef = inner.def; things[i].holdingOwner.Remove(things[i]);
+                        things[i].holdingOwner.Remove(things[i]);
                         break;
                     }
                 }
 
                 WorldObject_PermanentStargateSite wo = WorldObjectMaker.MakeWorldObject(RimgateDefOf.Rimgate_PermanentStargateSite) as WorldObject_PermanentStargateSite;
                 wo.Tile = __instance.Tile;
-                wo.GateDef = gateDef;
-                wo.DhdDef = dhdDef;
                 Find.WorldObjects.Add(wo);
             },
             defaultLabel = "RG_CreateSGSite".Translate(),

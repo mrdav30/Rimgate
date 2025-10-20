@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography;
+using System.Net;
 
 namespace Rimgate;
 
@@ -99,9 +100,54 @@ public class Comp_StargateControl : ThingComp
 
     public void OpenStargate(PlanetTile address)
     {
-        Building_Stargate gate = GetorCreateReceivingStargate(address);
-        bool invalid = address.Valid
-            && (gate == null || gate.TryGetComp<Comp_StargateControl>().IsActive);
+        if (!address.Valid) return;
+
+        MapParent site = Find.WorldObjects.MapParentAt(address);
+        if (site == null)
+        {
+            Log.Error($"Rimgate :: stargate address at {address} doesn't have an associated MapParent.");
+            return;
+        }
+
+        if (!site.HasMap)
+        {
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: generating map for {site} using {site.def.defName}");
+
+            LongEventHandler.QueueLongEvent(delegate
+            {
+                GetOrGenerateMapUtility.GetOrGenerateMap(
+                    site.Tile,
+                    site is WorldObject_PermanentStargateSite
+                            ? RimgateMod.MinMapSize
+                            : Find.World.info.initialMapSize,
+                    null);
+
+            },
+            "RG_GeneratingStargateSite",
+            false,
+            GameAndMapInitExceptionHandlers.ErrorWhileGeneratingMap,
+            callback: delegate
+            {
+                if (RimgateMod.Debug)
+                    Log.Message($"Rimgate :: finished generating map");
+
+                FinalizeOpenGate(address, site.Map);
+            });
+        }
+        else
+        {
+            if (site is WorldObject_QuestStargateSite wos)
+                wos.ToggleSiteMap();
+            FinalizeOpenGate(address, site.Map);
+        }
+    }
+
+    private void FinalizeOpenGate(PlanetTile address, Map map)
+    {
+        Building_Stargate gate = GetConnectedGate(map);
+        bool invalid = gate == null
+            || gate.TryGetComp<Comp_StargateControl>().IsActive;
         if (invalid)
         {
             Messages.Message(
@@ -145,9 +191,10 @@ public class Comp_StargateControl : ThingComp
     }
 
     public void PushExternalHold() => ExternalHoldCount++;
-    public void PopExternalHold() { 
-        if (ExternalHoldCount > 0) 
-            ExternalHoldCount--; 
+    public void PopExternalHold()
+    {
+        if (ExternalHoldCount > 0)
+            ExternalHoldCount--;
     }
 
     public void ForceLocalOpenAsReceiver()
@@ -235,39 +282,12 @@ public class Comp_StargateControl : ThingComp
 
     #endregion
 
-    private Building_Stargate GetorCreateReceivingStargate(PlanetTile address)
+    private Building_Stargate GetConnectedGate(Map map)
     {
-        if (!address.Valid) return null;
-
-        MapParent connectedSite = Find.WorldObjects.MapParentAt(address);
-        if (connectedSite == null)
-        {
-            Log.Error($"Rimgate :: Tried to get a paired stargate at address {address} but the map parent does not exist!");
-            return null;
-        }
-
-        if (!connectedSite.HasMap)
-        {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: generating map for {connectedSite} using {connectedSite.def.defName}");
-
-            GetOrGenerateMapUtility.GetOrGenerateMap(
-                connectedSite.Tile,
-                connectedSite is WorldObject_PermanentStargateSite
-                        ? RimgateMod.MinMapSize
-                        : Find.World.info.initialMapSize,
-                null);
-
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: finished generating map");
-        }
-        else if (connectedSite is WorldObject_QuestStargateSite wos)
-            wos.ToggleSiteMap();
-
-        Map map = connectedSite.Map;
-
+        var gate = Building_Stargate.GetStargateOnMap(map);
         // ensure a valid gate and a DHD exist(and link)
-        var gate = StargateUtility.EnsureGateAndDhd(map);
+        if (gate == null)
+            gate = StargateUtility.PlaceRandomGateAndDHD(map);
 
         return gate;
     }
@@ -280,6 +300,8 @@ public class Comp_StargateControl : ThingComp
     private void DoUnstableVortex()
     {
         List<Thing> excludedThings = new List<Thing>() { parent };
+        DamageDef damType = DefDatabase<DamageDef>.GetNamed("Rimgate_KawooshExplosion");
+
         foreach (IntVec3 pos in Props.vortexPattern)
         {
             foreach (Thing thing in parent.Map.thingGrid.ThingsAt(parent.Position + pos))
@@ -287,17 +309,11 @@ public class Comp_StargateControl : ThingComp
                 if (thing.def.passability == Traversability.Standable)
                     excludedThings.Add(thing);
             }
-        }
-
-        foreach (IntVec3 pos in Props.vortexPattern)
-        {
-            DamageDef damType = DefDatabase<DamageDef>.GetNamed("Rimgate_KawooshExplosion");
 
             Explosion explosion = (Explosion)GenSpawn.Spawn(
                 ThingDefOf.Explosion,
                 parent.Position,
-                parent.Map,
-                WipeMode.Vanish);
+                parent.Map);
             explosion.damageFalloff = false;
             explosion.damAmount = damType.defaultDamage;
             explosion.Position = parent.Position + pos;
@@ -330,7 +346,8 @@ public class Comp_StargateControl : ThingComp
 
             if (IsReceivingGate)
             {
-                t.Kill();
+                if (!t.DestroyedOrNull())
+                    t.Kill();
                 continue;
             }
 
@@ -368,7 +385,7 @@ public class Comp_StargateControl : ThingComp
 
         // check without removing
         Thing t = _recvBuffer.Peek();
-        if(t == null || t.Destroyed)
+        if (t == null || t.Destroyed)
         {
             _recvBuffer.Dequeue();
             return;
@@ -394,7 +411,8 @@ public class Comp_StargateControl : ThingComp
         }
         else
         {
-            t.Kill();
+            if (!t.DestroyedOrNull())
+                t.Kill();
             RimgateDefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(parent));
         }
 
@@ -473,13 +491,14 @@ public class Comp_StargateControl : ThingComp
         if (_sendBuffer?.Any() == true)
             BeamSendBufferTo();
 
-        if (!ConnectedAddress.Valid && _recvBuffer?.Any() == false)
+        if (!ConnectedAddress.Valid 
+            && _recvBuffer?.Any() == false)
         {
             CloseStargate();
             return;
         }
 
-        if (_recvBuffer?.Any() == true 
+        if (_recvBuffer?.Any() == true
             && TicksSinceBufferUnloaded > Rand.Range(10, 80))
         {
             SpawnFromReceiveBuffer();
@@ -508,13 +527,26 @@ public class Comp_StargateControl : ThingComp
 
         if (IsActive)
         {
-            if (ConnectedStargate == null && ConnectedAddress.Valid)
-                ConnectedStargate = GetorCreateReceivingStargate(ConnectedAddress);
-            PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
+            if(ConnectedStargate == null && ConnectedAddress.Valid)
+            {
+                MapParent site = Find.WorldObjects.MapParentAt(ConnectedAddress);
+                if (site.HasMap)
+                    ConnectedStargate = GetConnectedGate(site.Map);
+                else
+                    CloseStargate();
+            }
+
+            if(ConnectedStargate != null || ExternalHoldCount > 0)
+                PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle
+                    .TrySpawnSustainer(SoundInfo.InMap(parent));
         }
 
         if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: compsg postspawnssetup: sgactive={IsActive} connectgate={ConnectedStargate} connectaddress={ConnectedAddress}, mapparent={parent.Map.Parent}");
+            Log.Message($"Rimgate :: compsg postspawnssetup:"
+                + $" sgactive={IsActive},"
+                + $" connectgate={ConnectedStargate},"
+                + $" connectaddress={ConnectedAddress},"
+                + $" mapparent={parent.Map.Parent}");
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -597,13 +629,15 @@ public class Comp_StargateControl : ThingComp
         base.PostExposeData();
 
         Scribe_Values.Look(ref IsActive, "StargateIsActive");
+        Scribe_Values.Look(ref ExternalHoldCount, "ExternalHoldCount");
         Scribe_Values.Look(ref IsReceivingGate, "IsRecievingGate");
         Scribe_Values.Look(ref HasIris, "HasIris");
         Scribe_Values.Look(ref _isIrisActivated, "_irisIsActivated");
         Scribe_Values.Look(ref _wantsIrisToggled, "_wantsIrisToggled");
         Scribe_Values.Look(ref TicksSinceOpened, "TicksSinceOpened");
-        Scribe_Values.Look(ref ConnectedAddress, "_connectedAddress");
-        Scribe_References.Look(ref ConnectedStargate, "_connectedStargate");
+        Scribe_Values.Look(ref ConnectedAddress, "ConnectedAddress");
+        Scribe_Values.Look(ref ConnectedAddress, "ConnectedAddress");
+        Scribe_References.Look(ref ConnectedStargate, "ConnectedStargate");
 
         // --- SEND buffer (List<Thing>) ---
         Scribe_Collections.Look(ref _sendBuffer, "_sendBuffer", LookMode.Reference);

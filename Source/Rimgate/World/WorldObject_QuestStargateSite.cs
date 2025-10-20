@@ -69,7 +69,7 @@ public class WorldObject_QuestStargateSite : Site
 
     public override void Notify_MyMapAboutToBeRemoved()
     {
-        var gate = StargateUtility.GetStargateOnMap(Map);
+        var gate = Building_Stargate.GetStargateOnMap(Map);
         if (gate != null)
             gate.StargateControl.CleanupGate();
 

@@ -124,4 +124,22 @@ public class Building_Stargate : Building
 
         return sb.ToString().TrimEndNewlines();
     }
+
+    public static Building_Stargate GetStargateOnMap(
+        Map map,
+        Thing thingToIgnore = null)
+    {
+        Building_Stargate gateOnMap = null;
+        foreach (Thing thing in map.listerThings.AllThings)
+        {
+            if (thing != thingToIgnore
+                && thing is Building_Stargate bsg)
+            {
+                gateOnMap = bsg;
+                break;
+            }
+        }
+
+        return gateOnMap;
+    }
 }

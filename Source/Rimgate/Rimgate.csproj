@@ -475,6 +475,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_InstallIris.cs" />
     <Compile Include="Arrivals\PawnsArrivalModeWorker_Stargate.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_CarryCorpseToCloningPod.cs" />
+    <Compile Include="UI\FloatMenuOptionProvider_DialAddress.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_EnterStargate.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_CarryToCloningPod.cs" />
     <Compile Include="UI\GeneGizmo_ResourceEssence.cs" />

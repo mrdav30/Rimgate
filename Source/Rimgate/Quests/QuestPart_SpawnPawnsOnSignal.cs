@@ -45,7 +45,7 @@ namespace Rimgate
             if (count <= 0) return;
 
             // Make a lord so they immediately behave like a small raid
-            var lord = LordMaker.MakeNewLord(fac, new LordJob_AssaultColony(fac), map, null);
+            var lord = LordMaker.MakeNewLord(fac, new LordJob_MaraudColony(fac), map, null);
 
             for (int i = 0; i < count; i++)
             {

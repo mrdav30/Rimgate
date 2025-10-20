@@ -12,7 +12,7 @@ namespace Rimgate;
 
 public class Building_DHD : Building
 {
-    public Comp_DHDControl DialHomeDevice
+    public Comp_DHDControl DHDControl
     {
         get
         {
@@ -21,7 +21,7 @@ public class Building_DHD : Building
         }
     }
 
-    public Graphic ActiveGraphic => _activeGraphic ??= DialHomeDevice?.Props?.activeGraphicData.Graphic;
+    public Graphic ActiveGraphic => _activeGraphic ??= DHDControl?.Props?.activeGraphicData.Graphic;
 
     private Graphic _activeGraphic;
 
@@ -31,11 +31,26 @@ public class Building_DHD : Building
     {
         get
         {
-            Comp_StargateControl stargate = DialHomeDevice.GetLinkedStargate();
+            Comp_StargateControl stargate = DHDControl.GetLinkedStargate();
             if (ActiveGraphic == null) return base.DefaultGraphic;
             return stargate == null || !stargate.parent.Spawned || !stargate.IsActive
                 ? base.DefaultGraphic
                 : ActiveGraphic;
         }
+    }
+
+    public static Building_DHD GetDhdOnMap(Map map)
+    {
+        Building_DHD dhdOnMap = null;
+        foreach (Thing thing in map.listerThings.AllThings)
+        {
+            if (thing is Building_DHD bdhd)
+            {
+                dhdOnMap = bdhd;
+                break;
+            }
+        }
+
+        return dhdOnMap;
     }
 }
