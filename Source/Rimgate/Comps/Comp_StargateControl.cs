@@ -299,27 +299,32 @@ public class Comp_StargateControl : ThingComp
 
     private void DoUnstableVortex()
     {
-        List<Thing> excludedThings = new List<Thing>() { parent };
-        DamageDef damType = DefDatabase<DamageDef>.GetNamed("Rimgate_KawooshExplosion");
+        var map = parent.Map;
+        if (map is null) return;
 
-        foreach (IntVec3 pos in Props.vortexPattern)
-        {
-            foreach (Thing thing in parent.Map.thingGrid.ThingsAt(parent.Position + pos))
+        var dam = RimgateDefOf.Rimgate_KawooshExplosion;
+        // Ignore only the gate itself so we don't nuke the building
+        List<Thing> ignored = new(1) { parent };
+
+        // Small radius: exactly the cell the vortex passes through
+        const float radius = 0.51f;
+
+        foreach (var cell in VortexCells)
             {
-                if (thing.def.passability == Traversability.Standable)
-                    excludedThings.Add(thing);
-            }
+            if (!cell.InBounds(map)) continue;
 
-            Explosion explosion = (Explosion)GenSpawn.Spawn(
-                ThingDefOf.Explosion,
-                parent.Position,
-                parent.Map);
-            explosion.damageFalloff = false;
-            explosion.damAmount = damType.defaultDamage;
-            explosion.Position = parent.Position + pos;
-            explosion.radius = 0.5f;
-            explosion.damType = damType;
-            explosion.StartExplosion(null, excludedThings);
+            GenExplosion.DoExplosion(
+                center: cell,
+                map: map,
+                radius: radius,
+                damType: dam,
+                instigator: parent,
+                damAmount: dam.defaultDamage,
+                armorPenetration: dam.defaultArmorPenetration,
+                explosionSound: dam.soundExplosion,
+                ignoredThings: ignored,
+                damageFalloff: false
+            );
         }
     }
 
