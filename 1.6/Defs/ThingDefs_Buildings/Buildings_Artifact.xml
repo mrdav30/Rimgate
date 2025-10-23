@@ -5,7 +5,6 @@
 
     <ThingDef Name="Rimgate_StargateBase" ParentName="BuildingBase" Abstract="True">
         <thingClass>Rimgate.Building_Stargate</thingClass>
-        <rotatable>false</rotatable>
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
         <constructEffect>ConstructMetal</constructEffect>
@@ -56,17 +55,20 @@
         <size>(5,1)</size>
         <graphicData>
             <texPath>Things/Building/Artifact/RGStargateAncient</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
+            <graphicClass>Graphic_Multi</graphicClass>
             <drawSize>(5.3,5.3)</drawSize>
-            <drawOffset>(0,0,1.2)</drawOffset>
+            <drawOffsetSouth>(0,0,0.6)</drawOffsetSouth>
+            <drawOffsetNorth>(0,0,1.2)</drawOffsetNorth>
+            <drawOffsetWest>(0,0,0)</drawOffsetWest>
+            <drawOffsetEast>(0,0,0)</drawOffsetEast>
             <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <techLevel>Archotech</techLevel>
         <killedLeavings>
             <Steel>120</Steel>
             <ComponentIndustrial>8</ComponentIndustrial>
-            <ComponentSpacer>1</ComponentSpacer>
-            <Rimgate_Naquadria>5</Rimgate_Naquadria>
+            <ComponentSpacer>2</ComponentSpacer>
+            <Rimgate_Naquadah>55</Rimgate_Naquadah>
         </killedLeavings>
         <statBases>
             <MarketValue>30000</MarketValue>
@@ -79,23 +81,22 @@
             <li Class="Rimgate.CompProperties_StargateControl">
                 <puddleGraphicData>
                     <texPath>FX/RGEventHorizon</texPath>
-                    <graphicClass>Graphic_Single</graphicClass>
-                    <shaderType>TransparentPostLight</shaderType>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>Mote</shaderType>
                     <drawSize>(5.3,5.3)</drawSize>
                 </puddleGraphicData>
                 <irisGraphicData>
                     <texPath>Things/Building/Misc/RGIris</texPath>
-                    <graphicClass>Graphic_Single</graphicClass>
+                    <graphicClass>Graphic_Multi</graphicClass>
                     <shaderType>Mote</shaderType>
                     <drawSize>(5.3,5.3)</drawSize>
                 </irisGraphicData>
-                <activeGraphicData>
-                    <texPath>Things/Building/Artifact/RGStargateAncient_Active</texPath>
-                    <graphicClass>Graphic_Single</graphicClass>
+                <chevronHighlight>
+                    <texPath>FX/RGStargateAncient_Active</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>Mote</shaderType>
                     <drawSize>(5.3,5.3)</drawSize>
-                    <drawOffset>(0,0,1.2)</drawOffset>
-                    <addTopAltitudeBias>true</addTopAltitudeBias>
-                </activeGraphicData>
+                </chevronHighlight>
                 <irisPowerConsumption>500</irisPowerConsumption>
             </li>
             <li Class="CompProperties_Power">
@@ -142,13 +143,12 @@
         <description>An ancient alien control console designed to interface with a Dwarfgate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
         <graphicData>
             <texPath>Things/Building/Artifact/RGDHD</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
+            <graphicClass>Graphic_Multi</graphicClass>
             <drawSize>(2,2)</drawSize>
             <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <size>(1,1)</size>
         <uiIconScale>0.5</uiIconScale>
-        <rotatable>false</rotatable>
         <minifiedDef>MinifiedThing</minifiedDef>
         <minifiedDrawScale>0.5</minifiedDrawScale>
         <stealable>true</stealable>
@@ -157,13 +157,14 @@
         <fillPercent>0.40</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-        <altitudeLayer>Building</altitudeLayer>
+        <altitudeLayer>BuildingBelowTop</altitudeLayer>
         <preventDroppingThingsOn>true</preventDroppingThingsOn>
         <thingCategories>
             <li>Artifacts</li>
         </thingCategories>
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
         <tickerType>Never</tickerType>
+        <drawerType>RealtimeOnly</drawerType>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>
         <building>
@@ -180,10 +181,10 @@
             </li>
             <li Class="Rimgate.CompProperties_DHDControl">
                 <activeGraphicData>
-                    <texPath>Things/Building/Artifact/RGDHD_Active</texPath>
-                    <graphicClass>Graphic_Single</graphicClass>
+                    <texPath>FX/RGDHD_Active</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>Mote</shaderType>
                     <drawSize>(2,2)</drawSize>
-                    <addTopAltitudeBias>true</addTopAltitudeBias>
                 </activeGraphicData>
             </li>
         </comps>
@@ -222,9 +223,10 @@
         <canOverlapZones>true</canOverlapZones>
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
         <tickerType>Never</tickerType>
+        <drawerType>RealtimeOnly</drawerType>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-        <altitudeLayer>Building</altitudeLayer>
+        <altitudeLayer>BuildingBelowTop</altitudeLayer>
         <preventDroppingThingsOn>true</preventDroppingThingsOn>
         <thingCategories>
             <li>BuildingsMisc</li>
@@ -254,6 +256,12 @@
             <li Class="CompProperties_Flickable" />
             <li Class="Rimgate.CompProperties_DHDControl">
                 <requiresPower>true</requiresPower>
+                <activeGraphicData>
+                    <texPath>FX/Rimgate_TauriDialHomeDevice_Active</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>Mote</shaderType>
+                    <drawSize>(2,2)</drawSize>
+                </activeGraphicData>
             </li>
             <li Class="CompProperties_Power">
                 <compClass>CompPowerTrader</compClass>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -52,7 +53,8 @@ internal static class Utils
         return true;
     }
 
-    // Prefer the cell in front of pawn; then other cardinals; else nearby radius.
+    // Prefer the cell in front of pawn;
+    // then other cardinals; else nearby radius.
     public static IntVec3 BestDropCellNearThing(Thing t)
     {
         var map = t.Map;
@@ -76,7 +78,8 @@ internal static class Utils
         return t.Position;
     }
 
-    // Pick a good stand cell (adjacent to dest, reachable, closest to pawn)
+    // Pick a good stand cell
+    // (adjacent to dest, reachable, closest to pawn)
     public static IntVec3 FindStandCellFor(Pawn pawn, IntVec3 dest, Map map, IntVec3 from)
     {
         if (pawn == null || pawn.health.Downed) return from;
@@ -93,11 +96,28 @@ internal static class Utils
         return IsGoodSpawnCell(best, map) ? best : from;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Vector3 AddY(Vector3 v, float dy) => new(v.x, v.y + dy, v.z);
+
     public static Rot4 RotationFacingFor(IntVec3 from, IntVec3 to)
     {
         var v = to - from;
         if (Mathf.Abs(v.x) > Mathf.Abs(v.z)) return v.x >= 0 ? Rot4.East : Rot4.West;
         return v.z >= 0 ? Rot4.North : Rot4.South;
+    }
+
+    // rotate a local offset into world-space for a given Rot4
+    public static IntVec3 RotateOffset(IntVec3 o, Rot4 rot)
+    {
+        // Coordinates are (x,z) on the map grid. Y must remain 0.
+        return rot.AsInt switch
+        {
+            0 => o,                          // North
+            1 => new IntVec3(o.z, 0, -o.x),  // East  (90° CW)
+            2 => new IntVec3(-o.x, 0, -o.z), // South (180°)
+            3 => new IntVec3(-o.z, 0, o.x),  // West  (270°)
+            _ => o
+        };
     }
 
     public static bool HasActiveGeneOf(this Pawn pawn, GeneDef geneDef)

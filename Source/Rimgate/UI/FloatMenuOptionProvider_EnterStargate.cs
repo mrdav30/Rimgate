@@ -22,16 +22,16 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
         Building_Stargate gate = clickedThing as Building_Stargate;
-        if (gate == null || gate.StargateControl == null)
+        if (gate == null || gate.GateControl == null)
             yield break;
 
-        if (!gate.StargateControl.IsActive)
+        if (!gate.GateControl.IsActive)
         {
             yield return new FloatMenuOption("CannotEnterPortal".Translate(gate.Label) + ": " + "RG_FailReasonGateInactive".Translate(), null);
             yield break;
         }
 
-        if (gate.StargateControl.IsIrisActivated)
+        if (gate.GateControl.IsIrisActivated)
         {
             yield return new FloatMenuOption("CannotEnterPortal".Translate(gate.Label) + ": " + "RG_FailReasonGateIrisClosed".Translate(), null);
             yield break;
@@ -55,7 +55,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
 
         if (!tmpGateEnteringPawns.NullOrEmpty())
         {
-            var enterLabel = (gate.StargateControl.IsReceivingGate
+            var enterLabel = (gate.GateControl.IsReceivingGate
                ? "RG_EnterReceivingStargateAction"
                : "RG_EnterStargateAction").Translate();
 
@@ -72,7 +72,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
             if (context.IsMultiselect)
                 yield break;
 
-            var bringLabel = (gate.StargateControl.IsReceivingGate
+            var bringLabel = (gate.GateControl.IsReceivingGate
                 ? "RG_BringToReceivingStargate"
                 : "RG_BringToStargate").Translate();
             yield return new FloatMenuOption(bringLabel, () =>

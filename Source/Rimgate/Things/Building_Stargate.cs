@@ -18,15 +18,13 @@ public class Building_Stargate : Building
     public CompTransporter Transporter
         => _cachedTransporter ??= GetComp<CompTransporter>();
 
-    public Comp_StargateControl StargateControl
+    public Comp_StargateControl GateControl
         => _cachedStargate ??= GetComp<Comp_StargateControl>();
 
     public CompGlower Glower =>
         _cachedGlowComp ??= GetComp<CompGlower>();
 
     public CompExplosive Explosive => _cachedexplosiveComp ??= GetComp<CompExplosive>();
-
-    public Graphic ActiveGraphic => _activeGraphic ??= StargateControl?.Props?.activeGraphicData.Graphic;
 
     private CompPowerTrader _cachedPowerTrader;
 
@@ -39,17 +37,6 @@ public class Building_Stargate : Building
     private CompExplosive _cachedexplosiveComp;
 
     private Graphic _activeGraphic;
-
-    public override Graphic Graphic
-    {
-        get
-        {
-            if (ActiveGraphic == null) return base.DefaultGraphic;
-            return !StargateControl.IsActive
-                ? base.DefaultGraphic
-                : ActiveGraphic;
-        }
-    }
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -70,17 +57,17 @@ public class Building_Stargate : Building
     {
         base.Tick();
 
-        if (StargateControl == null || PowerTrader == null)
+        if (GateControl == null || PowerTrader == null)
             return;
 
-        if (StargateControl.HasIris)
+        if (GateControl.HasIris)
         {
-            float powerConsumption = -(StargateControl.Props.irisPowerConsumption + PowerTrader.Props.PowerConsumption);
+            float powerConsumption = -(GateControl.Props.irisPowerConsumption + PowerTrader.Props.PowerConsumption);
             PowerTrader.PowerOutput = powerConsumption;
 
-            StargateControl.HasPower = PowerTrader.PowerOn;
-            if (!StargateControl.HasPower && StargateControl.IsIrisActivated)
-                StargateControl.ToggleIris();
+            GateControl.HasPower = PowerTrader.PowerOn;
+            if (!GateControl.HasPower && GateControl.IsIrisActivated)
+                GateControl.ToggleIris();
         }
         else
             PowerTrader.PowerOutput = -PowerTrader.Props.PowerConsumption;
@@ -88,20 +75,22 @@ public class Building_Stargate : Building
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        bool blockInteractions = StargateControl != null 
-            && (StargateControl.IsActive 
-                || StargateControl.ExternalHoldCount > 0);
+        bool blockInteractions = GateControl != null
+            && (GateControl.IsActive
+                || GateControl.ExternalHoldCount > 0);
         string why = "RG_StargateHeldCannotReinstall".Translate();
 
         foreach (Gizmo gizmo in base.GetGizmos())
         {
-            if (gizmo is Command_LoadToTransporter 
-                && !StargateControl.IsActive) continue;
+            if (gizmo is Command_LoadToTransporter
+                && !GateControl.IsActive) continue;
 
-            if (blockInteractions 
-                && gizmo is Designator_Install dInstall)
+            if (gizmo is Designator_Install dInstall)
             {
-                dInstall.Disable(why);
+                if (blockInteractions)
+                    dInstall.Disable(why);
+                else if (dInstall.Disabled)
+                    dInstall.Disabled = false;
                 yield return dInstall;
                 continue;
             }
@@ -110,16 +99,32 @@ public class Building_Stargate : Building
         }
     }
 
+    // override to hide interaction cell
+    public override void DrawExtraSelectionOverlays()
+    {
+        if (def.specialDisplayRadius > 0.1f)
+            GenDraw.DrawRadiusRing(Position, def.specialDisplayRadius);
+
+        if (def.drawPlaceWorkersWhileSelected 
+            && def.PlaceWorkers != null)
+        {
+            for (int i = 0; i < def.PlaceWorkers.Count; i++)
+            {
+                def.PlaceWorkers[i].DrawGhost(def, Position, Rotation, Color.white, this);
+            }
+        }
+    }
+
     public override string GetInspectString()
     {
-        if (StargateControl == null)
+        if (GateControl == null)
             return string.Empty;
 
         StringBuilder sb = new StringBuilder();
 
-        sb.AppendLine(StargateControl.GetInspectString());
+        sb.AppendLine(GateControl.GetInspectString());
 
-        if (StargateControl.HasIris && PowerTrader != null)
+        if (GateControl.HasIris && PowerTrader != null)
             sb.AppendLine(PowerTrader.CompInspectStringExtra());
 
         return sb.ToString().TrimEndNewlines();

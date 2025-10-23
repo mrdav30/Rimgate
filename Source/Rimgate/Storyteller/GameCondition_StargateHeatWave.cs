@@ -38,7 +38,7 @@ public class GameCondition_StargateHeatWave : GameCondition_HeatWave
                    .FirstOrDefault();
         if (gate == null) return;
 
-        _heldComp = gate.StargateControl;
+        _heldComp = gate.GateControl;
         if (_heldComp == null) return;
 
         _heldComp.PushExternalHold();
@@ -50,7 +50,7 @@ public class GameCondition_StargateHeatWave : GameCondition_HeatWave
         if (_heldComp == null) return;
         _heldComp.PopExternalHold();
         if (_heldComp.ExternalHoldCount == 0 && _heldComp.IsReceivingGate)
-            _heldComp.CloseStargate(closeOtherGate: false);
+            _heldComp.CloseStargate();
         _heldComp = null;
     }
 }

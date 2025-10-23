@@ -84,8 +84,8 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
         {
             var sg = Building_Stargate.GetStargateOnMap(map);
             bool isValid = sg != null
-                && !sg.StargateControl.IsActive
-                && !sg.StargateControl.IsIrisActivated;
+                && !sg.GateControl.IsActive
+                && !sg.GateControl.IsIrisActivated;
             if (isValid)
                 incidentParms.raidArrivalMode = RimgateDefOf.Rimgate_StargateEnterMode;
             else

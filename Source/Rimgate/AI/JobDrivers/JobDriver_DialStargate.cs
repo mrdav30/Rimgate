@@ -29,7 +29,7 @@ public class JobDriver_DialStargate : JobDriver
             initAction = () =>
             {
                 Comp_StargateControl linkedStargate = dhdComp.GetLinkedStargate();
-                linkedStargate.OpenStargateDelayed(dhdComp.LastDialledAddress, 200);
+                linkedStargate.QueueOpen(dhdComp.LastDialledAddress, 200);
             }
         };
 

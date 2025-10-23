@@ -21,9 +21,7 @@ public static class StargateUtility
     public static bool ActiveGateOnMap(Map map)
     {
         Building_Stargate gate = Building_Stargate.GetStargateOnMap(map);
-        if (gate == null) return false;
-        if (gate.StargateControl == null) return false;
-        return gate.StargateControl.IsActive;
+        return gate?.GateControl?.IsActive == true;
     }
 
     public static string GetStargateDesignation(PlanetTile address)

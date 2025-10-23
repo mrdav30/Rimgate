@@ -15,19 +15,23 @@ public class Comp_DHDControl : ThingComp
 
     public CompProperties_DHDControl Props => (CompProperties_DHDControl)props;
 
-    public CompFacility Facility 
+    public CompFacility Facility
         => _facilityComp ?? parent.GetComp<CompFacility>();
 
-    private CompFacility _facilityComp;
-
     public CompPowerTrader PowerTrader
-    => !Props.requiresPower 
+    => !Props.requiresPower
         ? null
         : _powerComp ?? parent.GetComp<CompPowerTrader>();
+
+    public Graphic ActiveGraphic => _activeGraphic ??= Props.activeGraphicData.Graphic;
+
+    private CompFacility _facilityComp;
 
     private CompPowerTrader _powerComp;
 
     private bool _wantGateClosed;
+
+    public Graphic _activeGraphic;
 
     public bool WantsGateClosed => _wantGateClosed;
 
@@ -64,7 +68,7 @@ public class Comp_DHDControl : ThingComp
                 Designation designation = parent.Map.designationManager.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationCloseStargate);
 
                 if (designation == null)
-                   parent.Map.designationManager.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationCloseStargate));
+                    parent.Map.designationManager.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationCloseStargate));
                 else
                     designation?.Delete();
             }
@@ -76,6 +80,23 @@ public class Comp_DHDControl : ThingComp
             command.Disable("RG_CannotCloseIncoming".Translate());
 
         yield return command;
+    }
+
+    public override void PostDraw()
+    {
+        base.PostDraw();
+
+        Comp_StargateControl stargate = GetLinkedStargate();
+        if (stargate?.IsActive == false)
+            return;
+
+        var rot = parent.Rotation;
+        var drawOffset = parent.def.graphicData.DrawOffsetForRot(rot);
+
+        var posAbove = parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) + drawOffset;
+
+        // highlight floats above the dhd.
+        ActiveGraphic.Draw(Utils.AddY(posAbove, +0.01f), rot, parent);
     }
 
     public void DoCloseGate()

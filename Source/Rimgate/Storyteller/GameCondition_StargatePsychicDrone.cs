@@ -39,7 +39,7 @@ public class GameCondition_StargatePsychicDrone : GameCondition_PsychicEmanation
                    .FirstOrDefault();
         if (gate == null) return;
 
-        var comp = gate.StargateControl;
+        var comp = gate.GateControl;
         if (comp == null) return;
 
         _heldComp = comp;
@@ -57,7 +57,7 @@ public class GameCondition_StargatePsychicDrone : GameCondition_PsychicEmanation
         // If nothing else is holding the gate
         // and it was an “incoming” fake link:
         if (_heldComp.ExternalHoldCount == 0 && _heldComp.IsReceivingGate)
-            _heldComp.CloseStargate(closeOtherGate: false);
+            _heldComp.CloseStargate();
 
         _heldComp = null;
     }

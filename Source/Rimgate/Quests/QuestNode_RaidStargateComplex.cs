@@ -12,8 +12,8 @@ namespace Rimgate;
 /// Triggers on site.MapGenerated and then repeats on an interval until quest end.
 public class QuestNode_RaidStargateComplex : QuestNode
 {
-    // ~0.25–0.5 day after map gen
-    private static readonly IntRange InitialDelay = new IntRange(9000, 18000);
+    // ~0.5–1 day after map gen
+    private static readonly IntRange InitialDelay = new IntRange(18000, 36000);
 
     // ~1–1.5 days between raids
     private static readonly IntRange Interval = new IntRange(60000, 90000);

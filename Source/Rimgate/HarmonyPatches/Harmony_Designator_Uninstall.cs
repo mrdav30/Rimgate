@@ -11,9 +11,9 @@ static class Patch_BlockStargateUninstall
     {
         if (!__result.Accepted) return;
         bool flag = t is Rimgate.Building_Stargate sg 
-            && sg.StargateControl != null 
-            && (sg.StargateControl.IsActive 
-                || sg.StargateControl.ExternalHoldCount > 0);
+            && sg.GateControl != null 
+            && (sg.GateControl.IsActive 
+                || sg.GateControl.ExternalHoldCount > 0);
         if (flag)
             __result = "RG_StargateHeldCannotUninstall".Translate();
     }

@@ -34,9 +34,9 @@ public class Comp_StargateControl : ThingComp
 
     public bool HasPower = false;
 
-    public int TicksUntilOpen = -1;
+    public int TicksUntilOpen => _ticksUntilOpen;
 
-    public int ExternalHoldCount;
+    public int ExternalHoldCount => _externalHoldCount;
 
     public CompProperties_StargateControl Props => (CompProperties_StargateControl)props;
 
@@ -44,23 +44,49 @@ public class Comp_StargateControl : ThingComp
 
     public Graphic StargateIris => _stargateIris ??= Props.irisGraphicData.Graphic;
 
-    public bool GateIsLoadingTransporter
+    public Graphic ChevronHighlight => _chevronHighlight ??= Props.chevronHighlight.Graphic;
+
+    public bool GateIsLoading
     {
         get
         {
-            return Parent.Transporter != null
-                && Parent.Transporter.LoadingInProgressOrReadyToLaunch
-                && Parent.Transporter.AnyInGroupHasAnythingLeftToLoad;
+            return Parent?.Transporter?.LoadingInProgressOrReadyToLaunch == true
+                && Parent?.Transporter?.AnyInGroupHasAnythingLeftToLoad == true;
         }
     }
+
     public IEnumerable<IntVec3> VortexCells
     {
         get
         {
-            foreach (IntVec3 offset in Props.vortexPattern)
-                yield return offset + parent.Position;
+            var rot = parent.Rotation;
+            if (rot == Rot4.North) // default is for north facing
+            {
+                foreach (IntVec3 offset in Props.vortexPattern)
+                    yield return offset + parent.Position;
+                yield break;
+            }
+
+            foreach (var off in Props.vortexPattern)
+                yield return parent.Position + Utils.RotateOffset(off, rot);
         }
     }
+
+    public bool IsIrisActivated => _isIrisActivated;
+
+    public bool WantsIrisClosed => _wantsIrisToggled;
+
+    public PlanetTile ConnectedAddress = PlanetTile.Invalid;
+
+    public Building_Stargate Parent => parent as Building_Stargate;
+
+    public Building_Stargate ConnectedGate;
+
+    public Sustainer PuddleSustainer;
+
+    private int _externalHoldCount;
+
+    private int _ticksUntilOpen = -1;
 
     private List<Thing> _sendBuffer;
 
@@ -70,19 +96,7 @@ public class Comp_StargateControl : ThingComp
 
     private bool _isIrisActivated = false;
 
-    public bool IsIrisActivated => _isIrisActivated;
-
-    public bool _wantsIrisToggled;
-
-    public bool WantsIrisClosed => _wantsIrisToggled;
-
-    public PlanetTile ConnectedAddress = PlanetTile.Invalid;
-
-    public Building_Stargate Parent => parent as Building_Stargate;
-
-    public Building_Stargate ConnectedStargate;
-
-    public Sustainer PuddleSustainer;
+    private bool _wantsIrisToggled;
 
     private PlanetTile _queuedAddress;
 
@@ -90,15 +104,17 @@ public class Comp_StargateControl : ThingComp
 
     private Graphic _stargateIris;
 
+    private Graphic _chevronHighlight;
+
     #region DHD Controls
 
-    public void OpenStargateDelayed(PlanetTile address, int delay)
+    public void QueueOpen(PlanetTile address, int delay)
     {
         _queuedAddress = address;
-        TicksUntilOpen = delay;
+        _ticksUntilOpen = delay;
     }
 
-    public void OpenStargate(PlanetTile address)
+    private void Open(PlanetTile address)
     {
         if (!address.Valid) return;
 
@@ -132,18 +148,18 @@ public class Comp_StargateControl : ThingComp
                 if (RimgateMod.Debug)
                     Log.Message($"Rimgate :: finished generating map");
 
-                FinalizeOpenGate(address, site.Map);
+                FinalizeOpen(address, site.Map);
             });
         }
         else
         {
             if (site is WorldObject_QuestStargateSite wos)
                 wos.ToggleSiteMap();
-            FinalizeOpenGate(address, site.Map);
+            FinalizeOpen(address, site.Map);
         }
     }
 
-    private void FinalizeOpenGate(PlanetTile address, Map map)
+    private void FinalizeOpen(PlanetTile address, Map map)
     {
         Building_Stargate gate = GetConnectedGate(map);
         bool invalid = gate == null
@@ -162,19 +178,22 @@ public class Comp_StargateControl : ThingComp
 
         if (ConnectedAddress.Valid)
         {
-            ConnectedStargate = gate;
+            ConnectedGate = gate;
 
-            Comp_StargateControl otherComp = ConnectedStargate.StargateControl;
+            Comp_StargateControl otherComp = ConnectedGate.GateControl;
             otherComp.IsActive = true;
             otherComp.IsReceivingGate = true;
             otherComp.ConnectedAddress = GateAddress;
-            otherComp.ConnectedStargate = Parent;
+            otherComp.ConnectedGate = Parent;
 
             otherComp.PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(otherComp.parent));
             RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(otherComp.parent));
 
-            otherComp.Parent.Glower.Props.glowRadius = _glowRadius;
-            otherComp.Parent.Glower.PostSpawnSetup(false);
+            if (otherComp.Parent.Glower != null)
+            {
+                otherComp.Parent.Glower.Props.glowRadius = _glowRadius;
+                otherComp.Parent.Glower.PostSpawnSetup(false);
+            }
         }
 
         PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
@@ -190,11 +209,12 @@ public class Comp_StargateControl : ThingComp
             Log.Message($"Rimgate :: finished opening gate {parent}");
     }
 
-    public void PushExternalHold() => ExternalHoldCount++;
+    public void PushExternalHold() => _externalHoldCount++;
+
     public void PopExternalHold()
     {
-        if (ExternalHoldCount > 0)
-            ExternalHoldCount--;
+        if (_externalHoldCount > 0)
+            _externalHoldCount--;
     }
 
     public void ForceLocalOpenAsReceiver()
@@ -204,23 +224,24 @@ public class Comp_StargateControl : ThingComp
         IsActive = true;
         IsReceivingGate = true;
         ConnectedAddress = PlanetTile.Invalid;
-        ConnectedStargate = null;  // local-only, no remote
+        ConnectedGate = null;  // local-only, no remote
         PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
         RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(parent));
         if (Parent?.Glower != null)
         {
-            Parent.Glower.Props.glowRadius = 10;
+            Parent.Glower.Props.glowRadius = _glowRadius;
             Parent.Glower.PostSpawnSetup(false);
         }
     }
 
     public void CloseStargate(bool closeOtherGate = false)
     {
-        if (Parent == null || !IsActive) return;
+        if (Parent == null || (!IsActive && _externalHoldCount == 0))
+            return;
 
         Parent.Transporter?.CancelLoad();
 
-        //clear buffers just in case
+        // clear buffers just in case
         var drop = Utils.BestDropCellNearThing(parent);
 
         if (_sendBuffer?.Any() == true)
@@ -242,8 +263,8 @@ public class Comp_StargateControl : ThingComp
         Comp_StargateControl otherSgComp = null;
         if (closeOtherGate)
         {
-            otherSgComp = ConnectedStargate.StargateControl;
-            if (ConnectedStargate == null || otherSgComp == null)
+            otherSgComp = ConnectedGate.GateControl;
+            if (ConnectedGate == null || otherSgComp == null)
             {
                 Log.Warning($"Rimgate :: Recieving stargate connected to stargate {parent.ThingID} didn't have CompStargate, but this stargate wanted it closed.");
             }
@@ -276,7 +297,7 @@ public class Comp_StargateControl : ThingComp
         TicksSinceBufferUnloaded = 0;
         TicksSinceOpened = 0;
         ConnectedAddress = PlanetTile.Invalid;
-        ConnectedStargate = null;
+        ConnectedGate = null;
         IsReceivingGate = false;
     }
 
@@ -310,7 +331,7 @@ public class Comp_StargateControl : ThingComp
         const float radius = 0.51f;
 
         foreach (var cell in VortexCells)
-            {
+        {
             if (!cell.InBounds(map)) continue;
 
             GenExplosion.DoExplosion(
@@ -334,7 +355,7 @@ public class Comp_StargateControl : ThingComp
         _sendBuffer.Add(thing);
 
         // redraft flag travels as an ID on the destination comp
-        Comp_StargateControl dest = ConnectedStargate?.StargateControl;
+        Comp_StargateControl dest = ConnectedGate?.GateControl;
         if (dest != null && ShouldRedraftAfterSpawn(thing))
             dest.MarkRedraftOnArrival(thing);
 
@@ -343,7 +364,7 @@ public class Comp_StargateControl : ThingComp
 
     private void BeamSendBufferTo()
     {
-        Comp_StargateControl dest = ConnectedStargate.StargateControl;
+        Comp_StargateControl dest = ConnectedGate.GateControl;
 
         for (int i = 0; i < _sendBuffer.Count; i++)
         {
@@ -410,7 +431,7 @@ public class Comp_StargateControl : ThingComp
                 p.jobs?.StopAll();
                 if (p.drafter != null)
                     p.drafter.Drafted = true;
-                // hold position for a tick; avoids “wander”
+                // hold position for a tick; avoids wander
                 p.pather?.StopDead();
             }
         }
@@ -430,39 +451,36 @@ public class Comp_StargateControl : ThingComp
     public override void PostDraw()
     {
         base.PostDraw();
-        if (_isIrisActivated)
-        {
-            Vector3 offset = RimgateDefOf.Rimgate_Stargate.graphicData.drawOffset;
-            offset.y -= 0.01f;
 
-            StargateIris.Draw(
-                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingBelowTop) + offset,
-                Rot4.North,
-                parent);
-        }
+        var rot = parent.Rotation;
+        var drawOffset = parent.def.graphicData.DrawOffsetForRot(rot);
 
+        var posBelow = parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingBelowTop) + drawOffset;
+        var posAbove = parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Item) + drawOffset;
+
+        // Puddle is slightly below the iris.
         if (IsActive)
-        {
-            Vector3 offset = parent.def.graphicData.drawOffset;
-            offset.y -= 0.02f;
+            StargatePuddle.Draw(Utils.AddY(posBelow, -0.02f), rot, parent);
 
-            StargatePuddle.Draw(
-                parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingBelowTop) + offset,
-                Rot4.North,
-                parent);
-        }
+        // Iris sits a bit above the puddle.
+        if (_isIrisActivated)
+            StargateIris.Draw(Utils.AddY(posBelow, -0.01f), rot, parent);
+ 
+        // Chevron highlight floats above the gate/puddle/iris.
+        if (IsActive)
+            ChevronHighlight.Draw(Utils.AddY(posAbove, +0.01f), rot, parent);
     }
 
     public override void CompTick()
     {
         base.CompTick();
-        if (TicksUntilOpen > 0)
+        if (_ticksUntilOpen > 0)
         {
-            TicksUntilOpen--;
-            if (TicksUntilOpen == 0)
+            _ticksUntilOpen--;
+            if (_ticksUntilOpen == 0)
             {
-                TicksUntilOpen = -1;
-                OpenStargate(_queuedAddress);
+                _ticksUntilOpen = -1;
+                Open(_queuedAddress);
                 _queuedAddress = PlanetTile.Invalid;
             }
         }
@@ -496,27 +514,29 @@ public class Comp_StargateControl : ThingComp
         if (_sendBuffer?.Any() == true)
             BeamSendBufferTo();
 
-        if (!ConnectedAddress.Valid 
-            && _recvBuffer?.Any() == false)
+        if (_recvBuffer?.Any() == true)
         {
-            CloseStargate();
-            return;
+            if (TicksSinceBufferUnloaded > Rand.Range(10, 80))
+                SpawnFromReceiveBuffer();
         }
-
-        if (_recvBuffer?.Any() == true
-            && TicksSinceBufferUnloaded > Rand.Range(10, 80))
+        else
         {
-            SpawnFromReceiveBuffer();
+            // close out early
+            // (i.e., raid arrivals, game conditions)
+            if (!ConnectedAddress.Valid
+                && _externalHoldCount == 0)
+            {
+                CloseStargate();
+                return;
+            }
         }
 
         TicksSinceBufferUnloaded++;
         TicksSinceOpened++;
 
-        bool otherLoading = ConnectedStargate != null
-            && ConnectedStargate.StargateControl.GateIsLoadingTransporter;
+        bool otherLoading = ConnectedGate?.GateControl.GateIsLoading == true;
 
         bool shouldClose = IsReceivingGate
-            && ExternalHoldCount == 0
             && TicksSinceBufferUnloaded > _idleTimeout
             && !otherLoading;
 
@@ -532,16 +552,16 @@ public class Comp_StargateControl : ThingComp
 
         if (IsActive)
         {
-            if(ConnectedStargate == null && ConnectedAddress.Valid)
+            if (ConnectedGate == null && ConnectedAddress.Valid)
             {
                 MapParent site = Find.WorldObjects.MapParentAt(ConnectedAddress);
                 if (site.HasMap)
-                    ConnectedStargate = GetConnectedGate(site.Map);
+                    ConnectedGate = GetConnectedGate(site.Map);
                 else
                     CloseStargate();
             }
 
-            if(ConnectedStargate != null || ExternalHoldCount > 0)
+            if (ConnectedGate != null || _externalHoldCount > 0)
                 PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle
                     .TrySpawnSustainer(SoundInfo.InMap(parent));
         }
@@ -549,7 +569,7 @@ public class Comp_StargateControl : ThingComp
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: compsg postspawnssetup:"
                 + $" sgactive={IsActive},"
-                + $" connectgate={ConnectedStargate},"
+                + $" connectgate={ConnectedGate},"
                 + $" connectaddress={ConnectedAddress},"
                 + $" mapparent={parent.Map.Parent}");
     }
@@ -634,7 +654,7 @@ public class Comp_StargateControl : ThingComp
         base.PostExposeData();
 
         Scribe_Values.Look(ref IsActive, "StargateIsActive");
-        Scribe_Values.Look(ref ExternalHoldCount, "ExternalHoldCount");
+        Scribe_Values.Look(ref _externalHoldCount, "ExternalHoldCount");
         Scribe_Values.Look(ref IsReceivingGate, "IsRecievingGate");
         Scribe_Values.Look(ref HasIris, "HasIris");
         Scribe_Values.Look(ref _isIrisActivated, "_irisIsActivated");
@@ -642,7 +662,7 @@ public class Comp_StargateControl : ThingComp
         Scribe_Values.Look(ref TicksSinceOpened, "TicksSinceOpened");
         Scribe_Values.Look(ref ConnectedAddress, "ConnectedAddress");
         Scribe_Values.Look(ref ConnectedAddress, "ConnectedAddress");
-        Scribe_References.Look(ref ConnectedStargate, "ConnectedStargate");
+        Scribe_References.Look(ref ConnectedGate, "ConnectedStargate");
 
         // --- SEND buffer (List<Thing>) ---
         Scribe_Collections.Look(ref _sendBuffer, "_sendBuffer", LookMode.Reference);
@@ -699,8 +719,8 @@ public class Comp_StargateControl : ThingComp
             sb.AppendLine("RG_IrisStatus".Translate(irisLabel));
         }
 
-        if (TicksUntilOpen > 0)
-            sb.AppendLine("RG_TimeUntilGateLock".Translate(TicksUntilOpen.ToStringTicksToPeriod()));
+        if (_ticksUntilOpen > 0)
+            sb.AppendLine("RG_TimeUntilGateLock".Translate(_ticksUntilOpen.ToStringTicksToPeriod()));
 
         return sb.ToString().TrimEndNewlines();
     }
@@ -721,7 +741,7 @@ public class Comp_StargateControl : ThingComp
 
     public void CleanupGate()
     {
-        CloseStargate(ConnectedStargate != null);
+        CloseStargate(ConnectedGate != null);
         Find.World.GetComponent<WorldComp_StargateAddresses>().RemoveAddress(GateAddress);
     }
 }

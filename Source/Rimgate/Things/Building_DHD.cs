@@ -21,23 +21,7 @@ public class Building_DHD : Building
         }
     }
 
-    public Graphic ActiveGraphic => _activeGraphic ??= DHDControl?.Props?.activeGraphicData.Graphic;
-
-    private Graphic _activeGraphic;
-
     private Comp_DHDControl _cachedDialHomeDevice;
-
-    public override Graphic Graphic
-    {
-        get
-        {
-            Comp_StargateControl stargate = DHDControl.GetLinkedStargate();
-            if (ActiveGraphic == null) return base.DefaultGraphic;
-            return stargate == null || !stargate.parent.Spawned || !stargate.IsActive
-                ? base.DefaultGraphic
-                : ActiveGraphic;
-        }
-    }
 
     public static Building_DHD GetDhdOnMap(Map map)
     {

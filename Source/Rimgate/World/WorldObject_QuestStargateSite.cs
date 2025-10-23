@@ -71,7 +71,7 @@ public class WorldObject_QuestStargateSite : Site
     {
         var gate = Building_Stargate.GetStargateOnMap(Map);
         if (gate != null)
-            gate.StargateControl.CleanupGate();
+            gate.GateControl.CleanupGate();
 
         base.Notify_MyMapAboutToBeRemoved();
     }

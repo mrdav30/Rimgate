@@ -133,7 +133,7 @@ public class JobDriver_PushMobileContainer : JobDriver
                 if (gate != null)
                 {
                     // sanity: gate usable?
-                    var sg = gate.StargateControl;
+                    var sg = gate.GateControl;
                     if (!sg.IsActive || sg.IsIrisActivated)
                     {
                         Messages.Message(
