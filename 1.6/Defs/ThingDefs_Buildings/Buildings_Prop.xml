@@ -172,7 +172,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DialHomeDeviceDestroyed</defName>
         <label>ruined dial home device</label>
-        <description>A shattered relic of alien engineering once used to command a Stargate. Its crystals are burnt out, its control ring frozen in place—no dialing, no escape, just a reminder of what was lost. Scavengers might still pry a trace of naquadah from its husk, but it will never open a wormhole again.</description>
+        <description>A shattered relic of alien engineering once used to command a Dwarfgate. Its crystals are burnt out, its control ring frozen in place—no dialing, no escape, just a reminder of what was lost. Scavengers might still pry a trace of naquadah from its husk, but it will never open a wormhole again.</description>
         <rotatable>false</rotatable>
         <stealable>false</stealable>
         <passability>Impassable</passability>

@@ -5,11 +5,11 @@
 
   <WorkGiverDef>
     <defName>Rimgate_CloseStargate</defName>
-    <label>close stargate</label>
+    <label>close dwarfgate</label>
     <giverClass>Rimgate.WorkGiver_CloseStargate</giverClass>
     <workType>BasicWorker</workType>
-    <verb>close stargate connection</verb>
-    <gerund>closing stargate connection</gerund>
+    <verb>close dwarfgate connection</verb>
+    <gerund>closing dwarfgate connection</gerund>
     <canBeDoneWhileDrafted>true</canBeDoneWhileDrafted>
     <priorityInType>100</priorityInType>
   </WorkGiverDef>

@@ -91,7 +91,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
     <label>Industrial Naquadria generator</label>
-    <description>A massive, hardened power core designed to keep Tau’ri Stargate facilities online no matter what comes through. Fueled by volatile naquadria, it produces enough output to light a small city—or vaporize one if mishandled. Redundant shielding keeps colonists mostly safe, though the hum in the walls might shorten lifespans by a decade or two. But hey—at least the lights stay on.</description>
+    <description>A massive, hardened power core designed to keep Tau’ri Dwarfgate facilities online no matter what comes through. Fueled by volatile naquadria, it produces enough output to light a small city—or vaporize one if mishandled. Redundant shielding keeps colonists mostly safe, though the hum in the walls might shorten lifespans by a decade or two. But hey—at least the lights stay on.</description>
     <graphicData>
       <texPath>Things/Building/Power/NaquadriaGenerator/RGIndustrialNaquadriaFiredGenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>

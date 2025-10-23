@@ -117,7 +117,7 @@
 	<RG_StargateHeldCannotReinstall>Cannot reinstall: Dwarfgate is currently active.</RG_StargateHeldCannotReinstall>
 	<RG_GateDialFailed>Could not activate Dwarfgate: Recieving gate no longer exists or is currently in use.</RG_GateDialFailed>
 
-	<RG_GeneratingStargateSite>Generating stargate site</RG_GeneratingStargateSite>
+	<RG_GeneratingStargateSite>Generating Dwarfgate site</RG_GeneratingStargateSite>
 
 	<RG_EnterStargateAction>Enter Dwarfgate</RG_EnterStargateAction>
 	<RG_EnterReceivingStargateAction>Vaporize yourself</RG_EnterReceivingStargateAction>

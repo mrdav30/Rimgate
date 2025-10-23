@@ -162,7 +162,7 @@
     <ThingDef ParentName="CowboyHat">
         <defName>Rimgate_TauriGreenBoonieHat</defName>
         <label>Tau'ri boonie hat</label>
-        <description>essential gear for jungle planets, deserts, and anywhere the Stargate drops you without sunscreen. Keeps the sun out, the sass in.\nWarning: May cause wearer to spontaneously mutter 'Indeed.'</description>
+        <description>essential gear for jungle planets, deserts, and anywhere the Dwarfgate drops you without sunscreen. Keeps the sun out, the sass in.\nWarning: May cause wearer to spontaneously mutter 'Indeed.'</description>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
         </recipeMaker>

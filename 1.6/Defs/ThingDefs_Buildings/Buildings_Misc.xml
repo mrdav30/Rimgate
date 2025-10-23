@@ -271,7 +271,7 @@
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_MobileHoverSkid</defName>
 		<label>hover skid</label>
-		<description>A grav-skid with inertial dampers and a sealed crate. It glides where the pusher walks—high capacity, near-frictionless handling. Rumor says the focusing ring is Naquadah-based, which would explain why it hums like a Stargate room on standby. Not suitable for caravaning.</description>
+		<description>A grav-skid with inertial dampers and a sealed crate. It glides where the pusher walks—high capacity, near-frictionless handling. Rumor says the focusing ring is Naquadah-based, which would explain why it hums like a Dwarfgate room on standby. Not suitable for caravaning.</description>
 		<graphicData>
 			<texPath>Things/Building/MobileContainer/RGHoverSkid</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>

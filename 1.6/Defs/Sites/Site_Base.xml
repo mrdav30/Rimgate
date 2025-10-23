@@ -2,15 +2,15 @@
 <Defs>
 
     <SitePartDef Name="Rimgate_StargateSiteBase" Abstract="true">
-        <label>Stargate location</label>
-        <description>A remote site known to contain a stargate.</description>
+        <label>Dwarfgate location</label>
+        <description>A remote site known to contain a Dwarfgate.</description>
         <workerClass>Rimgate.SitePartWorker_Stargate</workerClass>
         <siteTexture>UI/Icon/Map/RGStargateComplexSiteIcon</siteTexture>
         <expandingIconTexture>UI/Icon/Map/RGStargateComplexSiteIcon</expandingIconTexture>
         <requiresFaction>true</requiresFaction>
         <approachOrderString>Investigate {0}</approachOrderString>
         <approachingReportString>Investigating {0}</approachingReportString>
-        <arrivedLetter>There is a stargate in this area.</arrivedLetter>
+        <arrivedLetter>There is a Dwarfgate in this area.</arrivedLetter>
         <arrivedLetterDef>NeutralEvent</arrivedLetterDef>
         <copyQuestName>true</copyQuestName>
         <wantsThreatPoints>true</wantsThreatPoints>

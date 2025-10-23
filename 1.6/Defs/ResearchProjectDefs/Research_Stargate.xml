@@ -3,14 +3,14 @@
 
 	<ResearchTabDef>
 		<defName>Rimgate_ResearchTab</defName>
-		<label>Stargates</label>
+		<label>Dwarfgates</label>
 	</ResearchTabDef>
 
 	<ResearchProjectDef>
 		<tab>Rimgate_ResearchTab</tab>
 		<defName>Rimgate_GlyphDeciphering</defName>
 		<label>Glyph deciphering</label>
-		<description>The symbols etched into Stargates—and scribbled across ominous scrolls—aren’t just artistic flair. Decoding them may unlock a galaxy-spanning transit network. Or a death trap. Possibly both.</description>
+		<description>The symbols etched into Dwarfgates—and scribbled across ominous scrolls—aren’t just artistic flair. Decoding them may unlock a galaxy-spanning transit network. Or a death trap. Possibly both.</description>
 		<baseCost>2000</baseCost>
 		<techLevel>Medieval</techLevel>
 		<researchViewX>0.00</researchViewX>
@@ -44,7 +44,7 @@
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateIrisResearch</defName>
 		<label>Irises</label>
-		<description>By placing an ultra-thin barrier mere microns from a stargate's event horizon, we can prevent reintegration of inbound matter.\nIn simpler terms: unwanted guests go *splat*. Handy.</description>
+		<description>By placing an ultra-thin barrier mere microns from a Dwarfgate's event horizon, we can prevent reintegration of inbound matter.\nIn simpler terms: unwanted guests go *splat*. Handy.</description>
 		<baseCost>6000</baseCost>
 		<prerequisites>
 			<li>Rimgate_StargateAlloyResearch</li>
@@ -56,7 +56,7 @@
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateReplacementDHDResearch</defName>
 		<label>Replacement DHD</label>
-		<description>By studying salvaged Stargate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.\nNote: SGC officially recommends bolting this one to the floor.</description>
+		<description>By studying salvaged Dwarfgate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.\nNote: SGC officially recommends bolting this one to the floor.</description>
 		<baseCost>4000</baseCost>
 		<prerequisites>
 			<li>Rimgate_StargateAlloyResearch</li>

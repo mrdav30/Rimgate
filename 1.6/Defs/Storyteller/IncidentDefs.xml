@@ -47,7 +47,7 @@
 
 	<IncidentDef>
 		<defName>Rimgate_StargatePsychicDrone</defName>
-		<label>stargate psychic drone</label>
+		<label>dwarfgate psychic drone</label>
 		<category>Misc</category>
 		<targetTags>
 			<li>Map_PlayerHome</li>
@@ -60,7 +60,7 @@
 
 	<IncidentDef>
 		<defName>Rimgate_StargateToxicFallout</defName>
-		<label>stargate toxic fallout</label>
+		<label>dwarfgate toxic fallout</label>
 		<category>Misc</category>
 		<targetTags>
 			<li>Map_PlayerHome</li>
@@ -73,7 +73,7 @@
 
 	<IncidentDef>
 		<defName>Rimgate_StargateHeatWave</defName>
-		<label>stargate heat wave</label>
+		<label>dwarfgate heat wave</label>
 		<category>Misc</category>
 		<targetTags>
 			<li>Map_PlayerHome</li>

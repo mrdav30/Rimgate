@@ -375,7 +375,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_TauriPuddleJumper</defName>
     <label>Tau'ri Puddle Jumper</label>
-    <description>A marvel of Ancient engineering, retrofitted by the Tau’ri. Compact and equipped with a powerful deflector shield, the Puddle Jumper excels at stealth ops, extractions, and rapid deployment. Unfortunately, the Jumper’s hull dimensions mean it cannot fit through the smaller Stargates scattered across the Rim, limiting its use to planetary travel and spaceflight.</description>
+    <description>A marvel of Ancient engineering, retrofitted by the Tau’ri. Compact and equipped with a powerful deflector shield, the Puddle Jumper excels at stealth ops, extractions, and rapid deployment. Unfortunately, the Jumper’s hull dimensions mean it cannot fit through the smaller Dwarfgates scattered across the Rim, limiting its use to planetary travel and spaceflight.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <size>(3,6)</size>
     <graphicData>

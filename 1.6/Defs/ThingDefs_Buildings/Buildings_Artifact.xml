@@ -139,7 +139,7 @@
         <defName>Rimgate_DialHomeDevice</defName>
         <thingClass>Rimgate.Building_DHD</thingClass>
         <label>Dial home device</label>
-        <description>An ancient alien control console designed to interface with a Stargate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
+        <description>An ancient alien control console designed to interface with a Dwarfgate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
         <graphicData>
             <texPath>Things/Building/Artifact/RGDHD</texPath>
             <graphicClass>Graphic_Single</graphicClass>

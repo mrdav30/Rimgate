@@ -67,7 +67,7 @@
 				<li>questDescription->A sequence of glyphs leads to a site of unusual construction.\n\nThe architecture resembles something far older than your colony, and its purpose is unclear. Vault? Temple? Prison?\n\nOne thing is certain: whatever lies beyond was meant to remain sealed.</li>
 				<li>questDescription->The glyph sequence decodes to a location, but records are sparse.\n\nIt may be nothing but ruins. Or it may be the sort of “nothing” that eats expeditions whole.\n\nYour only way to know is to step through.</li>
 				<li>questDescription->Glyphs reference a constructed site tied to an operational gate.\n\nThe style suggests human hands—advanced, yet familiar. Whether military forward post, research hub, or derelict supply depot, it remains uncharted territory.\n\nExploration is advised, but caution is paramount.</li>
-				<li>questDescription->The glyphs describe a structure surrounding a dormant stargate.\n\nIt hums faintly with a resonance you can almost feel in your skull. Whether it is an abandoned lair, or something still stirring within, is impossible to tell from here.\n\nIt’s worth investigating, but be prepared for anything.</li>
+				<li>questDescription->The glyphs describe a structure surrounding a dormant Dwarfgate.\n\nIt hums faintly with a resonance you can almost feel in your skull. Whether it is an abandoned lair, or something still stirring within, is impossible to tell from here.\n\nIt’s worth investigating, but be prepared for anything.</li>
 			</rulesStrings>
 		</questDescriptionRules>
 
@@ -252,7 +252,7 @@
 									</li>
 									<li Class="QuestNode_Letter">
 										<label>Quest expired: [resolvedQuestName]</label>
-										<text>By the time you mobilized, others had already stripped the site bare.\n\nThe stargate is gone, the tech looted, and the opportunity lost.\n\nNext time, bring snacks and move faster.</text>
+										<text>By the time you mobilized, others had already stripped the site bare.\n\nThe Dwarfgate is gone, the tech looted, and the opportunity lost.\n\nNext time, bring snacks and move faster.</text>
 									</li>
 									<li Class="QuestNode_Letter">
 										<label>Quest expired: [resolvedQuestName]</label>
@@ -260,7 +260,7 @@
 									</li>
 									<li Class="QuestNode_Letter">
 										<label>Quest expired: [resolvedQuestName]</label>
-										<text>Only echoes remained. The stargate is gone, stripped by unseen hands. The resonance lingers, leaving your crew uneasy. Some things are best left forgotten.</text>
+										<text>Only echoes remained. The Dwarfgate is gone, stripped by unseen hands. The resonance lingers, leaving your crew uneasy. Some things are best left forgotten.</text>
 									</li>
 								</nodes>
 							</li>

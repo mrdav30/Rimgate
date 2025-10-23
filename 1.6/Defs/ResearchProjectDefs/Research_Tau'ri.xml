@@ -130,7 +130,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_MalpGestation</defName>
         <label>MALP mech tech</label>
-        <description>Unlock the secrets of Tau’ri engineering with the MALP — a rugged, shielded exploration probe that operates beyond normal mechinator limits. While the Tau’ri keep their full control systems classified, they’ve released enough blueprints for colonists to assemble a serviceable copy. It won’t complain about shifts, gets along fine with radiation, and doubles as the first “volunteer” through any Stargate.</description>
+        <description>Unlock the secrets of Tau’ri engineering with the MALP — a rugged, shielded exploration probe that operates beyond normal mechinator limits. While the Tau’ri keep their full control systems classified, they’ve released enough blueprints for colonists to assemble a serviceable copy. It won’t complain about shifts, gets along fine with radiation, and doubles as the first “volunteer” through any Dwarfgate.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
             <li>Rimgate_TauriBasic</li>
@@ -177,7 +177,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriPuddleJumper</defName>
         <label>Tau'ri Puddle Jumper</label>
-        <description>Unlock Tau’ri plans for a Puddle Jumper—an Ancient scout ship refitted with a deflector shield, VTOL agility, and just enough documentation to build it (but not to fly it through wormholes). The Tau’ri withheld the Ancient navigation suite, and this model can’t fit through the Rim’s undersized, Archotech-locked Stargates anyway. Ideal for stealth insertions, rapid exfil, and planetary/orbital hops—less ideal for “dial-and-dash.”</description>
+        <description>Unlock Tau’ri plans for a Puddle Jumper—an Ancient scout ship refitted with a deflector shield, VTOL agility, and just enough documentation to build it (but not to fly it through wormholes). The Tau’ri withheld the Ancient navigation suite, and this model can’t fit through the Rim’s undersized, Archotech-locked Dwarfgate anyway. Ideal for stealth insertions, rapid exfil, and planetary/orbital hops—less ideal for “dial-and-dash.”</description>
         <baseCost>3500</baseCost>
         <techLevel>Spacer</techLevel>
         <prerequisites>

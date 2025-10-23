@@ -6,7 +6,7 @@
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_GlyphParchment</defName>
         <label>glyph parchment</label>
-        <description>A weathered parchment embossed with mysterious stargate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.</description>
+        <description>A weathered parchment embossed with mysterious Dwarfgate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.</description>
         <thingClass>ThingWithComps</thingClass>
         <graphicData>
             <texPath>Things/Item/Resource/RGGlyphScrap</texPath>
@@ -174,7 +174,7 @@
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_IrisInstallKit</defName>
         <label>Iris installation kit</label>
-        <description>a high-tech deployment kit for installing an iris over a stargate.\nTurns your wormhole into a one-way trip—great for defense, less great for diplomacy.</description>
+        <description>a high-tech deployment kit for installing an iris over a Dwarfgate.\nTurns your wormhole into a one-way trip—great for defense, less great for diplomacy.</description>
         <thingClass>ThingWithComps</thingClass>
         <graphicData>
             <texPath>Things/Item/Resource/RGIrisUpgradeKit</texPath>
