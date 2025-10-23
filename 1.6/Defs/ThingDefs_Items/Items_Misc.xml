@@ -9,10 +9,10 @@
         <description>A weathered parchment embossed with mysterious Dwarfgate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.</description>
         <thingClass>ThingWithComps</thingClass>
         <graphicData>
-            <texPath>Things/Item/Resource/RGGlyphScrap</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
+            <texPath>Things/Item/Resource/GlyphParchment</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
         </graphicData>
-        <stackLimit>1</stackLimit>
+        <stackLimit>3</stackLimit>
         <tradeNeverStack>true</tradeNeverStack>
         <useHitPoints>true</useHitPoints>
         <statBases>
@@ -38,7 +38,6 @@
         </comps>
     </ThingDef>
 
-
     <!-- ==================== Scrap note ==================== -->
 
     <ThingDef>
@@ -48,7 +47,7 @@
         <description>(intentionally left blank)</description>
         <thingClass>Rimgate.Item_ScrapNote</thingClass>
         <graphicData>
-            <texPath>Things/Item/Resource/RGGlyphScrap</texPath>
+            <texPath>Things/Item/Resource/RGScrapNote</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <stackLimit>1</stackLimit>
@@ -105,7 +104,7 @@
         <description>Hey pal, figured you cracked my cipher and came sniffin’ for my stash.\n\nBad news: I already hauled it out through the Gate.\n\nGood news: I left you some company. They get hungry when the lights go out.\n\n— K</description>
         <thingClass>ThingWithComps</thingClass>
         <graphicData>
-            <texPath>Things/Item/Resource/RGGlyphScrap</texPath>
+            <texPath>Things/Item/Resource/RGScrapNote</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <stackLimit>1</stackLimit>
@@ -141,13 +140,13 @@
         <label>cipher fragment</label>
         <description>A fractured slice of an encoded starmap—coordinates, signatures, and an Archotech checksum that hurts to look at. Three fragments can be assembled into a coherent path to a hidden vault.</description>
         <graphicData>
-            <texPath>Things/Item/Resource/RGTreasureCipherFragment</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
+            <texPath>Things/Item/Resource/TreasureCipher</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
         </graphicData>
         <thingCategories>
             <li>Artifacts</li>
         </thingCategories>
-        <stackLimit>1</stackLimit>
+        <stackLimit>3</stackLimit>
         <tradeability>Sellable</tradeability>
         <statBases>
             <MarketValue>400</MarketValue>
