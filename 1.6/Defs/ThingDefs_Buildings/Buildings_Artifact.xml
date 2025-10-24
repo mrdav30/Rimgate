@@ -203,7 +203,7 @@
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_TauriDialHomeDevice</defName>
-        <thingClass>Building</thingClass>
+        <thingClass>Rimgate.Building_DHD</thingClass>
         <label>Dial home device</label>
         <description>A field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. Also bolted down better than the last one.</description>
         <rotatable>false</rotatable>
@@ -252,10 +252,12 @@
             <li Class="CompProperties_Facility">
                 <requiresLOS>false</requiresLOS>
                 <maxSimultaneous>1</maxSimultaneous>
+                <maxDistance>99</maxDistance>
             </li>
             <li Class="CompProperties_Flickable" />
             <li Class="Rimgate.CompProperties_DHDControl">
                 <requiresPower>true</requiresPower>
+                <canToggleIris>true</canToggleIris>
                 <activeGraphicData>
                     <texPath>FX/Rimgate_TauriDialHomeDevice_Active</texPath>
                     <graphicClass>Graphic_Single</graphicClass>

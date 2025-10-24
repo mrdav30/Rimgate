@@ -25,13 +25,7 @@ public class Comp_DHDControl : ThingComp
 
     public Graphic ActiveGraphic => _activeGraphic ??= Props.activeGraphicData.Graphic;
 
-    private CompFacility _facilityComp;
-
-    private CompPowerTrader _powerComp;
-
-    private bool _wantGateClosed;
-
-    public Graphic _activeGraphic;
+    public bool WantsIrisToggled => _wantIrisToggled;
 
     public bool WantsGateClosed => _wantGateClosed;
 
@@ -46,6 +40,16 @@ public class Comp_DHDControl : ThingComp
         }
     }
 
+    private Graphic _activeGraphic;
+
+    private CompFacility _facilityComp;
+
+    private CompPowerTrader _powerComp;
+
+    private bool _wantGateClosed;
+
+    private bool _wantIrisToggled;
+
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
         foreach (Gizmo gizmo in base.CompGetGizmosExtra())
@@ -55,7 +59,7 @@ public class Comp_DHDControl : ThingComp
         if (stargate == null)
             yield break;
 
-        Command_Toggle command = new Command_Toggle
+        Command_Toggle closeGateCmd = new Command_Toggle
         {
             defaultLabel = "RG_CloseStargate".Translate(),
             defaultDesc = "RG_CloseStargateDesc".Translate(),
@@ -75,11 +79,47 @@ public class Comp_DHDControl : ThingComp
         };
 
         if (!stargate.IsActive)
-            command.Disable("RG_GateIsNotActive".Translate());
+            closeGateCmd.Disable("RG_GateIsNotActive".Translate());
         else if (stargate.IsReceivingGate)
-            command.Disable("RG_CannotCloseIncoming".Translate());
+            closeGateCmd.Disable("RG_CannotCloseIncoming".Translate());
+        else if (Props.requiresPower && !(PowerTrader?.PowerOn ?? false))
+            closeGateCmd.Disable("PowerNotConnected".Translate());
 
-        yield return command;
+        yield return closeGateCmd;
+
+        if (!Props.canToggleIris || !stargate.HasIris)
+            yield break;
+
+        var actionLabel = stargate.IsIrisActivated
+            ? "RG_OpenIris".Translate()
+            : "RG_CloseIris".Translate();
+
+        var toggleIrisCmd = new Command_Toggle
+        {
+            defaultLabel = "RG_ToggleIris".Translate(actionLabel),
+            defaultDesc = "RG_ToggleIrisDesc".Translate(actionLabel),
+            icon = ContentFinder<UnityEngine.Texture2D>.Get(stargate.Props.irisGraphicData.texPath, true),
+            isActive = () => _wantIrisToggled,
+            toggleAction = delegate
+            {
+                _wantIrisToggled = !_wantIrisToggled;
+
+                var dm = parent.Map.designationManager;
+                var des = dm.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationToggleIris);
+                if (des == null)
+                    dm.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationToggleIris));
+                else
+                    des.Delete();
+            }
+        };
+
+        if (!stargate.HasPower 
+            || (Props.requiresPower && !(PowerTrader?.PowerOn ?? false)))
+        {
+            toggleIrisCmd.Disable("PowerNotConnected".Translate());
+        }
+
+        yield return toggleIrisCmd;
     }
 
     public override void PostDraw()
@@ -87,7 +127,10 @@ public class Comp_DHDControl : ThingComp
         base.PostDraw();
 
         Comp_StargateControl stargate = GetLinkedStargate();
-        if (stargate?.IsActive == false)
+        if (stargate == null || !stargate.IsActive)
+            return;
+
+        if (Props.requiresPower && !(PowerTrader?.PowerOn ?? false))
             return;
 
         var rot = parent.Rotation;
@@ -107,6 +150,15 @@ public class Comp_DHDControl : ThingComp
 
         _wantGateClosed = false;
         stargate.CloseStargate(true);
+    }
+
+    public void DoToggleIrisRemote()
+    {
+        var stargate = GetLinkedStargate();
+        if (stargate == null) return;
+
+        _wantIrisToggled = false;
+        stargate.DoToggleIris();
     }
 
     public Comp_StargateControl GetLinkedStargate()

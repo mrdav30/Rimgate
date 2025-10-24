@@ -74,7 +74,7 @@ public class Comp_StargateControl : ThingComp
 
     public bool IsIrisActivated => _isIrisActivated;
 
-    public bool WantsIrisClosed => _wantsIrisToggled;
+    public bool WantsIrisToggled => _wantsIrisToggled;
 
     public PlanetTile ConnectedAddress = PlanetTile.Invalid;
 
