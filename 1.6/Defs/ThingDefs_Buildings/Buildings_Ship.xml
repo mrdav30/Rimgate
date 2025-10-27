@@ -65,7 +65,7 @@
         <skyfallerLeaving>Rimgate_TeltakLeaving</skyfallerLeaving>
         <worldObjectDef>Rimgate_GoauldTeltak</worldObjectDef>
         <cooldownTicks>4000</cooldownTicks>
-        <fixedLaunchDistanceMax>80</fixedLaunchDistanceMax>
+        <fixedLaunchDistanceMax>120</fixedLaunchDistanceMax>
         <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
       </li>
       <li Class="CompProperties_Transporter">
@@ -249,7 +249,7 @@
         <skyfallerLeaving>Rimgate_DartLeaving</skyfallerLeaving>
         <worldObjectDef>Rimgate_WraithDart</worldObjectDef>
         <cooldownTicks>2500</cooldownTicks>
-        <fixedLaunchDistanceMax>65</fixedLaunchDistanceMax>
+        <fixedLaunchDistanceMax>120</fixedLaunchDistanceMax>
         <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
       </li>
       <li Class="CompProperties_Transporter">
@@ -433,7 +433,7 @@
         <interceptGroundProjectiles>true</interceptGroundProjectiles>
         <podBlocker>false</podBlocker>
         <resetTime>4000</resetTime>
-        <fuelConsumptionRate>0.025</fuelConsumptionRate>
+        <fuelConsumptionRate>125</fuelConsumptionRate>
         <stressPerDamage>0.02</stressPerDamage>
         <empDamageFactor>4.5</empDamageFactor>
         <shieldOverloadThreshold>0.9</shieldOverloadThreshold>
@@ -444,7 +444,7 @@
         <shieldCanBeScaled>true</shieldCanBeScaled>
         <shieldScaleLimits>10~20 </shieldScaleLimits>
         <shieldScaleDefault>10</shieldScaleDefault>
-        <shieldColour>(237, 227, 133)</shieldColour>
+        <shieldColour>(237, 227, 133)</shieldColour> 
       </li>
       <li Class="CompProperties_Shuttle">
         <shipDef>Rimgate_TauriPuddleJumperShip</shipDef>
@@ -455,7 +455,7 @@
         <skyfallerLeaving>Rimgate_PuddleJumperLeaving</skyfallerLeaving>
         <worldObjectDef>Rimgate_TauriPuddleJumper</worldObjectDef>
         <cooldownTicks>3000</cooldownTicks>
-        <fixedLaunchDistanceMax>70</fixedLaunchDistanceMax>
+        <fixedLaunchDistanceMax>120</fixedLaunchDistanceMax>
         <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
       </li>
       <li Class="CompProperties_Transporter">
