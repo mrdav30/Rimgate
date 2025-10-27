@@ -4,7 +4,7 @@
 	<QuestScriptDef>
 		<defName>Rimgate_StargateQuestScript</defName>
 		<rootSelectionWeight>0</rootSelectionWeight>
-        <isRootSpecial>true</isRootSpecial>
+		<isRootSpecial>true</isRootSpecial>
 		<autoAccept>true</autoAccept>
 		<defaultChallengeRating>2</defaultChallengeRating>
 		<randomlySelectable>false</randomlySelectable>
@@ -80,13 +80,13 @@
 
 				<li Class="QuestNode_GetMap" />
 
-                <li Class="QuestNode_IsSet">
-                    <name>asker</name>
-                    <elseNode Class="QuestNode_Set">
-                        <name>askerIsNull</name>
-                        <value>true</value>
-                    </elseNode>
-                </li>
+				<li Class="QuestNode_IsSet">
+					<name>asker</name>
+					<elseNode Class="QuestNode_Set">
+						<name>askerIsNull</name>
+						<value>true</value>
+					</elseNode>
+				</li>
 
 				<li Class="QuestNode_GetSiteTile">
 					<storeAs>siteTile</storeAs>
@@ -101,6 +101,28 @@
 						<li MayRequire="Ludeon.RimWorld.Odyssey">Hollow</li>
 						<li MayRequire="Ludeon.RimWorld.Odyssey">TerraformingScar</li>
 						<li MayRequire="Ludeon.RimWorld.Odyssey">Dunes</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Plateau</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Basin</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">LavaLake</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">LavaCrater</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">LavaFlow</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Iceberg</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Fjord</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Cove</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Bay</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Peninsula</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">CoastalIsland</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Archipelago</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">HotSprings</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">ToxicLake</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Pond</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">LakeWithIsland</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">LakeWithIslands</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Lake</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">Oasis</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">IceDunes</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">AncientSmokeVent</li>
+						<li MayRequire="Ludeon.RimWorld.Odyssey">AncientToxVent</li>
 						<li MayRequire="Ludeon.RimWorld.Odyssey">AncientHeatVent</li>
 					</allowedLandmarks>
 				</li>

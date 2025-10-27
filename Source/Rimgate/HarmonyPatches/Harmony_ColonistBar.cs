@@ -48,7 +48,7 @@ public static class Harmony_ColonistBar
         {
             var m = e.map;
             if (m == null) continue;
-            if (m.info?.parent is not WorldObject_QuestStargateSite) continue;
+            if (m.info?.parent is not WorldObject_StargateQuestSite) continue;
 
             bool showThisMap = (m.mapPawns?.AnyPawnBlockingMapRemoval ?? false);
             if (RimgateDefOf.Rimgate_WraithModificationEquipment.IsFinished)

@@ -8,7 +8,7 @@ using Verse.Noise;
 
 namespace Rimgate;
 
-public class WorldObject_QuestStargateSite : Site
+public class WorldObject_StargateQuestSite : Site
 {
     public int QuestId = -1;
 
@@ -28,9 +28,8 @@ public class WorldObject_QuestStargateSite : Site
 
         if (Map == null) return;
 
-        bool allowPeek =
-                       RimgateDefOf.Rimgate_WraithModificationEquipment.IsFinished
-                       || StargateUtility.ActiveGateOnMap(Map);
+        bool allowPeek = StargateUtility.ActiveGateOnMap(Map)
+            || RimgateDefOf.Rimgate_WraithModificationEquipment.IsFinished;
 
         bool nobodyVisible = !Map.mapPawns.AnyPawnBlockingMapRemoval;
 

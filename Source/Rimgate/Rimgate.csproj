@@ -43,6 +43,10 @@
       <HintPath>..\..\..\Dubs-Bad-Hygiene-master\1.6\Assemblies\BadHygiene.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="KCSG">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\294100\2023507013\1.6\Assemblies\KCSG.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="VEF">
       <HintPath>D:\SteamLibrary\steamapps\workshop\content\294100\2023507013\1.6\Assemblies\VEF.dll</HintPath>
@@ -496,7 +500,7 @@
     <Compile Include="World\WorldComp_StargateAddresses.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="Verbs\Verb_LaunchWithOffset.cs" />
-    <Compile Include="World\WorldObject_QuestStargateSite.cs" />
+    <Compile Include="World\WorldObject_StargateQuestSite.cs" />
     <Compile Include="World\WorldObject_PermanentStargateSite.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />
     <Compile Include="Utilities\SarcophagusUtility.cs" />

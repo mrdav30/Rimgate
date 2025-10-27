@@ -35,19 +35,6 @@ public class WorldComp_StargateAddresses : WorldComponent
         _addressList.RemoveAll(tile => !IsValidAddress(tile));
     }
 
-    private static bool IsStargateQuestSite(Site site)
-    {
-        return site?.MainSitePartDef?.tags?.Contains(RimgateMod.StargateQuestTag) == true;
-    }
-
-    private static bool SiteHasPlayerPresence(Site site)
-    {
-        if (site == null || !site.HasMap)
-            return false;
-
-        Map map = site.Map;
-        return map != null && map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer).Any();
-    }
     private static bool IsValidAddress(PlanetTile address)
     {
         var mp = Find.WorldObjects.MapParentAt(address);
@@ -55,11 +42,19 @@ public class WorldComp_StargateAddresses : WorldComponent
         {
             null => false,
             { HasMap: true } => true,
-            WorldObject_PermanentStargateSite => true,
-            Site s when IsStargateQuestSite(s) => true,
+            WorldObject_StargateTransitSite => true,
+            WorldObject_StargateQuestSite => true,
             Site s when SiteHasPlayerPresence(s) => true,
             _ => false
         };
+    }
+    private static bool SiteHasPlayerPresence(Site site)
+    {
+        if (site == null || !site.HasMap)
+            return false;
+
+        Map map = site.Map;
+        return map != null && map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer).Any();
     }
 
     public override void ExposeData()

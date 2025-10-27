@@ -133,6 +133,6 @@ public static class RimgateDefOf
 
     public static XenotypeDef Rimgate_Wraith;
 
-    public static WorldObjectDef Rimgate_QuestStargateSite;
-    public static WorldObjectDef Rimgate_PermanentStargateSite;
+    public static WorldObjectDef Rimgate_StargateQuestSite;
+    public static WorldObjectDef Rimgate_StargateTransitSite;
 }

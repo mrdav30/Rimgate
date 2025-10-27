@@ -7,7 +7,7 @@
 		<defName>Rimgate_StargateSiteTauri</defName>
 		<tags>
 			<li>Rimgate_StargateSiteTauri</li>
-			<li>Rimgate_QuestStargateSite</li>
+			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
@@ -52,7 +52,7 @@
 		<defName>Rimgate_StargateSiteGoauld</defName>
 		<tags>
 			<li>Rimgate_StargateSiteGoauld</li>
-			<li>Rimgate_QuestStargateSite</li>
+			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
@@ -97,7 +97,7 @@
 		<defName>Rimgate_StargateSiteWraith</defName>
 		<tags>
 			<li>Rimgate_StargateSiteWraith</li>
-			<li>Rimgate_QuestStargateSite</li>
+			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
@@ -141,7 +141,7 @@
 		<defName>Rimgate_StargateSiteMech</defName>
 		<tags>
 			<li>Rimgate_StargateSiteMech</li>
-			<li>Rimgate_QuestStargateSite</li>
+			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
@@ -201,7 +201,7 @@
 		</lootTable> -->
 		<tags>
 			<li>Rimgate_StargateSiteMisc</li>
-			<li>Rimgate_QuestStargateSite</li>
+			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
@@ -219,6 +219,9 @@
 				<li>Rimgate_StructureAncientComplexDelta</li>
 				<li>Rimgate_StructureBarrenGate</li>
 				<li>Rimgate_StructureBarrenGateNoDHD</li>
+				<li>Rimgate_StructureCastleAlpha</li>
+				<li>Rimgate_StructureCastleBravo</li>
+				<li>Rimgate_StructureCastleDelta</li>
 				<li>Rimgate_StructureCavernAlpha</li>
 				<li>Rimgate_StructureJadeHengeAlpha</li>
 				<li>Rimgate_StructureJadeHengeBravo</li>
@@ -242,7 +245,7 @@
 		<defName>Rimgate_StargateSiteVault</defName>
 		<tags>
 			<li>Rimgate_StargateSiteVault</li>
-			<li>Rimgate_QuestStargateSite</li>
+			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 

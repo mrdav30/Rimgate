@@ -134,7 +134,7 @@ public class Comp_StargateControl : ThingComp
             {
                 GetOrGenerateMapUtility.GetOrGenerateMap(
                     site.Tile,
-                    site is WorldObject_PermanentStargateSite
+                    site is WorldObject_StargateTransitSite
                             ? RimgateMod.MinMapSize
                             : Find.World.info.initialMapSize,
                     null);
@@ -153,7 +153,7 @@ public class Comp_StargateControl : ThingComp
         }
         else
         {
-            if (site is WorldObject_QuestStargateSite wos)
+            if (site is WorldObject_StargateQuestSite wos)
                 wos.ToggleSiteMap();
             FinalizeOpen(address, site.Map);
         }

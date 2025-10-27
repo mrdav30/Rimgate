@@ -3,11 +3,11 @@ using Verse;
 
 namespace Rimgate;
 
-public class Dialog_RenameStargateSite : Dialog_Rename<WorldObject_PermanentStargateSite>
+public class Dialog_RenameStargateSite : Dialog_Rename<WorldObject_StargateTransitSite>
 {
-    WorldObject_PermanentStargateSite sgSite;
+    WorldObject_StargateTransitSite sgSite;
 
-    public Dialog_RenameStargateSite(WorldObject_PermanentStargateSite sgSite) : base(sgSite)
+    public Dialog_RenameStargateSite(WorldObject_StargateTransitSite sgSite) : base(sgSite)
     {
         sgSite = sgSite;
     }

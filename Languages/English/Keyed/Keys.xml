@@ -97,6 +97,11 @@
 	<!-- Stargate -->
 
 	<RG_GateAddress>Dwarfgate address: {0}</RG_GateAddress>
+	<RG_SiteLoadout_Gate>Gate</RG_SiteLoadout_Gate>
+	<RG_SiteLoadout_NoGate>No Gate</RG_SiteLoadout_NoGate>
+	<RG_SiteLoadout_DHD>DHD</RG_SiteLoadout_DHD>
+	<RG_SiteLoadout_NoDHD>No DHD</RG_SiteLoadout_NoDHD>
+	<RG_SiteLoadout>Loadout: {0}</RG_SiteLoadout>
 
 	<RG_IncomingConnection>incoming</RG_IncomingConnection>
 	<RG_OutgoingConnection>outgoing</RG_OutgoingConnection>
@@ -137,10 +142,12 @@
 	<!-- Stargate Caravan -->
 
 	<RG_NoGateInCaravan>Dwarfgate required in caravan inventory.</RG_NoGateInCaravan>
+	<RG_BlockedByLandmark>Cannot set up a Dwarfgate site on this landmark: {0}.</RG_BlockedByLandmark>
 	<RG_CreateSGSite>Create new Dwarfgate site</RG_CreateSGSite>
 	<RG_CreateSGSiteDesc>Create a new Dwarfgate site at this location.</RG_CreateSGSiteDesc>
 	<RG_RenameGateSite>Rename Dwarfgate site</RG_RenameGateSite>
 	<RG_RenameGateSiteDesc>Rename this Dwarfgate site to a more recognizable name.</RG_RenameGateSiteDesc>
+	<RG_GeneratingMapForTransitSite>Generating map for Dwarfgate site</RG_GeneratingMapForTransitSite>
 
 	<!-- Stargate Glyphs -->
 

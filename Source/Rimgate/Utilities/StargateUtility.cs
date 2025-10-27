@@ -42,10 +42,9 @@ public static class StargateUtility
         return designation;
     }
 
-    public static Building_Stargate PlaceRandomGateAndDHD(Map map)
+    public static Building_Stargate PlaceRandomGateAndDHD(Map map, Faction faction = null)
     {
-        // 1) Find a safe spot for a new gate
-        // (unfogged, standable, no edifice, not roofed)
+        // 1) Find a safe spot for a new gate (near-ish center, unfogged, standable, no edifice, not roofed)
         IntVec3 spot;
         if (!TryFindGateSpot(map, out spot))
             spot = CellFinderLoose.RandomCellWith(c => c.Standable(map), map);
@@ -56,11 +55,14 @@ public static class StargateUtility
             map,
             Rot4.North,
             WipeMode.Vanish) as Building_Stargate;
+
+        if (faction != null) gate?.SetFaction(faction);
+
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: Spawned a fallback Stargate at {spot} on {map}.");
 
         // 2) Make sure a DHD exists within facility link radius (defaults to 8)
-        EnsureDhdNearGate(map, gate);
+        EnsureDhdNearGate(map, gate, faction);
 
         return gate;
     }
@@ -81,7 +83,7 @@ public static class StargateUtility
             out spot);
     }
 
-    private static void EnsureDhdNearGate(Map map, Building_Stargate gate)
+    public static void EnsureDhdNearGate(Map map, Building_Stargate gate, Faction faction = null)
     {
         // Any DHD within ~8 tiles (Facility default) is fine
         bool HasLinkedDhdNearby()
@@ -92,7 +94,7 @@ public static class StargateUtility
                 && t.Position.InHorDistOf(gate.Position, 8f));
         }
 
-        if (HasLinkedDhdNearby())
+        if (gate == null || HasLinkedDhdNearby())
             return;
 
         // Find a near spot (3..6 tiles) that’s clean for a 1x1 DHD
@@ -114,7 +116,14 @@ public static class StargateUtility
             near = CellFinderLoose.RandomCellWith(c => c.Standable(map), map);
 
         var dhdDef = RimgateDefOf.Rimgate_DialHomeDevice;
-        var dhd = GenSpawn.Spawn(dhdDef, near, map, Rot4.North, WipeMode.Vanish);
+        var dhd = GenSpawn.Spawn(
+            dhdDef,
+            near, map,
+            Rot4.North,
+            WipeMode.Vanish);
+
+        if (faction != null) dhd?.SetFaction(faction);
+
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: Spawned a fallback DHD at {near} on {map}.");
     }

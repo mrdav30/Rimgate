@@ -10,69 +10,120 @@ using Verse;
 
 namespace Rimgate.HarmonyPatches;
 
-// Add create Stargate site to caravan gizmos
 [HarmonyPatch(typeof(Caravan), "GetGizmos")]
 public class Harmony_Caravan_GetGizmos
 {
+    // Whitelist of Odyssey landmarks that play nicely with our transit site
+    private static readonly HashSet<string> SafeLandmarks = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "DryLake",
+        "Wetland",
+        "Valley",
+        "Chasm",
+        "Cliffs",
+        "Hollow",
+        "TerraformingScar",
+        "Dunes",
+        "Plateau",
+        "Basin",
+        "LavaLake",
+        "LavaCrater",
+        "LavaFlow",
+        "Iceberg",
+        "Fjord",
+        "Cove",
+        "Bay",
+        "Peninsula",
+        "CoastalIsland",
+        "Archipelago",
+        "HotSprings",
+        "ToxicLake",
+        "Pond",
+        "LakeWithIsland",
+        "LakeWithIslands",
+        "Lake",
+        "Oasis",
+        "IceDunes",
+        "AncientSmokeVent",
+        "AncientToxVent",
+        "AncientHeatVent"
+    };
+
     public static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> gizmos, Caravan __instance)
     {
-        foreach (Gizmo gizmo in gizmos)
-            yield return gizmo;
+        foreach (var g in gizmos) yield return g;
 
-        bool containsStargate = false;
-        foreach (Thing thing in __instance.AllThings)
-        {
-            Thing inner = thing.GetInnerIfMinified();
-            if (inner != null && inner.TryGetComp<Comp_StargateControl>() != null)
-            {
-                containsStargate = true;
-                break;
-            }
-        }
+        bool containsStargate = __instance.AllThings.Any(t =>
+            t.GetInnerIfMinified() is Building_Stargate bs 
+            && bs != null);
 
-        Command_Action command = new Command_Action
+        var cmd = new Command_Action
         {
             icon = RimgateTex.PermanentSiteCommandTex,
             action = () =>
             {
-                List<Thing> things = __instance.AllThings.ToList();
-                for (int i = 0; i < things.Count(); i++)
-                {
-                    Thing inner = things[i].GetInnerIfMinified();
-                    if (inner != null 
-                        && inner.def.thingClass == typeof(Building_Stargate))
-                    {
-                        things[i].holdingOwner.Remove(things[i]);
-                        break;
-                    }
-                }
+                // Remove exactly one Gate, then one DHD
+                bool removedGate = RemoveFirstWithInner(__instance, RimgateDefOf.Rimgate_Stargate);
+                bool removedDhd = RemoveFirstWithInner(__instance, RimgateDefOf.Rimgate_DialHomeDevice);
 
-                things = __instance.AllThings.ToList();
-                for (int i = 0; i < things.Count(); i++)
-                {
-                    Thing inner = things[i].GetInnerIfMinified();
-                    if (inner != null 
-                        && inner.def.thingClass == typeof(Building_DHD))
-                    {
-                        things[i].holdingOwner.Remove(things[i]);
-                        break;
-                    }
-                }
-
-                WorldObject_PermanentStargateSite wo = WorldObjectMaker.MakeWorldObject(RimgateDefOf.Rimgate_PermanentStargateSite) as WorldObject_PermanentStargateSite;
+                var wo = (WorldObject_StargateTransitSite)
+                    WorldObjectMaker.MakeWorldObject(RimgateDefOf.Rimgate_StargateTransitSite);
                 wo.Tile = __instance.Tile;
+
+                // Record initial loadout for PostMapGenerate
+                wo.InitState(removedGate || true, removedDhd);
+
                 Find.WorldObjects.Add(wo);
             },
             defaultLabel = "RG_CreateSGSite".Translate(),
             defaultDesc = "RG_CreateSGSiteDesc".Translate()
         };
 
-        StringBuilder reason = new StringBuilder();
+        var reason = new StringBuilder();
         if (!containsStargate)
-            command.Disable("RG_NoGateInCaravan".Translate());
+        {
+            cmd.Disable("RG_NoGateInCaravan".Translate());
+        }
         else if (!TileFinder.IsValidTileForNewSettlement(__instance.Tile, reason))
-            command.Disable(reason.ToString());
+        {
+            cmd.Disable(reason.ToString());
+        }
+        else if (IsBlockedByLandmark(__instance.Tile, out var landmarkLabel))
+        {
+            cmd.Disable("RG_BlockedByLandmark".Translate(landmarkLabel));
+        }
 
-        yield return command;
+        yield return cmd;
+    }
+
+    private static bool IsBlockedByLandmark(int tileId, out string label)
+    {
+        label = null;
+        var tile = Find.WorldGrid[tileId];
+        var lm = tile?.Landmark;
+        if (lm == null) return false;
+
+        label = lm.def?.label ?? lm.def?.defName ?? "landmark";
+
+        // Block anything not on the safe list.
+        // This automatically catches structure/complex landmarks introduced by Odyssey that cause gen-step issues.
+        var defName = lm.def?.defName;
+        if (string.IsNullOrEmpty(defName)) return true;
+
+        return !SafeLandmarks.Contains(defName);
+    }
+
+    private static bool RemoveFirstWithInner(Caravan caravan, ThingDef def)
+    {
+        foreach (var outer in caravan.AllThings)
+        {
+            var inner = outer.GetInnerIfMinified();
+            if (inner?.def == def)
+            {
+                outer.holdingOwner?.Remove(outer);
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -2,9 +2,9 @@
 <Defs>
 
 	<WorldObjectDef ParentName="StaticWorldObjectBase">
-		<defName>Rimgate_QuestStargateSite</defName>
+		<defName>Rimgate_StargateQuestSite</defName>
 		<label>dwarfgate site</label>
-		<worldObjectClass>Rimgate.WorldObject_QuestStargateSite</worldObjectClass>
+		<worldObjectClass>Rimgate.WorldObject_StargateQuestSite</worldObjectClass>
 		<expandingIcon>true</expandingIcon>
 		<expandingIconPriority>70</expandingIconPriority>
 		<comps>
@@ -17,10 +17,10 @@
 	</WorldObjectDef>
 
 	<WorldObjectDef>
-		<defName>Rimgate_PermanentStargateSite</defName>
+		<defName>Rimgate_StargateTransitSite</defName>
 		<label>new Dwarfgate site</label>
 		<description>a Dwarfgate site, setup recently and mostly unknown to everyone but us.</description>
-		<worldObjectClass>Rimgate.WorldObject_PermanentStargateSite</worldObjectClass>
+		<worldObjectClass>Rimgate.WorldObject_StargateTransitSite</worldObjectClass>
 		<canHaveFaction>false</canHaveFaction>
 		<texture>World/WorldObjects/Sites/GenericSite</texture>
 		<expandingIcon>true</expandingIcon>
@@ -35,6 +35,8 @@
 				<chooseFromlayouts>
 					<li>Rimgate_StructureBarrenGate</li>
 				</chooseFromlayouts>
+				<symbolResolver>kcsg_roomsgenfromstructure</symbolResolver>
+				<canSpawnSettlements>false</canSpawnSettlements>
 				<fullClear>true</fullClear>
 				<tryFindFreeArea>true</tryFindFreeArea>
 				<preventBridgeable>true</preventBridgeable>
