@@ -37,6 +37,7 @@
 				</chooseFromlayouts>
 				<symbolResolver>kcsg_roomsgenfromstructure</symbolResolver>
 				<canSpawnSettlements>false</canSpawnSettlements>
+				<preGenClear>true</preGenClear>
 				<fullClear>true</fullClear>
 				<tryFindFreeArea>true</tryFindFreeArea>
 				<preventBridgeable>true</preventBridgeable>

@@ -1,16 +1,11 @@
-using System;
 using RimWorld;
 using RimWorld.Planet;
-using Verse;
-using Verse.AI;
-using Verse.Sound;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Net.NetworkInformation;
-using System.Security.Cryptography;
-using System.Net;
+using UnityEngine;
+using Verse;
+using Verse.Sound;
 
 namespace Rimgate;
 
@@ -308,7 +303,10 @@ public class Comp_StargateControl : ThingComp
         var gate = Building_Stargate.GetStargateOnMap(map);
         // ensure a valid gate and a DHD exist(and link)
         if (gate == null)
-            gate = StargateUtility.PlaceRandomGateAndDHD(map);
+        {
+            gate = StargateUtility.PlaceRandomGate(map);
+            StargateUtility.EnsureDhdNearGate(map, gate);
+        }
 
         return gate;
     }

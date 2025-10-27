@@ -33,7 +33,7 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
     : _lastKnownHasGate;
 
     public bool HasDhd => Map != null
-        ? Building_DHD.GetDhdOnMap(Map) != null
+        ? Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice) != null
         : _lastKnownHasDhd;
 
     private bool _lastKnownHasGate;
@@ -65,13 +65,13 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
     public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
     {
         Building_Stargate gateOnMap = Building_Stargate.GetStargateOnMap(Map);
-        Building_DHD dhdOnMap = Building_DHD.GetDhdOnMap(Map);
+        Building_DHD dhdOnMap = Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice);
         // remove the world object only when BOTH are gone
         alsoRemoveWorldObject = gateOnMap == null 
             && dhdOnMap == null;
 
         _lastKnownHasGate = gateOnMap != null;
-        _lastKnownHasDhd = dhdOnMap?.def == RimgateDefOf.Rimgate_DialHomeDevice;
+        _lastKnownHasDhd = dhdOnMap != null;
 
         return !StargateUtility.ActiveGateOnMap(Map)
             && !Map.mapPawns.AnyPawnBlockingMapRemoval;
@@ -92,31 +92,23 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
         {
             if (gateOnMap == null)
             {
-                var newGate = StargateUtility.PlaceRandomGateAndDHD(
+                var newGate = StargateUtility.PlaceRandomGate(
                     Map,
                     Faction.OfPlayer);
-                if (!InitialHadDhd)
-                {
-                    // Player created a gate-only site;
-                    // remove any helper DHD that placer might have added.
-                    var dhd = Building_DHD.GetDhdOnMap(Map);
-                    dhd?.Destroy(DestroyMode.Vanish);
-                }
+            }
+            else
+                gateOnMap?.SetFaction(Faction.OfPlayer);
+
+            if (InitialHadDhd)
+            {
+                StargateUtility.EnsureDhdNearGate(Map, gateOnMap, Faction.OfPlayer);
             }
             else
             {
-                gateOnMap.SetFaction(Faction.OfPlayer);
-                if (InitialHadDhd)
-                {
-                    StargateUtility.EnsureDhdNearGate(Map, gateOnMap, Faction.OfPlayer);
-                }
-                else
-                {
-                    // If a DHD happens to be present, just claim it;
-                    // do not create one.
-                    var existingDhd = Building_DHD.GetDhdOnMap(Map);
-                    existingDhd?.SetFaction(Faction.OfPlayer);
-                }
+                // Player created a gate-only site;
+                // remove any DHD that might have added.
+                var dhd = Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice);
+                dhd?.Destroy(DestroyMode.Vanish);
             }
         }
 
@@ -135,8 +127,7 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
     {
         if (Map == null) return;
         _lastKnownHasGate = Building_Stargate.GetStargateOnMap(Map) != null;
-        var dhd = Building_DHD.GetDhdOnMap(Map);
-        _lastKnownHasDhd = dhd?.def == RimgateDefOf.Rimgate_DialHomeDevice;
+        _lastKnownHasDhd = Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice) != null;
     }
 
     public override void Destroy()

@@ -501,7 +501,7 @@
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="Verbs\Verb_LaunchWithOffset.cs" />
     <Compile Include="World\WorldObject_StargateQuestSite.cs" />
-    <Compile Include="World\WorldObject_PermanentStargateSite.cs" />
+    <Compile Include="World\WorldObject_StargateTransitSite.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />
     <Compile Include="Utilities\SarcophagusUtility.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_DoctorCarryFromBedToSarcophagus.cs" />

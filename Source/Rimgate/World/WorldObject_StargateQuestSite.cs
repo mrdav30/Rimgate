@@ -80,14 +80,27 @@ public class WorldObject_StargateQuestSite : Site
         alsoRemoveWorldObject = false;
         // only removed when quest ends and no pawns
         var quest = ResolveQuest();
-        if (quest != null && quest.State == QuestState.Ongoing) return false;
-        if (!Map.mapPawns.AnyPawnBlockingMapRemoval)
+        if (quest != null && quest.State == QuestState.Ongoing) 
+            return false;
+
+        if (Map.mapPawns.AnyPawnBlockingMapRemoval)
+            return false;
+
+        foreach (PocketMapParent item in Find.World.pocketMaps.ToList())
         {
-            alsoRemoveWorldObject = true;
-            return true;
+            if (item.sourceMap == base.Map && item.Map.mapPawns.AnyPawnBlockingMapRemoval)
+            {
+                return false;
+            }
         }
 
-        return false;
+        if (ModsConfig.OdysseyActive && base.Map.listerThings.AnyThingWithDef(ThingDefOf.GravAnchor))
+        {
+            return false;
+        }
+
+        alsoRemoveWorldObject = true;
+        return true;
     }
 
     public override IEnumerable<Gizmo> GetGizmos()

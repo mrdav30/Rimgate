@@ -37,4 +37,20 @@ public class Building_DHD : Building
 
         return dhdOnMap;
     }
+
+    public static Building_DHD GetDhdOfOnMap(Map map, ThingDef def)
+    {
+        Building_DHD dhdOnMap = null;
+        foreach (Thing thing in map.listerThings.AllThings)
+        {
+            if (thing is Building_DHD bdhd
+                && bdhd.def == def)
+            {
+                dhdOnMap = bdhd;
+                break;
+            }
+        }
+
+        return dhdOnMap;
+    }
 }

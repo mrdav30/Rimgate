@@ -14,7 +14,7 @@ public static class StargateUtility
 {
     public const string Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    private const int MaxGateSearchRadius = 30;   // near-ish center
+    private const int MaxGateSearchRadius =  50;
 
     private const int MaxTries = 2000;
 
@@ -42,12 +42,31 @@ public static class StargateUtility
         return designation;
     }
 
-    public static Building_Stargate PlaceRandomGateAndDHD(Map map, Faction faction = null)
+    public static Building_Stargate PlaceRandomGate(Map map, Faction faction = null)
     {
-        // 1) Find a safe spot for a new gate (near-ish center, unfogged, standable, no edifice, not roofed)
-        IntVec3 spot;
-        if (!TryFindGateSpot(map, out spot))
+        // Find a safe spot for a new gate
+        // (near-ish center, unfogged, standable, no edifice, not roofed)
+        var center = map.Center;
+        var safe = CellFinder.TryFindRandomCellNear(
+            center,
+            map,
+            MaxGateSearchRadius,
+            c => c.Standable(map)
+                && c.SupportsStructureType(map, TerrainAffordanceDefOf.Heavy)
+                && !c.Fogged(map)
+                && !c.Roofed(map)
+                && c.GetEdifice(map) == null
+                && map.reachability.CanReach(c, center, PathEndMode.OnCell, TraverseMode.PassDoors, Danger.Deadly),
+            out IntVec3 spot);
+
+        if (!safe)
+        {
             spot = CellFinderLoose.RandomCellWith(c => c.Standable(map), map);
+
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: Unable to find a safe spot to spawn a gate, spawning randomly at {spot}.");
+        }
+
 
         var gate = GenSpawn.Spawn(
             RimgateDefOf.Rimgate_Stargate,
@@ -61,26 +80,7 @@ public static class StargateUtility
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: Spawned a fallback Stargate at {spot} on {map}.");
 
-        // 2) Make sure a DHD exists within facility link radius (defaults to 8)
-        EnsureDhdNearGate(map, gate, faction);
-
         return gate;
-    }
-
-    private static bool TryFindGateSpot(Map map, out IntVec3 spot)
-    {
-        var center = map.Center;
-        // Look near center first; avoid fog/roof/edifice
-        return CellFinder.TryFindRandomCellNear(
-            center,
-            map,
-            MaxGateSearchRadius,
-            c => c.Standable(map)
-                && !c.Fogged(map)
-                && !c.Roofed(map)
-                && c.GetEdifice(map) == null
-                && map.reachability.CanReach(c, center, PathEndMode.OnCell, TraverseMode.PassDoors, Danger.Deadly),
-            out spot);
     }
 
     public static void EnsureDhdNearGate(Map map, Building_Stargate gate, Faction faction = null)
@@ -97,23 +97,29 @@ public static class StargateUtility
         if (gate == null || HasLinkedDhdNearby())
             return;
 
-        // Find a near spot (3..6 tiles) that’s clean for a 1x1 DHD
+        // Find a near spot (4..8 tiles) that’s clean for a 1x1 DHD
         IntVec3 near;
         bool found = CellFinder.TryFindRandomReachableNearbyCell(
             gate.Position,
             map,
-            6f,
+            8f,
             TraverseParms.For(TraverseMode.PassDoors),
             c => c.Standable(map)
+                && c.SupportsStructureType(map, TerrainAffordanceDefOf.Heavy)
                 && !c.Roofed(map)
                 && !c.Fogged(map)
                 && c.GetEdifice(map) == null
-                && c.DistanceTo(gate.Position) >= 3f,
+                && c.DistanceTo(gate.Position) > 3f,
             null,
             out near);
 
         if (!found)
+        {
             near = CellFinderLoose.RandomCellWith(c => c.Standable(map), map);
+
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: Unable to find a safe spot to spawn a dhd, spawning randomly at {near}.");
+        }
 
         var dhdDef = RimgateDefOf.Rimgate_DialHomeDevice;
         var dhd = GenSpawn.Spawn(
