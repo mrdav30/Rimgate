@@ -245,6 +245,28 @@ internal static class CloneUtility
                 : pawn.genes.GenesListForReading.First<Gene>(e =>
                     e.def == sourceEndogenes[i].overriddenByGene.def);
 
+        if (ModsConfig.BiotechActive)
+        {
+            double rollChance = cloneType switch
+            {
+                CloneType.Enhanced => 0.40,
+                CloneType.Genome => 0.20,
+                _ => 0.25
+            };
+
+            System.Random rngCellDeg = new();
+            if (rngCellDeg.NextDouble() < rollChance)
+            {
+                GeneDef degradation = RimgateDefOf.Rimgate_CellularDegradation;
+                if (!pawn.genes.HasActiveGene(degradation))
+                {
+                    pawn.genes.AddGene(degradation, false);
+                    if (RimgateMod.Debug)
+                        Log.Message($"Rimgate :: Added random degradation gene to {pawn.Name}");
+                }
+            }
+        }
+
         if (!ModsConfig.BiotechActive && flag2)
         {
             Color white = Color.white;

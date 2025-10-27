@@ -44,6 +44,8 @@ public static class RimgateDefOf
     public static GeneDef Rimgate_WraithCocoonTrap;
     [MayRequireBiotech]
     public static GeneDef Rimgate_WraithPsychic;
+    [MayRequireBiotech]
+    public static GeneDef Rimgate_CellularDegradation;
 
     public static HediffDef Rimgate_Clone;
     public static HediffDef Hediff_ClonedTracker;
