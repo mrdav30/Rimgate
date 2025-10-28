@@ -21,28 +21,16 @@
 		<label>new Dwarfgate site</label>
 		<description>a Dwarfgate site, setup recently and mostly unknown to everyone but us.</description>
 		<worldObjectClass>Rimgate.WorldObject_StargateTransitSite</worldObjectClass>
+		<mapGenerator>Rimgate_TransitSiteMap</mapGenerator>
 		<canHaveFaction>false</canHaveFaction>
 		<texture>World/WorldObjects/Sites/GenericSite</texture>
 		<expandingIcon>true</expandingIcon>
-		<expandingIconTexture>UI/Icon/Map/RGStargatePermanentSiteIcon</expandingIconTexture>
+		<expandingIconTexture>UI/Icon/Map/RGStargateTransitSiteIcon</expandingIconTexture>
 		<expandingIconPriority>30</expandingIconPriority>
 		<expandMore>true</expandMore>
 		<comps>
 			<li Class="WorldObjectCompProperties_FormCaravan" />
 		</comps>
-		<modExtensions>
-			<li Class="KCSG.CustomGenOption">
-				<chooseFromlayouts>
-					<li>Rimgate_StructureBarrenGate</li>
-				</chooseFromlayouts>
-				<symbolResolver>kcsg_roomsgenfromstructure</symbolResolver>
-				<canSpawnSettlements>false</canSpawnSettlements>
-				<preGenClear>true</preGenClear>
-				<fullClear>true</fullClear>
-				<tryFindFreeArea>true</tryFindFreeArea>
-				<preventBridgeable>true</preventBridgeable>
-			</li>
-		</modExtensions>
 	</WorldObjectDef>
 
 </Defs>

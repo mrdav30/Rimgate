@@ -407,7 +407,7 @@
     <Compile Include="Quests\QuestPart_DelayedPassOutInterval.cs" />
     <Compile Include="Quests\QuestPart_RandomFactionRaid.cs" />
     <Compile Include="Quests\QuestPart_SpawnPawnsOnSignal.cs" />
-    <Compile Include="RimgateTex.cs" />
+    <Compile Include="UI\RimgateTex.cs" />
     <Compile Include="Social\ThoughtWorker_WraithEssenceCraving.cs" />
     <Compile Include="Storyteller\IncidentWorker_StargateHeatWave.cs" />
     <Compile Include="Storyteller\IncidentWorker_StargatePsychicDrone.cs" />
@@ -497,6 +497,7 @@
     <Compile Include="World\SitePartWorker_Stargate.cs" />
     <Compile Include="Utilities\CloneUtility.cs" />
     <Compile Include="Rimgate_Settings.cs" />
+    <Compile Include="World\TransitStoredThing.cs" />
     <Compile Include="World\WorldComp_StargateAddresses.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="Verbs\Verb_LaunchWithOffset.cs" />

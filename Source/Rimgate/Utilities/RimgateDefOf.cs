@@ -85,6 +85,8 @@ public static class RimgateDefOf
     public static JobDef Rimgate_Toggle;
     public static JobDef Rimgate_ToggleIris;
 
+    public static MapGeneratorDef Rimgate_TransitSiteMap;
+
     public static NeedDef Food;
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
 

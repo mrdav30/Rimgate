@@ -59,7 +59,7 @@ public class Harmony_Caravan_GetGizmos
 
         var cmd = new Command_Action
         {
-            icon = RimgateTex.PermanentSiteCommandTex,
+            icon = RimgateTex.TransitSiteCommandTex,
             action = () =>
             {
                 // Remove exactly one Gate, then one DHD

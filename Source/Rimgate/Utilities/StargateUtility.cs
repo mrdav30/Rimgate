@@ -51,7 +51,8 @@ public static class StargateUtility
             center,
             map,
             MaxGateSearchRadius,
-            c => c.Standable(map)
+            c => c.InBounds(map)
+                && c.Standable(map)
                 && c.SupportsStructureType(map, TerrainAffordanceDefOf.Heavy)
                 && !c.Fogged(map)
                 && !c.Roofed(map)
@@ -66,7 +67,6 @@ public static class StargateUtility
             if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: Unable to find a safe spot to spawn a gate, spawning randomly at {spot}.");
         }
-
 
         var gate = GenSpawn.Spawn(
             RimgateDefOf.Rimgate_Stargate,
@@ -102,14 +102,15 @@ public static class StargateUtility
         bool found = CellFinder.TryFindRandomReachableNearbyCell(
             gate.Position,
             map,
-            8f,
+            6f,
             TraverseParms.For(TraverseMode.PassDoors),
-            c => c.Standable(map)
+            c => c.InBounds(map)
+                && c.Standable(map)
                 && c.SupportsStructureType(map, TerrainAffordanceDefOf.Heavy)
                 && !c.Roofed(map)
                 && !c.Fogged(map)
                 && c.GetEdifice(map) == null
-                && c.DistanceTo(gate.Position) > 3f,
+                && c.DistanceTo(gate.Position) >= 3f,
             null,
             out near);
 

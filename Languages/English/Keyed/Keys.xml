@@ -139,6 +139,9 @@
 
 	<RG_LetterRaidStargateComplexDesc>Raiders from {0} have arrived at the Dwarfgate complex drawn by whispers of relics, resources, or perhaps the secrets of the Archotech-locked gate network itself.</RG_LetterRaidStargateComplexDesc>
 
+	<RG_LetterTransitSiteLootedLabel>Dwarfgate site looted</RG_LetterTransitSiteLootedLabel>
+	<RG_LetterTransitSiteLootedText>Something’s amiss at {0}. Looks like scavengers stopped by — a few things are missing.</RG_LetterTransitSiteLootedText>
+
 	<!-- Stargate Caravan -->
 
 	<RG_NoGateInCaravan>Dwarfgate required in caravan inventory.</RG_NoGateInCaravan>

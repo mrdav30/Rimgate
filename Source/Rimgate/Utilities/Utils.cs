@@ -96,6 +96,29 @@ internal static class Utils
         return IsGoodSpawnCell(best, map) ? best : from;
     }
 
+
+    public static void TryPlaceExactOrNear(Thing thing, Map map, IntVec3? pos, Rot4? rot)
+    {
+        bool placed = false;
+        if (pos.HasValue)
+        {
+            var c = pos.Value;
+            var r = rot ?? Rot4.North;
+            if (c.InBounds(map) && c.Standable(map) && c.GetEdifice(map) == null)
+                placed = GenPlace.TryPlaceThing(thing, c, map, ThingPlaceMode.Direct, rot: r);
+        }
+
+        if (!placed)
+        {
+            var found = CellFinder.TryFindRandomReachableNearbyCell(
+                map.Center, map, 8f, TraverseParms.For(TraverseMode.PassDoors),
+                c => c.Standable(map) && c.GetEdifice(map) == null,
+                null, out var drop);
+            if (!found) drop = map.Center;
+            GenPlace.TryPlaceThing(thing, drop, map, ThingPlaceMode.Near);
+        }
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector3 AddY(Vector3 v, float dy) => new(v.x, v.y + dy, v.z);
 
