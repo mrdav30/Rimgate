@@ -459,6 +459,7 @@
 
 				<!-- Interactable -->
 
+				<maintainProgress>true</maintainProgress>
 				<activateTexPath>UI/Icons/Study</activateTexPath>
 
 				<activateLabelString>Analyze...</activateLabelString>

@@ -56,6 +56,7 @@
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateReplacementDHDResearch</defName>
 		<label>Replacement DHD</label>
+		<techLevel>Spacer</techLevel>
 		<description>By studying salvaged Dwarfgate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.\nNote: SGC officially recommends bolting this one to the floor.</description>
 		<baseCost>4000</baseCost>
 		<prerequisites>
@@ -63,6 +64,57 @@
 		</prerequisites>
 		<researchViewX>2.00</researchViewX>
 		<researchViewY>1.00</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_DialHomeDevice</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Replacement DHD</discoveredLetterTitle>
+		<discoveredLetterText>Through painstaking analysis — and at least one accidental power surge — your researchers have created a Tau’ri replacement for the ancient Dwarfgate dialer.
+
+			It’s not elegant, but it *works*: no line-of-sight needed, extended range, and full remote control of the gate’s iris.
+			A triumph of modern engineering and excessive coffee consumption.
+			Just don’t unplug it — the hum means it’s working.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- Subject -->
+				<li>subject->Dial Home Device</li>
+				<li>subject->DHD</li>
+				<li>subject->control console</li>
+				<li>subject->glyph interface</li>
+				<li>subject->Ancient dialer</li>
+				<li>subject->subspace transceiver</li>
+
+				<!-- Adjectives -->
+				<li>subject_adj->Ancient</li>
+				<li>subject_adj->Tau'ri-engineered</li>
+				<li>subject_adj->hybrid</li>
+				<li>subject_adj->modular</li>
+				<li>subject_adj->jury-rigged</li>
+				<li>subject_adj->reverse-engineered</li>
+				<li>subject_adj->archaeotech</li>
+				<li>subject_adj->repurposed</li>
+
+				<!-- Lore/Story hooks -->
+				<li>subject_story->a crystalline interface that once spoke the language of the Ancients</li>
+				<li>subject_story->a control node designed to shape wormhole trajectories across subspace lattices</li>
+				<li>subject_story->an artifact scavenged from a collapsed outpost, its core humming faintly with zero-point residue</li>
+				<li>subject_story->a circular console whose glyphs correspond to constellations long forgotten by this world</li>
+				<li>subject_story->a device that encodes spatial coordinates into quantum lock sequences for instantaneous transit</li>
+				<li>subject_story->a remnant of the Ancients’ transportation web, now patched together with Tau'ri components and duct tape</li>
+				<li>subject_story->a battered interface whose inner crystal rings still resonate with the gate network’s subspace harmonics</li>
+				<li>subject_story->a piece of alien engineering that refuses to die, no matter how many centuries of dust it’s buried under</li>
+
+				<!-- Gerunds: research actions -->
+				<li>subject_gerund->decoding Ancient gate control subroutines</li>
+				<li>subject_gerund->mapping the quantum address schema of local gate nodes</li>
+				<li>subject_gerund->synchronizing Tau'ri microprocessors to Ancient neural lattices</li>
+				<li>subject_gerund->translating the glyph matrix into machine-readable code</li>
+				<li>subject_gerund->stabilizing wormhole initiation feedback loops</li>
+				<li>subject_gerund->aligning energy modulation crystals for efficient dialing</li>
+				<li>subject_gerund->adapting naquadah power conduits to human-safe voltage thresholds</li>
+				<li>subject_gerund->patching damaged Ancient protocols with modern circuitry</li>
+				<li>subject_gerund->compensating for subspace drift between gate nodes</li>
+			</rulesStrings>
+		</generalRules>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
@@ -73,7 +125,7 @@
 		<baseCost>2000</baseCost>
 		<prerequisites>
 			<li>Electricity</li>
-			<li>Rimgate_StargateAlloyResearch</li>
+			<li>Rimgate_GlyphDeciphering</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>3</researchViewY>
@@ -117,7 +169,7 @@
 		<defName>Rimgate_SubspaceMasking</defName>
 		<label>Subspace masking</label>
 		<description>Reverse-engineer Ancient carrier-noise and Tau’ri signal hygiene to hide a ZPM’s telltale subspace bleed. Not true invisibility—just enough distortion to keep opportunists from triangulating your base every other day.</description>
-		<techLevel>Spacer</techLevel>
+		<techLevel>Archotech</techLevel>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_ZPMIntegration</li>
@@ -139,7 +191,7 @@
 		<defName>Rimgate_ParallelSubspaceCoupling</defName>
 		<label>parallel subspace coupling</label>
 		<description>Exploit cross-brane phase offsets to alternate a ZPM’s vacuum tap between adjacent subspace pockets. This doesn’t “refill” a ZPM so much as rotate where it drinks from. The math is ugly; the hum is beautiful.</description>
-		<techLevel>Spacer</techLevel>
+		<techLevel>Archotech</techLevel>
 		<baseCost>3600</baseCost>
 		<prerequisites>
 			<li>Rimgate_ZPMIntegration</li>

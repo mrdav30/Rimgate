@@ -55,6 +55,7 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithArmorTierTwo</defName>
 		<label>Force buckler</label>
+		<techLevel>Archotech</techLevel>
 		<description>Reverse-engineer a wrist-mounted Wraith repulsor field. Study captured shield matrices and mesh them with human shield-belt theory to fabricate compact bucklers that block both melee and gunfire. Caution: when the field collapses, the bearer is exposed—train your melee to strike while the glow still holds.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
@@ -135,6 +136,7 @@
 		<defName>Rimgate_WraithCloneGenome</defName>
 		<label>Cloning</label>
 		<description>Unlock the secrets of Wraith biotech to grow fresh bodies on demand. Who needs childhood trauma when you can skip straight to adulthood?</description>
+		<techLevel>Archotech</techLevel>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_MeatCultivation</li>
@@ -168,6 +170,7 @@
 		<defName>Rimgate_WraithCloneEnhancement</defName>
 		<label>Clone enhancement</label>
 		<description>Fine-tune your gene slurry to squeeze out stronger, faster, and sassier clones. Results may vary. Side effects may include telepathy and uncontrollable hissing.</description>
+		<techLevel>Archotech</techLevel>
 		<baseCost>5000</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithCloneFull</li>
@@ -180,6 +183,7 @@
 		<defName>Rimgate_WraithCloneCorpse</defName>
 		<label>Reconstruction</label>
 		<description>Death is merely a suggestion. With advanced Wraith resurrection protocols, you can bring back any biomass blob.</description>
+		<techLevel>Archotech</techLevel>
 		<baseCost>6500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithCloneEnhancement</li>
@@ -228,7 +232,7 @@
 		<label>Wraith Modification Equipment</label>
 		<description>Adaptations of Wraith neural interface rigs and sensory dampening gear.\n\nWith this knowledge, your scientists can alter Dwarfgate control systems to block long-range subspace "backscatter," preventing unauthorized remote peeks into connected sites. Only after this research can your colony safely observe both ends of an active wormhole.</description>
 		<baseCost>3500</baseCost>
-		<techLevel>Spacer</techLevel>
+		<techLevel>Archotech</techLevel>
 		<prerequisites>
 			<li>Rimgate_SubspaceMasking</li>
 			<li>Rimgate_WraithCommunicationDevice</li>

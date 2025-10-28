@@ -187,6 +187,37 @@
                     <drawSize>(2,2)</drawSize>
                 </activeGraphicData>
             </li>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000700</analysisID>
+                <requiresResearchDef>Rimgate_StargateAlloyResearch</requiresResearchDef>
+
+                <!-- Analyzable -->
+
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>false</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+                <completedLetterLabel>DHD studied: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By studying the DHD, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <!-- Interactable -->
+
+                <maintainProgress>true</maintainProgress>
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Analyze the DHD.</activateDescString>
+                <jobString>Analyzing DHD</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist.</inspectString>
+
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
         </comps>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
         <killedLeavings>
@@ -196,91 +227,9 @@
         <statBases>
             <MaxHitPoints>6000</MaxHitPoints>
             <Flammability>0</Flammability>
-            <Mass>60</Mass>
+            <Mass>90</Mass>
         </statBases>
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-    </ThingDef>
-
-    <ThingDef ParentName="BuildingBase">
-        <defName>Rimgate_TauriDialHomeDevice</defName>
-        <thingClass>Rimgate.Building_DHD</thingClass>
-        <label>Dial home device</label>
-        <description>A field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. Also bolted down better than the last one.</description>
-        <rotatable>false</rotatable>
-        <size>(1,1)</size>
-        <graphicData>
-            <texPath>Things/Building/Misc/RGTauriDHD</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(2,2)</drawSize>
-            <addTopAltitudeBias>true</addTopAltitudeBias>
-        </graphicData>
-        <minifiedDef>MinifiedThing</minifiedDef>
-        <stealable>false</stealable>
-        <passability>PassThroughOnly</passability>
-        <constructEffect>ConstructMetal</constructEffect>
-        <uiIconScale>0.5</uiIconScale>
-        <fillPercent>0.40</fillPercent>
-        <canOverlapZones>true</canOverlapZones>
-        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-        <tickerType>Never</tickerType>
-        <drawerType>RealtimeOnly</drawerType>
-        <hasInteractionCell>True</hasInteractionCell>
-        <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-        <altitudeLayer>BuildingBelowTop</altitudeLayer>
-        <preventDroppingThingsOn>true</preventDroppingThingsOn>
-        <thingCategories>
-            <li>BuildingsMisc</li>
-        </thingCategories>
-        <building>
-            <ai_neverTrashThis>true</ai_neverTrashThis>
-        </building>
-        <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
-        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-        <designationCategory>Misc</designationCategory>
-        <costList>
-            <Steel>300</Steel>
-            <Gold>100</Gold>
-            <Rimgate_Naquadah>50</Rimgate_Naquadah>
-            <ComponentIndustrial>60</ComponentIndustrial>
-            <ComponentSpacer>25</ComponentSpacer>
-        </costList>
-        <placeWorkers>
-            <li>PlaceWorker_ShowFacilitiesConnections</li>
-            <li>PlaceWorker_PreventInteractionSpotOverlap</li>
-        </placeWorkers>
-        <comps>
-            <li Class="CompProperties_Facility">
-                <requiresLOS>false</requiresLOS>
-                <maxSimultaneous>1</maxSimultaneous>
-                <maxDistance>99</maxDistance>
-            </li>
-            <li Class="CompProperties_Flickable" />
-            <li Class="Rimgate.CompProperties_DHDControl">
-                <requiresPower>true</requiresPower>
-                <canToggleIris>true</canToggleIris>
-                <activeGraphicData>
-                    <texPath>FX/Rimgate_TauriDialHomeDevice_Active</texPath>
-                    <graphicClass>Graphic_Single</graphicClass>
-                    <shaderType>Mote</shaderType>
-                    <drawSize>(2,2)</drawSize>
-                </activeGraphicData>
-            </li>
-            <li Class="CompProperties_Power">
-                <compClass>CompPowerTrader</compClass>
-                <shortCircuitInRain>false</shortCircuitInRain>
-                <basePowerConsumption>800</basePowerConsumption>
-            </li>
-        </comps>
-        <statBases>
-            <MaxHitPoints>3000</MaxHitPoints>
-            <Flammability>0.4</Flammability>
-            <WorkToBuild>14000</WorkToBuild>
-            <Mass>30</Mass>
-        </statBases>
-        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-        <researchPrerequisites>
-            <li>Rimgate_StargateReplacementDHDResearch</li>
-        </researchPrerequisites>
     </ThingDef>
 
     <!-- =============== ARCHOTECH IDOL OF RESONANCE =============== -->

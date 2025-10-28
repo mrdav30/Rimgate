@@ -90,6 +90,7 @@
 				<fuelMultiplier>250</fuelMultiplier>
 				<factorByDifficulty>true</factorByDifficulty>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
 				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
 				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
 			</li>
@@ -254,6 +255,7 @@
 				<fuelMultiplier>250</fuelMultiplier>
 				<factorByDifficulty>true</factorByDifficulty>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
 				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
 				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
 			</li>
@@ -419,6 +421,7 @@
 				<fuelMultiplier>220</fuelMultiplier>
 				<factorByDifficulty>true</factorByDifficulty>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
 				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
 				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
 			</li>
@@ -558,6 +561,7 @@
 				<fuelMultiplier>220</fuelMultiplier>
 				<factorByDifficulty>true</factorByDifficulty>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
 				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
 				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
 			</li>
