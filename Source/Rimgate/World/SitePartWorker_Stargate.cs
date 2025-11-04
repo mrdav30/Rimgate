@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Verse;
+﻿using Verse;
 using RimWorld.Planet;
 using RimWorld;
 using System.Text;
@@ -14,41 +12,5 @@ public class SitePartWorker_Stargate : SitePartWorker
         StringBuilder sb = new StringBuilder();
         sb.Append("RG_GateAddress".Translate(StargateUtility.GetStargateDesignation(site.Tile)));
         return sb.ToString();
-    }
-
-    public override void PostMapGenerate(Map map)
-    {
-        if (map == null)
-        {
-            Log.Error("Rimgate :: SitePartWorker map was null on PostMapGenerate.");
-            return;
-        }
-
-        Building_Stargate gateOnMap = Building_Stargate.GetStargateOnMap(map);
-        if (gateOnMap == null)
-        {
-            Log.Error("Rimgate :: SitePartWorker gateOnMap was null on PostMapGenerate.");
-            return;
-        }
-
-        // move pawns away from vortex
-        var vortexCells = gateOnMap.TryGetComp<Comp_StargateControl>().VortexCells;
-        foreach (Pawn pawn in map.mapPawns?.AllPawnsSpawned)
-        {
-            Room pawnRoom = pawn.Position.GetRoom(map);
-            if (pawnRoom == null) continue;
-
-            var cells = GenRadial.RadialCellsAround(pawn.Position, 9, true)
-                .Where(c => c.InBounds(map)
-                    && c.Walkable(map)
-                    && c.GetRoom(map) == pawnRoom
-                    && !vortexCells.Contains(c));
-            if (!cells.Any())
-                continue;
-
-            pawn.Position = cells.RandomElement();
-            pawn.pather.StopDead();
-            pawn.jobs.StopAll();
-        }
     }
 }

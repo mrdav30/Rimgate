@@ -181,6 +181,8 @@ public class Comp_StargateControl : ThingComp
             otherComp.ConnectedAddress = GateAddress;
             otherComp.ConnectedGate = Parent;
 
+            otherComp.EvacuateVortexPath();
+
             otherComp.PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(otherComp.parent));
             RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(otherComp.parent));
 
@@ -220,6 +222,9 @@ public class Comp_StargateControl : ThingComp
         IsReceivingGate = true;
         ConnectedAddress = PlanetTile.Invalid;
         ConnectedGate = null;  // local-only, no remote
+
+        EvacuateVortexPath();
+
         PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(parent));
         RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(parent));
         if (Parent?.Glower != null)
@@ -463,7 +468,7 @@ public class Comp_StargateControl : ThingComp
         // Iris sits a bit above the puddle.
         if (_isIrisActivated)
             StargateIris.Draw(Utils.AddY(posBelow, -0.01f), rot, parent);
- 
+
         // Chevron highlight floats above the gate/puddle/iris.
         if (IsActive)
             ChevronHighlight.Draw(Utils.AddY(posAbove, +0.01f), rot, parent);
@@ -741,5 +746,93 @@ public class Comp_StargateControl : ThingComp
     {
         CloseStargate(ConnectedGate != null);
         Find.World.GetComponent<WorldComp_StargateAddresses>().RemoveAddress(GateAddress);
+    }
+
+    private void EvacuateVortexPath()
+    {
+        var map = parent.Map;
+        if (map == null) return;
+
+        // Hash the path and mark reserved
+        // so we never place pawns back into it.
+        var vortexSet = new HashSet<IntVec3>();
+        foreach (var c in VortexCells)
+            if (c.InBounds(map)) vortexSet.Add(c);
+
+        if (vortexSet.Count == 0) return;
+
+        // Collect pawns currently standing on any vortex cell
+        var pawnsToMove = new List<Pawn>();
+        foreach (var cell in vortexSet)
+        {
+            var things = map.thingGrid.ThingsListAtFast(cell);
+            for (int i = 0; i < things.Count; i++)
+                if (things[i] is Pawn p && p.Spawned && !p.Dead) pawnsToMove.Add(p);
+        }
+
+        if (pawnsToMove.Count == 0) return;
+
+        // Keep track of targets we’ve picked to avoid stacking multiple pawns
+        var reserved = new HashSet<IntVec3>(vortexSet);
+
+        foreach (var p in pawnsToMove)
+        {
+            // Prefer same-room tiles if the pawn is in a room;
+            // otherwise any standable tile works.
+            Room room = p.Position.GetRoom(map);
+
+            bool IsGood(IntVec3 c) =>
+                c.InBounds(map)
+                && c.Walkable(map)
+                && !reserved.Contains(c)
+                && !vortexSet.Contains(c)
+                && (room == null || c.GetRoom(map) == room);
+
+            bool IsOkay(IntVec3 c) =>
+                c.InBounds(map)
+                && c.Walkable(map)
+                && !reserved.Contains(c)
+                && !vortexSet.Contains(c);
+
+            IntVec3 best = IntVec3.Invalid;
+
+            // Try to find a nearby safe cell
+            foreach (var c in GenRadial.RadialCellsAround(p.Position, 9, true))
+            {
+                if (IsGood(c))
+                {
+                    best = c;
+                    break;
+                }
+            }
+
+            if (!best.IsValid)
+            {
+                foreach (var c in GenRadial.RadialCellsAround(p.Position, 9, true))
+                {
+                    if (IsOkay(c)) 
+                    { 
+                        best = c;
+                        break;
+                    }
+                }
+            }
+
+            if (!best.IsValid)
+            {
+                // Worst case: drop somewhere near the gate
+                // but off the vortex
+                best = Utils.BestDropCellNearThing(parent);
+                if (vortexSet.Contains(best)) best = parent.Position;
+            }
+
+            // Move the pawn and clear any current jobs/path
+            // to avoid rubber-banding back
+            p.Position = best;
+            p.pather?.StopDead();
+            p.jobs?.StopAll();
+
+            reserved.Add(best);
+        }
     }
 }
