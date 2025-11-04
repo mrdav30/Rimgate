@@ -30,8 +30,9 @@
             <li>RewardStandardLowFreq</li>
         </thingSetMakerTags>
         <comps>
-            <li Class="CompProperties_CompAnalyzableUnlockResearch">
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
                 <analysisID>1000300</analysisID>
+                <requiresResearchDef>Rimgate_GoauldBasic</requiresResearchDef>
 
                 <!-- Analyzable -->
 
@@ -96,7 +97,7 @@
             <li>Rimgate_PrimeForeheadSymbol_tag</li>
         </techHediffsTags>
         <recipeMaker>
-            <researchPrerequisite>Rimgate_GoauldArmorTierThree</researchPrerequisite>
+            <researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
         </recipeMaker>
     </ThingDef>
 

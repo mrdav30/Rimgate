@@ -22,12 +22,12 @@
     </TransportShipDef>
 
     <TransportShipDef>
-        <defName>Rimgate_TauriPuddleJumperShip</defName>
-        <label>Tau'ri Puddle Jumper</label>
-        <shipThing>Rimgate_TauriPuddleJumper</shipThing>
+        <defName>Rimgate_AncientPuddleJumperShip</defName>
+        <label>Ancient Puddle Jumper</label>
+        <shipThing>Rimgate_AncientPuddleJumper</shipThing>
         <arrivingSkyfaller>Rimgate_PuddleJumperIncoming</arrivingSkyfaller>
         <leavingSkyfaller>Rimgate_PuddleJumperLeaving</leavingSkyfaller>
-        <worldObject>Rimgate_TauriPuddleJumper</worldObject>
+        <worldObject>Rimgate_AncientPuddleJumper</worldObject>
         <playerShuttle>true</playerShuttle>
     </TransportShipDef>
 

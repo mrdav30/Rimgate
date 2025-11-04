@@ -262,6 +262,10 @@
 
 	<RG_MeditationFocusConstant>Constant {0}</RG_MeditationFocusConstant>
 
+	<!-- Analysis -->
+
+	<RG_RequiresResearch>{0} knowledge required</RG_RequiresResearch>
+
 	<!-- Notes -->
 
 	<RG_ScribbledNote1>Too late, offworlders. The treasure is gone, and so are we. Also, your door code was embarrassingly easy to guess.</RG_ScribbledNote1>

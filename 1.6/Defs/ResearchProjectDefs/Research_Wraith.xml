@@ -12,6 +12,7 @@
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<requiredResearchFacilities>
 			<li>MultiAnalyzer</li>
+			<li>Rimgate_AncientResearchBank</li>
 		</requiredResearchFacilities>
 		<prerequisites>
 			<li>MicroelectronicsBasics</li>
@@ -21,20 +22,11 @@
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithBasic</defName>
-		<label>Wraith technology</label>
+		<label>Wraith science</label>
 		<description>Begin unlocking the secrets of Wraith bio-engineering—where everything is grown, pulsing, and slightly slimy.\nWarning: side effects may include telepathy and power hunger.</description>
 		<baseCost>1500</baseCost>
 		<researchViewX>0</researchViewX>
 		<researchViewY>1</researchViewY>
-		<techprintCount>1</techprintCount>
-		<techprintCommonality>3</techprintCommonality>
-		<techprintMarketValue>3000</techprintMarketValue>
-		<heldByFactionCategoryTags>
-			<li>Rimgate_WraithEmpire</li>
-		</heldByFactionCategoryTags>
-		<tags>
-			<li>Rimgate_TechprintPool</li>
-		</tags>
 	</ResearchProjectDef>
 
 	<!-- ======== Armor ========= -->
@@ -135,60 +127,74 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithCloneGenome</defName>
 		<label>Cloning</label>
-		<description>Unlock the secrets of Wraith biotech to grow fresh bodies on demand. Who needs childhood trauma when you can skip straight to adulthood?</description>
+		<description>Unlock Wraith genome templating: growth protocols, enzyme baths, and neural imprint scaffolds that skip childhood entirely.\n\nFresh bodies on demand—morals sold separately. Expect epigenetic drift, occasional extra teeth, and complaints from HR.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_MeatCultivation</li>
 		</prerequisites>
-		<researchViewX>1</researchViewX>
+		<researchViewX>1.5</researchViewX>
 		<researchViewY>3</researchViewY>
-		<techprintCount>1</techprintCount>
-		<techprintCommonality>3</techprintCommonality>
-		<techprintMarketValue>3000</techprintMarketValue>
-		<heldByFactionCategoryTags>
-			<li>Rimgate_WraithEmpire</li>
-		</heldByFactionCategoryTags>
-		<tags>
-			<li>Rimgate_TechprintPool</li>
-		</tags>
+		<requiredAnalyzed>
+			<li>Rimgate_WraithCloningPod</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Wraith Cloning</discoveredLetterTitle>
+		<discoveredLetterText>Your team has decoded Wraith growth-cycle notations: biomass liquefaction, lattice seeding, and accelerated maturation inside pressurized biotanks.\n\nIt works disturbingly well. Results exhibit minor personality artifacts and a strong opinion about lighting.\n\nProceed if you’re comfortable printing people.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- subject anchors -->
+				<li>subject->Wraith cloning pod</li>
+				<li>subject->genome slurry</li>
+				<li>subject->neural imprint scaffold</li>
+
+				<!-- story beats -->
+				<li>subject_story->a glass lung that breathes new soldiers into being</li>
+				<li>subject_story->a whispering vat that remembers hunger</li>
+				<li>subject_story->a growth cycle timed by the rhythm of pumps and prayers</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->stitching genomes into self-assembling tissue</li>
+				<li>subject_gerund->bathing biomass in enzymatic accelerants</li>
+				<li>subject_gerund->pinning memories to fresh synapses before they harden</li>
+			</rulesStrings>
+		</generalRules>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithCloneFull</defName>
 		<label>Full-body replication</label>
-		<description>Unlock full-body replication for any pawn — Wraith, human, or unlucky intern. Copy everything: personality quirks, backstories, and traumatic childhood memories. It's like printing colonists... with extra steps.</description>
+		<description>Enable full-body replication for any pawn—Wraith, human, or unlucky intern.\n\nCopies quirks, scars, and bedtime fears with alarming fidelity. Printing colonists is now a workflow.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithCloneGenome</li>
 		</prerequisites>
-		<researchViewX>2</researchViewX>
+		<researchViewX>2.5</researchViewX>
 		<researchViewY>3</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithCloneEnhancement</defName>
 		<label>Clone enhancement</label>
-		<description>Fine-tune your gene slurry to squeeze out stronger, faster, and sassier clones. Results may vary. Side effects may include telepathy and uncontrollable hissing.</description>
+		<description>Optimize the slurry: stronger bones, faster reflexes, cleaner neural binds.\n\nSide effects may include telepathy, hissing, and a belief that hallways should be darker.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>5000</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithCloneFull</li>
 		</prerequisites>
-		<researchViewX>3</researchViewX>
+		<researchViewX>3.5</researchViewX>
 		<researchViewY>3</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithCloneCorpse</defName>
 		<label>Reconstruction</label>
-		<description>Death is merely a suggestion. With advanced Wraith resurrection protocols, you can bring back any biomass blob.</description>
+		<description>Reconstruction protocols extend cloning into reclamation: if you have biomass and a template, death becomes a scheduling error.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>6500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithCloneEnhancement</li>
 		</prerequisites>
-		<researchViewX>4</researchViewX>
+		<researchViewX>4.5</researchViewX>
 		<researchViewY>3</researchViewY>
 	</ResearchProjectDef>
 
@@ -207,7 +213,7 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithDart</defName>
 		<label>Wraith Dart</label>
-		<description>Gain access to the Wraith Dart: a fast, lightly-armored starfighter used for hit-and-run attacks and lifeform abductions.\nNot recommended for gentle landings or claustrophobic pilots.</description>
+		<description>Gain access to the Wraith Dart: a biomechanical interceptor that blends flesh, alloy, and arrogance.\n\nFast enough to outfly missiles, light enough to panic your pilot, and just roomy enough to abduct someone who disagreed with you.\n\nFuel efficiency is theoretical; terror efficiency is unmatched.</description>
 		<baseCost>3500</baseCost>
 		<techLevel>Spacer</techLevel>
 		<prerequisites>
@@ -216,15 +222,29 @@
 		</prerequisites>
 		<researchViewX>3</researchViewX>
 		<researchViewY>2</researchViewY>
-		<techprintCount>1</techprintCount>
-		<techprintCommonality>3</techprintCommonality>
-		<techprintMarketValue>3000</techprintMarketValue>
-		<heldByFactionCategoryTags>
-			<li>Rimgate_WraithEmpire</li>
-		</heldByFactionCategoryTags>
-		<tags>
-			<li>Rimgate_TechprintPool</li>
-		</tags>
+		<requiredAnalyzed>
+			<li>Rimgate_DestroyedDart</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Wraith Dart</discoveredLetterTitle>
+		<discoveredLetterText>The Wraith Dart’s structure isn’t built—it’s grown. Its hull is a living capacitor tuned to pulse drives and stasis cells.\n\nReverse-engineering it means learning to trick life itself into wanting to fly.\n\nWe probably shouldn’t—but we will anyway.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- subject anchors -->
+				<li>subject->Wraith Dart</li>
+				<li>subject->bio-organic interceptor</li>
+				<li>subject->hunter craft</li>
+
+				<!-- story beats -->
+				<li>subject_story->a shrieking silhouette that melts into the clouds</li>
+				<li>subject_story->a cockpit that hums like a heartbeat</li>
+				<li>subject_story->a hull that heals from bullet holes like closing wounds</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->decoding neural flight control patterns</li>
+				<li>subject_gerund->synthesizing biopolymer hull tissues under vacuum</li>
+				<li>subject_gerund->splicing Wraith protein matrices into human-grade fuel cells</li>
+			</rulesStrings>
+		</generalRules>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -239,15 +259,6 @@
 		</prerequisites>
 		<researchViewX>3</researchViewX>
 		<researchViewY>1</researchViewY>
-		<techprintCount>1</techprintCount>
-		<techprintCommonality>3</techprintCommonality>
-		<techprintMarketValue>3000</techprintMarketValue>
-		<heldByFactionCategoryTags>
-			<li>Rimgate_WraithEmpire</li>
-		</heldByFactionCategoryTags>
-		<tags>
-			<li>Rimgate_TechprintPool</li>
-		</tags>
 	</ResearchProjectDef>
 
 </Defs>

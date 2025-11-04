@@ -128,7 +128,7 @@
   <ThingDef ParentName="BenchBase">
     <defName>Rimgate_CompositionBench</defName>
     <label>composition bench</label>
-    <description>A hybrid workbench slapped together with Tau'ri ingenuity and way too many tool slots.\nTurns raw materials into marvels of modern warfare—just don’t forget to plug it in.</description>
+    <description>A Tau’ri-pattern composition bench standardized for Ancient-adjacent work. Dual subcores handle precision feeds and safety interlocks while the operator focuses on the build.\n\nTurns raw materials into rugged, serviceable hardware—provided you keep the power flowing.</description>
     <thingClass>Building_WorkTable</thingClass>
     <size>(3,1)</size>
     <graphicData>
@@ -151,7 +151,7 @@
       <WorkToBuild>8000</WorkToBuild>
       <Flammability>1.0</Flammability>
       <Cleanliness>-2</Cleanliness>
-      <WorkTableWorkSpeedFactor>1.25</WorkTableWorkSpeedFactor>
+      <WorkTableWorkSpeedFactor>1.35</WorkTableWorkSpeedFactor>
     </statBases>
     <fillPercent>0.5</fillPercent>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
@@ -167,6 +167,7 @@
       <Plasteel>50</Plasteel>
       <ComponentIndustrial>10</ComponentIndustrial>
       <ComponentSpacer>10</ComponentSpacer>
+      <SubcoreRegular>2</SubcoreRegular>
     </costList>
     <castEdgeShadows>true</castEdgeShadows>
     <staticSunShadowHeight>0.20</staticSunShadowHeight>
@@ -196,8 +197,7 @@
       <li>PlaceWorker_ShowFacilitiesConnections</li>
     </placeWorkers>
     <researchPrerequisites>
-      <li>Machining</li>
-      <li>Rimgate_TauriBasic</li>
+      <li>Rimgate_TauriManufacturing</li>
     </researchPrerequisites>
     <modExtensions>
       <li Class="VEF.Buildings.RecipeInheritanceExtension">

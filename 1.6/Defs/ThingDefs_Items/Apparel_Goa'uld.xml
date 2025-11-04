@@ -256,7 +256,7 @@
 
 	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearMakerBase" Abstract="True">
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_GoauldArmorTierThree</researchPrerequisite>
+			<researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
 		</recipeMaker>
 		<costList>
 			<Steel>85</Steel>
@@ -793,7 +793,7 @@
 				<disableRotation>true</disableRotation>
 			</li>
 			<li Class="CompProperties_CompAnalyzableUnlockResearch">
-				<analysisID>1000400</analysisID>
+				<analysisID>1000210</analysisID>
 
 				<!-- Analyzable -->
 

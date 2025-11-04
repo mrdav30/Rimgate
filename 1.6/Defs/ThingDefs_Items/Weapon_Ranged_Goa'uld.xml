@@ -447,7 +447,7 @@
 		</weaponTags>
 		<comps>
 			<li Class="CompProperties_CompAnalyzableUnlockResearch">
-				<analysisID>1000500</analysisID>
+				<analysisID>1000400</analysisID>
 
 				<!-- Analyzable -->
 

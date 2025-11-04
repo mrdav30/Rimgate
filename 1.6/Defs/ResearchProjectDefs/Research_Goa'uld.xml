@@ -65,55 +65,16 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
-		<defName>Rimgate_GoauldArmorTierThree</defName>
-		<label>First Prime armor</label>
-		<description>Research the terrifying Kull battle armor—designed for invulnerability, intimidation, and ruining someone’s day at extreme range.</description>
-		<baseCost>3500</baseCost>
-		<prerequisites>
-			<li>Rimgate_GoauldArmorTierTwo</li>
-		</prerequisites>
-		<researchViewX>3</researchViewX>
-		<researchViewY>0</researchViewY>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
-		<defName>Rimgate_GoauldKaraKesh</defName>
-		<label>Kara kesh</label>
-		<description>Gain insight into how to construct your own Kara kesh, the Goa'uld multifunctional apparatus also known as a hand or ribbon device.</description>
-		<baseCost>5000</baseCost>
-		<prerequisites>
-			<li>Rimgate_GoauldArmorTierThree</li>
-		</prerequisites>
-		<researchViewX>4</researchViewX>
-		<researchViewY>0</researchViewY>
-		<requiredAnalyzed>
-			<li>Rimgate_GoauldKaraKesh</li>
-		</requiredAnalyzed>
-		<generalRules>
-			<rulesStrings>
-				<li>subject->Kara kesh device</li>
-
-				<li>subject_story->salvaged a shattered Kara kesh from the ruins of a Goa'uld outpost</li>
-				<li>subject_story->witnessed a Goa’uld commander disintegrate a foe with a mere gesture</li>
-				<li>subject_story->analyzed the residual naquadah energy signature embedded in the control crystals</li>
-				<li>subject_story->decoded a partial system log referencing "Pain Induction Mode"</li>
-
-				<li>subject_gerund->reverse-engineering a Kara kesh</li>
-			</rulesStrings>
-		</generalRules>
-
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_KullArmor</defName>
 		<label>Kull armor</label>
 		<description>Crack the secrets of Kull supersoldier plating: a naquadah-infused, self-stiffening composite that treats small arms like weather. Learn to fabricate the overlapping plates and the power harness that drives them. Heavy, hungry, and hilariously overkill—just how the Goa’uld like their fashion.</description>
 		<baseCost>5000</baseCost>
 		<prerequisites>
-			<li>Rimgate_GoauldArmorTierThree</li>
+			<li>Rimgate_GoauldArmorTierTwo</li>
+			<li>Rimgate_NaquadahRefinement</li>
 		</prerequisites>
-		<researchViewX>4</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewX>3</researchViewX>
+		<researchViewY>0</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_KullArmor</li>
 		</requiredAnalyzed>
@@ -142,6 +103,7 @@
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
 			<li>PrecisionRifling</li>
+			<li>Rimgate_NaquadahRefinement</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>1</researchViewY>
@@ -182,9 +144,8 @@
 		<prerequisites>
 			<li>GunTurrets</li>
 			<li>Rimgate_GoauldWeaponTierOne</li>
-			<li>Rimgate_NaquadahRefinement</li>
 		</prerequisites>
-		<researchViewX>1</researchViewX>
+		<researchViewX>1.5</researchViewX>
 		<researchViewY>2</researchViewY>
 	</ResearchProjectDef>
 
@@ -196,7 +157,7 @@
 		<prerequisites>
 			<li>Rimgate_GoauldTurretsTierOne</li>
 		</prerequisites>
-		<researchViewX>2</researchViewX>
+		<researchViewX>2.5</researchViewX>
 		<researchViewY>2</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
@@ -218,6 +179,7 @@
 		<baseCost>1500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
+			<li>Rimgate_NaquadahRefinement</li>
 			<li>AdvancedFabrication</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
@@ -236,50 +198,122 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTelTak</defName>
 		<label>Tel'tak</label>
-		<description>Unlock the Tel'tak—a stealth-capable transport ship ideal for reconnaissance, smuggling, or dramatic escape sequences.</description>
+		<description>Unlock the Tel'tak—a stealth-capable transport ship ideal for reconnaissance, smuggling, or dramatic escape sequences. Fast, quiet, and very Goa'uld about it.</description>
 		<baseCost>3000</baseCost>
 		<techLevel>Spacer</techLevel>
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
-			<li>Rimgate_NaquadriaFiredGenerator</li>
+			<li>Rimgate_NaquadahRefinement</li>
 			<li>ShipBasics</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>4</researchViewY>
-		<techprintCount>1</techprintCount>
-		<techprintCommonality>3</techprintCommonality>
-		<techprintMarketValue>3000</techprintMarketValue>
-		<heldByFactionCategoryTags>
-			<li>Rimgate_GoauldBaal</li>
-		</heldByFactionCategoryTags>
-		<tags>
-			<li>Rimgate_TechprintPool</li>
-		</tags>
+		<requiredAnalyzed>
+			<li>Rimgate_DestroyedTeltak</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Tel'tak operations</discoveredLetterTitle>
+		<discoveredLetterText>Recovered system notes paint a familiar Goa'uld picture: elegant shortcuts, theatrical security, and a ship that lives to slip past attention. With enough Naquadah and a little humility, we can reproduce the courier platform—minus the ego of a System Lord.\n\nPractical upshot: stealth plating, VTOL agility, and a hold sized for questionable cargo.</discoveredLetterText>
+
+		<generalRules>
+			<rulesStrings>
+				<!-- subjects -->
+				<li>subject->Goa'uld Tel'tak</li>
+				<li>subject->courier craft</li>
+				<li>subject->smuggler’s shuttle</li>
+
+				<!-- adjectives -->
+				<li>subject_adj->stealth-tuned</li>
+				<li>subject_adj->heat-masked</li>
+				<li>subject_adj->Naquadah-fed</li>
+				<li>subject_adj->blockade-runner</li>
+
+				<!-- story beats -->
+				<li>subject_story->an engine note that fades under sensor thresholds</li>
+				<li>subject_story->polished control studs built for dramatic hand gestures</li>
+				<li>subject_story->cargo clamps balanced for “don’t ask” payloads</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->mapping shield harmonics against colony-grade parts</li>
+				<li>subject_gerund->calibrating inertial dampers for dirt-strip landings</li>
+				<li>subject_gerund->spoofing low-grade scans with staged heat blooms</li>
+			</rulesStrings>
+		</generalRules>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_Sarcophagus</defName>
 		<label>Sarcophagus</label>
-		<description>Gain access to the Goa’uld sarcophagus: the ultimate healing device. Restores health, revives the dying, and wrecks your personality over time. Win-win.</description>
+		<description>Gain access to the Goa’uld sarcophagus: a relic that knits flesh, purges disease, and drags the dying back across the line.\n\nIt also erodes judgment, inflates ego, and whispers that maybe you deserve to live forever.\n\nMiracle on the outside, rot on the inside—just like the Goa’uld who used it.</description>
 		<baseCost>3500</baseCost>
 		<techLevel>Ultra</techLevel>
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
+			<li>Rimgate_NaquadahRefinement</li>
 			<li>Cryptosleep</li>
 			<li>HospitalBed</li>
 			<li>SterileMaterials</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>5</researchViewY>
-		<techprintCount>1</techprintCount>
-		<techprintCommonality>3</techprintCommonality>
-		<techprintMarketValue>3000</techprintMarketValue>
-		<heldByFactionCategoryTags>
-			<li>Rimgate_GoauldBaal</li>
-		</heldByFactionCategoryTags>
-		<tags>
-			<li>Rimgate_TechprintPool</li>
-		</tags>
+		<requiredAnalyzed>
+			<li>Rimgate_GoauldSarcophagus</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Goa’uld Sarcophagus</discoveredLetterTitle>
+		<discoveredLetterText>Your team has reconstructed the operating cycle of a Goa’uld sarcophagus. It heals aggressively, mends what should stay broken, and tempts the user to try “just one more session.”\n\nIt will save lives—and change people. Handle it like a loaded ideology.</discoveredLetterText>
+
+		<generalRules>
+			<rulesStrings>
+				<!-- subjects -->
+				<li>subject->Goa'uld Sarcophagus</li>
+				<li>subject->resurrection cradle</li>
+				<li>subject->healing reliquary</li>
+
+				<!-- adjectives -->
+				<li>subject_adj->Ancient-derived</li>
+				<li>subject_adj->addictive</li>
+				<li>subject_adj->morally compromising</li>
+				<li>subject_adj->bio-restorative</li>
+
+				<!-- story beats -->
+				<li>subject_story->a coffin that returns the living and buries the self</li>
+				<li>subject_story->a machine that mistakes wholeness for goodness</li>
+				<li>subject_story->a light that heals the body and hollows the soul</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->mapping sarcophagus pulse envelopes against living tissue</li>
+				<li>subject_gerund->tuning Naquadah carriers to stabilize regenerative cascades</li>
+				<li>subject_gerund->adding interlocks the Goa’uld never bothered with</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_GoauldKaraKesh</defName>
+		<label>Kara kesh</label>
+		<description>Gain insight into how to construct your own Kara kesh, the Goa'uld multifunctional apparatus also known as a hand or ribbon device.</description>
+		<baseCost>5000</baseCost>
+		<prerequisites>
+			<li>Rimgate_NaquadahRefinement</li>
+			<li>Rimgate_GoauldArmorTierTwo</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>6</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_GoauldKaraKesh</li>
+		</requiredAnalyzed>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Kara kesh device</li>
+
+				<li>subject_story->salvaged a shattered Kara kesh from the ruins of a Goa'uld outpost</li>
+				<li>subject_story->witnessed a Goa’uld commander disintegrate a foe with a mere gesture</li>
+				<li>subject_story->analyzed the residual naquadah energy signature embedded in the control crystals</li>
+				<li>subject_story->decoded a partial system log referencing "Pain Induction Mode"</li>
+
+				<li>subject_gerund->reverse-engineering a Kara kesh</li>
+			</rulesStrings>
+		</generalRules>
+
 	</ResearchProjectDef>
 
 </Defs>

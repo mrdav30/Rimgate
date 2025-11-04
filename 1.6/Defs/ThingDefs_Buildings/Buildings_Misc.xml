@@ -185,6 +185,37 @@
 					<drawSize>(2, 3)</drawSize>
 				</emptyGraphicData>
 			</li>
+			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+				<analysisID>1001000</analysisID>
+				<requiresResearchDef>Rimgate_WraithBasic</requiresResearchDef>
+
+				<!-- Analyzable -->
+
+				<canStudyInPlace>true</canStudyInPlace>
+				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+				<analysisDurationHours>6</analysisDurationHours>
+				<completedLetterLabel>Cloning protocols recovered: {RESEARCH} unlocked</completedLetterLabel>
+				<completedLetter>By dissecting the Wraith cloning pod, {PAWN_labelShort} has extracted viable growth-cycle notes and imprint scaffolding.\n\n{RESEARCH} is now available at a research bench.</completedLetter>
+				<completedLetterDef>PositiveEvent</completedLetterDef>
+
+				<!-- Interactable -->
+
+				<maintainProgress>true</maintainProgress>
+				<activateTexPath>UI/Icons/Study</activateTexPath>
+
+				<activateLabelString>Analyze...</activateLabelString>
+				<activateDescString>Analyze the Wraith cloning pod.</activateDescString>
+				<jobString>Analyzing cloning pod</jobString>
+				<guiLabelString>Choose who should analyze this</guiLabelString>
+				<inspectString>Can be analyzed by a colonist.</inspectString>
+
+				<targetingParameters>
+					<canTargetBuildings>false</canTargetBuildings>
+					<canTargetAnimals>false</canTargetAnimals>
+					<canTargetMechs>false</canTargetMechs>
+					<onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+				</targetingParameters>
+			</li>
 		</comps>
 		<placeWorkers>
 			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
@@ -410,7 +441,7 @@
 		</researchPrerequisites>
 	</ThingDef>
 
-	<!-- Wraith Cocoon Pod -->
+	<!-- ======================= Wraith Cocoon Pod ======================= -->
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_WraithCocoonPod</defName>

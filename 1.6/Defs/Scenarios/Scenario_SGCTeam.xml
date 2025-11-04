@@ -93,7 +93,7 @@
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
-					<thingDef>Rimgate_TauriPuddleJumper</thingDef>
+					<thingDef>Rimgate_DestroyedJumper</thingDef>
 				</li>
 				<li Class="ScenPart_ScatterThingsNearPlayerStart">
 					<def>StartingThing_Defined</def>

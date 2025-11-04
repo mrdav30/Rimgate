@@ -373,8 +373,8 @@
   <!-- =============== Tauri Puddle Jumper =============== -->
 
   <ThingDef ParentName="BuildingBase">
-    <defName>Rimgate_TauriPuddleJumper</defName>
-    <label>Tau'ri Puddle Jumper</label>
+    <defName>Rimgate_AncientPuddleJumper</defName>
+    <label>Ancient Puddle Jumper</label>
     <description>A marvel of Ancient engineering, retrofitted by the Tau’ri. Compact and equipped with a powerful deflector shield, the Puddle Jumper excels at stealth ops, extractions, and rapid deployment. Unfortunately, the Jumper’s hull dimensions mean it cannot fit through the smaller Dwarfgates scattered across the Rim, limiting its use to planetary travel and spaceflight.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <size>(3,6)</size>
@@ -447,13 +447,13 @@
         <shieldColour>(237, 227, 133)</shieldColour> 
       </li>
       <li Class="CompProperties_Shuttle">
-        <shipDef>Rimgate_TauriPuddleJumperShip</shipDef>
+        <shipDef>Rimgate_AncientPuddleJumperShip</shipDef>
       </li>
       <li Class="CompProperties_Launchable">
         <fuelPerTile>2.8</fuelPerTile>
         <minFuelCost>65</minFuelCost>
         <skyfallerLeaving>Rimgate_PuddleJumperLeaving</skyfallerLeaving>
-        <worldObjectDef>Rimgate_TauriPuddleJumper</worldObjectDef>
+        <worldObjectDef>Rimgate_AncientPuddleJumper</worldObjectDef>
         <cooldownTicks>3000</cooldownTicks>
         <fixedLaunchDistanceMax>120</fixedLaunchDistanceMax>
         <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
@@ -495,7 +495,7 @@
       <li>PlaceWorker_NotUnderRoof</li>
     </placeWorkers>
     <researchPrerequisites>
-      <li>Rimgate_TauriPuddleJumper</li>
+      <li>Rimgate_AncientPuddleJumper</li>
     </researchPrerequisites>
     <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
   </ThingDef>

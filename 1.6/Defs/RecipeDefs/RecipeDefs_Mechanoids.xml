@@ -4,7 +4,7 @@
     <RecipeDef ParentName="BaseMechanoidRecipe">
         <defName>Rimgate_Malp</defName>
         <label>MALP</label>
-        <description>Gestate a MALP.</description>
+        <description>Gestate a MALP. Our version swaps classified Tau’ri modules for colony-grade parts: heavier, simpler, easier to fix.\n\nPerfect for going first through a Dwarfgate.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_Malp</ThingDef>
         </descriptionHyperlinks>

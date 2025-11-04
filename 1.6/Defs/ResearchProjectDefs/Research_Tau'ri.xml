@@ -21,7 +21,7 @@
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriBasic</defName>
-        <label>Tau'ri technology</label>
+        <label>Tau'ri engineering</label>
         <description>Begin adapting off-world Tau'ri tech: field equipment, comms, and just enough military-grade hardware to get the IOA very concerned.</description>
         <baseCost>1500</baseCost>
         <researchViewX>0</researchViewX>
@@ -79,32 +79,11 @@
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
-        <defName>Rimgate_TauriWeaponsTierThree</defName>
-        <label>Anti-Replicator gun</label>
-        <description>A classified Tau’ri prototype built with alien assistance, designed for one purpose: dismantling Replicators on a molecular level. Unlike conventional weapons, its exotic energy pulse disrupts nanite cohesion, rendering even the most advanced swarms inert. Slow to produce and difficult to maintain, but utterly devastating against its intended target.</description>
-        <baseCost>2500</baseCost>
-        <researchViewX>3</researchViewX>
-        <researchViewY>1</researchViewY>
-        <prerequisites>
-            <li>Rimgate_TauriWeaponsTierTwo</li>
-        </prerequisites>
-        <techprintCount>1</techprintCount>
-        <techprintCommonality>3</techprintCommonality>
-        <techprintMarketValue>3000</techprintMarketValue>
-        <heldByFactionCategoryTags>
-            <li>Rimgate_TauriFaction</li>
-        </heldByFactionCategoryTags>
-        <tags>
-            <li>Rimgate_TechprintPool</li>
-        </tags>
-    </ResearchProjectDef>
-
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriTurretsTierOne</defName>
         <label>Tau'ri turrets I</label>
         <description>Field up your defenses the Tau’ri way: a manned, shielded M2 that turns negotiations into noise. Teaches emplacement, feed, and “brace for recoil.”</description>
         <baseCost>2500</baseCost>
-        <researchViewX>1</researchViewX>
+        <researchViewX>1.5</researchViewX>
         <researchViewY>2</researchViewY>
         <prerequisites>
             <li>GunTurrets</li>
@@ -117,7 +96,7 @@
         <label>Tau'ri turrets II</label>
         <description>Apply refined naquadah to rail physics and call it “security.” Unlocks a manned railgun that ventilates armor and egos at extreme range.</description>
         <baseCost>2500</baseCost>
-        <researchViewX>2</researchViewX>
+        <researchViewX>2.5</researchViewX>
         <researchViewY>2</researchViewY>
         <prerequisites>
             <li>Rimgate_TauriTurretsTierOne</li>
@@ -128,38 +107,51 @@
     <!-- ======== Buildings ========= -->
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
-        <defName>Rimgate_MalpGestation</defName>
-        <label>MALP mech tech</label>
-        <description>Unlock the secrets of Tau’ri engineering with the MALP — a rugged, shielded exploration probe that operates beyond normal mechinator limits. While the Tau’ri keep their full control systems classified, they’ve released enough blueprints for colonists to assemble a serviceable copy. It won’t complain about shifts, gets along fine with radiation, and doubles as the first “volunteer” through any Dwarfgate.</description>
-        <baseCost>3500</baseCost>
+        <defName>Rimgate_TauriManufacturing</defName>
+        <label>Tauri Manufacturing</label>
+        <description>Standardize Tau’ri-pattern fabrication on colony tools: adapter jigs, crystal mounts, shielded cabling, and subcore I/O buses that play nice with human power grids.\n\nThis establishes the fixtures and safety protocols needed to assemble Ancient-adjacent hardware without guesswork (or explosions).</description>
         <prerequisites>
+            <li>Machining</li>
             <li>Rimgate_TauriBasic</li>
             <li>StandardMechtech</li>
         </prerequisites>
+        <baseCost>3500</baseCost>
         <researchViewX>1</researchViewX>
         <researchViewY>3</researchViewY>
-        <techprintCount>1</techprintCount>
-        <techprintCommonality>3</techprintCommonality>
-        <techprintMarketValue>3000</techprintMarketValue>
-        <heldByFactionCategoryTags>
-            <li>Rimgate_TauriFaction</li>
-        </heldByFactionCategoryTags>
-        <tags>
-            <li>Rimgate_TechprintPool</li>
-        </tags>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
-        <defName>Rimgate_NaquadahRefinement</defName>
-        <label>Naquadah refinement</label>
-        <description>Learn to refine raw Naquadah into Naquadria—an unstable but potent power source.\nGreat for experimental engines, questionable ethics, and catastrophic explosions.</description>
-        <baseCost>3500</baseCost>
+        <defName>Rimgate_MalpGestation</defName>
+        <label>MALP mech tech</label>
+        <description>By tearing down a ruined Tau’ri MALP and tracing its signal routing, your researchers believe they can build a locally manufacturable probe with sturdier parts and less mystery.\n\nWe won’t have their classified control stack, so we’ll have to figure it out ourselves — and make it better.</description>
         <prerequisites>
-            <li>Rimgate_TauriBasic</li>
-            <li>Rimgate_GoauldBasic</li>
+            <li>Rimgate_TauriManufacturing</li>
         </prerequisites>
-        <researchViewX>1</researchViewX>
-        <researchViewY>4</researchViewY>
+        <requiredAnalyzed>
+            <li>Rimgate_DestroyedMalp</li>
+        </requiredAnalyzed>
+        <baseCost>3500</baseCost>
+        <researchViewX>2</researchViewX>
+        <researchViewY>3</researchViewY>
+        <discoveredLetterTitle>About: MALP reverse-engineering</discoveredLetterTitle>
+        <discoveredLetterText>The ruined Tau’ri MALP wasn’t a total loss. Its cabling, crystal mounts, and actuator layout tell a clear story: we can fabricate a ruggedized copy that runs on our tools, our power, and our patience.\n\nIt won’t match the Tau’ri’s classified control stack, but it’ll drive, probe, and—most importantly—go through the Dwarfgate first.</discoveredLetterText>
+        <generalRules>
+            <rulesStrings>
+                <li>subject->MALP</li>
+                <li>subject->Tau’ri probe</li>
+                <li>subject_adj->reverse-engineered</li>
+                <li>subject_adj->ruggedized</li>
+                <li>subject_adj->field-serviceable</li>
+
+                <li>subject_story->a wheeled survey platform built to survive radiation, debris, and bad ideas</li>
+                <li>subject_story->a remote crawler that pushes into danger so colonists don’t have to</li>
+                <li>subject_story->a chassis that hums in strange harmonics near active gates</li>
+
+                <li>subject_gerund->tracing broken signal paths through Tau’ri control modules</li>
+                <li>subject_gerund->replacing proprietary boards with colony-grade microcontrollers</li>
+                <li>subject_gerund->hardening sensor arrays against gate-adjacent EM spikes</li>
+            </rulesStrings>
+        </generalRules>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
@@ -170,31 +162,8 @@
         <prerequisites>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
-        <researchViewX>2</researchViewX>
+        <researchViewX>1</researchViewX>
         <researchViewY>4</researchViewY>
-    </ResearchProjectDef>
-
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
-        <defName>Rimgate_TauriPuddleJumper</defName>
-        <label>Tau'ri Puddle Jumper</label>
-        <description>Unlock Tau’ri plans for a Puddle Jumper—an Ancient scout ship refitted with a deflector shield, VTOL agility, and just enough documentation to build it (but not to fly it through wormholes). The Tau’ri withheld the Ancient navigation suite, and this model can’t fit through the Rim’s undersized, Archotech-locked Dwarfgate anyway. Ideal for stealth insertions, rapid exfil, and planetary/orbital hops—less ideal for “dial-and-dash.”</description>
-        <baseCost>3500</baseCost>
-        <techLevel>Spacer</techLevel>
-        <prerequisites>
-            <li>Rimgate_NaquadriaFiredGenerator</li>
-            <li>ShipBasics</li>
-        </prerequisites>
-        <researchViewX>3</researchViewX>
-        <researchViewY>4</researchViewY>
-        <techprintCount>1</techprintCount>
-        <techprintCommonality>3</techprintCommonality>
-        <techprintMarketValue>3000</techprintMarketValue>
-        <heldByFactionCategoryTags>
-            <li>Rimgate_TauriFaction</li>
-        </heldByFactionCategoryTags>
-        <tags>
-            <li>Rimgate_TechprintPool</li>
-        </tags>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">

@@ -343,7 +343,7 @@
     <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CloseStargate.cs" />
     <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
-    <Compile Include="Comps\CompAnalyzableResearchWhen.cs" />
+    <Compile Include="Comps\Comp_AnalyzableResearchWhen.cs" />
     <Compile Include="Comps\CompUseEffect_AssembleAndStartQuest.cs" />
     <Compile Include="Comps\Comp_MobileContainer.cs" />
     <Compile Include="Comps\Comp_PersistentMentalState.cs" />

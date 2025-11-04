@@ -37,7 +37,6 @@
       <MaxHitPoints>850</MaxHitPoints>
       <WorkToBuild>1675</WorkToBuild>
       <Flammability>0.0</Flammability>
-      <MeditationFocusStrength>0.45</MeditationFocusStrength>
       <Beauty>4</Beauty>
       <Cleanliness>0.2</Cleanliness>
     </statBases>
@@ -135,7 +134,6 @@
       <MaxHitPoints>1000</MaxHitPoints>
       <WorkToBuild>1550</WorkToBuild>
       <Flammability>0.25</Flammability>
-      <MeditationFocusStrength>0.35</MeditationFocusStrength>
       <Cleanliness>-0.2</Cleanliness>
     </statBases>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>

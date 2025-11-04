@@ -48,4 +48,26 @@
         <armorCategory>Blunt</armorCategory>
     </DamageDef>
 
+    <!-- Replicator Gun -->
+
+    <DamageDef ParentName="StunBase">
+        <defName>Rimgate_ReplicatorDisrupt</defName>
+        <label>replicator disruption pulse</label>
+        <deathMessage>{0} collapsed into inert nanite dust.</deathMessage>
+        <externalViolenceForMechanoids>true</externalViolenceForMechanoids>
+        <harmsHealth>false</harmsHealth>
+        <impactSoundType>Electric</impactSoundType>
+        <defaultDamage>50</defaultDamage>
+        <explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+        <explosionCellFleck>BlastEMP</explosionCellFleck>
+        <explosionInteriorFleck>ElectricalSpark</explosionInteriorFleck>
+        <explosionColorCenter>(0.6, 0.8, 1.0)</explosionColorCenter>
+        <explosionColorEdge>(0.2, 0.4, 0.8)</explosionColorEdge>
+        <soundExplosion>Explosion_EMP</soundExplosion>
+        <combatLogRules>Damage_EMP</combatLogRules>
+        <causeStun>true</causeStun>
+        <stunResistStat MayRequireAnyOf="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Anomaly">EMPResistance</stunResistStat>
+        <stunAdaptationTicks>2200</stunAdaptationTicks>
+    </DamageDef>
+
 </Defs>

@@ -6,7 +6,8 @@
   <ThingDef ParentName="FurnitureBase">
     <defName>Rimgate_GoauldSarcophagus</defName>
     <label>Goa'uld sarcophagus</label>
-    <description>based on Ancient technology, the sarcophagus rapidly heals injuries and diseases with eerie precision. It also has a nasty habit of addicting users to immortality. Side effects include glowing eyes, god complexes, and moral decay. Use with caution... or embrace your inner System Lord.</description>
+    <description>Based on Ancient technology, the sarcophagus rapidly heals injuries and diseases with eerie precision—and breeds dependency just as precisely.
+      Side effects include glowing eyes, god complexes, and moral decay. Use with caution… or embrace your inner System Lord.</description>
     <descriptionHyperlinks>
       <HediffDef>Rimgate_SarcophagusHigh</HediffDef>
       <HediffDef>Rimgate_SarcophagusAddiction</HediffDef>
@@ -51,6 +52,21 @@
       <soundDispense>Rimgate_SarcophagusRunning</soundDispense>
     </building>
     <castEdgeShadows>true</castEdgeShadows>
+    <tickerType>Normal</tickerType>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <repairEffect>Repair</repairEffect>
+    <canOverlapZones>false</canOverlapZones>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <fillPercent>0.4</fillPercent>
+    <pathCost>60</pathCost>
+    <leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
+    <staticSunShadowHeight>0.2</staticSunShadowHeight>
+    <researchPrerequisites>
+      <li>Rimgate_Sarcophagus</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
+    <techLevel>Ultra</techLevel>
     <comps>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Breakdownable" />
@@ -120,22 +136,38 @@
         <needLevelOffset>0.9</needLevelOffset>
         <addictiveness>1.0</addictiveness>
       </li>
+      <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+        <analysisID>1000900</analysisID>
+        <requiresResearchDef>Rimgate_GoauldBasic</requiresResearchDef>
+
+        <!-- Analyze settings -->
+
+        <canStudyInPlace>true</canStudyInPlace>
+        <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+        <analysisDurationHours>10</analysisDurationHours>
+        <completedLetterLabel>Sarcophagus analysis complete: {RESEARCH} unlocked</completedLetterLabel>
+        <completedLetter>By studying the Goa'uld Sarcophagus, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.</completedLetter>
+        <completedLetterDef>PositiveEvent</completedLetterDef>
+
+        <!-- Interactable -->
+
+        <maintainProgress>true</maintainProgress>
+        <activateTexPath>UI/Icons/Study</activateTexPath>
+        <activateLabelString>Analyze...</activateLabelString>
+        <activateDescString>Analyze the Goa'uld Sarcophagus.</activateDescString>
+        <jobString>Analyzing Sarcophagus</jobString>
+        <guiLabelString>Choose who should analyze this</guiLabelString>
+        <inspectString>Can be analyzed by a colonist.</inspectString>
+
+        <!-- Optional targeting -->
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
     </comps>
-    <tickerType>Normal</tickerType>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <repairEffect>Repair</repairEffect>
-    <canOverlapZones>false</canOverlapZones>
-    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
-    <defaultPlacingRot>South</defaultPlacingRot>
-    <fillPercent>0.4</fillPercent>
-    <pathCost>60</pathCost>
-    <leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
-    <staticSunShadowHeight>0.2</staticSunShadowHeight>
-    <researchPrerequisites>
-      <li>Rimgate_Sarcophagus</li>
-    </researchPrerequisites>
-    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
-    <techLevel>Ultra</techLevel>
   </ThingDef>
 
   <!-- Goa'uld Throne -->

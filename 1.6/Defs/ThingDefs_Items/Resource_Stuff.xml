@@ -6,7 +6,7 @@
   <ThingDef ParentName="ResourceBase">
     <defName>Rimgate_Naquadah</defName>
     <label>Naquadah</label>
-    <description>this dense, gray mineral powers everything from hand weapons to planetary extinction events. Works equally well as a power source or a reason your base exploded. Handle with smug superiority.</description>
+    <description>A dense, metallic mineral that hums faintly under stress and can power everything from hand weapons to planetary extinction events.\n\nOnce refined, it becomes Naquadria — exponentially more powerful, exponentially more likely to redecorate your map in plasma.\n\nHandle with insulated gloves and smug superiority.</description>
     <graphicData>
       <texPath>Things/Item/Resource/RGNaquadah</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -92,6 +92,33 @@
       <min>30</min>
       <max>40</max>
     </deepLumpSizeRange>
+    <comps>
+      <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+        <analysisID>1000800</analysisID>
+        <requiresResearchDef>AdvancedFabrication</requiresResearchDef>
+        <canStudyInPlace>false</canStudyInPlace>
+        <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+        <analysisDurationHours>8</analysisDurationHours>
+
+        <activateTexPath>UI/Icons/Study</activateTexPath>
+        <activateLabelString>Analyze...</activateLabelString>
+        <activateDescString>Analyze the Naquadah sample.</activateDescString>
+        <jobString>Analyzing Naquadah sample</jobString>
+        <guiLabelString>Choose who should analyze this</guiLabelString>
+        <inspectString>Can be analyzed by a colonist.</inspectString>
+
+        <completedLetterLabel>{RESEARCH} unlocked</completedLetterLabel>
+        <completedLetter>{PAWN_labelShort} has successfully analyzed the Naquadah sample and unlocked {RESEARCH} research.\n\nAll nearby Geiger counters have been advised to stop screaming.</completedLetter>
+        <completedLetterDef>PositiveEvent</completedLetterDef>
+
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
+    </comps>
   </ThingDef>
 
   <!-- =============== Naquadria ==================== -->
@@ -163,6 +190,60 @@
     <thingCategories>
       <li>ResourcesRaw</li>
     </thingCategories>
+  </ThingDef>
+
+  <!-- =============== Replicator Link ==================== -->
+
+  <ThingDef ParentName="ChunkBase">
+    <defName>Rimgate_ReplicatorLink</defName>
+    <label>inert replicator link</label>
+    <description>A fused segment of Replicator architecture, no longer networked but still laced with crystalline pathways. Harmless on its own; terrifying when it remembers friends.\n\nSmelts into useful metals, or—if studied by a Mechanitor—reveals how to make Replicators forget how to be Replicators.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGReplicatorLink</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <stackLimit>100</stackLimit>
+    <statBases>
+      <Mass>0.5</Mass>
+    </statBases>
+    <soundDrop>ChunkSlag_Drop</soundDrop>
+    <thingCategories>
+      <li>Chunks</li>
+    </thingCategories>
+    <smeltable>true</smeltable>
+    <smeltProducts>
+      <Steel>10</Steel>
+    </smeltProducts>
+    <comps>
+      <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+        <analysisID>1000810</analysisID>
+        <requiresResearchDef>StandardMechtech</requiresResearchDef>
+        <requiresMechanitor>true</requiresMechanitor>
+        <canStudyInPlace>true</canStudyInPlace>
+        <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+        <analysisDurationHours>10</analysisDurationHours>
+
+        <activateTexPath>UI/Icons/Study</activateTexPath>
+        <activateLabelString>Analyze...</activateLabelString>
+        <activateDescString>Analyze the Replicator link lattice.</activateDescString>
+        <jobString>Analyzing Replicator link</jobString>
+        <guiLabelString>Choose who should analyze this</guiLabelString>
+        <inspectString>Can be analyzed by a colonist.</inspectString>
+
+        <completedLetterLabel>{RESEARCH} unlocked</completedLetterLabel>
+        <completedLetter>{PAWN_labelShort} mapped the crystal pathways and extracted a disruption profile.\n\n{RESEARCH} is now available at a research bench.</completedLetter>
+        <completedLetterDef>PositiveEvent</completedLetterDef>
+
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
+    </comps>
   </ThingDef>
 
 </Defs>

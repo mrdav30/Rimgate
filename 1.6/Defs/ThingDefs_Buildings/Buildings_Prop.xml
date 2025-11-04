@@ -382,14 +382,14 @@
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DestroyedMalp</defName>
-        <label>ancient MALP</label>
-        <description>A ruined Tau'ri MALP. It is now completely inoperable. Its usable parts were smashed or looted long ago.</description>
+        <label>abandoned MALP</label>
+        <description>A disabled Tau'ri MALP. It is now completely inoperable, but its wiring runs and crystal beds still tell a story to anyone patient enough to listen.</description>
         <graphicData>
-            <texPath>Things/Building/Prop/RGMALP_Destroyed</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>3.5</drawSize>
+            <texPath>Things/Building/Prop/DestroyedMalp</texPath>
+            <graphicClass>Graphic_Random</graphicClass>
+            <drawSize>2</drawSize>
         </graphicData>
-        <size>(3,1)</size>
+        <size>(2,1)</size>
         <statBases>
             <MaxHitPoints>100</MaxHitPoints>
             <Flammability>0.2</Flammability>
@@ -406,6 +406,232 @@
         <passability>Impassable</passability>
         <canOverlapZones>false</canOverlapZones>
         <altitudeLayer>Building</altitudeLayer>
+        <rotatable>false</rotatable>
+        <comps>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000700</analysisID>
+                <requiresResearchDef>Rimgate_TauriManufacturing</requiresResearchDef>
+
+                <!-- Analyze settings -->
+                <requiresMechanitor>true</requiresMechanitor>
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+
+                <!-- UI / strings -->
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Study the remains for usable patterns.</activateDescString>
+                <jobString>Analyzing MALP chassis</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist with mechtech knowledge.</inspectString>
+
+                <!-- Completion feedback; ties into research via the project's <requiredAnalyzed> -->
+                <completedLetterLabel>MALP analysis complete: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By mapping the signal pathways and chassis mounting on the ruined MALP, {PAWN_labelShort} has revealed enough to begin our own design.\nResearch project(s) {RESEARCH} are now available at the bench.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <!-- Optional targeting -->
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ================ Destroyed Jumper ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedJumper</defName>
+        <label>dilapitated puddle jumper</label>
+        <description>A shattered Ancient scout vessel, its crystal conduits still pulsing faintly with residual subspace charge.\n\nMost of its systems are fused or looted, but the data spine and flight control lattice might still whisper secrets to anyone patient enough to listen.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGPuddleJumper_Destroyed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(3,3)</drawSize>
+        </graphicData>
+        <size>(3,3)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>30.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+        <rotatable>false</rotatable>
+        <comps>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000710</analysisID>
+                <requiresResearchDef>ShipBasics</requiresResearchDef>
+
+                <!-- Analyze settings -->
+
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+                <completedLetterLabel>Puddle Jumper studied: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By studying the remnants of an Ancient Puddle Jumper, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.\n\nYour engineers can now attempt to reproduce the vessel—without the existential dread of the original AI.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <!-- Interactable -->
+
+                <maintainProgress>true</maintainProgress>
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Analyze the dilapitated Ancient Puddle Jumper.</activateDescString>
+                <jobString>Analyzing Puddle Jumper</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist.</inspectString>
+
+                <!-- Optional targeting -->
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ================ Destroyed Tel'tak ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedTeltak</defName>
+        <label>deteriorating Tel'tak</label>
+        <description>A gutted Goa'uld courier craft: hull scorched, crystal racks shattered, and half the control studs fused from heat.\n\nUseless as a ship—but its systems still whisper how it once slipped through blockades and sensor nets.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGTeltak_Destroyed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5.5,5.5)</drawSize>
+        </graphicData>
+        <size>(5,4)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>30.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+        <rotatable>false</rotatable>
+        <comps>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000720</analysisID>
+                <requiresResearchDef>ShipBasics</requiresResearchDef>
+
+                <!-- Analyze settings -->
+
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+                <completedLetterLabel>Tel'tak analysis complete: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By studying the remnants of a Goa'uld Tel'tak, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <!-- Interactable -->
+
+                <maintainProgress>true</maintainProgress>
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Analyze the deteriorating Goa'uld Tel'tak.</activateDescString>
+                <jobString>Analyzing Tel'tak</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist.</inspectString>
+
+                <!-- Optional targeting -->
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ================ Destroyed Dart ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedDart</defName>
+        <label>decaying dart</label>
+        <description>A shattered Wraith Dart, its organic hull slowly liquefying.\n\nBiopolymer veins still twitch with residual charge, and faint hums echo from what’s left of its stasis chamber.\n\nIt’s more carcass than craft now—but one that remembers how to fly.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGDart_Destroyed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5,3)</drawSize>
+        </graphicData>
+        <size>(5,2)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>30.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+        <rotatable>false</rotatable>
+        <comps>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000730</analysisID>
+                <requiresResearchDef>ShipBasics</requiresResearchDef>
+
+                <!-- Analyze settings -->
+
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+                <completedLetterLabel>Dart analysis complete: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By dissecting the remnants of a Wraith Dart, {PAWN_labelShort} has mapped its bio-alloy struts and energy lattice patterns, laying the foundation for {RESEARCH} research.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <!-- Interactable -->
+
+                <maintainProgress>true</maintainProgress>
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Analyze the decaying Wraith Dart.</activateDescString>
+                <jobString>Analyzing Dart</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist.</inspectString>
+
+                <!-- Optional targeting -->
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
     </ThingDef>
 
     <!-- ================ Destroyed Generator ================ -->

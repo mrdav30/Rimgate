@@ -9,5 +9,5 @@ public class CompProperties_AnalyzableResearchWhen : CompProperties_CompAnalyzab
 
     public bool hideWhenDone = true;
 
-    public CompProperties_AnalyzableResearchWhen() => compClass = typeof(CompAnalyzableResearchWhen);
+    public CompProperties_AnalyzableResearchWhen() => compClass = typeof(Comp_AnalyzableResearchWhen);
 }

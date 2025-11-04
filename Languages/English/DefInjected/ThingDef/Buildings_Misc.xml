@@ -13,10 +13,10 @@
   <Frame_Rimgate_WraithDart.label>Dart (building)</Frame_Rimgate_WraithDart.label>
   <Frame_Rimgate_WraithDart.description>Wraith Darts are single-pilot ships used by the Wraith both for combat missions or culling human planets.</Frame_Rimgate_WraithDart.description>
 
-  <Rimgate_TauriPuddleJumper.label>Tau'ri Puddle Jumper</Rimgate_TauriPuddleJumper.label>
-  <Rimgate_TauriPuddleJumper.description>A Tau'ri Puddle spacecraft equipped with a defense shield.</Rimgate_TauriPuddleJumper.description>
-  <Blueprint_Rimgate_TauriPuddleJumper.label>Puddle Jumper (blueprint)</Blueprint_Rimgate_TauriPuddleJumper.label>
-  <Frame_Rimgate_TauriPuddleJumper.label>Puddle Jumper (building)</Frame_Rimgate_TauriPuddleJumper.label>
-  <Frame_Rimgate_TauriPuddleJumper.description>A Tau'ri Puddle spacecraft equipped with a defense shield.</Frame_Rimgate_TauriPuddleJumper.description>
+  <Rimgate_AncientPuddleJumper.label>Ancient Puddle Jumper</Rimgate_AncientPuddleJumper.label>
+  <Rimgate_AncientPuddleJumper.description>An Ancient Puddle spacecraft equipped with a defense shield.</Rimgate_AncientPuddleJumper.description>
+  <Blueprint_Rimgate_AncientPuddleJumper.label>Puddle Jumper (blueprint)</Blueprint_Rimgate_AncientPuddleJumper.label>
+  <Frame_Rimgate_AncientPuddleJumper.label>Puddle Jumper (building)</Frame_Rimgate_AncientPuddleJumper.label>
+  <Frame_Rimgate_AncientPuddleJumper.description>An Ancient Puddle spacecraft equipped with a defense shield.</Frame_Rimgate_AncientPuddleJumper.description>
 
 </LanguageData>

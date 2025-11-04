@@ -18,9 +18,9 @@
     </WorldObjectDef>
 
     <WorldObjectDef ParentName="ShuttleWorldObjectBase">
-        <defName>Rimgate_TauriPuddleJumper</defName>
-        <label>Tau'ri Puddle Jumper</label>
-        <description>a Tau'ri Puddle Jumper in flight.</description>
+        <defName>Rimgate_AncientPuddleJumper</defName>
+        <label>Ancient Puddle Jumper</label>
+        <description>an Ancient Puddle Jumper in flight.</description>
         <expandingIconTexture>UI/Icon/Map/RGTauriPuddleJumperShipIcon</expandingIconTexture>
         <expandingIconDrawSize>1</expandingIconDrawSize>
     </WorldObjectDef>

@@ -105,9 +105,7 @@
             <mechWeightClass>Light</mechWeightClass>
         </race>
         <butcherProducts>
-            <Steel>20</Steel>
-            <Plasteel>5</Plasteel>
-            <ComponentIndustrial>1</ComponentIndustrial>
+            <Rimgate_ReplicatorLink>10</Rimgate_ReplicatorLink>
         </butcherProducts>
         <tradeTags>
             <li>Mechanoid</li>
@@ -173,7 +171,7 @@
             <baseHealthScale>1.89</baseHealthScale>
         </race>
         <butcherProducts>
-            <Plasteel>10</Plasteel>
+            <Plasteel>5</Plasteel>
         </butcherProducts>
     </ThingDef>
 

@@ -188,7 +188,7 @@
                 </activeGraphicData>
             </li>
             <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
-                <analysisID>1000700</analysisID>
+                <analysisID>1000600</analysisID>
                 <requiresResearchDef>Rimgate_StargateAlloyResearch</requiresResearchDef>
 
                 <!-- Analyzable -->
@@ -305,6 +305,68 @@
             <li>Rimgate.PlaceWorker_Stargate</li>
         </placeWorkers>
         <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    </ThingDef>
+
+    <!-- ======================= Ancient Research Bank ======================= -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_AncientResearchBank</defName>
+        <label>ancient research bank</label>
+        <description>A self-contained data core from a vanished civilization, still humming faintly with stored knowledge.\n\nWhen interfaced with a modern research bench, it boosts analysis speed by 35% through active cross-referencing of ancient archives and predictive heuristics.\n\nLimit one per workbench — most minds can only handle so much enlightenment at once.</description>
+        <uiIconScale>2.0</uiIconScale>
+        <graphicData>
+            <texPath>Things/Building/Artifact/RGAncientDatabase</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1,1)</drawSize>
+        </graphicData>
+        <statBases>
+            <WorkToBuild>1200</WorkToBuild>
+            <Mass>20</Mass>
+        </statBases>
+        <uiIconScale>0.75</uiIconScale>
+        <size>(1,1)</size>
+        <altitudeLayer>Building</altitudeLayer>
+        <passability>PassThroughOnly</passability>
+        <castEdgeShadows>false</castEdgeShadows>
+        <staticSunShadowHeight>0.51</staticSunShadowHeight>
+        <fillPercent>0.5</fillPercent>
+        <canOverlapZones>false</canOverlapZones>
+        <rotatable>false</rotatable>
+        <pathCost>42</pathCost>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Mass>20</Mass>
+            <Flammability>0.5</Flammability>
+        </statBases>
+        <building>
+            <destroySound>BuildingDestroyed_Metal_Small</destroySound>
+            <claimable>true</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>BuildingsMisc</li>
+        </thingCategories>
+        <placeWorkers>
+            <li>PlaceWorker_ShowFacilitiesConnections</li>
+        </placeWorkers>
+        <comps>
+            <li Class="CompProperties_Facility">
+                <statOffsets>
+                    <ResearchSpeedFactor>0.35</ResearchSpeedFactor>
+                </statOffsets>
+                <maxSimultaneous>1</maxSimultaneous>
+                <mustBePlacedAdjacent>true</mustBePlacedAdjacent>
+            </li>
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <shortCircuitInRain>false</shortCircuitInRain>
+                <basePowerConsumption>225</basePowerConsumption>
+            </li>
+        </comps>
     </ThingDef>
 
 </Defs>
