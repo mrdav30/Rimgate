@@ -30,6 +30,7 @@
 				<li>Rimgate_Naquadah</li>
 			</thingDefs>
 		</fixedIngredientFilter>
+		<workSkill>Crafting</workSkill>
 		<products>
 			<Rimgate_Naquadria>5</Rimgate_Naquadria>
 		</products>
@@ -67,6 +68,7 @@
 				<li>Rimgate_Naquadah</li>
 			</thingDefs>
 		</fixedIngredientFilter>
+		<workSkill>Crafting</workSkill>
 		<products>
 			<Rimgate_Tretonin>5</Rimgate_Tretonin>
 		</products>
@@ -152,7 +154,7 @@
 		<jobString>making cocooned meat.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>250</workAmount>
+		<workAmount>150</workAmount>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<recipeUsers>
 			<li>Rimgate_CocoonStation</li>
@@ -173,6 +175,7 @@
 				<li>MeatRaw</li>
 			</categories>
 		</fixedIngredientFilter>
+		<workSkill>Cooking</workSkill>
 		<products>
 			<Rimgate_CocoonedMeat>1</Rimgate_CocoonedMeat>
 		</products>
@@ -207,6 +210,7 @@
 				<li>MeatRaw</li>
 			</categories>
 		</fixedIngredientFilter>
+		<workSkill>Cooking</workSkill>
 		<products>
 			<Rimgate_CocoonedMeat>4</Rimgate_CocoonedMeat>
 		</products>
@@ -225,7 +229,6 @@
 		<workAmount>450</workAmount>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<recipeUsers>
-			<li>TableButcher</li>
 			<li>Rimgate_CocoonStation</li>
 		</recipeUsers>
 		<ingredients>
@@ -237,14 +240,23 @@
 				</filter>
 				<count>5</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Rimgate_CocoonedMeat</li>
 			</thingDefs>
 		</fixedIngredientFilter>
+		<workSkill>Cooking</workSkill>
 		<products>
-			<Rimgate_Biomass>5</Rimgate_Biomass>
+			<Rimgate_Biomass>10</Rimgate_Biomass>
 		</products>
 		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
 	</RecipeDef>
@@ -256,10 +268,9 @@
 		<jobString>making Biomass.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>450</workAmount>
+		<workAmount>550</workAmount>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<recipeUsers>
-			<li>TableButcher</li>
 			<li>Rimgate_CocoonStation</li>
 		</recipeUsers>
 		<ingredients>
@@ -271,14 +282,23 @@
 				</filter>
 				<count>20</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Rimgate_CocoonedMeat</li>
 			</thingDefs>
 		</fixedIngredientFilter>
+		<workSkill>Cooking</workSkill>
 		<products>
-			<Rimgate_Biomass>25</Rimgate_Biomass>
+			<Rimgate_Biomass>40</Rimgate_Biomass>
 		</products>
 		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
 	</RecipeDef>
@@ -291,11 +311,10 @@
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>450</workAmount>
+		<workAmount>550</workAmount>
 		<allowMixingIngredients>true</allowMixingIngredients>
 		<ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
 		<recipeUsers>
-			<li>TableButcher</li>
 			<li>Rimgate_CocoonStation</li>
 		</recipeUsers>
 		<ingredients>
@@ -307,55 +326,13 @@
 				</filter>
 				<count>10</count>
 			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<categories>
-				<li>MeatRaw</li>
-			</categories>
-			<specialFiltersToDisallow>
-			</specialFiltersToDisallow>
-		</fixedIngredientFilter>
-		<defaultIngredientFilter>
-			<categories>
-				<li>MeatRaw</li>
-			</categories>
-			<disallowedCategories>
-				<li>EggsFertilized</li>
-			</disallowedCategories>
-			<disallowedThingDefs>
-			</disallowedThingDefs>
-		</defaultIngredientFilter>
-		<workSkill>Cooking</workSkill>
-		<products>
-			<Rimgate_Biomass>5</Rimgate_Biomass>
-		</products>
-		<workSkill>Cooking</workSkill>
-		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
-	</RecipeDef>
-
-	<RecipeDef>
-		<defName>Rimgate_MakeMeatBiomass_x4</defName>
-		<label>make Biomass from meat x4</label>
-		<description>make a batch of Biomass from meat.</description>
-		<jobString>making biomass.</jobString>
-		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
-		<effectWorking>ButcherFlesh</effectWorking>
-		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>450</workAmount>
-		<allowMixingIngredients>true</allowMixingIngredients>
-		<ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
-		<recipeUsers>
-			<li>TableButcher</li>
-			<li>Rimgate_CocoonStation</li>
-		</recipeUsers>
-		<ingredients>
 			<li>
 				<filter>
-					<categories>
-						<li>MeatRaw</li>
-					</categories>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
 				</filter>
-				<count>40</count>
+				<count>1</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -377,9 +354,64 @@
 		</defaultIngredientFilter>
 		<workSkill>Cooking</workSkill>
 		<products>
-			<Rimgate_Biomass>25</Rimgate_Biomass>
+			<Rimgate_Biomass>10</Rimgate_Biomass>
 		</products>
+		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeMeatBiomass_x4</defName>
+		<label>make Biomass from meat x4</label>
+		<description>make a batch of Biomass from meat.</description>
+		<jobString>making biomass.</jobString>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<workAmount>650</workAmount>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+		<recipeUsers>
+			<li>Rimgate_CocoonStation</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>MeatRaw</li>
+					</categories>
+				</filter>
+				<count>40</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+			<specialFiltersToDisallow>
+			</specialFiltersToDisallow>
+		</fixedIngredientFilter>
+		<defaultIngredientFilter>
+			<categories>
+				<li>MeatRaw</li>
+			</categories>
+			<disallowedCategories>
+				<li>EggsFertilized</li>
+			</disallowedCategories>
+			<disallowedThingDefs>
+			</disallowedThingDefs>
+		</defaultIngredientFilter>
 		<workSkill>Cooking</workSkill>
+		<products>
+			<Rimgate_Biomass>40</Rimgate_Biomass>
+		</products>
 		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
 	</RecipeDef>
 
