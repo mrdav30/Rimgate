@@ -455,7 +455,7 @@
 				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
 				<analysisDurationHours>6</analysisDurationHours>
 				<completedLetterLabel>Kull weapon studied: {RESEARCH} unlocked</completedLetterLabel>
-				<completedLetter>By studying the Kull's weapon, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
+				<completedLetter>By studying the Kull’s weapon, {PAWN_labelShort} has acquired the insight needed for {RESEARCH} research.\n\nThe weapon’s core destabilized during disassembly, fusing itself into an unrecognizable lump of scorched alloy.\n\nYour researchers can now use research benches to begin developing compatible energy systems.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
 
 				<catastrophicFailureChance>0.25</catastrophicFailureChance>

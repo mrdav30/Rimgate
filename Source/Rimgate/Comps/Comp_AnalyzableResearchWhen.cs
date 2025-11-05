@@ -1,11 +1,18 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 
 namespace Rimgate;
 
 public class Comp_AnalyzableResearchWhen : CompAnalyzableUnlockResearch
 {
+    // <= this → full catastrophicFailureChance
+    private const int FullRiskLevel = 8;
+
+    // >= this → reduced catastrophic chance
+    private const int ReducedRiskLevel = 15;
+
     public new CompProperties_AnalyzableResearchWhen Props => (CompProperties_AnalyzableResearchWhen)props;
 
     public override bool HideInteraction => Props?.hideWhenDone == true && Find.AnalysisManager.IsAnalysisComplete(AnalysisID);
@@ -47,7 +54,7 @@ public class Comp_AnalyzableResearchWhen : CompAnalyzableUnlockResearch
     {
         if (HideInteraction) yield break;
 
-        foreach(var gizmo in base.CompGetGizmosExtra())
+        foreach (var gizmo in base.CompGetGizmosExtra())
             yield return gizmo;
     }
 
@@ -61,32 +68,57 @@ public class Comp_AnalyzableResearchWhen : CompAnalyzableUnlockResearch
 
     public override string CompInspectStringExtra()
     {
-        return HideInteraction 
-            ? string.Empty 
+        return HideInteraction
+            ? string.Empty
             : base.CompInspectStringExtra();
     }
 
     public override void OnAnalyzed(Pawn analyzer)
     {
-        if (Props == null 
-            || Props.catastrophicFailureChance <= 0f 
-            || !Rand.Chance(Props.catastrophicFailureChance))
+        // If there is no catastrophic config at all, just use base behavior
+        if (Props == null || Props.catastrophicFailureChance <= 0f)
         {
-            // Normal path – let the base comp unlock research as usual
             base.OnAnalyzed(analyzer);
             return;
         }
 
-        // Catastrophic path:
-        // no (or blocked) research unlock, object may die/explode
+        float effectiveChance = Props.catastrophicFailureChance;
+        if (analyzer != null && analyzer.skills != null)
+        {
+            // Get Intellectual level (0 if somehow missing)
+            int level = analyzer.skills.GetSkill(SkillDefOf.Intellectual)?.Level ?? 0;
+
+            // level <= fullRiskLevel → keep full catastrophicFailureChance
+            if (level > FullRiskLevel)
+            {
+                // Map [fullRiskLevel, zeroRiskLevel] to [1, 0]
+                float t = (level - FullRiskLevel) / (float)(ReducedRiskLevel - FullRiskLevel);
+                if (t > 1f) t = 1f;   // clamp
+
+                float baseChance = Props.catastrophicFailureChance;
+                // always at least 5% of base
+                float minChance = baseChance * 0.05f;
+                effectiveChance = Mathf.Lerp(baseChance, minChance, t);
+            }
+        }
+
+        // If chance doesn't proc, go normal path
+        if (!Rand.Chance(effectiveChance))
+        {
+            base.OnAnalyzed(analyzer);
+            return;
+        }
+
+        // --- Catastrophic path ---
+
         if (!Props.catastrophicBlocksResearch)
         {
-            // still unlocks research but explodes anyway
+            // Still unlocks research but explodes / destroys, etc.
             base.OnAnalyzed(analyzer);
         }
         else
         {
-            // remove and re-add so this instance can’t be reused
+            // reset behavior for further analysis
             Find.AnalysisManager.RemoveAnalysisDetails(AnalysisID);
             Find.AnalysisManager.AddAnalysisTask(AnalysisID, Props.analysisRequiredRange.TrueMax);
         }

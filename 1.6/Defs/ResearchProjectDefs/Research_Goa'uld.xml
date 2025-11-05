@@ -321,9 +321,10 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_SymbioteStudy</defName>
-		<label>Goa'uld Symbiote fundamentals</label>
-		<description>Study the Goa'uld symbiote further to understand how to "safely" remove them from the host-or introduce a pawn to a new life.</description>
+		<label>Goa'uld symbiote fundamentals</label>
+		<description>Delve deeper into the biology of Goa'uld symbiotes to decode how they bond, heal, and dominate their hosts. Learn how to “safely” extract one—or install it with only moderate screaming. The line between cure and conquest has never been thinner.</description>
 		<baseCost>5000</baseCost>
+		<techLevel>Ultra</techLevel>
 		<prerequisites>
 			<li>MedicineProduction</li>
 			<li>SterileMaterials</li>
@@ -334,6 +335,29 @@
 		<requiredAnalyzed>
 			<li>Rimgate_SymbioteImplant</li>
 		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Goa'uld Symbiotes</discoveredLetterTitle>
+		<discoveredLetterText>Recovered field notes describe the Goa'uld as both parasite and miracle cure—capable of healing mortal wounds while rewriting the host from the inside out. Your researchers are confident they can replicate this relationship without the “enslavement” part. Probably.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- subjects -->
+				<li>subject->Goa'uld symbiote</li>
+				<li>subject_adj->larval</li>
+				<li>subject_adj->neuroparasitic</li>
+				<li>subject_adj->biochemically elegant</li>
+
+				<!-- story beats -->
+				<li>subject_story->mapped the neural lattice where the symbiote interfaces with the host’s spinal column</li>
+				<li>subject_story->isolated regenerative enzymes responsible for accelerated tissue recovery</li>
+				<li>subject_story->recorded electrical interference patterns that mirror higher cognitive suppression</li>
+				<li>subject_story->observed a dormant larva reactivating when exposed to host adrenaline</li>
+				<li>subject_story->accidentally triggered a telepathic feedback loop; one intern now insists they are a minor god</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->charting symbiote-host integration sequences</li>
+				<li>subject_gerund->replicating regenerative compounds under sterile conditions</li>
+				<li>subject_gerund->testing neural harmonization thresholds</li>
+			</rulesStrings>
+		</generalRules>
 	</ResearchProjectDef>
 
 </Defs>

@@ -32,7 +32,7 @@
 		</fixedIngredientFilter>
 		<workSkill>Crafting</workSkill>
 		<products>
-			<Rimgate_Naquadria>5</Rimgate_Naquadria>
+			<Rimgate_Naquadria>1</Rimgate_Naquadria>
 		</products>
 		<researchPrerequisite>Rimgate_NaquadahRefinement</researchPrerequisite>
 	</RecipeDef>
@@ -48,6 +48,11 @@
 		<soundWorking>Recipe_CookMeal</soundWorking>
 		<workAmount>2000</workAmount>
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<workSkill>Intellectual</workSkill>
+		<skillRequirements>
+			<Crafting>5</Crafting>
+			<Intellectual>8</Intellectual>
+		</skillRequirements>
 		<recipeUsers>
 			<li>DrugLab</li>
 		</recipeUsers>
@@ -56,19 +61,101 @@
 				<filter>
 					<thingDefs>
 						<li>Rimgate_SymbioteImplant</li>
-						<li>Rimgate_Naquadah</li>
 					</thingDefs>
 				</filter>
 				<count>1</count>
 			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
 		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Rimgate_SymbioteImplant</li>
-				<li>Rimgate_Naquadah</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<workSkill>Crafting</workSkill>
+		<products>
+			<Rimgate_Tretonin>5</Rimgate_Tretonin>
+		</products>
+		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeTretonin_x4</defName>
+		<label>refine Tretonin x4</label>
+		<description>make a large batch of Tretonin from Goa'uld symbiotes.</description>
+		<jobString>making Tretonin.</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
+		<workAmount>7500</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<workSkill>Intellectual</workSkill>
+		<skillRequirements>
+			<Crafting>5</Crafting>
+			<Intellectual>8</Intellectual>
+		</skillRequirements>
+		<recipeUsers>
+			<li>DrugLab</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_SymbioteImplant</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>16</count>
+			</li>
+		</ingredients>
+		<products>
+			<Rimgate_Tretonin>15</Rimgate_Tretonin>
+		</products>
+		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeTretonin_Ultra</defName>
+		<label>refine Tretonin from medicine</label>
+		<description>make a batch of Tretonin by refining glitterworld medicine.</description>
+		<jobString>making Tretonin.</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
+		<workAmount>2000</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<workSkill>Intellectual</workSkill>
+		<skillRequirements>
+			<Crafting>5</Crafting>
+			<Intellectual>8</Intellectual>
+		</skillRequirements>
+		<recipeUsers>
+			<li>DrugLab</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineUltratech</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
 		<products>
 			<Rimgate_Tretonin>5</Rimgate_Tretonin>
 		</products>
@@ -185,7 +272,7 @@
 	<RecipeDef>
 		<defName>Rimgate_WraithMakeMeatCocoon_x4</defName>
 		<label>Cocoon meat x4</label>
-		<description>make a batch of cocooned meat.</description>
+		<description>make a large batch of cocooned meat.</description>
 		<jobString>making cocooned meat.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
@@ -264,7 +351,7 @@
 	<RecipeDef>
 		<defName>Rimgate_MakeCocoonedMeatBiomass_4x</defName>
 		<label>make Biomass from cocooned meat x4</label>
-		<description>make a batch of Biomass.</description>
+		<description>make a large batch of Biomass.</description>
 		<jobString>making Biomass.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>

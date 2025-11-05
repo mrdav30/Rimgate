@@ -120,7 +120,7 @@
         <inspectString>Can be analyzed by a colonist.</inspectString>
 
         <completedLetterLabel>{RESEARCH} unlocked</completedLetterLabel>
-        <completedLetter>{PAWN_labelShort} has successfully analyzed the Naquadah sample and unlocked {RESEARCH} research.\n\nAll nearby Geiger counters have been advised to stop screaming.</completedLetter>
+        <completedLetter>{PAWN_labelShort} has successfully analyzed the Naquadah sample and unlocked {RESEARCH} research.\n\nThe residue flash-vaporized during testing, coating the lab in a faintly glowing dust.\n\nAll nearby Geiger counters have been advised to stop screaming.</completedLetter>
         <completedLetterDef>PositiveEvent</completedLetterDef>
 
         <targetingParameters>
@@ -180,6 +180,102 @@
       </li>
     </comps>
     <allowedArchonexusCount>150</allowedArchonexusCount>
+  </ThingDef>
+
+  <!-- ==================== Tretonin ==================== -->
+
+  <ThingDef ParentName="MechSerumBase">
+    <defName>Rimgate_Tretonin</defName>
+    <label>Tretonin</label>
+    <description>feeling sick, dying of alien withdrawals, or just done with having an immune system?\nTry Tretonin! It’s a miracle cure—if you don’t mind needing it forever.\nSide effects may include dependency and an unshakable desperation.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGTretonin</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stackLimit>10</stackLimit>
+    <statBases>
+      <MarketValue>1300</MarketValue>
+    </statBases>
+    <thingCategories>
+      <li>Drugs</li>
+    </thingCategories>
+    <tradeability>Sellable</tradeability>
+    <ingestible>
+      <drugCategory>Medical</drugCategory>
+      <foodType>Fluid, Processed</foodType>
+      <joyKind>Chemical</joyKind>
+      <joy>0.2</joy>
+      <baseIngestTicks>210</baseIngestTicks>
+      <nurseable>false</nurseable>
+      <preferability>NeverForNutrition</preferability>
+      <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+      <defaultNumToIngestAtOnce>1</defaultNumToIngestAtOnce>
+      <ingestSound>Ingest_Drink</ingestSound>
+      <ingestHoldOffsetStanding>
+        <northDefault>
+          <offset>(0.18,0,0)</offset>
+        </northDefault>
+      </ingestHoldOffsetStanding>
+      <ingestCommandString>Drink {0}</ingestCommandString>
+      <ingestReportString>Drinking {0}.</ingestReportString>
+      <ingestHoldUsesTable>false</ingestHoldUsesTable>
+      <outcomeDoers>
+        <li Class="Rimgate.IngestionOutcomeDoer_HealAllDisease">
+          <inclusions>
+            <li>Rimgate_SymbioteWithdrawal</li>
+          </inclusions>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <chemical>Rimgate_TretoninChemical</chemical>
+        <addictiveness>1.00</addictiveness>
+        <needLevelOffset>0.9</needLevelOffset>
+        <listOrder>1020</listOrder>
+      </li>
+      <li Class="CompProperties_UseEffectPlaySound">
+        <soundOnUsed>MechSerumUsed</soundOnUsed>
+      </li>
+      <li Class="CompProperties_UseEffectDestroySelf" />
+    </comps>
+    <thingSetMakerTags>
+      <li>RewardStandardCore</li>
+    </thingSetMakerTags>
+  </ThingDef>
+
+  <!-- ==================== Meat ==================== -->
+
+  <ThingDef ParentName="OrganicProductBase">
+    <defName>Rimgate_CocoonedMeat</defName>
+    <label>cocooned meat</label>
+    <description>some meat, now lovingly wrapped in alien silk for freshness.\nSmells faintly of despair and industrial solvents. At least it won’t rot!</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGCocoonedMeat</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <ingestible>
+      <foodType>Kibble</foodType>
+      <preferability>MealFine</preferability>
+      <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+      <defaultNumToIngestAtOnce>1</defaultNumToIngestAtOnce>
+      <ingestEffect>EatMeat</ingestEffect>
+      <ingestSound>RawMeat_Eat</ingestSound>
+      <tasteThought>AteRawFood</tasteThought>
+    </ingestible>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <statBases>
+      <DeteriorationRate Inherit="False">0</DeteriorationRate>
+      <Nutrition>0.20</Nutrition>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+      <MarketValue>2</MarketValue>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Mass>0.25</Mass>
+    </statBases>
+    <thingCategories>
+      <li>MeatRaw</li>
+    </thingCategories>
   </ThingDef>
 
   <!-- =============== Biomass ==================== -->
@@ -263,6 +359,210 @@
           <canTargetMechs>false</canTargetMechs>
           <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
         </targetingParameters>
+      </li>
+    </comps>
+  </ThingDef>
+
+
+  <!-- ==================== Stargate Glyph ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_GlyphParchment</defName>
+    <label>glyph parchment</label>
+    <description>A weathered parchment embossed with mysterious Dwarfgate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Resource/GlyphParchment</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <stackLimit>3</stackLimit>
+    <tradeNeverStack>true</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MarketValue>900</MarketValue>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>80</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <techLevel>Medieval</techLevel>
+    <thingCategories>
+      <li>Artifacts</li>
+    </thingCategories>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+    <thingSetMakerTags>
+      <li>RewardStandardHighFreq</li>
+    </thingSetMakerTags>
+    <comps>
+      <li>
+        <compClass>Rimgate.Comp_GlyphParchment</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ==================== Scrap note ==================== -->
+
+  <ThingDef>
+    <defName>Rimgate_ScrapNote</defName>
+    <category>Item</category>
+    <label>scribbled note</label>
+    <description>(intentionally left blank)</description>
+    <thingClass>Rimgate.Item_ScrapNote</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGScrapNote</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stackLimit>1</stackLimit>
+    <altitudeLayer>Item</altitudeLayer>
+    <useHitPoints>true</useHitPoints>
+    <tradeNeverStack>true</tradeNeverStack>
+    <isUnfinishedThing>true</isUnfinishedThing>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <selectable>true</selectable>
+    <tradeability>None</tradeability>
+    <drawerType>MapMeshOnly</drawerType>
+    <statBases>
+      <MaxHitPoints>5</MaxHitPoints>
+      <DeteriorationRate>2.0</DeteriorationRate>
+      <Beauty>0</Beauty>
+      <Mass>1</Mass>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>14</pathCost>
+    <thingCategories>
+      <li>Unfinished</li>
+    </thingCategories>
+    <modExtensions>
+      <li Class="Rimgate.Rimgate_ScrapNoteExt">
+        <keys>
+          <li>RG_ScribbledNote1</li>
+          <li>RG_ScribbledNote2</li>
+          <li>RG_ScribbledNote3</li>
+          <li>RG_ScribbledNote4</li>
+          <li>RG_ScribbledNote5</li>
+          <li>RG_ScribbledNote6</li>
+          <li>RG_ScribbledNote7</li>
+          <li>RG_ScribbledNote8</li>
+          <li>RG_ScribbledNote9</li>
+          <li>RG_ScribbledNote10</li>
+          <li>RG_ScribbledNote11</li>
+          <li>RG_ScribbledNote12</li>
+          <li>RG_ScribbledNote13</li>
+          <li>RG_ScribbledNote14</li>
+          <li>RG_ScribbledNote15</li>
+        </keys>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+  <ThingDef>
+    <defName>Rimgate_ScrapNotice</defName>
+    <category>Item</category>
+    <label>scribbled note</label>
+    <description>Hey pal, figured you cracked my cipher and came sniffin’ for my stash.\n\nBad news: I already hauled it out through the Gate.\n\nGood news: I left you some company. They get hungry when the lights go out.\n\n— K</description>
+    <thingClass>ThingWithComps</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGScrapNote</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stackLimit>1</stackLimit>
+    <altitudeLayer>Item</altitudeLayer>
+    <useHitPoints>true</useHitPoints>
+    <tradeNeverStack>true</tradeNeverStack>
+    <isUnfinishedThing>true</isUnfinishedThing>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <selectable>true</selectable>
+    <tradeability>None</tradeability>
+    <drawerType>MapMeshOnly</drawerType>
+    <statBases>
+      <MaxHitPoints>5</MaxHitPoints>
+      <DeteriorationRate>2.0</DeteriorationRate>
+      <Beauty>0</Beauty>
+      <Mass>1</Mass>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>14</pathCost>
+    <thingCategories>
+      <li>Unfinished</li>
+    </thingCategories>
+  </ThingDef>
+
+  <!-- ==================== Cipher ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_TreasureCipherFragment</defName>
+    <label>cipher fragment</label>
+    <description>A fractured slice of an encoded starmap—coordinates, signatures, and an Archotech checksum that hurts to look at. Three fragments can be assembled into a coherent path to a hidden vault.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/TreasureCipher</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <thingCategories>
+      <li>Artifacts</li>
+    </thingCategories>
+    <stackLimit>3</stackLimit>
+    <tradeability>Sellable</tradeability>
+    <statBases>
+      <MarketValue>400</MarketValue>
+      <Mass>0.1</Mass>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Usable">
+        <useLabel>Assemble cipher</useLabel>
+        <useJob>UseItem</useJob>
+        <showUseGizmo>true</showUseGizmo>
+      </li>
+      <li Class="Rimgate.CompProperties_AssembleAndStartQuest">
+        <requiredCount>3</requiredCount>
+        <requiredProjectDef>Rimgate_GlyphDeciphering</requiredProjectDef>
+        <questScript>Rimgate_TreasureVaultQuest</questScript>
+        <letterLabel>RG_CipherLetterLabel</letterLabel>
+        <letterText>RG_CipherLetterText</letterText>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ==================== Iris ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_IrisInstallKit</defName>
+    <label>Iris installation kit</label>
+    <description>a high-tech deployment kit for installing an iris over a Dwarfgate.\nTurns your wormhole into a one-way trip—great for defense, less great for diplomacy.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGIrisUpgradeKit</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Mass>80</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <techLevel>Spacer</techLevel>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+    <tradeability>None</tradeability>
+    <comps>
+      <li Class="CompProperties_Usable">
+        <useJob>Rimgate_InstallIris</useJob>
+        <useLabel>Install Iris</useLabel>
+        <useDuration>5000</useDuration>
+        <showUseGizmo>true</showUseGizmo>
+      </li>
+      <li Class="CompProperties_Targetable">
+        <compClass>Rimgate.CompTargetable_Stargate</compClass>
       </li>
     </comps>
   </ThingDef>

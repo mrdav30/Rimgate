@@ -195,19 +195,19 @@
 				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
 				<analysisDurationHours>6</analysisDurationHours>
 				<completedLetterLabel>Cloning protocols recovered: {RESEARCH} unlocked</completedLetterLabel>
-				<completedLetter>By dissecting the Wraith cloning pod, {PAWN_labelShort} has extracted viable growth-cycle notes and imprint scaffolding.\n\n{RESEARCH} is now available at a research bench.</completedLetter>
+				<completedLetter>By dissecting the Wraith cloning pod, {PAWN_labelShort} has extracted viable growth-cycle notes and imprint scaffolding.\n\nThe biotank liquefied into sludge after exposure to atmosphere, leaving behind only the scent of ozone and regret.\n\n{RESEARCH} is now available at a research bench.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
 
-                <catastrophicFailureChance>0.25</catastrophicFailureChance>
-                <catastrophicDestroysThing>true</catastrophicDestroysThing>
-                <catastrophicExplosion>true</catastrophicExplosion>
-                <catastrophicExplosionRadius>3.0</catastrophicExplosionRadius>
-                <catastrophicExplosionDamage>60</catastrophicExplosionDamage>
-                <catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
-                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+				<catastrophicFailureChance>0.25</catastrophicFailureChance>
+				<catastrophicDestroysThing>true</catastrophicDestroysThing>
+				<catastrophicExplosion>true</catastrophicExplosion>
+				<catastrophicExplosionRadius>3.0</catastrophicExplosionRadius>
+				<catastrophicExplosionDamage>60</catastrophicExplosionDamage>
+				<catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+				<catastrophicBlocksResearch>true</catastrophicBlocksResearch>
 
-                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
-                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+				<catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+				<catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
 
 				<!-- Interactable -->
 
@@ -452,57 +452,132 @@
 		</researchPrerequisites>
 	</ThingDef>
 
-	<!-- ======================= Wraith Cocoon Pod ======================= -->
+	<!-- ======================= ZPM signal shield ======================= -->
 
 	<ThingDef ParentName="BuildingBase">
-		<defName>Rimgate_WraithCocoonPod</defName>
-		<label>cocoon pod</label>
-		<description>It's hard to tell...but it looks like something is inside.</description>
-		<thingClass>Building_WraithCocoonPod</thingClass>
-		<containedPawnsSelectable>false</containedPawnsSelectable>
-		<!-- <drawerType>RealtimeOnly</drawerType> -->
+		<defName>Rimgate_SubspaceShroudEmitter</defName>
+		<label>subspace shroud emitter</label>
+		<description>A compact field generator that floods nearby space-time with carrier noise, masking a ZPM’s archotech power signature. While powered, linked ZPMs won’t broadcast a raid-magnet of a beacon. Tau’ri engineers call it “a blanket for your sun-in-a-can.”\n\nMust be linked to a ZPM to function. Once synchronized, it masks all ZPMs on this map.</description>
+		<size>(1,1)</size>
+		<rotatable>false</rotatable>
+		<category>Building</category>
 		<graphicData>
-			<texPath>Things/Building/Misc/RGWraithCocoonPod</texPath>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(1, 2)</drawSize>
-			<shadowData>
-				<volume>(0.83, 0.3, 1.7)</volume>
-			</shadowData>
+			<texPath>Things/Building/Misc/RGSubspaceShroud</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.1,1.1)</drawSize>
 		</graphicData>
 		<altitudeLayer>Building</altitudeLayer>
-		<passability>PassThroughOnly</passability>
-		<pathCost>42</pathCost>
-		<blockWind>true</blockWind>
-		<fillPercent>0.5</fillPercent>
-		<canOverlapZones>false</canOverlapZones>
-		<statBases>
-			<MaxHitPoints>250</MaxHitPoints>
-			<Flammability>2</Flammability>
-			<Beauty>-15</Beauty>
-		</statBases>
+		<selectable>true</selectable>
 		<tickerType>Normal</tickerType>
-		<size>(1,2)</size>
-		<building>
-			<ai_chillDestination>false</ai_chillDestination>
-			<preventDeteriorationInside>true</preventDeteriorationInside>
-			<isEscapableContainer>false</isEscapableContainer>
-			<destroySound>BuildingDestroyed_Wood_Small</destroySound>
-		</building>
-		<killedLeavings>
-			<Rimgate_Biomass>3</Rimgate_Biomass>
-		</killedLeavings>
+		<stackLimit>1</stackLimit>
+		<passability>PassThroughOnly</passability>
+		<pathCost>150</pathCost>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<statBases>
+			<MaxHitPoints>160</MaxHitPoints>
+			<WorkToBuild>1800</WorkToBuild>
+			<Flammability>0</Flammability>
+			<Mass>8</Mass>
+			<Beauty>-2</Beauty>
+		</statBases>
+		<costList>
+			<Steel>40</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+		</costList>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+		</placeWorkers>
+		<designationCategory>Misc</designationCategory>
+		<researchPrerequisites>
+			<li>Rimgate_SubspaceMasking</li>
+		</researchPrerequisites>
 		<comps>
-			<li Class="CompProperties_EmptyStateGraphic">
-				<graphicData>
-					<texPath>Things/Building/Misc/RGWraithCocoonPodOpen</texPath>
-					<graphicClass>Graphic_Multi</graphicClass>
-					<drawSize>(1, 2)</drawSize>
-				</graphicData>
-				<alwaysDrawParent>false</alwaysDrawParent>
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>200</basePowerConsumption>
+				<shortCircuitInRain>false</shortCircuitInRain>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(120,200,255,0)</glowColor>
+			</li>
+			<li Class="CompProperties_Facility">
+				<maxSimultaneous>99</maxSimultaneous>
+				<mustBePlacedAdjacent>true</mustBePlacedAdjacent>
+				<showMaxSimultaneous>false</showMaxSimultaneous>
+			</li>
+			<!-- toggles ZPM-raid suppression on this map while powered -->
+			<li>
+				<compClass>Rimgate.Comp_ZpmSignalScrambler</compClass>
 			</li>
 		</comps>
-		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
-		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+	</ThingDef>
+
+	<!-- Subspace Phase Diverter-->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_SubspacePhaseDiverter</defName>
+		<label>subspace phase diverter</label>
+		<description>An advanced rig that can couple your ZPMs to adjacent subspace pockets, letting any ZPM to slowly replenish its reserve. It doesn’t create energy; it changes where you’re siphoning it from.</description>
+		<size>(2,2)</size>
+		<rotatable>false</rotatable>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGSubspacePhaseDiverter</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<selectable>true</selectable>
+		<tickerType>Rare</tickerType>
+		<stackLimit>1</stackLimit>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<passability>PassThroughOnly</passability>
+		<pathCost>150</pathCost>
+		<statBases>
+			<MaxHitPoints>200</MaxHitPoints>
+			<WorkToBuild>4200</WorkToBuild>
+			<Flammability>0.0</Flammability>
+			<Beauty>-4</Beauty>
+			<Mass>40</Mass>
+		</statBases>
+		<costList>
+			<Steel>120</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>4</ComponentSpacer>
+		</costList>
+		<designationCategory>Misc</designationCategory>
+		<researchPrerequisites>
+			<li>Rimgate_ParallelSubspaceCoupling</li>
+		</researchPrerequisites>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>200</basePowerConsumption>
+				<shortCircuitInRain>false</shortCircuitInRain>
+			</li>
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Facility">
+				<maxSimultaneous>6</maxSimultaneous>
+				<maxDistance>4</maxDistance>
+				<minDistance>1</minDistance>
+				<requiresLOS>true</requiresLOS>
+				<showMaxSimultaneous>false</showMaxSimultaneous>
+			</li>
+		</comps>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+		</placeWorkers>
 	</ThingDef>
 
 </Defs>

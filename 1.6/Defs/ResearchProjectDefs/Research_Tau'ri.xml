@@ -177,19 +177,19 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TretoninSynthesis</defName>
         <label>Tretonin synthesis</label>
-        <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
+        <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\n\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\n\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
             <li>Rimgate_TauriManufacturing</li>
-            <li>MedicineProduction</li>
             <li>Rimgate_SymbioteStudy</li>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
         <researchViewY>5</researchViewY>
-        <requiredAnalyzed>
-            <li>Rimgate_SymbioteImplant</li>
-        </requiredAnalyzed>
+
+        <discoveredLetterTitle>About: Tretonin</discoveredLetterTitle>
+        <discoveredLetterText>After countless enzyme failures, biochemical meltdowns, and one unfortunate volunteer incident, your researchers have succeeded in stabilizing the Tretonin compound.\n\nDerived from Goa'uld symbiote enzymes, the serum grants total immunity to disease—so long as the subject never stops taking it.\n\nThe Tau’ri call it a medical revolution. The Tok’ra call it a bad idea. Both are right.</discoveredLetterText>
+
         <generalRules>
             <rulesStrings>
                 <li>subject->Goa'uld symbiote</li>
@@ -204,6 +204,7 @@
             </rulesStrings>
         </generalRules>
     </ResearchProjectDef>
+
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TrackedCart</defName>

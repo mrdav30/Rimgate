@@ -39,7 +39,7 @@
                 <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
                 <analysisDurationHours>6</analysisDurationHours>
                 <completedLetterLabel>Goa'uld Symbiote studied: {RESEARCH} unlocked</completedLetterLabel>
-                <completedLetter>By studying a Goa'uld Symbiote, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
+                <completedLetter>By studying a Goa’uld Symbiote, {PAWN_labelShort} has acquired the insight needed for {RESEARCH} research.\n\nThe organism perished moments after exposure to analysis equipment — its neural pattern burning out like a dying star.\n\nYour researchers can now use research benches to begin adapting the findings.</completedLetter>
                 <completedLetterDef>PositiveEvent</completedLetterDef>
 
                 <catastrophicFailureChance>0.25</catastrophicFailureChance>

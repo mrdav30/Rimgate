@@ -801,7 +801,7 @@
 				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
 				<analysisDurationHours>6</analysisDurationHours>
 				<completedLetterLabel>Kull armor studied: {RESEARCH} unlocked</completedLetterLabel>
-				<completedLetter>By studying the Kull's armor, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
+				<completedLetter>By studying the Kull’s armor, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nThe composite plating reacted violently when its power matrix was breached, vaporizing most of the sample.\n\nYour researchers can now use research benches to begin exploring how to replicate the technology.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
 
 				<!-- Interactable -->
@@ -908,7 +908,7 @@
 				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
 				<analysisDurationHours>9</analysisDurationHours>
 				<completedLetterLabel>Goa'uld Kara kesh studied: {RESEARCH} unlocked</completedLetterLabel>
-				<completedLetter>By studying the Goa'uld Kara kesh, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
+				<completedLetter>The device emitted a final pulse of energy before collapsing into dust, as though its arrogance couldn’t survive mortal hands.\n\nHowever, by studying the Goa’uld Kara Kesh, {PAWN_labelShort} has acquired the insight needed for further {RESEARCH} research.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
 
 				<!-- Interactable -->

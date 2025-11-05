@@ -243,6 +243,121 @@
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     </ThingDef>
 
+    <!-- =============== ZPM =============== -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_ZPM</defName>
+        <label>zero point module</label>
+        <description>A self-contained miracle of Ancient technology, the ZPM draws energy from a subspace vacuum—basically finite power in a shiny cylinder. Makes other batteries look like AA cells from a cereal box.\n\nUnfortunately, such a thing is impossible to hide. Once installed in a power network, its archotech-grade signature will leak into the sky, luring factions across the Rim to your colony’s doorstep. Power eternal… and trouble unending.\n\n"It's kind of like a miniature universe in a bottle."</description>
+        <thingClass>Rimgate.Building_ZPM</thingClass>
+        <category>Building</category>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+        <selectable>true</selectable>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+        <repairEffect>Repair</repairEffect>
+        <size>(1,1)</size>
+        <graphicData>
+            <texPath>Things/Building/Artifact/ZPM/RGZPM</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1,2)</drawSize>
+            <drawOffset>(0,0,0.40)</drawOffset>
+            <shadowData>
+                <volume>(0.27,0.25,0.27)</volume>
+            </shadowData>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
+        </graphicData>
+        <techLevel>Archotech</techLevel>
+        <stackLimit>1</stackLimit>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <altitudeLayer>Building</altitudeLayer>
+        <castEdgeShadows>true</castEdgeShadows>
+        <fillPercent>1</fillPercent>
+        <passability>PassThroughOnly</passability>
+        <pathCost>150</pathCost>
+        <tickerType>Rare</tickerType>
+        <statBases>
+            <WorkToMake>30000</WorkToMake>
+            <MaxHitPoints>1000000</MaxHitPoints>
+            <MarketValue>25000</MarketValue>
+            <Flammability>0.0</Flammability>
+            <Mass>20</Mass>
+        </statBases>
+        <building>
+            <neverBuildable>true</neverBuildable>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <tradeability>Buyable</tradeability>
+        <tradeNeverStack>true</tradeNeverStack>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+        <comps>
+            <li Class="CompProperties_Battery">
+                <storedEnergyMax>48000</storedEnergyMax>
+                <efficiency>1</efficiency>
+                <transmitsPower>true</transmitsPower>
+                <shortCircuitInRain>false</shortCircuitInRain>
+            </li>
+            <li Class="CompProperties_Flickable" />
+            <li Class="CompProperties_AffectedByFacilities">
+                <linkableFacilities>
+                    <li>Rimgate_SubspaceShroudEmitter</li>
+                    <li>Rimgate_SubspacePhaseDiverter</li>
+                </linkableFacilities>
+            </li>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000500</analysisID>
+                <requiresResearchDef>Electricity</requiresResearchDef>
+
+                <!-- Analyzable -->
+
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>false</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+                <completedLetterLabel>ZPM studied: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By studying the ZPM, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicExplosion>true</catastrophicExplosion>
+                <catastrophicExplosionRadius>3.0</catastrophicExplosionRadius>
+                <catastrophicExplosionDamage>60</catastrophicExplosionDamage>
+                <catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+                <!-- Interactable -->
+
+                <maintainProgress>true</maintainProgress>
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Analyze the ZPM.</activateDescString>
+                <jobString>Analyzing ZPM</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist.</inspectString>
+
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
+        <placeWorkers>
+            <li>Rimgate.PlaceWorker_ZpmClusterHint</li>
+        </placeWorkers>
+        <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <hasInteractionCell>False</hasInteractionCell>
+    </ThingDef>
+
     <!-- =============== ARCHOTECH IDOL OF RESONANCE =============== -->
 
     <ThingDef ParentName="BuildingBase">

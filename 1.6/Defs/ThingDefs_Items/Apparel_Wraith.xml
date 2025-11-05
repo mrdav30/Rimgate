@@ -447,7 +447,7 @@
 				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
 				<analysisDurationHours>10</analysisDurationHours>
 				<completedLetterLabel>Wraith comm device studied: {RESEARCH} unlocked</completedLetterLabel>
-				<completedLetter>By studying the Wraith comm device, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
+				<completedLetter>By studying the Wraith comm device, {PAWN_labelShort} has acquired the insight needed for {RESEARCH} research.\n\nWhen disconnected from its organic matrix, the unit dissolved into ash, its last signal a whisper of alien thought fading to static.\n\nHowever, your researchers can now use research benches to begin investigating the technology.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
 
 				<catastrophicFailureChance>0.25</catastrophicFailureChance>

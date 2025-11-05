@@ -86,7 +86,7 @@ public class Building_ZPM : Building
 
             GraphicRequest request = new GraphicRequest(
                 typeof(Graphic_Single),
-                $"Things/Building/Power/ZPM/RGZPM_{powerState}",
+                $"Things/Building/Artifact/ZPM/RGZPM_{powerState}",
                 ShaderDatabase.DefaultShader,
                 new Vector2(1, 2),
                 Color.white,

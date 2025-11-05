@@ -34,7 +34,7 @@ public class CompProperties_AnalyzableResearchWhen : CompProperties_CompAnalyzab
 
     public string catastrophicLetterTextKey;
 
-    public LetterDef catastrophicLetterDef = LetterDefOf.NegativeEvent;
+    public LetterDef catastrophicLetterDef;
 
     public CompProperties_AnalyzableResearchWhen() => compClass = typeof(Comp_AnalyzableResearchWhen);
 }
