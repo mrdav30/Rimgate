@@ -438,8 +438,9 @@
 			<li>RewardStandardLowFreq</li>
 		</thingSetMakerTags>
 		<comps>
-			<li Class="CompProperties_CompAnalyzableUnlockResearch">
+			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000100</analysisID>
+				<requiresResearchDef>StandardMechtech</requiresResearchDef>
 
 				<!-- Analyzable -->
 
@@ -448,6 +449,17 @@
 				<completedLetterLabel>Wraith comm device studied: {RESEARCH} unlocked</completedLetterLabel>
 				<completedLetter>By studying the Wraith comm device, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
+
+				<catastrophicFailureChance>0.25</catastrophicFailureChance>
+				<catastrophicDestroysThing>true</catastrophicDestroysThing>
+				<catastrophicExplosion>true</catastrophicExplosion>
+				<catastrophicExplosionRadius>1.0</catastrophicExplosionRadius>
+				<catastrophicExplosionDamage>5</catastrophicExplosionDamage>
+				<catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+				<catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+				<catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+				<catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
 
 				<!-- Interactable -->
 

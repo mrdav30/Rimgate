@@ -446,8 +446,9 @@
 			<li>Rimgate_KullRanged_tag</li>
 		</weaponTags>
 		<comps>
-			<li Class="CompProperties_CompAnalyzableUnlockResearch">
+			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000400</analysisID>
+				<requiresResearchDef>ChargedShot</requiresResearchDef>
 
 				<!-- Analyzable -->
 
@@ -456,6 +457,17 @@
 				<completedLetterLabel>Kull weapon studied: {RESEARCH} unlocked</completedLetterLabel>
 				<completedLetter>By studying the Kull's weapon, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
+
+				<catastrophicFailureChance>0.25</catastrophicFailureChance>
+				<catastrophicDestroysThing>true</catastrophicDestroysThing>
+				<catastrophicExplosion>true</catastrophicExplosion>
+				<catastrophicExplosionRadius>2.0</catastrophicExplosionRadius>
+				<catastrophicExplosionDamage>15</catastrophicExplosionDamage>
+				<catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+				<catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+				<catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+				<catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
 
 				<!-- Interactable -->
 

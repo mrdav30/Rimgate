@@ -99,6 +99,18 @@
         <canStudyInPlace>false</canStudyInPlace>
         <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
         <analysisDurationHours>8</analysisDurationHours>
+        <maintainProgress>true</maintainProgress>
+
+        <catastrophicFailureChance>0.25</catastrophicFailureChance>
+        <catastrophicDestroysThing>true</catastrophicDestroysThing>
+        <catastrophicExplosion>true</catastrophicExplosion>
+        <catastrophicExplosionRadius>1.5</catastrophicExplosionRadius>
+        <catastrophicExplosionDamage>10</catastrophicExplosionDamage>
+        <catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+        <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+        <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+        <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
 
         <activateTexPath>UI/Icons/Study</activateTexPath>
         <activateLabelString>Analyze...</activateLabelString>
@@ -220,10 +232,19 @@
       <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
         <analysisID>1000810</analysisID>
         <requiresResearchDef>StandardMechtech</requiresResearchDef>
+
         <requiresMechanitor>true</requiresMechanitor>
         <canStudyInPlace>true</canStudyInPlace>
         <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
         <analysisDurationHours>10</analysisDurationHours>
+        <maintainProgress>true</maintainProgress>
+
+        <catastrophicFailureChance>0.25</catastrophicFailureChance>
+        <catastrophicDestroysThing>true</catastrophicDestroysThing>
+        <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+        <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+        <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
 
         <activateTexPath>UI/Icons/Study</activateTexPath>
         <activateLabelString>Analyze...</activateLabelString>

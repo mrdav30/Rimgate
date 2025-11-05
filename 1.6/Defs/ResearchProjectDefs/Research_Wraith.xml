@@ -16,7 +16,6 @@
 		</requiredResearchFacilities>
 		<prerequisites>
 			<li>MicroelectronicsBasics</li>
-			<li>Rimgate_GlyphDeciphering</li>
 		</prerequisites>
 	</ResearchProjectDef>
 
@@ -76,7 +75,7 @@
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithBasic</li>
-			<li>PrecisionRifling</li>
+			<li>ChargedShot</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>1</researchViewY>
@@ -88,6 +87,7 @@
 		<description>Reverse-engineer Wraith neural interface tech to bend machines to your will. Great for remote control, terrible for privacy.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
+			<li>StandardMechtech</li>
 			<li>Rimgate_WraithWeaponTierOne</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
@@ -196,6 +196,15 @@
 		</prerequisites>
 		<researchViewX>4.5</researchViewX>
 		<researchViewY>3</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithEmpire</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -259,6 +268,15 @@
 		</prerequisites>
 		<researchViewX>3</researchViewX>
 		<researchViewY>1</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithEmpire</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
 	</ResearchProjectDef>
 
 </Defs>

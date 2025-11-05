@@ -149,6 +149,13 @@
         <completedLetter>By studying the Goa'uld Sarcophagus, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.</completedLetter>
         <completedLetterDef>PositiveEvent</completedLetterDef>
 
+        <catastrophicFailureChance>0.25</catastrophicFailureChance>
+        <catastrophicDestroysThing>true</catastrophicDestroysThing>
+        <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+        <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+        <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
         <!-- Interactable -->
 
         <maintainProgress>true</maintainProgress>

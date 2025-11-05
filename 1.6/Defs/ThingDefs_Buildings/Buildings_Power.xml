@@ -285,8 +285,9 @@
           <li>Rimgate_SubspacePhaseDiverter</li>
         </linkableFacilities>
       </li>
-      <li Class="CompProperties_CompAnalyzableUnlockResearch">
+      <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
         <analysisID>1000500</analysisID>
+        <requiresResearchDef>Electricity</requiresResearchDef>
 
         <!-- Analyzable -->
 
@@ -296,6 +297,17 @@
         <completedLetterLabel>ZPM studied: {RESEARCH} unlocked</completedLetterLabel>
         <completedLetter>By studying the ZPM, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
         <completedLetterDef>PositiveEvent</completedLetterDef>
+
+        <catastrophicFailureChance>0.25</catastrophicFailureChance>
+        <catastrophicDestroysThing>true</catastrophicDestroysThing>
+        <catastrophicExplosion>true</catastrophicExplosion>
+        <catastrophicExplosionRadius>3.0</catastrophicExplosionRadius>
+        <catastrophicExplosionDamage>60</catastrophicExplosionDamage>
+        <catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+        <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+        <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+        <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
 
         <!-- Interactable -->
 

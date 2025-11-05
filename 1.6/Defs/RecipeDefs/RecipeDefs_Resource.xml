@@ -258,7 +258,7 @@
 		<products>
 			<Rimgate_Biomass>10</Rimgate_Biomass>
 		</products>
-		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
 	<RecipeDef>
@@ -300,7 +300,7 @@
 		<products>
 			<Rimgate_Biomass>40</Rimgate_Biomass>
 		</products>
-		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
 	<RecipeDef>
@@ -356,7 +356,7 @@
 		<products>
 			<Rimgate_Biomass>10</Rimgate_Biomass>
 		</products>
-		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
 	<RecipeDef>
@@ -412,7 +412,7 @@
 		<products>
 			<Rimgate_Biomass>40</Rimgate_Biomass>
 		</products>
-		<researchPrerequisite>Rimgate_WraithBasic</researchPrerequisite>
+		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
 </Defs>

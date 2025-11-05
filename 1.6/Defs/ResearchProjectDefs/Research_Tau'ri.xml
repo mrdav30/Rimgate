@@ -15,7 +15,6 @@
         </requiredResearchFacilities>
         <prerequisites>
             <li>MicroelectronicsBasics</li>
-            <li>Rimgate_GlyphDeciphering</li>
         </prerequisites>
     </ResearchProjectDef>
 
@@ -37,17 +36,31 @@
         </tags>
     </ResearchProjectDef>
 
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_TauriManufacturing</defName>
+        <label>Tauri Manufacturing</label>
+        <description>Standardize Tau’ri-pattern fabrication on colony tools: adapter jigs, crystal mounts, shielded cabling, and subcore I/O buses that play nice with human power grids.\n\nThis establishes the fixtures and safety protocols needed to assemble Ancient-adjacent hardware without guesswork (or explosions).</description>
+        <prerequisites>
+            <li>Machining</li>
+            <li>Rimgate_TauriBasic</li>
+            <li>StandardMechtech</li>
+        </prerequisites>
+        <baseCost>3500</baseCost>
+        <researchViewX>1</researchViewX>
+        <researchViewY>2.5</researchViewY>
+    </ResearchProjectDef>
+
     <!-- ======== Tau'ri Armor ========= -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriArmors</defName>
         <label>Tau'ri Uniforms</label>
         <description>Standard-issue SGC uniforms and armor rated for both firefights and diplomatic blunders. Includes extra pockets for snacks, Zat holsters, and moral ambiguity.</description>
         <baseCost>2500</baseCost>
-        <researchViewX>1</researchViewX>
+        <researchViewX>2</researchViewX>
         <researchViewY>0</researchViewY>
         <prerequisites>
             <li>ReconArmor</li>
-            <li>Rimgate_TauriBasic</li>
+            <li>Rimgate_TauriManufacturing</li>
         </prerequisites>
     </ResearchProjectDef>
 
@@ -58,11 +71,11 @@
         <label>Tau'ri weapons I</label>
         <description>Unlock pulse-pounding, projectile-slinging freedom—courtesy of Earth’s finest ballistic engineering.\nWarning: may provoke Goa’uld, Wraith, and anyone with plasma-based superiority complexes.</description>
         <baseCost>2500</baseCost>
-        <researchViewX>1</researchViewX>
+        <researchViewX>2</researchViewX>
         <researchViewY>1</researchViewY>
         <prerequisites>
             <li>PrecisionRifling</li>
-            <li>Rimgate_TauriBasic</li>
+            <li>Rimgate_TauriManufacturing</li>
         </prerequisites>
     </ResearchProjectDef>
 
@@ -71,7 +84,7 @@
         <label>Tau'ri weapons II</label>
         <description>Advances in Tau’ri weapons engineering bring the next generation of battlefield tools into your arsenal. Building on prior designs, this tier delivers more specialized options, improved stopping power, and refined technology for dealing with threats at any range. The Goa’uld call it escalation. The Tau’ri call it preparedness.</description>
         <baseCost>2500</baseCost>
-        <researchViewX>2</researchViewX>
+        <researchViewX>3</researchViewX>
         <researchViewY>1</researchViewY>
         <prerequisites>
             <li>Rimgate_TauriWeaponsTierOne</li>
@@ -83,7 +96,7 @@
         <label>Tau'ri turrets I</label>
         <description>Field up your defenses the Tau’ri way: a manned, shielded M2 that turns negotiations into noise. Teaches emplacement, feed, and “brace for recoil.”</description>
         <baseCost>2500</baseCost>
-        <researchViewX>1.5</researchViewX>
+        <researchViewX>2.5</researchViewX>
         <researchViewY>2</researchViewY>
         <prerequisites>
             <li>GunTurrets</li>
@@ -96,7 +109,7 @@
         <label>Tau'ri turrets II</label>
         <description>Apply refined naquadah to rail physics and call it “security.” Unlocks a manned railgun that ventilates armor and egos at extreme range.</description>
         <baseCost>2500</baseCost>
-        <researchViewX>2.5</researchViewX>
+        <researchViewX>3.5</researchViewX>
         <researchViewY>2</researchViewY>
         <prerequisites>
             <li>Rimgate_TauriTurretsTierOne</li>
@@ -104,27 +117,12 @@
         </prerequisites>
     </ResearchProjectDef>
 
-    <!-- ======== Buildings ========= -->
-
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
-        <defName>Rimgate_TauriManufacturing</defName>
-        <label>Tauri Manufacturing</label>
-        <description>Standardize Tau’ri-pattern fabrication on colony tools: adapter jigs, crystal mounts, shielded cabling, and subcore I/O buses that play nice with human power grids.\n\nThis establishes the fixtures and safety protocols needed to assemble Ancient-adjacent hardware without guesswork (or explosions).</description>
-        <prerequisites>
-            <li>Machining</li>
-            <li>Rimgate_TauriBasic</li>
-            <li>StandardMechtech</li>
-        </prerequisites>
-        <baseCost>3500</baseCost>
-        <researchViewX>1</researchViewX>
-        <researchViewY>3</researchViewY>
-    </ResearchProjectDef>
-
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_MalpGestation</defName>
         <label>MALP mech tech</label>
         <description>By tearing down a ruined Tau’ri MALP and tracing its signal routing, your researchers believe they can build a locally manufacturable probe with sturdier parts and less mystery.\n\nWe won’t have their classified control stack, so we’ll have to figure it out ourselves — and make it better.</description>
         <prerequisites>
+            <li>ShieldBelt</li>
             <li>Rimgate_TauriManufacturing</li>
         </prerequisites>
         <requiredAnalyzed>
@@ -160,10 +158,20 @@
         <description>Unlock a compact, high-yield power generator fueled by weaponized star dust. Enough energy to power a base—or vaporize one by accident.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
+            <li>Rimgate_TauriManufacturing</li>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
-        <researchViewX>1</researchViewX>
+        <researchViewX>2</researchViewX>
         <researchViewY>4</researchViewY>
+        <techprintCount>1</techprintCount>
+        <techprintCommonality>3</techprintCommonality>
+        <techprintMarketValue>3000</techprintMarketValue>
+        <heldByFactionCategoryTags>
+            <li>Rimgate_TauriFaction</li>
+        </heldByFactionCategoryTags>
+        <tags>
+            <li>Rimgate_TechprintPool</li>
+        </tags>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
@@ -172,11 +180,12 @@
         <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
+            <li>Rimgate_TauriManufacturing</li>
             <li>MedicineProduction</li>
-            <li>Rimgate_GoauldBasic</li>
+            <li>Rimgate_SymbioteStudy</li>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
-        <researchViewX>1</researchViewX>
+        <researchViewX>2</researchViewX>
         <researchViewY>5</researchViewY>
         <requiredAnalyzed>
             <li>Rimgate_SymbioteImplant</li>
@@ -200,22 +209,13 @@
         <defName>Rimgate_TrackedCart</defName>
         <label>Tracked cart</label>
         <description>Blueprints for a compact, tracked haul platform—part motor-pool ingenuity, part “don’t ask what’s in the crate.” Chemfuel-powered, stable on rough ground, and perfect for dragging too much loot back to base without rupturing a colonist’s spine.</description>
-        <baseCost>1500</baseCost>
+        <baseCost>2500</baseCost>
         <prerequisites>
-            <li>Rimgate_TauriBasic</li>
+            <li>Rimgate_TauriManufacturing</li>
             <li>BiofuelRefining</li>
         </prerequisites>
-        <researchViewX>1</researchViewX>
+        <researchViewX>2</researchViewX>
         <researchViewY>6</researchViewY>
-        <techprintCount>1</techprintCount>
-        <techprintCommonality>3</techprintCommonality>
-        <techprintMarketValue>3000</techprintMarketValue>
-        <heldByFactionCategoryTags>
-            <li>Rimgate_TauriFaction</li>
-        </heldByFactionCategoryTags>
-        <tags>
-            <li>Rimgate_TechprintPool</li>
-        </tags>
     </ResearchProjectDef>
 
 </Defs>

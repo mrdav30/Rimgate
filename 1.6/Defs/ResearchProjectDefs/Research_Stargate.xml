@@ -35,7 +35,6 @@
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>AdvancedFabrication</li>
-			<li>Rimgate_GlyphDeciphering</li>
 		</prerequisites>
 		<researchViewX>0</researchViewX>
 		<researchViewY>1</researchViewY>
@@ -76,41 +75,6 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_AncientPuddleJumper</defName>
-		<label>Ancient Puddle Jumper</label>
-		<description>Blueprints recovered from the remains of an Ancient “Puddle Jumper” — a sleek, self-sealing scout craft built for silent insertion and questionable bravery.\n\nWhile the Ancients designed it for interstellar gates, the Tau’ri (and now, us) have re-engineered it for local atmospheric and orbital hops.\n\nNo wormhole travel, no auto-navigation, and definitely no manual that anyone can read — but it flies, shields, and occasionally terrifies pilots into sainthood.</description>
-		<baseCost>6500</baseCost>
-		<techLevel>Spacer</techLevel>
-		<prerequisites>
-			<li>Rimgate_StargateAlloyResearch</li>
-			<li>ShipBasics</li>
-		</prerequisites>
-		<researchViewX>1</researchViewX>
-		<researchViewY>2</researchViewY>
-		<requiredResearchFacilities>
-			<li>Rimgate_AncientResearchBank</li>
-		</requiredResearchFacilities>
-		<requiredAnalyzed>
-			<li>Rimgate_DestroyedJumper</li>
-		</requiredAnalyzed>
-		<discoveredLetterTitle>About: Ancient Puddle Jumper</discoveredLetterTitle>
-		<discoveredLetterText>Analysis of the ruined Ancient scout craft has yielded partial schematics and a long list of unanswered questions.\n\nYour team believes the design can be replicated — minus the exotic drive core and wormhole-rated frame. The resulting model should perform admirably in-atmosphere and for short-range exo flights.\n\nAs one researcher put it: “If it hums like that when powered, it’s either stable… or alive.”</discoveredLetterText>
-		<generalRules>
-			<rulesStrings>
-				<li>subject->Ancient Puddle Jumper</li>
-				<li>subject_adj->reverse-engineered</li>
-				<li>subject_adj->Tau’ri-modified</li>
-				<li>subject_story->a whisper-quiet scout vessel with more personality than most pilots</li>
-				<li>subject_story->a ship that flies best when its operator pretends not to care about the warning lights</li>
-				<li>subject_story->a relic that hums with residual subspace charge, like it’s missing home</li>
-				<li>subject_gerund->rewiring Ancient flight matrices for Rim-standard controls</li>
-				<li>subject_gerund->replacing crystalline AI nodes with subcores and hope</li>
-				<li>subject_gerund->pretending you understand what “nanite lattice harmonics” means</li>
-			</rulesStrings>
-		</generalRules>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateIrisResearch</defName>
 		<label>Irises</label>
 		<description>By placing an ultra-thin barrier mere microns from a Dwarfgate's event horizon, we can prevent reintegration of inbound matter.\nIn simpler terms: unwanted guests go *splat*. Handy.</description>
@@ -119,47 +83,7 @@
 			<li>Rimgate_StargateAlloyResearch</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>1</researchViewY>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_AntiReplicatorGun</defName>
-		<label>Anti-Replicator gun</label>
-		<description>A classified Tau’ri prototype adapted for field use: a directed energy pulse tuned to scramble Replicator bonding fields.
-			To organics it’s underwhelming; to Replicators it’s an existential crisis.
-			Production is slow, maintenance is grumpy, and the safety brief is just the word “Don’t” written six times.</description>
-		<techLevel>Spacer</techLevel>
-		<baseCost>4500</baseCost>
-		<researchViewX>1</researchViewX>
-		<researchViewY>3</researchViewY>
-		<prerequisites>
-			<li>Rimgate_NaquadahRefinement</li>
-			<li>ChargedShot</li>
-		</prerequisites>
-		<requiredAnalyzed>
-			<li>Rimgate_ReplicatorLink</li>
-		</requiredAnalyzed>
-		<discoveredLetterTitle>About: Anti-Replicator Weaponry</discoveredLetterTitle>
-		<discoveredLetterText>Analysis of the inert Replicator link has yielded a usable emission profile.
-			Your team believes a tuned pulse can disrupt nanite cohesion long enough to turn active swarms into quiet scrap.
-			Field note #1: the pulse makes nearby Replicator debris tingle in a way that is deeply upsetting.</discoveredLetterText>
-
-		<generalRules>
-			<rulesStrings>
-				<li>subject->Anti-Replicator gun</li>
-				<li>subject_adj->Tau’ri-derived</li>
-				<li>subject_adj->frequency-tuned</li>
-				<li>subject_adj->temperamental</li>
-
-				<li>subject_story->a weapon that whispers “no” into a billion nanite minds at once</li>
-				<li>subject_story->a project born from equal parts panic, genius, and spare parts</li>
-				<li>subject_story->a device that makes Replicators remember how to be dust</li>
-
-				<li>subject_gerund->mapping Replicator link lattices for resonance weaknesses</li>
-				<li>subject_gerund->overdriving capacitors to shape a collapsing coherence field</li>
-				<li>subject_gerund->pretending the status light blinking red is fine actually</li>
-			</rulesStrings>
-		</generalRules>
+		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
@@ -172,7 +96,7 @@
 			<li>Rimgate_StargateAlloyResearch</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_DialHomeDevice</li>
 		</requiredAnalyzed>
@@ -218,6 +142,81 @@
 				<li>subject_gerund->adapting naquadah power conduits to human-safe voltage thresholds</li>
 				<li>subject_gerund->patching damaged Ancient protocols with modern circuitry</li>
 				<li>subject_gerund->compensating for subspace drift between gate nodes</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_AntiReplicatorGun</defName>
+		<label>Anti-Replicator gun</label>
+		<description>A classified Tau’ri prototype adapted for field use: a directed energy pulse tuned to scramble Replicator bonding fields.
+			To organics it’s underwhelming; to Replicators it’s an existential crisis.
+			Production is slow, maintenance is grumpy, and the safety brief is just the word “Don’t” written six times.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>4500</baseCost>
+		<researchViewX>2</researchViewX>
+		<researchViewY>2</researchViewY>
+		<prerequisites>
+			<li>Rimgate_StargateAlloyResearch</li>
+			<li>ChargedShot</li>
+		</prerequisites>
+		<requiredAnalyzed>
+			<li>Rimgate_ReplicatorLink</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Anti-Replicator Weaponry</discoveredLetterTitle>
+		<discoveredLetterText>Analysis of the inert Replicator link has yielded a usable emission profile.
+			Your team believes a tuned pulse can disrupt nanite cohesion long enough to turn active swarms into quiet scrap.
+			Field note #1: the pulse makes nearby Replicator debris tingle in a way that is deeply upsetting.</discoveredLetterText>
+
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Anti-Replicator gun</li>
+				<li>subject_adj->Tau’ri-derived</li>
+				<li>subject_adj->frequency-tuned</li>
+				<li>subject_adj->temperamental</li>
+
+				<li>subject_story->a weapon that whispers “no” into a billion nanite minds at once</li>
+				<li>subject_story->a project born from equal parts panic, genius, and spare parts</li>
+				<li>subject_story->a device that makes Replicators remember how to be dust</li>
+
+				<li>subject_gerund->mapping Replicator link lattices for resonance weaknesses</li>
+				<li>subject_gerund->overdriving capacitors to shape a collapsing coherence field</li>
+				<li>subject_gerund->pretending the status light blinking red is fine actually</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_AncientPuddleJumper</defName>
+		<label>Ancient Puddle Jumper</label>
+		<description>Blueprints recovered from the remains of an Ancient “Puddle Jumper” — a sleek, self-sealing scout craft built for silent insertion and questionable bravery.\n\nWhile the Ancients designed it for interstellar gates, the Tau’ri (and now, us) have re-engineered it for local atmospheric and orbital hops.\n\nNo wormhole travel, no auto-navigation, and definitely no manual that anyone can read — but it flies, shields, and occasionally terrifies pilots into sainthood.</description>
+		<baseCost>6500</baseCost>
+		<techLevel>Spacer</techLevel>
+		<prerequisites>
+			<li>Rimgate_StargateAlloyResearch</li>
+			<li>ShipBasics</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>3</researchViewY>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+		<requiredAnalyzed>
+			<li>Rimgate_DestroyedJumper</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Ancient Puddle Jumper</discoveredLetterTitle>
+		<discoveredLetterText>Analysis of the ruined Ancient scout craft has yielded partial schematics and a long list of unanswered questions.\n\nYour team believes the design can be replicated — minus the exotic drive core and wormhole-rated frame. The resulting model should perform admirably in-atmosphere and for short-range exo flights.\n\nAs one researcher put it: “If it hums like that when powered, it’s either stable… or alive.”</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Ancient Puddle Jumper</li>
+				<li>subject_adj->reverse-engineered</li>
+				<li>subject_adj->Tau’ri-modified</li>
+				<li>subject_story->a whisper-quiet scout vessel with more personality than most pilots</li>
+				<li>subject_story->a ship that flies best when its operator pretends not to care about the warning lights</li>
+				<li>subject_story->a relic that hums with residual subspace charge, like it’s missing home</li>
+				<li>subject_gerund->rewiring Ancient flight matrices for Rim-standard controls</li>
+				<li>subject_gerund->replacing crystalline AI nodes with subcores and hope</li>
+				<li>subject_gerund->pretending you understand what “nanite lattice harmonics” means</li>
 			</rulesStrings>
 		</generalRules>
 	</ResearchProjectDef>
@@ -294,6 +293,6 @@
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>
 		</requiredResearchFacilities>
-	</ResearchProjectDef>	
+	</ResearchProjectDef>
 
 </Defs>

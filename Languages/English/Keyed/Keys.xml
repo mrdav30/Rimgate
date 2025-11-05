@@ -265,6 +265,8 @@
 	<!-- Analysis -->
 
 	<RG_RequiresResearch>{0} knowledge required</RG_RequiresResearch>
+	<RG_AnalysisCatastrophicLabel>Analysis Failure: Data Corruption</RG_AnalysisCatastrophicLabel>
+	<RG_AnalysisCatastrophicText>Something went terribly wrong during the analysis. Energy readings spiked beyond containment thresholds, and the artifact destabilized before any useful data could be recovered. All collected telemetry has collapsed into incoherent noise.\n\nThe team learned nothing — except perhaps when to start running sooner.</RG_AnalysisCatastrophicText>
 
 	<!-- Notes -->
 

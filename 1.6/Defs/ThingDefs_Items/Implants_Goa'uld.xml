@@ -32,7 +32,7 @@
         <comps>
             <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
                 <analysisID>1000300</analysisID>
-                <requiresResearchDef>Rimgate_GoauldBasic</requiresResearchDef>
+                <requiresResearchDef>MedicineProduction</requiresResearchDef>
 
                 <!-- Analyzable -->
 
@@ -41,6 +41,13 @@
                 <completedLetterLabel>Goa'uld Symbiote studied: {RESEARCH} unlocked</completedLetterLabel>
                 <completedLetter>By studying a Goa'uld Symbiote, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nYour researchers can now use research benches to begin researching how to actually use the technology.</completedLetter>
                 <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
 
                 <!-- Interactable -->
 

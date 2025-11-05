@@ -198,6 +198,17 @@
 				<completedLetter>By dissecting the Wraith cloning pod, {PAWN_labelShort} has extracted viable growth-cycle notes and imprint scaffolding.\n\n{RESEARCH} is now available at a research bench.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
 
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicExplosion>true</catastrophicExplosion>
+                <catastrophicExplosionRadius>3.0</catastrophicExplosionRadius>
+                <catastrophicExplosionDamage>60</catastrophicExplosionDamage>
+                <catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
 				<!-- Interactable -->
 
 				<maintainProgress>true</maintainProgress>

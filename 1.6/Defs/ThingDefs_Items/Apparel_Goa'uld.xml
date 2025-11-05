@@ -792,8 +792,9 @@
 				<maxShieldSize>1.8</maxShieldSize>
 				<disableRotation>true</disableRotation>
 			</li>
-			<li Class="CompProperties_CompAnalyzableUnlockResearch">
+			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000210</analysisID>
+				<requiresResearchDef>ChargedShot</requiresResearchDef>
 
 				<!-- Analyzable -->
 
@@ -898,8 +899,9 @@
 				<maxShieldSize>1.8</maxShieldSize>
 				<disableRotation>true</disableRotation>
 			</li>
-			<li Class="CompProperties_CompAnalyzableUnlockResearch">
+			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000200</analysisID>
+				<requiresResearchDef>ShieldBelt</requiresResearchDef>
 
 				<!-- Analyzable -->
 

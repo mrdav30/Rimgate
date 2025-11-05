@@ -417,6 +417,18 @@
                 <canStudyInPlace>true</canStudyInPlace>
                 <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
                 <analysisDurationHours>10</analysisDurationHours>
+                <maintainProgress>true</maintainProgress>
+
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicExplosion>true</catastrophicExplosion>
+                <catastrophicExplosionRadius>3.0</catastrophicExplosionRadius>
+                <catastrophicExplosionDamage>45</catastrophicExplosionDamage>
+                <catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
 
                 <!-- UI / strings -->
                 <activateTexPath>UI/Icons/Study</activateTexPath>
@@ -485,6 +497,14 @@
                 <completedLetter>By studying the remnants of an Ancient Puddle Jumper, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.\n\nYour engineers can now attempt to reproduce the vessel—without the existential dread of the original AI.</completedLetter>
                 <completedLetterDef>PositiveEvent</completedLetterDef>
 
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+
                 <!-- Interactable -->
 
                 <maintainProgress>true</maintainProgress>
@@ -549,6 +569,13 @@
                 <completedLetter>By studying the remnants of a Goa'uld Tel'tak, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.</completedLetter>
                 <completedLetterDef>PositiveEvent</completedLetterDef>
 
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
                 <!-- Interactable -->
 
                 <maintainProgress>true</maintainProgress>
@@ -612,6 +639,13 @@
                 <completedLetterLabel>Dart analysis complete: {RESEARCH} unlocked</completedLetterLabel>
                 <completedLetter>By dissecting the remnants of a Wraith Dart, {PAWN_labelShort} has mapped its bio-alloy struts and energy lattice patterns, laying the foundation for {RESEARCH} research.</completedLetter>
                 <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
 
                 <!-- Interactable -->
 
