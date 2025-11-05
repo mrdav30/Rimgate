@@ -374,63 +374,19 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
             yield break;
         }
 
+        if (!RimgateDefOf.Rimgate_WraithCloneGenome.IsFinished)
+        {
+            yield return new FloatMenuOption("RG_RequiresResearch".Translate(), null);
+            yield break;
+        }
+
         if (pawn.skills.GetSkill(SkillDefOf.Medicine).levelInt < 10)
         {
             yield return new FloatMenuOption("RG_CannotUseMedicineTooLow".Translate(), null);
             yield break;
         }
 
-        if (!cloningPod.InnerPawn.Dead)
-        {
-            JobDef jobDefGenome = RimgateDefOf.Rimgate_CloneOccupantGenes;
-            yield return FloatMenuUtility.DecoratePrioritizedTask(
-                new FloatMenuOption(
-                    "RG_CloneOccupantGenes".Translate(cloningPod.InnerPawn.LabelCap),
-                    () => pawn.jobs.TryTakeOrderedJob(
-                        new Job(jobDefGenome, this),
-                        JobTag.Misc,
-                        false)
-                    ),
-                pawn,
-                cloningPod,
-                "ReservedBy",
-                null);
-
-            if (!RimgateDefOf.Rimgate_WraithCloneFull.IsFinished)
-                yield break;
-
-            JobDef jobDefFull = RimgateDefOf.Rimgate_CloneOccupantFull;
-            yield return FloatMenuUtility.DecoratePrioritizedTask(
-                new FloatMenuOption(
-                    "RG_CloneOccupantFull".Translate(cloningPod.InnerPawn.LabelCap),
-                    () => pawn.jobs.TryTakeOrderedJob(
-                        new Job(jobDefFull, this),
-                        JobTag.Misc,
-                        false)
-                    ),
-                pawn,
-                cloningPod,
-                "ReservedBy",
-                null);
-
-            if (!RimgateDefOf.Rimgate_WraithCloneEnhancement.IsFinished)
-                yield break;
-
-            JobDef jobDefSoldier = RimgateDefOf.Rimgate_CloneOccupantSoldier;
-            yield return FloatMenuUtility.DecoratePrioritizedTask(
-                new FloatMenuOption(
-                    "RG_CloneOccupantSoldier".Translate(cloningPod.InnerPawn.LabelCap),
-                    () => pawn.jobs.TryTakeOrderedJob(
-                        new Job(jobDefSoldier, this),
-                        JobTag.Misc,
-                        false)
-                    ),
-                pawn,
-                cloningPod,
-                "ReservedBy",
-                null);
-        }
-        else
+        if (cloningPod.InnerPawn.Dead)
         {
             if (!RimgateDefOf.Rimgate_WraithCloneCorpse.IsFinished)
                 yield break;
@@ -447,7 +403,57 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
                 cloningPod,
                 "ReservedBy",
                 null);
+
+            yield break;  // can't do anything else with corpse
         }
+
+        JobDef jobDefGenome = RimgateDefOf.Rimgate_CloneOccupantGenes;
+        yield return FloatMenuUtility.DecoratePrioritizedTask(
+            new FloatMenuOption(
+                "RG_CloneOccupantGenes".Translate(cloningPod.InnerPawn.LabelCap),
+                () => pawn.jobs.TryTakeOrderedJob(
+                    new Job(jobDefGenome, this),
+                    JobTag.Misc,
+                    false)
+                ),
+            pawn,
+            cloningPod,
+            "ReservedBy",
+            null);
+
+        if (!RimgateDefOf.Rimgate_WraithCloneFull.IsFinished)
+            yield break;
+
+        JobDef jobDefFull = RimgateDefOf.Rimgate_CloneOccupantFull;
+        yield return FloatMenuUtility.DecoratePrioritizedTask(
+            new FloatMenuOption(
+                "RG_CloneOccupantFull".Translate(cloningPod.InnerPawn.LabelCap),
+                () => pawn.jobs.TryTakeOrderedJob(
+                    new Job(jobDefFull, this),
+                    JobTag.Misc,
+                    false)
+                ),
+            pawn,
+            cloningPod,
+            "ReservedBy",
+            null);
+
+        if (!RimgateDefOf.Rimgate_WraithCloneEnhancement.IsFinished)
+            yield break;
+
+        JobDef jobDefSoldier = RimgateDefOf.Rimgate_CloneOccupantSoldier;
+        yield return FloatMenuUtility.DecoratePrioritizedTask(
+            new FloatMenuOption(
+                "RG_CloneOccupantSoldier".Translate(cloningPod.InnerPawn.LabelCap),
+                () => pawn.jobs.TryTakeOrderedJob(
+                    new Job(jobDefSoldier, this),
+                    JobTag.Misc,
+                    false)
+                ),
+            pawn,
+            cloningPod,
+            "ReservedBy",
+            null);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -500,6 +506,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
                 pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness, null, null, null);
 
         }
+
         if (!Destroyed)
             SoundStarter.PlayOneShot(
                 SoundDefOf.CryptosleepCasket_Eject,

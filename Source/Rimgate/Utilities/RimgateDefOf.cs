@@ -101,6 +101,7 @@ public static class RimgateDefOf
 
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
     public static ResearchProjectDef Rimgate_ParallelSubspaceCoupling;
+    public static ResearchProjectDef Rimgate_WraithCloneGenome;
     public static ResearchProjectDef Rimgate_WraithCloneFull;
     public static ResearchProjectDef Rimgate_WraithCloneEnhancement;
     public static ResearchProjectDef Rimgate_WraithCloneCorpse;
