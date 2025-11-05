@@ -67,19 +67,20 @@ public static class RimgateDefOf
     public static JobDef Rimgate_CarryToSarcophagus;
     public static JobDef Rimgate_CarryToCloningPod;
     public static JobDef Rimgate_CarryCorpseToCloningPod;
-    public static JobDef Rimgate_CloseStargate;
     public static JobDef Rimgate_CloneOccupantGenes;
     public static JobDef Rimgate_CloneOccupantFull;
     public static JobDef Rimgate_CloneOccupantSoldier;
     public static JobDef Rimgate_CloneReconstructDead;
+    public static JobDef Rimgate_CloseStargate;
     public static JobDef Rimgate_DecodeGlyphs;
     public static JobDef Rimgate_DialStargate;
-    public static JobDef Rimgate_EnterStargate;
     public static JobDef Rimgate_EnterCloningPod;
+    public static JobDef Rimgate_EnterStargate;
+    public static JobDef Rimgate_EnterStargateWithContainer;
     public static JobDef Rimgate_HaulToContainer;
+    public static JobDef Rimgate_MeditateOnGoauldThrone;
     public static JobDef Rimgate_PatientGoToSarcophagus;
     public static JobDef Rimgate_PushMobileContainer;
-    public static JobDef Rimgate_EnterStargateWithContainer;
     public static JobDef Rimgate_PushAndDumpMobileContainer;
     public static JobDef Rimgate_RescueToSarcophagus;
     public static JobDef Rimgate_Toggle;
@@ -120,6 +121,7 @@ public static class RimgateDefOf
 
     public static ThingDef Gun_Autopistol;
     public static ThingDef Rimgate_DialHomeDevice;
+    public static ThingDef Rimgate_GoauldThrone;
     public static ThingDef Rimgate_JammedBlastDoor;
     public static ThingDef Rimgate_Malp;
     public static ThingDef Rimgate_MineableNaquadah;

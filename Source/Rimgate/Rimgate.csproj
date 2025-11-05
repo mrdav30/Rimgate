@@ -330,6 +330,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_CloneReconstructDead.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_EnterCloningPod.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_HaulToMobileContainer.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_MeditateOnGoauldThrone.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_PushMobileContainer.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_ToggleIris.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CloseStargate.cs" />
@@ -379,6 +380,7 @@
     <Compile Include="HarmonyPatches\Harmony_Designator_Uninstall.cs" />
     <Compile Include="HarmonyPatches\Harmony_EquipmentUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
+    <Compile Include="HarmonyPatches\Harmony_MeditationUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_PowerNet.cs" />
     <Compile Include="HarmonyPatches\Harmony_Psycast.cs" />
     <Compile Include="HarmonyPatches\Harmony_SiteMakerHelper.cs" />

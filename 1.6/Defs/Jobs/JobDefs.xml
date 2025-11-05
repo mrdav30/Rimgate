@@ -188,6 +188,19 @@
 		<isCrawlingIfDowned>false</isCrawlingIfDowned>
 	</JobDef>
 
+	<!-- =============== Throne =============== -->
+
+	<JobDef>
+		<defName>Rimgate_MeditateOnGoauldThrone</defName>
+		<driverClass>Rimgate.JobDriver_MeditateOnGoauldThrone</driverClass>
+		<joyKind>Meditative</joyKind>
+		<joyDuration>6000</joyDuration> <!-- same ballpark as Meditate -->
+		<reportString>meditating on the throne</reportString>
+		<neverShowWeapon>true</neverShowWeapon>
+		<taleOnCompletion>Meditated</taleOnCompletion>
+		<isCrawlingIfDowned>false</isCrawlingIfDowned>
+	</JobDef>
+
 	<!-- =============== Misc =============== -->
 
 	<JobDef>

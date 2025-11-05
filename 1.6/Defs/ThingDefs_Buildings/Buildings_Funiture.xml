@@ -185,8 +185,8 @@
       <Mass>100</Mass>
       <Flammability>1.0</Flammability>
       <Beauty>60</Beauty>
-      <Comfort>2</Comfort>
-      <MeditationFocusStrength>0.15</MeditationFocusStrength>
+      <Comfort>1.75</Comfort>
+      <MeditationFocusStrength>0.25</MeditationFocusStrength>
     </statBases>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <stuffCategories>
@@ -200,7 +200,7 @@
     </costList>
     <building>
       <isSittable>true</isSittable>
-      <paintable>true</paintable>
+      <paintable>false</paintable>
       <ai_chillDestination>false</ai_chillDestination>
       <buildingSizeCategory>Medium</buildingSizeCategory>
     </building>
@@ -220,6 +220,7 @@
         <rect>(0.1,0.1,2.8,1.8)</rect>
       </damageData>
     </graphicData>
+    <passability>Standable</passability>
     <drawGUIOverlay>true</drawGUIOverlay>
     <drawGUIOverlayQuality>false</drawGUIOverlayQuality>
     <rotatable>false</rotatable>
@@ -236,20 +237,12 @@
       <li>ComplexFurniture</li>
       <li>Rimgate_GoauldBasic</li>
     </researchPrerequisites>
-    <ritualFocus>
-      <spectateDistance>2</spectateDistance>
-      <allowedSpectateSides>Up</allowedSpectateSides>
-    </ritualFocus>
-    <placeWorkers>
-      <li MayRequire="Ludeon.RimWorld.Royalty">PlaceWorker_RitualFocus</li>
-    </placeWorkers>
-    <drawPlaceWorkersWhileSelected>True</drawPlaceWorkersWhileSelected>
     <comps>
       <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
         <drawUnownedAssignmentOverlay>false</drawUnownedAssignmentOverlay>
         <compClass>CompAssignableToPawn_MeditationSpot</compClass>
       </li>
-      <!-- <li Class="CompProperties_UsesMeditationFocus"/> -->
       <li Class="CompProperties_MeditationFocus">
         <statDef>MeditationFocusStrength</statDef>
         <focusTypes>
