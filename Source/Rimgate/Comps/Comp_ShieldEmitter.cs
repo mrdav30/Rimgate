@@ -49,8 +49,6 @@ public class Comp_ShieldEmitter : ThingComp
 
     private bool _showShieldToggle;
 
-    private float ConsumptionRatePerTick => Props.fuelConsumptionRate / 60000f;
-
     private CompPowerTrader _cachedPowerComp;
 
     private Comp_Toggle _cachedFlickableComp;
@@ -405,7 +403,12 @@ public class Comp_ShieldEmitter : ThingComp
         if (!Active || !parent.IsHashIntervalTick(2))
             return;
 
-        FuelComp.ConsumeFuel(ConsumptionRatePerTick);
+        float fuelRate = Mathf.Lerp(
+            Props.powerUsageRange.min,
+            Props.powerUsageRange.max,
+            GetShieldScalePercentage);
+
+        FuelComp.ConsumeFuel(fuelRate / 60000f);
     }
 
     public override void CompTick()
@@ -466,25 +469,20 @@ public class Comp_ShieldEmitter : ThingComp
         }
 
         UpdateStress(true);
-        if (PowerTrader != null && FuelComp == null)
-        {
+
+        if (PowerTrader != null)
             UpdatePowerUsage();
-            if (Overloaded && PowerTrader.PowerOn)
-            {
-                --TicksToReset;
-                if (TicksToReset <= 0)
-                    Overloaded = false;
-            }
-        }
-        else if (FuelComp != null && PowerTrader == null)
-        {
+
+        if (FuelComp != null)
             UpdateFuelUsage();
-            if (Overloaded && FuelComp.HasFuel)
-            {
-                --TicksToReset;
-                if (TicksToReset <= 0)
-                    Overloaded = false;
-            }
+
+        if (Overloaded
+            && (PowerTrader?.PowerOn == true
+                || FuelComp?.HasFuel == true))
+        {
+            --TicksToReset;
+            if (TicksToReset <= 0)
+                Overloaded = false;
         }
 
         if (HeatComp != null)

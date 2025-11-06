@@ -32,7 +32,7 @@ public class CompProperties_ShieldEmitter : CompProperties
 
     public FloatRange powerUsageRange = new FloatRange(0.0f, 0.0f);
 
-    public float fuelConsumptionRate = 1f;
+    public FloatRange fuelConsumptionRange = new FloatRange(0.0f, 0.0f);
 
     public FloatRange heatGenRange = new FloatRange(0.0f, 100f);
 
