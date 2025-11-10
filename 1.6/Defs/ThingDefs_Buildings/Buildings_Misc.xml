@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- ======================= Cloning pod ======================= -->
+	<!-- ======================= Replacement DHD ======================= -->
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_TauriDialHomeDevice</defName>
@@ -16,7 +16,6 @@
 			<drawSize>(2,2)</drawSize>
 			<addTopAltitudeBias>true</addTopAltitudeBias>
 		</graphicData>
-		<minifiedDef>MinifiedThing</minifiedDef>
 		<stealable>false</stealable>
 		<passability>PassThroughOnly</passability>
 		<constructEffect>ConstructMetal</constructEffect>
@@ -30,10 +29,8 @@
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<altitudeLayer>BuildingBelowTop</altitudeLayer>
 		<preventDroppingThingsOn>true</preventDroppingThingsOn>
-		<thingCategories>
-			<li>BuildingsMisc</li>
-		</thingCategories>
 		<building>
+			<claimable>false</claimable>
 			<ai_neverTrashThis>true</ai_neverTrashThis>
 		</building>
 		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
@@ -448,7 +445,7 @@
 			</li>
 		</comps>
 		<researchPrerequisites>
-			<li>Rimgate_TrackedCart</li>
+			<li>Rimgate_HoverSkid</li>
 		</researchPrerequisites>
 	</ThingDef>
 
@@ -520,7 +517,7 @@
 		</comps>
 	</ThingDef>
 
-	<!-- Subspace Phase Diverter-->
+	<!-- ======================= Subspace Phase Diverter ======================= -->
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_SubspacePhaseDiverter</defName>

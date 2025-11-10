@@ -11,7 +11,7 @@
             Mediocre on organics; miraculous on nightmares made of Lego.
             Breaks up block parties, one pulse at a time.</description>
         <graphicData>
-            <texPath>Things/Item/Weapon/Ranged/RGTauriAntiReplicatorGun</texPath>
+            <texPath>Things/Item/Weapon/Ranged/RGAntiReplicatorGun</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <uiIconScale>1.5</uiIconScale>

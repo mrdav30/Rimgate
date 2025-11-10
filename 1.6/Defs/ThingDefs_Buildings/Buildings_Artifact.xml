@@ -26,6 +26,7 @@
         <interactionCellOffset>(0,0,0)</interactionCellOffset>
         <building>
             <ai_neverTrashThis>true</ai_neverTrashThis>
+            <uninstallWork>6250</uninstallWork>
         </building>
         <placeWorkers>
             <li>PlaceWorker_PreventInteractionSpotOverlap</li>
@@ -169,6 +170,7 @@
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>
         <building>
             <ai_neverTrashThis>true</ai_neverTrashThis>
+            <uninstallWork>6250</uninstallWork>
         </building>
         <placeWorkers>
             <li>PlaceWorker_ShowFacilitiesConnections</li>
@@ -289,6 +291,7 @@
         <building>
             <neverBuildable>true</neverBuildable>
             <canLandGravshipOn>true</canLandGravshipOn>
+            <uninstallWork>6250</uninstallWork>
         </building>
         <tradeability>Buyable</tradeability>
         <tradeNeverStack>true</tradeNeverStack>
@@ -404,6 +407,7 @@
             <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
             <deconstructible>false</deconstructible>
             <claimable>true</claimable>
+            <uninstallWork>6250</uninstallWork>
         </building>
         <comps>
             <li Class="CompProperties_Glower">
@@ -471,6 +475,7 @@
             <neverBuildable>true</neverBuildable>
             <alwaysDeconstructible>true</alwaysDeconstructible>
             <canLandGravshipOn>true</canLandGravshipOn>
+            <uninstallWork>6250</uninstallWork>
         </building>
         <minifiedDef>MinifiedThing</minifiedDef>
         <thingCategories>

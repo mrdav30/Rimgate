@@ -50,6 +50,7 @@
       <bed_healPerDay>90</bed_healPerDay>
       <bed_defaultMedical>true</bed_defaultMedical>
       <soundDispense>Rimgate_SarcophagusRunning</soundDispense>
+      <uninstallWork>4250</uninstallWork>
     </building>
     <castEdgeShadows>true</castEdgeShadows>
     <tickerType>Normal</tickerType>

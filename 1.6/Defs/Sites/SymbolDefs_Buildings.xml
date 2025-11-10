@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_DialHomeDevice</defName>
+        <thing>Rimgate_DialHomeDevice</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriDialHomeDevice</defName>
+        <thing>Rimgate_TauriDialHomeDevice</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Stargate</defName>
+        <thing>Rimgate_Stargate</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldWall</defName>
+        <thing>Rimgate_GoauldWall</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithHiveWall</defName>
+        <thing>Rimgate_WraithHiveWall</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_NaquadahColumn</defName>
+        <thing>Column</thing>
+        <stuff>Rimgate_Naquadah</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SculptureLarge_Naquadah</defName>
+        <thing>SculptureLarge</thing>
+        <stuff>Rimgate_Naquadah</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldSculpture</defName>
+        <thing>Rimgate_GoauldSculpture</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_HiveFloor</defName>
+        <thing>Rimgate_HiveFloor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_MineableNaquadah</defName>
+        <thing>Rimgate_MineableNaquadah</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithGenerator</defName>
+        <thing>Rimgate_WraithGenerator</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_NaquadriaFiredGenerator</defName>
+        <thing>Rimgate_NaquadriaFiredGenerator</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ZPM</defName>
+        <thing>Rimgate_ZPM</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SubspaceShroudEmitter</defName>
+        <thing>Rimgate_SubspaceShroudEmitter</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
+        <thing>Rimgate_IndustrialNaquadriaFiredGenerator</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldThrone</defName>
+        <thing>Rimgate_GoauldThrone</thing>
+        <stuff>Leather_Panthera</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldSarcophagus</defName>
+        <thing>Rimgate_GoauldSarcophagus</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ArchotechIdolOfResonance</defName>
+        <thing>Rimgate_ArchotechIdolOfResonance</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CompositionBench</defName>
+        <thing>Rimgate_CompositionBench</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithMeatLab</defName>
+        <thing>Rimgate_WraithMeatLab</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CocoonStation</defName>
+        <thing>Rimgate_CocoonStation</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithCloningPod</defName>
+        <thing>Rimgate_WraithCloningPod</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_AncientResearchBank</defName>
+        <thing>Rimgate_AncientResearchBank</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_M2Turret</defName>
+        <thing>Rimgate_M2Turret</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_AutoStaffCannonTurret</defName>
+        <thing>Rimgate_AutoStaffCannonTurret</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_JammedDoor</defName>
+        <thing>Rimgate_JammedBlastDoor</thing>
+        <stuff>Steel</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SecretDoor_Slate</defName>
+        <thing>Rimgate_SecretDoor</thing>
+        <stuff>BlocksSlate</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SecretDoor_Granite</defName>
+        <thing>Rimgate_SecretDoor</thing>
+        <stuff>BlocksGranite</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SecretDoor_Sandstone</defName>
+        <thing>Rimgate_SecretDoor</thing>
+        <stuff>BlocksSandstone</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ForceFieldDoor</defName>
+        <thing>Rimgate_ForceFieldDoor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CryptosleepProximityAlarm</defName>
+        <thing>Rimgate_CryptosleepProximityAlarm</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithDart</defName>
+        <thing>Rimgate_WraithDart</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Wheelbarrow</defName>
+        <thing>Rimgate_Wheelbarrow</thing>
+        <stuff>Wood</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_MobileTrackedCart</defName>
+        <thing>Rimgate_MobileTrackedCart</thing>
+        <stuff>Steel</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_MobileHoverSkid</defName>
+        <thing>Rimgate_MobileHoverSkid</thing>
+        <stuff>Steel</stuff>
+    </KCSG.SymbolDef>
+
+</Defs>
