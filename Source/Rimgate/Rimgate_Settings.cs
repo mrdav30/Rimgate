@@ -14,6 +14,7 @@ public class RimgateModSettings : ModSettings
     public static int MinorFailureChance = 10;
     public static bool MajorFailures = false;
     public static int MajorFailureChance = 1;
+    public static int MedicineSkillReq = 10;
 
     #endregion
 
@@ -28,5 +29,6 @@ public class RimgateModSettings : ModSettings
         Scribe_Values.Look<int>(ref RimgateModSettings.MinorFailureChance, "MinorFailureChance", 10, true);
         Scribe_Values.Look<int>(ref RimgateModSettings.MajorFailureChance, "MajorFailureChance", 1, true);
         Scribe_Values.Look<bool>(ref RimgateModSettings.EnableCloneIncidents, "EnableIncidents", true, true);
+        Scribe_Values.Look<int>(ref RimgateModSettings.MedicineSkillReq, "MedicineSkillReq", 10, true);
     }
 }

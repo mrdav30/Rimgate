@@ -37,15 +37,15 @@ public class Comp_AnalyzableResearchWhen : CompAnalyzableUnlockResearch
 
     public override AcceptanceReport CanInteract(Pawn activateBy = null, bool checkOptionalItems = true)
     {
-        AcceptanceReport result = base.CanInteract(activateBy, checkOptionalItems);
-        if (!result.Accepted)
-            return result;
-
         if (HideInteraction) return false;
 
         var def = Props?.requiresResearchDef;
         if (def != null && !def.IsFinished)
             return "RG_RequiresResearch".Translate(def.label);
+
+        AcceptanceReport result = base.CanInteract(activateBy, checkOptionalItems);
+        if (!result.Accepted)
+            return result;
 
         return true;
     }

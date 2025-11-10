@@ -38,27 +38,15 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
 
     protected bool contentsKnown;
 
-    public CompRefuelable Refuelable
-    {
-        get
-        {
-            _cachedRefuelable ??= GetComp<CompRefuelable>();
-            return _cachedRefuelable;
-        }
-    }
+    public CompRefuelable Refuelable => _cachedRefuelable ??= GetComp<CompRefuelable>();
 
-    public CompPowerTrader Power
-    {
-        get
-        {
-            _cachedPowerTrader ??= GetComp<CompPowerTrader>();
-            return _cachedPowerTrader;
-        }
-    }
+    public CompPowerTrader Power => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
-    public float HeldPawnDrawPos_Y => DrawPos.y - 0.03658537f;
+    public Comp_AnalyzableResearchWhen Analyzable => _cachedAnalyzable ??= GetComp<Comp_AnalyzableResearchWhen>();
 
-    public float HeldPawnBodyAngle => Rotation.AsAngle;
+    public float HeldPawnDrawPos_Y => DrawPos.y - 0.06f;
+
+    public float HeldPawnBodyAngle => Rotation.Opposite.AsAngle;
 
     public PawnPosture HeldPawnPosture => PawnPosture.LayingOnGroundFaceUp;
 
@@ -122,6 +110,8 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
     private CompRefuelable _cachedRefuelable;
 
     private CompPowerTrader _cachedPowerTrader;
+
+    private Comp_AnalyzableResearchWhen _cachedAnalyzable;
 
     private static List<ThingDef> _cachedPods;
 
@@ -332,22 +322,25 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
 
         if (!Power.PowerOn)
         {
-            yield return new FloatMenuOption("RG_CannotUseNoPower".Translate(), null);
+            string req = "not powered";
+            yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
             yield break;
         }
 
         if (!Refuelable.IsFull)
         {
-            yield return new FloatMenuOption(Translator.Translate("RG_CannotUseFuelLow"), null);
+            string req = "not filled";
+            yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
             yield break;
         }
 
-        // initial cloning
+        // initial pawn entering phase
         if (cloningPod.innerContainer.Count == 0)
         {
             if (!pawn.RaceProps.IsFlesh)
             {
-                yield return new FloatMenuOption("RG_CannotUseNotBiologic".Translate(), null);
+                string req = "not biologic";
+                yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
                 yield break;
             }
 
@@ -374,15 +367,18 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
             yield break;
         }
 
+        // if we have a pawn, show what the user can do
         if (!RimgateDefOf.Rimgate_WraithCloneGenome.IsFinished)
         {
-            yield return new FloatMenuOption("RG_RequiresResearch".Translate(), null);
+            string req = $"{Analyzable?.Props?.requiresResearchDef?.label} knowledge required";
+            yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
             yield break;
         }
 
-        if (pawn.skills.GetSkill(SkillDefOf.Medicine).levelInt < 10)
+        if (pawn.skills.GetSkill(SkillDefOf.Medicine).levelInt < RimgateModSettings.MedicineSkillReq)
         {
-            yield return new FloatMenuOption("RG_CannotUseMedicineTooLow".Translate(), null);
+            string req = $"requires medicine >= {RimgateModSettings.MedicineSkillReq}";
+            yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
             yield break;
         }
 

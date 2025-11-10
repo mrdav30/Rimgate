@@ -9,9 +9,9 @@ namespace Rimgate;
 [StaticConstructorOnStartup]
 public class Comp_CloningPod : ThingComp
 {
-    public static Color IdleCycleColor = new Color(0.9f, 1f, 0.16f);// new Color(0.321f, 1f, 1f);
+    public static Color IdleCycleColor = new Color(0.9f, 1f, 0.16f);
 
-    public static Color OperatingColor = new Color(0.89f, 0.24f, 0.04f);// new Color(0.267f, 0.792f, 0.969f);
+    public static Color OperatingColor = new Color(0.89f, 0.24f, 0.04f);
 
     public bool PowerOn => _clonePod != null && _clonePod.Power.PowerOn;
 
@@ -21,21 +21,17 @@ public class Comp_CloningPod : ThingComp
 
     private Building_WraithCloningPod _clonePod;
 
-    public Graphic FullGraphic => _cachedFullGraphic ??= Props.fullGraphicData.Graphic;
+    public Graphic FullGraphic => Props.fullGraphicData.Graphic;
 
-    public Graphic _cachedFullGraphic;
+    public Graphic EmptyGraphic => Props.emptyGraphicData.Graphic;
 
-    public Graphic EmptyGraphic => _cachedEmptyGraphic ??= Props.emptyGraphicData.Graphic;
+    private Mesh BackgroundMesh => _cachedBackgroundMesh ??= Props.backgroundGraphicData?.Graphic.MeshAt(parent.Rotation);
 
-    public Graphic _cachedEmptyGraphic;
+    private Mesh _cachedBackgroundMesh;
 
-    private Mesh BackgroundMesh => _cachedMesh ??= Props.backgroundGraphicData?.Graphic.MeshAt(parent.Rotation);
+    private Material BackgroundMat => _cachedBackgroundMat ??= Props.backgroundGraphicData?.Graphic.MatAt(parent.Rotation, null);
 
-    private Mesh _cachedMesh;
-
-    private Material BackgroundMat => _cachedMaterial ??= Props.backgroundGraphicData?.Graphic.MatAt(parent.Rotation, null);
-
-    private Material _cachedMaterial;
+    private Material _cachedBackgroundMat;
 
     private Effecter _idleEffecter;
 
@@ -63,14 +59,11 @@ public class Comp_CloningPod : ThingComp
             {
                 _idleEffecter = RimgateDefOf.Rimgate_ClonePod_Idle.Spawn();
                 ColorizeEffecter(_idleEffecter, IdleCycleColor);
-                _idleEffecter.Trigger(
-                    new TargetInfo(parent),
-                    new TargetInfo(parent.InteractionCell, parent.Map));
+                _idleEffecter.Trigger(parent, new TargetInfo(parent.InteractionCell, parent.Map));
             }
 
-            _idleEffecter.EffectTick(
-                new TargetInfo(parent),
-                new TargetInfo(parent.InteractionCell, parent.Map));
+
+            _idleEffecter.EffectTick(parent, new TargetInfo(parent.InteractionCell, parent.Map));
         }
 
         if (!_clonePod.IsWorking)
@@ -119,7 +112,7 @@ public class Comp_CloningPod : ThingComp
         Vector3 drawPos = parent.DrawPos + parent.def.graphicData.drawOffset;
 
         Vector3 panePos = drawPos;
-        panePos.y = parent.def.altitudeLayer.AltitudeFor() + 0.01f;
+        panePos.y = parent.def.altitudeLayer.AltitudeFor() - 0.01f;
 
         if (Fueled)
         {
@@ -131,9 +124,9 @@ public class Comp_CloningPod : ThingComp
         else
         {
             EmptyGraphic.Draw(
-            panePos,
-            parent.Rotation,
-            parent);
+                panePos,
+                parent.Rotation,
+                parent);
         }
 
         if (Props.backgroundGraphicData != null)
@@ -144,7 +137,7 @@ public class Comp_CloningPod : ThingComp
             Graphics.DrawMesh(
                 BackgroundMesh,
                 backgroundPos,
-                parent.Rotation.AsQuat,
+                Quaternion.identity,
                 BackgroundMat,
                 0);
         }
@@ -152,17 +145,39 @@ public class Comp_CloningPod : ThingComp
         if (!_clonePod.HasAnyContents) return;
 
         Pawn occupant = _clonePod.InnerPawn;
-        drawPos += new Vector3(0.15f, 0.0f, -0.15f);
+        var rotation = parent.Rotation;
+        drawPos += GetPawnDrawOffset(rotation);
 
-        float pawnOffset = 0;
+        float floatOffset = 0;
         if (_clonePod.IsWorking)
-            pawnOffset = FloatingOffset(_clonePod.RemainingWork);
-        drawPos.z += pawnOffset;
+            floatOffset = FloatingOffset(_clonePod.RemainingWork);
+
+        if (rotation == Rot4.North || rotation == Rot4.South)
+            drawPos.z += floatOffset;
+        else
+            drawPos.x += floatOffset;
 
         occupant.Drawer.renderer.RenderPawnAt(
             drawPos,
-            Rot4.East,
+            null,
             neverAimWeapon: true);
+    }
+
+    private static Vector3 GetPawnDrawOffset(Rot4 rot)
+    {
+        if (rot == Rot4.North)
+            return new Vector3(0f, 0f, 0.5f);
+
+        if (rot == Rot4.East)
+            return new Vector3(0.5f, 0f, 0.25f);
+
+        if (rot == Rot4.South)
+            return new Vector3(0f, 0.0f, -0.35f);
+
+        if (rot == Rot4.West)
+            return new Vector3(-0.5f, 0f, 0.25f);
+
+        return Vector3.zero;
     }
 
     public static float FloatingOffset(float tickOffset)

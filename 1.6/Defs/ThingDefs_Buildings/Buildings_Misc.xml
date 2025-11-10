@@ -92,16 +92,11 @@
 		<containedPawnsSelectable>true</containedPawnsSelectable>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGWraithCloningPod</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<graphicClass>Graphic_Multi</graphicClass>
 			<drawSize>(2, 3)</drawSize>
-			<drawOffset>(0,0,0.25)</drawOffset>
-			<shadowData>
-				<volume>(0.83, 0.3, 1.7)</volume>
-			</shadowData>
 			<addTopAltitudeBias>true</addTopAltitudeBias>
 		</graphicData>
 		<uiIconPath>Things/Building/Misc/RGWraithCloningPodIcon</uiIconPath>
-		<castEdgeShadows>true</castEdgeShadows>
 		<researchPrerequisites>
 			<li>Rimgate_WraithCloneGenome</li>
 		</researchPrerequisites>
@@ -125,14 +120,15 @@
 		</thingCategories>
 		<tickerType>Normal</tickerType>
 		<drawerType>RealtimeOnly</drawerType>
-		<size>(2,2)</size>
+		<size>(2,3)</size>
 		<designationCategory>Misc</designationCategory>
 		<hasInteractionCell>true</hasInteractionCell>
-		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
-		<rotatable>false</rotatable>
+		<interactionCellOffset>(0,0,2)</interactionCellOffset>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>South</defaultPlacingRot>
 		<building>
 			<ai_chillDestination>false</ai_chillDestination>
-			<uninstallWork>1800</uninstallWork>
+			<uninstallWork>4500</uninstallWork>
 			<destroySound>BuildingDestroyed_Metal_Small</destroySound>
 			<isPlayerEjectable>true</isPlayerEjectable>
 			<workTableRoomRole>Laboratory</workTableRoomRole>
@@ -144,6 +140,11 @@
 			<ComponentIndustrial>6</ComponentIndustrial>
 			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
+		<placeWorkers>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
 		<comps>
 			<li Class="CompProperties_Refuelable">
 				<fuelConsumptionRate>0</fuelConsumptionRate>
@@ -162,22 +163,23 @@
 				<shortCircuitInRain>false</shortCircuitInRain>
 				<basePowerConsumption>5000</basePowerConsumption>
 				<idlePowerDraw>50</idlePowerDraw>
+				<alwaysDisplayAsUsingPower>true</alwaysDisplayAsUsingPower>
 			</li>
 			<li Class="Rimgate.CompProperties_CloningPod">
 				<backgroundGraphicData>
 					<texPath>FX/RGClonePodBackground</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
+					<graphicClass>Graphic_Multi</graphicClass>
 					<drawSize>(2, 3)</drawSize>
 				</backgroundGraphicData>
 				<fullGraphicData>
 					<texPath>FX/RGClonePodFull</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
+					<graphicClass>Graphic_Multi</graphicClass>
 					<shaderType>TransparentPostLight</shaderType>
 					<drawSize>(2, 3)</drawSize>
 				</fullGraphicData>
 				<emptyGraphicData>
 					<texPath>FX/RGClonePodEmpty</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
+					<graphicClass>Graphic_Multi</graphicClass>
 					<shaderType>TransparentPostLight</shaderType>
 					<drawSize>(2, 3)</drawSize>
 				</emptyGraphicData>
@@ -225,11 +227,6 @@
 				</targetingParameters>
 			</li>
 		</comps>
-		<placeWorkers>
-			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
-		</placeWorkers>
-		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
 	</ThingDef>
 
 	<!-- ======================= Mobile Containers ======================= -->

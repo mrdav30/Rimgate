@@ -66,10 +66,7 @@
 	<RG_CloneOccupantSoldier>Create combatant-imprinted clone of {0}</RG_CloneOccupantSoldier>
 	<RG_CloneReconstructDead>Create reconstructed clone of {0}</RG_CloneReconstructDead>
 
-	<RG_CannotUseNotBiologic>Cannot use (not biologic)</RG_CannotUseNotBiologic>
-	<RG_CannotUseMedicineTooLow>Cannot clone (requires medicine - 10)</RG_CannotUseMedicineTooLow>
-	<RG_CannotUseFuelLow>Cannot clone (not filled)</RG_CannotUseFuelLow>
-	<RG_CannotUseNoPower>Cloning pod not powered</RG_CannotUseNoPower>
+	<RG_CannotCloneReason>Cannot clone ({0})</RG_CannotCloneReason>
 	<RG_EnterCloningPod>Enter cloning pod</RG_EnterCloningPod>
 	<RG_LetterCloneMajorFailureLabel>Major Cloning Failure</RG_LetterCloneMajorFailureLabel>
 	<RG_LetterCloneHostDiedDesc>The clone host died in the cloning process.</RG_LetterCloneHostDiedDesc>

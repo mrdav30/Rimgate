@@ -9,12 +9,8 @@
                 <fleckDef>Rimgate_ClonePodScanner_Idle</fleckDef>
                 <spawnLocType>OnSource</spawnLocType>
                 <rotation>0</rotation>
-                <useTargetAInitialRotation>true</useTargetAInitialRotation>
                 <color>(0.5,0.5,0.5)</color>
                 <ticksBetweenMotes>180</ticksBetweenMotes>
-                <perRotationOffsets>
-                    <li>(0, 0, 0.25)</li>
-                </perRotationOffsets>
             </li>
         </children>
     </EffecterDef>
@@ -33,7 +29,7 @@
             <li>
                 <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
                 <fleckDef>Rimgate_ClonePodScanner_Forward</fleckDef>
-                <spawnLocType>OnSource</spawnLocType>
+                <spawnLocType>BetweenPositions</spawnLocType>
                 <positionLerpFactor>0.6</positionLerpFactor>
                 <rotation>0</rotation>
                 <ticksBetweenMotes>180</ticksBetweenMotes>
@@ -41,9 +37,6 @@
                 <angle>0</angle>
                 <useTargetAInitialRotation>true</useTargetAInitialRotation>
                 <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
-                <perRotationOffsets>
-                    <li>(0, 0, 0.75)</li>
-                </perRotationOffsets>
             </li>
             <li>
                 <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
@@ -55,6 +48,7 @@
                 <initialDelayTicks>120</initialDelayTicks>
                 <speed>1</speed>
                 <angle>0</angle>
+                <useTargetAInitialRotation>true</useTargetAInitialRotation>
                 <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
             </li>
         </children>
@@ -62,40 +56,39 @@
 
     <FleckDef ParentName="FleckBase">
         <defName>Rimgate_ClonePodScanner_Idle</defName>
-        <altitudeLayer>BuildingOnTop</altitudeLayer>
-        <altitudeLayerIncOffset>-0.02</altitudeLayerIncOffset>
+        <altitudeLayer>DoorMoveable</altitudeLayer>
         <fadeInTime>1.2</fadeInTime>
         <solidTime>0</solidTime>
         <fadeOutTime>0.8</fadeOutTime>
         <graphicData>
             <texPath>FX/RGClonePodHighlightAtlas</texPath>
-            <drawSize>(2, 3)</drawSize>
+            <drawSize>(2, 3.5)</drawSize>
         </graphicData>
     </FleckDef>
 
     <FleckDef ParentName="FleckBase_Thrown">
         <defName>Rimgate_ClonePodScanner_Forward</defName>
-        <altitudeLayer>BuildingOnTop</altitudeLayer>
-        <altitudeLayerIncOffset>-0.02</altitudeLayerIncOffset>
+        <altitudeLayer>Building</altitudeLayer>
+        <altitudeLayerIncOffset>-0.5</altitudeLayerIncOffset>
         <fadeInTime>0.1</fadeInTime>
         <solidTime>1.8</solidTime>
         <fadeOutTime>0.4</fadeOutTime>
         <graphicData>
             <texPath>Things/Mote/BrightFlash</texPath>
-            <drawSize>(1,2)</drawSize>
+            <drawSize>(1.75,1)</drawSize>
         </graphicData>
     </FleckDef>
 
     <FleckDef ParentName="FleckBase_Thrown">
         <defName>Rimgate_ClonePodScanner_Backward</defName>
-        <altitudeLayer>BuildingOnTop</altitudeLayer>
-        <altitudeLayerIncOffset>-0.03</altitudeLayerIncOffset>
+        <altitudeLayer>Building</altitudeLayer>
+        <altitudeLayerIncOffset>-1.5</altitudeLayerIncOffset>
         <fadeInTime>0.1</fadeInTime>
         <solidTime>0.4</solidTime>
         <fadeOutTime>0.3</fadeOutTime>
         <graphicData>
             <texPath>Things/Mote/BrightFlash</texPath>
-            <drawSize>(1.5,2)</drawSize>
+            <drawSize>(1.75,1)</drawSize>
         </graphicData>
     </FleckDef>
 
