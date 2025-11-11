@@ -262,12 +262,10 @@
         <graphicData>
             <texPath>Things/Building/Artifact/ZPM/RGZPM</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(1,2)</drawSize>
-            <drawOffset>(0,0,0.40)</drawOffset>
+            <drawSize>1</drawSize>
             <shadowData>
                 <volume>(0.27,0.25,0.27)</volume>
             </shadowData>
-            <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <techLevel>Archotech</techLevel>
         <stackLimit>1</stackLimit>
@@ -377,7 +375,7 @@
         <graphicData>
             <texPath>Things/Building/Artifact/RGArchotechIdolOfResonance</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(2,2)</drawSize>
+            <drawSize>1</drawSize>
         </graphicData>
         <thingCategories>
             <li>Artifacts</li>

@@ -80,6 +80,7 @@ public class Building_ZPM : Building
         _chargeGraphics ??= new();
         _chargeGraphics.Clear();
         string[] powerStates = { "Depleted", "25%", "50%", "75%", "Full" };
+        GraphicData data = RimgateDefOf.Rimgate_ZPM.graphicData;
         foreach (var powerState in powerStates)
         {
             var graphic = new Graphic_Single();
@@ -88,16 +89,15 @@ public class Building_ZPM : Building
                 typeof(Graphic_Single),
                 $"Things/Building/Artifact/ZPM/RGZPM_{powerState}",
                 ShaderDatabase.DefaultShader,
-                new Vector2(1, 2),
+                data.drawSize,
                 Color.white,
                 Color.white,
-                new GraphicData(),
+                data,
                 0,
                 null,
                 null);
 
             graphic.Init(request);
-            graphic.data.drawOffset = RimgateDefOf.Rimgate_ZPM.graphicData.drawOffset;
             _chargeGraphics.Add(powerState, graphic);
         }
     }

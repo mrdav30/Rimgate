@@ -2,7 +2,7 @@
 <Defs>
     <ThingDef ParentName="BaseBear">
         <defName>Rimgate_ManhunterBear</defName>
-        <label>crazed brown bear</label>
+        <label>cranky brown bear</label>
         <description>A huge omnivorous mammal adapted for cold climates. Bears' thick blubber and fur keeps them warm in winter.\n\nWhile their usual diet consists of fish, berries, honey, and scavenged meat, the kodiak is capable of using its massive strength and deadly claws to kill live prey. They are startlingly quick for such lumbering creatures.</description>
         <statBases>
             <Wildness>0.8</Wildness>
@@ -88,7 +88,7 @@
 
     <PawnKindDef ParentName="BearBase">
         <defName>Rimgate_ManhunterBear</defName>
-        <label>kodiak bear</label>
+        <label>cranky brown bear</label>
         <race>Rimgate_ManhunterBear</race>
         <lifeStages>
             <li>

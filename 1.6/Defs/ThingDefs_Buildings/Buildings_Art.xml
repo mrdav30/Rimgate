@@ -19,7 +19,7 @@
         <graphicData>
             <graphicClass>Graphic_Random</graphicClass>
             <texPath>Things/Building/Art/RGSculptureGoauld</texPath>
-            <drawSize>(3,3)</drawSize>
+            <drawSize>1</drawSize>
         </graphicData>
         <rotatable>false</rotatable>
         <fillPercent>0.5</fillPercent>
