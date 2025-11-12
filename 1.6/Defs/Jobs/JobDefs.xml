@@ -210,4 +210,13 @@
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 
+	<!-- =============== Symbiote pool =============== -->
+
+	<JobDef>
+		<defName>Rimgate_InsertSymbioteQueen</defName>
+		<driverClass>Rimgate.JobDriver_InsertSymbioteQueen</driverClass>
+		<reportString>inserting symbiote queen.</reportString>
+		<casualInterruptible>true</casualInterruptible>
+	</JobDef>
+
 </Defs>

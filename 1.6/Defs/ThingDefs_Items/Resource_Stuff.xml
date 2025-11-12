@@ -567,4 +567,49 @@
     </comps>
   </ThingDef>
 
+  <!-- ==================== Symbiote Queen ==================== -->
+
+  <ThingDef>
+    <defName>Rimgate_SymbioteQueen</defName>
+    <label>Goa'uld symbiote queen</label>
+    <description>a massive, mature Goa'uld symbiote capable of spawning new larvae. Too large and willful to be used as an implant—best kept submerged in a prepared spawning pool.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGGoauldSymbioteQueen</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>0.75</drawSize>
+    </graphicData>
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <drawerType>MapMeshOnly</drawerType>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <tickerType>Rare</tickerType>
+    <alwaysHaulable>true</alwaysHaulable>
+    <pathCost>14</pathCost>
+    <allowedArchonexusCount>1</allowedArchonexusCount>
+    <rotatable>false</rotatable>
+    <statBases>
+      <Mass>5</Mass>
+      <MarketValue>1800</MarketValue>
+      <MaxHitPoints>120</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <Beauty>-4</Beauty>
+      <DeteriorationRate>2.0</DeteriorationRate>
+    </statBases>
+    <size>(1,1)</size>
+    <stackLimit>1</stackLimit>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <tradeability>Sellable</tradeability>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>1</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
 </Defs>

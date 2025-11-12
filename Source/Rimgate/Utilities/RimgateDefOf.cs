@@ -78,6 +78,7 @@ public static class RimgateDefOf
     public static JobDef Rimgate_EnterStargate;
     public static JobDef Rimgate_EnterStargateWithContainer;
     public static JobDef Rimgate_HaulToContainer;
+    public static JobDef Rimgate_InsertSymbioteQueen;
     public static JobDef Rimgate_MeditateOnGoauldThrone;
     public static JobDef Rimgate_PatientGoToSarcophagus;
     public static JobDef Rimgate_PushMobileContainer;

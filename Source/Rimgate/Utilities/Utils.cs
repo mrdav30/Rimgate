@@ -287,6 +287,11 @@ internal static class Utils
         // return candidates.TryRandomElementByWeight(f => f.def.raidCommonalityFromPointsCurve?.Evaluate(1000f) ?? 1f, out faction);
     }
 
+    public static string FormatTicksToPeriod(this float ticks)
+    {
+        return ((int)Mathf.Max(0, ticks)).ToStringTicksToPeriod();
+    }
+
     internal static void ThrowDebugText(string text, Vector3 drawPos, Map map)
     {
         MoteMaker.ThrowText(drawPos, map, text, -1f);

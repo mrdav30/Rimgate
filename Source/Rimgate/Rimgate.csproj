@@ -330,6 +330,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_CloneReconstructDead.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_EnterCloningPod.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_HaulToMobileContainer.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_InsertSymbioteQueen.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_MeditateOnGoauldThrone.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_PushMobileContainer.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_ToggleIris.cs" />
@@ -351,6 +352,7 @@
     <Compile Include="Comps\Comp_ResonanceIdol.cs" />
     <Compile Include="Comps\Comp_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Comp_AlarmOpenCaskets.cs" />
+    <Compile Include="Comps\Comp_SymbiotePool.cs" />
     <Compile Include="Comps\Comp_ZpmSignalScrambler.cs" />
     <Compile Include="Comps\Properties\CompProperties_AnalyzableResearchWhen.cs" />
     <Compile Include="Comps\Properties\CompProperties_AssembleAndStartQuest.cs" />
@@ -367,6 +369,7 @@
     <Compile Include="Comps\Properties\CompProperties_CloningPod.cs" />
     <Compile Include="Comps\Properties\CompProperties_ResonanceIdol.cs" />
     <Compile Include="Comps\Properties\CompProperties_SetInitialGestatorState.cs" />
+    <Compile Include="Comps\Properties\CompProperties_SymbiotePool.cs" />
     <Compile Include="Comps\Properties\CompProperties_Toggle.cs" />
     <Compile Include="Comps\Properties\CompProperties_FrameApparel.cs" />
     <Compile Include="Comps\Properties\CompProperties_ShieldEmitter.cs" />
@@ -411,6 +414,8 @@
     <Compile Include="Quests\QuestPart_DelayedPassOutInterval.cs" />
     <Compile Include="Quests\QuestPart_RandomFactionRaid.cs" />
     <Compile Include="Quests\QuestPart_SpawnPawnsOnSignal.cs" />
+    <Compile Include="Things\Building_SymbioteSpawningPool.cs" />
+    <Compile Include="UI\ITab_SymbiotePool.cs" />
     <Compile Include="UI\RimgateTex.cs" />
     <Compile Include="Social\ThoughtWorker_WraithEssenceCraving.cs" />
     <Compile Include="Storyteller\IncidentWorker_StargateHeatWave.cs" />

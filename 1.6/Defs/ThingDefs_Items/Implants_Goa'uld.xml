@@ -11,10 +11,14 @@
             <RecipeDef>Rimgate_InstallSymbiote</RecipeDef>
         </descriptionHyperlinks>
         <techLevel>Neolithic</techLevel>
+        <tickerType>Rare</tickerType>
         <graphicData>
             <texPath>Things/Item/Resource/RGGoauldSymbiote</texPath>
             <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>0.75</drawSize>
         </graphicData>
+        <size>(1,1)</size>
+        <stackLimit>1</stackLimit>
         <statBases>
             <Mass>2</Mass>
             <MarketValue>800</MarketValue>
@@ -66,6 +70,10 @@
                     <canTargetMechs>false</canTargetMechs>
                     <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
                 </targetingParameters>
+            </li>
+            <li Class="CompProperties_Rottable">
+                <daysToRotStart>1</daysToRotStart>
+                <rotDestroys>true</rotDestroys>
             </li>
         </comps>
     </ThingDef>

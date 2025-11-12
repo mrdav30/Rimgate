@@ -574,4 +574,128 @@
 		</placeWorkers>
 	</ThingDef>
 
+	<!-- ======================= Symbiote Spawning Pool ======================= -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_SymbioteSpawningPool</defName>
+		<label>symbiote spawning pool</label>
+		<description>a carved, stone-lined biopool designed to house a Goa'uld symbiote queen. Fed regularly with prepared feed, it will slowly produce new symbiotes ready for implantation—assuming nothing crawls out first.</description>
+
+		<thingClass>Rimgate.Building_SymbioteSpawningPool</thingClass>
+
+		<size>(2,2)</size>
+		<altitudeLayer>FloorEmplacement</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<rotatable>false</rotatable>
+		<useHitPoints>true</useHitPoints>
+		<selectable>true</selectable>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<tickerType>Rare</tickerType>
+		<castEdgeShadows>false</castEdgeShadows>
+		<blockWind>true</blockWind>
+		<fillPercent>0.75</fillPercent>
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<category>Building</category>
+		<designationCategory>Misc</designationCategory>
+
+		<graphicData>
+			<texPath>Things/Building/Misc/RGSymbioteSpawningPool</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+			<shaderType>CutoutComplex</shaderType>
+			<!-- <shadowData>
+				<volume>(0.8, 0.3, 0.8)</volume>
+			</shadowData> -->
+		</graphicData>
+
+		<statBases>
+			<MaxHitPoints>300</MaxHitPoints>
+			<WorkToBuild>6000</WorkToBuild>
+			<Flammability>0.5</Flammability>
+			<Beauty>3</Beauty>
+			<Mass>80</Mass>
+		</statBases>
+
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+
+		<stuffCategories>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>120</costStuffCount>
+		<costList>
+			<Steel>140</Steel>
+		</costList>
+
+		<hasInteractionCell>true</hasInteractionCell>
+		<interactionCellOffset>(0,0,0)</interactionCellOffset>
+
+		<building>
+			<storageGroupTag>Shelf</storageGroupTag>
+			<blueprintClass>Blueprint_Storage</blueprintClass>
+			<ai_chillDestination>false</ai_chillDestination>
+			<isInert>true</isInert>
+			<paintable>false</paintable>
+			<claimable>false</claimable>
+			<preventDeteriorationInside>true</preventDeteriorationInside>
+			<haulToContainerDuration>500</haulToContainerDuration>
+			<ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+			<defaultStorageSettings>
+				<priority>Important</priority>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_SymbioteImplant</li>
+						<li>Rimgate_SymbioteQueen</li>
+					</thingDefs>
+				</filter>
+			</defaultStorageSettings>
+			<fixedStorageSettings>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_SymbioteImplant</li>
+						<li>Rimgate_SymbioteQueen</li>
+					</thingDefs>
+				</filter>
+			</fixedStorageSettings>
+			<maxItemsInCell>10</maxItemsInCell>
+		</building>
+
+		<inspectorTabs>
+			<li>Rimgate.ITab_SymbiotePool</li>
+		</inspectorTabs>
+
+		<researchPrerequisites>
+			<li>Rimgate_SymbioteStudy</li>
+		</researchPrerequisites>
+
+		<comps>
+
+			<!-- Fuel (kibble as "biomass feed") -->
+			<li Class="CompProperties_Refuelable">
+				<fuelCapacity>20</fuelCapacity>
+				<fuelLabel>symbiote feed</fuelLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Kibble</li>
+					</thingDefs>
+				</fuelFilter>
+				<initialFuelPercent>0</initialFuelPercent>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<autoRefuelPercent>0.5</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<drawOutOfFuelOverlay>true</drawOutOfFuelOverlay>
+			</li>
+
+			<!-- Custom pool logic -->
+			<li Class="Rimgate.CompProperties_SymbiotePool">
+				<symbioteQueenDef>Rimgate_SymbioteQueen</symbioteQueenDef>
+				<productSymbioteDef>Rimgate_SymbioteImplant</productSymbioteDef>
+				<daysPerSymbiote>3.0</daysPerSymbiote>
+				<fuelPerSymbiote>2.0</fuelPerSymbiote>
+			</li>
+		</comps>
+	</ThingDef>
+
+
 </Defs>
