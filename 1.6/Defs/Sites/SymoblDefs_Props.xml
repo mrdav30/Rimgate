@@ -71,6 +71,22 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_SymbioteUrn</defName>
+        <thing>Rimgate_SymbioteUrn</thing>
+        <stuff>Steel</stuff>
+        <thingSetMakerDef>Rimgate_SymbioteContainer</thingSetMakerDef>
+        <thingSetMakerDefForPlayer>Rimgate_SymbioteContainer</thingSetMakerDefForPlayer>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_QueenUrn</defName>
+        <thing>Rimgate_SymbioteUrn</thing>
+        <stuff>Gold</stuff>
+        <thingSetMakerDef>Rimgate_SymbioteQueenContainer</thingSetMakerDef>
+        <thingSetMakerDefForPlayer>Rimgate_SymbioteQueenContainer</thingSetMakerDefForPlayer>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_Corpse</defName>
         <pawnKindDef>Villager</pawnKindDef>
         <spawnPartOfFaction>false</spawnPartOfFaction>

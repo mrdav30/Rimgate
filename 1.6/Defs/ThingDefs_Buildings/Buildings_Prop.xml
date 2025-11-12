@@ -896,6 +896,44 @@
         </comps>
     </ThingDef>
 
+    <ThingDef ParentName="CrateBase">
+        <defName>Rimgate_SymbioteUrn</defName>
+        <label>Goa'uld Symbiote urn</label>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGSymbioteContainer</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1,1)</drawSize>
+        </graphicData>
+        <description>A small urn that is hermetically sealed to contain a Goa'uld symbiote.</description>
+        <size>(1, 1)</size>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <deconstructible>false</deconstructible>
+            <claimable>false</claimable>
+        </building>
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <Flammability>0</Flammability>
+        </statBases>
+        <rotatable>false</rotatable>
+        <stuffCategories>
+            <li>Metallic</li>
+        </stuffCategories>
+        <costStuffCount>50</costStuffCount>
+        <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
+        <comps>
+            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/RGSymbioteContainer_Empty</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <drawSize>(1,1)</drawSize>
+                </graphicData>
+            </li>
+        </comps>
+    </ThingDef>
+
     <!-- ======================= Wraith Cocoon Pod ======================= -->
 
     <ThingDef ParentName="BuildingBase">

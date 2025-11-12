@@ -605,6 +605,7 @@
 		<drawGUIOverlay>true</drawGUIOverlay>
 		<category>Building</category>
 		<designationCategory>Misc</designationCategory>
+		<stealable>false</stealable>
 
 		<graphicData>
 			<texPath>Things/Building/Misc/RGSymbioteSpawningPool</texPath>

@@ -556,7 +556,7 @@
             </fixedParams>
           </thingSetMaker>
         </li>
-        
+
         <!-- Serums -->
         <li>
           <weight>0.25</weight>
@@ -638,6 +638,64 @@
               <countRange>1</countRange>
             </fixedParams>
           </thingSetMaker>
+        </li>
+
+      </options>
+    </root>
+  </ThingSetMakerDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_SymbioteContainer</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <li>
+          <weight>0.75</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_SymbioteImplant</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: empty -->
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
+        </li>
+
+      </options>
+    </root>
+  </ThingSetMakerDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_SymbioteQueenContainer</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <li>
+          <weight>0.75</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_SymbioteQueen</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: empty -->
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
         </li>
 
       </options>

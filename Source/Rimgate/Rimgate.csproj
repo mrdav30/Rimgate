@@ -345,6 +345,7 @@
     <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CloseStargate.cs" />
     <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
+    <Compile Include="Comps\Comp_TintedEmptyStateGraphic.cs" />
     <Compile Include="Comps\Comp_AnalyzableResearchWhen.cs" />
     <Compile Include="Comps\CompUseEffect_AssembleAndStartQuest.cs" />
     <Compile Include="Comps\Comp_MobileContainer.cs" />
@@ -370,6 +371,7 @@
     <Compile Include="Comps\Properties\CompProperties_ResonanceIdol.cs" />
     <Compile Include="Comps\Properties\CompProperties_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Properties\CompProperties_SymbiotePool.cs" />
+    <Compile Include="Comps\Properties\CompProperties_TintedEmptyStateGraphic.cs" />
     <Compile Include="Comps\Properties\CompProperties_Toggle.cs" />
     <Compile Include="Comps\Properties\CompProperties_FrameApparel.cs" />
     <Compile Include="Comps\Properties\CompProperties_ShieldEmitter.cs" />
