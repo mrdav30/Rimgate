@@ -585,7 +585,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_SymbioteSpawningPool</defName>
 		<label>symbiote spawning pool</label>
-		<description>a carved, stone-lined biopool designed to house a Goa'uld symbiote queen. Fed regularly with prepared feed, it will slowly produce new symbiotes ready for implantation—assuming nothing crawls out first.</description>
+		<description>A carved, stone-lined biopool designed to house a Goa'uld symbiote queen. Fed regularly with prepared feed, it will slowly produce new symbiotes ready for implantation—assuming nothing crawls out first.\n\nThe bio-reactive medium preserves all symbiotic tissue indefinitely, preventing decomposition and stasis loss while submerged, until called to serve a new host.</description>
 
 		<thingClass>Rimgate.Building_SymbioteSpawningPool</thingClass>
 
@@ -665,7 +665,7 @@
 					</thingDefs>
 				</filter>
 			</fixedStorageSettings>
-			<maxItemsInCell>10</maxItemsInCell>
+			<maxItemsInCell>15</maxItemsInCell>
 		</building>
 
 		<inspectorTabs>
@@ -694,7 +694,6 @@
 				<drawOutOfFuelOverlay>true</drawOutOfFuelOverlay>
 			</li>
 
-			<!-- Custom pool logic -->
 			<li Class="Rimgate.CompProperties_SymbiotePool">
 				<symbioteQueenDef>Rimgate_SymbioteQueen</symbioteQueenDef>
 				<productSymbioteDef>Rimgate_SymbioteImplant</productSymbioteDef>

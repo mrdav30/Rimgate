@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
+using static UnityEngine.GridBrushBase;
 
 namespace Rimgate;
 
@@ -35,49 +36,69 @@ public class Comp_SymbiotePool : ThingComp
     {
         base.CompTickRare();
 
-        if (!parent.Spawned)
-            return;
+        if (!parent.Spawned) return;
+        if (PowerTrader != null && !PowerTrader.PowerOn) return;
 
-        if (PowerTrader != null && !PowerTrader.PowerOn)
-            return;
+        var pool = parent as Building_SymbioteSpawningPool;
+        if (pool == null) return;
 
-        if (Refuelable != null && !Refuelable.HasFuel)
-            return;
-
-        if (ModsConfig.OdysseyActive)
+        // Count product symbiotes currently stored
+        int larvaeCount = pool.InnerContainer.InnerListForReading.Count(t => t.def == Props.productSymbioteDef);
+        int extraLarvae = Mathf.Max(0, larvaeCount - Props.freeSymbiotesBeforeUpkeep);
+        if (extraLarvae > 0 || Props.upkeepFuelPerDayBase > 0f)
         {
-            if ((parent as Building_SymbioteSpawningPool).HasAnyContents
-                && Props.spawnSymbioteMotes
-                && parent.IsHashIntervalTick(Props.moteIntervalTicks))
+            float perDay = Props.upkeepFuelPerDayBase + (extraLarvae * Props.upkeepFuelPerExtraSymbiote);
+            if (perDay > 0f)
             {
-                TrySpawnSymbioteMote();
+                // Convert daily upkeep to "per rare tick"
+                float ticksPerRare = 250f;
+                float upkeepPerRare = perDay * (ticksPerRare / GenDate.TicksPerDay);
+
+                // Not enough feed to sustain the current brood — 
+                // (pause growth); nothing advances this tick)
+                if (Refuelable == null || !Refuelable.HasFuel || Refuelable.Fuel < upkeepPerRare)
+                {
+                    return;
+                }
+                else
+                {
+                    Refuelable.ConsumeFuel(upkeepPerRare);
+                }
             }
         }
 
-        if (!(parent as Building_SymbioteSpawningPool).HasQueen)
-            return;
+        // Need some fuel to even operate
+        if (Refuelable != null && !Refuelable.HasFuel) return;
 
-        // Progress per rare tick (250 ticks)
+        // VFX
+        if (ModsConfig.OdysseyActive 
+            && pool.HasAnyContents
+            && Props.spawnSymbioteMotes
+            && parent.IsHashIntervalTick(Props.moteIntervalTicks))
+        {
+                TrySpawnSymbioteMote();
+        }
+
+        // Require queen to progress production
+        if (!pool.HasQueen) return;
+
+        // Production progress
         float ticksPerProduct = Props.daysPerSymbiote * GenDate.TicksPerDay;
-        if (ticksPerProduct <= 0f)
-            ticksPerProduct = GenDate.TicksPerDay;
-
+        if (ticksPerProduct <= 0f) ticksPerProduct = GenDate.TicksPerDay;
         _progress += 250f / ticksPerProduct;
         if (_progress < 1f) return;
 
+
         // Ready to complete a product;
-        // verify payment before resetting progress
-        if (Refuelable != null
-            && Props.fuelPerSymbiote > 0f)
+        // Pay production cost before completing
+        if (Refuelable != null && Props.fuelPerSymbiote > 0f)
         {
             if (Refuelable.Fuel < Props.fuelPerSymbiote)
             {
-                // hold at complete until there is enough fuel
+                // hold at “ready” until feed appears
                 _progress = 1f;
                 return;
             }
-
-            // Pay now that we know we can
             Refuelable.ConsumeFuel(Props.fuelPerSymbiote);
         }
 
@@ -131,14 +152,28 @@ public class Comp_SymbiotePool : ThingComp
 
     public override string CompInspectStringExtra()
     {
+        var pool = parent as Building_SymbioteSpawningPool;
         var sb = new StringBuilder();
 
-        if ((parent as Building_SymbioteSpawningPool).HasQueen)
+        if (pool.HasQueen)
         {
             sb.Append("RG_PoolQueenPresent".Translate("present"));
             sb.AppendLine();
+
             float ticksRemaining = Props.daysPerSymbiote * GenDate.TicksPerDay * (1f - _progress);
             sb.Append("RG_NextSymbioteCount".Translate(ticksRemaining.FormatTicksToPeriod()));
+
+            int larvae = pool.InnerContainer.InnerListForReading.Count(t => t.def == Props.productSymbioteDef);
+            int extra = Mathf.Max(0, larvae - Props.freeSymbiotesBeforeUpkeep);
+            if (larvae > 0 && (Props.upkeepFuelPerDayBase > 0f || Props.upkeepFuelPerExtraSymbiote > 0f))
+            {
+                float perDay = Props.upkeepFuelPerDayBase + extra * Props.upkeepFuelPerExtraSymbiote;
+                if (perDay > 0f)
+                {
+                    sb.AppendLine();
+                    sb.Append("RG_PoolUpkeepPerDay".Translate(perDay.ToString("0.##"))); // add a keyed string
+                }
+            }
         }
         else
             sb.Append("RG_PoolQueenMissing".Translate("not present"));

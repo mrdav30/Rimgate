@@ -43,22 +43,34 @@ public class ITab_SymbiotePool : ITab_ContentsBase
     private void ListContainedSymbiotes(Rect inRect, IList<Thing> symbiote, ref float curY)
     {
         GUI.BeginGroup(inRect);
-        Widgets.ListSeparator(ref curY, inRect.width, containedItemsKey.Translate());
-        bool flag = false;
+        Widgets.ListSeparator(ref curY, inRect.width, HeaderWithCounts());
+
+        bool any = false;
         for (int i = 0; i < symbiote.Count; i++)
         {
             Thing thing = symbiote[i];
             if (thing != null)
             {
-                flag = true;
+                any = true;
                 DoRow(thing, inRect.width, i, ref curY);
             }
         }
 
-        if (!flag)
+        if (!any)
             Widgets.NoneLabel(ref curY, inRect.width);
 
         GUI.EndGroup();
+    }
+
+    private string HeaderWithCounts()
+    {
+        var baseLabel = containedItemsKey.Translate();
+        int cur = Pool?.HeldItems?.Count ?? 0;
+        int max = Pool?.MaxHeldItems ?? 0;
+        // If max is not defined for some reason, just show current.
+        return max > 0 
+            ? $"{baseLabel} ({cur} / {max})" 
+            : $"{baseLabel} ({cur})";
     }
 
     private void DoRow(Thing thing, float width, int i, ref float curY)

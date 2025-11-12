@@ -64,6 +64,7 @@
 	<RG_InsertQueenRejectNoQueen>No symbiote queen is available for that colonist to haul.</RG_InsertQueenRejectNoQueen>
 	<RG_PoolQueenPresent>Queen: present</RG_PoolQueenPresent>
 	<RG_PoolQueenMissing>Queen: not present</RG_PoolQueenMissing>
+	<RG_PoolUpkeepPerDay>Daily feed upkeep: {0}</RG_PoolUpkeepPerDay>
 	<RG_NextSymbioteCount>Next symbiote in: {0}</RG_NextSymbioteCount>
 	<RG_EjectSymbioteTooltip>Remove this from the symbiote pool.</RG_EjectSymbioteTooltip>
 
