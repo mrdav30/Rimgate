@@ -10,15 +10,8 @@ using Verse.Sound;
 
 namespace Rimgate;
 
-[StaticConstructorOnStartup]
 public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
 {
-    public static readonly Texture2D LoadCommandTex = ContentFinder<Texture2D>.Get("UI/Commands/LoadTransporter");
-
-    public static readonly Texture2D PushCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGPushIcon");
-
-    public static readonly Texture2D PushAndDumpCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGPushAndDumpIcon");
-
     public ThingOwner_Container InnerContainer;
 
     public List<TransferableOneWay> LeftToLoad;
@@ -289,7 +282,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
                 Command_LoadToContainer loadAfterCommand = new();
                 loadAfterCommand.defaultLabel = "CommandLoadTransporterSingle".Translate();
                 loadAfterCommand.defaultDesc = "CommandSetToLoadTransporterDesc".Translate();
-                loadAfterCommand.icon = LoadCommandTex;
+                loadAfterCommand.icon = RimgateTex.LoadCommandTex;
                 loadAfterCommand.Container = this;
                 yield return loadAfterCommand;
             }
@@ -318,7 +311,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         Command_LoadToContainer loadCommand = new();
         loadCommand.defaultLabel = "CommandLoadTransporterSingle".Translate();
         loadCommand.defaultDesc = "CommandSetToLoadTransporterDesc".Translate();
-        loadCommand.icon = LoadCommandTex;
+        loadCommand.icon = RimgateTex.LoadCommandTex;
         loadCommand.Container = this;
         yield return loadCommand;
 
@@ -327,7 +320,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         {
             defaultLabel = "RG_CommandPushLabel".Translate(),
             defaultDesc = "RG_CommandPushDesc".Translate(parent.LabelShort),
-            icon = PushCommandTex,
+            icon = RimgateTex.PushCommandTex,
             targetingParams = new TargetingParameters { canTargetLocations = true, canTargetBuildings = true },
             Disabled = LoadingInProgress,
             disabledReason = "RG_CommandCartDisabled".Translate(),
@@ -343,7 +336,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         {
             defaultLabel = "RG_CommandPushAndDumpLabel".Translate(),
             defaultDesc = "RG_CommandPushAndDumpDesc".Translate(parent.LabelShort),
-            icon = PushAndDumpCommandTex,
+            icon = RimgateTex.PushAndDumpCommandTex,
             targetingParams = new TargetingParameters { canTargetLocations = true },
             Disabled = LoadingInProgress,
             disabledReason = "RG_CommandCartDisabled".Translate(),

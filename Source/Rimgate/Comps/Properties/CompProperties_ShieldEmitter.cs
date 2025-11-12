@@ -58,7 +58,9 @@ public class CompProperties_ShieldEmitter : CompProperties
 
     public int shieldScaleDefault = 5;
 
-    public Color shieldColour = Color.blue;
+    public Color shieldColor = Color.blue;
+
+    public Color inactiveColor = new Color(0.2f, 0.2f, 0.2f);
 
     public bool drawInterceptCone;
 

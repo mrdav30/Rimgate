@@ -22,13 +22,8 @@ public enum SarcophagusStatus
     Error
 }
 
-[StaticConstructorOnStartup]
 public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, ISearchableContents
 {
-    public static readonly Texture2D AllowGuestCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGSarcophagusAllowGuestsIcon");
-
-    public static readonly Texture2D TreatmentCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGAbortSarcophagusTreatmentIcon");
-
     public CompPowerTrader Power;
 
     public Comp_Sarcophagus SarcophagusComp;
@@ -224,7 +219,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                 {
                     AllowGuests = !AllowGuests;
                 },
-                icon = AllowGuestCommandTex,
+                icon = RimgateTex.AllowGuestCommandTex,
                 activateSound = SoundDefOf.Tick_Tiny
             };
         }
@@ -240,7 +235,7 @@ public class Building_Bed_Sarcophagus : Building_Bed, IThingHolder, IOpenable, I
                 if (PatientPawn != null)
                     Abort();
             },
-            icon = TreatmentCommandTex,
+            icon = RimgateTex.TreatmentCommandTex,
             activateSound = SoundDefOf.Click
         };
 

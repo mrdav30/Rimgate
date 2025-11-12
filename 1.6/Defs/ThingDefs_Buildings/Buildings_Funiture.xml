@@ -214,11 +214,10 @@
     </building>
     <uiIconOffset>(0, 0.04)</uiIconOffset>
     <uiIconScale>1</uiIconScale>
-    <defaultPlacingRot>South</defaultPlacingRot>
     <graphicData>
       <drawSize>(4,4)</drawSize>
       <texPath>Things/Building/Furniture/RGGoauldThrone</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
+      <graphicClass>Graphic_Single</graphicClass>
       <addTopAltitudeBias>true</addTopAltitudeBias>
       <shaderType>CutoutComplex</shaderType>
       <shadowData>

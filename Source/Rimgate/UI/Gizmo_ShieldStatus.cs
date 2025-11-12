@@ -3,13 +3,9 @@ using Verse;
 
 namespace Rimgate;
 
-[StaticConstructorOnStartup]
 public class Gizmo_ShieldStatus : Gizmo
 {
     public Comp_ShieldEmitter shield;
-
-    private static readonly Texture2D FullShieldBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.2f, 0.2f, 0.24f));
-    private static readonly Texture2D EmptyShieldBarTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
 
     public Gizmo_ShieldStatus() => Order = -100f;
 
@@ -30,8 +26,8 @@ public class Gizmo_ShieldStatus : Gizmo
         Widgets.FillableBar(
             rect4,
             num1,
-            Gizmo_ShieldStatus.FullShieldBarTex,
-            Gizmo_ShieldStatus.EmptyShieldBarTex,
+            RimgateTex.FullShieldBarTex,
+            RimgateTex.EmptyShieldBarTex,
             false);
         Text.Font = GameFont.Small;
         Text.Anchor = TextAnchor.MiddleCenter;

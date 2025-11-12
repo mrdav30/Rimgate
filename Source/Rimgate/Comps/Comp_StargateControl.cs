@@ -79,6 +79,8 @@ public class Comp_StargateControl : ThingComp
 
     public Sustainer PuddleSustainer;
 
+    public Texture2D ToggleIrisIcon => _cachedIrisToggleIcon ??= ContentFinder<Texture2D>.Get(Props.irisGraphicData.texPath, true);
+
     private int _externalHoldCount;
 
     private int _ticksUntilOpen = -1;
@@ -100,6 +102,8 @@ public class Comp_StargateControl : ThingComp
     private Graphic _stargateIris;
 
     private Graphic _chevronHighlight;
+
+    private Texture2D _cachedIrisToggleIcon;
 
     #region DHD Controls
 
@@ -591,7 +595,7 @@ public class Comp_StargateControl : ThingComp
             {
                 defaultLabel = "RG_ToggleIris".Translate(action),
                 defaultDesc = "RG_ToggleIrisDesc".Translate(action),
-                icon = ContentFinder<Texture2D>.Get(Props.irisGraphicData.texPath, true),
+                icon = ToggleIrisIcon,
                 isActive = () => _wantsIrisToggled,
                 toggleAction = delegate
                 {

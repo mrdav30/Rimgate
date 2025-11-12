@@ -29,11 +29,8 @@ public enum CloneType
     Reconstruct,
 }
 
-[StaticConstructorOnStartup]
 public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWithDrawnPawn, ISearchableContents, IOpenable
 {
-    public static readonly Texture2D EjectCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGWraithCloningPodEjectIcon");
-
     protected ThingOwner innerContainer;
 
     protected bool contentsKnown;
@@ -475,7 +472,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
                 defaultLabel = "RG_CommandCloningPodEjectLabel".Translate(),
                 defaultDesc = "RG_CommandCloningPodEjectDesc".Translate(),
                 hotKey = KeyBindingDefOf.Misc1,
-                icon = EjectCommandTex
+                icon = RimgateTex.CloneEjectCommandTex
             };
 
             if (innerContainer.Count == 0)

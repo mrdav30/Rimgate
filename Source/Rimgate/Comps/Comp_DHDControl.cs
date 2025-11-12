@@ -98,7 +98,7 @@ public class Comp_DHDControl : ThingComp
         {
             defaultLabel = "RG_ToggleIris".Translate(actionLabel),
             defaultDesc = "RG_ToggleIrisDesc".Translate(actionLabel),
-            icon = ContentFinder<UnityEngine.Texture2D>.Get(stargate.Props.irisGraphicData.texPath, true),
+            icon = stargate.ToggleIrisIcon,
             isActive = () => _wantIrisToggled,
             toggleAction = delegate
             {

@@ -444,7 +444,7 @@
         <shieldCanBeScaled>true</shieldCanBeScaled>
         <shieldScaleLimits>10~20 </shieldScaleLimits>
         <shieldScaleDefault>10</shieldScaleDefault>
-        <shieldColour>(237, 227, 133)</shieldColour> 
+        <shieldColor>(237, 227, 133)</shieldColor> 
       </li>
       <li Class="CompProperties_Shuttle">
         <shipDef>Rimgate_AncientPuddleJumperShip</shipDef>

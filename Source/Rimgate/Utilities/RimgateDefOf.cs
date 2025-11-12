@@ -133,6 +133,7 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_Stargate;
     public static ThingDef Rimgate_SubspacePhaseDiverter;
     public static ThingDef Rimgate_Wheelbarrow;
+    public static ThingDef Rimgate_WraithMeatLab;
     public static ThingDef Rimgate_ZPM;
 
     public static ThingSetMakerDef Rimgate_Meteorite;

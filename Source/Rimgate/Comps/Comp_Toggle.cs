@@ -22,16 +22,9 @@ public class Comp_Toggle : ThingComp
 
     private Graphic _offGraphic;
 
-    private Texture2D _cachedCommandTex;
+    public Texture2D CommandTex => _cachedCommandTex ??= ContentFinder<Texture2D>.Get(Props.commandTexture);
 
-    public Texture2D CommandTex
-    {
-        get
-        {
-            _cachedCommandTex ??= ContentFinder<Texture2D>.Get(Props.commandTexture);
-            return _cachedCommandTex;
-        }
-    }
+    private Texture2D _cachedCommandTex;
 
     public bool SwitchIsOn
     {

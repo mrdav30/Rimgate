@@ -77,7 +77,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
                 : "RG_BringToStargate").Translate();
             yield return new FloatMenuOption(bringLabel, () =>
             {
-                TargetingParameters targetingParameters = new TargetingParameters()
+                TargetingParameters parms = new TargetingParameters()
                 {
                     canTargetPawns = true,
                     canTargetCorpses = true,
@@ -89,7 +89,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
                     mapObjectTargetsMustBeAutoAttackable = false
                 };
 
-                Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo t)
+                Find.Targeter.BeginTargeting(parms, t =>
                 {
                     if(t.Thing != null)
                     {

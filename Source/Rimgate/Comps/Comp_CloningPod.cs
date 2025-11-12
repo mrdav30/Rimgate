@@ -6,13 +6,8 @@ using Verse.Noise;
 
 namespace Rimgate;
 
-[StaticConstructorOnStartup]
 public class Comp_CloningPod : ThingComp
 {
-    public static Color IdleCycleColor = new Color(0.9f, 1f, 0.16f);
-
-    public static Color OperatingColor = new Color(0.89f, 0.24f, 0.04f);
-
     public bool PowerOn => _clonePod != null && _clonePod.Power.PowerOn;
 
     public bool Fueled => _clonePod != null && _clonePod.Refuelable.IsFull;
@@ -58,7 +53,7 @@ public class Comp_CloningPod : ThingComp
             if (_idleEffecter == null)
             {
                 _idleEffecter = RimgateDefOf.Rimgate_ClonePod_Idle.Spawn();
-                ColorizeEffecter(_idleEffecter, IdleCycleColor);
+                ColorizeEffecter(_idleEffecter, Props.idleCycleColor);
                 _idleEffecter.Trigger(parent, new TargetInfo(parent.InteractionCell, parent.Map));
             }
 
@@ -84,7 +79,7 @@ public class Comp_CloningPod : ThingComp
             if (_operatingEffecter == null)
             {
                 _operatingEffecter = RimgateDefOf.Rimgate_ClonePod_Operating.Spawn();
-                ColorizeEffecter(_operatingEffecter, OperatingColor);
+                ColorizeEffecter(_operatingEffecter, Props.operatingColor);
                 _operatingEffecter.Trigger(
                     new TargetInfo(parent),
                     new TargetInfo(operatingPos, parent.Map));

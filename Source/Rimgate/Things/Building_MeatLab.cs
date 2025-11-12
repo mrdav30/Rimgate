@@ -8,6 +8,7 @@ using Verse;
 
 namespace Rimgate;
 
+[StaticConstructorOnStartup]
 public class Building_MeatLab : Building_PlantGrower
 {
     private static Dictionary<string, Graphic> _growGraphics = new();
@@ -27,10 +28,10 @@ public class Building_MeatLab : Building_PlantGrower
 
     static Building_MeatLab()
     {
-        if (Building_MeatLab._growGraphics.Any())
-            return;
-
+        _growGraphics ??= new();
+        _growGraphics.Clear();
         string[] growStates = { "empty", "25%", "50%", "75%", "100%" };
+        GraphicData data = RimgateDefOf.Rimgate_WraithMeatLab.graphicData;
         foreach (var growState in growStates)
         {
             var graphic = new Graphic_Single();
@@ -39,10 +40,10 @@ public class Building_MeatLab : Building_PlantGrower
                 Type.GetType("Graphic_Single"),
                 $"Things/Building/Production/MeatLab/RGMeatLab_{growState}",
                 ShaderDatabase.DefaultShader,
-                new Vector2(1, 1),
+                data.drawSize,
                 Color.white,
                 Color.white,
-                new GraphicData(),
+                data,
                 0,
                 null,
                 null);

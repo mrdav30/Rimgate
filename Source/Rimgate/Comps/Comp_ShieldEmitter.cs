@@ -8,21 +8,8 @@ using Verse.Sound;
 
 namespace Rimgate;
 
-[StaticConstructorOnStartup]
 public class Comp_ShieldEmitter : ThingComp
 {
-    public static readonly Material ForceFieldMat = MaterialPool.MatFrom("Other/ForceField", ShaderDatabase.MoteGlow);
-
-    public static readonly Material ForceFieldConeMat = MaterialPool.MatFrom("Other/ForceFieldCone", ShaderDatabase.MoteGlow);
-
-    public static readonly Texture2D ShieldRadiusCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGShieldRadius");
-
-    public static readonly Texture2D ShieldVisibilityCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGShieldVisibility");
-
-    public static readonly MaterialPropertyBlock MatPropertyBlock = new MaterialPropertyBlock();
-
-    public static readonly Color InactiveColor = new Color(0.2f, 0.2f, 0.2f);
-
     public float CurStressLevel;
 
     public float MaxStressLevel = 1f;
@@ -38,6 +25,8 @@ public class Comp_ShieldEmitter : ThingComp
     public float LastTempChange;
 
     public Color CurrentColor;
+
+    private MaterialPropertyBlock _matPropertyBlock = new MaterialPropertyBlock();
 
     private int _lastInterceptTicks = -999999;
 
@@ -152,7 +141,7 @@ public class Comp_ShieldEmitter : ThingComp
 
         if (!respawningAfterLoad)
         {
-            CurrentColor = Props.shieldColour;
+            CurrentColor = Props.shieldColor;
             SetShieldRadius = Props.shieldScaleDefault;
         }
     }
@@ -510,9 +499,9 @@ public class Comp_ShieldEmitter : ThingComp
         {
             Color color = Active || !Find.Selector.IsSelected((object)parent)
                 ? CurrentColor
-                : Comp_ShieldEmitter.InactiveColor;
+                : Props.inactiveColor;
             color.a *= currentAlpha;
-            Comp_ShieldEmitter.MatPropertyBlock.SetColor(ShaderPropertyIDs.Color, color);
+            _matPropertyBlock.SetColor(ShaderPropertyIDs.Color, color);
             Matrix4x4 matrix4x4 = new Matrix4x4();
             matrix4x4.SetTRS(
                 curShieldPosition,
@@ -524,11 +513,11 @@ public class Comp_ShieldEmitter : ThingComp
             Graphics.DrawMesh(
                 MeshPool.plane10,
                 matrix4x4,
-                Comp_ShieldEmitter.ForceFieldMat,
+                RimgateTex.ForceFieldMat,
                 0,
                 null,
                 0,
-                Comp_ShieldEmitter.MatPropertyBlock);
+                _matPropertyBlock);
         }
         float recentlyIntercepted = GetCurrentConeAlpha_RecentlyIntercepted();
         if (recentlyIntercepted <= 0)
@@ -536,7 +525,7 @@ public class Comp_ShieldEmitter : ThingComp
 
         Color currentColor = CurrentColor;
         currentColor.a *= recentlyIntercepted;
-        Comp_ShieldEmitter.MatPropertyBlock.SetColor(ShaderPropertyIDs.Color, currentColor);
+        _matPropertyBlock.SetColor(ShaderPropertyIDs.Color, currentColor);
         Matrix4x4 matrix4x4_1 = new Matrix4x4();
         matrix4x4_1.SetTRS(
             curShieldPosition,
@@ -548,11 +537,11 @@ public class Comp_ShieldEmitter : ThingComp
         Graphics.DrawMesh(
             MeshPool.plane10,
             matrix4x4_1,
-            Comp_ShieldEmitter.ForceFieldConeMat,
+            RimgateTex.ForceFieldConeMat,
             0,
             null,
             0,
-            Comp_ShieldEmitter.MatPropertyBlock);
+            _matPropertyBlock);
     }
 
     private float GetCurrentAlpha()
@@ -648,7 +637,7 @@ public class Comp_ShieldEmitter : ThingComp
                 Command_Action commandAction = new Command_Action();
                 commandAction.defaultLabel = Translator.Translate("RG_ShieldGenRadiusLabel");
                 commandAction.defaultDesc = Translator.Translate("RG_ShieldGenRadiusDescription");
-                commandAction.icon = ShieldRadiusCommandTex;
+                commandAction.icon = RimgateTex.ShieldRadiusCommandTex;
                 commandAction.action = () =>
                 {
                     Find.WindowStack.Add(new Dialog_Slider(
@@ -665,7 +654,7 @@ public class Comp_ShieldEmitter : ThingComp
             commandToggle.defaultLabel = Translator.Translate("RG_ShieldGenToggleVisibility");
             commandToggle.defaultDesc = Translator.Translate("RG_ShieldGenToggleVisibilityDesc");
             commandToggle.isActive = () => _showShieldToggle;
-            commandToggle.icon = ShieldVisibilityCommandTex;
+            commandToggle.icon = RimgateTex.ShieldVisibilityCommandTex;
             commandToggle.toggleAction = () => _showShieldToggle = !_showShieldToggle;
             yield return commandToggle;
         }
@@ -729,6 +718,6 @@ public class Comp_ShieldEmitter : ThingComp
         Scribe_Values.Look<bool>(ref Overloaded, "Overloaded", false, false);
         Scribe_Values.Look<bool>(ref ActiveLastTick, "ActiveLastTick", false, false);
         Scribe_Values.Look<int>(ref CurShieldRadius, "CurShieldRadius", Props.shieldScaleDefault, false);
-        Scribe_Values.Look<Color>(ref CurrentColor, "CurrentColor", Props.shieldColour, false);
+        Scribe_Values.Look<Color>(ref CurrentColor, "CurrentColor", Props.shieldColor, false);
     }
 }
