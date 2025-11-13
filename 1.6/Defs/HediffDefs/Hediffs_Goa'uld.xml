@@ -51,7 +51,6 @@
 		</comps>
 		<stages>
 			<li>
-				<!-- <label>symbiote host</label> -->
 				<painFactor>0.5</painFactor>
 				<hungerRateFactor>0.25</hungerRateFactor> <!-- Eats 25% less -->
 				<statFactors>

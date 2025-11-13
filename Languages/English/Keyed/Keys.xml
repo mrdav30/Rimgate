@@ -68,6 +68,9 @@
 	<RG_NextSymbioteCount>Next symbiote in: {0}</RG_NextSymbioteCount>
 	<RG_EjectSymbioteTooltip>Remove this from the symbiote pool.</RG_EjectSymbioteTooltip>
 
+	<RG_Letter_HostilePoolAmbush_Label>Something Stirs Beneath</RG_Letter_HostilePoolAmbush_Label>
+	<RG_Letter_HostilePoolAmbush_Desc>{0} was seized by something from the pool. Their eyes flash with an alien resolve.</RG_Letter_HostilePoolAmbush_Desc>
+
 	<!-- Cloning pod -->
 
 	<RG_CarryToCloningPod>Carry {1_labelShort} to cloning pod</RG_CarryToCloningPod>

@@ -117,6 +117,7 @@ public static class RimgateDefOf
     public static SoundDef Rimgate_StargateFailDial;
     public static SoundDef Rimgate_StargateIdle;
     public static SoundDef Rimgate_StargateClose;
+    public static SoundDef Rimgate_SymbioteSpawn;
 
     public static TattooDef NoTattoo_Body;
     public static TattooDef NoTattoo_Face;

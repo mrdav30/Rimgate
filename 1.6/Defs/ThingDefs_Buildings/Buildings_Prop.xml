@@ -896,44 +896,6 @@
         </comps>
     </ThingDef>
 
-    <ThingDef ParentName="CrateBase">
-        <defName>Rimgate_SymbioteUrn</defName>
-        <label>Goa'uld Symbiote urn</label>
-        <graphicData>
-            <texPath>Things/Building/Prop/RGSymbioteContainer</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(1,1)</drawSize>
-        </graphicData>
-        <description>A small urn that is hermetically sealed to contain a Goa'uld symbiote.</description>
-        <size>(1, 1)</size>
-        <fillPercent>0.4</fillPercent>
-        <building>
-            <isInert>true</isInert>
-            <neverBuildable>true</neverBuildable>
-            <deconstructible>false</deconstructible>
-            <claimable>false</claimable>
-        </building>
-        <statBases>
-            <MaxHitPoints>150</MaxHitPoints>
-            <Flammability>0</Flammability>
-        </statBases>
-        <rotatable>false</rotatable>
-        <stuffCategories>
-            <li>Metallic</li>
-        </stuffCategories>
-        <costStuffCount>50</costStuffCount>
-        <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
-        <comps>
-            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
-                <graphicData>
-                    <texPath>Things/Building/Prop/RGSymbioteContainer_Empty</texPath>
-                    <graphicClass>Graphic_Single</graphicClass>
-                    <drawSize>(1,1)</drawSize>
-                </graphicData>
-            </li>
-        </comps>
-    </ThingDef>
-
     <!-- ======================= Wraith Cocoon Pod ======================= -->
 
     <ThingDef ParentName="BuildingBase">
@@ -986,6 +948,111 @@
         </comps>
         <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
         <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    </ThingDef>
+
+    <!-- ======================= Symbiote Urn ======================= -->
+
+    <ThingDef ParentName="CrateBase">
+        <defName>Rimgate_SymbioteUrn</defName>
+        <label>Goa'uld Symbiote urn</label>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGSymbioteContainer</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1,1)</drawSize>
+        </graphicData>
+        <description>A small urn that is hermetically sealed to contain a Goa'uld symbiote.</description>
+        <size>(1, 1)</size>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <deconstructible>false</deconstructible>
+            <claimable>false</claimable>
+            <ai_chillDestination>false</ai_chillDestination>
+            <paintable>false</paintable>
+        </building>
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <Flammability>0</Flammability>
+        </statBases>
+        <rotatable>false</rotatable>
+        <stuffCategories>
+            <li>Metallic</li>
+        </stuffCategories>
+        <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
+        <comps>
+            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/RGSymbioteContainer_Empty</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <drawSize>(1,1)</drawSize>
+                </graphicData>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ======================= Feral Pool ======================= -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_SymbioteSpawningPool_Hostile</defName>
+        <label>feral symbiote pool</label>
+        <description>A feral Goa'uld spawning basin carved into the rock. No controls. No caretakers. Just the quiet certainty that as its surface barely ripples, something beneath is listening-and probably hungry.</description>
+
+        <thingClass>Rimgate.Building_SymbioteAmbushTrap</thingClass>
+
+        <size>(2,2)</size>
+        <altitudeLayer>FloorEmplacement</altitudeLayer>
+        <passability>PassThroughOnly</passability>
+        <rotatable>false</rotatable>
+        <useHitPoints>true</useHitPoints>
+        <tickerType>Normal</tickerType>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <castEdgeShadows>false</castEdgeShadows>
+        <stealable>false</stealable>
+        <terrainAffordanceNeeded>ShallowWater</terrainAffordanceNeeded>
+
+        <graphicData>
+            <texPath>Things/Building/Prop/RGSymbioteSpawningPoolHostile</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1.75,1.75)</drawSize>
+            <shaderType>CutoutComplex</shaderType>
+        </graphicData>
+
+        <stuffCategories>
+            <li>Stony</li>
+        </stuffCategories>
+
+        <statBases>
+            <MaxHitPoints>300</MaxHitPoints>
+            <Flammability>0</Flammability>
+            <Beauty>-10</Beauty>
+            <Mass>80</Mass>
+            <TrapSpringChance>1.0</TrapSpringChance>
+        </statBases>
+
+        <category>Building</category>
+        <neverMultiSelect>false</neverMultiSelect>
+        <hasInteractionCell>false</hasInteractionCell>
+        <designationCategory />
+
+        <building>
+            <isTrap>true</isTrap>
+            <trapDestroyOnSpring>false</trapDestroyOnSpring>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <deconstructible>false</deconstructible>
+            <claimable>false</claimable>
+            <ai_chillDestination>false</ai_chillDestination>
+            <paintable>false</paintable>
+        </building>
+
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <killedLeavingsRanges>
+            <Rimgate_SymbioteImplant>0~2</Rimgate_SymbioteImplant>
+            <Rimgate_SymbioteQueen>0~1</Rimgate_SymbioteQueen>
+        </killedLeavingsRanges>
+        <killedLeavingsChance>0.90</killedLeavingsChance>
+
     </ThingDef>
 
 </Defs>

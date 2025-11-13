@@ -64,6 +64,29 @@
 		</subSounds>
 	</SoundDef>
 
+	<!-- Symbiote Spawn -->
+
+	<SoundDef>
+		<defName>Rimgate_SymbioteSpawn</defName>
+		<sustain>false</sustain>
+		<sustainFadeoutTime>1</sustainFadeoutTime>
+		<maxSimultaneous>1</maxSimultaneous>
+		<context>MapOnly</context>
+		<priorityMode>PrioritizeNearest</priorityMode>
+		<subSounds>
+			<li>
+				<muteWhenPaused>True</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Buildings/RG_Symbiote_Spawn</clipPath>
+					</li>
+				</grains>
+				<volumeRange>5</volumeRange>
+				<distRange>0~20</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
 	<!-- Stargate -->
 
 	<SoundDef>

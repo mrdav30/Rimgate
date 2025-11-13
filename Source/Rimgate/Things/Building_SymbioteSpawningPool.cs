@@ -27,7 +27,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
 
     public bool HasAnyContents => GetDirectlyHeldThings()?.Count > 0;
 
-    public bool HasQueen => _innerContainer?.Any(t => t.def == SymbiotePool.Props.symbioteQueenDef) ?? false;
+    public bool HasQueen => _innerContainer?.Any(t => t.def == SymbiotePool?.Props.symbioteQueenDef) ?? false;
 
     public int MaxHeldItems => def.building.maxItemsInCell;
 
@@ -75,8 +75,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
         foreach (var opt in base.GetFloatMenuOptions(selPawn))
             yield return opt;
 
-        var comp = SymbiotePool;
-        if (comp == null || HasQueen)
+        if (SymbiotePool == null || Faction != Faction.OfPlayer || HasQueen)
             yield break;
 
         if (!selPawn.CanReach(this, PathEndMode.InteractionCell, selPawn.NormalMaxDanger()))
@@ -130,16 +129,14 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
         foreach (var g in base.GetGizmos())
             yield return g;
 
-        if (SymbiotePool == null || Faction != Faction.OfPlayer)
+        if (SymbiotePool == null || Faction != Faction.OfPlayer || HasQueen)
             yield break;
-
-        if (HasQueen) yield break;
 
         yield return new Command_Action
         {
             defaultLabel = "RG_InsertQueen".Translate(),
             defaultDesc = "RG_InsertQueenDesc".Translate(),
-            icon = SymbiotePool.QueenIcon,
+            icon = SymbiotePool?.QueenIcon,
             action = () =>
             {
                 var parms = new TargetingParameters
@@ -184,7 +181,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
 
     public bool TryGetClosestQueen(Pawn pawn, out Thing queen)
     {
-        var def = SymbiotePool.Props.symbioteQueenDef;
+        var def = SymbiotePool?.Props.symbioteQueenDef;
         if (def == null)
         {
             queen = null;
@@ -193,7 +190,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
         queen = GenClosest.ClosestThingReachable(
             pawn.Position,
             pawn.Map,
-            ThingRequest.ForDef(SymbiotePool.Props.symbioteQueenDef),
+            ThingRequest.ForDef(SymbiotePool?.Props.symbioteQueenDef),
             PathEndMode.Touch,
             TraverseParms.For(pawn),
             999f,
@@ -205,7 +202,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
     {
         if (!_storageSettings.AllowedToAccept(thing))
             return false;
-        if (thing.def == SymbiotePool.Props.symbioteQueenDef && HasQueen)
+        if (thing.def == SymbiotePool?.Props.symbioteQueenDef && HasQueen)
             return false;
         return _innerContainer.CanAcceptAnyOf(thing);
     }
@@ -218,10 +215,10 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
 
     public bool TryAcceptQueen(Thing thing, bool canMerge = false)
     {
-        if (thing == null || thing.def != SymbiotePool.Props.symbioteQueenDef)
+        if (thing == null || thing.def != SymbiotePool?.Props.symbioteQueenDef)
             return false;
 
-        if (HasQueen)
+        if (Faction != Faction.OfPlayer || HasQueen)
             return false;
 
         return _innerContainer.TryAddOrTransfer(thing, canMerge);
