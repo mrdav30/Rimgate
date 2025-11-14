@@ -175,6 +175,18 @@
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
+        <label>industrial Naquadria generator</label>
+        <description>Advanced Tau'ri naquadria power engineering. Unlocks a heavily shielded, industrial-scale reactor capable of powering full Stargate complexes, deep-space platforms, and that one colonist who insists on running twelve shield belts at once.</description>
+        <baseCost>7000</baseCost>
+        <prerequisites>
+            <li>Rimgate_NaquadriaFiredGenerator</li>
+        </prerequisites>
+        <researchViewX>3</researchViewX>
+        <researchViewY>4</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TretoninSynthesis</defName>
         <label>Tretonin synthesis</label>
         <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\n\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\n\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>

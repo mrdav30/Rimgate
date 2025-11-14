@@ -6,7 +6,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_NaquadriaFiredGenerator</defName>
     <label>Naquadria generator</label>
-    <description>This compact reactor burns Naquadria like it’s going out of style—because it probably is. Delivers massive power output and only occasionally destabilizes spacetime. Handle with oven mitts and regret.</description>
+    <description>A compact Tau'ri power unit that burns refined naquadria like a nervous scientist burns coffee.\n\nPuts out absurd amounts of power for its size and only occasionally makes the lights flicker in a "the universe is screaming" kind of way. Colonists insist it is safe. Mostly.</description>
     <thingClass>Building</thingClass>
     <size>(1,2)</size>
     <graphicData>
@@ -38,20 +38,29 @@
     <costList>
       <Steel>125</Steel>
       <Rimgate_Naquadah>50</Rimgate_Naquadah>
-      <ComponentIndustrial>5</ComponentIndustrial>
-      <ComponentSpacer>3</ComponentSpacer>
+      <ComponentIndustrial>15</ComponentIndustrial>
+      <ComponentSpacer>4</ComponentSpacer>
     </costList>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <designationHotKey>Misc3</designationHotKey>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>Rimgate_NaquadriaFiredGenerator</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerPlant</compClass>
-        <basePowerConsumption>-6500</basePowerConsumption>
+        <basePowerConsumption>-6000</basePowerConsumption>
         <transmitsPower>true</transmitsPower>
-        <shortCircuitInRain>false</shortCircuitInRain>
+        <shortCircuitInRain>true</shortCircuitInRain>
       </li>
       <li Class="CompProperties_Flickable" />
+      <!-- Fuel-hungry but not insane: ~2 Naquadria/day, 15 days from full -->
       <li Class="CompProperties_Refuelable">
-        <fuelConsumptionRate>0.75</fuelConsumptionRate>
-        <fuelCapacity>25.0</fuelCapacity>
+        <fuelConsumptionRate>2.0</fuelConsumptionRate>
+        <fuelCapacity>30.0</fuelCapacity>
         <fuelFilter>
           <thingDefs>
             <li>Rimgate_Naquadria</li>
@@ -59,7 +68,7 @@
         </fuelFilter>
       </li>
       <li Class="CompProperties_Glower">
-        <glowRadius>4</glowRadius>
+        <glowRadius>2</glowRadius>
         <glowColor>(33,85,255,0)</glowColor>
       </li>
       <li Class="CompProperties_HeatPusher">
@@ -72,18 +81,10 @@
         <explosiveRadius>7.9</explosiveRadius>
         <explosiveDamageType>Bomb</explosiveDamageType>
         <explodeOnKilled>true</explodeOnKilled>
-        <startWickHitPointsPercent>0.99</startWickHitPointsPercent>
-        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+        <startWickHitPointsPercent>0.92</startWickHitPointsPercent>
+        <chanceNeverExplodeFromDamage>0.25</chanceNeverExplodeFromDamage>
       </li>
     </comps>
-    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
-    <designationCategory>Power</designationCategory>
-    <designationHotKey>Misc3</designationHotKey>
-    <constructEffect>ConstructMetal</constructEffect>
-    <researchPrerequisites>
-      <li>Rimgate_NaquadriaFiredGenerator</li>
-    </researchPrerequisites>
-    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
   </ThingDef>
 
   <!-- =============== Industrial Naquadria Generator ======== -->
@@ -91,17 +92,22 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
     <label>Industrial Naquadria generator</label>
-    <description>A massive, hardened power core designed to keep Tau’ri Dwarfgate facilities online no matter what comes through. Fueled by volatile naquadria, it produces enough output to light a small city—or vaporize one if mishandled. Redundant shielding keeps colonists mostly safe, though the hum in the walls might shorten lifespans by a decade or two. But hey—at least the lights stay on.</description>
+    <description>A sprawling Tau'ri industrial-grade naquadria reactor, usually reserved for deep-space facilities and "absolutely do not let this explode" Stargate sites.\n\nOutputs enough power to light a small city, run a full DHD emulator, and still have juice left over to annoy the neighbors. The humming sound in the walls is definitely normal. Probably.</description>
     <graphicData>
       <texPath>Things/Building/Power/NaquadriaGenerator/RGIndustrialNaquadriaFiredGenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(5,2.5)</drawSize>
+      <drawSize>(5,3)</drawSize>
+      <drawOffset>(0, 0, 0.35)</drawOffset>
+      <addTopAltitudeBias>true</addTopAltitudeBias>
     </graphicData>
     <rotatable>false</rotatable>
     <size>(5,2)</size>
     <statBases>
       <MaxHitPoints>5000</MaxHitPoints>
+      <WorkToBuild>12000</WorkToBuild>
       <Flammability>0</Flammability>
+      <Mass>300</Mass>
+      <Beauty>-40</Beauty>
     </statBases>
     <building>
       <claimable>false</claimable>
@@ -109,36 +115,63 @@
       <alwaysDeconstructible>true</alwaysDeconstructible>
       <canLandGravshipOn>true</canLandGravshipOn>
     </building>
+    <costList>
+      <Steel>450</Steel>
+      <Plasteel>250</Plasteel>
+      <Rimgate_Naquadah>150</Rimgate_Naquadah>
+      <Rimgate_Naquadria>40</Rimgate_Naquadria>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>8</ComponentSpacer>
+    </costList>
     <noRightClickDraftAttack>true</noRightClickDraftAttack>
-    <passability>Impassable</passability>
+    <passability>PassThroughOnly</passability>
     <canOverlapZones>false</canOverlapZones>
     <altitudeLayer>Building</altitudeLayer>
     <tickerType>Normal</tickerType>
+    <pathCost>350</pathCost>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>Rimgate_IndustrialNaquadriaFiredGenerator</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
     <comps>
       <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>-13000</basePowerConsumption>
+        <compClass>CompPowerPlant</compClass>
+        <basePowerConsumption>-15000</basePowerConsumption>
+        <transmitsPower>true</transmitsPower>
         <shortCircuitInRain>true</shortCircuitInRain>
+      </li>
+      <!-- Very hungry: 6 Naquadria/day, 60 capacity => 10 days from full -->
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>6.0</fuelConsumptionRate>
+        <fuelCapacity>60.0</fuelCapacity>
+        <fuelFilter>
+          <thingDefs>
+            <li>Rimgate_Naquadria</li>
+          </thingDefs>
+        </fuelFilter>
       </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_HeatPusher">
         <compClass>CompHeatPusherPowered</compClass>
-        <heatPerSecond>6</heatPerSecond>
+        <heatPerSecond>12</heatPerSecond>
       </li>
       <li Class="CompProperties_Explosive">
         <wickTicks>680</wickTicks>
-        <explosiveRadius>12.9</explosiveRadius>
+        <explosiveRadius>15.9</explosiveRadius>
         <explosiveDamageType>Bomb</explosiveDamageType>
         <explodeOnKilled>true</explodeOnKilled>
-        <startWickHitPointsPercent>0.45</startWickHitPointsPercent>
-        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+        <startWickHitPointsPercent>0.92</startWickHitPointsPercent>
+        <chanceNeverExplodeFromDamage>0.25</chanceNeverExplodeFromDamage>
       </li>
       <li Class="CompProperties_Glower">
-        <glowRadius>1</glowRadius>
+        <glowRadius>4</glowRadius>
         <glowColor>(217,112,33,0)</glowColor>
       </li>
+      <li Class="CompProperties_Breakdownable" />
     </comps>
-    <pathCost>150</pathCost>
   </ThingDef>
 
   <!-- =============== Wraith Generator ======== -->
@@ -183,6 +216,14 @@
       <Rimgate_Biomass>70</Rimgate_Biomass>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <designationHotKey>Misc3</designationHotKey>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>Rimgate_WraithGenerator</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerPlant</compClass>
@@ -201,23 +242,14 @@
         </fuelFilter>
       </li>
       <li Class="CompProperties_Glower">
-        <glowRadius>4</glowRadius>
+        <glowRadius>2</glowRadius>
         <glowColor>(33,202,255,0)</glowColor>
       </li>
       <li Class="CompProperties_HeatPusher">
         <compClass>CompHeatPusherPowered</compClass>
         <heatPerSecond>6</heatPerSecond>
       </li>
-      <li Class="CompProperties_Breakdownable" />
     </comps>
-    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
-    <designationCategory>Power</designationCategory>
-    <designationHotKey>Misc3</designationHotKey>
-    <constructEffect>ConstructMetal</constructEffect>
-    <researchPrerequisites>
-      <li>Rimgate_WraithGenerator</li>
-    </researchPrerequisites>
-    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
   </ThingDef>
 
 </Defs>
