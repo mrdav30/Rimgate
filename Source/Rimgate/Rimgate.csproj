@@ -333,6 +333,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_InsertSymbioteQueen.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_MeditateOnGoauldThrone.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_PushMobileContainer.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_SitFacingBuilding_Learning.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_ToggleIris.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CloseStargate.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_Toggle.cs" />

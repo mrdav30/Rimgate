@@ -223,4 +223,17 @@
 		<casualInterruptible>true</casualInterruptible>
 	</JobDef>
 
+	<!-- =============== Joy =============== -->
+
+	<JobDef>
+		<defName>Rimgate_PlayTauriResearchDesk</defName>
+		<driverClass>Rimgate.JobDriver_SitFacingBuilding_Learning</driverClass>
+		<reportString>using Tau'ri research terminal.</reportString>
+		<joyDuration>4000</joyDuration>
+		<joyMaxParticipants>1</joyMaxParticipants>
+		<joyKind>Gaming_Cerebral</joyKind>
+		<taleOnCompletion>PlayedGame</taleOnCompletion>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
 </Defs>

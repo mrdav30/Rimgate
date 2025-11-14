@@ -12,7 +12,7 @@
     <graphicData>
       <texPath>Things/Building/Power/NaquadriaGenerator/RGNaquadriaFiredGenerator</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(2,2)</drawSize>
+      <drawSize>1.5</drawSize>
     </graphicData>
     <defaultPlacingRot>East</defaultPlacingRot>
     <minifiedDef>MinifiedThing</minifiedDef>

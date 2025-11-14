@@ -703,5 +703,200 @@
 		</comps>
 	</ThingDef>
 
+	<!-- ======================= Tau'ri Desk ======================= -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_TauriResearchDesk</defName>
+		<label>Research desk</label>
+		<description>A Tau'ri research station with a humming terminal, intact data routing, and just enough alien UI to make your brightest colonist feel slightly inadequate.\n\nDramatically accelerates complex research when linked to a hi-tech bench — and some pawns have spread the word on how to bypass the safety protocols and load something called "DOOM", letting them "research" for hours while fragging demons on the clock.</description>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGTauriDesk</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(3,1.5)</drawSize>
+			<addTopAltitudeBias>true</addTopAltitudeBias>
+		</graphicData>
+		<rotatable>true</rotatable>
+		<size>(3,1)</size>
+
+		<statBases>
+			<MaxHitPoints>160</MaxHitPoints>
+			<Flammability>0.2</Flammability>
+			<Mass>25</Mass>
+			<WorkToBuild>2200</WorkToBuild>
+			<Beauty>2</Beauty>
+			<JoyGainFactor>1</JoyGainFactor>
+		</statBases>
+
+		<costList>
+			<Steel>80</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+
+		<fillPercent>0.4</fillPercent>
+		<castEdgeShadows>True</castEdgeShadows>
+		<staticSunShadowHeight>0.2</staticSunShadowHeight>
+		<surfaceType>Item</surfaceType>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<building>
+			<claimable>true</claimable>
+			<alwaysDeconstructible>true</alwaysDeconstructible>
+			<canLandGravshipOn>true</canLandGravshipOn>
+			<joyKind>Gaming_Cerebral</joyKind>
+			<workTableRoomRole>Laboratory</workTableRoomRole>
+			<workTableNotInRoomRoleFactor>0.8</workTableNotInRoomRoleFactor>
+		</building>
+		<placeWorkers>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+			<li>PlaceWorker_DrawLinesToResearchTablesInRoom</li>
+		</placeWorkers>
+
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
+
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<canOverlapZones>false</canOverlapZones>
+		<altitudeLayer>Building</altitudeLayer>
+		<interactionCellIcon>DiningChair</interactionCellIcon>
+		<hasInteractionCell>true</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+		<designationCategory>Misc</designationCategory>
+		<designationHotKey>Misc4</designationHotKey>
+		<constructEffect>ConstructMetal</constructEffect>
+
+		<researchPrerequisites>
+			<li>Rimgate_TauriResearchInfrastructure</li>
+		</researchPrerequisites>
+
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>200</basePowerConsumption>
+				<shortCircuitInRain>true</shortCircuitInRain>
+			</li>
+
+			<li Class="CompProperties_Flickable" />
+
+			<!-- Acts as a research facility for HiTechResearchBench -->
+			<li Class="CompProperties_Facility">
+				<linkableBuildings>
+					<li>HiTechResearchBench</li>
+				</linkableBuildings>
+				<statOffsets>
+					<ResearchSpeedFactor>0.25</ResearchSpeedFactor>
+				</statOffsets>
+				<maxSimultaneous>1</maxSimultaneous>
+				<requiresLOS>false</requiresLOS>
+				<maxDistance>10</maxDistance>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ======================= Tau'ri Drafting Desk ======================= -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_TauriDraftingDesk</defName>
+		<label>Blueprint Table</label>
+		<description>A Tau'ri drafting console layered with glowing schematics, naquadah lattice diagrams, and notes in three different classification levels. When linked to a hi-tech bench, it streamlines research planning so efficiently that your colonists start finishing projects before the paperwork catches up.</description>
+
+		<graphicData>
+			<texPath>Things/Building/Misc/RGTauriDraftingDesk</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<rotatable>true</rotatable>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<size>(1,1)</size>
+
+		<statBases>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Flammability>0.2</Flammability>
+			<Mass>18</Mass>
+			<WorkToBuild>1800</WorkToBuild>
+			<Beauty>1</Beauty>
+		</statBases>
+
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>25</Plasteel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+
+		<building>
+			<claimable>true</claimable>
+			<alwaysDeconstructible>true</alwaysDeconstructible>
+			<canLandGravshipOn>true</canLandGravshipOn>
+			<workTableRoomRole>Laboratory</workTableRoomRole>
+			<workTableNotInRoomRoleFactor>0.8</workTableNotInRoomRoleFactor>
+		</building>
+		<placeWorkers>
+			<li>PlaceWorker_DrawLinesToResearchTablesInRoom</li>
+		</placeWorkers>
+
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
+
+		<fillPercent>0.4</fillPercent>
+		<castEdgeShadows>True</castEdgeShadows>
+		<staticSunShadowHeight>0.2</staticSunShadowHeight>
+
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<canOverlapZones>false</canOverlapZones>
+		<altitudeLayer>Building</altitudeLayer>
+
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+		<designationCategory>Misc</designationCategory>
+		<designationHotKey>Misc4</designationHotKey>
+		<constructEffect>ConstructMetal</constructEffect>
+
+		<researchPrerequisites>
+			<li>Rimgate_TauriResearchInfrastructure</li>
+		</researchPrerequisites>
+
+		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>120</basePowerConsumption>
+				<shortCircuitInRain>true</shortCircuitInRain>
+			</li>
+
+			<li Class="CompProperties_Flickable" />
+
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(200,230,230,0)</glowColor>
+			</li>
+
+			<!-- Acts as a secondary research facility -->
+			<li Class="CompProperties_Facility">
+				<linkableBuildings>
+					<li>HiTechResearchBench</li>
+				</linkableBuildings>
+				<statOffsets>
+					<ResearchSpeedFactor>0.15</ResearchSpeedFactor>
+				</statOffsets>
+				<maxSimultaneous>1</maxSimultaneous>
+				<requiresLOS>false</requiresLOS>
+				<maxDistance>10</maxDistance>
+			</li>
+		</comps>
+	</ThingDef>
 
 </Defs>

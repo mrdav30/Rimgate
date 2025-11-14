@@ -118,6 +118,18 @@
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+        <defName>Rimgate_TauriResearchInfrastructure</defName>
+        <label>Tau'ri research infrastructure</label>
+        <description>Formalize Tau'ri-grade research workflows: networked desks, blueprint tables, and enough humming hardware to make every experiment feel classified. Dramatically increases research throughput.</description>
+        <baseCost>3000</baseCost>
+        <prerequisites>
+            <li>Rimgate_TauriManufacturing</li>
+        </prerequisites>
+        <researchViewX>1.5</researchViewX>
+        <researchViewY>3.0</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_MalpGestation</defName>
         <label>MALP mech tech</label>
         <description>By tearing down a ruined Tau’ri MALP and tracing its signal routing, your researchers believe they can build a locally manufacturable probe with sturdier parts and less mystery.\n\nWe won’t have their classified control stack, so we’ll have to figure it out ourselves — and make it better.</description>
@@ -216,7 +228,6 @@
             </rulesStrings>
         </generalRules>
     </ResearchProjectDef>
-
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TrackedCart</defName>

@@ -15,4 +15,18 @@
         <joyKind>Meditative</joyKind>
     </JoyGiverDef>
 
+    <JoyGiverDef>
+        <defName>Rimgate_PlayTauriResearchDesk</defName>
+        <giverClass>JoyGiver_InteractBuildingInteractionCell</giverClass>
+        <baseChance>2</baseChance>
+        <thingDefs>
+            <li>Rimgate_TauriResearchDesk</li>
+        </thingDefs>
+        <jobDef>Rimgate_PlayTauriResearchDesk</jobDef>
+        <joyKind>Gaming_Cerebral</joyKind>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+    </JoyGiverDef>
+
 </Defs>
