@@ -27,7 +27,7 @@
 		<drawerType>RealtimeOnly</drawerType>
 		<hasInteractionCell>True</hasInteractionCell>
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
-		<altitudeLayer>BuildingBelowTop</altitudeLayer>
+		<altitudeLayer>Building</altitudeLayer>
 		<preventDroppingThingsOn>true</preventDroppingThingsOn>
 		<building>
 			<claimable>false</claimable>

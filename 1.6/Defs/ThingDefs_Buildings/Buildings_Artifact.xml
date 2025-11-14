@@ -145,7 +145,7 @@
         <graphicData>
             <texPath>Things/Building/Artifact/RGDHD</texPath>
             <graphicClass>Graphic_Multi</graphicClass>
-            <drawSize>(2,2)</drawSize>
+            <drawSize>(1.75,1.75)</drawSize>
             <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
         <size>(1,1)</size>
@@ -158,7 +158,7 @@
         <fillPercent>0.40</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-        <altitudeLayer>BuildingBelowTop</altitudeLayer>
+        <altitudeLayer>Building</altitudeLayer>
         <preventDroppingThingsOn>true</preventDroppingThingsOn>
         <thingCategories>
             <li>Artifacts</li>
@@ -170,7 +170,7 @@
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>
         <building>
             <ai_neverTrashThis>true</ai_neverTrashThis>
-            <uninstallWork>6250</uninstallWork>
+            <uninstallWork>3250</uninstallWork>
         </building>
         <placeWorkers>
             <li>PlaceWorker_ShowFacilitiesConnections</li>
@@ -186,7 +186,7 @@
                     <texPath>FX/RGDHD_Active</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
                     <shaderType>Mote</shaderType>
-                    <drawSize>(2,2)</drawSize>
+                    <drawSize>(1.75,1.75)</drawSize>
                 </activeGraphicData>
             </li>
             <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
