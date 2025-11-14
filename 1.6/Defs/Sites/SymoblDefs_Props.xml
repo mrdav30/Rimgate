@@ -87,6 +87,18 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_HostileSymbiotePool_Granite</defName>
+        <thing>Rimgate_SymbioteSpawningPool_Hostile</thing>
+        <stuff>BlocksGranite</stuff>
+    </KCSG.SymbolDef> 
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_HostileSymbiotePool_Slate</defName>
+        <thing>Rimgate_SymbioteSpawningPool_Hostile</thing>
+        <stuff>BlocksSlate</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_Corpse</defName>
         <pawnKindDef>Villager</pawnKindDef>
         <spawnPartOfFaction>false</spawnPartOfFaction>
