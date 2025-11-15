@@ -773,7 +773,7 @@
 		<constructEffect>ConstructMetal</constructEffect>
 
 		<researchPrerequisites>
-			<li>Rimgate_TauriResearchInfrastructure</li>
+			<li>Rimgate_TauriBasic</li>
 		</researchPrerequisites>
 
 		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
@@ -865,7 +865,7 @@
 		<constructEffect>ConstructMetal</constructEffect>
 
 		<researchPrerequisites>
-			<li>Rimgate_TauriResearchInfrastructure</li>
+			<li>Rimgate_TauriBasic</li>
 		</researchPrerequisites>
 
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>

@@ -14,9 +14,6 @@
 			<li>MultiAnalyzer</li>
 			<li>Rimgate_AncientResearchBank</li>
 		</requiredResearchFacilities>
-		<prerequisites>
-			<li>MicroelectronicsBasics</li>
-		</prerequisites>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -24,8 +21,11 @@
 		<label>Wraith science</label>
 		<description>Begin unlocking the secrets of Wraith bio-engineering—where everything is grown, pulsing, and slightly slimy.\nWarning: side effects may include telepathy and power hunger.</description>
 		<baseCost>1500</baseCost>
+		<prerequisites>
+			<li>MicroelectronicsBasics</li>
+		</prerequisites>
 		<researchViewX>0</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>0.5</researchViewY>
 	</ResearchProjectDef>
 
 	<!-- ======== Armor ========= -->
@@ -78,7 +78,7 @@
 			<li>ChargedShot</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>0.5</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -91,7 +91,7 @@
 			<li>Rimgate_WraithWeaponTierOne</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>0.5</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_WraithCommunicationDevice</li>
 		</requiredAnalyzed>
@@ -109,6 +109,30 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithModificationEquipment</defName>
+		<label>Gate Modification</label>
+		<description>Adaptations of Wraith neural interface rigs and sensory dampening gear.\n\nWith this knowledge, your scientists can alter Dwarfgate control systems to block long-range subspace "backscatter," preventing unauthorized remote peeks into connected sites. Only after this research can your colony safely observe both ends of an active wormhole.</description>
+		<baseCost>3500</baseCost>
+		<techLevel>Archotech</techLevel>
+		<prerequisites>
+			<li>Rimgate_GlyphDeciphering</li>
+			<li>Rimgate_SubspaceMasking</li>
+			<li>Rimgate_WraithCommunicationDevice</li>
+		</prerequisites>
+		<researchViewX>3</researchViewX>
+		<researchViewY>0.5</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithEmpire</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+	</ResearchProjectDef>
+
 	<!-- ======== Buildings ========= -->
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -121,7 +145,7 @@
 			<li>Rimgate_WraithBasic</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1.5</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -134,7 +158,7 @@
 			<li>Rimgate_MeatCultivation</li>
 		</prerequisites>
 		<researchViewX>1.5</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>1.5</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_WraithCloningPod</li>
 		</requiredAnalyzed>
@@ -169,7 +193,7 @@
 			<li>Rimgate_WraithCloneGenome</li>
 		</prerequisites>
 		<researchViewX>2.5</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>2</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -182,7 +206,7 @@
 			<li>Rimgate_WraithCloneFull</li>
 		</prerequisites>
 		<researchViewX>3.5</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>1.5</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -195,7 +219,7 @@
 			<li>Rimgate_WraithCloneEnhancement</li>
 		</prerequisites>
 		<researchViewX>4.5</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>1.5</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
@@ -209,14 +233,14 @@
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithGenerator</defName>
-		<label>Wraith Generator</label>
+		<label>Wraith generator</label>
 		<description>Unlock the Wraith biomass generator—a power source fueled by cultivated organic matter.\nEfficient, grotesque, and perfect for the energy needs of a species that eats people.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_MeatCultivation</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -230,7 +254,7 @@
 			<li>ShipBasics</li>
 		</prerequisites>
 		<researchViewX>3</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_DestroyedDart</li>
 		</requiredAnalyzed>
@@ -254,29 +278,6 @@
 				<li>subject_gerund->splicing Wraith protein matrices into human-grade fuel cells</li>
 			</rulesStrings>
 		</generalRules>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
-		<defName>Rimgate_WraithModificationEquipment</defName>
-		<label>Wraith Modification Equipment</label>
-		<description>Adaptations of Wraith neural interface rigs and sensory dampening gear.\n\nWith this knowledge, your scientists can alter Dwarfgate control systems to block long-range subspace "backscatter," preventing unauthorized remote peeks into connected sites. Only after this research can your colony safely observe both ends of an active wormhole.</description>
-		<baseCost>3500</baseCost>
-		<techLevel>Archotech</techLevel>
-		<prerequisites>
-			<li>Rimgate_SubspaceMasking</li>
-			<li>Rimgate_WraithCommunicationDevice</li>
-		</prerequisites>
-		<researchViewX>3</researchViewX>
-		<researchViewY>1</researchViewY>
-		<techprintCount>1</techprintCount>
-		<techprintCommonality>3</techprintCommonality>
-		<techprintMarketValue>3000</techprintMarketValue>
-		<heldByFactionCategoryTags>
-			<li>Rimgate_WraithEmpire</li>
-		</heldByFactionCategoryTags>
-		<tags>
-			<li>Rimgate_TechprintPool</li>
-		</tags>
 	</ResearchProjectDef>
 
 </Defs>

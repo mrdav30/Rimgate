@@ -3,7 +3,7 @@
 
 	<ResearchTabDef>
 		<defName>Rimgate_ResearchTab</defName>
-		<label>Dwarfgates</label>
+		<label>Dwarfgate</label>
 	</ResearchTabDef>
 
 	<ResearchProjectDef>
@@ -30,7 +30,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_NaquadahRefinement</defName>
-		<label>Naquadah refinement</label>
+		<label>Refine Naquadah</label>
 		<description>Learn to stabilize and refine raw Naquadah into Naquadria — a hyperreactive isotope capable of powering anything from handheld energy weapons to planetary-scale disasters.\n\nThe process is equal parts chemistry, theoretical physics, and prayer.\n\nOne misplaced decimal and you’ll discover a new crater where your lab used to be — but hey, progress has casualties.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
@@ -80,6 +80,7 @@
 		<description>By placing an ultra-thin barrier mere microns from a Dwarfgate's event horizon, we can prevent reintegration of inbound matter.\nIn simpler terms: unwanted guests go *splat*. Handy.</description>
 		<baseCost>6000</baseCost>
 		<prerequisites>
+			<li>Rimgate_GlyphDeciphering</li>
 			<li>Rimgate_StargateAlloyResearch</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
@@ -88,15 +89,16 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateReplacementDHDResearch</defName>
-		<label>Replacement DHD</label>
+		<label>DHD logic</label>
 		<description>By studying salvaged Dwarfgate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.\nNote: SGC officially recommends bolting this one to the floor.</description>
 		<techLevel>Spacer</techLevel>
 		<baseCost>4000</baseCost>
 		<prerequisites>
+			<li>Rimgate_GlyphDeciphering</li>
 			<li>Rimgate_StargateAlloyResearch</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>0.5</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_DialHomeDevice</li>
 		</requiredAnalyzed>
@@ -148,14 +150,12 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AntiReplicatorGun</defName>
-		<label>Anti-Replicator gun</label>
-		<description>A classified Tau’ri prototype adapted for field use: a directed energy pulse tuned to scramble Replicator bonding fields.
-			To organics it’s underwhelming; to Replicators it’s an existential crisis.
-			Production is slow, maintenance is grumpy, and the safety brief is just the word “Don’t” written six times.</description>
+		<label>Anti-Replicator</label>
+		<description>A classified Tau’ri prototype adapted for field use: a directed energy pulse tuned to scramble Replicator bonding fields.\n\nTo organics it’s underwhelming; to Replicators it’s an existential crisis.\n\nProduction is slow, maintenance is grumpy, and the safety brief is just the word “Don’t” written six times.</description>
 		<techLevel>Spacer</techLevel>
 		<baseCost>4500</baseCost>
 		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1</researchViewY>
 		<prerequisites>
 			<li>Rimgate_StargateAlloyResearch</li>
 			<li>ChargedShot</li>
@@ -164,9 +164,7 @@
 			<li>Rimgate_ReplicatorLink</li>
 		</requiredAnalyzed>
 		<discoveredLetterTitle>About: Anti-Replicator Weaponry</discoveredLetterTitle>
-		<discoveredLetterText>Analysis of the inert Replicator link has yielded a usable emission profile.
-			Your team believes a tuned pulse can disrupt nanite cohesion long enough to turn active swarms into quiet scrap.
-			Field note #1: the pulse makes nearby Replicator debris tingle in a way that is deeply upsetting.</discoveredLetterText>
+		<discoveredLetterText>Analysis of the inert Replicator link has yielded a usable emission profile.\n\nYour team believes a tuned pulse can disrupt nanite cohesion long enough to turn active swarms into quiet scrap.\n\nField note #1: the pulse makes nearby Replicator debris tingle in a way that is deeply upsetting.</discoveredLetterText>
 
 		<generalRules>
 			<rulesStrings>
@@ -188,7 +186,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientPuddleJumper</defName>
-		<label>Ancient Puddle Jumper</label>
+		<label>Puddle Jumper</label>
 		<description>Blueprints recovered from the remains of an Ancient “Puddle Jumper” — a sleek, self-sealing scout craft built for silent insertion and questionable bravery.\n\nWhile the Ancients designed it for interstellar gates, the Tau’ri (and now, us) have re-engineered it for local atmospheric and orbital hops.\n\nNo wormhole travel, no auto-navigation, and definitely no manual that anyone can read — but it flies, shields, and occasionally terrifies pilots into sainthood.</description>
 		<baseCost>6500</baseCost>
 		<techLevel>Spacer</techLevel>
@@ -197,7 +195,7 @@
 			<li>ShipBasics</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>1.5</researchViewY>
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>
 		</requiredResearchFacilities>
@@ -223,7 +221,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ZPMIntegration</defName>
-		<label>ZPM fundamentals</label>
+		<label>ZPM core</label>
 		<description>Decode Ancient supervisory fields and safety interlocks to bind a ZPM into modern distributions without catastrophic feedback. Until this is understood, a ZPM will remain inert when connected.</description>
 		<techLevel>Spacer</techLevel>
 		<baseCost>2000</baseCost>
@@ -231,7 +229,7 @@
 			<li>Electricity</li>
 		</prerequisites>
 		<researchViewX>0</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>2</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_ZPM</li>
 		</requiredAnalyzed>
@@ -271,7 +269,7 @@
 			<li>Rimgate_ZPMIntegration</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>2</researchViewY>
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>
 		</requiredResearchFacilities>
@@ -279,7 +277,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ParallelSubspaceCoupling</defName>
-		<label>parallel subspace coupling</label>
+		<label>Subspace coupling</label>
 		<description>Exploit cross-brane phase offsets to alternate a ZPM’s vacuum tap between adjacent subspace pockets. This doesn’t “refill” a ZPM so much as rotate where it drinks from. The math is ugly; the hum is beautiful.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>10000</baseCost>
@@ -287,7 +285,7 @@
 			<li>Rimgate_ZPMIntegration</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>4</researchViewY>
+		<researchViewY>2.5</researchViewY>
 		<discoveredLetterTitle>About: Phase Diverter</discoveredLetterTitle>
 		<discoveredLetterText>By expressing vacuum fluctuations across parallel subspace branes, your engineers can “phase-hop” a ZPM’s intake. Connected ZPMs will now gradually replenish reserves while a diverter runs on the same power net. Don’t stare at the interference fringes too long.</discoveredLetterText>
 		<requiredResearchFacilities>

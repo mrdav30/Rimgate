@@ -13,18 +13,18 @@
         <requiredResearchFacilities>
             <li>MultiAnalyzer</li>
         </requiredResearchFacilities>
-        <prerequisites>
-            <li>MicroelectronicsBasics</li>
-        </prerequisites>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriBasic</defName>
         <label>Tau'ri engineering</label>
-        <description>Begin adapting off-world Tau'ri tech: field equipment, comms, and just enough military-grade hardware to get the IOA very concerned.</description>
-        <baseCost>1500</baseCost>
+        <description>Begin adapting off-world Tau'ri tech: field equipment, comms, and just enough military-grade hardware to get the IOA very concerned.\n\nThe first step is to formalize Tau'ri-grade research workflows: networked desks, blueprint tables, and enough humming hardware to make every experiment feel classified. Dramatically increases research throughput.</description>
+        <baseCost>3000</baseCost>
+        <prerequisites>
+            <li>MicroelectronicsBasics</li>
+        </prerequisites>
         <researchViewX>0</researchViewX>
-        <researchViewY>2.5</researchViewY>
+        <researchViewY>1.5</researchViewY>
         <techprintCount>1</techprintCount>
         <techprintCommonality>3</techprintCommonality>
         <techprintMarketValue>3000</techprintMarketValue>
@@ -47,11 +47,18 @@
         </prerequisites>
         <baseCost>3500</baseCost>
         <researchViewX>1</researchViewX>
-        <researchViewY>2.5</researchViewY>
+        <researchViewY>1.5</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef Name="Rimgate_TauriResearchHiBase" ParentName="Rimgate_TauriResearchBase" Abstract="True">
+        <requiredResearchFacilities>
+            <li>Rimgate_TauriDraftingDesk</li>
+        </requiredResearchFacilities>
     </ResearchProjectDef>
 
     <!-- ======== Tau'ri Armor ========= -->
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TauriArmors</defName>
         <label>Tau'ri Uniforms</label>
         <description>Standard-issue SGC uniforms and armor rated for both firefights and diplomatic blunders. Includes extra pockets for snacks, Zat holsters, and moral ambiguity.</description>
@@ -66,70 +73,58 @@
 
     <!-- ======== Tau'ri Weapons ======== -->
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TauriWeaponsTierOne</defName>
         <label>Tau'ri weapons I</label>
         <description>Unlock pulse-pounding, projectile-slinging freedom—courtesy of Earth’s finest ballistic engineering.\nWarning: may provoke Goa’uld, Wraith, and anyone with plasma-based superiority complexes.</description>
         <baseCost>2500</baseCost>
         <researchViewX>2</researchViewX>
-        <researchViewY>1</researchViewY>
+        <researchViewY>0.5</researchViewY>
         <prerequisites>
             <li>PrecisionRifling</li>
             <li>Rimgate_TauriManufacturing</li>
         </prerequisites>
     </ResearchProjectDef>
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TauriWeaponsTierTwo</defName>
         <label>Tau'ri weapons II</label>
         <description>Advances in Tau’ri weapons engineering bring the next generation of battlefield tools into your arsenal. Building on prior designs, this tier delivers more specialized options, improved stopping power, and refined technology for dealing with threats at any range. The Goa’uld call it escalation. The Tau’ri call it preparedness.</description>
         <baseCost>2500</baseCost>
         <researchViewX>3</researchViewX>
-        <researchViewY>1</researchViewY>
+        <researchViewY>0.5</researchViewY>
         <prerequisites>
             <li>Rimgate_TauriWeaponsTierOne</li>
         </prerequisites>
     </ResearchProjectDef>
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TauriTurretsTierOne</defName>
         <label>Tau'ri turrets I</label>
         <description>Field up your defenses the Tau’ri way: a manned, shielded M2 that turns negotiations into noise. Teaches emplacement, feed, and “brace for recoil.”</description>
         <baseCost>2500</baseCost>
         <researchViewX>2.5</researchViewX>
-        <researchViewY>2</researchViewY>
+        <researchViewY>1</researchViewY>
         <prerequisites>
             <li>GunTurrets</li>
             <li>Rimgate_TauriWeaponsTierOne</li>
         </prerequisites>
     </ResearchProjectDef>
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TauriTurretsTierTwo</defName>
         <label>Tau'ri turrets II</label>
         <description>Apply refined naquadah to rail physics and call it “security.” Unlocks a manned railgun that ventilates armor and egos at extreme range.</description>
         <baseCost>2500</baseCost>
         <researchViewX>3.5</researchViewX>
-        <researchViewY>2</researchViewY>
+        <researchViewY>1</researchViewY>
         <prerequisites>
             <li>Rimgate_TauriTurretsTierOne</li>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
     </ResearchProjectDef>
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
-        <defName>Rimgate_TauriResearchInfrastructure</defName>
-        <label>Tau'ri research infrastructure</label>
-        <description>Formalize Tau'ri-grade research workflows: networked desks, blueprint tables, and enough humming hardware to make every experiment feel classified. Dramatically increases research throughput.</description>
-        <baseCost>3000</baseCost>
-        <prerequisites>
-            <li>Rimgate_TauriManufacturing</li>
-        </prerequisites>
-        <researchViewX>1.5</researchViewX>
-        <researchViewY>3.0</researchViewY>
-    </ResearchProjectDef>
-
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_MalpGestation</defName>
         <label>MALP mech tech</label>
         <description>By tearing down a ruined Tau’ri MALP and tracing its signal routing, your researchers believe they can build a locally manufacturable probe with sturdier parts and less mystery.\n\nWe won’t have their classified control stack, so we’ll have to figure it out ourselves — and make it better.</description>
@@ -142,7 +137,7 @@
         </requiredAnalyzed>
         <baseCost>3500</baseCost>
         <researchViewX>2</researchViewX>
-        <researchViewY>3</researchViewY>
+        <researchViewY>1.5</researchViewY>
         <discoveredLetterTitle>About: MALP reverse-engineering</discoveredLetterTitle>
         <discoveredLetterText>The ruined Tau’ri MALP wasn’t a total loss. Its cabling, crystal mounts, and actuator layout tell a clear story: we can fabricate a ruggedized copy that runs on our tools, our power, and our patience.\n\nIt won’t match the Tau’ri’s classified control stack, but it’ll drive, probe, and—most importantly—go through the Dwarfgate first.</discoveredLetterText>
         <generalRules>
@@ -164,9 +159,9 @@
         </generalRules>
     </ResearchProjectDef>
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_NaquadriaFiredGenerator</defName>
-        <label>Naquadria generator</label>
+        <label>Naquadria power</label>
         <description>Unlock a compact, high-yield power generator fueled by weaponized star dust. Enough energy to power a base—or vaporize one by accident.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
@@ -174,7 +169,7 @@
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
-        <researchViewY>4</researchViewY>
+        <researchViewY>2</researchViewY>
         <techprintCount>1</techprintCount>
         <techprintCommonality>3</techprintCommonality>
         <techprintMarketValue>3000</techprintMarketValue>
@@ -186,19 +181,19 @@
         </tags>
     </ResearchProjectDef>
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
-        <label>industrial Naquadria generator</label>
+        <label>Naquadria engineering</label>
         <description>Advanced Tau'ri naquadria power engineering. Unlocks a heavily shielded, industrial-scale reactor capable of powering full Stargate complexes, deep-space platforms, and that one colonist who insists on running twelve shield belts at once.</description>
         <baseCost>7000</baseCost>
         <prerequisites>
             <li>Rimgate_NaquadriaFiredGenerator</li>
         </prerequisites>
         <researchViewX>3</researchViewX>
-        <researchViewY>4</researchViewY>
+        <researchViewY>2</researchViewY>
     </ResearchProjectDef>
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TretoninSynthesis</defName>
         <label>Tretonin synthesis</label>
         <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\n\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\n\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
@@ -209,7 +204,7 @@
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
-        <researchViewY>5</researchViewY>
+        <researchViewY>2.5</researchViewY>
 
         <discoveredLetterTitle>About: Tretonin</discoveredLetterTitle>
         <discoveredLetterText>After countless enzyme failures, biochemical meltdowns, and one unfortunate volunteer incident, your researchers have succeeded in stabilizing the Tretonin compound.\n\nDerived from Goa'uld symbiote enzymes, the serum grants total immunity to disease—so long as the subject never stops taking it.\n\nThe Tau’ri call it a medical revolution. The Tok’ra call it a bad idea. Both are right.</discoveredLetterText>
@@ -229,7 +224,7 @@
         </generalRules>
     </ResearchProjectDef>
 
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TrackedCart</defName>
         <label>Tracked cart</label>
         <description>Blueprints for a compact, tracked haul platform—part motor-pool ingenuity, part “don’t ask what’s in the crate.” Chemfuel-powered, stable on rough ground, and perfect for dragging too much loot back to base without rupturing a colonist’s spine.</description>
@@ -239,7 +234,7 @@
             <li>BiofuelRefining</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
-        <researchViewY>6</researchViewY>
+        <researchViewY>3</researchViewY>
     </ResearchProjectDef>
 
 </Defs>

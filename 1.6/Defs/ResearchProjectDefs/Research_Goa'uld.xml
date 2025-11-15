@@ -20,11 +20,11 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldBasic</defName>
-		<label>Goa'uld technology</label>
+		<label>Goa'uld tech</label>
 		<description>Unlock foundational Goa'uld tech, including interface protocols, energy matrices, and that smug sense of superiority you've been missing.</description>
 		<baseCost>1500</baseCost>
 		<researchViewX>0</researchViewX>
-		<researchViewY>2.5</researchViewY>
+		<researchViewY>1.5</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
@@ -52,7 +52,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTierTwo</defName>
-		<label>Goa'uld guard armor</label>
+		<label>Guard armor</label>
 		<description>Unlock specialized armor worn by elite Jaffa guards and First Primes. Offers increased protection and 200% more self-importance.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
@@ -106,7 +106,7 @@
 			<li>Rimgate_GoauldArmorTierTwo</li>
 		</prerequisites>
 		<researchViewX>3</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>0.5</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_GoauldKaraKesh</li>
 		</requiredAnalyzed>
@@ -178,19 +178,19 @@
 			<li>Rimgate_GoauldWeaponTierOne</li>
 		</prerequisites>
 		<researchViewX>1.5</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1.5</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTurretsTierTwo</defName>
-		<label>Automated staff cannon</label>
+		<label>AI defense</label>
 		<description>Goa’uld weaponsmiths, obsessed with efficiency and intimidation, have finally managed to bind staff cannon plasma tech to scavenged ion-focusing arrays. The result is a terrifying marriage of ancient cruelty and stolen science: automated staff cannons that no longer need Jaffa to man them. They fire ceaselessly, with inhuman precision, until their barrels melt or their cores detonate. Unlocks construction of automated staff cannon turrets.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldTurretsTierOne</li>
 		</prerequisites>
 		<researchViewX>2.5</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1.5</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
@@ -202,7 +202,48 @@
 		</tags>
 	</ResearchProjectDef>
 
-	<!-- ======== Buildings ========= -->
+	<!-- ======== Misc ========= -->
+
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_SymbioteStudy</defName>
+		<label>Symbiote basics</label>
+		<description>Delve deeper into the biology of Goa'uld symbiotes to decode how they bond, heal, and dominate their hosts. Learn how to “safely” extract one—or install it with only moderate screaming. The line between cure and conquest has never been thinner.</description>
+		<baseCost>5000</baseCost>
+		<techLevel>Ultra</techLevel>
+		<prerequisites>
+			<li>MedicineProduction</li>
+			<li>SterileMaterials</li>
+			<li>Rimgate_GoauldBasic</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>2</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_SymbioteImplant</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Goa'uld Symbiotes</discoveredLetterTitle>
+		<discoveredLetterText>Recovered field notes describe the Goa'uld as both parasite and miracle cure—capable of healing mortal wounds while rewriting the host from the inside out. Your researchers are confident they can replicate this relationship without the “enslavement” part. Probably.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- subjects -->
+				<li>subject->Goa'uld symbiote</li>
+				<li>subject_adj->larval</li>
+				<li>subject_adj->neuroparasitic</li>
+				<li>subject_adj->biochemically elegant</li>
+
+				<!-- story beats -->
+				<li>subject_story->mapped the neural lattice where the symbiote interfaces with the host’s spinal column</li>
+				<li>subject_story->isolated regenerative enzymes responsible for accelerated tissue recovery</li>
+				<li>subject_story->recorded electrical interference patterns that mirror higher cognitive suppression</li>
+				<li>subject_story->observed a dormant larva reactivating when exposed to host adrenaline</li>
+				<li>subject_story->accidentally triggered a telepathic feedback loop; one intern now insists they are a minor god</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->charting symbiote-host integration sequences</li>
+				<li>subject_gerund->replicating regenerative compounds under sterile conditions</li>
+				<li>subject_gerund->testing neural harmonization thresholds</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_HoverSkid</defName>
@@ -215,7 +256,7 @@
 			<li>AdvancedFabrication</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>2.5</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
@@ -239,7 +280,7 @@
 			<li>ShipBasics</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>4</researchViewY>
+		<researchViewY>3</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_DestroyedTeltak</li>
 		</requiredAnalyzed>
@@ -286,7 +327,7 @@
 			<li>SterileMaterials</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>5</researchViewY>
+		<researchViewY>3.5</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_GoauldSarcophagus</li>
 		</requiredAnalyzed>
@@ -315,47 +356,6 @@
 				<li>subject_gerund->mapping sarcophagus pulse envelopes against living tissue</li>
 				<li>subject_gerund->tuning Naquadah carriers to stabilize regenerative cascades</li>
 				<li>subject_gerund->adding interlocks the Goa’uld never bothered with</li>
-			</rulesStrings>
-		</generalRules>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
-		<defName>Rimgate_SymbioteStudy</defName>
-		<label>Goa'uld symbiote fundamentals</label>
-		<description>Delve deeper into the biology of Goa'uld symbiotes to decode how they bond, heal, and dominate their hosts. Learn how to “safely” extract one—or install it with only moderate screaming. The line between cure and conquest has never been thinner.</description>
-		<baseCost>5000</baseCost>
-		<techLevel>Ultra</techLevel>
-		<prerequisites>
-			<li>MedicineProduction</li>
-			<li>SterileMaterials</li>
-			<li>Rimgate_GoauldBasic</li>
-		</prerequisites>
-		<researchViewX>0</researchViewX>
-		<researchViewY>3.5</researchViewY>
-		<requiredAnalyzed>
-			<li>Rimgate_SymbioteImplant</li>
-		</requiredAnalyzed>
-		<discoveredLetterTitle>About: Goa'uld Symbiotes</discoveredLetterTitle>
-		<discoveredLetterText>Recovered field notes describe the Goa'uld as both parasite and miracle cure—capable of healing mortal wounds while rewriting the host from the inside out. Your researchers are confident they can replicate this relationship without the “enslavement” part. Probably.</discoveredLetterText>
-		<generalRules>
-			<rulesStrings>
-				<!-- subjects -->
-				<li>subject->Goa'uld symbiote</li>
-				<li>subject_adj->larval</li>
-				<li>subject_adj->neuroparasitic</li>
-				<li>subject_adj->biochemically elegant</li>
-
-				<!-- story beats -->
-				<li>subject_story->mapped the neural lattice where the symbiote interfaces with the host’s spinal column</li>
-				<li>subject_story->isolated regenerative enzymes responsible for accelerated tissue recovery</li>
-				<li>subject_story->recorded electrical interference patterns that mirror higher cognitive suppression</li>
-				<li>subject_story->observed a dormant larva reactivating when exposed to host adrenaline</li>
-				<li>subject_story->accidentally triggered a telepathic feedback loop; one intern now insists they are a minor god</li>
-
-				<!-- gerunds / research actions -->
-				<li>subject_gerund->charting symbiote-host integration sequences</li>
-				<li>subject_gerund->replicating regenerative compounds under sterile conditions</li>
-				<li>subject_gerund->testing neural harmonization thresholds</li>
 			</rulesStrings>
 		</generalRules>
 	</ResearchProjectDef>
