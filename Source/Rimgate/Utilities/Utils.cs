@@ -96,7 +96,6 @@ internal static class Utils
         return IsGoodSpawnCell(best, map) ? best : from;
     }
 
-
     public static void TryPlaceExactOrNear(Thing thing, Map map, IntVec3? pos, Rot4? rot)
     {
         bool placed = false;
@@ -182,6 +181,15 @@ internal static class Utils
         return pawn.genes.Xenotype == xenotypeDef;
     }
 
+    public static bool HasHiveConnection(this Pawn p)
+    {
+        // Prefer exact xenotype def if you have it
+        if (p?.genes == null) return false;
+        if (p.genes.Xenotype == RimgateDefOf.Rimgate_Wraith) return true;
+        if (p.HasActiveGeneOf(RimgateDefOf.Rimgate_WraithPsychic)) return true;
+        return false;
+    }
+
     public static bool HasHediff(this Pawn pawn, HediffDef def)
     {
         HediffSet set = pawn?.health?.hediffSet;
@@ -216,6 +224,11 @@ internal static class Utils
         if(set.TryGetHediff<T>(out T result))
             return result;
         return null;
+    }
+
+    public static bool HasSymbiote(this Pawn pawn)
+    {
+        return pawn.health?.hediffSet?.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) ?? false;
     }
 
     public static Hediff ApplyHediff(

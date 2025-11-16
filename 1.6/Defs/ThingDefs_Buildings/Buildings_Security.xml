@@ -714,7 +714,7 @@
 				<saveKeysPrefix>glow</saveKeysPrefix>
 			</li>
 			<li Class="CompProperties_Glower">
-				<glowRadius>2</glowRadius>
+				<glowRadius>2.9</glowRadius>
 				<glowColor>(115,35,20,0)</glowColor>
 			</li>
 		</comps>

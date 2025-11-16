@@ -27,8 +27,8 @@ public class ThoughtWorker_Opinion_SymbioteHostility : ThoughtWorker
         if (!p.RaceProps.Humanlike || !other.RaceProps.Humanlike) return ThoughtState.Inactive;
 
         // Apply only if OTHER is the host, and p is not a host
-        bool otherIsHost = other.health?.hediffSet?.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) ?? false;
-        bool selfIsHost = p.health?.hediffSet?.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) ?? false;
+        bool otherIsHost = other.HasSymbiote();
+        bool selfIsHost = p.HasSymbiote();
 
         if (otherIsHost && !selfIsHost)
             return ThoughtState.ActiveDefault;

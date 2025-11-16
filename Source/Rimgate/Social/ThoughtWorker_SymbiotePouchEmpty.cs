@@ -14,7 +14,7 @@ namespace Rimgate
             bool hasPouch = p.HasHediff(RimgateDefOf.Rimgate_SymbiotePouch);
             if (!hasPouch) return ThoughtState.Inactive;
 
-            bool hasSymbiote = p.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant);
+            bool hasSymbiote = p.HasSymbiote();
             return !hasSymbiote 
                 ? ThoughtState.ActiveDefault 
                 : ThoughtState.Inactive;

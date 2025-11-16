@@ -6,15 +6,15 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
+public class JobDriver_MeditateAtWraithTable : JobDriver_Meditate
 {
     protected const TargetIndex FacingInd = TargetIndex.B;
 
-    private Building Throne => TargetA.Thing as Building;
+    private Building Table => TargetA.Thing as Building;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(Throne, job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(Table, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -24,15 +24,16 @@ public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
         // Decide what cell we face while meditating
         yield return Toils_General.Do(delegate
         {
-            // Face "in front" of the throne (it only faces south)
-            IntVec3 faceCell = Throne.InteractionCell + Rot4.South.FacingCell;
+            // Stand at the interaction cell and face the table itself
+            IntVec3 faceCell = Table.Position;
             job.SetTarget(FacingInd, faceCell);
         });
 
+        // Go to the Wraith table's interaction cell
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
 
         // Main meditation toil
-        Toil meditate = ToilMaker.MakeToil("GoauldThroneMeditate");
+        Toil meditate = ToilMaker.MakeToil("WraithTableMeditate");
         meditate.FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
         meditate.defaultCompleteMode = ToilCompleteMode.Delay;
         meditate.defaultDuration = job.def.joyDuration;
@@ -40,62 +41,72 @@ public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
 
         if (pawn.HasPsylink && Focus.Thing != null)
         {
-            meditate.FailOn(() => Focus.Thing.GetStatValueForPawn(StatDefOf.MeditationFocusStrength, pawn) < float.Epsilon);
+            meditate.FailOn(() =>
+                Focus.Thing.GetStatValueForPawn(StatDefOf.MeditationFocusStrength, pawn) < float.Epsilon);
         }
 
-        meditate.FailOn(() => !MeditationUtility.CanMeditateNow(pawn) || !MeditationUtility.SafeEnvironmentalConditions(pawn, base.TargetLocA, base.Map));
+        meditate.FailOn(() =>
+            !MeditationUtility.CanMeditateNow(pawn)
+            || !MeditationUtility.SafeEnvironmentalConditions(pawn, TargetLocA, Map));
 
         meditate.AddPreTickAction(delegate
         {
-            bool flag = pawn.GetTimeAssignment() == TimeAssignmentDefOf.Meditate;
+            bool onMeditationTime = pawn.GetTimeAssignment() == TimeAssignmentDefOf.Meditate;
             if (job.ignoreJoyTimeAssignment)
             {
                 Pawn_PsychicEntropyTracker psychicEntropy = pawn.psychicEntropy;
-                bool flag2 = !flag && job.wasOnMeditationTimeAssignment;
-                if (pawn.IsHashIntervalTick(4000) 
-                    && psychicEntropy != null 
-                    && !flag 
+                bool wasOnMeditationTime = !onMeditationTime && job.wasOnMeditationTimeAssignment;
+
+                if (pawn.IsHashIntervalTick(4000)
+                    && psychicEntropy != null
+                    && !onMeditationTime
                     && psychicEntropy.CurrentPsyfocus >= Mathf.Max(psychicEntropy.TargetPsyfocus + 0.05f, 0.99f))
                 {
                     pawn.jobs.CheckForJobOverride();
                     return;
                 }
 
-                if (flag2 && psychicEntropy.TargetPsyfocus < psychicEntropy.CurrentPsyfocus)
+                if (wasOnMeditationTime && psychicEntropy.TargetPsyfocus < psychicEntropy.CurrentPsyfocus)
                 {
                     EndJobWith(JobCondition.InterruptForced);
                     return;
                 }
 
                 job.psyfocusTargetLast = psychicEntropy.TargetPsyfocus;
-                job.wasOnMeditationTimeAssignment = flag;
+                job.wasOnMeditationTimeAssignment = onMeditationTime;
             }
-            else if (pawn.needs.joy.CurLevelPercentage >= 1f)
+            else if (pawn.needs.joy?.CurLevelPercentage >= 1f)
             {
                 EndJobWith(JobCondition.InterruptForced);
                 return;
-            }    
+            }
         });
+
         meditate.tickAction = delegate
         {
             rotateToFace = FacingInd;
             MeditationTick();
         };
 
-        meditate.AddFinishAction(ApplySymbioteThroneMemories);
+        meditate.AddFinishAction(ApplyWraithMeditationMemories);
 
         yield return meditate;
     }
 
-    private void ApplySymbioteThroneMemories()
+    private void ApplyWraithMeditationMemories()
     {
-        if (!pawn.HasSymbiote())
+        // Only Wraith / hive-linked pawns get the special thoughts
+        if (!pawn.HasHiveConnection())
             return;
 
         var memories = pawn.needs?.mood?.thoughts?.memories;
         if (memories == null)
             return;
 
-        memories.TryGainMemory(RimgateDefOf.Rimgate_GoauldThroneCravingDominion);
+        // Simple split: more often "Communed with the Hive", sometimes "Whispers from the Void"
+        if (Rand.Chance(0.7f))
+            memories.TryGainMemory(RimgateDefOf.Rimgate_WraithCommunedWithHive);
+        else
+            memories.TryGainMemory(RimgateDefOf.Rimgate_WraithWhispersFromVoid);
     }
 }

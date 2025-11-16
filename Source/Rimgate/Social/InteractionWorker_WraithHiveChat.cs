@@ -17,8 +17,8 @@ public class InteractionWorker_WraithHiveChat : InteractionWorker
             || initiator.Map != recipient.Map) return 0f;
 
         if (!ModsConfig.BiotechActive 
-            || !HasHiveConnection(initiator) 
-            || !HasHiveConnection(recipient)) return 0f;
+            || !initiator.HasHiveConnection() 
+            || !recipient.HasHiveConnection()) return 0f;
 
         if (initiator.Downed || recipient.Downed) return 0f;
         if (initiator.HostileTo(recipient)) return 0f;
@@ -35,14 +35,5 @@ public class InteractionWorker_WraithHiveChat : InteractionWorker
             moodBias *= Mathf.Lerp(0.75f, 1.25f, initiator.needs.mood.CurLevel);
 
         return BaseWeight * proximity * moodBias;
-    }
-
-    private static bool HasHiveConnection(Pawn p)
-    {
-        // Prefer exact xenotype def if you have it
-        if (p?.genes == null) return false;
-        if (p.genes.Xenotype == RimgateDefOf.Rimgate_Wraith) return true;
-        if (p.HasActiveGeneOf(RimgateDefOf.Rimgate_WraithPsychic)) return true;
-        return false;
     }
 }

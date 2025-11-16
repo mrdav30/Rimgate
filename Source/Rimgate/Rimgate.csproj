@@ -331,6 +331,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_EnterCloningPod.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_HaulToMobileContainer.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_InsertSymbioteQueen.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_MeditateAtWraithTable.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_MeditateOnGoauldThrone.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_PushMobileContainer.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_SitFacingBuilding_Learning.cs" />

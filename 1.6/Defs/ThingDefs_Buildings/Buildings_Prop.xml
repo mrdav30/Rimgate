@@ -40,15 +40,17 @@
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_WraithTable</defName>
-        <label>Wraith table</label>
+        <label>Wraith altar</label>
         <description>A biomass-grown slab shaped into a ritual table, its surface pulsing with faint organic patterns and a central seal-like disc. To outsiders it resembles a primitive calendar or altar, but the Wraith use it as both a star chart and a focus for their hive rituals. When touched, the surface quivers faintly, as though alive, whispering in a tongue only the hive truly understands.</description>
+
         <graphicData>
             <texPath>Things/Building/Prop/RGWraithTable</texPath>
             <graphicClass>Graphic_Multi</graphicClass>
             <shaderType>CutoutComplex</shaderType>
-            <drawSize>(2,2)</drawSize>
+            <drawSize>(1,1)</drawSize>
         </graphicData>
         <size>(1,1)</size>
+
         <statBases>
             <MaxHitPoints>100</MaxHitPoints>
             <WorkToBuild>4000</WorkToBuild>
@@ -56,8 +58,9 @@
             <Beauty>15</Beauty>
             <MarketValue>850</MarketValue>
             <Mass>28.5</Mass>
-            <MeditationFocusStrength>0.22</MeditationFocusStrength>
+            <MeditationFocusStrength>0.24</MeditationFocusStrength>
         </statBases>
+
         <building>
             <claimable>true</claimable>
             <isInert>true</isInert>
@@ -65,8 +68,21 @@
             <alwaysDeconstructible>true</alwaysDeconstructible>
             <canLandGravshipOn>true</canLandGravshipOn>
             <ai_chillDestination>false</ai_chillDestination>
+            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
         </building>
-        <hasInteractionCell>True</hasInteractionCell>
+
+        <killedLeavingsRanges>
+            <Rimgate_Biomass>0~6</Rimgate_Biomass>
+            <Jade>0~4</Jade>
+        </killedLeavingsRanges>
+
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>BuildingsMisc</li>
+        </thingCategories>
+
+        <hasInteractionCell>true</hasInteractionCell>
+        <socialPropernessMatters>true</socialPropernessMatters>
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>
         <fillPercent>0.4</fillPercent>
         <castEdgeShadows>True</castEdgeShadows>
@@ -75,17 +91,39 @@
         <passability>Impassable</passability>
         <canOverlapZones>false</canOverlapZones>
         <altitudeLayer>Building</altitudeLayer>
+
+        <placeWorkers>
+            <li>PlaceWorker_MeditationOffsetBuildingsNear</li>
+        </placeWorkers>
+
         <comps>
             <li Class="CompProperties_AssignableToPawn">
                 <drawUnownedAssignmentOverlay>false</drawUnownedAssignmentOverlay>
                 <compClass>CompAssignableToPawn_MeditationSpot</compClass>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>2.9</glowRadius>
+                <glowColor>(22,52,54,0)</glowColor>
             </li>
             <li Class="CompProperties_MeditationFocus">
                 <statDef>MeditationFocusStrength</statDef>
                 <focusTypes>
                     <li>Void</li>
                     <li>Morbid</li>
+                    <li>Natural</li>
                 </focusTypes>
+                <offsets>
+                    <li Class="FocusStrengthOffset_BuildingDefs">
+                        <defs>
+                            <li>Rimgate_WraithTable</li>
+                        </defs>
+                        <offsetPerBuilding>0.05</offsetPerBuilding>
+                        <radius>9.9</radius>
+                        <maxBuildings>4</maxBuildings>
+                        <explanationKey>MeditationFocusPerBuilding</explanationKey>
+                        <explanationKeyAbstract>MeditationFocusPerBuildingAbstract</explanationKeyAbstract>
+                    </li>
+                </offsets>
             </li>
         </comps>
     </ThingDef>
@@ -210,7 +248,7 @@
             </li>
 
             <li Class="CompProperties_Glower">
-                <glowRadius>4</glowRadius>
+                <glowRadius>4.9</glowRadius>
                 <glowColor>(255,150,100,0)</glowColor>
             </li>
         </comps>
@@ -277,7 +315,7 @@
             </li>
 
             <li Class="CompProperties_Glower">
-                <glowRadius>3</glowRadius>
+                <glowRadius>3.9</glowRadius>
                 <glowColor>(200,255,255,0)</glowColor>
             </li>
         </comps>
@@ -707,7 +745,7 @@
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>3</glowRadius>
+                <glowRadius>2.9</glowRadius>
                 <glowColor>(151,243,255,0)</glowColor>
             </li>
         </comps>
@@ -729,7 +767,7 @@
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>3</glowRadius>
+                <glowRadius>2.9</glowRadius>
                 <glowColor>(126,177,161,0)</glowColor>
             </li>
         </comps>
@@ -751,7 +789,7 @@
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>3</glowRadius>
+                <glowRadius>2.9</glowRadius>
                 <glowColor>(160,116,27,0)</glowColor>
             </li>
         </comps>
@@ -773,7 +811,7 @@
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>3</glowRadius>
+                <glowRadius>2.9</glowRadius>
                 <glowColor>(109,13,13,0)</glowColor>
             </li>
         </comps>
@@ -795,7 +833,7 @@
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>3</glowRadius>
+                <glowRadius>2.9</glowRadius>
                 <glowColor>(221,220,28,0)</glowColor>
             </li>
         </comps>

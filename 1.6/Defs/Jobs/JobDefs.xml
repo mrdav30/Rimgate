@@ -191,7 +191,15 @@
 		<isCrawlingIfDowned>false</isCrawlingIfDowned>
 	</JobDef>
 
-	<!-- =============== Throne =============== -->
+	<JobDef>
+		<defName>Rimgate_PlayTauriResearchDesk</defName>
+		<driverClass>Rimgate.JobDriver_SitFacingBuilding_Learning</driverClass>
+		<reportString>using Tau'ri research terminal.</reportString>
+		<joyDuration>4000</joyDuration>
+		<joyKind>Gaming_Cerebral</joyKind>
+		<taleOnCompletion>PlayedGame</taleOnCompletion>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
 
 	<JobDef>
 		<defName>Rimgate_MeditateOnGoauldThrone</defName>
@@ -199,6 +207,17 @@
 		<joyKind>Meditative</joyKind>
 		<joyDuration>6000</joyDuration> <!-- same ballpark as Meditate -->
 		<reportString>meditating on the throne.</reportString>
+		<neverShowWeapon>true</neverShowWeapon>
+		<taleOnCompletion>Meditated</taleOnCompletion>
+		<isCrawlingIfDowned>false</isCrawlingIfDowned>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_MeditateAtWraithTable</defName>
+		<driverClass>Rimgate.JobDriver_MeditateAtWraithTable</driverClass>
+		<joyKind>Meditative</joyKind>
+		<joyDuration>6000</joyDuration>
+		<reportString>meditating at the Wraith table.</reportString>
 		<neverShowWeapon>true</neverShowWeapon>
 		<taleOnCompletion>Meditated</taleOnCompletion>
 		<isCrawlingIfDowned>false</isCrawlingIfDowned>
@@ -221,19 +240,6 @@
 		<driverClass>Rimgate.JobDriver_InsertSymbioteQueen</driverClass>
 		<reportString>inserting symbiote queen.</reportString>
 		<casualInterruptible>true</casualInterruptible>
-	</JobDef>
-
-	<!-- =============== Joy =============== -->
-
-	<JobDef>
-		<defName>Rimgate_PlayTauriResearchDesk</defName>
-		<driverClass>Rimgate.JobDriver_SitFacingBuilding_Learning</driverClass>
-		<reportString>using Tau'ri research terminal.</reportString>
-		<joyDuration>4000</joyDuration>
-		<joyMaxParticipants>1</joyMaxParticipants>
-		<joyKind>Gaming_Cerebral</joyKind>
-		<taleOnCompletion>PlayedGame</taleOnCompletion>
-		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 
 </Defs>

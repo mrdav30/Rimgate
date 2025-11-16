@@ -134,6 +134,23 @@
         </stages>
     </ThoughtDef>
 
+    <!-- Throne -->
+
+    <ThoughtDef>
+        <defName>Rimgate_GoauldThroneCravingDominion</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>0.8</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>craving dominion</label>
+                <description>The symbiote settled easily into the old channels of power humming beneath the throne. Power pooled in the mind like liquid fire, bringing with it a sharp craving to command, to control, to bend every will around the throne.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
     <!-- =============== Wraith Hive =============== -->
 
     <ThoughtDef>
@@ -167,6 +184,38 @@
                 <label>essence cravings</label>
                 <description>The hum beneath the skin is fading. Instinct gnaws, urging the hunt—someone here must have what I need.</description>
                 <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Wraith Altar -->
+
+    <ThoughtDef>
+        <defName>Rimgate_WraithCommunedWithHive</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>0.8</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>communed with the hive</label>
+                <description>The altar's living patterns resonated perfectly with the hive-song. The hunger feels sharper, but so does the clarity of purpose.</description>
+                <baseMoodEffect>6</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Rimgate_WraithWhispersFromVoid</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>0.8</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>whispers from the void</label>
+                <description>The altar hummed with distant voices—half guidance, half hunger. The echoes linger at the edge of thought, unsettling and strangely uncomforting.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

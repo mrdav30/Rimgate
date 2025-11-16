@@ -79,6 +79,7 @@ public static class RimgateDefOf
     public static JobDef Rimgate_EnterStargateWithContainer;
     public static JobDef Rimgate_HaulToContainer;
     public static JobDef Rimgate_InsertSymbioteQueen;
+    public static JobDef Rimgate_MeditateAtWraithTable;
     public static JobDef Rimgate_MeditateOnGoauldThrone;
     public static JobDef Rimgate_PatientGoToSarcophagus;
     public static JobDef Rimgate_PushMobileContainer;
@@ -135,7 +136,12 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_SubspacePhaseDiverter;
     public static ThingDef Rimgate_Wheelbarrow;
     public static ThingDef Rimgate_WraithMeatLab;
+    public static ThingDef Rimgate_WraithTable;
     public static ThingDef Rimgate_ZPM;
+
+    public static ThoughtDef Rimgate_GoauldThroneCravingDominion;
+    public static ThoughtDef Rimgate_WraithCommunedWithHive;
+    public static ThoughtDef Rimgate_WraithWhispersFromVoid;
 
     public static ThingSetMakerDef Rimgate_Meteorite;
 

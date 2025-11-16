@@ -409,7 +409,7 @@
         </building>
         <comps>
             <li Class="CompProperties_Glower">
-                <glowRadius>3</glowRadius>
+                <glowRadius>2.9</glowRadius>
                 <glowColor>(120, 200, 255, 0)</glowColor>
             </li>
             <li Class="Rimgate.CompProperties_ResonanceIdol">

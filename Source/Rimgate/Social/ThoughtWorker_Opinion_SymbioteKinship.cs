@@ -11,7 +11,7 @@ public class ThoughtWorker_Opinion_SymbioteKinship : ThoughtWorker
         if (p.IsPrisoner || !p.IsColonist || p.IsSlave)
             return ThoughtState.Inactive;
 
-        bool isHost = p.health?.hediffSet?.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) ?? false;
+        bool isHost = p.HasSymbiote();
         if (!isHost)
             return ThoughtState.Inactive;
 
@@ -28,8 +28,8 @@ public class ThoughtWorker_Opinion_SymbioteKinship : ThoughtWorker
         if (!p.RaceProps.Humanlike || !other.RaceProps.Humanlike) return ThoughtState.Inactive;
 
         // Apply only if both are a host
-        bool pHost = p.health?.hediffSet?.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) ?? false;
-        bool otherHost = other.health?.hediffSet?.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) ?? false;
+        bool pHost = p.HasSymbiote();
+        bool otherHost = other.HasSymbiote();
 
         if (pHost && otherHost)
             return ThoughtState.ActiveDefault;

@@ -505,7 +505,7 @@
 				<shortCircuitInRain>false</shortCircuitInRain>
 			</li>
 			<li Class="CompProperties_Glower">
-				<glowRadius>2</glowRadius>
+				<glowRadius>2.9</glowRadius>
 				<glowColor>(120,200,255,0)</glowColor>
 			</li>
 			<li Class="CompProperties_Facility">
@@ -708,7 +708,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_TauriResearchDesk</defName>
 		<label>Research desk</label>
-		<description>A Tau'ri research station with a humming terminal, intact data routing, and just enough alien UI to make your brightest colonist feel slightly inadequate.\n\nDramatically accelerates complex research when linked to a hi-tech bench — and some pawns have spread the word on how to bypass the safety protocols and load something called "DOOM", letting them "research" for hours while fragging demons on the clock.</description>
+		<description>A Tau'ri research station with a humming terminal, intact data routing, and just enough alien UI to make your brightest colonist feel slightly inadequate.\n\nDramatically accelerates complex research when linked to a hi-tech bench — and some pawns have learned how to bypass safety protocols and load up the "Legend of Zoltar", letting them pretend to "research" for hours while off the clock.</description>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGTauriDesk</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -880,7 +880,7 @@
 			<li Class="CompProperties_Flickable" />
 
 			<li Class="CompProperties_Glower">
-				<glowRadius>2</glowRadius>
+				<glowRadius>2.9</glowRadius>
 				<glowColor>(200,230,230,0)</glowColor>
 			</li>
 

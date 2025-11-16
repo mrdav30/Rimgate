@@ -184,36 +184,7 @@
     <defName>Rimgate_GoauldThrone</defName>
     <label>Goa'uld throne</label>
     <description>Once graced by the golden posterior of a self-proclaimed god, this majestic Goa’uld throne is less “furniture” and more “divine flex.” Forged from arrogance and overdesigned with an absurd number of comfort features — including integrated body massagers, an atmospheric pressure bidet, and a modesty-preserving nanosteam shower — it’s perfect for those who like to rule, gloat, and exfoliate at the same time.\n\nJust don’t let a Tok’ra sit in it. Ever.</description>
-    <castEdgeShadows>False</castEdgeShadows>
-    <size>(3,2)</size>
-    <interactionCellOffset>(0,0,1)</interactionCellOffset>
-    <statBases>
-      <MaxHitPoints>350</MaxHitPoints>
-      <WorkToBuild>40000</WorkToBuild>
-      <Mass>100</Mass>
-      <Flammability>1.0</Flammability>
-      <Beauty>60</Beauty>
-      <Comfort>1.75</Comfort>
-      <MeditationFocusStrength>0.25</MeditationFocusStrength>
-    </statBases>
-    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <costStuffCount>150</costStuffCount>
-    <costList>
-      <Steel>200</Steel>
-      <Gold>100</Gold>
-    </costList>
-    <building>
-      <isSittable>true</isSittable>
-      <paintable>false</paintable>
-      <ai_chillDestination>false</ai_chillDestination>
-      <buildingSizeCategory>Medium</buildingSizeCategory>
-    </building>
-    <uiIconOffset>(0, 0.04)</uiIconOffset>
-    <uiIconScale>1</uiIconScale>
+
     <graphicData>
       <drawSize>(4,4)</drawSize>
       <texPath>Things/Building/Furniture/RGGoauldThrone</texPath>
@@ -227,6 +198,43 @@
         <rect>(0.1,0.1,2.8,1.8)</rect>
       </damageData>
     </graphicData>
+    <uiIconOffset>(0, 0.04)</uiIconOffset>
+    <uiIconScale>1</uiIconScale>
+    <castEdgeShadows>False</castEdgeShadows>
+    <size>(3,2)</size>
+
+    <statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+      <WorkToBuild>40000</WorkToBuild>
+      <Mass>100</Mass>
+      <Flammability>1.0</Flammability>
+      <Beauty>60</Beauty>
+      <Comfort>1.75</Comfort>
+      <MeditationFocusStrength>0.25</MeditationFocusStrength>
+      <TerrorSource MayRequire="Ludeon.RimWorld.Ideology">45</TerrorSource>
+    </statBases>
+
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
+    <costStuffCount>150</costStuffCount>
+    <costList>
+      <Steel>200</Steel>
+      <Gold>100</Gold>
+    </costList>
+
+    <building>
+      <isSittable>true</isSittable>
+      <paintable>false</paintable>
+      <ai_chillDestination>false</ai_chillDestination>
+      <buildingSizeCategory>Medium</buildingSizeCategory>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_MeditationOffsetBuildingsNear</li>
+    </placeWorkers>
+
     <passability>Standable</passability>
     <drawGUIOverlay>true</drawGUIOverlay>
     <drawGUIOverlayQuality>false</drawGUIOverlayQuality>
@@ -234,6 +242,7 @@
     <altitudeLayer>Building</altitudeLayer>
     <category>Building</category>
     <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,0)</interactionCellOffset>
     <socialPropernessMatters>true</socialPropernessMatters>
     <pathCost>30</pathCost>
     <fillPercent>0.4</fillPercent>
@@ -244,6 +253,7 @@
       <li>ComplexFurniture</li>
       <li>Rimgate_GoauldBasic</li>
     </researchPrerequisites>
+
     <comps>
       <li Class="CompProperties_AssignableToPawn">
         <drawAssignmentOverlay>false</drawAssignmentOverlay>
@@ -261,7 +271,7 @@
             <defs>
               <li>Brazier</li>
             </defs>
-            <offsetPerBuilding>0.02</offsetPerBuilding>
+            <offsetPerBuilding>0.04</offsetPerBuilding>
             <radius>9.9</radius>
             <maxBuildings>4</maxBuildings>
             <explanationKey>MeditationFocusPerBuilding</explanationKey>

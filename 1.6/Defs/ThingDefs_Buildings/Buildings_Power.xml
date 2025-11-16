@@ -68,7 +68,7 @@
         </fuelFilter>
       </li>
       <li Class="CompProperties_Glower">
-        <glowRadius>2</glowRadius>
+        <glowRadius>3.9</glowRadius>
         <glowColor>(33,85,255,0)</glowColor>
       </li>
       <li Class="CompProperties_HeatPusher">
@@ -167,7 +167,7 @@
         <chanceNeverExplodeFromDamage>0.25</chanceNeverExplodeFromDamage>
       </li>
       <li Class="CompProperties_Glower">
-        <glowRadius>4</glowRadius>
+        <glowRadius>4.9</glowRadius>
         <glowColor>(217,112,33,0)</glowColor>
       </li>
       <li Class="CompProperties_Breakdownable" />
@@ -242,7 +242,7 @@
         </fuelFilter>
       </li>
       <li Class="CompProperties_Glower">
-        <glowRadius>2</glowRadius>
+        <glowRadius>3.9</glowRadius>
         <glowColor>(33,202,255,0)</glowColor>
       </li>
       <li Class="CompProperties_HeatPusher">
