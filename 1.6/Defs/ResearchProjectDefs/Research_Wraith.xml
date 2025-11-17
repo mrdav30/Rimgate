@@ -145,7 +145,7 @@
 			<li>Rimgate_WraithBasic</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>1.5</researchViewY>
+		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -193,7 +193,7 @@
 			<li>Rimgate_WraithCloneGenome</li>
 		</prerequisites>
 		<researchViewX>2.5</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>1.5</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">

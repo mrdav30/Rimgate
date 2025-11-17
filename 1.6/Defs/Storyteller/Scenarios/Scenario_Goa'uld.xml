@@ -2,14 +2,14 @@
 <Defs>
 
 	<ScenarioDef>
-		<defName>Rimgate_SGCTeamScenario</defName>
-		<label>Rogue SGC Team</label>
-		<description>Once members of a sanctioned Stargate Command unit, these soldiers have gone rogue—whether by choice, accident, or a shady mission no one wants to talk about.\nCut off from command and stranded light-years from Earth, they operate independently under the radar... and with a lot fewer rules.</description>
+		<defName>Rimgate_GoauldScenario</defName>
+		<label>Free Jaffa Nation</label>
+		<description>Once the iron fist of the Goa'uld, these Jaffa have broken their chains and declared independence. With symbiotes in their bellies and rebellion in their hearts, they now fight for freedom, honor, and the right to accessorize with staff weapons.</description>
 		<scenario>
-			<summary>A rogue SGC unit on the run.</summary>
+			<summary>A group of rebellious Jaffa.</summary>
 			<playerFaction>
 				<def>PlayerFaction</def>
-				<factionDef>Rimgate_TauriPlayerColony</factionDef>
+				<factionDef>Rimgate_GoauldPlayerColony</factionDef>
 			</playerFaction>
 			<surfaceLayer>
 				<def>SurfaceLayerFixed</def>
@@ -25,17 +25,30 @@
 			</surfaceLayer>
 			<parts>
 				<!-- Config pages -->
-				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs">
-					<def>ConfigurePawnsKindDefs</def>
+				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes">
+					<def>ConfigurePawnsXenotypes</def>
 					<pawnChoiceCount>8</pawnChoiceCount>
-					<leftBehindPawnKind>Rimgate_TauriPlayer</leftBehindPawnKind>
-					<kindCounts>
+					<overrideKinds>
 						<li>
-							<kindDef>Rimgate_TauriPlayer</kindDef>
-							<count>4</count>
-							<requiredAtStart>true</requiredAtStart>
+							<xenotype>Baseliner</xenotype>
+							<pawnKind>Rimgate_GoauldPlayerSlave</pawnKind>
 						</li>
-					</kindCounts>
+					</overrideKinds>
+					<xenotypeCounts>
+						<li>
+							<xenotype>Rimgate_GoauldJaffa</xenotype>
+							<count>3</count>
+							<description>non-baby jaffa</description>
+							<requiredAtStart>true</requiredAtStart>
+							<allowedDevelopmentalStages>Adult</allowedDevelopmentalStages>
+						</li>
+						<li>
+							<xenotype>Baseliner</xenotype>
+							<count>2</count>
+							<description>non-baby human</description>
+							<allowedDevelopmentalStages>Adult, Child</allowedDevelopmentalStages>
+						</li>
+					</xenotypeCounts>
 				</li>
 				<!-- Player starting stuff spawn method-->
 				<li Class="ScenPart_PlayerPawnsArriveMethod">
@@ -45,34 +58,42 @@
 				<!-- Game start dialog -->
 				<li Class="ScenPart_GameStartDialog">
 					<def>GameStartDialog</def>
-					<text>You stole a Puddle Jumper. It wasn’t *technically* your fault—but the SGC didn't see it that way.\n\nBranded rogue agents and pursued across the stars, you made a blind jump to the nearest habitable system. The good news? You made it. The bad news? You're stranded.\n\nDon’t expect help from the Tau’ri outpost—they’ve disavowed you to save face. You’re on your own now. Survive, adapt, and maybe prove that going rogue was the right call.\n\nOr at least more fun.</text>
+					<text>The gods were false.\n\nAfter a lifetime of serving the Goa’uld and calling tyranny divine, you and a handful of Jaffa finally said “enough.” No more bowing. No more glowing eyes. No more forced chanting in ancient dialects.\n\nNow, stranded on a remote world with only your wits, weapons, and an awkward mix of symbiotes and humans, you must build a new future. One not ruled by parasites in fancy hats.\n\nWelcome to the Free Jaffa Nation. Try not to die.</text>
 					<closeSound>GameStartSting</closeSound>
 				</li>
 				<!-- Player starting things -->
-				<li Class="ScenPart_ScatterThingsNearPlayerStart">
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Silver</thingDef>
+					<count>200</count>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
 					<thingDef>MealSurvivalPack</thingDef>
 					<count>20</count>
 				</li>
-				<li Class="ScenPart_ScatterThingsNearPlayerStart">
+				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
 					<thingDef>MedicineIndustrial</thingDef>
 					<count>20</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
-					<thingDef>Rimgate_TauriTacticalVest</thingDef>
-					<count>3</count>
+					<thingDef>Rimgate_JaffaArmor</thingDef>
+					<count>2</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
-					<thingDef>Rimgate_TacticalVestSteelPlateInsert</thingDef>
-					<count>3</count>
+					<thingDef>Rimgate_JaffaHelmet</thingDef>
+					<count>2</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
-					<thingDef>Rimgate_TauriTacticalBackpack</thingDef>
-					<count>3</count>
+					<thingDef>Rimgate_GoauldMaTokBlue</thingDef>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Rimgate_GoauldMaTokViolet</thingDef>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
@@ -83,62 +104,46 @@
 					<thingDef>WoodLog</thingDef>
 					<count>500</count>
 				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>Rimgate_TauriM4A1_M203Gun</thingDef>
-				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>Rimgate_TauriP90Gun</thingDef>
-				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>Rimgate_DestroyedJumper</thingDef>
-				</li>
-				<li Class="ScenPart_ScatterThingsNearPlayerStart">
-					<def>StartingThing_Defined</def>
-					<thingDef>Steel</thingDef>
-					<count>400</count>
-				</li>
-				<li Class="ScenPart_ScatterThingsNearPlayerStart">
-					<def>StartingThing_Defined</def>
-					<thingDef>ComponentIndustrial</thingDef>
-					<count>80</count>
-				</li>
-				<li Class="ScenPart_ScatterThingsNearPlayerStart">
-					<def>ScatterThingsNearPlayerStart</def>
-					<thingDef>ShipChunk</thingDef>
-					<count>4</count>
-				</li>
 				<li Class="ScenPart_ScatterThingsNearPlayerStart">
 					<def>ScatterThingsNearPlayerStart</def>
 					<thingDef>Rimgate_GlyphParchment</thingDef>
 					<count>1</count>
 				</li>
-				<!-- Starting research -->
-				<li Class="ScenPart_StartingResearch">
-					<def>StartingResearch</def>
-					<project>Pemmican</project>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Gold</thingDef>
+					<count>100</count>
 				</li>
-				<li Class="ScenPart_StartingResearch">
-					<def>StartingResearch</def>
-					<project>PackagedSurvivalMeal</project>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Steel</thingDef>
+					<count>400</count>
 				</li>
-				<li Class="ScenPart_StartingResearch">
-					<def>StartingResearch</def>
-					<project>IEDs</project>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>ComponentIndustrial</thingDef>
+					<count>80</count>
 				</li>
-				<li Class="ScenPart_StartingResearch">
-					<def>StartingResearch</def>
-					<project>Prosthetics</project>
-				</li>
+				<!-- Starting research -->	
 				<li Class="ScenPart_StartingResearch">
 					<def>StartingResearch</def>
 					<project>Rimgate_GlyphDeciphering</project>
 				</li>
 				<li Class="ScenPart_StartingResearch">
 					<def>StartingResearch</def>
-					<project>Rimgate_TauriBasic</project>
+					<project>Rimgate_GoauldBasic</project>
+				</li>
+				<li Class="ScenPart_StartingResearch">
+					<def>StartingResearch</def>
+					<project>Rimgate_GoauldArmorTierOne</project>
+				</li>
+				<li Class="ScenPart_StartingResearch">
+					<def>StartingResearch</def>
+					<project>Rimgate_GoauldWeaponTierOne</project>
+				</li>
+				<li Class="ScenPart_StartingResearch">
+					<def>StartingResearch</def>
+					<project>Rimgate_SymbioteStudy</project>
 				</li>
 				<!-- Layers -->
 				<li MayRequire="Ludeon.RimWorld.Odyssey" Class="ScenPart_PlanetLayer">
