@@ -55,6 +55,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_SarcophagusHigh;
     public static HediffDef Rimgate_SarcophagusAddiction;
     public static HediffDef Rimgate_SymbioteImplant;
+    public static HediffDef Rimgate_SymbiotePlague;
     public static HediffDef Rimgate_SymbiotePouch;
     public static HediffDef Rimgate_SymbioteWithdrawal;
     public static HediffDef Rimgate_SystemShock;

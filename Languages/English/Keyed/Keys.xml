@@ -13,6 +13,9 @@
 
 	<RG_LetterRaidAstroid_Desc>A raid from {0} has arrived to capture the {1} that impacted nearby.</RG_LetterRaidAstroid_Desc>
 
+	<RG_Message_SymbioteKilledByPathogen>The pathogen has destroyed the symbiote inside {PAWN_labelShort}. The host may live, but the "god" within is gone.</RG_Message_SymbioteKilledByPathogen>
+	<RG_Letter_DiseaseBlocked>{0} blocked by immunity on</RG_Letter_DiseaseBlocked>
+
 	<!-- Sarcophagus -->
 
 	<RG_Sarcophagus_InspectorStatus_NoPower>Error: No power</RG_Sarcophagus_InspectorStatus_NoPower>

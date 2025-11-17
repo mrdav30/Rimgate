@@ -10,6 +10,8 @@ namespace Rimgate;
 
 public class Comp_SymbiotePool : ThingComp
 {
+    private const float TicksPerRare = 250f;
+
     public CompProperties_SymbiotePool Props => (CompProperties_SymbiotePool)props;
 
     public CompRefuelable Refuelable => _cachedRefuelable ??= parent.GetComp<CompRefuelable>();
@@ -51,8 +53,7 @@ public class Comp_SymbiotePool : ThingComp
             if (perDay > 0f)
             {
                 // Convert daily upkeep to "per rare tick"
-                float ticksPerRare = 250f;
-                float upkeepPerRare = perDay * (ticksPerRare / GenDate.TicksPerDay);
+                float upkeepPerRare = perDay * (TicksPerRare / GenDate.TicksPerDay);
 
                 // Not enough feed to sustain the current brood — 
                 // (pause growth); nothing advances this tick)
@@ -85,7 +86,7 @@ public class Comp_SymbiotePool : ThingComp
         // Production progress
         float ticksPerProduct = Props.daysPerSymbiote * GenDate.TicksPerDay;
         if (ticksPerProduct <= 0f) ticksPerProduct = GenDate.TicksPerDay;
-        _progress += 250f / ticksPerProduct;
+        _progress += TicksPerRare / ticksPerProduct;
         if (_progress < 1f) return;
 
 

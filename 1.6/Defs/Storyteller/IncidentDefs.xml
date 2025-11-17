@@ -43,6 +43,26 @@
 		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
 	</IncidentDef>
 
+	<IncidentDef>
+		<defName>Rimgate_SymbiotePlague</defName>
+		<workerClass>Rimgate.IncidentWorker_SymbiotePlague</workerClass>
+		<category>DiseaseHuman</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+			<li>Map_TempIncident</li>
+			<li>Map_Misc</li>
+			<li>Map_RaidBeacon</li>
+			<li>Caravan</li>
+		</targetTags>
+		<baseChance>0.02</baseChance> <!-- tune as desired -->
+		<letterLabel>symbiote-targeted pathogen</letterLabel>
+		<letterText>A tailored pathogen has found its way into {0} your Goa'uld hosts. If untreated, it may not only kill them, but burn the symbiote out entirely.\n\nThe following have gotten sick and should be quarantined from other Goa'uld hosts</letterText>
+		<letterDef>NegativeEvent</letterDef>
+		<diseaseMaxVictims>999</diseaseMaxVictims>
+		<diseaseVictimFractionRange>0.2~0.5</diseaseVictimFractionRange>
+		<ignoreRecentSelectionWeighting>true</ignoreRecentSelectionWeighting>
+	</IncidentDef>
+
 	<!-- via Stargate -->
 
 	<IncidentDef>
