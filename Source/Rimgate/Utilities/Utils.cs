@@ -181,6 +181,22 @@ internal static class Utils
         return pawn.genes.Xenotype == xenotypeDef;
     }
 
+    public static bool IsValidRaceFor(Pawn pawn, List<string> disallowedRaces)
+    {
+        string race = pawn.def.ToString();
+        return disallowedRaces.NullOrEmpty() || !disallowedRaces.Contains(race);
+    }
+
+    public static bool IsValidXenotypeFor(
+      Pawn pawn,
+      List<XenotypeDef> disallowedXenotypes)
+    {
+        XenotypeDef xenotype = pawn.genes?.Xenotype;
+        return xenotype == null
+            || disallowedXenotypes.NullOrEmpty()
+            || !disallowedXenotypes.Contains(xenotype);
+    }
+
     public static bool HasHiveConnection(this Pawn p)
     {
         // Prefer exact xenotype def if you have it

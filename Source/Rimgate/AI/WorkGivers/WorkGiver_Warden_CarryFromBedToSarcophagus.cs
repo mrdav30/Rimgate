@@ -5,20 +5,23 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public class WorkGiver_WardenCarryFromBedToSarcophagus : WorkGiver_Warden
+public class WorkGiver_Warden_CarryFromBedToSarcophagus : WorkGiver_Warden
 {
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
         Pawn warden = pawn;
         Pawn prisoner = t as Pawn;
 
+        if (prisoner == null)
+            return null;
+
         if (!ShouldTakeCareOfPrisoner(pawn, prisoner))
             return null;
 
-        if (!prisoner.InBed())
+        if (!prisoner.GetPosture().InBed())
             return null;
 
-        if (prisoner.CurrentBed()?.def.thingClass == typeof(Building_Bed_Sarcophagus))
+        if (prisoner.ParentHolder is Building_Sarcophagus)
             return null;
 
         if (prisoner.health.surgeryBills.Bills.Any(x => x.suspended == false))
@@ -27,13 +30,10 @@ public class WorkGiver_WardenCarryFromBedToSarcophagus : WorkGiver_Warden
         if (!warden.CanReserve(prisoner))
             return null;
 
-        Building_Bed_Sarcophagus bed = SarcophagusUtility.FindBestSarcophagus(warden, prisoner);
-        if (bed != null
-            && SarcophagusUtility.ShouldSeekSarcophagus(prisoner, bed)
-            && MedicalUtility.HasAllowedMedicalCareCategory(prisoner)
-            && prisoner.CanReserve(bed))
+        Building_Sarcophagus sarcophagus = SarcophagusUtility.FindBestSarcophagus(prisoner, warden);
+        if (sarcophagus != null)
         {
-            Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryToSarcophagus, prisoner, bed);
+            Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryToSarcophagus, prisoner, sarcophagus);
             job.count = 1;
             return job;
         }

@@ -20,7 +20,7 @@ public class Comp_AnimatedSarcophagus : ThingComp
     {
         base.PostDraw();
 
-        Building_Bed_Sarcophagus building_sarcophagus = parent as Building_Bed_Sarcophagus;
+        Building_Sarcophagus building_sarcophagus = parent as Building_Sarcophagus;
         if (!building_sarcophagus.IsSarcophagusInUse()) return;
 
         Vector3 sarchophagusGlowDrawPos = parent.DrawPos;

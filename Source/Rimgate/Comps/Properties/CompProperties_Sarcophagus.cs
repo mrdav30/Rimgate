@@ -25,7 +25,7 @@ public class CompProperties_Sarcophagus : CompProperties
 
     public float needLevelOffset = 1f;
 
-    public CompProperties_Sarcophagus() => compClass = typeof(Comp_Sarcophagus);
+    public CompProperties_Sarcophagus() => compClass = typeof(Comp_SarcophagusControl);
 
     public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
     {
@@ -37,6 +37,7 @@ public class CompProperties_Sarcophagus : CompProperties
             yield return $"{nameof(CompProperties_Sarcophagus)}.{nameof(maxDiagnosisTime)} above allowed maximum; value capped at 30 seconds";
             maxDiagnosisTime = 30f;
         }
+
         if (maxPerHediffHealingTime > 30f)
         {
             yield return $"{nameof(CompProperties_Sarcophagus)}.{nameof(maxPerHediffHealingTime)} above allowed maximum; value capped at 30 seconds";

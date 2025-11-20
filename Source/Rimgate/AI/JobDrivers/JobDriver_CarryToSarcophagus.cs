@@ -14,7 +14,7 @@ public class JobDriver_CarryToSarcophagus : JobDriver
 {
     protected Pawn Patient => (Pawn)job.GetTarget(TargetIndex.A).Thing;
 
-    protected Building_Bed_Sarcophagus Sarcophagus => (Building_Bed_Sarcophagus)job.GetTarget(TargetIndex.B).Thing;
+    protected Building_Sarcophagus Sarcophagus => (Building_Sarcophagus)job.GetTarget(TargetIndex.B).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -46,15 +46,15 @@ public class JobDriver_CarryToSarcophagus : JobDriver
         //        Patient,
         //        pawn,
         //        Patient.guest.GuestStatus));
-        //startCarrying.AddPreInitAction(CheckMakeTakeeGuest);
+        //startCarryingTakee.AddPreInitAction(CheckMakeTakeeGuest);
 
-        Toil goToThing = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
+        Toil goToThing = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell);
         yield return Toils_Jump.JumpIf(goToThing, () => pawn.IsCarryingPawn(Patient));
         yield return goToTakee;
         yield return startCarryingTakee;
         yield return goToThing;
         Toil wait = Toils_General.Wait(Sarcophagus.OpenTicks, TargetIndex.B);
-        wait.FailOnCannotTouch(TargetIndex.B, PathEndMode.Touch);
+        wait.FailOnCannotTouch(TargetIndex.B, PathEndMode.InteractionCell);
         wait.WithProgressBarToilDelay(TargetIndex.B);
         yield return wait;
 
@@ -62,10 +62,10 @@ public class JobDriver_CarryToSarcophagus : JobDriver
         putInto.initAction = () => 
         {
             var sarcophagus = Sarcophagus;
-            var taker = pawn;
-            var takee = Patient;
+            var traveler = pawn;
+            var patient = Patient;
 
-            SarcophagusUtility.PutIntoSarcophagus(sarcophagus, taker, takee, true);
+            SarcophagusUtility.PutIntoSarcophagus(sarcophagus, traveler, patient, true);
         };
         putInto.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return putInto;

@@ -35,16 +35,20 @@
 	<RG_Sarcophagus_Stat_PerHediffHealingTime_Desc>How long it takes (on average) for this Sarcophagus to treat each medical condition on a patient.\n\nNote that this is scaled according to the severity of the condition - for instance, less severe injuries will take less time to treat.</RG_Sarcophagus_Stat_PerHediffHealingTime_Desc>
 	<RG_Sarcophagus_Stat_TimeSeconds>{0} s</RG_Sarcophagus_Stat_TimeSeconds>
 
-	<RG_Sarcophagus_Message_CannotRescue_NoSarcophagus>No reachable, un-reserved {0} Sarcophagus with power in safe temperature.</RG_Sarcophagus_Message_CannotRescue_NoSarcophagus>
+	<RG_Sarcophagus_CannotRescue_NoSarcophagus>no Sarcophagus available.</RG_Sarcophagus_CannotRescue_NoSarcophagus>
+	<RG_Sarcophagus_FloatMenu_Rescue>Rescue {0} to Sarcophagus</RG_Sarcophagus_FloatMenu_Rescue>
+
+	<RG_Sarcophagus_PatientWithHediffNotAllowed>cannot treat patients with {0} hediff</RG_Sarcophagus_PatientWithHediffNotAllowed>
+	<RG_Sarcophagus_PatientWithTraitNotAllowed>cannot treat patients with {0} trait</RG_Sarcophagus_PatientWithTraitNotAllowed>
+	<RG_Sarcophagus_RaceNotAllowed>cannot treat {0}s</RG_Sarcophagus_RaceNotAllowed>
+	<RG_Sarcophagus_GuestsNotAllowed>cannot treat guests</RG_Sarcophagus_GuestsNotAllowed>
+	<RG_Sarcophagus_PrisonersNotAllowed>cannot treat prisoners</RG_Sarcophagus_PrisonersNotAllowed>
+	<RG_Sarcophagus_SlavesNotAllowed>cannot treat slaves</RG_Sarcophagus_SlavesNotAllowed>
+	<RG_Sarcophagus_Unpowered>not powered</RG_Sarcophagus_Unpowered>
+	<RG_Sarcophagus_MedicalCareCategoryTooLow>care quality must be Industrial medicine or above</RG_Sarcophagus_MedicalCareCategoryTooLow>
+
 	<RG_Sarcophagus_Message_TreatmentComplete>Sarcophagus treatment complete for {1_label}.</RG_Sarcophagus_Message_TreatmentComplete>
 	<RG_Sarcophagus_Message_TreatmentInterrupted>Sarcophagus treatment interrupted for {1_label}.</RG_Sarcophagus_Message_TreatmentInterrupted>
-
-	<RG_Sarcophagus_FloatMenu_PatientWithHediffNotAllowed>Sarcophagus cannot treat patients with {0} hediff</RG_Sarcophagus_FloatMenu_PatientWithHediffNotAllowed>
-	<RG_Sarcophagus_FloatMenu_PatientWithTraitNotAllowed>Sarcophagus cannot treat patients with {0} trait</RG_Sarcophagus_FloatMenu_PatientWithTraitNotAllowed>
-	<RG_Sarcophagus_FloatMenu_RaceNotAllowed>Sarcophagus cannot treat {0}s</RG_Sarcophagus_FloatMenu_RaceNotAllowed>
-	<RG_Sarcophagus_FloatMenu_Rescue>Rescue {0} to Sarcophagus</RG_Sarcophagus_FloatMenu_Rescue>
-	<RG_Sarcophagus_FloatMenu_Unpowered>Sarcophagus not powered</RG_Sarcophagus_FloatMenu_Unpowered>
-	<RG_Sarcophagus_FloatMenu_MedicalCareCategoryTooLow>Patient care quality must be Industrial medicine or above</RG_Sarcophagus_FloatMenu_MedicalCareCategoryTooLow>
 
 	<RG_Sarcophagus_SurgeryProhibited_PatientUsingSarcophagus>patient using Sarcophagus</RG_Sarcophagus_SurgeryProhibited_PatientUsingSarcophagus>
 
@@ -52,6 +56,10 @@
 	<RG_Sarcophagus_CommandGizmoDisabled_SarcophagusInUse>{0} is in use.</RG_Sarcophagus_CommandGizmoDisabled_SarcophagusInUse>
 	<RG_Sarcophagus_CommandGizmoAllowGuests_Label>Allow guests</RG_Sarcophagus_CommandGizmoAllowGuests_Label>
 	<RG_Sarcophagus_CommandGizmoAllowGuests_Desc>Allow this {0} to be used by guests and other non-colony visitors.</RG_Sarcophagus_CommandGizmoAllowGuests_Desc>
+	<RG_Sarcophagus_CommandGizmoAllowSlaves_Label>Allow slaves</RG_Sarcophagus_CommandGizmoAllowSlaves_Label>
+	<RG_Sarcophagus_CommandGizmoAllowSlaves_Desc>Allow this {0} to be used by colony slaves.</RG_Sarcophagus_CommandGizmoAllowSlaves_Desc>
+	<RG_Sarcophagus_CommandGizmoAllowPrisoners_Label>Allow guests</RG_Sarcophagus_CommandGizmoAllowPrisoners_Label>
+	<RG_Sarcophagus_CommandGizmoAllowPrisoners_Desc>Allow this {0} to be used by colony prisoners.</RG_Sarcophagus_CommandGizmoAllowPrisoners_Desc>
 	<RG_Sarcophagus_CommandGizmoAbortTreatment_Label>Abort</RG_Sarcophagus_CommandGizmoAbortTreatment_Label>
 	<RG_Sarcophagus_CommandGizmoAbortTreatment_Desc>Stop treating the current patient immediately.</RG_Sarcophagus_CommandGizmoAbortTreatment_Desc>
 

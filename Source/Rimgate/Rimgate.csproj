@@ -347,6 +347,7 @@
     <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CloseStargate.cs" />
     <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
+    <Compile Include="Comps\CompAssignableToPawn_Sarcophagus.cs" />
     <Compile Include="Comps\Comp_TintedEmptyStateGraphic.cs" />
     <Compile Include="Comps\Comp_AnalyzableResearchWhen.cs" />
     <Compile Include="Comps\CompUseEffect_AssembleAndStartQuest.cs" />
@@ -381,7 +382,6 @@
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
     <Compile Include="Genes\Gene_WraithEssence.cs" />
-    <Compile Include="HarmonyPatches\Harmony_BedCellSearchPattern.cs" />
     <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
     <Compile Include="HarmonyPatches\Harmony_CompLabyrinthDoor_DrawJammed.cs" />
     <Compile Include="HarmonyPatches\Harmony_Designator_Uninstall.cs" />
@@ -391,7 +391,6 @@
     <Compile Include="HarmonyPatches\Harmony_PowerNet.cs" />
     <Compile Include="HarmonyPatches\Harmony_Psycast.cs" />
     <Compile Include="HarmonyPatches\Harmony_SiteMakerHelper.cs" />
-    <Compile Include="HarmonyPatches\Harmony_JobMaker_MakeJob.cs" />
     <Compile Include="HarmonyPatches\Harmony_MechanitorUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_PawnGenerator.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_MechanitorTracker.cs" />
@@ -448,7 +447,7 @@
     <Compile Include="Things\Item_ScrapNote.cs" />
     <Compile Include="Things\Projectile_AdditionalDamage.cs" />
     <Compile Include="Things\Projectile_ZatBlast.cs" />
-    <Compile Include="Things\Building_Bed_Sarcophagus.cs" />
+    <Compile Include="Things\Building_Sarcophagus.cs" />
     <Compile Include="Compatibility\AlphaGenesCompatibility.cs" />
     <Compile Include="Compatibility\DbhCompatibility.cs" />
     <Compile Include="Compatibility\EbfCompatibilityWrapper.cs" />
@@ -462,13 +461,11 @@
     <Compile Include="Comps\Comp_AlternateApparel.cs" />
     <Compile Include="Comps\Comp_TreatmentRestrictions.cs" />
     <Compile Include="DamageWorkers\DamageWorker_Siege.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Building_Bed.cs" />
     <Compile Include="HarmonyPatches\Harmony_Designator_Strip.cs" />
     <Compile Include="HarmonyPatches\Harmony_FloatMenuOptionProviders.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_DraftController.cs" />
-    <Compile Include="HarmonyPatches\Harmony_RestUtility.cs" />
-    <Compile Include="HarmonyPatches\Harmony_WorkGiver_Tend.cs" />
+    <Compile Include="HarmonyPatches\Harmony_WorkGiver_RescueDowned.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_GoauldSymbiote.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_GoauldSymbiote.cs" />
     <Compile Include="Hediffs\Hediff_GoauldSymbiote.cs" />
@@ -525,15 +522,15 @@
     <Compile Include="World\WorldObject_StargateTransitSite.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />
     <Compile Include="Utilities\SarcophagusUtility.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_DoctorCarryFromBedToSarcophagus.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_DoctorRescueToSarcophagus.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_PatientGoToSarcophagus.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_WardenCarryFromBedToSarcophagus.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_WardenRescueToSarcophagus.cs" />
+    <Compile Include="AI\WorkGivers\WorkGiver_Doctor_CarryFromBedToSarcophagus.cs" />
+    <Compile Include="AI\WorkGivers\WorkGiver_Doctor_RescueToSarcophagus.cs" />
+    <Compile Include="AI\WorkGivers\WorkGiver_Patient_GoToSarcophagus.cs" />
+    <Compile Include="AI\WorkGivers\WorkGiver_Warden_CarryFromBedToSarcophagus.cs" />
+    <Compile Include="AI\WorkGivers\WorkGiver_Warden_RescueToSarcophagus.cs" />
     <Compile Include="RimgateMod.cs" />
     <Compile Include="Utilities\RimgateDefOf.cs" />
     <Compile Include="Comps\Properties\CompProperties_Sarcophagus.cs" />
-    <Compile Include="Comps\Comp_Sarcophagus.cs" />
+    <Compile Include="Comps\Comp_SarcophagusControl.cs" />
     <Compile Include="Utilities\MedicalUtility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

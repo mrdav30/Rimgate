@@ -4,7 +4,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class Comp_Sarcophagus : ThingComp
+public class Comp_SarcophagusControl : ThingComp
 {
     public CompProperties_Sarcophagus Props => (CompProperties_Sarcophagus)props;
 

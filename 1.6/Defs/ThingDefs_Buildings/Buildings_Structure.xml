@@ -32,7 +32,7 @@
     <replaceTags>
       <li>Wall</li>
     </replaceTags>
-    <uiIconPath>UI/Icon/Building/RGGoauldWallIcon</uiIconPath>
+    <uiIconPath>Things/Building/Structure/RGGoauldWallIcon</uiIconPath>
     <statBases>
       <MaxHitPoints>850</MaxHitPoints>
       <WorkToBuild>1675</WorkToBuild>
@@ -128,7 +128,7 @@
     <replaceTags>
       <li>Wall</li>
     </replaceTags>
-    <uiIconPath>UI/Icon/Building/RGWraithHiveWallIcon</uiIconPath>
+    <uiIconPath>Things/Building/Structure/RGWraithHiveWallIcon</uiIconPath>
     <statBases>
       <Beauty>4</Beauty>
       <MaxHitPoints>1000</MaxHitPoints>

@@ -39,6 +39,10 @@ public static class RimgateTex
 
     public static readonly Texture2D AllowGuestCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGSarcophagusAllowGuestsIcon");
 
+    public static readonly Texture2D AllowPrisonerCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGSarcophagusAllowPrisonersIcon");
+
+    public static readonly Texture2D AllowSlaveCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGSarcophagusAllowSlavesIcon");
+
     public static readonly Texture2D TreatmentCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGAbortSarcophagusTreatmentIcon");
 
     public static readonly Texture2D CloneEjectCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGWraithCloningPodEjectIcon");

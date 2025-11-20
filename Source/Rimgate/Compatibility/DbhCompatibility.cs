@@ -54,8 +54,8 @@ public static class DbhCompatibility
 
     public static void ShouldBeWashedBySomeonePostfix(Pawn pawn, ref bool __result)
     {
-        if (pawn.CurrentBed() is Building_Bed_Sarcophagus bedSarcophagus 
-            && bedSarcophagus.Power.PowerOn)
+        if (pawn.ParentHolder is Building_Sarcophagus sarcophagus 
+            && sarcophagus.Power?.PowerOn == true)
         {
             __result = false;
         }

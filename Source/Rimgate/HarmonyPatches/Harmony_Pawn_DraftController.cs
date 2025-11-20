@@ -13,7 +13,7 @@ public static class Harmony_Pawn_DraftController
     {
         if (__instance == null
             || __instance.pawn.IsColonistPlayerControlled
-            || __instance.pawn.CurrentBed() is not Building_Bed_Sarcophagus)
+            || __instance.pawn.ParentHolder is not Building_Sarcophagus)
             return;
 
         __result = PatchGetGizmos(__instance, __result);

@@ -1,4 +1,5 @@
 ﻿using Rimgate;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -8,9 +9,20 @@ public class JobGiver_PatientGoToSarcophagus : ThinkNode_JobGiver
 {
     protected override Job TryGiveJob(Pawn pawn)
     {
-        Building_Bed_Sarcophagus bed = SarcophagusUtility.FindBestSarcophagus(pawn, pawn);
-        return bed != null && !bed.HasAnyContents
-            ? JobMaker.MakeJob(RimgateDefOf.Rimgate_PatientGoToSarcophagus, bed) 
-            : null;
+        if (pawn.Downed)
+        {
+            if (pawn.GetPosture().InBed() || !pawn.health.CanCrawl)
+                return null;
+        }
+
+        Building_Sarcophagus sarcophagus = SarcophagusUtility.FindBestSarcophagus(pawn, pawn);
+        if (sarcophagus != null)
+        {
+            Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_PatientGoToSarcophagus, sarcophagus);
+            job.count = 1;
+            return job;
+        }
+
+        return null;
     }
 }

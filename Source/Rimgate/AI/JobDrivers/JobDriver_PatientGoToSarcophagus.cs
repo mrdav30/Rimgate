@@ -8,16 +8,11 @@ namespace Rimgate;
 
 public class JobDriver_PatientGoToSarcophagus : JobDriver
 {
-    protected Building_Bed_Sarcophagus Sarcophagus => (Building_Bed_Sarcophagus)job.GetTarget(TargetIndex.A).Thing;
+    protected Building_Sarcophagus Sarcophagus => (Building_Sarcophagus)job.GetTarget(TargetIndex.A).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
         return pawn.Reserve(Sarcophagus, job, 1, -1, null, errorOnFailed);
-    }
-
-    public override bool CanBeginNowWhileLyingDown()
-    {
-        return JobInBedUtility.InBedOrRestSpotNow(pawn, job.GetTarget(TargetIndex.A));
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -33,14 +28,14 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
             return !Sarcophagus.Power.PowerOn
                 || Sarcophagus.HasAnyContents
                 || !Sarcophagus.Accepts(pawn)
-                || !pawn.CanReach(Sarcophagus, PathEndMode.Touch, Danger.Deadly) 
+                || !pawn.CanReach(Sarcophagus, PathEndMode.InteractionCell, Danger.Deadly) 
                 || !SarcophagusUtility.IsValidForUserType(Sarcophagus, pawn);
         });
 
-        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
 
         Toil wait = Toils_General.Wait(Sarcophagus.OpenTicks, TargetIndex.A);
-        wait.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
+        wait.FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
         wait.WithProgressBarToilDelay(TargetIndex.A);
         yield return wait;
 

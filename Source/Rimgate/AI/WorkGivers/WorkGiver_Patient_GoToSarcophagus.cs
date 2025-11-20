@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public class WorkGiver_PatientGoToSarcophagus : WorkGiver
+public class WorkGiver_Patient_GoToSarcophagus : WorkGiver
 {
     public static JobGiver_PatientGoToSarcophagus Giver = new JobGiver_PatientGoToSarcophagus();
 

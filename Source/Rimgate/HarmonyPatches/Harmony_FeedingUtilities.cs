@@ -7,7 +7,7 @@ using Verse;
 namespace Rimgate.HarmonyPatches;
 
 // Prevent Doctors/Wardens from feeding patients if:
-// - The patient is lying on a Sarcophagus
+// - The patient is lying in a Sarcophagus
 // - The Sarcophagus is powered
 [HarmonyPatch]
 public static class Harmony_FeedingUtilities
@@ -24,8 +24,8 @@ public static class Harmony_FeedingUtilities
     [HarmonyBefore(new string[] { "Dubwise.DubsBadHygiene" })]
     public static void Postfix(ref bool __result, Pawn p)
     {
-        if (p.CurrentBed() is Building_Bed_Sarcophagus bedSarcophagus 
-            && bedSarcophagus.Power.PowerOn)
+        if (p.ParentHolder is Building_Sarcophagus sarcophagus 
+            && sarcophagus.Power?.PowerOn == true)
         {
             __result = false;
         }

@@ -27,10 +27,40 @@
 
   <!-- Sarcophagus -->
 
+  <!-- TODO: dr worker givers-->
+
   <WorkGiverDef>
-    <defName>Rimgate_WardenRescueToSarcophagus</defName>
+    <defName>Rimgate_Doctor_RescueToSarcophagus</defName>
+    <label>rescue downed allies to bed</label>
+    <giverClass>Rimgate.WorkGiver_Doctor_RescueToSarcophagus</giverClass>
+    <workType>Doctor</workType>
+    <verb>rescue</verb>
+    <gerund>rescuing</gerund>
+    <priorityInType>60</priorityInType>
+    <directOrderable>false</directOrderable>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Rimgate_Doctor_CarryFromBedToSarcophagus</defName>
+    <label>rescue downed allies to bed</label>
+    <giverClass>Rimgate.WorkGiver_Doctor_CarryFromBedToSarcophagus</giverClass>
+    <workType>Doctor</workType>
+    <verb>carry</verb>
+    <gerund>carrying</gerund>
+    <priorityInType>60</priorityInType>
+    <directOrderable>false</directOrderable>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Rimgate_Warden_RescueToSarcophagus</defName>
     <label>rescue downed prisoner to Sarcophagus</label>
-    <giverClass>Rimgate.WorkGiver_WardenRescueToSarcophagus</giverClass>
+    <giverClass>Rimgate.WorkGiver_Warden_RescueToSarcophagus</giverClass>
     <workType>Warden</workType>
     <emergency>true</emergency>
     <verb>rescue</verb>
@@ -43,9 +73,9 @@
   </WorkGiverDef>
 
   <WorkGiverDef>
-    <defName>Rimgate_WardenCarryFromBedToSarcophagus</defName>
+    <defName>Rimgate_Warden_CarryFromBedToSarcophagus</defName>
     <label>carry prisoners from bed to Sarcophagus</label>
-    <giverClass>Rimgate.WorkGiver_WardenCarryFromBedToSarcophagus</giverClass>
+    <giverClass>Rimgate.WorkGiver_Warden_CarryFromBedToSarcophagus</giverClass>
     <workType>Warden</workType>
     <emergency>true</emergency>
     <verb>carry</verb>
@@ -55,6 +85,17 @@
     </requiredCapacities>
     <priorityInType>115</priorityInType>
     <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Rimgate_Patient_GoToSarcophagus</defName>
+    <label>go to sarcophagus for treatment</label>
+    <giverClass>Rimgate.WorkGiver_Patient_GoToSarcophagus</giverClass>
+    <workType>Patient</workType>
+    <emergency>true</emergency>
+    <verb>receive treatment in</verb>
+    <gerund>receiving treatment in</gerund>
+    <tagToGive>RestingForMedicalReasons</tagToGive>
   </WorkGiverDef>
 
   <!-- Misc -->

@@ -13,7 +13,7 @@ public static class Harmony_Pawn
     public static void Postfix(ref bool __result, Pawn __instance)
     {
         if (__instance.InBed()
-            && __instance.CurrentBed() is Building_Bed_Sarcophagus bedSarcophagus)
+            && __instance.ParentHolder is Building_Sarcophagus bedSarcophagus)
         {
             JobFailReason.Is("RG_Sarcophagus_SurgeryProhibited_PatientUsingSarcophagus".Translate());
             __result = false;

@@ -12,7 +12,8 @@
       <HediffDef>Rimgate_SarcophagusHigh</HediffDef>
       <HediffDef>Rimgate_SarcophagusAddiction</HediffDef>
     </descriptionHyperlinks>
-    <thingClass>Rimgate.Building_Bed_Sarcophagus</thingClass>
+    <thingClass>Rimgate.Building_Sarcophagus</thingClass>
+
     <size>(2,3)</size>
     <graphicData>
       <texPath>Things/Building/Furniture/RGGoauldSarcophagus</texPath>
@@ -23,9 +24,11 @@
         <rect>(0,0.04,1,1.89)</rect>
       </damageData>
     </graphicData>
+
     <selectable>true</selectable>
     <altitudeLayer>Building</altitudeLayer>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+
     <statBases>
       <MarketValue>80000</MarketValue>
       <!-- Ensures market value is reflected in colony wealth calculations -->
@@ -37,6 +40,7 @@
       <Flammability>0.2</Flammability>
       <Comfort>0.95</Comfort>
     </statBases>
+
     <constructEffect>ConstructMetal</constructEffect>
     <costList>
       <Steel>750</Steel>
@@ -47,11 +51,12 @@
       <Rimgate_Naquadria>4</Rimgate_Naquadria>
     </costList>
     <building>
-      <bed_healPerDay>90</bed_healPerDay>
-      <bed_defaultMedical>true</bed_defaultMedical>
       <soundDispense>Rimgate_SarcophagusRunning</soundDispense>
       <uninstallWork>4250</uninstallWork>
     </building>
+
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,2)</interactionCellOffset>
     <castEdgeShadows>true</castEdgeShadows>
     <tickerType>Normal</tickerType>
     <drawerType>MapMeshAndRealTime</drawerType>
@@ -68,13 +73,15 @@
     </researchPrerequisites>
     <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
     <techLevel>Ultra</techLevel>
+
     <comps>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Breakdownable" />
       <li Class="CompProperties_Forbiddable" />
       <li Class="CompProperties_AssignableToPawn">
         <drawAssignmentOverlay>false</drawAssignmentOverlay>
-        <compClass>CompAssignableToPawn_Bed</compClass>
+        <maxAssignedPawnsCount>99</maxAssignedPawnsCount>
+        <compClass>Rimgate.CompAssignableToPawn_Sarcophagus</compClass>
       </li>
       <li Class="Rimgate.CompProperties_TreatmentRestrictions">
         <alwaysTreatableHediffs>
@@ -128,7 +135,7 @@
           <texPath>FX/RGGoauldSarcophagusGlow</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <shaderType>MoteGlow</shaderType>
-          <drawSize>(1, 2)</drawSize>
+          <drawSize>(2, 3)</drawSize>
         </sarchophagusGlowGraphicData>
       </li>
       <li Class="Rimgate.CompProperties_Sarcophagus">
@@ -136,6 +143,9 @@
         <severity>1.00</severity>
         <needLevelOffset>0.9</needLevelOffset>
         <addictiveness>1.0</addictiveness>
+        <maxDiagnosisTime>15</maxDiagnosisTime>
+        <maxPerHediffHealingTime>30</maxPerHediffHealingTime>
+        <healingModePowerConsumption>12000</healingModePowerConsumption>
       </li>
       <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
         <analysisID>1000900</analysisID>
