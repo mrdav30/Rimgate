@@ -11,7 +11,7 @@ public class JobDriver_CarryCorpseToCloningPod : JobDriver
 {
     private Corpse _corpse => (Corpse)job.GetTarget(TargetIndex.A).Thing;
 
-    private Building_WraithCloningPod _clonePod => (Building_WraithCloningPod)job.GetTarget(TargetIndex.B).Thing;
+    private Building_CloningPod _clonePod => (Building_CloningPod)job.GetTarget(TargetIndex.B).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {

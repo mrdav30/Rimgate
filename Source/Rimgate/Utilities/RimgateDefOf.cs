@@ -104,6 +104,7 @@ public static class RimgateDefOf
     public static RaidStrategyDef ImmediateAttackSmart;
     public static RaidStrategyDef StageThenAttack;
 
+    public static ResearchProjectDef Rimgate_CloningPodOptimization;
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
     public static ResearchProjectDef Rimgate_ParallelSubspaceCoupling;
     public static ResearchProjectDef Rimgate_SarcophagusBioregeneration;

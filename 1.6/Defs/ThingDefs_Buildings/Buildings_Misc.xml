@@ -88,7 +88,7 @@
 		<defName>Rimgate_WraithCloningPod</defName>
 		<label>Cloning pod</label>
 		<description>A tall, grotesque biotank filled with fluorescent goo and questionable ethics. The Wraith cloning pod allows rapid gestation of bioengineered pawns. Just add biomass and a touch of hubris.\n\nRequires a skilled Doctor's time and a lot of power to operate.</description>
-		<thingClass>Rimgate.Building_WraithCloningPod</thingClass>
+		<thingClass>Rimgate.Building_CloningPod</thingClass>
 		<containedPawnsSelectable>true</containedPawnsSelectable>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGWraithCloningPod</texPath>
@@ -161,11 +161,17 @@
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
 				<shortCircuitInRain>false</shortCircuitInRain>
-				<basePowerConsumption>5000</basePowerConsumption>
-				<idlePowerDraw>50</idlePowerDraw>
+				<basePowerConsumption>10000</basePowerConsumption>
+				<idlePowerDraw>500</idlePowerDraw>
 				<alwaysDisplayAsUsingPower>true</alwaysDisplayAsUsingPower>
+				<powerUpgrades>
+					<li>
+						<researchProject>Rimgate_CloningPodOptimization</researchProject>
+						<factor>0.65</factor> <!-- 35% reduction -->
+					</li>
+				</powerUpgrades>
 			</li>
-			<li Class="Rimgate.CompProperties_CloningPod">
+			<li Class="Rimgate.CompProperties_CloningPodControl">
 				<backgroundGraphicData>
 					<texPath>FX/RGClonePodBackground</texPath>
 					<graphicClass>Graphic_Multi</graphicClass>

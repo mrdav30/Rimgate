@@ -37,7 +37,7 @@ public class HediffComp_SymbioteContagious : HediffComp
                             && (p.ParentHolder == null
                                 || !(p.ParentHolder is Building_CryptosleepCasket
                                     || p.ParentHolder is Building_Sarcophagus
-                                    || p.ParentHolder is Building_WraithCloningPod
+                                    || p.ParentHolder is Building_CloningPod
                                     || p.ParentHolder is CompBiosculpterPod))
                             && p.HasSymbiote()
                             && !p.HasHediff(RimgateDefOf.Rimgate_SymbiotePlague)

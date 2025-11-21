@@ -5,7 +5,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class CompProperties_Sarcophagus : CompProperties
+public class CompProperties_SarcophagusControl : CompProperties
 {
     public float maxDiagnosisTime = 5f;
     public float maxPerHediffHealingTime = 10f;
@@ -13,7 +13,7 @@ public class CompProperties_Sarcophagus : CompProperties
     public float diagnosisModePowerConsumption = 4000f;
     public float healingModePowerConsumption = 16000f;
 
-    public float powerConsumptionReductionFactor = 0.35f;
+    public float powerConsumptionReductionFactor = 0.65f;
 
     public bool applyAddictionHediff; 
     public float addictiveness;
@@ -21,7 +21,7 @@ public class CompProperties_Sarcophagus : CompProperties
     public float existingAddictionSeverityOffset = 0.1f;
     public float needLevelOffset = 1f;
 
-    public CompProperties_Sarcophagus() => compClass = typeof(Comp_SarcophagusControl);
+    public CompProperties_SarcophagusControl() => compClass = typeof(Comp_SarcophagusControl);
 
     public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
     {
@@ -30,32 +30,27 @@ public class CompProperties_Sarcophagus : CompProperties
 
         if (maxDiagnosisTime > 30f)
         {
-            yield return $"{nameof(CompProperties_Sarcophagus)}.{nameof(maxDiagnosisTime)} above allowed maximum; value capped at 30 seconds";
+            yield return $"{nameof(CompProperties_SarcophagusControl)}.{nameof(maxDiagnosisTime)} above allowed maximum; value capped at 30 seconds";
             maxDiagnosisTime = 30f;
         }
 
         if (maxPerHediffHealingTime > 30f)
         {
-            yield return $"{nameof(CompProperties_Sarcophagus)}.{nameof(maxPerHediffHealingTime)} above allowed maximum; value capped at 30 seconds";
+            yield return $"{nameof(CompProperties_SarcophagusControl)}.{nameof(maxPerHediffHealingTime)} above allowed maximum; value capped at 30 seconds";
             maxPerHediffHealingTime = 30f;
         }
     }
 
     [DebuggerHidden]
-    public virtual IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
+    public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
     {
         foreach (StatDrawEntry specialDisplayStat in base.SpecialDisplayStats(req))
             yield return specialDisplayStat;
 
         // Compute current effective multiplier:
-        float multiplier = 1f;
-        if (powerConsumptionReductionFactor > 0f
-            && ResearchUtil.SarcophagusOptimizationComplete)
-        {
-            multiplier = 1f - powerConsumptionReductionFactor;
-            if (multiplier < 0f)
-                multiplier = 0f;
-        }
+        float multiplier = ResearchUtil.SarcophagusOptimizationComplete
+            ? powerConsumptionReductionFactor
+            : 1f;
 
         float diag = diagnosisModePowerConsumption * multiplier;
         float heal = healingModePowerConsumption * multiplier;

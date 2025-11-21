@@ -29,7 +29,7 @@ public enum CloneType
     Reconstruct,
 }
 
-public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWithDrawnPawn, ISearchableContents, IOpenable
+public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawnPawn, ISearchableContents, IOpenable
 {
     protected ThingOwner innerContainer;
 
@@ -104,6 +104,8 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
 
     private static float _hostSavedDbhThirstNeed;
 
+    private Comp_CloningPodControl _cachedControl;
+
     private CompRefuelable _cachedRefuelable;
 
     private CompPowerTrader _cachedPowerTrader;
@@ -116,7 +118,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
 
     private CloneType _currentJob;
 
-    public Building_WraithCloningPod()
+    public Building_CloningPod()
     {
         innerContainer = new ThingOwner<Thing>(this);
     }
@@ -298,7 +300,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
 
     public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
     {
-        Building_WraithCloningPod cloningPod = this;
+        Building_CloningPod cloningPod = this;
 
         foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(pawn))
             yield return floatMenuOption;
@@ -551,18 +553,18 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
         return text + ("CasketContains".Translate() + ": " + str.CapitalizeFirst());
     }
 
-    public static Building_WraithCloningPod FindCloningPodFor(
+    public static Building_CloningPod FindCloningPodFor(
       Thing rescuee,
       Pawn traveler,
       bool ignoreOtherReservations = false)
     {
         _cachedPods ??= DefDatabase<ThingDef>.AllDefs
-            .Where<ThingDef>(def => typeof(Building_WraithCloningPod).IsAssignableFrom(def.thingClass))
+            .Where<ThingDef>(def => typeof(Building_CloningPod).IsAssignableFrom(def.thingClass))
             .ToList();
         foreach (ThingDef thingDef in _cachedPods)
         {
             bool queuing = KeyBindingDefOf.QueueOrder.IsDownEvent;
-            Building_WraithCloningPod cloningCasketFor = GenClosest.ClosestThingReachable(
+            Building_CloningPod cloningCasketFor = GenClosest.ClosestThingReachable(
                 rescuee.Position,
                 rescuee.Map,
                 ThingRequest.ForDef(thingDef),
@@ -576,14 +578,14 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
                     false,
                     true),
                 9999f,
-                Validator) as Building_WraithCloningPod;
+                Validator) as Building_CloningPod;
 
             if (cloningCasketFor != null)
                 return cloningCasketFor;
 
             bool Validator(Thing x)
             {
-                if (((Building_WraithCloningPod)x).HasAnyContents)
+                if (((Building_CloningPod)x).HasAnyContents)
                     return false;
 
                 if (!queuing || !traveler.HasReserved(x))

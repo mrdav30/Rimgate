@@ -11,7 +11,7 @@ namespace Rimgate;
 
 internal static class CloneUtility
 {
-    public static void Clone(Building_WraithCloningPod pod, CloneType cloneType)
+    public static void Clone(Building_CloningPod pod, CloneType cloneType)
     {
         Pawn innerPawn = pod.InnerPawn;
         if (innerPawn == null || !innerPawn.RaceProps.Humanlike)

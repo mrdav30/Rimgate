@@ -15,6 +15,8 @@ public static class ResearchUtil
 
     public static bool WraithCloneGenomeComplete => RimgateDefOf.Rimgate_WraithCloneGenome.IsFinished;
 
+    public static bool CloningPodOptimizationComplete => RimgateDefOf.Rimgate_CloningPodOptimization.IsFinished;
+
     public static bool WraithCloneFullComplete => RimgateDefOf.Rimgate_WraithCloneFull.IsFinished;
 
     public static bool WraithCloneEnhancementComplete => RimgateDefOf.Rimgate_WraithCloneEnhancement.IsFinished;

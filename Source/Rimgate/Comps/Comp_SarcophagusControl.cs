@@ -6,7 +6,7 @@ namespace Rimgate;
 
 public class Comp_SarcophagusControl : ThingComp
 {
-    public CompProperties_Sarcophagus Props => (CompProperties_Sarcophagus)props;
+    public CompProperties_SarcophagusControl Props => (CompProperties_SarcophagusControl)props;
 
     // only apply addiction if the patient received full treatment
     public void HandleAfterEffects(Pawn patient, bool isPostTreatment = true)

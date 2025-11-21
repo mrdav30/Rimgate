@@ -8,7 +8,7 @@ namespace Rimgate;
 
 public class JobDriver_EnterCloningPod : JobDriver
 {
-    private Building_WraithCloningPod _clonePod => (Building_WraithCloningPod)job.GetTarget(TargetIndex.A).Thing;
+    private Building_CloningPod _clonePod => (Building_CloningPod)job.GetTarget(TargetIndex.A).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -33,7 +33,7 @@ public class JobDriver_EnterCloningPod : JobDriver
             initAction = () =>
             {
                 Pawn actor = pawn;
-                Building_WraithCloningPod cloningPod = _clonePod as Building_WraithCloningPod;
+                Building_CloningPod cloningPod = _clonePod as Building_CloningPod;
                 Action action = () =>
                 {
                     actor.DeSpawn(DestroyMode.Vanish);

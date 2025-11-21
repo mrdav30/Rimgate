@@ -22,16 +22,16 @@ public class FloatMenuOptionProvider_HandleCorpse : FloatMenuOptionProvider
         if (corpse == null)
             yield break;
 
-        Building_WraithCloningPod pod = Building_WraithCloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn);
+        Building_CloningPod pod = Building_CloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn);
         if (pod == null)
             yield break;
 
         Action action = delegate
         {
-            Building_WraithCloningPod cloningPod = Building_WraithCloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn);
+            Building_CloningPod cloningPod = Building_CloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn);
             if (cloningPod == null)
             {
-                cloningPod = Building_WraithCloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn, ignoreOtherReservations: true);
+                cloningPod = Building_CloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn, ignoreOtherReservations: true);
             }
 
             Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryCorpseToCloningPod, corpse, cloningPod);

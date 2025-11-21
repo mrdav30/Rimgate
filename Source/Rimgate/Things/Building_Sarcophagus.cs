@@ -55,21 +55,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
     public float HealingPowerConsumption => 
         Control.Props.healingModePowerConsumption * CurrentPowerMultiplier;
 
-    public float CurrentPowerMultiplier
-    {
-        get
-        {
-            var props = Control?.Props;
-            if (props == null || props.powerConsumptionReductionFactor <= 0f)
-                return 1f;
-
-            if (!ResearchUtil.SarcophagusOptimizationComplete)
-                return 1f;
-
-            float multiplier = 1f - props.powerConsumptionReductionFactor;
-            return multiplier < 0f ? 0f : multiplier;
-        }
-    }
+    public float CurrentPowerMultiplier => ResearchUtil.SarcophagusOptimizationComplete
+            ? Control.Props.powerConsumptionReductionFactor
+            : 1f;
 
     public List<HediffDef> AlwaysTreatableHediffs => Restrictions.Props.alwaysTreatableHediffs;
 

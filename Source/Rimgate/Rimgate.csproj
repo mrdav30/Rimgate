@@ -364,13 +364,13 @@
     <Compile Include="Comps\Properties\CompProperties_PersistentMentalState.cs" />
     <Compile Include="Comps\Properties\CompProperties_ProximityAlarm.cs" />
     <Compile Include="Comps\Comp_AdditionalDamage.cs" />
-    <Compile Include="Comps\Comp_CloningPod.cs" />
+    <Compile Include="Comps\Comp_CloningPodControl.cs" />
     <Compile Include="Comps\Comp_Toggle.cs" />
     <Compile Include="Comps\Comp_ShieldEmitter.cs" />
     <Compile Include="Comps\Properties\CompProperties_AdditionalDamage.cs" />
     <Compile Include="Abilities\Properties\CompProperties_ApplyHediff.cs" />
     <Compile Include="AI\WorkGivers\WorkerGiver_DoBill_Wraith.cs" />
-    <Compile Include="Comps\Properties\CompProperties_CloningPod.cs" />
+    <Compile Include="Comps\Properties\CompProperties_CloningPodControl.cs" />
     <Compile Include="Comps\Properties\CompProperties_ResonanceIdol.cs" />
     <Compile Include="Comps\Properties\CompProperties_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Properties\CompProperties_SymbiotePool.cs" />
@@ -442,7 +442,7 @@
     <Compile Include="Things\Building_MeatLab.cs" />
     <Compile Include="Things\Building_DHD.cs" />
     <Compile Include="Things\Building_MobileContainer.cs" />
-    <Compile Include="Things\Building_WraithCloningPod.cs" />
+    <Compile Include="Things\Building_CloningPod.cs" />
     <Compile Include="Things\Building_WraithCocoonPod.cs" />
     <Compile Include="Things\Item_ScrapNote.cs" />
     <Compile Include="Things\Projectile_AdditionalDamage.cs" />
@@ -530,7 +530,7 @@
     <Compile Include="AI\WorkGivers\WorkGiver_Warden_RescueToSarcophagus.cs" />
     <Compile Include="RimgateMod.cs" />
     <Compile Include="Utilities\RimgateDefOf.cs" />
-    <Compile Include="Comps\Properties\CompProperties_Sarcophagus.cs" />
+    <Compile Include="Comps\Properties\CompProperties_SarcophagusControl.cs" />
     <Compile Include="Comps\Comp_SarcophagusControl.cs" />
     <Compile Include="Utilities\MedicalUtil.cs" />
   </ItemGroup>

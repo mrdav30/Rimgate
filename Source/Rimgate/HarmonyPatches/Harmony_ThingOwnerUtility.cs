@@ -14,7 +14,7 @@ public static class Harmony_ThingOwnerUtility
     {
         for (IThingHolder ithingHolder = holder; ithingHolder != null; ithingHolder = ithingHolder.ParentHolder)
         {
-            if (ithingHolder is Building_WraithCloningPod)
+            if (ithingHolder is Building_CloningPod)
             {
                 __result = true;
                 return false;

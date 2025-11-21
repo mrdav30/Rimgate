@@ -6,15 +6,15 @@ using Verse.Noise;
 
 namespace Rimgate;
 
-public class Comp_CloningPod : ThingComp
+public class Comp_CloningPodControl : ThingComp
 {
     public bool PowerOn => _clonePod != null && _clonePod.Power.PowerOn;
 
     public bool Fueled => _clonePod != null && _clonePod.Refuelable.IsFull;
 
-    public CompProperties_CloningPod Props => (CompProperties_CloningPod)props;
+    public CompProperties_CloningPodControl Props => (CompProperties_CloningPodControl)props;
 
-    private Building_WraithCloningPod _clonePod;
+    private Building_CloningPod _clonePod;
 
     public Graphic FullGraphic => Props.fullGraphicData.Graphic;
 
@@ -35,7 +35,7 @@ public class Comp_CloningPod : ThingComp
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
         base.PostSpawnSetup(respawningAfterLoad);
-        if (parent is Building_WraithCloningPod clonePod)
+        if (parent is Building_CloningPod clonePod)
             _clonePod = clonePod;
     }
 

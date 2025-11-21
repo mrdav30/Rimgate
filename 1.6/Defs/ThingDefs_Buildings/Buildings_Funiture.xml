@@ -132,7 +132,7 @@
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <shortCircuitInRain>false</shortCircuitInRain>
-        <basePowerConsumption>500</basePowerConsumption>
+        <basePowerConsumption>500</basePowerConsumption> <!-- Idle power consumption -->
       </li>
       <li Class="Rimgate.CompProperties_AnimatedSarcophagus">
         <sarchophagusGlowGraphicData>
@@ -142,7 +142,7 @@
           <drawSize>(2, 3)</drawSize>
         </sarchophagusGlowGraphicData>
       </li>
-      <li Class="Rimgate.CompProperties_Sarcophagus">
+      <li Class="Rimgate.CompProperties_SarcophagusControl">
         <applyAddictionHediff>true</applyAddictionHediff>
         <severity>1.00</severity>
         <needLevelOffset>0.9</needLevelOffset>
@@ -157,7 +157,7 @@
         <healingModePowerConsumption>8000</healingModePowerConsumption>
 
         <!-- Fractional reduction once Rimgate_SarcophagusSubspaceOptimization is researched -->
-        <powerConsumptionReductionFactor>0.35</powerConsumptionReductionFactor>
+        <powerConsumptionReductionFactor>0.65</powerConsumptionReductionFactor>
       </li>
       <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
         <analysisID>1000900</analysisID>

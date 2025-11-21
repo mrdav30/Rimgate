@@ -25,7 +25,7 @@ public class FloatMenuOptionProvider_CarryToCloningPod : FloatMenuOptionProvider
             return null;
         }
 
-        if (Building_WraithCloningPod.FindCloningPodFor(clickedPawn, context.FirstSelectedPawn, ignoreOtherReservations: true) == null)
+        if (Building_CloningPod.FindCloningPodFor(clickedPawn, context.FirstSelectedPawn, ignoreOtherReservations: true) == null)
         {
             return null;
         }
@@ -61,10 +61,10 @@ public class FloatMenuOptionProvider_CarryToCloningPod : FloatMenuOptionProvider
 
         Action action = delegate
         {
-            Building_WraithCloningPod cloningPod = Building_WraithCloningPod.FindCloningPodFor(clickedPawn, context.FirstSelectedPawn);
+            Building_CloningPod cloningPod = Building_CloningPod.FindCloningPodFor(clickedPawn, context.FirstSelectedPawn);
             if (cloningPod == null)
             {
-                cloningPod = Building_WraithCloningPod.FindCloningPodFor(clickedPawn, context.FirstSelectedPawn, ignoreOtherReservations: true);
+                cloningPod = Building_CloningPod.FindCloningPodFor(clickedPawn, context.FirstSelectedPawn, ignoreOtherReservations: true);
             }
 
             if (cloningPod == null)

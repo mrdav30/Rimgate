@@ -15,7 +15,7 @@ public abstract class JobDriver_CloneBase : JobDriver
 
     protected abstract CloneType CloneJob { get; }
 
-    protected Building_WraithCloningPod ClonePod => (Building_WraithCloningPod)job.GetTarget(TargetIndex.A).Thing;
+    protected Building_CloningPod ClonePod => (Building_CloningPod)job.GetTarget(TargetIndex.A).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {

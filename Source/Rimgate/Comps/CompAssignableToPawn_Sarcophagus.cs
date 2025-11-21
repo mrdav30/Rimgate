@@ -32,7 +32,15 @@ public class CompAssignableToPawn_Sarcophagus : CompAssignableToPawn
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        assignedPawns.RemoveAll(x => x == null || x.Dead);
+        List<Pawn> invalidAssignments = assignedPawns
+            .Where(x => 
+                x == null 
+                || x.Dead
+                || !CanAssignTo(x))
+            .ToList();
+        foreach (Pawn p in invalidAssignments)
+            base.ForceRemovePawn(p);
+
         return base.CompGetGizmosExtra();
     }
 
@@ -103,7 +111,8 @@ public class CompAssignableToPawn_Sarcophagus : CompAssignableToPawn
             int invalid = assignedPawns.RemoveAll(p =>
                 p == null
                 || p.Dead
-                || p.Destroyed);
+                || p.Destroyed
+                || !CanAssignTo(p));
 
             if (invalid != 0)
                 Log.Warning($"{parent.ToStringSafe()} had invalid assigned pawns. Removing.");

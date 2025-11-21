@@ -280,4 +280,47 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_CloningPodOptimization</defName>
+		<label>cloning pod optimization</label>
+
+		<description>Apply ZPM-inspired power-shaping techniques to Wraith biotank architecture. While the pod’s biology still demands immense energy for accelerated growth, your engineers can now reconfigure the pump rhythms, enzyme heaters, and neural-imprint grids to draw power in smooth harmonics rather than violent spikes.\n\nIt won’t make the pod any less unsettling.\n\nBut it will make it about a third less hungry.</description>
+
+		<techLevel>Archotech</techLevel>
+		<baseCost>9000</baseCost>
+
+		<prerequisites>
+			<li>Rimgate_SubspaceMasking</li>
+			<li>Rimgate_ParallelSubspaceCoupling</li>
+			<li>Rimgate_WraithCloneGenome</li>
+		</prerequisites>
+
+		<researchViewX>2</researchViewX>
+		<researchViewY>2</researchViewY>
+
+		<generalRules>
+			<rulesStrings>
+				<!-- subject anchors -->
+				<li>subject->Wraith cloning pod</li>
+				<li>subject->biotank harmonic tuning</li>
+				<li>subject->enzyme-pulse stabilization</li>
+
+				<!-- adjectives -->
+				<li>subject_adj->ZPM-assisted</li>
+				<li>subject_adj->phase-adaptive</li>
+				<li>subject_adj->quietly horrifying</li>
+
+				<!-- story beats -->
+				<li>subject_story->a Wraith growth chamber guided by Ancient field math</li>
+				<li>subject_story->a pod that no longer screams for power in fits and bursts</li>
+				<li>subject_story->a biotank whose heartbeat syncs to subspace harmonics</li>
+
+				<!-- gerunds -->
+				<li>subject_gerund->stabilizing growth-cycle power flux</li>
+				<li>subject_gerund->modulating imprint heaters with ZPM carrier noise</li>
+				<li>subject_gerund->teaching a Wraith biotank to sip instead of devour</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
 </Defs>
