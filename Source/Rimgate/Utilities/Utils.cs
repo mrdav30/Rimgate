@@ -206,73 +206,9 @@ internal static class Utils
         return false;
     }
 
-    public static bool HasHediff(this Pawn pawn, HediffDef def)
-    {
-        HediffSet set = pawn?.health?.hediffSet;
-        if (set is null || def is null) return false;
-
-        return set.HasHediff(def);
-    }
-
-    public static bool HasHediff<T>(this Pawn pawn) where T : Hediff
-    {
-        HediffSet set = pawn?.health?.hediffSet;
-        if (set is null) return false;
-
-        return set.HasHediff<T>();
-    }
-
-    public static Hediff GetHediff(this Pawn pawn, HediffDef def)
-    {
-        HediffSet set = pawn?.health?.hediffSet;
-        if (set is null || def is null) return null;
-
-        if (set.TryGetHediff(def, out Hediff result))
-            return result;
-        return null;
-    }
-
-    public static T GetHediff<T>(this Pawn pawn) where T : Hediff
-    {
-        HediffSet set = pawn?.health?.hediffSet;
-        if (set is null) return null;
-
-        if(set.TryGetHediff<T>(out T result))
-            return result;
-        return null;
-    }
-
     public static bool HasSymbiote(this Pawn pawn)
     {
         return pawn.health?.hediffSet?.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) ?? false;
-    }
-
-    public static Hediff ApplyHediff(
-        this Pawn pawn,
-        HediffDef hediffDef,
-        BodyPartRecord bodyPart,
-        int duration,
-        float severity)
-    {
-        Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn, bodyPart);
-
-        if (severity > float.Epsilon)
-            hediff.Severity = severity;
-
-        if (hediff is HediffWithComps hediffWithComps)
-        {
-            foreach (HediffComp comp in hediffWithComps.comps)
-            {
-                if (duration > 0 
-                    && comp is HediffComp_Disappears hediffComp_Disappears)
-                {
-                    hediffComp_Disappears.ticksToDisappear = duration;
-                }
-            }
-        }
-
-        pawn.health.AddHediff(hediff);
-        return pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
     }
 
     public static bool HasActiveQuestOf(QuestScriptDef def)

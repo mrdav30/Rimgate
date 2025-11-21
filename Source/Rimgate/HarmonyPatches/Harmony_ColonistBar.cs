@@ -51,7 +51,7 @@ public static class Harmony_ColonistBar
             if (m.info?.parent is not WorldObject_StargateQuestSite) continue;
 
             bool showThisMap = (m.mapPawns?.AnyPawnBlockingMapRemoval ?? false);
-            if (RimgateDefOf.Rimgate_WraithModificationEquipment.IsFinished)
+            if (ResearchUtil.WraithModificationEquipmentComplete)
                 showThisMap = showThisMap || Rimgate.StargateUtility.ActiveGateOnMap(m);
 
             if (!showThisMap)

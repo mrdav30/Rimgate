@@ -1,48 +1,50 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 using static RimWorld.PsychicRitualRoleDef;
 
 namespace Rimgate;
 
-public static class SarcophagusUtility
+public static class SarcophagusUtil
 {
     private static List<Thing> _tmpSarcophagi;
 
     public static bool IsValidForUserType(
-        Building_Sarcophagus sarcophagus,
-        Pawn pawn)
+        Building_Sarcophagus s,
+        Pawn p)
     {
-        if (!pawn.RaceProps.Humanlike)
+        if (!p.RaceProps.Humanlike || p.IsMutant && !p.mutant.Def.entitledToMedicalCare)
             return false;
 
-        if (!sarcophagus.AllowSlaves 
-            && pawn.GuestStatus == GuestStatus.Slave)
+        if (!s.AllowSlaves && (p.IsSlaveOfColony || p.GuestStatus == GuestStatus.Slave))
         {
             JobFailReason.Is("RG_Sarcophagus_SlavesNotAllowed".Translate());
             return false;
         }
 
-        if (!sarcophagus.AllowPrisoners 
-            && pawn.GuestStatus == GuestStatus.Prisoner)
+        if (!s.AllowPrisoners && (p.IsPrisonerOfColony || p.GuestStatus == GuestStatus.Prisoner))
         {
             JobFailReason.Is("RG_Sarcophagus_PrisonersNotAllowed".Translate());
             return false;
         }
 
-        if (!sarcophagus.AllowGuests 
-            && (!pawn.IsColonist || pawn.GuestStatus == GuestStatus.Guest))
+        if (!p.IsColonist && p.GuestStatus == GuestStatus.Guest)
         {
-            JobFailReason.Is("RG_Sarcophagus_GuestsNotAllowed".Translate());
-            return false;
-        }
+            if (!s.AllowGuests)
+            {
 
-        var assigned = sarcophagus.GetAssignedPawns();
-        if (assigned != null && assigned.Any())
+                JobFailReason.Is("RG_Sarcophagus_GuestsNotAllowed".Translate());
+                return false;
+            }
+        }
+        else
         {
-            if (!assigned.Contains(pawn))
+            var assigned = s.GetAssignedPawns();
+            if (assigned == null || !assigned.Contains(p))
             {
                 JobFailReason.Is("NotAssigned".Translate());
                 return false;
@@ -122,7 +124,7 @@ public static class SarcophagusUtility
             return false;
         }
 
-        if (!MedicalUtility.HasAllowedMedicalCareCategory(patient))
+        if (!MedicalUtil.HasAllowedMedicalCareCategory(patient))
         {
             JobFailReason.Is("RG_Sarcophagus_MedicalCareCategoryTooLow".Translate());
             return false;
@@ -140,14 +142,14 @@ public static class SarcophagusUtility
             return false;
         }
 
-        if (MedicalUtility.HasUsageBlockingHediffs(patient, sarcophagus.UsageBlockingHediffs))
+        if (MedicalUtil.HasUsageBlockingHediffs(patient, sarcophagus.UsageBlockingHediffs))
         {
             var blocking = patient.health.hediffSet.hediffs.FirstOrDefault(h => sarcophagus.UsageBlockingHediffs.Contains(h.def));
             JobFailReason.Is("RG_Sarcophagus_PatientWithHediffNotAllowed".Translate(blocking?.LabelCap ?? ""));
             return false;
         }
 
-        if (MedicalUtility.HasUsageBlockingTraits(patient, sarcophagus.UsageBlockingTraits))
+        if (MedicalUtil.HasUsageBlockingTraits(patient, sarcophagus.UsageBlockingTraits))
         {
             var blocking = patient.story?.traits.allTraits.FirstOrDefault(t => sarcophagus.UsageBlockingTraits.Contains(t.def));
             JobFailReason.Is("RG_Sarcophagus_PatientWithTraitNotAllowed".Translate(blocking?.LabelCap ?? ""));
@@ -159,8 +161,14 @@ public static class SarcophagusUtility
 
     public static bool ShouldSeekTreatment(Pawn patient, Building_Sarcophagus sarcophagus)
     {
+        var set = patient?.health?.hediffSet;
+        if (set == null) return false;
+
+        bool ideoActive = ModsConfig.IdeologyActive && patient.Ideo != null;
+
         List<Hediff> patientHediffs = new List<Hediff>();
-        patient.health.hediffSet.GetHediffs<Hediff>(ref patientHediffs, null);
+        set.GetHediffs<Hediff>(ref patientHediffs, null);
+
         CompProperties_TreatmentRestrictions restrictions = sarcophagus.GetComp<Comp_TreatmentRestrictions>().Props;
         List<HediffDef> alwaysTreatableHediffs = restrictions.alwaysTreatableHediffs;
         List<HediffDef> neverTreatableHediffs = restrictions.neverTreatableHediffs;
@@ -179,10 +187,10 @@ public static class SarcophagusUtility
             && !nonCriticalTreatableHediffs.Contains(x.def));
 
         // Has tended and healing injuries
-        bool hasTendedAndHealingInjuries = patient.health.hediffSet.HasTendedAndHealingInjury();
+        bool hasTendedAndHealingInjuries = set.HasTendedAndHealingInjury();
 
         // Has immunizable but not yet immune hediffs
-        bool hasImmunizableNotImmuneHediffs = patient.health.hediffSet.HasImmunizableNotImmuneHediff();
+        bool hasImmunizableNotImmuneHediffs = set.HasImmunizableNotImmuneHediff();
 
         // Has (visible) hediffs causing sick thoughts (excluding those blacklisted or greylisted from Sarcophagus treatment)
         bool hasSickThoughtHediffs = patientHediffs.Any(x =>
@@ -191,11 +199,19 @@ public static class SarcophagusUtility
             && !neverTreatableHediffs.Contains(x.def)
             && !nonCriticalTreatableHediffs.Contains(x.def));
 
-        // Has missing body parts (excluding those flagged as not bad)
-        bool hasMissingBodyParts = !patient.health.hediffSet.GetMissingPartsCommonAncestors()
-            .Where(x => x.def.isBad)
-            .ToList()
-            .NullOrEmpty() && !neverTreatableHediffs.Contains(HediffDefOf.MissingBodyPart);
+        bool canRegrowMissingParts = ResearchUtil.SarcophagusBioregenerationComplete;
+        bool blindnessRequired = ideoActive ? patient.ideo.Ideo.BlindPawnChance > 0 : false;
+
+        // Has missing body parts (excluding those flagged as not bad + ideological blindness requirement)
+        bool hasMissingBodyParts = canRegrowMissingParts
+            && !set.GetMissingPartsCommonAncestors()
+                .Where(x =>
+                    x.def.isBad
+                    // If blindness is required, ignore missing sight-source parts (ideological choice)
+                    && (!blindnessRequired || !x.Part.def.tags.Contains(BodyPartTagDefOf.SightSource)))
+                .ToList()
+                .NullOrEmpty()
+            && !neverTreatableHediffs.Contains(HediffDefOf.MissingBodyPart);
 
         // Has permanent injuries (excluding those blacklisted from Sarcophagus treatment)
         bool hasPermanentInjuries = patientHediffs.Any(x =>
@@ -219,18 +235,17 @@ public static class SarcophagusUtility
             && need.CurLevel <= 0.5) hasSarcophagusNeed = true;
 
         // Has hediffs that are always treatable by Sarcophaguss
-        bool hasAlwaysTreatableHediffs = patientHediffs.Any(x =>
-            alwaysTreatableHediffs.Contains(x.def));
+        bool hasAlwaysTreatableHediffs = patientHediffs.Any(x => alwaysTreatableHediffs.Contains(x.def));
 
         // Is already using a Sarcophagus and has any greylisted hediffs
         bool hasGreylistedHediffsDuringTreatment = patient.ParentHolder == sarcophagus
             && patientHediffs.Any(x => nonCriticalTreatableHediffs.Contains(x.def));
 
         // Does not have hediffs or traits that block the pawn from using Sarcophaguss
-        bool hasNoBlockingHediffsOrTraits = !MedicalUtility.HasUsageBlockingHediffs(patient, usageBlockingHediffs)
-            && !MedicalUtility.HasUsageBlockingTraits(patient, usageBlockingTraits);
+        bool hasNoBlockingHediffsOrTraits = !MedicalUtil.HasUsageBlockingHediffs(patient, usageBlockingHediffs)
+            && !MedicalUtil.HasUsageBlockingTraits(patient, usageBlockingTraits);
 
-        bool result = (isDowned
+        bool hasOtherHediffs = isDowned
             || hasTendableHediffs
             || hasTendedAndHealingInjuries
             || hasImmunizableNotImmuneHediffs
@@ -241,7 +256,23 @@ public static class SarcophagusUtility
             || hasAddictions
             || hasSarcophagusNeed
             || hasAlwaysTreatableHediffs
-            || hasGreylistedHediffsDuringTreatment) && hasNoBlockingHediffsOrTraits;
+            || hasGreylistedHediffsDuringTreatment;
+
+        // Ideology: if this pawn's ideology expects scars, don't send them to sarcophagus
+        // *only* for that purpose.
+        if (ideoActive)
+        {
+            //int scarCount = patient.health.hediffSet.GetHediffCount(HediffDefOf.Scarification);
+            int requiredScars = patient.ideo.Ideo.RequiredScars;
+            if (requiredScars > 0 && !hasOtherHediffs)
+            {
+                if (RimgateMod.Debug)
+                    Log.Message($"{patient} ignoring sarcophagus due to ideology required scars.");
+                return false;
+            }
+        }
+
+        bool result = hasOtherHediffs && hasNoBlockingHediffsOrTraits;
 
         if (RimgateMod.Debug)
             Log.Message($"{patient} should use {sarcophagus}? = {result.ToStringYesNo()}\n"
@@ -310,6 +341,36 @@ public static class SarcophagusUtility
         return null;
     }
 
+    public static bool CanTakeToSarcophagus(Pawn rescuer, Pawn patient)
+    {
+        if (patient.IsDeactivated())
+            return false;
+
+        if (CaravanFormingUtility.IsFormingCaravanOrDownedPawnToBeTakenByCaravan(patient))
+            return false;
+
+        if (patient.IsMutant && !patient.mutant.Def.entitledToMedicalCare)
+            return false;
+
+        if (patient.InMentalState && !patient.health.hediffSet.HasHediff(HediffDefOf.Scaria))
+            return false;
+
+        if (patient.ShouldBeSlaughtered())
+            return false;
+
+        if (patient.TryGetLord(out var lord)
+            && lord.LordJob is LordJob_Ritual lordJob_Ritual
+            && lordJob_Ritual.TryGetRoleFor(patient, out var role) && role.allowDowned)
+        {
+            return false;
+        }
+
+        if (LifeStageUtility.AlwaysDowned(patient) && patient.health.hediffSet.InLabor())
+            return false;
+
+        return true;
+    }
+
     public static void PutIntoSarcophagus(
         Building_Sarcophagus sarcophagus,
         Pawn traveler,
@@ -331,7 +392,7 @@ public static class SarcophagusUtility
                 ? $": {JobFailReason.Reason}"
                 : string.Empty;
             Messages.Message(
-                "CannotRescuePawn".Translate(patient.Named("PAWN")) + reason,
+                "RG_CannotRescuePawn".Translate(patient.Named("PAWN")) + reason,
                 traveler,
                 MessageTypeDefOf.NeutralEvent);
         }

@@ -8,21 +8,17 @@ namespace Rimgate;
 public class CompProperties_Sarcophagus : CompProperties
 {
     public float maxDiagnosisTime = 5f;
-
     public float maxPerHediffHealingTime = 10f;
 
     public float diagnosisModePowerConsumption = 4000f;
-
     public float healingModePowerConsumption = 16000f;
 
+    public float powerConsumptionReductionFactor = 0.35f;
+
     public bool applyAddictionHediff; 
-
     public float addictiveness;
-
     public float severity = -1f;
-
     public float existingAddictionSeverityOffset = 0.1f;
-
     public float needLevelOffset = 1f;
 
     public CompProperties_Sarcophagus() => compClass = typeof(Comp_SarcophagusControl);
@@ -51,24 +47,40 @@ public class CompProperties_Sarcophagus : CompProperties
         foreach (StatDrawEntry specialDisplayStat in base.SpecialDisplayStats(req))
             yield return specialDisplayStat;
 
+        // Compute current effective multiplier:
+        float multiplier = 1f;
+        if (powerConsumptionReductionFactor > 0f
+            && ResearchUtil.SarcophagusOptimizationComplete)
+        {
+            multiplier = 1f - powerConsumptionReductionFactor;
+            if (multiplier < 0f)
+                multiplier = 0f;
+        }
+
+        float diag = diagnosisModePowerConsumption * multiplier;
+        float heal = healingModePowerConsumption * multiplier;
+
         yield return new StatDrawEntry(
             StatCategoryDefOf.Building,
             "RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Label".Translate(),
-            diagnosisModePowerConsumption.ToString("F0") + " W", 
+            diag.ToString("F0") + " W",
             "RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Desc".Translate(),
             4994);
+
         yield return new StatDrawEntry(
             StatCategoryDefOf.Building,
             "RG_Sarcophagus_Stat_PowerConsumptionHealing_Label".Translate(),
-            healingModePowerConsumption.ToString("F0") + " W", 
+            heal.ToString("F0") + " W",
             "RG_Sarcophagus_Stat_PowerConsumptionHealing_Desc".Translate(),
             4993);
+
         yield return new StatDrawEntry(
             StatCategoryDefOf.Building,
             "RG_Sarcophagus_Stat_DiagnosisTime_Label".Translate(),
             "RG_Sarcophagus_Stat_TimeSeconds".Translate(maxDiagnosisTime), 
             "RG_Sarcophagus_Stat_DiagnosisTime_Desc".Translate(),
             4992);
+
         yield return new StatDrawEntry(
             StatCategoryDefOf.Building,
             "RG_Sarcophagus_Stat_PerHediffHealingTime_Label".Translate(),

@@ -18,7 +18,7 @@ public class Comp_GlyphParchment : ThingComp
         if (!canReach)
             yield break;
 
-        if (!RimgateDefOf.Rimgate_GlyphDeciphering.IsFinished)
+        if (!ResearchUtil.GlyphDecipheringComplete)
         {
             yield return new FloatMenuOption("RG_CannotDecodeSGSymbols".Translate(), null);
             yield break;

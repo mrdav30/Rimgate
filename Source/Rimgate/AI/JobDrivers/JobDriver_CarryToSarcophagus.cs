@@ -65,7 +65,7 @@ public class JobDriver_CarryToSarcophagus : JobDriver
             var traveler = pawn;
             var patient = Patient;
 
-            SarcophagusUtility.PutIntoSarcophagus(sarcophagus, traveler, patient, true);
+            SarcophagusUtil.PutIntoSarcophagus(sarcophagus, traveler, patient, true);
         };
         putInto.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return putInto;

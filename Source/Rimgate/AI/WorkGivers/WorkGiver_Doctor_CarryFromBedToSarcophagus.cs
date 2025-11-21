@@ -26,8 +26,9 @@ public class WorkGiver_Doctor_CarryFromBedToSarcophagus
         if (patient == null
             || patient.GetUniqueLoadID() == pawn.GetUniqueLoadID()
             || !patient.GetPosture().InBed()
+            || patient.health.hediffSet.InLabor()
             || patient.Faction != pawn.Faction
-            || !MedicalUtility.HasAllowedMedicalCareCategory(patient)
+            || !MedicalUtil.HasAllowedMedicalCareCategory(patient)
             || patient.ParentHolder is Building_Sarcophagus
             || patient.health.surgeryBills.Bills.Any(x => x.suspended == false) 
             || !pawn.CanReserve(patient, 1, -1, null, forced) 
@@ -42,7 +43,7 @@ public class WorkGiver_Doctor_CarryFromBedToSarcophagus
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
         Pawn patient = t as Pawn;
-        Building_Sarcophagus sarcophagus = SarcophagusUtility.FindBestSarcophagus(patient, pawn);
+        Building_Sarcophagus sarcophagus = SarcophagusUtil.FindBestSarcophagus(patient, pawn);
         if (sarcophagus != null)
         {
             Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryToSarcophagus, patient, sarcophagus);

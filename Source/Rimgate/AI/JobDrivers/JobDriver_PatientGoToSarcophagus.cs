@@ -29,7 +29,7 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
                 || Sarcophagus.HasAnyContents
                 || !Sarcophagus.Accepts(pawn)
                 || !pawn.CanReach(Sarcophagus, PathEndMode.InteractionCell, Danger.Deadly) 
-                || !SarcophagusUtility.IsValidForUserType(Sarcophagus, pawn);
+                || !SarcophagusUtil.IsValidForUserType(Sarcophagus, pawn);
         });
 
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);

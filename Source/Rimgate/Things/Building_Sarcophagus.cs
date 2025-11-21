@@ -8,6 +8,7 @@ using System;
 using Verse.Sound;
 using Verse.AI;
 using Rimgate;
+using System.Runtime.CompilerServices;
 
 namespace Rimgate;
 
@@ -26,7 +27,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 {
     public CompPowerTrader Power => _powerTrader ??= GetComp<CompPowerTrader>();
 
-    public Comp_SarcophagusControl Sarcophagus => _sarcophagus ??= GetComp<Comp_SarcophagusControl>();
+    public Comp_SarcophagusControl Control => _control ??= GetComp<Comp_SarcophagusControl>();
 
     public Comp_TreatmentRestrictions Restrictions => _treatmentRestrictions ??= GetComp<Comp_TreatmentRestrictions>();
 
@@ -46,9 +47,29 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public int PatientBodySizeScaledMaxHealingTicks;
 
-    public float DiagnosingPowerConsumption;
+    public float DefaultIdlePower => Power?.Props.PowerConsumption ?? 0;
 
-    public float HealingPowerConsumption;
+    public float DiagnosingPowerConsumption => 
+        Control.Props.diagnosisModePowerConsumption * CurrentPowerMultiplier;
+
+    public float HealingPowerConsumption => 
+        Control.Props.healingModePowerConsumption * CurrentPowerMultiplier;
+
+    public float CurrentPowerMultiplier
+    {
+        get
+        {
+            var props = Control?.Props;
+            if (props == null || props.powerConsumptionReductionFactor <= 0f)
+                return 1f;
+
+            if (!ResearchUtil.SarcophagusOptimizationComplete)
+                return 1f;
+
+            float multiplier = 1f - props.powerConsumptionReductionFactor;
+            return multiplier < 0f ? 0f : multiplier;
+        }
+    }
 
     public List<HediffDef> AlwaysTreatableHediffs;
 
@@ -83,7 +104,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     private Sustainer _wickSustainer;
 
-    protected ThingOwner _innerContainer;
+    protected ThingOwner<Thing> _innerContainer;
 
     protected bool _contentsKnown;
 
@@ -91,9 +112,21 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public const float MaxBodySize = 9999f;
 
-    public Pawn PatientPawn => _innerContainer.Count > 0
-        ? (Pawn)_innerContainer[0]
-        : null;
+    public Pawn PatientPawn
+    {
+        get
+        {
+            if (_innerContainer == null || _innerContainer.Count == 0)
+                return null;
+
+            var pawn = _innerContainer.OfType<Pawn>().FirstOrDefault();
+            if (pawn != null)
+                return pawn;
+
+            Log.Error($"{ThingID} _innerContainer is not empty but contains no Pawn.");
+            return null;
+        }
+    }
 
     public bool CanOpen => HasAnyContents;
 
@@ -103,19 +136,15 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     private List<Hediff> _patientTreatableHediffs = new();
 
-    private static float _patientSavedFoodNeed;
+    private float _patientSavedFoodNeed;
 
-    private static float _patientSavedDbhThirstNeed;
+    private float _patientSavedDbhThirstNeed;
 
-    private static List<Trait> _patientTraitsToRemove = new();
-
-    private float _totalNormalizedSeverities = 0;
-
-    private static string[] gizmosToDisableWhileInUse;
+    private List<Trait> _patientTraitsToRemove = new();
 
     private CompPowerTrader _powerTrader;
 
-    private Comp_SarcophagusControl _sarcophagus;
+    private Comp_SarcophagusControl _control;
 
     private Comp_TreatmentRestrictions _treatmentRestrictions;
 
@@ -132,10 +161,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
     {
         base.SpawnSetup(map, respawningAfterLoad);
 
-        MaxDiagnosingTicks = GenTicks.SecondsToTicks(Sarcophagus.Props.maxDiagnosisTime);
-        MaxHealingTicks = GenTicks.SecondsToTicks(Sarcophagus.Props.maxPerHediffHealingTime);
-        DiagnosingPowerConsumption = Sarcophagus.Props.diagnosisModePowerConsumption;
-        HealingPowerConsumption = Sarcophagus.Props.healingModePowerConsumption;
+        MaxDiagnosingTicks = GenTicks.SecondsToTicks(Control.Props.maxDiagnosisTime);
+        MaxHealingTicks = GenTicks.SecondsToTicks(Control.Props.maxPerHediffHealingTime);
 
         AlwaysTreatableHediffs = Restrictions.Props.alwaysTreatableHediffs;
         NeverTreatableHediffs = Restrictions.Props.neverTreatableHediffs;
@@ -155,24 +182,29 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         base.Tick();
 
         // State-dependent power consumption
-        if (Status == SarcophagusStatus.DiagnosisStarted
-            || Status == SarcophagusStatus.DiagnosisFinished)
+        switch (Status)
         {
-            Power.PowerOutput = -DiagnosingPowerConsumption;
+            case SarcophagusStatus.Idle:
+                Power.PowerOutput = -DefaultIdlePower;
+                break;
+
+            case SarcophagusStatus.DiagnosisStarted:
+            case SarcophagusStatus.DiagnosisFinished:
+                Power.PowerOutput = -DiagnosingPowerConsumption;
+                break;
+
+            case SarcophagusStatus.HealingStarted:
+            case SarcophagusStatus.HealingFinished:
+                Power.PowerOutput = -HealingPowerConsumption;
+                break;
         }
-        else if (Status == SarcophagusStatus.HealingStarted
-            || Status == SarcophagusStatus.HealingFinished)
-        {
-            Power.PowerOutput = -HealingPowerConsumption;
-        }
-        else
-            Power.PowerOutput = -Power.Props.PowerConsumption;
 
         // Main patient treatment cycle logic
-        if (PatientPawn != null)
+        var patient = PatientPawn;
+        if (patient != null)
         {
-            PatientBodySizeScaledMaxDiagnosingTicks = (int)(MaxDiagnosingTicks * PatientPawn.BodySize);
-            PatientBodySizeScaledMaxHealingTicks = (int)(MaxHealingTicks * PatientPawn.BodySize);
+            PatientBodySizeScaledMaxDiagnosingTicks = (int)(MaxDiagnosingTicks * patient.BodySize);
+            PatientBodySizeScaledMaxHealingTicks = (int)(MaxHealingTicks * patient.BodySize);
 
             // Interrupt treatment on power loss
             if (!Power.PowerOn)
@@ -180,7 +212,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                 if (RimgateMod.Debug)
                     Log.Message(this + $" :: Lost power while running (state: {Status})");
 
-                DischargePatient(PatientPawn, false);
+                DischargePatient(patient, false);
                 EjectContents();
                 Reset();
                 return;
@@ -193,19 +225,19 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                     {
                         DiagnosingTicks = PatientBodySizeScaledMaxDiagnosingTicks;
                         // Save initial patient food need level
-                        if (PatientPawn.needs.food != null)
-                            _patientSavedFoodNeed = PatientPawn.needs.food.CurLevelPercentage;
+                        if (patient.needs.food != null)
+                            _patientSavedFoodNeed = patient.needs.food.CurLevelPercentage;
 
                         // Save initial patient DBH thirst and reset DBH bladder/hygiene need levels
                         if (ModCompatibility.DbhIsActive)
                         {
-                            _patientSavedDbhThirstNeed = DbhCompatibility.GetThirstNeedCurLevelPercentage(PatientPawn);
-                            DbhCompatibility.SetBladderNeedCurLevelPercentage(PatientPawn, 1f);
-                            DbhCompatibility.SetHygieneNeedCurLevelPercentage(PatientPawn, 1f);
+                            _patientSavedDbhThirstNeed = DbhCompatibility.GetThirstNeedCurLevelPercentage(patient);
+                            DbhCompatibility.SetBladderNeedCurLevelPercentage(patient, 1f);
+                            DbhCompatibility.SetHygieneNeedCurLevelPercentage(patient, 1f);
                         }
 
                         if (RimgateMod.Debug)
-                            Log.Message($"\t{PatientPawn} :: initial DiagnosingTicks = {DiagnosingTicks}");
+                            Log.Message($"\t{patient} :: initial DiagnosingTicks = {DiagnosingTicks}");
 
                         SwitchState();
                         break;
@@ -219,29 +251,28 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                     }
                 case SarcophagusStatus.DiagnosisFinished:
                     {
-                        DiagnosePatient(PatientPawn);
+                        DiagnosePatient(patient);
                         // Skip treatment if no treatable hediffs are found
                         if (_patientTreatableHediffs.NullOrEmpty())
                         {
                             if (RimgateMod.Debug)
-                                Log.Message(this + $" :: Ejecting patient as they have nothing to treat");
+                                Log.Message(this + $" :: Discharging patient since there are no hediffs to treat");
+
+                            // No hediffs to heal, but we still want to cleanly discharge + restore needs.
+                            DischargePatient(patient, true);
+
                             // if we're only using the sarcophagus for an addiction, adjust need
-                            Sarcophagus.HandleAfterEffects(PatientPawn, false);
+                            Control.HandleAfterEffects(patient, false);
+
                             EjectContents();
                             Status = SarcophagusStatus.PatientDischarged;
                         }
                         else
                         {
-                            // Scale healing time for the first hediff
-                            // according to its (normalized) severity and
-                            // patient body size
-                            // i.e. More severe hediffs take longer,
-                            // bigger pawns also take longer
-                            HealingTicks = (int)Math.Ceiling(GetHediffNormalizedSeverity()
-                                * PatientBodySizeScaledMaxHealingTicks);
+                            HealingTicks = ScaleHealingTicks(patient);
                             if (RimgateMod.Debug)
                             {
-                                Log.Message($"\t{PatientPawn} :: first hediff HealingTicks = {HealingTicks}"
+                                Log.Message($"\t{patient} :: first hediff HealingTicks = {HealingTicks}"
                                     + $" (hediff count: {_patientTreatableHediffs.Count()})");
                             }
 
@@ -262,26 +293,22 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                         // Don't remove 'good' treatable Hediffs
                         // but instead treat them with 100% quality
                         // (unless the 'good' Hediff is whitelisted as always treatable)
-                        bool hasTendable = !_patientTreatableHediffs.First().def.isBad
-                            && !AlwaysTreatableHediffs.Contains(_patientTreatableHediffs.First().def)
-                            && !NonCriticalTreatableHediffs.Contains(_patientTreatableHediffs.First().def);
+                        var hediff = _patientTreatableHediffs.First();
+                        bool hasTendable = !hediff.def.isBad
+                            && !AlwaysTreatableHediffs.Contains(hediff.def)
+                            && !NonCriticalTreatableHediffs.Contains(hediff.def);
                         if (hasTendable)
-                            _patientTreatableHediffs.First().Tended(1, 1);
+                            hediff.Tended(1, 1);
                         else
-                            PatientPawn.health.hediffSet.hediffs.Remove(_patientTreatableHediffs.First());
+                            patient.health.hediffSet.hediffs.Remove(hediff);
 
                         _patientTreatableHediffs.RemoveAt(0);
                         if (!_patientTreatableHediffs.NullOrEmpty())
                         {
-                            // Scale healing time for the next hediff according
-                            // to its (normalized) severity and patient body size
-                            // i.e. More severe hediffs take longer, bigger pawns also take longer
-                            HealingTicks = (int)Math.Ceiling(GetHediffNormalizedSeverity()
-                                * PatientBodySizeScaledMaxHealingTicks);
-
+                            HealingTicks = ScaleHealingTicks(patient);
                             if (RimgateMod.Debug)
                             {
-                                Log.Message($"\t{PatientPawn} :: next hediff HealingTicks = {HealingTicks}"
+                                Log.Message($"\t{patient} :: next hediff HealingTicks = {HealingTicks}"
                                     + $" (hediff count: {_patientTreatableHediffs.Count()})");
                             }
 
@@ -290,9 +317,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                         }
                         else
                         {
-                            DischargePatient(PatientPawn);
+                            DischargePatient(patient);
                             // apply addiction and adjust needs
-                            Sarcophagus.HandleAfterEffects(PatientPawn);
+                            Control.HandleAfterEffects(patient);
                             EjectContents();
                             SwitchState();
                         }
@@ -314,15 +341,15 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             if (suspendNeeds)
             {
                 // Food
-                if (PatientPawn.needs.food != null)
-                    PatientPawn.needs.food.CurLevelPercentage = 1f;
+                if (patient.needs.food != null)
+                    patient.needs.food.CurLevelPercentage = 1f;
 
                 // Dubs Bad Hygiene thirst, bladder and hygiene
                 if (ModCompatibility.DbhIsActive)
                 {
-                    DbhCompatibility.SetThirstNeedCurLevelPercentage(PatientPawn, 1f);
-                    DbhCompatibility.SetBladderNeedCurLevelPercentage(PatientPawn, 1f);
-                    DbhCompatibility.SetHygieneNeedCurLevelPercentage(PatientPawn, 1f);
+                    DbhCompatibility.SetThirstNeedCurLevelPercentage(patient, 1f);
+                    DbhCompatibility.SetBladderNeedCurLevelPercentage(patient, 1f);
+                    DbhCompatibility.SetHygieneNeedCurLevelPercentage(patient, 1f);
                 }
             }
         }
@@ -339,29 +366,6 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             _wickSustainer.Maintain();
     }
 
-    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
-    {
-        if (Power.PowerOn
-            && (Status == SarcophagusStatus.DiagnosisFinished
-                || Status == SarcophagusStatus.HealingStarted
-                || Status == SarcophagusStatus.HealingFinished))
-        {
-            DischargePatient(PatientPawn, false);
-        }
-
-        EjectContents();
-
-        AllowGuests = false;
-
-        District district = this.GetDistrict();
-        base.DeSpawn(mode);
-        if (district != null)
-        {
-            district.Notify_RoomShapeOrContainedBedsChanged();
-            district.Room.Notify_RoomShapeChanged();
-        }
-    }
-
     public override void ExposeData()
     {
         base.ExposeData();
@@ -371,7 +375,11 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         Scribe_Values.Look(ref AllowGuests, "AllowGuests", false);
         Scribe_Values.Look(ref AllowSlaves, "AllowSlaves", false);
         Scribe_Values.Look(ref AllowPrisoners, "AllowPrisoners", false);
-        BackCompatibility.PostExposeData(this);
+        Scribe_Values.Look(ref Status, "Status");
+        Scribe_Values.Look(ref DiagnosingTicks, "DiagnosingTicks", 0);
+        Scribe_Values.Look(ref HealingTicks, "HealingTicks", 0);
+        Scribe_Values.Look(ref ProgressHealingTicks, "ProgressHealingTicks", 0);
+        Scribe_Values.Look(ref TotalHealingTicks, "TotalHealingTicks", 0);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -379,13 +387,14 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         if (Faction != Faction.OfPlayer) yield break;
 
         string flickablePowerToggleStr = "CommandDesignateTogglePowerLabel".Translate();
+        var patient = PatientPawn;
 
         foreach (Gizmo g in base.GetGizmos())
         {
             bool shouldDisable = (g is Command_Toggle act2
                     && act2.defaultLabel == flickablePowerToggleStr);
 
-            if (shouldDisable && PatientPawn != null)
+            if (shouldDisable && patient != null)
             {
                 // Disable various gizmos while sarcophagi is in use
                 g.Disable("RG_Sarcophagus_CommandGizmoDisabled_SarcophagusInUse".Translate(def.LabelCap));
@@ -423,10 +432,10 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                     var assigned = Assignable?.AssignedPawns.ToList();
                     if (assigned?.Count <= 0) return;
 
-                    foreach(var pawn in assigned)
+                    foreach (var pawn in assigned)
                     {
-                        if(pawn.IsSlave)
-                            Assignable.TryUnassignPawn(pawn);
+                        if (pawn.IsSlave)
+                            Assignable.ForceRemovePawn(pawn);
                     }
                 }
             },
@@ -452,7 +461,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                     foreach (var pawn in assigned)
                     {
                         if (pawn.IsPrisoner)
-                            Assignable.TryUnassignPawn(pawn);
+                            Assignable.ForceRemovePawn(pawn);
                     }
                 }
             },
@@ -465,17 +474,17 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         {
             defaultLabel = "RG_Sarcophagus_CommandGizmoAbortTreatment_Label".Translate(),
             defaultDesc = "RG_Sarcophagus_CommandGizmoAbortTreatment_Desc".Translate(),
-            Disabled = PatientPawn == null,
+            Disabled = patient == null,
             action = () =>
             {
-                if (PatientPawn != null)
+                if (patient != null)
                     Abort();
             },
             icon = RimgateTex.TreatmentCommandTex,
             activateSound = SoundDefOf.Click
         };
 
-        Gizmo gizmo = Building.SelectContainedItemGizmo(this, PatientPawn);
+        Gizmo gizmo = Building.SelectContainedItemGizmo(this, patient);
         if (gizmo != null)
             yield return gizmo;
 
@@ -493,7 +502,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
     {
         if (Faction != Faction.OfPlayer) yield break;
 
-        if (!SarcophagusUtility.IsValidSarcophagusFor(this, pawn, pawn))
+        if (!SarcophagusUtil.IsValidSarcophagusFor(this, pawn, pawn))
         {
             var reason = JobFailReason.HaveReason
                 ? $" ({JobFailReason.Reason})"
@@ -503,7 +512,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         }
 
         yield return new FloatMenuOption(
-            "UseMedicalBed".Translate(), 
+            "UseMedicalBed".Translate(),
             () =>
             {
                 Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_PatientGoToSarcophagus, this);
@@ -521,8 +530,6 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         if (ParentHolder != null && !(ParentHolder is Map))
             return string.Empty;
 
-        // TODO: assignable comp here
-
         if (Power.PowerOn)
         {
             var powerReqs = "PowerNeeded".Translate()
@@ -530,10 +537,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
             stringBuilder.AppendInNewLine(powerReqs);
 
-            var diagReq = Sarcophagus?.Props?.diagnosisModePowerConsumption ?? 0;
-            var healReq = Sarcophagus?.Props?.healingModePowerConsumption ?? 0;
-            var useReqs = $" ({diagReq.ToString("#####0")} W for diagnosis"
-                + $"  / {healReq.ToString("#####0")} W for healing)";
+            var useReqs = $" ({DiagnosingPowerConsumption.ToString("#####0")} W for diagnosis"
+                + $"  / {HealingPowerConsumption.ToString("#####0")} W for healing)";
 
             stringBuilder.AppendInNewLine(useReqs);
 
@@ -552,7 +557,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                     break;
                 case SarcophagusStatus.HealingStarted:
                 case SarcophagusStatus.HealingFinished:
-                    int healingProgress = (int)(ProgressHealingTicks / (float)TotalHealingTicks * 100);
+                    int healingProgress = TotalHealingTicks > 0
+                        ? (int)(ProgressHealingTicks / (float)TotalHealingTicks * 100)
+                        : 100;
                     inspectorStatus = "RG_Sarcophagus_InspectorStatus_HealingProgress"
                         .Translate(healingProgress);
                     break;
@@ -676,15 +683,16 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         return result;
     }
 
-    private void DiagnosePatient(Pawn patientPawn)
+    private void DiagnosePatient(Pawn patient)
     {
+        // Reset aggregate healing metrics for this diagnosis pass
+        TotalHealingTicks = 0;
+        ProgressHealingTicks = 0;
+
         // List all of the patient's hediffs/injuries, sorted by body part hierarchy then severity
         // Hediffs with no body part defined (i.e. "Whole Body" hediffs) are moved to the bottom of the list)
-        _patientTreatableHediffs = patientPawn.health.hediffSet.hediffs
-            .OrderBy((Hediff x) =>
-                x.Part == null
-                ? 9999
-                : x.Part.Index)
+        _patientTreatableHediffs = patient.health.hediffSet.hediffs
+            .OrderBy((Hediff x) => x.Part == null ? 9999 : x.Part.Index)
             .ThenByDescending((Hediff x) => x.Severity)
             .ToList();
 
@@ -703,10 +711,20 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         foreach (Hediff currentArtificialPartHediff in artificialPartHediffs)
             childPartsToSkip.AddRange(GetBodyPartDescendants(currentArtificialPartHediff.Part));
 
-        // Only ignore Missing part Hediffs from body parts that have been replaced
+        // Ignore all missing part Hediffs from body parts that have been replaced
         _patientTreatableHediffs.RemoveAll(x =>
             childPartsToSkip.Any(p => x.Part == p)
             && x.def.hediffClass == typeof(Hediff_MissingPart));
+
+        // If the advanced sarcophagus bioregeneration research is NOT complete,
+        // do not treat generic MissingBodyPart at all.
+        if (!ResearchUtil.SarcophagusBioregenerationComplete)
+        {
+            int removedMissing = _patientTreatableHediffs.RemoveAll(h => h.def == HediffDefOf.MissingBodyPart);
+
+            if (RimgateMod.Debug && removedMissing > 0)
+                Log.Message($"{this} :: Missing body parts removed from treatment list (bioregeneration research not completed).");
+        }
 
         // Ignore hediffs/injuries that are:
         // - Not explicitly whitelisted as always treatable
@@ -721,8 +739,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                     && !x.TendableNow())));
 
         // Immediately treat blood loss hediff
-        _patientTreatableHediffs.RemoveAll(x => x.def == HediffDefOf.BloodLoss);
-        PatientPawn.health.hediffSet.hediffs.RemoveAll(x => x.def == HediffDefOf.BloodLoss);
+        int bloodLossCount = _patientTreatableHediffs.RemoveAll(x => x.def == HediffDefOf.BloodLoss);
+        if (bloodLossCount > 0)
+            patient.health.hediffSet.hediffs.RemoveAll(x => x.def == HediffDefOf.BloodLoss);
 
         // Calculate individual and total cumulative treatment time for each hediff/injury
         foreach (Hediff currentHediff in _patientTreatableHediffs)
@@ -734,7 +753,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             float currentBodyPartMaxHealth = currentHediff.Part != null
                 ? EbfCompatibilityWrapper.GetMaxHealth(
                     currentHediff.Part.def,
-                    patientPawn,
+                    patient,
                     currentHediff.Part)
                 : 1;
 
@@ -742,10 +761,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                 ? currentSeverity
                 : currentSeverity / currentBodyPartMaxHealth;
 
-            _totalNormalizedSeverities += currentNormalizedSeverity;
-
-            TotalHealingTicks += (int)Math.Ceiling(GetHediffNormalizedSeverity(currentHediff)
-                * PatientBodySizeScaledMaxHealingTicks);
+            TotalHealingTicks += ScaleHealingTicks(patient, currentHediff);
 
             // Tend all bleeding hediffs immediately so the pawn doesn't bleed out while on sarcophagus
             // The Hediff will be completely removed once the sarcophagus is done with the Healing process
@@ -754,22 +770,31 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         }
 
         // Identify treatable traits for removal
-        _patientTraitsToRemove = patientPawn.story?.traits.allTraits.FindAll(x =>
+        _patientTraitsToRemove = patient.story?.traits.allTraits.FindAll(x =>
             AlwaysTreatableTraits.Contains(x.def));
     }
 
-    private float GetHediffNormalizedSeverity(Hediff specificHediff = null)
-    {
-        Hediff currentHediff = specificHediff == null
-            ? _patientTreatableHediffs.First()
-            : specificHediff;
+    // Scale healing time for the first hediff
+    // according to its (normalized) severity and
+    // patient body size
+    // i.e. More severe hediffs take longer,
+    // bigger pawns also take longer
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private int ScaleHealingTicks(Pawn patient, Hediff hediff = null) =>
+        Mathf.CeilToInt(GetHediffNormalizedSeverity(patient, hediff) * PatientBodySizeScaledMaxHealingTicks);
 
-        float currentHediffSeverity = currentHediff.Severity;
+    private float GetHediffNormalizedSeverity(Pawn patient, Hediff hediff = null)
+    {
+        Hediff currentHediff = hediff == null
+            ? _patientTreatableHediffs.First()
+            : hediff;
+
+        float currentHediffSeverity = currentHediff?.Severity ?? 0;
 
         float currentHediffBodyPartMaxHealth = currentHediff.Part != null
             ? EbfCompatibilityWrapper.GetMaxHealth(
                 currentHediff.Part.def,
-                PatientPawn,
+                patient,
                 currentHediff.Part)
             : 1;
 
@@ -796,74 +821,100 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         return childParts;
     }
 
-    public void DischargePatient(Pawn patientPawn, bool finishTreatmentNormally = true)
+    private void DischargePatient(Pawn patient, bool finishTreatmentNormally = true)
     {
-        // Clear any ongoing mental states (e.g. Manhunter)
-        if (patientPawn.InMentalState)
-            patientPawn.MentalState.RecoverFromState();
-
-        // Apply the appropriate cortical stimulation hediff, depending on whether the treatment was completed or interrupted            
-        string popupMessage = finishTreatmentNormally
-            ? "RG_Sarcophagus_Message_TreatmentComplete".Translate(patientPawn.LabelCap, patientPawn)
-            : "RG_Sarcophagus_Message_TreatmentInterrupted".Translate(patientPawn.LabelCap, patientPawn);
-        MessageTypeDef popupMessageType = finishTreatmentNormally
-            ? MessageTypeDefOf.PositiveEvent
-            : MessageTypeDefOf.NegativeHealthEvent;
-
-        Messages.Message(popupMessage, patientPawn, popupMessageType, true);
-
         // Restore previously saved patient food need level
-        if (patientPawn.needs.food != null)
-            patientPawn.needs.food.CurLevelPercentage = _patientSavedFoodNeed;
+        if (patient.needs.food != null)
+            patient.needs.food.CurLevelPercentage = _patientSavedFoodNeed;
 
         // Restore previously saved patient DBH thirst and reset DBH bladder/hygiene need levels
         if (ModCompatibility.DbhIsActive)
         {
-            DbhCompatibility.SetThirstNeedCurLevelPercentage(patientPawn, _patientSavedDbhThirstNeed);
-            DbhCompatibility.SetBladderNeedCurLevelPercentage(patientPawn, 1f);
-            DbhCompatibility.SetHygieneNeedCurLevelPercentage(patientPawn, 1f);
+            DbhCompatibility.SetThirstNeedCurLevelPercentage(patient, _patientSavedDbhThirstNeed);
+            DbhCompatibility.SetBladderNeedCurLevelPercentage(patient, 1f);
+            DbhCompatibility.SetHygieneNeedCurLevelPercentage(patient, 1f);
         }
 
-        // Remove treatable traits only if treatment was completed normally
-        if (!_patientTraitsToRemove.NullOrEmpty() && finishTreatmentNormally)
+        if (finishTreatmentNormally)
         {
-            patientPawn.story?.traits.allTraits
-                .RemoveAll(x =>
-                    _patientTraitsToRemove.Contains(x));
-            string letterLabel = "RG_Sarcophagus_Letter_TraitRemoved_Label".Translate();
-            string letterText = "RG_Sarcophagus_Letter_TraitRemoved_Desc"
-                .Translate(patientPawn.Named("PAWN")) + string.Join("", (from t in _patientTraitsToRemove select "\n- " + t.def.degreeDatas.FirstOrDefault().LabelCap).ToArray());
-            Find.LetterStack.ReceiveLetter(
-                letterLabel,
-                letterText,
-                LetterDefOf.PositiveEvent,
-                new TargetInfo(patientPawn));
+            // Clear any ongoing mental states (e.g. Manhunter)
+            if (patient.InMentalState)
+                patient.MentalState.RecoverFromState();
+
+            // Remove treatable traits only if treatment was completed normally
+            if (!_patientTraitsToRemove.NullOrEmpty())
+            {
+                patient.story?.traits.allTraits
+                    .RemoveAll(x =>
+                        _patientTraitsToRemove.Contains(x));
+                string letterLabel = "RG_Sarcophagus_Letter_TraitRemoved_Label".Translate();
+                string letterText = "RG_Sarcophagus_Letter_TraitRemoved_Desc"
+                    .Translate(patient.Named("PAWN"))
+                    + string.Join("", (from t in _patientTraitsToRemove
+                                       select "\n- "
+                                       + t.def.degreeDatas.FirstOrDefault().LabelCap).ToArray());
+                Find.LetterStack.ReceiveLetter(
+                    letterLabel,
+                    letterText,
+                    LetterDefOf.PositiveEvent,
+                    new TargetInfo(patient));
+            }
+
+            // De-aging
+            float ageRemoval = 900000f; //3600000f - 1 year
+            int num = (int)(ageRemoval * patient.ageTracker.AdultAgingMultiplier);
+            long val = (long)(3600000f * patient.ageTracker.AdultMinAge);
+            patient.ageTracker.AgeBiologicalTicks = Math.Max(val, patient.ageTracker.AgeBiologicalTicks - num);
+
+            if (ModsConfig.BiotechActive)
+            {
+                patient.ageTracker.ResetAgeReversalDemand(Pawn_AgeTracker.AgeReversalReason.ViaTreatment);
+                patient.needs?.mood?.thoughts.memories.TryGainMemory(ThoughtDefOf.AgeReversalReceived);
+
+                // If the patient is a Sanguophage or Wraith, top up their gene resource
+
+                Gene_Hemogen gene_Hemogen = patient.genes?.GetFirstGeneOfType<Gene_Hemogen>();
+                if (gene_Hemogen != null)
+                    gene_Hemogen.Value = gene_Hemogen.InitialResourceMax;
+
+                Gene_WraithEssence gene_Essence = patient.genes?.GetFirstGeneOfType<Gene_WraithEssence>();
+                if (gene_Essence != null)
+                    gene_Essence.Value = gene_Essence.InitialResourceMax;
+            }
         }
 
-        // If the patient is a Sanguophage, top up their Hemogen
-        if (ModsConfig.BiotechActive && patientPawn.RaceProps.Humanlike)
-        {
-            Gene_Hemogen gene_Hemogen = patientPawn.genes?.GetFirstGeneOfType<Gene_Hemogen>();
-            if (gene_Hemogen != null)
-                gene_Hemogen.Value = gene_Hemogen.InitialResourceMax;
-        }
+        // Refresh pawn renderer,
+        // especially important for Anomaly DLC not updating visuals from removed hediffs
+        patient.Drawer.renderer.SetAllGraphicsDirty();
 
-        // Refresh pawn renderer (especially important for Anomaly DLC not updating visuals from removed hediffs)
-        patientPawn.Drawer.renderer.SetAllGraphicsDirty();
+        // Refresh pawn disabled work tags,
+        // especially important for Anomaly DLC not updating work tags from removed hediffs
+        patient.Notify_DisabledWorkTypesChanged();
 
-        // Refreshed pawn disabled work tags (especially important for Anomaly DLC not updating work tags from removed hediffs)
-        patientPawn.Notify_DisabledWorkTypesChanged();
+        // Clear pawn hediff cache and try to get them out of the sarcophagus
+        patient.health.hediffSet.DirtyCache();
+        patient.health.CheckForStateChange(null, null);
 
-        // Clear pawn hediff cache and try to get them off the sarcophagus
-        patientPawn.health.hediffSet.DirtyCache();
-        patientPawn.health.CheckForStateChange(null, null);
+        // Apply the appropriate cortical stimulation hediff,
+        // depending on whether the treatment was completed or interrupted            
+        string popupMessage = finishTreatmentNormally
+            ? "RG_Sarcophagus_Message_TreatmentComplete".Translate(patient.LabelCap, patient)
+            : "RG_Sarcophagus_Message_TreatmentInterrupted".Translate(patient.LabelCap, patient);
+        MessageTypeDef popupMessageType = finishTreatmentNormally
+            ? MessageTypeDefOf.PositiveEvent
+            : MessageTypeDefOf.NegativeHealthEvent;
+
+        Messages.Message(popupMessage, patient, popupMessageType, true);
+
+        if (finishTreatmentNormally)
+            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_UsedGoauldSarcophagus, patient.Named(HistoryEventArgsNames.Doer)));
 
         if (RimgateMod.Debug)
         {
             string message = finishTreatmentNormally
                 ? "NORMAL".Colorize(Color.green)
                 : "ABORTED".Colorize(Color.red);
-            Log.Message(this + $" :: Discharged patient {patientPawn} ({message})");
+            Log.Message(this + $" :: Discharged patient {patient} ({message})");
         }
     }
 
@@ -910,10 +961,33 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         _contentsKnown = true;
     }
 
+    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+    {
+        if (Power.PowerOn
+            && (Status == SarcophagusStatus.DiagnosisFinished
+                || Status == SarcophagusStatus.HealingStarted
+                || Status == SarcophagusStatus.HealingFinished))
+        {
+            DischargePatient(PatientPawn, false);
+        }
+
+        EjectContents();
+
+        AllowGuests = false;
+
+        District district = this.GetDistrict();
+        base.DeSpawn(mode);
+        if (district != null)
+        {
+            district.Notify_RoomShapeOrContainedBedsChanged();
+            district.Room.Notify_RoomShapeChanged();
+        }
+    }
+
+
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {
         var map = Map;
-        base.Destroy(mode);
 
         if (mode == DestroyMode.Deconstruct || mode == DestroyMode.KillFinalize)
         {
@@ -922,12 +996,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                 foreach (Pawn p in _innerContainer)
                     Verse.HealthUtility.DamageUntilDowned(p);
             }
-
-            if (PatientPawn != null)
-                DischargePatient(PatientPawn);
-
-            _innerContainer.TryDropAll(Position, map, ThingPlaceMode.Near);
         }
+
+        base.Destroy(mode);
 
         _innerContainer.ClearAndDestroyContents();
     }
@@ -945,5 +1016,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         HealingTicks = 0;
         ProgressHealingTicks = 0;
         TotalHealingTicks = 0;
+
+        _patientSavedFoodNeed = 0;
+        _patientSavedDbhThirstNeed = 0;
     }
 }

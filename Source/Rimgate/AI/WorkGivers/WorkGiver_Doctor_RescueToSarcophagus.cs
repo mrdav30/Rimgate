@@ -15,9 +15,10 @@ public class WorkGiver_Doctor_RescueToSarcophagus : WorkGiver_RescueDowned
 		if (patient == null
             || patient.GetUniqueLoadID() == pawn.GetUniqueLoadID()
             || !patient.Downed
-			|| patient.GetPosture().InBed()
+			|| patient.health.hediffSet.InLabor()
+            || patient.GetPosture().InBed()
             || patient.Faction != pawn.Faction 
-			|| !MedicalUtility.HasAllowedMedicalCareCategory(patient)
+			|| !MedicalUtil.HasAllowedMedicalCareCategory(patient)
             || patient.ParentHolder is Building_Sarcophagus
 			|| !pawn.CanReserve(patient, 1, -1, null, forced) 
 			|| GenAI.EnemyIsNear(patient, MinDistFromEnemy))
@@ -31,7 +32,7 @@ public class WorkGiver_Doctor_RescueToSarcophagus : WorkGiver_RescueDowned
 	public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 	{
 		Pawn patient = t as Pawn;
-        Building_Sarcophagus sarcophagus = SarcophagusUtility.FindBestSarcophagus(patient, pawn);
+        Building_Sarcophagus sarcophagus = SarcophagusUtil.FindBestSarcophagus(patient, pawn);
         if (sarcophagus != null)
         {
             Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_RescueToSarcophagus, patient, sarcophagus);

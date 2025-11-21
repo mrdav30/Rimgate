@@ -365,7 +365,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
         }
 
         // if we have a pawn, show what the user can do
-        if (!RimgateDefOf.Rimgate_WraithCloneGenome.IsFinished)
+        if (!ResearchUtil.WraithCloneGenomeComplete)
         {
             string req = $"{Analyzable?.Props?.requiresResearchDef?.label} knowledge required";
             yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
@@ -381,7 +381,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
 
         if (cloningPod.InnerPawn.Dead)
         {
-            if (!RimgateDefOf.Rimgate_WraithCloneCorpse.IsFinished)
+            if (!ResearchUtil.WraithCloneCorpseComplete)
                 yield break;
 
             JobDef jobDefReconstruct = RimgateDefOf.Rimgate_CloneReconstructDead;
@@ -414,7 +414,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
             "ReservedBy",
             null);
 
-        if (!RimgateDefOf.Rimgate_WraithCloneFull.IsFinished)
+        if (!ResearchUtil.WraithCloneFullComplete)
             yield break;
 
         JobDef jobDefFull = RimgateDefOf.Rimgate_CloneOccupantFull;
@@ -431,7 +431,7 @@ public class Building_WraithCloningPod : Building, IThingHolder, IThingHolderWit
             "ReservedBy",
             null);
 
-        if (!RimgateDefOf.Rimgate_WraithCloneEnhancement.IsFinished)
+        if (!ResearchUtil.WraithCloneEnhancementComplete)
             yield break;
 
         JobDef jobDefSoldier = RimgateDefOf.Rimgate_CloneOccupantSoldier;

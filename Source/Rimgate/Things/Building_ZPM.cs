@@ -57,17 +57,11 @@ public class Building_ZPM : Building
 
     private bool _wasConnectedLastTick;
 
-    private bool IntegrationReady
-        => RimgateDefOf.Rimgate_ZPMIntegration.IsFinished == true;
-
-    private bool CouplingReady
-        => RimgateDefOf.Rimgate_ParallelSubspaceCoupling?.IsFinished == true;
-
     public bool CanRecharge
     {
         get
         {
-            if (Faction == Faction.OfPlayer && !CouplingReady) return false;
+            if (Faction == Faction.OfPlayer && !ResearchUtil.ParallelSubspaceCouplingComplete) return false;
             if (ConnectedFacilities == null) return false;
 
             // must have at least one powered diverter
@@ -123,7 +117,7 @@ public class Building_ZPM : Building
         // If not integrated yet, ensure we are NOT broadcasting.
         if (Faction == Faction.OfPlayer)
         {
-            if (!IntegrationReady)
+            if (!ResearchUtil.ZPMIntegrationComplete)
             {
                 if (_isBroadcasting)
                 {
@@ -151,7 +145,7 @@ public class Building_ZPM : Building
 
         // Inert phase: no power, no dark energy, no broadcast.
         if (Faction == Faction.OfPlayer
-            && !IntegrationReady)
+            && !ResearchUtil.ZPMIntegrationComplete)
         {
             if (_isBroadcasting)
             {
@@ -309,7 +303,7 @@ public class Building_ZPM : Building
 
     public override string GetInspectString()
     {
-        if (Faction == Faction.OfPlayer && !IntegrationReady)
+        if (Faction == Faction.OfPlayer && !ResearchUtil.ZPMIntegrationComplete)
             return "Inert";
 
         StringBuilder sb = new();
@@ -320,7 +314,7 @@ public class Building_ZPM : Building
         if (sb.Length > 0) sb.AppendLine();
         sb.Append("RG_ZpmDarkEnergyReserve".Translate(_darkEnergyReserve, _maxDarkEnergy));
 
-        if (CouplingReady)
+        if (ResearchUtil.ParallelSubspaceCouplingComplete)
         {
             float mult = CurrentClusterMultiplier();
             if (mult > 1f)

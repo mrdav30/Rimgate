@@ -26,7 +26,6 @@ public class Comp_SarcophagusControl : ThingComp
             ApplyHigh(patient);
 
         patient.drugs?.Notify_DrugIngested(parent);
-        Find.HistoryEventsManager.RecordEvent(new HistoryEvent(HistoryEventDefOf.IngestedDrug, patient.Named(HistoryEventArgsNames.Doer)));
     }
 
     public void ApplyAddiction(Pawn patient)
@@ -73,17 +72,12 @@ public class Comp_SarcophagusControl : ThingComp
         if (patient.health.hediffSet.HasHediff(RimgateDefOf.Rimgate_SarcophagusHigh))
             return;
 
-        Pawn_HealthTracker pht = patient.health;
         Hediff hediff = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SarcophagusHigh, patient);
         float effect = Props.severity <= 0f
             ? RimgateDefOf.Rimgate_SarcophagusHigh.initialSeverity
             : Props.severity;
-        AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(
-            patient,
-            null,
-            ref effect,
-            false,
-            false);
+        // body-size scaling
+        effect /= patient.BodySize;
         hediff.Severity = effect;
         patient.health.AddHediff(hediff);
     }

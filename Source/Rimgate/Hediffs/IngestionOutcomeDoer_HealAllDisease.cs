@@ -16,7 +16,7 @@ public class IngestionOutcomeDoer_HealAllDisease : IngestionOutcomeDoer
         Thing ingested,
         int ingestedCount)
     {
-        MedicalUtility.FixImmunizableHealthConditions(
+        MedicalUtil.FixImmunizableHealthConditions(
             pawn,
             inclusions,
             exclusions);

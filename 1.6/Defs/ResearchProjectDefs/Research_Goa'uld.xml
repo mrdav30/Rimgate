@@ -360,4 +360,89 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_SarcophagusBioregeneration</defName>
+		<label>sarcophagus regeneration</label>
+		<description>Extend the Goa’uld sarcophagus’ already reckless healing into full tissue regrowth.\n\nBy cross-referencing Glitterworld bioregeneration with naquadah-accelerated pulse envelopes, your team can coax the sarcophagus into rebuilding missing flesh instead of just stabilizing what’s left.\n\nFingers and toes are just the beginning. The line between “revived” and “reassembled” gets blurry fast.</description>
+		<baseCost>6000</baseCost>
+		<techLevel>Ultra</techLevel>
+
+		<prerequisites>
+			<li>Rimgate_Sarcophagus</li>
+			<li>Bioregeneration</li>
+		</prerequisites>
+
+		<researchViewX>2</researchViewX>
+		<researchViewY>3.5</researchViewY>
+
+		<generalRules>
+			<rulesStrings>
+				<!-- subjects -->
+				<li>subject->sarcophagus bioregeneration</li>
+				<li>subject->naquadah-guided tissue regrowth</li>
+				<li>subject->cellular cascade reassembly</li>
+
+				<!-- adjectives -->
+				<li>subject_adj->dangerously precise</li>
+				<li>subject_adj->Glitterworld-adjacent</li>
+				<li>subject_adj->ethically dubious</li>
+
+				<!-- story beats -->
+				<li>subject_story->a Goa'uld tool that no Glitterworld ethics board would approve</li>
+				<li>subject_story->a cycle that mistakes continuity of flesh for continuity of self</li>
+				<li>subject_story->an upgrade that makes “should we?” a more important question than “can we?”</li>
+
+				<!-- gerunds -->
+				<li>subject_gerund->mapping biosculpter regrowth envelopes onto sarcophagus waveforms</li>
+				<li>subject_gerund->tuning naquadah carriers to rebuild missing structures</li>
+				<li>subject_gerund->teaching Ancient-derived hardware new, very illegal tricks</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_SarcophagusOptimization</defName>
+		<label>sarcophagus calibration</label>
+		<description>Integrate the knowledge gained from studying ZPMs directly into the sarcophagus pulse envelope.\n\nBy reshaping its carrier fields instead of brute-forcing raw wattage, your engineers can reconfigure the sarcophagus to sip power from the grid instead of ripping it out in great chunks.\n\nIt still hums like a minor god. It just does so about a third more efficiently.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>9000</baseCost>
+
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<prerequisites>
+			<li>Rimgate_SubspaceMasking</li>
+			<li>Rimgate_ParallelSubspaceCoupling</li>
+			<li>Rimgate_Sarcophagus</li>
+		</prerequisites>
+
+		<researchViewX>2</researchViewX>
+		<researchViewY>4.5</researchViewY>
+
+		<generalRules>
+			<rulesStrings>
+				<!-- subjects -->
+				<li>subject->sarcophagus subspace optimization</li>
+				<li>subject->ZPM-cushioned sarcophagus cycling</li>
+				<li>subject->carrier-field power shaping</li>
+
+				<!-- adjectives -->
+				<li>subject_adj->ZPM-assisted</li>
+				<li>subject_adj->phase-stabilized</li>
+				<li>subject_adj->whisper-quiet and terrifying</li>
+
+				<!-- story beats -->
+				<li>subject_story->a Goa'uld coffin that finally learned to stop screaming at the grid</li>
+				<li>subject_story->a healing device that rides ZPM harmonics instead of brute wattage</li>
+				<li>subject_story->a pulse pattern that sounds like a hymn and meters like a scalpel</li>
+
+				<!-- gerunds -->
+				<li>subject_gerund->shaping subspace envelopes to reduce peak draw</li>
+				<li>subject_gerund->phase-locking sarcophagus cycles to ZPM carrier noise</li>
+				<li>subject_gerund->teaching the machine to glide along the vacuum instead of punching it</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
 </Defs>

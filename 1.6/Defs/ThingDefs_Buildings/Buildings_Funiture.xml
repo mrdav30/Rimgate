@@ -6,14 +6,13 @@
   <ThingDef ParentName="FurnitureBase">
     <defName>Rimgate_GoauldSarcophagus</defName>
     <label>Goa'uld sarcophagus</label>
-    <description>Based on Ancient technology, the sarcophagus rapidly heals injuries and diseases with eerie precision—and breeds dependency just as precisely.
-      Side effects include glowing eyes, god complexes, and moral decay. Use with caution… or embrace your inner System Lord.</description>
+    <description>Based on Ancient technology, the Goa'uld sarcophagus rapidly heals injuries and diseases with eerie precision—and breeds dependency just as precisely.\n\nSide effects include glowing eyes, god complexes, and moral decay. Use with caution… or embrace your inner System Lord.</description>
     <descriptionHyperlinks>
       <HediffDef>Rimgate_SarcophagusHigh</HediffDef>
       <HediffDef>Rimgate_SarcophagusAddiction</HediffDef>
     </descriptionHyperlinks>
     <thingClass>Rimgate.Building_Sarcophagus</thingClass>
-
+    <containedPawnsSelectable>false</containedPawnsSelectable>
     <size>(2,3)</size>
     <graphicData>
       <texPath>Things/Building/Furniture/RGGoauldSarcophagus</texPath>
@@ -41,15 +40,19 @@
       <Comfort>0.95</Comfort>
     </statBases>
 
-    <constructEffect>ConstructMetal</constructEffect>
     <costList>
-      <Steel>750</Steel>
+      <Steel>350</Steel>
       <Gold>250</Gold>
-      <Rimgate_Naquadah>50</Rimgate_Naquadah>
-      <MedicineUltratech>5</MedicineUltratech>
-      <ComponentSpacer>10</ComponentSpacer>
-      <Rimgate_Naquadria>4</Rimgate_Naquadria>
+      <Plasteel>75</Plasteel>
+      <Rimgate_Naquadah>150</Rimgate_Naquadah>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>25</ComponentSpacer>
     </costList>
+    <stuffCategories>
+      <li>Stony</li>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>150</costStuffCount>
     <building>
       <soundDispense>Rimgate_SarcophagusRunning</soundDispense>
       <uninstallWork>4250</uninstallWork>
@@ -97,10 +100,11 @@
         </alwaysTreatableHediffs>
         <neverTreatableHediffs>
           <li>Sterilized</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">PregnancyLabor</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">PregnancyLaborPushing</li>
           <li>Rimgate_SarcophagusHigh</li>
           <li>Rimgate_SarcophagusAddiction</li>
           <li>Rimgate_TretoninAddiction</li>
-          <li>Rimgate_WraithEssenceDeficit</li>
         </neverTreatableHediffs>
         <nonCriticalTreatableHediffs>
           <li>AlcoholHigh</li>
@@ -143,9 +147,17 @@
         <severity>1.00</severity>
         <needLevelOffset>0.9</needLevelOffset>
         <addictiveness>1.0</addictiveness>
+
+        <!-- Timing -->
         <maxDiagnosisTime>15</maxDiagnosisTime>
         <maxPerHediffHealingTime>30</maxPerHediffHealingTime>
-        <healingModePowerConsumption>12000</healingModePowerConsumption>
+
+        <!-- Base power usage BEFORE optimization -->
+        <diagnosisModePowerConsumption>4000</diagnosisModePowerConsumption>
+        <healingModePowerConsumption>8000</healingModePowerConsumption>
+
+        <!-- Fractional reduction once Rimgate_SarcophagusSubspaceOptimization is researched -->
+        <powerConsumptionReductionFactor>0.35</powerConsumptionReductionFactor>
       </li>
       <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
         <analysisID>1000900</analysisID>

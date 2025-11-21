@@ -508,6 +508,7 @@
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
     <Compile Include="UI\PlaceWorker_ZpmClusterHint.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
+    <Compile Include="Utilities\ResearchUtil.cs" />
     <Compile Include="Utilities\RimgateFactionDefOf.cs" />
     <Compile Include="Utilities\StargateUtility.cs" />
     <Compile Include="World\MapComponent_ZpmRaidTracker.cs" />
@@ -521,7 +522,7 @@
     <Compile Include="World\WorldObject_StargateQuestSite.cs" />
     <Compile Include="World\WorldObject_StargateTransitSite.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />
-    <Compile Include="Utilities\SarcophagusUtility.cs" />
+    <Compile Include="Utilities\SarcophagusUtil.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_Doctor_CarryFromBedToSarcophagus.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_Doctor_RescueToSarcophagus.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_Patient_GoToSarcophagus.cs" />
@@ -531,7 +532,7 @@
     <Compile Include="Utilities\RimgateDefOf.cs" />
     <Compile Include="Comps\Properties\CompProperties_Sarcophagus.cs" />
     <Compile Include="Comps\Comp_SarcophagusControl.cs" />
-    <Compile Include="Utilities\MedicalUtility.cs" />
+    <Compile Include="Utilities\MedicalUtil.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

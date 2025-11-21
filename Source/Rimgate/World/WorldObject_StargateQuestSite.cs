@@ -29,7 +29,7 @@ public class WorldObject_StargateQuestSite : Site
         if (Map == null) return;
 
         bool allowPeek = StargateUtility.ActiveGateOnMap(Map)
-            || RimgateDefOf.Rimgate_WraithModificationEquipment.IsFinished;
+            || ResearchUtil.WraithModificationEquipmentComplete;
 
         bool nobodyVisible = !Map.mapPawns.AnyPawnBlockingMapRemoval;
 
@@ -109,7 +109,7 @@ public class WorldObject_StargateQuestSite : Site
         {
             // lock "CommandShowMap" behind research
             if (base.HasMap
-                && !RimgateDefOf.Rimgate_WraithModificationEquipment.IsFinished)
+                && !ResearchUtil.WraithModificationEquipmentComplete)
             {
                 if (g is Command_Action ca)
                 {

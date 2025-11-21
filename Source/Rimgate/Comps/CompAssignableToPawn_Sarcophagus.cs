@@ -24,14 +24,25 @@ public class CompAssignableToPawn_Sarcophagus : CompAssignableToPawn
         }
     }
 
-    protected override string GetAssignmentGizmoDesc()
+    protected override string GetAssignmentGizmoDesc() => "RG_Sarcophagus_CommandSetOwnerDesc".Translate();
+
+    public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        return "CommandBedSetOwnerDesc".Translate(FactionDefOf.PlayerColony.pawnSingular);
+        assignedPawns.RemoveAll((Pawn x) => x == null || x.Dead);
+
+        return base.CompGetGizmosExtra();
     }
 
     public override AcceptanceReport CanAssignTo(Pawn pawn)
     {
         Building_Sarcophagus sarcophagus = parent as Building_Sarcophagus;
+
+        if (!sarcophagus.AllowSlaves && pawn.IsSlaveOfColony)
+            return "RG_Sarcophagus_SlavesNotAllowed".Translate();
+
+        if (!sarcophagus.AllowPrisoners && pawn.IsPrisonerOfColony)
+            return "RG_Sarcophagus_PrisonersNotAllowed".Translate();
+
         if (pawn.BodySize > Building_Sarcophagus.MaxBodySize)
             return "TooLargeForBed".Translate();
 

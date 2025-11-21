@@ -62,6 +62,8 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_WraithEssenceDeficit;
     public static HediffDef Rimgate_ZatShock;
 
+    public static HistoryEventDef Rimgate_UsedGoauldSarcophagus;
+
     public static IncidentDef Rimgate_Marauders;
 
     public static JobDef Rimgate_BringToStargate;
@@ -104,6 +106,8 @@ public static class RimgateDefOf
 
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
     public static ResearchProjectDef Rimgate_ParallelSubspaceCoupling;
+    public static ResearchProjectDef Rimgate_SarcophagusBioregeneration;
+    public static ResearchProjectDef Rimgate_SarcophagusOptimization;
     public static ResearchProjectDef Rimgate_WraithCloneGenome;
     public static ResearchProjectDef Rimgate_WraithCloneFull;
     public static ResearchProjectDef Rimgate_WraithCloneEnhancement;

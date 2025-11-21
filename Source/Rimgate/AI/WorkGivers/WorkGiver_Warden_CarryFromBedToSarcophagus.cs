@@ -30,7 +30,7 @@ public class WorkGiver_Warden_CarryFromBedToSarcophagus : WorkGiver_Warden
         if (!warden.CanReserve(prisoner))
             return null;
 
-        Building_Sarcophagus sarcophagus = SarcophagusUtility.FindBestSarcophagus(prisoner, warden);
+        Building_Sarcophagus sarcophagus = SarcophagusUtil.FindBestSarcophagus(prisoner, warden);
         if (sarcophagus != null)
         {
             Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryToSarcophagus, prisoner, sarcophagus);

@@ -13,14 +13,13 @@ public static class Harmony_WorkGiver_RescueDowned_HasJobOnThing
     {
         Pawn patient = t as Pawn;
 
-        if (patient.ParentHolder is Building_Sarcophagus)
+        if (patient?.ParentHolder is Building_Sarcophagus || !pawn.CanReserve(patient))
         {
             __result = false;
             return false;
         }
 
-
-        var sarcophagus = SarcophagusUtility.FindBestSarcophagus(patient, pawn);
+        var sarcophagus = SarcophagusUtil.FindBestSarcophagus(patient, pawn);
         if (sarcophagus != null)
         {
             __result = true;
@@ -44,7 +43,7 @@ public static class Harmony_WorkGiver_RescueDowned_JobOnThing
             return false;
         }
 
-        var sarcophagus = SarcophagusUtility.FindBestSarcophagus(patient, pawn);
+        var sarcophagus = SarcophagusUtil.FindBestSarcophagus(patient, pawn);
         if(sarcophagus != null)
         {
             Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_RescueToSarcophagus, patient, sarcophagus);
