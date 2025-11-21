@@ -156,6 +156,7 @@
                 </statFactors>
             </li>
         </stages>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <!-- =============== ARCHOTECH IDOL OF RESONANCE =============== -->
@@ -186,6 +187,7 @@
                 </statOffsets>
             </li>
         </stages>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <HediffDef>
@@ -213,6 +215,7 @@
                 </capMods>
             </li>
         </stages>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <!-- =============== Unrecruitable =============== -->

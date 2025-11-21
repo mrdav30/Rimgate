@@ -36,6 +36,7 @@
                 </capMods>
             </li>
         </stages>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <HediffDef>
@@ -68,6 +69,7 @@
                 </capMods>
             </li>
         </stages>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <!-- Psylink on Spawn -->

@@ -28,6 +28,7 @@
             <destroyedLabel>Burned off</destroyedLabel>
             <destroyedOutLabel>Burned out</destroyedOutLabel>
         </injuryProps>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
     <!-- Zat Blast -->

@@ -67,6 +67,7 @@
                 <deathMtbDays>8</deathMtbDays>
             </li>
         </stages>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
 </Defs>

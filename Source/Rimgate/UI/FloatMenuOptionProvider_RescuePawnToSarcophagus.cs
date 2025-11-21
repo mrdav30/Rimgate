@@ -22,6 +22,12 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
 
         if (clickedPawn == null || rescuer == null) return null;
 
+        // Only if there is at least one player-owned Sarcophagus on the pawn's current map
+        bool haveSarcophagus = rescuer.Map.listerBuildings.ColonistsHaveBuilding((Thing building) =>
+            building is Building_Sarcophagus);
+        if (!haveSarcophagus)
+            return null;
+
         if (!SarcophagusUtil.CanTakeToSarcophagus(rescuer, clickedPawn))
             return null;
 
@@ -35,7 +41,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
             return null;
 
         if (clickedPawn.IsPrisoner && !rescuer.workSettings.WorkIsActive(WorkTypeDefOf.Warden))
-            return new FloatMenuOption("CannotRescuePawn".Translate(clickedPawn.Named("PAWN")) + ": " + "NotAssignedToWorkType".Translate(WorkTypeDefOf.Warden), null);
+            return new FloatMenuOption("CannotRescuePawn".Translate(clickedPawn.Named("PAWN")) + ": " + "NotAssignedToWorkType".Translate(WorkTypeDefOf.Warden.labelShort), null);
 
         Pawn_PlayerSettings playerSettings = clickedPawn.playerSettings;
         if (playerSettings != null && playerSettings.medCare == MedicalCareCategory.NoCare)
@@ -56,7 +62,7 @@ public class FloatMenuOptionProvider_RescuePawnToSarcophagus : FloatMenuOptionPr
             var reason = JobFailReason.HaveReason
                 ? $": {JobFailReason.Reason}"
                 : string.Empty;
-            return new FloatMenuOption("RG_CannotRescuePawn".Translate(clickedPawn.Named("PAWN")) + ": " + reason, null);
+            return new FloatMenuOption("RG_CannotRescuePawn".Translate(clickedPawn.Named("PAWN")) + reason, null);
         }
 
         FloatMenuOption floatMenuOption = FloatMenuUtility.DecoratePrioritizedTask(

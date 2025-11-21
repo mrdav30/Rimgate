@@ -185,6 +185,7 @@
                 </capMods>
             </li>
         </stages>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
 </Defs>

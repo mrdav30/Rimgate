@@ -10,21 +10,31 @@ public static class MedicalUtil
 {
     public static bool HasAllowedMedicalCareCategory(Pawn pawn)
     {
-        return pawn != null 
+        return pawn != null
             && WorkGiver_DoBill.GetMedicalCareCategory(pawn) >= MedicalCareCategory.NormalOrWorse;
     }
 
-    public static bool HasUsageBlockingHediffs(Pawn pawn, List<HediffDef> usageBlockingHediffs)
+    public static bool HasUsageBlockingHediffs(
+        Pawn pawn,
+        List<HediffDef> usageBlockingHediffs,
+        out List<Hediff> blockingHediffs)
     {
-        List<Hediff> patientHediffs = new();
-        pawn.health.hediffSet.GetHediffs(ref patientHediffs);
+        blockingHediffs = pawn?.health?.hediffSet?.hediffs
+            .Where(x => usageBlockingHediffs.Contains(x.def))
+            .ToList();
 
-        return patientHediffs.Any(x => usageBlockingHediffs.Contains(x.def));
+        return blockingHediffs?.Count > 0;
     }
 
-    public static bool HasUsageBlockingTraits(Pawn pawn, List<TraitDef> usageBlockingTraits)
+    public static bool HasUsageBlockingTraits(
+        Pawn pawn,
+        List<TraitDef> usageBlockingTraits,
+        out List<Trait> blockingTraits)
     {
-        return pawn.story?.traits.allTraits.Any(x => usageBlockingTraits.Contains(x.def)) ?? false;
+        blockingTraits = pawn.story?.traits?.allTraits
+            .Where(x => usageBlockingTraits.Contains(x.def))
+            .ToList();
+        return blockingTraits?.Count > 0;
     }
 
     public static bool HasImmunizableHediffs(

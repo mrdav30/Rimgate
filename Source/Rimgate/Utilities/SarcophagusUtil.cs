@@ -13,42 +13,56 @@ public static class SarcophagusUtil
 {
     private static List<Thing> _tmpSarcophagi;
 
-    public static bool IsValidForUserType(
-        Building_Sarcophagus s,
-        Pawn p)
+    public static bool IsValidForUserType(Building_Sarcophagus sarcophagus, Pawn patient)
     {
-        if (!p.RaceProps.Humanlike || p.IsMutant && !p.mutant.Def.entitledToMedicalCare)
-            return false;
-
-        if (!s.AllowSlaves && (p.IsSlaveOfColony || p.GuestStatus == GuestStatus.Slave))
+        if (!sarcophagus.AllowSlaves && (patient.IsSlaveOfColony || patient.GuestStatus == GuestStatus.Slave))
         {
             JobFailReason.Is("RG_Sarcophagus_SlavesNotAllowed".Translate());
             return false;
         }
 
-        if (!s.AllowPrisoners && (p.IsPrisonerOfColony || p.GuestStatus == GuestStatus.Prisoner))
+        if (!sarcophagus.AllowPrisoners && (patient.IsPrisonerOfColony || patient.GuestStatus == GuestStatus.Prisoner))
         {
             JobFailReason.Is("RG_Sarcophagus_PrisonersNotAllowed".Translate());
             return false;
         }
 
-        if (!p.IsColonist && p.GuestStatus == GuestStatus.Guest)
+        if (!patient.IsColonist && patient.GuestStatus == GuestStatus.Guest)
         {
-            if (!s.AllowGuests)
+            if (!sarcophagus.AllowGuests)
             {
 
                 JobFailReason.Is("RG_Sarcophagus_GuestsNotAllowed".Translate());
                 return false;
             }
         }
-        else
+
+        if (patient.BodySize > Building_Sarcophagus.MaxBodySize)
         {
-            var assigned = s.GetAssignedPawns();
-            if (assigned == null || !assigned.Contains(p))
+            JobFailReason.Is("TooLargeForBed".Translate());
+            return false;
+        }
+
+        if (patient.GuestStatus != GuestStatus.Guest)
+        {
+            var assigned = sarcophagus.GetAssignedPawns();
+            if (assigned == null || !assigned.Contains(patient))
             {
                 JobFailReason.Is("NotAssigned".Translate());
                 return false;
             }
+        }
+
+        if (!Utils.IsValidRaceFor(patient, sarcophagus.DisallowedRaces))
+        {
+            JobFailReason.Is("RG_Sarcophagus_RaceNotAllowed".Translate(patient.def.label.CapitalizeFirst()));
+            return false;
+        }
+
+        if (!Utils.IsValidXenotypeFor(patient, sarcophagus.DisallowedXenotypes))
+        {
+            JobFailReason.Is("RG_Sarcophagus_RaceNotAllowed".Translate(patient.genes?.Xenotype.label.CapitalizeFirst()));
+            return false;
         }
 
         return true;
@@ -67,9 +81,23 @@ public static class SarcophagusUtil
             return false;
         }
 
+        if (patient == null
+            || !patient.RaceProps.Humanlike
+            || patient.IsMutant && !patient.mutant.Def.entitledToMedicalCare)
+        {
+            JobFailReason.Is("RG_Sarcophagus_NonHumanoidNotAllowed".Translate());
+            return false;
+        }
+
+        if (!ShouldSeekTreatment(patient, sarcophagus, out string treatmentDenial))
+        {
+            JobFailReason.Is(treatmentDenial);
+            return false;
+        }
+
         if (sarcophagus.Power == null || !sarcophagus.Power.PowerOn)
         {
-            JobFailReason.Is("RG_Sarcophagus_Unpowered".Translate());
+            JobFailReason.Is("NoPower".Translate());
             return false;
         }
 
@@ -79,10 +107,25 @@ public static class SarcophagusUtil
             return false;
         }
 
-        if (sarcophagus.IsBurning())
+        if (traveler.Map.designationManager.DesignationOn(sarcophagus, DesignationDefOf.Deconstruct) != null)
+        {
+            JobFailReason.Is("RG_Sarcophagus_CannotRescue_NoSarcophagus".Translate());
             return false;
+        }
+
+        if (sarcophagus.IsBurning())
+        {
+            JobFailReason.Is("BurningLower".Translate());
+            return false;
+        }
 
         if (sarcophagus.IsBrokenDown())
+        {
+            JobFailReason.Is("BrokenDown".Translate());
+            return false;
+        }
+
+        if (!IsValidForUserType(sarcophagus, patient))
             return false;
 
         if (sarcophagus.HasAnyContents)
@@ -92,17 +135,13 @@ public static class SarcophagusUtil
             return false;
         }
 
-        if (patient.BodySize > Building_Sarcophagus.MaxBodySize)
-        {
-            JobFailReason.Is("TooLargeForBed".Translate());
-            return false;
-        }
-
         if (!traveler.CanReserve(sarcophagus))
         {
             Pawn otherPawn = traveler.Map.reservationManager.FirstRespectedReserver(sarcophagus, patient);
-            if (otherPawn != null)
-                JobFailReason.Is("ReservedBy".Translate(otherPawn.LabelShort, otherPawn));
+            TaggedString reservedDenial = otherPawn != null
+                ? "ReservedBy".Translate(otherPawn.LabelShort, otherPawn)
+                : "Reserved".Translate();
+            JobFailReason.Is(reservedDenial);
             return false;
         }
 
@@ -112,140 +151,111 @@ public static class SarcophagusUtil
             return false;
         }
 
-        if (traveler.Map.designationManager.DesignationOn(sarcophagus, DesignationDefOf.Deconstruct) != null)
-            return false;
-
-        if (!IsValidForUserType(sarcophagus, patient))
-            return false;
-
-        if (!ShouldSeekTreatment(patient, sarcophagus))
-        {
-            JobFailReason.Is("NotInjured".Translate());
-            return false;
-        }
-
-        if (!MedicalUtil.HasAllowedMedicalCareCategory(patient))
-        {
-            JobFailReason.Is("RG_Sarcophagus_MedicalCareCategoryTooLow".Translate());
-            return false;
-        }
-
-        if (!Utils.IsValidRaceFor(patient, sarcophagus.DisallowedRaces))
-        {
-            JobFailReason.Is("RG_Sarcophagus_RaceNotAllowed".Translate(patient.def.label.CapitalizeFirst()));
-            return false;
-        }
-
-        if (!Utils.IsValidXenotypeFor(patient, sarcophagus.DisallowedXenotypes))
-        {
-            JobFailReason.Is("RG_Sarcophagus_RaceNotAllowed".Translate(patient.genes?.Xenotype.label.CapitalizeFirst()));
-            return false;
-        }
-
-        if (MedicalUtil.HasUsageBlockingHediffs(patient, sarcophagus.UsageBlockingHediffs))
-        {
-            var blocking = patient.health.hediffSet.hediffs.FirstOrDefault(h => sarcophagus.UsageBlockingHediffs.Contains(h.def));
-            JobFailReason.Is("RG_Sarcophagus_PatientWithHediffNotAllowed".Translate(blocking?.LabelCap ?? ""));
-            return false;
-        }
-
-        if (MedicalUtil.HasUsageBlockingTraits(patient, sarcophagus.UsageBlockingTraits))
-        {
-            var blocking = patient.story?.traits.allTraits.FirstOrDefault(t => sarcophagus.UsageBlockingTraits.Contains(t.def));
-            JobFailReason.Is("RG_Sarcophagus_PatientWithTraitNotAllowed".Translate(blocking?.LabelCap ?? ""));
-            return false;
-        }
-
         return true;
     }
 
-    public static bool ShouldSeekTreatment(Pawn patient, Building_Sarcophagus sarcophagus)
+    public static bool ShouldSeekTreatment(
+        Pawn patient,
+        Building_Sarcophagus sarcophagus,
+        out string reason)
     {
+        if (!MedicalUtil.HasAllowedMedicalCareCategory(patient))
+        {
+            reason = "RG_Sarcophagus_MedicalCareCategoryTooLow".Translate();
+            return false;
+        }
+
         var set = patient?.health?.hediffSet;
-        if (set == null) return false;
+        if (set == null)
+        {
+            reason = "NotInjured".Translate();
+            return false;
+        }
 
         bool ideoActive = ModsConfig.IdeologyActive && patient.Ideo != null;
+        bool canRegrowMissingParts = ResearchUtil.SarcophagusBioregenerationComplete;
+        bool scarsRequired = ideoActive ? patient.ideo.Ideo.RequiredScars > 0 : false;
+        bool blindnessRequired = ideoActive ? patient.ideo.Ideo.BlindPawnChance > 0 : false;
 
-        List<Hediff> patientHediffs = new List<Hediff>();
-        set.GetHediffs<Hediff>(ref patientHediffs, null);
+        // Gather hediffs
+        List<Hediff> patientHediffs = set.hediffs;
 
-        CompProperties_TreatmentRestrictions restrictions = sarcophagus.GetComp<Comp_TreatmentRestrictions>().Props;
-        List<HediffDef> alwaysTreatableHediffs = restrictions.alwaysTreatableHediffs;
-        List<HediffDef> neverTreatableHediffs = restrictions.neverTreatableHediffs;
-        List<HediffDef> nonCriticalTreatableHediffs = restrictions.nonCriticalTreatableHediffs;
-        List<HediffDef> usageBlockingHediffs = restrictions.usageBlockingHediffs;
-        List<TraitDef> usageBlockingTraits = restrictions.usageBlockingTraits;
+        List<HediffDef> alwaysTreatableHediffs = sarcophagus.AlwaysTreatableHediffs;
+        List<HediffDef> neverTreatableHediffs = sarcophagus.NeverTreatableHediffs;
+        List<HediffDef> nonCriticalTreatableHediffs = sarcophagus.NonCriticalTreatableHediffs;
+        List<HediffDef> usageBlockingHediffs = sarcophagus.UsageBlockingHediffs;
+        List<TraitDef> usageBlockingTraits = sarcophagus.UsageBlockingTraits;
 
         // Is downed and not meant to be always downed (e.g. babies)
         bool isDowned = (patient.Downed && !LifeStageUtility.AlwaysDowned(patient));
 
-        // Has (visible) hediffs requiring tending (excluding those blacklisted or greylisted from Sarcophagus treatment)
+        // Visible tendable hediffs (not black/greylisted)
         bool hasTendableHediffs = patientHediffs.Any(x =>
             x.Visible
             && x.TendableNow()
             && !neverTreatableHediffs.Contains(x.def)
             && !nonCriticalTreatableHediffs.Contains(x.def));
 
-        // Has tended and healing injuries
+        // Tended + healing injuries
         bool hasTendedAndHealingInjuries = set.HasTendedAndHealingInjury();
 
         // Has immunizable but not yet immune hediffs
         bool hasImmunizableNotImmuneHediffs = set.HasImmunizableNotImmuneHediff();
 
-        // Has (visible) hediffs causing sick thoughts (excluding those blacklisted or greylisted from Sarcophagus treatment)
+        // Sick-thought-causing hediffs (not black/greylisted)
         bool hasSickThoughtHediffs = patientHediffs.Any(x =>
             x.def.makesSickThought
             && x.Visible
             && !neverTreatableHediffs.Contains(x.def)
             && !nonCriticalTreatableHediffs.Contains(x.def));
 
-        bool canRegrowMissingParts = ResearchUtil.SarcophagusBioregenerationComplete;
-        bool blindnessRequired = ideoActive ? patient.ideo.Ideo.BlindPawnChance > 0 : false;
-
-        // Has missing body parts (excluding those flagged as not bad + ideological blindness requirement)
+        // Missing body parts (if regrowth is unlocked)
         bool hasMissingBodyParts = canRegrowMissingParts
             && !set.GetMissingPartsCommonAncestors()
                 .Where(x =>
                     x.def.isBad
-                    // If blindness is required, ignore missing sight-source parts (ideological choice)
+                    // If blindness is required, ignore missing sight-source parts
                     && (!blindnessRequired || !x.Part.def.tags.Contains(BodyPartTagDefOf.SightSource)))
                 .ToList()
                 .NullOrEmpty()
             && !neverTreatableHediffs.Contains(HediffDefOf.MissingBodyPart);
 
-        // Has permanent injuries (excluding those blacklisted from Sarcophagus treatment)
+        // Permanent injuries (but skip ideology scars if needed)
         bool hasPermanentInjuries = patientHediffs.Any(x =>
             x.IsPermanent()
+            && (!scarsRequired || x.def != HediffDefOf.Scarification)
             && !neverTreatableHediffs.Contains(x.def));
 
-        // Has chronic diseases (excluding those blacklisted or greylisted from Sarcophagus treatment)
+        // Chronic diseases (but skip Blindness if ideology wants blindness)
         bool hasChronicDiseases = patientHediffs.Any(x =>
             x.def.chronic
+            && (!blindnessRequired || x.def != HediffDefOf.Blindness)
             && !neverTreatableHediffs.Contains(x.def)
             && !nonCriticalTreatableHediffs.Contains(x.def));
 
-        // Has addictions (excluding those blacklisted or greylisted from Sarcophagus treatment)
+        // Addictions (not black/greylisted)
         bool hasAddictions = patientHediffs.Any(x =>
             x.def.IsAddiction
             && !neverTreatableHediffs.Contains(x.def)
             && !nonCriticalTreatableHediffs.Contains(x.def));
 
+        // Sarcophagus chemical need
         bool hasSarcophagusNeed = false;
         if (patient.needs.TryGetNeed(RimgateDefOf.Rimgate_SarcophagusChemicalNeed, out var need)
-            && need.CurLevel <= 0.5) hasSarcophagusNeed = true;
+            && need.CurLevel <= 0.5)
+        {
+            hasSarcophagusNeed = true;
+        }
 
-        // Has hediffs that are always treatable by Sarcophaguss
+        // Always-treatable hediffs
         bool hasAlwaysTreatableHediffs = patientHediffs.Any(x => alwaysTreatableHediffs.Contains(x.def));
 
-        // Is already using a Sarcophagus and has any greylisted hediffs
+        // Greylisted hediffs if already in sarcophagus
         bool hasGreylistedHediffsDuringTreatment = patient.ParentHolder == sarcophagus
             && patientHediffs.Any(x => nonCriticalTreatableHediffs.Contains(x.def));
 
-        // Does not have hediffs or traits that block the pawn from using Sarcophaguss
-        bool hasNoBlockingHediffsOrTraits = !MedicalUtil.HasUsageBlockingHediffs(patient, usageBlockingHediffs)
-            && !MedicalUtil.HasUsageBlockingTraits(patient, usageBlockingTraits);
-
-        bool hasOtherHediffs = isDowned
+        // Any “real” reason to use the sarcophagus at all
+        bool needsTreatment = isDowned
             || hasTendableHediffs
             || hasTendedAndHealingInjuries
             || hasImmunizableNotImmuneHediffs
@@ -258,38 +268,42 @@ public static class SarcophagusUtil
             || hasAlwaysTreatableHediffs
             || hasGreylistedHediffsDuringTreatment;
 
-        // Ideology: if this pawn's ideology expects scars, don't send them to sarcophagus
-        // *only* for that purpose.
-        if (ideoActive)
-        {
-            //int scarCount = patient.health.hediffSet.GetHediffCount(HediffDefOf.Scarification);
-            int requiredScars = patient.ideo.Ideo.RequiredScars;
-            if (requiredScars > 0 && !hasOtherHediffs)
-            {
-                if (RimgateMod.Debug)
-                    Log.Message($"{patient} ignoring sarcophagus due to ideology required scars.");
-                return false;
-            }
-        }
-
-        bool result = hasOtherHediffs && hasNoBlockingHediffsOrTraits;
+        // Nothing but ideology scars or blindness?
+        // Already handled implicitly by skipping them in the relevant checks above:
+        // - scarsRequired => Scarification never contributes to hasPermanentInjuries.
+        // - blindnessRequired => Blindness never contributes to hasChronicDiseases.
+        // So if those are the *only* issues, needsTreatment will be false.
 
         if (RimgateMod.Debug)
-            Log.Message($"{patient} should use {sarcophagus}? = {result.ToStringYesNo()}\n"
-                + $"isDowned = {isDowned.ToStringYesNo()}\n"
-                + $"hasTendableHediffs = {hasTendableHediffs.ToStringYesNo()}\n"
-                + $"hasTendedAndHealingInjuries = {hasTendedAndHealingInjuries.ToStringYesNo()}\n"
-                + $"hasImmunizableNotImmuneHediffs = {hasImmunizableNotImmuneHediffs.ToStringYesNo()}\n"
-                + $"hasSickThoughtHediffs = {hasSickThoughtHediffs.ToStringYesNo()}\n"
-                + $"hasMissingBodyParts = {hasMissingBodyParts.ToStringYesNo()}\n"
-                + $"hasPermanentInjuries = {hasPermanentInjuries.ToStringYesNo()}\n"
-                + $"hasChronicDiseases = {hasChronicDiseases.ToStringYesNo()}\n"
-                + $"hasAddictions = {hasAddictions.ToStringYesNo()}\n"
-                + $"hasAlwaysTreatableHediffs = {hasAlwaysTreatableHediffs.ToStringYesNo()}\n"
-                + $"hasGreylistedHediffsDuringTreatment = {hasGreylistedHediffsDuringTreatment.ToStringYesNo()}\n"
-                + $"hasNoBlockingHediffsOrTraits = {hasNoBlockingHediffsOrTraits.ToStringYesNo()}");
+            Log.Message($"{patient} should use {sarcophagus}? = {needsTreatment.ToStringYesNo()}");
 
-        return result;
+        if (!needsTreatment)
+        {
+            reason = "NotInjured".Translate();
+            return false;
+        }
+
+        // Does not have hediffs or traits that block the pawn from using Sarcophagi
+        if (MedicalUtil.HasUsageBlockingHediffs(
+            patient,
+            usageBlockingHediffs,
+            out List<Hediff> blockingHediffs))
+        {
+            reason = "RG_Sarcophagus_PatientWithHediffNotAllowed".Translate(blockingHediffs[0]?.LabelCap ?? "");
+            return false;
+        }
+
+        if (MedicalUtil.HasUsageBlockingTraits(
+            patient,
+            usageBlockingTraits,
+            out List<Trait> blockingTraits))
+        {
+            reason = "RG_Sarcophagus_PatientWithTraitNotAllowed".Translate(blockingTraits[0]?.LabelCap ?? "");
+            return false;
+        }
+
+        reason = string.Empty;
+        return true;
     }
 
     public static Building_Sarcophagus FindBestSarcophagus(Pawn patient, Pawn traveler)

@@ -39,13 +39,13 @@
 	<RG_Sarcophagus_CannotRescue_NoSarcophagus>no Sarcophagus available.</RG_Sarcophagus_CannotRescue_NoSarcophagus>
 	<RG_Sarcophagus_FloatMenu_Rescue>Take {0} to Sarcophagus</RG_Sarcophagus_FloatMenu_Rescue>
 
+	<RG_Sarcophagus_NonHumanoidNotAllowed>only humanoids allowed</RG_Sarcophagus_NonHumanoidNotAllowed>
 	<RG_Sarcophagus_PatientWithHediffNotAllowed>cannot treat patients with {0} hediff</RG_Sarcophagus_PatientWithHediffNotAllowed>
 	<RG_Sarcophagus_PatientWithTraitNotAllowed>cannot treat patients with {0} trait</RG_Sarcophagus_PatientWithTraitNotAllowed>
 	<RG_Sarcophagus_RaceNotAllowed>cannot treat {0}s</RG_Sarcophagus_RaceNotAllowed>
 	<RG_Sarcophagus_GuestsNotAllowed>cannot treat guests</RG_Sarcophagus_GuestsNotAllowed>
 	<RG_Sarcophagus_PrisonersNotAllowed>cannot treat prisoners</RG_Sarcophagus_PrisonersNotAllowed>
 	<RG_Sarcophagus_SlavesNotAllowed>cannot treat slaves</RG_Sarcophagus_SlavesNotAllowed>
-	<RG_Sarcophagus_Unpowered>not powered</RG_Sarcophagus_Unpowered>
 	<RG_Sarcophagus_MedicalCareCategoryTooLow>care quality must be Industrial medicine or above</RG_Sarcophagus_MedicalCareCategoryTooLow>
 
 	<RG_Sarcophagus_Message_TreatmentComplete>Sarcophagus treatment complete for {1_label}.</RG_Sarcophagus_Message_TreatmentComplete>

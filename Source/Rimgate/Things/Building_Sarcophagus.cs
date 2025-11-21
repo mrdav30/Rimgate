@@ -71,22 +71,21 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         }
     }
 
-    public List<HediffDef> AlwaysTreatableHediffs;
+    public List<HediffDef> AlwaysTreatableHediffs => Restrictions.Props.alwaysTreatableHediffs;
 
-    public List<HediffDef> NeverTreatableHediffs;
+    public List<HediffDef> NeverTreatableHediffs => Restrictions.Props.neverTreatableHediffs;
 
-    public List<HediffDef> NonCriticalTreatableHediffs;
+    public List<HediffDef> NonCriticalTreatableHediffs => Restrictions.Props.nonCriticalTreatableHediffs;
 
-    public List<HediffDef> UsageBlockingHediffs;
+    public List<HediffDef> UsageBlockingHediffs => Restrictions.Props.usageBlockingHediffs;
 
-    public List<TraitDef> UsageBlockingTraits;
+    public List<TraitDef> UsageBlockingTraits => Restrictions.Props.usageBlockingTraits;
 
-    public List<TraitDef> AlwaysTreatableTraits;
+    public List<TraitDef> AlwaysTreatableTraits => Restrictions.Props.alwaysTreatableTraits;
 
-    public List<string> DisallowedRaces;
+    public List<string> DisallowedRaces => Restrictions.Props.disallowedRaces;
 
-    [MayRequireBiotech]
-    public List<XenotypeDef> DisallowedXenotypes;
+    public List<XenotypeDef> DisallowedXenotypes => Restrictions.Props.disallowedXenotypes;
 
     public int ProgressHealingTicks = 0;
 
@@ -164,15 +163,6 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         MaxDiagnosingTicks = GenTicks.SecondsToTicks(Control.Props.maxDiagnosisTime);
         MaxHealingTicks = GenTicks.SecondsToTicks(Control.Props.maxPerHediffHealingTime);
 
-        AlwaysTreatableHediffs = Restrictions.Props.alwaysTreatableHediffs;
-        NeverTreatableHediffs = Restrictions.Props.neverTreatableHediffs;
-        NonCriticalTreatableHediffs = Restrictions.Props.nonCriticalTreatableHediffs;
-        UsageBlockingHediffs = Restrictions.Props.usageBlockingHediffs;
-        UsageBlockingTraits = Restrictions.Props.usageBlockingTraits;
-        AlwaysTreatableTraits = Restrictions.Props.alwaysTreatableTraits;
-        DisallowedRaces = Restrictions.Props.disallowedRaces;
-        DisallowedXenotypes = Restrictions.Props.disallowedXenotypes;
-
         if (Faction?.IsPlayer == true)
             _contentsKnown = true;
     }
@@ -203,8 +193,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         var patient = PatientPawn;
         if (patient != null)
         {
-            PatientBodySizeScaledMaxDiagnosingTicks = (int)(MaxDiagnosingTicks * patient.BodySize);
-            PatientBodySizeScaledMaxHealingTicks = (int)(MaxHealingTicks * patient.BodySize);
+            PatientBodySizeScaledMaxDiagnosingTicks = Mathf.CeilToInt(MaxDiagnosingTicks * patient.BodySize);
+            PatientBodySizeScaledMaxHealingTicks = Mathf.CeilToInt(MaxHealingTicks * patient.BodySize);
 
             // Interrupt treatment on power loss
             if (!Power.PowerOn)
@@ -245,7 +235,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                 case SarcophagusStatus.DiagnosisStarted:
                     {
                         DiagnosingTicks--;
-                        if (DiagnosingTicks == 0)
+                        if (DiagnosingTicks <= 0)
                             SwitchState();
                         break;
                     }
@@ -284,7 +274,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                     {
                         HealingTicks--;
                         ProgressHealingTicks++;
-                        if (HealingTicks == 0)
+                        if (HealingTicks <= 0)
                             SwitchState();
                         break;
                     }
@@ -328,16 +318,14 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                 case SarcophagusStatus.PatientDischarged:
                     {
                         SwitchState();
-                        Reset();
                         break;
                     }
             }
 
             // Suspend patient needs during diagnosis and treatment
-            bool suspendNeeds = Status == SarcophagusStatus.DiagnosisStarted
-                || Status == SarcophagusStatus.DiagnosisFinished
-                || Status == SarcophagusStatus.HealingStarted
-                || Status == SarcophagusStatus.HealingFinished;
+            bool suspendNeeds = Status != SarcophagusStatus.Idle
+                && Status != SarcophagusStatus.PatientDischarged
+                && Status != SarcophagusStatus.Error;
             if (suspendNeeds)
             {
                 // Food
@@ -594,9 +582,16 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
     }
 
-    public bool Accepts(Thing pawn)
+    public bool Accepts(Thing thing)
     {
-        return _innerContainer.CanAcceptAnyOf(pawn, false);
+        if (thing is not Pawn p
+            || !p.RaceProps.Humanlike
+            || p.IsMutant && !p.mutant.Def.entitledToMedicalCare)
+        {
+            return false;
+        }
+
+        return _innerContainer.CanAcceptAnyOf(thing, false);
     }
 
     public bool TryAcceptPawn(Thing pawn, bool allowSpecialEffects = true)
@@ -652,7 +647,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                 break;
 
             case SarcophagusStatus.PatientDischarged:
-                Status = SarcophagusStatus.Idle;
+                Reset();
                 break;
 
             default:
@@ -686,6 +681,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
     private void DiagnosePatient(Pawn patient)
     {
         // Reset aggregate healing metrics for this diagnosis pass
+        HealingTicks = 0;
         TotalHealingTicks = 0;
         ProgressHealingTicks = 0;
 
@@ -802,7 +798,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             ? currentHediffSeverity
             : currentHediffSeverity / currentHediffBodyPartMaxHealth;
 
-        return currentHediffNormalizedSeverity;
+        return Math.Abs(currentHediffNormalizedSeverity);
     }
 
     private List<BodyPartRecord> GetBodyPartDescendants(BodyPartRecord part)
