@@ -3,8 +3,7 @@
 
     <!-- Wraith -->
 
-    <KCSG.SymbolDef>
-        <defName>Rimgate_CryptosleepCasket_Wraith</defName>
+    <KCSG.SymbolDef Name="Rimgate_CryptosleepCasket_Wraith" Abstract="True">
         <thing>AncientCryptosleepCasket</thing>
         <containPawnKindAnyOf>
             <li>Rimgate_WraithSoldier</li>
@@ -16,11 +15,50 @@
         <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
 
-    <KCSG.SymbolDef>
-        <defName>Rimgate_WraithCocoonPod</defName>
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepCasket_Wraith">
+        <defName>Rimgate_CryptosleepCasket_Wraith_South</defName>
+        <rotation>South</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepCasket_Wraith">
+        <defName>Rimgate_CryptosleepCasket_Wraith_North</defName>
+        <rotation>North</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepCasket_Wraith">
+        <defName>Rimgate_CryptosleepCasket_Wraith_East</defName>
+        <rotation>East</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepCasket_Wraith">
+        <defName>Rimgate_CryptosleepCasket_Wraith_West</defName>
+        <rotation>West</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef Name="Rimgate_WraithCocoonPod" Abstract="True">
         <thing>Rimgate_WraithCocoonPod</thing>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>false</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_WraithCocoonPod">
+        <defName>Rimgate_WraithCocoonPod_South</defName>
+        <rotation>South</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_WraithCocoonPod">
+        <defName>Rimgate_WraithCocoonPod_North</defName>
+        <rotation>North</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_WraithCocoonPod">
+        <defName>Rimgate_WraithCocoonPod_East</defName>
+        <rotation>East</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_WraithCocoonPod">
+        <defName>Rimgate_WraithCocoonPod_West</defName>
+        <rotation>West</rotation>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -33,8 +71,7 @@
 
     <!-- Tau'ri -->
 
-    <KCSG.SymbolDef>
-        <defName>Rimgate_CryptosleepPod_Tauri</defName>
+    <KCSG.SymbolDef Name="Rimgate_CryptosleepPod_Tauri" Abstract="True">
         <thing>AncientCryptosleepPod</thing>
         <containPawnKindAnyOf>
             <li>Rimgate_TauriSGCSoldier</li>
@@ -45,6 +82,26 @@
         <faction>Rimgate_TauriFaction</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepPod_Tauri">
+        <defName>Rimgate_CryptosleepPod_Tauri_South</defName>
+        <rotation>South</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepPod_Tauri">
+        <defName>Rimgate_CryptosleepPod_Tauri_North</defName>
+        <rotation>North</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepPod_Tauri">
+        <defName>Rimgate_CryptosleepPod_Tauri_East</defName>
+        <rotation>East</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepPod_Tauri">
+        <defName>Rimgate_CryptosleepPod_Tauri_West</defName>
+        <rotation>West</rotation>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -138,15 +195,66 @@
 
     <!-- Ancient -->
 
-    <KCSG.SymbolDef>
-        <defName>Rimgate_AncientCryptosleepCasket</defName>
+    <KCSG.SymbolDef Name="Rimgate_AncientCryptosleepCasket" Abstract="True">
         <thing>AncientCryptosleepCasket</thing>
         <containPawnKindAnyOf>
             <li>AncientSoldier_Leader</li>
             <li>AncientSoldier</li>
         </containPawnKindAnyOf>
         <faction>AncientsHostile</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_AncientCryptosleepCasket">
+        <defName>Rimgate_AncientCryptosleepCasket_South</defName>
+        <rotation>South</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_AncientCryptosleepCasket">
+        <defName>Rimgate_AncientCryptosleepCasket_North</defName>
+        <rotation>North</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_AncientCryptosleepCasket">
+        <defName>Rimgate_AncientCryptosleepCasket_East</defName>
+        <rotation>East</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_AncientCryptosleepCasket">
+        <defName>Rimgate_AncientCryptosleepCasket_West</defName>
+        <rotation>West</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef Name="Rimgate_AncientCryptosleepPod" Abstract="True">
+        <thing>AncientCryptosleepPod</thing>
+        <containPawnKindAnyOf>
+            <li>AncientSoldier_Leader</li>
+            <li>AncientSoldier</li>
+        </containPawnKindAnyOf>
+        <faction>AncientsHostile</faction>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_AncientCryptosleepPod">
+        <defName>Rimgate_AncientCryptosleepPod_South</defName>
+        <rotation>South</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_AncientCryptosleepPod">
+        <defName>Rimgate_AncientCryptosleepPod_North</defName>
+        <rotation>North</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_AncientCryptosleepPod">
+        <defName>Rimgate_AncientCryptosleepPod_East</defName>
+        <rotation>East</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_AncientCryptosleepPod">
+        <defName>Rimgate_AncientCryptosleepPod_West</defName>
+        <rotation>West</rotation>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -159,8 +267,7 @@
 
     <!-- Hunters -->
 
-    <KCSG.SymbolDef>
-        <defName>Rimgate_CryptosleepPod_Hunter</defName>
+    <KCSG.SymbolDef Name="Rimgate_CryptosleepPod_Hunter" Abstract="True">
         <thing>AncientCryptosleepPod</thing>
         <containPawnKindAnyOf>
             <li>Rimgate_TreasureHunter</li>
@@ -168,7 +275,26 @@
         <faction>Rimgate_TreasureHuntersHostile</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>true</defendSpawnPoint>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepPod_Hunter">
+        <defName>Rimgate_CryptosleepPod_Hunter_South</defName>
         <rotation>South</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepPod_Hunter">
+        <defName>Rimgate_CryptosleepPod_Hunter_North</defName>
+        <rotation>North</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepPod_Hunter">
+        <defName>Rimgate_CryptosleepPod_Hunter_East</defName>
+        <rotation>East</rotation>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef ParentName="Rimgate_CryptosleepPod_Hunter">
+        <defName>Rimgate_CryptosleepPod_Hunter_West</defName>
+        <rotation>West</rotation>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

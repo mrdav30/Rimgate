@@ -274,7 +274,7 @@
             <li>Artifacts</li>
         </thingCategories>
         <altitudeLayer>Building</altitudeLayer>
-        <castEdgeShadows>true</castEdgeShadows>
+        <castEdgeShadows>false</castEdgeShadows>
         <fillPercent>1</fillPercent>
         <passability>PassThroughOnly</passability>
         <pathCost>150</pathCost>
@@ -376,6 +376,7 @@
             <texPath>Things/Building/Artifact/RGArchotechIdolOfResonance</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <drawSize>1</drawSize>
+            <drawOffset>(0,0,0.1)</drawOffset>
         </graphicData>
         <thingCategories>
             <li>Artifacts</li>

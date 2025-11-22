@@ -714,7 +714,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_TauriResearchDesk</defName>
 		<label>Research desk</label>
-		<description>A Tau'ri research station with a humming terminal, intact data routing, and just enough alien UI to make your brightest colonist feel slightly inadequate.\n\nDramatically accelerates complex research when linked to a hi-tech bench — and some pawns have learned how to bypass safety protocols and load up the "Legend of Zoltar", letting them pretend to "research" for hours while off the clock.</description>
+		<description>A Tau'ri research station with a humming terminal, intact data routing, and just enough alien UI to make your brightest colonist feel slightly inadequate.\n\nDramatically accelerates complex research when linked to a hi-tech bench — and certain folk have spread the word on how to bypass safety protocols, allowing colonists to pretend to "research" for hours while off the clock.</description>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGTauriDesk</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
