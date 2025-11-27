@@ -18,7 +18,7 @@ public class CompProperties_ApplyHediff : CompProperties_AbilityEffect
 
     public float rangeLimit = -1;
 
-    public List<StatModifier> durationTimeStatFactors = new List<StatModifier>();
+    public List<StatModifier> durationTimeStatFactors;
 
     public CompProperties_ApplyHediff() => compClass = typeof(CompAbilityEffect_ApplyHediff);
 }

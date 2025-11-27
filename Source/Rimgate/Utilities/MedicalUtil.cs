@@ -130,31 +130,37 @@ public static class MedicalUtil
         return null;
     }
 
-    public static Hediff ApplyHediff(
+    public static void ApplyHediff(
         this Pawn pawn,
-        HediffDef hediffDef,
-        BodyPartRecord bodyPart,
-        int duration,
-        float severity)
+        HediffDef def,
+        BodyPartRecord part = null,
+        float severity = -1,
+        int duration = -1)
     {
-        Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn, bodyPart);
+        bool hasHediff = !pawn.HasHediff(def);
+        Hediff hediff = !hasHediff
+            ? HediffMaker.MakeHediff(def, pawn, part)
+            : pawn.GetHediff(def);
 
-        if (severity > float.Epsilon)
+        if (hediff == null) return;
+
+        if (severity > -1)
             hediff.Severity = severity;
 
-        if (hediff is HediffWithComps hediffWithComps)
+        if (duration > -1
+            && hediff is HediffWithComps hediffWithComps
+            && hediff.TryGetComp(out HediffComp_Disappears disappears))
         {
-            foreach (HediffComp comp in hediffWithComps.comps)
-            {
-                if (duration > 0
-                    && comp is HediffComp_Disappears hediffComp_Disappears)
-                {
-                    hediffComp_Disappears.ticksToDisappear = duration;
-                }
-            }
+            disappears.ticksToDisappear = duration;
         }
 
-        pawn.health.AddHediff(hediff);
-        return pawn.health.hediffSet.GetFirstHediffOfDef(hediffDef);
+        if (!hasHediff)
+            pawn.health.AddHediff(hediff);
+    }
+
+    public static void RemoveHediff(this Pawn p, HediffDef def)
+    {
+        var h = p.health.hediffSet.GetFirstHediffOfDef(def);
+        if (h != null) p.health.RemoveHediff(h);
     }
 }

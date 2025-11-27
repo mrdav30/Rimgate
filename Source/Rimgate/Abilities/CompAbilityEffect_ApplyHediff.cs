@@ -44,22 +44,23 @@ public class CompAbilityEffect_ApplyHediff : CompAbilityEffect
         if (Props.hediffToReceive != null)
             parent.pawn.ApplyHediff(
                 Props.hediffToReceive,
-                null,
-                GetDurationForPawn(parent.pawn),
-                0);
+                severity: 0,
+                duration: GetDurationForPawn(parent.pawn));
 
         if (Props.hediffToGive == null)
             return;
 
         target.Pawn.ApplyHediff(
             Props.hediffToGive,
-            null,
-            GetDurationForPawn(target.Pawn),
-            0);
+            severity: 0,
+            duration: GetDurationForPawn(parent.pawn));
     }
 
     private int GetDurationForPawn(Pawn pawn)
     {
+        if (Props.durationTimeStatFactors == null) 
+            return Props.durationTime;
+
         return Mathf.RoundToInt(
             CalculateModifiedStatForPawn(
                 pawn,

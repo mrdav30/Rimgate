@@ -8,9 +8,9 @@ namespace Rimgate;
 /// </summary>
 public sealed class ThingOwner_Container : ThingOwner<Thing>
 {
-    private readonly Comp_MobileContainer _comp;
+    private readonly Comp_MobileContainerControl _comp;
 
-    public ThingOwner_Container(Comp_MobileContainer comp) : base(comp)
+    public ThingOwner_Container(Comp_MobileContainerControl comp) : base(comp)
     {
         _comp = comp;
     }

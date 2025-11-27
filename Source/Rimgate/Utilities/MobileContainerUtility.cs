@@ -18,7 +18,7 @@ public static class MobileContainerUtility
 
     private static Dictionary<TransferableOneWay, int> tmpAlreadyLoading = new();
 
-    public static bool HasJobOnContainer(Pawn pawn, Comp_MobileContainer container)
+    public static bool HasJobOnContainer(Pawn pawn, Comp_MobileContainerControl container)
     {
         if (!container.LoadingInProgress)
             return false;
@@ -35,7 +35,7 @@ public static class MobileContainerUtility
         return true;
     }
 
-    public static ThingCount FindThingToLoad(Pawn p, Comp_MobileContainer container)
+    public static ThingCount FindThingToLoad(Pawn p, Comp_MobileContainerControl container)
     {
         neededThings.Clear();
         List<TransferableOneWay> leftToLoad = container.LeftToLoad;
@@ -125,7 +125,7 @@ public static class MobileContainerUtility
         return default(ThingCount);
     }
 
-    public static IEnumerable<Thing> ThingsBeingHauledTo(Comp_MobileContainer container, Map map)
+    public static IEnumerable<Thing> ThingsBeingHauledTo(Comp_MobileContainerControl container, Map map)
     {
         IReadOnlyList<Pawn> pawns = map.mapPawns.AllPawnsSpawned;
         for (int i = 0; i < pawns.Count; i++)
@@ -140,7 +140,7 @@ public static class MobileContainerUtility
         }
     }
 
-    public static IEnumerable<Thing> AllSendableItems(Comp_MobileContainer container, Map map)
+    public static IEnumerable<Thing> AllSendableItems(Comp_MobileContainerControl container, Map map)
     {
         var items = CaravanFormingUtility.AllReachableColonyItems(
             map,
@@ -155,7 +155,9 @@ public static class MobileContainerUtility
         {
             var t = items[i];
             // Spawned + within radius of the cart (use PositionHeld so items in containers count correctly)
-            if (t.Spawned && t.PositionHeld.DistanceToSquared(center) <= r2)
+            if (t.Spawned 
+                && !t.IsForbidden(Faction.OfPlayer)
+                && t.PositionHeld.DistanceToSquared(center) <= r2)
                 yield return t;
         }
     }

@@ -8,7 +8,7 @@ namespace Rimgate;
 
 public class Command_LoadToContainer : Command
 {
-    public Comp_MobileContainer Container;
+    public Comp_MobileContainerControl Container;
 
     public override void ProcessInput(Event ev)
     {

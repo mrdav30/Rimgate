@@ -13,7 +13,7 @@ public class ITab_MobileContainer : ITab_ContentsBase
 
     public override bool UseDiscardMessage => false;
 
-    public Comp_MobileContainer Mobile => base.SelThing.TryGetComp<Comp_MobileContainer>();
+    public Comp_MobileContainerControl Mobile => base.SelThing.TryGetComp<Comp_MobileContainerControl>();
 
     public override bool IsVisible
     {
@@ -43,7 +43,7 @@ public class ITab_MobileContainer : ITab_ContentsBase
 
     protected override void DoItemsLists(Rect inRect, ref float curY)
     {
-        Comp_MobileContainer container = Mobile;
+        Comp_MobileContainerControl container = Mobile;
         Rect rect = new Rect(0f, curY, (inRect.width - 10f) / 2f, inRect.height);
         Text.Font = GameFont.Small;
         bool flag = false;

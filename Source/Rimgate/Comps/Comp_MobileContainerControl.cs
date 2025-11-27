@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using RimWorld;
+﻿using RimWorld;
 using RimWorld.Planet;
+using System.Collections.Generic;
+using System.Text;
+using Unity.Jobs;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -10,7 +11,7 @@ using Verse.Sound;
 
 namespace Rimgate;
 
-public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
+public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableContents
 {
     public ThingOwner_Container InnerContainer;
 
@@ -153,9 +154,15 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
 
     public bool ProxyFuelOk => !IsProxyRefuelable || PushingFuel > 0f;
 
-    public CompProperties_MobileContainer Props => (CompProperties_MobileContainer)props;
+    private bool _wantsToBePushed;
 
-    public Comp_MobileContainer()
+    private bool _wantsToBeDumped;
+
+    private LocalTargetInfo _cachedDesignationTarget;
+
+    public CompProperties_MobileContainerControl Props => (CompProperties_MobileContainerControl)props;
+
+    public Comp_MobileContainerControl()
     {
         InnerContainer = new ThingOwner_Container(this);
     }
@@ -243,6 +250,9 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         Scribe_Values.Look(ref SavedDrawColor, "SavedDrawColor", default);
         Scribe_Values.Look(ref SavedDrawColorTwo, "SavedDrawColorTwo", default);
         Scribe_Values.Look(ref SavedHasPaint, "SavedHasPaint", false);
+        Scribe_Values.Look(ref _wantsToBePushed, "_wantsToBePushed", false);
+        Scribe_Values.Look(ref _wantsToBeDumped, "_wantsToBeDumped", false);
+        Scribe_Values.Look(ref _cachedDesignationTarget, "_cachedDesignationTarget");
     }
 
     public ThingOwner GetDirectlyHeldThings() => InnerContainer;
@@ -260,7 +270,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         int num = 0;
         foreach (object selectedObject in Find.Selector.SelectedObjects)
         {
-            if (selectedObject is ThingWithComps thing && thing.HasComp<Comp_MobileContainer>())
+            if (selectedObject is ThingWithComps thing && thing.HasComp<Comp_MobileContainerControl>())
                 num++;
         }
 
@@ -315,39 +325,73 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         loadCommand.Container = this;
         yield return loadCommand;
 
-        // “Push to…” — choose a destination cell and queue the job on the (attached or nearest) pawn
-        yield return new Command_Target
+        // Push to…
+        yield return new Command_Toggle
         {
             defaultLabel = "RG_CommandPushLabel".Translate(),
             defaultDesc = "RG_CommandPushDesc".Translate(parent.LabelShort),
             icon = RimgateTex.PushCommandTex,
-            targetingParams = new TargetingParameters { canTargetLocations = true, canTargetBuildings = true },
             Disabled = LoadingInProgress,
             disabledReason = "RG_CommandCartDisabled".Translate(),
-            action = target => AssignPushJob(target, dump: false)
+            isActive = () => _wantsToBePushed,
+            toggleAction = () => SetGizmoDesignation(false)
         };
 
         if (!InnerContainer.Any) yield break;
 
-        // "Push & dump…" — choose a destination cell,
-        // queue the job on the (attached or nearest) pawn,
-        // and dump any contents
-        yield return new Command_Target
+        // Push & dump…
+        yield return new Command_Toggle
         {
-            defaultLabel = "RG_CommandPushAndDumpLabel".Translate(),
-            defaultDesc = "RG_CommandPushAndDumpDesc".Translate(parent.LabelShort),
+            defaultLabel = "RG_CommandDumpLabel".Translate(),
+            defaultDesc = "RG_CommandDumpDesc".Translate(parent.LabelShort),
             icon = RimgateTex.PushAndDumpCommandTex,
-            targetingParams = new TargetingParameters { canTargetLocations = true },
             Disabled = LoadingInProgress,
             disabledReason = "RG_CommandCartDisabled".Translate(),
-            action = target => AssignPushJob(target, dump: true)
+            isActive = () => _wantsToBeDumped,
+            toggleAction = () => SetGizmoDesignation(true)
         };
+    }
+
+    private void SetGizmoDesignation(bool dump)
+    {
+        if (dump)
+            _wantsToBeDumped = !_wantsToBeDumped;
+        else
+            _wantsToBePushed = !_wantsToBePushed;
+
+        var dm = parent?.Map?.designationManager;
+        if (dm == null) return;
+
+        Designation designation = dm.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationPushCart);
+        if (designation == null)
+        {
+            var tp = new TargetingParameters { canTargetLocations = true, canTargetBuildings = !dump };
+            Find.Targeter.BeginTargeting(tp, target =>
+            {
+                if (!target.Cell.IsValid) return;
+                if (!Utils.FindStandCellFor(parent.InteractionCell, target.Cell, parent.Map, out _))
+                {
+                    Messages.Message("RG_CannotReachDestination".Translate(),
+                        parent,
+                        MessageTypeDefOf.RejectInput);
+                    return;
+                }
+
+                _cachedDesignationTarget = target;
+                dm.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationPushCart));
+            });
+        }
+        else
+        {
+            _cachedDesignationTarget = null;
+            designation?.Delete();
+        }
     }
 
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
     {
         if (selPawn == null || selPawn.Downed || selPawn.Dead) yield break;
-        if (!selPawn.CanReach(parent, PathEndMode.Touch, Danger.Deadly)) yield break;
+        if (!selPawn.CanReach(parent, PathEndMode.InteractionCell, Danger.Deadly)) yield break;
         if (LoadingInProgress) yield break; // Don’t show push options while loading
 
         // If the pawn can’t haul/manual-dumb, show disabled entries
@@ -357,7 +401,7 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
                 null,
                 MenuOptionPriority.DisabledOption);
             if (InnerContainer.Any)
-                yield return new FloatMenuOption("RG_CommandPushAndDumpLabel".Translate() + " (" + reason + ")",
+                yield return new FloatMenuOption("RG_CommandDumpLabel".Translate() + " (" + reason + ")",
                     null,
                     MenuOptionPriority.DisabledOption);
             yield break;
@@ -366,101 +410,123 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
         // Prioritize push to…
         yield return FloatMenuUtility.DecoratePrioritizedTask(
             new FloatMenuOption("RG_CommandPushLabel".Translate(),
-                () => BeginPushTargeting(dump: false, forcedPawn: selPawn)),
+                () => BeginFloatTargeting(selPawn, false)),
             selPawn, parent);
 
         if (!InnerContainer.Any) yield break;
 
         // Prioritize push & dump…
         yield return FloatMenuUtility.DecoratePrioritizedTask(
-            new FloatMenuOption("RG_CommandPushAndDumpLabel".Translate(),
-                () => BeginPushTargeting(dump: true, forcedPawn: selPawn)),
+            new FloatMenuOption("RG_CommandDumpLabel".Translate(),
+                () => BeginFloatTargeting(selPawn, true)),
             selPawn, parent);
     }
 
-    private void BeginPushTargeting(bool dump, Pawn forcedPawn = null)
+    private void BeginFloatTargeting(Pawn pawn, bool dump)
     {
-        var tp = new TargetingParameters { canTargetLocations = true, canTargetBuildings = true };
+        var tp = new TargetingParameters { canTargetLocations = true, canTargetBuildings = !dump };
         Find.Targeter.BeginTargeting(tp, target =>
         {
             if (!target.Cell.IsValid) return;
-            AssignPushJob(target, dump, forcedPawn);
+            if (!Utils.FindStandCellFor(parent.InteractionCell, target.Cell, parent.Map, out _))
+            {
+                Messages.Message("RG_CannotReachDestination".Translate(),
+                    parent,
+                    MessageTypeDefOf.RejectInput);
+                return;
+            }
+            ClearDesignations();
+            var job = GetPushJob(pawn, target);
+            if (job == null) return;
+            job.playerForced = true;
+            if (dump)
+                job.haulMode = HaulMode.ToCellNonStorage;
+
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.MiscWork);
         });
     }
 
-    public void AssignPushJob(LocalTargetInfo dest, bool dump, Pawn forcedPawn = null)
+    public void ClearDesignations()
     {
-        if (!parent.Spawned) return;
+        _wantsToBePushed = false;
+        _wantsToBeDumped = false;
 
-        // choose pawn: explicit (from float menu) or best available
-        Pawn pawn = forcedPawn ?? ChoosePusher(dest.Cell.IsValid ? dest.Cell : parent.Position);
+        var dm = parent?.Map?.designationManager;
+        if (dm == null) return;
+
+        dm.RemoveAllDesignationsOn(parent);
+    }
+
+    public Job GetDesignatedPushJob(Pawn pawn)
+    {
+        var job = GetPushJob(pawn, _cachedDesignationTarget);
+        if (job == null) return null;
+        _cachedDesignationTarget = null;
+        if (_wantsToBeDumped)
+            job.haulMode = HaulMode.ToCellNonStorage;
+        return job;
+    }
+
+    public Job GetPushJob(Pawn pawn, LocalTargetInfo dest)
+    {
+        if (!parent.Spawned) return null;
+
         if (pawn == null)
         {
             Messages.Message("RG_MessageNoPawnToPush".Translate(parent.LabelShort),
                 parent,
                 MessageTypeDefOf.RejectInput);
-            return;
+            return null;
         }
 
-        if (!dest.HasThing && !pawn.CanReserveAndReach(dest, PathEndMode.Touch, Danger.Deadly))
+        if (dest == null)
         {
             Messages.Message("RG_CannotReachDestination".Translate(), parent, MessageTypeDefOf.RejectInput);
-            return;
+            return null;
         }
 
         if (!FuelOK)
         {
             Messages.Message("RG_CartNoFuel".Translate(parent.LabelShort), parent, MessageTypeDefOf.RejectInput);
-            return;
+            return null;
         }
 
         LocalTargetInfo targetInfo = null;
-        var def = RimgateDefOf.Rimgate_PushMobileContainer;
+        var def = RimgateDefOf.Rimgate_PushContainer;
         // If a gate was clicked, store it directly in targetC; otherwise use the cell
         if (dest.HasThing)
         {
-            if (dest.Thing is not Building_Stargate sg)
+            if (dest.Thing is not Building_Stargate sg || !sg.GateControl.IsActive)
             {
                 Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), parent, MessageTypeDefOf.RejectInput);
-                return;
+                return null;
+            }
+
+            if (!pawn.CanReach(dest, PathEndMode.Touch, Danger.Deadly))
+            {
+                Messages.Message("RG_CannotReachDestination".Translate(), parent, MessageTypeDefOf.RejectInput);
+                return null;
             }
 
             targetInfo = dest.Thing;
-            if (!dump) def = RimgateDefOf.Rimgate_EnterStargateWithContainer;
+            def = RimgateDefOf.Rimgate_EnterStargateWithContainer;
         }
         else
         {
+            if (!pawn.CanReach(dest.Cell, PathEndMode.OnCell, Danger.Deadly))
+            {
+                Messages.Message("RG_CannotReachDestination".Translate(), parent, MessageTypeDefOf.RejectInput);
+                return null;
+            }
+
             targetInfo = dest.Cell;
-            if(dump) def = RimgateDefOf.Rimgate_PushAndDumpMobileContainer;
         }
 
         var job = JobMaker.MakeJob(def, parent);
-        job.playerForced = forcedPawn != null; // only forced if user prioritized a specific pawn
         job.ignoreForbidden = true;
         job.targetC = targetInfo;
 
-        pawn.jobs.TryTakeOrderedJob(job, JobTag.MiscWork);
-    }
-
-    // prefer attached pusher, else nearest viable colonist (simple distance score)
-    private Pawn ChoosePusher(IntVec3 dest)
-    {
-        var map = Map;
-        if (Pusher != null && Pusher.Spawned && Pusher.CanReserveAndReach(parent, PathEndMode.Touch, Danger.Deadly))
-            return Pusher;
-
-        Pawn best = null; float bestScore = float.MaxValue;
-        foreach (var p in map.mapPawns.FreeColonistsSpawned)
-        {
-            if (p.Dead || p.Downed || p.Drafted) continue;
-            if (!p.CanReserveAndReach(parent, PathEndMode.Touch, Danger.Deadly)) continue;
-            if (Utils.PawnIncapableOfHauling(p, out _)) continue;
-
-            // favor someone close to cart and not far from destination
-            float score = p.Position.DistanceToSquared(parent.Position) + 0.5f * p.Position.DistanceToSquared(dest);
-            if (score < bestScore) { best = p; bestScore = score; }
-        }
-        return best;
+        return job;
     }
 
     public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
@@ -656,5 +722,5 @@ public class Comp_MobileContainer : ThingComp, IThingHolder, ISearchableContents
 
         var paint = cart.TryGetComp<CompColorable>();
         SavedHasPaint = paint != null && paint.Active;
-    }  
+    }
 }

@@ -333,7 +333,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_InsertSymbioteQueen.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_MeditateAtWraithTable.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_MeditateOnGoauldThrone.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_PushMobileContainer.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_PushContainer.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_SitFacingBuilding_Learning.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_ToggleIris.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CloseStargate.cs" />
@@ -342,7 +342,7 @@
     <Compile Include="AI\LordJobs\LordJob_MaraudColony.cs" />
     <Compile Include="AI\LordJobs\LordToil_MaraudColony.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_LoadContainer.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_PushMobileContainer.cs" />
+    <Compile Include="AI\WorkGivers\WorkGiver_PushContainer.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_ToggleIris.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CloseStargate.cs" />
@@ -351,7 +351,7 @@
     <Compile Include="Comps\Comp_TintedEmptyStateGraphic.cs" />
     <Compile Include="Comps\Comp_AnalyzableResearchWhen.cs" />
     <Compile Include="Comps\CompUseEffect_AssembleAndStartQuest.cs" />
-    <Compile Include="Comps\Comp_MobileContainer.cs" />
+    <Compile Include="Comps\Comp_MobileContainerControl.cs" />
     <Compile Include="Comps\Comp_PersistentMentalState.cs" />
     <Compile Include="Comps\Comp_ResonanceIdol.cs" />
     <Compile Include="Comps\Comp_SetInitialGestatorState.cs" />
@@ -360,7 +360,7 @@
     <Compile Include="Comps\Comp_ZpmSignalScrambler.cs" />
     <Compile Include="Comps\Properties\CompProperties_AnalyzableResearchWhen.cs" />
     <Compile Include="Comps\Properties\CompProperties_AssembleAndStartQuest.cs" />
-    <Compile Include="Comps\Properties\CompProperties_MobileContainer.cs" />
+    <Compile Include="Comps\Properties\CompProperties_MobileContainerControl.cs" />
     <Compile Include="Comps\Properties\CompProperties_PersistentMentalState.cs" />
     <Compile Include="Comps\Properties\CompProperties_ProximityAlarm.cs" />
     <Compile Include="Comps\Comp_AdditionalDamage.cs" />

@@ -27,8 +27,6 @@
 
   <!-- Sarcophagus -->
 
-  <!-- TODO: dr worker givers-->
-
   <WorkGiverDef>
     <defName>Rimgate_Doctor_RescueToSarcophagus</defName>
     <label>rescue downed allies to bed</label>
@@ -140,6 +138,17 @@
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Rimgate_PushContainer</defName>
+    <label>push cart</label>
+    <giverClass>Rimgate.WorkGiver_PushContainer</giverClass>
+    <workType>BasicWorker</workType>
+    <verb>push cart</verb>
+    <gerund>pushing cart</gerund>
+    <canBeDoneWhileDrafted>true</canBeDoneWhileDrafted>
+    <priorityInType>100</priorityInType>
   </WorkGiverDef>
 
 </Defs>

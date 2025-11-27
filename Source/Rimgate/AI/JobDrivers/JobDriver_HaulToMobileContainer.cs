@@ -8,7 +8,7 @@ public class JobDriver_HaulToMobileContainer : JobDriver_HaulToContainer
 {
     public int initialCount;
 
-    public Comp_MobileContainer Mobile => base.Container?.TryGetComp<Comp_MobileContainer>();
+    public Comp_MobileContainerControl Mobile => base.Container?.TryGetComp<Comp_MobileContainerControl>();
 
     public override void ExposeData()
     {

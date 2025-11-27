@@ -266,7 +266,8 @@
 			<isInert>true</isInert>
 			<claimable>false</claimable>
 		</building>
-		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<surfaceType>Item</surfaceType>
 		<inspectorTabs>
 			<li>Rimgate.ITab_MobileContainer</li>
@@ -289,7 +290,7 @@
 		</statBases>
 		<comps>
 			<!-- mobile logic -->
-			<li Class="Rimgate.CompProperties_MobileContainer" />
+			<li Class="Rimgate.CompProperties_MobileContainerControl" />
 		</comps>
 	</ThingDef>
 
@@ -316,7 +317,7 @@
 		<graphicData>
 			<texPath>Things/Building/MobileContainer/RGWheelbarrow</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(1.2,1.2)</drawSize>
+			<drawSize>(1,1)</drawSize>
 		</graphicData>
 		<statBases>
 			<Mass>18</Mass>
@@ -335,9 +336,9 @@
 		</costList>
 		<techLevel>Industrial</techLevel>
 		<comps>
-			<li Class="Rimgate.CompProperties_MobileContainer">
+			<li Class="Rimgate.CompProperties_MobileContainerControl">
 				<slowdownSeverity>0.85</slowdownSeverity>
-				<massCapacity>75</massCapacity>
+				<massCapacity>136</massCapacity>
 			</li>
 		</comps>
 		<researchPrerequisites>
@@ -354,7 +355,7 @@
 			<texPath>Things/Building/MobileContainer/RGTrackedCart</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-			<drawSize>(1.5,1.5)</drawSize>
+			<drawSize>(1,1)</drawSize>
 		</graphicData>
 		<statBases>
 			<Mass>28</Mass>
@@ -374,16 +375,17 @@
 		<building>
 			<preventDeteriorationInside>true</preventDeteriorationInside>
 		</building>
+		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
 		<comps>
-			<li Class="Rimgate.CompProperties_MobileContainer">
+			<li Class="Rimgate.CompProperties_MobileContainerControl">
 				<slowdownSeverity>0.55</slowdownSeverity>
-				<massCapacity>200</massCapacity>
+				<massCapacity>320</massCapacity>
 			</li>
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
 				<fuelConsumptionRate>135.0</fuelConsumptionRate>
-				<fuelCapacity>10.0</fuelCapacity>
+				<fuelCapacity>15.0</fuelCapacity>
 				<fuelFilter>
 					<thingDefs>
 						<li>Chemfuel</li>
@@ -397,7 +399,7 @@
 		</researchPrerequisites>
 	</ThingDef>
 
-	<!-- T3: Hover skid (spacer): requires power -->
+	<!-- T3: Hover skid (spacer) -->
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_MobileHoverSkid</defName>
 		<label>hover skid</label>
@@ -406,7 +408,7 @@
 			<texPath>Things/Building/MobileContainer/RGHoverSkid</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-			<drawSize>(1.5,1.5)</drawSize>
+			<drawSize>(1,1)</drawSize>
 		</graphicData>
 		<statBases>
 			<Mass>28</Mass>
@@ -426,17 +428,18 @@
 		<building>
 			<preventDeteriorationInside>true</preventDeteriorationInside>
 		</building>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
 		<comps>
-			<li Class="Rimgate.CompProperties_MobileContainer">
+			<li Class="Rimgate.CompProperties_MobileContainerControl">
 				<slowdownSeverity>0.15</slowdownSeverity>
 				<shouldTickContents>false</shouldTickContents>
-				<massCapacity>320</massCapacity>
+				<massCapacity>520</massCapacity>
 			</li>
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
 				<fuelConsumptionRate>115.0</fuelConsumptionRate>
-				<fuelCapacity>5.0</fuelCapacity>
+				<fuelCapacity>10.0</fuelCapacity>
 				<fuelFilter>
 					<thingDefs>
 						<li>Rimgate_Naquadah</li>

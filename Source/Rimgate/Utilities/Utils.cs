@@ -48,8 +48,9 @@ internal static class Utils
     public static bool IsGoodSpawnCell(IntVec3 c, Map map)
     {
         if (!c.InBounds(map)) return false;
-        if (!c.Standable(map)) return false;              // avoids walls, pawns, etc.
-        if (c.Filled(map)) return false;                  // no buildings/solid things
+        if (!c.Standable(map)) return false; // avoids walls, pawns, etc.
+        if (c.Impassable(map)) return false;
+        if (c.Filled(map)) return false; // no buildings/solid things
         return true;
     }
 
@@ -80,20 +81,36 @@ internal static class Utils
 
     // Pick a good stand cell
     // (adjacent to dest, reachable, closest to pawn)
-    public static IntVec3 FindStandCellFor(Pawn pawn, IntVec3 dest, Map map, IntVec3 from)
+    public static bool FindStandCellFor(
+        IntVec3 from,
+        IntVec3 dest,
+        Map map,
+        out IntVec3 result)
     {
-        if (pawn == null || pawn.health.Downed) return from;
+        result = default;
 
-        IntVec3 best = dest; float bestDist = float.MaxValue;
+        float bestDist = float.MaxValue; 
+        bool found = false;
         foreach (var c in GenAdj.CellsAdjacentCardinal(dest, Rot4.North, new IntVec2(1, 1)))
         {
-            if (!c.InBounds(map) || c.Impassable(map)) continue;
-            if (!map.reachability.CanReach(from, c, PathEndMode.Touch, TraverseParms.For(pawn))) continue;
+            if (!IsGoodSpawnCell(c, map)) 
+                continue;
+            bool canReach = map.reachability.CanReach(
+                from,
+                c,
+                PathEndMode.OnCell,
+                TraverseParms.For(TraverseMode.ByPawn));
+            if (!canReach) continue;
             float d = c.DistanceTo(from);
-            if (d < bestDist) { best = c; bestDist = d; }
+            if (d < bestDist) 
+            {
+                result = c; 
+                bestDist = d;
+                found = true;
+            }
         }
-        // fallback: stand on current cell if nothing else
-        return IsGoodSpawnCell(best, map) ? best : from;
+
+        return found;
     }
 
     public static void TryPlaceExactOrNear(Thing thing, Map map, IntVec3? pos, Rot4? rot)

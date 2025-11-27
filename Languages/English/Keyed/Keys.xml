@@ -259,17 +259,22 @@
 
 	<!-- Carts -->
 
+	<RG_Stat_Cart_LoadoutRange_Label>Load Range</RG_Stat_Cart_LoadoutRange_Label>
+	<RG_Stat_Cart_LoadoutRange_Desc>The maximum distance from which items can be loaded into this cart.</RG_Stat_Cart_LoadoutRange_Desc>
+
+	<RG_LoadOutRange>Load range: {0} cells</RG_LoadOutRange>
 	<RG_CartStatusLoading>Loading in progress...</RG_CartStatusLoading>
 	<RG_CartStatusIdle>Idle</RG_CartStatusIdle>
 
 	<RG_CommandPushLabel>Push to...</RG_CommandPushLabel>
 	<RG_CommandPushDesc>Order a pawn to push this {0} to a destination cell.</RG_CommandPushDesc>
-	<RG_CommandPushAndDumpLabel>Push and dump to…</RG_CommandPushAndDumpLabel>
-	<RG_CommandPushAndDumpDesc>Order a pawn to push this {0} to a destination and unload everything there.</RG_CommandPushAndDumpDesc>
+	<RG_CommandDumpLabel>Push and dump to…</RG_CommandDumpLabel>
+	<RG_CommandDumpDesc>Order a pawn to push this {0} to a destination and unload everything there.</RG_CommandDumpDesc>
 	<RG_CommandCartDisabled>Loading in progress.</RG_CommandCartDisabled>
 
 	<RG_MessagePawnCannotPush>{0} was unable to push {1}.</RG_MessagePawnCannotPush>
 	<RG_MessageNoPawnToPush>No available colonist to push {0}.</RG_MessageNoPawnToPush>
+	<RG_MessagePawnCannotReachDestination>{0} cannot reach the designated target.</RG_MessagePawnCannotReachDestination>
 	<RG_MessageCantLoadMoreIntoCart>Your {0} can't finish loading the {1} because some items became unavailable ({2}).</RG_MessageCantLoadMoreIntoCart>
 	<RG_MessageCartUnreachable>Some carts are unreachable.</RG_MessageCartUnreachable>
 	<RG_MessageContainerLoadingProcessStarted>Assigned items will now be loaded into the cart.</RG_MessageContainerLoadingProcessStarted>
@@ -280,7 +285,7 @@
 
 	<RG_IncapableOf>{0} is unable to do {1} work.</RG_IncapableOf>
 	<RG_CartNoFuel>Unable to push {0} (no fuel).</RG_CartNoFuel>
-	<RG_CannotReachDestination>No colonist is able to reach the designated target.</RG_CannotReachDestination>
+	<RG_CannotReachDestination>No colonist can reach the designated target.</RG_CannotReachDestination>
 
 	<RG_PushCartThroughStargateAction>Push cart through the Dwarfgate.</RG_PushCartThroughStargateAction>
 	<RG_PushCartsThroughStargateAction>Push carts through the Dwarfgate.</RG_PushCartsThroughStargateAction>

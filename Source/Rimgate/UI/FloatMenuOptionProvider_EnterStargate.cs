@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using Verse.AI;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Rimgate;
 
@@ -22,7 +23,9 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
         Building_Stargate gate = clickedThing as Building_Stargate;
-        if (gate == null || gate.GateControl == null)
+        Pawn pawn = context.FirstSelectedPawn;
+
+        if (pawn == null || gate == null || gate.GateControl == null)
             yield break;
 
         if (!gate.GateControl.IsActive)
@@ -39,7 +42,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
 
         if (!context.IsMultiselect)
         {
-            if (!CanEnterGate(context.FirstSelectedPawn, gate))
+            if (!CanEnterGate(pawn, gate))
             {
                 yield return new FloatMenuOption("CannotEnterPortal".Translate(gate.Label) + ": " + "NoPath".Translate(), null);
                 yield break;
@@ -49,7 +52,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
         tmpGateEnteringPawns.Clear();
         foreach (Pawn validSelectedPawn in context.ValidSelectedPawns)
         {
-            if (CanEnterGate(context.FirstSelectedPawn, gate))
+            if (CanEnterGate(pawn, gate))
                 tmpGateEnteringPawns.Add(validSelectedPawn);
         }
 
@@ -91,18 +94,19 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
 
                 Find.Targeter.BeginTargeting(parms, t =>
                 {
-                    if(t.Thing != null)
+                    if (t.Thing != null)
                     {
                         if (!t.Thing.def.Claimable) return;
 
                         if (t.Thing is Building_MobileContainer container)
                         {
-                            var comp = container.GetComp<Comp_MobileContainer>();
+                            var comp = container.Control;
+                            comp.ClearDesignations();
                             // send a push job targeting the *gate thing*
-                            comp.AssignPushJob(
-                                new LocalTargetInfo(gate),
-                                dump: false,
-                                context.FirstSelectedPawn);
+                            var pushJob = comp.GetPushJob(pawn, gate);
+                            if (pushJob == null) return;
+                            pushJob.playerForced = true;
+                            pawn.jobs.TryTakeOrderedJob(pushJob, JobTag.MiscWork);
                             return;
                         }
                     }
@@ -111,7 +115,8 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
                         RimgateDefOf.Rimgate_BringToStargate,
                         t.Thing,
                         gate);
-                    context.FirstSelectedPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                    job.playerForced = true;
+                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                 });
             });
         }

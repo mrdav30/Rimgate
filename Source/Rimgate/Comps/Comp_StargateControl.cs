@@ -601,10 +601,12 @@ public class Comp_StargateControl : ThingComp
                 {
                     _wantsIrisToggled = !_wantsIrisToggled;
 
-                    Designation designation = parent.Map.designationManager.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationToggleIris);
+                    var dm = parent?.Map?.designationManager;
+                    if (dm == null) return;
 
+                    Designation designation = dm.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationToggleIris);
                     if (designation == null)
-                        parent.Map.designationManager.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationToggleIris));
+                        dm.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationToggleIris));
                     else
                         designation?.Delete();
                 }

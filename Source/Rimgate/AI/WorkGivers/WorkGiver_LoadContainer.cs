@@ -22,7 +22,7 @@ public class WorkGiver_LoadContainer : WorkGiver_Scanner
         var list = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial);
         for (int i = 0; i < list.Count; i++)
         {
-            var comp = list[i].TryGetComp<Comp_MobileContainer>();
+            var comp = list[i].TryGetComp<Comp_MobileContainerControl>();
             if (comp != null && comp.LoadingInProgress && comp.AnyPawnCanLoadAnythingNow)
                 return false;
         }
@@ -36,7 +36,7 @@ public class WorkGiver_LoadContainer : WorkGiver_Scanner
         for (int i = 0; i < list.Count; i++)
         {
             var t = list[i];
-            var comp = t.TryGetComp<Comp_MobileContainer>();
+            var comp = t.TryGetComp<Comp_MobileContainerControl>();
             if (comp == null) continue;
             if (!comp.LoadingInProgress) continue;
             if (!pawn.CanReserveAndReach(t, PathEndMode.Touch, Danger.Deadly)) continue;
@@ -50,7 +50,7 @@ public class WorkGiver_LoadContainer : WorkGiver_Scanner
 
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        var container = t.TryGetComp<Comp_MobileContainer>();
+        var container = t.TryGetComp<Comp_MobileContainerControl>();
         return container != null
             && container.LoadingInProgress
             && pawn.CanReserveAndReach(t, PathEndMode.Touch, Danger.Deadly)
@@ -59,7 +59,7 @@ public class WorkGiver_LoadContainer : WorkGiver_Scanner
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        var container = t.TryGetComp<Comp_MobileContainer>();
+        var container = t.TryGetComp<Comp_MobileContainerControl>();
         var job = JobMaker.MakeJob(RimgateDefOf.Rimgate_HaulToContainer, LocalTargetInfo.Invalid, container.parent);
         job.ignoreForbidden = true;
         // (Optional) slightly prioritize this job when player-initiated loading is active

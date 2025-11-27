@@ -147,8 +147,8 @@
 	</JobDef>
 
 	<JobDef>
-		<defName>Rimgate_PushMobileContainer</defName>
-		<driverClass>Rimgate.JobDriver_PushMobileContainer</driverClass>
+		<defName>Rimgate_PushContainer</defName>
+		<driverClass>Rimgate.JobDriver_PushContainer</driverClass>
 		<reportString>pushing cart.</reportString>
 		<casualInterruptible>true</casualInterruptible>
 		<alwaysShowWeapon>false</alwaysShowWeapon>
@@ -158,18 +158,8 @@
 
 	<JobDef>
 		<defName>Rimgate_EnterStargateWithContainer</defName>
-		<driverClass>Rimgate.JobDriver_PushMobileContainer</driverClass>
+		<driverClass>Rimgate.JobDriver_PushContainer</driverClass>
 		<reportString>Entering TargetC with cart.</reportString>
-		<casualInterruptible>true</casualInterruptible>
-		<alwaysShowWeapon>false</alwaysShowWeapon>
-		<dropThingBeforeJob>true</dropThingBeforeJob>
-		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-	</JobDef>
-
-	<JobDef>
-		<defName>Rimgate_PushAndDumpMobileContainer</defName>
-		<driverClass>Rimgate.JobDriver_PushMobileContainer</driverClass>
-		<reportString>pushing and dumping cart.</reportString>
 		<casualInterruptible>true</casualInterruptible>
 		<alwaysShowWeapon>false</alwaysShowWeapon>
 		<dropThingBeforeJob>true</dropThingBeforeJob>

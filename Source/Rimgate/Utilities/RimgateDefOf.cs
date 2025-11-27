@@ -17,9 +17,10 @@ public static class RimgateDefOf
 
     public static DamageDef Rimgate_KawooshExplosion;
 
+    public static DesignationDef Rimgate_DesignationCloseStargate;
+    public static DesignationDef Rimgate_DesignationPushCart;
     public static DesignationDef Rimgate_DesignationToggle;
     public static DesignationDef Rimgate_DesignationToggleIris;
-    public static DesignationDef Rimgate_DesignationCloseStargate;
 
     public static DutyDef Rimgate_MaraudColony;
 
@@ -85,8 +86,7 @@ public static class RimgateDefOf
     public static JobDef Rimgate_MeditateAtWraithTable;
     public static JobDef Rimgate_MeditateOnGoauldThrone;
     public static JobDef Rimgate_PatientGoToSarcophagus;
-    public static JobDef Rimgate_PushMobileContainer;
-    public static JobDef Rimgate_PushAndDumpMobileContainer;
+    public static JobDef Rimgate_PushContainer;
     public static JobDef Rimgate_RescueToSarcophagus;
     public static JobDef Rimgate_Toggle;
     public static JobDef Rimgate_ToggleIris;

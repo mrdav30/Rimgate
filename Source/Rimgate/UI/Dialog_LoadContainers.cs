@@ -10,7 +10,6 @@ using Verse;
 using Verse.AI;
 using Verse.Noise;
 using Verse.Sound;
-using static HarmonyLib.Code;
 
 namespace Rimgate;
 
@@ -23,7 +22,7 @@ public class Dialog_LoadContainers : Window
 
     private Map _map;
 
-    private Comp_MobileContainer _container;
+    private Comp_MobileContainerControl _container;
 
     private List<TransferableOneWay> _transferables;
 
@@ -103,7 +102,7 @@ public class Dialog_LoadContainers : Window
         }
     }
 
-    public Dialog_LoadContainers(Map map, Comp_MobileContainer container)
+    public Dialog_LoadContainers(Map map, Comp_MobileContainerControl container)
     {
         _map = map;
         _container = container;
