@@ -8,30 +8,37 @@ public class WorkGiver_Doctor_RescueToSarcophagus : WorkGiver_RescueDowned
 {
     protected const float MinDistFromEnemy = 40f;
 
-    public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
-	{
-		Pawn patient = t as Pawn;
+    public override bool ShouldSkip(Pawn pawn, bool forced = false)
+    {
+        if (Utils.PawnIncapableOfHauling(pawn, out _)) return true;
 
-		if (patient == null
+        return pawn?.Map?.listerBuildings.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus) ?? false;
+    }
+
+    public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
+    {
+        Pawn patient = t as Pawn;
+
+        if (patient == null
             || patient.GetUniqueLoadID() == pawn.GetUniqueLoadID()
             || !patient.Downed
-			|| patient.health.hediffSet.InLabor()
+            || patient.health.hediffSet.InLabor()
             || patient.GetPosture().InBed()
-            || patient.Faction != pawn.Faction 
-			|| !MedicalUtil.HasAllowedMedicalCareCategory(patient)
+            || patient.Faction != pawn.Faction
+            || !MedicalUtil.HasAllowedMedicalCareCategory(patient)
             || patient.ParentHolder is Building_Sarcophagus
-			|| !pawn.CanReserve(patient, 1, -1, null, forced) 
-			|| GenAI.EnemyIsNear(patient, MinDistFromEnemy))
-		{
-			return false;
-		}
+            || !pawn.CanReserve(patient, 1, -1, null, forced)
+            || GenAI.EnemyIsNear(patient, MinDistFromEnemy))
+        {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
-	{
-		Pawn patient = t as Pawn;
+    public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
+    {
+        Pawn patient = t as Pawn;
         Building_Sarcophagus sarcophagus = SarcophagusUtil.FindBestSarcophagus(patient, pawn);
         if (sarcophagus != null)
         {
@@ -40,6 +47,6 @@ public class WorkGiver_Doctor_RescueToSarcophagus : WorkGiver_RescueDowned
             return job;
         }
 
-		return null;
-	}
+        return null;
+    }
 }

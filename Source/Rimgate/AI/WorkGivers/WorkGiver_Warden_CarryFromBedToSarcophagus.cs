@@ -7,6 +7,13 @@ namespace Rimgate;
 
 public class WorkGiver_Warden_CarryFromBedToSarcophagus : WorkGiver_Warden
 {
+    public override bool ShouldSkip(Pawn pawn, bool forced = false)
+    {
+        if (Utils.PawnIncapableOfHauling(pawn, out _)) return true;
+
+        return pawn?.Map?.listerBuildings.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus) ?? false;
+    }
+
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
         Pawn warden = pawn;
