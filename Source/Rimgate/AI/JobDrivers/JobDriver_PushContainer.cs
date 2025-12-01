@@ -82,12 +82,29 @@ public class JobDriver_PushContainer : JobDriver
                 _proxyComp = proxy?.Control;
                 if (_proxyComp == null)
                 {
+                    // Failed after despawn; restore cart near pawn and bail
+                    if (proxy != null)
+                    {
+                        var drop = Utils.BestDropCellNearThing(pawn);
+                        proxy.ConvertProxyToCart(pawn,
+                            cartDef,
+                            drop,
+                            Utils.RotationFacingFor(pawn.Position, drop));
+                    }
+
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
 
                 if (!_proxyComp.ProxyFuelOk)
                 {
+                    // Not enough fuel to push — restore immediately
+                    var drop = Utils.BestDropCellNearThing(pawn);
+                    proxy.ConvertProxyToCart(pawn,
+                        cartDef,
+                        drop,
+                        Utils.RotationFacingFor(pawn.Position, drop));
+
                     Messages.Message("RG_CartNoFuel".Translate(cartDef.label),
                         proxy,
                         MessageTypeDefOf.RejectInput);
@@ -98,6 +115,13 @@ public class JobDriver_PushContainer : JobDriver
                 // Proxy is not spawned in; give it directly to the carry tracker
                 if (!pawn.carryTracker.TryStartCarry(proxy))
                 {
+                    // Pawn can’t carry this (capacity, reservation weirdness, etc.) — restore
+                    var drop = Utils.BestDropCellNearThing(pawn);
+                    proxy.ConvertProxyToCart(pawn,
+                        cartDef,
+                        drop,
+                        Utils.RotationFacingFor(pawn.Position, drop));
+
                     Messages.Message("RG_MessagePawnCannotPush".Translate(pawn.LabelShort, cartDef.label),
                         pawn,
                         MessageTypeDefOf.RejectInput);

@@ -135,7 +135,7 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableC
     // Slowdown severity (0..1)
     public float SlowdownSeverity => Props.slowdownSeverity;
 
-    public bool UsesFuelWhilePushing => parent.GetComp<CompRefuelable>() != null;
+    public bool UsesFuelWhilePushing => Refuelable != null;
 
     public CompRefuelable Refuelable
     {
@@ -252,7 +252,7 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableC
         Scribe_Values.Look(ref SavedHasPaint, "SavedHasPaint", false);
         Scribe_Values.Look(ref _wantsToBePushed, "_wantsToBePushed", false);
         Scribe_Values.Look(ref _wantsToBeDumped, "_wantsToBeDumped", false);
-        Scribe_Values.Look(ref _cachedDesignationTarget, "_cachedDesignationTarget");
+        Scribe_TargetInfo.Look(ref _cachedDesignationTarget, "_cachedDesignationTarget");
     }
 
     public ThingOwner GetDirectlyHeldThings() => InnerContainer;
@@ -266,13 +266,6 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableC
     {
         foreach (Gizmo item in base.CompGetGizmosExtra())
             yield return item;
-
-        int num = 0;
-        foreach (object selectedObject in Find.Selector.SelectedObjects)
-        {
-            if (selectedObject is ThingWithComps thing && thing.HasComp<Comp_MobileContainerControl>())
-                num++;
-        }
 
         if (LoadingInProgress)
         {
@@ -459,6 +452,9 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableC
 
     public Job GetDesignatedPushJob(Pawn pawn)
     {
+        if (!_cachedDesignationTarget.IsValid)
+            return null;
+
         var job = GetPushJob(pawn, _cachedDesignationTarget);
         if (job == null) return null;
         _cachedDesignationTarget = null;
