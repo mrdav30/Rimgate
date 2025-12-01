@@ -438,11 +438,17 @@
         <defName>Rimgate_AncientResearchBank</defName>
         <label>ancient research bank</label>
         <description>A self-contained data core from a vanished civilization, still humming faintly with stored knowledge.\n\nWhen interfaced with a modern research bench, it boosts analysis speed by 35% through active cross-referencing of ancient archives and predictive heuristics.\n\nLimit one per workbench — most minds can only handle so much enlightenment at once.</description>
-        <uiIconScale>2.0</uiIconScale>
         <graphicData>
             <texPath>Things/Building/Artifact/RGAncientDatabase</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
+            <graphicClass>Graphic_Multi</graphicClass>
             <drawSize>(1,1)</drawSize>
+            <drawOffsetNorth>(0,0,0.45)</drawOffsetNorth>
+            <drawOffsetSouth>(0,0,-0.05)</drawOffsetSouth>
+            <drawOffsetWest>(-0.25,0,0)</drawOffsetWest>
+            <drawOffsetEast>(0.25,0,0)</drawOffsetEast>
+            <damageData>
+                <enabled>false</enabled>
+            </damageData>
         </graphicData>
         <statBases>
             <WorkToBuild>1200</WorkToBuild>
@@ -450,20 +456,23 @@
         </statBases>
         <uiIconScale>0.75</uiIconScale>
         <size>(1,1)</size>
-        <altitudeLayer>Building</altitudeLayer>
+        <altitudeLayer>BuildingOnTop</altitudeLayer>
         <passability>PassThroughOnly</passability>
         <castEdgeShadows>false</castEdgeShadows>
         <staticSunShadowHeight>0.51</staticSunShadowHeight>
         <fillPercent>0.5</fillPercent>
         <canOverlapZones>false</canOverlapZones>
-        <rotatable>false</rotatable>
-        <pathCost>42</pathCost>
+        <rotatable>true</rotatable>
+        <terrainAffordanceNeeded IsNull="True" />
+        <pathCost>15</pathCost>
         <statBases>
             <MaxHitPoints>100</MaxHitPoints>
             <Mass>20</Mass>
             <Flammability>0.5</Flammability>
         </statBases>
         <building>
+            <isEdifice>false</isEdifice>
+            <isAttachment>true</isAttachment>
             <destroySound>BuildingDestroyed_Metal_Small</destroySound>
             <claimable>true</claimable>
             <isInert>true</isInert>
@@ -478,6 +487,7 @@
         </thingCategories>
         <placeWorkers>
             <li>PlaceWorker_ShowFacilitiesConnections</li>
+            <li>Placeworker_AttachedToWall</li>
         </placeWorkers>
         <comps>
             <li Class="CompProperties_Facility">
