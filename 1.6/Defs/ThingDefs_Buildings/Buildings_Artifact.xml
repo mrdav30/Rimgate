@@ -352,10 +352,6 @@
                 </targetingParameters>
             </li>
         </comps>
-        <placeWorkers>
-            <li>Rimgate.PlaceWorker_ZpmClusterHint</li>
-        </placeWorkers>
-        <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
         <hasInteractionCell>False</hasInteractionCell>
     </ThingDef>
 

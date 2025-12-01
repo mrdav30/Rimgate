@@ -37,7 +37,7 @@ public class Building_MeatLab : Building_PlantGrower
             var graphic = new Graphic_Single();
 
             GraphicRequest request = new GraphicRequest(
-                Type.GetType("Graphic_Single"),
+                typeof(Graphic_Single),
                 $"Things/Building/Production/MeatLab/RGMeatLab_{growState}",
                 ShaderDatabase.DefaultShader,
                 data.drawSize,

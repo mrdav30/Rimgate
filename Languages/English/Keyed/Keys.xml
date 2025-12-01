@@ -213,6 +213,9 @@
 
 	<RG_ZpmDarkEnergyReserve>Dark Energy Reserve: {0} / {1}</RG_ZpmDarkEnergyReserve>
 	<RG_ZpmSynergyBonus>Cluster synergy: +{0}%</RG_ZpmSynergyBonus>
+	<RG_InsertZpmIntoHousingFloatMenu>Insert into {0}</RG_InsertZpmIntoHousingFloatMenu>
+	<RG_ZpmHousing_EjectOne>Eject ZPM</RG_ZpmHousing_EjectOne>
+	<RG_ZpmHousing_EjectAll>Eject all ZPMs</RG_ZpmHousing_EjectAll>
 
 	<!-- ZPM Raid Quest -->
 

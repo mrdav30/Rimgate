@@ -94,7 +94,7 @@
     <label>Industrial Naquadria generator</label>
     <description>A sprawling Tau'ri industrial-grade naquadria reactor, usually reserved for deep-space facilities and "absolutely do not let this explode" Stargate sites.\n\nOutputs enough power to light a small city, run a full DHD emulator, and still have juice left over to annoy the neighbors. The humming sound in the walls is definitely normal. Probably.</description>
     <graphicData>
-      <texPath>Things/Building/Power/NaquadriaGenerator/RGIndustrialNaquadriaFiredGenerator</texPath>
+      <texPath>Things/Building/Power/RGIndustrialNaquadriaFiredGenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(5,3)</drawSize>
       <drawOffset>(0, 0, 0.35)</drawOffset>
@@ -250,6 +250,100 @@
         <heatPerSecond>6</heatPerSecond>
       </li>
     </comps>
+  </ThingDef>
+
+  <!-- =============== ZPM Containment Housing =============== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_ZPMHousing</defName>
+    <label>ZPM containment housing</label>
+    <description>A reinforced subspace-alignment cradle designed to hold and synchronize up to three zero point modules.\n\nInserted ZPMs are automatically phase-locked and routed through a unified power manifold, letting the housing act as the visible “battery” on your grid.\n\nEmpty, it’s inert.\n\nLoaded, it becomes one of the most stable—yet unmistakably conspicuous—power sources in the Rim.</description>
+
+    <thingClass>Rimgate.Building_ZPMHousing</thingClass>
+    <category>Building</category>
+
+    <altitudeLayer>Building</altitudeLayer>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <useHitPoints>true</useHitPoints>
+    <rotatable>true</rotatable>
+    <selectable>true</selectable>
+
+    <size>(2,2)</size>
+    <passability>PassThroughOnly</passability>
+    <pathCost>60</pathCost>
+    <fillPercent>1</fillPercent>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+
+    <graphicData>
+      <texPath>Things/Building/Power/RGZPMHousing</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(0.6,0.4,0.6)</volume>
+      </shadowData>
+    </graphicData>
+
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+
+    <statBases>
+      <MaxHitPoints>800</MaxHitPoints>
+      <WorkToBuild>4000</WorkToBuild>
+      <Flammability>0.0</Flammability>
+      <Mass>120</Mass>
+      <Beauty>-2</Beauty>
+    </statBases>
+
+    <building>
+      <isInert>false</isInert>
+      <uninstallWork>2500</uninstallWork>
+    </building>
+
+    <costList>
+      <Steel>320</Steel>
+      <Plasteel>160</Plasteel>
+      <Rimgate_Naquadah>100</Rimgate_Naquadah>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>8</ComponentSpacer>
+    </costList>
+
+    <researchPrerequisites>
+      <li>Rimgate_ZPMHousing</li>
+    </researchPrerequisites>
+
+    <designationCategory>Power</designationCategory>
+    <designationHotKey>Misc1</designationHotKey>
+
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsPower</li>
+    </thingCategories>
+    <stackLimit>1</stackLimit>
+    <tradeability>None</tradeability>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <resourcesFractionWhenDeconstructed>0.5</resourcesFractionWhenDeconstructed>
+
+    <comps>
+      <!-- 
+        Battery capacity here is the physical max (3 × 48000). 
+        Building_ZPMHousing clamps effective capacity based on ZpmCount.
+      -->
+      <li Class="CompProperties_Battery">
+        <storedEnergyMax>144000</storedEnergyMax> <!-- 3 * 48000 -->
+        <efficiency>1</efficiency>
+        <transmitsPower>true</transmitsPower>
+        <shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+
+      <li Class="CompProperties_Flickable" />
+
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>Rimgate_SubspaceShroudEmitter</li>
+          <li>Rimgate_SubspacePhaseDiverter</li>
+        </linkableFacilities>
+      </li>
+    </comps>
+
   </ThingDef>
 
 </Defs>

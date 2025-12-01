@@ -232,4 +232,20 @@
 		<casualInterruptible>true</casualInterruptible>
 	</JobDef>
 
+	<!-- =============== Symbiote pool =============== -->
+
+	<JobDef>
+		<defName>Rimgate_InsertZpmIntoHousing</defName>
+		<driverClass>Rimgate.JobDriver_InsertZpmIntoHousing</driverClass>
+		<reportString>inserting ZPM into housing.</reportString>
+		<casualInterruptible>true</casualInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_EjectZpmFromHousing</defName>
+		<driverClass>Rimgate.JobDriver_EjectZpmFromHousing</driverClass>
+		<reportString>ejecting a ZPM from housing.</reportString>
+		<casualInterruptible>true</casualInterruptible>
+	</JobDef>
+
 </Defs>

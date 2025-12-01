@@ -29,7 +29,10 @@ public static class Harmony_BlockZpmFromBatteryDistribution
         SavedLists[__instance] = batteries;
 
         // Build filtered list that excludes ZPM batteries
-        var filtered = batteries.Where(b => b?.parent?.def != RimgateDefOf.Rimgate_ZPM).ToList();
+        var filtered = batteries.Where(b => 
+            b?.parent?.def != RimgateDefOf.Rimgate_ZPM
+            && b?.parent?.def != RimgateDefOf.Rimgate_ZPMHousing
+        ).ToList();
 
         // Swap in filtered list for the duration of the original method
         BatteryCompsField.SetValue(__instance, filtered);

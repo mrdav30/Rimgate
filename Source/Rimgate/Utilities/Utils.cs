@@ -45,22 +45,18 @@ internal static class Utils
         return false;
     }
 
-    public static bool IsGoodSpawnCell(IntVec3 c, Map map)
-    {
-        if (!c.InBounds(map)) return false;
-        if (!c.Standable(map)) return false; // avoids walls, pawns, etc.
-        if (c.Impassable(map)) return false;
-        if (c.Filled(map)) return false; // no buildings/solid things
-        return true;
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsGoodSpawnCell(IntVec3 c, Map map) => c.InBounds(map) && c.Standable(map);
 
     // Prefer the cell in front of pawn;
     // then other cardinals; else nearby radius.
     public static IntVec3 BestDropCellNearThing(Thing t)
     {
         var map = t.Map;
+        if (map == null)
+            return t.Position;
+
         var from = t.def.hasInteractionCell ? t.InteractionCell : t.Position + t.Rotation.FacingCell;
-        if (map == null) return from;
         if (from != t.Position && IsGoodSpawnCell(from, map)) return from;
 
         // try other cardinals in rotation order: right, back, left
@@ -105,6 +101,40 @@ internal static class Utils
             if (d < bestDist) 
             {
                 result = c; 
+                bestDist = d;
+                found = true;
+            }
+        }
+
+        return found;
+    }
+
+    public static bool FindStandCellFor(
+        Pawn pawn,
+        IntVec3 dest,
+        out IntVec3 result)
+    {
+        var map = pawn.Map;
+        result = default;
+        float bestDist = float.MaxValue;
+        bool found = false;
+
+        foreach (var c in GenAdj.CellsAdjacentCardinal(dest, Rot4.North, new IntVec2(1, 1)))
+        {
+            if (!IsGoodSpawnCell(c, map))
+                continue;
+
+            if (!map.reachability.CanReach(
+                    pawn.Position,
+                    c,
+                    PathEndMode.OnCell,
+                    TraverseParms.For(pawn)))
+                continue;
+
+            float d = c.DistanceTo(pawn.Position);
+            if (d < bestDist)
+            {
+                result = c;
                 bestDist = d;
                 found = true;
             }

@@ -282,12 +282,30 @@
 		<techLevel>Archotech</techLevel>
 		<baseCost>10000</baseCost>
 		<prerequisites>
-			<li>Rimgate_ZPMIntegration</li>
+			<li>Rimgate_SubspaceMasking</li>
 		</prerequisites>
-		<researchViewX>1</researchViewX>
-		<researchViewY>2.5</researchViewY>
+		<researchViewX>2</researchViewX>
+		<researchViewY>2</researchViewY>
 		<discoveredLetterTitle>About: Phase Diverter</discoveredLetterTitle>
 		<discoveredLetterText>By expressing vacuum fluctuations across parallel subspace branes, your engineers can “phase-hop” a ZPM’s intake. Connected ZPMs will now gradually replenish reserves while a diverter runs on the same power net. Don’t stare at the interference fringes too long.</discoveredLetterText>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ZPMHousing</defName>
+		<label>ZPM Housing</label>
+		<description>Reconstruct Ancient multi-module containment architecture to safely align the output of multiple ZPMs. The original schematics assume access to a city-sized power grid, a few dozen drones, and a civilization that didn’t routinely store dead rats and beer in their workbenches.\n\nWith enough reverse-engineering, your colony can fabricate a compact cradle capable of synchronizing multiple ZPMs without blowing a hole in the local spacetime topology.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>10000</baseCost>
+		<prerequisites>
+			<li>Rimgate_ParallelSubspaceCoupling</li>
+		</prerequisites>
+		<researchViewX>3</researchViewX>
+		<researchViewY>2</researchViewY>
+		<discoveredLetterTitle>About: ZPM Housing</discoveredLetterTitle>
+		<discoveredLetterText>When the final glyph-lock snapped into place, your researchers didn’t cheer—they just stepped back, very slowly, as the holographic interface resolved itself into something unmistakably… Ancient.\n\nThe device before them isn’t just a docking frame. It’s a harmonizer, a stabilizer, and a very polite suggestion to the universe that several sealed micro-cosms should all pretend to act like one big battery.\n\nThrough careful reconstruction (and one memorable incident with a lab bench now permanently fused to the ceiling), your team decoded how the Ancients balanced parallel zero-point feeds.\n\nWith a proper containment housing, multiple ZPMs can now be aligned, synchronized, and—gods help you—combined.\n\nJust remember: the Ancients built these things under strict conditions, not next to a wooden barracks full of hungry boomrats.</discoveredLetterText>
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>
 		</requiredResearchFacilities>

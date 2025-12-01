@@ -328,9 +328,11 @@
     <Compile Include="AI\JobDrivers\JobDriver_CloneOccupantGenes.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CloneOccupantSoldier.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CloneReconstructDead.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_EjectZpmFromHousing.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_EnterCloningPod.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_HaulToMobileContainer.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_InsertSymbioteQueen.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_InsertZpmIntoHousing.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_MeditateAtWraithTable.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_MeditateOnGoauldThrone.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_PushContainer.cs" />
@@ -425,6 +427,7 @@
     <Compile Include="Storyteller\IncidentWorker_SymbiotePlague.cs" />
     <Compile Include="Things\Building_SymbioteAmbushTrap.cs" />
     <Compile Include="Things\Building_SymbioteSpawningPool.cs" />
+    <Compile Include="Things\Building_ZPMHousing.cs" />
     <Compile Include="UI\ITab_SymbiotePool.cs" />
     <Compile Include="UI\RimgateTex.cs" />
     <Compile Include="Social\ThoughtWorker_WraithEssenceCraving.cs" />
@@ -506,7 +509,6 @@
     <Compile Include="UI\PlaceWorker_ShowTurretRadiusWithOffset.cs" />
     <Compile Include="UI\PlaceWorker_ResonanceIdol.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
-    <Compile Include="UI\PlaceWorker_ZpmClusterHint.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
     <Compile Include="Utilities\ResearchUtil.cs" />
     <Compile Include="Utilities\RimgateFactionDefOf.cs" />

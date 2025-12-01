@@ -78,11 +78,13 @@ public static class RimgateDefOf
     public static JobDef Rimgate_CloseStargate;
     public static JobDef Rimgate_DecodeGlyphs;
     public static JobDef Rimgate_DialStargate;
+    public static JobDef Rimgate_EjectZpmFromHousing;
     public static JobDef Rimgate_EnterCloningPod;
     public static JobDef Rimgate_EnterStargate;
     public static JobDef Rimgate_EnterStargateWithContainer;
     public static JobDef Rimgate_HaulToContainer;
     public static JobDef Rimgate_InsertSymbioteQueen;
+    public static JobDef Rimgate_InsertZpmIntoHousing;
     public static JobDef Rimgate_MeditateAtWraithTable;
     public static JobDef Rimgate_MeditateOnGoauldThrone;
     public static JobDef Rimgate_PatientGoToSarcophagus;
@@ -144,6 +146,7 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_WraithMeatLab;
     public static ThingDef Rimgate_WraithTable;
     public static ThingDef Rimgate_ZPM;
+    public static ThingDef Rimgate_ZPMHousing;
 
     public static ThoughtDef Rimgate_GoauldThroneCravingDominion;
     public static ThoughtDef Rimgate_WraithCommunedWithHive;

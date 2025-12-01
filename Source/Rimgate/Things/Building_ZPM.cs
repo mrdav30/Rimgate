@@ -1,11 +1,12 @@
+using RimWorld;
+using RimWorld.QuestGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Verse;
-using UnityEngine;
-using RimWorld;
-using RimWorld.QuestGen;
 using System.Text;
+using UnityEngine;
+using Verse;
+using Verse.AI;
 using Verse.Noise;
 using static RimWorld.FleshTypeDef;
 
@@ -14,42 +15,37 @@ namespace Rimgate;
 [StaticConstructorOnStartup]
 public class Building_ZPM : Building
 {
-    // 1 tile (cardinal/diagonal)
-    public const float ClusterScanRadius = 1.1f;
+    public const int EnergyIncrement = 100;
 
-    // total ZPMs in cluster (including this one)
-    public const int ClusterThresholdTotal = 3;
+    public const int OverflowLimit = 1000;
 
-    // bonus when hitting the threshold
-    public const float ClusterBonus = 0.25f;
+    public const float SolarFlareFactor = 0.45f;
 
-    // bonus for each ZPM beyond threshold
-    public const float PerExtraZpmBonus = 0.05f;
+    public const float TrickleFactor = 0.05f;
 
     private static Dictionary<string, Graphic> _chargeGraphics;
 
     public bool IsBroadcasting => _isBroadcasting;
 
-    private CompPowerBattery PowerBattery
-        => _powerComp ??= GetComp<CompPowerBattery>();
+    public CompPowerBattery Battery => _battery ??= GetComp<CompPowerBattery>();
 
-    private CompPowerBattery _powerComp;
+    private CompPowerBattery _battery;
 
-    private CompAffectedByFacilities ConnectedFacilities
-    => _affectedbyFacilitiesComp ??= GetComp<CompAffectedByFacilities>();
+    public float EffectiveMaxEnergy => Battery?.Props?.storedEnergyMax ?? 0;
 
-    private CompAffectedByFacilities _affectedbyFacilitiesComp;
+    public CompAffectedByFacilities Facilities => _facilities ??= GetComp<CompAffectedByFacilities>();
 
-    private MapComponent_ZpmRaidTracker Tracker
-   => _tracker ??= Map?.GetComponent<MapComponent_ZpmRaidTracker>();
+    private CompAffectedByFacilities _facilities;
+
+    public MapComponent_ZpmRaidTracker Tracker => _tracker ??= Map?.GetComponent<MapComponent_ZpmRaidTracker>();
 
     private MapComponent_ZpmRaidTracker _tracker;
 
+    public int DarkEnergyReserve => _darkEnergyReserve;
+
     private int _darkEnergyReserve;
 
-    private const int EnergyIncrement = 100;
-
-    private const int OverflowLimit = 1000;
+    public int MaxDarkEnergy => _maxDarkEnergy;
 
     private int _maxDarkEnergy = -1;
 
@@ -57,15 +53,33 @@ public class Building_ZPM : Building
 
     private bool _wasConnectedLastTick;
 
+    public bool SolarFlareActive => Map?.gameConditionManager.ConditionIsActive(IncidentDefOf.SolarFlare.gameCondition) == true;
+
     public bool CanRecharge
     {
         get
         {
+            if (Battery == null || Facilities == null) return false;
             if (Faction == Faction.OfPlayer && !ResearchUtil.ParallelSubspaceCouplingComplete) return false;
-            if (ConnectedFacilities == null) return false;
-
-            // must have at least one powered diverter
             return ActiveDiverterCount() > 0;
+        }
+    }
+
+    public override Graphic Graphic
+    {
+        get
+        {
+            // For when it's minified or in a trade ship.
+            if (Battery == null)
+                return base.DefaultGraphic;
+
+            // var chargePercent = (int) ((float) currentCapacitorCharge / (float) maxCapacitorCharge) * 100;
+            var chargePercent = (int)(Battery.StoredEnergyPct * 100);
+            if (chargePercent <= 10) return _chargeGraphics["Depleted"];
+            if (chargePercent <= 25) return _chargeGraphics["25%"];
+            if (chargePercent <= 50) return _chargeGraphics["50%"];
+            if (chargePercent <= 75) return _chargeGraphics["75%"];
+            return _chargeGraphics["Full"];
         }
     }
 
@@ -100,19 +114,19 @@ public class Building_ZPM : Building
     {
         base.PostMake();
 
-        if (PowerBattery == null) return;
+        if (Battery == null) return;
 
-        int maxStorage = (int)PowerBattery.Props.storedEnergyMax;
-        _maxDarkEnergy = (int)Math.Ceiling(maxStorage * 1.25);
-        IntRange startingReserve = new IntRange(0, maxStorage);
-        _darkEnergyReserve = startingReserve.RandomInRange;
+        // Set starting energy levels
+        _maxDarkEnergy = Mathf.CeilToInt(EffectiveMaxEnergy * 1.25f);
+        _darkEnergyReserve = new IntRange(0, _maxDarkEnergy).RandomInRange;
+        Battery.SetStoredEnergyPct(new FloatRange(0f, 0.75f).RandomInRange);
     }
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
 
-        bool connected = PowerBattery?.PowerNet != null;
+        bool connected = Battery?.PowerNet != null;
 
         // If not integrated yet, ensure we are NOT broadcasting.
         if (Faction == Faction.OfPlayer)
@@ -140,7 +154,7 @@ public class Building_ZPM : Building
 
     public override void TickRare()
     {
-        if (PowerBattery == null) return;
+        if (Battery == null) return;
         if (Map == null) return;
 
         // Inert phase: no power, no dark energy, no broadcast.
@@ -152,7 +166,6 @@ public class Building_ZPM : Building
                 _isBroadcasting = false;
                 Tracker?.NotifyZpmEndedBroadcast();
             }
-            PowerBattery.SetStoredEnergyPct(0f);
             return;
         }
 
@@ -163,7 +176,7 @@ public class Building_ZPM : Building
 
     private void CheckBroadcast()
     {
-        bool connected = PowerBattery?.PowerNet != null;
+        bool connected = Battery?.PowerNet != null;
         if (Faction == Faction.OfPlayer
             && connected != _wasConnectedLastTick)
         {
@@ -185,60 +198,56 @@ public class Building_ZPM : Building
     {
         if (CanRecharge)
         {
-            bool connected = PowerBattery?.PowerNet != null;
-            float increment = EnergyIncrement * CurrentClusterMultiplier();
-            if (connected && PowerBattery.PowerNet.CurrentEnergyGainRate() > 0.01f)
-                // increment fully using excess power
-                _darkEnergyReserve += (int)increment;
+            float netGain = Battery.PowerNet?.CurrentEnergyGainRate() ?? 0f;
+
+            // increment fully using excess power
+            if (netGain > 0.01f)
+                _darkEnergyReserve = Mathf.Min(_darkEnergyReserve + EnergyIncrement, _maxDarkEnergy);
             else
             {
-                bool solarFlare = Map?.gameConditionManager.ConditionIsActive(IncidentDefOf.SolarFlare.gameCondition) == true;
-                _darkEnergyReserve += (int)(increment * (solarFlare ? 0.45f : 0.05f));
+                int trickle = (int)(EnergyIncrement 
+                    * (SolarFlareActive 
+                        ? SolarFlareFactor 
+                        : TrickleFactor));
+                _darkEnergyReserve = Mathf.Min(_darkEnergyReserve + trickle, _maxDarkEnergy);
             }
-
-            if (_darkEnergyReserve > _maxDarkEnergy)
-                _darkEnergyReserve = _maxDarkEnergy;
         }
-            
-        if (PowerBattery.StoredEnergyPct < 0.98f
-            && _darkEnergyReserve >= OverflowLimit) 
+
+        float current = Battery.StoredEnergy;
+
+        if (current + 1f < EffectiveMaxEnergy
+            && _darkEnergyReserve >= OverflowLimit)
         {
-            PowerBattery.AddEnergy(OverflowLimit);
-            _darkEnergyReserve -= OverflowLimit;
+            float allowed = EffectiveMaxEnergy - current;
+            float toAdd = Mathf.Min(OverflowLimit, allowed);
+
+            if (toAdd > 0.01f)
+            {
+                Battery.AddEnergy(toAdd);
+                _darkEnergyReserve -= Mathf.RoundToInt(toAdd);
+            }
         }
     }
 
-    private float CurrentClusterMultiplier()
+    /// <summary>
+    /// Sets the ZPM's dark energy reserve, clamped to [0, MaxDarkEnergy].
+    /// Used by ZPM housing when inserting/ejecting.
+    /// </summary>
+    public void SetDarkEnergyReserve(int amount)
     {
-        int total = CountNearbyZpms(Position, Map);
-        if (total < ClusterThresholdTotal)
-            return 1f;
-
-        int extras = total - ClusterThresholdTotal;
-        return 1f + ClusterBonus + (extras * PerExtraZpmBonus);
-    }
-
-    public static int CountNearbyZpms(
-        IntVec3 center,
-        Map map,
-        Thing ignore = null)
-    {
-        int count = 0;
-        foreach (var c in GenRadial.RadialCellsAround(center, Building_ZPM.ClusterScanRadius, true))
+        if (_maxDarkEnergy <= 0)
         {
-            if (!c.InBounds(map)) continue;
-            var t = c.GetFirstThing(map, RimgateDefOf.Rimgate_ZPM);
-            if (t == null || t == ignore) continue;
-            count++;
+            _darkEnergyReserve = Math.Max(0, amount);
+            return;
         }
 
-        return count;
+        _darkEnergyReserve = Mathf.Clamp(amount, 0, _maxDarkEnergy);
     }
 
     private int ActiveDiverterCount()
     {
-        if (ConnectedFacilities == null) return 0;
-        var list = ConnectedFacilities.LinkedFacilitiesListForReading;
+        if (Facilities == null) return 0;
+        var list = Facilities.LinkedFacilitiesListForReading;
         if (list == null || list.Count == 0) return 0;
 
         int n = 0;
@@ -283,22 +292,34 @@ public class Building_ZPM : Building
         Scribe_Values.Look(ref _darkEnergyReserve, "_darkEnergyReserve");
     }
 
-    public override Graphic Graphic
+    public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
     {
-        get
-        {
-            // For when it's minified or in a trade ship.
-            if (PowerBattery == null)
-                return base.DefaultGraphic;
+        foreach (var opt in base.GetFloatMenuOptions(pawn))
+            yield return opt;
 
-            // var chargePercent = (int) ((float) currentCapacitorCharge / (float) maxCapacitorCharge) * 100;
-            var chargePercent = (int)(PowerBattery.StoredEnergyPct * 100);
-            if (chargePercent <= 10) return _chargeGraphics["Depleted"];
-            if (chargePercent <= 25) return _chargeGraphics["25%"];
-            if (chargePercent <= 50) return _chargeGraphics["50%"];
-            if (chargePercent <= 75) return _chargeGraphics["75%"];
-            return _chargeGraphics["Full"];
-        }
+        if (pawn.Drafted || pawn.WorkTagIsDisabled(WorkTags.Hauling))
+            yield break;
+
+        if (!pawn.CanReach(this, PathEndMode.ClosestTouch, Danger.Deadly))
+            yield break;
+
+        // Find a housing with capacity & reachability
+        Building_ZPMHousing bestHousing = Building_ZPMHousing.FindBestHousingFor(pawn, this); 
+        if (bestHousing == null)
+            yield break;
+
+        yield return new FloatMenuOption(
+            "RG_InsertZpmIntoHousingFloatMenu".Translate(bestHousing.LabelCap),
+            () =>
+            {
+                var job = JobMaker.MakeJob(
+                    RimgateDefOf.Rimgate_InsertZpmIntoHousing,
+                    this,
+                    bestHousing);
+                job.playerForced = true;
+                job.count = 1;
+                pawn.jobs.TryTakeOrderedJob(job);
+            });
     }
 
     public override string GetInspectString()
@@ -307,23 +328,12 @@ public class Building_ZPM : Building
             return "Inert";
 
         StringBuilder sb = new();
-        if (PowerBattery?.PowerNet == null) return sb.ToString();
+        if (Battery?.PowerNet == null) return sb.ToString();
 
-        sb.Append(PowerBattery.CompInspectStringExtra());
+        sb.Append(Battery.CompInspectStringExtra());
 
         if (sb.Length > 0) sb.AppendLine();
         sb.Append("RG_ZpmDarkEnergyReserve".Translate(_darkEnergyReserve, _maxDarkEnergy));
-
-        if (ResearchUtil.ParallelSubspaceCouplingComplete)
-        {
-            float mult = CurrentClusterMultiplier();
-            if (mult > 1f)
-            {
-                if (sb.Length > 0) sb.AppendLine();
-                int pct = (int)Mathf.Round((mult - 1f) * 100f);
-                sb.Append("RG_ZpmSynergyBonus".Translate(pct));
-            }
-        }
 
         if (Tracker != null)
         {
