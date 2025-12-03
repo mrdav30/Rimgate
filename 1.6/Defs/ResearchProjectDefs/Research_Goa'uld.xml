@@ -218,7 +218,7 @@
 		<researchViewX>1</researchViewX>
 		<researchViewY>2</researchViewY>
 		<requiredAnalyzed>
-			<li>Rimgate_SymbioteImplant</li>
+			<li>Rimgate_GoauldSymbiote</li>
 		</requiredAnalyzed>
 		<discoveredLetterTitle>About: Goa'uld Symbiotes</discoveredLetterTitle>
 		<discoveredLetterText>Recovered field notes describe the Goa'uld as both parasite and miracle cure—capable of healing mortal wounds while rewriting the host from the inside out. Your researchers are confident they can replicate this relationship without the “enslavement” part. Probably.</discoveredLetterText>
@@ -366,6 +366,10 @@
 		<description>Extend the Goa’uld sarcophagus’ already reckless healing into full tissue regrowth.\n\nBy cross-referencing Glitterworld bioregeneration with naquadah-accelerated pulse envelopes, your team can coax the sarcophagus into rebuilding missing flesh instead of just stabilizing what’s left.\n\nFingers and toes are just the beginning. The line between “revived” and “reassembled” gets blurry fast.</description>
 		<baseCost>6000</baseCost>
 		<techLevel>Ultra</techLevel>
+
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
 
 		<prerequisites>
 			<li>Rimgate_Sarcophagus</li>

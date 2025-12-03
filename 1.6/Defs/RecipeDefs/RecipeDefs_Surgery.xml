@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- ==================== Goa'uld Symbiote ==================== -->
+	<!-- ==================== Goa'uld Prim'ta ==================== -->
 
 	<RecipeDef ParentName="SurgeryInstallImplantBase">
-		<defName>Rimgate_InstallSymbiote</defName>
-		<label>install symbiote</label>
-		<description>implant a Goa'uld symbiote into the host, granting enhanced health, strength, and regenerative properties.</description>
+		<defName>Rimgate_InstallPrimtaSymbiote</defName>
+		<label>implant Prim'ta symbiote</label>
+		<description>Implant a larval Goa'uld symbiote (Prim'ta) into the host's symbiote pouch.\n\nEssential for traditional Jaffa physiology; without a Prim'ta, their body will eventually fail. With one, it’s only their free will that’s in question.</description>
 		<descriptionHyperlinks>
-			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
-			<HediffDef>Rimgate_SymbioteImplant</HediffDef>
+			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
+			<HediffDef>Rimgate_PrimtaInPouch</HediffDef>
 		</descriptionHyperlinks>
-		<jobString>Implanting symbiote.</jobString>
+		<workerClass>Rimgate.RecipeWorker_InstallPrimtaSymbiote</workerClass>
+		<jobString>Implanting Prim'ta.</jobString>
 		<workAmount>2500</workAmount>
 		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
 		<effectWorking>Surgery</effectWorking>
 		<soundWorking>Recipe_Surgery</soundWorking>
 		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
-		<addsHediff>Rimgate_SymbioteImplant</addsHediff>
+		<addsHediff>Rimgate_PrimtaInPouch</addsHediff>
 		<fixedIngredientFilter>
 			<categories>
 				<li>Medicine</li>
 			</categories>
 			<thingDefs>
-				<li>Rimgate_SymbioteImplant</li>
+				<li>Rimgate_PrimtaSymbiote</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Rimgate_SymbioteImplant</li>
+						<li>Rimgate_PrimtaSymbiote</li>
 					</thingDefs>
 				</filter>
 				<count>1</count>
@@ -44,14 +45,83 @@
 		<skillRequirements>
 			<Medicine>5</Medicine>
 		</skillRequirements>
+		<researchPrerequisite>Rimgate_SymbioteStudy</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef ParentName="SurgeryRemoveImplantBase">
+		<defName>Rimgate_RemovePrimtaSymbiote</defName>
+		<label>remove Prim'ta symbiote</label>
+		<description>Carefully extract a Prim'ta symbiote from the host's pouch. If the Jaffa does not receive another Prim'ta—or an artificial replacement like tretonin—their body will begin to fail, spiraling into symbiote withdrawal.</description>
+		<descriptionHyperlinks>
+			<HediffDef>Rimgate_SymbioteWithdrawal</HediffDef>
+		</descriptionHyperlinks>
+		<jobString>removing Prim'ta symbiote.</jobString>
+		<effectWorking>Surgery</effectWorking>
+		<soundWorking>Recipe_Machining</soundWorking>
+		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+		<workSkill>Medicine</workSkill>
+		<workSkillLearnFactor>16</workSkillLearnFactor>
+		<workAmount>2000</workAmount>
+		<anesthetize>true</anesthetize>
+		<skillRequirements>
+			<Medicine>15</Medicine>
+		</skillRequirements>
+		<surgerySuccessChanceFactor>0.5</surgerySuccessChanceFactor>
+		<removesHediff>Rimgate_PrimtaInPouch</removesHediff>
+		<researchPrerequisite>Rimgate_SymbioteStudy</researchPrerequisite>
+	</RecipeDef>
+
+	<!-- ==================== Goa'uld Symbiote ==================== -->
+
+	<RecipeDef ParentName="SurgeryInstallImplantBase">
+		<defName>Rimgate_InstallSymbiote</defName>
+		<label>implant Goa'uld symbiote</label>
+		<description>implant a Goa'uld symbiote into the host, granting enhanced health, strength, and regenerative properties.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_GoauldSymbiote</ThingDef>
+			<HediffDef>Rimgate_SymbioteImplant</HediffDef>
+		</descriptionHyperlinks>
+		<workerClass>Rimgate.RecipeWorker_InstallGoauldSymbiote</workerClass>
+		<jobString>Implanting symbiote.</jobString>
+		<workAmount>2500</workAmount>
+		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+		<effectWorking>Surgery</effectWorking>
+		<soundWorking>Recipe_Surgery</soundWorking>
+		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
 		<addsHediff>Rimgate_SymbioteImplant</addsHediff>
+		<fixedIngredientFilter>
+			<categories>
+				<li>Medicine</li>
+			</categories>
+			<thingDefs>
+				<li>Rimgate_GoauldSymbiote</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_GoauldSymbiote</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<appliedOnFixedBodyParts>
+			<li>Torso</li>
+		</appliedOnFixedBodyParts>
+		<targetsBodyPart>true</targetsBodyPart>
+		<anesthetize>true</anesthetize>
+		<skillRequirements>
+			<Medicine>5</Medicine>
+		</skillRequirements>
 		<researchPrerequisite>Rimgate_SymbioteStudy</researchPrerequisite>
 	</RecipeDef>
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveGoauldSymbiote</defName>
 		<label>remove Goa'uld symbiote</label>
-		<description>remove a Goa'uld symbiote.</description>
+		<description>Carefully extract a Goa'uld symbiote from the host. If they do not receive another symbiote—or an artificial replacement like tretonin—their body will begin to fail, spiraling into symbiote withdrawal.</description>
 		<descriptionHyperlinks>
 			<HediffDef>Rimgate_SymbioteWithdrawal</HediffDef>
 		</descriptionHyperlinks>
@@ -67,7 +137,7 @@
 			<Medicine>15</Medicine>
 		</skillRequirements>
 		<surgerySuccessChanceFactor>0.5</surgerySuccessChanceFactor>
-		<addsHediff>Rimgate_SymbioteWithdrawal</addsHediff>
+		<removesHediff>Rimgate_SymbioteImplant</removesHediff>
 		<researchPrerequisite>Rimgate_SymbioteStudy</researchPrerequisite>
 	</RecipeDef>
 

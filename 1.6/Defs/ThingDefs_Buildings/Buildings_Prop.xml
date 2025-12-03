@@ -1009,7 +1009,8 @@
 
         <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
         <killedLeavingsRanges>
-            <Rimgate_SymbioteImplant>0~2</Rimgate_SymbioteImplant>
+            <Rimgate_PrimtaSymbiote>1~3</Rimgate_PrimtaSymbiote>
+            <Rimgate_GoauldSymbiote>0~2</Rimgate_GoauldSymbiote>
             <Rimgate_SymbioteQueen>0~1</Rimgate_SymbioteQueen>
         </killedLeavingsRanges>
         <killedLeavingsChance>0.90</killedLeavingsChance>

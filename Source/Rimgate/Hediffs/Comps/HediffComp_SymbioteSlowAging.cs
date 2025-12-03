@@ -2,9 +2,9 @@
 
 namespace Rimgate;
 
-public class HediffComp_GoauldSymbiote : HediffComp
+public class HediffComp_SymbioteSlowAging : HediffComp
 {
-    public HediffCompProperties_GoauldSymbiote Props => (HediffCompProperties_GoauldSymbiote)props;
+    public HediffCompProperties_SymbioteSlowAging Props => (HediffCompProperties_SymbioteSlowAging)props;
 
     private bool _initialized = false;
     private long _initialAgeTicks;

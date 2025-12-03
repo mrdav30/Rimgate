@@ -46,7 +46,7 @@ public class Comp_ResonanceIdol : ThingComp
             RefreshTimedHediff(pawn, Props.fieldBuffHediff, Props.refreshTicks);
 
         // Hosts (Goa'uld symbiote) get a small extra boost
-        if (pawn.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) == true)
+        if (pawn.HasSymbiote())
             RefreshTimedHediff(pawn, Props.hostBoostHediff, Props.refreshTicks);
     }
 
@@ -80,7 +80,7 @@ public class Comp_ResonanceIdol : ThingComp
 
     private void RefreshTimedHediff(Pawn pawn, HediffDef def, int refreshTicks)
     {
-        var hd = pawn.GetHediff(def);
+        var hd = pawn.GetHediffOf(def);
         if (hd == null)
         {
             hd = HediffMaker.MakeHediff(def, pawn);

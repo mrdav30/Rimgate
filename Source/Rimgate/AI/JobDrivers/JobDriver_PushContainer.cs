@@ -197,7 +197,7 @@ public class JobDriver_PushContainer : JobDriver
                         cartDef,
                         spawn: false);
                     _proxyComp = null;
-                    pawn.RemoveHediff(RimgateDefOf.Rimgate_PushingCart);
+                    pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PushingCart);
                     ResetPushVisual();
 
                     // 2) hand the unspawned cart to the gate
@@ -222,7 +222,7 @@ public class JobDriver_PushContainer : JobDriver
                     Utils.RotationFacingFor(job.targetB.Cell, dest));
 
                 _proxyComp = null;
-                pawn.RemoveHediff(RimgateDefOf.Rimgate_PushingCart);
+                pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PushingCart);
                 ResetPushVisual();
 
                 // Dump if this is the push & dump job
@@ -268,7 +268,7 @@ public class JobDriver_PushContainer : JobDriver
             }
 
             _proxyComp = null;
-            pawn.RemoveHediff(RimgateDefOf.Rimgate_PushingCart);
+            pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PushingCart);
             ResetPushVisual();
         });
     }

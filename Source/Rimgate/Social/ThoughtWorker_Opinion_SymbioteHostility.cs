@@ -10,8 +10,7 @@ public class ThoughtWorker_Opinion_SymbioteHostility : ThoughtWorker
         if (p.IsPrisoner || !p.IsColonist || p.IsSlave)
             return ThoughtState.Inactive;
 
-        bool isHost = p.health?.hediffSet?.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) ?? false;
-        if(isHost)
+        if(p.HasSymbiote())
             return ThoughtState.Inactive;
 
         return ThoughtState.ActiveDefault;

@@ -60,7 +60,7 @@
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Rimgate_SymbioteImplant</li>
+						<li>Rimgate_PrimtaSymbiote</li>
 					</thingDefs>
 				</filter>
 				<count>1</count>
@@ -75,7 +75,7 @@
 			</li>
 		</ingredients>
 		<products>
-			<Rimgate_Tretonin>5</Rimgate_Tretonin>
+			<Rimgate_Tretonin>1</Rimgate_Tretonin>
 		</products>
 		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
 	</RecipeDef>
@@ -101,7 +101,7 @@
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Rimgate_SymbioteImplant</li>
+						<li>Rimgate_PrimtaSymbiote</li>
 					</thingDefs>
 				</filter>
 				<count>4</count>
@@ -116,15 +116,15 @@
 			</li>
 		</ingredients>
 		<products>
-			<Rimgate_Tretonin>15</Rimgate_Tretonin>
+			<Rimgate_Tretonin>4</Rimgate_Tretonin>
 		</products>
 		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
 	</RecipeDef>
 
 	<RecipeDef>
-		<defName>Rimgate_MakeTretonin_Ultra</defName>
+		<defName>Rimgate_MakeTretonin_Symbiote</defName>
 		<label>refine Tretonin from medicine</label>
-		<description>make a batch of Tretonin by refining glitterworld medicine.</description>
+		<description>make a batch of Tretonin by refining a mature Goa'uld symbiote.</description>
 		<jobString>making Tretonin.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_CookMeal</soundWorking>
@@ -142,10 +142,10 @@
 			<li>
 				<filter>
 					<thingDefs>
-						<li>MedicineUltratech</li>
+						<li>Rimgate_GoauldSymbiote</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>1</count>
 			</li>
 			<li>
 				<filter>
@@ -157,7 +157,7 @@
 			</li>
 		</ingredients>
 		<products>
-			<Rimgate_Tretonin>5</Rimgate_Tretonin>
+			<Rimgate_Tretonin>4</Rimgate_Tretonin>
 		</products>
 		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
 	</RecipeDef>

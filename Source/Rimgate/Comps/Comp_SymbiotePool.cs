@@ -45,7 +45,8 @@ public class Comp_SymbiotePool : ThingComp
         if (pool == null) return;
 
         // Count product symbiotes currently stored
-        int larvaeCount = pool.InnerContainer.InnerListForReading.Count(t => t.def == Props.productSymbioteDef);
+        int larvaeCount = pool.InnerContainer.InnerListForReading.Count(t => 
+            t.def == RimgateDefOf.Rimgate_PrimtaSymbiote || t.def == RimgateDefOf.Rimgate_GoauldSymbiote);
         int extraLarvae = Mathf.Max(0, larvaeCount - Props.freeSymbiotesBeforeUpkeep);
         if (extraLarvae > 0 || Props.upkeepFuelPerDayBase > 0f)
         {
@@ -164,7 +165,8 @@ public class Comp_SymbiotePool : ThingComp
             float ticksRemaining = Props.daysPerSymbiote * GenDate.TicksPerDay * (1f - _progress);
             sb.Append("RG_NextSymbioteCount".Translate(ticksRemaining.FormatTicksToPeriod()));
 
-            int larvae = pool.InnerContainer.InnerListForReading.Count(t => t.def == Props.productSymbioteDef);
+            int larvae = pool.InnerContainer.InnerListForReading.Count(t =>
+                t.def == RimgateDefOf.Rimgate_PrimtaSymbiote || t.def == RimgateDefOf.Rimgate_GoauldSymbiote);
             int extra = Mathf.Max(0, larvae - Props.freeSymbiotesBeforeUpkeep);
             if (larvae > 0 && (Props.upkeepFuelPerDayBase > 0f || Props.upkeepFuelPerExtraSymbiote > 0f))
             {

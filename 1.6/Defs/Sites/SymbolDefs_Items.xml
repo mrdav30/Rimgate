@@ -45,7 +45,7 @@
 
     <KCSG.SymbolDef>
         <defName>Rimgate_SymbioteImplant</defName>
-        <thing>Rimgate_SymbioteImplant</thing>
+        <thing>Rimgate_GoauldSymbiote</thing>
     </KCSG.SymbolDef>
 
     <!-- Weapons -->

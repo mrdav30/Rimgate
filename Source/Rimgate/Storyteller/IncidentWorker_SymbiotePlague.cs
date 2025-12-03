@@ -80,7 +80,7 @@ public class IncidentWorker_SymbiotePlague : IncidentWorker
                             || p.ParentHolder is Building_CloningPod
                             || p.ParentHolder is CompBiosculpterPod))
                     && p.HasSymbiote()
-                    && !p.HasHediff(RimgateDefOf.Rimgate_SymbiotePlague));
+                    && !p.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePlague));
         }
 
         if (target is Caravan caravan)
@@ -90,7 +90,7 @@ public class IncidentWorker_SymbiotePlague : IncidentWorker
                     !x.Dead
                     && (x.IsFreeColonist || x.IsPrisonerOfColony)
                     && x.HasSymbiote()
-                    && !x.HasHediff(RimgateDefOf.Rimgate_SymbiotePlague));
+                    && !x.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePlague));
         }
 
         return new List<Pawn>();

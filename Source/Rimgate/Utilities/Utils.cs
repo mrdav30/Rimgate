@@ -36,7 +36,7 @@ internal static class Utils
         }
 
         // also block if Manipulation is missing
-        if (!p.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+        if (p.health == null || !p.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
         {
             reason = "RG_IncapableOf".Translate(p.LabelShort, PawnCapacityDefOf.Manipulation.label).CapitalizeFirst();
             return true;
@@ -189,61 +189,6 @@ internal static class Utils
         };
     }
 
-    public static bool HasActiveGeneOf(this Pawn pawn, GeneDef geneDef)
-    {
-        if (geneDef is null) return false;
-        if (pawn.genes is null) return false;
-        return pawn.genes.GetGene(geneDef)?.Active ?? false;
-    }
-
-    public static bool HasActiveGene(this Pawn pawn, string def)
-    {
-        if (string.IsNullOrEmpty(def)) return false;
-        if (pawn.genes is null) return false;
-        return pawn.genes?.GetGene(DefDatabase<GeneDef>.GetNamedSilentFail(def))?.Active ?? false;
-    }
-
-    public static Gene GetActiveGene(this Pawn pawn, GeneDef def)
-    {
-        if (pawn.genes is null) return null;
-        var gene = pawn.genes.GetGene(def);
-        return gene == null || !gene.Active
-            ? null
-            : gene;
-    }
-
-    public static T GetActiveGene<T>(this Pawn pawn) where T : Gene
-    {
-        if (pawn.genes is null) return null;
-        var gene = pawn.genes.GetFirstGeneOfType<T>();
-        return gene == null || !gene.Active
-            ? null
-            : gene;
-    }
-
-    public static bool IsXenoTypeOf(this Pawn pawn, XenotypeDef xenotypeDef)
-    {
-        if (xenotypeDef is null) return false;
-        if (pawn.genes is null) return false;
-        return pawn.genes.Xenotype == xenotypeDef;
-    }
-
-    public static bool IsValidRaceFor(Pawn pawn, List<string> disallowedRaces)
-    {
-        string race = pawn.def.ToString();
-        return disallowedRaces.NullOrEmpty() || !disallowedRaces.Contains(race);
-    }
-
-    public static bool IsValidXenotypeFor(
-      Pawn pawn,
-      List<XenotypeDef> disallowedXenotypes)
-    {
-        XenotypeDef xenotype = pawn.genes?.Xenotype;
-        return xenotype == null
-            || disallowedXenotypes.NullOrEmpty()
-            || !disallowedXenotypes.Contains(xenotype);
-    }
-
     public static bool HasHiveConnection(this Pawn p)
     {
         // Prefer exact xenotype def if you have it
@@ -255,7 +200,8 @@ internal static class Utils
 
     public static bool HasSymbiote(this Pawn pawn)
     {
-        return pawn.health?.hediffSet?.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant) ?? false;
+        return pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant)
+            || pawn.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);
     }
 
     public static bool HasActiveQuestOf(QuestScriptDef def)

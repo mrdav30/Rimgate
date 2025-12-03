@@ -51,7 +51,7 @@ public class Building_SymbioteAmbushTrap : Building_Trap
             && !p.Dead
             && !p.Downed
             && !p.IsPsychologicallyInvisible()
-            && !p.HasHediff(RimgateDefOf.Rimgate_SymbioteImplant);
+            && !p.HasSymbiote();
     }
 
     protected override void SpringSub(Pawn p)

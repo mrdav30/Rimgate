@@ -36,30 +36,35 @@ public static class RimgateDefOf
     public static GameConditionDef Rimgate_StargateHeatWave;
 
     [MayRequireBiotech]
-    public static GeneDef Skin_SheerWhite;
+    public static GeneDef Eyes_Red;
     [MayRequireBiotech]
     public static GeneDef Hair_SnowWhite;
     [MayRequireBiotech]
-    public static GeneDef Eyes_Red;
+    public static GeneDef Rimgate_CellularDegradation;
+    [MayRequireBiotech]
+    public static GeneDef Rimgate_SymbiotePouchMutation;
     [MayRequireBiotech]
     public static GeneDef Rimgate_WraithCocoonTrap;
     [MayRequireBiotech]
     public static GeneDef Rimgate_WraithPsychic;
     [MayRequireBiotech]
-    public static GeneDef Rimgate_CellularDegradation;
+    public static GeneDef Skin_SheerWhite;
 
     public static HediffDef Rimgate_Clone;
     public static HediffDef Hediff_ClonedTracker;
     public static HediffDef Rimgate_ClonePodSickness;
     public static HediffDef Rimgate_Enduring;
+    public static HediffDef Rimgate_KrintakSickness;
+    public static HediffDef Rimgate_PrimtaInPouch;
     public static HediffDef Rimgate_PushingCart;
     public static HediffDef Rimgate_SarcophagusHigh;
     public static HediffDef Rimgate_SarcophagusAddiction;
     public static HediffDef Rimgate_SymbioteImplant;
     public static HediffDef Rimgate_SymbiotePlague;
-    public static HediffDef Rimgate_SymbiotePouch;
+    public static HediffDef Rimgate_SymbiotePouch;   
     public static HediffDef Rimgate_SymbioteWithdrawal;
     public static HediffDef Rimgate_SystemShock;
+    public static HediffDef Rimgate_TretoninAddiction;
     public static HediffDef Rimgate_WraithEssenceDeficit;
     public static HediffDef Rimgate_ZatShock;
 
@@ -138,9 +143,11 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_Malp;
     public static ThingDef Rimgate_MineableNaquadah;
     public static ThingDef Rimgate_MobileCartProxy;
+    public static ThingDef Rimgate_PrimtaSymbiote;
     public static ThingDef Rimgate_PushedCartVisual;
     public static ThingDef Rimgate_SecretDoor;
     public static ThingDef Rimgate_Stargate;
+    public static ThingDef Rimgate_GoauldSymbiote;
     public static ThingDef Rimgate_SubspacePhaseDiverter;
     public static ThingDef Rimgate_Wheelbarrow;
     public static ThingDef Rimgate_WraithMeatLab;

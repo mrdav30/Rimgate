@@ -184,6 +184,8 @@
     </skills>
   </PawnKindDef>
 
+  <!-- Goa'uld Boss -->
+
   <PawnKindDef Name="Rimagate_GoauldBoss" ParentName="Rimgate_GoauldBase" Abstract="True">
     <isFighter>true</isFighter>
     <xenotypeSet Inherit="False">
@@ -206,7 +208,7 @@
       <li>Rimgate_GoauldSymbiote_tag</li>
     </techHediffsTags>
     <techHediffsRequired>
-      <li>Rimgate_SymbioteImplant</li>
+      <li>Rimgate_GoauldSymbiote</li>
     </techHediffsRequired>
     <startingHediffs>
       <li>
@@ -329,11 +331,12 @@
     <techHediffsTags>
       <li>Simple</li>
       <li>Common</li>
-      <li>Rimgate_GoauldSymbiote_tag</li>
       <li>Rimgate_JaffaForeheadSymbol_tag</li>
+      <li>Rimgate_GoauldPrimta_tag</li>
     </techHediffsTags>
     <techHediffsRequired>
-      <li>Rimgate_SymbioteImplant</li>
+      <li>Rimgate_SymbiotePouch</li>
+      <li>Rimgate_PrimtaSymbiote</li>
     </techHediffsRequired>
     <combatEnhancingDrugsCount>
       <min>0</min>

@@ -29,10 +29,10 @@
     </GeneDef>
 
     <GeneDef ParentName="Rimgate_JaffaGenesBase">
-        <defName>Rimgate_SymbiotePouch</defName>
+        <defName>Rimgate_SymbiotePouchMutation</defName>
         <label>symbiote pouch</label>
         <description>This gene rewrites the host’s anatomy to form a specialized abdominal pouch. Once considered a grotesque mark of servitude to the Goa’uld, it is also a symbol of power—granting the bearer the ability to house a living symbiote within. Without a symbiote, the pouch lies dormant, a hollow reminder of dependency.</description>
-        <iconPath>UI/Icon/Gene/RGJaffaLongevityGeneIcon</iconPath>
+        <iconPath>UI/Icon/Gene/RGSymbiotePouchMutationGeneIcon</iconPath>
         <displayCategory>Archite</displayCategory>
         <modExtensions>
             <li Class="VEF.Genes.GeneExtension">

@@ -13,8 +13,7 @@ public class HediffComp_SymbioteKiller : HediffComp
         Pawn pawn = parent.pawn;
 
         // Try to find the symbiote hediff
-        Hediff symbiote = pawn.health.hediffSet.GetFirstHediffOfDef(RimgateDefOf.Rimgate_SymbioteImplant);
-        if (symbiote == null)
+        if (!pawn.HasSymbiote())
             return;
 
         // Only trigger when we hit the critical threshold
@@ -30,7 +29,8 @@ public class HediffComp_SymbioteKiller : HediffComp
             return;
 
         // Kill / remove the symbiote
-        pawn.health.RemoveHediff(symbiote);
+        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbioteImplant);
+        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);
 
         // send letter
         Messages.Message(

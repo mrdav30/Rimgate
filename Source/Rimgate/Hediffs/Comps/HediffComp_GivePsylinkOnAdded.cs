@@ -31,7 +31,7 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
         // Optional gene gate (useful for Wraith-only)
         if (!string.IsNullOrEmpty(Props.requiredGene))
         {
-            if (!pawn.HasActiveGene(Props.requiredGene))
+            if (!pawn.HasActiveGeneOf(Props.requiredGene))
             {
                 MarkDoneAndRemove();
                 return;

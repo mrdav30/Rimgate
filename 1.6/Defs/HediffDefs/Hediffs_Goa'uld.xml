@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-	<!-- ==================== Symbiote ==================== -->
+	<!-- ==================== Symbiote Pouch ==================== -->
 
 	<HediffDef ParentName="AddedBodyPartBase">
 		<defName>Rimgate_SymbiotePouch</defName>
@@ -9,10 +9,10 @@
 		<labelNoun>a symbiote pouch</labelNoun>
 		<description>An artificially grown chamber beneath the stomach, sealed with living tissue. Warm, vascular, and unnervingly receptive, it is the perfect cradle for a Goa’uld symbiote. While it offers protection against common gut afflictions, it forever brands the host as bound to alien biology.</description>
 		<descriptionHyperlinks>
-			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
+			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
 		</descriptionHyperlinks>
 		<organicAddedBodypart>true</organicAddedBodypart>
-		<defaultInstallPart>Stomach</defaultInstallPart>
+		<defaultInstallPart>Torso</defaultInstallPart>
 		<stages>
 			<li>
 				<painOffset>0.08</painOffset>
@@ -25,7 +25,84 @@
 		<addedPartProps>
 			<solid>true</solid>
 		</addedPartProps>
+		<comps>
+			<li>
+				<compClass>Rimgate.HediffComp_PouchWatcher</compClass>
+			</li>
+		</comps>
 	</HediffDef>
+
+	<!-- ==================== Symbiote Pouch ==================== -->
+
+	<HediffDef>
+		<defName>Rimgate_KrintakSickness</defName>
+		<label>Krin’tak fever</label>
+		<labelNoun>Krin’tak fever</labelNoun>
+		<description>A mild but uncomfortable fever marking the final stage of Prim’ta maturation. Symptoms include chills, sweating, nausea, and general malaise. While not dangerous on its own, it signals that the larval symbiote will soon attempt to take control of the host unless removed.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<isBad>true</isBad>
+		<tendable>false</tendable>
+		<comps>
+			<li Class="HediffCompProperties_Immunizable">
+				<severityPerDayNotImmune>0</severityPerDayNotImmune>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>mild</label>
+				<painOffset>0.10</painOffset>
+				<vomitMtbDays>4</vomitMtbDays>
+				<restFallFactor>1.10</restFallFactor>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- ==================== Prim'ta ==================== -->
+
+	<HediffDef>
+		<defName>Rimgate_PrimtaInPouch</defName>
+		<hediffClass>Rimgate.Hediff_PrimtaInPouch</hediffClass>
+		<label>prim'ta symbiote</label>
+		<labelNoun>a prim'ta symbiote</labelNoun>
+		<description>A larval Goa’uld symbiote residing in an abdominal pouch, sustaining and slowly altering the host. Without a pouch to shelter it—or a timely removal upon maturity—both host and symbiote are in danger.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
+			<ThingDef>Rimgate_SymbiotePouch</ThingDef>
+		</descriptionHyperlinks>
+		<defaultInstallPart>Stomach</defaultInstallPart>
+		<defaultLabelColor>(255, 0, 94)</defaultLabelColor>
+		<isBad>false</isBad>
+		<duplicationAllowed>false</duplicationAllowed>
+		<countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+		<comps>
+			<li Class="Rimgate.HediffCompProperties_PrimtaLifecycle" />
+		</comps>
+		<stages>
+			<li>
+				<!-- Larval support: mild buffs, but mostly hidden -->
+				<statFactors>
+					<ImmunityGainSpeed>1.25</ImmunityGainSpeed>
+					<InjuryHealingFactor>1.75</InjuryHealingFactor>
+				</statFactors>
+			</li>
+		</stages>
+		<tags>
+			<li>Rimgate_PrimtaSymbiote_tag</li>
+		</tags>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+	</HediffDef>
+
+	<!-- ==================== Symbiote ==================== -->
 
 	<HediffDef>
 		<defName>Rimgate_SymbioteImplant</defName>
@@ -34,20 +111,16 @@
 		<labelNoun>a Goa'uld symbiote</labelNoun>
 		<description>A living parasite from the Goa’uld species, surgically implanted into the host’s body. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, senses, and a disturbing fondness for referring to yourself as a god.</description>
 		<descriptionHyperlinks>
-			<ThingDef>Rimgate_SymbioteImplant</ThingDef>
+			<ThingDef>Rimgate_GoauldSymbiote</ThingDef>
 		</descriptionHyperlinks>
 		<defaultInstallPart>Torso</defaultInstallPart>
 		<defaultLabelColor>(255, 0, 94)</defaultLabelColor>
 		<isBad>false</isBad>
 		<duplicationAllowed>false</duplicationAllowed>
-		<spawnThingOnRemoved>Rimgate_SymbioteImplant</spawnThingOnRemoved>
+		<spawnThingOnRemoved>Rimgate_GoauldSymbiote</spawnThingOnRemoved>
 		<countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
 		<comps>
-			<!-- Passive Healing -->
-			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-0.05</severityPerDay>
-			</li>
-			<li Class="Rimgate.HediffCompProperties_GoauldSymbiote" />
+			<li Class="Rimgate.HediffCompProperties_SymbioteSlowAging" />
 		</comps>
 		<stages>
 			<li>
@@ -55,7 +128,7 @@
 				<hungerRateFactor>0.25</hungerRateFactor> <!-- Eats 25% less -->
 				<statFactors>
 					<ImmunityGainSpeed>2</ImmunityGainSpeed> <!-- Immunity 200% more -->
-					<InjuryHealingFactor>5</InjuryHealingFactor> <!-- Heals 500% more -->
+					<InjuryHealingFactor>4</InjuryHealingFactor> <!-- Heals 400% more -->
 					<RestFallRateFactor>0.5</RestFallRateFactor> <!-- Sleeps 50% less -->
 				</statFactors>
 				<capMods>
@@ -326,7 +399,6 @@
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
 
-
 	<!-- ==================== Jaffa Forehead Symbol Base ==================== -->
 
 	<HediffDef Name="Rimgate_JaffaForeheadSymbolBase" ParentName="ImplantHediffBase" Abstract="True">
@@ -337,7 +409,7 @@
 		<defaultInstallPart>Head</defaultInstallPart>
 	</HediffDef>
 
-	<!-- =========== Anubis =========== -->
+	<!-- Anubis -->
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
 		<defName>Rimgate_JaffaForeheadSymbolImplantAnubis</defName>
@@ -425,7 +497,7 @@
 		</tags>
 	</HediffDef>
 
-	<!-- =========== Apophis =========== -->
+	<!-- Apophis -->
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
 		<defName>Rimgate_JaffaForeheadSymbolImplantApophis</defName>
@@ -515,7 +587,7 @@
 		</tags>
 	</HediffDef>
 
-	<!-- =========== Ra =========== -->
+	<!-- Ra -->
 
 	<HediffDef ParentName="Rimgate_JaffaForeheadSymbolBase">
 		<defName>Rimgate_JaffaForeheadSymbolImplantRa</defName>

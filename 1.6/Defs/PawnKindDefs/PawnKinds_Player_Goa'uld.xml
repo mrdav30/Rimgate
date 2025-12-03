@@ -43,15 +43,27 @@
       <li>Simple</li>
       <li>Common</li>
       <li>ImplantEmpireCommon</li>
-      <li>Rimgate_GoauldSymbiote_tag</li>
+      <li>Rimgate_GoauldPrimta_tag</li>
       <li>Rimgate_JaffaForeheadSymbol_tag</li>
     </techHediffsTags>
     <techHediffsDisallowTags>
       <li>PainCauser</li>
     </techHediffsDisallowTags>
     <techHediffsRequired>
-      <li>Rimgate_SymbioteImplant</li>
+      <li>Rimgate_SymbiotePouch</li>
+      <li>Rimgate_PrimtaSymbiote</li>
     </techHediffsRequired>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesChildhood>
+          <li>Rimgate_GoauldChildBackstory</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_FirstPrimeBackstory</li>
+          <li>Rimgate_GoauldAdultBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">
@@ -70,6 +82,13 @@
     <weaponTags>
       <li>Tribal</li>
     </weaponTags>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesAdulthood>
+          <li>Rimgate_SlaveBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
   </PawnKindDef>
 
 </Defs>

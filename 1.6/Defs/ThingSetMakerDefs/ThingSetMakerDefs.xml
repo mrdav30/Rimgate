@@ -197,7 +197,6 @@
                   <li>PsychicAnimalPulser</li>
                   <li>PsychicEmanator</li>
                   <li>PsychicSoothePulser</li>
-                  <li>Rimgate_SymbioteImplant</li>
                   <li>TechprofSubpersonaCore</li>
                   <li>TornadoGenerator</li>
                   <li>VanometricPowerCell</li>
@@ -535,7 +534,6 @@
                   <li>ArchotechLeg</li>
                   <li>Rimgate_TauriFIMStinger</li>
                   <li>Rimgate_Tretonin</li>
-                  <li>Rimgate_SymbioteImplant</li>
                   <li>MechSerumHealer</li>
                   <li>MechSerumResurrector</li>
                   <li>OrbitalTargeterBombardment</li>
@@ -655,10 +653,24 @@
             <fixedParams>
               <filter>
                 <thingDefs>
-                  <li>Rimgate_SymbioteImplant</li>
+                  <li>Rimgate_GoauldSymbiote</li>
                 </thingDefs>
               </filter>
               <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <li>
+          <weight>0.5</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_PrimtaSymbiote</li>
+                </thingDefs>
+              </filter>
+              <countRange>3</countRange>
             </fixedParams>
           </thingSetMaker>
         </li>

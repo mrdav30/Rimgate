@@ -53,13 +53,13 @@ public static class SarcophagusUtil
             }
         }
 
-        if (!Utils.IsValidRaceFor(patient, sarcophagus.DisallowedRaces))
+        if (!patient.IsValidRaceFor(sarcophagus.DisallowedRaces))
         {
             JobFailReason.Is("RG_Sarcophagus_RaceNotAllowed".Translate(patient.def.label.CapitalizeFirst()));
             return false;
         }
 
-        if (!Utils.IsValidXenotypeFor(patient, sarcophagus.DisallowedXenotypes))
+        if (!patient.IsValidXenotypeFor(sarcophagus.DisallowedXenotypes))
         {
             JobFailReason.Is("RG_Sarcophagus_RaceNotAllowed".Translate(patient.genes?.Xenotype.label.CapitalizeFirst()));
             return false;

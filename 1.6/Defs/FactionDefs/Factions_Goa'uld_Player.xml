@@ -9,22 +9,9 @@
     <basicMemberKind>Rimgate_GoauldPlayer</basicMemberKind>
     <pawnSingular>free jaffa</pawnSingular>
     <pawnsPlural>free jaffas</pawnsPlural>
-    <techLevel>Ultra</techLevel>
+    <techLevel>Industrial</techLevel>
     <factionNameMaker>NamerFactionTribal</factionNameMaker>
     <settlementNameMaker>NamerSettlementTribal</settlementNameMaker>
-    <allowedCultures>
-      <li>Rimgate_Jaffari</li>
-    </allowedCultures>
-    <backstoryFilters>
-      <li>
-        <categories>
-          <li>Rimgate_GoauldChildBackstory</li>
-          <li>Rimgate_GoauldAdultBackstory</li>
-          <li>Rimgate_FirstPrimeBackstory</li>
-          <li>Rimgate_GoauldSlaveBackstory</li>
-        </categories>
-      </li>
-    </backstoryFilters>
     <factionIconPath>World/WorldObjects/Expanding/Town</factionIconPath>
     <startingResearchTags>
       <li>TribalStart</li>
@@ -36,6 +23,13 @@
       <li>TribalStartTechprints</li>
       <li>ClassicStartTechprints</li>
     </startingTechprintsResearchTags>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>Tribal</li>
+        </categories>
+      </li>
+    </backstoryFilters>
   </FactionDef>
 
 </Defs>

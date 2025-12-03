@@ -94,7 +94,7 @@ public static class MedicalUtil
     }
 
 
-    public static bool HasHediff(this Pawn pawn, HediffDef def)
+    public static bool HasHediffOf(this Pawn pawn, HediffDef def)
     {
         HediffSet set = pawn?.health?.hediffSet;
         if (set is null || def is null) return false;
@@ -110,7 +110,7 @@ public static class MedicalUtil
         return set.HasHediff<T>();
     }
 
-    public static Hediff GetHediff(this Pawn pawn, HediffDef def)
+    public static Hediff GetHediffOf(this Pawn pawn, HediffDef def)
     {
         HediffSet set = pawn?.health?.hediffSet;
         if (set is null || def is null) return null;
@@ -137,10 +137,10 @@ public static class MedicalUtil
         float severity = -1,
         int duration = -1)
     {
-        bool hasHediff = !pawn.HasHediff(def);
+        bool hasHediff = !pawn.HasHediffOf(def);
         Hediff hediff = !hasHediff
             ? HediffMaker.MakeHediff(def, pawn, part)
-            : pawn.GetHediff(def);
+            : pawn.GetHediffOf(def);
 
         if (hediff == null) return;
 
@@ -158,7 +158,7 @@ public static class MedicalUtil
             pawn.health.AddHediff(hediff);
     }
 
-    public static void RemoveHediff(this Pawn p, HediffDef def)
+    public static void RemoveHediffOf(this Pawn p, HediffDef def)
     {
         var h = p.health.hediffSet.GetFirstHediffOfDef(def);
         if (h != null) p.health.RemoveHediff(h);

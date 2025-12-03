@@ -10,7 +10,7 @@
     <basicMemberKind>Rimgate_WraithPlayer</basicMemberKind>
     <pawnSingular>co-op jaffa</pawnSingular>
     <pawnsPlural>co-op jaffas</pawnsPlural>
-    <techLevel>Ultra</techLevel>
+    <techLevel>Industrial</techLevel>
     <factionNameMaker>NamerFactionTribal</factionNameMaker>
     <settlementNameMaker>NamerSettlementTribal</settlementNameMaker>
     <allowedCultures>

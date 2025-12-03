@@ -62,7 +62,7 @@ public class Gene_WraithEssence : Gene_Resource, IGeneResourceDrain
         else if (pct < 0.66f) sev = 0.20f;
 
         var def = RimgateDefOf.Rimgate_WraithEssenceDeficit;
-        var he = pawn.GetHediff(def);
+        var he = pawn.GetHediffOf(def);
         if (sev > 0f)
         {
             if (he == null)

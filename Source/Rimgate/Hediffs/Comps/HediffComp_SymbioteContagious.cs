@@ -40,7 +40,7 @@ public class HediffComp_SymbioteContagious : HediffComp
                                     || p.ParentHolder is Building_CloningPod
                                     || p.ParentHolder is CompBiosculpterPod))
                             && p.HasSymbiote()
-                            && !p.HasHediff(RimgateDefOf.Rimgate_SymbiotePlague)
+                            && !p.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePlague)
                             && p.Position.InHorDistOf(source.Position, radius))
                         .InRandomOrder()
                         .ToList();

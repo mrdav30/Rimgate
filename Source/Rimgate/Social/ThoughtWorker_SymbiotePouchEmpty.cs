@@ -11,7 +11,7 @@ namespace Rimgate
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            bool hasPouch = p.HasHediff(RimgateDefOf.Rimgate_SymbiotePouch);
+            bool hasPouch = p.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
             if (!hasPouch) return ThoughtState.Inactive;
 
             bool hasSymbiote = p.HasSymbiote();

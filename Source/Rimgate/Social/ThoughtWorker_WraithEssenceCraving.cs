@@ -13,6 +13,6 @@ public class ThoughtWorker_WraithEssenceCraving : ThoughtWorker
         if (essence == null) 
             return ThoughtState.Inactive;
 
-        return p?.HasHediff(RimgateDefOf.Rimgate_WraithEssenceDeficit) == true;
+        return p?.HasHediffOf(RimgateDefOf.Rimgate_WraithEssenceDeficit) == true;
     }
 }

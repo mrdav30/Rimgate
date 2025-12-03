@@ -661,7 +661,8 @@
 				<priority>Important</priority>
 				<filter>
 					<thingDefs>
-						<li>Rimgate_SymbioteImplant</li>
+						<li>Rimgate_PrimtaSymbiote</li>
+						<li>Rimgate_GoauldSymbiote</li>
 						<li>Rimgate_SymbioteQueen</li>
 					</thingDefs>
 				</filter>
@@ -669,7 +670,8 @@
 			<fixedStorageSettings>
 				<filter>
 					<thingDefs>
-						<li>Rimgate_SymbioteImplant</li>
+						<li>Rimgate_PrimtaSymbiote</li>
+						<li>Rimgate_GoauldSymbiote</li>
 						<li>Rimgate_SymbioteQueen</li>
 					</thingDefs>
 				</filter>
@@ -696,6 +698,7 @@
 						<li>Kibble</li>
 					</thingDefs>
 				</fuelFilter>
+				<targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
 				<initialFuelPercent>0</initialFuelPercent>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<autoRefuelPercent>0.5</autoRefuelPercent>
@@ -705,7 +708,7 @@
 
 			<li Class="Rimgate.CompProperties_SymbiotePool">
 				<symbioteQueenDef>Rimgate_SymbioteQueen</symbioteQueenDef>
-				<productSymbioteDef>Rimgate_SymbioteImplant</productSymbioteDef>
+				<productSymbioteDef>Rimgate_PrimtaSymbiote</productSymbioteDef>
 				<daysPerSymbiote>3.0</daysPerSymbiote>
 				<fuelPerSymbiote>2.0</fuelPerSymbiote>
 			</li>
