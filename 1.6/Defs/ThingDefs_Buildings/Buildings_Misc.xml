@@ -655,7 +655,7 @@
 			<paintable>false</paintable>
 			<claimable>false</claimable>
 			<preventDeteriorationInside>true</preventDeteriorationInside>
-			<haulToContainerDuration>500</haulToContainerDuration>
+			<haulToContainerDuration>250</haulToContainerDuration>
 			<ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
 			<defaultStorageSettings>
 				<priority>Important</priority>

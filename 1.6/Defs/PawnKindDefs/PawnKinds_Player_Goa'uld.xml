@@ -15,7 +15,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">
     <defName>Rimgate_GoauldPlayer</defName>
-    <label>free jaffa</label>
+    <label>free Jaffa</label>
     <defaultFactionType>Rimgate_GoauldPlayerColony</defaultFactionType>
     <chemicalAddictionChance>0</chemicalAddictionChance>
     <xenotypeSet>
@@ -28,21 +28,18 @@
     <maxGenerationAge>250</maxGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
     <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
-    <apparelMoney>1000~2400</apparelMoney>
+    <apparelMoney>1200~2400</apparelMoney>
     <apparelTags>
       <li>Spacer</li>
       <li>Rimgate_GoauldApparel_tag</li>
     </apparelTags>
-    <weaponMoney>1200~2000</weaponMoney>
+    <weaponMoney>1200~2500</weaponMoney>
     <weaponTags>
       <li>Rimgate_GoauldWeapons_tag</li>
     </weaponTags>
     <techHediffsChance>1</techHediffsChance>
-    <techHediffsMoney>1000~2000</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
+    <techHediffsMoney>5000</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
     <techHediffsTags>
-      <li>Simple</li>
-      <li>Common</li>
-      <li>ImplantEmpireCommon</li>
       <li>Rimgate_GoauldPrimta_tag</li>
       <li>Rimgate_JaffaForeheadSymbol_tag</li>
     </techHediffsTags>
@@ -67,6 +64,42 @@
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">
+    <defName>Rimgate_TokraPlayer</defName>
+    <label>Tok'ra</label>
+    <combatPower>60</combatPower>
+    <isFighter>true</isFighter>
+    <gearHealthRange>0.7~2.3</gearHealthRange>
+    <apparelAllowHeadgearChance>0.8</apparelAllowHeadgearChance>
+    <apparelMoney>1800~3000</apparelMoney>
+    <apparelTags>
+      <li>Spacer</li>
+      <li>Rimgate_GoauldApparel_tag</li>
+    </apparelTags>
+    <weaponMoney>2000~4000</weaponMoney>
+    <weaponTags>
+      <li>Rimgate_GoauldWeapons_tag</li>
+    </weaponTags>
+    <techHediffsMoney>5000</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
+    <techHediffsTags>
+      <li>Rimgate_GoauldSymbiote_tag</li>
+    </techHediffsTags>
+    <techHediffsDisallowTags>
+      <li>PainCauser</li>
+    </techHediffsDisallowTags>
+    <techHediffsRequired>
+      <li>Rimgate_GoauldSymbiote</li>
+    </techHediffsRequired>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesAdulthood>
+          <li>Rimgate_TokraBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
+
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">
     <defName>Rimgate_GoauldPlayerSlave</defName>
     <label>slave</label>
     <combatPower>25</combatPower>
@@ -84,6 +117,9 @@
     </weaponTags>
     <backstoryFiltersOverride>
       <li>
+        <categoriesChildhood>
+          <li>Tribal</li>
+        </categoriesChildhood>
         <categoriesAdulthood>
           <li>Rimgate_SlaveBackstory</li>
         </categoriesAdulthood>

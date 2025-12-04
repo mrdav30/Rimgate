@@ -98,6 +98,7 @@
     <baseDesc>[PAWN_nameDef] walked the razor’s edge between gods and rebellion. Posing as a loyal servant of the Goa’uld, they passed secrets to the Tok’ra network by night. Their past is a tangle of false identities, whispered codes, and narrow escapes.</baseDesc>
     <slot>Adulthood</slot>
     <spawnCategories>
+      <li>Rimgate_TokraBackstory</li>
       <li>Rimgate_GoauldAdultBackstory</li>
     </spawnCategories>
     <skillGains>

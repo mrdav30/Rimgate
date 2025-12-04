@@ -147,6 +147,7 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_PushedCartVisual;
     public static ThingDef Rimgate_SecretDoor;
     public static ThingDef Rimgate_Stargate;
+    public static ThingDef Rimgate_SymbioteSpawningPool;
     public static ThingDef Rimgate_GoauldSymbiote;
     public static ThingDef Rimgate_SubspacePhaseDiverter;
     public static ThingDef Rimgate_Wheelbarrow;

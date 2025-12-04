@@ -12,7 +12,7 @@
 			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
 		</descriptionHyperlinks>
 		<organicAddedBodypart>true</organicAddedBodypart>
-		<defaultInstallPart>Torso</defaultInstallPart>
+		<defaultInstallPart>Stomach</defaultInstallPart>
 		<stages>
 			<li>
 				<painOffset>0.08</painOffset>
@@ -79,7 +79,7 @@
 			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
 			<ThingDef>Rimgate_SymbiotePouch</ThingDef>
 		</descriptionHyperlinks>
-		<defaultInstallPart>Stomach</defaultInstallPart>
+		<defaultInstallPart>Torso</defaultInstallPart>
 		<defaultLabelColor>(255, 0, 94)</defaultLabelColor>
 		<isBad>false</isBad>
 		<duplicationAllowed>false</duplicationAllowed>
@@ -106,7 +106,7 @@
 
 	<HediffDef>
 		<defName>Rimgate_SymbioteImplant</defName>
-		<hediffClass>Rimgate.Hediff_GoauldSymbiote</hediffClass>
+		<hediffClass>Rimgate.Hediff_SymbioteImplant</hediffClass>
 		<label>Goa'uld symbiote</label>
 		<labelNoun>a Goa'uld symbiote</labelNoun>
 		<description>A living parasite from the Goa’uld species, surgically implanted into the host’s body. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, senses, and a disturbing fondness for referring to yourself as a god.</description>

@@ -3,29 +3,23 @@ using Verse;
 
 namespace Rimgate;
 
-public class Hediff_PrimtaInPouch : Hediff_Implant
+public class Hediff_SymbioteImplant : Hediff_Implant
 {
-    public const int MaxPrimtaHostAge = 110;
-
     public override bool Visible => true;
 
-    public HediffComp_PrimtaLifecycle Lifecyle => _lifecycle ??= GetComp<HediffComp_PrimtaLifecycle>();
-
     private bool _skipWithdrawl;
-
-    private HediffComp_PrimtaLifecycle _lifecycle;
 
     public override void PostAdd(DamageInfo? dinfo)
     {
         base.PostAdd(dinfo);
 
-        // Safety: only allow on pawns that have the symbiote pouch hediff and no existing symbiote
+        // Safety: don't allow pawns that already have a symbiote
         if (!IsValidHost(out string reason))
         {
-            // Spawn prim'ta item at pawn's position
+            // Spawn mature symbiote item at pawn's position
             if (pawn.Map != null)
             {
-                var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_PrimtaSymbiote);
+                var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote);
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
             }
 
@@ -33,7 +27,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
                 Messages.Message(
                     reason,
                     pawn,
-                    MessageTypeDefOf.ThreatSmall);
+                    MessageTypeDefOf.ThreatBig);
 
             _skipWithdrawl = true;
 
@@ -42,6 +36,8 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
             return;
         }
 
+        // Mature symbiote will remove the pouch
+        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_TretoninAddiction);
@@ -51,50 +47,25 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
     {
         reason = null;
 
-        if (pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant))
+        if (pawn.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch))
         {
             reason = "RG_RejectHost_HasSymbiote".Translate(pawn.Named("PAWN"));
-            return false;
-        }
-
-        if (!pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch))
-        {
-            reason = "RG_RejectHost_NoPouch".Translate(pawn.Named("PAWN"));
-            return false;
-        }
-
-        if (pawn.ageTracker.AgeBiologicalYears >= MaxPrimtaHostAge)
-        {
-            reason = "RG_RejectHost_TooOld".Translate(pawn.Named("PAWN"));
             return false;
         }
 
         return true;
     }
 
-    public void MarkInternalRemoval() => _skipWithdrawl = true;
-
     public override void PostRemoved()
     {
-        base.PostRemoved();
-
         if (pawn == null || pawn.health == null)
             return;
 
-        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
+        base.PostRemoved();
 
         // If this was a rejection or internal event we flagged, skip spawn + withdrawal
         if (_skipWithdrawl)
             return;
-
-        if (pawn.Map != null)
-        {
-            var def = _lifecycle.Mature
-                ? RimgateDefOf.Rimgate_GoauldSymbiote
-                : RimgateDefOf.Rimgate_PrimtaSymbiote;
-            var thing = ThingMaker.MakeThing(def);
-            GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
-        }
 
         if (!pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal))
         {

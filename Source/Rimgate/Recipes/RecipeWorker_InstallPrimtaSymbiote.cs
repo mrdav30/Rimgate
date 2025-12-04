@@ -21,14 +21,23 @@ public class RecipeWorker_InstallPrimtaSymbiote : Recipe_InstallImplant
 
     private bool CanAccept(Pawn p)
     {
+        if (p == null)
+            return false;
+
         if (p.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant))
             return false;
 
-        // Block non-Jaffa (no pouch gene) from ever receiving a Prim'ta symbiote
+        // Block non-Jaffa (no pouch) from ever receiving a Prim'ta symbiote
         if (!p.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch))
             return false;
 
-        if (p.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch))
+        // Too old to safely host a new Prim'ta
+        if (p.ageTracker.AgeBiologicalYears >= Hediff_PrimtaInPouch.MaxPrimtaHostAge)
+            return false;
+
+        // Only allow new primta if old one matured
+        var primta = p.GetHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch) as Hediff_PrimtaInPouch;
+        if (primta != null && !primta.Lifecyle.Mature)
             return false;
 
         return true;

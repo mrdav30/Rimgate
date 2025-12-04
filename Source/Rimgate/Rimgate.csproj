@@ -416,6 +416,9 @@
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_GivePsylinkOnAdded.cs" />
     <Compile Include="Recipes\RecipeWorker_InstallPrimtaSymbiote.cs" />
     <Compile Include="Recipes\RecipeWorker_InstallGoauldSymbiote.cs" />
+    <Compile Include="Rituals\RitualObligationTargetWorker_SymbiotePool.cs" />
+    <Compile Include="Rituals\RitualOutcomeEffectWorker_PrimtaRenewal.cs" />
+    <Compile Include="Rituals\RitualRole_PrimtaHost.cs" />
     <Compile Include="Storyteller\GameCondition_StargateHeatWave.cs" />
     <Compile Include="Storyteller\GameCondition_StargatePsychicDrone.cs" />
     <Compile Include="Storyteller\GameCondition_StargateToxicFallout.cs" />
@@ -477,7 +480,7 @@
     <Compile Include="HarmonyPatches\Harmony_WorkGiver_RescueDowned.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_SymbioteSlowAging.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SymbioteSlowAging.cs" />
-    <Compile Include="Hediffs\Hediff_GoauldSymbiote.cs" />
+    <Compile Include="Hediffs\Hediff_SymbioteImplant.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_PatientGoToSarcophagus.cs" />
     <Compile Include="AI\JobGivers\JobGiver_PatientGoToSarcophagus.cs" />
     <Compile Include="Things\Building_Stargate.cs" />

@@ -25,10 +25,6 @@ public class RecipeWorker_InstallGoauldSymbiote : Recipe_InstallImplant
         if (p.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant))
             return false;
 
-        // Block Jaffa (pouch gene) from ever receiving the mature symbiote
-        if (p.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch))
-            return false;
-
         if (p.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch))
             return false;
 

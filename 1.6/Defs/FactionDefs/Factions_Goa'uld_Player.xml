@@ -30,6 +30,9 @@
         </categories>
       </li>
     </backstoryFilters>
+    <allowedCultures>
+      <li>Rimgate_Jaffari</li>
+    </allowedCultures>
   </FactionDef>
 
 </Defs>

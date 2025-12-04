@@ -24,11 +24,19 @@
 				</connections>
 			</surfaceLayer>
 			<parts>
+
+				<!-- Game start dialog -->
+				<li Class="ScenPart_GameStartDialog">
+					<def>GameStartDialog</def>
+					<text>The gods were false.\n\nAfter a lifetime of serving the Goa’uld and calling tyranny divine, you and a handful of Jaffa finally said “enough.” No more bowing. No more glowing eyes. No more forced chanting in ancient dialects.\n\nNow, stranded on a remote world with only your wits, weapons, and an awkward mix of symbiotes and humans, you must build a new future. One not ruled by parasites in fancy hats.\n\nWelcome to the Free Jaffa Nation. Try not to die.</text>
+					<closeSound>GameStartSting</closeSound>
+				</li>
+
 				<!-- Config pages -->
 				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs">
 					<def>ConfigurePawnsKindDefs</def>
 					<pawnChoiceCount>8</pawnChoiceCount>
-					<leftBehindPawnKind>Rimgate_GoauldPlayer</leftBehindPawnKind>
+					<leftBehindPawnKind>Rimgate_TokraPlayer</leftBehindPawnKind>
 					<kindCounts>
 						<li>
 							<kindDef>Rimgate_GoauldPlayer</kindDef>
@@ -42,17 +50,13 @@
 						</li>
 					</kindCounts>
 				</li>
+
 				<!-- Player starting stuff spawn method-->
 				<li Class="ScenPart_PlayerPawnsArriveMethod">
 					<def>PlayerPawnsArriveMethod</def>
 					<method>Standing</method>
 				</li>
-				<!-- Game start dialog -->
-				<li Class="ScenPart_GameStartDialog">
-					<def>GameStartDialog</def>
-					<text>The gods were false.\n\nAfter a lifetime of serving the Goa’uld and calling tyranny divine, you and a handful of Jaffa finally said “enough.” No more bowing. No more glowing eyes. No more forced chanting in ancient dialects.\n\nNow, stranded on a remote world with only your wits, weapons, and an awkward mix of symbiotes and humans, you must build a new future. One not ruled by parasites in fancy hats.\n\nWelcome to the Free Jaffa Nation. Try not to die.</text>
-					<closeSound>GameStartSting</closeSound>
-				</li>
+
 				<!-- Player starting things -->
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>

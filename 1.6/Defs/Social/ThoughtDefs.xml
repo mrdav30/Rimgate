@@ -151,6 +151,50 @@
         </stages>
     </ThoughtDef>
 
+    <!-- Prim'ta ceremony -->
+
+    <ThoughtDef>
+        <defName>Rimgate_AwkwardPrimta</defName>
+        <thoughtClass>Thought_AttendedRitual</thoughtClass>
+        <durationDays>6</durationDays>
+        <stackLimit>3</stackLimit>
+        <stages>
+            <li>
+                <label>awkward ceremony</label>
+                <description>That Prim'ta ceremony was awkward. The incompetence on display made the whole thing feel unjustified.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Rimgate_SatisfyingPrimta</defName>
+        <thoughtClass>Thought_AttendedRitual</thoughtClass>
+        <durationDays>6</durationDays>
+        <stackLimit>3</stackLimit>
+        <stages>
+            <li>
+                <label>satisfying ceremony</label>
+                <description>That Prim'ta ceremony was satisfying. The host seemed at ease, and the ritual proceeded as expected.</description>
+                <baseMoodEffect>6</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Rimgate_SpectacularPrimta</defName>
+        <thoughtClass>Thought_AttendedRitual</thoughtClass>
+        <durationDays>6</durationDays>
+        <stackLimit>3</stackLimit>
+        <stages>
+            <li>
+                <label>spectacular ceremony</label>
+                <description>That Prim'ta ceremony was spectacular. The host radiated confidence, and the ritual was a resounding success, inspiring all who witnessed it.</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
     <!-- =============== Wraith Hive =============== -->
 
     <ThoughtDef>
