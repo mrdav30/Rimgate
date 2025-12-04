@@ -1,4 +1,6 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -10,13 +12,30 @@ public class WorkGiver_Doctor_RescueToSarcophagus : WorkGiver_RescueDowned
 
     public override bool ShouldSkip(Pawn pawn, bool forced = false)
     {
+        if (pawn?.Map == null) return true;
+
         if (Utils.PawnIncapableOfHauling(pawn, out _)) return true;
 
-        return pawn?.Map?.listerBuildings.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus) ?? false;
+        if (!pawn.Map.listerBuildings.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus))
+            return true;
+
+        List<Pawn> list = pawn.Map.mapPawns?.SpawnedPawnsInFaction(pawn.Faction);
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i].Downed && !list[i].InBed())
+                return false;
+        }
+
+        return true;
     }
 
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
+        if (pawn?.Map == null) return false;
+
+        if (!pawn.Map.listerBuildings.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus))
+            return false;
+
         Pawn patient = t as Pawn;
 
         if (patient == null
