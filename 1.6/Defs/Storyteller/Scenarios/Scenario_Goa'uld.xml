@@ -46,7 +46,6 @@
 						<li>
 							<kindDef>Rimgate_GoauldPlayerSlave</kindDef>
 							<count>2</count>						
-							<requiredAtStart>true</requiredAtStart>
 						</li>
 					</kindCounts>
 				</li>

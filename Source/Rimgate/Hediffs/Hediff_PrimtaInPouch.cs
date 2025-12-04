@@ -89,7 +89,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
 
         if (pawn.Map != null)
         {
-            var def = _lifecycle.Mature
+            var def = Lifecyle.Mature
                 ? RimgateDefOf.Rimgate_GoauldSymbiote
                 : RimgateDefOf.Rimgate_PrimtaSymbiote;
             var thing = ThingMaker.MakeThing(def);

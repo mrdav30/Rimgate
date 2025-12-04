@@ -313,7 +313,7 @@
     <chemicalAddictionChance>0</chemicalAddictionChance>
     <invNutrition>2.55</invNutrition>
     <minGenerationAge>19</minGenerationAge>
-    <maxGenerationAge>250</maxGenerationAge>
+    <maxGenerationAge>110</maxGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
     <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>

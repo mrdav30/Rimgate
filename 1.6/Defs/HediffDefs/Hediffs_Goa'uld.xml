@@ -15,7 +15,7 @@
 		<defaultInstallPart>Stomach</defaultInstallPart>
 		<stages>
 			<li>
-				<painOffset>0.08</painOffset>
+				<painOffset>0.03</painOffset>
 				<foodPoisoningChanceFactor>0</foodPoisoningChanceFactor>
 				<makeImmuneTo>
 					<li>GutWorms</li>
@@ -32,7 +32,7 @@
 		</comps>
 	</HediffDef>
 
-	<!-- ==================== Symbiote Pouch ==================== -->
+	<!-- ==================== Krin’tak fever ==================== -->
 
 	<HediffDef>
 		<defName>Rimgate_KrintakSickness</defName>
@@ -102,6 +102,66 @@
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
 
+	<!-- degeneration -->
+
+	<HediffDef>
+		<defName>Rimgate_PouchDegeneration</defName>
+		<label>pouch degeneration</label>
+		<labelNoun>pouch degeneration</labelNoun>
+		<description>The empty symbiote pouch is destabilizing {PAWN_nameDef}'s body. Organs are failing, immune function is collapsing, and their altered biology is tearing itself apart in search of a Prim'ta that never came.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<chronic>true</chronic>
+		<initialSeverity>0.01</initialSeverity>
+		<lethalSeverity>1</lethalSeverity>
+		<everCurableByItem>false</everCurableByItem>
+		<tendable>false</tendable>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.35</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>strain</label>
+				<painOffset>0.1</painOffset>
+				<statFactors>
+					<RestFallRateFactor>1.5</RestFallRateFactor>
+					<InjuryHealingFactor>0.75</InjuryHealingFactor>
+				</statFactors>
+				<capMods>
+					<li>
+						<capacity>Metabolism</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>collapse</label>
+				<minSeverity>0.5</minSeverity>
+				<lifeThreatening>true</lifeThreatening>
+				<deathMtbDays>1</deathMtbDays>
+				<painOffset>0.4</painOffset>
+				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.2</offset>
+					</li>
+					<li>
+						<capacity>BloodFiltration</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>BloodPumping</capacity>
+						<offset>-0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<duplicationAllowed>false</duplicationAllowed>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+	</HediffDef>
+
 	<!-- ==================== Symbiote ==================== -->
 
 	<HediffDef>
@@ -161,6 +221,8 @@
 		</tags>
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
+
+	<!-- withdrawal -->
 
 	<HediffDef>
 		<defName>Rimgate_SymbioteWithdrawal</defName>

@@ -87,13 +87,16 @@
 
 	<!-- Symbiotes -->
 
+	<RG_PouchAdult_PrimtaNeeded_Label>Prim'ta required</RG_PouchAdult_PrimtaNeeded_Label>
+	<RG_PouchAdult_PrimtaNeeded_Text>{PAWN_nameDef} is of the age where they can no longer sustain an empty symbiote pouch.\n\nWithout a Prim'ta—or an artificial substitute like tretonin—their altered physiology will begin to fail. Traditional Jaffa would undergo a Prim'ta ceremony at this stage.\n\nIf nothing is done, {PAWN_nameDef} will not live long.</RG_PouchAdult_PrimtaNeeded_Text>
+
 	<RG_Primta_Matured>{PAWN_nameDef}’s prim’ta has matured — it must be removed soon or it will attempt to take over the host.</RG_Primta_Matured>
 	<RG_Primta_Takeover>The prim’ta inside {PAWN_nameDef} has fully matured and seized control of the host. A Goa’uld is now in command.</RG_Primta_Takeover>
 	<RG_Primta_FatalOverstay>{PAWN_nameDef}’s prim’ta has overmatured and both host and symbiote have perished in violent biological failure.</RG_Primta_FatalOverstay>
 	<RG_RejectHost_HasSymbiote>The symbiote rejected {PAWN_nameDef} — there is an existing symbiote so it abandoned the host immediately.</RG_RejectHost_HasSymbiote>
 	<RG_RejectHost_NoPouch>The symbiote rejected {PAWN_nameDef} — without a proper pouch, it abandoned the host immediately.</RG_RejectHost_NoPouch>
 	<RG_RejectHost_TooOld>The symbiote rejected {PAWN_nameDef} — the host is too old to be a viable candidate.</RG_RejectHost_TooOld>
-	
+
 	<RG_Primta_KrintakLabel>Krin’tak Fever</RG_Primta_KrintakLabel>
 	<RG_Primta_KrintakText>Krin’tak is a Jaffa fever marking the final phase of prim’ta maturation. It is uncomfortable but not dangerous—merely a biological warning that the larva must soon be removed before it attempts domination.</RG_Primta_KrintakText>
 

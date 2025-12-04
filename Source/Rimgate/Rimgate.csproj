@@ -404,6 +404,7 @@
     <Compile Include="Hediffs\Comps\HediffComp_GivePsylinkOnAdded.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_SymbioteKiller.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_Unrecruitable.cs" />
+    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_PouchWatcher.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_PrimtaLifecycle.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SymbioteContagious.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SymbioteKiller.cs" />

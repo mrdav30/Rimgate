@@ -55,6 +55,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_ClonePodSickness;
     public static HediffDef Rimgate_Enduring;
     public static HediffDef Rimgate_KrintakSickness;
+    public static HediffDef Rimgate_PouchDegeneration;
     public static HediffDef Rimgate_PrimtaInPouch;
     public static HediffDef Rimgate_PushingCart;
     public static HediffDef Rimgate_SarcophagusHigh;

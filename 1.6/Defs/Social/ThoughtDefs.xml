@@ -39,27 +39,11 @@
     <!-- =============== Symbiote =============== -->
 
     <ThoughtDef>
-        <defName>Rimgate_SymbioteImplant</defName>
-        <workerClass>ThoughtWorker_Hediff</workerClass>
-        <hediff>Rimgate_SymbioteWithdrawal</hediff>
-        <validWhileDespawned>true</validWhileDespawned>
-        <durationDays>-1</durationDays>
-        <stackLimit>1</stackLimit>
-        <stages>
-            <li>
-                <label>god-complex</label>
-                <description>Your symbiote feeds you power… and delusions of grandeur. Mortals around you should kneel.</description>
-                <baseMoodEffect>-3</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
-
-    <ThoughtDef>
         <defName>Rimgate_SymbioteWithdrawalThought</defName>
         <workerClass>ThoughtWorker_Hediff</workerClass>
         <hediff>Rimgate_SymbioteWithdrawal</hediff>
         <validWhileDespawned>true</validWhileDespawned>
-        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+        <developmentalStageFilter>Adult</developmentalStageFilter>
         <stages>
             <li>
                 <label>symbiote withdrawal</label>
@@ -102,6 +86,7 @@
         <stackLimit>1</stackLimit>
         <validWhileDespawned>true</validWhileDespawned>
         <nullifyingTraits>
+            <li>Psychopath</li>
             <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
         </nullifyingTraits>
         <stages>
@@ -119,17 +104,18 @@
         <thoughtClass>Thought_Situational</thoughtClass>
         <workerClass>Rimgate.ThoughtWorker_SymbiotePouchEmpty</workerClass>
         <validWhileDespawned>true</validWhileDespawned>
-        <developmentalStageFilter>Child, Adult</developmentalStageFilter>
+        <developmentalStageFilter>Adult</developmentalStageFilter>
         <stackLimit>1</stackLimit>
         <nullifyingTraits>
             <li>Psychopath</li>
             <li>Ascetic</li>
+            <li>Masochist</li>
         </nullifyingTraits>
         <stages>
             <li>
                 <label>pouch aches</label>
                 <description>The engineered chamber in their abdomen feels hollow and restless without a resident symbiote.</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>-4</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -158,6 +144,10 @@
         <thoughtClass>Thought_AttendedRitual</thoughtClass>
         <durationDays>6</durationDays>
         <stackLimit>3</stackLimit>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+        </nullifyingTraits>
         <stages>
             <li>
                 <label>awkward ceremony</label>
@@ -172,6 +162,10 @@
         <thoughtClass>Thought_AttendedRitual</thoughtClass>
         <durationDays>6</durationDays>
         <stackLimit>3</stackLimit>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+        </nullifyingTraits>
         <stages>
             <li>
                 <label>satisfying ceremony</label>
@@ -186,6 +180,10 @@
         <thoughtClass>Thought_AttendedRitual</thoughtClass>
         <durationDays>6</durationDays>
         <stackLimit>3</stackLimit>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+        </nullifyingTraits>
         <stages>
             <li>
                 <label>spectacular ceremony</label>
