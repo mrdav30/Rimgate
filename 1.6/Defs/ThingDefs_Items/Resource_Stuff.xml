@@ -572,7 +572,10 @@
   <ThingDef>
     <defName>Rimgate_SymbioteQueen</defName>
     <label>Goa'uld symbiote queen</label>
-    <description>a massive, mature Goa'uld symbiote capable of spawning new larvae. Too large and willful to be used as an implant—best kept submerged in a prepared spawning pool.</description>
+    <description>A massive, mature Goa'uld symbiote capable of spawning new larvae. Too large and willful to be used as an implant—its proper place is submerged in a prepared spawning pool, fed regularly and watched carefully.</description>
+    <descriptionHyperlinks>
+      <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
+    </descriptionHyperlinks>
     <graphicData>
       <texPath>Things/Item/Resource/RGGoauldSymbioteQueen</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -602,10 +605,11 @@
     <thingCategories>
       <li>ResourcesRaw</li>
     </thingCategories>
+    <thingSetMakerTags Inherit="False" />
     <tradeability>Sellable</tradeability>
     <comps>
       <li Class="CompProperties_Forbiddable" />
-      <li Class="CompProperties_Rottable">
+      <li Class="Rimgate.CompProperties_SymbioteRottable">
         <daysToRotStart>1</daysToRotStart>
         <rotDestroys>true</rotDestroys>
       </li>

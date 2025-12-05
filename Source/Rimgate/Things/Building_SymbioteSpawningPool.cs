@@ -51,9 +51,9 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
 
     public override void TickRare()
     {
-        foreach (var symbiote in _innerContainer.InnerListForReading)
+        foreach (var t in _innerContainer.InnerListForReading)
         {
-            if (symbiote.TryGetComp<CompRottable>(out CompRottable comp))
+            if (t.TryGetComp<Comp_SymbioteRottable>(out Comp_SymbioteRottable comp))
                 comp.disabled = true;
         }
 
@@ -114,7 +114,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
         foreach (Thing thing in toDrop)
         {
             if (container.TryDrop(thing, ThingPlaceMode.Near, out var dropped)
-                && dropped.TryGetComp<CompRottable>(out var rot))
+                && dropped.TryGetComp<Comp_SymbioteRottable>(out var rot))
             {
                 rot.disabled = false;
             }
@@ -232,7 +232,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
     {
         if (_innerContainer.TryDrop(thing, cell, base.Map, mode, count, out dropped))
         {
-            if (dropped.TryGetComp<CompRottable>(out CompRottable comp))
+            if (dropped.TryGetComp<Comp_SymbioteRottable>(out Comp_SymbioteRottable comp))
                 comp.disabled = false;
 
             return true;

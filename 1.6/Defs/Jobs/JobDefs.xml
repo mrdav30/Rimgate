@@ -232,7 +232,7 @@
 		<casualInterruptible>true</casualInterruptible>
 	</JobDef>
 
-	<!-- =============== Symbiote pool =============== -->
+	<!-- =============== ZPM housing =============== -->
 
 	<JobDef>
 		<defName>Rimgate_InsertZpmIntoHousing</defName>

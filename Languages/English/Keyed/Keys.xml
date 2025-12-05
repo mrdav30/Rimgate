@@ -87,6 +87,8 @@
 
 	<!-- Symbiotes -->
 
+	<RG_SymbioteFrozen>{0} has frozen outside a prepared spawning pool and has perished.</RG_SymbioteFrozen>
+
 	<RG_PouchAdult_PrimtaNeeded_Label>Prim'ta required</RG_PouchAdult_PrimtaNeeded_Label>
 	<RG_PouchAdult_PrimtaNeeded_Text>{PAWN_nameDef} is of the age where they can no longer sustain an empty symbiote pouch.\n\nWithout a Prim'ta—or an artificial substitute like tretonin—their altered physiology will begin to fail. Traditional Jaffa would undergo a Prim'ta ceremony at this stage.\n\nIf nothing is done, {PAWN_nameDef} will not live long.</RG_PouchAdult_PrimtaNeeded_Text>
 

@@ -170,7 +170,7 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
             var t = inner[i];
             if (t.def == RimgateDefOf.Rimgate_PrimtaSymbiote)
             {
-                // We don't need to drop it into the world; just consume one "inside" the pool.
+                // We don't need to drop it into the world; just consume one inside the pool.
                 // SplitOff(1) adjusts the stack and gives us a single-thing which we destroy later.
                 return t;
             }

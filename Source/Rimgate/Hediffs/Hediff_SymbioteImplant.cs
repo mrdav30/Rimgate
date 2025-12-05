@@ -38,6 +38,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
 
         // Mature symbiote will remove the pouch
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
+        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PouchDegeneration);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_TretoninAddiction);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <!-- Sarcophagus -->
+    <!-- ==================== Sarcophagus ==================== -->
 
     <ChemicalDef>
         <defName>Rimgate_SarcophagusChemical</defName>
@@ -19,6 +19,8 @@
         <listPriority>45</listPriority>
         <fallPerDay>0.333</fallPerDay>
     </NeedDef>
+
+    <!-- High -->
 
     <HediffDef>
         <defName>Rimgate_SarcophagusHigh</defName>
@@ -74,6 +76,8 @@
             </li>
         </stages>
     </HediffDef>
+
+    <!-- Addiction -->
 
     <HediffDef ParentName="AddictionBase">
         <defName>Rimgate_SarcophagusAddiction</defName>
@@ -136,7 +140,7 @@
         </stages>
     </HediffDef>
 
-    <!-- Tretonin -->
+    <!-- ==================== Tretonin ==================== -->
 
     <ChemicalDef>
         <defName>Rimgate_TretoninChemical</defName>

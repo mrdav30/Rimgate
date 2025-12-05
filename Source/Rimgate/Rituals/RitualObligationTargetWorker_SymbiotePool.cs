@@ -46,8 +46,6 @@ public class RitualObligationTargetWorker_SymbiotePool : RitualObligationTargetF
                 return false;
         }
 
-        // Adjust this depending on your comp API. If you have a helper (recommended),
-        // you can just call comp.HasPrimtaLarva instead.
         bool hasPrimtaLarva = pool.InnerContainer.Any(
             t => t.def == RimgateDefOf.Rimgate_PrimtaSymbiote);
 

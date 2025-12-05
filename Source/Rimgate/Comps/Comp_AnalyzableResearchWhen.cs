@@ -35,6 +35,13 @@ public class Comp_AnalyzableResearchWhen : CompAnalyzableUnlockResearch
         base.CompTick();
     }
 
+    public override void CompTickRare()
+    {
+        if (!CanAnalyze || HideInteraction) return;
+
+        base.CompTickRare();
+    }
+
     public override AcceptanceReport CanInteract(Pawn activateBy = null, bool checkOptionalItems = true)
     {
         if (HideInteraction) return false;

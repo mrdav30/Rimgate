@@ -106,6 +106,7 @@
           <li>Rimgate_SarcophagusAddiction</li>
           <li>Rimgate_TretoninAddiction</li>
           <li>Rimgate_KrintakSickness</li>
+          <li>Rimgate_PouchDegeneration</li>
         </neverTreatableHediffs>
         <nonCriticalTreatableHediffs>
           <li>AlcoholHigh</li>

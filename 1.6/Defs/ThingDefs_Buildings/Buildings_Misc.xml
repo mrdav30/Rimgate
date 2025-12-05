@@ -594,7 +594,12 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_SymbioteSpawningPool</defName>
 		<label>symbiote spawning pool</label>
-		<description>A carved, stone-lined biopool designed to house a Goa'uld symbiote queen. Fed regularly with prepared feed, it will slowly produce new symbiotes ready for implantation—assuming nothing crawls out first.\n\nThe bio-reactive medium preserves all symbiotic tissue indefinitely, preventing decomposition and stasis loss while submerged, until called to serve a new host.</description>
+		<description>A carved, stone-lined biopool designed to house a Goa'uld symbiote queen and her brood.\n\nThe bio-reactive medium preserves all symbiotic tissue indefinitely, preventing decomposition and stasis loss while submerged, until called to serve a new host.\n\nWhen stocked regularly with prepared feed, it will slowly produce new symbiotes ready for implantation. If neglected, the hunger in the pool does not simply go away—it waits for whatever is unfortunate enough to fall in.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_SymbioteQueen</ThingDef>
+			<ThingDef>Rimgate_GoauldSymbiote</ThingDef>
+			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
+		</descriptionHyperlinks>
 
 		<thingClass>Rimgate.Building_SymbioteSpawningPool</thingClass>
 

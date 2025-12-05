@@ -7,7 +7,7 @@
 		<defName>Rimgate_SymbiotePouch</defName>
 		<label>symbiote pouch</label>
 		<labelNoun>a symbiote pouch</labelNoun>
-		<description>An artificially grown chamber beneath the stomach, sealed with living tissue. Warm, vascular, and unnervingly receptive, it is the perfect cradle for a Goa’uld symbiote. While it offers protection against common gut afflictions, it forever brands the host as bound to alien biology.</description>
+		<description>An artificially grown chamber beneath the stomach, sealed with living tissue. Warm, vascular, and unnervingly receptive, it is the perfect cradle for a Goa’uld symbiote.\n\nIt offers some protection against common gut afflictions, but forever brands the host as something built to carry an alien.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
 		</descriptionHyperlinks>
@@ -26,9 +26,7 @@
 			<solid>true</solid>
 		</addedPartProps>
 		<comps>
-			<li>
-				<compClass>Rimgate.HediffComp_PouchWatcher</compClass>
-			</li>
+			<li Class="Rimgate.HediffCompProperties_PouchWatcher" />
 		</comps>
 	</HediffDef>
 
@@ -38,7 +36,10 @@
 		<defName>Rimgate_KrintakSickness</defName>
 		<label>Krin’tak fever</label>
 		<labelNoun>Krin’tak fever</labelNoun>
-		<description>A mild but uncomfortable fever marking the final stage of Prim’ta maturation. Symptoms include chills, sweating, nausea, and general malaise. While not dangerous on its own, it signals that the larval symbiote will soon attempt to take control of the host unless removed.</description>
+		<description>A mild but uncomfortable fever marking the final stage of Prim’ta maturation. Chills, sweating, nausea, and general weakness are common.\n\nWhile rarely dangerous on its own, it warns that the larval symbiote is nearing the point where it will try to take control unless removed.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
+		</descriptionHyperlinks>
 		<hediffClass>HediffWithComps</hediffClass>
 		<isBad>true</isBad>
 		<tendable>false</tendable>
@@ -67,17 +68,18 @@
 		</stages>
 	</HediffDef>
 
-	<!-- ==================== Prim'ta ==================== -->
+	<!-- ==================== Prim'ta Symbiote ==================== -->
 
 	<HediffDef>
 		<defName>Rimgate_PrimtaInPouch</defName>
 		<hediffClass>Rimgate.Hediff_PrimtaInPouch</hediffClass>
 		<label>prim'ta symbiote</label>
 		<labelNoun>a prim'ta symbiote</labelNoun>
-		<description>A larval Goa’uld symbiote residing in an abdominal pouch, sustaining and slowly altering the host. Without a pouch to shelter it—or a timely removal upon maturity—both host and symbiote are in danger.</description>
+		<description>A larval Goa’uld symbiote residing in an abdominal pouch, sustaining and subtly reshaping the host. It bolsters healing and immunity while it grows, but its presence comes with an expiration date.\n\nWithout a pouch to shelter it—or a timely removal upon maturity—both host and symbiote are in lethal danger.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
-			<ThingDef>Rimgate_SymbiotePouch</ThingDef>
+			<HediffDef>Rimgate_SymbiotePouch</HediffDef>
+			<HediffDef>Rimgate_SymbioteWithdrawal</HediffDef>
 		</descriptionHyperlinks>
 		<defaultInstallPart>Torso</defaultInstallPart>
 		<defaultLabelColor>(255, 0, 94)</defaultLabelColor>
@@ -102,14 +104,19 @@
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
 
-	<!-- degeneration -->
+	<!-- ==================== Pouch Degeneration ==================== -->
 
 	<HediffDef>
 		<defName>Rimgate_PouchDegeneration</defName>
 		<label>pouch degeneration</label>
 		<labelNoun>pouch degeneration</labelNoun>
-		<description>The empty symbiote pouch is destabilizing {PAWN_nameDef}'s body. Organs are failing, immune function is collapsing, and their altered biology is tearing itself apart in search of a Prim'ta that never came.</description>
+		<description>The empty symbiote pouch is slowly destabilizing the host's body. Organs are failing, immune function is collapsing, and their altered biology is tearing itself apart in search of a Prim’ta that never came.\n\nWithout intervention like tretonin or a symbiote, this path only ends one way.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
+			<ThingDef>Rimgate_Tretonin</ThingDef>
+		</descriptionHyperlinks>
 		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
 		<chronic>true</chronic>
 		<initialSeverity>0.01</initialSeverity>
 		<lethalSeverity>1</lethalSeverity>
@@ -162,16 +169,17 @@
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
 
-	<!-- ==================== Symbiote ==================== -->
+	<!-- ==================== Goa'uld Symbiote ==================== -->
 
 	<HediffDef>
 		<defName>Rimgate_SymbioteImplant</defName>
 		<hediffClass>Rimgate.Hediff_SymbioteImplant</hediffClass>
 		<label>Goa'uld symbiote</label>
 		<labelNoun>a Goa'uld symbiote</labelNoun>
-		<description>A living parasite from the Goa’uld species, surgically implanted into the host’s body. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, senses, and a disturbing fondness for referring to yourself as a god.</description>
+		<description>A living parasite from the Goa’uld species, surgically implanted into the host’s body. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, sharper senses, and a disturbing fondness for referring to yourself as a god.\n\nRemoval is possible—but the body it’s been sustaining does not take separation well.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_GoauldSymbiote</ThingDef>
+			<HediffDef>Rimgate_SymbioteWithdrawal</HediffDef>
 		</descriptionHyperlinks>
 		<defaultInstallPart>Torso</defaultInstallPart>
 		<defaultLabelColor>(255, 0, 94)</defaultLabelColor>
@@ -222,12 +230,15 @@
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
 
-	<!-- withdrawal -->
+	<!-- ==================== Symbiote Withdrawal ==================== -->
 
 	<HediffDef>
 		<defName>Rimgate_SymbioteWithdrawal</defName>
 		<label>symbiote withdrawal</label>
-		<description>With the symbiote removed, the host's body begins to crash—systems falter, strength fades, and paranoia skyrockets.\nSymptoms include fatigue, tremors, organ failure, rapid aging, and regretting life choices involving glowing eyes.</description>
+		<description>With the symbiote removed, the host's body begins to crash—systems falter, strength fades, and paranoia skyrockets. Symptoms include fatigue, tremors, organ failure, rapid aging, and regretting life choices involving glowing eyes.\n\nWithout an artificial replacement like tretonin—or another symbiote—this condition is usually terminal.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_Tretonin</ThingDef>
+		</descriptionHyperlinks>
 		<hediffClass>HediffWithComps</hediffClass>
 		<chronic>true</chronic>
 		<minSeverity>0.001</minSeverity>
@@ -304,13 +315,13 @@
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
 
-	<!-- plague -->
+	<!-- ==================== Symbiote Plague ==================== -->
 
 	<HediffDef ParentName="InfectionBase">
 		<defName>Rimgate_SymbiotePlague</defName>
 		<hediffClass>Rimgate.Hediff_SymbiotePlague</hediffClass>
 		<label>symbiote pathogen</label>
-		<description>A virulent pathogen specifically engineered to target Goa'uld symbiotes. If left untreated, it can fatally damage or even destroy the symbiote, leaving the host vulnerable and weakened. Other hosts that aren't infected should stay clear.</description>
+		<description>A virulent pathogen specifically engineered to target Goa'uld symbiotes. If left untreated, it can fatally damage or destroy the symbiote, leaving the host weakened, unstable, or suddenly very mortal.\n\nThose not yet carrying a symbiote are safe, but should still keep their distance—this strain may not be picky about it's next test subjects.</description>
 		<defaultLabelColor>(0.5, 1.0, 0.3)</defaultLabelColor>
 		<makesSickThought>true</makesSickThought>
 		<lethalSeverity>1</lethalSeverity>
@@ -424,7 +435,7 @@
 				</capMods>
 			</li>
 			<li>
-				<label>critical</label>
+				<label>terminal</label>
 				<minSeverity>0.9</minSeverity>
 				<lifeThreatening>true</lifeThreatening>
 				<painOffset>0.85</painOffset>

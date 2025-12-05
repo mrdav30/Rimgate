@@ -16,6 +16,7 @@
         <thingCategories>
             <li>BodyPartsBionic</li>
         </thingCategories>
+        <tradeability>None</tradeability>
         <thingSetMakerTags Inherit="False" />
     </ThingDef>
 
@@ -24,7 +25,11 @@
     <ThingDef ParentName="BodyPartBase">
         <defName>Rimgate_PrimtaSymbiote</defName>
         <label>prim'ta symbiote</label>
-        <description>A larval Goa’uld symbiote—squirming, half-formed, and disturbingly intent. Jaffa carry these in abdominal pouches until they mature, at which point they must be removed or risk “promotion” into a full-blown god complex.</description>
+        <description>A larval Goa’uld symbiote—squirming, half-formed, and disturbingly intent. Jaffa carry these in abdominal pouches until they mature, at which point they must be removed or risk “promotion” into a full-blown god complex.\n\nOutside a host or dedicated spawning pool, it spoils quickly and dies.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_InstallPrimtaSymbiote</RecipeDef>
+            <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
+        </descriptionHyperlinks>
         <techLevel>Neolithic</techLevel>
         <tickerType>Rare</tickerType>
         <graphicData>
@@ -40,14 +45,15 @@
             <MaxHitPoints>60</MaxHitPoints>
         </statBases>
         <thingCategories>
-            <li>BodyPartsBionic</li>
+            <li>ResourcesRaw</li>
         </thingCategories>
         <techHediffsTags>
             <li>Rimgate_GoauldPrimta_tag</li>
         </techHediffsTags>
         <thingSetMakerTags Inherit="False" />
+        <tradeability>Sellable</tradeability>
         <comps>
-            <li Class="CompProperties_Rottable">
+            <li Class="Rimgate.CompProperties_SymbioteRottable">
                 <!-- Short outside-host lifespan -->
                 <daysToRotStart>0.4</daysToRotStart>
                 <rotDestroys>true</rotDestroys>
@@ -60,9 +66,10 @@
     <ThingDef ParentName="BodyPartBase">
         <defName>Rimgate_GoauldSymbiote</defName>
         <label>Goa'uld symbiote</label>
-        <description>a genetically-engineered space eel that grants its host rapid healing, disease immunity, and a nagging superiority complex.\nInstall in torso—side effects may include glowing eyes, evil laughter, and quoting false gods.</description>
+        <description>A genetically engineered space eel that grants its host rapid healing, disease immunity, and a nagging superiority complex. Install in the torso—side effects may include glowing eyes, evil laughter, and quoting false gods.\n\nBest kept stored in a symbiote spawning pool between uses.</description>
         <descriptionHyperlinks>
             <RecipeDef>Rimgate_InstallSymbiote</RecipeDef>
+            <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
         </descriptionHyperlinks>
         <techLevel>Neolithic</techLevel>
         <tickerType>Rare</tickerType>
@@ -79,14 +86,13 @@
             <MaxHitPoints>100</MaxHitPoints>
         </statBases>
         <thingCategories>
-            <li>BodyPartsBionic</li>
+            <li>ResourcesRaw</li>
         </thingCategories>
         <techHediffsTags>
             <li>Rimgate_GoauldSymbiote_tag</li>
         </techHediffsTags>
-        <thingSetMakerTags>
-            <li>RewardStandardLowFreq</li>
-        </thingSetMakerTags>
+        <thingSetMakerTags Inherit="False" />
+        <tradeability>Sellable</tradeability>
         <comps>
             <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
                 <analysisID>1000300</analysisID>
@@ -125,7 +131,7 @@
                     <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
                 </targetingParameters>
             </li>
-            <li Class="CompProperties_Rottable">
+            <li Class="Rimgate.CompProperties_SymbioteRottable">
                 <daysToRotStart>1</daysToRotStart>
                 <rotDestroys>true</rotDestroys>
             </li>

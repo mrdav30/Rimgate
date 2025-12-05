@@ -42,6 +42,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
             return;
         }
 
+        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PouchDegeneration);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_TretoninAddiction);
