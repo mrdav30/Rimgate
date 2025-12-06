@@ -10,7 +10,8 @@ public class ThoughtWorker_Opinion_SymbioteHostility : ThoughtWorker
         if (p.IsPrisoner || !p.IsColonist || p.IsSlave)
             return ThoughtState.Inactive;
 
-        if(p.HasSymbiote())
+        // If pawn is a host or has a pouch, they're *in the culture* – no generic hostility.
+        if (p.IsGoauldHost())
             return ThoughtState.Inactive;
 
         return ThoughtState.ActiveDefault;
@@ -25,9 +26,9 @@ public class ThoughtWorker_Opinion_SymbioteHostility : ThoughtWorker
         if (p.RaceProps == null || other.RaceProps == null) return ThoughtState.Inactive;
         if (!p.RaceProps.Humanlike || !other.RaceProps.Humanlike) return ThoughtState.Inactive;
 
-        // Apply only if OTHER is the host, and p is not a host
-        bool otherIsHost = other.HasSymbiote();
-        bool selfIsHost = p.HasSymbiote();
+        // Only non-host pawns get the *uneasy* opinion of a host.
+        bool otherIsHost = other.IsGoauldHost();
+        bool selfIsHost = p.IsGoauldHost();
 
         if (otherIsHost && !selfIsHost)
             return ThoughtState.ActiveDefault;

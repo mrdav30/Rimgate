@@ -126,7 +126,7 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
         // ---- SUCCESS PATH ----
         var primta = host.GetHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch) as Hediff_PrimtaInPouch;
         bool hadPrimta = primta != null;
-        bool primtaMature = primta != null && primta.Lifecyle != null && primta.Lifecyle.Mature;
+        bool primtaMature = primta != null && primta.Lifecycle != null && primta.Lifecycle.Mature;
 
         // If there was an existing prim'ta, remove it safely and spawn the appropriate symbiote.
         if (hadPrimta)

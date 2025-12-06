@@ -99,14 +99,10 @@ public class JobDriver_MeditateAtWraithTable : JobDriver_Meditate
         if (!pawn.HasHiveConnection())
             return;
 
-        var memories = pawn.needs?.mood?.thoughts?.memories;
-        if (memories == null)
-            return;
+        var def = Rand.Chance(0.7f)
+            ? RimgateDefOf.Rimgate_WraithCommunedWithHive
+            : RimgateDefOf.Rimgate_WraithWhispersFromVoid;
 
-        // Simple split: more often "Communed with the Hive", sometimes "Whispers from the Void"
-        if (Rand.Chance(0.7f))
-            memories.TryGainMemory(RimgateDefOf.Rimgate_WraithCommunedWithHive);
-        else
-            memories.TryGainMemory(RimgateDefOf.Rimgate_WraithWhispersFromVoid);
+        pawn.TryGiveThought(def);
     }
 }

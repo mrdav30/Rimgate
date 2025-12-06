@@ -717,6 +717,7 @@
 				<daysPerSymbiote>3.0</daysPerSymbiote>
 				<fuelPerSymbiote>2.0</fuelPerSymbiote>
 			</li>
+			<li Class="Rimgate.CompProperties_AnimatedSymbiotePool" />
 		</comps>
 	</ThingDef>
 

@@ -1015,6 +1015,12 @@
         </killedLeavingsRanges>
         <killedLeavingsChance>0.90</killedLeavingsChance>
 
+        <comps>
+            <li Class="Rimgate.CompProperties_AnimatedSymbiotePool">
+                <enabledByDefault>true</enabledByDefault>
+            </li>
+        </comps>
+
     </ThingDef>
 
 </Defs>

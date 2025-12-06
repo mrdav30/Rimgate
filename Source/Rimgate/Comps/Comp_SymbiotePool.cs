@@ -18,6 +18,8 @@ public class Comp_SymbiotePool : ThingComp
 
     public CompPowerTrader PowerTrader => _cachedPowerTrader ??= parent.GetComp<CompPowerTrader>();
 
+    public Comp_AnimatedSymbiotePool Animation => _cachedAnimation ?? parent.GetComp<Comp_AnimatedSymbiotePool>();
+
     public Texture2D QueenIcon => _cachedInsertIcon ??= ContentFinder<Texture2D>.Get(Props.symbioteQueenDef.graphicData.texPath, true);
 
     private float _progress; // 0-1
@@ -25,6 +27,8 @@ public class Comp_SymbiotePool : ThingComp
     private CompRefuelable _cachedRefuelable;
 
     private CompPowerTrader _cachedPowerTrader;
+
+    private Comp_AnimatedSymbiotePool _cachedAnimation;
 
     private Texture2D _cachedInsertIcon;
 
@@ -89,12 +93,7 @@ public class Comp_SymbiotePool : ThingComp
         }
 
         // VFX
-        bool canFx = ModsConfig.OdysseyActive
-            && pool.HasAnyContents
-            && Props.spawnSymbioteMotes
-            && parent.IsHashIntervalTick(Props.moteIntervalTicks);
-        if (canFx)
-            TrySpawnSymbioteMote();
+        Animation?.Toggle(pool.HasAnyContents);
 
         // Need some fuel and a queen to progress production
         if ((Refuelable != null && !Refuelable.HasFuel) || !pool.HasQueen)
@@ -165,31 +164,6 @@ public class Comp_SymbiotePool : ThingComp
         if (!pool.Accepts(product)) return;
 
         pool.InnerContainer.TryAddOrTransfer(product);
-    }
-
-    private void TrySpawnSymbioteMote()
-    {
-        var map = parent.Map;
-        if (map == null) return;
-
-        var def = (Rand.Bool
-            ? FleckDefOf.FishShadowReverse
-            : FleckDefOf.FishShadow) ?? FleckDefOf.FishShadow;
-        if (def == null) return;
-
-        // Slight jitter from center for variety
-        Vector3 loc = parent.TrueCenter().SetToAltitude(AltitudeLayer.MoteLow);
-        loc.x += Rand.Range(-0.10f, 0.10f);
-        loc.z += Rand.Range(-0.05f, 0.05f);
-
-        if (!loc.ShouldSpawnMotesAt(map)) return;
-
-        float scale = Props.moteBaseScale * Props.moteScaleRange.RandomInRange;
-        var data = FleckMaker.GetDataStatic(loc, map, def, scale);
-        data.rotation = Rand.Range(0f, 360f);
-        data.rotationRate = Rand.Sign * Props.moteRotationSpeed * Rand.Range(0.85f, 1.15f);
-
-        map.flecks.CreateFleck(data);
     }
 
     public override string CompInspectStringExtra()

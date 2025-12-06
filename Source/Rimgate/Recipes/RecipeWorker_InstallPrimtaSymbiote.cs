@@ -37,7 +37,7 @@ public class RecipeWorker_InstallPrimtaSymbiote : Recipe_InstallImplant
 
         // Only allow new primta if old one matured
         var primta = p.GetHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch) as Hediff_PrimtaInPouch;
-        if (primta != null && !primta.Lifecyle.Mature)
+        if (primta != null && !primta.Lifecycle.Mature)
             return false;
 
         return true;

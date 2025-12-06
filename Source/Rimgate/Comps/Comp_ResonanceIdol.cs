@@ -52,30 +52,26 @@ public class Comp_ResonanceIdol : ThingComp
 
     private void TryApplyMood(Pawn pawn)
     {
-        if (pawn.needs?.mood == null) return;
-        var thoughts = pawn.needs.mood.thoughts?.memories;
-        if (thoughts == null) return;
-
         bool isWraith = pawn.IsXenoTypeOf(RimgateDefOf.Rimgate_Wraith);
         var def = isWraith ? Props.thoughtNearForWraith : Props.thoughtNear;
         if (def == null) return;
 
+        var memories = pawn.needs?.mood?.thoughts?.memories;
+        if (memories == null) return;
+
         // Refresh the short memory so it stays while in range (no stacking)
-        if (thoughts.GetFirstMemoryOfDef(def) is Thought_Memory existing)
+        if (memories.GetFirstMemoryOfDef(def) is Thought_Memory existing)
             existing.Renew(); // refresh duration
         else
-            thoughts.TryGainMemory(def);
+            memories.TryGainMemory(def);
     }
 
     private void MaybeApplySpooky(Pawn pawn)
     {
         if (Props.thoughtNegative == null || pawn.needs?.mood == null) return;
 
-        // MTB check (days) -> convert to ticks
-        if (Rand.MTBEventOccurs(Props.negativeThoughtMtbDays, GenDate.TicksPerDay, 250)) // per Rare tick slice
-        {
-            pawn.needs.mood.thoughts.memories.TryGainMemory(Props.thoughtNegative);
-        }
+        if (Rand.MTBEventOccurs(Props.negativeThoughtMtbDays, GenDate.TicksPerDay, 250))
+            pawn.TryGiveThought(Props.thoughtNegative);
     }
 
     private void RefreshTimedHediff(Pawn pawn, HediffDef def, int refreshTicks)

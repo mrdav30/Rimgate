@@ -16,7 +16,7 @@
         <usesIdeoVisualEffects>false</usesIdeoVisualEffects>
         <mergeRitualGizmosFromAllIdeos>true</mergeRitualGizmosFromAllIdeos>
         <useRepeatPenalty>false</useRepeatPenalty>
-        <showRitualFloatMenuOption>false</showRitualFloatMenuOption>
+        <showRitualFloatMenuOption>true</showRitualFloatMenuOption>
     </PreceptDef>
 
     <RitualPatternDef>

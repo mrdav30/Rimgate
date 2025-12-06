@@ -204,6 +204,19 @@ internal static class Utils
             || pawn.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);
     }
 
+    public static bool IsGoauldHost(this Pawn pawn)
+    {
+        return pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant)
+            || pawn.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch)
+            || pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
+    }
+
+    public static void TryGiveThought(this Pawn pawn, ThoughtDef def)
+    {
+        var memories = pawn.needs?.mood?.thoughts?.memories;
+        memories?.TryGainMemory(def);
+    }
+
     public static bool HasActiveQuestOf(QuestScriptDef def)
     {
         if (def == null) return false;

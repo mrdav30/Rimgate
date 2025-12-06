@@ -107,6 +107,9 @@
 				<count>1</count>
 			</li>
 		</ingredients>
+		<recipeUsers>
+			<li>Rimgate_Unas</li>
+		</recipeUsers>
 		<appliedOnFixedBodyParts>
 			<li>Torso</li>
 		</appliedOnFixedBodyParts>

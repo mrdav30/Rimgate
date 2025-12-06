@@ -9,9 +9,9 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
 
     public override bool Visible => true;
 
-    public HediffComp_PrimtaLifecycle Lifecyle => _lifecycle ??= GetComp<HediffComp_PrimtaLifecycle>();
+    public HediffComp_PrimtaLifecycle Lifecycle => _lifecycle ??= GetComp<HediffComp_PrimtaLifecycle>();
 
-    private bool _skipWithdrawl;
+    private bool _immediateRejection;
 
     private HediffComp_PrimtaLifecycle _lifecycle;
 
@@ -35,7 +35,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
                     pawn,
                     MessageTypeDefOf.ThreatSmall);
 
-            _skipWithdrawl = true;
+            _immediateRejection = true;
 
             pawn.health.RemoveHediff(this);
 
@@ -46,6 +46,21 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_TretoninAddiction);
+
+        var pouch = pawn.GetHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
+        var watcher = pouch?.TryGetComp<HediffComp_PouchWatcher>();
+        if (watcher == null) return;
+
+        var memories = pawn.needs?.mood?.thoughts?.memories;
+        if (memories == null) return;
+
+        ThoughtDef thought;
+        if (watcher.EverHadPrimta) // Already had one in the past
+            thought = RimgateDefOf.Rimgate_PrimtaNewPrimtaThought;
+        else // First ever Prim'ta for this pouch
+            thought = RimgateDefOf.Rimgate_PrimtaFirstPrimtaThought;
+
+        memories.TryGainMemory(thought);
     }
 
     public bool IsValidHost(out string reason)
@@ -73,7 +88,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
         return true;
     }
 
-    public void MarkInternalRemoval() => _skipWithdrawl = true;
+    public void MarkInternalRemoval() => _immediateRejection = true;
 
     public override void PostRemoved()
     {
@@ -82,15 +97,15 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
         if (pawn == null || pawn.health == null)
             return;
 
-        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
-
         // If this was a rejection or internal event we flagged, skip spawn + withdrawal
-        if (_skipWithdrawl)
+        if (_immediateRejection)
             return;
+
+        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
 
         if (pawn.Map != null)
         {
-            var def = Lifecyle.Mature
+            var def = Lifecycle?.Mature == true
                 ? RimgateDefOf.Rimgate_GoauldSymbiote
                 : RimgateDefOf.Rimgate_PrimtaSymbiote;
             var thing = ThingMaker.MakeThing(def);
@@ -102,5 +117,10 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
             var wd = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SymbioteWithdrawal, pawn);
             pawn.health.AddHediff(wd);
         }
+
+        var memories = pawn.needs?.mood?.thoughts?.memories;
+        if (memories == null) return;
+
+        memories.RemoveMemoriesOfDef(RimgateDefOf.Rimgate_PrimtaMaturedThought);
     }
 }

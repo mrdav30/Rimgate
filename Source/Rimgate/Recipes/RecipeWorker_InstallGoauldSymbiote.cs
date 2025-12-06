@@ -14,7 +14,7 @@ public class RecipeWorker_InstallGoauldSymbiote : Recipe_InstallImplant
         return CanAccept(thing as Pawn);
     }
 
-        public override bool CompletableEver(Pawn surgeryTarget)
+    public override bool CompletableEver(Pawn surgeryTarget)
     {
         return CanAccept(surgeryTarget);
     }

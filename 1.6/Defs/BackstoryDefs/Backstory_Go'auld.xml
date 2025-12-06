@@ -99,7 +99,6 @@
     <slot>Adulthood</slot>
     <spawnCategories>
       <li>Rimgate_TokraBackstory</li>
-      <li>Rimgate_GoauldAdultBackstory</li>
     </spawnCategories>
     <skillGains>
       <Social>8</Social>

@@ -91,6 +91,7 @@
 		</comps>
 		<stages>
 			<li>
+				<hungerRateFactor>0.90</hungerRateFactor> <!-- Eats 90% less -->
 				<!-- Larval support: mild buffs, but mostly hidden -->
 				<statFactors>
 					<ImmunityGainSpeed>1.25</ImmunityGainSpeed>

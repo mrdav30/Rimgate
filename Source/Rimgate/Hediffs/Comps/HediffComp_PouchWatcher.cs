@@ -5,18 +5,20 @@ namespace Rimgate;
 
 public class HediffComp_PouchWatcher : HediffComp
 {
-    private bool _adultNotificationSent;
-
-    private int _ticksSinceAdultNoSupport;
-
+    public bool EverHadPrimta => _everHadPrimta;
+    public int FatalGraceTicks => Props.fatalGraceDays * GenDate.TicksPerDay;
     public HediffCompProperties_PouchWatcher Props => (HediffCompProperties_PouchWatcher)props;
 
-    public int FatalGraceDays => Props.fatalGraceDays * GenDate.TicksPerDay;
+    private bool _everHadPrimta;
+
+    private bool _adultNotificationSent;
+    private int _ticksSinceAdultNoSupport;
 
     public override void CompExposeData()
     {
         Scribe_Values.Look(ref _adultNotificationSent, "_adultNotificationSent", false);
         Scribe_Values.Look(ref _ticksSinceAdultNoSupport, "_ticksSinceAdultNoSupport", 0);
+        Scribe_Values.Look(ref _everHadPrimta, "_everHadPrimta", false);
     }
 
     public override void CompPostPostRemoved()
@@ -38,13 +40,14 @@ public class HediffComp_PouchWatcher : HediffComp
     public override void CompPostTick(ref float severityAdjustment)
     {
         var pawn = parent.pawn;
-        if (pawn == null || pawn.Dead || pawn.health == null)
-            return;
+        if (pawn == null 
+            || pawn.Faction != Faction.OfPlayer 
+            || pawn.Dead 
+            || !pawn.Spawned
+            || pawn.Map == null
+            || pawn.health == null) return;
 
         if (!pawn.IsHashIntervalTick(2500))
-            return;
-
-        if (!pawn.Spawned || pawn.Map == null)
             return;
 
         // If no age tracker present, assume they're and adult
@@ -57,18 +60,16 @@ public class HediffComp_PouchWatcher : HediffComp
 
         bool hasPrimta = pawn.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);
         bool hasTretonin = pawn.HasHediffOf(RimgateDefOf.Rimgate_TretoninAddiction);
-
-        // Support = anything that substitutes for the Prim'ta role.
-        bool hasAnySupport = hasPrimta || hasTretonin;
-
         bool hasWithdrawal = pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal);
 
-        // 2) Death timer: only for *never hosted* Jaffa:
-        //    pouch present + no prim'ta + no withdrawal + no tretonin
+        if (hasPrimta)
+            _everHadPrimta = true;
+
+        bool hasAnySupport = hasPrimta || hasTretonin;
+
+        // Only the never-hosted path uses PouchDegeneration
         if (!hasAnySupport && !hasWithdrawal)
         {
-            // 1) On becoming adult with no support, send the needs Prim'ta letter once,
-            // if they are in withdrawal, assume they had a prior symbiote
             if (!_adultNotificationSent)
             {
                 _adultNotificationSent = true;
@@ -77,7 +78,7 @@ public class HediffComp_PouchWatcher : HediffComp
 
             _ticksSinceAdultNoSupport += 2500;
 
-            if (_ticksSinceAdultNoSupport >= FatalGraceDays
+            if (_ticksSinceAdultNoSupport >= FatalGraceTicks
                 && !pawn.HasHediffOf(RimgateDefOf.Rimgate_PouchDegeneration))
             {
                 var h = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_PouchDegeneration, pawn);

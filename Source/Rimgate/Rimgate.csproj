@@ -350,6 +350,7 @@
     <Compile Include="AI\WorkGivers\WorkGiver_CloseStargate.cs" />
     <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
     <Compile Include="Comps\CompAssignableToPawn_Sarcophagus.cs" />
+    <Compile Include="Comps\Comp_SymbiotePool.cs" />
     <Compile Include="Comps\Comp_SymbioteRottable.cs" />
     <Compile Include="Comps\Comp_TintedEmptyStateGraphic.cs" />
     <Compile Include="Comps\Comp_AnalyzableResearchWhen.cs" />
@@ -359,7 +360,7 @@
     <Compile Include="Comps\Comp_ResonanceIdol.cs" />
     <Compile Include="Comps\Comp_SetInitialGestatorState.cs" />
     <Compile Include="Comps\Comp_AlarmOpenCaskets.cs" />
-    <Compile Include="Comps\Comp_SymbiotePool.cs" />
+    <Compile Include="Comps\Comp_AnimatedSymbiotePool.cs" />
     <Compile Include="Comps\Comp_ZpmSignalScrambler.cs" />
     <Compile Include="Comps\Properties\CompProperties_AnalyzableResearchWhen.cs" />
     <Compile Include="Comps\Properties\CompProperties_AssembleAndStartQuest.cs" />
@@ -376,6 +377,7 @@
     <Compile Include="Comps\Properties\CompProperties_CloningPodControl.cs" />
     <Compile Include="Comps\Properties\CompProperties_ResonanceIdol.cs" />
     <Compile Include="Comps\Properties\CompProperties_SetInitialGestatorState.cs" />
+    <Compile Include="Comps\Properties\CompProperties_AnimatedSymbiotePool.cs" />
     <Compile Include="Comps\Properties\CompProperties_SymbiotePool.cs" />
     <Compile Include="Comps\Properties\CompProperties_SymbioteRottable.cs" />
     <Compile Include="Comps\Properties\CompProperties_TintedEmptyStateGraphic.cs" />

@@ -853,7 +853,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             if (ModsConfig.BiotechActive)
             {
                 patient.ageTracker.ResetAgeReversalDemand(Pawn_AgeTracker.AgeReversalReason.ViaTreatment);
-                patient.needs?.mood?.thoughts.memories.TryGainMemory(ThoughtDefOf.AgeReversalReceived);
+                patient.TryGiveThought(ThoughtDefOf.AgeReversalReceived);
 
                 // If the patient is a Sanguophage or Wraith, top up their gene resource
 

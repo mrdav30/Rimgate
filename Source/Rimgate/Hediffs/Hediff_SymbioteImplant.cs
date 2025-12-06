@@ -59,10 +59,10 @@ public class Hediff_SymbioteImplant : Hediff_Implant
 
     public override void PostRemoved()
     {
+        base.PostRemoved();
+
         if (pawn == null || pawn.health == null)
             return;
-
-        base.PostRemoved();
 
         // If this was a rejection or internal event we flagged, skip spawn + withdrawal
         if (_skipWithdrawl)

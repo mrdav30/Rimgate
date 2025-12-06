@@ -70,9 +70,9 @@
         </nullifyingTraits>
         <stages>
             <li>
-                <label>bearing a symbiote</label>
-                <description>This pawn regards the host as unsettling and overbearing—part person, part parasite.</description>
-                <baseOpinionOffset>-8</baseOpinionOffset>
+                <label>uneasy about symbiote host</label>
+                <description>This pawn feels uneasy around a host carrying an active symbiote – part person, part parasite, and far too comfortable with it.</description>
+                <baseOpinionOffset>-3</baseOpinionOffset>
             </li>
         </stages>
     </ThoughtDef>
@@ -120,7 +120,7 @@
         </stages>
     </ThoughtDef>
 
-    <!-- Throne -->
+    <!-- Throne Meditation -->
 
     <ThoughtDef>
         <defName>Rimgate_GoauldThroneCravingDominion</defName>
@@ -192,6 +192,58 @@
             </li>
         </stages>
     </ThoughtDef>
+
+    <!-- Prim'ta matured -->
+
+    <ThoughtDef>
+        <defName>Rimgate_PrimtaMaturedThought</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>3</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>prim'ta matured</label>
+                <description>The Prim’ta in their pouch has fully matured. Every twitch feels a little more deliberate — and a little more like it’s sizing up the inside of their skull.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- First time Prim'ta -->
+
+    <ThoughtDef>
+        <defName>Rimgate_PrimtaFirstPrimtaThought</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>5</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>first Prim'ta</label>
+                <description>For the first time, their pouch holds a living Prim’ta. Every heartbeat comes with a second, alien rhythm — terrifying, empowering, and strangely comforting.</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- New / replacement Prim'ta -->
+
+    <ThoughtDef>
+        <defName>Rimgate_PrimtaNewPrimtaThought</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>4</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>renewed Prim'ta</label>
+                <description>The pouch is no longer empty. A new Prim’ta coils into place, bringing back the old strength — and the old obligations.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
 
     <!-- =============== Wraith Hive =============== -->
 

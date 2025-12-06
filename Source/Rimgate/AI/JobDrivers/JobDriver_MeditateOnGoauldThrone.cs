@@ -82,20 +82,14 @@ public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
             MeditationTick();
         };
 
-        meditate.AddFinishAction(ApplySymbioteThroneMemories);
+        meditate.AddFinishAction(() =>
+        {
+            if (!pawn.HasSymbiote())
+                return;
+
+            pawn.TryGiveThought(RimgateDefOf.Rimgate_GoauldThroneCravingDominion);
+        });
 
         yield return meditate;
-    }
-
-    private void ApplySymbioteThroneMemories()
-    {
-        if (!pawn.HasSymbiote())
-            return;
-
-        var memories = pawn.needs?.mood?.thoughts?.memories;
-        if (memories == null)
-            return;
-
-        memories.TryGainMemory(RimgateDefOf.Rimgate_GoauldThroneCravingDominion);
     }
 }

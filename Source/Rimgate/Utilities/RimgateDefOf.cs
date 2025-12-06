@@ -158,6 +158,9 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_ZPMHousing;
 
     public static ThoughtDef Rimgate_GoauldThroneCravingDominion;
+    public static ThoughtDef Rimgate_PrimtaFirstPrimtaThought;
+    public static ThoughtDef Rimgate_PrimtaMaturedThought;
+    public static ThoughtDef Rimgate_PrimtaNewPrimtaThought;
     public static ThoughtDef Rimgate_WraithCommunedWithHive;
     public static ThoughtDef Rimgate_WraithWhispersFromVoid;
 
