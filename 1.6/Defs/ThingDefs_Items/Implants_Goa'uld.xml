@@ -27,7 +27,6 @@
         <label>prim'ta symbiote</label>
         <description>A larval Goa’uld symbiote—squirming, half-formed, and disturbingly intent. Jaffa carry these in abdominal pouches until they mature, at which point they must be removed or risk “promotion” into a full-blown god complex.\n\nOutside a host or dedicated spawning pool, it spoils quickly and dies.</description>
         <descriptionHyperlinks>
-            <RecipeDef>Rimgate_InstallPrimtaSymbiote</RecipeDef>
             <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
         </descriptionHyperlinks>
         <techLevel>Neolithic</techLevel>
@@ -43,6 +42,7 @@
             <Mass>1.5</Mass>
             <MarketValue>400</MarketValue>
             <MaxHitPoints>60</MaxHitPoints>
+            <DeteriorationRate>0.5</DeteriorationRate>
         </statBases>
         <thingCategories>
             <li>ResourcesRaw</li>
@@ -55,7 +55,7 @@
         <comps>
             <li Class="Rimgate.CompProperties_SymbioteRottable">
                 <!-- Short outside-host lifespan -->
-                <daysToRotStart>0.4</daysToRotStart>
+                <daysToRotStart>0.5</daysToRotStart>
                 <rotDestroys>true</rotDestroys>
             </li>
         </comps>
@@ -65,10 +65,10 @@
 
     <ThingDef ParentName="BodyPartBase">
         <defName>Rimgate_GoauldSymbiote</defName>
+        <thingClass>Rimgate.Thing_GoualdSymbiote</thingClass>
         <label>Goa'uld symbiote</label>
         <description>A genetically engineered space eel that grants its host rapid healing, disease immunity, and a nagging superiority complex. Install in the torso—side effects may include glowing eyes, evil laughter, and quoting false gods.\n\nBest kept stored in a symbiote spawning pool between uses.</description>
         <descriptionHyperlinks>
-            <RecipeDef>Rimgate_InstallSymbiote</RecipeDef>
             <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
         </descriptionHyperlinks>
         <techLevel>Neolithic</techLevel>
@@ -84,6 +84,7 @@
             <Mass>2</Mass>
             <MarketValue>800</MarketValue>
             <MaxHitPoints>100</MaxHitPoints>
+            <DeteriorationRate>1.0</DeteriorationRate>
         </statBases>
         <thingCategories>
             <li>ResourcesRaw</li>
@@ -134,6 +135,19 @@
             <li Class="Rimgate.CompProperties_SymbioteRottable">
                 <daysToRotStart>1</daysToRotStart>
                 <rotDestroys>true</rotDestroys>
+            </li>
+            <li>
+                <compClass>Rimgate.Comp_SymbioteHeritage</compClass>
+            </li>
+            <li Class="CompProperties_Usable">
+                <compClass>CompUsable</compClass>
+                <useJob>UseSymbiote</useJob>
+                <useLabel>accept {0_label}</useLabel>
+                <showUseGizmo>true</showUseGizmo>
+            </li>
+            <li Class="Rimgate.CompProperties_UseEffectInstallSymbiote">
+                <hediffDef>Rimgate_SymbioteImplant</hediffDef>
+                <bodyPart>Torso</bodyPart>
             </li>
         </comps>
     </ThingDef>

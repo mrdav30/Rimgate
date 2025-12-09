@@ -1,13 +1,34 @@
 ﻿using RimWorld;
+using System.Text;
 using Verse;
 
 namespace Rimgate;
 
 public class Hediff_SymbioteImplant : Hediff_Implant
 {
+    public HediffComp_SymbioteHeritage Heritage => _heritage ?? GetComp<HediffComp_SymbioteHeritage>();
+
     public override bool Visible => true;
 
+    public string SymbioteLabel => Heritage?.Memory?.SymbioteName.NullOrEmpty() ?? true
+        ? null
+        : "RG_SymbioteMemory_Name".Translate(Heritage.Memory.SymbioteName);
+
+    public override string LabelBase => !SymbioteLabel.NullOrEmpty()
+        ? SymbioteLabel
+        : base.LabelBase;
+
+    public override string Label => !SymbioteLabel.NullOrEmpty()
+        ? SymbioteLabel
+        : base.Label;
+
+    public override string LabelInBrackets => !SymbioteLabel.NullOrEmpty()
+    ? SymbioteLabel
+    : base.LabelInBrackets;
+
     private bool _skipWithdrawl;
+
+    private HediffComp_SymbioteHeritage _heritage;
 
     public override void PostAdd(DamageInfo? dinfo)
     {
@@ -73,5 +94,42 @@ public class Hediff_SymbioteImplant : Hediff_Implant
             var wd = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SymbioteWithdrawal, pawn);
             pawn.health.AddHediff(wd);
         }
+
+        var hediffMemory = Heritage?.Memory;
+        // Undo this symbiote's bonuses on the current host
+        hediffMemory?.RemoveSessionBonuses(pawn);
+
+        if (pawn.Map == null) return;
+        var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote) as Thing_GoualdSymbiote;
+
+        // Preserve its accumulated memory and inherit skills from previous host
+        var comp = thing.Heritage;
+        if (comp != null)
+        {
+            comp.ApplyMemoryPostRemoval(hediffMemory, pawn);
+            var memory = comp.Memory;
+
+            if (memory?.IsAtLimit == true)
+            {
+                Find.LetterStack.ReceiveLetter(
+                    "RG_SymbioteMemory_MaxHostsReachedLabel".Translate(),
+                    "RG_SymbioteMemory_MaxHostsReachedText".Translate(memory.SymbioteName),
+                    LetterDefOf.NeutralEvent,
+                    pawn);
+            }
+            else if (memory?.IsOverLimit == true)
+            {
+                Find.LetterStack.ReceiveLetter(
+                    "RG_SymbioteMemory_MaxHostsPerishedLabel".Translate(),
+                    "RG_SymbioteMemory_MaxHostsPerishedText".Translate(memory.SymbioteName),
+                    LetterDefOf.NeutralEvent,
+                    pawn);
+                thing.Destroy();
+
+                return;
+            }
+        }
+
+        GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
     }
 }

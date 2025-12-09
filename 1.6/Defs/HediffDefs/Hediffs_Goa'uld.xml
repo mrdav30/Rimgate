@@ -76,6 +76,7 @@
 		<label>prim'ta symbiote</label>
 		<labelNoun>a prim'ta symbiote</labelNoun>
 		<description>A larval Goa’uld symbiote residing in an abdominal pouch, sustaining and subtly reshaping the host. It bolsters healing and immunity while it grows, but its presence comes with an expiration date.\n\nWithout a pouch to shelter it—or a timely removal upon maturity—both host and symbiote are in lethal danger.</description>
+		<descriptionShort>A larval Prim'ta symbiote.</descriptionShort>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
 			<HediffDef>Rimgate_SymbiotePouch</HediffDef>
@@ -176,8 +177,8 @@
 		<defName>Rimgate_SymbioteImplant</defName>
 		<hediffClass>Rimgate.Hediff_SymbioteImplant</hediffClass>
 		<label>Goa'uld symbiote</label>
-		<labelNoun>a Goa'uld symbiote</labelNoun>
 		<description>A living parasite from the Goa’uld species, surgically implanted into the host’s body. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, sharper senses, and a disturbing fondness for referring to yourself as a god.\n\nRemoval is possible—but the body it’s been sustaining does not take separation well.</description>
+		<descriptionShort>A mature Goa'uld symbiote.</descriptionShort>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_GoauldSymbiote</ThingDef>
 			<HediffDef>Rimgate_SymbioteWithdrawal</HediffDef>
@@ -185,11 +186,14 @@
 		<defaultInstallPart>Torso</defaultInstallPart>
 		<defaultLabelColor>(255, 0, 94)</defaultLabelColor>
 		<isBad>false</isBad>
+		<priceImpact>true</priceImpact>
 		<duplicationAllowed>false</duplicationAllowed>
-		<spawnThingOnRemoved>Rimgate_GoauldSymbiote</spawnThingOnRemoved>
 		<countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
 		<comps>
 			<li Class="Rimgate.HediffCompProperties_SymbioteSlowAging" />
+			<li>
+				<compClass>Rimgate.HediffComp_SymbioteHeritage</compClass>
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -219,9 +223,7 @@
 					</li>
 				</capMods>
 				<statOffsets>
-					<PsychicSensitivity>0.20</PsychicSensitivity>
-					<MentalBreakThreshold>0.05</MentalBreakThreshold>
-					<SocialImpact>0.10</SocialImpact>
+					<PsychicSensitivity>0.25</PsychicSensitivity>
 				</statOffsets>
 			</li>
 		</stages>

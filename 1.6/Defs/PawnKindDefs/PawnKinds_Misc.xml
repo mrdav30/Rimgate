@@ -6,11 +6,6 @@
     <PawnKindDef Name="Rimgate_UnasKindBase" ParentName="AnimalKindBase" Abstract="True">
         <combatPower>220</combatPower>
         <ecoSystemWeight>0.3</ecoSystemWeight>
-        <techHediffsChance>0.35</techHediffsChance>
-        <techHediffsMoney>1000~2000</techHediffsMoney>
-        <techHediffsTags>
-            <li>Rimgate_GoauldSymbiote_tag</li>
-        </techHediffsTags>
         <aiAvoidCover>true</aiAvoidCover>
     </PawnKindDef>
 

@@ -95,9 +95,10 @@
 	<RG_Primta_Matured>{PAWN_nameDef}’s prim’ta has matured — it must be removed soon or it will attempt to take over the host.</RG_Primta_Matured>
 	<RG_Primta_Takeover>The prim’ta inside {PAWN_nameDef} has fully matured and seized control of the host. A Goa’uld is now in command.</RG_Primta_Takeover>
 	<RG_Primta_FatalOverstay>{PAWN_nameDef}’s prim’ta has overmatured and both host and symbiote have perished in violent biological failure.</RG_Primta_FatalOverstay>
-	<RG_RejectHost_HasSymbiote>The symbiote rejected {PAWN_nameDef} — there is an existing symbiote so it abandoned the host immediately.</RG_RejectHost_HasSymbiote>
-	<RG_RejectHost_NoPouch>The symbiote rejected {PAWN_nameDef} — without a proper pouch, it abandoned the host immediately.</RG_RejectHost_NoPouch>
-	<RG_RejectHost_TooOld>The symbiote rejected {PAWN_nameDef} — the host is too old to be a viable candidate.</RG_RejectHost_TooOld>
+	<RG_RejectHost_PriorHost>The symbiote {0} has rejected its prior host {PAWN_nameDef}</RG_RejectHost_PriorHost>
+	<RG_RejectHost_HasSymbiote>The symbiote rejected {PAWN_nameDef} — there is an existing symbiote.</RG_RejectHost_HasSymbiote>
+	<RG_RejectHost_NoPouch>The symbiote rejected {PAWN_nameDef} — no pouch available.</RG_RejectHost_NoPouch>
+	<RG_RejectHost_TooOld>The symbiote rejected {PAWN_nameDef} — the host is too old.</RG_RejectHost_TooOld>
 
 	<RG_Primta_KrintakLabel>Krin’tak Fever</RG_Primta_KrintakLabel>
 	<RG_Primta_KrintakText>Krin’tak is a Jaffa fever marking the final phase of prim’ta maturation. It is uncomfortable but not dangerous—merely a biological warning that the larva must soon be removed before it attempts domination.</RG_Primta_KrintakText>
@@ -112,6 +113,17 @@
 	<RG_PrimtaRenewal_NoPouch>Cannot perform Prim'ta renewal: selected host lacks a symbiote pouch.</RG_PrimtaRenewal_NoPouch>
 	<RG_PrimtaRenewal_NoPrimta>Cannot perform Prim'ta renewal: selected host lacks an implanted prim'ta symbiote.</RG_PrimtaRenewal_NoPrimta>
 	<RG_PrimtaRenewal_TooOld>Cannot perform Prim'ta renewal: selected host is too old to undergo Prim'ta renewal.</RG_PrimtaRenewal_TooOld>
+
+	<RG_SymbioteSkillInheritance>{PAWN_nameDef} has accepted the symbiote {1}. Echoes of past lives stir in their mind…</RG_SymbioteSkillInheritance>
+
+	<RG_SymbioteMemory_Name>{0} (symbiote)</RG_SymbioteMemory_Name>
+	<RG_SymbioteMemory_SkillsHeader>Stored expertise:</RG_SymbioteMemory_SkillsHeader>
+
+	<RG_SymbioteMemory_MaxHostsReachedLabel>Peak symbiote</RG_SymbioteMemory_MaxHostsReachedLabel>
+	<RG_SymbioteMemory_MaxHostsReachedText>The symbiote {0} has had a long life and won't survive parting with another host. Plan its next integration carefully as it will be this Goa'uld's last.</RG_SymbioteMemory_MaxHostsReachedText>
+
+	<RG_SymbioteMemory_MaxHostsPerishedLabel>Worn symbiote</RG_SymbioteMemory_MaxHostsPerishedLabel>
+	<RG_SymbioteMemory_MaxHostsPerishedText>The symbiote {0} has gone through to many hosts to survive losing another one. It perished shortly after being removed from its current host.</RG_SymbioteMemory_MaxHostsPerishedText>
 
 	<!-- Cloning pod -->
 

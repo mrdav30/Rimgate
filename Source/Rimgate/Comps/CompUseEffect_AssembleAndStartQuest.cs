@@ -9,7 +9,7 @@ namespace Rimgate;
 
 public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
 {
-    public CompProperties_AssembleAndStartQuest Props => (CompProperties_AssembleAndStartQuest)props;
+    public CompProperties_UseEffectAssembleAndStartQuest Props => (CompProperties_UseEffectAssembleAndStartQuest)props;
 
     public override AcceptanceReport CanBeUsedBy(Pawn p)
     {

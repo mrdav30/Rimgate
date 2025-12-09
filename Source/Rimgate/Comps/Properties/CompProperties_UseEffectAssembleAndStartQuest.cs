@@ -4,7 +4,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class CompProperties_AssembleAndStartQuest : CompProperties
+public class CompProperties_UseEffectAssembleAndStartQuest : CompProperties
 {
     public int requiredCount = 3;
 
@@ -18,7 +18,7 @@ public class CompProperties_AssembleAndStartQuest : CompProperties
 
     public string letterText;
 
-    public CompProperties_AssembleAndStartQuest()
+    public CompProperties_UseEffectAssembleAndStartQuest()
     {
         compClass = typeof(CompUseEffect_AssembleAndStartQuest);
     }

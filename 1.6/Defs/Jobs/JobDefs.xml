@@ -248,4 +248,14 @@
 		<casualInterruptible>true</casualInterruptible>
 	</JobDef>
 
+	<!-- Symbiote -->
+
+	<JobDef>
+		<defName>UseSymbiote</defName>
+		<driverClass>JobDriver_UseItem</driverClass>
+		<reportString>implanting TargetA.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+
 </Defs>

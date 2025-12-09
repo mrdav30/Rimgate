@@ -124,6 +124,8 @@ public static class RimgateDefOf
     public static ResearchProjectDef Rimgate_WraithModificationEquipment;
     public static ResearchProjectDef Rimgate_ZPMIntegration;
 
+    public static RulePackDef Rimgate_NamerSymbiote;
+
     public static SoundDef Rimgate_GoauldGuardHelmToggle;
     public static SoundDef Rimgate_IrisOpen;
     public static SoundDef Rimgate_IrisClose;

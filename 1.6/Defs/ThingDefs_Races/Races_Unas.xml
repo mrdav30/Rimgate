@@ -147,11 +147,6 @@
         <tradeTags>
             <li>AnimalExotic</li>
         </tradeTags>
-
-        <recipes>
-            <li>Rimgate_InstallSymbiote</li>
-            <li>Rimgate_RemoveGoauldSymbiote</li>
-        </recipes>
     </ThingDef>
 
     <ThingDef ParentName="Rimgate_Unas">

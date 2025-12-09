@@ -1,52 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- ==================== Goa'uld Prim'ta ==================== -->
-
-	<RecipeDef ParentName="SurgeryInstallImplantBase">
-		<defName>Rimgate_InstallPrimtaSymbiote</defName>
-		<label>implant Prim'ta symbiote</label>
-		<description>Implant a larval Goa'uld symbiote (Prim'ta) into the host's symbiote pouch.\n\nEssential for traditional Jaffa physiology; without a Prim'ta, their body will eventually fail. With one, it’s only their free will that’s in question.</description>
-		<descriptionHyperlinks>
-			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
-			<HediffDef>Rimgate_PrimtaInPouch</HediffDef>
-		</descriptionHyperlinks>
-		<workerClass>Rimgate.RecipeWorker_InstallPrimtaSymbiote</workerClass>
-		<jobString>Implanting Prim'ta.</jobString>
-		<workAmount>2500</workAmount>
-		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
-		<effectWorking>Surgery</effectWorking>
-		<soundWorking>Recipe_Surgery</soundWorking>
-		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
-		<addsHediff>Rimgate_PrimtaInPouch</addsHediff>
-		<fixedIngredientFilter>
-			<categories>
-				<li>Medicine</li>
-			</categories>
-			<thingDefs>
-				<li>Rimgate_PrimtaSymbiote</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Rimgate_PrimtaSymbiote</li>
-					</thingDefs>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<appliedOnFixedBodyParts>
-			<li>Torso</li>
-		</appliedOnFixedBodyParts>
-		<targetsBodyPart>true</targetsBodyPart>
-		<anesthetize>true</anesthetize>
-		<skillRequirements>
-			<Medicine>5</Medicine>
-		</skillRequirements>
-		<researchPrerequisite>Rimgate_SymbioteStudy</researchPrerequisite>
-	</RecipeDef>
+	<!-- ==================== Prim'ta removal ==================== -->
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemovePrimtaSymbiote</defName>
@@ -71,55 +26,7 @@
 		<researchPrerequisite>Rimgate_SymbioteStudy</researchPrerequisite>
 	</RecipeDef>
 
-	<!-- ==================== Goa'uld Symbiote ==================== -->
-
-	<RecipeDef ParentName="SurgeryInstallImplantBase">
-		<defName>Rimgate_InstallSymbiote</defName>
-		<label>implant Goa'uld symbiote</label>
-		<description>implant a Goa'uld symbiote into the host, granting enhanced health, strength, and regenerative properties.</description>
-		<descriptionHyperlinks>
-			<ThingDef>Rimgate_GoauldSymbiote</ThingDef>
-			<HediffDef>Rimgate_SymbioteImplant</HediffDef>
-		</descriptionHyperlinks>
-		<workerClass>Rimgate.RecipeWorker_InstallGoauldSymbiote</workerClass>
-		<jobString>Implanting symbiote.</jobString>
-		<workAmount>2500</workAmount>
-		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
-		<effectWorking>Surgery</effectWorking>
-		<soundWorking>Recipe_Surgery</soundWorking>
-		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
-		<addsHediff>Rimgate_SymbioteImplant</addsHediff>
-		<fixedIngredientFilter>
-			<categories>
-				<li>Medicine</li>
-			</categories>
-			<thingDefs>
-				<li>Rimgate_GoauldSymbiote</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Rimgate_GoauldSymbiote</li>
-					</thingDefs>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<recipeUsers>
-			<li>Rimgate_Unas</li>
-		</recipeUsers>
-		<appliedOnFixedBodyParts>
-			<li>Torso</li>
-		</appliedOnFixedBodyParts>
-		<targetsBodyPart>true</targetsBodyPart>
-		<anesthetize>true</anesthetize>
-		<skillRequirements>
-			<Medicine>5</Medicine>
-		</skillRequirements>
-		<researchPrerequisite>Rimgate_SymbioteStudy</researchPrerequisite>
-	</RecipeDef>
+	<!-- ==================== Goa'uld Symbiote removal ==================== -->
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveGoauldSymbiote</defName>

@@ -235,7 +235,7 @@ internal static class Utils
         if (f.IsPlayer) return false;
 
         // Only humanlike factions or mechanoids
-        if (!(f.def.humanlikeFaction || f == Faction.OfMechanoids || f == RimgateFactionDefOf.OfReplicators)) return false;
+        if (!(f.def.humanlikeFaction || f == Faction.OfMechanoids || f == RimgateFactionOf.OfReplicators)) return false;
 
         // Optional Neolithic filter
         if (!allowNeolithic && f.def.techLevel == TechLevel.Neolithic) return false;

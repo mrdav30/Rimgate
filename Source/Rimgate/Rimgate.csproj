@@ -350,6 +350,8 @@
     <Compile Include="AI\WorkGivers\WorkGiver_CloseStargate.cs" />
     <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
     <Compile Include="Comps\CompAssignableToPawn_Sarcophagus.cs" />
+    <Compile Include="Comps\CompUseEffect_InstallSymbiote.cs" />
+    <Compile Include="Comps\Properties\CompProperties_UseEffectInstallSymbiote.cs" />
     <Compile Include="Comps\Comp_SymbiotePool.cs" />
     <Compile Include="Comps\Comp_SymbioteRottable.cs" />
     <Compile Include="Comps\Comp_TintedEmptyStateGraphic.cs" />
@@ -363,7 +365,7 @@
     <Compile Include="Comps\Comp_AnimatedSymbiotePool.cs" />
     <Compile Include="Comps\Comp_ZpmSignalScrambler.cs" />
     <Compile Include="Comps\Properties\CompProperties_AnalyzableResearchWhen.cs" />
-    <Compile Include="Comps\Properties\CompProperties_AssembleAndStartQuest.cs" />
+    <Compile Include="Comps\Properties\CompProperties_UseEffectAssembleAndStartQuest.cs" />
     <Compile Include="Comps\Properties\CompProperties_MobileContainerControl.cs" />
     <Compile Include="Comps\Properties\CompProperties_PersistentMentalState.cs" />
     <Compile Include="Comps\Properties\CompProperties_ProximityAlarm.cs" />
@@ -387,6 +389,8 @@
     <Compile Include="Comps\Properties\CompProperties_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
+    <Compile Include="Comps\Comp_SymbioteHeritage.cs" />
+    <Compile Include="Support\SymbioteMemory.cs" />
     <Compile Include="Genes\Gene_WraithEssence.cs" />
     <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
     <Compile Include="HarmonyPatches\Harmony_CompLabyrinthDoor_DrawJammed.cs" />
@@ -413,6 +417,7 @@
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SymbioteContagious.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SymbioteKiller.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_SymbioteContagious.cs" />
+    <Compile Include="Hediffs\Comps\HediffComp_SymbioteHeritage.cs" />
     <Compile Include="Hediffs\Hediff_PrimtaInPouch.cs" />
     <Compile Include="Hediffs\Hediff_SymbiotePlague.cs" />
     <Compile Include="Hediffs\Hediff_Clone.cs" />
@@ -420,7 +425,6 @@
     <Compile Include="Hediffs\IngestionOutcomeDoer_HealAllDisease.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_GivePsylinkOnAdded.cs" />
     <Compile Include="Recipes\RecipeWorker_InstallPrimtaSymbiote.cs" />
-    <Compile Include="Recipes\RecipeWorker_InstallGoauldSymbiote.cs" />
     <Compile Include="Rituals\RitualObligationTargetWorker_SymbiotePool.cs" />
     <Compile Include="Rituals\RitualOutcomeEffectWorker_PrimtaRenewal.cs" />
     <Compile Include="Rituals\RitualRole_PrimtaHost.cs" />
@@ -442,6 +446,7 @@
     <Compile Include="Things\Building_SymbioteAmbushTrap.cs" />
     <Compile Include="Things\Building_SymbioteSpawningPool.cs" />
     <Compile Include="Things\Building_ZPMHousing.cs" />
+    <Compile Include="Things\Thing_GoauldSymbiote.cs" />
     <Compile Include="UI\ITab_SymbiotePool.cs" />
     <Compile Include="UI\RimgateTex.cs" />
     <Compile Include="Social\ThoughtWorker_WraithEssenceCraving.cs" />
@@ -526,7 +531,7 @@
     <Compile Include="Utilities\BiologyUtil.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
     <Compile Include="Utilities\ResearchUtil.cs" />
-    <Compile Include="Utilities\RimgateFactionDefOf.cs" />
+    <Compile Include="Utilities\RimgateFactionOf.cs" />
     <Compile Include="Utilities\StargateUtility.cs" />
     <Compile Include="World\MapComponent_ZpmRaidTracker.cs" />
     <Compile Include="World\SitePartWorker_Stargate.cs" />
@@ -551,5 +556,6 @@
     <Compile Include="Comps\Comp_SarcophagusControl.cs" />
     <Compile Include="Utilities\MedicalUtil.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

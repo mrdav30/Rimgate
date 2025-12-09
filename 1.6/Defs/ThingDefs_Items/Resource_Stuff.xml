@@ -521,7 +521,7 @@
         <useJob>UseItem</useJob>
         <showUseGizmo>true</showUseGizmo>
       </li>
-      <li Class="Rimgate.CompProperties_AssembleAndStartQuest">
+      <li Class="Rimgate.CompProperties_UseEffectAssembleAndStartQuest">
         <requiredCount>3</requiredCount>
         <requiredProjectDef>Rimgate_GlyphDeciphering</requiredProjectDef>
         <questScript>Rimgate_TreasureVaultQuest</questScript>

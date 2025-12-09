@@ -12,10 +12,10 @@
         <li>comboname-&gt;[RG_Goauld_FirstPartM][RG_Goauld_SecondPartM]</li>
       </rulesStrings>
       <rulesFiles>
-        <li>RG_GoauldFirstM->NameBanks/Goauld/Names_First_GoauldM</li>
-        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Goauld</li>
-        <li>RG_Goauld_FirstPartM->NameBanks/Goauld/Names_FirstPart_GoauldM</li>
-        <li>RG_Goauld_SecondPartM->NameBanks/Goauld/Names_SecondPart_GoauldM</li>
+        <li>RG_GoauldFirstM->NameBanks/Goauld/Names_First_JaffaM</li>
+        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Jaffa</li>
+        <li>RG_Goauld_FirstPartM->NameBanks/Goauld/Names_FirstPart_JaffaM</li>
+        <li>RG_Goauld_SecondPartM->NameBanks/Goauld/Names_SecondPart_JaffaM</li>
       </rulesFiles>
     </rulePack>
   </RulePackDef>
@@ -29,10 +29,22 @@
         <li>comboname-&gt;[RG_Goauld_FirstPartF][RG_Goauld_SecondPartF]</li>
       </rulesStrings>
       <rulesFiles>
-        <li>RG_GoauldFirstF->NameBanks/Goauld/Names_First_GoauldF</li>
-        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Goauld</li>
-        <li>RG_Goauld_FirstPartF->NameBanks/Goauld/Names_FirstPart_GoauldF</li>
-        <li>RG_Goauld_SecondPartF->NameBanks/Goauld/Names_SecondPart_GoauldF</li>
+        <li>RG_GoauldFirstF->NameBanks/Goauld/Names_First_JaffaF</li>
+        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Jaffa</li>
+        <li>RG_Goauld_FirstPartF->NameBanks/Goauld/Names_FirstPart_JaffaF</li>
+        <li>RG_Goauld_SecondPartF->NameBanks/Goauld/Names_SecondPart_JaffaF</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimgate_NamerSymbiote</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[RG_SymbioteName]</li>
+      </rulesStrings>
+      <rulesFiles>
+        <li>RG_SymbioteName->NameBanks/Goauld/Names_Symbiote_Unisex</li>
       </rulesFiles>
     </rulePack>
   </RulePackDef>
