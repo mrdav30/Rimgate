@@ -10,22 +10,11 @@
     <canStageAttacks>true</canStageAttacks>
     <autoFlee>false</autoFlee>
     <leaderTitle>Under Lord</leaderTitle>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
     <techLevel>Ultra</techLevel>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
-    <backstoryFilters>
-      <li>
-        <categories>
-          <li>Rimgate_GoauldChildBackstory</li>
-          <li>Rimgate_GoauldAdultBackstory</li>
-          <li>Rimgate_GoauldSlaveBackstory</li>
-        </categories>
-      </li>
-    </backstoryFilters>
     <earliestRaidDays>45</earliestRaidDays>
-    <allowedCultures Inherit="false">
-      <li>Rimgate_Jaffari</li>
-    </allowedCultures>
     <naturalEnemy>true</naturalEnemy>
     <hostileToFactionlessHumanlikes>true</hostileToFactionlessHumanlikes>
     <settlementNameMaker>NamerSettlementTribal</settlementNameMaker>
@@ -60,7 +49,18 @@
         <li>(100000, 10000)</li>
       </points>
     </maxPawnCostPerTotalPointsCurve>
-    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>Rimgate_GoauldChildBackstory</li>
+          <li>Rimgate_GoauldAdultBackstory</li>
+          <li>Rimgate_GoauldSlaveBackstory</li>
+        </categories>
+      </li>
+    </backstoryFilters>
+    <allowedCultures Inherit="false">
+      <li>Rimgate_Jaffari</li>
+    </allowedCultures>
   </FactionDef>
 
   <!-- ============================ Goa'uld Factions ========================== -->
@@ -74,6 +74,33 @@
     <permanentEnemyToEveryoneExcept>
       <li>Rimgate_GoauldBaal</li>
     </permanentEnemyToEveryoneExcept>
+
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>Symbiotic Dominion</ideoName>
+    <ideoDescription>Symbiotic Dominion teaches that only those bearing Goa'uld symbiotes manifest divinity, making every host a living icon and every uninfected being a tool.\nIts doctrine fuses ritualistic worship, biotechnology, and theatrical punishment to keep subjects loyal while elevating Ba'al's ego above all rivals.\nOutsiders are valued purely as prospective hosts, experimental fodder, or trophies to remind the galaxy who controls the gates.</ideoDescription>
+    <!-- <hiddenIdeo>true</hiddenIdeo> -->
+    <deityPresets>
+      <li>
+        <nameType>
+          <name>Ba'aal</name>
+          <type>Supreme System Lord</type>
+        </nameType>
+        <gender>Male</gender>
+        <iconPath>UI/Deities/DeityGeneric</iconPath>
+      </li>
+    </deityPresets>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Spikecore</li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Techist</li>
+    </styles>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Structure_TheistEmbodied</li>
+      <li>Rimgate_SymbioticDominion</li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Supremacist</li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Raider</li>
+    </forcedMemes>
+    <requiredPreceptsOnly>true</requiredPreceptsOnly>
+
     <pawnGroupMakers>
       <!-- Mixed line squads -->
       <li>

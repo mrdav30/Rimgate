@@ -49,7 +49,7 @@ public class Comp_PersistentMentalState : ThingComp
         if (Pawn == null || Pawn.Dead || !Pawn.Spawned) return;
         if (_stateAddedOnce && Props.addStateOnce) return;
         if (Props.mentalState == null) return;
-        if (Props.onlyIfNonPlayerFaction && Pawn.Faction == Faction.OfPlayer) return;
+        if (Props.onlyIfNonPlayerFaction && Pawn.Faction.IsOfPlayerFaction()) return;
 
         int now = Find.TickManager.TicksGame;
 

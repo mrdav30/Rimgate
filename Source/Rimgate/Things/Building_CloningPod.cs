@@ -460,7 +460,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         if (select != null)
             yield return select;
 
-        if (Faction == Faction.OfPlayer
+        if (Faction.IsOfPlayerFaction()
             && innerContainer.Count > 0
             && def.building.isPlayerEjectable)
         {

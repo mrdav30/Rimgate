@@ -38,18 +38,18 @@
       <li>Rimgate_GoauldWeapons_tag</li>
     </weaponTags>
     <techHediffsChance>1</techHediffsChance>
-    <techHediffsMoney>5000</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
+    <techHediffsMoney>1200</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
     <techHediffsTags>
-      <li>Rimgate_GoauldPrimta_tag</li>
       <li>Rimgate_JaffaForeheadSymbol_tag</li>
     </techHediffsTags>
-    <techHediffsDisallowTags>
-      <li>PainCauser</li>
-    </techHediffsDisallowTags>
-    <techHediffsRequired>
-      <li>Rimgate_SymbiotePouch</li>
-      <li>Rimgate_PrimtaSymbiote</li>
-    </techHediffsRequired>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_SymbiotePouch</def>
+      </li>
+      <li>
+        <def>Rimgate_PrimtaInPouch</def>
+      </li>
+    </startingHediffs>
     <backstoryFiltersOverride>
       <li>
         <categoriesChildhood>
@@ -82,16 +82,12 @@
     <weaponTags>
       <li>Rimgate_GoauldWeapons_tag</li>
     </weaponTags>
-    <techHediffsMoney>5000</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
-    <techHediffsTags>
-      <li>Rimgate_GoauldSymbiote_tag</li>
-    </techHediffsTags>
-    <techHediffsDisallowTags>
-      <li>PainCauser</li>
-    </techHediffsDisallowTags>
-    <techHediffsRequired>
-      <li>Rimgate_GoauldSymbiote</li>
-    </techHediffsRequired>
+    <techHediffsMoney>0</techHediffsMoney>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_SymbioteImplant</def>
+      </li>
+    </startingHediffs>
     <backstoryFiltersOverride>
       <li>
         <categoriesAdulthood>

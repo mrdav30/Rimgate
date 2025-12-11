@@ -390,6 +390,10 @@
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
     <Compile Include="Comps\Comp_SymbioteHeritage.cs" />
+    <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
+    <Compile Include="Social\ThoughtWorker_Precept_SymbioteKinship_Social.cs" />
+    <Compile Include="Social\ThoughtWorker_Precept_HasNoSymbioteImplant.cs" />
+    <Compile Include="Social\ThoughtWorker_Precept_HasSymbioteImplant.cs" />
     <Compile Include="Support\SymbioteMemory.cs" />
     <Compile Include="Genes\Gene_WraithEssence.cs" />
     <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
@@ -424,7 +428,6 @@
     <Compile Include="Hediffs\Hediff_ClonedTracker.cs" />
     <Compile Include="Hediffs\IngestionOutcomeDoer_HealAllDisease.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_GivePsylinkOnAdded.cs" />
-    <Compile Include="Recipes\RecipeWorker_InstallPrimtaSymbiote.cs" />
     <Compile Include="Rituals\RitualObligationTargetWorker_SymbiotePool.cs" />
     <Compile Include="Rituals\RitualOutcomeEffectWorker_PrimtaRenewal.cs" />
     <Compile Include="Rituals\RitualRole_PrimtaHost.cs" />
@@ -505,8 +508,7 @@
     <Compile Include="Things\Thing_MobileCartProxy.cs" />
     <Compile Include="Things\Thing_PushedCartVisual.cs" />
     <Compile Include="Social\InteractionWorker_WraithHiveChat.cs" />
-    <Compile Include="Social\ThoughtWorker_Opinion_SymbioteKinship.cs" />
-    <Compile Include="Social\ThoughtWorker_Opinion_SymbioteHostility.cs" />
+    <Compile Include="Social\ThoughtWorker_SymbioteKinship_Social.cs" />
     <Compile Include="Social\ThoughtWorker_SymbiotePouchEmpty.cs" />
     <Compile Include="UI\Command_LoadToContainer.cs" />
     <Compile Include="UI\Dialog_LoadContainers.cs" />

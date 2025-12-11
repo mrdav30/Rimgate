@@ -20,7 +20,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
 
     public IReadOnlyList<Thing> HeldItems => _innerContainer.InnerListForReading;
 
-    public bool StorageTabVisible => Faction == Faction.OfPlayer;
+    public bool StorageTabVisible => Faction.IsOfPlayerFaction();
 
     public bool HaulDestinationEnabled => true;
 
@@ -69,12 +69,12 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
 
     public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
     {
-        if (Faction != Faction.OfPlayer) yield break;
+        if (!Faction.IsOfPlayerFaction()) yield break;
 
         foreach (var opt in base.GetFloatMenuOptions(selPawn))
             yield return opt;
 
-        if (SymbiotePool == null || Faction != Faction.OfPlayer || HasQueen)
+        if (SymbiotePool == null || HasQueen)
             yield break;
 
         if (!selPawn.CanReach(this, PathEndMode.InteractionCell, selPawn.NormalMaxDanger()))
@@ -123,12 +123,12 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        if (Faction != Faction.OfPlayer) yield break;
+        if (!Faction.IsOfPlayerFaction()) yield break;
 
         foreach (var g in base.GetGizmos())
             yield return g;
 
-        if (SymbiotePool == null || Faction != Faction.OfPlayer || HasQueen)
+        if (SymbiotePool == null || HasQueen)
             yield break;
 
         yield return new Command_Action
@@ -147,7 +147,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
                     {
                         Pawn p = t.Thing as Pawn;
                         return p != null
-                               && p.Faction == Faction.OfPlayer
+                               && p.Faction.IsOfPlayerFaction()
                                && !p.Downed
                                && p.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
                     }
@@ -217,7 +217,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
         if (thing == null || thing.def != SymbiotePool?.Props.symbioteQueenDef)
             return false;
 
-        if (Faction != Faction.OfPlayer || HasQueen)
+        if (!Faction.IsOfPlayerFaction() || HasQueen)
             return false;
 
         return _innerContainer.TryAddOrTransfer(thing, canMerge);

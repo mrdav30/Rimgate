@@ -75,8 +75,8 @@ public class JobDriver_CarryToSarcophagus : JobDriver
     {
         Log.Warning("checking making patient guest");
         if (!job.def.makeTargetPrisoner
-            && Patient.Faction != Faction.OfPlayer
-            && Patient.HostFaction != Faction.OfPlayer
+            && !Patient.Faction.IsOfPlayerFaction()
+            && !Patient.HostFaction.IsOfPlayerFaction()
             && Patient.guest != null
             && !Patient.IsWildMan()
             && Patient.DevelopmentalStage != DevelopmentalStage.Baby)

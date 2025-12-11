@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using Verse;
 using Verse.AI;
-using static HarmonyLib.Code;
 
 namespace Rimgate;
 
@@ -204,11 +203,16 @@ internal static class Utils
             || pawn.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);
     }
 
-    public static bool IsGoauldHost(this Pawn pawn)
+    public static bool CanSocialize(Pawn p1, Pawn p2)
     {
-        return pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant)
-            || pawn.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch)
-            || pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
+        if (p1 == null || p2 == null) return false;
+        if (p1 == p2) return false;
+        if (p1.Dead || p2.Dead) return false;
+        if (p1.Faction == null || p2.Faction != p1.Faction) return false;
+        if (p1.RaceProps == null || p2.RaceProps == null) return false;
+        if (!p1.RaceProps.Humanlike || !p2.RaceProps.Humanlike) return false;
+
+        return true;
     }
 
     public static void TryGiveThought(this Pawn pawn, ThoughtDef def)

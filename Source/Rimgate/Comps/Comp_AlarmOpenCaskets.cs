@@ -57,7 +57,7 @@ namespace Rimgate
 
             Predicate<Thing> pred = null;
             if (Props.onlyHumanlike)
-                pred = t => t is Pawn p && p.RaceProps.Humanlike && p.Faction == Faction.OfPlayer;
+                pred = t => t is Pawn p && p.RaceProps.Humanlike && p.Faction.IsOfPlayerFaction();
 
             Thing found = null;
             if (Props.triggerOnPawnInRoom)
@@ -67,7 +67,7 @@ namespace Rimgate
                 {
                     foreach (var t in room.ContainedAndAdjacentThings)
                     {
-                        if (pred == null ? (t is Pawn p && p.Faction == Faction.OfPlayer) : pred(t))
+                        if (pred == null ? (t is Pawn p && p.Faction.IsOfPlayerFaction()) : pred(t))
                         { found = t; break; }
                     }
                 }

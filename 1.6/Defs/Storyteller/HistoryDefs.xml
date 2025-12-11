@@ -6,4 +6,9 @@
         <label>used goa'uld sarcophagus</label>
     </HistoryEventDef>
 
+    <HistoryEventDef>
+        <defName>Rimgate_InstalledSymbiote</defName>
+        <label>accepted symbiote</label>
+    </HistoryEventDef>
+
 </Defs>

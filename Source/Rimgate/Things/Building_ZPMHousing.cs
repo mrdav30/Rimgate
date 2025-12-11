@@ -159,7 +159,7 @@ public class Building_ZPMHousing : Building, IThingHolder
         {
             if (!HasAnyZpm) return false;
             if (Battery == null || Facilities == null) return false;
-            if (Faction == Faction.OfPlayer && !ResearchUtil.ParallelSubspaceCouplingComplete) return false;
+            if (Faction.IsOfPlayerFaction() && !ResearchUtil.ParallelSubspaceCouplingComplete) return false;
             return ActiveDiverterCount() > 0;
         }
     }
@@ -360,7 +360,7 @@ public class Building_ZPMHousing : Building, IThingHolder
             return;
 
         bool connected = Battery.PowerNet != null;
-        bool shouldBroadcast = Faction == Faction.OfPlayer && HasAnyZpm && connected;
+        bool shouldBroadcast = Faction.IsOfPlayerFaction() && HasAnyZpm && connected;
 
         // Start broadcasting
         if (shouldBroadcast && !_isBroadcasting)

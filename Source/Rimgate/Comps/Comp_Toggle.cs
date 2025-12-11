@@ -99,7 +99,7 @@ public class Comp_Toggle : ThingComp
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        if (parent.Faction == Faction.OfPlayer)
+        if (parent.Faction.IsOfPlayerFaction())
         {
             Command_Toggle command_Toggle = new Command_Toggle();
             command_Toggle.hotKey = KeyBindingDefOf.Command_TogglePower;

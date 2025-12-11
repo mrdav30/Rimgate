@@ -100,9 +100,6 @@
 				</statFactors>
 			</li>
 		</stages>
-		<tags>
-			<li>Rimgate_PrimtaSymbiote_tag</li>
-		</tags>
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
 
@@ -227,9 +224,6 @@
 				</statOffsets>
 			</li>
 		</stages>
-		<tags>
-			<li>Rimgate_GoauldSymbiote_tag</li>
-		</tags>
 		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	</HediffDef>
 

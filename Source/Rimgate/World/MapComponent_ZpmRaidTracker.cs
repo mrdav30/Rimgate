@@ -48,7 +48,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
 
         int physicalCount = map.listerThings
             .ThingsOfDef(RimgateDefOf.Rimgate_ZPM)
-            .Count(t => t.Faction == Faction.OfPlayer
+            .Count(t => t.Faction.IsOfPlayerFaction()
                      && t.Spawned
                      && (t is Building_ZPM b ? b.IsBroadcasting : true));
 

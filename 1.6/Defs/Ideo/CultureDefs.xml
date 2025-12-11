@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <CultureDef>
+    <defName>Rimgate_Jaffari</defName>
+    <label>Jaffari</label>
+    <description>Influenced by ancient Earth's Egyptian aesthetic-with more symbiotes and fewer OSHA regulations-the Jaffari culture values loyalty, honor, and disciplined presentation over body ink. It's all pyramids, posturing, and praising glowing-eyed gods.\nGreat for those who like their tyranny with style.</description>
+    <pawnNameMaker>Rimgate_NamerPersonJaffaM</pawnNameMaker>
+    <pawnNameMakerFemale>Rimgate_NamerPersonJaffaF</pawnNameMakerFemale>
+    <ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoRustican</ideoNameMaker>
+    <deityNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerDeityRustican</deityNameMaker>
+    <deityTypeMaker MayRequire="Ludeon.RimWorld.Ideology">DeityTypeMakerRustican</deityTypeMaker>
+    <leaderTitleMaker MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_Rustican</leaderTitleMaker>
+    <festivalNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerFestivalRustican</festivalNameMaker>
+    <allowedPlaceTags>
+      <li>OriginSpacer</li>
+    </allowedPlaceTags>
+    <iconPath>UI/Icon/Culture/RGJaffariCultureIcon</iconPath>
+    <iconColor>(0.8, 0.8, 0.8)</iconColor>
+    <thingStyleCategories>
+      <li MayRequire="Ludeon.RimWorld.Ideology">
+        <category>Spikecore</category>
+        <priority>2</priority>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">
+        <category>Techist</category>
+        <priority>4</priority>
+      </li>
+    </thingStyleCategories>
+    <styleItemTags>
+      <li>
+        <tag>Bald</tag>
+        <baseWeight>1</baseWeight>
+        <weightFactor>1</weightFactor>
+      </li>
+      <li>
+        <tag>NoBeard</tag>
+        <baseWeight>1</baseWeight>
+        <weightFactor>1</weightFactor>
+      </li>
+      <li>
+        <tag>NoTattoo</tag>
+        <baseWeight>1</baseWeight>
+        <weightFactor>1</weightFactor>
+      </li>
+    </styleItemTags>
+  </CultureDef>
+
+  <CultureDef>
+    <defName>Rimgate_WraithCulture</defName>
+    <label>hive culture</label>
+    <description>Ruthlessly efficient and emotionally unavailable, this insectoid-inspired culture is built around hierarchy, obedience, and really bad small talk. Led by telepathic queens, every role is preordained—worker, warrior, or lunch.\nIdeal if you enjoy mindless conformity and snazzy hair.</description>
+    <ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoAstropolitan</ideoNameMaker>
+    <deityNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerDeityAstropolitan</deityNameMaker>
+    <deityTypeMaker MayRequire="Ludeon.RimWorld.Ideology">DeityTypeMakerAstropolitan</deityTypeMaker>
+    <leaderTitleMaker MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_Astropolitan</leaderTitleMaker>
+    <festivalNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerFestivalAstropolitan</festivalNameMaker>
+    <allowedPlaceTags>
+      <li>OriginSpacer</li>
+    </allowedPlaceTags>
+    <iconPath>UI/Icon/Culture/RGWraithCultureIcon</iconPath>
+    <thingStyleCategories MayRequire="Ludeon.RimWorld.Ideology">
+      <li>
+        <category>Morbid</category>
+        <priority>1</priority>
+      </li>
+    </thingStyleCategories>
+    <styleItemTags>
+      <li>
+        <tag>HairWraith</tag>
+        <baseWeight>1</baseWeight>
+        <weightFactor>1</weightFactor>
+      </li>
+      <li>
+        <tag>NoBeard</tag>
+        <baseWeight>1</baseWeight>
+        <weightFactor>1</weightFactor>
+      </li>
+      <li>
+        <tag>NoTattoo</tag>
+        <baseWeight>1</baseWeight>
+        <weightFactor>1</weightFactor>
+      </li>
+    </styleItemTags>
+  </CultureDef>
+
+</Defs>

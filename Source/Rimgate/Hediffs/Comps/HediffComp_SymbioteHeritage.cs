@@ -37,9 +37,13 @@ public class HediffComp_SymbioteHeritage : HediffComp
         Scribe_Deep.Look(ref Memory, "Memory");
     }
 
-    public void ApplyMemoryPostEffect(SymbioteMemory memory, Pawn host)
+    public void AssumeMemory(SymbioteMemory memory)
     {
         Memory = SymbioteMemory.DeepCopy(memory);
+    }
+
+    public void ApplyMemoryPostEffect(Pawn host)
+    {
         if (Memory == null) return;
 
         var skills = host?.skills?.skills;

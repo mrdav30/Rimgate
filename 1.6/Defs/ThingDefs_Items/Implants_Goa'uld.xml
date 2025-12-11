@@ -10,9 +10,6 @@
         <statBases>
             <Mass>2</Mass>
         </statBases>
-        <techHediffsTags>
-            <li>Rimgate_GoauldPrimta_tag</li>
-        </techHediffsTags>
         <thingCategories>
             <li>BodyPartsBionic</li>
         </thingCategories>
@@ -47,9 +44,6 @@
         <thingCategories>
             <li>ResourcesRaw</li>
         </thingCategories>
-        <techHediffsTags>
-            <li>Rimgate_GoauldPrimta_tag</li>
-        </techHediffsTags>
         <thingSetMakerTags Inherit="False" />
         <tradeability>Sellable</tradeability>
         <comps>
@@ -89,9 +83,6 @@
         <thingCategories>
             <li>ResourcesRaw</li>
         </thingCategories>
-        <techHediffsTags>
-            <li>Rimgate_GoauldSymbiote_tag</li>
-        </techHediffsTags>
         <thingSetMakerTags Inherit="False" />
         <tradeability>Sellable</tradeability>
         <comps>

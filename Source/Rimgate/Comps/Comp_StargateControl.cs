@@ -393,7 +393,7 @@ public class Comp_StargateControl : ThingComp
     private static bool ShouldRedraftAfterSpawn(Thing t)
     {
         if (t is not Pawn p) return false;
-        if (p.Faction != Faction.OfPlayer) return false;
+        if (!p.Faction.IsOfPlayerFaction()) return false;
         if (p.Downed) return false;
         if (p.drafter == null) return false;
         if (!p.Drafted) return false;

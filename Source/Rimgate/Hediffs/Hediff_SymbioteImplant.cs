@@ -44,11 +44,11 @@ public class Hediff_SymbioteImplant : Hediff_Implant
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
             }
 
-            if (pawn.Faction == Faction.OfPlayer)
+            if (pawn.Faction.IsOfPlayerFaction())
                 Messages.Message(
                     reason,
                     pawn,
-                    MessageTypeDefOf.ThreatBig);
+                    MessageTypeDefOf.ThreatSmall);
 
             _skipWithdrawl = true;
 
@@ -63,6 +63,29 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_TretoninAddiction);
+
+        if (Heritage != null)
+        {
+            Heritage.Memory ??= new SymbioteMemory();
+            Heritage.Memory.EnsureName();
+
+            // Copy memory into hediff and apply bonuses to host
+            Heritage.ApplyMemoryPostEffect(pawn);
+
+            if (pawn.Faction.IsOfPlayerFaction())
+            {
+                var msg = "RG_SymbioteSkillInheritance".Translate(
+                    pawn.Named("PAWN"),
+                    Heritage.Memory?.SymbioteName);
+                Messages.Message(
+                    msg,
+                    pawn,
+                    MessageTypeDefOf.PositiveEvent);
+            }
+        }
+
+        if (pawn.Faction.IsOfPlayerFaction())
+            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_InstalledSymbiote, pawn.Named(HistoryEventArgsNames.Doer)));
     }
 
     public bool IsValidHost(out string reason)
@@ -102,22 +125,16 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         if (pawn.Map == null) return;
         var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote) as Thing_GoualdSymbiote;
 
-        // Preserve its accumulated memory and inherit skills from previous host
-        var comp = thing.Heritage;
-        if (comp != null)
+        // Preserve its accumulated memory and inherit skills from previous host,
+        // regardless of how the symbiote is removed
+        var heritage = thing.Heritage;
+        if (heritage != null)
         {
-            comp.ApplyMemoryPostRemoval(hediffMemory, pawn);
-            var memory = comp.Memory;
+            heritage.AssumeMemory(hediffMemory);
+            heritage.ApplyMemoryPostRemoval(pawn);
+            var memory = heritage.Memory;
 
-            if (memory?.IsAtLimit == true)
-            {
-                Find.LetterStack.ReceiveLetter(
-                    "RG_SymbioteMemory_MaxHostsReachedLabel".Translate(),
-                    "RG_SymbioteMemory_MaxHostsReachedText".Translate(memory.SymbioteName),
-                    LetterDefOf.NeutralEvent,
-                    pawn);
-            }
-            else if (memory?.IsOverLimit == true)
+            if (memory?.IsOverLimit == true)
             {
                 Find.LetterStack.ReceiveLetter(
                     "RG_SymbioteMemory_MaxHostsPerishedLabel".Translate(),
@@ -128,6 +145,13 @@ public class Hediff_SymbioteImplant : Hediff_Implant
 
                 return;
             }
+
+            if (memory?.IsAtLimit == true)
+                Find.LetterStack.ReceiveLetter(
+                    "RG_SymbioteMemory_MaxHostsReachedLabel".Translate(),
+                    "RG_SymbioteMemory_MaxHostsReachedText".Translate(memory.SymbioteName),
+                    LetterDefOf.NeutralEvent,
+                    pawn);
         }
 
         GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);

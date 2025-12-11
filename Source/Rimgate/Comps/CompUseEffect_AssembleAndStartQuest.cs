@@ -88,7 +88,8 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
         foreach (var map in Find.Maps)
         {
             // Count only player-controlled maps
-            if (!(map.IsPlayerHome || map.Parent?.Faction == Faction.OfPlayer)) continue;
+            if (!(map.IsPlayerHome || (map.Parent?.Faction.IsOfPlayerFaction() ?? true))) 
+                continue;
 
             // a) Spawned items (on ground / in storage) not forbidden.
             var spawnedList = map.listerThings.ThingsOfDef(def);
@@ -119,7 +120,7 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
         // 2) Player caravans (AllThings already includes inventories)
         foreach (var caravan in Find.WorldObjects.Caravans)
         {
-            if (caravan.Faction != Faction.OfPlayer) continue;
+            if (!caravan.Faction.IsOfPlayerFaction()) continue;
             var things = caravan.AllThings;
             foreach (var thing in things)
                 if (thing.def == def) yield return thing;

@@ -53,7 +53,7 @@ public static class Harmony_Pawn_TryGetAttackVerb
         bool allowManualCastWeapons = false,
         bool allowTurrets = false)
     {
-        if (target is not Pawn pawn || pawn.Faction == Faction.OfPlayer)
+        if (target is not Pawn pawn || pawn.Faction.IsOfPlayerFaction())
             return;
 
         Pawn_EquipmentTracker equipment = pawn.equipment;

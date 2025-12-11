@@ -27,9 +27,13 @@ public class Comp_SymbioteHeritage : ThingComp
             : null;
     }
 
-    public void ApplyMemoryPostRemoval(SymbioteMemory memory, Pawn host)
+    public void AssumeMemory(SymbioteMemory memory)
     {
         Memory = SymbioteMemory.DeepCopy(memory);
+    }
+
+    public void ApplyMemoryPostRemoval(Pawn host)
+    {
         if (Memory == null) return;
 
         Memory.MarkPreviousHost(host);

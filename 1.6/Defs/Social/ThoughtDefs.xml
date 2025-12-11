@@ -44,6 +44,9 @@
         <hediff>Rimgate_SymbioteWithdrawal</hediff>
         <validWhileDespawned>true</validWhileDespawned>
         <developmentalStageFilter>Adult</developmentalStageFilter>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
         <stages>
             <li>
                 <label>symbiote withdrawal</label>
@@ -53,35 +56,11 @@
         </stages>
     </ThoughtDef>
 
-    <!-- Non-hosts dislike the arrogance of hosts -->
-    <ThoughtDef>
-        <defName>Rimgate_Opinion_SymbioteHostility</defName>
-        <thoughtClass>Thought_SituationalSocial</thoughtClass>
-        <workerClass>Rimgate.ThoughtWorker_Opinion_SymbioteHostility</workerClass>
-        <durationDays>-1</durationDays>
-        <stackLimit>1</stackLimit>
-        <validWhileDespawned>true</validWhileDespawned>
-        <nullifyingTraits>
-            <li>Psychopath</li>
-            <li>Masochist</li>
-            <li>Kind</li>
-            <li>Bloodlust</li>
-            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
-        </nullifyingTraits>
-        <stages>
-            <li>
-                <label>uneasy about symbiote host</label>
-                <description>This pawn feels uneasy around a host carrying an active symbiote – part person, part parasite, and far too comfortable with it.</description>
-                <baseOpinionOffset>-3</baseOpinionOffset>
-            </li>
-        </stages>
-    </ThoughtDef>
-
     <!-- Hosts feel a mild kinship with other hosts -->
     <ThoughtDef>
         <defName>Rimgate_Opinion_SymbioteKinship</defName>
         <thoughtClass>Thought_SituationalSocial</thoughtClass>
-        <workerClass>Rimgate.ThoughtWorker_Opinion_SymbioteKinship</workerClass>
+        <workerClass>Rimgate.ThoughtWorker_SymbioteKinship_Social</workerClass>
         <durationDays>-1</durationDays>
         <stackLimit>1</stackLimit>
         <validWhileDespawned>true</validWhileDespawned>
@@ -93,7 +72,7 @@
             <li>
                 <label>shared power</label>
                 <description>Another bearer of the symbiote. Power recognizes power.</description>
-                <baseOpinionOffset>5</baseOpinionOffset>
+                <baseOpinionOffset>3</baseOpinionOffset>
             </li>
         </stages>
     </ThoughtDef>
@@ -110,6 +89,7 @@
             <li>Psychopath</li>
             <li>Ascetic</li>
             <li>Masochist</li>
+            <li>BodyPurist</li>
         </nullifyingTraits>
         <stages>
             <li>
@@ -201,6 +181,9 @@
         <durationDays>3</durationDays>
         <stackLimit>1</stackLimit>
         <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
         <stages>
             <li>
                 <label>prim'ta matured</label>
@@ -218,6 +201,9 @@
         <durationDays>5</durationDays>
         <stackLimit>1</stackLimit>
         <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
         <stages>
             <li>
                 <label>first Prim'ta</label>
@@ -235,6 +221,9 @@
         <durationDays>4</durationDays>
         <stackLimit>1</stackLimit>
         <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
         <stages>
             <li>
                 <label>renewed Prim'ta</label>

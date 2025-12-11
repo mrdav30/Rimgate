@@ -11,13 +11,15 @@ namespace Rimgate
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            bool hasPouch = p.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
-            if (!hasPouch) return ThoughtState.Inactive;
+            if (!p.RaceProps.Humanlike)
+                return ThoughtState.Inactive;
 
-            bool hasSymbiote = p.HasSymbiote();
-            return !hasSymbiote 
-                ? ThoughtState.ActiveDefault 
-                : ThoughtState.Inactive;
+            bool hasPouch = p.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
+            if (!hasPouch) 
+                return ThoughtState.Inactive;
+
+            bool hasPrimta = p.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);
+            return !hasPrimta;
         }
     }
 }

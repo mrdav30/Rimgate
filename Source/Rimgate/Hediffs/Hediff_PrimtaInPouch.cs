@@ -29,7 +29,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
             }
 
-            if (pawn.Faction == Faction.OfPlayer)
+            if (pawn.Faction.IsOfPlayerFaction())
                 Messages.Message(
                     reason,
                     pawn,
@@ -61,6 +61,9 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
             thought = RimgateDefOf.Rimgate_PrimtaFirstPrimtaThought;
 
         memories.TryGainMemory(thought);
+
+        if (pawn.Faction.IsOfPlayerFaction())
+            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_InstalledSymbiote, pawn.Named(HistoryEventArgsNames.Doer)));
     }
 
     public bool IsValidHost(out string reason)

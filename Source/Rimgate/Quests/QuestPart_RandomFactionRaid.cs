@@ -67,7 +67,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
 
                 var foundTargets = map.listerThings
                     .ThingsOfDef(target)
-                    .Where(p => p.Faction == Faction.OfPlayer
+                    .Where(p => p.Faction.IsOfPlayerFaction()
                         && p.Spawned
                         && (TargetPredicate != null ? TargetPredicate(p) : true))
                     .ToList();

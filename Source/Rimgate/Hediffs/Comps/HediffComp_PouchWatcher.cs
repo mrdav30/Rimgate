@@ -41,7 +41,7 @@ public class HediffComp_PouchWatcher : HediffComp
     {
         var pawn = parent.pawn;
         if (pawn == null 
-            || pawn.Faction != Faction.OfPlayer 
+            || !pawn.Faction.IsOfPlayerFaction()
             || pawn.Dead 
             || !pawn.Spawned
             || pawn.Map == null

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- ==================== Prim'ta removal ==================== -->
+	<!-- ==================== Prim'ta ==================== -->
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemovePrimtaSymbiote</defName>
@@ -26,7 +26,7 @@
 		<researchPrerequisite>Rimgate_SymbioteStudy</researchPrerequisite>
 	</RecipeDef>
 
-	<!-- ==================== Goa'uld Symbiote removal ==================== -->
+	<!-- ==================== Goa'uld Symbiote ==================== -->
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveGoauldSymbiote</defName>

@@ -360,7 +360,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        if (Faction != Faction.OfPlayer) yield break;
+        if (!Faction.IsOfPlayerFaction()) yield break;
 
         string flickablePowerToggleStr = "CommandDesignateTogglePowerLabel".Translate();
         var patient = PatientPawn;
@@ -476,7 +476,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
     {
-        if (Faction != Faction.OfPlayer) yield break;
+        if (!Faction.IsOfPlayerFaction()) yield break;
 
         if (!SarcophagusUtil.IsValidSarcophagusFor(this, pawn, pawn))
         {

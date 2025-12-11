@@ -76,7 +76,7 @@ public class Building_SymbioteAmbushTrap : Building_Trap
         }
 
         // Letter
-        if (p.Faction == Faction.OfPlayer)
+        if (Faction.IsOfPlayerFaction())
         {
             Find.LetterStack.ReceiveLetter(
                 "RG_Letter_HostilePoolAmbush_Label".Translate(),

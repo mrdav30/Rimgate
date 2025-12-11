@@ -558,7 +558,7 @@ public class Comp_ShieldEmitter : ThingComp
     private float GetCurrentAlpha_Idle()
     {
         if (!Active
-            || parent.Faction == Faction.OfPlayer && !_debugInterceptNonHostileProjectiles
+            || (parent.Faction.IsOfPlayerFaction() && !_debugInterceptNonHostileProjectiles)
             || Find.Selector.IsSelected(parent)) return 0.0f;
 
         if (!_showShieldToggle)
@@ -625,7 +625,7 @@ public class Comp_ShieldEmitter : ThingComp
         foreach (Gizmo gizmo in base.CompGetGizmosExtra())
             yield return gizmo;
 
-        if (compShield.parent.Faction == Faction.OfPlayer)
+        if (compShield.parent.Faction.IsOfPlayerFaction())
         {
             yield return new Gizmo_ShieldStatus()
             {

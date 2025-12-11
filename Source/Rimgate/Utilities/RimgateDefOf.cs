@@ -70,6 +70,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_ZatShock;
 
     public static HistoryEventDef Rimgate_UsedGoauldSarcophagus;
+    public static HistoryEventDef Rimgate_InstalledSymbiote;
 
     public static IncidentDef Rimgate_Marauders;
 

@@ -43,28 +43,14 @@ public class CompUseEffect_InstallSymbiote : CompUseEffect
                 return;
             }
         }
-        else
-        {
-            memory = new SymbioteMemory();
-            memory.EnsureName();
-        }
 
         // Install hediff
         var part = pawn.RaceProps.body.GetPartsWithDef(Props.bodyPart).FirstOrDefault();
         var hediff = HediffMaker.MakeHediff(Props.hediffDef, pawn, part) as Hediff_SymbioteImplant;
+        var heritage = hediff.Heritage;
+        if (heritage != null)
+            hediff.Heritage.AssumeMemory(memory);
         pawn.health.AddHediff(hediff);
-
-        var hediffHeritage = hediff?.Heritage;
-        if (hediffHeritage != null)
-        {
-            // Copy memory into hediff and apply bonuses to host
-            hediffHeritage.ApplyMemoryPostEffect(memory, pawn);
-
-            Messages.Message(
-                "RG_SymbioteSkillInheritance".Translate(pawn.Named("PAWN"), hediffHeritage?.Memory?.SymbioteName),
-                pawn,
-                MessageTypeDefOf.PositiveEvent);
-        }
 
         // Destroy the item (it’s now an implant)
         thing.Destroy();

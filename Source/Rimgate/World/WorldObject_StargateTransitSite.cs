@@ -120,7 +120,7 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
             if (t is Building_Stargate) sawGate = true;
             if (t is Building_DHD) sawDhd = true;
 
-            if (t.Faction != Faction.OfPlayer) continue;
+            if (!t.Faction.IsOfPlayerFaction()) continue;
 
             // Skip pawns/filth/frames/blueprints/plants/corpses/chunks
             if (t is Pawn || t is Blueprint || t is Frame || t.def.category == ThingCategory.Plant) continue;
@@ -141,7 +141,7 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
 
         // Clear hostiles
         var toWipe = Map.mapPawns.AllPawnsSpawned
-            .Where(p => p.Faction != Faction.OfPlayer && p.HostileTo(Faction.OfPlayer))
+            .Where(p => !p.Faction.IsOfPlayerFaction() && p.HostileTo(Faction.OfPlayer))
             .ToList();
         foreach (var p in toWipe) p.Destroy();
 

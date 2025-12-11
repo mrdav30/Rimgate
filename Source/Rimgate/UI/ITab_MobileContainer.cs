@@ -20,7 +20,7 @@ public class ITab_MobileContainer : ITab_ContentsBase
         get
         {
             if ((base.SelThing.Faction == null
-                || base.SelThing.Faction == Faction.OfPlayer)
+                || base.SelThing.Faction.IsOfPlayerFaction())
                 && Mobile != null)
             {
                 if (!Mobile.LoadingInProgress)

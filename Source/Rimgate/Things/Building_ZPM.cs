@@ -60,7 +60,7 @@ public class Building_ZPM : Building
         get
         {
             if (Battery == null || Facilities == null) return false;
-            if (Faction == Faction.OfPlayer && !ResearchUtil.ParallelSubspaceCouplingComplete) return false;
+            if (Faction.IsOfPlayerFaction() && !ResearchUtil.ParallelSubspaceCouplingComplete) return false;
             return ActiveDiverterCount() > 0;
         }
     }
@@ -129,7 +129,7 @@ public class Building_ZPM : Building
         bool connected = Battery?.PowerNet != null;
 
         // If not integrated yet, ensure we are NOT broadcasting.
-        if (Faction == Faction.OfPlayer)
+        if (Faction.IsOfPlayerFaction())
         {
             if (!ResearchUtil.ZPMIntegrationComplete)
             {
@@ -158,7 +158,7 @@ public class Building_ZPM : Building
         if (Map == null) return;
 
         // Inert phase: no power, no dark energy, no broadcast.
-        if (Faction == Faction.OfPlayer
+        if (Faction.IsOfPlayerFaction()
             && !ResearchUtil.ZPMIntegrationComplete)
         {
             if (_isBroadcasting)
@@ -177,7 +177,7 @@ public class Building_ZPM : Building
     private void CheckBroadcast()
     {
         bool connected = Battery?.PowerNet != null;
-        if (Faction == Faction.OfPlayer
+        if (Faction.IsOfPlayerFaction()
             && connected != _wasConnectedLastTick)
         {
             if (connected && !_isBroadcasting)
@@ -265,7 +265,7 @@ public class Building_ZPM : Building
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
-        if (Faction == Faction.OfPlayer && _isBroadcasting)
+        if (Faction.IsOfPlayerFaction() && _isBroadcasting)
         {
             _isBroadcasting = false;
             Map.GetComponent<MapComponent_ZpmRaidTracker>()?.NotifyZpmEndedBroadcast();
@@ -275,7 +275,7 @@ public class Building_ZPM : Building
 
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {
-        if (Faction == Faction.OfPlayer && _isBroadcasting)
+        if (Faction.IsOfPlayerFaction() && _isBroadcasting)
         {
             _isBroadcasting = false;
             Map.GetComponent<MapComponent_ZpmRaidTracker>()?.NotifyZpmEndedBroadcast();
@@ -324,7 +324,7 @@ public class Building_ZPM : Building
 
     public override string GetInspectString()
     {
-        if (Faction == Faction.OfPlayer && !ResearchUtil.ZPMIntegrationComplete)
+        if (Faction.IsOfPlayerFaction() && !ResearchUtil.ZPMIntegrationComplete)
             return "Inert";
 
         StringBuilder sb = new();

@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Rimgate;
@@ -8,7 +9,13 @@ public class HediffComp_PrimtaLifecycle : HediffComp
     public const float KrintakThreshold = 0.85f;
 
     public bool Mature => _matured;
+
     public HediffCompProperties_PrimtaLifecycle Props => (HediffCompProperties_PrimtaLifecycle)props;
+
+    public float MaturityPct =>
+        _maturePeriod <= 0 
+        ? 0f 
+        : Mathf.Clamp01((float)_ageTicks / _maturePeriod);
 
     private int _maturePeriod;
     private int _matureGrace;
@@ -35,7 +42,7 @@ public class HediffComp_PrimtaLifecycle : HediffComp
     {
         Pawn pawn = parent.pawn;
         if (pawn == null 
-            || pawn.Faction != Faction.OfPlayer
+            || !pawn.Faction.IsOfPlayerFaction()
             || pawn.Dead 
             || pawn.health == null) return;
 
@@ -49,8 +56,7 @@ public class HediffComp_PrimtaLifecycle : HediffComp
         {
             if (!_krintakTriggered)
             {
-                float pct = (float)_ageTicks / _maturePeriod;
-                if (pct >= KrintakThreshold)
+                if (MaturityPct >= KrintakThreshold)
                 {
                     _krintakTriggered = true;
                     TriggerKrintak(pawn);
@@ -64,7 +70,7 @@ public class HediffComp_PrimtaLifecycle : HediffComp
 
                 pawn.TryGiveThought(RimgateDefOf.Rimgate_PrimtaMaturedThought);
 
-                if (pawn.Faction == Faction.OfPlayer)
+                if (pawn.Faction.IsOfPlayerFaction())
                     Messages.Message(
                         "RG_Primta_Matured".Translate(pawn.Named("PAWN")),
                         pawn,
@@ -81,6 +87,20 @@ public class HediffComp_PrimtaLifecycle : HediffComp
             EvaluateOverstayOutcome(pawn);
     }
 
+    public override string CompLabelInBracketsExtra 
+    {
+        get
+        {
+            if (parent?.pawn == null || _maturePeriod <= 0)
+                return null;
+
+            if (!_matured && MaturityPct > 0f)
+                return MaturityPct.ToStringPercent();
+
+            return MaturityPct.ToStringPercent();
+        }
+    }
+
     private void TriggerKrintak(Pawn pawn)
     {
         if (!pawn.HasHediffOf(RimgateDefOf.Rimgate_KrintakSickness))
@@ -89,7 +109,7 @@ public class HediffComp_PrimtaLifecycle : HediffComp
             pawn.health.AddHediff(h);
         }
 
-        if (pawn.Faction == Faction.OfPlayer)
+        if (pawn.Faction.IsOfPlayerFaction())
         {
             Find.LetterStack.ReceiveLetter(
                 "RG_Primta_KrintakLabel".Translate(pawn.Named("PAWN")),
@@ -122,7 +142,7 @@ public class HediffComp_PrimtaLifecycle : HediffComp
         var sym = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SymbioteImplant, pawn);
         pawn.health.AddHediff(sym);
 
-        if (pawn.Faction == Faction.OfPlayer)
+        if (pawn.Faction.IsOfPlayerFaction())
         {
             Messages.Message(
                 "RG_Primta_Takeover".Translate(pawn.Named("PAWN")),
@@ -138,7 +158,7 @@ public class HediffComp_PrimtaLifecycle : HediffComp
 
         pawn.Kill(null);
 
-        if (pawn.Faction == Faction.OfPlayer)
+        if (pawn.Faction.IsOfPlayerFaction())
         {
             Messages.Message(
                 "RG_Primta_FatalOverstay".Translate(pawn.Named("PAWN")),
