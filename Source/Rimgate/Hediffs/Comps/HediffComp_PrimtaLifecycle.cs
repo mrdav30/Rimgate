@@ -94,10 +94,18 @@ public class HediffComp_PrimtaLifecycle : HediffComp
             if (parent?.pawn == null || _maturePeriod <= 0)
                 return null;
 
-            if (!_matured && MaturityPct > 0f)
-                return MaturityPct.ToStringPercent();
+            if (!_matured)
+            {
+                if (MaturityPct > 0f)
+                {
+                    int pct = Mathf.Clamp(Mathf.RoundToInt(MaturityPct * 100f), 0, 100);
+                    return pct + "%";
+                }
 
-            return MaturityPct.ToStringPercent();
+                return "brood";
+            }
+
+            return "mature";
         }
     }
 

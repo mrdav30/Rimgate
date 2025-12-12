@@ -19,17 +19,17 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
     {
         base.PostAdd(dinfo);
 
-        // Safety: only allow on pawns that have the symbiote pouch hediff and no existing symbiote
+        bool isConfigStage = Find.GameInitData != null;
+
         if (!IsValidHost(out string reason))
         {
-            // Spawn prim'ta item at pawn's position
             if (pawn.Map != null)
             {
                 var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_PrimtaSymbiote);
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
             }
 
-            if (pawn.Faction.IsOfPlayerFaction())
+            if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
                 Messages.Message(
                     reason,
                     pawn,
@@ -62,7 +62,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
 
         memories.TryGainMemory(thought);
 
-        if (pawn.Faction.IsOfPlayerFaction())
+        if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
             Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_InstalledSymbiote, pawn.Named(HistoryEventArgsNames.Doer)));
     }
 

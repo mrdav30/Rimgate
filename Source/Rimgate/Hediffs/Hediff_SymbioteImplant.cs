@@ -34,6 +34,8 @@ public class Hediff_SymbioteImplant : Hediff_Implant
     {
         base.PostAdd(dinfo);
 
+        bool isConfigStage = Find.GameInitData != null;
+
         // Safety: don't allow pawns that already have a symbiote
         if (!IsValidHost(out string reason))
         {
@@ -44,7 +46,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
             }
 
-            if (pawn.Faction.IsOfPlayerFaction())
+            if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
                 Messages.Message(
                     reason,
                     pawn,
@@ -72,7 +74,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
             // Copy memory into hediff and apply bonuses to host
             Heritage.ApplyMemoryPostEffect(pawn);
 
-            if (pawn.Faction.IsOfPlayerFaction())
+            if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
             {
                 var msg = "RG_SymbioteSkillInheritance".Translate(
                     pawn.Named("PAWN"),
@@ -84,7 +86,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
             }
         }
 
-        if (pawn.Faction.IsOfPlayerFaction())
+        if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
             Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_InstalledSymbiote, pawn.Named(HistoryEventArgsNames.Doer)));
     }
 
