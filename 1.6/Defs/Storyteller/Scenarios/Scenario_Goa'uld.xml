@@ -28,7 +28,7 @@
 				<!-- Game start dialog -->
 				<li Class="ScenPart_GameStartDialog">
 					<def>GameStartDialog</def>
-					<text>The gods were false.\n\nAfter a lifetime of serving the Goa’uld and calling tyranny divine, you and a handful of Jaffa finally said “enough.” No more bowing. No more glowing eyes. No more forced chanting in ancient dialects.\n\nNow, stranded on a remote world with only your wits, weapons, and an awkward mix of symbiotes and humans, you must build a new future. One not ruled by parasites in fancy hats.\n\nWelcome to the Free Jaffa Nation. Try not to die.</text>
+					<text>The gods were false.\n\nAfter a lifetime of serving the Goa'uld and calling tyranny divine, you and a handful of Jaffa finally said "enough." No more bowing. No more glowing eyes. No more forced chanting in ancient dialects.\n\nIn the chaos, you even nabbed a symbiote queen. She's currently sulking in a travel jar; build her a pool ASAP before she decides rebellion was a bad idea (or eats someone to make a point).\n\nNow, stranded on a remote world with only your wits, weapons, and an awkward mix of symbiotes and humans, you must build a new future. One not ruled by parasites in fancy hats.\n\nWelcome to the Free Jaffa Nation. Try not to die.</text>
 					<closeSound>GameStartSting</closeSound>
 				</li>
 
@@ -41,11 +41,10 @@
 						<li>
 							<kindDef>Rimgate_GoauldPlayer</kindDef>
 							<count>3</count>
-							<requiredAtStart>true</requiredAtStart>
 						</li>
 						<li>
 							<kindDef>Rimgate_GoauldPlayerSlave</kindDef>
-							<count>2</count>						
+							<count>2</count>
 						</li>
 					</kindCounts>
 				</li>
@@ -94,6 +93,20 @@
 					<def>StartingThing_Defined</def>
 					<thingDef>Rimgate_GoauldZat</thingDef>
 				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Rimgate_SymbioteQueen</thingDef>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>BlocksGranite</thingDef>
+					<count>150</count>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Steel</thingDef>
+					<count>150</count>
+				</li>
 				<li Class="ScenPart_ScatterThingsNearPlayerStart">
 					<def>ScatterThingsNearPlayerStart</def>
 					<thingDef>WoodLog</thingDef>
@@ -105,19 +118,19 @@
 					<count>1</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
+					<def>ScatterThingsNearPlayerStart</def>
 					<thingDef>Gold</thingDef>
 					<count>100</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
+					<def>ScatterThingsNearPlayerStart</def>
 					<thingDef>Steel</thingDef>
-					<count>400</count>
+					<count>50</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
+					<def>ScatterThingsNearPlayerStart</def>
 					<thingDef>ComponentIndustrial</thingDef>
-					<count>80</count>
+					<count>40</count>
 				</li>
 				<!-- Starting research -->
 				<li Class="ScenPart_StartingResearch">

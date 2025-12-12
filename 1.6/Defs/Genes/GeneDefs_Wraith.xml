@@ -195,7 +195,7 @@
     <resourceLossPerDay>0.02</resourceLossPerDay>
   </GeneDef>
 
-  <GeneDef>
+  <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithLifeDrain</defName>
     <label>life drain</label>
     <description>Allows the host to drain life essence directly from another pawn, replenishing their own strength, speed, and vitality. A deeply intimate and wildly horrifying method of staying alive.\nWraith wellness starts with a good meal—and you’re it.</description>
@@ -223,7 +223,7 @@
     </modExtensions>
   </GeneDef>
 
-  <GeneDef>
+  <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithCocoonTrap</defName>
     <label>cocoon trap</label>
     <description>Enables the production of organic webbing to ensnare prey in a semi-living stasis. Victims remain immobile, conscious, and wonderfully fresh for later consumption.\nBecause refrigeration is overrated.</description>

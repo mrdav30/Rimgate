@@ -3,6 +3,7 @@
 
   <PawnKindDef Name="Rimgate_GoauldPlayerBase" Abstract="True">
     <race>Human</race>
+    <defaultFactionType>Rimgate_GoauldPlayerColony</defaultFactionType>
     <combatPower>40</combatPower>
     <isFighter>true</isFighter>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
@@ -16,7 +17,6 @@
   <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">
     <defName>Rimgate_GoauldPlayer</defName>
     <label>free Jaffa</label>
-    <defaultFactionType>Rimgate_GoauldPlayerColony</defaultFactionType>
     <chemicalAddictionChance>0</chemicalAddictionChance>
     <xenotypeSet>
       <xenotypeChances>

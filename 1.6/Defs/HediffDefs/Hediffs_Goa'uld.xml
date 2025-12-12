@@ -175,7 +175,7 @@
 		<defName>Rimgate_SymbioteImplant</defName>
 		<hediffClass>Rimgate.Hediff_SymbioteImplant</hediffClass>
 		<label>Goa'uld symbiote</label>
-		<description>A living parasite from the Goa’uld species, surgically implanted into the host’s body. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, sharper senses, and a disturbing fondness for referring to yourself as a god.\n\nRemoval is possible—but the body it’s been sustaining does not take separation well.</description>
+		<description>A living parasite from the Goa’uld species that has been implanted into the host’s body, either by force or willingly. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, sharper senses, and a disturbing fondness for referring to yourself as a god.\n\nRemoval is possible—but the body it’s been sustaining will not take the separation well.</description>
 		<descriptionShort>A mature Goa'uld symbiote.</descriptionShort>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_GoauldSymbiote</ThingDef>

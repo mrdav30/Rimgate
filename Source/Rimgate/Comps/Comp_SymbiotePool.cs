@@ -173,10 +173,13 @@ public class Comp_SymbiotePool : ThingComp
         if (pool.HasQueen)
         {
             sb.Append("RG_PoolQueenPresent".Translate("present"));
-            sb.AppendLine();
 
-            float ticksRemaining = Props.daysPerSymbiote * GenDate.TicksPerDay * (1f - _progress);
-            sb.Append("RG_NextSymbioteCount".Translate(ticksRemaining.FormatTicksToPeriod()));
+            if (Refuelable == null || Refuelable.HasFuel)
+            {
+                float ticksRemaining = Props.daysPerSymbiote * GenDate.TicksPerDay * (1f - _progress);
+                sb.AppendLine();
+                sb.Append("RG_NextSymbioteCount".Translate(ticksRemaining.FormatTicksToPeriod()));
+            }
 
             int larvaeCount = LarvaeCount;
             if (larvaeCount > 0

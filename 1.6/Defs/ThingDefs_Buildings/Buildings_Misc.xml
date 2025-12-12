@@ -696,18 +696,18 @@
 
 			<!-- Fuel (kibble as "biomass feed") -->
 			<li Class="CompProperties_Refuelable">
-				<fuelCapacity>20</fuelCapacity>
-				<fuelLabel>symbiote feed</fuelLabel>
+				<fuelCapacity>25</fuelCapacity>
+				<fuelLabel>Symbiote feed</fuelLabel>
+				<fuelGizmoLabel>Symbiote feed</fuelGizmoLabel>
 				<fuelFilter>
 					<thingDefs>
 						<li>Kibble</li>
 					</thingDefs>
 				</fuelFilter>
-				<targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
 				<initialFuelPercent>0</initialFuelPercent>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<autoRefuelPercent>0.5</autoRefuelPercent>
-				<showFuelGizmo>true</showFuelGizmo>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
 				<drawOutOfFuelOverlay>true</drawOutOfFuelOverlay>
 			</li>
 
