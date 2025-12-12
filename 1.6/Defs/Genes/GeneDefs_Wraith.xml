@@ -9,11 +9,17 @@
     <defName>Rimgate_WraithBeauty</defName>
     <label>wraith beauty</label>
     <description>Alien. Alluring. Absolutely unsettling. This gene sculpts the host into the Wraith ideal of beauty—piercing eyes, haunting elegance, and not a beard in sight. Perfect for hypnotizing prey... or scaring children.</description>
-    <iconPath>UI/Icon/Gene/RGWraithBeautyGeneIcon</iconPath>
+    <iconPath>UI/Gene/RGWraithBeautyGeneIcon</iconPath>
     <displayCategory>Cosmetic</displayCategory>
+
+    <biostatCpx>1</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <biostatArc>0</biostatArc>
+
     <statOffsets>
       <Beauty>6</Beauty>
     </statOffsets>
+
     <hairColorOverride>(250, 250, 250)</hairColorOverride>
     <hairTagFilter>
       <whitelist>true</whitelist>
@@ -21,6 +27,7 @@
         <li>HairWraith</li>
       </tags>
     </hairTagFilter>
+
     <beardTagFilter>
       <whitelist>true</whitelist>
       <tags>
@@ -41,10 +48,11 @@
       <li>Rimgate_WraithMaleNarrowPointy</li>
       <li>Rimgate_WraithMaleNarrowWide</li>
     </forcedHeadTypes>
+
     <modExtensions>
       <li Class="VEF.Genes.GeneExtension">
-        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+        <backgroundPathEndogenes>UI/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Gene/RGXenogenesIcon</backgroundPathXenogenes>
       </li>
     </modExtensions>
   </GeneDef>
@@ -53,15 +61,21 @@
     <defName>Rimgate_WraithMovement</defName>
     <label>wraith mobility</label>
     <description>Enhanced neuromuscular pathways allow the host to move with unnatural speed and grace. Whether stalking prey or running from enemies, this gene ensures you get there first—or get away faster.</description>
-    <iconPath>UI/Icon/Gene/RGWraithMovementGeneIcon</iconPath>
+    <iconPath>UI/Gene/RGWraithMovementGeneIcon</iconPath>
     <displayCategory>Movement</displayCategory>
+
+    <biostatCpx>2</biostatCpx>
+    <biostatMet>-2</biostatMet>
+    <biostatArc>0</biostatArc>
+
     <statOffsets>
       <MoveSpeed>0.6</MoveSpeed>
     </statOffsets>
+
     <modExtensions>
       <li Class="VEF.Genes.GeneExtension">
-        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+        <backgroundPathEndogenes>UI/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Gene/RGXenogenesIcon</backgroundPathXenogenes>
       </li>
     </modExtensions>
   </GeneDef>
@@ -70,35 +84,79 @@
     <defName>Rimgate_WraithPsychic</defName>
     <label>wraith psionics</label>
     <description>Taps into latent psychic potential, allowing subtle telepathic influence and increased mental awareness. Useful for coordinating hive minds—or just being the creepiest thing in the room without saying a word.</description>
-    <iconPath>UI/Icon/Gene/RGWraithPsychicGeneIcon</iconPath>
+    <iconPath>UI/Gene/RGWraithPsychicGeneIcon</iconPath>
     <displayCategory>Psychic</displayCategory>
+
+    <biostatCpx>1</biostatCpx>
+    <biostatMet>-1</biostatMet>
+    <biostatArc>0</biostatArc>
+
     <statOffsets>
       <PsychicSensitivity>0.35</PsychicSensitivity>
     </statOffsets>
+
     <modExtensions>
       <li Class="VEF.Genes.GeneExtension">
-        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+        <backgroundPathEndogenes>UI/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Gene/RGXenogenesIcon</backgroundPathXenogenes>
       </li>
     </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="Rimgate_WraithGenesBase">
     <defName>Rimgate_WraithAgeless</defName>
-    <label>ageless</label>
-    <description>Time means nothing to the Wraith. This gene halts biological aging entirely, allowing the host to live indefinitely—provided they keep feeding, of course.\nWrinkles are for mortals.</description>
-    <iconPath>UI/Icon/Gene/RGWraithAgelessGeneIcon</iconPath>
+    <label>wraith regeneration</label>
+    <description>Cells that refuse to age and heal at an unnaturally fast rate. This gene drastically slows the biological clock, effectively granting agelessness. Wraith with this gene remain in their physical prime for centuries—assuming they can avoid getting eaten first.</description>
+    <iconPath>UI/Gene/RGWraithAgelessGeneIcon</iconPath>
     <displayCategory>Archite</displayCategory>
+
+    <biostatCpx>3</biostatCpx>
+    <biostatMet>-2</biostatMet>
+    <biostatArc>2</biostatArc>
+
+    <statFactors>
+      <InjuryHealingFactor>2</InjuryHealingFactor>
+    </statFactors>
+
     <biologicalAgeTickFactorFromAgeCurve>
       <points>
         <li>(13, 1)</li>
         <li>(18.5, 0)</li>
       </points>
     </biologicalAgeTickFactorFromAgeCurve>
+
+    <symbolPack>
+      <wholeNameSymbols>
+        <li>
+          <symbol>immortal</symbol>
+        </li>
+        <li>
+          <symbol>methuselah</symbol>
+        </li>
+      </wholeNameSymbols>
+      <prefixSymbols>
+        <li>
+          <symbol>stout</symbol>
+        </li>
+        <li>
+          <symbol>hard</symbol>
+        </li>
+        <li>
+          <symbol>deo</symbol>
+        </li>
+        <li>
+          <symbol>deu</symbol>
+        </li>
+        <li>
+          <symbol>methu</symbol>
+        </li>
+      </prefixSymbols>
+    </symbolPack>
+
     <modExtensions>
       <li Class="VEF.Genes.GeneExtension">
-        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+        <backgroundPathEndogenes>UI/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Gene/RGXenogenesIcon</backgroundPathXenogenes>
       </li>
     </modExtensions>
   </GeneDef>
@@ -108,10 +166,23 @@
     <label>essence metabolism</label>
     <description>Replaces food with a parasitic essence reserve. If the reserve runs low, the host weakens rapidly and becomes irritable until they feed again...or die.</description>
     <geneClass>Rimgate.Gene_WraithEssence</geneClass>
+    <iconPath>UI/Gene/RGWraithEssence</iconPath>
+    <displayCategory>Archite</displayCategory>
+    <displayOrderInCategory>-5</displayOrderInCategory>
+
+    <biostatCpx>2</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <biostatArc>2</biostatArc>
+
+    <minAgeActive>18</minAgeActive>
+
+    <disablesNeeds>
+      <li>Food</li>
+    </disablesNeeds>
 
     <resourceGizmoType>Rimgate.GeneGizmo_ResourceEssence</resourceGizmoType>
     <resourceLabel>essence</resourceLabel>
-     <resourceDescription>A reserve of biological essence that fuels the wraith's unnatural metabolism. When it runs low, the wraith becomes weak and irritable until they feed again.</resourceDescription>
+    <resourceDescription>A reserve of biological essence that fuels the wraith's unnatural metabolism. When it runs low, the wraith becomes weak and irritable until they feed again.</resourceDescription>
     <resourceGizmoThresholds>
       <li>0.25</li>
       <li>0.5</li>
@@ -122,39 +193,32 @@
 
     <!-- Baseline decay: ~2%/day (tune) -->
     <resourceLossPerDay>0.02</resourceLossPerDay>
-
-    <iconPath>UI/Icon/Gene/RGWraithEssence</iconPath>
-    <displayCategory>Rimgate_Metabolism</displayCategory>
-    <displayOrderInCategory>-5</displayOrderInCategory>
-
-    <minAgeActive>18</minAgeActive>
-    <disablesNeeds>
-      <li>Food</li>
-    </disablesNeeds>
-    <biostatCpx>1</biostatCpx>
-    <biostatMet>1</biostatMet>
   </GeneDef>
 
   <GeneDef>
     <defName>Rimgate_WraithLifeDrain</defName>
     <label>life drain</label>
     <description>Allows the host to drain life essence directly from another pawn, replenishing their own strength, speed, and vitality. A deeply intimate and wildly horrifying method of staying alive.\nWraith wellness starts with a good meal—and you’re it.</description>
-    <minAgeActive>18</minAgeActive>
-    <displayCategory>Ability</displayCategory>
-    <iconPath>UI/Icon/Gene/RGWraithLifeDrainGeneIcon</iconPath>
-    <abilities>
-      <li>Rimgate_WraithLifeDrainAbility</li>
-    </abilities>
     <descriptionHyperlinks>
       <AbilityDef>Rimgate_WraithLifeDrainAbility</AbilityDef>
     </descriptionHyperlinks>
-    <biostatArc>4</biostatArc>
+    <iconPath>UI/Gene/RGWraithLifeDrainGeneIcon</iconPath>
+    <displayCategory>Ability</displayCategory>
+
     <biostatCpx>3</biostatCpx>
     <biostatMet>-2</biostatMet>
+    <biostatArc>2</biostatArc>
+
+    <minAgeActive>18</minAgeActive>
+
+    <abilities>
+      <li>Rimgate_WraithLifeDrainAbility</li>
+    </abilities>
+
     <modExtensions>
       <li Class="VEF.Genes.GeneExtension">
-        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+        <backgroundPathEndogenes>UI/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Gene/RGXenogenesIcon</backgroundPathXenogenes>
       </li>
     </modExtensions>
   </GeneDef>
@@ -163,22 +227,26 @@
     <defName>Rimgate_WraithCocoonTrap</defName>
     <label>cocoon trap</label>
     <description>Enables the production of organic webbing to ensnare prey in a semi-living stasis. Victims remain immobile, conscious, and wonderfully fresh for later consumption.\nBecause refrigeration is overrated.</description>
-    <minAgeActive>18</minAgeActive>
-    <displayCategory>Ability</displayCategory>
-    <iconPath>UI/Icon/Gene/RGWraithCocoonTrapGeneIcon</iconPath>
-    <abilities>
-      <li>Rimgate_WraithCocoonTrapAbility</li>
-    </abilities>
     <descriptionHyperlinks>
       <AbilityDef>Rimgate_WraithCocoonTrapAbility</AbilityDef>
     </descriptionHyperlinks>
-    <biostatArc>4</biostatArc>
+    <iconPath>UI/Gene/RGWraithCocoonTrapGeneIcon</iconPath>
+    <displayCategory>Ability</displayCategory>
+
     <biostatCpx>3</biostatCpx>
     <biostatMet>-2</biostatMet>
+    <biostatArc>3</biostatArc>
+
+    <minAgeActive>18</minAgeActive>
+
+    <abilities>
+      <li>Rimgate_WraithCocoonTrapAbility</li>
+    </abilities>
+
     <modExtensions>
       <li Class="VEF.Genes.GeneExtension">
-        <backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-        <backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+        <backgroundPathEndogenes>UI/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+        <backgroundPathXenogenes>UI/Gene/RGXenogenesIcon</backgroundPathXenogenes>
       </li>
     </modExtensions>
   </GeneDef>

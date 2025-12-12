@@ -4,7 +4,7 @@
     <IssueDef>
         <defName>Rimgate_SymbioteHosting</defName>
         <label>Goa'uld symbiosis</label>
-        <iconPath>UI/Icon/Issue/RG_GoauldSymbiosis</iconPath> <!-- reuse or swap icon later -->
+        <iconPath>UI/Issue/RG_GoauldSymbiosis</iconPath> <!-- reuse or swap icon later -->
     </IssueDef>
 
     <!-- =============== Precepts =============== -->

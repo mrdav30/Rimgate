@@ -92,11 +92,12 @@
 		</comps>
 		<stages>
 			<li>
-				<hungerRateFactor>0.90</hungerRateFactor> <!-- Eats 90% less -->
+				<hungerRateFactor>0.25</hungerRateFactor> <!-- Eats 25% less -->
 				<!-- Larval support: mild buffs, but mostly hidden -->
 				<statFactors>
 					<ImmunityGainSpeed>1.25</ImmunityGainSpeed>
 					<InjuryHealingFactor>1.75</InjuryHealingFactor>
+					<RestFallRateFactor>0.5</RestFallRateFactor> <!-- Sleeps 50% less -->
 				</statFactors>
 			</li>
 		</stages>
@@ -195,10 +196,10 @@
 		<stages>
 			<li>
 				<painFactor>0.5</painFactor>
-				<hungerRateFactor>0.25</hungerRateFactor> <!-- Eats 25% less -->
+				<hungerRateFactor>0.55</hungerRateFactor> <!-- Eats 55% less -->
 				<statFactors>
 					<ImmunityGainSpeed>2</ImmunityGainSpeed> <!-- Immunity 200% more -->
-					<InjuryHealingFactor>4</InjuryHealingFactor> <!-- Heals 400% more -->
+					<InjuryHealingFactor>3</InjuryHealingFactor> <!-- Heals 400% more -->
 					<RestFallRateFactor>0.5</RestFallRateFactor> <!-- Sleeps 50% less -->
 				</statFactors>
 				<capMods>
@@ -276,7 +277,7 @@
 				<label>extreme</label>
 				<minSeverity>0.5</minSeverity>
 				<lifeThreatening>true</lifeThreatening>
-				<deathMtbDays>10</deathMtbDays>
+				<deathMtbDays>15</deathMtbDays>
 				<painOffset>0.5</painOffset>
 				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
 				<statFactors>

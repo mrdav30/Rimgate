@@ -25,7 +25,7 @@
     <allowedCultures Inherit="False">
       <li>Rimgate_WraithCulture</li>
     </allowedCultures>
-    <factionIconPath>UI/Icon/Map/RGWraithBaseIcon</factionIconPath>
+    <factionIconPath>UI/Map/RGWraithBaseIcon</factionIconPath>
     <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
     <backstoryFilters>
       <li>

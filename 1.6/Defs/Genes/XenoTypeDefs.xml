@@ -6,8 +6,8 @@
     <XenotypeDef>
         <defName>Rimgate_GoauldJaffa</defName>
         <label>Goa'uld Jaffa</label>
-        <description>Genetically modified warriors bred to serve parasitic overlords, the Jaffa combine human tenacity with symbiote-granted strength and longevity.\nFanatically loyal, heavily armed, and suspiciously fond of dramatic monologues.</description>
-        <iconPath>UI/Icon/Xenotype/RGJaffaXenotypeIcon</iconPath>
+        <description>Born to serve as living incubators and warriors for their Goa'uld masters, Jaffa are humans genetically modified to carry symbiotic larvae within specialized abdominal pouches.\nLoyal, resilient, and formidable in combat, they are bound by duty and honor to their creators.</description>
+        <iconPath>UI/Xenotype/RGJaffaXenotypeIcon</iconPath>
         <inheritable>true</inheritable>
         <nameMaker>Rimgate_NamerPersonJaffaM</nameMaker>
         <nameMakerFemale>Rimgate_NamerPersonJaffaF</nameMakerFemale>
@@ -28,7 +28,7 @@
         <defName>Rimgate_KullWarrior</defName>
         <label>Kull</label>
         <description>Engineered by the Goa'uld as near-unstoppable supersoldiers, Kull are living weapons bred in vats and stripped of fear, empathy, or questionable morals.\nPowerful, fast, and aging like discount yogurt.</description>
-        <iconPath>UI/Icon/Xenotype/RGKullXenotypeIcon</iconPath>
+        <iconPath>UI/Xenotype/RGKullXenotypeIcon</iconPath>
         <inheritable>true</inheritable>
         <nameMaker>Rimgate_NamerKull</nameMaker>
         <chanceToUseNameMaker>1</chanceToUseNameMaker>
@@ -57,7 +57,7 @@
         <defName>Rimgate_Wraith</defName>
         <label>Wraith</label>
         <description>Telepathic, ageless, and disturbingly elegant, Wraith feed on life essence to survive.\nThey don’t sleep, they don’t die of old age, and they definitely don’t ask permission before dinner.</description>
-        <iconPath>UI/Icon/Xenotype/RGWraithXenotypeIcon</iconPath>
+        <iconPath>UI/Xenotype/RGWraithXenotypeIcon</iconPath>
         <inheritable>true</inheritable>
         <nameMaker>Rimgate_NamerPersonWraith</nameMaker>
         <nameMakerFemale>Rimgate_NamerPersonWraith</nameMakerFemale>

@@ -15,7 +15,7 @@
     <allowedPlaceTags>
       <li>OriginSpacer</li>
     </allowedPlaceTags>
-    <iconPath>UI/Icon/Culture/RGJaffariCultureIcon</iconPath>
+    <iconPath>UI/Culture/RGJaffariCultureIcon</iconPath>
     <iconColor>(0.8, 0.8, 0.8)</iconColor>
     <thingStyleCategories>
       <li MayRequire="Ludeon.RimWorld.Ideology">
@@ -58,7 +58,7 @@
     <allowedPlaceTags>
       <li>OriginSpacer</li>
     </allowedPlaceTags>
-    <iconPath>UI/Icon/Culture/RGWraithCultureIcon</iconPath>
+    <iconPath>UI/Culture/RGWraithCultureIcon</iconPath>
     <thingStyleCategories MayRequire="Ludeon.RimWorld.Ideology">
       <li>
         <category>Morbid</category>

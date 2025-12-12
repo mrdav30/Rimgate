@@ -118,7 +118,7 @@
                     <MeleeDodgeChance>2</MeleeDodgeChance>
                     <ShootingAccuracyPawn>2</ShootingAccuracyPawn>
                     <MoveSpeed>1</MoveSpeed>
-                    <InjuryHealingFactor>0.5</InjuryHealingFactor>
+                    <InjuryHealingFactor>1.5</InjuryHealingFactor>
                 </statOffsets>
             </li>
         </stages>

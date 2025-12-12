@@ -7,7 +7,7 @@
         <defName>Rimgate_WraithLifeDrainAbility</defName>
         <label>drain life</label>
         <description>Embrace your inner Wraith.\nDrains the life force from a nearby pawn, stealing their regeneration, speed, and brainpower for 24 glorious hours. Hostile? Absolutely. Morally questionable? Also yes. Delicious? Very.</description>
-        <iconPath>UI/Icon/Ability/RGWraithDrainLifeIcon</iconPath>
+        <iconPath>UI/Ability/RGWraithDrainLifeIcon</iconPath>
         <verbProperties>
             <verbClass>Verb_CastAbilityTouch</verbClass>
             <drawAimPie>false</drawAimPie>
@@ -55,7 +55,7 @@
         <defName>Rimgate_WraithCocoonTrapAbility</defName>
         <label>cocoon trap</label>
         <description>Why kill your food when you can save it for later?\nLaunches sticky webs that wrap your victim up tighter than a low-quality sleeping bag, stunning and searing them in one fell swoop. Conveniently gift-wrapped for future snacking.</description>
-        <iconPath>UI/Icon/Ability/RGWraithCocoonTrapIcon</iconPath>
+        <iconPath>UI/Ability/RGWraithCocoonTrapIcon</iconPath>
         <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
         <verbProperties>
             <verbClass>Verb_CastAbility</verbClass>

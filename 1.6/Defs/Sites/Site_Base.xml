@@ -5,8 +5,8 @@
         <label>Dwarfgate location</label>
         <description>A remote site known to contain a Dwarfgate.</description>
         <workerClass>Rimgate.SitePartWorker_Stargate</workerClass>
-        <siteTexture>UI/Icon/Map/RGStargateComplexSiteIcon</siteTexture>
-        <expandingIconTexture>UI/Icon/Map/RGStargateComplexSiteIcon</expandingIconTexture>
+        <siteTexture>UI/Map/RGStargateComplexSiteIcon</siteTexture>
+        <expandingIconTexture>UI/Map/RGStargateComplexSiteIcon</expandingIconTexture>
         <requiresFaction>true</requiresFaction>
         <approachOrderString>Investigate {0}</approachOrderString>
         <approachingReportString>Investigating {0}</approachingReportString>

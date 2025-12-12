@@ -5,7 +5,7 @@
         <defName>Rimgate_GoauldTeltak</defName>
         <label>Goa'uld Tel'tak</label>
         <description>a Goa'uld Tel'tak in flight.</description>
-        <expandingIconTexture>UI/Icon/Map/RGGoauldTeltakShipIcon</expandingIconTexture>
+        <expandingIconTexture>UI/Map/RGGoauldTeltakShipIcon</expandingIconTexture>
         <expandingIconDrawSize>1</expandingIconDrawSize>
     </WorldObjectDef>
 
@@ -13,7 +13,7 @@
         <defName>Rimgate_WraithDart</defName>
         <label>Wraith Dart</label>
         <description>a Wraith Dart in flight.</description>
-        <expandingIconTexture>UI/Icon/Map/RGWraithDartShipIcon</expandingIconTexture>
+        <expandingIconTexture>UI/Map/RGWraithDartShipIcon</expandingIconTexture>
         <expandingIconDrawSize>1</expandingIconDrawSize>
     </WorldObjectDef>
 
@@ -21,7 +21,7 @@
         <defName>Rimgate_AncientPuddleJumper</defName>
         <label>Ancient Puddle Jumper</label>
         <description>an Ancient Puddle Jumper in flight.</description>
-        <expandingIconTexture>UI/Icon/Map/RGTauriPuddleJumperShipIcon</expandingIconTexture>
+        <expandingIconTexture>UI/Map/RGTauriPuddleJumperShipIcon</expandingIconTexture>
         <expandingIconDrawSize>1</expandingIconDrawSize>
     </WorldObjectDef>
 

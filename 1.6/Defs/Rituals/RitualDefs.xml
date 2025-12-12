@@ -12,7 +12,7 @@
         <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
         <selectionWeight>1.0</selectionWeight>
         <ritualPatternBase>Rimgate_PrimtaRenewal</ritualPatternBase>
-        <iconPath>UI/Icon/Ritual/RG_PrimtaRenewal</iconPath>
+        <iconPath>UI/Ritual/RG_PrimtaRenewal</iconPath>
         <usesIdeoVisualEffects>false</usesIdeoVisualEffects>
         <mergeRitualGizmosFromAllIdeos>true</mergeRitualGizmosFromAllIdeos>
         <useRepeatPenalty>false</useRepeatPenalty>

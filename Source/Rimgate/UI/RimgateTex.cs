@@ -15,37 +15,37 @@ public static class RimgateTex
 
     public static readonly Texture2D RenameCommandTex = ContentFinder<Texture2D>.Get("UI/Buttons/Rename");
 
-    public static readonly Texture2D TransitSiteCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Map/RGStargateTransitSiteIcon");
+    public static readonly Texture2D TransitSiteCommandTex = ContentFinder<Texture2D>.Get("UI/Map/RGStargateTransitSiteIcon");
 
-    public static readonly Texture2D AbandonStargateSite = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGAbandonStargateSiteIcon");
+    public static readonly Texture2D AbandonStargateSite = ContentFinder<Texture2D>.Get("UI/Button/RGAbandonStargateSiteIcon");
 
     public static readonly Texture2D LoadCommandTex = ContentFinder<Texture2D>.Get("UI/Commands/LoadTransporter");
 
-    public static readonly Texture2D PushCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGPushIcon");
+    public static readonly Texture2D PushCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGPushIcon");
 
-    public static readonly Texture2D PushAndDumpCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGPushAndDumpIcon");
+    public static readonly Texture2D PushAndDumpCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGPushAndDumpIcon");
 
     public static readonly Material ForceFieldMat = MaterialPool.MatFrom("Other/ForceField", ShaderDatabase.MoteGlow);
 
     public static readonly Material ForceFieldConeMat = MaterialPool.MatFrom("Other/ForceFieldCone", ShaderDatabase.MoteGlow);
 
-    public static readonly Texture2D ShieldRadiusCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGShieldRadius");
+    public static readonly Texture2D ShieldRadiusCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGShieldRadius");
 
-    public static readonly Texture2D ShieldVisibilityCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGShieldVisibility");
+    public static readonly Texture2D ShieldVisibilityCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGShieldVisibility");
 
     public static readonly Texture2D FullShieldBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.2f, 0.2f, 0.24f));
 
     public static readonly Texture2D EmptyShieldBarTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
 
-    public static readonly Texture2D AllowGuestCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGSarcophagusAllowGuestsIcon");
+    public static readonly Texture2D AllowGuestCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGSarcophagusAllowGuestsIcon");
 
-    public static readonly Texture2D AllowPrisonerCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGSarcophagusAllowPrisonersIcon");
+    public static readonly Texture2D AllowPrisonerCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGSarcophagusAllowPrisonersIcon");
 
-    public static readonly Texture2D AllowSlaveCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGSarcophagusAllowSlavesIcon");
+    public static readonly Texture2D AllowSlaveCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGSarcophagusAllowSlavesIcon");
 
-    public static readonly Texture2D TreatmentCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGAbortSarcophagusTreatmentIcon");
+    public static readonly Texture2D TreatmentCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGAbortSarcophagusTreatmentIcon");
 
-    public static readonly Texture2D CloneEjectCommandTex = ContentFinder<Texture2D>.Get("UI/Icon/Button/RGWraithCloningPodEjectIcon");
+    public static readonly Texture2D CloneEjectCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGWraithCloningPodEjectIcon");
 
     public static Graphic EmptyGraphic
     {

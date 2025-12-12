@@ -5,7 +5,7 @@
 		<defName>Rimgate_CellularDegradation</defName>
 		<label>cellular degradation</label>
 		<description>A byproduct of extreme genetic manipulation, this unstable gene causes accelerated aging and gradual systemic failure. Carriers burn bright—and fast.\nIdeal for supersoldiers with an expiration date.</description>
-		<iconPath>UI/Icon/Gene/RGCellularDegradationIcon</iconPath>
+		<iconPath>UI/Gene/RGCellularDegradationIcon</iconPath>
 		<canGenerateInGeneSet>true</canGenerateInGeneSet>
 		<exclusionTags>
 			<li>Aging</li>
@@ -13,7 +13,7 @@
 		<displayCategory>Healing</displayCategory>
 		<displayOrderInCategory>500</displayOrderInCategory>
 		<biostatCpx>1</biostatCpx>
-		<biostatMet>-1</biostatMet>
+		<biostatMet>-3</biostatMet>
 		<customEffectDescriptions>
 			<li>Age will advance 575% faster.</li>
 		</customEffectDescriptions>
@@ -26,8 +26,8 @@
 		<selectionWeight>0</selectionWeight>
 		<modExtensions>
 			<li Class="VEF.Genes.GeneExtension">
-				<backgroundPathEndogenes>UI/Icon/Gene/RGEndogenesIcon</backgroundPathEndogenes>
-				<backgroundPathXenogenes>UI/Icon/Gene/RGXenogenes</backgroundPathXenogenes>
+				<backgroundPathEndogenes>UI/Gene/RGEndogenesIcon</backgroundPathEndogenes>
+				<backgroundPathXenogenes>UI/Gene/RGXenogenesIcon</backgroundPathXenogenes>
 			</li>
 		</modExtensions>
 	</GeneDef>

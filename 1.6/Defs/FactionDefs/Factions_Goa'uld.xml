@@ -70,7 +70,7 @@
     <label>Supreme System Lord Ba'aal</label>
     <description>Once a mid-tier underlord with a flair for drama, Ba’al clawed his way to the top via cloning, cunning, and copious ego.\nAllegedly destroyed, but Goa’uld never truly die—they franchise.\nNow he hunts this RimWorld’s “dwarf-gates”: smaller Stargates bound to an Archotech-locked lattice. If he finds the master key, nobody leaves without his permission.</description>
     <fixedName>Supreme System Lord Ba'aal</fixedName>
-    <factionIconPath>UI/Icon/Map/RGBaalBaseIcon</factionIconPath>
+    <factionIconPath>UI/Map/RGBaalBaseIcon</factionIconPath>
     <permanentEnemyToEveryoneExcept>
       <li>Rimgate_GoauldBaal</li>
     </permanentEnemyToEveryoneExcept>

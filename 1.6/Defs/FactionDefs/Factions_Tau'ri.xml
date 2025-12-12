@@ -79,7 +79,7 @@
         <allowedCultures>
             <li>Astropolitan</li>
         </allowedCultures>
-        <factionIconPath>UI/Icon/Map/RGTauriBaseIcon</factionIconPath>
+        <factionIconPath>UI/Map/RGTauriBaseIcon</factionIconPath>
         <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
         <allowedArrivalTemperatureRange>-35~50</allowedArrivalTemperatureRange>
         <pawnGroupMakers>

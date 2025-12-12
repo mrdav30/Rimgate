@@ -23,7 +23,7 @@
         <stages>
             <li>
                 <restFallFactor>5</restFallFactor>
-                <naturalHealingFactor>0.65</naturalHealingFactor>
+                <naturalHealingFactor>0.25</naturalHealingFactor>
                 <capMods>
                     <li>
                         <capacity>Moving</capacity>
@@ -54,9 +54,8 @@
         </comps>
         <stages>
             <li>
-                <restFallFactor>0.5</restFallFactor>
-                <naturalHealingFactor>1.2</naturalHealingFactor>
-                <hungerRateFactorOffset>2.4</hungerRateFactorOffset>
+                <restFallFactor>0.25</restFallFactor>
+                <naturalHealingFactor>2</naturalHealingFactor>
                 <capMods>
                     <li>
                         <capacity>Moving</capacity>

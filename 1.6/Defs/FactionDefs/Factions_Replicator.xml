@@ -41,7 +41,7 @@
 		<earliestRaidDays>45</earliestRaidDays>
 		<permanentEnemy>true</permanentEnemy>
 		<hostileToFactionlessHumanlikes>true</hostileToFactionlessHumanlikes>
-		<factionIconPath>UI/Icon/Map/RGReplicatorFactionIcon</factionIconPath>
+		<factionIconPath>UI/Map/RGReplicatorFactionIcon</factionIconPath>
 		<allowedArrivalTemperatureRange>-100~200</allowedArrivalTemperatureRange>
 		<pawnGroupMakers>
 			<li>

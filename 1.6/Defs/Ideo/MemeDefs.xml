@@ -5,7 +5,7 @@
         <defName>Rimgate_SymbioticDominion</defName>
         <label>symbiotic dominion</label>
         <description>The belief that those who host symbiotes are divinely chosen to rule over lesser beings. Adherents see themselves as superior, destined to lead through strength and cunning, with symbiotes viewed as sacred gifts that enhance their power and authority.\nPerfect for those who aspire to command with an iron fist (and a living parasite).</description>
-        <iconPath>UI/Icon/Meme/RG_SymbioticDominion</iconPath>
+        <iconPath>UI/Meme/RG_SymbioticDominion</iconPath>
         <groupDef MayRequire="Ludeon.RimWorld.Ideology">Misc</groupDef>
         <impact>2</impact>
 
