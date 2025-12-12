@@ -278,7 +278,7 @@
 	<!-- Proximity Alarm -->
 
 	<RG_MessageSleepingPawnsAlerted>Enemies have woken from hibernation.</RG_MessageSleepingPawnsAlerted>
-	<RG_MessageSleepingThreatDelayActivated>Enemies will wake up in {1}.</RG_MessageSleepingThreatDelayActivated>
+	<RG_MessageSleepingThreatDelayActivated>Enemies will wake up in {0}.</RG_MessageSleepingThreatDelayActivated>
 
 	<!-- Shield -->
 

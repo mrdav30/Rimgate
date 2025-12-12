@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -15,10 +17,10 @@ namespace Rimgate
 
         private int _ticksUntilEnabled;
         private bool _sent;
+        private bool _received;
         private bool _resolved;
 
         public CompProperties_ProximityAlarm Props => (CompProperties_ProximityAlarm)props;
-        public bool Sent => _sent;
         public bool Enabled => _ticksUntilEnabled <= 0;
 
         public override void Initialize(CompProperties props)
@@ -29,7 +31,6 @@ namespace Rimgate
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            base.PostSpawnSetup(respawningAfterLoad);
             // Create per-instance unique tags (persist across save)
             if (string.IsNullOrEmpty(_triggerTag))
                 _triggerTag = $"RG.OpenCaskets:{parent.ThingID}:{Find.UniqueIDsManager.GetNextSignalTagID()}";
@@ -39,44 +40,55 @@ namespace Rimgate
 
         public override void CompTick()
         {
-            base.CompTick();
-            if (_sent || !parent.Spawned) return;
+            if (_sent)
+                return;
 
-            if (!_resolved) Resolve(); // one-time setup
+            if (!_resolved)
+                Resolve(); // one-time setup
 
             if (Enabled && parent.IsHashIntervalTick(250))
-                CompTickRare();
+                CheckProximity();
 
-            if (_ticksUntilEnabled > 0) _ticksUntilEnabled--;
+            if (_ticksUntilEnabled > 0)
+                _ticksUntilEnabled--;
         }
 
-        public override void CompTickRare()
+        private void CheckProximity()
         {
-            base.CompTickRare();
-            if (_sent || !Enabled) return;
-
-            Predicate<Thing> pred = null;
-            if (Props.onlyHumanlike)
-                pred = t => t is Pawn p && p.RaceProps.Humanlike && p.Faction.IsOfPlayerFaction();
+            Predicate<Thing> pred = t => t is Pawn p
+                    && (Props.onlyHumanlike
+                        ? p.RaceProps.Humanlike
+                        : true)
+                    && p.Faction.IsOfPlayerFaction();
 
             Thing found = null;
-            if (Props.triggerOnPawnInRoom)
+
+            if (Props.triggerOnPawnOnMap)
+            {
+                found = parent.Map.mapPawns.AllPawns
+                    .Where(p => pred(p))
+                    .FirstOrDefault();
+            }
+            else if (Props.triggerOnPawnInRoom)
             {
                 var room = parent.GetRoom();
-                if (room != null)
+                if (room == null)
+                    return;
+
+                foreach (var t in room.ContainedAndAdjacentThings)
                 {
-                    foreach (var t in room.ContainedAndAdjacentThings)
+                    if (pred(t))
                     {
-                        if (pred == null ? (t is Pawn p && p.Faction.IsOfPlayerFaction()) : pred(t))
-                        { found = t; break; }
+                        found = t;
+                        break;
                     }
                 }
             }
-
-            if (found == null && Props.radius > 0f)
+            else if (Props.radius > 0f)
             {
                 found = GenClosest.ClosestThingReachable(
-                    parent.Position, parent.Map,
+                    parent.Position,
+                    parent.Map,
                     ThingRequest.ForGroup(ThingRequestGroup.Pawn),
                     PathEndMode.OnCell,
                     TraverseParms.For(TraverseMode.NoPassClosedDoors),
@@ -84,57 +96,16 @@ namespace Rimgate
                     pred);
             }
 
-            if (found != null)
-                Trigger(found);
-        }
+            if (found == null)
+                return;
 
-        private void Resolve()
-        {
-            _resolved = true; // IMPORTANT: prevent repeated setup
-
-            var room = parent.GetRoom();
-            if (room == null) return;
-
-            var caskets = new List<Thing>();
-            foreach (var t in room.ContainedAndAdjacentThings)
-                if (t is Building_CryptosleepCasket) caskets.Add(t);
-
-            if (caskets.Count == 0) return;
-
-            // Open action
-            var open = (SignalAction_OpenCasket)ThingMaker.MakeThing(ThingDefOf.SignalAction_OpenCasket);
-            open.signalTag = _triggerTag; // unique per alarm
-            open.caskets.AddRange(caskets);
-            open.completedSignalTag = _completedTag;
-
-            if (Props.enableAfterTicks > 0)
-            {
-                open.delayTicks = Props.enableAfterTicks;
-
-                var msgDelay = (SignalAction_Message)ThingMaker.MakeThing(ThingDefOf.SignalAction_Message);
-                msgDelay.signalTag = _triggerTag;
-                msgDelay.lookTargets = caskets;
-                msgDelay.messageType = MessageTypeDefOf.ThreatBig;
-                msgDelay.message = "RG_MessageSleepingThreatDelayActivated".Translate(
-                    open.delayTicks.ToStringTicksToPeriod());
-                GenSpawn.Spawn(msgDelay, room.Cells.RandomElement(), parent.Map);
-            }
-
-            // Place the actions in/near the room, not map center
-            GenSpawn.Spawn(open, room.Cells.RandomElement(), parent.Map);
-
-            var msgDone = (SignalAction_Message)ThingMaker.MakeThing(ThingDefOf.SignalAction_Message);
-            msgDone.signalTag = _completedTag;
-            msgDone.lookTargets = caskets;
-            msgDone.messageType = MessageTypeDefOf.ThreatBig;
-            msgDone.message = "RG_MessageSleepingPawnsAlerted".Translate();
-            GenSpawn.Spawn(msgDone, room.Cells.RandomElement(), parent.Map);
+            Trigger(found);
         }
 
         private void Trigger(Thing initiator)
         {
-            if (_sent) return;          // guard re-entry
-            _sent = true;               // set BEFORE sending the signal
+            if (_sent) return; // guard re-entry
+            _sent = true; // set BEFORE sending the signal
 
             var fx = new Effecter(EffecterDefOf.ActivatorProximityTriggered);
             fx.Trigger(parent, TargetInfo.Invalid);
@@ -158,14 +129,15 @@ namespace Rimgate
             // If you *do* want to listen, ensure we only react to our tag:
             if (signal.tag == _triggerTag)
             {
-                _sent = true;
+                _received = true;
+                return;
             }
 
-            if (!Props.triggeredBySkipPsycasts) return;
+            if (_received || !Props.triggeredBySkipPsycasts)
+                return;
 
             // Optional: react to skip within 40 tiles by sending *our* trigger
-            if (!_sent
-                && signal.tag == CompAbilityEffect_Teleport.SkipUsedSignalTag
+            if (signal.tag == CompAbilityEffect_Teleport.SkipUsedSignalTag
                 && signal.args.TryGetArg("POSITION", out LocalTargetInfo pos)
                 && signal.args.TryGetArg("SUBJECT", out Thing sk)
                 && sk?.Map == parent.Map
@@ -177,25 +149,80 @@ namespace Rimgate
 
         public override string CompInspectStringExtra()
         {
+            if (_received)
+                return "expired".Translate().CapitalizeFirst();
+
+            var sb = new StringBuilder();
             if (!Enabled)
-                return "SendSignalOnCountdownCompTime".Translate(
-                    _ticksUntilEnabled.ToStringTicksToPeriod(allowSeconds: true, canUseDecimals: true));
+            {
+                sb.AppendLine("SendSignalOnCountdownCompTime".Translate(
+                    _ticksUntilEnabled.ToStringTicksToPeriod(allowSeconds: true, canUseDecimals: true)));
+            }
 
-            if (!_sent && Props.radius > 0)
-                return "radius".Translate().CapitalizeFirst() + ": " + Props.radius.ToString("F0");
+            if (Props.radius > 0)
+                sb.AppendLine("radius".Translate().CapitalizeFirst() + ": " + Props.radius.ToString("F0"));
 
-            return _sent
-                ? "Active".Translate().CapitalizeFirst()
-                : "expired".Translate().CapitalizeFirst();
+            sb.AppendLine("Active".Translate().CapitalizeFirst());
+
+            return sb.ToString().TrimEnd();
         }
 
         public override void PostExposeData()
         {
             Scribe_Values.Look(ref _sent, "_sent", false);
+            Scribe_Values.Look(ref _received, "_received", false);
             Scribe_Values.Look(ref _ticksUntilEnabled, "_ticksUntilEnabled", 0);
             Scribe_Values.Look(ref _resolved, "_resolved", false);
             Scribe_Values.Look(ref _triggerTag, "_triggerTag");
             Scribe_Values.Look(ref _completedTag, "_completedTag");
+        }
+
+        private void Resolve()
+        {
+            _resolved = true; // IMPORTANT: prevent repeated setup
+
+            var room = parent.GetRoom();
+            if (room == null) return;
+
+            var caskets = new List<Thing>();
+            foreach (var t in room.ContainedAndAdjacentThings)
+            {
+                if (t is Building_CryptosleepCasket
+                    && (!Props.ignoreCasketDefs?.Contains(t.def) ?? true))
+                {
+                    caskets.Add(t);
+                }
+            }
+
+            if (caskets.Count == 0) return;
+
+            // Open action
+            var open = ThingMaker.MakeThing(ThingDefOf.SignalAction_OpenCasket) as SignalAction_OpenCasket;
+            open.signalTag = _triggerTag; // unique per alarm
+            open.caskets.AddRange(caskets);
+            open.completedSignalTag = _completedTag;
+            open.delayTicks = Props.enableAfterTicks;
+
+            if (Props.triggerOnPawnOnMap)
+            {
+                var msgDelay = ThingMaker.MakeThing(ThingDefOf.SignalAction_Message) as SignalAction_Message;
+                msgDelay.signalTag = _triggerTag;
+                msgDelay.lookTargets = null;
+                msgDelay.messageType = MessageTypeDefOf.ThreatBig;
+                msgDelay.message = "RG_MessageSleepingThreatDelayActivated".Translate(
+                    Props.enableAfterTicks.ToStringTicksToPeriod());
+                GenSpawn.Spawn(msgDelay, room.Cells.RandomElement(), parent.Map);
+            }
+
+            // Place the actions in/near the room, not map center
+            GenSpawn.Spawn(open, room.Cells.RandomElement(), parent.Map);
+
+            var msgDone = (SignalAction_Message)ThingMaker.MakeThing(ThingDefOf.SignalAction_Message);
+            msgDone.signalTag = _completedTag;
+            msgDone.lookTargets = caskets;
+            msgDone.messageType = MessageTypeDefOf.ThreatBig;
+            msgDone.message = "RG_MessageSleepingPawnsAlerted".Translate();
+            GenSpawn.Spawn(msgDone, room.Cells.RandomElement(), parent.Map);
         }
     }
 }

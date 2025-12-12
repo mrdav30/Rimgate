@@ -55,7 +55,6 @@ public class Comp_SymbiotePool : ThingComp
 
     public override void PostExposeData()
     {
-        base.PostExposeData();
         Scribe_Values.Look(ref _progress, "progress", 0f);
     }
 

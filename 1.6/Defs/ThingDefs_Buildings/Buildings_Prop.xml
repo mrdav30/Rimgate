@@ -900,7 +900,7 @@
         <comps>
             <li Class="CompProperties_EmptyStateGraphic">
                 <graphicData>
-                    <texPath>Things/Building/Misc/RGWraithCocoonPodOpen</texPath>
+                    <texPath>Things/Building/Prop/RGWraithCocoonPodOpen</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
                     <drawSize>(1, 2)</drawSize>
                 </graphicData>

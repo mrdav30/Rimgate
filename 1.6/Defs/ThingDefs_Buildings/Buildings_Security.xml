@@ -732,7 +732,11 @@
 				<onlyHumanlike>true</onlyHumanlike>
 				<triggerOnPawnInRoom>true</triggerOnPawnInRoom>
 				<triggeredBySkipPsycasts>true</triggeredBySkipPsycasts>
+				<enableAfterTicks>120</enableAfterTicks>
 				<compClass>Rimgate.Comp_AlarmOpenCaskets</compClass>
+				<ignoreCasketDefs>
+					<li>Rimgate_WraithCocoonPod</li>
+				</ignoreCasketDefs>
 			</li>
 		</comps>
 	</ThingDef>

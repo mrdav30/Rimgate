@@ -14,7 +14,6 @@ public class Comp_ResonanceIdol : ThingComp
 
     public override void CompTickRare()
     {
-        base.CompTickRare();
         if (!parent.Spawned) return;
 
         var map = parent.Map;
