@@ -422,30 +422,22 @@
     <costList>
       <Steel>750</Steel>
       <Plasteel>250</Plasteel>
+      <BroadshieldCore>2</BroadshieldCore>
       <ComponentIndustrial>16</ComponentIndustrial>
       <ComponentSpacer>15</ComponentSpacer>
       <Rimgate_Naquadah>75</Rimgate_Naquadah>
     </costList>
+    <inspectorTabs>
+      <li>ITab_ContentsTransporter</li>
+    </inspectorTabs>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <researchPrerequisites>
+      <li>Rimgate_AncientPuddleJumper</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
     <comps>
-      <li Class="Rimgate.CompProperties_ShieldEmitter">
-        <compClass>Rimgate.Comp_ShieldEmitter</compClass>
-        <interceptAirProjectiles>true</interceptAirProjectiles>
-        <interceptGroundProjectiles>true</interceptGroundProjectiles>
-        <podBlocker>false</podBlocker>
-        <resetTime>4000</resetTime>
-        <fuelConsumptionRange>125~425</fuelConsumptionRange>
-        <stressPerDamage>0.02</stressPerDamage>
-        <empDamageFactor>4.5</empDamageFactor>
-        <shieldOverloadThreshold>0.9</shieldOverloadThreshold>
-        <shieldOverloadChance>0.05</shieldOverloadChance>
-        <extraOverloadRange>10</extraOverloadRange>
-        <overloadDamageType>EMP</overloadDamageType>
-        <explodeOnCollapse>false</explodeOnCollapse>
-        <shieldCanBeScaled>true</shieldCanBeScaled>
-        <shieldScaleLimits>10~20 </shieldScaleLimits>
-        <shieldScaleDefault>10</shieldScaleDefault>
-        <shieldColor>(237, 227, 133)</shieldColor> 
-      </li>
       <li Class="CompProperties_Shuttle">
         <shipDef>Rimgate_AncientPuddleJumperShip</shipDef>
       </li>
@@ -466,6 +458,11 @@
         <pawnExitSound>Shuttle_PawnExit</pawnExitSound>
         <showMassInInspectString>true</showMassInInspectString>
       </li>
+      <li Class="Rimgate.CompProperties_Toggle">
+        <compClass>Rimgate.Comp_Toggle</compClass>
+        <commandLabelKey>RG_ShieldToggleLabel</commandLabelKey>
+        <commandDescKey>RG_ShieldToggleDescription</commandDescKey>
+      </li>
       <li Class="CompProperties_Refuelable">
         <fuelCapacity>2500</fuelCapacity>
         <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
@@ -476,28 +473,34 @@
           </thingDefs>
         </fuelFilter>
         <initialFuelPercent>0.25</initialFuelPercent>
+        <fuelConsumptionRate>125</fuelConsumptionRate>
         <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
         <autoRefuelPercent>1</autoRefuelPercent>
         <showFuelGizmo>true</showFuelGizmo>
         <drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
         <canEjectFuel>true</canEjectFuel>
       </li>
-      <li Class="Rimgate.CompProperties_Toggle">
-        <compClass>Rimgate.Comp_Toggle</compClass>
-        <commandLabelKey>RG_ShieldToggleLabel</commandLabelKey>
-        <commandDescKey>RG_ShieldToggleDescription</commandDescKey>
+      <li Class="Rimgate.CompProperties_ShieldEmitter">
+        <compClass>Rimgate.Comp_ShieldEmitter</compClass>
+        <interceptAirProjectiles>true</interceptAirProjectiles>
+        <interceptGroundProjectiles>true</interceptGroundProjectiles>
+        <podBlocker>false</podBlocker>
+        <resetTime>4000</resetTime>
+        <fuelConsumptionRangeMax>425</fuelConsumptionRangeMax>
+        <sizeScalesFuelUsage>true</sizeScalesFuelUsage>
+        <stressPerDamage>0.02</stressPerDamage>
+        <empDamageFactor>4.5</empDamageFactor>
+        <shieldOverloadThreshold>0.9</shieldOverloadThreshold>
+        <shieldOverloadChance>0.05</shieldOverloadChance>
+        <extraOverloadRange>10</extraOverloadRange>
+        <overloadDamageType>EMP</overloadDamageType>
+        <explodeOnCollapse>false</explodeOnCollapse>
+        <shieldCanBeScaled>true</shieldCanBeScaled>
+        <shieldScaleLimits>10~20 </shieldScaleLimits>
+        <shieldScaleDefault>10</shieldScaleDefault>
+        <shieldColor>(237, 227, 133)</shieldColor>
       </li>
     </comps>
-    <inspectorTabs>
-      <li>ITab_ContentsTransporter</li>
-    </inspectorTabs>
-    <placeWorkers>
-      <li>PlaceWorker_NotUnderRoof</li>
-    </placeWorkers>
-    <researchPrerequisites>
-      <li>Rimgate_AncientPuddleJumper</li>
-    </researchPrerequisites>
-    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
   </ThingDef>
 
   <ThingDef ParentName="ShuttleSkyfallerBase">

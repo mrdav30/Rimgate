@@ -3,6 +3,8 @@
 
 	<!-- ======================= M2 =======================  -->
 
+	<!-- ==== Bases ==== -->
+
 	<ThingDef Name="Rimgate_MannedTurretBase" ParentName="BuildingBase" Abstract="true">
 		<thingClass>Building_TurretGun</thingClass>
 		<drawerType>MapMeshAndRealTime</drawerType>
@@ -53,7 +55,7 @@
 		</statBases>
 	</ThingDef>
 
-	<!-- ====== M2 Turret ====== -->
+	<!-- M2 Turret -->
 
 	<ThingDef ParentName="Rimgate_MannedTurretBase">
 		<defName>Rimgate_M2Turret</defName>
@@ -112,7 +114,7 @@
 		</tradeTags>
 	</ThingDef>
 
-	<!-- ====== M2 Gun ====== -->
+	<!-- M2 Gun -->
 
 	<ThingDef ParentName="Rimgate_MannedGunBase">
 		<defName>Rimgate_M2Gun</defName>
@@ -148,7 +150,7 @@
 		</verbs>
 	</ThingDef>
 
-	<!-- ====== .50 cal bullet ====== -->
+	<!-- .50 cal bullet -->
 
 	<ThingDef ParentName="BaseBullet">
 		<defName>Rimgate_50CalBullet</defName>
@@ -166,6 +168,8 @@
 	</ThingDef>
 
 	<!-- ======================= Railgun =======================  -->
+
+	<!-- ==== Bases ==== -->
 
 	<ThingDef Name="Rimgate_MannedRailgunTurretBase" ParentName="BuildingBase" Abstract="true">
 		<thingClass>Building_TurretGun</thingClass>
@@ -217,7 +221,7 @@
 		</statBases>
 	</ThingDef>
 
-	<!-- ====== Railgun Turret ====== -->
+	<!-- Railgun Turret -->
 
 	<ThingDef ParentName="Rimgate_MannedRailgunTurretBase">
 		<defName>Rimgate_NaquadahRailgunTurret</defName>
@@ -278,7 +282,7 @@
 		</tradeTags>
 	</ThingDef>
 
-	<!-- ====== Railgun Gun ====== -->
+	<!-- Railgun Gun -->
 
 	<ThingDef ParentName="Rimgate_MannedRailgunGunBase">
 		<defName>Rimgate_NaquadahRailgunGun</defName>
@@ -314,7 +318,7 @@
 		</verbs>
 	</ThingDef>
 
-	<!-- ====== Railgun bullet ====== -->
+	<!-- Railgun bullet -->
 
 	<ThingDef ParentName="BaseBullet">
 		<defName>Rimgate_RailgunBullet</defName>
@@ -333,7 +337,9 @@
 
 	<!-- ======================= Staff cannon =======================  -->
 
-	<ThingDef Name="Rimgate_MannedStaffCannonTurretBase" ParentName="BuildingBase" Abstract="true">
+	<!-- ==== Bases ==== -->
+
+	<ThingDef Name="Rimgate_StaffCannonTurretBase" ParentName="BuildingBase" Abstract="true">
 		<thingClass>Building_TurretGun</thingClass>
 		<drawerType>MapMeshAndRealTime</drawerType>
 		<thingCategories>
@@ -343,21 +349,10 @@
 		<altitudeLayer>Building</altitudeLayer>
 		<stealable>false</stealable>
 		<rotatable>true</rotatable>
-		<statBases>
-			<Flammability>0.15</Flammability>
-			<Beauty>-20</Beauty>
-		</statBases>
 		<tickerType>Normal</tickerType>
 		<techLevel>Spacer</techLevel>
 		<hasInteractionCell>True</hasInteractionCell>
 		<interactionCellOffset>(0,0,-2)</interactionCellOffset>
-		<comps>
-			<li Class="CompProperties_Forbiddable" />
-			<li Class="CompProperties_Breakdownable" />
-			<li Class="CompProperties_Mannable">
-				<manWorkType>Violent</manWorkType>
-			</li>
-		</comps>
 		<passability>PassThroughOnly</passability>
 		<pathCost>80</pathCost>
 		<fillPercent>0.85</fillPercent>
@@ -370,9 +365,13 @@
 			<li>Rimgate.PlaceWorker_ShowTurretRadiusWithOffset</li>
 			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
 		</placeWorkers>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Breakdownable" />
+		</comps>
 	</ThingDef>
 
-	<ThingDef Name="Rimgate_MannedStaffCannonGunBase" ParentName="BaseWeaponTurret" Abstract="true">
+	<ThingDef Name="Rimgate_StaffCannonGunBase" ParentName="BaseWeaponTurret" Abstract="true">
 		<soundInteract>Interact_ChargeLance</soundInteract>
 		<destroyOnDrop>true</destroyOnDrop>
 		<tradeability>None</tradeability>
@@ -383,9 +382,11 @@
 		</statBases>
 	</ThingDef>
 
-	<!-- ====== Staff cannon Turret ====== -->
+	<!-- ==== Manned ==== -->
 
-	<ThingDef ParentName="Rimgate_MannedStaffCannonTurretBase">
+	<!-- Staff cannon Turret -->
+
+	<ThingDef ParentName="Rimgate_StaffCannonTurretBase">
 		<defName>Rimgate_StaffCannonTurret</defName>
 		<label>manned staff cannon</label>
 		<description>A ship-grade staff weapon grafted onto a field tripod—manned, mean, and hungry for naquadah. Lobs incandescent plasma in punishing bursts when “Jaffa, kree” needs to be said at 1200 RPM.</description>
@@ -403,8 +404,29 @@
 			<MaxHitPoints>460</MaxHitPoints>
 			<WorkToBuild>22000</WorkToBuild>
 			<Mass>88</Mass>
+			<Flammability>0.15</Flammability>
+			<Beauty>-20</Beauty>
 		</statBases>
+		<costList>
+			<Steel>260</Steel>
+			<Rimgate_Naquadah>50</Rimgate_Naquadah>
+			<ComponentIndustrial>8</ComponentIndustrial>
+		</costList>
+		<building>
+			<turretTopDrawSize>4.5</turretTopDrawSize>
+			<turretGunDef>Rimgate_StaffCannonGun</turretGunDef>
+			<turretBurstCooldownTime>2.2</turretBurstCooldownTime>
+		</building>
+		<researchPrerequisites>
+			<li>Rimgate_GoauldTurretsTierOne</li>
+		</researchPrerequisites>
+		<tradeTags>
+			<li>Rimgate_GoauldStaffCannonTurret</li>
+		</tradeTags>
 		<comps>
+			<li Class="CompProperties_Mannable">
+				<manWorkType>Violent</manWorkType>
+			</li>
 			<li Class="CompProperties_Refuelable">
 				<fuelLabel>Shots until barrel change</fuelLabel>
 				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
@@ -426,27 +448,11 @@
 				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
 			</li>
 		</comps>
-		<costList>
-			<Steel>260</Steel>
-			<Rimgate_Naquadah>50</Rimgate_Naquadah>
-			<ComponentIndustrial>8</ComponentIndustrial>
-		</costList>
-		<building>
-			<turretTopDrawSize>4.5</turretTopDrawSize>
-			<turretGunDef>Rimgate_StaffCannonGun</turretGunDef>
-			<turretBurstCooldownTime>2.2</turretBurstCooldownTime>
-		</building>
-		<researchPrerequisites>
-			<li>Rimgate_GoauldTurretsTierOne</li>
-		</researchPrerequisites>
-		<tradeTags>
-			<li>Rimgate_GoauldStaffCannonTurret</li>
-		</tradeTags>
 	</ThingDef>
 
-	<!-- ====== Staff cannon gun ====== -->
+	<!-- Staff cannon gun -->
 
-	<ThingDef ParentName="Rimgate_MannedStaffCannonGunBase">
+	<ThingDef ParentName="Rimgate_StaffCannonGunBase">
 		<defName>Rimgate_StaffCannonGun</defName>
 		<label>manned staff cannon</label>
 		<description>The business end of a Goa’uld staff cannon: searing plasma volleys with siege-tier reach. Slow to wind up, terrifying to watch, excellent at making cover feel optional.</description>
@@ -468,21 +474,22 @@
 				<verbClass>Rimgate.Verb_LaunchWithOffset</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_StaffCannonBullet</defaultProjectile>
-				<warmupTime>2.2</warmupTime>
+				<warmupTime>1.2</warmupTime>
 				<range>38</range>
-				<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
+				<burstShotCount>1</burstShotCount>
 				<soundCast>Rimgate_GoauldMaTokShot</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>12</muzzleFlashScale>
-				<consumeFuelPerShot>1</consumeFuelPerShot>
+				<consumeFuelPerShot>2</consumeFuelPerShot>
 			</li>
 		</verbs>
 	</ThingDef>
 
-	<!-- ====== Auto Staff cannon turret ====== -->
+	<!-- ==== Auto ==== -->
 
-	<ThingDef ParentName="BuildingBase">
+	<!-- Auto Staff cannon turret -->
+
+	<ThingDef Name="Rimgate_AutoStaffCannonTurretBase" ParentName="BuildingBase">
 		<defName>Rimgate_AutoStaffCannonTurret</defName>
 		<label>Auto staff cannon</label>
 		<description>An autonomous Goa’uld staff cannon upgraded with forbidden ion-focusing tech of unknown origin. The result: blisteringly precise plasma bursts that chew through shields and laugh at cover. Field units arrive pre-keyed and self-scorch their cores on capture. Very good at making trespassers reconsider their life choices.</description>
@@ -523,6 +530,38 @@
 		</damageMultipliers>
 		<tickerType>Normal</tickerType>
 		<techLevel>Spacer</techLevel>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<fillPercent>0.5</fillPercent>
+		<killedLeavings>
+			<ChunkSlagSteel>1</ChunkSlagSteel>
+		</killedLeavings>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<costList>
+			<Steel>260</Steel>
+			<Rimgate_Naquadah>75</Rimgate_Naquadah>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<ComponentSpacer>4</ComponentSpacer>
+			<AIPersonaCore>1</AIPersonaCore>
+		</costList>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+		<building>
+			<combatPower>190</combatPower>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<turretGunDef>Rimgate_AutoStaffCannonGun</turretGunDef>
+			<turretTopDrawSize>3</turretTopDrawSize>
+			<turretBurstCooldownTime>2.1</turretBurstCooldownTime>
+		</building>
+		<uiIconScale>0.95</uiIconScale>
+		<researchPrerequisites>
+			<li>Rimgate_GoauldTurretsTierTwo</li>
+		</researchPrerequisites>
 		<comps>
 			<li Class="CompProperties_Explosive">
 				<wickTicks>240</wickTicks>
@@ -545,15 +584,19 @@
 			<li Class="CompProperties_AmbientSound">
 				<sound>MechTurretBig_Call</sound>
 			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>250</basePowerConsumption>
+			</li>
 			<li Class="CompProperties_Refuelable">
-				<fuelLabel>Shots until barrel change</fuelLabel>
-				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelLabel>Shots until naquadah spent</fuelLabel>
+				<fuelGizmoLabel>Naquadah levels</fuelGizmoLabel>
 				<fuelFilter>
 					<thingDefs>
 						<li>Rimgate_Naquadah</li>
 					</thingDefs>
 				</fuelFilter>
-				<fuelCapacity>8000</fuelCapacity>
+				<fuelCapacity>4000</fuelCapacity>
 				<initialFuelPercent>1</initialFuelPercent>
 				<autoRefuelPercent>0.75</autoRefuelPercent>
 				<showFuelGizmo>true</showFuelGizmo>
@@ -562,42 +605,97 @@
 				<factorByDifficulty>true</factorByDifficulty>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
-				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
-				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+				<outOfFuelMessage>Cannot shoot: Needs more fuel</outOfFuelMessage>
+				<fuelIconPath>Things/Item/Resource/RGNaquadah</fuelIconPath>
 			</li>
 		</comps>
-		<passability>PassThroughOnly</passability>
-		<pathCost>50</pathCost>
-		<fillPercent>0.5</fillPercent>
-		<killedLeavings>
-			<ChunkSlagSteel>1</ChunkSlagSteel>
-		</killedLeavings>
-		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-		<designationCategory>Security</designationCategory>
-		<costList>
-			<Steel>260</Steel>
-			<Rimgate_Naquadah>75</Rimgate_Naquadah>
-			<ComponentIndustrial>8</ComponentIndustrial>
-			<ComponentSpacer>4</ComponentSpacer>
-			<AIPersonaCore>1</AIPersonaCore>
-		</costList>
-		<thingCategories>
-			<li>BuildingsSecurity</li>
-		</thingCategories>
-		<minifiedDef>MinifiedThing</minifiedDef>
-		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
-		<building>
-			<combatPower>190</combatPower>
-			<ai_combatDangerous>true</ai_combatDangerous>
-			<turretGunDef>Rimgate_AutoStaffCannonGun</turretGunDef>
-			<turretTopDrawSize>3</turretTopDrawSize>
-			<turretBurstCooldownTime>2.2</turretBurstCooldownTime>
-		</building>
-		<uiIconScale>0.95</uiIconScale>
-		<researchPrerequisites>
-			<li>Rimgate_GoauldTurretsTierTwo</li>
-		</researchPrerequisites>
 	</ThingDef>
+
+	<!-- Auto Staff cannon turret - Shielded -->
+
+	<ThingDef ParentName="Rimgate_AutoStaffCannonTurretBase">
+		<defName>Rimgate_AutoStaffCannonTurret_Shielded</defName>
+		<label>Auto staff cannon (shielded)</label>
+		<description>An autonomous Goa’uld staff cannon upgraded with forbidden ion-focusing tech of unknown origin. The result: blisteringly precise plasma bursts that chew through shields and laugh at cover. Field units arrive pre-keyed and self-scorch their cores on capture. Very good at making trespassers reconsider their life choices.\n\nThis variant is equipped with a personal energy shield generator, providing added protection against incoming fire at the cost of increased power consumption.</description>
+		<statBases>
+			<MaxHitPoints>225</MaxHitPoints>
+			<Mass>120</Mass>
+		</statBases>
+		<costList>
+			<BroadshieldCore>1</BroadshieldCore>
+		</costList>
+		<researchPrerequisites>
+			<li>Rimgate_GoauldTurretsTierThree</li>
+		</researchPrerequisites>
+		<comps Inherit="False">
+			<li Class="CompProperties_Explosive">
+				<wickTicks>240</wickTicks>
+				<explosiveRadius>5.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+			</li>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Breakdownable" />
+			<li Class="CompProperties_Stunnable">
+				<affectedDamageDefs>
+					<li>Stun</li>
+					<li>EMP</li>
+				</affectedDamageDefs>
+				<adaptableDamageDefs>
+					<li>EMP</li>
+				</adaptableDamageDefs>
+			</li>
+			<li Class="CompProperties_AmbientSound">
+				<sound>MechTurretBig_Call</sound>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>600</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until naquadah spent</fuelLabel>
+				<fuelGizmoLabel>Naquadah levels</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>4000</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>220</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<outOfFuelMessage>Cannot shoot: Needs more fuel</outOfFuelMessage>
+				<fuelIconPath>Things/Item/Resource/RGNaquadah</fuelIconPath>
+			</li>
+
+			<li Class="Rimgate.CompProperties_ShieldEmitter">
+				<compClass>Rimgate.Comp_ShieldEmitter</compClass>
+				<interceptAirProjectiles>true</interceptAirProjectiles>
+				<interceptGroundProjectiles>true</interceptGroundProjectiles>
+				<interceptNonHostileProjectiles>false</interceptNonHostileProjectiles>
+				<podBlocker>false</podBlocker>
+				<resetTime>6000</resetTime>
+				<shieldScaleDefault>2</shieldScaleDefault>
+				<stressPerDamage>0.2</stressPerDamage> <!-- default 0.003 -->
+				<stressReduction>0.75</stressReduction> <!-- default 1-->
+				<empDamageFactor>4.5</empDamageFactor>
+				<shieldOverloadThreshold>0.9</shieldOverloadThreshold>
+				<shieldOverloadChance>0.15</shieldOverloadChance>
+				<extraOverloadRange>3</extraOverloadRange>
+				<overloadDamageType>EMP</overloadDamageType>
+				<explodeOnCollapse>true</explodeOnCollapse>
+				<shieldColor>(237, 227, 133)</shieldColor>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Auto Staff cannon gun -->
 
 	<ThingDef ParentName="BaseWeaponTurret">
 		<defName>Rimgate_AutoStaffCannonGun</defName>
@@ -609,11 +707,11 @@
 		</graphicData>
 		<destroyOnDrop>true</destroyOnDrop>
 		<statBases>
-			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyTouch>0.42</AccuracyTouch>
 			<AccuracyShort>0.65</AccuracyShort>
-			<AccuracyMedium>0.75</AccuracyMedium>
-			<AccuracyLong>0.55</AccuracyLong>
-			<RangedWeapon_Cooldown>1.20</RangedWeapon_Cooldown>
+			<AccuracyMedium>0.82</AccuracyMedium>
+			<AccuracyLong>0.75</AccuracyLong>
+			<RangedWeapon_Cooldown>1.72</RangedWeapon_Cooldown>
 			<Mass>36</Mass>
 		</statBases>
 		<weaponTags>
@@ -625,18 +723,19 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_StaffCannonBullet</defaultProjectile>
 				<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
-				<warmupTime>2.2</warmupTime>
-				<range>38</range>
+				<warmupTime>1.6</warmupTime>
+				<range>34</range>
 				<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
+				<burstShotCount>2</burstShotCount>
 				<soundCast>Rimgate_GoauldMaTokShot</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>12</muzzleFlashScale>
+				<consumeFuelPerShot>4</consumeFuelPerShot>
 			</li>
 		</verbs>
 	</ThingDef>
 
-	<!-- ====== Staff cannon bullet ====== -->
+	<!-- ==== Staff cannon bullet ==== -->
 
 	<ThingDef ParentName="BaseBullet">
 		<defName>Rimgate_StaffCannonBullet</defName>
@@ -648,19 +747,20 @@
 		</graphicData>
 		<projectile>
 			<damageDef>Flame</damageDef>
-			<damageAmountBase>30</damageAmountBase>
-			<armorPenetrationBase>0.55</armorPenetrationBase>
-			<speed>95</speed>
-			<explosionRadius>1.25</explosionRadius>            <!-- small splash to punish clumps -->
+			<damageAmountBase>22</damageAmountBase>
+			<armorPenetrationBase>0.62</armorPenetrationBase>
+			<speed>92</speed>
+			<!-- small splash to punish clumps -->
+			<explosionRadius>1.25</explosionRadius>
 			<explosionDamageFalloff>true</explosionDamageFalloff>
-			<explosionChanceToStartFire>0.5</explosionChanceToStartFire>
+			<explosionChanceToStartFire>0.42</explosionChanceToStartFire>
 			<ai_IsIncendiary>true</ai_IsIncendiary>
 			<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.30</preExplosionSpawnChance>
+			<preExplosionSpawnChance>0</preExplosionSpawnChance>
 		</projectile>
 	</ThingDef>
 
-	<!-- ====== Alarm ====== -->
+	<!-- ======================= Alarms ======================= -->
 
 	<ThingDef Name="Rimgate_ProximityAlarm" ParentName="MechBuildingBase" Abstract="True">
 		<size>(1,1)</size>

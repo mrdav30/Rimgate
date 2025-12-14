@@ -5,9 +5,13 @@ namespace Rimgate;
 
 public class Gizmo_ShieldStatus : Gizmo
 {
-    public Comp_ShieldEmitter shield;
+    private Comp_ShieldEmitter _shieldComp;
 
-    public Gizmo_ShieldStatus() => Order = -100f;
+    public Gizmo_ShieldStatus(Comp_ShieldEmitter shield)
+    {
+        _shieldComp = shield;
+        Order = -100f;
+    }
 
     public override float GetWidth(float maxWidth) => 140f;
 
@@ -19,10 +23,10 @@ public class Gizmo_ShieldStatus : Gizmo
         Rect rect3 = rect2;
         rect3.height = rect1.height / 2f;
         Text.Font = GameFont.Tiny;
-        Widgets.Label(rect3, shield.Props.stressLabel);
+        Widgets.Label(rect3, _shieldComp.Props.stressLabel);
         Rect rect4 = rect2;
         rect4.yMin = rect2.y + rect2.height / 2f;
-        float num1 = shield.CurStressLevel / Mathf.Max(1f, shield.MaxStressLevel);
+        float num1 = _shieldComp.CurStressLevel / Mathf.Max(1f, Comp_ShieldEmitter.MaxStressLevel);
         Widgets.FillableBar(
             rect4,
             num1,
@@ -32,9 +36,9 @@ public class Gizmo_ShieldStatus : Gizmo
         Text.Font = GameFont.Small;
         Text.Anchor = TextAnchor.MiddleCenter;
         Rect rect5 = rect4;
-        float num2 = shield.CurStressLevel * 100f;
+        float num2 = _shieldComp.CurStressLevel * 100f;
         string str1 = num2.ToString("F0");
-        num2 = shield.MaxStressLevel * 100f;
+        num2 = Comp_ShieldEmitter.MaxStressLevel * 100f;
         string str2 = num2.ToString("F0");
         string str3 = $"{str1} / {str2}";
         Widgets.Label(rect5, str3);

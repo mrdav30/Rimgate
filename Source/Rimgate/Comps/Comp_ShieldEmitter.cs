@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
@@ -10,27 +11,25 @@ namespace Rimgate;
 
 public class Comp_ShieldEmitter : ThingComp
 {
-    public float CurStressLevel;
+    public const float MaxStressLevel = 1f;
 
-    public float MaxStressLevel = 1f;
+    private float _curStressLevel;
 
-    public int TicksToReset;
+    private int _ticksToReset;
 
-    public bool Overloaded;
+    private bool _overloaded;
 
-    public bool ActiveLastTick;
+    private int _curShieldRadius = -1;
 
-    public int CurShieldRadius = -1;
+    private float _lastTempChange;
 
-    public float LastTempChange;
+    private Color _currentColor;
 
-    public Color CurrentColor;
-
-    private MaterialPropertyBlock _matPropertyBlock = new MaterialPropertyBlock();
+    private MaterialPropertyBlock _matPropertyBlock = new();
 
     private int _lastInterceptTicks = -999999;
 
-    private int _lastHitByEmpTicks = -999999;
+    private bool _wasHitByEmp;
 
     private float _lastInterceptAngle;
 
@@ -38,47 +37,59 @@ public class Comp_ShieldEmitter : ThingComp
 
     private bool _showShieldToggle;
 
-    private CompPowerTrader _cachedPowerComp;
+    private CompPowerTrader _powerComp;
 
-    private Comp_Toggle _cachedFlickableComp;
+    private Comp_Toggle _toggleComp;
 
-    private CompHeatPusher _cachedHeatComp;
+    private CompHeatPusher _heatComp;
 
-    private CompRefuelable _cachedFuelComp;
+    private CompRefuelable _refuelableComp;
 
     public CompProperties_ShieldEmitter Props => (CompProperties_ShieldEmitter)props;
+
+    public float CurStressLevel => _curStressLevel;
+
+    public bool Powered => (PowerTrader == null || PowerTrader.PowerOn)
+        && (Refuelable == null || Refuelable.HasFuel);
 
     public virtual bool Active
     {
         get
         {
-            if (Overloaded
-                || PowerTrader != null && !PowerTrader.PowerOn
-                || FuelComp != null && !FuelComp.HasFuel) return false;
-            return Flicker == null || Flicker.SwitchIsOn;
+            if (_overloaded || !Powered)
+                return false;
+            return Toggle == null || Toggle.SwitchIsOn;
         }
     }
 
-    public Vector3 CurShieldPosition => parent.Position.ToVector3Shifted();
+    public Vector3 CurShieldPosition => parent.TrueCenter();
 
     public int SetShieldRadius
     {
-        get => CurShieldRadius;
+        get => _curShieldRadius;
         set
         {
-            CurShieldRadius = Mathf.Clamp(
+            _curShieldRadius = Mathf.Clamp(
                 value,
                 Props.shieldScaleLimits.min,
                 Props.shieldScaleLimits.max);
         }
     }
 
-    public bool ReactivatedThisTick
+    public int TicksFromLastIntercept
     {
-        get => Find.TickManager.TicksGame - _lastInterceptTicks == Props.resetTime;
+        get
+        {
+            var ticks = Find.TickManager.TicksGame - _lastInterceptTicks;
+            return ticks > 0 ? ticks : 0;
+        }
     }
 
-    public float ScaleDamageFactor => Mathf.Lerp(0.5f, 2f, GetShieldScalePercentage);
+    public bool ReactivatedThisTick => TicksFromLastIntercept == Props.resetTime;
+
+    public float ScaleDamageFactor => !Props.shieldCanBeScaled
+        ? 1f
+        : Mathf.Lerp(0.5f, 2f, GetShieldScalePercentage);
 
     public float GetShieldScalePercentage
     {
@@ -86,70 +97,199 @@ public class Comp_ShieldEmitter : ThingComp
         {
             return !Props.shieldCanBeScaled
                 ? 1f
-                : Mathf.InverseLerp(Props.shieldScaleLimits.min, Props.shieldScaleLimits.max, CurShieldRadius);
+                : Mathf.InverseLerp(
+                    Props.shieldScaleLimits.min,
+                    Props.shieldScaleLimits.max,
+                    _curShieldRadius);
         }
     }
 
-    public CompPowerTrader PowerTrader
-    {
-        get
-        {
-            _cachedPowerComp ??= parent.GetComp<CompPowerTrader>();
-            return _cachedPowerComp;
-        }
-    }
+    public CompPowerTrader PowerTrader => _powerComp ??= parent.GetComp<CompPowerTrader>();
 
-    public Comp_Toggle Flicker
-    {
-        get
-        {
-            _cachedFlickableComp ??= parent.GetComp<Comp_Toggle>();
-            return _cachedFlickableComp;
-        }
-    }
+    public Comp_Toggle Toggle => _toggleComp ??= parent.GetComp<Comp_Toggle>();
 
-    public CompHeatPusher HeatComp
-    {
-        get
-        {
-            _cachedHeatComp ??= parent.GetComp<CompHeatPusher>();
-            return _cachedHeatComp;
-        }
-    }
+    public CompHeatPusher HeatPusher => _heatComp ??= parent.GetComp<CompHeatPusher>();
 
-    public CompRefuelable FuelComp
-    {
-        get
-        {
-            _cachedFuelComp ??= parent.GetComp<CompRefuelable>();
-            return _cachedFuelComp;
-        }
-    }
+    public CompRefuelable Refuelable => _refuelableComp ??= parent.GetComp<CompRefuelable>();
 
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
-        if (!ModLister.CheckRoyalty("Projectile interception"))
-        {
-            Log.Message("Rimgate :: Shield Setup skipped because user lacks Royalty.");
-            parent.Destroy(DestroyMode.Vanish);
-            return;
-        }
-
-        base.PostSpawnSetup(respawningAfterLoad);
-        if (CurShieldRadius < Props.shieldScaleLimits.min)
+        if (_curShieldRadius < Props.shieldScaleLimits.min)
             SetShieldRadius = Props.shieldScaleDefault;
 
         if (!respawningAfterLoad)
         {
-            CurrentColor = Props.shieldColor;
+            _currentColor = Props.shieldColor;
             SetShieldRadius = Props.shieldScaleDefault;
         }
+
+        parent.Map?.GetComponent<MapComp_ShieldList>()?.ShieldGenList.Add(parent);
     }
+
+    #region Tick
+
+    public override void CompTick()
+    {
+        if (Active)
+        {
+            if (ReactivatedThisTick && Props.reactivateEffect != null)
+            {
+                Effecter effecter = new Effecter(Props.reactivateEffect);
+                effecter.Trigger(parent, TargetInfo.Invalid, -1);
+                effecter.Cleanup();
+            }
+
+            UpdateStress(true);
+
+            if (!_overloaded 
+                && CurStressLevel >= Props.shieldOverloadThreshold
+                && Rand.Chance(Props.shieldOverloadChance * (1 + CurStressLevel)))
+            {
+                CellRect cellRect1 = GenAdj.OccupiedRect(parent);
+                CellRect cellRect2 = cellRect1.ExpandedBy(Props.extraOverloadRange);
+                GenExplosion.DoExplosion(
+                    cellRect2.RandomCell,
+                    parent.Map,
+                    1.9f,
+                    DamageDefOf.EMP,
+                    null);
+            }
+        }
+        else // reduce stress on overload
+            UpdateStress(true);
+
+        if (PowerTrader != null)
+            UpdatePowerUsage();
+
+        if (Refuelable != null)
+            UpdateFuelUsage();
+
+        if (_overloaded && Powered)
+        {
+            --_ticksToReset;
+            if (_ticksToReset <= 0)
+                _overloaded = false;
+        }
+
+        if (HeatPusher != null)
+            UpdateHeatPusher();
+    }
+
+    public void UpdateStress(bool tickUpdate = false, bool cooling = false)
+    {
+        if (tickUpdate)
+        {
+            float num = 0f - Props.stressReduction;
+            if (!Active)
+                num = -Props.stressReduction;
+
+            _lastTempChange = (float)(num * 0.0099999997764825821f / 60f);
+            _curStressLevel = Mathf.Clamp(
+                _curStressLevel + _lastTempChange,
+                0.0f,
+                MaxStressLevel);
+        }
+
+        if (!_overloaded && (CurStressLevel >= MaxStressLevel || _wasHitByEmp))
+            OverloadShield();
+    }
+
+    public void OverloadShield()
+    {
+        if (Props.breakSound != null)
+            SoundStarter.PlayOneShot(
+                Props.breakSound,
+                new TargetInfo(parent.Position, parent.Map, false));
+
+        FleckMaker.ThrowExplosionInterior(
+            GenThing.TrueCenter(parent),
+            parent.Map,
+            FleckDefOf.ExplosionFlash);
+        for (int index = 0; index < 6; ++index)
+        {
+            Vector3 location = GenThing.TrueCenter(parent)
+                + Vector3Utility.HorizontalVectorFromAngle(Rand.Range(0, 360)) * Rand.Range(0.3f, 0.6f);
+            FleckMaker.ThrowDustPuff(
+                location,
+                parent.Map,
+                Rand.Range(0.8f, 1.2f));
+        }
+
+        _ticksToReset = Props.resetTime;
+        _overloaded = true;
+        _wasHitByEmp = false;
+        _curStressLevel = 0.0f;
+        if (!Props.explodeOnCollapse
+            || ThingCompUtility.TryGetComp<CompExplosive>(parent) == null) return;
+
+        ThingCompUtility.TryGetComp<CompExplosive>(parent).StartWick(null);
+    }
+
+    private void UpdatePowerUsage()
+    {
+        var powerProps = PowerTrader.props as CompProperties_Power;
+        var baseConsumption = powerProps?.PowerConsumption ?? 0;
+
+        if (!Active
+            || !Props.shieldCanBeScaled
+            || !Props.sizeScalesPowerUsage)
+        {
+            PowerTrader.PowerOutput = baseConsumption;
+            return;
+        }
+
+        PowerTrader.PowerOutput = Mathf.Lerp(
+            baseConsumption,
+            Props.powerUsageRangeMax,
+            GetShieldScalePercentage);
+    }
+
+    private void UpdateFuelUsage()
+    {
+        if (!Active
+            || !Props.shieldCanBeScaled
+            || !Props.sizeScalesFuelUsage
+            || !parent.IsHashIntervalTick(2))
+            return;
+
+        var refuelProps = Refuelable.props as CompProperties_Refuelable;
+        var baseConsumption = refuelProps?.fuelConsumptionRate ?? 0;
+
+        float fuelRate = Mathf.Lerp(
+            baseConsumption,
+            Props.fuelConsumptionRangeMax,
+            GetShieldScalePercentage);
+
+        Refuelable.ConsumeFuel(fuelRate / 60000f);
+    }
+
+    public void UpdateHeatPusher()
+    {
+        if (Active)
+            HeatPusher.Props.heatPerSecond = Mathf.Lerp(
+                Props.heatGenRange.min,
+                Props.heatGenRange.max,
+                CurStressLevel);
+        else
+            HeatPusher.Props.heatPerSecond = 0.0f;
+    }
+
+    #endregion
+
+    #region Air Projectiles
 
     public bool CheckIntercept(Skyfaller skyfaller)
     {
-        return HoldsAnyHostiles(skyfaller)
-            && ShouldBeBlocked(skyfaller);
+        if (!HoldsAnyHostiles(skyfaller) || !ShouldBeBlocked(skyfaller))
+            return false;
+
+        _lastInterceptAngle = Vector3Utility.AngleToFlat(skyfaller.Position.ToVector3(), CurShieldPosition);
+        _lastInterceptTicks = Find.TickManager.TicksGame;
+
+        TriggerFlecks(skyfaller);
+        UpdateStressIntercept(skyfaller);
+
+        return true;
     }
 
     public bool HoldsAnyHostiles(Skyfaller skyfaller)
@@ -216,27 +356,44 @@ public class Comp_ShieldEmitter : ThingComp
                 && Props.podBlocker
                 && IntVec3Utility.DistanceTo(
                     skyfaller.Position,
-                    IntVec3Utility.ToIntVec3(CurShieldPosition)) <= CurShieldRadius;
+                    IntVec3Utility.ToIntVec3(CurShieldPosition)) <= _curShieldRadius;
     }
 
-    public bool BombardmentCanStartFireAt(Bombardment bombardment, IntVec3 cell)
+    public void TriggerFlecks(Skyfaller skyFaller)
     {
-        return !Active
-            || !Props.interceptAirProjectiles
-            || bombardment.instigator == null
-            || !GenHostility.HostileTo(bombardment.instigator, parent)
-                && !_debugInterceptNonHostileProjectiles
-                && !Props.interceptNonHostileProjectiles
-            || !cell.InHorDistOf(parent.Position, CurShieldRadius);
+        SoundDefOf.EnergyShield_AbsorbDamage.PlayOneShot((SoundInfo)new TargetInfo(skyFaller.Position, skyFaller.Map));
+        foreach (IntVec3 intVec3 in skyFaller.OccupiedRect().ToList<IntVec3>())
+        {
+            FleckMaker.ThrowHeatGlow(intVec3, skyFaller.Map, 1f);
+            FleckMaker.ThrowLightningGlow(intVec3.ToVector3Shifted(), skyFaller.Map, 1f);
+            FleckMaker.Static(intVec3, skyFaller.Map, DefDatabase<FleckDef>.GetNamed("ElectricalSpark"), 2f);
+            FleckMaker.Static(intVec3, skyFaller.Map, DefDatabase<FleckDef>.GetNamed("PsycastPsychicEffect"), 2f);
+        }
     }
 
-    public bool CheckIntercept(Projectile projectile, Vector3 lastExactPos, Vector3 newExactPos)
+    public void UpdateStressIntercept(Skyfaller skyfaller)
     {
-        if (!ModLister.CheckRoyalty("Projectile interception"))
-            return false;
+        float num = (float)(30000 * Props.stressPerDamage / 100f);
+        if (skyfaller is DropPodIncoming)
+            num /= 3f;
+        _curStressLevel = Mathf.Clamp(
+            CurStressLevel + num * ScaleDamageFactor,
+            0.0f,
+            MaxStressLevel);
+        UpdateStress();
+    }
 
+    #endregion
+
+    #region Ground Projectiles
+
+    public bool CheckIntercept(
+        Projectile projectile,
+        Vector3 lastExactPos,
+        Vector3 newExactPos)
+    {
         Vector3 shieldPos = CurShieldPosition;
-        float effectiveRadius = CurShieldRadius + projectile.def.projectile.SpeedTilesPerTick + 0.1f;
+        float effectiveRadius = _curShieldRadius + projectile.def.projectile.SpeedTilesPerTick + 0.1f;
 
         float dx = newExactPos.x - shieldPos.x;
         float dz = newExactPos.z - shieldPos.z;
@@ -252,35 +409,33 @@ public class Comp_ShieldEmitter : ThingComp
             && Props.interceptNonHostileProjectiles;
         bool nonHostileShouldSkip = !isHostile && shouldIgnoreNonHostile;
 
-        if (outsideEffectiveRadius
+        bool shouldNotIntercept = outsideEffectiveRadius
             || notActive
             || notInterceptable
-            || nonHostileShouldSkip) return false;
+            || nonHostileShouldSkip;
+        if (shouldNotIntercept)
+            return false;
 
         if (!Props.interceptOutgoingProjectiles)
         {
             Vector2 displacement = new Vector2(shieldPos.x, shieldPos.z) - new Vector2(lastExactPos.x, lastExactPos.z);
-            if (displacement.sqrMagnitude <= CurShieldRadius * CurShieldRadius)
+            if (displacement.sqrMagnitude <= _curShieldRadius * _curShieldRadius)
                 return false;
         }
 
         bool intersectsShield = GenGeo.IntersectLineCircleOutline(
             new Vector2(shieldPos.x, shieldPos.z),
-            CurShieldRadius,
+            _curShieldRadius,
             new Vector2(lastExactPos.x, lastExactPos.z),
             new Vector2(newExactPos.x, newExactPos.z));
-
         if (!intersectsShield)
             return false;
 
-        _lastInterceptAngle = Vector3Utility.AngleToFlat(lastExactPos, GenThing.TrueCenter(parent));
+        _lastInterceptAngle = Vector3Utility.AngleToFlat(lastExactPos, CurShieldPosition);
         _lastInterceptTicks = Find.TickManager.TicksGame;
 
-        if (projectile.def.projectile.damageDef == DamageDefOf.EMP)
-            _lastHitByEmpTicks = Find.TickManager.TicksGame;
-
         TriggerEffecter(IntVec3Utility.ToIntVec3(newExactPos));
-        UpdateStress(projectile);
+        UpdateStressIntercept(projectile);
 
         return true;
     }
@@ -298,207 +453,36 @@ public class Comp_ShieldEmitter : ThingComp
         effecter.Cleanup();
     }
 
-    public void UpdateStress(bool tickUpdate = false, bool cooling = false)
-    {
-        if (tickUpdate)
-        {
-            float num1 = 0.0f;
-            float num2 = num1 - Props.stressReduction;
-            if (!Active)
-                num2 = -Props.stressReduction;
-
-            LastTempChange = (float)(num2 * 0.0099999997764825821 / 60.0);
-            CurStressLevel = Mathf.Clamp(
-                CurStressLevel + LastTempChange,
-                0.0f,
-                MaxStressLevel);
-        }
-
-        if (CurStressLevel >= MaxStressLevel)
-            OverloadShield();
-    }
-
-    public void UpdateStress(Projectile projectile)
+    public void UpdateStressIntercept(Projectile projectile)
     {
         float num = (float)(projectile.DamageAmount * Props.stressPerDamage / 100f);
-        if (projectile.def.projectile.damageDef == DamageDefOf.EMP)
+        if (Props.disabledByEmp
+            && projectile.def.projectile.damageDef == DamageDefOf.EMP)
+        {
+            _wasHitByEmp = true;
             num *= Props.empDamageFactor;
+        }
 
-        CurStressLevel = Mathf.Clamp(
+        _curStressLevel = Mathf.Clamp(
             CurStressLevel + num * ScaleDamageFactor,
             0.0f,
             MaxStressLevel);
         UpdateStress();
     }
 
-    public void UpdateStress(Skyfaller skyfaller)
-    {
-        float num = (float)(30000 * Props.stressPerDamage / 100f);
-        if (skyfaller is DropPodIncoming)
-            num /= 3f;
-        CurStressLevel = Mathf.Clamp(
-            CurStressLevel + num * ScaleDamageFactor,
-            0.0f,
-            MaxStressLevel);
-        UpdateStress();
-    }
+    #endregion
 
-    public void OverloadShield()
-    {
-        if (Props.breakSound != null)
-            SoundStarter.PlayOneShot(
-                Props.breakSound,
-                new TargetInfo(parent.Position, parent.Map, false));
-
-        FleckMaker.ThrowExplosionInterior(
-            GenThing.TrueCenter(parent),
-            parent.Map,
-            FleckDefOf.ExplosionFlash);
-        for (int index = 0; index < 6; ++index)
-        {
-            Vector3 location = GenThing.TrueCenter(parent)
-                + Vector3Utility.HorizontalVectorFromAngle(Rand.Range(0, 360)) * Rand.Range(0.3f, 0.6f);
-            FleckMaker.ThrowDustPuff(
-                location,
-                parent.Map,
-                Rand.Range(0.8f, 1.2f));
-        }
-
-        TicksToReset = Props.resetTime;
-        Overloaded = true;
-        CurStressLevel = 0.0f;
-        if (!Props.explodeOnCollapse
-            || ThingCompUtility.TryGetComp<CompExplosive>(parent) == null) return;
-
-        ThingCompUtility.TryGetComp<CompExplosive>(parent).StartWick(null);
-    }
-
-    public void UpdatePowerUsage()
-    {
-        if (!Active)
-        {
-            PowerTrader.PowerOutput = 0.0f;
-            return;
-        }
-
-        PowerTrader.PowerOutput = Mathf.Lerp(
-            Props.powerUsageRange.min,
-            Props.powerUsageRange.max,
-            GetShieldScalePercentage);
-    }
-
-    public void UpdateFuelUsage()
-    {
-        if (!Active || !parent.IsHashIntervalTick(2))
-            return;
-
-        float fuelRate = Mathf.Lerp(
-            Props.powerUsageRange.min,
-            Props.powerUsageRange.max,
-            GetShieldScalePercentage);
-
-        FuelComp.ConsumeFuel(fuelRate / 60000f);
-    }
-
-    public override void CompTick()
-    {
-        if (Active)
-        {
-            if (ReactivatedThisTick && Props.reactivateEffect != null)
-            {
-                Effecter effecter = new Effecter(Props.reactivateEffect);
-                effecter.Trigger(parent, TargetInfo.Invalid, -1);
-                effecter.Cleanup();
-            }
-
-            UpdateStress(true);
-            if (CurStressLevel >= Props.shieldOverloadThreshold
-                && Rand.Chance(Props.shieldOverloadChance * (1f - (1f - CurStressLevel) * 10f)))
-            {
-                CellRect cellRect1 = GenAdj.OccupiedRect(parent);
-                CellRect cellRect2 = cellRect1.ExpandedBy(Props.extraOverloadRange);
-                GenExplosion.DoExplosion(
-                    cellRect2.RandomCell,
-                    parent.Map,
-                    1.9f,
-                    DamageDefOf.EMP,
-                    null,
-                    -1,
-                    -1f,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    0.0f,
-                    1,
-                    new GasType?(),
-                    new float?(),
-                    byte.MaxValue,
-                    false,
-                    null,
-                    0.0f,
-                    1,
-                    0.0f,
-                    false,
-                    new float?(),
-                    null,
-                    new FloatRange?(),
-                    true,
-                    1f,
-                    0.0f,
-                    true,
-                    null,
-                    1f,
-                    null,
-                    null,
-                    null,
-                    null);
-            }
-        }
-
-        UpdateStress(true);
-
-        if (PowerTrader != null)
-            UpdatePowerUsage();
-
-        if (FuelComp != null)
-            UpdateFuelUsage();
-
-        if (Overloaded
-            && (PowerTrader?.PowerOn == true
-                || FuelComp?.HasFuel == true))
-        {
-            --TicksToReset;
-            if (TicksToReset <= 0)
-                Overloaded = false;
-        }
-
-        if (HeatComp != null)
-            UpdateHeatPusher();
-    }
-
-    public void UpdateHeatPusher()
-    {
-        if (Active)
-            HeatComp.Props.heatPerSecond = Mathf.Lerp(
-                Props.heatGenRange.min,
-                Props.heatGenRange.max,
-                CurStressLevel);
-        else
-            HeatComp.Props.heatPerSecond = 0.0f;
-    }
+    #region FX
 
     public override void PostDraw()
     {
-        base.PostDraw();
         Vector3 curShieldPosition = CurShieldPosition;
         curShieldPosition.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
         float currentAlpha = GetCurrentAlpha();
         if (currentAlpha > 0.0)
         {
             Color color = Active || !Find.Selector.IsSelected((object)parent)
-                ? CurrentColor
+                ? _currentColor
                 : Props.inactiveColor;
             color.a *= currentAlpha;
             _matPropertyBlock.SetColor(ShaderPropertyIDs.Color, color);
@@ -507,9 +491,9 @@ public class Comp_ShieldEmitter : ThingComp
                 curShieldPosition,
                 Quaternion.identity,
                 new Vector3(
-                    CurShieldRadius * 2f * (297f / 256f),
+                    _curShieldRadius * 2f * (297f / 256f),
                     1f,
-                    CurShieldRadius * 2f * (297f / 256f)));
+                    _curShieldRadius * 2f * (297f / 256f)));
             Graphics.DrawMesh(
                 MeshPool.plane10,
                 matrix4x4,
@@ -523,7 +507,7 @@ public class Comp_ShieldEmitter : ThingComp
         if (recentlyIntercepted <= 0)
             return;
 
-        Color currentColor = CurrentColor;
+        Color currentColor = _currentColor;
         currentColor.a *= recentlyIntercepted;
         _matPropertyBlock.SetColor(ShaderPropertyIDs.Color, currentColor);
         Matrix4x4 matrix4x4_1 = new Matrix4x4();
@@ -531,9 +515,9 @@ public class Comp_ShieldEmitter : ThingComp
             curShieldPosition,
             Quaternion.Euler(0.0f, _lastInterceptAngle - 90f, 0.0f),
             new Vector3(
-                CurShieldRadius * 2f * (297f / 256f),
+                _curShieldRadius * 2f * (297f / 256f),
                 1f,
-                CurShieldRadius * 2f * (297f / 256f)));
+                _curShieldRadius * 2f * (297f / 256f)));
         Graphics.DrawMesh(
             MeshPool.plane10,
             matrix4x4_1,
@@ -599,7 +583,7 @@ public class Comp_ShieldEmitter : ThingComp
 
     public float GetCurrentAlpha_RecentlyIntercepted()
     {
-        float ticks = 1 - (Find.TickManager.TicksGame - _lastInterceptTicks) / 40f;
+        float ticks = 1 - TicksFromLastIntercept / 40f;
         return Mathf.Clamp01(ticks) * 0.09f;
     }
 
@@ -607,7 +591,7 @@ public class Comp_ShieldEmitter : ThingComp
     {
         if (!Active) return 0.0f;
 
-        float ticks = 1 - (Find.TickManager.TicksGame - (_lastInterceptTicks + Props.resetTime)) / 50f;
+        float ticks = 1 - (TicksFromLastIntercept - Props.resetTime) / 50f;
         return Mathf.Clamp01(ticks) * 0.09f;
     }
 
@@ -615,24 +599,19 @@ public class Comp_ShieldEmitter : ThingComp
     {
         if (!Props.drawInterceptCone) return 0.0f;
 
-        float ticks = 1 - (Find.TickManager.TicksGame - _lastInterceptTicks) / 40f;
+        float ticks = 1 - TicksFromLastIntercept / 40f;
         return Mathf.Clamp01(ticks) * 0.82f;
     }
 
+    #endregion
+
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        Comp_ShieldEmitter compShield = this;
-        foreach (Gizmo gizmo in base.CompGetGizmosExtra())
-            yield return gizmo;
-
-        if (compShield.parent.Faction.IsOfPlayerFaction())
+        if (parent.Faction.IsOfPlayerFaction())
         {
-            yield return new Gizmo_ShieldStatus()
-            {
-                shield = compShield
-            };
+            yield return new Gizmo_ShieldStatus(this);
 
-            if (compShield.Props.shieldCanBeScaled)
+            if (Props.shieldCanBeScaled)
             {
                 Command_Action commandAction = new Command_Action();
                 commandAction.defaultLabel = Translator.Translate("RG_ShieldGenRadiusLabel");
@@ -661,12 +640,12 @@ public class Comp_ShieldEmitter : ThingComp
 
         if (Prefs.DevMode)
         {
-            if (compShield.TicksToReset > 0)
+            if (_ticksToReset > 0)
             {
                 Command_Action commandAction = new Command_Action();
                 commandAction.defaultLabel = "Reset shield cooldown";
                 // ISSUE: reference to a compiler-generated method
-                commandAction.action = () => TicksToReset = 0;
+                commandAction.action = () => _ticksToReset = 0;
                 yield return commandAction;
             }
 
@@ -685,9 +664,9 @@ public class Comp_ShieldEmitter : ThingComp
         StringBuilder stringBuilder = new StringBuilder();
         if (Active)
         {
-            if (TicksToReset > 0)
+            if (_ticksToReset > 0)
             {
-                string cooldown = GenDate.ToStringTicksToPeriod(TicksToReset, true, false, true, true, false);
+                string cooldown = GenDate.ToStringTicksToPeriod(_ticksToReset, true, false, true, true, false);
                 stringBuilder.Append($"CooldownTime : {cooldown}");
             }
             else
@@ -701,23 +680,19 @@ public class Comp_ShieldEmitter : ThingComp
 
     public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
     {
-        base.PostPostApplyDamage(dinfo, totalDamageDealt);
-        if (dinfo.Def == DamageDefOf.EMP)
-            _lastHitByEmpTicks = Find.TickManager.TicksGame;
+        if (Props.disabledByEmp && dinfo.Def == DamageDefOf.EMP)
+            _wasHitByEmp = true;
     }
 
     public override void PostExposeData()
     {
-        base.PostExposeData();
         Scribe_Values.Look<int>(ref _lastInterceptTicks, "_lastInterceptTicks", -999999, false);
-        Scribe_Values.Look<int>(ref _lastHitByEmpTicks, "_lastHitByEmpTicks", -999999, false);
+        Scribe_Values.Look<bool>(ref _wasHitByEmp, "_wasHitByEmp", false);
         Scribe_Values.Look<bool>(ref _showShieldToggle, "_showShieldToggle", false, false);
-        Scribe_Values.Look<float>(ref CurStressLevel, "CurStressLevel", 0.0f, false);
-        Scribe_Values.Look<float>(ref MaxStressLevel, "MaxStressLevel", 1f, false);
-        Scribe_Values.Look<int>(ref TicksToReset, "TicksToReset", -1, false);
-        Scribe_Values.Look<bool>(ref Overloaded, "Overloaded", false, false);
-        Scribe_Values.Look<bool>(ref ActiveLastTick, "ActiveLastTick", false, false);
-        Scribe_Values.Look<int>(ref CurShieldRadius, "CurShieldRadius", Props.shieldScaleDefault, false);
-        Scribe_Values.Look<Color>(ref CurrentColor, "CurrentColor", Props.shieldColor, false);
+        Scribe_Values.Look<float>(ref _curStressLevel, "CurStressLevel", 0.0f, false);
+        Scribe_Values.Look<int>(ref _ticksToReset, "_ticksToReset", -1, false);
+        Scribe_Values.Look<bool>(ref _overloaded, "Overloaded", false, false);
+        Scribe_Values.Look<int>(ref _curShieldRadius, "CurShieldRadius", Props.shieldScaleDefault, false);
+        Scribe_Values.Look<Color>(ref _currentColor, "CurrentColor", Props.shieldColor, false);
     }
 }

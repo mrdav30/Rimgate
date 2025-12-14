@@ -202,6 +202,25 @@
 		</tags>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_GoauldTurretsTierThree</defName>
+		<label>Shielded AI defense</label>
+		<description>Integrate ancient shielding concepts into automated staff cannon turrets. The resulting emplacements shrug off small arms fire and shrug on a smug sense of superiority. Unlocks construction of shielded automated staff cannon turrets.</description>
+		<baseCost>2500</baseCost>
+
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<prerequisites>
+			<li>ShieldBelt</li>
+			<li>Rimgate_GoauldTurretsTierTwo</li>
+		</prerequisites>
+
+		<researchViewX>3.5</researchViewX>
+		<researchViewY>1.5</researchViewY>
+	</ResearchProjectDef>
+
 	<!-- ======== Misc ========= -->
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">

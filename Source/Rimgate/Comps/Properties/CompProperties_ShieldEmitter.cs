@@ -30,15 +30,21 @@ public class CompProperties_ShieldEmitter : CompProperties
 
     public SoundDef breakSound;
 
-    public FloatRange powerUsageRange = new FloatRange(0.0f, 0.0f);
+    public bool sizeScalesPowerUsage = false;
 
-    public FloatRange fuelConsumptionRange = new FloatRange(0.0f, 0.0f);
+    public float powerUsageRangeMax = float.MaxValue;
+
+    public bool sizeScalesFuelUsage = false;
+
+    public float fuelConsumptionRangeMax = float.MaxValue;
 
     public FloatRange heatGenRange = new FloatRange(0.0f, 100f);
 
     public float stressReduction = 1f;
 
-    public float stressPerDamage = 3f / 1000f;
+    public float stressPerDamage = 0.003f;
+
+    public bool disabledByEmp = true;
 
     public float empDamageFactor = 5f;
 
@@ -82,7 +88,6 @@ public class CompProperties_ShieldEmitter : CompProperties
         impactSound ??= SoundDefOf.EnergyShield_AbsorbDamage;
         breakSound ??= SoundDefOf.EnergyShield_Reset;
         reactivateEffect ??= EffecterDefOf.ActivatorProximityTriggered;
-        overloadDamageType ??= DamageDefOf.EMP;
     }
 
     public CompProperties_ShieldEmitter() => compClass = typeof(Comp_ShieldEmitter);

@@ -390,6 +390,8 @@
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
     <Compile Include="Comps\Comp_SymbioteHeritage.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Projectile_CheckForInterceptBetween.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Skyfaller_Tick.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteKinship_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_HasNoSymbioteImplant.cs" />
@@ -535,6 +537,7 @@
     <Compile Include="Utilities\ResearchUtil.cs" />
     <Compile Include="Utilities\RimgateFactionOf.cs" />
     <Compile Include="Utilities\StargateUtility.cs" />
+    <Compile Include="World\MapComponent_ShieldList.cs" />
     <Compile Include="World\MapComponent_ZpmRaidTracker.cs" />
     <Compile Include="World\SitePartWorker_Stargate.cs" />
     <Compile Include="Utilities\CloneUtility.cs" />

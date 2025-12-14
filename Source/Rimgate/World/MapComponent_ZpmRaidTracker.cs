@@ -17,7 +17,8 @@ public class MapComponent_ZpmRaidTracker : MapComponent
 
     private int _questId = -1;
 
-    public MapComponent_ZpmRaidTracker(Map map) : base(map) { }
+    public MapComponent_ZpmRaidTracker(Map map) 
+        : base(map) { }
 
     public override void FinalizeInit()
     {
