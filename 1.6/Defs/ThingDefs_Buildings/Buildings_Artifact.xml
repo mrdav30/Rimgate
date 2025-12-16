@@ -395,6 +395,7 @@
             <Mass>8</Mass>
         </statBases>
         <building>
+            <neverBuildable>true</neverBuildable>
             <joyKind>Meditative</joyKind>
             <watchBuildingStandDistanceRange>1~5</watchBuildingStandDistanceRange>
             <watchBuildingStandRectWidth>1</watchBuildingStandRectWidth>
@@ -430,6 +431,7 @@
             <li>Rimgate.PlaceWorker_Stargate</li>
         </placeWorkers>
         <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <thingSetMakerTags Inherit="False" />
     </ThingDef>
 
     <!-- ======================= Ancient Research Bank ======================= -->

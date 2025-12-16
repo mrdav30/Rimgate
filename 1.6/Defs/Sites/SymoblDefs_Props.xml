@@ -74,16 +74,12 @@
         <defName>Rimgate_SymbioteUrn</defName>
         <thing>Rimgate_SymbioteUrn</thing>
         <stuff>Steel</stuff>
-        <thingSetMakerDef>Rimgate_SymbioteContainer</thingSetMakerDef>
-        <thingSetMakerDefForPlayer>Rimgate_SymbioteContainer</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_QueenUrn</defName>
-        <thing>Rimgate_SymbioteUrn</thing>
+        <thing>Rimgate_SymbioteQueenUrn</thing>
         <stuff>Gold</stuff>
-        <thingSetMakerDef>Rimgate_SymbioteQueenContainer</thingSetMakerDef>
-        <thingSetMakerDefForPlayer>Rimgate_SymbioteQueenContainer</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -119,43 +115,31 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_TechprintCrate</defName>
         <thing>Rimgate_SupplyCrate</thing>
-        <thingSetMakerDef>Rimgate_Techprints</thingSetMakerDef>
-        <thingSetMakerDefForPlayer>Rimgate_Techprints</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_LootCrateAlpha</defName>
         <thing>Rimgate_SupplyCrateGreen</thing>
-        <thingSetMakerDef>Rimgate_StargateComplexLootAlpha</thingSetMakerDef>
-        <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootAlpha</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_LootCrateBravo</defName>
         <thing>Rimgate_SupplyCrateOrange</thing>
-        <thingSetMakerDef>Rimgate_StargateComplexLootBravo</thingSetMakerDef>
-        <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootBravo</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_LootCrateCharlie</defName>
         <thing>Rimgate_SupplyCrateYellow</thing>
-        <thingSetMakerDef>Rimgate_StargateComplexLootCharlie</thingSetMakerDef>
-        <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootCharlie</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_WeaponStash</defName>
         <thing>Rimgate_SupplyCrateRed</thing>
-        <thingSetMakerDef>Rimgate_WeaponStash</thingSetMakerDef>
-        <thingSetMakerDefForPlayer>Rimgate_WeaponStash</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_LootCrateNatural</defName>
         <thing>Rimgate_SupplyCrateStone</thing>
-        <thingSetMakerDef>Rimgate_StargateComplexLootCharlie</thingSetMakerDef>
-        <thingSetMakerDefForPlayer>Rimgate_StargateComplexLootCharlie</thingSetMakerDefForPlayer>
     </KCSG.SymbolDef>
 
 </Defs>

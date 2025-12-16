@@ -662,7 +662,7 @@
         </li>
 
         <li>
-          <weight>0.5</weight>
+          <weight>0.25</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -691,7 +691,7 @@
       <options>
 
         <li>
-          <weight>0.75</weight>
+          <weight>1</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -702,12 +702,6 @@
               <countRange>1</countRange>
             </fixedParams>
           </thingSetMaker>
-        </li>
-
-        <!-- Bucket: empty -->
-        <li>
-          <weight>0.25</weight>
-          <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
         </li>
 
       </options>

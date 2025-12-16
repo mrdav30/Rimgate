@@ -722,7 +722,7 @@
         <label>Supply crate</label>
         <description>A small crate that's still sealed. There may be valuables inside.</description>
         <size>(1, 1)</size>
-        <fillPercent>0.3</fillPercent>
+        <fillPercent>1</fillPercent>
         <statBases>
             <MaxHitPoints>50</MaxHitPoints>
         </statBases>
@@ -737,6 +737,9 @@
             <drawSize>(1,1)</drawSize>
         </graphicData>
         <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_Techprints</contents>
+            </li>
             <li Class="CompProperties_EmptyStateGraphic">
                 <graphicData>
                     <texPath>Things/Building/Prop/Crate/RGSupplyCrate_Empty</texPath>
@@ -745,7 +748,7 @@
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>2.9</glowRadius>
+                <glowRadius>1.5</glowRadius>
                 <glowColor>(151,243,255,0)</glowColor>
             </li>
         </comps>
@@ -754,20 +757,27 @@
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateGreen</defName>
         <graphicData>
-            <texPath>Things/Building/Prop/Crate/RGSupplyCrate_FilledGreen</texPath>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrate_Filled</texPath>
             <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>CutoutComplexBlend</shaderType>
             <drawSize>(1,1)</drawSize>
+            <color>(126,177,161)</color>
         </graphicData>
         <comps>
-            <li Class="CompProperties_EmptyStateGraphic">
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_StargateComplexLootAlpha</contents>
+            </li>
+            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
                 <graphicData>
-                    <texPath>Things/Building/Prop/Crate/RGSupplyCrate_EmptyGreen</texPath>
+                    <texPath>Things/Building/Prop/Crate/RGSupplyCrate_Empty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
                     <drawSize>(1,1)</drawSize>
+                    <color>(126,177,161)</color>
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>2.9</glowRadius>
+                <glowRadius>1.5</glowRadius>
                 <glowColor>(126,177,161,0)</glowColor>
             </li>
         </comps>
@@ -776,20 +786,27 @@
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateOrange</defName>
         <graphicData>
-            <texPath>Things/Building/Prop/Crate/RGSupplyCrate_FilledOrange</texPath>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrate_Filled</texPath>
             <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>CutoutComplexBlend</shaderType>
             <drawSize>(1,1)</drawSize>
+            <color>(160,116,27)</color>
         </graphicData>
         <comps>
-            <li Class="CompProperties_EmptyStateGraphic">
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_StargateComplexLootBravo</contents>
+            </li>
+            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
                 <graphicData>
-                    <texPath>Things/Building/Prop/Crate/RGSupplyCrate_EmptyOrange</texPath>
+                    <texPath>Things/Building/Prop/Crate/RGSupplyCrate_Empty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
                     <drawSize>(1,1)</drawSize>
+                    <color>(160,116,27)</color>
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>2.9</glowRadius>
+                <glowRadius>1.5</glowRadius>
                 <glowColor>(160,116,27,0)</glowColor>
             </li>
         </comps>
@@ -798,20 +815,27 @@
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateRed</defName>
         <graphicData>
-            <texPath>Things/Building/Prop/Crate/RGSupplyCrate_FilledRed</texPath>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrate_Filled</texPath>
             <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>CutoutComplexBlend</shaderType>
             <drawSize>(1,1)</drawSize>
+            <color>(109,13,13)</color>
         </graphicData>
         <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_WeaponStash</contents>
+            </li>
             <li Class="CompProperties_EmptyStateGraphic">
                 <graphicData>
-                    <texPath>Things/Building/Prop/Crate/RGSupplyCrate_EmptyRed</texPath>
+                    <texPath>Things/Building/Prop/Crate/RGSupplyCrate_Empty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
                     <drawSize>(1,1)</drawSize>
+                    <color>(109,13,13)</color>
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>2.9</glowRadius>
+                <glowRadius>1.5</glowRadius>
                 <glowColor>(109,13,13,0)</glowColor>
             </li>
         </comps>
@@ -820,20 +844,27 @@
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateYellow</defName>
         <graphicData>
-            <texPath>Things/Building/Prop/Crate/RGSupplyCrate_FilledYellow</texPath>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrate_Filled</texPath>
             <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>CutoutComplexBlend</shaderType>
             <drawSize>(1,1)</drawSize>
+            <color>(221,220,28)</color>
         </graphicData>
         <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_StargateComplexLootCharlie</contents>
+            </li>
             <li Class="CompProperties_EmptyStateGraphic">
                 <graphicData>
-                    <texPath>Things/Building/Prop/Crate/RGSupplyCrate_EmptyYellow</texPath>
+                    <texPath>Things/Building/Prop/Crate/RGSupplyCrate_Empty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
                     <drawSize>(1,1)</drawSize>
+                    <color>(221,220,28)</color>
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
-                <glowRadius>2.9</glowRadius>
+                <glowRadius>1.5</glowRadius>
                 <glowColor>(221,220,28,0)</glowColor>
             </li>
         </comps>
@@ -844,13 +875,21 @@
         <graphicData>
             <texPath>Things/Building/Prop/Crate/RGSupplyCrate_FilledStone</texPath>
             <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
             <drawSize>(1,1)</drawSize>
         </graphicData>
+        <stuffCategories>
+            <li>Stony</li>
+        </stuffCategories>
         <comps>
-            <li Class="CompProperties_EmptyStateGraphic">
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_StargateComplexLootCharlie</contents>
+            </li>
+            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
                 <graphicData>
                     <texPath>Things/Building/Prop/Crate/RGSupplyCrate_EmptyStone</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
                     <drawSize>(1,1)</drawSize>
                 </graphicData>
             </li>
@@ -913,17 +952,17 @@
 
     <!-- ======================= Symbiote Urn ======================= -->
 
-    <ThingDef ParentName="CrateBase">
-        <defName>Rimgate_SymbioteUrn</defName>
-        <label>Goa'uld Symbiote urn</label>
+    <ThingDef Name="Rimgate_SymbioteUrnBase" ParentName="CrateBase" Abstract="True">
         <graphicData>
             <texPath>Things/Building/Prop/RGSymbioteContainer</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <drawSize>(1,1)</drawSize>
         </graphicData>
-        <description>A small urn that is hermetically sealed to contain a Goa'uld symbiote.</description>
         <size>(1, 1)</size>
         <fillPercent>0.4</fillPercent>
+        <stuffCategories>
+            <li>Metallic</li>
+        </stuffCategories>
         <building>
             <isInert>true</isInert>
             <neverBuildable>true</neverBuildable>
@@ -937,9 +976,6 @@
             <Flammability>0</Flammability>
         </statBases>
         <rotatable>false</rotatable>
-        <stuffCategories>
-            <li>Metallic</li>
-        </stuffCategories>
         <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
         <comps>
             <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
@@ -948,6 +984,28 @@
                     <graphicClass>Graphic_Single</graphicClass>
                     <drawSize>(1,1)</drawSize>
                 </graphicData>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_SymbioteUrnBase">
+        <defName>Rimgate_SymbioteUrn</defName>
+        <label>Goa'uld Symbiote urn</label>
+        <description>A small urn that is hermetically sealed to contain a Goa'uld symbiote.</description>
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_SymbioteContainer</contents>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_SymbioteUrnBase">
+        <defName>Rimgate_SymbioteQueenUrn</defName>
+        <label>Goa'uld Queen Symbiote urn</label>
+        <description>A small urn that is hermetically sealed to contain a Goa'uld Queen symbiote.</description>
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_SymbioteQueenContainer</contents>
             </li>
         </comps>
     </ThingDef>
