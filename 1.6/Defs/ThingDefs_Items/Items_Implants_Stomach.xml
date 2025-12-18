@@ -87,7 +87,7 @@
         <tradeability>Sellable</tradeability>
         <comps>
             <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
-                <analysisID>1000300</analysisID>
+                <analysisID>1000310</analysisID>
                 <requiresResearchDef>MedicineProduction</requiresResearchDef>
 
                 <!-- Analyzable -->
@@ -141,104 +141,6 @@
                 <bodyPart>Torso</bodyPart>
             </li>
         </comps>
-    </ThingDef>
-
-    <!-- ==================== Jaffa Forehead Symbol Base ==================== -->
-
-    <ThingDef Name="Rimgate_JaffaForeheadSymbolImplantBase" ParentName="BodyPartBionicBase" Abstract="True">
-        <techLevel>Neolithic</techLevel>
-        <statBases>
-            <Mass>0.05</Mass>
-            <MarketValue>75</MarketValue>
-        </statBases>
-        <costList>
-            <Steel>1</Steel>
-            <Rimgate_Naquadah>1</Rimgate_Naquadah>
-        </costList>
-        <techHediffsTags Inherit="False">
-            <li>Rimgate_JaffaForeheadSymbol_tag</li>
-        </techHediffsTags>
-        <recipeMaker>
-            <researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
-        </recipeMaker>
-    </ThingDef>
-
-    <ThingDef Name="Rimgate_PrimeForeheadSymbolImplantBase" ParentName="BodyPartBionicBase" Abstract="True">
-        <techLevel>Neolithic</techLevel>
-        <statBases>
-            <Mass>0.05</Mass>
-            <MarketValue>75</MarketValue>
-        </statBases>
-        <costList>
-            <Gold>1</Gold>
-            <Rimgate_Naquadah>1</Rimgate_Naquadah>
-        </costList>
-        <techHediffsTags Inherit="False">
-            <li>Rimgate_PrimeForeheadSymbol_tag</li>
-        </techHediffsTags>
-        <recipeMaker>
-            <researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
-        </recipeMaker>
-    </ThingDef>
-
-    <!-- =========== Anubis =========== -->
-
-    <ThingDef ParentName="Rimgate_JaffaForeheadSymbolImplantBase">
-        <defName>Rimgate_JaffaForeheadSymbolImplantAnubis</defName>
-        <label>Anubis Jaffa symbol implant</label>
-        <description>a ceremonial forehead implant marking loyalty to Anubis.\nHighly respected by undead fanboys and feared by everyone else with a survival instinct.</description>
-        <descriptionHyperlinks>
-            <RecipeDef>Rimgate_InstallJaffaForeheadSymbolAnubis</RecipeDef>
-        </descriptionHyperlinks>
-    </ThingDef>
-
-    <ThingDef ParentName="Rimgate_PrimeForeheadSymbolImplantBase">
-        <defName>Rimgate_PrimeForeheadSymbolImplantAnubis</defName>
-        <label>Anubis Prime Jaffa symbol implant</label>
-        <description>this ornate implant designates the bearer as First Prime of Anubis.\nCongratulations: you're now second only to a half-ascended maniac in a bathrobe.</description>
-        <descriptionHyperlinks>
-            <RecipeDef>Rimgate_InstallPrimeForeheadSymbolAnubis</RecipeDef>
-        </descriptionHyperlinks>
-    </ThingDef>
-
-    <!-- =========== Apophis =========== -->
-
-    <ThingDef ParentName="Rimgate_JaffaForeheadSymbolImplantBase">
-        <defName>Rimgate_JaffaForeheadSymbolImplantApophis</defName>
-        <label>Apophis Jaffa symbol implant</label>
-        <description>symbol of service to Apophis, Lord of Snakes, Bad Decisions, and Dramatic Entrances.\nBest worn with a loud voice and an army you can’t afford to feed.</description>
-        <descriptionHyperlinks>
-            <RecipeDef>Rimgate_InstallJaffaForeheadSymbolApophis</RecipeDef>
-        </descriptionHyperlinks>
-    </ThingDef>
-
-    <ThingDef ParentName="Rimgate_PrimeForeheadSymbolImplantBase">
-        <defName>Rimgate_PrimeForeheadSymbolImplantApophis</defName>
-        <label>Apophis Prime Jaffa symbol implant</label>
-        <description>indicates you are Apophis’s First Prime.\nComes with honor, glory, and a 50% chance of being betrayed before lunchtime.</description>
-        <descriptionHyperlinks>
-            <RecipeDef>Rimgate_InstallPrimeForeheadSymbolApophis</RecipeDef>
-        </descriptionHyperlinks>
-    </ThingDef>
-
-    <!-- =========== Ra =========== -->
-
-    <ThingDef ParentName="Rimgate_JaffaForeheadSymbolImplantBase">
-        <defName>Rimgate_JaffaForeheadSymbolImplantRa</defName>
-        <label>Ra Jaffa symbol implant</label>
-        <description>implant bearing the mark of Ra, Supreme System Lord and fashion icon.\nMay cause spontaneous arrogance and excessive gold accessorizing.</description>
-        <descriptionHyperlinks>
-            <RecipeDef>Rimgate_InstallJaffaForeheadSymbolRa</RecipeDef>
-        </descriptionHyperlinks>
-    </ThingDef>
-
-    <ThingDef ParentName="Rimgate_PrimeForeheadSymbolImplantBase">
-        <defName>Rimgate_PrimeForeheadSymbolImplantRa</defName>
-        <label>Ra Prime Jaffa symbol implant</label>
-        <description>marks you as First Prime of Ra.\nYou're now the personal enforcer of a glowing sun god with flair—and a short fuse.</description>
-        <descriptionHyperlinks>
-            <RecipeDef>Rimgate_InstallPrimeForeheadSymbolRa</RecipeDef>
-        </descriptionHyperlinks>
     </ThingDef>
 
 </Defs>

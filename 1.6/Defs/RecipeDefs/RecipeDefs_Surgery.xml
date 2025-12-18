@@ -1,6 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+	<!--=============== Cortical Dampener Removal ====================-->
+
+	<RecipeDef ParentName="SurgeryFlesh">
+		<defName>Rimgate_RemoveCorticalDampenerImplant</defName>
+		<label>remove cortical dampener</label>
+		<description>Removes a cortical dampener implant, alleviating the constant mental strain imposed by the device and allowing for further analysis.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_CorticalDampener</ThingDef>
+			<HediffDef>Rimgate_CorticalDampener</HediffDef>
+		</descriptionHyperlinks>
+
+		<workerClass>Recipe_RemoveImplant</workerClass>
+		<jobString>Removing cortical dampener.</jobString>
+		<workAmount>2500</workAmount>
+		<surgerySuccessChanceFactor>2.5</surgerySuccessChanceFactor>
+		<anesthetize>true</anesthetize>
+		<skillRequirements>
+			<Medicine>8</Medicine>
+			<Crafting>5</Crafting>
+			<Intellectual>5</Intellectual>
+		</skillRequirements>
+
+		<researchPrerequisite>Bionics</researchPrerequisite>
+		<removesHediff>Rimgate_CorticalDampener</removesHediff>
+
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineUltratech</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>MedicineUltratech</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<!--=============== Cortical Catalyst Install ====================-->
+
+	<RecipeDef ParentName="SurgeryFlesh">
+		<defName>Rimgate_InstallCorticalCatalystImplant</defName>
+		<label>install cortical catalyst</label>
+		<description>Installs a cortical catalyst implant to enhance cognitive function and allow mental control by the user.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_CorticalCatalyst</ThingDef>
+			<HediffDef>Rimgate_CorticalCatalyst</HediffDef>
+		</descriptionHyperlinks>
+
+		<workerClass>Recipe_InstallImplant</workerClass>
+		<jobString>Installing cortical catalyst.</jobString>
+		<workAmount>2500</workAmount>
+		<surgerySuccessChanceFactor>2.5</surgerySuccessChanceFactor>
+		<anesthetize>true</anesthetize>
+		<skillRequirements>
+			<Medicine>8</Medicine>
+			<Crafting>5</Crafting>
+			<Intellectual>5</Intellectual>
+		</skillRequirements>
+
+		<appliedOnFixedBodyParts>
+			<li>Brain</li>
+		</appliedOnFixedBodyParts>
+
+		<researchPrerequisite>Rimgate_CorticalDampenerHacking</researchPrerequisite>
+		<addsHediff>Rimgate_CorticalCatalyst</addsHediff>
+
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineUltratech</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_CorticalCatalyst</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>MedicineUltratech</li>
+				<li>Rimgate_CorticalCatalyst</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
 	<!-- ==================== Prim'ta ==================== -->
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">

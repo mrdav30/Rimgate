@@ -1,113 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <!-- Unas -->
-
-    <PawnKindDef Name="Rimgate_UnasKindBase" ParentName="AnimalKindBase" Abstract="True">
-        <combatPower>220</combatPower>
-        <ecoSystemWeight>0.3</ecoSystemWeight>
-        <aiAvoidCover>true</aiAvoidCover>
-    </PawnKindDef>
-
-    <PawnKindDef ParentName="Rimgate_UnasKindBase">
-        <defName>Rimgate_Unas_Standard</defName>
-        <label>Unas</label>
-        <race>Rimgate_Unas</race>
-        <wildGroupSize>
-            <min>1</min>
-            <max>3</max>
-        </wildGroupSize>
-        <lifeStages>
-            <li>
-                <bodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGUnas</texPath>
-                    <drawSize>1.2</drawSize>
-                </bodyGraphicData>
-                <dessicatedBodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>1.2</drawSize>
-                </dessicatedBodyGraphicData>
-            </li>
-            <li>
-                <bodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGUnas</texPath>
-                    <drawSize>1.6</drawSize>
-                    <shadowData>
-                        <volume>(0.25, 0.25, 0.25)</volume>
-                        <offset>(0,0,-0.2)</offset>
-                    </shadowData>
-                </bodyGraphicData>
-                <dessicatedBodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>1.6</drawSize>
-                </dessicatedBodyGraphicData>
-            </li>
-            <li>
-                <bodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGUnas</texPath>
-                    <drawSize>2.05</drawSize>
-                    <shadowData>
-                        <volume>(0.35, 0.35, 0.35)</volume>
-                        <offset>(0,0,-0.22)</offset>
-                    </shadowData>
-                </bodyGraphicData>
-                <dessicatedBodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>2.05</drawSize>
-                </dessicatedBodyGraphicData>
-            </li>
-        </lifeStages>
-    </PawnKindDef>
-
-    <PawnKindDef ParentName="Rimgate_UnasKindBase">
-        <defName>Rimgate_Unas_Berserker</defName>
-        <label>Unas</label>
-        <race>Rimgate_Unas_BerserkerRace</race>
-        <combatPower>240</combatPower>
-        <ecoSystemWeight>0.05</ecoSystemWeight>
-        <lifeStages>
-            <li>
-                <bodyGraphicData>
-                    <texPath>Things/Pawn/Animal/UnasA/RGUnasA</texPath>
-                    <drawSize>1.2</drawSize>
-                </bodyGraphicData>
-                <dessicatedBodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>1.2</drawSize>
-                </dessicatedBodyGraphicData>
-            </li>
-            <li>
-                <bodyGraphicData>
-                    <texPath>Things/Pawn/Animal/UnasA/RGUnasA</texPath>
-                    <drawSize>1.6</drawSize>
-                    <shadowData>
-                        <volume>(0.25, 0.25, 0.25)</volume>
-                        <offset>(0,0,-0.2)</offset>
-                    </shadowData>
-                </bodyGraphicData>
-                <dessicatedBodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>1.6</drawSize>
-                </dessicatedBodyGraphicData>
-            </li>
-            <li>
-                <bodyGraphicData>
-                    <texPath>Things/Pawn/Animal/UnasA/RGUnasA</texPath>
-                    <drawSize>2.05</drawSize>
-                    <shadowData>
-                        <volume>(0.35, 0.35, 0.35)</volume>
-                        <offset>(0,0,-0.22)</offset>
-                    </shadowData>
-                </bodyGraphicData>
-                <dessicatedBodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>2.05</drawSize>
-                </dessicatedBodyGraphicData>
-            </li>
-        </lifeStages>
-    </PawnKindDef>
-
-    <!-- Man in Red -->
+    <!-- ==================== Man in Red ==================== -->
 
     <PawnKindDef>
         <defName>Rimgate_TreasureHunter</defName>
@@ -248,6 +142,8 @@
             </li>
         </skills>
     </PawnKindDef>
+
+    <!-- Boss man -->
 
     <PawnKindDef>
         <defName>Rimgate_TreasureHunterBoss</defName>

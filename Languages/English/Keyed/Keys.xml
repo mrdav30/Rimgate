@@ -343,6 +343,10 @@
 	<RG_AnalysisCatastrophicLabel>Analysis Failure: Data Corruption</RG_AnalysisCatastrophicLabel>
 	<RG_AnalysisCatastrophicText>Something went terribly wrong during the analysis. Energy readings spiked beyond containment thresholds, and the artifact destabilized before any useful data could be recovered. All collected telemetry has collapsed into incoherent noise.\n\nThe team learned nothing — except perhaps when to start running sooner.</RG_AnalysisCatastrophicText>
 
+	<!-- Biomaterial Recovery -->
+
+	<RG_BiomaterialRecoveryMessage_Failed>Failed to recover biomaterials from {0}.</RG_BiomaterialRecoveryMessage_Failed>
+
 	<!-- Notes -->
 
 	<RG_ScribbledNote1>Too late, offworlders. The treasure is gone, and so are we. Also, your door code was embarrassingly easy to guess.</RG_ScribbledNote1>

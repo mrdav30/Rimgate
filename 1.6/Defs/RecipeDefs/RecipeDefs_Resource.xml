@@ -502,4 +502,58 @@
 		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
+	<!--=============== Cortical Dampener Removal ====================-->
+
+	<RecipeDef>
+		<defName>Rimgate_RemoveCorticalDampenerImplant_Corpse</defName>
+		<label>Retrieve cortical dampener from corpse</label>
+		<description>Medically extract the cortical dampener from an Unas.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_CorticalDampener</ThingDef>
+		</descriptionHyperlinks>
+		<uiIconPath>Things/Item/Implant/RG_CorticalDampener</uiIconPath>
+
+		<jobString>extracting cortical dampener</jobString>
+		<workAmount>2000</workAmount>
+		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+		<workSkill>Medicine</workSkill>
+		<workSkillLearnFactor>10</workSkillLearnFactor>
+		<workerClass>Rimgate.RecipeWorker_ProcureImplantFromCorpse</workerClass>
+		<effectWorking>Surgery</effectWorking>
+		<soundWorking>Recipe_Surgery</soundWorking>
+
+		<skillRequirements>
+			<Medicine>5</Medicine>
+			<Crafting>5</Crafting>
+			<Intellectual>8</Intellectual>
+		</skillRequirements>
+
+		<researchPrerequisite>Bionics</researchPrerequisite>
+
+		<surgerySuccessChanceFactor>0.8</surgerySuccessChanceFactor>
+
+		<recipeUsers>
+			<li>FabricationBench</li>
+			<li>Rimgate_CompositionBench</li>
+		</recipeUsers>
+
+		<removesHediff>Rimgate_CorticalDampener</removesHediff>
+
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Corpse_Rimgate_Unas</li>
+					</thingDefs>
+					<disallowedSpecialFilters>
+						<li>AllowRotten</li>
+						<li>Rimgate_NoAnimalCorpseBiomaterialToProcure</li>
+					</disallowedSpecialFilters>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+
+	</RecipeDef>
+
 </Defs>

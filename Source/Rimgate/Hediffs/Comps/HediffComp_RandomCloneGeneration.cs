@@ -11,7 +11,6 @@ public class HediffComp_RandomCloneGeneration : HediffComp
     {
         base.CompPostPostAdd(dinfo);
         if (parent is not Hediff_Clone clone) return;
-        Random random = new();
-        clone.CloneGeneration = random.Next(0, 9999);
+        clone.CloneGeneration = new Random().Next(0, 9999);
     }
 }

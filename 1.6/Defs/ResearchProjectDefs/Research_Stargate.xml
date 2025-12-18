@@ -311,4 +311,47 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_CorticalDampenerHacking</defName>
+		<label>Cortical dampener hacking</label>
+		<description>Reverse-engineer the cortical dampener's neural interface to gain control over its effects and unlock its hidden potential.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>3000</baseCost>
+		<prerequisites>
+			<li>Bionics</li>
+		</prerequisites>
+
+		<researchViewX>0</researchViewX>
+		<researchViewY>3</researchViewY>
+
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<requiredAnalyzed>
+			<li>Rimgate_CorticalDampener</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Cortical Dampener</discoveredLetterTitle>
+		<discoveredLetterText>>Your researchers have successfully decoded the neural interface of a cortical dampener implant.\n\nBy understanding its mind-altering algorithms, they can now manipulate its effects—potentially unlocking new applications for this ancient technology.\n\nCaution is advised: tampering with neural implants carries inherent risks, both to the subject and the operator.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Cortical Dampener</li>
+				<li>subject->neural implant</li>
+				<li>subject->mind-altering device</li>
+
+				<li>subject_adj->Ancient</li>
+				<li>subject_adj->neural</li>
+				<li>subject_adj->mind-altering</li>
+
+				<li>subject_story->a neural implant designed to suppress higher cognition and enforce obedience</li>
+				<li>subject_story->a device that whispers calming lies to an overactive mind</li>
+				<li>subject_story->an artifact that bends thought patterns like light through a prism</li>
+
+				<li>subject_gerund->decoding neural suppression algorithms</li>
+				<li>subject_gerund->mapping synaptic interference patterns</li>
+				<li>subject_gerund->rewiring cognitive dampening subroutines</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
 </Defs>

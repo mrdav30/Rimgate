@@ -3,6 +3,7 @@
 
     <ThingDef Name="Rimgate_Unas" ParentName="AnimalThingBase">
         <defName>Rimgate_Unas</defName>
+        <thingClass>Rimgate.Pawn_Unas</thingClass>
         <label>Unas</label>
         <description>A towering, reptilian humanoid press-ganged by the Goa'uld for hard labor and shock troops. These Unas have been gene-edited and fitted with crude cortical dampeners to blunt higher cognition—cheap obedience over culture. Fierce, durable, and trainable, but quick to rage if mistreated.</description>
 
@@ -20,6 +21,7 @@
             <MeleeDodgeChance>15</MeleeDodgeChance>
             <PsychicSensitivity>0.75</PsychicSensitivity>
             <ToxicResistance>0.90</ToxicResistance>
+            <LeatherAmount>55</LeatherAmount>
             <MeatAmount>70</MeatAmount>
             <PainShockThreshold>100</PainShockThreshold>
             <InjuryHealingFactor>2</InjuryHealingFactor>
@@ -70,19 +72,20 @@
 
         <race>
             <mechEnabledWorkTypes>
-                <li>PlantCutting</li>
+                <li>Firefighter</li>
+                <li>Patient</li>
+                <li>BasicWorker</li>
+                <li>Hunting</li>
+                <li>Construction</li>
                 <li>Growing</li>
+                <li>PlantCutting</li>
                 <li>Mining</li>
                 <li>Hauling</li>
-                <li>Construction</li>
                 <li>Cleaning</li>
-                <li>Firefighter</li>
             </mechEnabledWorkTypes>
 
             <thinkTreeMain>Animal</thinkTreeMain>
             <intelligence>Animal</intelligence>
-
-            <intelligence>ToolUser</intelligence>
             <canOpenFactionlessDoors>true</canOpenFactionlessDoors>
 
             <body>Rimgate_UnasBody</body>
@@ -103,11 +106,14 @@
             <isImmuneToInfections>true</isImmuneToInfections>
 
             <specialTrainables>
-                <li MayRequire="Ludeon.RimWorld.Odyssey">Dig</li>
-                <li MayRequire="Ludeon.RimWorld.Odyssey">Forage</li>
+                <li MayRequire="Ludeon.RimWorld.Odyssey">WarTrumpet</li>
                 <li MayRequire="Ludeon.RimWorld.Odyssey">AttackTarget</li>
-                <li MayRequire="Ludeon.RimWorld.Odyssey">TerrorRoar</li>
             </specialTrainables>
+
+            <!--  hauling ability is handled by custom AI  -->
+            <untrainableTags>
+                <li>Haul</li>
+            </untrainableTags>
 
             <manhunterOnTameFailChance>0.25</manhunterOnTameFailChance>
             <manhunterOnDamageChance>0.45</manhunterOnDamageChance>
@@ -121,15 +127,15 @@
 
             <lifeStageAges>
                 <li>
-                    <def>AnimalBaby</def>
+                    <def>Rimgate_UnasBaby</def>
                     <minAge>0</minAge>
                 </li>
                 <li>
-                    <def>AnimalJuvenile</def>
+                    <def>Rimgate_UnasJuvenile</def>
                     <minAge>0.25</minAge>
                 </li>
                 <li>
-                    <def>AnimalAdult</def>
+                    <def>Rimgate_UnasAdult</def>
                     <minAge>0.5</minAge>
                     <soundWounded>Pawn_Iguana_Wounded</soundWounded>
                     <soundDeath>Pawn_Iguana_Death</soundDeath>
@@ -143,6 +149,11 @@
             </hediffGiverSets>
 
         </race>
+
+        <recipes>
+            <li>Rimgate_RemoveCorticalDampenerImplant</li>
+            <li>Rimgate_InstallCorticalCatalystImplant</li>
+        </recipes>
 
         <tradeTags>
             <li>AnimalExotic</li>

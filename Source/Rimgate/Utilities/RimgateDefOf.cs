@@ -53,6 +53,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_Clone;
     public static HediffDef Hediff_ClonedTracker;
     public static HediffDef Rimgate_ClonePodSickness;
+    public static HediffDef Rimgate_CorticalDampener;
     public static HediffDef Rimgate_Enduring;
     public static HediffDef Rimgate_KrintakSickness;
     public static HediffDef Rimgate_PouchDegeneration;

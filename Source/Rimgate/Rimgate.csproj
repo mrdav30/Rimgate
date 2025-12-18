@@ -341,6 +341,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_CloseStargate.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_Toggle.cs" />
     <Compile Include="AI\JobGivers\JobGiver_MaraudColony.cs" />
+    <Compile Include="AI\JobGivers\JobGiver_Unas.cs" />
     <Compile Include="AI\LordJobs\LordJob_MaraudColony.cs" />
     <Compile Include="AI\LordJobs\LordToil_MaraudColony.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_LoadContainer.cs" />
@@ -390,8 +391,13 @@
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
     <Compile Include="Comps\Comp_SymbioteHeritage.cs" />
+    <Compile Include="HarmonyPatches\Harmony_ITab_Pawn_Character_IsVisible.cs" />
     <Compile Include="HarmonyPatches\Harmony_Projectile_CheckForInterceptBetween.cs" />
     <Compile Include="HarmonyPatches\Harmony_Skyfaller_Tick.cs" />
+    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_ReplacesHediffs.cs" />
+    <Compile Include="Hediffs\Comps\HediffComp_ReplacesHediffs.cs" />
+    <Compile Include="Recipes\RecipeWorker_ProcureImplantFromCorpse.cs" />
+    <Compile Include="Recipes\SpecialThingFilterWorker_CanGetCorpseBiomaterial.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteKinship_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_HasNoSymbioteImplant.cs" />
@@ -451,6 +457,7 @@
     <Compile Include="Things\Building_SymbioteAmbushTrap.cs" />
     <Compile Include="Things\Building_SymbioteSpawningPool.cs" />
     <Compile Include="Things\Building_ZPMHousing.cs" />
+    <Compile Include="Things\Pawn_Unas.cs" />
     <Compile Include="Things\Thing_GoauldSymbiote.cs" />
     <Compile Include="UI\ITab_SymbiotePool.cs" />
     <Compile Include="UI\RimgateTex.cs" />

@@ -363,14 +363,14 @@
             <mechFixedSkillLevel>8</mechFixedSkillLevel>
             <lifeStageAges>
                 <li MayRequire="Ludeon.RimWorld.Biotech">
-                    <def>Rimgate_MechanoidFullyFormedCaravan</def>
+                    <def>Rimgate_MalpFullyFormedCaravan</def>
                     <minAge>0</minAge>
                     <soundWounded>Pawn_Mech_Tunneler_Wounded</soundWounded>
                     <soundDeath>Pawn_Mech_Tunneler_Death</soundDeath>
                     <soundCall>Pawn_Mech_Tunneler_Call</soundCall>
                 </li>
                 <li>
-                    <def>Rimgate_MechanoidFullyFormedCaravan</def>
+                    <def>Rimgate_MalpFullyFormedCaravan</def>
                     <minAge>100</minAge>
                     <soundWounded>Pawn_Mech_Tunneler_Wounded</soundWounded>
                     <soundDeath>Pawn_Mech_Tunneler_Death</soundDeath>

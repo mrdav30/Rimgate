@@ -132,7 +132,7 @@
         <defName>Rimgate_PushingCart</defName>
         <label>pushing a cart</label>
         <description>The strain of pushing a loaded cart reduces movement speed.</description>
-        <hediffClass>HediffWithComps</hediffClass>
+        <hediffClass>Hediff</hediffClass>
         <tendable>false</tendable>
         <stages>
             <!-- light -->
@@ -242,6 +242,94 @@
         </comps>
         <duplicationAllowed>false</duplicationAllowed>
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+    </HediffDef>
+
+    <!-- ==================== Cortical Dampener ==================== -->
+
+    <HediffDef>
+        <defName>Rimgate_CorticalDampener</defName>
+        <hediffClass>Hediff_Implant</hediffClass>
+        <label>cortical dampener</label>
+        <labelNoun>a cortical dampener</labelNoun>
+        <defaultLabelColor>(232, 56, 27)</defaultLabelColor>
+        <description>A crude neural implant designed to suppress higher cognitive functions and enforce obedience. Used by the Goa'uld to control Unas and other laborers, this device dulls critical thinking and emotional response, making the host more compliant but also more prone to rage when mistreated.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_CorticalDampener</ThingDef>
+        </descriptionHyperlinks>
+
+        <isBad>false</isBad>
+        <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+        <defaultInstallPart>Brain</defaultInstallPart>
+        <addedPartProps>
+            <solid>true</solid>
+        </addedPartProps>
+
+        <spawnThingOnRemoved>Rimgate_CorticalDampener</spawnThingOnRemoved>
+
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.95</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+
+    </HediffDef>
+
+    <!-- ==================== Cortical Catalyst ==================== -->
+
+    <HediffDef>
+        <defName>Rimgate_CorticalCatalyst</defName>
+        <hediffClass>Hediff_Implant</hediffClass>
+        <label>cortical catalyst</label>
+        <labelNoun>a cortical catalyst</labelNoun>
+        <defaultLabelColor>(232, 157, 27)</defaultLabelColor>
+        <description>A modified neural implant derived from the cortical dampener design. This version enhances cognitive function and allows for direct mental control by the user, unlocking latent abilities and heightened awareness. While it offers significant advantages, the implant can also lead to increased mental strain and occasional uncontrollable outbursts of power.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_CorticalCatalyst</ThingDef>
+        </descriptionHyperlinks>
+
+        <isBad>false</isBad>
+        <priceImpact>true</priceImpact>
+        <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+        <defaultInstallPart>Brain</defaultInstallPart>
+        <addedPartProps>
+            <solid>true</solid>
+        </addedPartProps>
+
+        <spawnThingOnRemoved>Rimgate_CorticalCatalyst</spawnThingOnRemoved>
+
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>0.10</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+
+        <comps>
+            <li Class="VEF.AnimalBehaviours.HediffCompProperties_Draftable">
+                <makeNonFleeingToo>true</makeNonFleeingToo>
+            </li>
+            <li Class="Rimgate.HediffCompProperties_ReplacesHediffs">
+                <hediffDefs>
+                    <li>Rimgate_CorticalDampener</li>
+                </hediffDefs>
+                <spawnAnyThings>true</spawnAnyThings>
+            </li>
+        </comps>
     </HediffDef>
 
 </Defs>

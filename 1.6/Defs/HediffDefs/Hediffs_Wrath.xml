@@ -5,7 +5,7 @@
         <defName>Rimgate_WraithEssenceDeficit</defName>
         <label>Essence deficit</label>
         <description>The Wraith’s parasitic reserve is running dry. Strength frays, focus slips, and the body demands stolen life. Without fresh essence, collapse is only a matter of time.</description>
-        <hediffClass>HediffWithComps</hediffClass>
+        <hediffClass>Hediff</hediffClass>
         <tendable>false</tendable>
         <isBad>true</isBad>
         <stages>

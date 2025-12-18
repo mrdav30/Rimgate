@@ -501,7 +501,7 @@
 			<li>
 				<debugLabel>Jaffa Anubis mark</debugLabel>
 				<texPaths>
-					<li>Things/Item/Implants/Anubis/RGJaffaAnubisForeheadSymbol</li>
+					<li>Things/Item/Implant/ForeheadSymbols/Anubis/RGJaffaAnubisForeheadSymbol</li>
 				</texPaths>
 				<workerClass>PawnRenderNodeWorker_Head</workerClass>
 				<parentTagDef>Head</parentTagDef>
@@ -544,7 +544,7 @@
 			<li>
 				<debugLabel>Prime Anubis forehead symbol</debugLabel>
 				<texPaths>
-					<li>Things/Item/Implants/Anubis/RGAnubisPrimeForeheadSymbol</li>
+					<li>Things/Item/Implant/ForeheadSymbols/Anubis/RGAnubisPrimeForeheadSymbol</li>
 				</texPaths>
 				<workerClass>PawnRenderNodeWorker_Head</workerClass>
 				<parentTagDef>Head</parentTagDef>
@@ -590,7 +590,7 @@
 			<li>
 				<debugLabel>Jaffa Apophis mark</debugLabel>
 				<texPaths>
-					<li>Things/Item/Implants/Apophis/RGJaffaApophisForeheadSymbol</li>
+					<li>Things/Item/Implant/ForeheadSymbols/Apophis/RGJaffaApophisForeheadSymbol</li>
 				</texPaths>
 				<workerClass>PawnRenderNodeWorker_Head</workerClass>
 				<parentTagDef>Head</parentTagDef>
@@ -634,7 +634,7 @@
 			<li>
 				<debugLabel>Prime Apophis mark</debugLabel>
 				<texPaths>
-					<li>Things/Item/Implants/Apophis/RGApophisPrimeForeheadSymbol</li>
+					<li>Things/Item/Implant/ForeheadSymbols/Apophis/RGApophisPrimeForeheadSymbol</li>
 				</texPaths>
 				<workerClass>PawnRenderNodeWorker_Head</workerClass>
 				<parentTagDef>Head</parentTagDef>
@@ -679,7 +679,7 @@
 			<li>
 				<debugLabel>Jaffa Ra mark</debugLabel>
 				<texPaths>
-					<li>Things/Item/Implants/Ra/RGJaffaRaForeheadSymbol</li>
+					<li>Things/Item/Implant/ForeheadSymbols/Ra/RGJaffaRaForeheadSymbol</li>
 				</texPaths>
 				<workerClass>PawnRenderNodeWorker_Head</workerClass>
 				<parentTagDef>Head</parentTagDef>
@@ -722,7 +722,7 @@
 			<li>
 				<debugLabel>Prime Ra mark</debugLabel>
 				<texPaths>
-					<li>Things/Item/Implants/Ra/RGJaffaRaPrimeForeheadSymbol</li>
+					<li>Things/Item/Implant/ForeheadSymbols/Ra/RGJaffaRaPrimeForeheadSymbol</li>
 				</texPaths>
 				<workerClass>PawnRenderNodeWorker_Head</workerClass>
 				<parentTagDef>Head</parentTagDef>
