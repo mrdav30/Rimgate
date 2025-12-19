@@ -394,8 +394,15 @@
     <Compile Include="HarmonyPatches\Harmony_ITab_Pawn_Character_IsVisible.cs" />
     <Compile Include="HarmonyPatches\Harmony_Projectile_CheckForInterceptBetween.cs" />
     <Compile Include="HarmonyPatches\Harmony_Skyfaller_Tick.cs" />
+    <Compile Include="Hediffs\Comps\HediffComp_PersistentMentalState.cs" />
+    <Compile Include="Hediffs\Comps\HediffComp_SurgeryInspectableBiosignature.cs" />
+    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_PersistentMentalState.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_ReplacesHediffs.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_ReplacesHediffs.cs" />
+    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SurgeryInspectionBiosignature.cs" />
+    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_Regeneration.cs" />
+    <Compile Include="Hediffs\Comps\HediffComp_Regeneration.cs" />
+    <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />
     <Compile Include="Recipes\RecipeWorker_ProcureImplantFromCorpse.cs" />
     <Compile Include="Recipes\SpecialThingFilterWorker_CanGetCorpseBiomaterial.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
@@ -540,6 +547,7 @@
     <Compile Include="UI\PlaceWorker_ResonanceIdol.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
     <Compile Include="Utilities\BiologyUtil.cs" />
+    <Compile Include="Utilities\MentalStateUtil.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
     <Compile Include="Utilities\ResearchUtil.cs" />
     <Compile Include="Utilities\RimgateFactionOf.cs" />

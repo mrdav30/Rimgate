@@ -614,6 +614,73 @@
         <rotDestroys>true</rotDestroys>
       </li>
     </comps>
+  </ThingDef> B <!-- ==================== Biosignatures ==================== -->
+
+  <ThingDef Name="Rimgate_BiosignatureBase" Abstract="true">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+
+    <altitudeLayer>Item</altitudeLayer>
+    <useHitPoints>true</useHitPoints>
+    <isUnfinishedThing>true</isUnfinishedThing>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <selectable>true</selectable>
+    <tradeability>None</tradeability>
+    <drawerType>MapMeshOnly</drawerType>
+
+    <techLevel>Ultra</techLevel>
+    <statBases>
+      <MarketValue>0</MarketValue>
+      <MaxHitPoints>50</MaxHitPoints>
+      <DeteriorationRate>2.0</DeteriorationRate>
+      <Beauty>-8</Beauty>
+      <Mass>0.2</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>14</pathCost>
+
+    <thingCategories>
+      <li>Artifacts</li>
+    </thingCategories>
+
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+  </ThingDef>
+
+  <!-- Unas Biosignature -->
+
+  <ThingDef ParentName="Rimgate_BiosignatureBase">
+    <defName>Rimgate_UnasBiosignature</defName>
+
+    <label>Unas biosignature</label>
+    <description>A genetic biosignature that can be found when surgically inspecting an Unas. After analysis, it will unlock new research options related to Unas biology and potential applications.</description>
+
+    <graphicData>
+      <texPath>Things/Item/Health/HealthItem</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+
+    <comps>
+      <li Class="CompProperties_CompAnalyzableUnlockResearch">
+        <analysisID>1001000</analysisID>
+
+        <!-- Analyzable -->
+
+        <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+        <completedLetterLabel>Unas biosignature studied: {RESEARCH} unlocked</completedLetterLabel>
+        <completedLetter>By surgically inspecting the biology of an Unas, {PAWN_labelShort} has acquired the insight needed for {RESEARCH} research.\n\nYour researchers can now use research benches to begin adapting the findings.</completedLetter>
+        <completedLetterDef>PositiveEvent</completedLetterDef>
+
+        <!-- Interactable -->
+
+        <activateTexPath>UI/Icons/Study</activateTexPath>
+
+      </li>
+    </comps>
   </ThingDef>
 
 </Defs>

@@ -88,7 +88,7 @@
         <comps>
             <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
                 <analysisID>1000310</analysisID>
-                <requiresResearchDef>MedicineProduction</requiresResearchDef>
+                <requiresResearchDef>Rimgate_GoauldBasic</requiresResearchDef>
 
                 <!-- Analyzable -->
 

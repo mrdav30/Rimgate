@@ -168,6 +168,8 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- Turrets -->
+
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTurretsTierOne</defName>
 		<label>Staff Cannon</label>
@@ -230,8 +232,6 @@
 		<baseCost>5000</baseCost>
 		<techLevel>Ultra</techLevel>
 		<prerequisites>
-			<li>MedicineProduction</li>
-			<li>SterileMaterials</li>
 			<li>Rimgate_GoauldBasic</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>

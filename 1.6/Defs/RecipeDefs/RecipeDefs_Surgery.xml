@@ -11,6 +11,7 @@
 			<ThingDef>Rimgate_CorticalDampener</ThingDef>
 			<HediffDef>Rimgate_CorticalDampener</HediffDef>
 		</descriptionHyperlinks>
+		<uiIconPath>Things/Item/Implant/RG_CorticalDampener</uiIconPath>
 
 		<workerClass>Recipe_RemoveImplant</workerClass>
 		<jobString>Removing cortical dampener.</jobString>
@@ -23,7 +24,7 @@
 			<Intellectual>5</Intellectual>
 		</skillRequirements>
 
-		<researchPrerequisite>Bionics</researchPrerequisite>
+		<researchPrerequisite>Rimgate_UnasBiology</researchPrerequisite>
 		<removesHediff>Rimgate_CorticalDampener</removesHediff>
 
 		<ingredients>
@@ -94,6 +95,53 @@
 			<thingDefs>
 				<li>MedicineUltratech</li>
 				<li>Rimgate_CorticalCatalyst</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<!--=============== Cortical Catalyst Mk2 Install ====================-->
+
+	<RecipeDef ParentName="SurgeryFlesh">
+		<defName>Rimgate_InstallCorticalCatalystImplant_Mk2</defName>
+		<label>flash cortical catalyst (Mk2 protocol)</label>
+		<description>Modifies the firmware of an installed cortical catalyst implant to unlock bioregeneration of lost limbs.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_CorticalCatalyst</ThingDef>
+			<HediffDef>Rimgate_CorticalCatalyst_Mk2</HediffDef>
+		</descriptionHyperlinks>
+		<uiIconPath>Things/Item/Implant/RG_CorticalCatalyst</uiIconPath>
+
+		<workerClass>Rimgate.RecipeWorker_ModifyCatalyst</workerClass>
+		<jobString>Patching catalyst firmware.</jobString>
+		<workAmount>2500</workAmount>
+		<surgerySuccessChanceFactor>2.5</surgerySuccessChanceFactor>
+		<anesthetize>true</anesthetize>
+		<skillRequirements>
+			<Medicine>8</Medicine>
+			<Crafting>5</Crafting>
+			<Intellectual>5</Intellectual>
+		</skillRequirements>
+
+		<appliedOnFixedBodyParts>
+			<li>Brain</li>
+		</appliedOnFixedBodyParts>
+
+		<researchPrerequisite>Rimgate_UnasBioregeneration</researchPrerequisite>
+		<addsHediff>Rimgate_CorticalCatalyst_Mk2</addsHediff>
+
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineUltratech</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>MedicineUltratech</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 	</RecipeDef>

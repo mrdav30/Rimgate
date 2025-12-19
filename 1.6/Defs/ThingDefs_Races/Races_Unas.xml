@@ -153,6 +153,7 @@
         <recipes>
             <li>Rimgate_RemoveCorticalDampenerImplant</li>
             <li>Rimgate_InstallCorticalCatalystImplant</li>
+            <li>Rimgate_InstallCorticalCatalystImplant_Mk2</li>
         </recipes>
 
         <tradeTags>
@@ -162,20 +163,36 @@
 
     <ThingDef ParentName="Rimgate_Unas">
         <defName>Rimgate_Unas_BerserkerRace</defName>
+        <label>berserk Unas</label>
+        <description>A towering, reptilian humanoid press-ganged by the Goa'uld for hard labor and shock troops. These Unas have been gene-edited and fitted with crude cortical dampeners to blunt higher cognition—cheap obedience over culture. Fierce, durable, and trainable, but quick to rage if mistreated.\n\nThis particular specimen has entered a permanent berserk state, making it even more dangerous and unpredictable in combat.</description>
         <statBases>
             <MoveSpeed>5.0</MoveSpeed>
             <MeleeDodgeChance>20</MeleeDodgeChance>
+            <Wildness>1</Wildness>
+            <MinimumHandlingSkill>20</MinimumHandlingSkill>
         </statBases>
+
         <race>
             <packAnimal>false</packAnimal>
             <baseHealthScale>4</baseHealthScale>
-        </race>
 
-        <comps>
-            <li Class="Rimgate.CompProperties_PersistentMentalState">
-                <mentalState>BerserkPermanent</mentalState>
-            </li>
-        </comps>
+            <trainability>None</trainability>
+            <disableMating>true</disableMating>
+            <alwaysAwake>true</alwaysAwake>
+            <alwaysViolent>true</alwaysViolent>
+            <needsRest>false</needsRest>
+
+            <lifeStageAges Inherit="false">
+                <li>
+                    <def>Rimgate_UnasAdult</def>
+                    <minAge>0</minAge>
+                    <soundWounded>Pawn_Iguana_Wounded</soundWounded>
+                    <soundDeath>Pawn_Iguana_Death</soundDeath>
+                    <soundCall>Pawn_Iguana_Call</soundCall>
+                    <soundAngry>Pawn_Iguana_Angry</soundAngry>
+                </li>
+            </lifeStageAges>
+        </race>
     </ThingDef>
 
 </Defs>

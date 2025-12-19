@@ -1,6 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
+	<!-- ==================== Symbiote Withdrawal ==================== -->
+
+	<HediffDef>
+		<defName>Rimgate_SymbioteWithdrawal</defName>
+		<label>symbiote withdrawal</label>
+		<description>With the symbiote removed, the host's body begins to crash—systems falter, strength fades, and paranoia skyrockets. Symptoms include fatigue, tremors, organ failure, rapid aging, and regretting life choices involving glowing eyes.\n\nWithout an artificial replacement like tretonin—or another symbiote—this condition is usually terminal.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_Tretonin</ThingDef>
+		</descriptionHyperlinks>
+		<hediffClass>HediffWithComps</hediffClass>
+		<chronic>true</chronic>
+		<minSeverity>0.001</minSeverity>
+		<initialSeverity>0.01</initialSeverity>
+		<lethalSeverity>1</lethalSeverity>
+		<everCurableByItem>false</everCurableByItem>
+		<tendable>true</tendable>
+		<comps>
+			<li Class="HediffCompProperties_Immunizable">
+				<severityPerDayNotImmune>0.25</severityPerDayNotImmune>
+			</li>
+			<li Class="HediffCompProperties_TendDuration">
+				<severityPerDayTended>-0.8</severityPerDayTended>
+				<baseTendDurationHours>23</baseTendDurationHours>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>minor</label>
+				<forgetMemoryThoughtMtbDays>7</forgetMemoryThoughtMtbDays>
+				<statFactors>
+					<RestFallRateFactor>2</RestFallRateFactor>
+					<ImmunityGainSpeed>0</ImmunityGainSpeed>
+					<InjuryHealingFactor>0</InjuryHealingFactor>
+				</statFactors>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>BloodFiltration</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>extreme</label>
+				<minSeverity>0.5</minSeverity>
+				<lifeThreatening>true</lifeThreatening>
+				<deathMtbDays>15</deathMtbDays>
+				<painOffset>0.5</painOffset>
+				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
+				<statFactors>
+					<RestFallRateFactor>5</RestFallRateFactor>
+					<ImmunityGainSpeed>0</ImmunityGainSpeed>
+					<InjuryHealingFactor>0</InjuryHealingFactor>
+				</statFactors>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.2</offset>
+					</li>
+					<li>
+						<capacity>BloodFiltration</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>BloodPumping</capacity>
+						<offset>-0.15</offset>
+					</li>
+					<li>
+						<capacity>Metabolism</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Breathing</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<duplicationAllowed>false</duplicationAllowed>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+	</HediffDef>
+
     <!-- =============== Clones =============== -->
 
     <HediffDef>
@@ -37,91 +122,6 @@
                 <compClass>Rimgate.HediffComp_RandomCloneGeneration</compClass>
             </li>
         </comps>
-        <duplicationAllowed>false</duplicationAllowed>
-        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
-    </HediffDef>
-
-    <HediffDef ParentName="DiseaseBase">
-        <defName>Rimgate_SystemShock</defName>
-        <label>clone activation shock</label>
-        <labelNoun>activation shock</labelNoun>
-        <description>The patient's nervous system is acclimating to activation and overwhelming sensory inputs, limiting coherent cognition.</description>
-        <comps>
-            <li Class="HediffCompProperties_Disappears">
-                <disappearsAfterTicks>
-                    <min>20000</min>
-                    <max>35000</max>
-                </disappearsAfterTicks>
-            </li>
-        </comps>
-        <stages>
-            <li>
-                <capMods>
-                    <li>
-                        <capacity>Consciousness</capacity>
-                        <setMax>0.1</setMax>
-                    </li>
-                </capMods>
-            </li>
-        </stages>
-        <duplicationAllowed>false</duplicationAllowed>
-        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
-    </HediffDef>
-
-    <HediffDef ParentName="DiseaseBase">
-        <defName>Rimgate_ClonePodSickness</defName>
-        <label>clone pod sickness</label>
-        <description>After-effects of using a cloning pod. The process suspends and replaces many bodily functions in order to prevent aging and death. Upon exiting, the body takes time to restart and rebalance its natural metabolic processes and purge the agents that assist with the cloning process. While this is ongoing, the patient suffers from nausea, dizziness, and a sense of fuzziness in the mind - amplifieds further from the strain of cloning preparation.</description>
-        <makesSickThought>true</makesSickThought>
-        <comps>
-            <li Class="HediffCompProperties_Disappears">
-                <disappearsAfterTicks>
-                    <min>10000</min>
-                    <max>40000</max>
-                </disappearsAfterTicks>
-            </li>
-        </comps>
-        <stages>
-            <li>
-                <vomitMtbDays>0.125</vomitMtbDays>
-                <capMods>
-                    <li>
-                        <capacity>Consciousness</capacity>
-                        <postFactor>0.8</postFactor>
-                    </li>
-                    <li>
-                        <capacity>Moving</capacity>
-                        <postFactor>0.5</postFactor>
-                    </li>
-                    <li>
-                        <capacity>Manipulation</capacity>
-                        <postFactor>0.5</postFactor>
-                    </li>
-                </capMods>
-            </li>
-        </stages>
-        <duplicationAllowed>false</duplicationAllowed>
-        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
-    </HediffDef>
-
-    <HediffDef ParentName="DiseaseBase">
-        <defName>Rimgate_Enduring</defName>
-        <label>enduring</label>
-        <description>Cloned to be slightly faster, have improved vision and reflexes, and are more resilient.</description>
-        <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
-        <isBad>false</isBad>
-        <stages>
-            <li>
-                <painOffset>-0.5</painOffset>
-                <statOffsets>
-                    <MeleeHitChance>2</MeleeHitChance>
-                    <MeleeDodgeChance>2</MeleeDodgeChance>
-                    <ShootingAccuracyPawn>2</ShootingAccuracyPawn>
-                    <MoveSpeed>1</MoveSpeed>
-                    <InjuryHealingFactor>1.5</InjuryHealingFactor>
-                </statOffsets>
-            </li>
-        </stages>
         <duplicationAllowed>false</duplicationAllowed>
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
@@ -244,90 +244,66 @@
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
-    <!-- ==================== Cortical Dampener ==================== -->
+    <!-- =============== Regenerating Tissue =============== -->
 
     <HediffDef>
-        <defName>Rimgate_CorticalDampener</defName>
-        <hediffClass>Hediff_Implant</hediffClass>
-        <label>cortical dampener</label>
-        <labelNoun>a cortical dampener</labelNoun>
-        <defaultLabelColor>(232, 56, 27)</defaultLabelColor>
-        <description>A crude neural implant designed to suppress higher cognitive functions and enforce obedience. Used by the Goa'uld to control Unas and other laborers, this device dulls critical thinking and emotional response, making the host more compliant but also more prone to rage when mistreated.</description>
-        <descriptionHyperlinks>
-            <ThingDef>Rimgate_CorticalDampener</ThingDef>
-        </descriptionHyperlinks>
+        <defName>Rimgate_RegeneratingTissue</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <label>regenerating</label>
+        <labelNoun>regenerating tissue</labelNoun>
+        <defaultLabelColor>(220,200,180)</defaultLabelColor>
+        <description>Fresh regrown tissue. It works, but is fragile and painful while it stabilizes.</description>
 
         <isBad>false</isBad>
-        <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
-        <defaultInstallPart>Brain</defaultInstallPart>
-        <addedPartProps>
-            <solid>true</solid>
-        </addedPartProps>
+        <tendable>false</tendable>
+        <everCurableByItem>false</everCurableByItem>
+        <makesSickThought>false</makesSickThought>
 
-        <spawnThingOnRemoved>Rimgate_CorticalDampener</spawnThingOnRemoved>
+        <minSeverity>0</minSeverity>
+        <maxSeverity>99</maxSeverity>
 
         <stages>
             <li>
-                <capMods>
-                    <li>
-                        <capacity>Consciousness</capacity>
-                        <setMax>0.95</setMax>
-                    </li>
-                </capMods>
+                <!-- light, temporary penalties; tune as desired -->
+                <painOffset>0.02</painOffset>
+                <statFactors>
+                    <MoveSpeed>0.95</MoveSpeed>
+                    <WorkSpeedGlobal>0.95</WorkSpeedGlobal>
+                </statFactors>
             </li>
         </stages>
 
-        <duplicationAllowed>false</duplicationAllowed>
-        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
-
-    </HediffDef>
-
-    <!-- ==================== Cortical Catalyst ==================== -->
-
-    <HediffDef>
-        <defName>Rimgate_CorticalCatalyst</defName>
-        <hediffClass>Hediff_Implant</hediffClass>
-        <label>cortical catalyst</label>
-        <labelNoun>a cortical catalyst</labelNoun>
-        <defaultLabelColor>(232, 157, 27)</defaultLabelColor>
-        <description>A modified neural implant derived from the cortical dampener design. This version enhances cognitive function and allows for direct mental control by the user, unlocking latent abilities and heightened awareness. While it offers significant advantages, the implant can also lead to increased mental strain and occasional uncontrollable outbursts of power.</description>
-        <descriptionHyperlinks>
-            <ThingDef>Rimgate_CorticalCatalyst</ThingDef>
-        </descriptionHyperlinks>
-
-        <isBad>false</isBad>
-        <priceImpact>true</priceImpact>
-        <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
-        <defaultInstallPart>Brain</defaultInstallPart>
-        <addedPartProps>
-            <solid>true</solid>
-        </addedPartProps>
-
-        <spawnThingOnRemoved>Rimgate_CorticalCatalyst</spawnThingOnRemoved>
-
-        <stages>
-            <li>
-                <capMods>
-                    <li>
-                        <capacity>Consciousness</capacity>
-                        <offset>0.10</offset>
-                    </li>
-                </capMods>
-            </li>
-        </stages>
-
-        <duplicationAllowed>false</duplicationAllowed>
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 
         <comps>
-            <li Class="VEF.AnimalBehaviours.HediffCompProperties_Draftable">
-                <makeNonFleeingToo>true</makeNonFleeingToo>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-8</severityPerDay>
+                <showDaysToRecover>true</showDaysToRecover>
             </li>
-            <li Class="Rimgate.HediffCompProperties_ReplacesHediffs">
-                <hediffDefs>
-                    <li>Rimgate_CorticalDampener</li>
-                </hediffDefs>
-                <spawnAnyThings>true</spawnAnyThings>
+        </comps>
+    </HediffDef>
+
+    <!-- ==================== Una Biosignature ==================== -->
+
+    <HediffDef>
+        <defName>Rimgate_UnasBiosignature</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <label>Unas biosignature (hidden)</label>
+        <description>A unique biosignature implant characteristic of the Unas species, allowing for specialized tracking and identification.</description>
+
+        <isBad>false</isBad>
+        <everCurableByItem>false</everCurableByItem>
+
+        <stages>
+            <li>
+                <becomeVisible>false</becomeVisible>
+            </li>
+        </stages>
+
+        <comps>
+            <li Class="Rimgate.HediffCompProperties_SurgeryInspectionBiosignature">
+                <biosignatureThingDef>Rimgate_UnasBiosignature</biosignatureThingDef>
+                <preventLetterIfPreviouslyDetected>true</preventLetterIfPreviouslyDetected>
             </li>
         </comps>
     </HediffDef>

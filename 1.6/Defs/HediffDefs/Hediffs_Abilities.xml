@@ -13,7 +13,7 @@
         <isBad>true</isBad>
         <comps>
             <li Class="HediffCompProperties_SeverityPerDay">
-                <severityPerDay>-0.10</severityPerDay> <!-- Passive health drain -->
+                <severityPerDay>-0.10</severityPerDay>
             </li>
             <li Class="HediffCompProperties_Disappears">
                 <disappearsAfterTicks>120000</disappearsAfterTicks> <!-- 2 days -->

@@ -345,7 +345,9 @@
 
 	<!-- Biomaterial Recovery -->
 
+	<RG_BiomaterialRecoveryMessage_Nothing>No biomaterials recovered from {0}.</RG_BiomaterialRecoveryMessage_Nothing>
 	<RG_BiomaterialRecoveryMessage_Failed>Failed to recover biomaterials from {0}.</RG_BiomaterialRecoveryMessage_Failed>
+	<RG_BiomaterialRecoveryMessage_Procured>Procured {0} from {1}.</RG_BiomaterialRecoveryMessage_Procured>
 
 	<!-- Notes -->
 

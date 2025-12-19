@@ -20,6 +20,9 @@
 
         <startingHediffs>
             <li>
+                <def>Rimgate_UnasBiosignature</def>
+            </li>
+            <li>
                 <def>Rimgate_CorticalDampener</def>
             </li>
         </startingHediffs>
@@ -80,7 +83,7 @@
                 <color>(150,170,130)</color>
             </li>
             <li>
-                 <texPath>Things/Pawn/Animal/Unas/RGUnasC</texPath>
+                <texPath>Things/Pawn/Animal/Unas/RGUnasC</texPath>
                 <color>(110,120,135)</color>
             </li>
             <li>
@@ -115,7 +118,7 @@
             <li>
                 <texPath>Things/Pawn/Animal/Unas/RGUnasE</texPath>
             </li>
-             <li>
+            <li>
                 <texPath>Things/Pawn/Animal/Unas/RGUnasE</texPath>
                 <color>(96,145,120)</color>
             </li>
@@ -176,7 +179,7 @@
                     <texPath>Things/Pawn/Animal/Unas/RGUnasA</texPath>
                     <shaderType>CutoutComplex</shaderType>
                     <color>(126,177,161)</color>
-                    <drawSize>1.2</drawSize>
+                    <drawSize>1.4</drawSize>
                     <shadowData>
                         <volume>(0.25, 0.25, 0.25)</volume>
                         <offset>(0,0,-0.2)</offset>
@@ -200,7 +203,7 @@
                 </bodyGraphicData>
                 <dessicatedBodyGraphicData>
                     <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>1.35</drawSize>
+                    <drawSize>1.1</drawSize>
                 </dessicatedBodyGraphicData>
             </li>
         </lifeStages>
@@ -214,35 +217,59 @@
         <combatPower>240</combatPower>
         <ecoSystemWeight>0.5</ecoSystemWeight>
 
+        <startingHediffs>
+            <li>
+                <def>Rimgate_MalfunctioningDampener</def>
+            </li>
+        </startingHediffs>
+
+        <alternateGraphicChance>0.99</alternateGraphicChance>
+        <alternateGraphics>
+            <li>
+                <!-- swamp green -->
+                <color>(96,145,120)</color>
+            </li>
+            <li>
+                <!-- pale olive -->
+                <color>(150,170,130)</color>
+            </li>
+            <li>
+                <!-- slate -->
+                <color>(110,120,135)</color>
+            </li>
+            <li>
+                <!-- sand/tan -->
+                <color>(160,140,110)</color>
+            </li>
+            <li>
+                <!-- brown -->
+                <color>(130,110,100)</color>
+            </li>
+            <li>
+                <!-- blue -->
+                <color>(140,160,180)</color>
+            </li>
+            <li>
+                <!-- reddish brown -->
+                <color>(180,160,140)</color>
+            </li>
+            <li>
+                <!-- dusty rose -->
+                <color>(170,130,120)</color>
+            </li>
+            <li>
+                <!-- light tan -->
+                <color>(200,180,160)</color>
+            </li>
+        </alternateGraphics>
+
         <lifeStages>
             <li>
                 <bodyGraphicData>
                     <texPath>Things/Pawn/Animal/Unas/RGUnasBeserk</texPath>
-                    <drawSize>1.2</drawSize>
-                </bodyGraphicData>
-                <dessicatedBodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>1.2</drawSize>
-                </dessicatedBodyGraphicData>
-            </li>
-            <li>
-                <bodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGUnasBeserk</texPath>
                     <drawSize>1.6</drawSize>
-                    <shadowData>
-                        <volume>(0.25, 0.25, 0.25)</volume>
-                        <offset>(0,0,-0.2)</offset>
-                    </shadowData>
-                </bodyGraphicData>
-                <dessicatedBodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>1.6</drawSize>
-                </dessicatedBodyGraphicData>
-            </li>
-            <li>
-                <bodyGraphicData>
-                    <texPath>Things/Pawn/Animal/Unas/RGUnasBeserk</texPath>
-                    <drawSize>2.05</drawSize>
+                    <shaderType>CutoutComplex</shaderType>
+                    <color>(126,177,161)</color>
                     <shadowData>
                         <volume>(0.35, 0.35, 0.35)</volume>
                         <offset>(0,0,-0.22)</offset>
@@ -250,7 +277,7 @@
                 </bodyGraphicData>
                 <dessicatedBodyGraphicData>
                     <texPath>Things/Pawn/Animal/Unas/RGDessicatedUnas</texPath>
-                    <drawSize>2.05</drawSize>
+                    <drawSize>1.4</drawSize>
                 </dessicatedBodyGraphicData>
             </li>
         </lifeStages>

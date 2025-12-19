@@ -21,20 +21,34 @@ public class RecipeWorker_ProcureImplantFromCorpse : RecipeWorker
             || recipeDef.removesHediff == null) return;
 
         var hediff = corpse.InnerPawn?.GetHediffOf(recipeDef.removesHediff);
-        var spawnDef = hediff?.def.spawnThingOnRemoved;
-        if (hediff == null || spawnDef == null) return;
+        if (hediff == null) return;
 
-        var successChance = recipeDef.surgerySuccessChanceFactor;
-        if (successChance < 1 && new Random().NextDouble() > successChance)
+
+        var spawnDef = hediff.def.spawnThingOnRemoved;
+        if (spawnDef == null)
         {
-            Messages.Message("RG_BiomaterialRecoveryMessage_Failed".Translate(corpse.Label),
+            Messages.Message("RG_BiomaterialRecoveryMessage_Nothing".Translate(corpse.LabelShort),
                 new TargetInfo(corpse.Position, corpse.Map),
-                MessageTypeDefOf.NegativeEvent);
-            return;
+                MessageTypeDefOf.NeutralEvent);
+        }
+        else
+        {
+            if (!Rand.Chance(recipeDef.surgerySuccessChanceFactor))
+            {
+                Messages.Message("RG_BiomaterialRecoveryMessage_Failed".Translate(corpse.LabelShort),
+                    new TargetInfo(corpse.Position, corpse.Map),
+                    MessageTypeDefOf.NegativeEvent);
+                return;
+            }
+
+
+            var thing = ThingMaker.MakeThing(spawnDef);
+            Messages.Message("RG_BiomaterialRecoveryMessage_Procured".Translate(thing.LabelShort, corpse.LabelShort),
+                new TargetInfo(corpse.Position, corpse.Map),
+                MessageTypeDefOf.PositiveEvent);
+            GenPlace.TryPlaceThing(thing, corpse.Position, corpse.Map, ThingPlaceMode.Near);
         }
 
-        var thing = ThingMaker.MakeThing(spawnDef);
-        GenPlace.TryPlaceThing(thing, corpse.Position, corpse.Map, ThingPlaceMode.Near);
         corpse.InnerPawn.RemoveHediff(hediff);
     }
 }

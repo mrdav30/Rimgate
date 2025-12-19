@@ -513,7 +513,7 @@
 		</descriptionHyperlinks>
 		<uiIconPath>Things/Item/Implant/RG_CorticalDampener</uiIconPath>
 
-		<jobString>extracting cortical dampener</jobString>
+		<jobString>Extracting cortical dampener.</jobString>
 		<workAmount>2000</workAmount>
 		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
@@ -528,7 +528,7 @@
 			<Intellectual>8</Intellectual>
 		</skillRequirements>
 
-		<researchPrerequisite>Bionics</researchPrerequisite>
+		<researchPrerequisite>Rimgate_UnasBiology</researchPrerequisite>
 
 		<surgerySuccessChanceFactor>0.8</surgerySuccessChanceFactor>
 

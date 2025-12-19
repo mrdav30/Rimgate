@@ -463,7 +463,7 @@ internal static class CloneUtility
             pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
             pawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
             if (cloneType == CloneType.Enhanced)
-                pawn.health.AddHediff(RimgateDefOf.Rimgate_Enduring);
+                pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonedEnduring);
         }
 
         if (innerPawn.mutant != null)
