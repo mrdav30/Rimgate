@@ -248,7 +248,7 @@
 		<casualInterruptible>true</casualInterruptible>
 	</JobDef>
 
-	<!-- Symbiote -->
+	<!-- =============== Symbiote =============== -->
 
 	<JobDef>
 		<defName>UseSymbiote</defName>
@@ -257,5 +257,13 @@
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 
+	<!-- =============== Biomaterials =============== -->
+
+	<JobDef>
+		<defName>Rimgate_RecoverBiomaterialFromCorpse</defName>
+		<driverClass>Rimgate.JobDriver_RecoverBiomaterialFromCorpse</driverClass>
+		<reportString>recovering biomaterials from TargetA.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
 
 </Defs>

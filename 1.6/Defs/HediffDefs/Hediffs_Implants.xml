@@ -497,7 +497,7 @@
         <label>cortical catalyst Mk2</label>
         <labelNoun>a cortical catalyst</labelNoun>
         <defaultLabelColor>(232, 157, 27)</defaultLabelColor>
-        <description>A second-stage catalyst rewrite that flips on dormant regrowth pathways. Missing parts can return over time—usually with a few days of tender tissue and grumpy behavior.\n\nNote: Remove the implant and the regrowth protocol resets (the implant “forgets” everything, like it’s running on Ancient firmware).</description>
+        <description>A second-stage catalyst rewrite that flips on dormant regrowth pathways. Missing parts can return over time—usually with a few days of tender tissue and grumpy behavior.\n\nNote: Upon removal, the regrowth protocol firmware resets and the implant "forgets" everything.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_CorticalCatalyst</ThingDef>
         </descriptionHyperlinks>

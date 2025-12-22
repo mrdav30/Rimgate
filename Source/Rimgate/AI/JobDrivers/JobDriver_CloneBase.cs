@@ -60,10 +60,7 @@ public abstract class JobDriver_CloneBase : JobDriver
             TargetIndex.A,
             () => ClonePod.RemainingWork > 0
                 ? (_workToFinish - ClonePod.RemainingWork) / _workToFinish
-                : 1f,
-            false,
-            -0.5f,
-            false);
+                : 1f);
         cloneWork.FailOnDespawnedOrNull(TargetIndex.A);
         cloneWork.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
         ToilEffects.WithEffect(cloneWork, EffecterDefOf.Hacking, TargetIndex.A, null);

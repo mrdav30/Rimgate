@@ -336,6 +336,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_MeditateAtWraithTable.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_MeditateOnGoauldThrone.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_PushContainer.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_RecoverBiomaterialFromCorpse.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_SitFacingBuilding_Learning.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_ToggleIris.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CloseStargate.cs" />
@@ -394,6 +395,7 @@
     <Compile Include="HarmonyPatches\Harmony_ITab_Pawn_Character_IsVisible.cs" />
     <Compile Include="HarmonyPatches\Harmony_Projectile_CheckForInterceptBetween.cs" />
     <Compile Include="HarmonyPatches\Harmony_Skyfaller_Tick.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Widgets_DefIcon_BiomaterialRecoveryDef.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_PersistentMentalState.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_SurgeryInspectableBiosignature.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_PersistentMentalState.cs" />
@@ -403,12 +405,11 @@
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_Regeneration.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_Regeneration.cs" />
     <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />
-    <Compile Include="Recipes\RecipeWorker_ProcureImplantFromCorpse.cs" />
-    <Compile Include="Recipes\SpecialThingFilterWorker_CanGetCorpseBiomaterial.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteKinship_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_HasNoSymbioteImplant.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_HasSymbioteImplant.cs" />
+    <Compile Include="Support\BiomaterialRecoveryDef.cs" />
     <Compile Include="Support\SymbioteMemory.cs" />
     <Compile Include="Genes\Gene_WraithEssence.cs" />
     <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
@@ -466,6 +467,7 @@
     <Compile Include="Things\Building_ZPMHousing.cs" />
     <Compile Include="Things\Pawn_Unas.cs" />
     <Compile Include="Things\Thing_GoauldSymbiote.cs" />
+    <Compile Include="UI\FloatMenuOptionProvider_RecoverBiomaterials.cs" />
     <Compile Include="UI\ITab_SymbiotePool.cs" />
     <Compile Include="UI\RimgateTex.cs" />
     <Compile Include="Social\ThoughtWorker_WraithEssenceCraving.cs" />
@@ -547,6 +549,7 @@
     <Compile Include="UI\PlaceWorker_ResonanceIdol.cs" />
     <Compile Include="UI\PlaceWorker_Stargate.cs" />
     <Compile Include="Utilities\BiologyUtil.cs" />
+    <Compile Include="Utilities\CorpseBiomaterialRecoveryUtility.cs" />
     <Compile Include="Utilities\MentalStateUtil.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
     <Compile Include="Utilities\ResearchUtil.cs" />

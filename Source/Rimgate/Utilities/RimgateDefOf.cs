@@ -98,6 +98,7 @@ public static class RimgateDefOf
     public static JobDef Rimgate_MeditateOnGoauldThrone;
     public static JobDef Rimgate_PatientGoToSarcophagus;
     public static JobDef Rimgate_PushContainer;
+    public static JobDef Rimgate_RecoverBiomaterialFromCorpse;
     public static JobDef Rimgate_RescueToSarcophagus;
     public static JobDef Rimgate_Toggle;
     public static JobDef Rimgate_ToggleIris;
@@ -138,6 +139,8 @@ public static class RimgateDefOf
     public static SoundDef Rimgate_StargateIdle;
     public static SoundDef Rimgate_StargateClose;
     public static SoundDef Rimgate_SymbioteSpawn;
+
+    public static StatDef MedicalOperationSpeed;
 
     public static TattooDef NoTattoo_Body;
     public static TattooDef NoTattoo_Face;

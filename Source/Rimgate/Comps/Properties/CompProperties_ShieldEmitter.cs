@@ -80,7 +80,7 @@ public class CompProperties_ShieldEmitter : CompProperties
 
     public List<Type> skyfallerClassWhitelist = new List<Type>();
 
-    public virtual void ResolveReferences(ThingDef parentDef)
+    public override void ResolveReferences(ThingDef parentDef)
     {
         base.ResolveReferences(parentDef);
         startupSound ??= SoundDefOf.Power_OnSmall;

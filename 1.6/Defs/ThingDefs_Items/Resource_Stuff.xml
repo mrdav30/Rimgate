@@ -614,7 +614,9 @@
         <rotDestroys>true</rotDestroys>
       </li>
     </comps>
-  </ThingDef> B <!-- ==================== Biosignatures ==================== -->
+  </ThingDef>
+
+  <!-- ==================== Biosignatures ==================== -->
 
   <ThingDef Name="Rimgate_BiosignatureBase" Abstract="true">
     <thingClass>ThingWithComps</thingClass>
@@ -681,6 +683,31 @@
 
       </li>
     </comps>
+  </ThingDef>
+
+  <!-- ==================== Biomaterial Procurement Kit ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_BiomaterialProcurementKit</defName>
+    <label>biomaterial procurement kit</label>
+    <description>Sterile field tools, preservative gel, and a disappointingly sharp set of cutters. Required to recover intact biomaterials from corpses without turning them into soup.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/ProcurementKit</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.85</drawSize>
+    </graphicData>
+    <uiIconForStackCount>1</uiIconForStackCount>
+    <techLevel>Ultra</techLevel>
+    <possessionCount>1</possessionCount>
+    <statBases>
+      <MarketValue>120</MarketValue>
+      <Mass>0.8</Mass>
+      <DeteriorationRate>2.0</DeteriorationRate>
+    </statBases>
+    <stackLimit>25</stackLimit>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
   </ThingDef>
 
 </Defs>

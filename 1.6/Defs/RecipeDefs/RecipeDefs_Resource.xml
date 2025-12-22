@@ -191,7 +191,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>15</count>
 			</li>
 			<li>
 				<filter>
@@ -215,7 +215,7 @@
 						<li>Uranium</li>
 					</thingDefs>
 				</filter>
-				<count>300</count>
+				<count>150</count>
 			</li>
 			<li>
 				<filter>
@@ -223,7 +223,7 @@
 						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>200</count>
+				<count>150</count>
 			</li>
 		</ingredients>
 		<products>
@@ -502,58 +502,88 @@
 		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
-	<!--=============== Cortical Dampener Removal ====================-->
+	<!-- ==================== Biomaterial Procurement Kit ==================== -->
 
 	<RecipeDef>
-		<defName>Rimgate_RemoveCorticalDampenerImplant_Corpse</defName>
-		<label>Retrieve cortical dampener from corpse</label>
-		<description>Medically extract the cortical dampener from an Unas.</description>
-		<descriptionHyperlinks>
-			<ThingDef>Rimgate_CorticalDampener</ThingDef>
-		</descriptionHyperlinks>
-		<uiIconPath>Things/Item/Implant/RG_CorticalDampener</uiIconPath>
+		<defName>Rimgate_MakeBiomaterialProcurementKit</defName>
+		<label>assemble biomaterial procurement kit</label>
+		<description>Assemble a biomaterial procurement kit.</description>
 
-		<jobString>Extracting cortical dampener.</jobString>
-		<workAmount>2000</workAmount>
-		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
-		<workSkill>Medicine</workSkill>
-		<workSkillLearnFactor>10</workSkillLearnFactor>
-		<workerClass>Rimgate.RecipeWorker_ProcureImplantFromCorpse</workerClass>
-		<effectWorking>Surgery</effectWorking>
-		<soundWorking>Recipe_Surgery</soundWorking>
+		<jobString>Assembling biomaterial procurement kit.</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
+
+		<workAmount>1800</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<workSkillLearnFactor>0.03</workSkillLearnFactor>
 
 		<skillRequirements>
-			<Medicine>5</Medicine>
-			<Crafting>5</Crafting>
-			<Intellectual>8</Intellectual>
+			<Crafting>6</Crafting>
+			<Medicine>4</Medicine>
 		</skillRequirements>
 
-		<researchPrerequisite>Rimgate_UnasBiology</researchPrerequisite>
-
-		<surgerySuccessChanceFactor>0.8</surgerySuccessChanceFactor>
-
 		<recipeUsers>
-			<li>FabricationBench</li>
-			<li>Rimgate_CompositionBench</li>
+			<li>DrugLab</li>
 		</recipeUsers>
 
-		<removesHediff>Rimgate_CorticalDampener</removesHediff>
-
 		<ingredients>
+			<!-- sterile supplies -->
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Corpse_Rimgate_Unas</li>
+						<li>MedicineIndustrial</li>
 					</thingDefs>
-					<disallowedSpecialFilters>
-						<li>AllowRotten</li>
-						<li>Rimgate_NoAnimalCorpseBiomaterialToProcure</li>
-					</disallowedSpecialFilters>
+				</filter>
+				<count>2</count>
+			</li>
+
+			<!-- containers + tools -->
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Cloth</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+
+			<!-- “preservative gel” stand-in -->
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+
+			<!-- optional: make it feel more spacer/medical -->
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
 				</filter>
 				<count>1</count>
 			</li>
 		</ingredients>
 
+		<!-- Produce multiple to reduce micromanagement -->
+		<products>
+			<Rimgate_BiomaterialProcurementKit>3</Rimgate_BiomaterialProcurementKit>
+		</products>
+
+		<researchPrerequisite>Bionics</researchPrerequisite>
 	</RecipeDef>
 
 </Defs>

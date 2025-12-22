@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <Rimgate.BiomaterialRecoveryDef>
+        <defName>Rimgate_Recover_CorticalDampener</defName>
+        <label>recover cortical dampener</label>
+        <description>Recover a cortical dampener from a creature's brain. This procedure is highly invasive and requires specialized equipment.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_CorticalDampener</ThingDef>
+            <ThingDef>Rimgate_BiomaterialProcurementKit</ThingDef>
+            <HediffDef>Rimgate_CorticalDampener</HediffDef>
+        </descriptionHyperlinks>
+        <uiIconPath>Things/Item/Implant/RG_CorticalDampener</uiIconPath>
+
+        <removesHediff>Rimgate_CorticalDampener</removesHediff>
+
+        <researchPrerequisite>Rimgate_UnasBiology</researchPrerequisite>
+
+        <requiredKit>Rimgate_BiomaterialProcurementKit</requiredKit>
+        <requiredKitCount>1</requiredKitCount>
+
+        <workAmount>2000</workAmount>
+        <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+
+        <skillRequirements>
+            <Medicine>5</Medicine>
+            <Crafting>5</Crafting>
+            <Intellectual>8</Intellectual>
+        </skillRequirements>
+
+        <workSkill>Medicine</workSkill>
+        <workSkillLearnFactor>0.02</workSkillLearnFactor>
+        <effectWorking>Surgery</effectWorking>
+        <soundWorking>Recipe_Surgery</soundWorking>
+
+        <successChance>0.8</successChance>
+        <successChanceStat>MedicalSurgerySuccessChance</successChanceStat>
+
+        <allowRotten>false</allowRotten>
+        <animalsOnly>true</animalsOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+</Defs>

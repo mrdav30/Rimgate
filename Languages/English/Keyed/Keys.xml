@@ -345,8 +345,10 @@
 
 	<!-- Biomaterial Recovery -->
 
-	<RG_BiomaterialRecoveryMessage_Nothing>No biomaterials recovered from {0}.</RG_BiomaterialRecoveryMessage_Nothing>
-	<RG_BiomaterialRecoveryMessage_Failed>Failed to recover biomaterials from {0}.</RG_BiomaterialRecoveryMessage_Failed>
+	<RG_ResearchRequirements>Research Requirements</RG_ResearchRequirements>
+	<RG_Stat_ResearchRequirements_Desc>The research required to perform this recipe.</RG_Stat_ResearchRequirements_Desc>
+
+	<RG_BiomaterialRecoveryMessage_Failed>Unable to recover biomaterials from {0} ({1}).</RG_BiomaterialRecoveryMessage_Failed>
 	<RG_BiomaterialRecoveryMessage_Procured>Procured {0} from {1}.</RG_BiomaterialRecoveryMessage_Procured>
 
 	<!-- Notes -->
