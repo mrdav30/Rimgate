@@ -184,4 +184,30 @@
         </projectile>
     </ThingDef>
 
+    <!-- Unas Roar -->
+
+    <AbilityDef ParentName="AnimalRoarBase">
+        <defName>Rimgate_UnasRoar</defName>
+        <label>unas' roar</label>
+        <description>Unas' roar is a terrifying sound that can be used to intimidate enemies and cause them to flee in terror.</description>
+        <statBases>
+            <Ability_EffectRadius>19.9</Ability_EffectRadius>
+        </statBases>
+        <comps>
+            <li Class="CompProperties_AbilityRequiresTrainable">
+                <trainableDef>Rimgate_UnasRoar</trainableDef>
+                <!-- <aiCanCastWithoutTrainable>true</aiCanCastWithoutTrainable> -->
+            </li>
+            <li Class="CompProperties_AbilityGiveHediff">
+                <compClass>CompAbilityEffect_GiveHediff</compClass>
+                <hediffDef>Rimgate_UnasRoar</hediffDef>
+                <durationSecondsOverride>20~30</durationSecondsOverride>
+            </li>
+            <li Class="CompProperties_AbilityGiveMentalState">
+                <compClass>CompAbilityEffect_GiveMentalState</compClass>
+                <stateDef>Terror</stateDef>
+            </li>
+        </comps>
+    </AbilityDef>
+
 </Defs>

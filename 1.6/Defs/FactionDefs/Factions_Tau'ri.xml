@@ -3,6 +3,7 @@
 
     <FactionDef ParentName="FactionBase">
         <defName>Rimgate_TauriFaction</defName>
+        <categoryTag>Rimgate_TauriFaction</categoryTag>
         <label>Tau'ri</label>
         <description>Technologically savvy, diplomatically flexible, and accidentally in charge of galactic cleanup.\nThis underfunded SGC detachment maps the locked mini-gate network and keeps it out of tyrant tentacles.\nOfficial mission: survey and aid. Unofficial: beat Ba’al and the Wraith to the Archotech backdoor—and try not to misdial into a star.</description>
         <fixedName>Tau'ri</fixedName>

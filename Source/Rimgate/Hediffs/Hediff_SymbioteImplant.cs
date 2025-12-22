@@ -59,35 +59,38 @@ public class Hediff_SymbioteImplant : Hediff_Implant
             return;
         }
 
+        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal);
+
+        // None of the below applies to anything non-human (i.e. Unas)
+        if (!pawn.RaceProps.Humanlike) return;
+
         // Mature symbiote will remove the pouch
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PouchDegeneration);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
-        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_TretoninAddiction);
-
-        if (Heritage != null)
-        {
-            Heritage.Memory ??= new SymbioteMemory();
-            Heritage.Memory.EnsureName();
-
-            // Copy memory into hediff and apply bonuses to host
-            Heritage.ApplyMemoryPostEffect(pawn);
-
-            if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
-            {
-                var msg = "RG_SymbioteSkillInheritance".Translate(
-                    pawn.Named("PAWN"),
-                    Heritage.Memory?.SymbioteName);
-                Messages.Message(
-                    msg,
-                    pawn,
-                    MessageTypeDefOf.PositiveEvent);
-            }
-        }
 
         if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
             Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_InstalledSymbiote, pawn.Named(HistoryEventArgsNames.Doer)));
+
+        if (Heritage == null) return;
+
+        Heritage.Memory ??= new SymbioteMemory();
+        Heritage.Memory.EnsureName();
+
+        // Copy memory into hediff and apply bonuses to host
+        Heritage.ApplyMemoryPostEffect(pawn);
+
+        if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
+        {
+            var msg = "RG_SymbioteSkillInheritance".Translate(
+                pawn.Named("PAWN"),
+                Heritage.Memory?.SymbioteName);
+            Messages.Message(
+                msg,
+                pawn,
+                MessageTypeDefOf.PositiveEvent);
+        }
     }
 
     public bool IsValidHost(out string reason)
@@ -120,7 +123,10 @@ public class Hediff_SymbioteImplant : Hediff_Implant
             pawn.health.AddHediff(wd);
         }
 
-        var hediffMemory = Heritage?.Memory;
+        if (Heritage == null || !pawn.RaceProps.Humanlike)
+            return;
+
+        var hediffMemory = Heritage.Memory;
         // Undo this symbiote's bonuses on the current host
         hediffMemory?.RemoveSessionBonuses(pawn);
 
@@ -129,12 +135,12 @@ public class Hediff_SymbioteImplant : Hediff_Implant
 
         // Preserve its accumulated memory and inherit skills from previous host,
         // regardless of how the symbiote is removed
-        var heritage = thing.Heritage;
-        if (heritage != null)
+        var heritageComp = thing.Heritage;
+        if (heritageComp != null)
         {
-            heritage.AssumeMemory(hediffMemory);
-            heritage.ApplyMemoryPostRemoval(pawn);
-            var memory = heritage.Memory;
+            heritageComp.AssumeMemory(hediffMemory);
+            heritageComp.ApplyMemoryPostRemoval(pawn);
+            var memory = heritageComp.Memory;
 
             if (memory?.IsOverLimit == true)
             {

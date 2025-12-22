@@ -99,7 +99,7 @@ public static class CorpseBiomaterialRecoveryUtility
             return false;
         }
 
-        ThingDef spawnDef = def.spawnThingOverride ?? def.removesHediff.spawnThingOnRemoved;
+        ThingDef spawnDef = def.RecoverableThing;
         if (spawnDef != null)
         {
             spawnedThing = ThingMaker.MakeThing(spawnDef);

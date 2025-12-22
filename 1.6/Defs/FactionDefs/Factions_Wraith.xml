@@ -3,6 +3,7 @@
 
   <FactionDef ParentName="FactionBase">
     <defName>Rimgate_WraithEmpire</defName>
+    <categoryTag>Rimgate_WraithFaction</categoryTag>
     <label>Wraith Colony</label>
     <description>A predatory hive ruled by telepathic queens and the worst diet plan—yours.\nCut off from the wider hive by the private gate lattice, this splinter feeds, studies, and schemes: piggyback on the Archotech signal or turn the local biosphere into a snack bar while they keep trying.</description>
     <pawnsPlural>Wraith</pawnsPlural>

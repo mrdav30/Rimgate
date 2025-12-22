@@ -13,9 +13,6 @@
 		<requiredResearchFacilities>
 			<li>MultiAnalyzer</li>
 		</requiredResearchFacilities>
-		<prerequisites>
-			<li>MicroelectronicsBasics</li>
-		</prerequisites>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
@@ -25,11 +22,14 @@
 		<baseCost>1500</baseCost>
 		<researchViewX>0</researchViewX>
 		<researchViewY>1.5</researchViewY>
+		<prerequisites>
+			<li>MicroelectronicsBasics</li>
+		</prerequisites>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
-			<li>Rimgate_GoauldBaal</li>
+			<li>Rimgate_GoauldFaction</li>
 		</heldByFactionCategoryTags>
 		<tags>
 			<li>Rimgate_TechprintPool</li>
@@ -197,7 +197,7 @@
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
-			<li>Rimgate_GoauldBaal</li>
+			<li>Rimgate_GoauldFaction</li>
 		</heldByFactionCategoryTags>
 		<tags>
 			<li>Rimgate_TechprintPool</li>
@@ -226,45 +226,6 @@
 	<!-- ======== Misc ========= -->
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
-		<defName>Rimgate_SymbioteStudy</defName>
-		<label>Symbiote basics</label>
-		<description>Delve deeper into the biology of Goa'uld symbiotes to decode how they bond, heal, and dominate their hosts. Learn how to “safely” extract one—or install it with only moderate screaming. The line between cure and conquest has never been thinner.</description>
-		<baseCost>5000</baseCost>
-		<techLevel>Ultra</techLevel>
-		<prerequisites>
-			<li>Rimgate_GoauldBasic</li>
-		</prerequisites>
-		<researchViewX>1</researchViewX>
-		<researchViewY>2</researchViewY>
-		<requiredAnalyzed>
-			<li>Rimgate_GoauldSymbiote</li>
-		</requiredAnalyzed>
-		<discoveredLetterTitle>About: Goa'uld Symbiotes</discoveredLetterTitle>
-		<discoveredLetterText>Recovered field notes describe the Goa'uld as both parasite and miracle cure—capable of healing mortal wounds while rewriting the host from the inside out. Your researchers are confident they can replicate this relationship without the “enslavement” part. Probably.</discoveredLetterText>
-		<generalRules>
-			<rulesStrings>
-				<!-- subjects -->
-				<li>subject->Goa'uld symbiote</li>
-				<li>subject_adj->larval</li>
-				<li>subject_adj->neuroparasitic</li>
-				<li>subject_adj->biochemically elegant</li>
-
-				<!-- story beats -->
-				<li>subject_story->mapped the neural lattice where the symbiote interfaces with the host’s spinal column</li>
-				<li>subject_story->isolated regenerative enzymes responsible for accelerated tissue recovery</li>
-				<li>subject_story->recorded electrical interference patterns that mirror higher cognitive suppression</li>
-				<li>subject_story->observed a dormant larva reactivating when exposed to host adrenaline</li>
-				<li>subject_story->accidentally triggered a telepathic feedback loop; one intern now insists they are a minor god</li>
-
-				<!-- gerunds / research actions -->
-				<li>subject_gerund->charting symbiote-host integration sequences</li>
-				<li>subject_gerund->replicating regenerative compounds under sterile conditions</li>
-				<li>subject_gerund->testing neural harmonization thresholds</li>
-			</rulesStrings>
-		</generalRules>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_HoverSkid</defName>
 		<label>Hover skid</label>
 		<description>Reverse-engineer a gravitic cargo skid with Naquadah focusing rails. It floats wherever the handler steps, turning backbreaking salvage runs into a glide. Handle with care—if the field collapses under load, everything goes up in a very educational flash.</description>
@@ -275,12 +236,12 @@
 			<li>AdvancedFabrication</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>2.5</researchViewY>
+		<researchViewY>2</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
-			<li>Rimgate_GoauldBaal</li>
+			<li>Rimgate_GoauldFaction</li>
 		</heldByFactionCategoryTags>
 		<tags>
 			<li>Rimgate_TechprintPool</li>
@@ -299,7 +260,7 @@
 			<li>ShipBasics</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>2.5</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_DestroyedTeltak</li>
 		</requiredAnalyzed>
@@ -346,7 +307,7 @@
 			<li>SterileMaterials</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>3.5</researchViewY>
+		<researchViewY>3</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_GoauldSarcophagus</li>
 		</requiredAnalyzed>
@@ -396,7 +357,7 @@
 		</prerequisites>
 
 		<researchViewX>2</researchViewX>
-		<researchViewY>3.5</researchViewY>
+		<researchViewY>2.5</researchViewY>
 
 		<generalRules>
 			<rulesStrings>
@@ -441,7 +402,7 @@
 		</prerequisites>
 
 		<researchViewX>2</researchViewX>
-		<researchViewY>4.5</researchViewY>
+		<researchViewY>3.5</researchViewY>
 
 		<generalRules>
 			<rulesStrings>
@@ -466,6 +427,122 @@
 				<li>subject_gerund->teaching the machine to glide along the vacuum instead of punching it</li>
 			</rulesStrings>
 		</generalRules>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_SymbioteStudy</defName>
+		<label>Symbiote basics</label>
+		<description>Delve deeper into the biology of Goa'uld symbiotes to decode how they bond, heal, and dominate their hosts. Learn how to “safely” extract one—or install it with only moderate screaming. The line between cure and conquest has never been thinner.</description>
+		<baseCost>5000</baseCost>
+		<techLevel>Ultra</techLevel>
+		<researchViewX>0</researchViewX>
+		<researchViewY>4</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_GoauldSymbiote</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Goa'uld Symbiotes</discoveredLetterTitle>
+		<discoveredLetterText>Recovered field notes describe the Goa'uld as both parasite and miracle cure—capable of healing mortal wounds while rewriting the host from the inside out. Your researchers are confident they can replicate this relationship without the “enslavement” part. Probably.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- subjects -->
+				<li>subject->Goa'uld symbiote</li>
+				<li>subject_adj->larval</li>
+				<li>subject_adj->neuroparasitic</li>
+				<li>subject_adj->biochemically elegant</li>
+
+				<!-- story beats -->
+				<li>subject_story->mapped the neural lattice where the symbiote interfaces with the host’s spinal column</li>
+				<li>subject_story->isolated regenerative enzymes responsible for accelerated tissue recovery</li>
+				<li>subject_story->recorded electrical interference patterns that mirror higher cognitive suppression</li>
+				<li>subject_story->observed a dormant larva reactivating when exposed to host adrenaline</li>
+				<li>subject_story->accidentally triggered a telepathic feedback loop; one intern now insists they are a minor god</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->charting symbiote-host integration sequences</li>
+				<li>subject_gerund->replicating regenerative compounds under sterile conditions</li>
+				<li>subject_gerund->testing neural harmonization thresholds</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_UnasBiology</defName>
+		<label>Unas biology</label>
+		<description>After performing a surgical inspection on a living Unas, study their biological characteristics using the knowledge of the Ancients to unlock new research options related to their physiology and potential applications.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>2500</baseCost>
+
+		<researchViewX>0</researchViewX>
+		<researchViewY>4.5</researchViewY>
+
+		<requiredAnalyzed>
+			<li>Rimgate_UnasBiosignature</li>
+		</requiredAnalyzed>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_CorticalDampenerHacking</defName>
+		<label>Cortical dampener hacking</label>
+		<description>Reverse-engineer the cortical dampener's neural interface to gain control over its effects and unlock its hidden potential.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>3500</baseCost>
+
+		<researchViewX>1</researchViewX>
+		<researchViewY>4.5</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_UnasBiology</li>
+			<li>Bionics</li>
+		</prerequisites>
+		<requiredAnalyzed>
+			<li>Rimgate_CorticalDampener</li>
+		</requiredAnalyzed>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<discoveredLetterTitle>About: Cortical Dampener</discoveredLetterTitle>
+		<discoveredLetterText>Your researchers have successfully decoded the neural interface of a cortical dampener implant.\n\nBy understanding its mind-altering algorithms, they can now manipulate its effects—potentially unlocking new applications for this ancient technology.\n\nCaution is advised: tampering with neural implants carries inherent risks, both to the subject and the operator.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Cortical Dampener</li>
+				<li>subject->neural implant</li>
+				<li>subject->mind-altering device</li>
+
+				<li>subject_adj->Ancient</li>
+				<li>subject_adj->neural</li>
+				<li>subject_adj->mind-altering</li>
+
+				<li>subject_story->a neural implant designed to suppress higher cognition and enforce obedience</li>
+				<li>subject_story->a device that whispers calming lies to an overactive mind</li>
+				<li>subject_story->an artifact that bends thought patterns like light through a prism</li>
+
+				<li>subject_gerund->decoding neural suppression algorithms</li>
+				<li>subject_gerund->mapping synaptic interference patterns</li>
+				<li>subject_gerund->rewiring cognitive dampening subroutines</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_UnasBioregeneration</defName>
+		<label>Unas bioregeneration</label>
+		<description>Refines cortical catalyst protocols to trigger dormant regrowth pathways in conditioned Unas. Lost limbs can be regenerated over time, though the process is taxing and leaves tissue tender during regrowth.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>5000</baseCost>
+
+		<researchViewX>2</researchViewX>
+		<researchViewY>4.5</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_CorticalDampenerHacking</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
 </Defs>

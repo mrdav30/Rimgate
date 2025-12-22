@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-	<!-- ==================== Symbiote Withdrawal ==================== -->
+    <!-- ==================== Symbiote Withdrawal ==================== -->
 
-	<HediffDef>
-		<defName>Rimgate_SymbioteWithdrawal</defName>
-		<label>symbiote withdrawal</label>
-		<description>With the symbiote removed, the host's body begins to crash—systems falter, strength fades, and paranoia skyrockets. Symptoms include fatigue, tremors, organ failure, rapid aging, and regretting life choices involving glowing eyes.\n\nWithout an artificial replacement like tretonin—or another symbiote—this condition is usually terminal.</description>
-		<descriptionHyperlinks>
-			<ThingDef>Rimgate_Tretonin</ThingDef>
-		</descriptionHyperlinks>
-		<hediffClass>HediffWithComps</hediffClass>
-		<chronic>true</chronic>
-		<minSeverity>0.001</minSeverity>
-		<initialSeverity>0.01</initialSeverity>
-		<lethalSeverity>1</lethalSeverity>
-		<everCurableByItem>false</everCurableByItem>
-		<tendable>true</tendable>
-		<comps>
-			<li Class="HediffCompProperties_Immunizable">
-				<severityPerDayNotImmune>0.25</severityPerDayNotImmune>
-			</li>
-			<li Class="HediffCompProperties_TendDuration">
-				<severityPerDayTended>-0.8</severityPerDayTended>
-				<baseTendDurationHours>23</baseTendDurationHours>
-			</li>
-		</comps>
-		<stages>
-			<li>
-				<label>minor</label>
-				<forgetMemoryThoughtMtbDays>7</forgetMemoryThoughtMtbDays>
-				<statFactors>
-					<RestFallRateFactor>2</RestFallRateFactor>
-					<ImmunityGainSpeed>0</ImmunityGainSpeed>
-					<InjuryHealingFactor>0</InjuryHealingFactor>
-				</statFactors>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.1</offset>
-					</li>
-					<li>
-						<capacity>BloodFiltration</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
-			</li>
-			<li>
-				<label>extreme</label>
-				<minSeverity>0.5</minSeverity>
-				<lifeThreatening>true</lifeThreatening>
-				<deathMtbDays>15</deathMtbDays>
-				<painOffset>0.5</painOffset>
-				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
-				<statFactors>
-					<RestFallRateFactor>5</RestFallRateFactor>
-					<ImmunityGainSpeed>0</ImmunityGainSpeed>
-					<InjuryHealingFactor>0</InjuryHealingFactor>
-				</statFactors>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.2</offset>
-					</li>
-					<li>
-						<capacity>BloodFiltration</capacity>
-						<offset>-0.30</offset>
-					</li>
-					<li>
-						<capacity>BloodPumping</capacity>
-						<offset>-0.15</offset>
-					</li>
-					<li>
-						<capacity>Metabolism</capacity>
-						<offset>-0.20</offset>
-					</li>
-					<li>
-						<capacity>Breathing</capacity>
-						<offset>-0.10</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-		<duplicationAllowed>false</duplicationAllowed>
-		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
-	</HediffDef>
+    <HediffDef>
+        <defName>Rimgate_SymbioteWithdrawal</defName>
+        <label>symbiote withdrawal</label>
+        <description>With the symbiote removed, the host's body begins to crash—systems falter, strength fades, and paranoia skyrockets. Symptoms include fatigue, tremors, organ failure, rapid aging, and regretting life choices involving glowing eyes.\n\nWithout an artificial replacement like tretonin—or another symbiote—this condition is usually terminal.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_Tretonin</ThingDef>
+        </descriptionHyperlinks>
+        <hediffClass>HediffWithComps</hediffClass>
+        <chronic>true</chronic>
+        <minSeverity>0.001</minSeverity>
+        <initialSeverity>0.01</initialSeverity>
+        <lethalSeverity>1</lethalSeverity>
+        <everCurableByItem>false</everCurableByItem>
+        <tendable>true</tendable>
+        <comps>
+            <li Class="HediffCompProperties_Immunizable">
+                <severityPerDayNotImmune>0.25</severityPerDayNotImmune>
+            </li>
+            <li Class="HediffCompProperties_TendDuration">
+                <severityPerDayTended>-0.8</severityPerDayTended>
+                <baseTendDurationHours>23</baseTendDurationHours>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <label>minor</label>
+                <forgetMemoryThoughtMtbDays>7</forgetMemoryThoughtMtbDays>
+                <statFactors>
+                    <RestFallRateFactor>2</RestFallRateFactor>
+                    <ImmunityGainSpeed>0</ImmunityGainSpeed>
+                    <InjuryHealingFactor>0</InjuryHealingFactor>
+                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <label>extreme</label>
+                <minSeverity>0.5</minSeverity>
+                <lifeThreatening>true</lifeThreatening>
+                <deathMtbDays>15</deathMtbDays>
+                <painOffset>0.5</painOffset>
+                <partEfficiencyOffset>-0.3</partEfficiencyOffset>
+                <statFactors>
+                    <RestFallRateFactor>5</RestFallRateFactor>
+                    <ImmunityGainSpeed>0</ImmunityGainSpeed>
+                    <InjuryHealingFactor>0</InjuryHealingFactor>
+                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.2</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>-0.30</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                    <li>
+                        <capacity>Metabolism</capacity>
+                        <offset>-0.20</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+    </HediffDef>
 
     <!-- =============== Clones =============== -->
 
@@ -299,6 +299,9 @@
                 <becomeVisible>false</becomeVisible>
             </li>
         </stages>
+
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 
         <comps>
             <li Class="Rimgate.HediffCompProperties_SurgeryInspectionBiosignature">

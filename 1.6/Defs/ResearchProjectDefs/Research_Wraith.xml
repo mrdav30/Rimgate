@@ -59,7 +59,7 @@
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
-			<li>Rimgate_WraithEmpire</li>
+			<li>Rimgate_WraithFaction</li>
 		</heldByFactionCategoryTags>
 		<tags>
 			<li>Rimgate_TechprintPool</li>
@@ -126,7 +126,7 @@
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
-			<li>Rimgate_WraithEmpire</li>
+			<li>Rimgate_WraithFaction</li>
 		</heldByFactionCategoryTags>
 		<tags>
 			<li>Rimgate_TechprintPool</li>
@@ -224,7 +224,7 @@
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
-			<li>Rimgate_WraithEmpire</li>
+			<li>Rimgate_WraithFaction</li>
 		</heldByFactionCategoryTags>
 		<tags>
 			<li>Rimgate_TechprintPool</li>
@@ -241,6 +241,15 @@
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>1</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -295,7 +304,7 @@
 			<li>Rimgate_WraithCloneGenome</li>
 		</prerequisites>
 
-		<researchViewX>2</researchViewX>
+		<researchViewX>1.5</researchViewX>
 		<researchViewY>2</researchViewY>
 
 		<generalRules>

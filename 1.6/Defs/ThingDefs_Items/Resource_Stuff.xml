@@ -673,9 +673,13 @@
         <!-- Analyzable -->
 
         <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
-        <completedLetterLabel>Unas biosignature studied: {RESEARCH} unlocked</completedLetterLabel>
-        <completedLetter>By surgically inspecting the biology of an Unas, {PAWN_labelShort} has acquired the insight needed for {RESEARCH} research.\n\nYour researchers can now use research benches to begin adapting the findings.</completedLetter>
+        <completedLetterLabel>{BIOSIGNATURE} studied</completedLetterLabel>
+        <completedLetter>While performing a surgical inspection, {PAWN_labelShort} has isolated the {BIOSIGNATURE}. This provides the insight needed for {RESEARCH} research.\n\nYour researchers can now use research benches to begin adapting the findings.</completedLetter>
         <completedLetterDef>PositiveEvent</completedLetterDef>
+
+        <repeatCompletedLetterLabel>{BIOSIGNATURE} complete</repeatCompletedLetterLabel>
+        <repeatCompletedLetter>{PAWN_nameDef} has completed {PAWN_possessive} analysis of the Unas biology. It carries the previously discovered {BIOSIGNATURE}.\n\nNothing new has been discovered.</repeatCompletedLetter>
+        <repeatCompletedLetterDef>NeutralEvent</repeatCompletedLetterDef>
 
         <!-- Interactable -->
 

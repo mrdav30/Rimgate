@@ -41,6 +41,8 @@ public class BiomaterialRecoveryDef : Def
     public bool allowRotten = false;
     public bool animalsOnly = true;
 
+    public ThingDef RecoverableThing => spawnThingOverride ?? removesHediff?.spawnThingOnRemoved;
+
     [Unsaved(false)]
     private Texture2D _cachedIcon;
 

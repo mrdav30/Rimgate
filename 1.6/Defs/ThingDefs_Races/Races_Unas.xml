@@ -93,7 +93,7 @@
             <predator>true</predator>
             <maxPreyBodySize>3</maxPreyBodySize>
             <baseBodySize>1.6</baseBodySize>
-            <baseHungerRate>0.55</baseHungerRate>
+            <baseHungerRate>1.605</baseHungerRate>
             <baseHealthScale>3.52</baseHealthScale>
             <packAnimal>true</packAnimal>
 
@@ -106,8 +106,7 @@
             <isImmuneToInfections>true</isImmuneToInfections>
 
             <specialTrainables>
-                <li MayRequire="Ludeon.RimWorld.Odyssey">WarTrumpet</li>
-                <li MayRequire="Ludeon.RimWorld.Odyssey">AttackTarget</li>
+                <li>Rimgate_UnasRoar</li>
             </specialTrainables>
 
             <!--  hauling ability is handled by custom AI  -->
@@ -151,6 +150,7 @@
         </race>
 
         <recipes>
+            <li>Rimgate_RemoveGoauldSymbiote</li>
             <li>Rimgate_RemoveCorticalDampenerImplant</li>
             <li>Rimgate_InstallCorticalCatalystImplant</li>
             <li>Rimgate_InstallCorticalCatalystImplant_Mk2</li>

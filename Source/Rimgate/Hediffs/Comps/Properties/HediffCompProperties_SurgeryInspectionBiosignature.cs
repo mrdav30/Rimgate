@@ -6,6 +6,8 @@ public class HediffCompProperties_SurgeryInspectionBiosignature : HediffCompProp
 {
     public ThingDef biosignatureThingDef;
 
+    public bool removedOnInspection;
+
     public HediffCompProperties_SurgeryInspectionBiosignature()
     {
         compClass = typeof(HediffComp_SurgeryInspectableBiosignature);

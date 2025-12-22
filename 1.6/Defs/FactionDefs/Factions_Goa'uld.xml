@@ -5,6 +5,7 @@
 
   <FactionDef Name="Rimgate_GoauldFactionBase" ParentName="FactionBase" Abstract="True">
     <pawnsPlural>Goa'uld</pawnsPlural>
+    <categoryTag>Rimgate_GoauldFaction</categoryTag>
     <settlementGenerationWeight>0.25</settlementGenerationWeight>
     <canSiege>false</canSiege>
     <canStageAttacks>true</canStageAttacks>

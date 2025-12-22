@@ -17,11 +17,14 @@ public class HediffComp_SurgeryInspectableBiosignature : HediffComp_SurgeryInspe
         {
             if (_researchUnlocked == null)
             {
-                var thingDef = Props.biosignatureThingDef;
                 _researchUnlocked = new List<ResearchProjectDef>();
+                var thingDef = Props.biosignatureThingDef;
+                if (thingDef == null)
+                    return _researchUnlocked;
+
                 foreach (ResearchProjectDef allDef in DefDatabase<ResearchProjectDef>.AllDefs)
                 {
-                    if (!allDef.requiredAnalyzed.NullOrEmpty() 
+                    if (!allDef.requiredAnalyzed.NullOrEmpty()
                         && allDef.requiredAnalyzed.Contains(thingDef))
                     {
                         _researchUnlocked.Add(allDef);
@@ -33,7 +36,9 @@ public class HediffComp_SurgeryInspectableBiosignature : HediffComp_SurgeryInspe
         }
     }
 
-    public NamedArgument? ExtraNamedArg => ResearchUnlocked.Select((ResearchProjectDef r) => r.label).ToCommaList(useAnd: true).Named("RESEARCH");
+    public NamedArgument? ExtraNamedArg1 => Props.biosignatureThingDef.LabelCap.Named("BIOSIGNATURE");
+
+    public NamedArgument? ExtraNamedArg2 => ResearchUnlocked.Select((ResearchProjectDef r) => r.label).ToCommaList(useAnd: true).Named("RESEARCH");
 
     public override void CompPostPostAdd(DamageInfo? dinfo)
     {
@@ -56,13 +61,14 @@ public class HediffComp_SurgeryInspectableBiosignature : HediffComp_SurgeryInspe
 
         var biosignature = analyzable?.analysisID ?? 0;
         if (analyzable == null || biosignature == 0)
-            return SurgicalInspectionOutcome.Nothing;
+            return SurgicalInspectionOutcome.DetectedNoLetter; // Prevent vanilla default letter
 
         if (!Find.AnalysisManager.TryIncrementAnalysisProgress(biosignature, out var details)
             && details?.Satisfied == true)
         {
-            SendLetter(analyzable.repeatCompletedLetterLabel, analyzable.repeatCompletedLetter, analyzable.repeatCompletedLetterDef, Pawn);
-            return SurgicalInspectionOutcome.Nothing;
+            if (!Props.preventLetterIfPreviouslyDetected)
+                SendLetter(analyzable.repeatCompletedLetterLabel, analyzable.repeatCompletedLetter, analyzable.repeatCompletedLetterDef, Pawn);
+            return SurgicalInspectionOutcome.DetectedNoLetter;
         }
         else
         {
@@ -90,7 +96,7 @@ public class HediffComp_SurgeryInspectableBiosignature : HediffComp_SurgeryInspe
             SendLetter(label, desc, letterDef, Pawn);
         }
 
-        if (analyzable.destroyedOnAnalyzed)
+        if (Props.removedOnInspection)
             Pawn.RemoveHediff(parent);
 
         return SurgicalInspectionOutcome.DetectedNoLetter;
@@ -110,8 +116,11 @@ public class HediffComp_SurgeryInspectableBiosignature : HediffComp_SurgeryInspe
 
     private string GetFormattedLetterString(string text, Pawn pawn)
     {
-        if (ExtraNamedArg.HasValue)
-            return text.Formatted(pawn.Named("PAWN"), ExtraNamedArg.Value).Resolve();
+        if (ExtraNamedArg1.HasValue && ExtraNamedArg2.HasValue)
+            return text.Formatted(pawn.Named("PAWN"), ExtraNamedArg1.Value, ExtraNamedArg2.Value).Resolve();
+
+        if (ExtraNamedArg1.HasValue)
+            return text.Formatted(pawn.Named("PAWN"), ExtraNamedArg1.Value).Resolve();
 
         return text.Formatted(pawn.Named("PAWN")).Resolve();
     }

@@ -38,8 +38,7 @@ public static class Harmony_Widgets_DefIcon_BiomaterialRecoveryDef
         }
 
         // 2) Fallback: show the recovered item’s icon
-        ThingDef thingIconDef = bioDef.spawnThingOverride 
-            ?? bioDef.removesHediff?.spawnThingOnRemoved;
+        ThingDef thingIconDef = bioDef.RecoverableThing;
 
         if (thingIconDef != null)
         {

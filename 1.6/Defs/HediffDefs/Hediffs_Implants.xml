@@ -425,6 +425,7 @@
 
         <stages>
             <li>
+                <hungerRateFactor>0.95</hungerRateFactor> <!-- Eats a little less -->
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
@@ -464,6 +465,7 @@
 
         <stages>
             <li>
+                <hungerRateFactor>1.15</hungerRateFactor> <!-- Eats a little more -->
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
@@ -514,6 +516,7 @@
 
         <stages>
             <li>
+                <hungerRateFactor>1.25</hungerRateFactor> <!-- Eats a little more -->
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
