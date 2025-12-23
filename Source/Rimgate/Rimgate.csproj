@@ -318,6 +318,8 @@
     <Compile Include="Abilities\CompAbilityEffect_AdjustGeneResourceOnCast.cs" />
     <Compile Include="Abilities\CompAbilityEffect_LaunchMultipleProjectile.cs" />
     <Compile Include="Abilities\CompAbilityEffect_ApplyHediff.cs" />
+    <Compile Include="Abilities\CompAbility_RequiresTrainable.cs" />
+    <Compile Include="Abilities\Properties\CompProperties_AbilityRequiresTrainable.cs" />
     <Compile Include="Abilities\Properties\CompProperties_AdjustGeneResourceOnCast.cs" />
     <Compile Include="Abilities\Properties\CompProperties_AdjustNeedOnCast.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryCorpseToCloningPod.cs" />

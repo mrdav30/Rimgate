@@ -40,6 +40,8 @@ public class HediffComp_SurgeryInspectableBiosignature : HediffComp_SurgeryInspe
 
     public NamedArgument? ExtraNamedArg2 => ResearchUnlocked.Select((ResearchProjectDef r) => r.label).ToCommaList(useAnd: true).Named("RESEARCH");
 
+    public override bool CompDisallowVisible() => true;
+
     public override void CompPostPostAdd(DamageInfo? dinfo)
     {
         var def = Props.biosignatureThingDef;
@@ -49,9 +51,7 @@ public class HediffComp_SurgeryInspectableBiosignature : HediffComp_SurgeryInspe
         if (analyzable == null || biosignature == 0) return;
 
         if (!Find.AnalysisManager.HasAnalysisWithID(biosignature))
-        {
             Find.AnalysisManager.AddAnalysisTask(biosignature, analyzable.analysisRequiredRange.RandomInRange);
-        }
     }
 
     public override SurgicalInspectionOutcome DoSurgicalInspection(Pawn surgeon)
@@ -61,39 +61,28 @@ public class HediffComp_SurgeryInspectableBiosignature : HediffComp_SurgeryInspe
 
         var biosignature = analyzable?.analysisID ?? 0;
         if (analyzable == null || biosignature == 0)
-            return SurgicalInspectionOutcome.DetectedNoLetter; // Prevent vanilla default letter
+            return SurgicalInspectionOutcome.Nothing; // Prevent vanilla default letter
 
         if (!Find.AnalysisManager.TryIncrementAnalysisProgress(biosignature, out var details)
             && details?.Satisfied == true)
         {
-            if (!Props.preventLetterIfPreviouslyDetected)
-                SendLetter(analyzable.repeatCompletedLetterLabel, analyzable.repeatCompletedLetter, analyzable.repeatCompletedLetterDef, Pawn);
+            SendLetter(analyzable.repeatCompletedLetterLabel, analyzable.repeatCompletedLetter, analyzable.repeatCompletedLetterDef, Pawn);
             return SurgicalInspectionOutcome.DetectedNoLetter;
         }
-        else
+
+        if (details.Satisfied)
+            SendLetter(analyzable.completedLetterLabel, analyzable.completedLetter, analyzable.completedLetterDef, Pawn);
+        else if (!analyzable.progressedLetterLabel.NullOrEmpty()
+            && analyzable.progressedLetters?.Count > 0)
         {
-            string label = string.Empty;
-            string desc = string.Empty;
-            LetterDef letterDef = null;
+            string label = analyzable.progressedLetterLabel;
+            if (analyzable.showProgress)
+                label += $" {details.timesDone}/{details.required}";
+            string desc = ((details.timesDone <= analyzable.progressedLetters.Count)
+                ? analyzable.progressedLetters[details.timesDone - 1]
+                : analyzable.progressedLetters.Last());
 
-            if (details.Satisfied)
-            {
-                label = analyzable.completedLetterLabel;
-                desc = analyzable.completedLetter;
-                letterDef = analyzable.completedLetterDef;
-            }
-            else
-            {
-                label = analyzable.progressedLetterLabel;
-                if (analyzable.showProgress)
-                    label += $" {details.timesDone}/{details.required}";
-                desc = ((details.timesDone <= analyzable.progressedLetters.Count)
-                    ? analyzable.progressedLetters[details.timesDone - 1]
-                    : analyzable.progressedLetters.Last());
-                letterDef = analyzable.progressedLetterDef;
-            }
-
-            SendLetter(label, desc, letterDef, Pawn);
+            SendLetter(label, desc, analyzable.progressedLetterDef, Pawn);
         }
 
         if (Props.removedOnInspection)

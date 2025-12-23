@@ -194,9 +194,10 @@
             <Ability_EffectRadius>19.9</Ability_EffectRadius>
         </statBases>
         <comps>
-            <li Class="CompProperties_AbilityRequiresTrainable">
+            <li Class="Rimgate.CompProperties_AbilityRequiresTrainable">
                 <trainableDef>Rimgate_UnasRoar</trainableDef>
-                <!-- <aiCanCastWithoutTrainable>true</aiCanCastWithoutTrainable> -->
+                <requireCompleted>true</requireCompleted>
+                <aiCanCastWithoutTrainable>false</aiCanCastWithoutTrainable>
             </li>
             <li Class="CompProperties_AbilityGiveHediff">
                 <compClass>CompAbilityEffect_GiveHediff</compClass>

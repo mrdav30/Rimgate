@@ -1,5 +1,4 @@
-﻿// CompProperties_AdjustNeedOnCast.cs
-using RimWorld;
+﻿using RimWorld;
 using System;
 using Verse;
 

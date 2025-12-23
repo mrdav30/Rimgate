@@ -7,7 +7,7 @@
         <defName>Rimgate_CorticalDampener</defName>
 
         <label>cortical dampener</label>
-        <description>A crude neural implant designed to suppress higher cognitive functions and enforce obedience. Used by the Goa'uld to control Unas and other laborers, this device dulls critical thinking and emotional response, making the host more compliant but also more prone to rage when mistreated.\n\nWith an understanding of Bionics, the cortical dampener can be removed for further analysis to reveal its inner workings and potentially be reverse-engineered for new applications.</description>
+        <description>A crude neural implant designed to suppress higher cognitive functions and enforce obedience. Used by the Goa'uld to control Unas and other laborers, this device dulls critical thinking and emotional response, making the host more compliant but also more prone to rage when mistreated.\n\nWith an understanding of Unas' biology and Bionics, the cortical dampener can be removed for further analysis to reveal its inner workings-potentially unlocking new applications.</description>
         <descriptionHyperlinks>
             <RecipeDef>Rimgate_RemoveCorticalDampenerImplant</RecipeDef>
             <Rimgate.BiomaterialRecoveryDef>Rimgate_Recover_CorticalDampener</Rimgate.BiomaterialRecoveryDef>
