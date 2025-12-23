@@ -97,12 +97,10 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
     {
         base.PostRemoved();
 
-        if (pawn == null || pawn.health == null)
-            return;
-
-        // If this was a rejection or internal event we flagged, skip spawn + withdrawal
-        if (_immediateRejection)
-            return;
+        if (_immediateRejection 
+            || pawn == null 
+            || pawn.health == null
+            || pawn.Dead) return;
 
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
 
@@ -112,7 +110,8 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
                 ? RimgateDefOf.Rimgate_GoauldSymbiote
                 : RimgateDefOf.Rimgate_PrimtaSymbiote;
             var thing = ThingMaker.MakeThing(def);
-            GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
+            if (pawn.Map != null)
+                GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
         }
 
         if (!pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal))
@@ -125,5 +124,13 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
         if (memories == null) return;
 
         memories.RemoveMemoriesOfDef(RimgateDefOf.Rimgate_PrimtaMaturedThought);
+    }
+
+    public override void Notify_PawnKilled()
+    {
+        base.Notify_PawnKilled();
+        // Prim'ta absorbed into body upon death
+        _immediateRejection = true;
+        pawn.RemoveHediff(this);
     }
 }

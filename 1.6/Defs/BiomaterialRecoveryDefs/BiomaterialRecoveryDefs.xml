@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <Rimgate.BiomaterialRecoveryDef>
-        <defName>Rimgate_Recover_CorticalDampener</defName>
-        <label>recover cortical dampener</label>
-        <description>Recover a cortical dampener from a creature's brain. This procedure is highly invasive and requires specialized equipment.</description>
-        <descriptionHyperlinks>
-            <ThingDef>Rimgate_CorticalDampener</ThingDef>
-            <ThingDef>Rimgate_BiomaterialProcurementKit</ThingDef>
-            <HediffDef>Rimgate_CorticalDampener</HediffDef>
-        </descriptionHyperlinks>
-        <uiIconPath>Things/Item/Implant/RG_CorticalDampener</uiIconPath>
-
-        <removesHediff>Rimgate_CorticalDampener</removesHediff>
-
-        <researchPrerequisite>Rimgate_UnasBiology</researchPrerequisite>
-
+    <Rimgate.BiomaterialRecoveryDef Name="Rimgate_RecoveryBase" Abstract="True">
         <requiredKit>Rimgate_BiomaterialProcurementKit</requiredKit>
         <requiredKitCount>1</requiredKitCount>
 
@@ -35,7 +21,37 @@
 
         <successChance>0.8</successChance>
         <successChanceStat>MedicalSurgerySuccessChance</successChanceStat>
+    </Rimgate.BiomaterialRecoveryDef>
 
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_CorticalDampener</defName>
+        <label>recover cortical dampener</label>
+        <description>Recover a cortical dampener from the brain of an Unas corpse. This procedure is highly invasive and requires specialized equipment.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_CorticalDampener</ThingDef>
+            <ThingDef>Rimgate_BiomaterialProcurementKit</ThingDef>
+            <HediffDef>Rimgate_CorticalDampener</HediffDef>
+        </descriptionHyperlinks>
+        <uiIconPath>Things/Item/Implant/RG_CorticalDampener</uiIconPath>
+        <removesHediff>Rimgate_CorticalDampener</removesHediff>
+        <researchPrerequisite>Rimgate_UnasBiology</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <animalsOnly>true</animalsOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_CorticalCatalyst</defName>
+        <label>recover cortical catalyst</label>
+        <description>Recover a cortical catalyst from the brain of an Unas corpse. This procedure is highly invasive and requires specialized equipment.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_CorticalCatalyst</ThingDef>
+            <ThingDef>Rimgate_BiomaterialProcurementKit</ThingDef>
+            <HediffDef>Rimgate_CorticalCatalyst</HediffDef>
+        </descriptionHyperlinks>
+        <uiIconPath>Things/Item/Implant/RG_CorticalCatalyst</uiIconPath>
+        <removesHediff>Rimgate_CorticalCatalyst</removesHediff>
+        <researchPrerequisite>Rimgate_UnasBiology</researchPrerequisite>
         <allowRotten>false</allowRotten>
         <animalsOnly>true</animalsOnly>
     </Rimgate.BiomaterialRecoveryDef>

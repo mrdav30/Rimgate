@@ -26,7 +26,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
     ? SymbioteLabel
     : base.LabelInBrackets;
 
-    private bool _skipWithdrawl;
+    private bool _immediateRejection;
 
     private HediffComp_SymbioteHeritage _heritage;
 
@@ -52,7 +52,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
                     pawn,
                     MessageTypeDefOf.ThreatSmall);
 
-            _skipWithdrawl = true;
+            _immediateRejection = true;
 
             pawn.health.RemoveHediff(this);
 
@@ -110,19 +110,28 @@ public class Hediff_SymbioteImplant : Hediff_Implant
     {
         base.PostRemoved();
 
-        if (pawn == null || pawn.health == null)
+        if (_immediateRejection || pawn == null || pawn.health == null)
             return;
 
-        // If this was a rejection or internal event we flagged, skip spawn + withdrawal
-        if (_skipWithdrawl)
-            return;
-
-        if (!pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal))
+        if (!pawn.Dead && !pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal))
         {
             var wd = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SymbioteWithdrawal, pawn);
             pawn.health.AddHediff(wd);
         }
 
+        TrySpawnSymbiote();
+    }
+
+    public override void Notify_PawnKilled()
+    {
+        base.Notify_PawnKilled();
+        _immediateRejection = true;
+        TrySpawnSymbiote();
+        pawn.RemoveHediff(this);
+    }
+
+    private void TrySpawnSymbiote()
+    {
         if (Heritage == null || !pawn.RaceProps.Humanlike)
             return;
 
@@ -131,10 +140,10 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         hediffMemory?.RemoveSessionBonuses(pawn);
 
         if (pawn.Map == null) return;
-        var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote) as Thing_GoualdSymbiote;
 
         // Preserve its accumulated memory and inherit skills from previous host,
         // regardless of how the symbiote is removed
+        var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote) as Thing_GoualdSymbiote;
         var heritageComp = thing.Heritage;
         if (heritageComp != null)
         {

@@ -89,6 +89,7 @@
         <description>A modified neural implant derived from the cortical dampener design. This version enhances cognitive function and allows for direct mental control by the user, unlocking latent abilities and heightened awareness. While it offers significant advantages, the implant can also lead to increased mental strain and occasional uncontrollable outbursts of power.</description>
         <descriptionHyperlinks>
             <RecipeDef>Rimgate_InstallCorticalCatalystImplant</RecipeDef>
+            <Rimgate.BiomaterialRecoveryDef>Rimgate_Recover_CorticalCatalyst</Rimgate.BiomaterialRecoveryDef>
         </descriptionHyperlinks>
 
         <techLevel>Ultra</techLevel>

@@ -25,6 +25,7 @@
         <description>A larval Goa’uld symbiote—squirming, half-formed, and disturbingly intent. Jaffa carry these in abdominal pouches until they mature, at which point they must be removed or risk “promotion” into a full-blown god complex.\n\nOutside a host or dedicated spawning pool, it spoils quickly and dies.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
+            <RecipeDef>Rimgate_RemovePrimtaSymbiote</RecipeDef>
         </descriptionHyperlinks>
         <techLevel>Neolithic</techLevel>
         <tickerType>Rare</tickerType>
@@ -64,6 +65,7 @@
         <description>A genetically engineered space eel that grants its host rapid healing, disease immunity, and a nagging superiority complex. Install in the torso—side effects may include glowing eyes, evil laughter, and quoting false gods.\n\nBest kept stored in a symbiote spawning pool between uses.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
+            <RecipeDef>Rimgate_RemoveGoauldSymbiote</RecipeDef>
         </descriptionHyperlinks>
         <techLevel>Neolithic</techLevel>
         <tickerType>Rare</tickerType>
