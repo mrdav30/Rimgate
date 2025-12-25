@@ -178,6 +178,7 @@
       <li Class="CompProperties_AffectedByFacilities">
         <linkableFacilities>
           <li>ToolCabinet</li>
+          <li MayRequire="vanillaexpanded.vfeproduction">VFE_MachiningCabinet</li>
         </linkableFacilities>
       </li>
       <li Class="CompProperties_Flickable" />
