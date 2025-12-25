@@ -59,8 +59,8 @@
 
 	<ThingDef ParentName="Rimgate_MannedTurretBase">
 		<defName>Rimgate_M2Turret</defName>
-		<label>manned M2 .50 cal shielded machine gun</label>
-		<description>a belt-fed brute of a machine gun—equipped with a steel shield for when diplomacy fails and cover is optional. Manned by the brave and backed by decades of battlefield legacy.\nCommonly deployed by SG teams to politely discourage alien threats.</description>
+		<label>manned M2 .50 cal machine gun</label>
+		<description>A belt-fed brute of a machine gun—equipped with a steel shield for when diplomacy fails and cover is optional. Manned by the brave and backed by decades of battlefield legacy.\nCommonly deployed by SG teams to politely discourage alien threats.</description>
 		<graphicData>
 			<texPath>Things/Building/Security/RGM2HMGStand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -509,7 +509,6 @@
 				<offset>(0,0,-0.05)</offset>
 			</shadowData>
 		</graphicData>
-		<receivesSignals>true</receivesSignals>
 		<altitudeLayer>Building</altitudeLayer>
 		<stealable>false</stealable>
 		<rotatable>true</rotatable>
@@ -680,7 +679,7 @@
 				<interceptGroundProjectiles>true</interceptGroundProjectiles>
 				<interceptNonHostileProjectiles>false</interceptNonHostileProjectiles>
 				<podBlocker>false</podBlocker>
-				<resetTime>6000</resetTime>
+				<resetTime>1500</resetTime>
 				<shieldScaleDefault>2</shieldScaleDefault>
 				<stressPerDamage>0.2</stressPerDamage> <!-- default 0.003 -->
 				<stressReduction>0.75</stressReduction> <!-- default 1-->

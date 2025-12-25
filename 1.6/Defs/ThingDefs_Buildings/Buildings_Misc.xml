@@ -589,6 +589,116 @@
 		</placeWorkers>
 	</ThingDef>
 
+	<!-- ======================= Ancient Shield Emitter ======================= -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_AncientShieldEmitter</defName>
+		<label>Ancient Shield Emitter</label>
+		<description>An ancient device that projects a protective energy field around itself, capable of deflecting incoming projectiles and protecting nearby units.\n\nRequires an immense amount of power, and adequate cooling, to function.  If stressed too hard, it will shut down and require a cooldown period before resuming operation.</description>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGAncientShieldEmitter</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+			<shadowData>
+				<volume>(0.6, 0.4, 0.6)</volume>
+			</shadowData>
+			<damageData>
+				<rect>(0.2, 0.2, 0.6, 0.6)</rect>
+			</damageData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<size>(1,1)</size>
+
+		<statBases>
+			<Mass>35</Mass>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<MarketValue>5000</MarketValue>
+			<WorkToBuild>20000</WorkToBuild>
+			<Beauty>5</Beauty>
+		</statBases>
+
+		<pathCost>50</pathCost>
+		<blockWind>true</blockWind>
+		<passability>PassThroughOnly</passability>
+		<fillPercent>1.0</fillPercent>
+		<tickerType>Normal</tickerType>
+		<rotatable>false</rotatable>
+		<selectable>true</selectable>
+		<soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<repairEffect>ConstructMetal</repairEffect>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<designationCategory>Misc</designationCategory>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
+		<techLevel>Ultra</techLevel>
+		<researchPrerequisites>
+			<li>Rimgate_AncientShieldEmitter</li>
+		</researchPrerequisites>
+
+		<building>
+			<ai_chillDestination>false</ai_chillDestination>
+			<uninstallWork>4500</uninstallWork>
+			<destroySound>BuildingDestroyed_Metal_Small</destroySound>
+			<claimable>true</claimable>
+			<roofCollapseDamageMultiplier>0.2</roofCollapseDamageMultiplier>
+		</building>
+
+		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+
+		<costList>
+			<Steel>25</Steel>
+			<Gold>25</Gold>
+			<Plasteel>50</Plasteel>
+			<Rimgate_Naquadah>50</Rimgate_Naquadah>
+			<BroadshieldCore>1</BroadshieldCore>
+		</costList>
+		<resourcesFractionWhenDeconstructed>1</resourcesFractionWhenDeconstructed>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<killedLeavings>
+			<Plasteel>7</Plasteel>
+		</killedLeavings>
+
+		<comps>
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Breakdownable" />
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>4500</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_HeatPusher">
+				<compClass>CompHeatPusherPowered</compClass>
+				<heatPerSecond>6</heatPerSecond>
+			</li>
+			<li Class="Rimgate.CompProperties_ShieldEmitter">
+				<compClass>Rimgate.Comp_ShieldEmitter</compClass>
+				<interceptAirProjectiles>true</interceptAirProjectiles>
+				<interceptGroundProjectiles>true</interceptGroundProjectiles>
+				<interceptNonHostileProjectiles>false</interceptNonHostileProjectiles>
+				<podBlocker>true</podBlocker>
+				<resetTime>3000</resetTime>
+				<sizeScalesPowerUsage>true</sizeScalesPowerUsage>
+				<powerUsageRange>4500~29000</powerUsageRange>
+				<shieldCanBeScaled>true</shieldCanBeScaled>
+				<shieldScaleLimits>5~99</shieldScaleLimits>
+				<shieldScaleDefault>5</shieldScaleDefault>
+				<stressPerDamage>0.01</stressPerDamage> <!-- default 0.003 -->
+				<stressReduction>1</stressReduction> <!-- default 1-->
+				<empDamageFactor>4.5</empDamageFactor>
+				<shieldOverloadThreshold>0.9</shieldOverloadThreshold>
+				<shieldOverloadChance>0.1</shieldOverloadChance>
+				<extraOverloadRange>10</extraOverloadRange>
+				<overloadDamageType>EMP</overloadDamageType>
+				<explodeOnCollapse>false</explodeOnCollapse>
+				<shieldColor>(237, 227, 133)</shieldColor>
+			</li>
+		</comps>
+
+	</ThingDef>
+
 	<!-- ======================= Symbiote Spawning Pool ======================= -->
 
 	<ThingDef ParentName="BuildingBase">

@@ -40,7 +40,7 @@
         <description>A neuroelectric shock induced by a Zat'nik'tel blast. Body goes limp, mind goes fuzzy, pants may be soiled. Effects are temporary—dignity, less so.</description>
         <comps>
             <li Class="HediffCompProperties_Disappears">
-                <disappearsAfterTicks>2200~3500</disappearsAfterTicks>
+                <disappearsAfterTicks>1200~2500</disappearsAfterTicks>
                 <showRemainingTime>true</showRemainingTime>
             </li>
         </comps>

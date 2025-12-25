@@ -57,7 +57,7 @@
         <shortCircuitInRain>true</shortCircuitInRain>
       </li>
       <li Class="CompProperties_Flickable" />
-      <!-- Fuel-hungry but not insane: ~2 Naquadria/day, 15 days from full -->
+      <!-- Fuel-hungry but not insane: ~2 Naquadria/day, 15 days to empty -->
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>2.0</fuelConsumptionRate>
         <fuelCapacity>30.0</fuelCapacity>
@@ -143,10 +143,10 @@
         <transmitsPower>true</transmitsPower>
         <shortCircuitInRain>true</shortCircuitInRain>
       </li>
-      <!-- Very hungry: 6 Naquadria/day, 60 capacity => 10 days from full -->
+      <!-- Very hungry: 6 Naquadria/day, 30 capacity => 5 days to empty -->
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>6.0</fuelConsumptionRate>
-        <fuelCapacity>60.0</fuelCapacity>
+        <fuelCapacity>30.0</fuelCapacity>
         <fuelFilter>
           <thingDefs>
             <li>Rimgate_Naquadria</li>

@@ -78,7 +78,6 @@
     <techLevel>Ultra</techLevel>
 
     <comps>
-      <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Breakdownable" />
       <li Class="CompProperties_Forbiddable" />
       <li Class="CompProperties_AssignableToPawn">

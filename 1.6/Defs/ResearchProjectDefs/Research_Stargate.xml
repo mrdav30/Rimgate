@@ -282,10 +282,10 @@
 		<techLevel>Archotech</techLevel>
 		<baseCost>10000</baseCost>
 		<prerequisites>
-			<li>Rimgate_SubspaceMasking</li>
+			<li>Rimgate_ZPMIntegration</li>
 		</prerequisites>
-		<researchViewX>2</researchViewX>
-		<researchViewY>2.5</researchViewY>
+		<researchViewX>1</researchViewX>
+		<researchViewY>3</researchViewY>
 		<discoveredLetterTitle>About: Phase Diverter</discoveredLetterTitle>
 		<discoveredLetterText>By expressing vacuum fluctuations across parallel subspace branes, your engineers can “phase-hop” a ZPM’s intake. Connected ZPMs will now gradually replenish reserves while a diverter runs on the same power net. Don’t stare at the interference fringes too long.</discoveredLetterText>
 		<requiredResearchFacilities>
@@ -300,10 +300,11 @@
 		<techLevel>Archotech</techLevel>
 		<baseCost>10000</baseCost>
 
-		<researchViewX>3</researchViewX>
+		<researchViewX>2</researchViewX>
 		<researchViewY>2.5</researchViewY>
 
 		<prerequisites>
+			<li>Rimgate_SubspaceMasking</li>
 			<li>Rimgate_ParallelSubspaceCoupling</li>
 		</prerequisites>
 		<requiredResearchFacilities>
@@ -312,6 +313,25 @@
 
 		<discoveredLetterTitle>About: ZPM Housing</discoveredLetterTitle>
 		<discoveredLetterText>When the final glyph-lock snapped into place, your researchers didn’t cheer—they just stepped back, very slowly, as the holographic interface resolved itself into something unmistakably… Ancient.\n\nThe device before them isn’t just a docking frame. It’s a harmonizer, a stabilizer, and a very polite suggestion to the universe that several sealed micro-cosms should all pretend to act like one big battery.\n\nThrough careful reconstruction (and one memorable incident with a lab bench now permanently fused to the ceiling), your team decoded how the Ancients balanced parallel zero-point feeds.\n\nWith a proper containment housing, multiple ZPMs can now be aligned, synchronized, and—gods help you—combined.\n\nJust remember: the Ancients built these things under strict conditions, not next to a wooden barracks full of hungry boomrats.</discoveredLetterText>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_AncientShieldEmitter</defName>
+		<label>Ancient Shield Emitter</label>
+		<description>Ancient notes describe a way to interweave hyper-activated quantum fields to create a defensive barrier around your base. With the help of a ZPM housing, it's actually feasible to power such a device on a large enough scale to protect against incoming attacks and provide a safe haven for your colonists.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>10000</baseCost>
+
+		<researchViewX>3</researchViewX>
+		<researchViewY>2.5</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_ZPMHousing</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
 	</ResearchProjectDef>
 
 </Defs>

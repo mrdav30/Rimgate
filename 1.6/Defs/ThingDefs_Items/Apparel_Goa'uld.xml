@@ -757,8 +757,6 @@
 			<WorkToMake>12500</WorkToMake>
 			<Mass>17</Mass>
 			<Flammability>0.6</Flammability>
-			<EnergyShieldRechargeRate>0.13</EnergyShieldRechargeRate>
-			<EnergyShieldEnergyMax>0.9</EnergyShieldEnergyMax>
 			<ArmorRating_Sharp>1.18</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.45</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.55</ArmorRating_Heat>
@@ -791,6 +789,8 @@
 				<minShieldSize>1.4</minShieldSize>
 				<maxShieldSize>1.8</maxShieldSize>
 				<disableRotation>true</disableRotation>
+				<EnergyShieldRechargeRate>0.08</EnergyShieldRechargeRate>
+				<EnergyShieldEnergyMax>1.2</EnergyShieldEnergyMax>
 			</li>
 			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000210</analysisID>
@@ -858,8 +858,6 @@
 			<Mass>1.5</Mass>
 			<WorkToMake>14000</WorkToMake>
 			<Flammability>0.4</Flammability>
-			<EnergyShieldRechargeRate>0.13</EnergyShieldRechargeRate>
-			<EnergyShieldEnergyMax>0.9</EnergyShieldEnergyMax>
 			<EquipDelay>2</EquipDelay>
 		</statBases>
 		<tradeability>Sellable</tradeability>
@@ -898,6 +896,8 @@
 				<minShieldSize>1.4</minShieldSize>
 				<maxShieldSize>1.8</maxShieldSize>
 				<disableRotation>true</disableRotation>
+				<EnergyShieldRechargeRate>0.08</EnergyShieldRechargeRate>
+				<EnergyShieldEnergyMax>1.5</EnergyShieldEnergyMax>
 			</li>
 			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000200</analysisID>

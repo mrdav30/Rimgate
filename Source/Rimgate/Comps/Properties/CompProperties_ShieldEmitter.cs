@@ -32,11 +32,11 @@ public class CompProperties_ShieldEmitter : CompProperties
 
     public bool sizeScalesPowerUsage = false;
 
-    public float powerUsageRangeMax = float.MaxValue;
+    public FloatRange powerUsageRange = new FloatRange(0.0f, float.MaxValue);
 
     public bool sizeScalesFuelUsage = false;
 
-    public float fuelConsumptionRangeMax = float.MaxValue;
+    public FloatRange fuelConsumptionRange = new FloatRange(0.0f, float.MaxValue);
 
     public FloatRange heatGenRange = new FloatRange(0.0f, 100f);
 

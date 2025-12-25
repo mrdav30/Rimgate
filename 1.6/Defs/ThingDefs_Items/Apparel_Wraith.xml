@@ -605,7 +605,7 @@
 				<showWhenDrafted>false</showWhenDrafted>
 				<showOnHostiles>false</showOnHostiles>
 				<showOnNeutralInCombat>false</showOnNeutralInCombat>
-				<EnergyShieldRechargeRate>0.2</EnergyShieldRechargeRate>
+				<EnergyShieldRechargeRate>0.15</EnergyShieldRechargeRate>
 				<EnergyShieldEnergyMax>100</EnergyShieldEnergyMax>
 				<minShieldSize>1.4</minShieldSize>
 				<maxShieldSize>1.8</maxShieldSize>

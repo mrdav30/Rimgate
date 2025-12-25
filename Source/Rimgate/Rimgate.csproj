@@ -469,6 +469,7 @@
     <Compile Include="Things\Building_ZPMHousing.cs" />
     <Compile Include="Things\Pawn_Unas.cs" />
     <Compile Include="Things\Thing_GoauldSymbiote.cs" />
+    <Compile Include="UI\Dialog_SliderWithValue.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RecoverBiomaterials.cs" />
     <Compile Include="UI\ITab_SymbiotePool.cs" />
     <Compile Include="UI\RimgateTex.cs" />

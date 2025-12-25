@@ -118,7 +118,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
             var wd = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SymbioteWithdrawal, pawn);
             pawn.health.AddHediff(wd);
         }
-
+ 
         TrySpawnSymbiote();
     }
 

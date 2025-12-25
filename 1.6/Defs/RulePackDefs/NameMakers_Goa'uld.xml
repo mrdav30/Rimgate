@@ -51,9 +51,6 @@
 
   <RulePackDef>
     <defName>Rimgate_NamerKull</defName>
-    <include>
-      <li>GlobalUtility</li>
-    </include>
     <rulePack>
       <rulesStrings>
         <li>name->[RG_KullName]</li>
@@ -83,8 +80,19 @@
         <li>maybe_numbers->[Digit][Digit][Digit]</li>
       </rulesStrings>
       <rulesFiles>
+        <li>ConceptBadass->Words/Nouns/Concepts_Badass</li>
+        <li>Weapon->Words/Nouns/Weapons</li>
+        <li>Gore->Words/Nouns/Gore</li>
+        <li>Letter->WordParts/CapitalLetters</li>
         <li>RG_KullUnisexName->NameBanks/Goauld/Names_Kull_Unisex</li>
+        <li>RomanNumeral->Words/Misc/Numbers_SmallRoman</li>
       </rulesFiles>
+      <rulesRaw>
+        <li Class="Rule_Number">
+          <keyword>Digit</keyword>
+          <range>0~9</range>
+        </li>
+      </rulesRaw>
     </rulePack>
   </RulePackDef>
 

@@ -91,18 +91,12 @@ public class Comp_ShieldEmitter : ThingComp
         ? 1f
         : Mathf.Lerp(0.5f, 2f, GetShieldScalePercentage);
 
-    public float GetShieldScalePercentage
-    {
-        get
-        {
-            return !Props.shieldCanBeScaled
-                ? 1f
-                : Mathf.InverseLerp(
-                    Props.shieldScaleLimits.min,
-                    Props.shieldScaleLimits.max,
-                    _curShieldRadius);
-        }
-    }
+    public float GetShieldScalePercentage => !Props.shieldCanBeScaled
+        ? 1f
+        : Mathf.InverseLerp(
+            Props.shieldScaleLimits.min,
+            Props.shieldScaleLimits.max,
+            _curShieldRadius);
 
     public CompPowerTrader PowerTrader => _powerComp ??= parent.GetComp<CompPowerTrader>();
 
@@ -141,7 +135,7 @@ public class Comp_ShieldEmitter : ThingComp
 
             UpdateStress(true);
 
-            if (!_overloaded 
+            if (!_overloaded
                 && CurStressLevel >= Props.shieldOverloadThreshold
                 && Rand.Chance(Props.shieldOverloadChance * (1 + CurStressLevel)))
             {
@@ -227,37 +221,32 @@ public class Comp_ShieldEmitter : ThingComp
 
     private void UpdatePowerUsage()
     {
-        var powerProps = PowerTrader.props as CompProperties_Power;
-        var baseConsumption = powerProps?.PowerConsumption ?? 0;
+        if (!Props.shieldCanBeScaled || !Props.sizeScalesPowerUsage)
+            return;
 
-        if (!Active
-            || !Props.shieldCanBeScaled
-            || !Props.sizeScalesPowerUsage)
+        if (!Active)
         {
-            PowerTrader.PowerOutput = baseConsumption;
+            PowerTrader.PowerOutput = 0;
             return;
         }
 
         PowerTrader.PowerOutput = Mathf.Lerp(
-            baseConsumption,
-            Props.powerUsageRangeMax,
+            0 - Props.powerUsageRange.min,
+            0 - Props.powerUsageRange.max,
             GetShieldScalePercentage);
     }
 
     private void UpdateFuelUsage()
     {
-        if (!Active
-            || !Props.shieldCanBeScaled
+        if (!Props.shieldCanBeScaled
             || !Props.sizeScalesFuelUsage
+            || !Active
             || !parent.IsHashIntervalTick(2))
             return;
 
-        var refuelProps = Refuelable.props as CompProperties_Refuelable;
-        var baseConsumption = refuelProps?.fuelConsumptionRate ?? 0;
-
         float fuelRate = Mathf.Lerp(
-            baseConsumption,
-            Props.fuelConsumptionRangeMax,
+            Props.fuelConsumptionRange.min,
+            Props.fuelConsumptionRange.max,
             GetShieldScalePercentage);
 
         Refuelable.ConsumeFuel(fuelRate / 60000f);
@@ -265,13 +254,16 @@ public class Comp_ShieldEmitter : ThingComp
 
     public void UpdateHeatPusher()
     {
-        if (Active)
-            HeatPusher.Props.heatPerSecond = Mathf.Lerp(
-                Props.heatGenRange.min,
-                Props.heatGenRange.max,
-                CurStressLevel);
-        else
+        if (!Active)
+        {
             HeatPusher.Props.heatPerSecond = 0.0f;
+            return;
+        }
+
+        HeatPusher.Props.heatPerSecond = Mathf.Lerp(
+            Props.heatGenRange.min,
+            Props.heatGenRange.max,
+            CurStressLevel);
     }
 
     #endregion
@@ -619,12 +611,13 @@ public class Comp_ShieldEmitter : ThingComp
                 commandAction.icon = RimgateTex.ShieldRadiusCommandTex;
                 commandAction.action = () =>
                 {
-                    Find.WindowStack.Add(new Dialog_Slider(
+                    Find.WindowStack.Add(new Dialog_SliderWithValue(
                         Translator.Translate("RG_ShieldGenRadiusTitle"),
                         Props.shieldScaleLimits.min,
                         Props.shieldScaleLimits.max,
                         val => SetShieldRadius = val,
-                        SetShieldRadius));
+                        SetShieldRadius,
+                        unitLabel: "tiles"));
                 };
                 yield return commandAction;
             }
@@ -663,17 +656,12 @@ public class Comp_ShieldEmitter : ThingComp
     {
         StringBuilder stringBuilder = new StringBuilder();
         if (Active)
-        {
-            if (_ticksToReset > 0)
-            {
-                string cooldown = GenDate.ToStringTicksToPeriod(_ticksToReset, true, false, true, true, false);
-                stringBuilder.Append($"CooldownTime : {cooldown}");
-            }
-            else
-                stringBuilder.Append("Shield Active");
-        }
+            stringBuilder.Append("Shield Active");
         else
             stringBuilder.Append("Shield Inactive");
+
+        if (_ticksToReset > 0)
+            stringBuilder.AppendInNewLine($"CooldownTime : {GenDate.ToStringTicksToPeriod(_ticksToReset)}");
 
         return stringBuilder.ToString();
     }
@@ -689,10 +677,10 @@ public class Comp_ShieldEmitter : ThingComp
         Scribe_Values.Look<int>(ref _lastInterceptTicks, "_lastInterceptTicks", -999999, false);
         Scribe_Values.Look<bool>(ref _wasHitByEmp, "_wasHitByEmp", false);
         Scribe_Values.Look<bool>(ref _showShieldToggle, "_showShieldToggle", false, false);
-        Scribe_Values.Look<float>(ref _curStressLevel, "CurStressLevel", 0.0f, false);
+        Scribe_Values.Look<float>(ref _curStressLevel, "_curStressLevel", 0.0f, false);
         Scribe_Values.Look<int>(ref _ticksToReset, "_ticksToReset", -1, false);
-        Scribe_Values.Look<bool>(ref _overloaded, "Overloaded", false, false);
-        Scribe_Values.Look<int>(ref _curShieldRadius, "CurShieldRadius", Props.shieldScaleDefault, false);
-        Scribe_Values.Look<Color>(ref _currentColor, "CurrentColor", Props.shieldColor, false);
+        Scribe_Values.Look<bool>(ref _overloaded, "_overloaded", false, false);
+        Scribe_Values.Look<int>(ref _curShieldRadius, "_curShieldRadius", Props.shieldScaleDefault, false);
+        Scribe_Values.Look<Color>(ref _currentColor, "_currentColor", Props.shieldColor, false);
     }
 }
