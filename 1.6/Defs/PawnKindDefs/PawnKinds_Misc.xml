@@ -13,10 +13,11 @@
         <minGenerationAge>20</minGenerationAge>
         <maxGenerationAge>55</maxGenerationAge>
         <isFighter>true</isFighter>
+        <canUseAvoidGrid>true</canUseAvoidGrid>
         <chemicalAddictionChance>0.05</chemicalAddictionChance>
         <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality>
         <fixedChildBackstories>
-            <li>Rimgate_Clone</li>
+            <li>Rimgate_Replicant</li>
         </fixedChildBackstories>
         <backstoryFiltersOverride>
             <li>
@@ -157,6 +158,7 @@
         <maxGenerationAge>70</maxGenerationAge>
         <isFighter>true</isFighter>
         <canBeSapper>true</canBeSapper>
+        <canUseAvoidGrid>true</canUseAvoidGrid>
         <chemicalAddictionChance>0.12</chemicalAddictionChance>
         <backstoryCryptosleepCommonality>0.15</backstoryCryptosleepCommonality>
         <backstoryFiltersOverride>

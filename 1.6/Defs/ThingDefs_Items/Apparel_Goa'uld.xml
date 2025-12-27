@@ -648,7 +648,7 @@
 	<ThingDef ParentName="Rimgate_JaffaArmorBase">
 		<defName>Rimgate_JaffaArmor</defName>
 		<label>Jaffa armor</label>
-		<description>standard-issue Jaffa power armor: bulky, impressive, and likely to protect everything except your feelings. Bonus points if you shout “Shol'va!” mid-charge.</description>
+		<description>Standard-issue Jaffa power armor: bulky, impressive, and likely to protect everything except your feelings. Bonus points if you shout “Shol'va!” mid-charge.</description>
 		<costList>
 			<Steel>175</Steel>
 			<ComponentIndustrial>5</ComponentIndustrial>
@@ -771,6 +771,9 @@
 			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.3</VacuumResistance>
 		</equippedStatOffsets>
 		<apparel>
+			<bodyPartGroups>
+				<li>Hands</li>
+			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Torso/Kull/RGKullArmor</wornGraphicPath>
 			<tags>
 				<li>Rimgate_KullApparel_tag</li>

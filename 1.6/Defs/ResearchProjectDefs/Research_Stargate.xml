@@ -91,7 +91,7 @@
 		<defName>Rimgate_StargateReplacementDHDResearch</defName>
 		<label>DHD logic</label>
 		<description>By studying salvaged Dwarfgate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.\nNote: SGC officially recommends bolting this one to the floor.</description>
-		<techLevel>Spacer</techLevel>
+		<techLevel>Archotech</techLevel>
 		<baseCost>4000</baseCost>
 		<prerequisites>
 			<li>Rimgate_GlyphDeciphering</li>
@@ -189,7 +189,7 @@
 		<label>Puddle Jumper</label>
 		<description>Blueprints recovered from the remains of an Ancient “Puddle Jumper” — a sleek, self-sealing scout craft built for silent insertion and questionable bravery.\n\nWhile the Ancients designed it for interstellar gates, the Tau’ri (and now, us) have re-engineered it for local atmospheric and orbital hops.\n\nNo wormhole travel, no auto-navigation, and definitely no manual that anyone can read — but it flies, shields, and occasionally terrifies pilots into sainthood.</description>
 		<baseCost>6500</baseCost>
-		<techLevel>Spacer</techLevel>
+		<techLevel>Ultra</techLevel>
 		<prerequisites>
 			<li>Rimgate_StargateAlloyResearch</li>
 			<li>ShipBasics</li>
@@ -224,7 +224,7 @@
 		<label>ZPM core</label>
 		<description>Decode Ancient supervisory fields and safety interlocks to bind a ZPM into modern distributions without catastrophic feedback. Until this is understood, a ZPM will remain inert when connected.</description>
 		<techLevel>Spacer</techLevel>
-		<baseCost>2000</baseCost>
+		<baseCost>3200</baseCost>
 		<prerequisites>
 			<li>Electricity</li>
 		</prerequisites>
@@ -317,7 +317,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientShieldEmitter</defName>
-		<label>Ancient Shield Emitter</label>
+		<label>Shield Emitter</label>
 		<description>Ancient notes describe a way to interweave hyper-activated quantum fields to create a defensive barrier around your base. With the help of a ZPM housing, it's actually feasible to power such a device on a large enough scale to protect against incoming attacks and provide a safe haven for your colonists.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>10000</baseCost>

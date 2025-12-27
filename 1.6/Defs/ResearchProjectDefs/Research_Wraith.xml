@@ -20,7 +20,7 @@
 		<defName>Rimgate_WraithBasic</defName>
 		<label>Wraith science</label>
 		<description>Begin unlocking the secrets of Wraith bio-engineering—where everything is grown, pulsing, and slightly slimy.\nWarning: side effects may include telepathy and power hunger.</description>
-		<baseCost>1500</baseCost>
+		<baseCost>3000</baseCost>
 		<prerequisites>
 			<li>MicroelectronicsBasics</li>
 		</prerequisites>
@@ -85,7 +85,7 @@
 		<defName>Rimgate_WraithCommunicationDevice</defName>
 		<label>Wraith hacking</label>
 		<description>Reverse-engineer Wraith neural interface tech to bend machines to your will. Great for remote control, terrible for privacy.</description>
-		<baseCost>2500</baseCost>
+		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>StandardMechtech</li>
 			<li>Rimgate_WraithWeaponTierOne</li>
@@ -113,24 +113,16 @@
 		<defName>Rimgate_WraithModificationEquipment</defName>
 		<label>Gate Modification</label>
 		<description>Adaptations of Wraith neural interface rigs and sensory dampening gear.\n\nWith this knowledge, your scientists can alter Dwarfgate control systems to block long-range subspace "backscatter," preventing unauthorized remote peeks into connected sites. Only after this research can your colony safely observe both ends of an active wormhole.</description>
-		<baseCost>3500</baseCost>
+		<baseCost>5500</baseCost>
 		<techLevel>Archotech</techLevel>
 		<prerequisites>
 			<li>Rimgate_GlyphDeciphering</li>
 			<li>Rimgate_SubspaceMasking</li>
+			<li>Rimgate_StargateReplacementDHDResearch</li>
 			<li>Rimgate_WraithCommunicationDevice</li>
 		</prerequisites>
 		<researchViewX>3</researchViewX>
 		<researchViewY>0.5</researchViewY>
-		<techprintCount>1</techprintCount>
-		<techprintCommonality>3</techprintCommonality>
-		<techprintMarketValue>3000</techprintMarketValue>
-		<heldByFactionCategoryTags>
-			<li>Rimgate_WraithFaction</li>
-		</heldByFactionCategoryTags>
-		<tags>
-			<li>Rimgate_TechprintPool</li>
-		</tags>
 	</ResearchProjectDef>
 
 	<!-- ======== Buildings ========= -->
@@ -152,13 +144,13 @@
 		<defName>Rimgate_WraithCloneGenome</defName>
 		<label>Cloning</label>
 		<description>Unlock Wraith genome templating: growth protocols, enzyme baths, and neural imprint scaffolds that skip childhood entirely.\n\nFresh bodies on demand—morals sold separately. Expect epigenetic drift, occasional extra teeth, and complaints from HR.</description>
-		<techLevel>Archotech</techLevel>
-		<baseCost>3500</baseCost>
+		<techLevel>Ultra</techLevel>
+		<baseCost>5500</baseCost>
 		<prerequisites>
 			<li>Rimgate_MeatCultivation</li>
 		</prerequisites>
 		<researchViewX>1.5</researchViewX>
-		<researchViewY>1.5</researchViewY>
+		<researchViewY>2.5</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_WraithCloningPod</li>
 		</requiredAnalyzed>
@@ -188,12 +180,13 @@
 		<defName>Rimgate_WraithCloneFull</defName>
 		<label>Full-body replication</label>
 		<description>Enable full-body replication for any pawn—Wraith, human, or unlucky intern.\n\nCopies quirks, scars, and bedtime fears with alarming fidelity. Printing colonists is now a workflow.</description>
+		<techLevel>Ultra</techLevel>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithCloneGenome</li>
 		</prerequisites>
 		<researchViewX>2.5</researchViewX>
-		<researchViewY>1.5</researchViewY>
+		<researchViewY>2.5</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -206,7 +199,7 @@
 			<li>Rimgate_WraithCloneFull</li>
 		</prerequisites>
 		<researchViewX>3.5</researchViewX>
-		<researchViewY>1.5</researchViewY>
+		<researchViewY>2.5</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -219,7 +212,7 @@
 			<li>Rimgate_WraithCloneEnhancement</li>
 		</prerequisites>
 		<researchViewX>4.5</researchViewX>
-		<researchViewY>1.5</researchViewY>
+		<researchViewY>2.5</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
@@ -233,9 +226,9 @@
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithGenerator</defName>
-		<label>Wraith generator</label>
-		<description>Unlock the Wraith biomass generator—a power source fueled by cultivated organic matter.\nEfficient, grotesque, and perfect for the energy needs of a species that eats people.</description>
-		<baseCost>3500</baseCost>
+		<label>Biomass generator</label>
+		<description>Unlock the Wraith biomass generator—an advanced power source fueled by cultivated organic matter processed into biomass.</description>
+		<baseCost>4500</baseCost>
 		<prerequisites>
 			<li>Rimgate_MeatCultivation</li>
 		</prerequisites>
@@ -290,11 +283,30 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_BiomassOptimization</defName>
+		<label>Advanced bioengineering</label>
+		<description>Optimize the meat cultivation process by applying advanced bioengineering techniques to increase the power yield of biomass generators and reduce resource consumption of meat labs.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>3500</baseCost>
+
+		<prerequisites>
+			<li>Rimgate_WraithGenerator</li>
+			<li>Rimgate_WraithCloneGenome</li>
+		</prerequisites>
+
+		<researchViewX>3</researchViewX>
+		<researchViewY>1.5</researchViewY>
+
+		<recalculatePower>true</recalculatePower>
+
+		<discoveredLetterTitle>About: Advanced bioengineering</discoveredLetterTitle>
+		<discoveredLetterText>Advanced bioengineering techniques have been applied to optimize the meat cultivation process by increasing the power yield of biomass generators and reducing resource consumption of meat labs.</discoveredLetterText>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_CloningPodOptimization</defName>
 		<label>cloning pod optimization</label>
-
 		<description>Apply ZPM-inspired power-shaping techniques to Wraith biotank architecture. While the pod’s biology still demands immense energy for accelerated growth, your engineers can now reconfigure the pump rhythms, enzyme heaters, and neural-imprint grids to draw power in smooth harmonics rather than violent spikes.\n\nIt won’t make the pod any less unsettling.\n\nBut it will make it about a third less hungry.</description>
-
 		<techLevel>Archotech</techLevel>
 		<baseCost>9000</baseCost>
 
@@ -305,7 +317,9 @@
 		</prerequisites>
 
 		<researchViewX>1.5</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewY>3</researchViewY>
+
+		<recalculatePower>true</recalculatePower>
 
 		<generalRules>
 			<rulesStrings>
@@ -330,6 +344,8 @@
 				<li>subject_gerund->teaching a Wraith biotank to sip instead of devour</li>
 			</rulesStrings>
 		</generalRules>
+		<discoveredLetterTitle>About: Cloning pod optimization</discoveredLetterTitle>
+		<discoveredLetterText>Your team has successfully applied ZPM-inspired power-shaping techniques to Wraith biotank architecture. The cloning pod now draws power in smooth harmonics rather than violent spikes, reducing its overall energy consumption.\n\nWhile it remains unsettling, the pod is now about a third less hungry.</discoveredLetterText>
 	</ResearchProjectDef>
 
 </Defs>

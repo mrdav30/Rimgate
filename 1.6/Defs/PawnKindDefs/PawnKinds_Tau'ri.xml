@@ -17,7 +17,6 @@
             <li>AdvancedWeapon</li>
         </techHediffsTags>
         <biocodeWeaponChance>0.2</biocodeWeaponChance>
-        <itemQuality>Normal</itemQuality>
     </PawnKindDef>
 
     <PawnKindDef ParentName="Rimgate_TauriBase">
@@ -32,6 +31,7 @@
             <li>IndustrialGunAdvanced</li>
         </weaponTags>
         <apparelMoney>200~1000</apparelMoney>
+        <itemQuality>Normal</itemQuality>
         <apparelTags>
             <li>IndustrialBasic</li>
             <li>IndustrialAdvanced</li>
@@ -116,6 +116,7 @@
     <PawnKindDef Name="Rimgate_TauriUniformedBase" ParentName="Rimgate_TauriBase" Abstract="True">
         <isFighter>true</isFighter>
         <canBeSapper>true</canBeSapper>
+        <canUseAvoidGrid>true</canUseAvoidGrid>
         <requiredWorkTags>
             <li>Social</li>
             <li>Violent</li>
@@ -123,6 +124,7 @@
         <invNutrition>2.25</invNutrition>
         <gearHealthRange>0.6~1.3</gearHealthRange>
         <apparelMoney>1250~2500</apparelMoney>
+        <itemQuality>Normal</itemQuality>
         <weaponMoney>2600~3100</weaponMoney>
         <apparelTags>
             <li>IndustrialMilitaryAdvanced</li>
@@ -183,6 +185,7 @@
         <combatPower>135</combatPower>
         <weaponMoney>3000~3500</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
+        <itemQuality>Good</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriRocketLauncher_tag</li>
         </weaponTags>
@@ -221,6 +224,7 @@
         <gearHealthRange>0.75~2.3</gearHealthRange>
         <weaponMoney>1550~2700</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
+        <itemQuality>Good</itemQuality>
         <skills>
             <li>
                 <skill>Shooting</skill>
@@ -234,7 +238,7 @@
         <label>Tau'ri special forces</label>
         <race>Human</race>
         <combatPower>150</combatPower>
-        <itemQuality>Good</itemQuality>
+        <itemQuality>Excellent</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriShotgun_tag</li>
             <li>Rimgate_Tauri_SniperRifle</li>
@@ -289,7 +293,7 @@
         <factionLeader>true</factionLeader>
         <canBeSapper>true</canBeSapper>
         <combatPower>150</combatPower>
-        <itemQuality>Good</itemQuality>
+        <itemQuality>Excellent</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriPistol_tag</li>

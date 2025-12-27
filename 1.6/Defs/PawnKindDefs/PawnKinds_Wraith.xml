@@ -14,7 +14,8 @@
     <chemicalAddictionChance>0.035</chemicalAddictionChance>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>30~60</initialResistanceRange>
-    <itemQuality>Normal</itemQuality>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
   </PawnKindDef>
 
   <!-- ============ Wraith Civilian Base ============ -->
@@ -54,6 +55,7 @@
   <PawnKindDef ParentName="Rimgate_WraithCivilianBase">
     <defName>Rimgate_WraithColonist</defName>
     <label>colonist</label>
+    <itemQuality>Normal</itemQuality>
     <apparelTags>
       <li>IndustrialBasic</li>
       <li>IndustrialAdvanced</li>
@@ -74,6 +76,7 @@
   <PawnKindDef ParentName="Rimgate_WraithCivilianBase">
     <defName>Rimgate_WraithSlave</defName>
     <label>slave</label>
+    <itemQuality>Poor</itemQuality>
     <apparelTags>
       <li>Tribal</li>
       <li>Neolithic</li>
@@ -91,12 +94,11 @@
     </requiredWorkTags>
     <chemicalAddictionChance>0</chemicalAddictionChance>
     <isFighter>true</isFighter>
+    <canUseAvoidGrid>true</canUseAvoidGrid>
     <invNutrition>2.55</invNutrition>
     <minGenerationAge>19</minGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
     <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
-    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
     <apparelMoney>1250~2500</apparelMoney>
     <specificApparelRequirements>
       <li>
@@ -145,6 +147,7 @@
     <defName>Rimgate_WraithSoldier</defName>
     <label>Wraith soldier</label>
     <combatPower>90</combatPower>
+    <itemQuality>Normal</itemQuality>
     <apparelTags>
       <li>Tribal</li>
       <li>Neolithic</li>
@@ -174,6 +177,7 @@
     <label>Wraith assassin</label>
     <combatPower>150</combatPower>
     <apparelMoney>5000~8000</apparelMoney>
+    <itemQuality>Good</itemQuality>
     <weaponMoney>2200~3800</weaponMoney>
     <techHediffsMoney>2000~2500</techHediffsMoney>
     <startingHediffs>
@@ -295,7 +299,7 @@
       <li>Rimgate_WraithQueen</li>
     </fixedAdultBackstories>
     <gearHealthRange>0.8~3.5</gearHealthRange>
-    <itemQuality>Good</itemQuality>
+    <itemQuality>Excellent</itemQuality>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags>
       <li>Tribal</li>

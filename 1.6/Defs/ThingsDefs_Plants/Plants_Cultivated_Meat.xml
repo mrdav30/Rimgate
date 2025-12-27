@@ -44,7 +44,7 @@
 			<harvestTag>Standard</harvestTag>
 			<harvestedThingDef>Rimgate_CulturedMeat</harvestedThingDef>
 			<harvestYield>28</harvestYield>
-			<growDays>2</growDays>
+			<growDays>3.5</growDays>
 			<sowTags>
 				<li>Rimgate_WraithMeatLab_tag</li>
 			</sowTags>

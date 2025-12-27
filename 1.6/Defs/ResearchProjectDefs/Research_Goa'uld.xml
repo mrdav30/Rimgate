@@ -19,7 +19,7 @@
 		<defName>Rimgate_GoauldBasic</defName>
 		<label>Goa'uld tech</label>
 		<description>Unlock foundational Goa'uld tech, including interface protocols, energy matrices, and that smug sense of superiority you've been missing.</description>
-		<baseCost>1500</baseCost>
+		<baseCost>3000</baseCost>
 		<researchViewX>0</researchViewX>
 		<researchViewY>1.5</researchViewY>
 		<prerequisites>
@@ -67,6 +67,7 @@
 		<defName>Rimgate_KullArmor</defName>
 		<label>Kull armor</label>
 		<description>Crack the secrets of Kull supersoldier plating: a naquadah-infused, self-stiffening composite that treats small arms like weather. Learn to fabricate the overlapping plates and the power harness that drives them. Heavy, hungry, and hilariously overkill—just how the Goa’uld like their fashion.</description>
+		<techLevel>Ultra</techLevel>
 		<baseCost>5000</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldArmorTierTwo</li>
@@ -98,6 +99,7 @@
 		<defName>Rimgate_GoauldKaraKesh</defName>
 		<label>Kara kesh</label>
 		<description>Gain insight into how to construct your own Kara kesh, the Goa'uld multifunctional apparatus also known as a hand or ribbon device.</description>
+		<techLevel>Ultra</techLevel>
 		<baseCost>5000</baseCost>
 		<prerequisites>
 			<li>PoweredArmor</li>
@@ -145,6 +147,7 @@
 		<defName>Rimgate_GoauldWeaponTierTwo</defName>
 		<label>Kull weapons</label>
 		<description>Reverse-engineer the devastating weaponry of the Kull supersoldiers. Because if you can't stop them, you might as well outgun them.</description>
+		<techLevel>Ultra</techLevel>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldWeaponTierOne</li>
@@ -187,7 +190,8 @@
 		<defName>Rimgate_GoauldTurretsTierTwo</defName>
 		<label>AI defense</label>
 		<description>Goa’uld weaponsmiths, obsessed with efficiency and intimidation, have finally managed to bind staff cannon plasma tech to scavenged ion-focusing arrays. The result is a terrifying marriage of ancient cruelty and stolen science: automated staff cannons that no longer need Jaffa to man them. They fire ceaselessly, with inhuman precision, until their barrels melt or their cores detonate. Unlocks construction of automated staff cannon turrets.</description>
-		<baseCost>2500</baseCost>
+		<techLevel>Ultra</techLevel>
+		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldTurretsTierOne</li>
 		</prerequisites>
@@ -208,7 +212,8 @@
 		<defName>Rimgate_GoauldTurretsTierThree</defName>
 		<label>Shielded AI defense</label>
 		<description>Integrate ancient shielding concepts into automated staff cannon turrets. The resulting emplacements shrug off small arms fire and shrug on a smug sense of superiority. Unlocks construction of shielded automated staff cannon turrets.</description>
-		<baseCost>2500</baseCost>
+		<techLevel>Ultra</techLevel>
+		<baseCost>5500</baseCost>
 
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>
@@ -344,8 +349,8 @@
 		<defName>Rimgate_SarcophagusBioregeneration</defName>
 		<label>sarcophagus regeneration</label>
 		<description>Extend the Goa’uld sarcophagus’ already reckless healing into full tissue regrowth.\n\nBy cross-referencing Glitterworld bioregeneration with naquadah-accelerated pulse envelopes, your team can coax the sarcophagus into rebuilding missing flesh instead of just stabilizing what’s left.\n\nFingers and toes are just the beginning. The line between “revived” and “reassembled” gets blurry fast.</description>
-		<baseCost>6000</baseCost>
-		<techLevel>Ultra</techLevel>
+		<baseCost>9000</baseCost>
+		<techLevel>Archotech</techLevel>
 
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>
@@ -382,6 +387,8 @@
 				<li>subject_gerund->teaching Ancient-derived hardware new, very illegal tricks</li>
 			</rulesStrings>
 		</generalRules>
+		<discoveredLetterTitle>About: Sarcophagus Bioregeneration</discoveredLetterTitle>
+		<discoveredLetterText>Your researchers have modified the Goa’uld sarcophagus to coax it into regrowing lost tissue. By integrating Glitterworld bioregeneration protocols with naquadah-accelerated pulse envelopes, they’ve pushed the device beyond stabilization into full reconstruction.\n\nEthical concerns aside, this is a remarkable leap forward. Fingers and toes are just the beginning.</discoveredLetterText>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
@@ -403,6 +410,8 @@
 
 		<researchViewX>2</researchViewX>
 		<researchViewY>3.5</researchViewY>
+
+		<recalculatePower>true</recalculatePower>
 
 		<generalRules>
 			<rulesStrings>
@@ -427,6 +436,8 @@
 				<li>subject_gerund->teaching the machine to glide along the vacuum instead of punching it</li>
 			</rulesStrings>
 		</generalRules>
+		<discoveredLetterTitle>About: Sarcophagus Optimization</discoveredLetterTitle>
+		<discoveredLetterText>Your team has successfully integrated ZPM subspace harmonics into the Goa’uld sarcophagus pulse envelope. By reshaping its carrier fields, they’ve reduced the device’s power draw significantly—allowing it to operate from a stable grid connection instead of ripping power in violent bursts.\n\nIt still hums like a minor god. It just does so about a third more efficiently.</discoveredLetterText>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
@@ -434,7 +445,6 @@
 		<label>Symbiote basics</label>
 		<description>Delve deeper into the biology of Goa'uld symbiotes to decode how they bond, heal, and dominate their hosts. Learn how to “safely” extract one—or install it with only moderate screaming. The line between cure and conquest has never been thinner.</description>
 		<baseCost>5000</baseCost>
-		<techLevel>Ultra</techLevel>
 		<researchViewX>0</researchViewX>
 		<researchViewY>4</researchViewY>
 		<requiredAnalyzed>
@@ -469,7 +479,7 @@
 		<defName>Rimgate_UnasBiology</defName>
 		<label>Unas biology</label>
 		<description>After performing a surgical inspection on a living Unas, study their biological characteristics using the knowledge of the Ancients to unlock new research options related to their physiology and potential applications.</description>
-		<techLevel>Archotech</techLevel>
+		<techLevel>Ultra</techLevel>
 		<baseCost>2500</baseCost>
 
 		<researchViewX>0</researchViewX>
@@ -488,7 +498,7 @@
 		<label>Cortical dampener hacking</label>
 		<description>Reverse-engineer the cortical dampener's neural interface to gain control over its effects and unlock its hidden potential.</description>
 		<techLevel>Archotech</techLevel>
-		<baseCost>3500</baseCost>
+		<baseCost>5500</baseCost>
 
 		<researchViewX>1</researchViewX>
 		<researchViewY>4.5</researchViewY>
@@ -532,7 +542,7 @@
 		<label>Unas bioregeneration</label>
 		<description>Refines cortical catalyst protocols to trigger dormant regrowth pathways in conditioned Unas. Lost limbs can be regenerated over time, though the process is taxing and leaves tissue tender during regrowth.</description>
 		<techLevel>Archotech</techLevel>
-		<baseCost>5000</baseCost>
+		<baseCost>6500</baseCost>
 
 		<researchViewX>2</researchViewX>
 		<researchViewY>4.5</researchViewY>

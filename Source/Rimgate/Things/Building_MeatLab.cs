@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using VEF.Maps;
 using Verse;
@@ -21,6 +22,8 @@ public class Building_MeatLab : Building_PlantGrower
             return _cachedPowerTrader;
         }
     }
+
+    public bool IsPlantInvalid => _plant == null || !_plant.Spawned || _plant.Destroyed || _plant.Map != Map;
 
     private CompPowerTrader _cachedPowerTrader;
 
@@ -58,19 +61,15 @@ public class Building_MeatLab : Building_PlantGrower
         base.TickRare();
 
         // Refresh cache if it's missing, despawned, on another map, or destroyed
-        if (_plant == null 
-            || !_plant.Spawned 
-            || _plant.Map != Map 
-            || _plant.Destroyed)
+        if (!IsPlantInvalid) return;
+
+        _plant = null;
+        foreach (Plant plant in PlantsOnMe)
         {
-            _plant = null;
-            foreach (Plant plant in PlantsOnMe)
+            if (plant is Plant_MeatPlant pmp && pmp.Spawned && pmp.Map == Map)
             {
-                if (plant is Plant_MeatPlant pmp && pmp.Spawned && pmp.Map == Map)
-                {
-                    _plant = pmp;
-                    break;
-                }
+                _plant = pmp;
+                break;
             }
         }
     }
@@ -80,7 +79,7 @@ public class Building_MeatLab : Building_PlantGrower
         get
         {
             // Show “empty” when no valid, spawned plant is present
-            if (_plant == null || !_plant.Spawned || _plant.Map != Map)
+            if (IsPlantInvalid)
                 return _growGraphics["empty"];
 
             var growthPercent = Mathf.FloorToInt((_plant.Growth + 0.0001f) * 100f);
@@ -94,14 +93,25 @@ public class Building_MeatLab : Building_PlantGrower
 
     public override string GetInspectString()
     {
-        string text = base.GetInspectString();
+        if (!Spawned || Destroyed || Map == null) return null;
 
-        // Only append plant inspect if it’s actually spawned on this map
-        if (Spawned && _plant != null && _plant.Spawned && _plant.Map == Map)
+        StringBuilder sb = new StringBuilder();
+
+        string text = InspectStringPartsFromComps();
+        if (!text.NullOrEmpty())
         {
-            if (!text.NullOrEmpty()) text += "\n";
-            text += _plant.GetInspectString();
+            if (sb.Length > 0)
+                sb.AppendLine();
+            sb.Append(text);
         }
-        return text;
+
+        if (!IsPlantInvalid)
+        {
+            string text2 = _plant.GetInspectString();
+            if (!text2.NullOrEmpty())
+                sb.AppendInNewLine(text2);
+        }
+
+        return sb.ToString().TrimEndNewlines();
     }
 }

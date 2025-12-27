@@ -11,7 +11,8 @@
     <initialResistanceRange>30~60</initialResistanceRange>
     <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
     <biocodeWeaponChance>0.2</biocodeWeaponChance>
-    <itemQuality>Normal</itemQuality>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
   </PawnKindDef>
 
   <!-- ============ Goa'uld Civilian Classes ============ -->
@@ -94,9 +95,11 @@
       </xenotypeChances>
     </xenotypeSet>
     <chemicalAddictionChance>0.5</chemicalAddictionChance>
+    <itemQuality>Poor</itemQuality>
     <apparelMoney>270~900</apparelMoney>
     <apparelTags>
       <li>Tribal</li>
+      <li>IndustrialBasic</li>
     </apparelTags>
     <backstoryFiltersOverride>
       <li>
@@ -129,6 +132,7 @@
     <initialWillRange>4~6</initialWillRange>
     <initialResistanceRange>50~80</initialResistanceRange>
     <apparelMoney>800~1500</apparelMoney>
+    <itemQuality>Good</itemQuality>
     <apparelTags>
       <li>Neolithic</li>
       <li>IndustrialBasic</li>
@@ -199,6 +203,7 @@
     </xenotypeSet>
     <canBeSapper>true</canBeSapper>
     <combatPower>150</combatPower>
+    <canUseAvoidGrid>true</canUseAvoidGrid>
     <techHediffsChance>0.72</techHediffsChance>
     <techHediffsMoney>1000~2000</techHediffsMoney>
     <techHediffsTags>
@@ -214,14 +219,12 @@
         <def>Rimgate_Unrecruitable</def>
       </li>
     </startingHediffs>
-    <itemQuality>Good</itemQuality>
+    <itemQuality>Excellent</itemQuality>
     <gearHealthRange>1.0~2.3</gearHealthRange>
     <weaponMoney>1200~4500</weaponMoney>
     <weaponTags>
       <li>Rimgate_GoauldRanged_Tag</li>
     </weaponTags>
-    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
     <apparelMoney>4300~7000</apparelMoney>
     <apparelTags>
       <li>Rimgate_GoauldPrimeApparel_tag</li>
@@ -306,6 +309,7 @@
     </xenotypeSet>
     <isFighter>true</isFighter>
     <canBeSapper>true</canBeSapper>
+    <canUseAvoidGrid>true</canUseAvoidGrid>
     <requiredWorkTags>
       <li>Violent</li>
     </requiredWorkTags>
@@ -315,9 +319,8 @@
     <maxGenerationAge>110</maxGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
     <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
-    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
     <apparelMoney>5000~8000</apparelMoney>
+    <itemQuality>Normal</itemQuality>
     <apparelTags>
       <li>Rimgate_GoauldApparel_tag</li>
     </apparelTags>
@@ -504,6 +507,14 @@
         <Rimgate_KullWarrior>999</Rimgate_KullWarrior>
       </xenotypeChances>
     </xenotypeSet>
+    <fixedChildBackstories>
+      <li>Rimgate_KullVatBorn</li>
+      <li>Rimgate_KullCombatImprint</li>
+    </fixedChildBackstories>
+    <fixedAdultBackstories>
+      <li>Rimgate_KullPhaseTwo</li>
+      <li>Rimgate_KullOnyxEnforcer</li>
+    </fixedAdultBackstories>
     <useFactionXenotypes>false</useFactionXenotypes>
     <techHediffsChance>0.72</techHediffsChance>
     <techHediffsMoney>1000~2000</techHediffsMoney>

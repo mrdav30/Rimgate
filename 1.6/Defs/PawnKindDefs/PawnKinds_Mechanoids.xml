@@ -102,6 +102,7 @@
         <label>replicator (naquadah)</label>
         <race>Rimgate_ReplicatorNaquadah</race>
         <combatPower>125</combatPower>
+        <aiAvoidCover>false</aiAvoidCover>
         <abilities>
             <li>Rimgate_ReplicatorPsyspikeAbility</li>
         </abilities>

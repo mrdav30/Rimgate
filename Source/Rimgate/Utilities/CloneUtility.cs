@@ -309,7 +309,7 @@ internal static class CloneUtility
         story2.traits.allTraits.Clear();
         if (flag7)
         {
-            story2.Childhood = DefDatabase<BackstoryDef>.GetNamed("Rimgate_DamagedClone", true);
+            story2.Childhood = RimgateDefOf.Rimgate_DamagedClone;
             story2.traits.GainTrait(new Trait(TraitDef.Named("SlowLearner"), 0, false), false);
             story2.traits.GainTrait(new Trait(TraitDef.Named("Industriousness"), -2, false), false);
             story2.traits.GainTrait(new Trait(TraitDef.Named("SpeedOffset"), -1, false), false);
@@ -346,12 +346,12 @@ internal static class CloneUtility
             switch (cloneType)
             {
                 case CloneType.Genome:
-                    story2.Childhood = DefDatabase<BackstoryDef>.GetNamed("Rimgate_Clone", true);
+                    story2.Childhood = RimgateDefOf.Rimgate_Replicant;
                     story2.traits.GainTrait(new Trait(TraitDef.Named("FastLearner"), 0, false), false);
                     break;
                 case CloneType.Enhanced:
                     story2.traits.allTraits.Clear();
-                    story2.Childhood = DefDatabase<BackstoryDef>.GetNamed("Rimgate_EnhancedClone", true);
+                    story2.Childhood = RimgateDefOf.Rimgate_EnhancedClone;
                     story2.traits.GainTrait(new Trait(TraitDef.Named("NaturalMood"), 2, false), false);
                     story2.traits.GainTrait(new Trait(TraitDef.Named("Nerves"), 2, false), false);
                     story2.traits.GainTrait(new Trait(TraitDef.Named("Ascetic"), 0, false), false);

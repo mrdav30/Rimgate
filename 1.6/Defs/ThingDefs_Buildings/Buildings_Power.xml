@@ -178,7 +178,7 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithGenerator</defName>
-    <label>meat fired generator</label>
+    <label>Biomass fired generator</label>
     <label>biomass generator</label>
     <description>A living power plant of Wraith design, its chambers packed with seething, organic matter that slowly digests biomass into raw energy. Though grotesque, it is brutally efficient—turning anything that once lived into fuel. The soft glow and faint chitter of its innards remind you this is less a machine than a creature chained to a wall.</description>
     <thingClass>Building</thingClass>
@@ -227,9 +227,15 @@
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerPlant</compClass>
-        <basePowerConsumption>-3600</basePowerConsumption>
+        <basePowerConsumption>-3000</basePowerConsumption>
         <transmitsPower>true</transmitsPower>
         <shortCircuitInRain>false</shortCircuitInRain>
+        <powerUpgrades>
+          <li>
+            <researchProject>Rimgate_BiomassOptimization</researchProject>
+            <factor>1.2</factor> <!-- 20% increase -->
+          </li>
+        </powerUpgrades>
       </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Refuelable">

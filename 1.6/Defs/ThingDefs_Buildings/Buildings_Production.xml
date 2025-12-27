@@ -59,6 +59,13 @@
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <basePowerConsumption>450</basePowerConsumption>
+        <shortCircuitInRain>false</shortCircuitInRain>
+        <powerUpgrades>
+          <li>
+            <researchProject>Rimgate_BiomassOptimization</researchProject>
+            <factor>0.6</factor> <!-- 40% reduction -->
+          </li>
+        </powerUpgrades>
       </li>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Glower">

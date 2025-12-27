@@ -12,12 +12,12 @@
 		<spawnCategories>
 			<li>Pirate</li>
 			<li>Outlander</li>
-			<li>Rimgate_WraithClone</li>
+			<li>Rimgate_CloneBackstory</li>
 		</spawnCategories>
 	</BackstoryDef>
 
 	<BackstoryDef>
-		<defName>Rimgate_Clone</defName>
+		<defName>Rimgate_Replicant</defName>
 		<title>colony replicant</title>
 		<titleShort>replicant</titleShort>
 		<description>[PAWN_nameDef] is an artificially grown copy of someone. Despite taking [PAWN_possessive] appearance from another, [PAWN_pronoun] is a unique individual. [PAWN_nameDef] doesn't have the skills of [PAWN_possessive] genetic parent, but [PAWN_pronoun] can learn at a quickened rate.</description>
@@ -27,7 +27,7 @@
 		<spawnCategories>
 			<li>Pirate</li>
 			<li>Outlander</li>
-			<li>Rimgate_WraithClone</li>
+			<li>Rimgate_CloneBackstory</li>
 		</spawnCategories>
 	</BackstoryDef>
 
@@ -42,9 +42,54 @@
 		<spawnCategories>
 			<li>Pirate</li>
 			<li>Outlander</li>
-			<li>Rimgate_WraithClone</li>
+			<li>Rimgate_CloneBackstory</li>
 		</spawnCategories>
 	</BackstoryDef>
 
+	<!-- Kull -->
+
+	<BackstoryDef>
+		<defName>Rimgate_KullVatBorn</defName>
+		<title>vat-grown subject</title>
+		<titleShort>subject</titleShort>
+		<description>[PAWN_nameDef] developed in an artificial nutrient vat, never knowing light, voices, or comfort. Sensory input was introduced only as electrical impulses—pain to encourage compliance, reward pulses to reinforce obedience. There was no childhood, only calibration.</description>
+		<slot>Childhood</slot>
+		<spawnCategories>
+			<li>Rimgate_KullOnly</li>
+		</spawnCategories>
+	</BackstoryDef>
+
+	<BackstoryDef>
+		<defName>Rimgate_KullCombatImprint</defName>
+		<title>combat imprint</title>
+		<titleShort>prototype</titleShort>
+		<description>While still developing, [PAWN_nameDef]'s neural pathways were flooded with synthetic memory imprints: firing stances, breach patterns, target acquisition, and silent takedowns. None of it was learned—only installed. None of it was understood—only obeyed.</description>
+		<slot>Childhood</slot>
+		<spawnCategories>
+			<li>Rimgate_KullOnly</li>
+		</spawnCategories>
+	</BackstoryDef>
+
+	<BackstoryDef>
+		<defName>Rimgate_KullPhaseTwo</defName>
+		<title>phase-two combat asset</title>
+		<titleShort>combat asset</titleShort>
+		<description>[PAWN_nameDef] was activated as a Phase-Two Kull unit, operating under remote neural command. Pain response suppressed. Fear response erased. Moral reasoning removed as extraneous load. The difference between “enemy” and “target” was deleted from the vocabulary entirely.</description>
+		<slot>Adulthood</slot>
+		<spawnCategories>
+			<li>Rimgate_KullOnly</li>
+		</spawnCategories>
+	</BackstoryDef>
+
+	<BackstoryDef>
+		<defName>Rimgate_KullOnyxEnforcer</defName>
+		<title>onyx enforcer</title>
+		<titleShort>enforcer</titleShort>
+		<description>Deployed as a silent enforcer for Goa'uld regimes, [PAWN_nameDef] carried out raids, retrievals, and executions without hesitation. Doors opened. Voices screamed. Orders completed. No record of mercy exists. No record of refusal was permitted to exist.</description>
+		<slot>Adulthood</slot>
+		<spawnCategories>
+			<li>Rimgate_KullOnly</li>
+		</spawnCategories>
+	</BackstoryDef>
 
 </Defs>

@@ -13,6 +13,10 @@ public static class RimgateDefOf
         DefOfHelper.EnsureInitializedInCtor(typeof(RimgateDefOf));
     }
 
+    public static BackstoryDef Rimgate_DamagedClone;
+    public static BackstoryDef Rimgate_Replicant;
+    public static BackstoryDef Rimgate_EnhancedClone;
+
     public static ChemicalDef Rimgate_SarcophagusChemical;
 
     public static DamageDef Rimgate_KawooshExplosion;
