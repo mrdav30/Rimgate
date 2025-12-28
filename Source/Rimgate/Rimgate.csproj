@@ -566,7 +566,7 @@
     <Compile Include="World\TransitStoredThing.cs" />
     <Compile Include="World\WorldComp_StargateAddresses.cs" />
     <Compile Include="Utilities\Utils.cs" />
-    <Compile Include="Verbs\Verb_LaunchWithOffset.cs" />
+    <Compile Include="Misc\Verb_LaunchWithOffset.cs" />
     <Compile Include="World\WorldObject_StargateQuestSite.cs" />
     <Compile Include="World\WorldObject_StargateTransitSite.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />

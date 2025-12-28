@@ -25,24 +25,20 @@
 			</surfaceLayer>
 			<parts>
 				<!-- Config pages -->
-				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns_Xenotypes">
+				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs">
 					<def>ConfigurePawnsXenotypes</def>
 					<pawnChoiceCount>8</pawnChoiceCount>
-					<overrideKinds>
+					<leftBehindPawnKind>Rimgate_WraithPlayer</leftBehindPawnKind>
+					<kindCounts>
 						<li>
-							<xenotype>Rimgate_Wraith</xenotype>
-							<pawnKind>Rimgate_WraithPlayer</pawnKind>
-						</li>
-					</overrideKinds>
-					<xenotypeCounts>
-						<li>
-							<xenotype>Rimgate_Wraith</xenotype>
+							<kindDef>Rimgate_WraithPlayer</kindDef>
 							<count>4</count>
-							<description>non-baby wraith</description>
-							<requiredAtStart>true</requiredAtStart>
-							<allowedDevelopmentalStages>Adult, Child</allowedDevelopmentalStages>
 						</li>
-					</xenotypeCounts>
+						<li>
+							<kindDef>Rimgate_WraithSlave</kindDef>
+							<count>1</count>
+						</li>
+					</kindCounts>
 				</li>
 				<!-- Player starting stuff spawn method-->
 				<li Class="ScenPart_PlayerPawnsArriveMethod">
@@ -89,6 +85,11 @@
 					<def>ScatterThingsNearPlayerStart</def>
 					<thingDef>WoodLog</thingDef>
 					<count>500</count>
+				</li>
+				<li Class="ScenPart_ScatterThingsNearPlayerStart">
+					<def>ScatterThingsNearPlayerStart</def>
+					<thingDef>Rimgate_WraithCocoonPod</thingDef>
+					<count>2</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>

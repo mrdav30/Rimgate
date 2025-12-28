@@ -106,6 +106,7 @@
           <li>Rimgate_TretoninAddiction</li>
           <li>Rimgate_KrintakSickness</li>
           <li>Rimgate_PouchDegeneration</li>
+          <li>Rimgate_SymbioteWithdrawal</li>
         </neverTreatableHediffs>
         <nonCriticalTreatableHediffs>
           <li>AlcoholHigh</li>

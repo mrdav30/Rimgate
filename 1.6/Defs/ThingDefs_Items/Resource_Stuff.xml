@@ -224,6 +224,10 @@
           <inclusions>
             <li>Rimgate_SymbioteWithdrawal</li>
           </inclusions>
+          <!-- <forceRemove>
+            <li>Rimgate_PrimtaInPouch</li>
+            <li>Rimgate_SymbioteImplant</li>
+          </forceRemove> -->
         </li>
       </outcomeDoers>
     </ingestible>
@@ -243,6 +247,34 @@
       <li>RewardStandardCore</li>
     </thingSetMakerTags>
   </ThingDef>
+
+  <RecipeDef>
+    <defName>Rimgate_AdministerTretonin</defName>
+    <label>administer Tretonin</label>
+    <description>Administer Tretonin.</description>
+    <workerClass>Recipe_AdministerUsableItem</workerClass>
+    <jobString>Administering Tretonin.</jobString>
+    <targetsBodyPart>false</targetsBodyPart>
+    <anesthetize>false</anesthetize>
+    <workAmount>600</workAmount>
+    <dontShowIfAnyIngredientMissing>true</dontShowIfAnyIngredientMissing>
+    <surgeryOutcomeEffect IsNull="True" />
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Rimgate_Tretonin</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Rimgate_Tretonin</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+  </RecipeDef>
 
   <!-- ==================== Meat ==================== -->
 

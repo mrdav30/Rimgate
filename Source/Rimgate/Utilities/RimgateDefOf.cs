@@ -111,6 +111,7 @@ public static class RimgateDefOf
 
     public static NeedDef Food;
     public static NeedDef Rimgate_SarcophagusChemicalNeed;
+    public static NeedDef Rimgate_TretoninChemicalNeed;
 
     public static QuestScriptDef Rimgate_ProtectZPM;
     public static QuestScriptDef Rimgate_StargateQuestScript;

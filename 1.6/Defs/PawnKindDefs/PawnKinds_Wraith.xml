@@ -81,6 +81,19 @@
       <li>Tribal</li>
       <li>Neolithic</li>
     </apparelTags>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.15</Neanderthal>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.15</Pigskin>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.15</Yttakin>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.15</Dirtmole>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.15</Highmate>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+      </xenotypeChances>
+    </xenotypeSet>
   </PawnKindDef>
 
   <!-- ============ Wraith Military Base ============ -->

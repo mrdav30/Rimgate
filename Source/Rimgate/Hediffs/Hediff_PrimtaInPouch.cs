@@ -114,7 +114,8 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
         }
 
-        if (!pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal))
+        if (pawn.needs.TryGetNeed(RimgateDefOf.Rimgate_TretoninChemicalNeed) == null
+            && !pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal))
         {
             var wd = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SymbioteWithdrawal, pawn);
             pawn.health.AddHediff(wd);

@@ -113,12 +113,14 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         if (_immediateRejection || pawn == null || pawn.health == null)
             return;
 
-        if (!pawn.Dead && !pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal))
+        if (!pawn.Dead
+            && pawn.needs.TryGetNeed(RimgateDefOf.Rimgate_TretoninChemicalNeed) == null
+            && !pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteWithdrawal))
         {
             var wd = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SymbioteWithdrawal, pawn);
             pawn.health.AddHediff(wd);
         }
- 
+
         TrySpawnSymbiote();
     }
 
