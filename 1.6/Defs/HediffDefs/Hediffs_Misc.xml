@@ -88,6 +88,8 @@
 
     <!-- =============== Clones =============== -->
 
+    <!-- Hidden Trackers -->
+
     <HediffDef>
         <defName>Hediff_ClonedTracker</defName>
         <label>clone tracker (hidden)</label>
@@ -125,6 +127,34 @@
         <duplicationAllowed>false</duplicationAllowed>
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
+
+    <!-- Enduring -->
+
+    <HediffDef>
+        <hediffClass>HediffWithComps</hediffClass>
+        <defName>Rimgate_ClonedEnduring</defName>
+        <label>enduring</label>
+        <description>Cloning has granted the patient a heightened sense of endurance and resilience. They are now more capable of withstanding immense physical and mental stress before succumbing to exhaustion.</description>
+        <defaultLabelColor>(0.65, 0.3, 0.9)</defaultLabelColor>
+        <initialSeverity>1</initialSeverity>
+        <maxSeverity>1</maxSeverity>
+        <isBad>false</isBad>
+        <stages>
+            <li>
+                <painOffset>-0.5</painOffset>
+                <statOffsets>
+                    <MeleeHitChance>2</MeleeHitChance>
+                    <MeleeDodgeChance>2</MeleeDodgeChance>
+                    <ShootingAccuracyPawn>2</ShootingAccuracyPawn>
+                    <MoveSpeed>1</MoveSpeed>
+                    <InjuryHealingFactor>1.5</InjuryHealingFactor>
+                </statOffsets>
+            </li>
+        </stages>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+    </HediffDef>
+
 
     <!-- =============== Mobile Container debuffs =============== -->
 

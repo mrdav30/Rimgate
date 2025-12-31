@@ -8,24 +8,11 @@
     <description>Outcast from the Hive, this rogue Wraith colony seeks more than just prey—they seek purpose. Their hunger remains, but so does a glimmer of independence.\nWhether they build an empire or a buffet remains to be seen.</description>
     <isPlayer>true</isPlayer>
     <basicMemberKind>Rimgate_WraithPlayer</basicMemberKind>
-    <pawnSingular>co-op jaffa</pawnSingular>
-    <pawnsPlural>co-op jaffas</pawnsPlural>
-    <techLevel>Industrial</techLevel>
+    <pawnSingular>co-op wraith</pawnSingular>
+    <pawnsPlural>co-op wraiths</pawnsPlural>
+    <techLevel>Spacer</techLevel>
     <factionNameMaker>NamerFactionTribal</factionNameMaker>
     <settlementNameMaker>NamerSettlementTribal</settlementNameMaker>
-    <allowedCultures>
-      <li>Rimgate_WraithCulture</li>
-    </allowedCultures>
-    <backstoryFilters>
-      <li>
-        <categories>
-          <li>Rimgate_WraithChildBackStory</li>
-          <li>Rimgate_WraithAdultBackstory</li>
-          <li>Rimgate_WraithCommanderBackStory</li>
-          <li>Rimgate_WraithQueenBackStory</li>
-        </categories>
-      </li>
-    </backstoryFilters>
     <factionIconPath>World/WorldObjects/Expanding/Town</factionIconPath>
     <startingResearchTags>
       <li>TribalStart</li>
@@ -37,6 +24,16 @@
       <li>TribalStartTechprints</li>
       <li>ClassicStartTechprints</li>
     </startingTechprintsResearchTags>
+    <allowedCultures>
+      <li>Rimgate_WraithCulture</li>
+    </allowedCultures>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+      </li>
+    </backstoryFilters>
   </FactionDef>
 
 </Defs>

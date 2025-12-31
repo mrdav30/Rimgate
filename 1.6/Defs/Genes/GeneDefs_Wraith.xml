@@ -162,23 +162,30 @@
   </GeneDef>
 
   <GeneDef ParentName="Rimgate_WraithGenesBase">
-    <defName>Rimgate_WraithEssence</defName>
+    <geneClass>Rimgate.Gene_WraithEssenceMetabolism</geneClass>
+    <defName>Rimgate_WraithEssenceMetabolism</defName>
     <label>essence metabolism</label>
-    <description>Replaces food with a parasitic essence reserve. If the reserve runs low, the host weakens rapidly and becomes irritable until they feed again...or die.</description>
-    <geneClass>Rimgate.Gene_WraithEssence</geneClass>
+    <description>Alters the host's metabolism to utilize biological essence as a primary energy source. This gene allows the wraith to sustain themselves without traditional food intake, but requires regular feeding on life essence to maintain optimal function.</description>
+    <descriptionHyperlinks>
+      <AbilityDef>Rimgate_WraithLifeDrainAbility</AbilityDef>
+    </descriptionHyperlinks>
     <iconPath>UI/Gene/RGWraithEssence</iconPath>
     <displayCategory>Archite</displayCategory>
     <displayOrderInCategory>-5</displayOrderInCategory>
 
-    <biostatCpx>2</biostatCpx>
-    <biostatMet>0</biostatMet>
-    <biostatArc>2</biostatArc>
+    <biostatCpx>3</biostatCpx>
+    <biostatMet>-2</biostatMet>
+    <biostatArc>3</biostatArc>
 
     <minAgeActive>18</minAgeActive>
 
     <disablesNeeds>
       <li>Food</li>
     </disablesNeeds>
+
+    <abilities>
+      <li>Rimgate_WraithLifeDrainAbility</li>
+    </abilities>
 
     <resourceGizmoType>Rimgate.GeneGizmo_ResourceEssence</resourceGizmoType>
     <resourceLabel>essence</resourceLabel>
@@ -188,32 +195,11 @@
       <li>0.5</li>
       <li>0.75</li>
     </resourceGizmoThresholds>
-    <showGizmoOnWorldView>false</showGizmoOnWorldView>
-    <showGizmoWhenDrafted>false</showGizmoWhenDrafted>
+    <showGizmoOnWorldView>true</showGizmoOnWorldView>
+    <showGizmoWhenDrafted>true</showGizmoWhenDrafted>
 
     <!-- Baseline decay: ~2%/day (tune) -->
     <resourceLossPerDay>0.02</resourceLossPerDay>
-  </GeneDef>
-
-  <GeneDef ParentName="Rimgate_WraithGenesBase">
-    <defName>Rimgate_WraithLifeDrain</defName>
-    <label>life drain</label>
-    <description>Allows the host to drain life essence directly from another pawn, replenishing their own strength, speed, and vitality. A deeply intimate and wildly horrifying method of staying alive.\nWraith wellness starts with a good meal—and you’re it.</description>
-    <descriptionHyperlinks>
-      <AbilityDef>Rimgate_WraithLifeDrainAbility</AbilityDef>
-    </descriptionHyperlinks>
-    <iconPath>UI/Gene/RGWraithLifeDrainGeneIcon</iconPath>
-    <displayCategory>Ability</displayCategory>
-
-    <biostatCpx>3</biostatCpx>
-    <biostatMet>-2</biostatMet>
-    <biostatArc>2</biostatArc>
-
-    <minAgeActive>18</minAgeActive>
-
-    <abilities>
-      <li>Rimgate_WraithLifeDrainAbility</li>
-    </abilities>
 
     <modExtensions>
       <li Class="VEF.Genes.GeneExtension">
@@ -223,12 +209,24 @@
     </modExtensions>
   </GeneDef>
 
+  <StatDef>
+    <defName>Rimgate_EssenceGainFactor</defName>
+    <label>essence gain multiplier</label>
+    <description>A multiplier on the amount of essence gained.</description>
+    <category>PawnHealth</category>
+    <toStringStyle>PercentZero</toStringStyle>
+    <defaultBaseValue>1</defaultBaseValue>
+    <hideAtValue>1</hideAtValue>
+    <showOnDrones>false</showOnDrones>
+  </StatDef>
+
   <GeneDef ParentName="Rimgate_WraithGenesBase">
-    <defName>Rimgate_WraithCocoonTrap</defName>
-    <label>cocoon trap</label>
-    <description>Enables the production of organic webbing to ensnare prey in a semi-living stasis. Victims remain immobile, conscious, and wonderfully fresh for later consumption.\nBecause refrigeration is overrated.</description>
+    <defName>Rimgate_WraithWebbingGene</defName>
+    <label>webbing protein glands</label>
+    <description>Enables the host to secrete a strong, fibrous webbing used to ensnare prey or create protective cocoons. Perfect for trapping victims or creating a snug nap space—just watch out for the sticky situations.</description>
     <descriptionHyperlinks>
       <AbilityDef>Rimgate_WraithCocoonTrapAbility</AbilityDef>
+      <AbilityDef>Rimgate_WraithCocoonWrapAbility</AbilityDef>
     </descriptionHyperlinks>
     <iconPath>UI/Gene/RGWraithCocoonTrapGeneIcon</iconPath>
     <displayCategory>Ability</displayCategory>
@@ -241,6 +239,7 @@
 
     <abilities>
       <li>Rimgate_WraithCocoonTrapAbility</li>
+      <li>Rimgate_WraithCocoonWrapAbility</li>
     </abilities>
 
     <modExtensions>

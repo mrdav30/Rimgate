@@ -215,12 +215,19 @@ internal static class Utils
         return true;
     }
 
-    public static void TryGiveThought(this Pawn pawn, ThoughtDef def)
+    public static void TryGiveThought(this Pawn pawn, ThoughtDef def, Pawn otherPawn = null)
     {
+        if (pawn == null || def == null) return;
         var memories = pawn.needs?.mood?.thoughts?.memories;
-        memories?.TryGainMemory(def);
-    }
+        if(memories == null) return;
 
+        // Refresh the short memory so it stays while in range (no stacking)
+        if (memories.GetFirstMemoryOfDef(def) is Thought_Memory existing)
+            existing.Renew(); // refresh duration
+        else
+            memories.TryGainMemory(def, otherPawn);
+    }
+        
     public static bool HasActiveQuestOf(QuestScriptDef def)
     {
         if (def == null) return false;

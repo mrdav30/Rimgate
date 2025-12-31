@@ -861,7 +861,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                 if (gene_Hemogen != null)
                     gene_Hemogen.Value = gene_Hemogen.InitialResourceMax;
 
-                Gene_WraithEssence gene_Essence = patient.genes?.GetFirstGeneOfType<Gene_WraithEssence>();
+                Gene_WraithEssenceMetabolism gene_Essence = patient.genes?.GetFirstGeneOfType<Gene_WraithEssenceMetabolism>();
                 if (gene_Essence != null)
                     gene_Essence.Value = gene_Essence.InitialResourceMax;
             }

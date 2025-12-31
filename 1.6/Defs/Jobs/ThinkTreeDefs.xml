@@ -5,7 +5,7 @@
 		<defName>Rimgate_Unas</defName>
 		<insertTag>Animal_PreWander</insertTag>
 		<insertPriority>1</insertPriority>
-		
+
 		<thinkRoot Class="ThinkNode_ConditionalHasFaction">
 			<subNodes>
 				<li Class="ThinkNode_ConditionalPawnKind">
@@ -26,6 +26,24 @@
 				</li>
 			</subNodes>
 		</thinkRoot>
+	</ThinkTreeDef>
+
+	<ThinkTreeDef>
+		<defName>Rimgate_SatisfyEssenceNeed</defName>
+		<insertTag>Humanlike_PostDuty</insertTag>
+
+		<thinkRoot Class="Rimgate.ThinkNode_ConditionalHasGeneResourceNeed">
+			<gene>Rimgate_WraithEssenceMetabolism</gene>
+			<subNodes>
+				<li Class="ThinkNode_ConditionalHasAbility">
+					<ability>Rimgate_WraithLifeDrainAbility</ability>
+					<subNodes>
+						<li Class="Rimgate.JobGiver_SatisfyEssenceNeed" />
+					</subNodes>
+				</li>
+			</subNodes>
+		</thinkRoot>
+
 	</ThinkTreeDef>
 
 </Defs>

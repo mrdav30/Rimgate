@@ -28,15 +28,6 @@
     </allowedCultures>
     <factionIconPath>UI/Map/RGWraithBaseIcon</factionIconPath>
     <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
-    <backstoryFilters>
-      <li>
-        <categories>
-          <li>Rimgate_WraithChildBackStory</li>
-          <li>Rimgate_CloneBackstory</li>
-          <li>Rimgate_WraithAdultBackstory</li>
-        </categories>
-      </li>
-    </backstoryFilters>
     <naturalEnemy>true</naturalEnemy>
     <permanentEnemyToEveryoneExcept>
       <li>Rimgate_WraithEmpire</li>
@@ -73,6 +64,13 @@
       </points>
     </maxPawnCostPerTotalPointsCurve>
     <hostileToFactionlessHumanlikes>true</hostileToFactionlessHumanlikes>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <pawnGroupMakers>
       <li>
         <kindDef>Combat</kindDef>

@@ -16,6 +16,17 @@
     <initialResistanceRange>30~60</initialResistanceRange>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
     <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesChildhood>
+          <li>Rimgate_WraithChildBackStory</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_CloneBackstory</li>
+          <li>Rimgate_WraithAdultBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
   </PawnKindDef>
 
   <!-- ============ Wraith Civilian Base ============ -->
@@ -94,6 +105,13 @@
         <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
       </xenotypeChances>
     </xenotypeSet>
+    <backstoryFiltersOverride Inherit="False">
+      <li>
+        <categoriesAdulthood>
+          <li>Rimgate_SlaveBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
   </PawnKindDef>
 
   <!-- ============ Wraith Military Base ============ -->
@@ -226,7 +244,7 @@
     <defName>Rimgate_WraithCommander</defName>
     <label>Wraith commander</label>
     <combatPower>135</combatPower>
-    <backstoryFiltersOverride>
+    <backstoryFiltersOverride Inherit="False">
       <li>
         <categoriesChildhood>
           <li>Rimgate_WraithChildBackStory</li>
@@ -301,7 +319,7 @@
     <fixedGender>Female</fixedGender>
     <minGenerationAge>26</minGenerationAge>
     <combatPower>220</combatPower>
-    <backstoryFiltersOverride>
+    <backstoryFiltersOverride Inherit="False">
       <li>
         <categoriesChildhood>
           <li>Rimgate_WraithChildBackStory</li>

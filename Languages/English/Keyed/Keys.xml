@@ -372,5 +372,26 @@
 	<!-- UI -->
 
 	<RG_SetTo>Set to</RG_SetTo>
-	
+
+	<!-- Cocoon pod -->
+
+	<RG_CommandCocoonPodEject>Eject prey</RG_CommandCocoonPodEject>
+	<RG_CommandCocoonPodEjectDesc>Release the cocooned prey from this trap.</RG_CommandCocoonPodEjectDesc>
+
+	<!-- Abilities -->
+
+	<RG_AutoUsePodsDesc>This determines whether {PAWN_nameDef} will automatically drain life from filled cocoon pods when {PAWN_possessive} essence is below {MIN}.\n\nAutomatic use is currently {ONOFF}.</RG_AutoUsePodsDesc>
+
+	<RG_AbilityEssenceCost>Essence cost</RG_AbilityEssenceCost>
+	<RG_AbilityDisabledNoEssenceGene>{0_labelShort} is not essogenic.</RG_AbilityDisabledNoEssenceGene>
+	<RG_AbilityDisabledNoEssence>{0_labelShort} does not have enough essence.</RG_AbilityDisabledNoEssence>
+
+	<RG_Abilitiy_TargetMustBePawn>Target must be a pawn.</RG_Abilitiy_TargetMustBePawn>
+	<RG_Abilitiy_TargetMustBeAlive>{PAWN_labelShort} must be alive and present.</RG_Abilitiy_TargetMustBeAlive>
+	<RG_Abilitiy_TargetMustBeColonyPrisoner>Only colony prisoners can be cocooned this way.</RG_Abilitiy_TargetMustBeColonyPrisoner>
+	<RG_Abilitiy_TargetMustBeSameMap>The target must be on the same map.</RG_Abilitiy_TargetMustBeSameMap>
+
+	<RG_WraithCocoonTrap_AlreadyCocooned>{PAWN_labelShort} is already cocooned.</RG_WraithCocoonTrap_AlreadyCocooned>
+	<RG_WraithCocoonTrap_Cocooned>{PAWN_labelShort} has been cocooned.</RG_WraithCocoonTrap_Cocooned>
+
 </LanguageData>

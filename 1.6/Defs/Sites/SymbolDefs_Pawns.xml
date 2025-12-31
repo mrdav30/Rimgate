@@ -35,30 +35,11 @@
         <rotation>West</rotation>
     </KCSG.SymbolDef>
 
-    <KCSG.SymbolDef Name="Rimgate_WraithCocoonPod" Abstract="True">
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithCocoonPod</defName>
         <thing>Rimgate_WraithCocoonPod</thing>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>false</defendSpawnPoint>
-    </KCSG.SymbolDef>
-
-    <KCSG.SymbolDef ParentName="Rimgate_WraithCocoonPod">
-        <defName>Rimgate_WraithCocoonPod_South</defName>
-        <rotation>South</rotation>
-    </KCSG.SymbolDef>
-
-    <KCSG.SymbolDef ParentName="Rimgate_WraithCocoonPod">
-        <defName>Rimgate_WraithCocoonPod_North</defName>
-        <rotation>North</rotation>
-    </KCSG.SymbolDef>
-
-    <KCSG.SymbolDef ParentName="Rimgate_WraithCocoonPod">
-        <defName>Rimgate_WraithCocoonPod_East</defName>
-        <rotation>East</rotation>
-    </KCSG.SymbolDef>
-
-    <KCSG.SymbolDef ParentName="Rimgate_WraithCocoonPod">
-        <defName>Rimgate_WraithCocoonPod_West</defName>
-        <rotation>West</rotation>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

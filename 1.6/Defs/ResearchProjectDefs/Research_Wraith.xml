@@ -69,7 +69,7 @@
 	<!-- ======== Weapon ========= -->
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
-		<defName>Rimgate_WraithWeaponTierOne</defName>
+		<defName>Rimgate_WraithWeaponsTierOne</defName>
 		<label>Wraith weapons</label>
 		<description>Reverse-engineer Wraith energy weapons—organic-looking tools of destruction designed for elegant disintegration and maximum dread.</description>
 		<baseCost>2500</baseCost>
@@ -88,7 +88,7 @@
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>StandardMechtech</li>
-			<li>Rimgate_WraithWeaponTierOne</li>
+			<li>Rimgate_WraithWeaponsTierOne</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0.5</researchViewY>

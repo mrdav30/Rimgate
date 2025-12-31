@@ -11,7 +11,7 @@ public class ThoughtWorker_WraithEssenceCraving : ThoughtWorker
             || p.Dead
             || p.genes == null) return ThoughtState.Inactive;
 
-        Gene_WraithEssence essence = p.GetActiveGene<Gene_WraithEssence>();
+        Gene_WraithEssenceMetabolism essence = p.GetActiveGene<Gene_WraithEssenceMetabolism>();
         if (essence == null) 
             return ThoughtState.Inactive;
 

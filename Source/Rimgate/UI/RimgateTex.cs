@@ -47,6 +47,8 @@ public static class RimgateTex
 
     public static readonly Texture2D CloneEjectCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGWraithCloningPodEjectIcon");
 
+    public static readonly Texture2D EssenceCostTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.78f, 0.72f, 0.66f));
+
     public static Graphic EmptyGraphic
     {
         get

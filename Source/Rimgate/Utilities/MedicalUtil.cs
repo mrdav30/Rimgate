@@ -131,21 +131,30 @@ public static class MedicalUtil
     }
 
     public static void ApplyHediff(
-        this Pawn pawn,
-        HediffDef def,
-        BodyPartRecord part = null,
-        float severity = -1,
-        int duration = -1)
+    this Pawn pawn,
+    HediffDef def,
+    BodyPartRecord part = null,
+    float severity = -1,
+    int duration = -1)
     {
-        bool hasHediff = !pawn.HasHediffOf(def);
-        Hediff hediff = !hasHediff
-            ? HediffMaker.MakeHediff(def, pawn, part)
-            : pawn.GetHediffOf(def);
+        if (pawn == null || def == null)
+            return;
 
-        if (hediff == null) return;
+        bool hasHediff = pawn.HasHediffOf(def);
+        Hediff hediff = hasHediff
+            ? pawn.GetHediffOf(def)
+            : HediffMaker.MakeHediff(def, pawn, part);
 
-        if (severity > -1)
-            hediff.Severity = severity;
+        if (hediff == null)
+            return;
+
+        if (severity > -1)  // -1 means "leave as-is"/use default
+        {
+            if (hasHediff)
+                hediff.Severity += severity;
+            else
+                hediff.Severity = severity;
+        }
 
         if (duration > -1
             && hediff is HediffWithComps hediffWithComps

@@ -26,20 +26,21 @@
 			<parts>
 				<!-- Config pages -->
 				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs">
-					<def>ConfigurePawnsXenotypes</def>
+					<def>ConfigurePawnsKindDefs</def>
 					<pawnChoiceCount>8</pawnChoiceCount>
-					<leftBehindPawnKind>Rimgate_WraithPlayer</leftBehindPawnKind>
+					<leftBehindPawnKind>Rimgate_WraithSlave</leftBehindPawnKind>
 					<kindCounts>
 						<li>
 							<kindDef>Rimgate_WraithPlayer</kindDef>
-							<count>4</count>
+							<count>2</count>
 						</li>
 						<li>
 							<kindDef>Rimgate_WraithSlave</kindDef>
-							<count>1</count>
+							<count>3</count>
 						</li>
 					</kindCounts>
 				</li>
+
 				<!-- Player starting stuff spawn method-->
 				<li Class="ScenPart_PlayerPawnsArriveMethod">
 					<def>PlayerPawnsArriveMethod</def>
@@ -89,7 +90,7 @@
 				<li Class="ScenPart_ScatterThingsNearPlayerStart">
 					<def>ScatterThingsNearPlayerStart</def>
 					<thingDef>Rimgate_WraithCocoonPod</thingDef>
-					<count>2</count>
+					<count>3</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
@@ -132,6 +133,10 @@
 				<li Class="ScenPart_StartingResearch">
 					<def>StartingResearch</def>
 					<project>Rimgate_WraithArmorTierOne</project>
+				</li>
+				<li Class="ScenPart_StartingResearch">
+					<def>StartingResearch</def>
+					<project>Rimgate_WraithWeaponsTierOne</project>
 				</li>
 				<li Class="ScenPart_StartingResearch">
 					<def>StartingResearch</def>

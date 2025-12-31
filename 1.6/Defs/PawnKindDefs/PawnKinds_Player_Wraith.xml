@@ -35,6 +35,17 @@
       <li>Rimgate_WraithSoldierApparel_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
     </apparelTags>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesChildhood>
+          <li>Rimgate_WraithChildBackStory</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_WraithAdultBackstory</li>
+          <li>Rimgate_WraithCommanderBackStory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
     <weaponMoney>1200~2000</weaponMoney>
     <weaponTags>
       <li>Rimgate_WraithWeapons_tag</li>

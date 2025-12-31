@@ -54,7 +54,7 @@
 				<li>FabricationBench</li>
 			</recipeUsers>
 			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
-			<researchPrerequisite>Rimgate_WraithWeaponTierOne</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithWeaponsTierOne</researchPrerequisite>
 		</recipeMaker>
 		<weaponTags>
 			<li>Rimgate_WraithGrenade_tag</li>
@@ -121,7 +121,7 @@
 			<recipeUsers>
 				<li>FabricationBench</li>
 			</recipeUsers>
-			<researchPrerequisite>Rimgate_WraithWeaponTierOne</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithWeaponsTierOne</researchPrerequisite>
 		</recipeMaker>
 		<graphicData>
 			<drawSize>1</drawSize>

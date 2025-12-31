@@ -2,7 +2,7 @@
 <Defs>
 
     <SoundDef>
-        <defName>Rimgate_WraitDrainLifeCast</defName>
+        <defName>Rimgate_WraithDrainLifeCast</defName>
         <context>MapOnly</context>
         <maxSimultaneous>1</maxSimultaneous>
         <subSounds>
@@ -19,13 +19,13 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>Rimgate_WraithCocoonTrapCast</defName>
+        <defName>Rimgate_WraithCocoonCast</defName>
         <context>MapOnly</context>
         <subSounds>
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>Abilities/RG_Wraith_Cocoon_Trap_Cast</clipPath>
+                        <clipPath>Abilities/RG_Wraith_Cocoon_Cast</clipPath>
                     </li>
                 </grains>
                 <volumeRange>42</volumeRange>

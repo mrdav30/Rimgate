@@ -5,8 +5,10 @@ using UnityEngine;
 
 namespace Rimgate;
 
-public class Gene_WraithEssence : Gene_Resource, IGeneResourceDrain
+public class Gene_WraithEssenceMetabolism : Gene_Resource, IGeneResourceDrain
 {
+    public bool FilledPodsAllowed = true;
+
     public Pawn Pawn => pawn;
     public Gene_Resource Resource => this;
 
@@ -42,6 +44,11 @@ public class Gene_WraithEssence : Gene_Resource, IGeneResourceDrain
         UpdateDeficitHediff();
     }
 
+    public override void SetTargetValuePct(float val)
+    {
+        targetValue = Mathf.Clamp(val * Max, 0f, Max - MaxLevelOffset);
+    }
+
     public bool ShouldConsumeResourceNow() => Value < targetValue;
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -62,19 +69,25 @@ public class Gene_WraithEssence : Gene_Resource, IGeneResourceDrain
         else if (pct < 0.66f) sev = 0.20f;
 
         var def = RimgateDefOf.Rimgate_WraithEssenceDeficit;
-        var he = pawn.GetHediffOf(def);
+        var hediff = pawn.GetHediffOf(def);
         if (sev > 0f)
         {
-            if (he == null)
+            if (hediff == null)
             {
-                he = HediffMaker.MakeHediff(def, pawn);
-                he.Severity = sev;
-                pawn.health.AddHediff(he);
+                hediff = HediffMaker.MakeHediff(def, pawn);
+                hediff.Severity = sev;
+                pawn.health.AddHediff(hediff);
             }
             else
-                he.Severity = Mathf.Lerp(he.Severity, sev, 0.2f);
+                hediff.Severity = Mathf.Lerp(hediff.Severity, sev, 0.2f);
         }
-        else if (he != null)
-            pawn.health.RemoveHediff(he);
+        else if (hediff != null)
+            pawn.health.RemoveHediff(hediff);
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref FilledPodsAllowed, "FilledPodsAllowed", defaultValue: true);
     }
 }

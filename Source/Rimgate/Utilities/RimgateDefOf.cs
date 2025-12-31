@@ -13,6 +13,8 @@ public static class RimgateDefOf
         DefOfHelper.EnsureInitializedInCtor(typeof(RimgateDefOf));
     }
 
+    public static AbilityDef Rimgate_WraithLifeDrainAbility;
+
     public static BackstoryDef Rimgate_DamagedClone;
     public static BackstoryDef Rimgate_Replicant;
     public static BackstoryDef Rimgate_EnhancedClone;
@@ -48,7 +50,7 @@ public static class RimgateDefOf
     [MayRequireBiotech]
     public static GeneDef Rimgate_SymbiotePouchMutation;
     [MayRequireBiotech]
-    public static GeneDef Rimgate_WraithCocoonTrap;
+    public static GeneDef Rimgate_WraithWebbingGene;
     [MayRequireBiotech]
     public static GeneDef Rimgate_WraithPsychic;
     [MayRequireBiotech]
@@ -72,6 +74,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_SymbioteWithdrawal;
     public static HediffDef Rimgate_SystemShock;
     public static HediffDef Rimgate_TretoninAddiction;
+    public static HediffDef Rimgate_WraithCocoonPodSickness;
     public static HediffDef Rimgate_WraithEssenceDeficit;
     public static HediffDef Rimgate_ZatShock;
 
@@ -89,6 +92,8 @@ public static class RimgateDefOf
     public static JobDef Rimgate_CloneOccupantSoldier;
     public static JobDef Rimgate_CloneReconstructDead;
     public static JobDef Rimgate_CloseStargate;
+    public static JobDef Rimgate_DrainLifeFromCocoonedPrisoner;
+    public static JobDef Rimgate_WraithCocoonPrisoner;
     public static JobDef Rimgate_DecodeGlyphs;
     public static JobDef Rimgate_DialStargate;
     public static JobDef Rimgate_EjectZpmFromHousing;
@@ -144,14 +149,17 @@ public static class RimgateDefOf
     public static SoundDef Rimgate_StargateIdle;
     public static SoundDef Rimgate_StargateClose;
     public static SoundDef Rimgate_SymbioteSpawn;
+    public static SoundDef Rimgate_WraithCocoonCast;
 
     public static StatDef MedicalOperationSpeed;
+    public static StatDef Rimgate_EssenceGainFactor;
 
     public static TattooDef NoTattoo_Body;
     public static TattooDef NoTattoo_Face;
 
     public static ThingDef Gun_Autopistol;
     public static ThingDef Rimgate_DialHomeDevice;
+    public static ThingDef Rimgate_WraithCocoonPod;
     public static ThingDef Rimgate_GoauldThrone;
     public static ThingDef Rimgate_JammedBlastDoor;
     public static ThingDef Rimgate_Malp;
@@ -176,6 +184,7 @@ public static class RimgateDefOf
     public static ThoughtDef Rimgate_PrimtaNewPrimtaThought;
     public static ThoughtDef Rimgate_WraithCommunedWithHive;
     public static ThoughtDef Rimgate_WraithWhispersFromVoid;
+    public static ThoughtDef Rimgate_WraithCocoonPod_ReleasedVictim;
 
     public static ThingSetMakerDef Rimgate_Meteorite;
 

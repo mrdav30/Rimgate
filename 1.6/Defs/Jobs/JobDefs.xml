@@ -266,4 +266,21 @@
 		<casualInterruptible>false</casualInterruptible>
 	</JobDef>
 
+	<!-- =============== Wraith Cocoon =============== -->
+
+	<JobDef>
+		<defName>Rimgate_WraithCocoonPrisoner</defName>
+		<driverClass>Rimgate.JobDriver_WraithCocoonPrisoner</driverClass>
+		<reportString>cocooning TargetA.</reportString>
+		<neverShowWeapon>true</neverShowWeapon>
+		<casualInterruptible>false</casualInterruptible>
+		<playerInterruptible>true</playerInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_DrainLifeFromCocoonedPrisoner</defName>
+		<driverClass>Rimgate.JobDriver_DrainLifeFromCocoonedPrisoner</driverClass>
+		<reportString>draining life from TargetA.</reportString>
+	</JobDef>
+
 </Defs>

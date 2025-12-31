@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <!-- Wraith Life Drain -->
+    <AbilityCategoryDef>
+        <defName>Wraith</defName>
+        <displayOrder>1000000</displayOrder>
+    </AbilityCategoryDef>
+
+    <!-- ==================== Wraith Life Drain ==================== -->
 
     <AbilityDef>
         <defName>Rimgate_WraithLifeDrainAbility</defName>
         <label>drain life</label>
-        <description>Embrace your inner Wraith.\nDrains the life force from a nearby pawn, stealing their regeneration, speed, and brainpower for 24 glorious hours. Hostile? Absolutely. Morally questionable? Also yes. Delicious? Very.</description>
+        <description>Embrace your inner Iratus.\nDrains the life force from a nearby pawn, stealing their regeneration, speed, and brainpower for 24 glorious hours. Hostile? Absolutely. Morally questionable? Also yes. Delicious? Very.</description>
+        <category>Wraith</category>
         <iconPath>UI/Ability/RGWraithDrainLifeIcon</iconPath>
         <verbProperties>
             <verbClass>Verb_CastAbilityTouch</verbClass>
             <drawAimPie>false</drawAimPie>
             <range>-1</range>
             <warmupTime>0.25</warmupTime>
-            <soundCast>Rimgate_WraitDrainLifeCast</soundCast>
+            <soundCast>Rimgate_WraithDrainLifeCast</soundCast>
             <targetParams>
                 <canTargetPawns>true</canTargetPawns>
                 <canTargetLocations>false</canTargetLocations>
                 <canTargetAnimals>false</canTargetAnimals>
                 <canTargetSelf>false</canTargetSelf>
-                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetBuildings>true</canTargetBuildings>
                 <canTargetMechs>false</canTargetMechs>
             </targetParams>
         </verbProperties>
@@ -31,17 +37,19 @@
         <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
         <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
         <comps>
-            <li Class="Rimgate.CompProperties_ApplyHediff">
+            <li Class="CompProperties_AbilityRequiresCapacity">
+                <capacity>Manipulation</capacity>
+            </li>
+            <li Class="Rimgate.CompProperties_ApplyDrainLife">
+                <aiRangeLimit>0~6</aiRangeLimit>
+                <geneDef>Rimgate_WraithEssenceMetabolism</geneDef>
+                <essenceGainAmount>0.25</essenceGainAmount> <!-- ~35% per drain; ~3 to fill up -->
+                <affects>Caster</affects>
                 <hediffToReceive>Rimgate_WraithLifeDrainRegen</hediffToReceive>
                 <hediffToGive>Rimgate_WraithLifeDrainTarget</hediffToGive>
-                <durationTime>60000</durationTime>
-                <rangeLimit>6.0</rangeLimit>
-            </li>
-            <li Class="Rimgate.CompProperties_AdjustGeneResourceOnCast">
-                <geneDef>Rimgate_WraithEssence</geneDef>
-                <amount>0.35</amount> <!-- ~35% per drain; ~3 to fill up -->
-                <affects>Caster</affects>
-                <onlyIfTargetHarmed>true</onlyIfTargetHarmed>
+                <hediffToGiveSeverity>0.25</hediffToGiveSeverity>
+                <thoughtToGiveTarget>Rimgate_WraithLifeDrainThought</thoughtToGiveTarget>
+                <opinionThoughtToGiveTarget>Rimgate_WraithLifeDrainThought_Social</opinionThoughtToGiveTarget>
             </li>
             <li Class="CompProperties_AbilityFleckOnTarget">
                 <fleckDef>PsycastPsychicEffect</fleckDef>
@@ -49,19 +57,21 @@
         </comps>
     </AbilityDef>
 
-    <!-- Wraith Cocoon Trap -->
+    <!-- ==================== Wraith Cocoon Trap ====================-->
 
     <AbilityDef>
         <defName>Rimgate_WraithCocoonTrapAbility</defName>
-        <label>cocoon trap</label>
-        <description>Why kill your food when you can save it for later?\nLaunches sticky webs that wrap your victim up tighter than a low-quality sleeping bag, stunning and searing them in one fell swoop. Conveniently gift-wrapped for future snacking.</description>
+        <label>web shot</label>
+        <description>Launches sticky webs that wrap your victim up tighter than a low-quality sleeping bag, stunning and searing them in one fell swoop.\n\nThe webbing will dissolve in a matter of moments, so attackers should act quickly to take advantage of their helpless prey.</description>
+        <category>Wraith</category>
         <iconPath>UI/Ability/RGWraithCocoonTrapIcon</iconPath>
         <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+        <jobDef>CastAbilityOnThingWithoutWeapon</jobDef>
         <verbProperties>
             <verbClass>Verb_CastAbility</verbClass>
             <range>16.9</range>
             <warmupTime>0.25</warmupTime>
-            <soundCast>Rimgate_WraithCocoonTrapCast</soundCast>
+            <soundCast>Rimgate_WraithCocoonCast</soundCast>
             <targetParams>
                 <canTargetLocations>false</canTargetLocations>
                 <canTargetPawns>true</canTargetPawns>
@@ -74,6 +84,12 @@
         <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
         <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
         <comps>
+            <li Class="CompProperties_AbilityRequiresCapacity">
+                <capacity>Manipulation</capacity>
+            </li>
+            <li Class="Rimgate.CompProperties_AbilityEssenceCost">
+                <essenceCost>0.1</essenceCost>
+            </li>
             <li Class="Rimgate.CompProperties_MultipleProjectile">
                 <compClass>Rimgate.CompAbilityEffect_LaunchMultipleProjectile</compClass>
                 <projectile>Rimgate_WraithWeb</projectile>
@@ -89,7 +105,7 @@
         <graphicData>
             <texPath>Things/Projectile/RGCocoonTrapAbilityProjectile</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>2</drawSize>
+            <drawSize>1.5</drawSize>
         </graphicData>
         <projectile>
             <flyOverhead>false</flyOverhead>
@@ -105,7 +121,57 @@
         </comps>
     </ThingDef>
 
-    <!-- Replicator Spike -->
+    <!-- ==================== Wraith Cocoon Wrap ==================== -->
+
+    <AbilityDef>
+        <defName>Rimgate_WraithCocoonWrapAbility</defName>
+        <label>cocoon wrap</label>
+        <description>Wrap a captive prisoner in organic webbing, sealing them into a cocoon pod for later feeding. Victims remain alive, aware, and exquisitely helpless.</description>
+        <category>Wraith</category>
+        <iconPath>UI/Ability/RGWraithCocoonWrapIcon</iconPath>
+        <targetRequired>true</targetRequired>
+        <cooldownTicksRange>1800~2400</cooldownTicksRange>
+        <jobDef>CastAbilityOnThingWithoutWeapon</jobDef>
+
+        <aiCanUse>false</aiCanUse>
+        <showWhenDrafted>false</showWhenDrafted>
+        <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+
+        <statBases>
+            <Ability_Duration>0</Ability_Duration>
+        </statBases>
+        <warmupSound>PsycastCastLoop</warmupSound>
+
+        <verbProperties>
+            <verbClass>Verb_CastAbilityTouch</verbClass>
+            <range>-1</range>
+            <requireLineOfSight>false</requireLineOfSight>
+            <warmupTime>0</warmupTime>
+            <targetParams>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetMechs>false</canTargetMechs>
+                <canTargetEntities>false</canTargetEntities>
+                <canTargetPawns>true</canTargetPawns>
+                <onlyTargetPrisonersOfColony>true</onlyTargetPrisonersOfColony>
+            </targetParams>
+        </verbProperties>
+
+        <comps>
+            <li Class="CompProperties_AbilityRequiresCapacity">
+                <capacity>Manipulation</capacity>
+            </li>
+            <li Class="Rimgate.CompProperties_AbilityEssenceCost">
+                <essenceCost>0.4</essenceCost>
+            </li>
+            <li>
+                <compClass>Rimgate.CompAbilityEffect_WraithCocoonWrap</compClass>
+            </li>
+        </comps>
+    </AbilityDef>
+
+    <!-- ==================== Replicator Spike ==================== -->
 
     <AbilityDef>
         <defName>Rimgate_ReplicatorSpikeAbility</defName>
@@ -141,6 +207,8 @@
             <texPath>Things/Projectile/RGReplicatorSpikeProjectile</texPath>
         </graphicData>
     </ThingDef>
+
+    <!-- ==================== Replicator Psyspike ==================== -->
 
     <AbilityDef>
         <defName>Rimgate_ReplicatorPsyspikeAbility</defName>
@@ -184,7 +252,7 @@
         </projectile>
     </ThingDef>
 
-    <!-- Unas Roar -->
+    <!-- ==================== Unas Roar ==================== -->
 
     <AbilityDef ParentName="AnimalRoarBase">
         <defName>Rimgate_UnasRoar</defName>

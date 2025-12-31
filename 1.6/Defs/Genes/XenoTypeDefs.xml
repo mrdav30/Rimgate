@@ -75,12 +75,11 @@
             <li>MeleeDamage_Strong</li>
             <li>Pain_Reduced</li>
             <li>Robust</li>
-            <li>Rimgate_WraithEssence</li>
+            <li>Rimgate_WraithEssenceMetabolism</li>
             <li>Rimgate_WraithAgeless</li>
             <li>Rimgate_WraithMovement</li>
             <li>Rimgate_WraithPsychic</li>
-            <li>Rimgate_WraithLifeDrain</li>
-            <li>Rimgate_WraithCocoonTrap</li>
+            <li>Rimgate_WraithWebbingGene</li>
         </genes>
     </XenotypeDef>
 

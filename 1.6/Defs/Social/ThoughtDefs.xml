@@ -303,6 +303,59 @@
         </stages>
     </ThoughtDef>
 
+    <!-- =============== Wraith Cocoon Pod Release Victim =============== -->
+
+    <ThoughtDef>
+        <defName>Rimgate_WraithCocoonPod_ReleasedVictim</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>3</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>freed from the pod</label>
+                <description>Having been released from a Wraith cocoon pod, I feel a mix of relief and a lingering disorientation gnawing at the back of my mind from the experience.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- =============== Wraith Life Drain =============== -->
+
+    <ThoughtDef>
+        <defName>Rimgate_WraithLifeDrainThought</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>4</durationDays>
+        <stackLimit>1</stackLimit>
+        <nullifyingTraits>
+            <li>Masochist</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>life drained</label>
+                <description>The lingering weakness from having my life force drained by a Wraith leaves me feeling vulnerable and fatigued.</description>
+                <baseMoodEffect>-12</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Rimgate_WraithLifeDrainThought_Social</defName>
+        <thoughtClass>Thought_MemorySocial</thoughtClass>
+        <durationDays>60</durationDays>
+        <stackLimit>50</stackLimit>
+        <stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
+        <nullifyingTraits>
+            <li>Masochist</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>drained life</label>
+                <baseOpinionOffset>-20</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
     <!-- =============== ARCHOTECH IDOL OF RESONANCE =============== -->
 
     <!-- General calm: refreshable small memory so it sticks while in range -->
