@@ -8,13 +8,13 @@ namespace Rimgate;
 
 public class JobDriver_MeditateAtWraithTable : JobDriver_Meditate
 {
-    protected const TargetIndex FacingInd = TargetIndex.B;
+    private const float SuccessChance = 0.7f;
 
-    private Building Table => TargetA.Thing as Building;
+    private Building Table => job.targetA.Thing as Building;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(Table, job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -26,7 +26,7 @@ public class JobDriver_MeditateAtWraithTable : JobDriver_Meditate
         {
             // Stand at the interaction cell and face the table itself
             IntVec3 faceCell = Table.Position;
-            job.SetTarget(FacingInd, faceCell);
+            job.SetTarget(TargetIndex.B, faceCell);
         });
 
         // Go to the Wraith table's interaction cell
@@ -84,7 +84,7 @@ public class JobDriver_MeditateAtWraithTable : JobDriver_Meditate
 
         meditate.tickAction = delegate
         {
-            rotateToFace = FacingInd;
+            rotateToFace = TargetIndex.B;
             MeditationTick();
         };
 
@@ -99,7 +99,7 @@ public class JobDriver_MeditateAtWraithTable : JobDriver_Meditate
         if (!pawn.HasHiveConnection())
             return;
 
-        var def = Rand.Chance(0.7f)
+        var def = Rand.Chance(SuccessChance)
             ? RimgateDefOf.Rimgate_WraithCommunedWithHive
             : RimgateDefOf.Rimgate_WraithWhispersFromVoid;
 

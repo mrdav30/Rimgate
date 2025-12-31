@@ -6,14 +6,14 @@ namespace Rimgate;
 
 public class JobDriver_HaulToMobileContainer : JobDriver_HaulToContainer
 {
-    public int initialCount;
+    public int InitialCount;
 
-    public Comp_MobileContainerControl Mobile => base.Container?.TryGetComp<Comp_MobileContainerControl>();
+    public Comp_MobileContainerControl Mobile => Container?.TryGetComp<Comp_MobileContainerControl>();
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref initialCount, "initialCount", 0);
+        Scribe_Values.Look(ref InitialCount, "InitialCount", 0);
     }
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -59,7 +59,7 @@ public class JobDriver_HaulToMobileContainer : JobDriver_HaulToContainer
 
         job.targetA = tc.Thing;
         job.count = Mathf.Min(tc.Count, remaining);
-        initialCount = tc.Count;
+        InitialCount = tc.Count;
 
         pawn.Reserve(tc.Thing, job);
     }

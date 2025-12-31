@@ -8,13 +8,11 @@ namespace Rimgate;
 
 public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
 {
-    protected const TargetIndex FacingInd = TargetIndex.B;
-
-    private Building Throne => TargetA.Thing as Building;
+    private Building Throne => job.targetA.Thing as Building;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(Throne, job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -26,7 +24,7 @@ public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
         {
             // Face "in front" of the throne (it only faces south)
             IntVec3 faceCell = Throne.InteractionCell + Rot4.South.FacingCell;
-            job.SetTarget(FacingInd, faceCell);
+            job.SetTarget(TargetIndex.B, faceCell);
         });
 
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
@@ -78,7 +76,7 @@ public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
         });
         meditate.tickAction = delegate
         {
-            rotateToFace = FacingInd;
+            rotateToFace = TargetIndex.B;
             MeditationTick();
         };
 

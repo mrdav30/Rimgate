@@ -16,7 +16,7 @@ public class JobDriver_WraithCocoonPrisoner : JobDriver
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        base.Map.reservationManager.ReleaseAllForTarget(Victim);
+        Map.reservationManager.ReleaseAllForTarget(Victim);
         return pawn.Reserve(job.targetA, job, errorOnFailed: errorOnFailed);
     }
 

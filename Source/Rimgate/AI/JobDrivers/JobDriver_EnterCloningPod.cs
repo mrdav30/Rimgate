@@ -8,11 +8,11 @@ namespace Rimgate;
 
 public class JobDriver_EnterCloningPod : JobDriver
 {
-    private Building_CloningPod _clonePod => (Building_CloningPod)job.GetTarget(TargetIndex.A).Thing;
+    private Building_CloningPod _clonePod => (Building_CloningPod)job.targetA.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(_clonePod, job, 1, -1, null, errorOnFailed, false);
+        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed, false);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -33,7 +33,7 @@ public class JobDriver_EnterCloningPod : JobDriver
             initAction = () =>
             {
                 Pawn actor = pawn;
-                Building_CloningPod cloningPod = _clonePod as Building_CloningPod;
+                Building_CloningPod cloningPod = _clonePod;
                 Action action = () =>
                 {
                     actor.DeSpawn(DestroyMode.Vanish);

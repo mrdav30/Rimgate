@@ -7,34 +7,30 @@ namespace Rimgate;
 
 public class JobDriver_InsertSymbioteQueen : JobDriver
 {
-    private const TargetIndex QueenInd = TargetIndex.A;
+    private Thing Queen => job.targetA.Thing;
 
-    private const TargetIndex PoolInd = TargetIndex.B;
-
-    private Thing Queen => job.GetTarget(QueenInd).Thing;
-
-    private Building_SymbioteSpawningPool Pool => job.GetTarget(PoolInd).Thing as Building_SymbioteSpawningPool;
+    private Building_SymbioteSpawningPool Pool => job.targetB.Thing as Building_SymbioteSpawningPool;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(job.GetTarget(QueenInd), job, 1, -1, null, errorOnFailed) 
-            && pawn.Reserve(job.GetTarget(PoolInd), job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed) 
+            && pawn.Reserve(job.targetB, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        this.FailOnDestroyedOrNull(QueenInd);
-        this.FailOnDestroyedOrNull(PoolInd);
+        this.FailOnDestroyedOrNull(TargetIndex.A);
+        this.FailOnDestroyedOrNull(TargetIndex.B);
 
-        yield return Toils_Goto.GotoThing(QueenInd, PathEndMode.ClosestTouch);
+        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
 
         job.count = 1; 
 
-        var startCarry = Toils_Haul.StartCarryThing(QueenInd);
+        var startCarry = Toils_Haul.StartCarryThing(TargetIndex.A);
         startCarry.FailOn(() => Queen == null || Queen.Destroyed);
         yield return startCarry;
 
-        yield return Toils_Goto.GotoThing(PoolInd, PathEndMode.InteractionCell);
+        yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell);
 
         Toil insert = new Toil();
         insert.initAction = () =>
@@ -72,7 +68,6 @@ public class JobDriver_InsertSymbioteQueen : JobDriver
             // Success: the queen should now be inside the pool's innerContainer
             actor.jobs.EndCurrentJob(JobCondition.Succeeded);
         };
-        insert.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return insert;
     }
 }

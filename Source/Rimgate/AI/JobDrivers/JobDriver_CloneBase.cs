@@ -15,7 +15,7 @@ public abstract class JobDriver_CloneBase : JobDriver
 
     protected abstract CloneType CloneJob { get; }
 
-    protected Building_CloningPod ClonePod => (Building_CloningPod)job.GetTarget(TargetIndex.A).Thing;
+    protected Building_CloningPod ClonePod => job.targetA.Thing as Building_CloningPod;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -35,21 +35,24 @@ public abstract class JobDriver_CloneBase : JobDriver
         {
             initAction = () =>
             {
-                if (CloneJob != ClonePod.CurrentJob)
-                    ClonePod.InitiateWork(CloneJob, _workToFinish);
+                var job = CloneJob;
+                var pod = ClonePod;
+                if (job != pod.CurrentJob)
+                    pod.InitiateWork(job, _workToFinish);
             },
             tickAction = () =>
             {
-                if (ClonePod.Status == CloningStatus.Idle)
-                    ClonePod.SwitchState();
+                var pod = ClonePod;
+                if (pod.Status == CloningStatus.Idle)
+                    pod.SwitchState();
                 Pawn actor = pawn;
-                float workTick = ClonePod.RemainingWork - StatExtension.GetStatValue(actor, StatDefOf.MedicalTendSpeed, true, -1);
-                ClonePod.SetWorkAmount(workTick);
+                float workTick = pod.RemainingWork - StatExtension.GetStatValue(actor, StatDefOf.MedicalTendSpeed, true, -1);
+                pod.SetWorkAmount(workTick);
                 actor.skills.Learn(SkillDefOf.Medicine, 0.11f, false, false);
-                if (ClonePod.RemainingWork > 0) return;
-                ClonePod.Refuelable.ConsumeFuel(ClonePod.Refuelable.Fuel);
+                if (pod.RemainingWork > 0) return;
+                pod.Refuelable.ConsumeFuel(pod.Refuelable.Fuel);
                 Clone();
-                ClonePod.SwitchState();
+                pod.SwitchState();
                 ReadyForNextToil();
             },
             defaultCompleteMode = ToilCompleteMode.Never

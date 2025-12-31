@@ -8,21 +8,19 @@ namespace Rimgate;
 
 public class JobDriver_EjectZpmFromHousing : JobDriver
 {
-    private const TargetIndex HousingInd = TargetIndex.A;
-
-    private Building_ZPMHousing _housing => job.GetTarget(HousingInd).Thing as Building_ZPMHousing;
+    private Building_ZPMHousing _housing => job.targetA.Thing as Building_ZPMHousing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(job.GetTarget(HousingInd), job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(job.GetTarget(TargetIndex.A), job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        this.FailOnDestroyedOrNull(HousingInd);
+        this.FailOnDestroyedOrNull(TargetIndex.A);
         this.FailOn(() => _housing == null || !_housing.HasAnyZpm);
 
-        yield return Toils_Goto.GotoThing(HousingInd, PathEndMode.InteractionCell);
+        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
 
         var eject = new Toil
         {
@@ -51,8 +49,7 @@ public class JobDriver_EjectZpmFromHousing : JobDriver
                 }
 
                 EndJobWith(JobCondition.Succeeded);
-            },
-            defaultCompleteMode = ToilCompleteMode.Instant
+            }
         };
 
         yield return eject;

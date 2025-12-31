@@ -14,7 +14,7 @@ public class JobDriver_ToggleIris : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDespawnedOrNull(TargetIndex.A);
-        this.FailOn(() => base.Map.designationManager.DesignationOn(base.TargetThingA, RimgateDefOf.Rimgate_DesignationToggleIris) == null);
+        this.FailOn(() => Map.designationManager.DesignationOn(job.targetA.Thing, RimgateDefOf.Rimgate_DesignationToggleIris) == null);
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
         yield return Toils_General.Wait(15).FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
         Toil finalize = ToilMaker.MakeToil("MakeNewToils");

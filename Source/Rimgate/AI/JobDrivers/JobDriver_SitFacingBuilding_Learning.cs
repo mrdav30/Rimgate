@@ -7,6 +7,8 @@ namespace Rimgate;
 
 public class JobDriver_SitFacingBuilding_Learning : JobDriver_SitFacingBuilding
 {
+    private const float LearningRate = 0.1f;
+
     private SkillDef skillToTrain;
 
     protected override void ModifyPlayToil(Toil toil)
@@ -18,9 +20,7 @@ public class JobDriver_SitFacingBuilding_Learning : JobDriver_SitFacingBuilding
         {
             var skills = pawn.skills?.skills;
             if (skills != null && skills.Count > 0)
-            {
                 skillToTrain = skills.RandomElement().def;
-            }
         }
 
         if (skillToTrain == null)
@@ -30,10 +30,7 @@ public class JobDriver_SitFacingBuilding_Learning : JobDriver_SitFacingBuilding
         {
             var record = pawn.skills?.GetSkill(skillToTrain);
             if (record != null)
-            {
-                // Adjust XP tick rate as desired
-                record.Learn(0.1f);
-            }
+                record.Learn(LearningRate);
         });
     }
 }

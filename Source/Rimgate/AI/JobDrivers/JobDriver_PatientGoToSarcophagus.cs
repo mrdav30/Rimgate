@@ -8,11 +8,11 @@ namespace Rimgate;
 
 public class JobDriver_PatientGoToSarcophagus : JobDriver
 {
-    protected Building_Sarcophagus Sarcophagus => (Building_Sarcophagus)job.GetTarget(TargetIndex.A).Thing;
+    protected Building_Sarcophagus Sarcophagus => (Building_Sarcophagus)job.targetA.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(Sarcophagus, job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -45,10 +45,9 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
             var sarcophagus = Sarcophagus;
             var actor = pawn;
 
-            ((Entity)actor).DeSpawn((DestroyMode)0);
+            actor.DeSpawn();
             sarcophagus.TryAcceptPawn(actor);
-        };
-        enter.defaultCompleteMode = ToilCompleteMode.Instant;
+        }
         yield return enter;
     }
 }

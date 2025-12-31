@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -9,14 +10,17 @@ namespace Rimgate;
 
 public class JobDriver_CarryToCloningPod : JobDriver
 {
-    private Pawn _takee => (Pawn)job.GetTarget(TargetIndex.A).Thing;
+    private const int PlacementDelay = 500;
 
-    private Building_CloningPod _clonePod => (Building_CloningPod)job.GetTarget(TargetIndex.B).Thing;
+    private Pawn Takee => (Pawn)job.targetA.Thing;
+
+    private Building_CloningPod ClonePod => (Building_CloningPod)job.targetB.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        if (pawn.Reserve(_takee, job, 1, -1, null, errorOnFailed))
-            return pawn.Reserve(_clonePod, job, 1, -1, null, errorOnFailed);
+        base.Map.reservationManager.ReleaseAllForTarget(Takee);
+        if (pawn.Reserve(job.targetA, job, errorOnFailed: errorOnFailed))
+            return pawn.Reserve(job.targetB, job, errorOnFailed: errorOnFailed);
 
         return false;
     }
@@ -26,34 +30,37 @@ public class JobDriver_CarryToCloningPod : JobDriver
         this.FailOnDestroyedOrNull(TargetIndex.A);
         this.FailOnDestroyedOrNull(TargetIndex.B);
         this.FailOnAggroMentalState(TargetIndex.A);
-        this.FailOn(() => !_clonePod.Power.PowerOn
-            || !_clonePod.Refuelable.IsFull
-            || _clonePod.HasAnyContents
-            || !_clonePod.Accepts(_takee));
+        this.FailOn(() => !ClonePod.Power.PowerOn
+            || !ClonePod.Refuelable.IsFull
+            || ClonePod.HasAnyContents
+            || !ClonePod.Accepts(Takee));
 
         Toil goToTakee = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell)
             .FailOnDestroyedNullOrForbidden(TargetIndex.A)
             .FailOnDespawnedNullOrForbidden(TargetIndex.B)
-            .FailOn(() => _clonePod.HasAnyContents)
-            .FailOn(() => !pawn.CanReach(_takee, PathEndMode.OnCell, Danger.Deadly))
+            .FailOn(() => ClonePod.HasAnyContents)
+            .FailOn(() => !pawn.CanReach(Takee, PathEndMode.OnCell, Danger.Deadly))
             .FailOnSomeonePhysicallyInteracting(TargetIndex.A);
         Toil startCarryingTakee = Toils_Haul.StartCarryThing(TargetIndex.A);
         Toil goToThing = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell);
 
-        yield return Toils_Jump.JumpIf(goToThing, () => pawn.IsCarryingPawn(_takee));
+        yield return Toils_Jump.JumpIf(goToThing, () => pawn.IsCarryingPawn(Takee));
         yield return goToTakee;
         yield return startCarryingTakee;
         yield return goToThing;
 
-        Toil wait = Toils_General.Wait(500, TargetIndex.None);
+        Toil wait = Toils_General.Wait(PlacementDelay);
         wait.FailOnCannotTouch(TargetIndex.B, PathEndMode.InteractionCell);
         ToilEffects.WithProgressBarToilDelay(wait, TargetIndex.B);
         yield return wait;
 
         yield return new Toil()
         {
-            initAction = () => _clonePod.TryAcceptThing(_takee),
-            defaultCompleteMode = ToilCompleteMode.Instant
+            initAction = () => {
+                var pod = ClonePod;
+                var takee = Takee;
+                pod.TryAcceptThing(takee);
+            }
         };
     }
 
@@ -62,7 +69,7 @@ public class JobDriver_CarryToCloningPod : JobDriver
         return new object[2]
         {
             pawn,
-            _takee
+            Takee
         };
     }
 }

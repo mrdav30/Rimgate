@@ -10,11 +10,11 @@ namespace Rimgate;
 
 public class JobDriver_DialStargate : JobDriver
 {
-    private Thing _dhd => job.GetTarget(TargetIndex.A).Thing;
+    private Thing _dhd => job.targetA.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(_dhd, job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()

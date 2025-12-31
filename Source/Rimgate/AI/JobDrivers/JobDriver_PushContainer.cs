@@ -139,9 +139,9 @@ public class JobDriver_PushContainer : JobDriver
                 _pushVisual.Init(cartDef, frontOffset, colorA, colorB);
                 _pushVisual.AttachTo(pawn);
 
-                pawn.ApplyHediff(RimgateDefOf.Rimgate_PushingCart, severity: slowdown);
-            },
-            defaultCompleteMode = ToilCompleteMode.Instant
+                if(!pawn.HasHediffOf(RimgateDefOf.Rimgate_PushingCart)) // prevent stacking
+                    pawn.ApplyHediff(RimgateDefOf.Rimgate_PushingCart, severity: slowdown);
+            }
         };
         yield return init;
 

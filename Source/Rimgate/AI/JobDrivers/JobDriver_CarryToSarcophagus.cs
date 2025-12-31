@@ -12,15 +12,15 @@ namespace Rimgate;
 
 public class JobDriver_CarryToSarcophagus : JobDriver
 {
-    protected Pawn Patient => (Pawn)job.GetTarget(TargetIndex.A).Thing;
+    protected Pawn Patient => (Pawn)job.targetA.Thing;
 
-    protected Building_Sarcophagus Sarcophagus => (Building_Sarcophagus)job.GetTarget(TargetIndex.B).Thing;
+    protected Building_Sarcophagus Sarcophagus => (Building_Sarcophagus)job.targetB.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        Patient.ClearAllReservations();
-        if (pawn.Reserve(Patient, job, 1, -1, null, errorOnFailed))
-            return pawn.Reserve(Sarcophagus, job, 1, 0, null, errorOnFailed);
+        Patient?.ClearAllReservations();
+        if (pawn.Reserve(job.targetA, job, errorOnFailed: errorOnFailed))
+            return pawn.Reserve(job.targetB, job, errorOnFailed: errorOnFailed);
 
         return false;
     }
@@ -67,7 +67,6 @@ public class JobDriver_CarryToSarcophagus : JobDriver
 
             SarcophagusUtil.PutIntoSarcophagus(sarcophagus, traveler, patient, true);
         };
-        putInto.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return putInto;
     }
 

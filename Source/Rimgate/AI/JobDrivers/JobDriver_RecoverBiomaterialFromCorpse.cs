@@ -16,7 +16,7 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(_corpse, job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -95,9 +95,10 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
         Toil finish = ToilMaker.MakeToil("RecoverBiomaterial_Finish");
         finish.initAction = delegate
         {
+            var corpse = _corpse;
             bool ok = CorpseBiomaterialRecoveryUtility.TryRecoverFromCorpse(
                 pawn,
-                _corpse,
+                corpse,
                 RecoveryDef,
                 consumeKitOnAttempt: true,
                 out var spawnedThing,
@@ -105,18 +106,17 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
 
             if (!ok)
             {
-                Messages.Message("RG_BiomaterialRecoveryMessage_Failed".Translate(_corpse.InnerPawn.LabelShort, reason),
-                    new TargetInfo(_corpse.Position, _corpse.Map),
+                Messages.Message("RG_BiomaterialRecoveryMessage_Failed".Translate(corpse.InnerPawn.LabelShort, reason),
+                    new TargetInfo(corpse.Position, corpse.Map),
                     MessageTypeDefOf.NegativeEvent);
                 EndJobWith(JobCondition.Incompletable);
                 return;
             }
 
-            Messages.Message("RG_BiomaterialRecoveryMessage_Procured".Translate(spawnedThing.LabelShort, _corpse.InnerPawn.LabelShort),
-                new TargetInfo(_corpse.Position, _corpse.Map),
+            Messages.Message("RG_BiomaterialRecoveryMessage_Procured".Translate(spawnedThing.LabelShort, corpse.InnerPawn.LabelShort),
+                new TargetInfo(corpse.Position, corpse.Map),
                 MessageTypeDefOf.PositiveEvent);
-        };
-        finish.defaultCompleteMode = ToilCompleteMode.Instant;
+        }
 
         yield return finish;
     }

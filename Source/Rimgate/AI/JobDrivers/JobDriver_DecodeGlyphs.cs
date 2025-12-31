@@ -11,9 +11,7 @@ namespace Rimgate;
 
 public class JobDriver_DecodeGlyphs : JobDriver
 {
-    private const TargetIndex _glyphScrapItem = TargetIndex.A;
-
-    private const int _useDuration = 500;
+    private const int UseDuration = 500;
 
     // returns true if we actually spawned a new quest
     private bool TryStartStargateQuest()
@@ -35,15 +33,15 @@ public class JobDriver_DecodeGlyphs : JobDriver
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(job.GetTarget(_glyphScrapItem), job);
+        return pawn.Reserve(job.targetA, job);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        yield return Toils_Goto.GotoThing(_glyphScrapItem, PathEndMode.Touch);
+        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
 
-        Toil wait = Toils_General.Wait(_useDuration);
-        wait.WithProgressBarToilDelay(_glyphScrapItem);
+        Toil wait = Toils_General.Wait(UseDuration);
+        wait.WithProgressBarToilDelay(TargetIndex.A);
         yield return wait;
 
         yield return new Toil
@@ -52,7 +50,7 @@ public class JobDriver_DecodeGlyphs : JobDriver
             {
                 if (!TryStartStargateQuest()) return;
 
-                Thing glyphThing = job.GetTarget(_glyphScrapItem).Thing;
+                Thing glyphThing = job.GetTarget(TargetIndex.A).Thing;
                 if (glyphThing.stackCount > 1)
                 {
                     Thing used = glyphThing.SplitOff(1);

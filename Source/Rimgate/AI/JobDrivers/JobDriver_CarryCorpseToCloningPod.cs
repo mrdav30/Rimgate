@@ -9,14 +9,14 @@ namespace Rimgate;
 
 public class JobDriver_CarryCorpseToCloningPod : JobDriver
 {
-    private Corpse _corpse => (Corpse)job.GetTarget(TargetIndex.A).Thing;
+    private Corpse Corpse => (Corpse)job.targetA.Thing;
 
-    private Building_CloningPod _clonePod => (Building_CloningPod)job.GetTarget(TargetIndex.B).Thing;
+    private Building_CloningPod ClonePod => (Building_CloningPod)job.targetB.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        if (pawn.Reserve(_corpse, job, 1, -1, null, errorOnFailed))
-            return pawn.Reserve(_clonePod, job, 1, 0, null, errorOnFailed);
+        if (pawn.Reserve(job.targetA, job, errorOnFailed: errorOnFailed))
+            return pawn.Reserve(job.targetB, job, errorOnFailed: errorOnFailed);
 
         return false;
     }
@@ -26,18 +26,18 @@ public class JobDriver_CarryCorpseToCloningPod : JobDriver
         this.FailOnDestroyedOrNull(TargetIndex.A);
         this.FailOnDestroyedOrNull(TargetIndex.B);
         this.FailOnAggroMentalState(TargetIndex.A);
-        this.FailOn(() => !_clonePod.Accepts(_corpse));
+        this.FailOn(() => !ClonePod.Accepts(Corpse));
 
         Toil goToTakee = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell)
             .FailOnDestroyedNullOrForbidden(TargetIndex.A)
             .FailOnDespawnedNullOrForbidden(TargetIndex.B)
-            .FailOn(() => _clonePod.HasAnyContents)
-            .FailOn(() => !pawn.CanReach(_corpse, PathEndMode.OnCell, Danger.Deadly))
+            .FailOn(() => ClonePod.HasAnyContents)
+            .FailOn(() => !pawn.CanReach(Corpse, PathEndMode.OnCell, Danger.Deadly))
             .FailOnSomeonePhysicallyInteracting(TargetIndex.A);
         Toil startCarryingTakee = Toils_Haul.StartCarryThing(TargetIndex.A);
         Toil goToThing = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell);
 
-        yield return Toils_Jump.JumpIf(goToThing, () => pawn.IsCarryingThing(_corpse));
+        yield return Toils_Jump.JumpIf(goToThing, () => pawn.IsCarryingThing(Corpse));
         yield return goToTakee;
         yield return startCarryingTakee;
         yield return goToThing;
@@ -50,9 +50,10 @@ public class JobDriver_CarryCorpseToCloningPod : JobDriver
         Toil putInto = ToilMaker.MakeToil("PutIntoCloningPod");
         putInto.initAction = () =>
         {
-            _clonePod.TryAcceptThing(_corpse);
+            var pod = ClonePod;
+            var corpse = Corpse;
+            pod.TryAcceptThing(corpse);
         };
-        putInto.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return putInto;
     }
 
@@ -61,7 +62,7 @@ public class JobDriver_CarryCorpseToCloningPod : JobDriver
         return new object[2]
         {
             pawn,
-            _corpse.InnerPawn
+            Corpse.InnerPawn
         };
     }
 }

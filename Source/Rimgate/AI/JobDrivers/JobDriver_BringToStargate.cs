@@ -10,40 +10,42 @@ namespace Rimgate;
 
 public class JobDriver_BringToStargate : JobDriver
 {
-    private const TargetIndex _thingToHaul = TargetIndex.A;
+    private Thing ThingToHaul => job.targetA.Thing;
 
-    private const TargetIndex _targetStargate = TargetIndex.B;
+    private Building_Stargate Stargate => job.targetB.Thing as Building_Stargate;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        Thing thing = (Thing)job.GetTarget(_thingToHaul);
-        job.count = thing.stackCount;
-        return pawn.Reserve(thing, job, 1, thing.stackCount) 
-            && pawn.Reserve(thing, job, 1, thing.stackCount);
+        Thing thing = job.targetA.Thing;
+        job.count = thing?.stackCount ?? 0;
+
+        if(thing is Pawn takee)
+            base.Map.reservationManager.ReleaseAllForTarget(takee);
+
+        return pawn.Reserve(job.targetA, job, 1, thing.stackCount, errorOnFailed: errorOnFailed) 
+            && pawn.Reserve(job.targetB, job, 1, errorOnFailed: errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        Thing thing = (Thing)job.GetTarget(_thingToHaul);
-
-        this.FailOnDestroyedOrNull(_targetStargate);
-        this.FailOnDestroyedNullOrForbidden(_thingToHaul);
+        this.FailOnDestroyedOrNull(TargetIndex.B);
+        this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
         this.FailOn(() => 
-            !job.GetTarget(_targetStargate).Thing.TryGetComp<Comp_StargateControl>().IsActive);
+            !job.GetTarget(TargetIndex.B).Thing.TryGetComp<Comp_StargateControl>().IsActive);
 
-        if (thing as Pawn != null)
-            this.FailOnMobile(_thingToHaul);
+        if (ThingToHaul as Pawn != null)
+            this.FailOnMobile(TargetIndex.A);
 
-        yield return Toils_Goto.GotoCell(_thingToHaul, PathEndMode.Touch);
-        yield return Toils_Haul.StartCarryThing(_thingToHaul);
-        yield return Toils_Goto.GotoCell(job.GetTarget(_targetStargate).Thing.InteractionCell, PathEndMode.OnCell);
+        yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.Touch);
+        yield return Toils_Haul.StartCarryThing(TargetIndex.A);
+        yield return Toils_Goto.GotoCell(job.GetTarget(TargetIndex.B).Thing.InteractionCell, PathEndMode.OnCell);
         yield return new Toil
         {
             initAction = () =>
             {
-                Comp_StargateControl gateComp = job.GetTarget(_targetStargate).Thing.TryGetComp<Comp_StargateControl>();
-                pawn.carryTracker.innerContainer.Remove(thing);
-                gateComp.AddToSendBuffer(thing);
+                Comp_StargateControl gateComp = Stargate.GateControl;
+                pawn.carryTracker.innerContainer.Remove(ThingToHaul);
+                gateComp.AddToSendBuffer(ThingToHaul);
             }
         };
 

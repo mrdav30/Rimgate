@@ -28,7 +28,7 @@ public class JobDriver_CloseStargate : JobDriver
                     dhd.DoCloseGate();
             }
 
-            base.Map.designationManager.DesignationOn(thingWithComps, RimgateDefOf.Rimgate_DesignationCloseStargate)?.Delete();
+            Map.designationManager.DesignationOn(thingWithComps, RimgateDefOf.Rimgate_DesignationCloseStargate)?.Delete();
         };
         finalize.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return finalize;

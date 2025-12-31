@@ -57,9 +57,9 @@ public static class MobileContainerUtility
                 {
                     int value = 0;
                     if (tmpAlreadyLoading.TryGetValue(transferableOneWay, out value))
-                        tmpAlreadyLoading[transferableOneWay] = value + jobDriver.initialCount;
+                        tmpAlreadyLoading[transferableOneWay] = value + jobDriver.InitialCount;
                     else
-                        tmpAlreadyLoading.Add(transferableOneWay, jobDriver.initialCount);
+                        tmpAlreadyLoading.Add(transferableOneWay, jobDriver.InitialCount);
                 }
             }
 

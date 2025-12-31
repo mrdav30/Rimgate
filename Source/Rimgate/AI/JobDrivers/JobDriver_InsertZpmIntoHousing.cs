@@ -7,37 +7,36 @@ namespace Rimgate;
 
 public class JobDriver_InsertZpmIntoHousing : JobDriver
 {
-    private const TargetIndex ZpmInd = TargetIndex.A;
-    private const TargetIndex HousingInd = TargetIndex.B;
+    private Building_ZPM _zpm => job.targetA.Thing as Building_ZPM;
 
-    private Building_ZPM _zpm => job.GetTarget(ZpmInd).Thing as Building_ZPM;
-    private Building_ZPMHousing _housing => job.GetTarget(HousingInd).Thing as Building_ZPMHousing;
+    private Building_ZPMHousing _housing => job.targetB.Thing as Building_ZPMHousing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(job.GetTarget(ZpmInd), job, 1, -1, null, errorOnFailed)
-            && pawn.Reserve(job.GetTarget(HousingInd), job, 1, -1, null, errorOnFailed);
+        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed)
+            && pawn.Reserve(job.targetB, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        this.FailOnDestroyedNullOrForbidden(ZpmInd);
-        this.FailOnDestroyedOrNull(HousingInd);
+        this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
+        this.FailOnDestroyedOrNull(TargetIndex.B);
         this.FailOn(() => _housing == null || !_housing.CanAcceptZpm);
 
-        yield return Toils_Goto.GotoThing(ZpmInd, PathEndMode.ClosestTouch);
+        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
 
         // Pick up the ZPM
-        yield return Toils_Haul.StartCarryThing(ZpmInd);
+        yield return Toils_Haul.StartCarryThing(TargetIndex.A);
 
         // Go to housing interaction cell
-        yield return Toils_Goto.GotoThing(HousingInd, PathEndMode.InteractionCell);
+        yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell);
 
         // Insert into housing
         var insert = new Toil
         {
             initAction = () =>
             {
+                var carrier = pawn;
                 var housing = _housing;
                 if (housing == null || !housing.CanAcceptZpm)
                 {
@@ -45,7 +44,7 @@ public class JobDriver_InsertZpmIntoHousing : JobDriver
                     return;
                 }
 
-                var carried = pawn.carryTracker.CarriedThing as Building_ZPM;
+                var carried = carrier.carryTracker.CarriedThing as Building_ZPM;
                 if (carried == null)
                 {
                     EndJobWith(JobCondition.Incompletable);
@@ -53,20 +52,19 @@ public class JobDriver_InsertZpmIntoHousing : JobDriver
                 }
 
                 // Remove from carry tracker container first
-                pawn.carryTracker.innerContainer.Remove(carried);
+                carrier.carryTracker.innerContainer.Remove(carried);
 
                 if (!housing.TryInsertZpm(carried))
                 {
                     // Failed to insert; drop ZPM nearby so it isn't lost
-                    GenPlace.TryPlaceThing(carried, pawn.Position, pawn.Map, ThingPlaceMode.Near);
+                    GenPlace.TryPlaceThing(carried, carrier.Position, carrier.Map, ThingPlaceMode.Near);
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
 
-                pawn.carryTracker.DestroyCarriedThing(); // TODO: make sure it's not dangling
+                carrier.carryTracker.DestroyCarriedThing();
                 EndJobWith(JobCondition.Succeeded);
-            },
-            defaultCompleteMode = ToilCompleteMode.Instant
+            }
         };
 
         yield return insert;
