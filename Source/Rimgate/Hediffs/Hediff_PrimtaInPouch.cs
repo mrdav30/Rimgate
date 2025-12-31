@@ -51,16 +51,11 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
         var watcher = pouch?.TryGetComp<HediffComp_PouchWatcher>();
         if (watcher == null) return;
 
-        var memories = pawn.needs?.mood?.thoughts?.memories;
-        if (memories == null) return;
+        ThoughtDef thought = watcher.EverHadPrimta
+            ? RimgateDefOf.Rimgate_PrimtaNewPrimtaThought
+            : RimgateDefOf.Rimgate_PrimtaFirstPrimtaThought;
 
-        ThoughtDef thought;
-        if (watcher.EverHadPrimta) // Already had one in the past
-            thought = RimgateDefOf.Rimgate_PrimtaNewPrimtaThought;
-        else // First ever Prim'ta for this pouch
-            thought = RimgateDefOf.Rimgate_PrimtaFirstPrimtaThought;
-
-        memories.TryGainMemory(thought);
+        pawn.TryGiveThought(thought);
 
         if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
             Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_InstalledSymbiote, pawn.Named(HistoryEventArgsNames.Doer)));

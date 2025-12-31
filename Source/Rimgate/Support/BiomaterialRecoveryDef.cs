@@ -21,7 +21,6 @@ public class BiomaterialRecoveryDef : Def
     // Gating / balance
     public ResearchProjectDef researchPrerequisite;
     public ThingDef requiredKit;
-    public int requiredKitCount = 1;
 
     public float workAmount = 2000; // work units, like recipes
     public StatDef workSpeedStat;
@@ -114,7 +113,7 @@ public class BiomaterialRecoveryDef : Def
         {
             yield return new StatDrawEntry(StatCategoryDefOf.Basics,
                 "Ingredients".Translate(),
-                $"{requiredKitCount}x {requiredKit.label}",
+                $"{requiredKit.label}",
                 "Stat_Recipe_Ingredients_Desc".Translate(),
                 4405,
                 null,

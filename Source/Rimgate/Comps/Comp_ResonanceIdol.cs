@@ -52,17 +52,10 @@ public class Comp_ResonanceIdol : ThingComp
     private void TryApplyMood(Pawn pawn)
     {
         bool isWraith = pawn.IsXenoTypeOf(RimgateDefOf.Rimgate_Wraith);
-        var def = isWraith ? Props.thoughtNearForWraith : Props.thoughtNear;
-        if (def == null) return;
-
-        var memories = pawn.needs?.mood?.thoughts?.memories;
-        if (memories == null) return;
-
-        // Refresh the short memory so it stays while in range (no stacking)
-        if (memories.GetFirstMemoryOfDef(def) is Thought_Memory existing)
-            existing.Renew(); // refresh duration
-        else
-            memories.TryGainMemory(def);
+        var def = isWraith 
+            ? Props.thoughtNearForWraith 
+            : Props.thoughtNear;
+        pawn.TryGiveThought(def);
     }
 
     private void MaybeApplySpooky(Pawn pawn)

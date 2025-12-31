@@ -53,11 +53,11 @@ public static class CorpseBiomaterialRecoveryUtility
             return false;
 
 
-        if (checkAvailability && def.requiredKitCount > 0)
+        if (checkAvailability)
         {
-            if (CorpseBiomaterialRecoveryUtility.CountAvailableKits(actor, def.requiredKit) < def.requiredKitCount)
+            if (CorpseBiomaterialRecoveryUtility.CountAvailableKits(actor, def.requiredKit) < 1)
             {
-                reason = $"missing {def.requiredKit.LabelCap} x{def.requiredKitCount}";
+                reason = $"missing {def.requiredKit.LabelCap} x1";
                 return false;
             }
         }
@@ -86,7 +86,7 @@ public static class CorpseBiomaterialRecoveryUtility
         }
 
         if (consumeKitOnAttempt)
-            ConsumeKits(actor, def.requiredKit, def.requiredKitCount);
+            ConsumeKits(actor, def.requiredKit, 1);
 
         float skillChance = def.successChanceStat != null
             ? actor.GetStatValue(def.successChanceStat)

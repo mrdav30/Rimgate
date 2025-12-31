@@ -3,7 +3,6 @@
 
     <Rimgate.BiomaterialRecoveryDef Name="Rimgate_RecoveryBase" Abstract="True">
         <requiredKit>Rimgate_BiomaterialProcurementKit</requiredKit>
-        <requiredKitCount>1</requiredKitCount>
 
         <workAmount>2000</workAmount>
         <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
@@ -22,7 +21,6 @@
         <successChance>0.8</successChance>
         <successChanceStat>MedicalSurgerySuccessChance</successChanceStat>
     </Rimgate.BiomaterialRecoveryDef>
-
 
     <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
         <defName>Rimgate_Recover_CorticalDampener</defName>

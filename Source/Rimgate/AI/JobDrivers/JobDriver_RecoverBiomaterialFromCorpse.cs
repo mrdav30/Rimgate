@@ -25,8 +25,7 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
         this.FailOn(() => RecoveryDef == null);
         this.FailOn(() => !CorpseBiomaterialRecoveryUtility.IsCorpseValidForRecovery(_corpse, pawn));
 
-        // TODO: we may have to loop this logic if def requires > 1
-        if (RecoveryDef.requiredKit != null && RecoveryDef.requiredKitCount > 0)
+        if (RecoveryDef.requiredKit != null)
         {
             // Find kit on map if not already carrying enough
             Toil findKit = ToilMaker.MakeToil("RecoverBiomaterial_FindKit");
@@ -34,7 +33,7 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
             {
                 // already carrying enough?
                 Thing carried = pawn.carryTracker?.CarriedThing;
-                if (carried?.def == RecoveryDef.requiredKit && carried.stackCount >= RecoveryDef.requiredKitCount)
+                if (carried?.def == RecoveryDef.requiredKit && carried.stackCount >= 1)
                     return;
 
                 if (!CorpseBiomaterialRecoveryUtility.TryGetClosestKit(pawn, RecoveryDef.requiredKit, out Thing kit)) 
@@ -44,15 +43,14 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
                 }
 
                 int num = pawn.Map.reservationManager.CanReserveStack(pawn, kit);
-                if (num <= 0 
-                || !pawn.Reserve(kit, job, stackCount: Math.Min(num, RecoveryDef.requiredKitCount)))
+                if (num <= 0 || !pawn.Reserve(kit, job, stackCount: 1))
                 {
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
 
                 job.SetTarget(TargetIndex.B, kit);
-                job.count = RecoveryDef.requiredKitCount;
+                job.count = 1;
             };
             yield return findKit;
 
@@ -85,9 +83,9 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
         work.PlaySustainerOrSound(() => RecoveryDef.soundWorking);
         work.FailOn(() =>
         {
-            if (RecoveryDef.requiredKit == null || RecoveryDef.requiredKitCount <= 0) return false;
+            if (RecoveryDef.requiredKit == null) return false;
             var c = pawn.carryTracker?.CarriedThing;
-            return c?.def != RecoveryDef.requiredKit || c.stackCount < RecoveryDef.requiredKitCount;
+            return c?.def != RecoveryDef.requiredKit || c.stackCount < 1;
         });
         work.WithProgressBarToilDelay(TargetIndex.A);
 
