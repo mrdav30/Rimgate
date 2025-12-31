@@ -47,7 +47,7 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
 
             actor.DeSpawn();
             sarcophagus.TryAcceptPawn(actor);
-        }
+        };
         yield return enter;
     }
 }

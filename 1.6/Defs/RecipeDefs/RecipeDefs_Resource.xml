@@ -42,7 +42,7 @@
 	<RecipeDef>
 		<defName>Rimgate_MakeTretonin</defName>
 		<label>refine Tretonin</label>
-		<description>make a batch of Tretonin from a Goa'uld symbiote.</description>
+		<description>make a batch of Tretonin from a Prim'ta symbiote.</description>
 		<jobString>making Tretonin.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_CookMeal</soundWorking>
@@ -83,7 +83,7 @@
 	<RecipeDef>
 		<defName>Rimgate_MakeTretonin_x4</defName>
 		<label>refine Tretonin x4</label>
-		<description>make a large batch of Tretonin from Goa'uld symbiotes.</description>
+		<description>make a large batch of Tretonin from Prim'ta symbiotes.</description>
 		<jobString>making Tretonin.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_CookMeal</soundWorking>
@@ -123,7 +123,7 @@
 
 	<RecipeDef>
 		<defName>Rimgate_MakeTretonin_Symbiote</defName>
-		<label>refine Tretonin from medicine</label>
+		<label>refine Tretonin (Goa'uld symbiote)</label>
 		<description>make a batch of Tretonin by refining a mature Goa'uld symbiote.</description>
 		<jobString>making Tretonin.</jobString>
 		<effectWorking>Cook</effectWorking>
@@ -160,6 +160,47 @@
 			<Rimgate_Tretonin>4</Rimgate_Tretonin>
 		</products>
 		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeTretonin_Medicine</defName>
+		<label>refine Tretonin (no symbiote)</label>
+		<description>make a batch of Tretonin by refining glitterworld medicine with naquadah.</description>
+		<jobString>making Tretonin.</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
+		<workAmount>2000</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<workSkill>Intellectual</workSkill>
+		<skillRequirements>
+			<Crafting>6</Crafting>
+			<Intellectual>9</Intellectual>
+		</skillRequirements>
+		<recipeUsers>
+			<li>DrugLab</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineUltratech</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<products>
+			<Rimgate_Tretonin>1</Rimgate_Tretonin>
+		</products>
+		<researchPrerequisite>Rimgate_TretoninSynthesisTierTwo</researchPrerequisite>
 	</RecipeDef>
 
 	<!-- ==================== Iris Stuff ==================== -->

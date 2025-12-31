@@ -120,8 +120,27 @@
 
     <biologicalAgeTickFactorFromAgeCurve>
       <points>
-        <li>(13, 1)</li>
-        <li>(18.5, 0)</li>
+        <!--
+          Curve notes (RimWorld SimpleCurve):
+          - X = *biological* age in years (not chronological age)
+          - Y = multiplier on biological aging ticks (1 = normal, 0.25 = 1/4 speed, 0 = no biological aging)
+          - Below the first X, the first Y is used; above the last X, the last Y is used.
+
+          Lore target: very slow childhood development (e.g. ~20 years old still "toddler" equivalent),
+          then extremely slow adult aging (centuries-long prime) without hard-freezing aging at ~18.
+        -->
+
+        <!-- Childhood: ~1/8 speed (20y -> ~2.5y biological) -->
+        <li>(0, 0.125)</li>
+        <li>(5, 0.125)</li>
+
+        <!-- Adolescence: gradually ramps up so they eventually mature -->
+        <li>(13, 0.35)</li>
+        <li>(18, 0.50)</li>
+
+        <!-- Adulthood: slow again for long lifespan -->
+        <li>(25, 0.08)</li>
+        <li>(200, 0.15)</li>
       </points>
     </biologicalAgeTickFactorFromAgeCurve>
 

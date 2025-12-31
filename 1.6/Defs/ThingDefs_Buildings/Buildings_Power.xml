@@ -52,14 +52,14 @@
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerPlant</compClass>
-        <basePowerConsumption>-6000</basePowerConsumption>
+        <basePowerConsumption>-4600</basePowerConsumption>
         <transmitsPower>true</transmitsPower>
         <shortCircuitInRain>true</shortCircuitInRain>
       </li>
       <li Class="CompProperties_Flickable" />
-      <!-- Fuel-hungry but not insane: ~2 Naquadria/day, 15 days to empty -->
+      <!-- Fuel-hungry but not insane: ~3 Naquadria/day, 10 days to empty -->
       <li Class="CompProperties_Refuelable">
-        <fuelConsumptionRate>2.0</fuelConsumptionRate>
+        <fuelConsumptionRate>3.0</fuelConsumptionRate>
         <fuelCapacity>30.0</fuelCapacity>
         <fuelFilter>
           <thingDefs>
@@ -139,13 +139,13 @@
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerPlant</compClass>
-        <basePowerConsumption>-15000</basePowerConsumption>
+        <basePowerConsumption>-9600</basePowerConsumption>
         <transmitsPower>true</transmitsPower>
         <shortCircuitInRain>true</shortCircuitInRain>
       </li>
-      <!-- Very hungry: 6 Naquadria/day, 30 capacity => 5 days to empty -->
+      <!-- Very hungry: 1.2 Naquadria/day, 30 capacity => 25 days to empty -->
       <li Class="CompProperties_Refuelable">
-        <fuelConsumptionRate>6.0</fuelConsumptionRate>
+        <fuelConsumptionRate>1.2</fuelConsumptionRate>
         <fuelCapacity>30.0</fuelCapacity>
         <fuelFilter>
           <thingDefs>

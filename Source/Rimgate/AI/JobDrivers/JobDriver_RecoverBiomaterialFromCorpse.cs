@@ -116,7 +116,7 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
             Messages.Message("RG_BiomaterialRecoveryMessage_Procured".Translate(spawnedThing.LabelShort, corpse.InnerPawn.LabelShort),
                 new TargetInfo(corpse.Position, corpse.Map),
                 MessageTypeDefOf.PositiveEvent);
-        }
+        };
 
         yield return finish;
     }

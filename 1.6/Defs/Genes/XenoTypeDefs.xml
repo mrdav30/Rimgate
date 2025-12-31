@@ -56,7 +56,7 @@
     <XenotypeDef>
         <defName>Rimgate_Wraith</defName>
         <label>Wraith</label>
-        <description>Telepathic, ageless, and disturbingly elegant, Wraith feed on life essence to survive.\nThey don’t sleep, they don’t die of old age, and they definitely don’t ask permission before dinner.</description>
+        <description>Telepathic, long-lived, and disturbingly elegant, a Wraith feeds on life essence to survive.\nThey mature slowly, don't sleep, and definitely don’t ask permission before dinner.</description>
         <iconPath>UI/Xenotype/RGWraithXenotypeIcon</iconPath>
         <inheritable>true</inheritable>
         <nameMaker>Rimgate_NamerPersonWraith</nameMaker>

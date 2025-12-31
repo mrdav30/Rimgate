@@ -225,6 +225,38 @@
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
+        <defName>Rimgate_TretoninSynthesisTierTwo</defName>
+        <label>Tretonin synthesis advancements</label>
+        <description>The Ancient's left extensive notes on biochemistry. Using these as reference, it should be possible to optimize and refine the Tretonin synthesis protocols to remove the biochemical dependency that requires a symbiote for processing the serum.</description>
+        <techLevel>Ultra</techLevel>
+        <baseCost>6500</baseCost>
+        <prerequisites>
+            <li>Rimgate_TretoninSynthesis</li>
+        </prerequisites>
+        <requiredResearchFacilities>
+            <li>Rimgate_AncientResearchBank</li>
+        </requiredResearchFacilities>
+        <researchViewX>3</researchViewX>
+        <researchViewY>2.5</researchViewY>
+
+        <discoveredLetterTitle>About: Tretonin synthesis advancements</discoveredLetterTitle>
+        <discoveredLetterText>Building on prior research and Ancient biochemistry notes, your team has refined the Tretonin synthesis process to eliminate the biochemical dependency on symbiote enzymes.\n\nThe new formulation provides the same robust immunity to disease without the need for ongoing symbiote interaction—marking a significant advancement in medical science.</discoveredLetterText>
+
+        <generalRules>
+            <rulesStrings>
+                <li>subject->Tretonin synthesis process</li>
+
+                <li>subject_story->analyzed Ancient biochemistry notes to identify potential optimizations in the Tretonin synthesis protocol</li>
+                <li>subject_story->experimented with alternative enzyme analogs to replicate symbiote functions without dependency</li>
+                <li>subject_story->conducted trials that successfully demonstrated immunity without biochemical reliance on symbiotes</li>
+
+                <li>subject_gerund->refining synthesis protocols to eliminate symbiote dependency</li>
+            </rulesStrings>
+        </generalRules>
+
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TrackedCart</defName>
         <label>Tracked cart</label>
         <description>Blueprints for a compact, tracked haul platform—part motor-pool ingenuity, part “don’t ask what’s in the crate.” Chemfuel-powered, stable on rough ground, and perfect for dragging too much loot back to base without rupturing a colonist’s spine.</description>
