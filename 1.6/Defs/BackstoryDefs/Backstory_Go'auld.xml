@@ -26,17 +26,6 @@
   </BackstoryDef>
 
   <BackstoryDef>
-    <defName>Rimgate_LarvalHost</defName>
-    <title>Larval Host</title>
-    <titleShort>Larval Host</titleShort>
-    <baseDesc>From a young age, [PAWN_nameDef] was chosen to incubate larval symbiotes—a sacred and gooey duty. Most of their childhood was spent in medical labs, nutrient baths, and dealing with chronic stomach growls that weren’t entirely theirs.</baseDesc>
-    <slot>Childhood</slot>
-    <spawnCategories>
-      <li>Rimgate_GoauldChildBackstory</li>
-    </spawnCategories>
-  </BackstoryDef>
-
-  <BackstoryDef>
     <defName>Rimgate_TempleArchivistChild</defName>
     <title>temple archivist’s ward</title>
     <titleShort>archivist’s ward</titleShort>
@@ -288,115 +277,6 @@
     </forcedTraits>
   </BackstoryDef>
 
-  <!-- ==== Slave ==== -->
-
-  <BackstoryDef>
-    <defName>Rimgate_Slave</defName>
-    <title>Goa'uld slave</title>
-    <titleShort>Goa'uld slave</titleShort>
-    <baseDesc>Chained by fate and fashion, [PAWN_nameDef] served the Goa’uld as a nameless, faceless laborer. Forbidden from fighting, learning, or even dreaming too loudly. Their daily highlight? Not being vaporized.</baseDesc>
-    <slot>Adulthood</slot>
-    <spawnCategories>
-      <li>Offworld</li>
-      <li>Pirate</li>
-      <li>Cult</li>
-      <li>Rimgate_SlaveBackstory</li>
-    </spawnCategories>
-    <skillGains>
-      <Melee>-12</Melee>
-      <Shooting>-12</Shooting>
-      <Mining>4</Mining>
-      <Construction>4</Construction>
-      <Cooking>4</Cooking>
-      <Plants>4</Plants>
-      <Animals>4</Animals>
-      <Crafting>0</Crafting>
-      <Artistic>0</Artistic>
-      <Medicine>-12</Medicine>
-      <Social>0</Social>
-      <Intellectual>-12</Intellectual>
-    </skillGains>
-    <forcedTraits>
-      <Ascetic>0</Ascetic>
-      <Wimp>0</Wimp>
-    </forcedTraits>
-  </BackstoryDef>
-
-  <!-- ==== Slaver ==== -->
-
-  <BackstoryDef>
-    <defName>Rimgate_SlaveDriver</defName>
-    <title>Slave driver</title>
-    <titleShort>Slave driver</titleShort>
-    <baseDesc>Armed with a cruel rod of anguish and crueler orders, [PAWN_nameDef] was tasked with keeping miners and laborers in line. Their life was measured in screams per hour, not hours per shift. They learned how to instill fear, not how to lift a pick.</baseDesc>
-    <slot>Adulthood</slot>
-    <spawnCategories>
-      <li>Offworld</li>
-      <li>Pirate</li>
-      <li>Rimgate_GoauldAdultBackstory</li>
-      <li>Rimgate_SlaveDriverBackstory</li>
-    </spawnCategories>
-    <skillGains>
-      <Social>4</Social>
-      <Melee>6</Melee>
-      <Mining>-6</Mining>
-      <Plants>-6</Plants>
-      <Artistic>-6</Artistic>
-    </skillGains>
-    <forcedTraits>
-      <Bloodlust>0</Bloodlust>
-      <Nerves>2</Nerves>
-    </forcedTraits>
-  </BackstoryDef>
-
-  <BackstoryDef>
-    <defName>Rimgate_OverseerLackey</defName>
-    <title>Overseer’s lackey</title>
-    <titleShort>Lackey</titleShort>
-    <baseDesc>Not all who served the Goa’uld held a weapon. [PAWN_nameDef] carried whips, schedules, and buckets of water for the “real” enforcers. They became adept at surviving by standing just far enough behind authority.</baseDesc>
-    <slot>Adulthood</slot>
-    <spawnCategories>
-      <li>Offworld</li>
-      <li>Pirate</li>
-      <li>Rimgate_GoauldAdultBackstory</li>
-      <li>Rimgate_SlaveDriverBackstory</li>
-    </spawnCategories>
-    <skillGains>
-      <Social>2</Social>
-      <Crafting>2</Crafting>
-      <Construction>-4</Construction>
-      <Intellectual>-4</Intellectual>
-    </skillGains>
-    <forcedTraits>
-      <Greedy>0</Greedy>
-      <Industriousness>2</Industriousness>
-    </forcedTraits>
-  </BackstoryDef>
-
-  <BackstoryDef>
-    <defName>Rimgate_BrokenOverseer</defName>
-    <title>Broken overseer</title>
-    <titleShort>Broken overseer</titleShort>
-    <baseDesc>Once entrusted with enforcing the System Lord’s will, [PAWN_nameDef] eventually fell from grace—whether from pity, defiance, or sheer exhaustion. Branded and discarded, they drift between fear of punishment and memories of the screams they once commanded.</baseDesc>
-    <slot>Adulthood</slot>
-    <spawnCategories>
-      <li>Offworld</li>
-      <li>Pirate</li>
-      <li>Rimgate_GoauldAdultBackstory</li>
-      <li>Rimgate_SlaveDriverBackstory</li>
-    </spawnCategories>
-    <skillGains>
-      <Social>-2</Social>
-      <Melee>2</Melee>
-      <Mining>2</Mining>
-      <Intellectual>-6</Intellectual>
-    </skillGains>
-    <forcedTraits>
-      <Nerves>-1</Nerves>
-      <Neurotic>2</Neurotic>
-    </forcedTraits>
-  </BackstoryDef>
-
   <!-- ==== First Prime ==== -->
 
   <BackstoryDef>
@@ -449,123 +329,54 @@
     </forcedTraits>
   </BackstoryDef>
 
-  <!-- ==== Tok'ra ==== -->
+  <!-- Kull -->
 
   <BackstoryDef>
-    <defName>Rimgate_TokRaSpy</defName>
-    <title>Tok’ra infiltrator</title>
-    <titleShort>Tok’ra spy</titleShort>
-    <baseDesc>[PAWN_nameDef] walked the razor’s edge between gods and rebellion. Posing as a loyal servant of the Goa’uld, they passed secrets to the Tok’ra network by night. Their past is a tangle of false identities, whispered codes, and narrow escapes.</baseDesc>
-    <slot>Adulthood</slot>
+    <defName>Rimgate_KullVatBorn</defName>
+    <title>vat-grown subject</title>
+    <titleShort>subject</titleShort>
+    <description>[PAWN_nameDef] developed in an artificial nutrient vat, never knowing light, voices, or comfort. Sensory input was introduced only as electrical impulses—pain to encourage compliance, reward pulses to reinforce obedience. There was no childhood, only calibration.</description>
+    <slot>Childhood</slot>
     <spawnCategories>
-      <li>Offworld</li>
-      <li>Rimgate_TokraBackstory</li>
+      <li>Rimgate_KullOnly</li>
     </spawnCategories>
-    <skillGains>
-      <Social>8</Social>
-      <Intellectual>6</Intellectual>
-      <Shooting>4</Shooting>
-      <Medicine>2</Medicine>
-      <Construction>-6</Construction>
-      <Mining>-6</Mining>
-    </skillGains>
-    <forcedTraits>
-      <Undergrounder>0</Undergrounder>
-      <Nerves>2</Nerves>
-    </forcedTraits>
+    <shuffleable>false</shuffleable>
   </BackstoryDef>
 
   <BackstoryDef>
-    <defName>Rimgate_TokRaCourier</defName>
-    <title>Tok’ra courier</title>
-    <titleShort>Tok’ra courier</titleShort>
-    <baseDesc>Secrets are useless if they don’t arrive. [PAWN_nameDef] carried messages, symbiotes, and stolen intel between Tok’ra cells—often alone, often hunted. They learned to travel light, lie convincingly, and run when courage failed.</baseDesc>
-    <slot>Adulthood</slot>
+    <defName>Rimgate_KullCombatImprint</defName>
+    <title>combat imprint</title>
+    <titleShort>prototype</titleShort>
+    <description>While still developing, [PAWN_nameDef]'s neural pathways were flooded with synthetic memory imprints: firing stances, breach patterns, target acquisition, and silent takedowns. None of it was learned—only installed. None of it was understood—only obeyed.</description>
+    <slot>Childhood</slot>
     <spawnCategories>
-      <li>Offworld</li>
-      <li>Rimgate_TokraBackstory</li>
+      <li>Rimgate_KullOnly</li>
     </spawnCategories>
-    <skillGains>
-      <Social>6</Social>
-      <Shooting>4</Shooting>
-      <Animals>2</Animals>
-      <Intellectual>3</Intellectual>
-      <Mining>-4</Mining>
-      <Construction>-4</Construction>
-    </skillGains>
-    <forcedTraits>
-      <Nerves>1</Nerves>
-      <FastLearner>0</FastLearner>
-    </forcedTraits>
+    <shuffleable>false</shuffleable>
   </BackstoryDef>
 
   <BackstoryDef>
-    <defName>Rimgate_TokRaPhysician</defName>
-    <title>Tok’ra physician</title>
-    <titleShort>Tok’ra medic</titleShort>
-    <baseDesc>[PAWN_nameDef] treated wounds no Goa’uld would bother to heal. Human injuries, symbiote complications, and the quiet ethics of consent defined their work. Every patient survived by choice, not fear.</baseDesc>
+    <defName>Rimgate_KullPhaseTwo</defName>
+    <title>phase-two combat asset</title>
+    <titleShort>combat asset</titleShort>
+    <description>[PAWN_nameDef] was activated as a Phase-Two Kull unit, operating under remote neural command. Pain response suppressed. Fear response erased. Moral reasoning removed as extraneous load. The difference between “enemy” and “target” was deleted from the vocabulary entirely.</description>
     <slot>Adulthood</slot>
     <spawnCategories>
-      <li>Offworld</li>
-      <li>Rimgate_TokraBackstory</li>
+      <li>Rimgate_KullOnly</li>
     </spawnCategories>
-    <skillGains>
-      <Medicine>8</Medicine>
-      <Intellectual>5</Intellectual>
-      <Social>4</Social>
-      <Shooting>-4</Shooting>
-      <Melee>-4</Melee>
-    </skillGains>
-    <forcedTraits>
-      <Kind>0</Kind>
-      <Nerves>1</Nerves>
-    </forcedTraits>
+    <shuffleable>false</shuffleable>
   </BackstoryDef>
 
   <BackstoryDef>
-    <defName>Rimgate_TokRaSaboteur</defName>
-    <title>Tok’ra saboteur</title>
-    <titleShort>Saboteur</titleShort>
-    <baseDesc>Ships fail. Gates misalign. Generators explode at inconvenient moments. [PAWN_nameDef] specialized in ensuring Goa’uld technology broke at exactly the wrong time—and never while they were nearby.</baseDesc>
+    <defName>Rimgate_KullOnyxEnforcer</defName>
+    <title>onyx enforcer</title>
+    <titleShort>enforcer</titleShort>
+    <description>Deployed as a silent enforcer for Goa'uld regimes, [PAWN_nameDef] carried out raids, retrievals, and executions without hesitation. Doors opened. Voices screamed. Orders completed. No record of mercy exists. No record of refusal was permitted to exist.</description>
     <slot>Adulthood</slot>
     <spawnCategories>
-      <li>Offworld</li>
-      <li>Rimgate_TokraBackstory</li>
+      <li>Rimgate_KullOnly</li>
     </spawnCategories>
-    <skillGains>
-      <Construction>6</Construction>
-      <Crafting>6</Crafting>
-      <Intellectual>4</Intellectual>
-      <Social>2</Social>
-      <Plants>-4</Plants>
-    </skillGains>
-    <forcedTraits>
-      <Industriousness>1</Industriousness>
-      <Nerves>2</Nerves>
-    </forcedTraits>
-  </BackstoryDef>
-
-  <BackstoryDef>
-    <defName>Rimgate_TokRaDefectorHandler</defName>
-    <title>Tok’ra defector handler</title>
-    <titleShort>Defector handler</titleShort>
-    <baseDesc>[PAWN_nameDef] specialized in the most dangerous operation of all—turning servants of the gods into enemies. Negotiation, extraction, and keeping terrified defectors alive long enough to matter became second nature.</baseDesc>
-    <slot>Adulthood</slot>
-    <spawnCategories>
-      <li>Offworld</li>
-      <li>Rimgate_TokraBackstory</li>
-    </spawnCategories>
-    <skillGains>
-      <Social>8</Social>
-      <Intellectual>4</Intellectual>
-      <Medicine>3</Medicine>
-      <Shooting>2</Shooting>
-      <Mining>-6</Mining>
-    </skillGains>
-    <forcedTraits>
-      <Kind>0</Kind>
-      <Nerves>1</Nerves>
-    </forcedTraits>
+    <shuffleable>false</shuffleable>
   </BackstoryDef>
 
 </Defs>

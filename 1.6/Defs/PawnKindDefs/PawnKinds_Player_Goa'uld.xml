@@ -23,6 +23,16 @@
         <Rimgate_GoauldJaffa>999</Rimgate_GoauldJaffa>
       </xenotypeChances>
     </xenotypeSet>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>Rimgate_GoauldChildBackstory</li>
+          <li>Rimgate_FirstPrimeBackstory</li>
+          <li>Rimgate_TokraBackstory</li>
+          <li>Rimgate_GoauldAdultBackstory</li>
+        </categories>
+      </li>
+    </backstoryFilters>
     <useFactionXenotypes>false</useFactionXenotypes>
     <minGenerationAge>19</minGenerationAge>
     <maxGenerationAge>110</maxGenerationAge>
@@ -50,18 +60,6 @@
         <def>Rimgate_PrimtaInPouch</def>
       </li>
     </startingHediffs>
-    <backstoryFiltersOverride>
-      <li>
-        <categoriesChildhood>
-          <li>Rimgate_GoauldChildBackstory</li>
-        </categoriesChildhood>
-        <categoriesAdulthood>
-          <li>Rimgate_FirstPrimeBackstory</li>
-          <li>Rimgate_TokraBackstory</li>
-          <li>Rimgate_GoauldAdultBackstory</li>
-        </categoriesAdulthood>
-      </li>
-    </backstoryFiltersOverride>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">
@@ -88,14 +86,13 @@
         <def>Rimgate_SymbioteImplant</def>
       </li>
     </startingHediffs>
-    <backstoryFiltersOverride>
+    <backstoryFilters>
       <li>
         <categoriesAdulthood>
           <li>Rimgate_TokraBackstory</li>
         </categoriesAdulthood>
       </li>
-    </backstoryFiltersOverride>
-
+    </backstoryFilters>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldPlayerBase">

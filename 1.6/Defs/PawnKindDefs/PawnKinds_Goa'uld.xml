@@ -192,6 +192,9 @@
 
   <PawnKindDef Name="Rimagate_GoauldBoss" ParentName="Rimgate_GoauldBase" Abstract="True">
     <isFighter>true</isFighter>
+    <canBeSapper>true</canBeSapper>
+    <combatPower>150</combatPower>
+    <canUseAvoidGrid>true</canUseAvoidGrid>
     <xenotypeSet Inherit="False">
       <xenotypeChances>
         <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
@@ -201,9 +204,17 @@
         <Rimgate_GoauldJaffa>0.15</Rimgate_GoauldJaffa>
       </xenotypeChances>
     </xenotypeSet>
-    <canBeSapper>true</canBeSapper>
-    <combatPower>150</combatPower>
-    <canUseAvoidGrid>true</canUseAvoidGrid>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesChildhood>
+          <li>Rimgate_GoauldChildBackstory</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_FirstPrimeBackstory</li>
+          <li>Rimgate_GoauldAdultBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
     <techHediffsChance>0.72</techHediffsChance>
     <techHediffsMoney>1000~2000</techHediffsMoney>
     <techHediffsTags>
@@ -257,17 +268,6 @@
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
-    <backstoryFiltersOverride>
-      <li>
-        <categoriesChildhood>
-          <li>Rimgate_GoauldChildBackstory</li>
-        </categoriesChildhood>
-        <categoriesAdulthood>
-          <li>Rimgate_FirstPrimeBackstory</li>
-          <li>Rimgate_GoauldAdultBackstory</li>
-        </categoriesAdulthood>
-      </li>
-    </backstoryFiltersOverride>
     <skills>
       <li>
         <skill>Shooting</skill>
@@ -307,6 +307,14 @@
         <Rimgate_GoauldJaffa>999</Rimgate_GoauldJaffa>
       </xenotypeChances>
     </xenotypeSet>
+    <backstoryFiltersOverride>
+      <li>
+        <categories>
+          <li>Rimgate_GoauldChildBackstory</li>
+          <li>Rimgate_GoauldAdultBackstory</li>
+        </categories>
+      </li>
+    </backstoryFiltersOverride>
     <isFighter>true</isFighter>
     <canBeSapper>true</canBeSapper>
     <canUseAvoidGrid>true</canUseAvoidGrid>
@@ -507,6 +515,7 @@
         <Rimgate_KullWarrior>999</Rimgate_KullWarrior>
       </xenotypeChances>
     </xenotypeSet>
+    <backstoryFiltersOverride Inherit="False" />
     <fixedChildBackstories>
       <li>Rimgate_KullVatBorn</li>
       <li>Rimgate_KullCombatImprint</li>
@@ -632,7 +641,7 @@
   <PawnKindDef Name="Rimgate_PrimeBase" ParentName="Rimgate_GoauldGuardBase" Abstract="True">
     <combatPower>150</combatPower>
     <itemQuality>Excellent</itemQuality>
-    <backstoryFiltersOverride>
+    <backstoryFiltersOverride Inherit="False">
       <li>
         <categoriesChildhood>
           <li>Rimgate_GoauldChildBackstory</li>

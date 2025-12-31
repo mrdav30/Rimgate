@@ -50,18 +50,16 @@
         <li>(100000, 10000)</li>
       </points>
     </maxPawnCostPerTotalPointsCurve>
-    <backstoryFilters>
-      <li>
-        <categories>
-          <li>Rimgate_GoauldChildBackstory</li>
-          <li>Rimgate_GoauldAdultBackstory</li>
-          <li>Rimgate_GoauldSlaveBackstory</li>
-        </categories>
-      </li>
-    </backstoryFilters>
     <allowedCultures Inherit="false">
       <li>Rimgate_Jaffari</li>
     </allowedCultures>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+      </li>
+    </backstoryFilters>
   </FactionDef>
 
   <!-- ============================ Goa'uld Factions ========================== -->
