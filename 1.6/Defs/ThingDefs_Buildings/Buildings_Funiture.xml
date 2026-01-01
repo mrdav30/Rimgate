@@ -6,7 +6,7 @@
   <ThingDef ParentName="FurnitureBase">
     <defName>Rimgate_GoauldSarcophagus</defName>
     <label>Goa'uld sarcophagus</label>
-    <description>Based on Ancient technology, the Goa'uld sarcophagus rapidly heals injuries and diseases with eerie precision—and breeds dependency just as precisely.\n\nSide effects include glowing eyes, god complexes, and moral decay. Use with caution… or embrace your inner System Lord.</description>
+    <description>Based on Ancient technology, the Goa'uld sarcophagus rapidly heals injuries and diseases with eerie precision—and breeds dependency just as precisely.\n\nIt also scrubs time off your biological clock, dragging you back toward your physical prime (no, it won’t turn you into a child—Goa’uld evil has standards).\n\nSide effects include glowing eyes, god complexes, and moral decay. Use with caution… or embrace your inner System Lord.</description>
     <descriptionHyperlinks>
       <HediffDef>Rimgate_SarcophagusHigh</HediffDef>
       <HediffDef>Rimgate_SarcophagusAddiction</HediffDef>

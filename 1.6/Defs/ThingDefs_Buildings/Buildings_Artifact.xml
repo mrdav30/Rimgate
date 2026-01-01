@@ -57,9 +57,9 @@
         <graphicData>
             <texPath>Things/Building/Artifact/RGStargateAncient</texPath>
             <graphicClass>Graphic_Multi</graphicClass>
-            <drawSize>(5.3,5.3)</drawSize>
-            <drawOffsetSouth>(0,0,0.6)</drawOffsetSouth>
-            <drawOffsetNorth>(0,0,1.2)</drawOffsetNorth>
+            <drawSize>(5,5)</drawSize>
+            <drawOffsetSouth>(0,0,0.85)</drawOffsetSouth>
+            <drawOffsetNorth>(0,0,0.85)</drawOffsetNorth>
             <drawOffsetWest>(0,0,0)</drawOffsetWest>
             <drawOffsetEast>(0,0,0)</drawOffsetEast>
             <addTopAltitudeBias>true</addTopAltitudeBias>
@@ -84,19 +84,19 @@
                     <texPath>FX/RGEventHorizon</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
                     <shaderType>Mote</shaderType>
-                    <drawSize>(5.3,5.3)</drawSize>
+                    <drawSize>(5,5)</drawSize>
                 </puddleGraphicData>
                 <irisGraphicData>
                     <texPath>Things/Building/Misc/RGIris</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
                     <shaderType>Mote</shaderType>
-                    <drawSize>(5.3,5.3)</drawSize>
+                    <drawSize>(5,5)</drawSize>
                 </irisGraphicData>
                 <chevronHighlight>
                     <texPath>FX/RGStargateAncient_Active</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
                     <shaderType>Mote</shaderType>
-                    <drawSize>(5.3,5.3)</drawSize>
+                    <drawSize>(5,5)</drawSize>
                 </chevronHighlight>
                 <irisPowerConsumption>500</irisPowerConsumption>
             </li>
