@@ -76,6 +76,40 @@
     </inventoryOptions>
   </PawnKindDef>
 
+  <PawnKindDef ParentName="Rimgate_GoauldColonistBase">
+    <defName>Rimgate_GoauldTrader</defName>
+    <label>Goa'uld trader</label>
+    <trader>true</trader>
+    <isFighter>false</isFighter>
+    <chemicalAddictionChance>0.1</chemicalAddictionChance>
+    <combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance>
+    <invNutrition>2.55</invNutrition>
+    <itemQuality>Normal</itemQuality>
+    <inventoryOptions>
+      <skipChance>0.70</skipChance>
+      <subOptionsTakeAll>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>30~100</countRange>
+        </li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <combatPower>40</combatPower>
+    <weaponTags>
+      <li>IndustrialGunAdvanced</li>
+    </weaponTags>
+    <weaponMoney>1100~3500</weaponMoney>
+    <apparelMoney>1250~2500</apparelMoney>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <techHediffsChance>0.15</techHediffsChance>
+    <techHediffsMoney>1000~1800</techHediffsMoney>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>16~25</initialResistanceRange>
+  </PawnKindDef>
+
   <PawnKindDef ParentName="Rimgate_GoauldBase">
     <defName>Rimgate_GoauldSlave</defName>
     <label>slave</label>
@@ -417,7 +451,7 @@
   <PawnKindDef ParentName="Rimgate_GoauldAnubisBase">
     <defName>Rimgate_GoauldGrenadierAnubis</defName>
     <label>Anubis Jaffa warrior</label>
-    <combatPower>75</combatPower>
+    <combatPower>90</combatPower>
     <weaponTags>
       <li>Rimgate_GoauldGrenade_tag</li>
     </weaponTags>
@@ -456,7 +490,7 @@
   <PawnKindDef ParentName="Rimgate_GoauldApophisBase">
     <defName>Rimgate_GoauldGrenadierApophis</defName>
     <label>Apophis Jaffa warrior</label>
-    <combatPower>75</combatPower>
+    <combatPower>90</combatPower>
     <weaponTags>
       <li>Rimgate_GoauldGrenade_tag</li>
     </weaponTags>
@@ -495,7 +529,7 @@
   <PawnKindDef ParentName="Rimgate_GoauldRaBase">
     <defName>Rimgate_GoauldGrenadierRa</defName>
     <label>Ra Jaffa warrior</label>
-    <combatPower>75</combatPower>
+    <combatPower>90</combatPower>
     <weaponTags>
       <li>Rimgate_GoauldGrenade_tag</li>
     </weaponTags>

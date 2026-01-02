@@ -76,7 +76,7 @@
             </li>
         </tools>
         <tradeTags>
-            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>Rimgate_TauriWeaponsTrade_tag</li>
             <li>ExoticMisc</li>
         </tradeTags>
     </ThingDef>
@@ -205,7 +205,7 @@
             </li>
         </tools>
         <tradeTags>
-            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>Rimgate_TauriWeaponsTrade_tag</li>
             <li>ExoticMisc</li>
         </tradeTags>
     </ThingDef>
@@ -502,7 +502,7 @@
             </li>
         </tools>
         <tradeTags>
-            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>Rimgate_TauriWeaponsTrade_tag</li>
             <li>ExoticMisc</li>
         </tradeTags>
     </ThingDef>
@@ -581,7 +581,7 @@
             </li>
         </tools>
         <tradeTags>
-            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>Rimgate_TauriWeaponsTrade_tag</li>
             <li>ExoticMisc</li>
         </tradeTags>
     </ThingDef>
@@ -715,7 +715,7 @@
             </li>
         </tools>
         <tradeTags>
-            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>Rimgate_TauriWeaponsTrade_tag</li>
             <li>ExoticMisc</li>
         </tradeTags>
     </ThingDef>
@@ -813,7 +813,7 @@
             <li>RangedHeavy</li>
         </weaponClasses>
         <tradeTags>
-            <li>Rimgate_TauriWeaponsTradeTag</li>
+            <li>Rimgate_TauriWeaponsTrade_tag</li>
             <li>ExoticMisc</li>
         </tradeTags>
         <thingSetMakerTags>

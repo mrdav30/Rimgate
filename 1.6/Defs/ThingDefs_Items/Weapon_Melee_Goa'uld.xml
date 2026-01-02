@@ -64,6 +64,9 @@
                 <Crafting>3</Crafting>
             </skillRequirements>
         </recipeMaker>
+        <tradeTags>
+            <li>Rimgate_GoauldWeaponsTrade_tag</li>
+        </tradeTags>
     </ThingDef>
 
     <ThingDef ParentName="BaseWeapon">

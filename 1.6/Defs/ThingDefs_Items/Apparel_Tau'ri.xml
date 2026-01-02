@@ -59,6 +59,9 @@
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
         </recipeMaker>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
     </ThingDef>
 
     <!-- ====== Ballistic Helmet ====== -->
@@ -112,6 +115,9 @@
                 <li>Soldier</li>
             </defaultOutfitTags>
         </apparel>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
     </ThingDef>
 
     <!-- Tauri Green Cap -->
@@ -155,6 +161,9 @@
                 <li>Soldier</li>
             </defaultOutfitTags>
         </apparel>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
     </ThingDef>
 
     <!-- Tauri Boonie -->
@@ -198,6 +207,9 @@
                 <li>Soldier</li>
             </defaultOutfitTags>
         </apparel>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
     </ThingDef>
 
     <!-- ====== SG Team Vest ====== -->
@@ -257,6 +269,9 @@
                 <li>Soldier</li>
             </defaultOutfitTags>
         </apparel>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
     </ThingDef>
 
     <!-- ====== Vest Plate Inserts ====== -->
@@ -320,6 +335,9 @@
                 <failReason>requires attachable equipment</failReason>
             </li>
         </comps>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
     </ThingDef>
 
     <!-- === Composite Plates === -->
@@ -381,6 +399,9 @@
                 <failReason>requires attachable equipment</failReason>
             </li>
         </comps>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
     </ThingDef>
 
     <!-- ====== SG Team Backpack ====== -->
@@ -490,6 +511,9 @@
                 <failReason>requires attachable equipment</failReason>
             </li>
         </comps>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
     </ThingDef>
 
 </Defs> 

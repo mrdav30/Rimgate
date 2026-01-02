@@ -16,7 +16,8 @@
 				<value>
 					<li Class="StockGenerator_SingleDef">
 						<thingDef>Rimgate_GlyphParchment</thingDef>
-						<countRange>0~1</countRange>
+						<price>Expensive</price>
+						<countRange>0~2</countRange>
 					</li>
 					<li Class="StockGenerator_BuySingleDef">
 						<thingDef>Rimgate_Naquadah</thingDef>

@@ -60,6 +60,9 @@
         </categories>
       </li>
     </backstoryFilters>
+    <fixedLeaderKinds>
+      <li>Rimgate_GoauldLeader</li>
+    </fixedLeaderKinds>
   </FactionDef>
 
   <!-- ============================ Goa'uld Factions ========================== -->
@@ -70,9 +73,6 @@
     <description>Once a mid-tier underlord with a flair for drama, Ba’al clawed his way to the top via cloning, cunning, and copious ego.\nAllegedly destroyed, but Goa’uld never truly die—they franchise.\nNow he hunts this RimWorld’s “dwarf-gates”: smaller Stargates bound to an Archotech-locked lattice. If he finds the master key, nobody leaves without his permission.</description>
     <fixedName>Supreme System Lord Ba'aal</fixedName>
     <factionIconPath>UI/Map/RGBaalBaseIcon</factionIconPath>
-    <permanentEnemyToEveryoneExcept>
-      <li>Rimgate_GoauldBaal</li>
-    </permanentEnemyToEveryoneExcept>
 
     <fixedIdeo>true</fixedIdeo>
     <ideoName>Symbiotic Dominion</ideoName>
@@ -100,6 +100,24 @@
     </forcedMemes>
     <requiredPreceptsOnly>true</requiredPreceptsOnly>
 
+    <permanentEnemyToEveryoneExcept>
+      <li>Rimgate_GoauldPlayerColony</li>
+      <li>Rimgate_TauriPlayerColony</li>
+      <li>Rimgate_WraithPlayerColony</li>
+      <li>PlayerTribe</li>
+      <li>PlayerColony</li>
+      <li MayRequire="Ludeon.RimWorld.Anomaly">ResearchExpedition</li>
+      <li MayRequire="Ludeon.RimWorld.Odyssey">GravshipCrew</li>
+    </permanentEnemyToEveryoneExcept>
+    <visitorTraderKinds>
+      <li>Rimgate_GoauldTrader</li>
+    </visitorTraderKinds>
+    <caravanTraderKinds>
+      <li>Rimgate_GoauldTrader</li>
+    </caravanTraderKinds>
+    <baseTraderKinds>
+      <li>Rimgate_GoauldTrader</li>
+    </baseTraderKinds>
     <pawnGroupMakers>
       <!-- Mixed line squads -->
       <li>
@@ -178,6 +196,23 @@
         <options>
           <Rimgate_KullWarrior>10</Rimgate_KullWarrior>
         </options>
+      </li>
+      <li>
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimgate_GoauldTrader>1</Rimgate_GoauldTrader>
+        </traders>
+        <carriers>
+          <Muffalo>4</Muffalo>
+          <Dromedary>3</Dromedary>
+          <Alpaca>2</Alpaca>
+          <Elephant>1</Elephant>
+        </carriers>
+        <guards>
+          <Rimgate_GoauldRangedAnubis>3</Rimgate_GoauldRangedAnubis>
+          <Rimgate_GoauldMeleeRa>3</Rimgate_GoauldMeleeRa>
+          <Rimgate_GoauldRangedApophis>3</Rimgate_GoauldRangedApophis>
+        </guards>
       </li>
       <li>
         <kindDef>Settlement</kindDef>

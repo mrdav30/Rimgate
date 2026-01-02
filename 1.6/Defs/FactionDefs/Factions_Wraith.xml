@@ -29,9 +29,6 @@
     <factionIconPath>UI/Map/RGWraithBaseIcon</factionIconPath>
     <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
     <naturalEnemy>true</naturalEnemy>
-    <permanentEnemyToEveryoneExcept>
-      <li>Rimgate_WraithEmpire</li>
-    </permanentEnemyToEveryoneExcept>
     <raidCommonalityFromPointsCurve>
       <points>
         <li>(150, 0)</li>
@@ -64,6 +61,15 @@
       </points>
     </maxPawnCostPerTotalPointsCurve>
     <hostileToFactionlessHumanlikes>true</hostileToFactionlessHumanlikes>
+    <visitorTraderKinds>
+      <li>Rimgate_WraithTrader</li>
+    </visitorTraderKinds>
+    <caravanTraderKinds>
+      <li>Rimgate_WraithTrader</li>
+    </caravanTraderKinds>
+    <baseTraderKinds>
+      <li>Rimgate_WraithTrader</li>
+    </baseTraderKinds>
     <backstoryFilters>
       <li>
         <categories>
@@ -71,6 +77,18 @@
         </categories>
       </li>
     </backstoryFilters>
+    <fixedLeaderKinds>
+      <li>Rimgate_WraithQueen</li>
+    </fixedLeaderKinds>
+    <permanentEnemyToEveryoneExcept>
+      <li>Rimgate_GoauldPlayerColony</li>
+      <li>Rimgate_TauriPlayerColony</li>
+      <li>Rimgate_WraithPlayerColony</li>
+      <li>PlayerTribe</li>
+      <li>PlayerColony</li>
+      <li MayRequire="Ludeon.RimWorld.Anomaly">ResearchExpedition</li>
+      <li MayRequire="Ludeon.RimWorld.Odyssey">GravshipCrew</li>
+    </permanentEnemyToEveryoneExcept>
     <pawnGroupMakers>
       <li>
         <kindDef>Combat</kindDef>
@@ -99,6 +117,22 @@
         <disallowedStrategies>
           <li>Siege</li> <!-- fits the Wraith vibe; they rush/board more than siege -->
         </disallowedStrategies>
+      </li>
+      <li>
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimgate_WraithTrader>1</Rimgate_WraithTrader>
+        </traders>
+        <carriers>
+          <Muffalo>4</Muffalo>
+          <Dromedary>3</Dromedary>
+          <Alpaca>2</Alpaca>
+          <Elephant>1</Elephant>
+        </carriers>
+        <guards>
+          <Rimgate_WraithSoldier>6</Rimgate_WraithSoldier>
+          <Rimgate_WraithCommander>1</Rimgate_WraithCommander>
+        </guards>
       </li>
       <li>
         <kindDef>Settlement</kindDef>

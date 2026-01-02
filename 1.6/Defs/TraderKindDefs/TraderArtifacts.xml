@@ -25,6 +25,21 @@
 				<price>Normal</price>
 				<countRange>50~150</countRange>
 			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_Tretonin</thingDef>
+				<price>Expensive</price>
+				<countRange>1~3</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_Naquadria</thingDef>
+				<price>Expensive</price>
+				<countRange>4~6</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_GlyphParchment</thingDef>
+				<price>Expensive</price>
+				<countRange>1~2</countRange>
+			</li>
 			<li Class="StockGenerator_Tag">
 				<tradeTag>Rimgate_GoauldApparelTrade_tag</tradeTag>
 				<countRange>1~3</countRange>
@@ -42,7 +57,62 @@
 				<countRange>1~3</countRange>
 			</li>
 			<li Class="StockGenerator_Tag">
-				<tradeTag>Rimgate_TauriWeaponsTradeTag</tradeTag>
+				<tradeTag>Rimgate_TauriWeaponsTrade_tag</tradeTag>
+				<countRange>1~3</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>Rimgate_TauriApparelTrade_tag</tradeTag>
+				<countRange>1~3</countRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>BodyPartsArchotech</categoryDef>
+				<thingDefCountRange>2~7</thingDefCountRange>
+				<totalPriceRange>3000~10000</totalPriceRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_NaquadriaFiredGenerator</thingDef>
+				<price>Expensive</price>
+				<countRange>1~3</countRange>
+			</li>
+			<li Class="StockGenerator_BuyExpensiveSimple" />
+		</stockGenerators>
+	</TraderKindDef>
+
+	<TraderKindDef>
+		<defName>Rimgate_WraithTrader</defName>
+		<label>Wraith trader</label>
+		<orbital>true</orbital>
+		<commonality>0.3333</commonality>
+		<stockGenerators>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Silver</thingDef>
+				<countRange>10000~15000</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Gold</thingDef>
+				<countRange>100~500</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_Biomass</thingDef>
+				<price>Normal</price>
+				<countRange>500~1500</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_CocoonedMeat</thingDef>
+				<price>Normal</price>
+				<countRange>50~150</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_GlyphParchment</thingDef>
+				<price>Expensive</price>
+				<countRange>1~2</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>Rimgate_WraithApparelTrade_tag</tradeTag>
+				<countRange>1~3</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>Rimgate_WraithWeaponsTrade_tag</tradeTag>
 				<countRange>1~3</countRange>
 			</li>
 			<li Class="StockGenerator_Category">
@@ -56,16 +126,60 @@
 				<countRange>1</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>VanometricPowerCell</thingDef>
+				<thingDef>Rimgate_WraithGenerator</thingDef>
+				<price>Expensive</price>
 				<countRange>1~3</countRange>
 			</li>
 			<li Class="StockGenerator_BuyExpensiveSimple" />
-			<li Class="StockGenerator_BuyTradeTag">
-				<tag>Art</tag>
+		</stockGenerators>
+	</TraderKindDef>
+
+	<TraderKindDef>
+		<defName>Rimgate_GoauldTrader</defName>
+		<label>Goauld trader</label>
+		<orbital>true</orbital>
+		<commonality>0.3333</commonality>
+		<stockGenerators>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Silver</thingDef>
+				<countRange>10000~15000</countRange>
 			</li>
-			<li Class="StockGenerator_BuyTradeTag">
-				<tag>MusicalInstrument</tag>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Gold</thingDef>
+				<countRange>500</countRange>
 			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_Naquadah</thingDef>
+				<price>Normal</price>
+				<countRange>1000~2500</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_GlyphParchment</thingDef>
+				<price>Expensive</price>
+				<countRange>1~2</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>Rimgate_GoauldApparelTrade_tag</tradeTag>
+				<countRange>1~3</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>Rimgate_GoauldWeaponsTrade_tag</tradeTag>
+				<countRange>1~3</countRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>BodyPartsArchotech</categoryDef>
+				<thingDefCountRange>2~7</thingDefCountRange>
+				<totalPriceRange>3000~10000</totalPriceRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>VanometricPowerCell</thingDef>
+				<countRange>1~5</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Rimgate_GoauldSculpture</thingDef>
+				<countRange>1~2</countRange>
+			</li>
+			<li Class="StockGenerator_BuyExpensiveSimple" />
 		</stockGenerators>
 	</TraderKindDef>
 

@@ -183,6 +183,7 @@
 				<li>Rimgate_KullApparel_tag</li>
 			</tags>
 		</apparel>
+		<tradeTags Inherit="False" />
 	</ThingDef>
 
 	<!-- ============ Guard Helm Base ============ -->
@@ -252,6 +253,7 @@
 				<li>Rimgate_GoauldGuardApparel_tag</li>
 			</tags>
 		</apparel>
+		<tradeTags Inherit="False" />
 	</ThingDef>
 
 	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearMakerBase" Abstract="True">
@@ -285,6 +287,7 @@
 				<li>Rimgate_GoauldPrimeApparel_tag</li>
 			</tags>
 		</apparel>
+		<tradeTags Inherit="False" />
 	</ThingDef>
 
 	<ThingDef Name="Rimgate_OpenPrimeGuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearBase" Abstract="True">
@@ -315,6 +318,7 @@
 				<li>Rimgate_GoauldGuardApparel_tag</li>
 			</tags>
 		</apparel>
+		<tradeTags Inherit="False" />
 	</ThingDef>
 
 	<!-- ====== Goa'uld Horus Helmet ====== -->
@@ -780,6 +784,7 @@
 			</tags>
 		</apparel>
 		<tickerType>Normal</tickerType>
+		<tradeTags Inherit="False" />
 		<comps>
 			<li Class="VEF.Apparels.CompProperties_ShieldBubble">
 				<compClass>VEF.Apparels.CompShieldBubble</compClass>
@@ -887,6 +892,7 @@
 			</tags>
 		</apparel>
 		<tickerType>Normal</tickerType>
+		<tradeTags Inherit="False" />
 		<comps>
 			<li Class="VEF.Apparels.CompProperties_ShieldBubble">
 				<compClass>VEF.Apparels.CompShieldBubble</compClass>

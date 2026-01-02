@@ -114,6 +114,40 @@
     </backstoryFiltersOverride>
   </PawnKindDef>
 
+  <PawnKindDef ParentName="Rimgate_WraithBase">
+    <defName>Rimgate_WraithTrader</defName>
+    <label>Wraith trader</label>
+    <trader>true</trader>
+    <isFighter>false</isFighter>
+    <chemicalAddictionChance>0.1</chemicalAddictionChance>
+    <combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance>
+    <invNutrition>2.55</invNutrition>
+    <itemQuality>Normal</itemQuality>
+    <inventoryOptions>
+      <skipChance>0.70</skipChance>
+      <subOptionsTakeAll>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>30~100</countRange>
+        </li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <combatPower>40</combatPower>
+    <weaponTags>
+      <li>IndustrialGunAdvanced</li>
+    </weaponTags>
+    <weaponMoney>1100~3500</weaponMoney>
+    <apparelMoney>1250~2500</apparelMoney>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <techHediffsChance>0.15</techHediffsChance>
+    <techHediffsMoney>1000~1800</techHediffsMoney>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>16~25</initialResistanceRange>
+  </PawnKindDef>
+
   <!-- ============ Wraith Military Base ============ -->
 
   <PawnKindDef Name="Rimgate_WraithMilBase" ParentName="Rimgate_WraithBase" Abstract="True">
@@ -177,7 +211,7 @@
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithSoldier</defName>
     <label>Wraith soldier</label>
-    <combatPower>90</combatPower>
+    <combatPower>110</combatPower>
     <itemQuality>Normal</itemQuality>
     <apparelTags>
       <li>Tribal</li>
@@ -243,7 +277,7 @@
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithCommander</defName>
     <label>Wraith commander</label>
-    <combatPower>135</combatPower>
+    <combatPower>150</combatPower>
     <backstoryFiltersOverride Inherit="False">
       <li>
         <categoriesChildhood>

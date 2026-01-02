@@ -445,6 +445,7 @@
 		<weaponTags Inherit="False">
 			<li>Rimgate_KullRanged_tag</li>
 		</weaponTags>
+		<tradeTags Inherit="False" />
 		<comps>
 			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000400</analysisID>

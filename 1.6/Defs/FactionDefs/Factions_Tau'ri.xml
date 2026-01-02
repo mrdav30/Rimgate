@@ -83,6 +83,20 @@
         <factionIconPath>UI/Map/RGTauriBaseIcon</factionIconPath>
         <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
         <allowedArrivalTemperatureRange>-35~50</allowedArrivalTemperatureRange>
+        <fixedLeaderKinds>
+            <li>Rimgate_TauriCommander</li>
+        </fixedLeaderKinds>
+        <permanentEnemyToEveryoneExcept>
+            <li>Rimgate_GoauldPlayerColony</li>
+            <li>Rimgate_TauriPlayerColony</li>
+            <li>Rimgate_WraithPlayerColony</li>
+            <li>PlayerTribe</li>
+            <li>PlayerColony</li>
+            <li>Ancients</li>
+            <li MayRequire="Ludeon.RimWorld.Royalty">Empire</li>
+            <li MayRequire="Ludeon.RimWorld.Anomaly">ResearchExpedition</li>
+            <li MayRequire="Ludeon.RimWorld.Odyssey">GravshipCrew</li>
+        </permanentEnemyToEveryoneExcept>
         <pawnGroupMakers>
             <li>
                 <kindDef>Combat</kindDef>

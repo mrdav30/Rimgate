@@ -28,7 +28,6 @@
 
         <!-- Lootable, but not tradable in normal markets -->
         <minifiedDef>MinifiedThing</minifiedDef>
-        <tradeability>None</tradeability>
         <thingCategories>
             <li>BuildingsArt</li>
         </thingCategories>

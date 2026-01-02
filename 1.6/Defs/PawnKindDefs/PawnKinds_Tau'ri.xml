@@ -292,7 +292,7 @@
         <label>Tau'ri commander</label>
         <factionLeader>true</factionLeader>
         <canBeSapper>true</canBeSapper>
-        <combatPower>150</combatPower>
+        <combatPower>175</combatPower>
         <itemQuality>Excellent</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
