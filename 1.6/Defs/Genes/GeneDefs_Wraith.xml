@@ -217,7 +217,7 @@
     <showGizmoOnWorldView>true</showGizmoOnWorldView>
     <showGizmoWhenDrafted>true</showGizmoWhenDrafted>
 
-    <!-- Baseline decay: ~2%/day (tune) -->
+    <!-- Baseline decay: ~2%/day - empty at ~50 days -->
     <resourceLossPerDay>0.02</resourceLossPerDay>
 
     <modExtensions>

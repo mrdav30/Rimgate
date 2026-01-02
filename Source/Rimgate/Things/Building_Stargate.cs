@@ -102,17 +102,19 @@ public class Building_Stargate : Building
     // override to hide interaction cell
     public override void DrawExtraSelectionOverlays()
     {
+        Blueprint_Install blueprint_Install = InstallBlueprintUtility.ExistingBlueprintFor(this);
+        if (blueprint_Install != null)
+            GenDraw.DrawLineBetween(this.TrueCenter(), blueprint_Install.TrueCenter());
+
         if (def.specialDisplayRadius > 0.1f)
             GenDraw.DrawRadiusRing(Position, def.specialDisplayRadius);
 
-        if (def.drawPlaceWorkersWhileSelected 
-            && def.PlaceWorkers != null)
-        {
-            for (int i = 0; i < def.PlaceWorkers.Count; i++)
-            {
-                def.PlaceWorkers[i].DrawGhost(def, Position, Rotation, Color.white, this);
-            }
-        }
+        if (!def.drawPlaceWorkersWhileSelected || def.PlaceWorkers == null) return;
+
+        for (int i = 0; i < def.PlaceWorkers.Count; i++)
+            def.PlaceWorkers[i].DrawGhost(def, Position, Rotation, Color.white, this);
+
+        //GenDraw.DrawInteractionCells(def, Position, Rotation);
     }
 
     public override string GetInspectString()

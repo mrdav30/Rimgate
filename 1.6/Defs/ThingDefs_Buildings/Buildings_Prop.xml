@@ -1058,7 +1058,7 @@
             <Flammability>0</Flammability>
             <Beauty>-10</Beauty>
             <Mass>80</Mass>
-            <TrapSpringChance>1.0</TrapSpringChance>
+            <TrapSpringChance>0.35</TrapSpringChance>
         </statBases>
 
         <category>Building</category>

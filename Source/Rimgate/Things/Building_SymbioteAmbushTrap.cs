@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -12,14 +13,17 @@ public class Building_SymbioteAmbushTrap : Building_Trap
 {
     private const float AmbushRadius = 2.9f;
 
-    // extra roll after TrapSpringChance
-    private const float AmbushChance = 0.35f;
-
     private const int CheckIntervalTicks = 60; // ~1x per second
 
     protected override void Tick()
     {
-        base.Tick();
+        if (AllComps != null)
+        {
+            int i = 0;
+            for (int count = AllComps.Count; i < count; i++)
+                AllComps[i].CompTick();
+        }
+
         if (!Spawned || !this.IsHashIntervalTick(CheckIntervalTicks))
             return;
 
@@ -36,12 +40,23 @@ public class Building_SymbioteAmbushTrap : Building_Trap
             if (!PawnCanTrigger(pawn)) continue;
 
             // per-pawn chance when a pawn comes close
-            if (!Rand.Chance(AmbushChance))
+            if (!Rand.Chance(SpringChance(pawn)))
                 continue;
 
             Spring(pawn);
             break;
         }
+    }
+
+    protected override float SpringChance(Pawn p)
+    {
+        float num = 1f;
+
+        if (p.kindDef.immuneToTraps || p.IsAnimal)
+            return 0f;
+
+        num *= this.GetStatValue(StatDefOf.TrapSpringChance) * p.GetStatValue(StatDefOf.PawnTrapSpringChance);
+        return Mathf.Clamp01(num);
     }
 
     private bool PawnCanTrigger(Pawn p)

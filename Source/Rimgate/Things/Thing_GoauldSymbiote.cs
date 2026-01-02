@@ -8,9 +8,34 @@ public class Thing_GoualdSymbiote : ThingWithComps
 
     public Comp_SymbioteHeritage _heritage;
 
-    public string SymbioteLabel => Heritage?.Memory?.SymbioteName.NullOrEmpty() ?? true
-            ? null
-            : "RG_SymbioteMemory_Name".Translate(Heritage.Memory.SymbioteName);
+    private string SymbioteLimitSuffix
+    {
+        get
+        {
+            var memory = Heritage?.Memory;
+            if (memory == null) return null;
+
+            // If the symbiote is already over limit, indicate it loudly.
+            // Otherwise, if it is at the limit, indicate it's at max.
+            if (memory.IsOverLimit) return " (exhausted)";
+            if (memory.IsAtLimit) return " (prime)";
+            return null;
+        }
+    }
+
+    public string SymbioteLabel
+    {
+        get
+        {
+            var name = Heritage?.Memory?.SymbioteName;
+            if (name.NullOrEmpty()) return null;
+
+            var baseLabel = "RG_SymbioteMemory_Name".Translate(name);
+            var suffix = SymbioteLimitSuffix;
+
+            return suffix.NullOrEmpty() ? baseLabel : $"{baseLabel}{suffix}";
+        }
+    }
 
     public override string LabelNoCount => !SymbioteLabel.NullOrEmpty()
         ? SymbioteLabel

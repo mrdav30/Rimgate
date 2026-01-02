@@ -23,7 +23,7 @@
         <drawerType>RealtimeOnly</drawerType>
         <preventDroppingThingsOn>true</preventDroppingThingsOn>
         <hasInteractionCell>True</hasInteractionCell>
-        <interactionCellOffset>(0,0,0)</interactionCellOffset>
+        <interactionCellOffset>(0,0,-1)</interactionCellOffset>
         <building>
             <ai_neverTrashThis>true</ai_neverTrashThis>
             <uninstallWork>6250</uninstallWork>

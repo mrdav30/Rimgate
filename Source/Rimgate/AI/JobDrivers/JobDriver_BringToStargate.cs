@@ -31,14 +31,14 @@ public class JobDriver_BringToStargate : JobDriver
         this.FailOnDestroyedOrNull(TargetIndex.B);
         this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
         this.FailOn(() => 
-            !job.GetTarget(TargetIndex.B).Thing.TryGetComp<Comp_StargateControl>().IsActive);
+            !(Stargate.GateControl?.IsActive == true));
 
         if (ThingToHaul as Pawn != null)
             this.FailOnMobile(TargetIndex.A);
 
         yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.Touch);
         yield return Toils_Haul.StartCarryThing(TargetIndex.A);
-        yield return Toils_Goto.GotoCell(job.GetTarget(TargetIndex.B).Thing.InteractionCell, PathEndMode.OnCell);
+        yield return Toils_Goto.GotoCell(Stargate.InteractionCell, PathEndMode.OnCell);
         yield return new Toil
         {
             initAction = () =>
