@@ -28,11 +28,10 @@ public class PawnsArrivalModeWorker_Stargate : PawnsArrivalModeWorker
         Map map = (Map)parms.target;
         Building_Stargate stargateOnMap = Building_Stargate.GetStargateOnMap(map);
         Comp_StargateControl sgComp = stargateOnMap?.GateControl;
-
-        if (sgComp?.IsActive == true)
+        if (sgComp == null || sgComp.IsActive == true)
         {
             parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
-            return parms.raidArrivalMode.Worker.TryResolveRaidSpawnCenter(parms);
+            return parms.raidArrivalMode?.Worker?.TryResolveRaidSpawnCenter(parms) ?? false;
         }
 
         parms.spawnRotation = stargateOnMap.Rotation;

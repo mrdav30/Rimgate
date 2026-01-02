@@ -136,8 +136,10 @@ public class Building_Stargate : Building
         Map map,
         Thing thingToIgnore = null)
     {
+        if (map == null) return null;
+
         Building_Stargate gateOnMap = null;
-        foreach (Thing thing in map.listerThings.AllThings)
+        foreach (Thing thing in map?.listerThings.AllThings)
         {
             if (thing != thingToIgnore
                 && thing is Building_Stargate bsg)
