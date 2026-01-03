@@ -11,7 +11,7 @@ using Verse.Sound;
 
 namespace Rimgate;
 
-public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableContents
+public class Comp_MobileContainerControl : ThingComp, IThingHolder, IThingHolderEvents<Thing>, ISearchableContents
 {
     public ThingOwner_Container InnerContainer;
 
@@ -42,6 +42,8 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableC
     private float _cachedMassUsage;
 
     private int _stalledSinceTick = -1;
+
+    private bool _isSealed;
 
     private const int StallFinalizeDelayTicks = 600; // ~10 sec at 60 ticks/sec
 
@@ -137,14 +139,7 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableC
 
     public bool UsesFuelWhilePushing => Refuelable != null;
 
-    public CompRefuelable Refuelable
-    {
-        get
-        {
-            _cachedRefuelable ??= parent.GetComp<CompRefuelable>();
-            return _cachedRefuelable;
-        }
-    }
+    public CompRefuelable Refuelable => _cachedRefuelable ??= parent.GetComp<CompRefuelable>();
 
     public float ConsumptionRatePerTick => Refuelable?.Props?.fuelConsumptionRate / GenDate.TicksPerDay ?? 0f;
 
@@ -167,14 +162,45 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableC
         InnerContainer = new ThingOwner_Container(this);
     }
 
+    public override void PostPostMake()
+    {
+        InnerContainer.dontTickContents = !Props.shouldTickContents;
+        _isSealed = !Props.shouldTickContents && FuelOK;
+    }
+
     public override void CompTick()
     {
         if (!parent.Spawned) return;
 
-        if (Props.shouldTickContents)
-            InnerContainer.DoTick();
+        InnerContainer.DoTick();
 
         if (!parent.IsHashIntervalTick(60)) return; // ~1s
+
+        // Seal or unseal based on fuel state
+        if (!Props.shouldTickContents)
+        {
+            if (!FuelOK)
+            {
+                InnerContainer.dontTickContents = false;
+
+                foreach (var t in InnerContainer.InnerListForReading)
+                {
+                    if (t.TryGetComp<CompRottable>(out CompRottable comp))
+                        comp.disabled = false;
+                }
+                _isSealed = false;
+            }
+            else if (!_isSealed)
+            {
+                InnerContainer.dontTickContents = true;
+                foreach (var t in InnerContainer.InnerListForReading)
+                {
+                    if (t.TryGetComp<CompRottable>(out CompRottable comp))
+                        comp.disabled = true;
+                }
+                _isSealed = true;
+            }
+        }
 
         // If we’re not actively loading, clear stall state and bail.
         if (!LoadingInProgress)
@@ -241,6 +267,7 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableC
         Scribe_Deep.Look(ref InnerContainer, "InnerContainer", this);
         Scribe_Collections.Look(ref LeftToLoad, "LeftToLoad", LookMode.Deep);
         Scribe_Values.Look(ref _stalledSinceTick, "_stalledSinceTick", defaultValue: -1);
+        Scribe_Values.Look(ref _isSealed, "_isSealed", false);
         Scribe_Values.Look(ref MassCapacityOverride, "MassCapacityOverride", 0f);
         Scribe_References.Look(ref Pusher, "Pusher");
         Scribe_Values.Look(ref PushingFuel, "PushingFuel", 0f);
@@ -628,15 +655,22 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, ISearchableC
         return 0;
     }
 
-    public void Notify_ThingAdded(Thing t)
+    public void Notify_ItemAdded(Thing t)
     {
         _massDirty = true;
+
+        if (_isSealed && t.TryGetComp<CompRottable>(out CompRottable comp))
+            comp.disabled = true;
+
         // decrement by full placed amount for NEW stacks
         SubtractFromToLoadList(t, t.stackCount);
     }
 
-    public void Notify_ThingRemoved()
+    public void Notify_ItemRemoved(Thing t)
     {
+        if (t.TryGetComp<CompRottable>(out CompRottable comp) && comp.disabled)
+            comp.disabled = false;
+
         _massDirty = true;
     }
 

@@ -269,4 +269,16 @@
         <researchViewY>3</researchViewY>
     </ResearchProjectDef>
 
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
+        <defName>Rimgate_RefrigeratedCarts</defName>
+        <label>Mobile refrigerated lining</label>
+        <description>Blueprints for refrigerated lining upgrades for carts. Keeps perishable goods fresh during long hauls through hot environments—because even in the far reaches of the galaxy, nobody wants spoiled food.</description>
+        <baseCost>1500</baseCost>
+        <prerequisites>
+            <li>Rimgate_TrackedCart</li>
+        </prerequisites>
+        <researchViewX>3</researchViewX>
+        <researchViewY>3</researchViewY>
+    </ResearchProjectDef>
+
 </Defs>

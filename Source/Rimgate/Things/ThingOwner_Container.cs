@@ -62,9 +62,7 @@ public sealed class ThingOwner_Container : ThingOwner<Thing>
                     }
 
                     if (item.Destroyed || item.stackCount == 0)
-                    {
                         return true; // fully merged
-                    }
                 }
             }
         }
@@ -72,17 +70,5 @@ public sealed class ThingOwner_Container : ThingOwner<Thing>
         // For a NEW STACK (or if nothing left to merge), defer to base.
         // This ensures owner/holdingOwner bookkeeping + capacity rules + NotifyAdded all happen correctly.
         return base.TryAdd(item, canMergeWithExistingStacks: false);
-    }
-
-    protected override void NotifyAdded(Thing item)
-    {
-        base.NotifyAdded(item);            // keep ThingOwner/IThingHolderEvents behavior
-        _comp?.Notify_ThingAdded(item);    // comp-driven decrement/mass cache/etc.
-    }
-
-    protected override void NotifyRemoved(Thing item)
-    {
-        base.NotifyRemoved(item);
-        _comp?.Notify_ThingRemoved();
     }
 }

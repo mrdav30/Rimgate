@@ -10,7 +10,7 @@ using Verse.Sound;
 
 namespace Rimgate;
 
-public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchableContents, IHaulDestination
+public class Building_SymbioteSpawningPool : Building, IThingHolder, IThingHolderEvents<Thing>, ISearchableContents, IHaulDestination
 {
     public Comp_SymbiotePool SymbiotePool => GetComp<Comp_SymbiotePool>();
 
@@ -42,6 +42,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
     public override void PostMake()
     {
         base.PostMake();
+        _innerContainer.dontTickContents = true;
         _storageSettings = new StorageSettings(this);
         if (def.building.defaultStorageSettings != null)
         {
@@ -49,15 +50,16 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
         }
     }
 
-    public override void TickRare()
+    public void Notify_ItemAdded(Thing item)
     {
-        foreach (var t in _innerContainer.InnerListForReading)
-        {
-            if (t.TryGetComp<Comp_SymbioteRottable>(out Comp_SymbioteRottable comp))
-                comp.disabled = true;
-        }
+        if (item.TryGetComp<Comp_SymbioteRottable>(out Comp_SymbioteRottable comp))
+            comp.disabled = true;
+    }
 
-        base.TickRare();
+    public void Notify_ItemRemoved(Thing item)
+    {
+        if (item.TryGetComp<Comp_SymbioteRottable>(out Comp_SymbioteRottable comp))
+            comp.disabled = false;
     }
 
     public ThingOwner GetDirectlyHeldThings() => _innerContainer;
@@ -112,13 +114,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
         var container = GetDirectlyHeldThings();
         var toDrop = container.ToList();
         foreach (Thing thing in toDrop)
-        {
-            if (container.TryDrop(thing, ThingPlaceMode.Near, out var dropped)
-                && dropped.TryGetComp<Comp_SymbioteRottable>(out var rot))
-            {
-                rot.disabled = false;
-            }
-        }
+            container.TryDrop(thing, ThingPlaceMode.Near, out var dropped);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -231,12 +227,7 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, ISearchable
         out Thing dropped)
     {
         if (_innerContainer.TryDrop(thing, cell, base.Map, mode, count, out dropped))
-        {
-            if (dropped.TryGetComp<Comp_SymbioteRottable>(out Comp_SymbioteRottable comp))
-                comp.disabled = false;
-
             return true;
-        }
 
         dropped = null;
         return false;

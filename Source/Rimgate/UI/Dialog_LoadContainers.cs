@@ -423,7 +423,7 @@ public class Dialog_LoadContainers : Window
             if (used < inCart.stackCount)
             {
                 int overflow = inCart.stackCount - used;
-                _container.Notify_ThingRemoved();
+                _container.Notify_ItemRemoved(inCart);
                 if (!_container.InnerContainer.TryDrop(
                     inCart,
                     _container.parent.Position,

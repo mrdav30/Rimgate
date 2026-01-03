@@ -237,6 +237,13 @@
 
 	<!-- ======================= Mobile Containers ======================= -->
 
+	<DesignatorDropdownGroupDef>
+		<defName>Rimgate_MobileContainers</defName>
+		<label>mobile containers</label>
+		<iconSource>Placed</iconSource>
+		<!-- <useGridMenu>true</useGridMenu> -->
+	</DesignatorDropdownGroupDef>
+
 	<!-- ABSTRACT base for all mobile containers -->
 	<ThingDef Name="Rimgate_MobileContainerBase" ParentName="BuildingBase" Abstract="True">
 		<defName>Rimgate_MobileContainerBase</defName>
@@ -272,6 +279,7 @@
 		<inspectorTabs>
 			<li>Rimgate.ITab_MobileContainer</li>
 		</inspectorTabs>
+		<designatorDropdown>Rimgate_MobileContainers</designatorDropdown>
 	</ThingDef>
 
 	<!-- Proxy item (what the pawn “carries” while pushing) -->
@@ -313,7 +321,7 @@
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_Wheelbarrow</defName>
 		<label>wheelbarrow</label>
-		<description>A hand-pushed carrier with a small bed and a squeaky wheel. Slow, sturdy, and perfect for early hauling chores. Not suitable for caravaning.</description>
+		<description>A hand-pushed carrier with a small bed and a squeaky wheel. Slow, sturdy, and perfect for early hauling chores.\n\nNot suitable for caravaning.</description>
 		<graphicData>
 			<texPath>Things/Building/MobileContainer/RGWheelbarrow</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -349,8 +357,8 @@
 	<!-- T2: Tracked haul cart -->
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_MobileTrackedCart</defName>
-		<label>tracked haul cart</label>
-		<description>A rugged tank-tracked carrier with a bolted-down crate. Better stability and capacity than a wheelbarrow; still needs a pusher. A favorite in Tau’ri motor pools for moving “classified boxes” from one locked door to another. Not suitable for caravaning.</description>
+		<label>tracked cart</label>
+		<description>A rugged tank-tracked carrier with a bolted-down crate. Better stability and capacity than a wheelbarrow; still needs a pusher. A favorite in Tau’ri motor pools for moving “classified boxes” from one locked door to another.\n\nNot suitable for caravaning.</description>
 		<graphicData>
 			<texPath>Things/Building/MobileContainer/RGTrackedCart</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -365,11 +373,11 @@
 		<stuffCategories>
 			<li>Metallic</li>
 		</stuffCategories>
-		<costStuffCount>25</costStuffCount>
+		<costStuffCount>50</costStuffCount>
 		<costList>
-			<Steel>30</Steel>
-			<Rimgate_Naquadah>5</Rimgate_Naquadah>
-			<ComponentSpacer>1</ComponentSpacer>
+			<Steel>50</Steel>
+			<Plasteel>25</Plasteel>
+			<ComponentIndustrial>15</ComponentIndustrial>
 		</costList>
 		<techLevel>Industrial</techLevel>
 		<building>
@@ -399,11 +407,67 @@
 		</researchPrerequisites>
 	</ThingDef>
 
+	<ThingDef ParentName="Rimgate_MobileContainerBase">
+		<defName>Rimgate_RefrigeratedMobileTrackedCart</defName>
+		<label>refrigerated tracked cart</label>
+		<description>A rugged tank-tracked carrier with a bolted-down refrigerated crate. Better stability and capacity than a wheelbarrow; still needs a pusher. Equipped with a compact cooling unit to keep perishable goods fresh during transport. A favorite in Tau’ri motor pools for moving food supplies between outposts.\n\nNot suitable for caravaning.</description>
+		<graphicData>
+			<texPath>Things/Building/MobileContainer/RGTrackedCart</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(1.25,1.25)</drawSize>
+		</graphicData>
+		<statBases>
+			<Mass>28</Mass>
+			<Flammability>0.3</Flammability>
+			<MaxHitPoints>180</MaxHitPoints>
+		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>50</costStuffCount>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>25</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<building>
+			<preventDeteriorationInside>true</preventDeteriorationInside>
+			<ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+		</building>
+		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+		<comps>
+			<li Class="Rimgate.CompProperties_MobileContainerControl">
+				<slowdownSeverity>0.55</slowdownSeverity>
+				<massCapacity>300</massCapacity>
+				<shouldTickContents>false</shouldTickContents>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<consumeFuelOnlyWhenUsed>false</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<fuelConsumptionRate>5.0</fuelConsumptionRate>
+				<fuelCapacity>25.0</fuelCapacity>
+				<fuelFilter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</fuelFilter>
+			</li>
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Breakdownable" />
+		</comps>
+		<researchPrerequisites>
+			<li>Rimgate_RefrigeratedCarts</li>
+		</researchPrerequisites>
+	</ThingDef>
+
 	<!-- T3: Hover skid (spacer) -->
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
 		<defName>Rimgate_MobileHoverSkid</defName>
 		<label>hover skid</label>
-		<description>A grav-skid with inertial dampers and a sealed crate. It glides where the pusher walks—high capacity, near-frictionless handling. Rumor says the focusing ring is Naquadah-based, which would explain why it hums like a Dwarfgate room on standby. Not suitable for caravaning.</description>
+		<description>A grav-skid with inertial dampers and a sealed crate. It glides where the pusher walks—high capacity, near-frictionless handling. Rumor says the focusing ring is Naquadah-based, which would explain why it hums like a Dwarfgate room on standby.\n\nNot suitable for caravaning.</description>
 		<graphicData>
 			<texPath>Things/Building/MobileContainer/RGHoverSkid</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -418,21 +482,23 @@
 		<stuffCategories>
 			<li>Metallic</li>
 		</stuffCategories>
-		<costStuffCount>25</costStuffCount>
+		<costStuffCount>50</costStuffCount>
 		<costList>
-			<Steel>30</Steel>
-			<Rimgate_Naquadah>5</Rimgate_Naquadah>
-			<ComponentSpacer>1</ComponentSpacer>
+			<Steel>75</Steel>
+			<Plasteel>30</Plasteel>
+			<Rimgate_Naquadah>15</Rimgate_Naquadah>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<building>
 			<preventDeteriorationInside>true</preventDeteriorationInside>
+			<ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
 		</building>
 		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
 		<comps>
 			<li Class="Rimgate.CompProperties_MobileContainerControl">
 				<slowdownSeverity>0.15</slowdownSeverity>
-				<shouldTickContents>false</shouldTickContents>
 				<massCapacity>520</massCapacity>
 			</li>
 			<li Class="CompProperties_Refuelable">
@@ -458,6 +524,72 @@
 		</comps>
 		<researchPrerequisites>
 			<li>Rimgate_HoverSkid</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_MobileContainerBase">
+		<defName>Rimgate_RefrigeratedMobileHoverSkid</defName>
+		<label>refrigerated hover skid</label>
+		<description>A grav-skid with inertial dampers and a sealed refrigerated crate. It glides where the pusher walks—high capacity, near-frictionless handling. Equipped with a compact cooling unit to keep perishable goods fresh during transport. Rumor says the focusing ring is Naquadah-based, which would explain why it hums like a Dwarfgate room on standby.\n\nNot suitable for caravaning.</description>
+		<graphicData>
+			<texPath>Things/Building/MobileContainer/RGHoverSkid</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(1.2,1.2)</drawSize>
+		</graphicData>
+		<statBases>
+			<Mass>28</Mass>
+			<Flammability>0.3</Flammability>
+			<MaxHitPoints>160</MaxHitPoints>
+		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>50</costStuffCount>
+		<costList>
+			<Steel>75</Steel>
+			<Plasteel>30</Plasteel>
+			<Rimgate_Naquadah>15</Rimgate_Naquadah>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<building>
+			<preventDeteriorationInside>true</preventDeteriorationInside>
+			<ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+		</building>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<comps>
+			<li Class="Rimgate.CompProperties_MobileContainerControl">
+				<slowdownSeverity>0.15</slowdownSeverity>
+				<massCapacity>500</massCapacity>
+				<shouldTickContents>false</shouldTickContents>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<consumeFuelOnlyWhenUsed>false</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<fuelConsumptionRate>4.0</fuelConsumptionRate>
+				<fuelCapacity>25.0</fuelCapacity>
+				<fuelFilter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</fuelFilter>
+			</li>
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Breakdownable" />
+			<li Class="CompProperties_Explosive">
+				<wickTicks>220</wickTicks>
+				<explosiveRadius>2.8</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explodeOnKilled>true</explodeOnKilled>
+				<startWickHitPointsPercent>0.8</startWickHitPointsPercent>
+				<chanceNeverExplodeFromDamage>0.35</chanceNeverExplodeFromDamage>
+			</li>
+		</comps>
+		<researchPrerequisites>
+			<li>Rimgate_HoverSkid</li>
+			<li>Rimgate_RefrigeratedCarts</li>
 		</researchPrerequisites>
 	</ThingDef>
 
@@ -594,7 +726,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_AncientShieldEmitter</defName>
 		<label>Ancient Shield Emitter</label>
-		<description>An ancient device that projects a protective energy field around itself, capable of deflecting incoming projectiles and protecting nearby units.\n\nRequires an immense amount of power, and adequate cooling, to function.  If stressed too hard, it will shut down and require a cooldown period before resuming operation.</description>
+		<description>An ancient device that projects a protective energy field around itself, capable of deflecting incoming projectiles and protecting nearby units.\n\nRequires an immense amount of power, and adequate cooling, to function. If stressed too hard, it will shut down and require a cooldown period before resuming operation.</description>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGAncientShieldEmitter</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

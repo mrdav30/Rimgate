@@ -85,7 +85,7 @@ public class ITab_MobileContainer : ITab_ContentsBase
     protected override void OnDropThing(Thing t, int count)
     {
         base.OnDropThing(t, count);
-        Mobile.Notify_ThingRemoved();
+        Mobile.Notify_ItemRemoved(t);
     }
 
     private void OnDropToLoadThing(TransferableOneWay t, int count)
