@@ -133,7 +133,8 @@ public class IncidentWorker_Marauders : IncidentWorker_RaidEnemy
 
         var job = new LordJob_MaraudColony(parms.faction, canKidnap: false, canTimeoutOrFlee: true,
                                            sappers: true, useAvoidGridSmart: true,
-                                           canSteal: true, priorityTarget: target);
+                                           canSteal: true, breachers: true, canPickUpOpportunisticWeapons: true,
+                                           priorityTarget: target);
         LordMaker.MakeNewLord(parms.faction, job, (Map)parms.target, threatPawns);
 
         Find.StoryWatcher.statsRecord.numRaidsEnemy++;

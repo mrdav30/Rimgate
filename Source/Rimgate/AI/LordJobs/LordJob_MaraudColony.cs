@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
@@ -19,6 +20,10 @@ public class LordJob_MaraudColony : LordJob
     private bool _useAvoidGridSmart;
 
     private bool _canSteal = true;
+
+    private bool _breachers;
+
+    private bool _canPickUpOpportunisticWeapons;
 
     // high-priority theft target
     private Thing _priorityTarget;
@@ -46,6 +51,8 @@ public class LordJob_MaraudColony : LordJob
       bool sappers = false,
       bool useAvoidGridSmart = false,
       bool canSteal = true,
+      bool breachers = false,
+      bool canPickUpOpportunisticWeapons = false,
       Thing priorityTarget = null)
     {
         _assaulterFaction = assaulterFaction;
@@ -54,25 +61,41 @@ public class LordJob_MaraudColony : LordJob
         _sappers = sappers;
         _useAvoidGridSmart = useAvoidGridSmart;
         _canSteal = canSteal;
+        _breachers = breachers;
+        _canPickUpOpportunisticWeapons = canPickUpOpportunisticWeapons;
         _priorityTarget = priorityTarget;
     }
 
     public override StateGraph CreateGraph()
     {
         StateGraph graph = new StateGraph();
+        List<LordToil> list = new List<LordToil>();
 
         LordToil sappersToil = null;
         if (_sappers)
         {
             sappersToil = new LordToil_AssaultColonySappers { useAvoidGrid = _useAvoidGridSmart };
             graph.AddToil(sappersToil);
+            list.Add(sappersToil);
             Transition loop = new Transition(sappersToil, sappersToil, true, true);
             loop.AddTrigger(new Trigger_PawnLost(PawnLostCondition.Undefined));
             graph.AddTransition(loop);
         }
 
+        LordToil breachersToil = null;
+        if (_breachers)
+        {
+            breachersToil = new LordToil_AssaultColonyBreaching
+            {
+                useAvoidGrid = _useAvoidGridSmart
+            };
+
+            graph.AddToil(breachersToil);
+            list.Add(breachersToil);
+        }
+
         // feed the target into the maraud toil
-        LordToil maraudToil = new LordToil_MaraudColony(priorityTarget: _priorityTarget)
+        LordToil maraudToil = new LordToil_MaraudColony(priorityTarget: _priorityTarget, canPickUpOpportunisticWeapons: _canPickUpOpportunisticWeapons)
         {
             useAvoidGrid = _useAvoidGridSmart
         };
@@ -94,8 +117,7 @@ public class LordJob_MaraudColony : LordJob
             if (_canTimeoutOrFlee)
             {
                 Transition toGiveUp = new Transition(maraudToil, exitToil);
-                if (sappersToil != null)
-                    toGiveUp.AddSource(sappersToil);
+                toGiveUp.AddSources(list);
 
                 int randomInRange1;
                 if (!_sappers)
@@ -116,8 +138,7 @@ public class LordJob_MaraudColony : LordJob
                             _assaulterFaction.Name)));
                 graph.AddTransition(toGiveUp, false);
                 Transition toSatisfiedExit = new Transition(maraudToil, exitToil);
-                if (sappersToil != null)
-                    toSatisfiedExit.AddSource(sappersToil);
+                toSatisfiedExit.AddSources(list);
                 FloatRange floatRange = new FloatRange(0.25f, 0.35f);
                 float randomInRange2 = floatRange.RandomInRange;
                 toSatisfiedExit.AddTrigger(new Trigger_FractionColonyDamageTaken(randomInRange2, 900f));
@@ -132,8 +153,7 @@ public class LordJob_MaraudColony : LordJob
             {
                 LordToil kidnapToil = graph.AttachSubgraph(new LordJob_Kidnap().CreateGraph()).StartingToil;
                 Transition toKidnap = new Transition(maraudToil, kidnapToil);
-                if (sappersToil != null)
-                    toKidnap.AddSource(sappersToil);
+                toKidnap.AddSources(list);
 
                 toKidnap.AddPreAction(new TransitionAction_Message(
                     "MessageRaidersKidnapping".Translate(
@@ -148,8 +168,7 @@ public class LordJob_MaraudColony : LordJob
             {
                 LordToil stealToil = graph.AttachSubgraph(new LordJob_Steal().CreateGraph()).StartingToil;
                 Transition toSteal = new Transition(maraudToil, stealToil);
-                if (sappersToil != null)
-                    toSteal.AddSource(sappersToil);
+                toSteal.AddSources(list);
 
                 toSteal.AddPreAction(
                     new TransitionAction_Message(
@@ -179,8 +198,7 @@ public class LordJob_MaraudColony : LordJob
         }
 
         Transition toExit = new Transition(maraudToil, exitToil);
-        if (sappersToil != null)
-            toExit.AddSource(sappersToil);
+        toExit.AddSources(list);
 
         toExit.AddTrigger(new Trigger_BecameNonHostileToPlayer());
         toExit.AddPreAction(new TransitionAction_Message(
@@ -198,9 +216,11 @@ public class LordJob_MaraudColony : LordJob
         Scribe_References.Look(ref _assaulterFaction, "_assaulterFaction");
         Scribe_Values.Look(ref _canKidnap, "_canKidnap", true);
         Scribe_Values.Look(ref _canTimeoutOrFlee, "_canTimeoutOrFlee", true);
-        Scribe_Values.Look(ref _sappers, "_sappers");
+        Scribe_Values.Look(ref _breachers, "_breachers", false);
+        Scribe_Values.Look(ref _sappers, "_sappers", false);
         Scribe_Values.Look(ref _useAvoidGridSmart, "_useAvoidGridSmart");
         Scribe_Values.Look(ref _canSteal, "_canSteal", true);
+        Scribe_Values.Look(ref _canPickUpOpportunisticWeapons, "_canPickUpOpportunisticWeapons", false);
         Scribe_References.Look(ref _priorityTarget, "_priorityTarget");
     }
 }

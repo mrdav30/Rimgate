@@ -94,7 +94,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
                 continue;
 
             MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
-            string designation = StargateUtility.GetStargateDesignation(tile);
+            string designation = StargateUtil.GetStargateDesignation(tile);
 
             yield return new FloatMenuOption(
                 "RG_DialGate".Translate(designation, sgMap.Label),

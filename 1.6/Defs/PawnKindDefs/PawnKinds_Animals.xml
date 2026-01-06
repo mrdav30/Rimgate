@@ -215,6 +215,7 @@
         <race>Rimgate_Unas_BerserkerRace</race>
 
         <combatPower>240</combatPower>
+        <hostileToAll>true</hostileToAll>
         <ecoSystemWeight>0.5</ecoSystemWeight>
 
         <startingHediffs>

@@ -3,6 +3,7 @@ using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
@@ -10,7 +11,7 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public static class StargateUtility
+public static class StargateUtil
 {
     public const string Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -18,10 +19,17 @@ public static class StargateUtility
 
     private const int MaxTries = 2000;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ActiveGateOnMap(Map map)
     {
         Building_Stargate gate = Building_Stargate.GetStargateOnMap(map);
         return gate?.GateControl?.IsActive == true;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool CanEnterGate(Pawn pawn, Building_Stargate gate)
+    {
+        return pawn.CanReach(gate, PathEndMode.ClosestTouch, Danger.Deadly);
     }
 
     public static string GetStargateDesignation(PlanetTile address)

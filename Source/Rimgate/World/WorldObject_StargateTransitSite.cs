@@ -55,7 +55,7 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
     public override string GetInspectString()
     {
         // Show address + compact loadout state
-        var address = StargateUtility.GetStargateDesignation(Tile);
+        var address = StargateUtil.GetStargateDesignation(Tile);
         var gateToken = HasGate
             ? "RG_SiteLoadout_Gate".Translate()
             : "RG_SiteLoadout_NoGate".Translate();
@@ -84,7 +84,7 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
         _lastKnownHasDhd = dhdOnMap != null;
 
         // If the map is eligible to despawn, snapshot player things
-        bool canDespawn = !StargateUtility.ActiveGateOnMap(Map) && !Map.mapPawns.AnyPawnBlockingMapRemoval;
+        bool canDespawn = !StargateUtil.ActiveGateOnMap(Map) && !Map.mapPawns.AnyPawnBlockingMapRemoval;
 
         if (canDespawn)
         {
@@ -180,13 +180,13 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
 
         var gateOnMap = Building_Stargate.GetStargateOnMap(Map);
         if (gateOnMap == null)
-            gateOnMap = StargateUtility.PlaceRandomGate(Map, Faction.OfPlayer);
+            gateOnMap = StargateUtil.PlaceRandomGate(Map, Faction.OfPlayer);
         else
             gateOnMap.SetFaction(Faction.OfPlayer);
 
         // Only ensure a DHD if the site was created with one
         if (InitialHadDhd)
-            StargateUtility.EnsureDhdNearGate(Map, gateOnMap, Faction.OfPlayer);
+            StargateUtil.EnsureDhdNearGate(Map, gateOnMap, Faction.OfPlayer);
 
         _ranInitialSetup = true;
     }

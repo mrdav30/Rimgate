@@ -767,6 +767,8 @@
 			<Insulation_Cold>35</Insulation_Cold>
 			<Insulation_Heat>11</Insulation_Heat>
 			<EquipDelay>20</EquipDelay>
+			<EnergyShieldRechargeRate>0.08</EnergyShieldRechargeRate>
+			<EnergyShieldEnergyMax>1.2</EnergyShieldEnergyMax>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.50</MoveSpeed>
@@ -797,8 +799,6 @@
 				<minShieldSize>1.4</minShieldSize>
 				<maxShieldSize>1.8</maxShieldSize>
 				<disableRotation>true</disableRotation>
-				<EnergyShieldRechargeRate>0.08</EnergyShieldRechargeRate>
-				<EnergyShieldEnergyMax>1.2</EnergyShieldEnergyMax>
 			</li>
 			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000210</analysisID>

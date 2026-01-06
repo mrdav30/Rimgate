@@ -42,7 +42,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
 
         if (!context.IsMultiselect)
         {
-            if (!CanEnterGate(pawn, gate))
+            if (!StargateUtil.CanEnterGate(pawn, gate))
             {
                 yield return new FloatMenuOption("CannotEnterPortal".Translate(gate.Label) + ": " + "NoPath".Translate(), null);
                 yield break;
@@ -52,7 +52,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
         tmpGateEnteringPawns.Clear();
         foreach (Pawn validSelectedPawn in context.ValidSelectedPawns)
         {
-            if (CanEnterGate(pawn, gate))
+            if (StargateUtil.CanEnterGate(pawn, gate))
                 tmpGateEnteringPawns.Add(validSelectedPawn);
         }
 
@@ -122,8 +122,5 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
         }
     }
 
-    private static bool CanEnterGate(Pawn pawn, Building_Stargate gate)
-    {
-        return pawn.CanReach(gate, PathEndMode.ClosestTouch, Danger.Deadly);
-    }
+
 }

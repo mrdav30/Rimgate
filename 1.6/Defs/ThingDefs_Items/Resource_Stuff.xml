@@ -343,7 +343,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <drawGUIOverlay>true</drawGUIOverlay>
-    <stackLimit>100</stackLimit>
+    <stackLimit>99</stackLimit>
     <statBases>
       <Mass>0.5</Mass>
     </statBases>

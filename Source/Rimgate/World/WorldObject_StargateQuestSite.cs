@@ -28,7 +28,7 @@ public class WorldObject_StargateQuestSite : Site
 
         if (Map == null) return;
 
-        bool allowPeek = StargateUtility.ActiveGateOnMap(Map)
+        bool allowPeek = StargateUtil.ActiveGateOnMap(Map)
             || ResearchUtil.WraithModificationEquipmentComplete;
 
         bool nobodyVisible = !Map.mapPawns.AnyPawnBlockingMapRemoval;

@@ -17,10 +17,11 @@ public class LordToil_MaraudColony : LordToil
 
     private readonly Thing _priorityTarget;
 
-    public LordToil_MaraudColony(bool attackDownedIfStarving = false, Thing priorityTarget = null)
+    public LordToil_MaraudColony(bool attackDownedIfStarving = false, Thing priorityTarget = null, bool canPickUpOpportunisticWeapons = false)
     {
         _attackDownedIfStarving = attackDownedIfStarving;
         _priorityTarget = priorityTarget;
+        _canPickUpOpportunisticWeapons = canPickUpOpportunisticWeapons;
     }
 
     public override void UpdateAllDuties()

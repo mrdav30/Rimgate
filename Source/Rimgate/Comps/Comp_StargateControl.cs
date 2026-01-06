@@ -313,8 +313,8 @@ public class Comp_StargateControl : ThingComp
         // ensure a valid gate and a DHD exist(and link)
         if (gate == null)
         {
-            gate = StargateUtility.PlaceRandomGate(map);
-            StargateUtility.EnsureDhdNearGate(map, gate);
+            gate = StargateUtil.PlaceRandomGate(map);
+            StargateUtil.EnsureDhdNearGate(map, gate);
         }
 
         return gate;
@@ -707,13 +707,13 @@ public class Comp_StargateControl : ThingComp
     public string GetInspectString()
     {
         StringBuilder sb = new StringBuilder();
-        string address = StargateUtility.GetStargateDesignation(GateAddress);
+        string address = StargateUtil.GetStargateDesignation(GateAddress);
         sb.AppendLine("RG_GateAddress".Translate(address));
         if (!IsActive)
             sb.AppendLine("InactiveFacility".Translate().CapitalizeFirst());
         else
         {
-            string connectAddress = StargateUtility.GetStargateDesignation(ConnectedAddress);
+            string connectAddress = StargateUtil.GetStargateDesignation(ConnectedAddress);
             var connectLabel = (IsReceivingGate
                 ? "RG_IncomingConnection"
                 : "RG_OutgoingConnection").Translate();

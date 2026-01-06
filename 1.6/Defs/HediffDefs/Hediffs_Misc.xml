@@ -168,22 +168,31 @@
             <!-- light -->
             <li>
                 <minSeverity>0.1</minSeverity>
-                <statFactors>
-                    <MoveSpeed>0.98</MoveSpeed>
-                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.02</offset>
+                    </li>
+                </capMods>
             </li>
             <li>
                 <minSeverity>0.5</minSeverity>
-                <statFactors>
-                    <MoveSpeed>0.92</MoveSpeed>
-                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.08</offset>
+                    </li>
+                </capMods>
             </li>
             <!-- heavy -->
             <li>
                 <minSeverity>0.8</minSeverity>
-                <statFactors>
-                    <MoveSpeed>0.85</MoveSpeed>
-                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
             </li>
         </stages>
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
@@ -296,8 +305,13 @@
             <li>
                 <!-- light, temporary penalties; tune as desired -->
                 <painOffset>0.02</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
                 <statFactors>
-                    <MoveSpeed>0.95</MoveSpeed>
                     <WorkSpeedGlobal>0.95</WorkSpeedGlobal>
                 </statFactors>
             </li>

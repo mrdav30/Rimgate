@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+    <!-- ======================= Replicators ======================= -->
+
     <ThingDef Name="Rimgate_ReplicatorRaceBase" ParentName="BaseMechanoid">
         <defName>Rimgate_Replicator</defName>
         <label>Replicator</label>
@@ -79,12 +81,9 @@
 
             <canFlyInVacuum>true</canFlyInVacuum>
 
-            <meatLabel>metal bits</meatLabel>
-
             <baseBodySize>1.0</baseBodySize>
             <baseHealthScale>1.32</baseHealthScale>
-
-            <gestationPeriodDays>0</gestationPeriodDays>
+            <hasMeat>false</hasMeat>
 
             <lifeStageAges>
                 <li>
@@ -311,8 +310,7 @@
         <description>The Mobile Analytic Laboratory Probe (M.A.L.P.) was originally designed as an uncrewed scout platform, used by the Tau’ri to probe hostile or unknown environments through a Dwarfgate before risking a manned expedition.\n\nThis Rimworld-adapted chassis has been retrofitted with a compact energy shield emitter, allowing it to shrug off incoming fire far beyond what its survey frame was meant to endure. Thanks to advanced long-range transmitters, this model operates without the usual command bandwidth tether—making it the only mechanoid capable of autonomous deployment across any distance, even beyond traditional mechinator control range.\n\nThough the Tau’ri were reluctant to share control protocols, they eventually released stripped-down blueprints that allow colonists to build and deploy MALPs as field assets. It is a gift of convenience with a touch of condescension: the machine can be constructed, fueled, and maintained by outsiders, but never truly commanded as the Tau’ri do. In effect, it is both a tool of exploration and a quiet reminder of who still holds the upper hand in technology.</description>
         <statBases>
             <WorkSpeedGlobal>3</WorkSpeedGlobal>
-            <FoodPoisonChance>0</FoodPoisonChance>
-            <MarketValue>17777</MarketValue>
+            <MarketValue>13777</MarketValue>
             <MoveSpeed>6.30</MoveSpeed>
             <Flammability>0</Flammability>
             <ToxicResistance>1</ToxicResistance>
@@ -323,13 +321,13 @@
             <ArmorRating_Sharp>0.8</ArmorRating_Sharp>
             <BandwidthCost>3</BandwidthCost>
             <MechEnergyLossPerHP>0.7</MechEnergyLossPerHP>
-            <CleaningSpeed>2</CleaningSpeed>
-            <MiningSpeed>2</MiningSpeed>
-            <ConstructionSpeed>2</ConstructionSpeed>
-            <SmeltingSpeed>2</SmeltingSpeed>
-            <DeepDrillingSpeed>2</DeepDrillingSpeed>
-            <GeneralLaborSpeed>2</GeneralLaborSpeed>
-            <ConstructSuccessChance>2</ConstructSuccessChance>
+            <CleaningSpeed>1.5</CleaningSpeed>
+            <MiningSpeed>1.5</MiningSpeed>
+            <ConstructionSpeed>1.5</ConstructionSpeed>
+            <SmeltingSpeed>1.5</SmeltingSpeed>
+            <DeepDrillingSpeed>1.5</DeepDrillingSpeed>
+            <GeneralLaborSpeed>1.5</GeneralLaborSpeed>
+            <ConstructSuccessChance>1.5</ConstructSuccessChance>
         </statBases>
         <butcherProducts>
             <Steel>100</Steel>
@@ -344,6 +342,7 @@
             <body>Rimgate_Malp</body>
             <baseBodySize>3</baseBodySize>
             <baseHealthScale>1.32</baseHealthScale>
+            <hasMeat>false</hasMeat>
             <mechEnabledWorkTypes>
                 <li>Crafting</li>
                 <li>Hauling</li>

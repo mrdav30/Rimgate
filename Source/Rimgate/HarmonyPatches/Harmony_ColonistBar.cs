@@ -52,7 +52,7 @@ public static class Harmony_ColonistBar
 
             bool showThisMap = (m.mapPawns?.AnyPawnBlockingMapRemoval ?? false);
             if (ResearchUtil.WraithModificationEquipmentComplete)
-                showThisMap = showThisMap || Rimgate.StargateUtility.ActiveGateOnMap(m);
+                showThisMap = showThisMap || Rimgate.StargateUtil.ActiveGateOnMap(m);
 
             if (!showThisMap)
                 _tmpRemovals.Add(m.uniqueID);
