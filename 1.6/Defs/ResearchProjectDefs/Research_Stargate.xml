@@ -149,20 +149,126 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ReplicatorLink</defName>
+		<label>Replicator link</label>
+		<description>Salvaged from fallen Replicators, this inert link module hums faintly with dormant nanite activity.\n\nBy studying its structure and field patterns, we may unlock new ways to combat—or perhaps even control—these relentless machines.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>3000</baseCost>
+		<prerequisites>
+			<li>Rimgate_StargateAlloyResearch</li>
+		</prerequisites>
+		<requiredAnalyzed>
+			<li>Rimgate_ReplicatorLink</li>
+		</requiredAnalyzed>
+		<researchViewX>2</researchViewX>
+		<researchViewY>1</researchViewY>
+
+		<discoveredLetterTitle>About: Replicator Link</discoveredLetterTitle>
+		<discoveredLetterText>Analysis of the inert Replicator link has yielded partial schematics and a long list of unanswered questions.\n\nYour team believes the bonding field patterns can be reverse-engineered to disrupt active swarms—or even repurpose dormant nanites for friendly use.\n\nAs one researcher put it: “If we can make them stop… maybe we can make them help.”</discoveredLetterText>
+
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Replicator link</li>
+				<li>subject_adj->dormant</li>
+				<li>subject_adj->inert</li>
+				<li>subject_adj->nanite-infused</li>
+
+				<li>subject_story->a module humming with the echoes of a million tiny machines</li>
+				<li>subject_story->a fragment of a relentless swarm, frozen in time</li>
+				<li>subject_story->a piece of alien technology that defies understanding—and survival</li>
+
+				<li>subject_gerund->decoding nanite bonding field patterns</li>
+				<li>subject_gerund->mapping dormant Replicator subroutines</li>
+				<li>subject_gerund->reverse-engineering alien nanite architecture</li>
+			</rulesStrings>
+		</generalRules>
+
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ReplicatorGestation</defName>
+		<label>Replicator gestation</label>
+		<description>By synthesizing Replicator link modules with advanced mechanoid fabrication techniques, we can initiate controlled gestation of Replicator units.\n\nThis process is delicate: too little energy and the nanites fail to cohere; too much, and you risk unleashing a hostile swarm.\n\nWith careful monitoring, however, we can produce Replicators for study—or even defense.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>5000</baseCost>
+
+		<prerequisites>
+			<li>Rimgate_ReplicatorLink</li>
+			<li>HighMechtech</li>
+		</prerequisites>
+
+		<researchViewX>3</researchViewX>
+		<researchViewY>0.5</researchViewY>
+
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Replicator gestation</li>
+				<li>subject_adj->controlled</li>
+				<li>subject_adj->delicate</li>
+				<li>subject_adj->nanite-based</li>
+
+				<li>subject_story->a process that births machines from microscopic swarms</li>
+				<li>subject_story->a synthesis of alien nanotechnology and mechanoid fabrication</li>
+				<li>subject_story->a method to coax order from the chaos of self-replicating machines</li>
+
+				<li>subject_gerund->initiating Replicator cohesion sequences</li>
+				<li>subject_gerund->synthesizing nanite swarms into functional units</li>
+				<li>subject_gerund->monitoring energy flux during gestation cycles</li>
+			</rulesStrings>
+		</generalRules>
+
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ReplicatorHumanoidGestation</defName>
+		<label>Humanoid Replicator gestation</label>
+		<description>By refining our gestation techniques and incorporating advanced neural scaffolding, we can now produce humanoid Replicator units.\n\nThese constructs exhibit enhanced adaptability and problem-solving capabilities, making them formidable both in combat and complex tasks.\n\nCaution is advised: their intelligence approaches that of sentient beings, raising ethical considerations alongside practical ones.</description>
+		<techLevel>Ultra</techLevel>
+		<baseCost>8000</baseCost>
+
+		<prerequisites>
+			<li>Rimgate_ReplicatorGestation</li>
+			<li>UltraMechtech</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<researchViewX>4</researchViewX>
+		<researchViewY>0.5</researchViewY>
+
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Humanoid Replicator gestation</li>
+				<li>subject_adj->advanced</li>
+				<li>subject_adj->neural-enhanced</li>
+				<li>subject_adj->intelligent</li>
+
+				<li>subject_story->a process that births self-aware machines from microscopic swarms</li>
+				<li>subject_story->a synthesis of alien nanotechnology and advanced neural scaffolding</li>
+				<li>subject_story->a method to create machines that think, adapt, and learn</li>
+
+				<li>subject_gerund->initiating humanoid Replicator cohesion sequences</li>
+				<li>subject_gerund->integrating neural scaffolds into nanite swarms</li>
+				<li>subject_gerund->monitoring cognitive development during gestation cycles</li>
+			</rulesStrings>
+		</generalRules>
+
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AntiReplicatorGun</defName>
 		<label>Anti-Replicator</label>
 		<description>A classified Tau’ri prototype adapted for field use: a directed energy pulse tuned to scramble Replicator bonding fields.\n\nTo organics it’s underwhelming; to Replicators it’s an existential crisis.\n\nProduction is slow, maintenance is grumpy, and the safety brief is just the word “Don’t” written six times.</description>
 		<techLevel>Spacer</techLevel>
 		<baseCost>4500</baseCost>
-		<researchViewX>2</researchViewX>
+		<researchViewX>3</researchViewX>
 		<researchViewY>1</researchViewY>
 		<prerequisites>
-			<li>Rimgate_StargateAlloyResearch</li>
+			<li>Rimgate_ReplicatorLink</li>
 			<li>ChargedShot</li>
 		</prerequisites>
-		<requiredAnalyzed>
-			<li>Rimgate_ReplicatorLink</li>
-		</requiredAnalyzed>
+
 		<discoveredLetterTitle>About: Anti-Replicator Weaponry</discoveredLetterTitle>
 		<discoveredLetterText>Analysis of the inert Replicator link has yielded a usable emission profile.\n\nYour team believes a tuned pulse can disrupt nanite cohesion long enough to turn active swarms into quiet scrap.\n\nField note #1: the pulse makes nearby Replicator debris tingle in a way that is deeply upsetting.</discoveredLetterText>
 

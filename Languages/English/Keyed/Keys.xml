@@ -372,6 +372,7 @@
 	<!-- UI -->
 
 	<RG_SetTo>Set to</RG_SetTo>
+	<RG_IncompatibleWeaponType>Incompatible weapon type</RG_IncompatibleWeaponType>
 
 	<!-- Cocoon pod -->
 
@@ -393,5 +394,9 @@
 
 	<RG_WraithCocoonTrap_AlreadyCocooned>{PAWN_labelShort} is already cocooned.</RG_WraithCocoonTrap_AlreadyCocooned>
 	<RG_WraithCocoonTrap_Cocooned>{PAWN_labelShort} has been cocooned.</RG_WraithCocoonTrap_Cocooned>
+
+	<!-- Hediffs -->
+
+	<RG_NaniteResurrection_Message>{PAWN_labelShort} has been resurrected by nanites!</RG_NaniteResurrection_Message>
 
 </LanguageData>

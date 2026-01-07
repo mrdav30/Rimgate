@@ -360,6 +360,8 @@
     <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
     <Compile Include="Comps\CompAssignableToPawn_Sarcophagus.cs" />
     <Compile Include="Comps\CompUseEffect_InstallSymbiote.cs" />
+    <Compile Include="Comps\Comp_BodyGraphicSwapper.cs" />
+    <Compile Include="Comps\Properties\CompProperties_BodyGraphicSwapper.cs" />
     <Compile Include="Comps\Properties\CompProperties_UseEffectInstallSymbiote.cs" />
     <Compile Include="Comps\Comp_SymbiotePool.cs" />
     <Compile Include="Comps\Comp_SymbioteRottable.cs" />
@@ -411,6 +413,7 @@
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SurgeryInspectionBiosignature.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_Regeneration.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_Regeneration.cs" />
+    <Compile Include="Misc\PawnRenderNode_BodySwapper.cs" />
     <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteKinship_Social.cs" />
@@ -475,6 +478,7 @@
     <Compile Include="Things\Pawn_Unas.cs" />
     <Compile Include="Things\Thing_GoauldSymbiote.cs" />
     <Compile Include="UI\Dialog_SliderWithValue.cs" />
+    <Compile Include="UI\FloatMenuOptionProvider_EquipMechanoid.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RecoverBiomaterials.cs" />
     <Compile Include="UI\ITab_SymbiotePool.cs" />
     <Compile Include="UI\RimgateTex.cs" />

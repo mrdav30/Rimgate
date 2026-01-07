@@ -327,6 +327,83 @@
         </comps>
     </HediffDef>
 
+    <HediffDef>
+        <defName>Rimgate_NaniteRegeneration</defName>
+        <label>nanite regeneration</label>
+        <defaultLabelColor>(232, 157, 27)</defaultLabelColor>
+        <hediffClass>HediffWithComps</hediffClass>
+        <description>The nanite replicators that make up the humanoid body rapidly repair injuries and regenerate tissue, significantly accelerating the healing process-even in extreme conditions, like being dead.</description>
+        <isBad>false</isBad>
+        <everCurableByItem>false</everCurableByItem>
+        <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>
+        <comps>
+            <li Class="Rimgate.HediffCompProperties_Regeneration">
+                <regeneratingHediff>Rimgate_RegeneratingNanites</regeneratingHediff>
+                <checkIntervalTicks>60</checkIntervalTicks>
+                <regenerateMissingTimeFactor>0.72</regenerateMissingTimeFactor>
+                <healInjuries>true</healInjuries>
+                <healInjuryChance>0.5</healInjuryChance>
+                <healPermanentInjuries>true</healPermanentInjuries>
+                <healChronics>true</healChronics>
+                <healInjuryChance>0.25</healInjuryChance>
+                <showHealingFleck>true</showHealingFleck>
+                <healingFleckInterval>120</healingFleckInterval>
+                <canResurrect>true</canResurrect>
+                <restoreMechWeaponOnDeath>true</restoreMechWeaponOnDeath>
+                <resurrectionMessageKey>RG_NaniteResurrection_Message</resurrectionMessageKey>
+            </li>
+        </comps>
+    </HediffDef>
+
+    <HediffDef>
+        <defName>Rimgate_RegeneratingNanites</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <label>regenerating</label>
+        <labelNoun>regenerating nanites</labelNoun>
+        <defaultLabelColor>(220,200,180)</defaultLabelColor>
+        <description>Nanites actively repairing synthetic tissue. It works, but is fragile while it stabilizes.</description>
+
+        <isBad>false</isBad>
+        <tendable>false</tendable>
+        <everCurableByItem>false</everCurableByItem>
+        <makesSickThought>false</makesSickThought>
+
+        <minSeverity>0</minSeverity>
+        <maxSeverity>99</maxSeverity>
+
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-8</severityPerDay>
+                <showDaysToRecover>true</showDaysToRecover>
+            </li>
+        </comps>
+    </HediffDef>
+
     <!-- ==================== Una Biosignature ==================== -->
 
     <HediffDef>

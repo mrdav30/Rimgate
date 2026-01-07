@@ -6,6 +6,10 @@
         <value>
             <li>Rimgate_Malp</li>
             <li>Rimgate_ResurrectMalp</li>
+            <li>Rimgate_Replicator</li>
+            <li>Rimgate_ResurrectReplicator</li>
+            <li>Rimgate_ReplicatorHumanoid</li>
+            <li>Rimgate_ResurrectReplicatorHumanoid</li>
         </value>
     </Operation>
 </Patch>

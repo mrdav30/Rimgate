@@ -302,7 +302,251 @@
         </butcherProducts>
     </ThingDef>
 
-    <!-- MALP -->
+    <!-- ======================= Replicator Humanoid ======================= -->
+
+    <ThingDef Name="Rimgate_ReplicatorHumanoidBase" ParentName="BasePawn">
+        <defName>Rimgate_ReplicatorHumanoid</defName>
+        <label>replicator (humanoid)</label>
+        <description>A highly advanced mechanoid designed to mimic humanoid forms. Equipped with superior combat capabilities and adaptive technologies, it excels in close-quarters engagements.\n\nNote: Due to their advanced design, they possess enhanced resilience and adaptability compared to standard mechanoids.  Unless their data processing unit is destroyed, they will continue to operate effectively-even after death.\n\nNote 2: Unlike most mechanoids, when these replicators equip a weapon it fuses with their systems, making it integral to their combat capabilities and stays apart of them even after death.</description>
+        <statBases>
+            <MarketValue>17777</MarketValue>
+            <PsychicSensitivity>0.5</PsychicSensitivity>
+            <ToxicResistance>1</ToxicResistance>
+            <Flammability>0</Flammability>
+            <MoveSpeed>5.6</MoveSpeed>
+            <ComfyTemperatureMin>-100</ComfyTemperatureMin>
+            <ComfyTemperatureMax>250</ComfyTemperatureMax>
+            <MeatAmount>0</MeatAmount>
+            <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+            <ArmorRating_Heat>2.00</ArmorRating_Heat>
+            <MeleeDamageFactor>2</MeleeDamageFactor>
+            <MeleeArmorPenetration>1.5</MeleeArmorPenetration>
+            <MeleeHitChance>4</MeleeHitChance>
+            <MeleeCooldownFactor>0.8</MeleeCooldownFactor>
+            <MeleeDodgeChance>15</MeleeDodgeChance>
+            <IncomingDamageFactor>0.75</IncomingDamageFactor>
+            <AimingDelayFactor>1.35</AimingDelayFactor>
+            <ShootingAccuracyPawn>4.5</ShootingAccuracyPawn>
+            <PawnTrapSpringChance>0.1</PawnTrapSpringChance>
+            <BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">5</BandwidthCost>
+            <ControlTakingTime MayRequire="Ludeon.RimWorld.Biotech">35</ControlTakingTime>
+            <ToxicEnvironmentResistance>1</ToxicEnvironmentResistance>
+            <MechEnergyLossPerHP MayRequire="Ludeon.RimWorld.Biotech">0.2</MechEnergyLossPerHP>
+            <MechEnergyUsageFactor MayRequire="Ludeon.RimWorld.Biotech">0.72</MechEnergyUsageFactor>
+            <WastepacksPerRecharge MayRequire="Ludeon.RimWorld.Biotech">6</WastepacksPerRecharge>
+            <WorkSpeedGlobal MayRequire="Ludeon.RimWorld.Biotech">3</WorkSpeedGlobal>
+            <FoodPoisonChance>0.001</FoodPoisonChance>
+            <CookSpeed>2</CookSpeed>
+            <CleaningSpeed>2</CleaningSpeed>
+            <MiningSpeed>2</MiningSpeed>
+            <ConstructionSpeed>2</ConstructionSpeed>
+            <SmeltingSpeed>2</SmeltingSpeed>
+            <DeepDrillingSpeed>2</DeepDrillingSpeed>
+            <GeneralLaborSpeed>2</GeneralLaborSpeed>
+            <ConstructSuccessChance>2</ConstructSuccessChance>
+        </statBases>
+
+        <receivesSignals>true</receivesSignals>
+        <tradeability>None</tradeability>
+
+        <tools>
+            <li>
+                <label>left fist</label>
+                <labelNoLocation>fist</labelNoLocation>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>10.2</power>
+                <cooldownTime>1.8</cooldownTime>
+                <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+                <surpriseAttack>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>Stun</def>
+                            <amount>14</amount>
+                        </li>
+                    </extraMeleeDamages>
+                </surpriseAttack>
+            </li>
+            <li>
+                <label>right fist</label>
+                <labelNoLocation>fist</labelNoLocation>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>10.2</power>
+                <cooldownTime>1.8</cooldownTime>
+                <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+                <surpriseAttack>
+                    <extraMeleeDamages>
+                        <li>
+                            <def>Stun</def>
+                            <amount>14</amount>
+                        </li>
+                    </extraMeleeDamages>
+                </surpriseAttack>
+            </li>
+            <li>
+                <label>teeth</label>
+                <capacities>
+                    <li>Bite</li>
+                </capacities>
+                <power>10.2</power>
+                <cooldownTime>1.8</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <chanceFactor>0.07</chanceFactor>
+                <soundMeleeHit>Pawn_Melee_HumanBite_Hit</soundMeleeHit>
+                <soundMeleeMiss>Pawn_Melee_HumanBite_Miss</soundMeleeMiss>
+            </li>
+            <li>
+                <label>head</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>7</power>
+                <cooldownTime>1.8</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                <chanceFactor>0.2</chanceFactor>
+            </li>
+        </tools>
+
+         <race>
+            <fleshType>Mechanoid</fleshType>
+            <needsRest>false</needsRest>
+            <hasGenders>true</hasGenders>
+            <foodType>None</foodType>
+            <lifeExpectancy>2500</lifeExpectancy>
+            <bloodDef>Filth_Blood</bloodDef>
+            <bloodSmearDef>Filth_BloodSmear</bloodSmearDef>
+
+            <soundCallIntervalRange>1000~2000</soundCallIntervalRange>
+            <soundCallIntervalFriendlyFactor>2</soundCallIntervalFriendlyFactor>
+            <soundMeleeHitPawn>Pawn_Melee_MechanoidBash_HitPawn</soundMeleeHitPawn>
+            <soundMeleeHitBuilding>Pawn_Melee_MechanoidBash_HitBuilding</soundMeleeHitBuilding>
+            <soundMeleeMiss>Pawn_Melee_MechanoidBash_Miss</soundMeleeMiss>
+
+            <nameGenerator MayRequire="Ludeon.RimWorld.Biotech">NamerMech</nameGenerator>
+
+            <thinkTreeConstant MayRequire="Ludeon.RimWorld.Biotech">MechConstant</thinkTreeConstant>
+            <thinkTreeMain>Mechanoid</thinkTreeMain>
+            <intelligence>ToolUser</intelligence>
+            <mechEnabledWorkTypes>
+                <li>Crafting</li>
+                <li>Smithing</li>
+                <li>Tailoring</li>
+                <li>Cooking</li>
+                <li>Research</li>
+                <li>Hauling</li>
+                <li>Firefighter</li>
+                <li>Mining</li>
+                <li>Cleaning</li>
+                <li>Construction</li>
+                <li>BasicWorker</li>
+            </mechEnabledWorkTypes>
+            <maxMechEnergy>200</maxMechEnergy>
+            <mechFixedSkillLevel>16</mechFixedSkillLevel>
+            <mechWorkTypePriorities>
+                <Cleaning>4</Cleaning>
+                <Hauling>4</Hauling>
+                <BasicWorker>4</BasicWorker>
+            </mechWorkTypePriorities>
+
+            <canFlyInVacuum>true</canFlyInVacuum>
+            <makesFootprints>true</makesFootprints>
+
+            <body>Human</body>
+            <renderTree>Rimgate_ReplicatorHumanoid</renderTree>
+            <baseBodySize>1</baseBodySize>
+            <baseHealthScale>4.32</baseHealthScale>
+            <hasMeat>false</hasMeat>
+
+            <mechWeightClass>Medium</mechWeightClass>
+
+            <knowledgeCategory MayRequire="Ludeon.RimWorld.Anomaly">Basic</knowledgeCategory>
+            <anomalyKnowledge>1</anomalyKnowledge>
+
+            <lifeStageAges>
+                <li>
+                    <def>MechanoidFullyFormed</def>
+                    <minAge>0</minAge>
+                    <soundWounded>Pawn_Mech_Centipede_Wounded</soundWounded>
+                    <soundDeath>Pawn_Mech_Centipede_Death</soundDeath>
+                    <soundCall>Pawn_Mech_Centipede_Call</soundCall>
+                </li>
+                <li MayRequire="Ludeon.RimWorld.Biotech">
+                    <def>MechanoidFullyFormed</def>
+                    <minAge>100</minAge>
+                    <soundWounded>Pawn_Mech_Centipede_Wounded</soundWounded>
+                    <soundDeath>Pawn_Mech_Centipede_Death</soundDeath>
+                    <soundCall>Pawn_Mech_Centipede_Call</soundCall>
+                </li>
+            </lifeStageAges>
+
+        </race>
+
+        <!-- <recipes>
+
+        </recipes> -->
+
+        <butcherProducts>
+            <Steel>30</Steel>
+            <Plasteel>10</Plasteel>
+            <Rimgate_ReplicatorLink>15</Rimgate_ReplicatorLink>
+        </butcherProducts>
+
+        <comps>
+            <li MayRequire="Ludeon.RimWorld.Biotech" Class="CompProperties_OverseerSubject">
+                <needsOverseerEffect>MechUncontrolled</needsOverseerEffect>
+                <delayUntilFeralCheck>60000</delayUntilFeralCheck>
+                <feralMtbDays>10</feralMtbDays>
+                <feralCascadeRadialDistance>25</feralCascadeRadialDistance>
+            </li>
+            <li Class="Rimgate.CompProperties_BodyGraphicSwapper">
+                <tierOneGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/ReplicatorHumanoid/RGReplicatorHumanoidM_HurtA</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>1.6</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(242, 199, 140)</color>
+                </tierOneGraphicData>
+                <tierOneFemaleGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/ReplicatorHumanoid/RGReplicatorHumanoidF_HurtA</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>1.6</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(249, 219, 165)</color>
+                </tierOneFemaleGraphicData>
+                <tierTwoGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/ReplicatorHumanoid/RGReplicatorHumanoidM_HurtB</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>1.6</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                </tierTwoGraphicData>
+                <tierTwoFemaleGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/ReplicatorHumanoid/RGReplicatorHumanoidF_HurtB</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>1.6</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                </tierTwoFemaleGraphicData>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ======================= MALP ======================= -->
 
     <ThingDef ParentName="BaseMechanoid">
         <defName>Rimgate_Malp</defName>

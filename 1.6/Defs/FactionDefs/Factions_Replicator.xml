@@ -52,6 +52,7 @@
 					<Rimgate_ReplicatorUranium>20</Rimgate_ReplicatorUranium>
 					<Rimgate_ReplicatorPlasteel>20</Rimgate_ReplicatorPlasteel>
 					<Rimgate_ReplicatorNaquadah>10</Rimgate_ReplicatorNaquadah>
+					<Rimgate_ReplicatorHumanoid>1</Rimgate_ReplicatorHumanoid>
 				</options>
 			</li>
 			<li>
@@ -62,6 +63,7 @@
 					<Rimgate_ReplicatorUranium>200</Rimgate_ReplicatorUranium>
 					<Rimgate_ReplicatorPlasteel>200</Rimgate_ReplicatorPlasteel>
 					<Rimgate_ReplicatorNaquadah>100</Rimgate_ReplicatorNaquadah>
+					<Rimgate_ReplicatorHumanoid>10</Rimgate_ReplicatorHumanoid>
 				</options>
 			</li>
 			<li>
@@ -72,6 +74,7 @@
 					<Rimgate_ReplicatorUranium>400</Rimgate_ReplicatorUranium>
 					<Rimgate_ReplicatorPlasteel>400</Rimgate_ReplicatorPlasteel>
 					<Rimgate_ReplicatorNaquadah>200</Rimgate_ReplicatorNaquadah>
+					<Rimgate_ReplicatorHumanoid>20</Rimgate_ReplicatorHumanoid>
 				</options>
 			</li>
 		</pawnGroupMakers>

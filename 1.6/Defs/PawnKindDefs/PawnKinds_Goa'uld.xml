@@ -566,7 +566,7 @@
       <li>ImplantEmpireCommon</li>
       <li>AdvancedWeapon</li>
     </techHediffsTags>
-    <startingHediffs>
+    <startingHediffs Inherit="False">
       <li>
         <def>Rimgate_Unrecruitable</def>
       </li>

@@ -1,8 +1,11 @@
 ﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 using Verse;
+using Verse.Sound;
+using static RimWorld.PsychicRitualRoleDef;
 
 namespace Rimgate;
 
@@ -10,32 +13,48 @@ public class HediffComp_Regeneration : HediffComp
 {
     public HediffCompProperties_Regeneration Props => (HediffCompProperties_Regeneration)props;
 
-    private static readonly List<BodyPartRecord> _tmpCandidates = new();
+    private static List<BodyPartRecord> _tmpCandidates;
 
-    public override void CompPostTick(ref float severityAdjustment)
+    private int _resurrectionsLeft = 1;
+
+    private ThingWithComps _cachedMechWeapon;
+
+    public override void CompPostMake()
     {
-        int interval = Props.checkIntervalTicks;
-        if (interval <= 0) interval = 2500;
+        base.CompPostMake();
+        _resurrectionsLeft = Props.resurrectionAttempts;
+    }
 
-        if (!parent.pawn.IsHashIntervalTick(interval))
+    public override void CompPostTickInterval(ref float severityAdjustment, int delta)
+    {
+        if (!parent.pawn.IsHashIntervalTick(Props.checkIntervalTicks, delta))
             return;
 
         var pawn = parent.pawn;
-        if (pawn.Dead || pawn.health?.hediffSet == null)
+        if (pawn.Dead || pawn.health?.hediffSet == null || pawn.health.hediffSet.hediffs.Count == 0)
             return;
 
+        if(pawn.IsColonyMech)
+        {
+            var energyNeed = pawn.needs.TryGetNeed<Need_MechEnergy>();
+            if (energyNeed != null && energyNeed.CurLevel <= 0f)
+                return; // out of energy, can’t heal
+        }
+
         bool didSomething = TryRegrowOneMissingPart(pawn)
-            || (Props.healScars && TryHealOneScar(pawn))
+            || (Props.healInjuries && TryHealOneInjury(pawn))
             || (Props.healChronics && TryHealOneChronic(pawn));
 
-        if (didSomething && Props.showHealingFleck && pawn.Spawned)
+        if (!Props.showHealingFleck || !parent.pawn.IsHashIntervalTick(Props.healingFleckInterval, delta))
+            return;
+
+        if (didSomething && pawn.Spawned)
             FleckMaker.ThrowMetaIcon(pawn.Position, pawn.Map, FleckDefOf.HealingCross);
     }
 
     private bool TryRegrowOneMissingPart(Pawn pawn)
     {
-        if (Props.regeneratingHediff == null) return false;
-
+        _tmpCandidates ??= new List<BodyPartRecord>();
         _tmpCandidates.Clear();
         var hediffSet = pawn.health.hediffSet;
         var body = pawn.def.race.body;
@@ -79,17 +98,23 @@ public class HediffComp_Regeneration : HediffComp
             var partToRestore = _tmpCandidates.RandomElement();
             pawn.health.RestorePart(partToRestore);
 
+            if (pawn.IsColonyMech)
+                AdjustMechEnergyUsage(pawn, partToRestore.def.GetMaxHealth(pawn));
+
             // After restore, add “regenerating tissue” for missing-part hediffs that disappeared.
             // Compare references: if a beforeMissing item is no longer present, it was restored.
-            for (int i = 0; i < beforeMissing.Count; i++)
+            if (Props.regeneratingHediff != null)
             {
-                var oldMissing = beforeMissing[i];
-                if (hediffSet.hediffs.Contains(oldMissing))
-                    continue;
+                for (int i = 0; i < beforeMissing.Count; i++)
+                {
+                    var oldMissing = beforeMissing[i];
+                    if (hediffSet.hediffs.Contains(oldMissing))
+                        continue;
 
-                var h = HediffMaker.MakeHediff(Props.regeneratingHediff, pawn, oldMissing.Part);
-                h.Severity = oldMissing.Part.def.GetMaxHealth(pawn) - 1f;
-                pawn.health.AddHediff(h);
+                    var h = HediffMaker.MakeHediff(Props.regeneratingHediff, pawn, oldMissing.Part);
+                    h.Severity = (oldMissing.Part.def.GetMaxHealth(pawn) - 1f) * Props.regenerateMissingTimeFactor;
+                    pawn.health.AddHediff(h);
+                }
             }
 
             return true;
@@ -102,27 +127,45 @@ public class HediffComp_Regeneration : HediffComp
         }
     }
 
-    private bool TryHealOneScar(Pawn pawn)
+    private bool TryHealOneInjury(Pawn pawn)
     {
-        if (Props.healScarChance <= 0f) return false;
-        if (Props.healScarChance < 1f 
-            && !Rand.Chance(Props.healScarChance)) return false;
+        if (!Rand.Chance(Props.healInjuryChance)) return false;
 
         var hediffs = pawn.health.hediffSet.hediffs;
 
+        float regenRate = Props.injuryRegeneration;
+        regenRate *= 0.00025f; // per interval scaling
+
         for (int i = 0; i < hediffs.Count; i++)
         {
-            if (hediffs[i] is Hediff_Injury inj && inj.IsPermanent())
+            if (hediffs[i] is not Hediff_Injury inj) continue;
+            if (inj.IsPermanent())
             {
-                var h = HediffMaker.MakeHediff(Props.regeneratingHediff, pawn, inj.Part);
-                // Permanent injury healing reduced since we aren't restoring whole limbs
-                h.Severity = (inj.Part.def.GetMaxHealth(pawn) - 1f) * Props.healScarTimeFactor;
+                if (!Props.healPermanentInjuries) continue;
+
+                if (pawn.IsColonyMech)
+                    AdjustMechEnergyUsage(pawn, inj.Severity);
 
                 pawn.health.RemoveHediff(inj);
-                pawn.health.AddHediff(h);
+
+                if (Props.regeneratingHediff != null)
+                {
+                    var h = HediffMaker.MakeHediff(Props.regeneratingHediff, pawn, inj.Part);
+                    // Permanent injury healing reduced since we aren't restoring whole limbs
+                    h.Severity = inj.Severity * Props.regeneratePermanentTimeFactor;
+                    pawn.health.AddHediff(h);
+                }
 
                 return true;
             }
+
+            float regenCap = Mathf.Min(regenRate, inj.Severity);
+            inj.Heal(regenCap);
+            if (pawn.IsColonyMech)
+                AdjustMechEnergyUsage(pawn, regenCap);
+            pawn.health.hediffSet.Notify_Regenerated(regenCap);
+
+            return true;
         }
 
         return false;
@@ -130,9 +173,7 @@ public class HediffComp_Regeneration : HediffComp
 
     private bool TryHealOneChronic(Pawn pawn)
     {
-        if (Props.healChronicChance <= 0f) return false;
-        if (Props.healChronicChance < 1f 
-            && !Rand.Chance(Props.healChronicChance)) return false;
+        if (!Rand.Chance(Props.healChronicChance)) return false;
 
         var hediffSet = pawn.health.hediffSet;
         var hediffs = hediffSet.hediffs;
@@ -145,14 +186,16 @@ public class HediffComp_Regeneration : HediffComp
             if (h is Hediff_MissingPart) continue;
             // Chronic filter
             // Skip permanent injuries here (scars handled elsewhere)
-            if (!h.def.isBad 
-                || !h.def.chronic
-                || h is Hediff_Injury) continue;
+            if (!h.def.isBad || !h.def.chronic || h is Hediff_Injury) continue;
 
             // If the hediff is on a part,
             // respect "added parts" ancestry (avoids weirdness with prosthetics)
             if (h.Part != null && hediffSet.AncestorHasDirectlyAddedParts(h.Part))
                 continue;
+
+            var maxHealth = h.Part?.def.GetMaxHealth(pawn) ?? 1;
+            if (pawn.IsColonyMech)
+                AdjustMechEnergyUsage(pawn, maxHealth);
 
             // Heal action:
             if (h.def.lethalSeverity > 0f || h.def.maxSeverity > 0f || h.Severity > 0f)
@@ -162,11 +205,11 @@ public class HediffComp_Regeneration : HediffComp
                 float delta = 0.15f; // per interval; tune
                 h.Severity = Mathf.Max(0f, h.Severity - delta);
 
-                // Optionally add regen tissue marker on that body part (if any)
+                // Optionally add regen tissue marker on that body part
                 if (Props.regeneratingHediff != null && h.Part != null)
                 {
                     var regen = HediffMaker.MakeHediff(Props.regeneratingHediff, pawn, h.Part);
-                    regen.Severity = (h.Part.def.GetMaxHealth(pawn) - 1f) * Props.healChronicTimeFactor;
+                    regen.Severity = (h.Part.def.GetMaxHealth(pawn) - 1f) * Props.regenerateChronicTimeFactor;
                     pawn.health.AddHediff(regen);
                 }
 
@@ -183,5 +226,76 @@ public class HediffComp_Regeneration : HediffComp
         }
 
         return false;
+    }
+
+    private void AdjustMechEnergyUsage(Pawn pawn, float amount)
+    {
+        var energyNeed = pawn.needs.TryGetNeed<Need_MechEnergy>();
+        if (energyNeed == null) return;
+        float energyLoss = Mathf.Clamp(amount * pawn.GetStatValue(StatDefOf.MechEnergyLossPerHP), 0.05f, 1f);
+        energyNeed.CurLevel -= energyLoss;
+    }
+
+    public override void Notify_PawnKilled()
+    {
+        var pawn = parent.pawn;
+        if (pawn.RaceProps.IsMechanoid && Props.restoreMechWeaponOnDeath)
+        {
+            var mechWeapon = pawn.equipment.Primary;
+            if (mechWeapon != null)
+            {
+                _cachedMechWeapon = mechWeapon;
+                pawn.equipment.Remove(mechWeapon);
+            }
+        }
+    }
+
+    public override void Notify_PawnDied(DamageInfo? dinfo, Hediff culprit = null)
+    {
+        if (!Props.canResurrect) return;
+
+        var corpse = parent.pawn?.Corpse;
+        var inner = corpse?.InnerPawn;
+        Map map = corpse?.Map;
+        if (map == null || _resurrectionsLeft < 1) return;
+        // Only resurrect if brain is not missing or destroyed
+        BodyPartRecord brain = inner.health.hediffSet.GetBrain();
+        if (brain == null
+            || inner.health.hediffSet.PartIsMissing(brain)
+            || inner.health.hediffSet.GetPartHealth(brain) <= 0f)
+            return;
+
+        Delay.AfterNTicks(Props.resurrectionDelayRange.RandomInRange, () =>
+        {
+            SoundDefOf.PsychicPulseGlobal.PlayOneShot(new TargetInfo(corpse.Position, corpse.Map));
+            FleckMaker.AttachedOverlay(corpse, DefDatabase<FleckDef>.GetNamed("PsycastPsychicEffect"), Vector3.zero);
+            ResurrectionParams resurrectionParams = new ResurrectionParams
+            {
+                restoreMissingParts = false,
+                breachers = true,
+                canPickUpOpportunisticWeapons = true
+            };
+            MedicalUtil.TryResurrectPawn(inner, resurrectionParams);
+            _resurrectionsLeft--;
+
+            if(_cachedMechWeapon != null)
+            {
+                inner.equipment.AddEquipment(_cachedMechWeapon);
+                _cachedMechWeapon = null;
+            }
+
+            if (!Props.resurrectionMessageKey.NullOrEmpty() && PawnUtility.ShouldSendNotificationAbout(inner))
+            {
+                Messages.Message(Props.resurrectionMessageKey.Translate(inner.Named("PAWN")),
+                    new TargetInfo(inner.Position, inner.Map),
+                    MessageTypeDefOf.PositiveEvent);
+            }
+        });
+    }
+
+    public override void CompExposeData()
+    {
+        Scribe_Values.Look(ref _resurrectionsLeft, "_resurrectionsLeft", 1);
+        Scribe_Values.Look(ref _cachedMechWeapon, "_cachedMechWeapon");
     }
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
+    <!-- ======================= MALP Gestation ======================= -->
+
     <RecipeDef ParentName="BaseMechanoidRecipe">
         <defName>Rimgate_Malp</defName>
         <label>MALP</label>
@@ -8,7 +10,7 @@
         <descriptionHyperlinks>
             <ThingDef>Rimgate_Malp</ThingDef>
         </descriptionHyperlinks>
-        <gestationCycles>5</gestationCycles>
+        <gestationCycles>8</gestationCycles>
         <ingredients Inherit="False">
             <li>
                 <filter>
@@ -29,18 +31,18 @@
             <li>
                 <filter>
                     <thingDefs>
-                        <li>ComponentIndustrial</li>
-                    </thingDefs>
-                </filter>
-                <count>20</count>
-            </li>
-            <li>
-                <filter>
-                    <thingDefs>
                         <li>Gold</li>
                     </thingDefs>
                 </filter>
                 <count>25</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentIndustrial</li>
+                    </thingDefs>
+                </filter>
+                <count>20</count>
             </li>
             <li>
                 <filter>
@@ -53,7 +55,7 @@
             <li>
                 <filter>
                     <thingDefs>
-                        <li>SubcoreRegular</li>
+                        <li>Rimgate_Naquadria</li>
                     </thingDefs>
                 </filter>
                 <count>4</count>
@@ -61,7 +63,7 @@
             <li>
                 <filter>
                     <thingDefs>
-                        <li>Rimgate_Naquadria</li>
+                        <li>SubcoreRegular</li>
                     </thingDefs>
                 </filter>
                 <count>4</count>
@@ -73,23 +75,14 @@
         <researchPrerequisite>Rimgate_MalpGestation</researchPrerequisite>
     </RecipeDef>
 
-    <!-- Resurrection -->
+    <!-- ======================= MALP Resurrection ======================= -->
 
-    <RecipeDef ParentName="BaseMechanoidRecipe">
+    <RecipeDef ParentName="BaseMechanoidResurrectionRecipe">
         <defName>Rimgate_ResurrectMalp</defName>
         <label>resurrect MALP</label>
-        <description>Resurrect a friendly MALP.</description>
-        <gestationCycles>3</gestationCycles>
-        <mechResurrection>true</mechResurrection>
-        <jobString>Resurrecting mech.</jobString>
-        <fixedIngredientFilter>
-            <specialFiltersToAllow>
-                <li>AllowCorpsesMechFriendly</li>
-            </specialFiltersToAllow>
-        </fixedIngredientFilter>
-        <forceHiddenSpecialFilters>
-            <li>AllowCorpsesMechFriendly</li>
-        </forceHiddenSpecialFilters>
+        <description>Resurrect a friendly MALP. So long as its body is not completely destroyed, it can be resurrected.</description>
+        <gestationCycles>2</gestationCycles>
+        <jobString>Resurrecting MALP.</jobString>
         <researchPrerequisite>Rimgate_MalpGestation</researchPrerequisite>
         <ingredients>
             <li>
@@ -106,7 +99,7 @@
                         <li>Steel</li>
                     </thingDefs>
                 </filter>
-                <count>100</count>
+                <count>75</count>
             </li>
             <li>
                 <filter>
@@ -114,7 +107,7 @@
                         <li>Plasteel</li>
                     </thingDefs>
                 </filter>
-                <count>125</count>
+                <count>75</count>
             </li>
             <li>
                 <filter>
@@ -124,10 +117,102 @@
                 </filter>
                 <count>10</count>
             </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Corpse_Rimgate_Malp</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
+
+    <!-- ======================= Replicator Gestation ======================= -->
+
+    <RecipeDef ParentName="BaseMechanoidRecipe">
+        <defName>Rimgate_Replicator</defName>
+        <label>Replicator</label>
+        <description>Gestate a Replicator.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_Replicator</ThingDef>
+        </descriptionHyperlinks>
+        <gestationCycles>2</gestationCycles>
+        <researchPrerequisite>Rimgate_ReplicatorGestation</researchPrerequisite>
+        <ingredients Inherit="False">
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_ReplicatorLink</li>
+                    </thingDefs>
+                </filter>
+                <count>20</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>15</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_Naquadah</li>
+                    </thingDefs>
+                </filter>
+                <count>15</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentSpacer</li>
+                    </thingDefs>
+                </filter>
+                <count>2</count>
+            </li>
             <li>
                 <filter>
                     <thingDefs>
                         <li>SubcoreRegular</li>
+                    </thingDefs>
+                </filter>
+                <count>2</count>
+            </li>
+        </ingredients>
+        <products>
+            <Rimgate_Replicator>1</Rimgate_Replicator>
+        </products>
+    </RecipeDef>
+
+    <!-- ======================= Replicator Resurrection ======================= -->
+
+    <RecipeDef ParentName="BaseMechanoidResurrectionRecipe">
+        <defName>Rimgate_ResurrectReplicator</defName>
+        <label>resurrect Replicator</label>
+        <description>Resurrect a friendly Replicator. So long as its body is not completely destroyed, it can be resurrected.</description>
+        <gestationCycles>1</gestationCycles>
+        <jobString>Resurrecting Replicator.</jobString>
+        <researchPrerequisite>Rimgate_ReplicatorGestation</researchPrerequisite>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>Corpses</li>
+                    </categories>
+                </filter>
+                <count>1</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>5</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_ReplicatorLink</li>
                     </thingDefs>
                 </filter>
                 <count>1</count>
@@ -135,7 +220,131 @@
         </ingredients>
         <fixedIngredientFilter>
             <thingDefs>
-                <li>Corpse_Rimgate_Malp</li>
+                <li>Corpse_Rimgate_Replicator</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
+
+    <!-- ======================= Replicator Humanoid Gestation ======================= -->
+
+    <RecipeDef ParentName="BaseMechanoidRecipe">
+        <defName>Rimgate_ReplicatorHumanoid</defName>
+        <label>Replicator (humanoid)</label>
+        <description>Gestate a Replicator (humanoid).</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_ReplicatorHumanoid</ThingDef>
+        </descriptionHyperlinks>
+        <gestationCycles>15</gestationCycles>
+        <researchPrerequisite>Rimgate_ReplicatorHumanoidGestation</researchPrerequisite>
+        <ingredients Inherit="False">
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_ReplicatorLink</li>
+                    </thingDefs>
+                </filter>
+                <count>99</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>50</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Plasteel</li>
+                    </thingDefs>
+                </filter>
+                <count>50</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Gold</li>
+                    </thingDefs>
+                </filter>
+                <count>50</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_Naquadah</li>
+                    </thingDefs>
+                </filter>
+                <count>50</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>ComponentSpacer</li>
+                    </thingDefs>
+                </filter>
+                <count>25</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>AIPersonaCore</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>NanostructuringChip</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>SubcoreHigh</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <products>
+            <Rimgate_ReplicatorHumanoid>1</Rimgate_ReplicatorHumanoid>
+        </products>
+    </RecipeDef>
+
+    <!-- ======================= Replicator Humanoid Resurrection ======================= -->
+
+    <RecipeDef ParentName="BaseMechanoidResurrectionRecipe">
+        <defName>Rimgate_ResurrectReplicatorHumanoid</defName>
+        <label>resurrect Replicator (humanoid)</label>
+        <description>Resurrect a friendly Replicator (humanoid). So long as its body is not completely destroyed, it can be resurrected.</description>
+        <gestationCycles>4</gestationCycles>
+        <jobString>Resurrecting Replicator (humanoid).</jobString>
+        <researchPrerequisite>Rimgate_ReplicatorHumanoidGestation</researchPrerequisite>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>Corpses</li>
+                    </categories>
+                </filter>
+                <count>1</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_ReplicatorLink</li>
+                    </thingDefs>
+                </filter>
+                <count>10</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Corpse_Rimgate_ReplicatorHumanoid</li>
             </thingDefs>
         </fixedIngredientFilter>
     </RecipeDef>

@@ -134,7 +134,145 @@
         </lifeStages>
     </PawnKindDef>
 
-    <!-- MALP -->
+    <!-- ======================= Replicator Humanoid ======================= -->
+
+    <PawnKindDef ParentName="BaseMechanoidKind">
+        <defName>Rimgate_ReplicatorHumanoid</defName>
+        <label>replicator (humanoid)</label>
+        <race>Rimgate_ReplicatorHumanoid</race>
+        <defaultFactionType>Rimgate_Replicator</defaultFactionType>
+        <combatPower>120</combatPower>
+        <abilities>
+            <li>Rimgate_ReplicatorSpikeAbility</li>
+        </abilities>
+        <startingHediffs>
+            <li>
+                <def>Rimgate_NaniteRegeneration</def>
+            </li>
+        </startingHediffs>
+        <lifeStages>
+            <li MayRequire="Ludeon.RimWorld.Biotech">
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/ReplicatorHumanoid/RGReplicatorHumanoidM</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>1.2</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(242, 199, 140)</color>
+                </bodyGraphicData>
+                <femaleGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/ReplicatorHumanoid/RGReplicatorHumanoidF</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>1.2</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(249, 219, 165)</color>
+                </femaleGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/ReplicatorHumanoid/RGReplicatorHumanoidM</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>1.6</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(242, 199, 140)</color>
+                </bodyGraphicData>
+                <femaleGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/ReplicatorHumanoid/RGReplicatorHumanoidF</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>1.6</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                    <color>(249, 219, 165)</color>
+                </femaleGraphicData>
+            </li>
+        </lifeStages>
+        <isGoodBreacher>true</isGoodBreacher>
+        <allowInMechClusters>false</allowInMechClusters>
+        <aiAvoidCover>false</aiAvoidCover>
+        <destroyGearOnDrop>false</destroyGearOnDrop>
+        <canUseAvoidGrid>true</canUseAvoidGrid>
+        <weaponMoney>9999~9999</weaponMoney>
+        <weaponTags>
+            <li>MechanoidGunHeavy</li>
+            <li>MechanoidGunMedium</li>
+            <li>MechanoidGunLongRange</li>
+            <li>MechanoidGunShortRange</li>
+            <!-- <li>ChargeBlasterHeavyGun</li> -->
+            <!-- <li>HellsphereCannonGun</li> -->
+
+            <li>MechanoidGunSlugthrower</li>
+            <li>MechanoidGunSpiner</li>
+            <li>MechanoidGunMiniFlameblaster</li>
+            <li>BeamGraserGun</li>
+            <li>MechanoidGunToxicNeedle</li>
+
+            <li>Gun</li>
+            <li>IndustrialGunAdvanced</li>
+            <li>SpacerGun</li>
+        </weaponTags>
+        <skills>
+            <li>
+                <skill>Shooting</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Melee</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Construction</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Mining</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Cooking</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Plants</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Animals</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Crafting</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Artistic</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Medicine</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Social</skill>
+                <range>12~16</range>
+            </li>
+            <li>
+                <skill>Intellectual</skill>
+                <range>12~16</range>
+            </li>
+        </skills>
+    </PawnKindDef>
+
+    <!-- ======================= MALP ======================= -->
 
     <PawnKindDef ParentName="BaseMechanoidKind">
         <defName>Rimgate_Malp</defName>

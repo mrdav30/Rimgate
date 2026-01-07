@@ -532,7 +532,6 @@
         <comps>
             <li Class="Rimgate.HediffCompProperties_Regeneration">
                 <regeneratingHediff>Rimgate_RegeneratingTissue</regeneratingHediff>
-                <checkIntervalTicks>2500</checkIntervalTicks>
                 <healInjuries>true</healInjuries>
                 <healInjuryChance>0.25</healInjuryChance>
                 <healPermanentInjuries>true</healPermanentInjuries>
