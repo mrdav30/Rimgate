@@ -27,7 +27,7 @@ public class WorkGiver_PushContainer : WorkGiver_Scanner
 
     public override bool ShouldSkip(Pawn pawn, bool forced = false)
     {
-        if (Utils.PawnIncapableOfHauling(pawn, out _)) return true;
+        if (pawn.IncapableOfHauling(out _)) return true;
 
         var dm = pawn?.Map?.designationManager;
         if(dm == null) return true;

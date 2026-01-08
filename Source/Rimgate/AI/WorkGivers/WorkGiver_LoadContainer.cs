@@ -17,7 +17,7 @@ public class WorkGiver_LoadContainer : WorkGiver_Scanner
     // Fast skip: if no cart on the map is actively loading, don’t even run the expensive scan
     public override bool ShouldSkip(Pawn pawn, bool forced = false)
     {
-        if (Utils.PawnIncapableOfHauling(pawn, out _)) return true;
+        if (pawn.IncapableOfHauling(out _)) return true;
 
         var list = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial);
         for (int i = 0; i < list.Count; i++)

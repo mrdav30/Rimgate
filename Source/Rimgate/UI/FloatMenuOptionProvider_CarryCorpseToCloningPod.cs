@@ -6,7 +6,7 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public class FloatMenuOptionProvider_HandleCorpse : FloatMenuOptionProvider
+public class FloatMenuOptionProvider_CarryCorpseToCloningPod : FloatMenuOptionProvider
 {
     protected override bool Drafted => true;
 
@@ -19,32 +19,34 @@ public class FloatMenuOptionProvider_HandleCorpse : FloatMenuOptionProvider
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
         Corpse corpse = clickedThing as Corpse;
-        if (corpse == null)
+        if (corpse == null || corpse.InnerPawn == null || !corpse.InnerPawn.RaceProps.IsFlesh)
             yield break;
 
-        Building_CloningPod pod = Building_CloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn);
-        if (pod == null)
+        var selected = context.FirstSelectedPawn;
+
+        if (!selected.CanReserveAndReach(corpse, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, ignoreOtherReservations: true))
+            yield break;
+
+        if (!ResearchUtil.WraithCloneCorpseComplete)
+            yield break;
+
+        Building_CloningPod cloningPod = Building_CloningPod.FindCloningPodFor(corpse, selected);
+        if (cloningPod == null)
             yield break;
 
         Action action = delegate
         {
-            Building_CloningPod cloningPod = Building_CloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn);
-            if (cloningPod == null)
-            {
-                cloningPod = Building_CloningPod.FindCloningPodFor(corpse, context.FirstSelectedPawn, ignoreOtherReservations: true);
-            }
-
             Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryCorpseToCloningPod, corpse, cloningPod);
             job.count = 1;
-            context.FirstSelectedPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            if (selected.jobs.TryTakeOrderedJob(job, JobTag.Misc))
+                cloningPod.SetCloningType(CloneType.Reconstruct);
         };
-
 
         yield return FloatMenuUtility.DecoratePrioritizedTask(
             new FloatMenuOption(
-                "PlaceIn".Translate(corpse, pod),
+                $"{"PlaceIn".Translate(corpse, cloningPod)} ({"RG_BeginCloneSoldier".Translate()})",
                 action),
-            context.FirstSelectedPawn,
+            selected,
             new LocalTargetInfo(corpse));
     }
 }

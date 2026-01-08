@@ -11,88 +11,95 @@ namespace Rimgate;
 
 internal static class CloneUtility
 {
-    public static void Clone(Building_CloningPod pod, CloneType cloneType)
+    public static bool TryCreateClonePawn(
+        Building_CloningPod pod,
+        CloneType cloneType,
+        out Pawn clonePawn,
+        out CalibrationOutcome outcome)
     {
-        Pawn innerPawn = pod.InnerPawn;
+        clonePawn = null;
+        outcome = null;
+
+        Pawn innerPawn = pod.HostPawn;
         if (innerPawn == null || !innerPawn.RaceProps.Humanlike)
         {
             if (RimgateMod.Debug)
                 Log.Warning($"Rimgate: unable to clone pawn in {pod}");
-            return;
+            return false;
         }
 
-        bool flag1 = false;
-        bool flag2 = false;
-        bool flag3 = false;
-        bool flag4 = false;
-        bool flag5 = false;
-        bool flag6 = false;
-        bool flag7 = false;
-        bool flag8 = false;
-        bool flag9 = false;
-        bool flag10 = false;
+        bool minorGenderSwap = false;
+        bool minorGenderSwap0 = false;
+        bool minorAlbino = false;
+        bool minorBonusGenes = false;
+        bool minorRandomTraits = false;
+        bool majorCloneDies = false;
+        bool majorHostDies = false;
+        bool majorIdiotClone = false;
+        bool majorInsaneClone = false;
+        bool majorFailure = false;
+
         int majorFailureChance = RimgateModSettings.MajorFailureChance;
         int minorFailureChance = RimgateModSettings.MinorFailureChance;
-        System.Random random1 = new();
-        int num1 = random1.Next(1, 101);
-        int num2 = random1.Next(1, 101);
+        int num1 = Rand.RangeInclusive(1, 101);
+        int num2 = Rand.RangeInclusive(1, 101);
         if (RimgateModSettings.MajorFailures && num1 <= majorFailureChance)
         {
-            flag9 = true;
-            switch (random1.Next(0, 4))
+            majorFailure = true;
+            switch (Rand.RangeInclusive(0, 4))
             {
                 case 0:
-                    flag5 = true;
+                    majorCloneDies = true;
                     break;
                 case 1:
-                    flag6 = true;
+                    majorHostDies = true;
                     break;
                 case 2:
-                    flag7 = true;
+                    majorIdiotClone = true;
                     break;
                 case 3:
-                    flag8 = true;
+                    majorInsaneClone = true;
                     break;
             }
         }
 
-        if (cloneType == CloneType.Reconstruct && flag6)
+        if (cloneType == CloneType.Reconstruct && majorHostDies)
         {
-            flag6 = false;
-            switch (random1.Next(0, 3))
+            majorHostDies = false;
+            switch (Rand.RangeInclusive(0, 3))
             {
                 case 0:
-                    flag5 = true;
+                    majorCloneDies = true;
                     break;
                 case 1:
-                    flag7 = true;
+                    majorIdiotClone = true;
                     break;
                 case 2:
-                    flag8 = true;
+                    majorInsaneClone = true;
                     break;
             }
         }
 
-        if (!flag9 && RimgateModSettings.MinorFailures && num2 <= minorFailureChance)
+        if (!majorFailure && RimgateModSettings.MinorFailures && num2 <= minorFailureChance)
         {
-            switch (random1.Next(0, 4))
+            switch (Rand.RangeInclusive(0, 4))
             {
                 case 0:
-                    flag1 = true;
+                    minorGenderSwap = true;
                     break;
                 case 1:
-                    flag2 = true;
+                    minorAlbino = true;
                     break;
                 case 2:
-                    flag3 = true;
+                    minorBonusGenes = true;
                     break;
                 case 3:
-                    flag4 = true;
+                    minorRandomTraits = true;
                     break;
             }
         }
 
-        if (flag6)
+        if (majorHostDies)
         {
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterCloneMajorFailureLabel"),
@@ -102,7 +109,7 @@ internal static class CloneUtility
                 LetterDefOf.NegativeEvent,
                 innerPawn);
             innerPawn.Kill(null, null);
-            return;
+            return false;
         }
 
         float minAge = innerPawn.kindDef.RaceProps.lifeStageAges.Last<LifeStageAge>().minAge;
@@ -112,12 +119,12 @@ internal static class CloneUtility
         PawnKindDef kindDef = innerPawn.kindDef;
         Faction faction = innerPawn.Faction;
         Gender currentGender = innerPawn.gender;
-        if (flag1)
+        if (minorGenderSwap)
         {
             if (currentGender == Gender.Male)
             {
                 currentGender = Gender.Female;
-                flag10 = true;
+                minorGenderSwap0 = true;
             }
             else
             {
@@ -126,7 +133,7 @@ internal static class CloneUtility
             }
         }
 
-        Pawn pawn = PawnGenerator.GeneratePawn(
+        clonePawn = PawnGenerator.GeneratePawn(
             new PawnGenerationRequest(
                 kindDef,
                 faction,
@@ -159,60 +166,60 @@ internal static class CloneUtility
                 minAge,
                 num3,
                 currentGender));
-        pawn.equipment?.DestroyAllEquipment(DestroyMode.Vanish);
-        pawn.apparel?.DestroyAll(DestroyMode.Vanish);
-        pawn.inventory?.DestroyAll(DestroyMode.Vanish);
-        pawn.health?.hediffSet?.Clear();
+        clonePawn.equipment?.DestroyAllEquipment(DestroyMode.Vanish);
+        clonePawn.apparel?.DestroyAll(DestroyMode.Vanish);
+        clonePawn.inventory?.DestroyAll(DestroyMode.Vanish);
+        clonePawn.health?.hediffSet?.Clear();
 
         Pawn_StoryTracker story1 = innerPawn.story;
-        Pawn_StoryTracker story2 = pawn.story;
+        Pawn_StoryTracker story2 = clonePawn.story;
         if (story2 == null)
         {
             if (RimgateMod.Debug)
-                Log.Warning($"Rimgate: {pawn} cloned without story");
-            return;
+                Log.Warning($"Rimgate: {clonePawn} cloned without story");
+            return false;
         }
 
         if (ModsConfig.BiotechActive)
-            pawn.genes.ClearXenogenes();
+            clonePawn.genes.ClearXenogenes();
 
-        pawn.genes.Endogenes.Clear();
-        pawn.ageTracker.AgeBiologicalTicks = innerPawn.ageTracker.AgeBiologicalTicks;
-        pawn.ageTracker.BirthAbsTicks = innerPawn.ageTracker.BirthAbsTicks;
-        pawn.ageTracker.CurLifeStage.developmentalStage = innerPawn.ageTracker.CurLifeStage.developmentalStage;
+        clonePawn.genes.Endogenes.Clear();
+        clonePawn.ageTracker.AgeBiologicalTicks = innerPawn.ageTracker.AgeBiologicalTicks;
+        clonePawn.ageTracker.BirthAbsTicks = innerPawn.ageTracker.BirthAbsTicks;
+        clonePawn.ageTracker.CurLifeStage.developmentalStage = innerPawn.ageTracker.CurLifeStage.developmentalStage;
         if (ModsConfig.BiotechActive)
         {
-            if (flag2)
+            if (minorAlbino)
             {
-                pawn.genes.AddGene(RimgateDefOf.Skin_SheerWhite, true);
-                pawn.genes.AddGene(RimgateDefOf.Eyes_Red, true);
-                pawn.genes.AddGene(RimgateDefOf.Hair_SnowWhite, true);
+                clonePawn.genes.AddGene(RimgateDefOf.Skin_SheerWhite, true);
+                clonePawn.genes.AddGene(RimgateDefOf.Eyes_Red, true);
+                clonePawn.genes.AddGene(RimgateDefOf.Hair_SnowWhite, true);
             }
 
             List<Gene> sourceXenogenes = innerPawn.genes.Xenogenes;
             foreach (Gene gene in sourceXenogenes)
-                pawn.genes.AddGene(gene.def, true);
+                clonePawn.genes.AddGene(gene.def, true);
 
             for (int j = 0; j < sourceXenogenes.Count; j++)
-                pawn.genes.Xenogenes[j].overriddenByGene = !sourceXenogenes[j].Overridden
+                clonePawn.genes.Xenogenes[j].overriddenByGene = !sourceXenogenes[j].Overridden
                     ? null
-                    : pawn.genes.GenesListForReading.First<Gene>(e =>
+                    : clonePawn.genes.GenesListForReading.First<Gene>(e =>
                         e.def == sourceXenogenes[j].overriddenByGene.def);
 
-            if (flag3)
+            if (minorBonusGenes)
             {
                 List<GeneDef> defsListForReading = DefDatabase<GeneDef>.AllDefsListForReading;
                 if (defsListForReading == null || defsListForReading.Count == 0)
                 {
                     Log.Error("Rimgate :: No genes found in DefDatabase.");
-                    return;
+                    return false;
                 }
 
-                int num4 = random1.Next(1, 4);
+                int num4 = Rand.RangeInclusive(1, 4);
                 List<GeneDef> geneDefList = new List<GeneDef>();
                 while (geneDefList.Count < num4)
                 {
-                    GeneDef geneDef = defsListForReading[random1.Next(defsListForReading.Count)];
+                    GeneDef geneDef = defsListForReading[Rand.RangeInclusive(0, defsListForReading.Count)];
                     if (!innerPawn.genes.HasActiveGene(geneDef) && !geneDefList.Contains(geneDef))
                     {
                         Log.Message($"Rimgate :: Added gene: {geneDef.label} to random gene list");
@@ -222,52 +229,51 @@ internal static class CloneUtility
 
                 foreach (GeneDef geneDef in geneDefList)
                 {
-                    pawn.genes.AddGene(geneDef, true);
-                    Log.Message($"Rimgate :: Added gene: {((Def)geneDef).label} to {pawn.Name}");
+                    clonePawn.genes.AddGene(geneDef, true);
+                    Log.Message($"Rimgate :: Added gene: {((Def)geneDef).label} to {clonePawn.Name}");
                 }
             }
 
-            pawn.ageTracker.growthPoints = innerPawn.ageTracker.growthPoints;
-            pawn.ageTracker.vatGrowTicks = innerPawn.ageTracker.vatGrowTicks;
-            pawn.genes.xenotypeName = innerPawn.genes.xenotypeName;
-            pawn.genes.iconDef = innerPawn.genes.iconDef;
+            clonePawn.ageTracker.growthPoints = innerPawn.ageTracker.growthPoints;
+            clonePawn.ageTracker.vatGrowTicks = innerPawn.ageTracker.vatGrowTicks;
+            clonePawn.genes.xenotypeName = innerPawn.genes.xenotypeName;
+            clonePawn.genes.iconDef = innerPawn.genes.iconDef;
             XenotypeDef xenotype = innerPawn.genes.Xenotype;
-            pawn.genes.SetXenotypeDirect(xenotype);
+            clonePawn.genes.SetXenotypeDirect(xenotype);
         }
 
         List<Gene> sourceEndogenes = innerPawn.genes.Endogenes;
         foreach (Gene gene in sourceEndogenes)
-            pawn.genes.AddGene(gene.def, false);
+            clonePawn.genes.AddGene(gene.def, false);
 
         for (int i = 0; i < sourceEndogenes.Count; i++)
-            pawn.genes.Endogenes[i].overriddenByGene = !sourceEndogenes[i].Overridden
+            clonePawn.genes.Endogenes[i].overriddenByGene = !sourceEndogenes[i].Overridden
                 ? null
-                : pawn.genes.GenesListForReading.First<Gene>(e =>
+                : clonePawn.genes.GenesListForReading.First<Gene>(e =>
                     e.def == sourceEndogenes[i].overriddenByGene.def);
 
         if (ModsConfig.BiotechActive)
         {
-            double rollChance = cloneType switch
+            float rollChance = cloneType switch
             {
-                CloneType.Enhanced => 0.40,
-                CloneType.Genome => 0.20,
-                _ => 0.25
+                CloneType.Enhanced => 0.40f,
+                CloneType.Genome => 0.20f,
+                _ => 0.25f
             };
 
-            System.Random rngCellDeg = new();
-            if (rngCellDeg.NextDouble() < rollChance)
+            if (Rand.Chance(rollChance))
             {
                 GeneDef degradation = RimgateDefOf.Rimgate_CellularDegradation;
-                if (!pawn.genes.HasActiveGene(degradation))
+                if (!clonePawn.genes.HasActiveGene(degradation))
                 {
-                    pawn.genes.AddGene(degradation, false);
+                    clonePawn.genes.AddGene(degradation, false);
                     if (RimgateMod.Debug)
-                        Log.Message($"Rimgate :: Added random degradation gene to {pawn.Name}");
+                        Log.Message($"Rimgate :: Added random degradation gene to {clonePawn.Name}");
                 }
             }
         }
 
-        if (!ModsConfig.BiotechActive && flag2)
+        if (!ModsConfig.BiotechActive && minorAlbino)
         {
             Color white = Color.white;
             story2.SkinColorBase = white;
@@ -275,12 +281,12 @@ internal static class CloneUtility
             story2.HairColor = white;
         }
 
-        if (flag1)
+        if (minorGenderSwap)
         {
-            AssignRandomGenderAppropriateHair(pawn);
-            if (flag10)
+            AssignRandomGenderAppropriateHair(clonePawn);
+            if (minorGenderSwap0)
             {
-                pawn.style.beardDef = null;
+                clonePawn.style.beardDef = null;
                 if (story1.bodyType == BodyTypeDefOf.Male)
                     story2.bodyType = BodyTypeDefOf.Female;
             }
@@ -290,44 +296,44 @@ internal static class CloneUtility
         else
         {
             story2.hairDef = story1.hairDef;
-            pawn.style.beardDef = innerPawn.style.beardDef;
+            clonePawn.style.beardDef = innerPawn.style.beardDef;
             story2.bodyType = story1.bodyType;
         }
 
         story2.favoriteColor = story1.favoriteColor;
         story2.furDef = story1.furDef;
         story2.headType = story1.headType;
-        pawn.style.BodyTattoo = RimgateDefOf.NoTattoo_Body;
-        pawn.style.FaceTattoo = RimgateDefOf.NoTattoo_Face;
+        clonePawn.style.BodyTattoo = RimgateDefOf.NoTattoo_Body;
+        clonePawn.style.FaceTattoo = RimgateDefOf.NoTattoo_Face;
         if (RimgateModSettings.CloneTattoos)
         {
-            pawn.style.BodyTattoo = innerPawn.style.BodyTattoo;
-            pawn.style.FaceTattoo = innerPawn.style.FaceTattoo;
+            clonePawn.style.BodyTattoo = innerPawn.style.BodyTattoo;
+            clonePawn.style.FaceTattoo = innerPawn.style.FaceTattoo;
         }
 
-        pawn.style.Notify_StyleItemChanged();
+        clonePawn.style.Notify_StyleItemChanged();
         story2.traits.allTraits.Clear();
-        if (flag7)
+        if (majorIdiotClone)
         {
             story2.Childhood = RimgateDefOf.Rimgate_DamagedClone;
             story2.traits.GainTrait(new Trait(TraitDef.Named("SlowLearner"), 0, false), false);
             story2.traits.GainTrait(new Trait(TraitDef.Named("Industriousness"), -2, false), false);
             story2.traits.GainTrait(new Trait(TraitDef.Named("SpeedOffset"), -1, false), false);
         }
-        else if (flag4)
+        else if (minorRandomTraits)
         {
             List<TraitDef> defsListForReading = DefDatabase<TraitDef>.AllDefsListForReading;
             if (defsListForReading == null || defsListForReading.Count == 0)
             {
                 Log.Error("Rimgate :: No traits found in DefDatabase.");
-                return;
+                return false;
             }
 
-            int num5 = random1.Next(2, 4);
+            int num5 = Rand.RangeInclusive(2, 4);
             List<TraitDef> traitDefList = new List<TraitDef>();
             while (traitDefList.Count < num5)
             {
-                TraitDef traitDef = defsListForReading[random1.Next(defsListForReading.Count)];
+                TraitDef traitDef = defsListForReading[Rand.RangeInclusive(0, defsListForReading.Count)];
                 if (!innerPawn.story.traits.HasTrait(traitDef) && !traitDefList.Contains(traitDef))
                     traitDefList.Add(traitDef);
             }
@@ -335,7 +341,7 @@ internal static class CloneUtility
             foreach (TraitDef traitDef in traitDefList)
             {
                 Trait trait = new Trait(traitDef, GetRandomDegreeForTrait(traitDef), false);
-                pawn.story.traits.GainTrait(trait, false);
+                clonePawn.story.traits.GainTrait(trait, false);
             }
         }
         else
@@ -363,8 +369,8 @@ internal static class CloneUtility
             }
         }
 
-        Pawn_SkillTracker skills1 = pawn.skills;
-        if (flag7)
+        Pawn_SkillTracker skills1 = clonePawn.skills;
+        if (majorIdiotClone)
         {
             Pawn_SkillTracker skills2 = innerPawn.skills;
             if (skills2 != null)
@@ -438,156 +444,184 @@ internal static class CloneUtility
             }
         }
 
-        pawn.workSettings?.EnableAndInitialize();
-        if (flag8)
+        clonePawn.workSettings?.EnableAndInitialize();
+        if (majorInsaneClone)
         {
-            if (pawn.RaceProps.IsFlesh)
+            if (clonePawn.RaceProps.IsFlesh)
             {
-                pawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
-                pawn.health.AddHediff(HediffDefOf.Scaria);
+                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
+                clonePawn.health.AddHediff(HediffDefOf.Scaria);
             }
         }
-        else if (flag7)
+        else if (majorIdiotClone)
         {
-            if (pawn.RaceProps.IsFlesh)
+            if (clonePawn.RaceProps.IsFlesh)
             {
-                pawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
-                pawn.health.AddHediff(HediffDefOf.Dementia);
-                pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
-                pawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
+                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
+                clonePawn.health.AddHediff(HediffDefOf.Dementia);
+                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
+                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
             }
         }
-        else if (pawn.RaceProps.IsFlesh)
+        else if (clonePawn.RaceProps.IsFlesh)
         {
-            pawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
-            pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
-            pawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
+            clonePawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
+            clonePawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
+            clonePawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
             if (cloneType == CloneType.Enhanced)
-                pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonedEnduring);
+                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_ClonedEnduring);
         }
 
         if (innerPawn.mutant != null)
-            MutantUtility.SetPawnAsMutantInstantly(pawn, innerPawn.mutant.Def, RottableUtility.GetRotStage(innerPawn));
+            MutantUtility.SetPawnAsMutantInstantly(clonePawn, innerPawn.mutant.Def, RottableUtility.GetRotStage(innerPawn));
 
         if (RimgateModSettings.GenerateSocialRelations)
-            pawn.relations = innerPawn.relations;
+        {
+            clonePawn.relations.ClearAllRelations();
+            foreach (var direct in innerPawn.relations.DirectRelations)
+                clonePawn.relations.AddDirectRelation(direct.def, direct.otherPawn);
+        }
 
         string first = ((NameTriple)innerPawn.Name).First;
         string nick = ((NameTriple)innerPawn.Name).Nick;
         string last = ((NameTriple)innerPawn.Name).Last;
         if (first.Length == 0)
-            first = ((NameTriple)pawn.Name).First;
+            first = ((NameTriple)clonePawn.Name).First;
 
         if (last.Length == 0)
-            last = ((NameTriple)pawn.Name).Last;
+            last = ((NameTriple)clonePawn.Name).Last;
 
         Hediff_ClonedTracker clonedTracker = GetOrAddTracker(innerPawn);
-        if (clonedTracker.TimesCloned > 1)
-            ++clonedTracker.TimesCloned;
+        clonedTracker.TimesCloned++;
 
         Hediff_Clone hostCloneHeddif = innerPawn.GetHediff<Hediff_Clone>();
 
-        Hediff_Clone cloneHediff = pawn.GetHediff<Hediff_Clone>();
+        Hediff_Clone cloneHediff = clonePawn.GetHediff<Hediff_Clone>();
         cloneHediff.CloneGeneration = hostCloneHeddif != null
-            ? ++hostCloneHeddif.CloneGeneration
+            ? hostCloneHeddif.CloneGeneration++
             : 1;
 
-        System.Random random2 = new();
         string str = IsCloneName(last)
-            ? $"{last.Substring(0, 2)}-{$"{random2.Next(65536 /*0x010000*/):X4}"}"
+            ? $"{last.Substring(0, 2)}-{$"{Rand.RangeInclusive(0, 65536):X4}"}"
             : first.Length <= 0 || last.Length <= 0
-                ? $"{RandomLetters()}-{$"{random2.Next(65536 /*0x010000*/):X4}"}"
-                : $"{first.Substring(0, 1).ToUpper()}{last.Substring(0, 1).ToUpper()}-{$"{random2.Next(65536 /*0x010000*/):X4}"}";
-        pawn.Name = (Name)new NameTriple(first, $"{nick}-{clonedTracker.TimesCloned.ToString()}", str);
-        pawn.Drawer.renderer.SetAllGraphicsDirty();
-        GenSpawn.Spawn(pawn, pod.Position, pod.Map, WipeMode.Vanish);
+                ? $"{RandomLetters()}-{$"{Rand.RangeInclusive(0, 65536):X4}"}"
+                : $"{first.Substring(0, 1).ToUpper()}{last.Substring(0, 1).ToUpper()}-{$"{Rand.RangeInclusive(0, 65536):X4}"}";
+        clonePawn.Name = (Name)new NameTriple(first, $"{nick}-{clonedTracker.TimesCloned.ToString()}", str);
+        clonePawn.Drawer.renderer.SetAllGraphicsDirty();
+
+        outcome = new CalibrationOutcome
+        {
+            cloneType = cloneType,
+            minorGenderSwap = minorGenderSwap,
+            minorAlbino = minorAlbino,
+            minorBonusGenes = minorBonusGenes,
+            minorRandomTraits = minorRandomTraits,
+            majorCloneDies = majorCloneDies,
+            majorHostDies = majorHostDies,
+            majorIdiotClone = majorIdiotClone,
+            majorInsaneClone = majorInsaneClone
+        };
+
+        return true;
+    }
+
+    public static void FinalizeSpawn(Building_CloningPod pod, Pawn clone, CalibrationOutcome outcome)
+    {
+        if (pod == null || clone == null || outcome == null)
+        {
+            if (RimgateMod.Debug)
+                Log.Warning("Rimgate: unable to finalize spawn of clone pawn due to null argument");
+            return;
+        }
+
+        GenSpawn.Spawn(clone, pod.Position, pod.Map, WipeMode.Vanish);
         SoundStarter.PlayOneShot(
             SoundDef.Named("CryptosleepCasketEject"),
             SoundInfo.InMap(new TargetInfo(pod.Position, pod.Map, false), MaintenanceType.None));
         ThingDef filthSlime = ThingDefOf.Filth_Slime;
-        if (flag5)
+        if (outcome.majorCloneDies)
         {
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterCloneMajorFailureLabel"),
                 TranslatorFormattedStringExtensions.Translate(
                     "RG_LetterCloneDiedDesc",
-                    pawn.Name.ToStringShort),
+                    clone.Name.ToStringShort),
                 LetterDefOf.NegativeEvent,
-                new GlobalTargetInfo(pawn));
-            pawn.filth.GainFilth(filthSlime);
-            pawn.Kill(null, null);
+                new GlobalTargetInfo(clone));
+            clone.filth.GainFilth(filthSlime);
+            clone.Kill(null, null);
         }
-        else if (flag2)
+        else if (outcome.minorAlbino)
         {
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterCloneMinorFailureLabel"),
                 TranslatorFormattedStringExtensions.Translate(
                     "RG_LetterAlbinoBodyDesc",
-                    pawn.Name.ToStringShort),
+                    clone.Name.ToStringShort),
                 LetterDefOf.NegativeEvent,
-                new GlobalTargetInfo(pawn));
-            pawn.filth.GainFilth(filthSlime);
+                new GlobalTargetInfo(clone));
+            clone.filth.GainFilth(filthSlime);
         }
-        else if (flag3)
+        else if (outcome.minorBonusGenes)
         {
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterCloneMinorFailureLabel"),
                 TranslatorFormattedStringExtensions.Translate(
                     "RG_LetterBonusGenesDesc",
-                    pawn.Name.ToStringShort),
+                    clone.Name.ToStringShort),
                 LetterDefOf.NegativeEvent,
-                new GlobalTargetInfo(pawn));
-            pawn.filth.GainFilth(filthSlime);
+                new GlobalTargetInfo(clone));
+            clone.filth.GainFilth(filthSlime);
         }
-        else if (flag4)
+        else if (outcome.minorRandomTraits)
         {
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterCloneMinorFailureLabel"),
                 TranslatorFormattedStringExtensions.Translate(
                     "RG_LetterRandomTraitsDesc",
-                    pawn.Name.ToStringShort),
+                    clone.Name.ToStringShort),
                 LetterDefOf.NegativeEvent,
-                new GlobalTargetInfo(pawn));
-            pawn.filth.GainFilth(filthSlime);
+                new GlobalTargetInfo(clone));
+            clone.filth.GainFilth(filthSlime);
         }
-        else if (flag1)
+        else if (outcome.minorGenderSwap)
         {
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterCloneMinorFailureLabel"),
                 TranslatorFormattedStringExtensions.Translate(
                     "RG_LetterGenderSwapDesc",
-                    pawn.Name.ToStringShort),
+                    clone.Name.ToStringShort),
                 LetterDefOf.NegativeEvent,
-                new GlobalTargetInfo(pawn));
-            pawn.filth.GainFilth(filthSlime);
+                new GlobalTargetInfo(clone));
+            clone.filth.GainFilth(filthSlime);
         }
-        else if (flag7)
+        else if (outcome.majorIdiotClone)
         {
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterCloneMajorFailureLabel"),
                 TranslatorFormattedStringExtensions.Translate(
                     "RG_LetterIdiotCloneDesc",
-                    pawn.Name.ToStringShort),
+                    clone.Name.ToStringShort),
                 LetterDefOf.NegativeEvent,
-                new GlobalTargetInfo(pawn));
-            pawn.filth.GainFilth(filthSlime);
+                new GlobalTargetInfo(clone));
+            clone.filth.GainFilth(filthSlime);
         }
-        else if (flag8)
+        else if (outcome.majorInsaneClone)
         {
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterCloneMajorFailureLabel"),
                 TranslatorFormattedStringExtensions.Translate(
                     "RG_LetterInsaneCloneDesc",
-                    pawn.Name.ToStringShort),
+                    clone.Name.ToStringShort),
                 LetterDefOf.ThreatSmall,
-                new GlobalTargetInfo(pawn));
-            pawn.filth.GainFilth(filthSlime);
-            pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Berserk);
+                new GlobalTargetInfo(clone));
+            clone.filth.GainFilth(filthSlime);
+            clone.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Berserk);
         }
         else
         {
             string letter = string.Empty;
-            switch (cloneType)
+            switch (outcome.cloneType)
             {
                 case CloneType.Genome:
                     letter = "RG_LetterHostClonedGenomeDesc";
@@ -605,10 +639,10 @@ internal static class CloneUtility
 
             Find.LetterStack.ReceiveLetter(
                 Translator.Translate("RG_LetterHostClonedLabel"),
-                letter.Translate(pawn.Name.ToStringShort),
+                letter.Translate(clone.Name.ToStringShort),
                 LetterDefOf.PositiveEvent,
-                new GlobalTargetInfo(pawn));
-            pawn.filth.GainFilth(filthSlime);
+                new GlobalTargetInfo(clone));
+            clone.filth.GainFilth(filthSlime);
         }
     }
 
@@ -630,9 +664,8 @@ internal static class CloneUtility
 
     internal static int GetRandomDegreeForTrait(TraitDef traitDef)
     {
-        System.Random random = new();
         return traitDef.degreeDatas != null && traitDef.degreeDatas.Count > 0
-            ? traitDef.degreeDatas[random.Next(traitDef.degreeDatas.Count)].degree
+            ? traitDef.degreeDatas[Rand.RangeInclusive(0, traitDef.degreeDatas.Count)].degree
             : 0;
     }
 
@@ -644,10 +677,9 @@ internal static class CloneUtility
     internal static string RandomLetters()
     {
         string str1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        System.Random random = new();
-        char ch = str1[random.Next(str1.Length - 1)];
+        char ch = str1[Rand.RangeInclusive(0, str1.Length - 1)];
         string str2 = ch.ToString();
-        ch = str1[random.Next(str1.Length - 1)];
+        ch = str1[Rand.RangeInclusive(0, str1.Length - 1)];
         string str3 = ch.ToString();
         return str2 + str3;
     }

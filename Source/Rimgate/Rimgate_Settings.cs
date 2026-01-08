@@ -6,14 +6,26 @@ public class RimgateModSettings : ModSettings
 {
     #region Clone Pod
 
+    public static int BaseCalibrationTicks = 4500;
+
+    public static int BaseIncubationTicks = 120000; // 2 days
+
     public static bool EnableCloneIncidents = true;
+
     public static bool CloneTattoos = false;
+
     public static bool NoSkillLoss = false;
+
     public static bool GenerateSocialRelations = false;
+
     public static bool MinorFailures = true;
+
     public static int MinorFailureChance = 10;
+
     public static bool MajorFailures = false;
+
     public static int MajorFailureChance = 1;
+
     public static int MedicineSkillReq = 10;
 
     #endregion

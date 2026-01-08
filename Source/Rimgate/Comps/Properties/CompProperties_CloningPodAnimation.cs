@@ -6,7 +6,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class CompProperties_CloningPodControl : CompProperties
+public class CompProperties_CloningPodAnimation : CompProperties
 {
     public Color idleCycleColor = new Color(0.9f, 1f, 0.16f);
 
@@ -18,5 +18,7 @@ public class CompProperties_CloningPodControl : CompProperties
 
     public GraphicData emptyGraphicData;
 
-    public CompProperties_CloningPodControl() => compClass = typeof(Comp_CloningPodControl);
+    public List<GraphicData> incubatingStagesGraphicData;
+
+    public CompProperties_CloningPodAnimation() => compClass = typeof(Comp_CloningPodAnimation);
 }

@@ -151,4 +151,15 @@
     <priorityInType>100</priorityInType>
   </WorkGiverDef>
 
+  <WorkGiverDef>
+    <defName>Rimgate_CalibrateCloningPod</defName>
+    <label>calibrate cloning pod</label>
+    <giverClass>Rimgate.WorkGiver_CalibrateCloningPod</giverClass>
+    <workType>BasicWorker</workType>
+    <verb>calibrate cloning pod</verb>
+    <gerund>calibrating cloning pod</gerund>
+    <canBeDoneWhileDrafted>true</canBeDoneWhileDrafted>
+    <priorityInType>100</priorityInType>
+  </WorkGiverDef>
+
 </Defs>

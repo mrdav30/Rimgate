@@ -87,10 +87,7 @@ public static class RimgateDefOf
     public static JobDef Rimgate_CarryToSarcophagus;
     public static JobDef Rimgate_CarryToCloningPod;
     public static JobDef Rimgate_CarryCorpseToCloningPod;
-    public static JobDef Rimgate_CloneOccupantGenes;
-    public static JobDef Rimgate_CloneOccupantFull;
-    public static JobDef Rimgate_CloneOccupantSoldier;
-    public static JobDef Rimgate_CloneReconstructDead;
+    public static JobDef Rimgate_CalibrateClonePodForPawn;
     public static JobDef Rimgate_CloseStargate;
     public static JobDef Rimgate_DrainLifeFromCocoonedPrisoner;
     public static JobDef Rimgate_WraithCocoonPrisoner;
@@ -173,6 +170,7 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_GoauldSymbiote;
     public static ThingDef Rimgate_SubspacePhaseDiverter;
     public static ThingDef Rimgate_Wheelbarrow;
+    public static ThingDef Rimgate_WraithCloningPod;
     public static ThingDef Rimgate_WraithMeatLab;
     public static ThingDef Rimgate_WraithTable;
     public static ThingDef Rimgate_ZPM;

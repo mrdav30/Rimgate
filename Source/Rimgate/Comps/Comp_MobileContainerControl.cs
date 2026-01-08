@@ -230,7 +230,7 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, IThingHolder
 
     public void Attach(Pawn pawn)
     {
-        if (Utils.PawnIncapableOfHauling(pawn, out string reason))
+        if (pawn.IncapableOfHauling(out string reason))
         {
             Messages.Message(reason, parent, MessageTypeDefOf.RejectInput);
             return;
@@ -415,7 +415,7 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, IThingHolder
         if (LoadingInProgress) yield break; // Don’t show push options while loading
 
         // If the pawn can’t haul/manual-dumb, show disabled entries
-        if (Utils.PawnIncapableOfHauling(selPawn, out var reason))
+        if (selPawn.IncapableOfHauling(out var reason))
         {
             yield return new FloatMenuOption("RG_CommandPushLabel".Translate() + " (" + reason + ")",
                 null,

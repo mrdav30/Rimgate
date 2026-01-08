@@ -38,30 +38,9 @@
 	</JobDef>
 
 	<JobDef>
-		<defName>Rimgate_CloneOccupantGenes</defName>
-		<driverClass>Rimgate.JobDriver_CloneOccupantGenes</driverClass>
-		<reportString>cloning by genome only.</reportString>
-		<casualInterruptible>false</casualInterruptible>
-	</JobDef>
-
-	<JobDef>
-		<defName>Rimgate_CloneOccupantFull</defName>
-		<driverClass>Rimgate.JobDriver_CloneOccupantFull</driverClass>
-		<reportString>deep-scan cloning.</reportString>
-		<casualInterruptible>false</casualInterruptible>
-	</JobDef>
-
-	<JobDef>
-		<defName>Rimgate_CloneOccupantSoldier</defName>
-		<driverClass>Rimgate.JobDriver_CloneOccupantSoldier</driverClass>
-		<reportString>reforging.</reportString>
-		<casualInterruptible>false</casualInterruptible>
-	</JobDef>
-
-	<JobDef>
-		<defName>Rimgate_CloneReconstructDead</defName>
-		<driverClass>Rimgate.JobDriver_CloneReconstructDead</driverClass>
-		<reportString>reconstructing.</reportString>
+		<defName>Rimgate_CalibrateClonePodForPawn</defName>
+		<driverClass>Rimgate.JobDriver_CalibrateClonePod</driverClass>
+		<reportString>calibrating cloning pod.</reportString>
 		<casualInterruptible>false</casualInterruptible>
 	</JobDef>
 

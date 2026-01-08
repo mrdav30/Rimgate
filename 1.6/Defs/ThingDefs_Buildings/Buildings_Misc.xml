@@ -148,10 +148,12 @@
 		<comps>
 			<li Class="CompProperties_Refuelable">
 				<fuelConsumptionRate>0</fuelConsumptionRate>
-				<fuelCapacity>25.0</fuelCapacity>
+				<fuelCapacity>220.0</fuelCapacity>
 				<fuelLabel>Biomass</fuelLabel>
+				<fuelGizmoLabel>Biomass</fuelGizmoLabel>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
 				<fuelFilter>
 					<thingDefs>
 						<li>Rimgate_Biomass</li>
@@ -171,7 +173,7 @@
 					</li>
 				</powerUpgrades>
 			</li>
-			<li Class="Rimgate.CompProperties_CloningPodControl">
+			<li Class="Rimgate.CompProperties_CloningPodAnimation">
 				<backgroundGraphicData>
 					<texPath>FX/RGClonePodBackground</texPath>
 					<graphicClass>Graphic_Multi</graphicClass>
@@ -189,6 +191,26 @@
 					<shaderType>TransparentPostLight</shaderType>
 					<drawSize>(2, 3)</drawSize>
 				</emptyGraphicData>
+				<incubatingStagesGraphicData>
+					<li>
+						<texPath>FX/RGClonePodIncubating_Stage1</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<shaderType>TransparentPostLight</shaderType>
+						<drawSize>1</drawSize>
+					</li>
+					<li>
+						<texPath>FX/RGClonePodIncubating_Stage2</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<shaderType>TransparentPostLight</shaderType>
+						<drawSize>1</drawSize>
+					</li>
+					<li>
+						<texPath>FX/RGClonePodIncubating_Stage3</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<shaderType>TransparentPostLight</shaderType>
+						<drawSize>1</drawSize>
+					</li>
+				</incubatingStagesGraphicData>
 			</li>
 			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1001000</analysisID>

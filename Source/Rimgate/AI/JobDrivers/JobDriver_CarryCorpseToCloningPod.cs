@@ -31,7 +31,7 @@ public class JobDriver_CarryCorpseToCloningPod : JobDriver
         Toil goToTakee = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell)
             .FailOnDestroyedNullOrForbidden(TargetIndex.A)
             .FailOnDespawnedNullOrForbidden(TargetIndex.B)
-            .FailOn(() => ClonePod.HasAnyContents)
+            .FailOn(() => ClonePod.HasHostPawn)
             .FailOn(() => !pawn.CanReach(Corpse, PathEndMode.OnCell, Danger.Deadly))
             .FailOnSomeonePhysicallyInteracting(TargetIndex.A);
         Toil startCarryingTakee = Toils_Haul.StartCarryThing(TargetIndex.A);

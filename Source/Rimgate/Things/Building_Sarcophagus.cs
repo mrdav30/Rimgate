@@ -127,6 +127,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     private float _patientSavedDbhThirstNeed;
 
+    private bool _patientNeedsSnapshotTaken;
+
     private List<Trait> _patientTraitsToRemove = new();
 
     private CompPowerTrader _powerTrader;
@@ -202,16 +204,22 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                 case SarcophagusStatus.Idle:
                     {
                         DiagnosingTicks = PatientBodySizeScaledMaxDiagnosingTicks;
-                        // Save initial patient food need level
-                        if (patient.needs.food != null)
-                            _patientSavedFoodNeed = patient.needs.food.CurLevelPercentage;
 
-                        // Save initial patient DBH thirst and reset DBH bladder/hygiene need levels
-                        if (ModCompatibility.DbhIsActive)
+                        if (!_patientNeedsSnapshotTaken)
                         {
-                            _patientSavedDbhThirstNeed = DbhCompatibility.GetThirstNeedCurLevelPercentage(patient);
-                            DbhCompatibility.SetBladderNeedCurLevelPercentage(patient, 1f);
-                            DbhCompatibility.SetHygieneNeedCurLevelPercentage(patient, 1f);
+                            // Save initial patient food need level
+                            if (patient.needs.food != null)
+                                _patientSavedFoodNeed = patient.needs.food.CurLevelPercentage;
+
+                            // Save initial patient DBH thirst and reset DBH bladder/hygiene need levels
+                            if (ModCompatibility.DbhIsActive)
+                            {
+                                _patientSavedDbhThirstNeed = DbhCompatibility.GetThirstNeedCurLevelPercentage(patient);
+                                DbhCompatibility.SetBladderNeedCurLevelPercentage(patient, 1f);
+                                DbhCompatibility.SetHygieneNeedCurLevelPercentage(patient, 1f);
+                            }
+
+                            _patientNeedsSnapshotTaken = true;
                         }
 
                         if (RimgateMod.Debug)
@@ -356,6 +364,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         Scribe_Values.Look(ref HealingTicks, "HealingTicks", 0);
         Scribe_Values.Look(ref ProgressHealingTicks, "ProgressHealingTicks", 0);
         Scribe_Values.Look(ref TotalHealingTicks, "TotalHealingTicks", 0);
+        Scribe_Values.Look(ref _patientSavedFoodNeed, "_patientSavedFoodNeed", 0f);
+        Scribe_Values.Look(ref _patientSavedDbhThirstNeed, "_patientSavedDbhThirstNeed", 0f);
+        Scribe_Values.Look(ref _patientNeedsSnapshotTaken, "_patientNeedsSnapshotTaken", false);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -1003,5 +1014,6 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
         _patientSavedFoodNeed = 0;
         _patientSavedDbhThirstNeed = 0;
+        _patientNeedsSnapshotTaken = false;
     }
 }

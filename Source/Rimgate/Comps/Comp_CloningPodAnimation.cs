@@ -3,16 +3,13 @@ using System;
 using UnityEngine;
 using Verse;
 using Verse.Noise;
+using static UnityEngine.Networking.UnityWebRequest;
 
 namespace Rimgate;
 
-public class Comp_CloningPodControl : ThingComp
+public class Comp_CloningPodAnimation : ThingComp
 {
-    public bool PowerOn => _clonePod != null && _clonePod.Power.PowerOn;
-
-    public bool Fueled => _clonePod != null && _clonePod.Refuelable.IsFull;
-
-    public CompProperties_CloningPodControl Props => (CompProperties_CloningPodControl)props;
+    public CompProperties_CloningPodAnimation Props => (CompProperties_CloningPodAnimation)props;
 
     private Building_CloningPod _clonePod;
 
@@ -34,16 +31,16 @@ public class Comp_CloningPodControl : ThingComp
 
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
-        base.PostSpawnSetup(respawningAfterLoad);
         if (parent is Building_CloningPod clonePod)
             _clonePod = clonePod;
     }
 
     public override void CompTick()
     {
-        base.CompTick();
+        if (_clonePod == null)
+            return;
 
-        if (_clonePod.Status != CloningStatus.Idle || !PowerOn || !Fueled)
+        if (_clonePod.Status != CloningStatus.Idle || !_clonePod.Powered)
         {
             _idleEffecter?.Cleanup();
             _idleEffecter = null;
@@ -57,7 +54,6 @@ public class Comp_CloningPodControl : ThingComp
                 _idleEffecter.Trigger(parent, new TargetInfo(parent.InteractionCell, parent.Map));
             }
 
-
             _idleEffecter.EffectTick(parent, new TargetInfo(parent.InteractionCell, parent.Map));
         }
 
@@ -66,9 +62,9 @@ public class Comp_CloningPodControl : ThingComp
             _operatingEffecter?.Cleanup();
             _operatingEffecter = null;
         }
-        else if (_clonePod.RemainingWork > 0f)
+        else
         {
-            if (!PowerOn)
+            if (!_clonePod.Powered)
             {
                 _operatingEffecter?.Cleanup();
                 _operatingEffecter = null;
@@ -102,25 +98,26 @@ public class Comp_CloningPodControl : ThingComp
 
     public override void PostDraw()
     {
-        base.PostDraw();
+        if (_clonePod == null)
+            return;
 
         Vector3 drawPos = parent.DrawPos + parent.def.graphicData.drawOffset;
-
+        Rot4 rotation = parent.Rotation;
         Vector3 panePos = drawPos;
         panePos.y = parent.def.altitudeLayer.AltitudeFor() - 0.01f;
 
-        if (Fueled)
+        if (_clonePod.Status == CloningStatus.Incubating)
         {
             FullGraphic.Draw(
                 panePos,
-                parent.Rotation,
+                rotation,
                 parent);
         }
         else
         {
             EmptyGraphic.Draw(
                 panePos,
-                parent.Rotation,
+                rotation,
                 parent);
         }
 
@@ -137,42 +134,91 @@ public class Comp_CloningPodControl : ThingComp
                 0);
         }
 
-        if (!_clonePod.HasAnyContents) return;
+        if (_clonePod.Status == CloningStatus.Paused && !_clonePod.HasRequiredBiomass())
+        {
+            parent.Map.overlayDrawer.DrawOverlay(parent, OverlayTypes.OutOfFuel);
+            return;
+        }
 
-        Pawn occupant = _clonePod.InnerPawn;
-        var rotation = parent.Rotation;
-        drawPos += GetPawnDrawOffset(rotation);
+        float ticks = _clonePod.Status == CloningStatus.CloningStarted
+            ? _clonePod.RemainingCalibrationWork
+            : _clonePod.Status == CloningStatus.Incubating
+                ? _clonePod.RemainingIncubationTicks
+                : 0f;
 
-        float floatOffset = 0;
-        if (_clonePod.IsWorking)
-            floatOffset = FloatingOffset(_clonePod.RemainingWork);
+        if (_clonePod.Status == CloningStatus.Incubating)
+        {
+            var stageCount = Props.incubatingStagesGraphicData?.Count ?? 0;
+            if (stageCount <= 0) return;
 
-        if (rotation == Rot4.North || rotation == Rot4.South)
-            drawPos.z += floatOffset;
-        else
-            drawPos.x += floatOffset;
+            var percent = _clonePod.IncubationProgress;
+            if (percent <= 0) return;
+
+            // once close enough, show full stage
+            if (percent < 0.85f)
+            {
+                int stageIndex = Mathf.FloorToInt(percent * stageCount);
+                stageIndex = Mathf.Clamp(stageIndex, 0, stageCount - 1);
+
+                var stageGraphic = Props.incubatingStagesGraphicData[stageIndex].Graphic;
+                var oppositeRot = rotation.Opposite;
+                //drawPos = SetFloatingOffset(drawPos, rotation, _clonePod.RemainingCalibrationWork);
+                drawPos += GetDrawOffset(rotation, ticks);
+                drawPos.y = _clonePod.HeldPawnDrawPos_Y;
+                stageGraphic.Draw(
+                    drawPos,
+                    oppositeRot,
+                    parent);
+
+                return;
+            }
+        }
+
+        Pawn occupant = _clonePod.Status != CloningStatus.Incubating && _clonePod.HasHostPawn
+            ? _clonePod.HostPawn
+            : _clonePod.Status == CloningStatus.Incubating && _clonePod.HasClonePawn
+                ? _clonePod.ClonePawn
+                : null;
+
+        if (occupant == null)
+            return;
+
+        drawPos += GetDrawOffset(rotation, ticks);
 
         occupant.Drawer.renderer.RenderPawnAt(
             drawPos,
             null,
             neverAimWeapon: true);
+
+        return;
     }
 
-    private static Vector3 GetPawnDrawOffset(Rot4 rot)
+    private Vector3 GetDrawOffset(Rot4 rot, float ticks)
     {
+        Vector3 result = Vector3.zero;
         if (rot == Rot4.North)
-            return new Vector3(0f, 0f, 0.5f);
+            result = new Vector3(0f, 0f, 0.5f);
+        else if (rot == Rot4.East)
+            result = new Vector3(0.5f, 0f, 0.25f);
+        else if (rot == Rot4.South)
+            result = new Vector3(0f, 0.0f, -0.35f);
+        else if (rot == Rot4.West)
+            result = new Vector3(-0.5f, 0f, 0.25f);
 
-        if (rot == Rot4.East)
-            return new Vector3(0.5f, 0f, 0.25f);
+        if (_clonePod.IsWorking)
+            return SetFloatingOffset(result, rot, ticks);
+        else
+            return result;
+    }
 
-        if (rot == Rot4.South)
-            return new Vector3(0f, 0.0f, -0.35f);
-
-        if (rot == Rot4.West)
-            return new Vector3(-0.5f, 0f, 0.25f);
-
-        return Vector3.zero;
+    private Vector3 SetFloatingOffset(Vector3 drawPos, Rot4 rot, float tickOffset)
+    {
+        float floatOffset = FloatingOffset(tickOffset);
+        if (rot == Rot4.North || rot == Rot4.South)
+            drawPos.z += floatOffset;
+        else
+            drawPos.x += floatOffset;
+        return drawPos;
     }
 
     public static float FloatingOffset(float tickOffset)

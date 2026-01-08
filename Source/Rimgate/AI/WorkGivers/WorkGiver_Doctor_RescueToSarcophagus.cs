@@ -14,7 +14,7 @@ public class WorkGiver_Doctor_RescueToSarcophagus : WorkGiver_RescueDowned
     {
         if (pawn?.Map == null) return true;
 
-        if (Utils.PawnIncapableOfHauling(pawn, out _)) return true;
+        if (pawn.IncapableOfHauling(out _)) return true;
 
         if (!pawn.Map.listerBuildings.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus))
             return true;

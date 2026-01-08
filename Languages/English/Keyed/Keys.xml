@@ -127,17 +127,23 @@
 
 	<!-- Cloning pod -->
 
-	<RG_CarryToCloningPod>Carry {1_labelShort} to cloning pod</RG_CarryToCloningPod>
-	<RG_NoCloningPod>No available cryptosleep casket.</RG_NoCloningPod>
-	<RG_CannotCarryToCloningPod>Cannot carry to cryptosleep casket</RG_CannotCarryToCloningPod>
+	<RG_CloneOccupantGenes>Create genome-only blank clone of {0}.</RG_CloneOccupantGenes>
+	<RG_CloneOccupantFull>Deep scan and fully clone {0}.</RG_CloneOccupantFull>
+	<RG_CloneOccupantSoldier>Create enhanced clone of {0}.</RG_CloneOccupantSoldier>
+	<RG_CloneReconstructDead>Create reconstructed clone of {0}.</RG_CloneReconstructDead>
 
-	<RG_CloneOccupantGenes>Create genome-only blank clone of {0}</RG_CloneOccupantGenes>
-	<RG_CloneOccupantFull>Deep scan and fully clone {0}</RG_CloneOccupantFull>
-	<RG_CloneOccupantSoldier>Create combatant-imprinted clone of {0}</RG_CloneOccupantSoldier>
-	<RG_CloneReconstructDead>Create reconstructed clone of {0}</RG_CloneReconstructDead>
+	<RG_CannotUse>Cannot use ({0})</RG_CannotUse>
 
-	<RG_CannotCloneReason>Cannot clone ({0})</RG_CannotCloneReason>
-	<RG_EnterCloningPod>Enter cloning pod</RG_EnterCloningPod>
+	<RG_CloningPodCalibrationFailed>Cloning pod calibration failed: {0}</RG_CloningPodCalibrationFailed>
+	<RG_CloningPodCalibrationFailed_NoHost>No host present</RG_CloningPodCalibrationFailed_NoHost>
+	<RG_CloningPodCalibrationFailed_NotStaged>no clone staged</RG_CloningPodCalibrationFailed_NotStaged>
+
+	<RG_EnterCloningPod>Enter cloning pod: {0}</RG_EnterCloningPod>
+	<RG_BeginCloneGenome>genome-only scan</RG_BeginCloneGenome>
+	<RG_BeginCloneFull>deep scan</RG_BeginCloneFull>
+	<RG_BeginCloneSoldier>enhanced scan</RG_BeginCloneSoldier>
+	<RG_BeginCloneCorpse>reconstruct scan</RG_BeginCloneCorpse>
+
 	<RG_LetterCloneMajorFailureLabel>Major Cloning Failure</RG_LetterCloneMajorFailureLabel>
 	<RG_LetterCloneHostDiedDesc>The clone host died in the cloning process.</RG_LetterCloneHostDiedDesc>
 	<RG_LetterCloneDiedDesc>The clone died in the cloning process.</RG_LetterCloneDiedDesc>
@@ -158,8 +164,14 @@
 	<RG_LetterClonesDiedLabel>Mass Clone Failure</RG_LetterClonesDiedLabel>
 	<RG_LetterClonesDiedDesc>It appears that all clones have undergone spontaneous total failure. Whether this was caused by an archotech, problems in the supply chain, or by defective equipment is unknown. The manufacturer isn't returning calls. </RG_LetterClonesDiedDesc>
 
+	<RG_IncubationPaused>Incubation paused ({0})</RG_IncubationPaused>
+	<RG_IncubationInProgress>Incubation in progress: {0}</RG_IncubationInProgress>
+
 	<RG_CommandCloningPodEjectLabel>Eject host</RG_CommandCloningPodEjectLabel>
 	<RG_CommandCloningPodEjectDesc>Wake up the cloning host and eject them.</RG_CommandCloningPodEjectDesc>
+
+	<RG_CommandCloningPodAbortIncubationLabel>Abort incubation</RG_CommandCloningPodAbortIncubationLabel>
+	<RG_CommandCloningPodAbortIncubationDesc>Abort the incubation process and eject the host.</RG_CommandCloningPodAbortIncubationDesc>
 
 	<!-- Stargate -->
 

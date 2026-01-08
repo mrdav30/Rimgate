@@ -14,7 +14,7 @@ public class WorkGiver_Warden_CarryFromBedToSarcophagus : WorkGiver_Warden
 
         if (base.ShouldSkip(pawn, forced)) return true;
 
-        if (Utils.PawnIncapableOfHauling(pawn, out _)) return true;
+        if (pawn.IncapableOfHauling(out _)) return true;
 
         if (!pawn.Map.listerBuildings.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus))
             return true;

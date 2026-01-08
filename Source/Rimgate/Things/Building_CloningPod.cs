@@ -3,10 +3,13 @@ using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
+using VEF.Maps;
 using VEF.Utils;
 using Verse;
 using Verse.AI;
+using Verse.Noise;
 using Verse.Sound;
 
 namespace Rimgate;
@@ -15,8 +18,10 @@ public enum CloningStatus
 {
     Idle = 0,
     CloningStarted,
-    CloningFinished,
+    CalibrationFinished,
     HostDischarged,
+    Paused,
+    Incubating,
     Error
 }
 
@@ -31,13 +36,15 @@ public enum CloneType
 
 public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawnPawn, ISearchableContents, IOpenable
 {
-    protected ThingOwner innerContainer;
+    private static List<ThingDef> _cachedPods;
 
-    protected bool contentsKnown;
+    public const float BiomassCostPerCycle = 100f;
 
     public CompRefuelable Refuelable => _cachedRefuelable ??= GetComp<CompRefuelable>();
 
     public CompPowerTrader Power => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
+
+    public bool Powered => Power?.PowerOn == true;
 
     public Comp_AnalyzableResearchWhen Analyzable => _cachedAnalyzable ??= GetComp<Comp_AnalyzableResearchWhen>();
 
@@ -49,39 +56,39 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     public CloningStatus Status = CloningStatus.Idle;
 
-    public bool ContainsCorpse => innerContainer.Count > 0 && innerContainer[0] is Corpse;
+    public bool ContainsCorpse => _innerContainer?.Count > 0 && _innerContainer[0] is Corpse;
 
-    public string openedSignal;
+    public string OpenedSignal;
 
     public virtual int OpenTicks => 300;
 
-    public bool HasAnyContents => innerContainer != null && innerContainer.Count > 0;
+    public virtual bool CanOpen => HasHostPawn;
 
-    public virtual bool CanOpen => HasAnyContents;
-
-    public ThingOwner SearchableContents => innerContainer;
+    public ThingOwner SearchableContents => _innerContainer;
 
     public Thing ContainedThing
     {
         get
         {
-            if (innerContainer.Count != 0)
+            if (_innerContainer.Count != 0)
             {
-                return innerContainer[0];
+                return _innerContainer[0];
             }
 
             return null;
         }
     }
 
-    public Pawn InnerPawn
+    public bool HasHostPawn => _innerContainer?.Count > 0;
+
+    public Pawn HostPawn
     {
         get
         {
-            if (!HasAnyContents)
+            if (!HasHostPawn)
                 return null;
 
-            foreach (Thing thing in innerContainer)
+            foreach (Thing thing in _innerContainer)
             {
                 if (thing is Pawn innerPawn)
                     return innerPawn;
@@ -94,17 +101,60 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         }
     }
 
-    public float RemainingWork => _workRemaining;
+    public bool HasClonePawn => _pendingCloneContainer?.Count > 0;
 
-    public CloneType CurrentJob => _currentJob;
+    public Pawn ClonePawn
+    {
+        get
+        {
+            if (_pendingCloneContainer?.Count == 0)
+                return null;
 
-    public bool IsWorking => Status == CloningStatus.CloningStarted;
+            foreach (Thing thing in _pendingCloneContainer)
+            {
+                if (thing is Pawn innerPawn)
+                    return innerPawn;
+            }
 
-    private static float _hostSavedFoodNeed;
+            return null;
+        }
+    }
 
-    private static float _hostSavedDbhThirstNeed;
+    public float RemainingCalibrationWork => _calibrationWorkRemaining;
 
-    private Comp_CloningPodControl _cachedControl;
+    public float RemainingIncubationTicks => _incubationTicksRemaining;
+
+    public CloneType CloningType => _cloningType;
+
+    public bool IsWorking => Status == CloningStatus.CloningStarted || Status == CloningStatus.Incubating;
+
+    public bool HasPendingClone => _pendingCloneContainer != null && _pendingCloneContainer.Count > 0;
+
+    public Pawn PendingClonePawn => HasPendingClone ? _pendingCloneContainer[0] as Pawn : null;
+
+    public float IncubationProgress
+    {
+        get
+        {
+            if (Status != CloningStatus.Incubating || _incubationTicksTotal <= 0)
+                return 0f;
+            return 1f - (float)_incubationTicksRemaining / _incubationTicksTotal;
+        }
+    }
+
+    private ThingOwner _innerContainer;
+
+    private ThingOwner _pendingCloneContainer; // holds 0 or 1 Pawn
+
+    private bool _contentsKnown;
+
+    private float _hostSavedFoodNeed;
+
+    private float _hostSavedDbhThirstNeed;
+
+    private bool _hostNeedsSnapshotTaken;
+
+    private Comp_CloningPodAnimation _cachedControl;
 
     private CompRefuelable _cachedRefuelable;
 
@@ -112,20 +162,25 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     private Comp_AnalyzableResearchWhen _cachedAnalyzable;
 
-    private static List<ThingDef> _cachedPods;
+    private float _calibrationWorkRemaining;
 
-    private float _workRemaining;
+    private CloneType _cloningType;
 
-    private CloneType _currentJob;
+    private int _incubationTicksTotal;
+
+    private int _incubationTicksRemaining;
+
+    private CalibrationOutcome _calibrationOutcome;
 
     public Building_CloningPod()
     {
-        innerContainer = new ThingOwner<Thing>(this);
+        _innerContainer = new ThingOwner<Thing>(this);
+        _pendingCloneContainer = new ThingOwner<Thing>(this);
     }
 
     public ThingOwner GetDirectlyHeldThings()
     {
-        return innerContainer;
+        return _innerContainer;
     }
 
     public void GetChildHolders(List<IThingHolder> outChildren)
@@ -137,12 +192,12 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
     {
         base.SpawnSetup(map, respawningAfterLoad);
         if (base.Faction != null && base.Faction.IsPlayer)
-            contentsKnown = true;
+            _contentsKnown = true;
     }
 
     public override AcceptanceReport ClaimableBy(Faction fac)
     {
-        if (innerContainer.Any && !contentsKnown)
+        if (_innerContainer.Any && !_contentsKnown)
             return false;
 
         return base.ClaimableBy(fac);
@@ -153,53 +208,73 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         base.Tick();
 
         // State-dependent power consumption
-        if (Status == CloningStatus.CloningStarted || Status == CloningStatus.CloningFinished)
+        if (IsWorking)
             Power.PowerOutput = -PowerComp.Props.PowerConsumption;
         else
             Power.PowerOutput = -PowerComp.Props.idlePowerDraw;
 
-        Pawn pawn = InnerPawn;
-        if (pawn == null)
-            return;
-
-        if (!Power.PowerOn || !Refuelable.IsFull)
-        {
-            // Interrupt cloning on power loss
-            if (!Power.PowerOn)
-                Log.Message(this + $" :: Lost power while running (state: {Status})");
-
-            EjectContents();
-            Reset();
-            return;
-        }
-
-        bool containsCorpse = ContainsCorpse;
         switch (Status)
         {
             case CloningStatus.Idle:
                 {
-                    if (containsCorpse)
+                    if (!Powered)
+                    {
+                        // don't send error message here, handled when starting calibration
+                        Status = CloningStatus.Error;
+                        return;
+                    }
+
+                    if (!HasHostPawn || ContainsCorpse)
                         break;
 
-                    // Save initial patient food need level
-                    if (pawn.needs.food != null)
-                        _hostSavedFoodNeed = pawn.needs.food.CurLevelPercentage;
-
-                    // Save initial patient DBH thirst and reset DBH bladder/hygiene need levels
-                    if (ModCompatibility.DbhIsActive)
+                    if (!_hostNeedsSnapshotTaken)
                     {
-                        _hostSavedDbhThirstNeed = DbhCompatibility.GetThirstNeedCurLevelPercentage(pawn);
-                        DbhCompatibility.SetBladderNeedCurLevelPercentage(pawn, 1f);
-                        DbhCompatibility.SetHygieneNeedCurLevelPercentage(pawn, 1f);
+                        var pawn = HostPawn;
+                        // Save initial patient food need level
+                        if (pawn.needs.food != null)
+                            _hostSavedFoodNeed = pawn.needs.food.CurLevelPercentage;
+
+                        // Save initial patient DBH thirst and reset DBH bladder/hygiene need levels
+                        if (ModCompatibility.DbhIsActive)
+                        {
+                            _hostSavedDbhThirstNeed = DbhCompatibility.GetThirstNeedCurLevelPercentage(pawn);
+                            DbhCompatibility.SetBladderNeedCurLevelPercentage(pawn, 1f);
+                            DbhCompatibility.SetHygieneNeedCurLevelPercentage(pawn, 1f);
+                        }
+                        _hostNeedsSnapshotTaken = true;
                     }
 
                     break;
                 }
-            case CloningStatus.CloningFinished:
+            case CloningStatus.CloningStarted:
                 {
-
-                    if (!containsCorpse)
+                    if (!HasHostPawn)
                     {
+                        Status = CloningStatus.Error;
+                        Messages.Message(
+                            "RG_CloningPodCalibrationFailed".Translate("RG_CloningPodCalibrationFailed_NoHost".Translate()),
+                            this,
+                            MessageTypeDefOf.NegativeEvent);
+                        return;
+                    }
+
+                    if (!Powered)
+                    {
+                        Status = CloningStatus.Error;
+                        Messages.Message(
+                            "RG_CloningPodCalibrationFailed".Translate("NoPower".Translate()),
+                            this,
+                            MessageTypeDefOf.NegativeEvent);
+                        return;
+                    }
+
+                    break;
+                }
+            case CloningStatus.CalibrationFinished:
+                {
+                    if (!ContainsCorpse)
+                    {
+                        var pawn = HostPawn;
                         // Restore previously saved patient food need level
                         if (pawn.needs.food != null)
                             pawn.needs.food.CurLevelPercentage = _hostSavedFoodNeed;
@@ -215,48 +290,113 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                     }
 
                     EjectContents();
-                    SwitchState();
+                    SwitchState(); // CalibrationFinished -> HostDischarged
 
                     break;
                 }
             case CloningStatus.HostDischarged:
                 {
-                    Reset();
+                    if (!HasPendingClone)
+                    {
+                        Status = CloningStatus.Error;
+                        if (RimgateMod.Debug)
+                            Log.Message(this + " :: No pending clone found while paused, switching to Error state");
+                        return;
+                    }
+
+                    if (HasRequiredBiomass())
+                    {
+                        // Consume initial biomass cost prior to incubation to simulate starting the process
+                        Refuelable.ConsumeFuel(BiomassCostPerCycle);
+                        SwitchState(); // HostDischarged -> Incubating
+                    }
+                    else
+                        Status = CloningStatus.Paused;
+
+                    break;
+                }
+            case CloningStatus.Paused:
+                {
+                    if (!HasPendingClone)
+                    {
+                        Status = CloningStatus.Error;
+                        if (RimgateMod.Debug)
+                            Log.Message(this + " :: No pending clone found while paused, switching to Error state");
+                        return;
+                    }
+
+                    // Resume if power is back on and we have enough biomass
+                    if (Powered && HasRequiredBiomass())
+                    {
+                        Refuelable.ConsumeFuel(BiomassCostPerCycle);
+                        SwitchState(); // Paused -> Incubating
+                    }
+
+                    break;
+                }
+            case CloningStatus.Incubating:
+                {
+                    if (!HasPendingClone)
+                    {
+                        Status = CloningStatus.Error;
+                        return;
+                    }
+
+                    // Pause if power is off
+                    if (!Powered) return;
+
+                    if (_incubationTicksRemaining > 0)
+                        _incubationTicksRemaining--;
+                    else
+                    {
+                        _incubationTicksRemaining = 0;
+                        CloneUtility.FinalizeSpawn(this, PendingClonePawn, _calibrationOutcome);
+                        SwitchState(); // Incubating -> Idle (via FinalizeSpawn)
+                    }
+
+                    break;
+                }
+            case CloningStatus.Error:
+                {
+                    SwitchState(); // Error -> Idle
                     break;
                 }
         }
+    }
 
-        if (containsCorpse)
-            return;
+    // Calibration work tick handled by JobDriver_CalibrateClonePod
+    public void TickCalibrationWork(Pawn actor)
+    {
+        float workDone = StatExtension.GetStatValue(actor, RimgateDefOf.MedicalOperationSpeed, true, -1);
+        _calibrationWorkRemaining -= workDone;
 
-        // Suspend patient needs during cloning
-        bool suspendNeeds = Status == CloningStatus.CloningStarted
-            || Status == CloningStatus.CloningFinished;
-        if (suspendNeeds)
+        actor.skills.Learn(SkillDefOf.Intellectual, 0.11f, false, false);
+
+        if (_calibrationWorkRemaining > 0) return;
+
+        _calibrationWorkRemaining = 0f;
+        if (!TryStageClone())
         {
-            // Food
-            if (pawn.needs.food != null)
-                pawn.needs.food.CurLevelPercentage = 1f;
-
-            // Dubs Bad Hygiene thirst, bladder and hygiene
-            if (ModCompatibility.DbhIsActive)
-            {
-                DbhCompatibility.SetThirstNeedCurLevelPercentage(pawn, 1f);
-                DbhCompatibility.SetBladderNeedCurLevelPercentage(pawn, 1f);
-                DbhCompatibility.SetHygieneNeedCurLevelPercentage(pawn, 1f);
-            }
+            Status = CloningStatus.Error;
+            Messages.Message(
+                "RG_CloningPodCalibrationFailed".Translate("RG_CloningPodCalibrationFailed_NotStaged".Translate()),
+                this,
+                MessageTypeDefOf.NegativeEvent);
+            return;
         }
+
+        SwitchState(); // CloningStarted -> CalibrationFinished
     }
 
     public virtual void Open()
     {
-        if (HasAnyContents)
+        if (HasHostPawn)
         {
             EjectContents();
             Reset();
-            if (!openedSignal.NullOrEmpty())
+            if (!OpenedSignal.NullOrEmpty())
             {
-                Find.SignalManager.SendSignal(new Signal(openedSignal, this.Named("SUBJECT")));
+                Find.SignalManager.SendSignal(new Signal(OpenedSignal, this.Named("SUBJECT")));
             }
 
             DirtyMapMesh(base.Map);
@@ -265,7 +405,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     public virtual bool Accepts(Thing thing)
     {
-        return innerContainer.CanAcceptAnyOf(thing);
+        return _innerContainer.CanAcceptAnyOf(thing);
     }
 
     public virtual bool TryAcceptThing(Thing thing, bool allowSpecialEffects = true)
@@ -276,16 +416,16 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         bool flag;
         if (thing.holdingOwner != null)
         {
-            thing.holdingOwner.TryTransferToContainer(thing, innerContainer, thing.stackCount);
+            thing.holdingOwner.TryTransferToContainer(thing, _innerContainer, thing.stackCount);
             flag = true;
         }
         else
-            flag = innerContainer.TryAdd(thing);
+            flag = _innerContainer.TryAdd(thing);
 
         if (flag)
         {
             if (thing.Faction != null && thing.Faction.IsPlayer)
-                contentsKnown = true;
+                _contentsKnown = true;
 
             if (allowSpecialEffects)
                 SoundStarter.PlayOneShot(
@@ -300,14 +440,12 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
     {
-        Building_CloningPod cloningPod = this;
-
         foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(pawn))
             yield return floatMenuOption;
 
         bool canReach = ReachabilityUtility.CanReach(
             pawn,
-            cloningPod,
+            this,
             PathEndMode.InteractionCell,
             Danger.Deadly,
             false,
@@ -317,136 +455,124 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         {
             yield return new FloatMenuOption(Translator.Translate("CannotUseNoPath"), null);
             yield break;
-        };
+        }
 
-        if (!Power.PowerOn)
+        if (!Powered)
         {
             string req = "not powered";
-            yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
+            yield return new FloatMenuOption("RG_CannotUse".Translate("NoPower".Translate()), null);
             yield break;
         }
 
-        if (!Refuelable.IsFull)
+        if (!ResearchUtil.WraithCloneGenomeComplete)
         {
-            string req = "not filled";
-            yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
+            string req = $"{Analyzable?.Props?.requiresResearchDef?.label} knowledge required";
+            yield return new FloatMenuOption("RG_CannotUse".Translate(req), null);
             yield break;
         }
+
+        if (Status != CloningStatus.Idle) yield break;
 
         // initial pawn entering phase
-        if (cloningPod.innerContainer.Count == 0)
+        if (!HasHostPawn)
         {
             if (!pawn.RaceProps.IsFlesh)
             {
                 string req = "not biologic";
-                yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
+                yield return new FloatMenuOption("RG_CannotUse".Translate(req), null);
                 yield break;
             }
 
             if (QuestUtility.IsQuestLodger(pawn))
             {
-                yield return new FloatMenuOption("CryptosleepCasketGuestsNotAllowed".Translate(), null);
+                yield return new FloatMenuOption("RG_CannotUse".Translate("CryptosleepCasketGuestsNotAllowed".Translate()), null);
                 yield break;
             }
 
-            JobDef jobDef = RimgateDefOf.Rimgate_EnterCloningPod;
             yield return FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(
-                    "RG_EnterCloningPod".Translate(),
-                    () => pawn.jobs.TryTakeOrderedJob(
-                            new Job(jobDef, this),
-                            JobTag.Misc,
-                            false)
-                    ),
+                    "RG_EnterCloningPod".Translate("RG_BeginCloneGenome".Translate()),
+                    () => AssignJob(CloneType.Genome)),
                 pawn,
-                cloningPod,
+                this,
                 "ReservedBy",
                 null);
 
+            if (ResearchUtil.WraithCloneFullComplete)
+                yield return FloatMenuUtility.DecoratePrioritizedTask(
+                    new FloatMenuOption(
+                        "RG_EnterCloningPod".Translate("RG_BeginCloneFull".Translate()),
+                        () => AssignJob(CloneType.Full)),
+                    pawn,
+                    this,
+                    "ReservedBy",
+                    null);
+
+            if (ResearchUtil.WraithCloneEnhancementComplete)
+                yield return FloatMenuUtility.DecoratePrioritizedTask(
+                new FloatMenuOption(
+                    "RG_EnterCloningPod".Translate("RG_BeginCloneSoldier".Translate()),
+                    () => AssignJob(CloneType.Enhanced)),
+                pawn,
+                this,
+                "ReservedBy",
+                null);
+
+
+            void AssignJob(CloneType jobType)
+            {
+                Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_EnterCloningPod, this);
+                job.count = 1;
+                if (pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc, false))
+                    SetCloningType(jobType);
+            }
             yield break;
         }
 
         // if we have a pawn, show what the user can do
-        if (!ResearchUtil.WraithCloneGenomeComplete)
-        {
-            string req = $"{Analyzable?.Props?.requiresResearchDef?.label} knowledge required";
-            yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
-            yield break;
-        }
 
         if (pawn.skills.GetSkill(SkillDefOf.Medicine).levelInt < RimgateModSettings.MedicineSkillReq)
         {
-            string req = $"requires medicine >= {RimgateModSettings.MedicineSkillReq}";
-            yield return new FloatMenuOption("RG_CannotCloneReason".Translate(req), null);
+            string req = $"calibration requires {SkillDefOf.Medicine.label} >= {RimgateModSettings.MedicineSkillReq}";
+            yield return new FloatMenuOption("RG_CannotUse".Translate(req), null);
             yield break;
         }
 
-        if (cloningPod.InnerPawn.Dead)
+        string label = string.Empty;
+        switch (_cloningType)
         {
-            if (!ResearchUtil.WraithCloneCorpseComplete)
-                yield break;
-
-            JobDef jobDefReconstruct = RimgateDefOf.Rimgate_CloneReconstructDead;
-            yield return FloatMenuUtility.DecoratePrioritizedTask(
-                new FloatMenuOption(
-                    "RG_CloneReconstructDead".Translate(cloningPod.InnerPawn.LabelCap),
-                    () => pawn.jobs.TryTakeOrderedJob(
-                        new Job(jobDefReconstruct, this),
-                        JobTag.Misc, false)
-                   ),
-                pawn,
-                cloningPod,
-                "ReservedBy",
-                null);
-
-            yield break;  // can't do anything else with corpse
+            case CloneType.None:
+                break;
+            case CloneType.Genome:
+                label = "RG_CloneOccupantGenes".Translate(HostPawn.LabelCap);
+                break;
+            case CloneType.Full:
+                label = "RG_CloneOccupantFull".Translate(HostPawn.LabelCap);
+                break;
+            case CloneType.Enhanced:
+                label = "RG_CloneOccupantSoldier".Translate(HostPawn.LabelCap);
+                break;
+            case CloneType.Reconstruct:
+                label = "RG_CloneReconstructDead".Translate(HostPawn.LabelCap);
+                break;
+            default:
+                break;
         }
 
-        JobDef jobDefGenome = RimgateDefOf.Rimgate_CloneOccupantGenes;
-        yield return FloatMenuUtility.DecoratePrioritizedTask(
-            new FloatMenuOption(
-                "RG_CloneOccupantGenes".Translate(cloningPod.InnerPawn.LabelCap),
-                () => pawn.jobs.TryTakeOrderedJob(
-                    new Job(jobDefGenome, this),
-                    JobTag.Misc,
-                    false)
-                ),
-            pawn,
-            cloningPod,
-            "ReservedBy",
-            null);
-
-        if (!ResearchUtil.WraithCloneFullComplete)
+        if (label.NullOrEmpty()) // something went wrong then...
             yield break;
 
-        JobDef jobDefFull = RimgateDefOf.Rimgate_CloneOccupantFull;
         yield return FloatMenuUtility.DecoratePrioritizedTask(
             new FloatMenuOption(
-                "RG_CloneOccupantFull".Translate(cloningPod.InnerPawn.LabelCap),
-                () => pawn.jobs.TryTakeOrderedJob(
-                    new Job(jobDefFull, this),
-                    JobTag.Misc,
-                    false)
-                ),
+                label,
+                () =>
+                {
+                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CalibrateClonePodForPawn, this);
+                    job.count = 1;
+                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc, false);
+                }),
             pawn,
-            cloningPod,
-            "ReservedBy",
-            null);
-
-        if (!ResearchUtil.WraithCloneEnhancementComplete)
-            yield break;
-
-        JobDef jobDefSoldier = RimgateDefOf.Rimgate_CloneOccupantSoldier;
-        yield return FloatMenuUtility.DecoratePrioritizedTask(
-            new FloatMenuOption(
-                "RG_CloneOccupantSoldier".Translate(cloningPod.InnerPawn.LabelCap),
-                () => pawn.jobs.TryTakeOrderedJob(
-                    new Job(jobDefSoldier, this),
-                    JobTag.Misc,
-                    false)
-                ),
-            pawn,
-            cloningPod,
+            this,
             "ReservedBy",
             null);
     }
@@ -460,9 +586,9 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         if (select != null)
             yield return select;
 
-        if (Faction.IsOfPlayerFaction()
-            && innerContainer.Count > 0
-            && def.building.isPlayerEjectable)
+        if (!Faction.IsOfPlayerFaction()) yield break;
+
+        if (HasHostPawn && def.building.isPlayerEjectable)
         {
             Command_Action commandAction = new()
             {
@@ -477,20 +603,162 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                 icon = RimgateTex.CloneEjectCommandTex
             };
 
-            if (innerContainer.Count == 0)
+            if (_innerContainer.Count == 0)
                 commandAction.Disable("CommandPodEjectFailEmpty".Translate());
 
             yield return commandAction;
+        }
+
+        if (Status == CloningStatus.Incubating)
+        {
+            Command_Action commandAction = new()
+            {
+                action = () =>
+                {
+                    Reset();
+                },
+                defaultLabel = "RG_CommandCloningPodAbortIncubationLabel".Translate(),
+                defaultDesc = "RG_CommandCloningPodAbortIncubationDesc".Translate(),
+                hotKey = KeyBindingDefOf.Misc2,
+                icon = RimgateTex.CancelCommandTex
+            };
+            yield return commandAction;
+        }
+
+        if (!ResearchUtil.WraithCloneGenomeComplete) yield break;
+
+        bool disableActions = !Powered || Status != CloningStatus.Idle;
+        string disabledReason = "RG_CannotUse".Translate(!Powered ? "NoPower".Translate() : "in use");
+
+        Command_Action genomeAction = new Command_Action
+        {
+            defaultLabel = "RG_BeginCloneGenome".Translate(),
+            defaultDesc = "RG_CloneOccupantGenes".Translate("a colonist"),
+            icon = RimgateTex.CloneGenomeCommandTex,
+            action = () => SetPawnAndJobOptions(CloneType.Genome),
+            activateSound = SoundDefOf.Tick_Tiny
+        };
+
+        if (disableActions)
+            genomeAction.Disable(disabledReason);
+
+        yield return genomeAction;
+
+        if (ResearchUtil.WraithCloneFullComplete)
+        {
+            Command_Action fullAction = new Command_Action
+            {
+                defaultLabel = "RG_BeginCloneFull".Translate(),
+                defaultDesc = "RG_CloneOccupantFull".Translate("a colonist"),
+                icon = RimgateTex.CloneFullCommandTex,
+                action = () => SetPawnAndJobOptions(CloneType.Full),
+                activateSound = SoundDefOf.Tick_Tiny
+            };
+
+            if (disableActions)
+                fullAction.Disable(disabledReason);
+
+            yield return fullAction;
+        }
+
+        if (ResearchUtil.WraithCloneEnhancementComplete)
+        {
+            Command_Action enhanceAction = new Command_Action
+            {
+                defaultLabel = "RG_BeginCloneSoldier".Translate(),
+                defaultDesc = "RG_CloneOccupantSoldier".Translate("a colonist"),
+                icon = RimgateTex.CloneEnhancedCommandTex,
+                action = () => SetPawnAndJobOptions(CloneType.Enhanced),
+                activateSound = SoundDefOf.Tick_Tiny
+            };
+
+            if (disableActions)
+                enhanceAction.Disable(disabledReason);
+
+            yield return enhanceAction;
+        }
+
+        if (ResearchUtil.WraithCloneCorpseComplete)
+        {
+            Command_Action corpseAction = new Command_Action
+            {
+                defaultLabel = "RG_BeginCloneCorpse".Translate(),
+                defaultDesc = "RG_CloneReconstructDead".Translate("the deceased"),
+                icon = RimgateTex.CloneReconstructCommandTex,
+                action = () => SetPawnAndJobOptions(CloneType.Reconstruct, true),
+                activateSound = SoundDefOf.Tick_Tiny
+            };
+
+            if (disableActions)
+                corpseAction.Disable(disabledReason);
+
+            yield return corpseAction;
+        }
+
+        void SetPawnAndJobOptions(CloneType cloneType, bool forCorpse = false)
+        {
+            var options = new List<FloatMenuOption>();
+            foreach (Pawn pawn in Map.mapPawns.FreeColonistsSpawned)
+            {
+                if (pawn.Downed || pawn.InMentalState) continue;
+
+                string invalidReason = string.Empty;
+                if (!pawn.CanReach(this, PathEndMode.InteractionCell, Danger.Deadly))
+                    invalidReason = "NoPath".Translate().CapitalizeFirst();
+
+                string label = pawn.Label + (invalidReason.NullOrEmpty() ? "" : ": " + invalidReason);
+                Action action = null;
+                if (invalidReason.NullOrEmpty())
+                {
+                    action = delegate
+                    {
+                        if (forCorpse)
+                        {
+                            var tp = new TargetingParameters {
+                                canTargetMechs = false,
+                                canTargetAnimals = false,
+                                canTargetSubhumans = false,
+                                canTargetHumans = true,
+                                canTargetCorpses = true,
+                                onlyTargetCorpses = true
+                            };
+                            Find.Targeter.BeginTargeting(tp, target =>
+                            {
+                                Corpse corpse = target.Thing as Corpse;
+                                if (corpse == null)
+                                    return;
+
+                                Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryCorpseToCloningPod, corpse, this);
+                                job.count = 1;
+                                if (pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc, false))
+                                    SetCloningType(cloneType);
+                            });
+                        }
+                        else
+                        {
+                            Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_EnterCloningPod, this);
+                            job.count = 1;
+                            if (pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc, false))
+                                SetCloningType(cloneType);
+                        }
+                    };
+                }
+
+                options.Add(new FloatMenuOption(label, action));
+            }
+
+            if (options.Count > 0)
+                Find.WindowStack.Add(new FloatMenu(options));
         }
     }
 
     public virtual void EjectContents()
     {
-        if (!HasAnyContents)
+        if (!HasHostPawn)
             return;
 
         ThingDef filthSlime = ThingDefOf.Filth_Slime;
-        foreach (Thing thing in innerContainer)
+        foreach (Thing thing in _innerContainer)
         {
             if (thing is not Pawn pawn)
                 continue;
@@ -499,7 +767,6 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
             pawn.filth.GainFilth(filthSlime);
             if (pawn.RaceProps.IsFlesh)
                 pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness, null, null, null);
-
         }
 
         if (!Destroyed)
@@ -507,8 +774,9 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                 SoundDefOf.CryptosleepCasket_Eject,
                 SoundInfo.InMap(new TargetInfo(Position, Map, false), MaintenanceType.None));
 
-        innerContainer.TryDropAll(InteractionCell, base.Map, ThingPlaceMode.Near);
-        contentsKnown = true;
+        _innerContainer.TryDropAll(InteractionCell, base.Map, ThingPlaceMode.Near);
+        _innerContainer.ClearAndDestroyContents();
+        _contentsKnown = true;
     }
 
     public override void DeSpawn(DestroyMode mode = 0)
@@ -522,12 +790,12 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
     {
         Map map = base.Map;
         base.Destroy(mode);
-        if (innerContainer.Count > 0 && (mode == DestroyMode.Deconstruct || mode == DestroyMode.KillFinalize))
+        if (_innerContainer.Count > 0 && (mode == DestroyMode.Deconstruct || mode == DestroyMode.KillFinalize))
         {
             if (mode != DestroyMode.Deconstruct)
             {
                 List<Pawn> list = new List<Pawn>();
-                foreach (Thing item2 in (IEnumerable<Thing>)innerContainer)
+                foreach (Thing item2 in (IEnumerable<Thing>)_innerContainer)
                 {
                     if (item2 is Pawn item)
                         list.Add(item);
@@ -537,20 +805,155 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                     HealthUtility.DamageUntilDowned(item3);
             }
 
-            innerContainer.TryDropAll(base.Position, map, ThingPlaceMode.Near);
+            _innerContainer.TryDropAll(base.Position, map, ThingPlaceMode.Near);
         }
 
-        innerContainer.ClearAndDestroyContents();
+        _innerContainer.ClearAndDestroyContents();
     }
 
     public override string GetInspectString()
     {
-        string text = base.GetInspectString();
-        string str = (contentsKnown ? innerContainer.ContentsString : ((string)"UnknownLower".Translate()));
-        if (!text.NullOrEmpty())
-            text += "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.Append(base.GetInspectString());
+        string str = (_contentsKnown ? _innerContainer.ContentsString : ((string)"UnknownLower".Translate()));
+        if (sb.Length > 0)
+            sb.AppendLine();
+        sb.Append("CasketContains".Translate() + ": " + str.CapitalizeFirst());
 
-        return text + ("CasketContains".Translate() + ": " + str.CapitalizeFirst());
+        if (Status == CloningStatus.Incubating)
+        {
+            sb.AppendLine();
+            if (!Powered)
+                sb.Append("RG_IncubationPaused".Translate("NoPower".Translate()));
+            else
+                sb.Append("RG_IncubationInProgress".Translate(IncubationProgress.ToStringPercent()));
+        }
+        else if (Status == CloningStatus.Paused && !HasRequiredBiomass())
+        {
+            sb.AppendLine();
+            sb.Append("RG_IncubationPaused".Translate("NoFuel".Translate()));
+        }
+
+        return sb.ToString().TrimEndNewlines();
+    }
+
+    public void SetCloningType(CloneType type)
+    {
+        _cloningType = type;
+    }
+
+    public bool HasRequiredBiomass(float required = BiomassCostPerCycle) => Refuelable?.Fuel >= required;
+
+    public void InitiateCloningProcess(float workAmount)
+    {
+        _calibrationWorkRemaining = workAmount;
+        SwitchState(); // Idle -> CloningStarted
+    }
+
+    private bool TryStageClone()
+    {
+        if (HasPendingClone)
+            return false;
+
+        CloneUtility.TryCreateClonePawn(this, _cloningType, out Pawn clone, out CalibrationOutcome outcome);
+        if (clone == null || outcome == null)
+            return false;
+
+        _pendingCloneContainer.TryAdd(clone);
+        _calibrationOutcome = outcome;
+
+        // Determine incubation time based on outcome
+        _incubationTicksTotal = RimgateModSettings.BaseIncubationTicks;
+
+        if (!outcome.AnyIssues)
+            _incubationTicksTotal = (int)(_incubationTicksTotal * 0.75f); // faster if no issues
+        else if (outcome.MajorIssues)
+            _incubationTicksTotal = (int)(_incubationTicksTotal * 1.5f); // slower if major failure occurs
+        else if (outcome.MinorIssues)
+            _incubationTicksTotal = (int)(_incubationTicksTotal * 1.25f); // slower if minor failure occurs
+
+        _incubationTicksRemaining = _incubationTicksTotal;
+
+        return true;
+    }
+
+    public void SwitchState()
+    {
+        CloningStatus oldStatus = Status;
+        switch (Status)
+        {
+            case CloningStatus.Idle:
+                Status = CloningStatus.CloningStarted;
+                break;
+
+            case CloningStatus.CloningStarted:
+                Status = CloningStatus.CalibrationFinished;
+                break;
+
+            case CloningStatus.CalibrationFinished:
+                Status = CloningStatus.HostDischarged;
+                break;
+
+            case CloningStatus.HostDischarged:
+                Status = CloningStatus.Incubating;
+                break;
+
+            case CloningStatus.Paused:
+                Status = CloningStatus.Incubating;
+                break;
+
+            case CloningStatus.Incubating:
+                {
+                    Reset(); // sets state to Idle
+                    break;
+                }
+
+            case CloningStatus.Error:
+                {
+                    EjectContents();
+                    Reset();
+                    break;
+                }
+        }
+
+        if (RimgateMod.Debug)
+            Log.Message(this + $" :: state change from {oldStatus.ToStringSafe().Colorize(Color.yellow)}"
+                + $" to {Status.ToStringSafe().Colorize(Color.yellow)}");
+    }
+
+    public void Reset()
+    {
+        _cloningType = CloneType.None;
+        Status = CloningStatus.Idle;
+
+        _calibrationWorkRemaining = 0f;
+        _incubationTicksRemaining = 0;
+        _calibrationOutcome = null;
+
+        _hostSavedFoodNeed = 0f;
+        _hostSavedDbhThirstNeed = 0f;
+        _hostNeedsSnapshotTaken = false;
+
+        _innerContainer.ClearAndDestroyContents();
+        _pendingCloneContainer.ClearAndDestroyContents();
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Deep.Look(ref _innerContainer, "_innerContainer", this);
+        Scribe_Deep.Look(ref _pendingCloneContainer, "_pendingCloneContainer", this);
+        Scribe_Values.Look(ref _contentsKnown, "_contentsKnown", false);
+        Scribe_Values.Look(ref OpenedSignal, "OpenedSignal");
+        Scribe_Values.Look(ref _calibrationWorkRemaining, "_calibrationWorkRemaining", 0f);
+        Scribe_Values.Look(ref Status, "Status", CloningStatus.Idle);
+        Scribe_Values.Look(ref _cloningType, "_cloningType", CloneType.None);
+        Scribe_Values.Look(ref _incubationTicksTotal, "_incubationTicksTotal", 0);
+        Scribe_Values.Look(ref _incubationTicksRemaining, "_incubationTicksRemaining", 0);
+        Scribe_Deep.Look(ref _calibrationOutcome, "_calibrationOutcome");
+        Scribe_Values.Look(ref _hostSavedFoodNeed, "_hostSavedFoodNeed", 0f);
+        Scribe_Values.Look(ref _hostSavedDbhThirstNeed, "_hostSavedDbhThirstNeed", 0f);
+        Scribe_Values.Look(ref _hostNeedsSnapshotTaken, "_hostNeedsSnapshotTaken", false);
     }
 
     public static Building_CloningPod FindCloningPodFor(
@@ -564,7 +967,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         foreach (ThingDef thingDef in _cachedPods)
         {
             bool queuing = KeyBindingDefOf.QueueOrder.IsDownEvent;
-            Building_CloningPod cloningCasketFor = GenClosest.ClosestThingReachable(
+            Building_CloningPod pod = GenClosest.ClosestThingReachable(
                 rescuee.Position,
                 rescuee.Map,
                 ThingRequest.ForDef(thingDef),
@@ -580,12 +983,12 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                 9999f,
                 Validator) as Building_CloningPod;
 
-            if (cloningCasketFor != null)
-                return cloningCasketFor;
+            if (pod != null)
+                return pod;
 
             bool Validator(Thing x)
             {
-                if (((Building_CloningPod)x).HasAnyContents)
+                if (x is not Building_CloningPod pod || pod.HasHostPawn || !pod.Powered)
                     return false;
 
                 if (!queuing || !traveler.HasReserved(x))
@@ -596,68 +999,5 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         }
 
         return null;
-    }
-
-    public void InitiateWork(CloneType jobType, float workAmount)
-    {
-        _currentJob = jobType;
-        _workRemaining = workAmount;
-    }
-
-    public void SetWorkAmount(float amount)
-    {
-        _workRemaining = amount;
-    }
-
-    public void TickWork(float amount)
-    {
-        _workRemaining -= amount;
-    }
-
-    public void SwitchState()
-    {
-        CloningStatus oldStatus = Status;
-        switch (Status)
-        {
-            case CloningStatus.Idle:
-                Status = CloningStatus.CloningStarted;
-                break;
-
-            case CloningStatus.CloningStarted:
-                Status = CloningStatus.CloningFinished;
-                break;
-
-            case CloningStatus.CloningFinished:
-                Status = CloningStatus.HostDischarged;
-                break;
-
-            case CloningStatus.HostDischarged:
-                Status = CloningStatus.Idle;
-                break;
-
-            default:
-                Status = CloningStatus.Error;
-                break;
-        }
-
-        if (RimgateMod.Debug)
-            Log.Message(this + $" :: state change from {oldStatus.ToStringSafe().Colorize(Color.yellow)}"
-                + $" to {Status.ToStringSafe().Colorize(Color.yellow)}");
-    }
-
-    public void Reset()
-    {
-        _currentJob = CloneType.None;
-        Status = CloningStatus.Idle;
-        _workRemaining = 0;
-    }
-
-    public override void ExposeData()
-    {
-        base.ExposeData();
-        Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
-        Scribe_Values.Look(ref contentsKnown, "contentsKnown", defaultValue: false);
-        Scribe_Values.Look(ref openedSignal, "openedSignal");
-        Scribe_Values.Look(ref _workRemaining, "_remainingWork", 0f);
     }
 }

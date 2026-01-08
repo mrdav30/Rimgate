@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -15,40 +16,44 @@ public class FloatMenuOptionProvider_CarryToCloningPod : FloatMenuOptionProvider
 
     protected override bool RequiresManipulation => true;
 
-    protected override FloatMenuOption GetSingleOptionFor(Pawn clickedPawn, FloatMenuContext context)
+    public virtual IEnumerable<FloatMenuOption> GetOptionsFor(Pawn clickedPawn, FloatMenuContext context)
     {
-        if (!clickedPawn.Downed)
-            return null;
+        if (!clickedPawn.Downed || !clickedPawn.RaceProps.IsFlesh)
+            yield break;
 
-        if (!context.FirstSelectedPawn.CanReserveAndReach(clickedPawn, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, ignoreOtherReservations: true))
-        {
-            return null;
-        }
+        var selected = context.FirstSelectedPawn;
 
-        if (Building_CloningPod.FindCloningPodFor(clickedPawn, context.FirstSelectedPawn, ignoreOtherReservations: true) == null)
-        {
-            return null;
-        }
+        if (!selected.CanReserveAndReach(clickedPawn, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, ignoreOtherReservations: true))
+            yield break;
 
-        TaggedString taggedString = "RG_CarryToCloningPod".Translate(clickedPawn.LabelCap, clickedPawn);
+        if (!ResearchUtil.WraithCloneGenomeComplete)
+            yield break;
+
+        Building_CloningPod cloningPod = Building_CloningPod.FindCloningPodFor(clickedPawn, selected);
+        if (cloningPod == null)
+            yield break;
+
+        TaggedString taggedString = "PlaceIn".Translate(clickedPawn, cloningPod);
         if (clickedPawn.IsQuestLodger())
         {
             var label = "CryptosleepCasketGuestsNotAllowed".Translate();
-            return FloatMenuUtility.DecoratePrioritizedTask(
+            yield return FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(
                     $"{taggedString} ({label})",
                     null,
                     MenuOptionPriority.Default,
                     null,
                     clickedPawn),
-                context.FirstSelectedPawn,
+                selected,
                 clickedPawn);
+
+            yield break;
         }
 
         if (clickedPawn.GetExtraHostFaction() != null)
         {
             string label = "CryptosleepCasketGuestPrisonersNotAllowed".Translate();
-            return FloatMenuUtility.DecoratePrioritizedTask(
+            yield return FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(
                     $"{taggedString} ({label})",
                     null,
@@ -57,40 +62,42 @@ public class FloatMenuOptionProvider_CarryToCloningPod : FloatMenuOptionProvider
                     clickedPawn),
                 context.FirstSelectedPawn,
                 clickedPawn);
+
+            yield break;
         }
 
-        Action action = delegate
+        yield return FloatMenuUtility.DecoratePrioritizedTask(
+                new FloatMenuOption(
+                    $"{taggedString} ({"RG_BeginCloneGenome".Translate()})",
+                    () => AssignJob(CloneType.Genome),
+                    revalidateClickTarget: clickedPawn),
+                selected,
+                clickedPawn);
+
+        if (ResearchUtil.WraithCloneFullComplete)
+            yield return FloatMenuUtility.DecoratePrioritizedTask(
+                new FloatMenuOption(
+                    $"{taggedString} ({"RG_BeginCloneFull".Translate()})",
+                    () => AssignJob(CloneType.Full),
+                    revalidateClickTarget: clickedPawn),
+                selected,
+                clickedPawn);
+
+        if (ResearchUtil.WraithCloneEnhancementComplete)
+            yield return FloatMenuUtility.DecoratePrioritizedTask(
+                new FloatMenuOption(
+                    $"{taggedString} ({"RG_BeginCloneSoldier".Translate()})",
+                    () => AssignJob(CloneType.Enhanced),
+                    revalidateClickTarget: clickedPawn),
+                selected,
+                clickedPawn);
+
+        void AssignJob(CloneType jobType)
         {
-            Building_CloningPod cloningPod = Building_CloningPod.FindCloningPodFor(clickedPawn, context.FirstSelectedPawn);
-            if (cloningPod == null)
-            {
-                cloningPod = Building_CloningPod.FindCloningPodFor(clickedPawn, context.FirstSelectedPawn, ignoreOtherReservations: true);
-            }
-
-            if (cloningPod == null)
-            {
-                Messages.Message(
-                    "RG_NoCloningPod".Translate() + ": " + "RG_CannotCarryToCloningPod".Translate(),
-                    clickedPawn,
-                    MessageTypeDefOf.RejectInput,
-                    historical: false);
-            }
-            else
-            {
-                Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryToCloningPod, clickedPawn, cloningPod);
-                job.count = 1;
-                context.FirstSelectedPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-            }
-        };
-
-        return FloatMenuUtility.DecoratePrioritizedTask(
-            new FloatMenuOption(
-                taggedString,
-                action,
-                MenuOptionPriority.Default,
-                null,
-                clickedPawn),
-            context.FirstSelectedPawn,
-            clickedPawn);
+            Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CarryToCloningPod, clickedPawn, cloningPod);
+            job.count = 1;
+            if (selected.jobs.TryTakeOrderedJob(job, JobTag.Misc, false))
+                cloningPod.SetCloningType(jobType);
+        }
     }
 }

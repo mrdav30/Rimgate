@@ -8,7 +8,7 @@ namespace Rimgate;
 
 public class JobDriver_EnterCloningPod : JobDriver
 {
-    private Building_CloningPod _clonePod => (Building_CloningPod)job.targetA.Thing;
+    private Building_CloningPod ClonePod => (Building_CloningPod)job.targetA.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -18,10 +18,7 @@ public class JobDriver_EnterCloningPod : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDespawnedOrNull(TargetIndex.A);
-        this.FailOn(() => !_clonePod.Power.PowerOn
-            || !_clonePod.Refuelable.IsFull
-            || _clonePod.HasAnyContents
-            || !_clonePod.Accepts(pawn));
+        this.FailOn(() => !ClonePod.Powered || ClonePod.HasHostPawn || !ClonePod.Accepts(pawn));
 
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell, false);
         Toil toil = Toils_General.Wait(500, TargetIndex.None)
@@ -33,7 +30,7 @@ public class JobDriver_EnterCloningPod : JobDriver
             initAction = () =>
             {
                 Pawn actor = pawn;
-                Building_CloningPod cloningPod = _clonePod;
+                Building_CloningPod cloningPod = ClonePod;
                 Action action = () =>
                 {
                     actor.DeSpawn(DestroyMode.Vanish);

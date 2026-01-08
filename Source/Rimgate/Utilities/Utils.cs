@@ -24,13 +24,33 @@ internal static class Utils
         return best;
     }
 
-    public static bool PawnIncapableOfHauling(Pawn p, out string reason)
+    public static bool IncapableOfHauling(this Pawn p, out string reason)
     {
         reason = null;
         // Vanilla uses both WorkTags and WorkType
         if (p.WorkTagIsDisabled(WorkTags.ManualDumb) || p.WorkTypeIsDisabled(WorkTypeDefOf.Hauling))
         {
             reason = "RG_IncapableOf".Translate(p.LabelShort, WorkTypeDefOf.Hauling.gerundLabel).CapitalizeFirst();
+            return true;
+        }
+
+        // also block if Manipulation is missing
+        if (p.health == null || !p.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+        {
+            reason = "RG_IncapableOf".Translate(p.LabelShort, PawnCapacityDefOf.Manipulation.label).CapitalizeFirst();
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool IncapableOfGivingAid(this Pawn p, out string reason)
+    {
+        reason = null;
+        // Vanilla uses both WorkTags and WorkType
+        if (p.WorkTagIsDisabled(WorkTags.Caring) || p.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
+        {
+            reason = "RG_IncapableOf".Translate(p.LabelShort, WorkTypeDefOf.Doctor.gerundLabel).CapitalizeFirst();
             return true;
         }
 

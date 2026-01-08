@@ -30,15 +30,12 @@ public class JobDriver_CarryToCloningPod : JobDriver
         this.FailOnDestroyedOrNull(TargetIndex.A);
         this.FailOnDestroyedOrNull(TargetIndex.B);
         this.FailOnAggroMentalState(TargetIndex.A);
-        this.FailOn(() => !ClonePod.Power.PowerOn
-            || !ClonePod.Refuelable.IsFull
-            || ClonePod.HasAnyContents
-            || !ClonePod.Accepts(Takee));
+        this.FailOn(() => !ClonePod.Powered || ClonePod.HasHostPawn || !ClonePod.Accepts(Takee));
 
         Toil goToTakee = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.OnCell)
             .FailOnDestroyedNullOrForbidden(TargetIndex.A)
             .FailOnDespawnedNullOrForbidden(TargetIndex.B)
-            .FailOn(() => ClonePod.HasAnyContents)
+            .FailOn(() => ClonePod.HasHostPawn)
             .FailOn(() => !pawn.CanReach(Takee, PathEndMode.OnCell, Danger.Deadly))
             .FailOnSomeonePhysicallyInteracting(TargetIndex.A);
         Toil startCarryingTakee = Toils_Haul.StartCarryThing(TargetIndex.A);

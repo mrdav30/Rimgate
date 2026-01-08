@@ -9,28 +9,21 @@ public static class DbhCompatibility
     {
         var thirstNeed = pawn.needs.TryGetNeed<DubsBadHygiene.Need_Thirst>();
         if (thirstNeed != null)
-        {
             return thirstNeed.CurLevelPercentage;
-        }
         return 0;
     }
 
     public static void SetThirstNeedCurLevelPercentage(Pawn pawn, float value)
     {
         var thirstNeed = pawn.needs.TryGetNeed<DubsBadHygiene.Need_Thirst>();
-        if (thirstNeed != null)
-        {
             thirstNeed.CurLevelPercentage = value;
-        }
     }
 
     public static float GetHygieneNeedCurLevelPercentage(Pawn pawn)
     {
         var thirstNeed = pawn.needs.TryGetNeed<DubsBadHygiene.Need_Hygiene>();
         if (thirstNeed != null)
-        {
             return thirstNeed.CurLevelPercentage;
-        }
         return 0;
     }
 
@@ -38,26 +31,20 @@ public static class DbhCompatibility
     {
         var thirstNeed = pawn.needs.TryGetNeed<DubsBadHygiene.Need_Hygiene>();
         if (thirstNeed != null)
-        {
             thirstNeed.CurLevelPercentage = value;
-        }
     }
 
     public static void SetBladderNeedCurLevelPercentage(Pawn pawn, float value)
     {
         var thirstNeed = pawn.needs.TryGetNeed<DubsBadHygiene.Need_Bladder>();
         if (thirstNeed != null)
-        {
             thirstNeed.CurLevelPercentage = value;
-        }
     }
 
     public static void ShouldBeWashedBySomeonePostfix(Pawn pawn, ref bool __result)
     {
         if (pawn.ParentHolder is Building_Sarcophagus sarcophagus 
             && sarcophagus.Power?.PowerOn == true)
-        {
             __result = false;
-        }
     }
 }
