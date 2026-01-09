@@ -451,31 +451,25 @@ internal static class CloneUtility
         }
 
         clonePawn.workSettings?.EnableAndInitialize();
-        if (majorInsaneClone)
+
+        clonePawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
+        if (clonePawn.RaceProps.IsFlesh)
         {
-            if (clonePawn.RaceProps.IsFlesh)
-            {
-                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
+            if (majorInsaneClone)
                 clonePawn.health.AddHediff(HediffDefOf.Scaria);
-            }
-        }
-        else if (majorIdiotClone)
-        {
-            if (clonePawn.RaceProps.IsFlesh)
+            else if (majorIdiotClone)
             {
-                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
                 clonePawn.health.AddHediff(HediffDefOf.Dementia);
                 clonePawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
                 clonePawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
             }
-        }
-        else if (clonePawn.RaceProps.IsFlesh)
-        {
-            clonePawn.health.AddHediff(RimgateDefOf.Rimgate_Clone);
-            clonePawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
-            clonePawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
-            if (cloneType == CloneType.Enhanced)
-                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_ClonedEnduring);
+            else
+            {
+                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness);
+                clonePawn.health.AddHediff(RimgateDefOf.Rimgate_SystemShock);
+                if (cloneType == CloneType.Enhanced)
+                    clonePawn.health.AddHediff(RimgateDefOf.Rimgate_ClonedEnduring);
+            }
         }
 
         if (innerPawn.mutant != null)

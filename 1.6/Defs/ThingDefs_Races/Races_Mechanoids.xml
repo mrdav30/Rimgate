@@ -307,7 +307,7 @@
     <ThingDef Name="Rimgate_ReplicatorHumanoidBase" ParentName="BasePawn">
         <defName>Rimgate_ReplicatorHumanoid</defName>
         <label>replicator (humanoid)</label>
-        <description>A highly advanced mechanoid designed to mimic humanoid forms. Equipped with superior combat capabilities and adaptive technologies, it excels in close-quarters engagements.\n\nNote: Due to their advanced design, they possess enhanced resilience and adaptability compared to standard mechanoids.  Unless their data processing unit is destroyed, they will continue to operate effectively-even after death.\n\nNote 2: Unlike most mechanoids, when these replicators equip a weapon it fuses with their systems, making it integral to their combat capabilities and stays apart of them even after death.</description>
+        <description>A highly advanced mechanoid designed to mimic humanoid forms. Equipped with superior combat capabilities and adaptive technologies, it excels in close-quarters engagements.\n\nNote: Due to their advanced design, they possess enhanced resilience and adaptability compared to standard mechanoids. Unless their data processing unit is destroyed, they will continue to operate effectively-even after death.\n\nNote 2: Unlike most mechanoids, when these replicators equip a weapon it fuses with their systems, making it integral to their combat capabilities and stays apart of them even after death.</description>
         <statBases>
             <MarketValue>17777</MarketValue>
             <PsychicSensitivity>0.5</PsychicSensitivity>
@@ -412,7 +412,7 @@
             </li>
         </tools>
 
-         <race>
+        <race>
             <fleshType>Mechanoid</fleshType>
             <needsRest>false</needsRest>
             <hasGenders>true</hasGenders>
@@ -572,6 +572,8 @@
             <DeepDrillingSpeed>1.5</DeepDrillingSpeed>
             <GeneralLaborSpeed>1.5</GeneralLaborSpeed>
             <ConstructSuccessChance>1.5</ConstructSuccessChance>
+            <EnergyShieldRechargeRate>0.015</EnergyShieldRechargeRate>
+            <EnergyShieldEnergyMax>2.5</EnergyShieldEnergyMax>
         </statBases>
         <butcherProducts>
             <Steel>100</Steel>
@@ -633,18 +635,13 @@
             </li>
         </tools>
         <comps>
-            <li Class="VEF.Apparels.CompProperties_ShieldBubble">
-                <compClass>VEF.Apparels.CompShieldBubble</compClass>
-                <blockRangedAttack>true</blockRangedAttack>
-                <blockMeleeAttack>true</blockMeleeAttack>
-                <showWhenDrafted>false</showWhenDrafted>
-                <showOnHostiles>false</showOnHostiles>
-                <showOnNeutralInCombat>false</showOnNeutralInCombat>
-                <EnergyShieldRechargeRate>1.1</EnergyShieldRechargeRate>
-                <EnergyShieldEnergyMax>1.4</EnergyShieldEnergyMax>
-                <minShieldSize>1.4</minShieldSize>
-                <maxShieldSize>1.8</maxShieldSize>
-                <disableRotation>true</disableRotation>
+            <li Class="CompProperties_Shield">
+                <startingTicksToReset>11500</startingTicksToReset><!-- 2.5 min -->
+                <minDrawSize>1.4</minDrawSize>
+                <maxDrawSize>1.8</maxDrawSize>
+                <energyLossPerDamage>0.015</energyLossPerDamage>
+                <energyOnReset>1.5</energyOnReset>
+                <blocksRangedWeapons>false</blocksRangedWeapons>
             </li>
         </comps>
     </ThingDef>

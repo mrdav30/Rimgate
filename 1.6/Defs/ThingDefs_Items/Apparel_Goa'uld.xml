@@ -767,8 +767,8 @@
 			<Insulation_Cold>35</Insulation_Cold>
 			<Insulation_Heat>11</Insulation_Heat>
 			<EquipDelay>20</EquipDelay>
-			<EnergyShieldRechargeRate>0.08</EnergyShieldRechargeRate>
-			<EnergyShieldEnergyMax>1.2</EnergyShieldEnergyMax>
+			<EnergyShieldRechargeRate>0.013</EnergyShieldRechargeRate>
+			<EnergyShieldEnergyMax>2.0</EnergyShieldEnergyMax>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.50</MoveSpeed>
@@ -788,17 +788,13 @@
 		<tickerType>Normal</tickerType>
 		<tradeTags Inherit="False" />
 		<comps>
-			<li Class="VEF.Apparels.CompProperties_ShieldBubble">
-				<compClass>VEF.Apparels.CompShieldBubble</compClass>
-				<blockRangedAttack>true</blockRangedAttack>
-				<blockMeleeAttack>false</blockMeleeAttack>
-				<showWhenDrafted>true</showWhenDrafted>
-				<showOnHostiles>true</showOnHostiles>
-				<showOnNeutralInCombat>true</showOnNeutralInCombat>
-				<shieldTexPath>Other/ShieldBubble</shieldTexPath>
-				<minShieldSize>1.4</minShieldSize>
-				<maxShieldSize>1.8</maxShieldSize>
-				<disableRotation>true</disableRotation>
+			<li Class="CompProperties_Shield">
+				<startingTicksToReset>11500</startingTicksToReset><!-- 2.5 min -->
+				<minDrawSize>1.4</minDrawSize>
+				<maxDrawSize>1.8</maxDrawSize>
+				<energyLossPerDamage>0.02</energyLossPerDamage>
+				<energyOnReset>2.0</energyOnReset>
+				<blocksRangedWeapons>false</blocksRangedWeapons>
 			</li>
 			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000210</analysisID>
@@ -867,6 +863,8 @@
 			<WorkToMake>14000</WorkToMake>
 			<Flammability>0.4</Flammability>
 			<EquipDelay>2</EquipDelay>
+			<EnergyShieldRechargeRate>0.008</EnergyShieldRechargeRate>
+			<EnergyShieldEnergyMax>1.5</EnergyShieldEnergyMax>
 		</statBases>
 		<tradeability>Sellable</tradeability>
 		<generateAllowChance>0.15</generateAllowChance>
@@ -894,19 +892,13 @@
 		<tickerType>Normal</tickerType>
 		<tradeTags Inherit="False" />
 		<comps>
-			<li Class="VEF.Apparels.CompProperties_ShieldBubble">
-				<compClass>VEF.Apparels.CompShieldBubble</compClass>
-				<blockRangedAttack>true</blockRangedAttack>
-				<blockMeleeAttack>false</blockMeleeAttack>
-				<showWhenDrafted>true</showWhenDrafted>
-				<showOnHostiles>true</showOnHostiles>
-				<showOnNeutralInCombat>true</showOnNeutralInCombat>
-				<shieldTexPath>Other/ShieldBubble</shieldTexPath>
-				<minShieldSize>1.4</minShieldSize>
-				<maxShieldSize>1.8</maxShieldSize>
-				<disableRotation>true</disableRotation>
-				<EnergyShieldRechargeRate>0.08</EnergyShieldRechargeRate>
-				<EnergyShieldEnergyMax>1.5</EnergyShieldEnergyMax>
+			<li Class="CompProperties_Shield">
+				<startingTicksToReset>4600</startingTicksToReset><!-- 1 min -->
+				<minDrawSize>1.4</minDrawSize>
+				<maxDrawSize>1.8</maxDrawSize>
+				<energyLossPerDamage>0.025</energyLossPerDamage>
+				<energyOnReset>1.0</energyOnReset>
+				<blocksRangedWeapons>false</blocksRangedWeapons>
 			</li>
 			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000200</analysisID>

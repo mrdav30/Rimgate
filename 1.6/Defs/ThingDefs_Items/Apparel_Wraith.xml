@@ -542,6 +542,8 @@
 			<ArmorRating_Heat>0.2</ArmorRating_Heat>
 			<WorkToMake>60000</WorkToMake>
 			<Mass>2</Mass>
+			<EnergyShieldRechargeRate>0.015</EnergyShieldRechargeRate>
+			<EnergyShieldEnergyMax>3.5</EnergyShieldEnergyMax>
 		</statBases>
 		<equippedStatOffsets>
 			<PainShockThreshold>0.05</PainShockThreshold>
@@ -598,18 +600,13 @@
 					</west>
 				</offHandHoldOffset>
 			</li>
-			<li Class="VEF.Apparels.CompProperties_ShieldBubble">
-				<compClass>VEF.Apparels.CompShieldBubble</compClass>
-				<blockRangedAttack>true</blockRangedAttack>
-				<blockMeleeAttack>true</blockMeleeAttack>
-				<showWhenDrafted>false</showWhenDrafted>
-				<showOnHostiles>false</showOnHostiles>
-				<showOnNeutralInCombat>false</showOnNeutralInCombat>
-				<EnergyShieldRechargeRate>0.15</EnergyShieldRechargeRate>
-				<EnergyShieldEnergyMax>100</EnergyShieldEnergyMax>
-				<minShieldSize>1.4</minShieldSize>
-				<maxShieldSize>1.8</maxShieldSize>
-				<disableRotation>true</disableRotation>
+			<li Class="CompProperties_Shield">
+				<startingTicksToReset>4600</startingTicksToReset><!-- 1 min -->
+				<minDrawSize>1.4</minDrawSize>
+				<maxDrawSize>1.8</maxDrawSize>
+				<energyLossPerDamage>0.010</energyLossPerDamage>
+				<energyOnReset>3.0</energyOnReset>
+				<blocksRangedWeapons>false</blocksRangedWeapons>
 			</li>
 		</comps>
 		<tradeTags>
