@@ -52,8 +52,8 @@ public class Building_WraithCocoonPod : Building, IThingHolder
         // slowly deteriorate once open
         if (HasAnyContents) return;
 
-        if (!(DeteriorationRate < 0.001f) && Rand.Chance(DeteriorationRate / 36f))
-            this.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, 1f));
+        if (!(DeteriorationRate < float.Epsilon) && Rand.Chance(DeteriorationRate / 36f))
+            TakeDamage(new DamageInfo(DamageDefOf.Deterioration, 1f));
     }
 
     public ThingOwner GetDirectlyHeldThings() => innerContainer;

@@ -11,6 +11,12 @@ namespace Rimgate;
 
 internal static class CloneUtility
 {
+    private static List<TraitDef> _cachedTraitDefs;
+
+    private static List<GeneDef> _cachedGeneDefs;
+
+    private static List<HairDef> _cachedHairDefs;
+
     public static bool TryCreateClonePawn(
         Building_CloningPod pod,
         CloneType cloneType,
@@ -208,8 +214,8 @@ internal static class CloneUtility
 
             if (minorBonusGenes)
             {
-                List<GeneDef> defsListForReading = DefDatabase<GeneDef>.AllDefsListForReading;
-                if (defsListForReading == null || defsListForReading.Count == 0)
+                _cachedGeneDefs ??= DefDatabase<GeneDef>.AllDefsListForReading;
+                if (_cachedGeneDefs == null || _cachedGeneDefs.Count == 0)
                 {
                     Log.Error("Rimgate :: No genes found in DefDatabase.");
                     return false;
@@ -219,7 +225,7 @@ internal static class CloneUtility
                 List<GeneDef> geneDefList = new List<GeneDef>();
                 while (geneDefList.Count < num4)
                 {
-                    GeneDef geneDef = defsListForReading[Rand.RangeInclusive(0, defsListForReading.Count)];
+                    GeneDef geneDef = _cachedGeneDefs[Rand.RangeInclusive(0, _cachedGeneDefs.Count)];
                     if (!innerPawn.genes.HasActiveGene(geneDef) && !geneDefList.Contains(geneDef))
                     {
                         Log.Message($"Rimgate :: Added gene: {geneDef.label} to random gene list");
@@ -322,8 +328,8 @@ internal static class CloneUtility
         }
         else if (minorRandomTraits)
         {
-            List<TraitDef> defsListForReading = DefDatabase<TraitDef>.AllDefsListForReading;
-            if (defsListForReading == null || defsListForReading.Count == 0)
+            _cachedTraitDefs ??= DefDatabase<TraitDef>.AllDefsListForReading;
+            if (_cachedTraitDefs == null || _cachedTraitDefs.Count == 0)
             {
                 Log.Error("Rimgate :: No traits found in DefDatabase.");
                 return false;
@@ -333,7 +339,7 @@ internal static class CloneUtility
             List<TraitDef> traitDefList = new List<TraitDef>();
             while (traitDefList.Count < num5)
             {
-                TraitDef traitDef = defsListForReading[Rand.RangeInclusive(0, defsListForReading.Count)];
+                TraitDef traitDef = _cachedTraitDefs[Rand.RangeInclusive(0, _cachedTraitDefs.Count)];
                 if (!innerPawn.story.traits.HasTrait(traitDef) && !traitDefList.Contains(traitDef))
                     traitDefList.Add(traitDef);
             }
@@ -494,12 +500,10 @@ internal static class CloneUtility
         Hediff_ClonedTracker clonedTracker = GetOrAddTracker(innerPawn);
         clonedTracker.TimesCloned++;
 
-        Hediff_Clone hostCloneHeddif = innerPawn.GetHediff<Hediff_Clone>();
-
         Hediff_Clone cloneHediff = clonePawn.GetHediff<Hediff_Clone>();
-        cloneHediff.CloneGeneration = hostCloneHeddif != null
-            ? hostCloneHeddif.CloneGeneration++
-            : 1;
+        // if the host is a clone, increment generation
+        int hostGen = innerPawn.GetHediff<Hediff_Clone>()?.CloneGeneration ?? 0;
+        cloneHediff.CloneGeneration = hostGen + 1;
 
         string str = IsCloneName(last)
             ? $"{last.Substring(0, 2)}-{$"{Rand.RangeInclusive(0, 65536):X4}"}"
@@ -534,7 +538,7 @@ internal static class CloneUtility
             return;
         }
 
-        GenSpawn.Spawn(clone, pod.Position, pod.Map, WipeMode.Vanish);
+        GenSpawn.Spawn(clone, pod.InteractionCell, pod.Map, WipeMode.Vanish);
         SoundStarter.PlayOneShot(
             SoundDef.Named("CryptosleepCasketEject"),
             SoundInfo.InMap(new TargetInfo(pod.Position, pod.Map, false), MaintenanceType.None));
@@ -648,17 +652,21 @@ internal static class CloneUtility
 
     internal static void AssignRandomGenderAppropriateHair(Pawn pawn)
     {
-        List<HairDef> list = DefDatabase<HairDef>.AllDefsListForReading
+        _cachedHairDefs ??= DefDatabase<HairDef>.AllDefsListForReading
             .Where<HairDef>(hairDef =>
             {
                 if (hairDef.styleGender == StyleGender.Any || hairDef.styleGender == null && pawn.gender == Gender.Male)
                     return true;
                 return hairDef.styleGender == StyleGender.Female && pawn.gender == Gender.Female;
-            }).ToList<HairDef>();
-        if (!GenCollection.Any<HairDef>(list))
-            return;
+            }).ToList();
 
-        HairDef newHairDef = GenCollection.RandomElement<HairDef>((IEnumerable<HairDef>)list);
+        HairDef newHairDef = _cachedHairDefs.Where(def =>
+        {
+            if (def.styleGender == StyleGender.Any) return true;
+            if (pawn.gender == Gender.Male && def.styleGender == StyleGender.Male) return true;
+            return pawn.gender == Gender.Female && def.styleGender == StyleGender.Female;
+        }).RandomElement();
+
         pawn.story.hairDef = newHairDef;
     }
 

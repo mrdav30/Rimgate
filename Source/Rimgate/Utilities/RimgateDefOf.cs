@@ -170,7 +170,9 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_GoauldSymbiote;
     public static ThingDef Rimgate_SubspacePhaseDiverter;
     public static ThingDef Rimgate_Wheelbarrow;
+    public static ThingDef Rimgate_WraithBiomassStabilizer;
     public static ThingDef Rimgate_WraithCloningPod;
+    public static ThingDef Rimgate_WraithCyclicWaveInducer;
     public static ThingDef Rimgate_WraithMeatLab;
     public static ThingDef Rimgate_WraithTable;
     public static ThingDef Rimgate_ZPM;

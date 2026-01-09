@@ -11,6 +11,7 @@ using Verse;
 using Verse.AI;
 using Verse.Noise;
 using Verse.Sound;
+using static UnityEngine.Networking.UnityWebRequest;
 
 namespace Rimgate;
 
@@ -36,17 +37,19 @@ public enum CloneType
 
 public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawnPawn, ISearchableContents, IOpenable
 {
-    private static List<ThingDef> _cachedPods;
+    private static List<ThingDef> _cachedPodDefs;
 
-    public const float BiomassCostPerCycle = 100f;
+    public const int BiomassCostPerCycle = 100;
 
     public CompRefuelable Refuelable => _cachedRefuelable ??= GetComp<CompRefuelable>();
 
     public CompPowerTrader Power => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
-    public bool Powered => Power?.PowerOn == true;
+    public bool Powered => Power == null || Power.PowerOn == true;
 
     public Comp_AnalyzableResearchWhen Analyzable => _cachedAnalyzable ??= GetComp<Comp_AnalyzableResearchWhen>();
+
+    public CompAffectedByFacilities Facilities => _cachedFacilities ??= GetComp<CompAffectedByFacilities>();
 
     public float HeldPawnDrawPos_Y => DrawPos.y - 0.06f;
 
@@ -124,6 +127,8 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     public float RemainingIncubationTicks => _incubationTicksRemaining;
 
+    public bool FuelForCurrentCycleConsumed => _fuelConsumedForCurrentCycle;
+
     public CloneType CloningType => _cloningType;
 
     public bool IsWorking => Status == CloningStatus.CloningStarted || Status == CloningStatus.Incubating;
@@ -131,16 +136,6 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
     public bool HasPendingClone => _pendingCloneContainer != null && _pendingCloneContainer.Count > 0;
 
     public Pawn PendingClonePawn => HasPendingClone ? _pendingCloneContainer[0] as Pawn : null;
-
-    public float IncubationProgress
-    {
-        get
-        {
-            if (Status != CloningStatus.Incubating || _incubationTicksTotal <= 0)
-                return 0f;
-            return 1f - (float)_incubationTicksRemaining / _incubationTicksTotal;
-        }
-    }
 
     private ThingOwner _innerContainer;
 
@@ -162,6 +157,10 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     private Comp_AnalyzableResearchWhen _cachedAnalyzable;
 
+    private CompAffectedByFacilities _cachedFacilities;
+
+    private int _calibrationTicksTotal;
+
     private float _calibrationWorkRemaining;
 
     private CloneType _cloningType;
@@ -170,7 +169,11 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     private int _incubationTicksRemaining;
 
+    private bool _fuelConsumedForCurrentCycle;
+
     private CalibrationOutcome _calibrationOutcome;
+
+    private bool _hadActiveInducer;
 
     public Building_CloningPod()
     {
@@ -178,21 +181,13 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         _pendingCloneContainer = new ThingOwner<Thing>(this);
     }
 
-    public ThingOwner GetDirectlyHeldThings()
-    {
-        return _innerContainer;
-    }
-
-    public void GetChildHolders(List<IThingHolder> outChildren)
-    {
-        ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
-    }
-
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
         if (base.Faction != null && base.Faction.IsPlayer)
             _contentsKnown = true;
+
+        _hadActiveInducer = HasActiveInducer();
     }
 
     public override AcceptanceReport ClaimableBy(Faction fac)
@@ -208,21 +203,15 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         base.Tick();
 
         // State-dependent power consumption
-        if (IsWorking)
-            Power.PowerOutput = -PowerComp.Props.PowerConsumption;
-        else
-            Power.PowerOutput = -PowerComp.Props.idlePowerDraw;
+        if (Power != null)
+            Power.PowerOutput = IsWorking ? -Power.Props.PowerConsumption : -Power.Props.idlePowerDraw;
 
         switch (Status)
         {
             case CloningStatus.Idle:
                 {
                     if (!Powered)
-                    {
-                        // don't send error message here, handled when starting calibration
-                        Status = CloningStatus.Error;
                         return;
-                    }
 
                     if (!HasHostPawn || ContainsCorpse)
                         break;
@@ -268,6 +257,22 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                         return;
                     }
 
+                    if (!this.IsHashIntervalTick(GenTicks.TicksPerRealSecond))
+                    {
+                        bool has = HasActiveInducer();
+                        if (has != _hadActiveInducer)
+                        {
+                            float modifier = has
+                                ? (1f / RimgateModSettings.InducerCalibrationSpeedFactor)
+                                : RimgateModSettings.InducerCalibrationSpeedFactor;
+
+                            int newTotal = Mathf.Max(1, Mathf.RoundToInt(_calibrationTicksTotal * modifier));
+                            _calibrationWorkRemaining = RescaleRemainingFloat(_calibrationTicksTotal, _calibrationWorkRemaining, newTotal);
+                            _calibrationTicksTotal = newTotal;
+                            _hadActiveInducer = has;
+                        }
+                    }
+
                     break;
                 }
             case CloningStatus.CalibrationFinished:
@@ -304,10 +309,14 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                         return;
                     }
 
-                    if (HasRequiredBiomass())
+                    if (TryGetCostForCurrentCycle(out int cost))
                     {
+                        Log.Message($"consuming {cost} biomass to start incubation");
+
                         // Consume initial biomass cost prior to incubation to simulate starting the process
-                        Refuelable.ConsumeFuel(BiomassCostPerCycle);
+                        Refuelable.ConsumeFuel(cost);
+                        DecayActiveBiomassStabilizers();
+                        _fuelConsumedForCurrentCycle = true;
                         SwitchState(); // HostDischarged -> Incubating
                     }
                     else
@@ -326,10 +335,17 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                     }
 
                     // Resume if power is back on and we have enough biomass
-                    if (Powered && HasRequiredBiomass())
+                    if (Powered)
                     {
-                        Refuelable.ConsumeFuel(BiomassCostPerCycle);
-                        SwitchState(); // Paused -> Incubating
+                        if (!_fuelConsumedForCurrentCycle && TryGetCostForCurrentCycle(out int cost))
+                        {
+                            Refuelable.ConsumeFuel(cost);
+                            DecayActiveBiomassStabilizers();
+                            _fuelConsumedForCurrentCycle = true;
+                        }
+
+                        if (_fuelConsumedForCurrentCycle)
+                            SwitchState(); // Paused -> Incubating
                     }
 
                     break;
@@ -342,14 +358,32 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                         return;
                     }
 
-                    // Pause if power is off
+                    // stop if power is off, but don't put in paused state
+                    // TODO: the longer power is off, start decrementing _incubationTicksRemaining to simulate deterioration?
                     if (!Powered) return;
+
+                    if (!this.IsHashIntervalTick(GenTicks.TicksPerRealSecond))
+                    {
+                        bool has = HasActiveInducer();
+                        if (has != _hadActiveInducer)
+                        {
+                            float modifier = has
+                                ? (1f / RimgateModSettings.InducerIncubationSpeedFactor)
+                                : RimgateModSettings.InducerIncubationSpeedFactor;
+
+                            int newTotal = Mathf.Max(1, Mathf.RoundToInt(_incubationTicksTotal * modifier));
+                            _incubationTicksRemaining = RescaleRemainingInt(_incubationTicksTotal, _incubationTicksRemaining, newTotal);
+                            _incubationTicksTotal = newTotal;
+                            _hadActiveInducer = has;
+                        }
+                    }
 
                     if (_incubationTicksRemaining > 0)
                         _incubationTicksRemaining--;
                     else
                     {
                         _incubationTicksRemaining = 0;
+                        _fuelConsumedForCurrentCycle = false;
                         CloneUtility.FinalizeSpawn(this, PendingClonePawn, _calibrationOutcome);
                         SwitchState(); // Incubating -> Idle (via FinalizeSpawn)
                     }
@@ -362,80 +396,6 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                     break;
                 }
         }
-    }
-
-    // Calibration work tick handled by JobDriver_CalibrateClonePod
-    public void TickCalibrationWork(Pawn actor)
-    {
-        float workDone = StatExtension.GetStatValue(actor, RimgateDefOf.MedicalOperationSpeed, true, -1);
-        _calibrationWorkRemaining -= workDone;
-
-        actor.skills.Learn(SkillDefOf.Intellectual, 0.11f, false, false);
-
-        if (_calibrationWorkRemaining > 0) return;
-
-        _calibrationWorkRemaining = 0f;
-        if (!TryStageClone())
-        {
-            Status = CloningStatus.Error;
-            Messages.Message(
-                "RG_CloningPodCalibrationFailed".Translate("RG_CloningPodCalibrationFailed_NotStaged".Translate()),
-                this,
-                MessageTypeDefOf.NegativeEvent);
-            return;
-        }
-
-        SwitchState(); // CloningStarted -> CalibrationFinished
-    }
-
-    public virtual void Open()
-    {
-        if (HasHostPawn)
-        {
-            EjectContents();
-            Reset();
-            if (!OpenedSignal.NullOrEmpty())
-            {
-                Find.SignalManager.SendSignal(new Signal(OpenedSignal, this.Named("SUBJECT")));
-            }
-
-            DirtyMapMesh(base.Map);
-        }
-    }
-
-    public virtual bool Accepts(Thing thing)
-    {
-        return _innerContainer.CanAcceptAnyOf(thing);
-    }
-
-    public virtual bool TryAcceptThing(Thing thing, bool allowSpecialEffects = true)
-    {
-        if (!Accepts(thing))
-            return false;
-
-        bool flag;
-        if (thing.holdingOwner != null)
-        {
-            thing.holdingOwner.TryTransferToContainer(thing, _innerContainer, thing.stackCount);
-            flag = true;
-        }
-        else
-            flag = _innerContainer.TryAdd(thing);
-
-        if (flag)
-        {
-            if (thing.Faction != null && thing.Faction.IsPlayer)
-                _contentsKnown = true;
-
-            if (allowSpecialEffects)
-                SoundStarter.PlayOneShot(
-                    SoundDefOf.CryptosleepCasket_Accept,
-                    new TargetInfo(Position, Map, false));
-
-            return true;
-        }
-
-        return false;
     }
 
     public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
@@ -714,7 +674,8 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                     {
                         if (forCorpse)
                         {
-                            var tp = new TargetingParameters {
+                            var tp = new TargetingParameters
+                            {
                                 canTargetMechs = false,
                                 canTargetAnimals = false,
                                 canTargetSubhumans = false,
@@ -750,33 +711,15 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
             if (options.Count > 0)
                 Find.WindowStack.Add(new FloatMenu(options));
         }
-    }
 
-    public virtual void EjectContents()
-    {
-        if (!HasHostPawn)
-            return;
-
-        ThingDef filthSlime = ThingDefOf.Filth_Slime;
-        foreach (Thing thing in _innerContainer)
+        if (DebugSettings.ShowDevGizmos && Status == CloningStatus.Incubating)
         {
-            if (thing is not Pawn pawn)
-                continue;
-
-            PawnComponentsUtility.AddComponentsForSpawn(pawn);
-            pawn.filth.GainFilth(filthSlime);
-            if (pawn.RaceProps.IsFlesh)
-                pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness, null, null, null);
+            yield return new Command_Action
+            {
+                defaultLabel = "DEV: Finish Incubation",
+                action = () => _incubationTicksRemaining = 0
+            };
         }
-
-        if (!Destroyed)
-            SoundStarter.PlayOneShot(
-                SoundDefOf.CryptosleepCasket_Eject,
-                SoundInfo.InMap(new TargetInfo(Position, Map, false), MaintenanceType.None));
-
-        _innerContainer.TryDropAll(InteractionCell, base.Map, ThingPlaceMode.Near);
-        _innerContainer.ClearAndDestroyContents();
-        _contentsKnown = true;
     }
 
     public override void DeSpawn(DestroyMode mode = 0)
@@ -809,6 +752,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         }
 
         _innerContainer.ClearAndDestroyContents();
+        _pendingCloneContainer.ClearAndDestroyContents();
     }
 
     public override string GetInspectString()
@@ -826,15 +770,231 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
             if (!Powered)
                 sb.Append("RG_IncubationPaused".Translate("NoPower".Translate()));
             else
-                sb.Append("RG_IncubationInProgress".Translate(IncubationProgress.ToStringPercent()));
+                sb.Append("RG_IncubationInProgress".Translate(GetIncubationProgress().ToStringPercent()));
         }
-        else if (Status == CloningStatus.Paused && !HasRequiredBiomass())
+        else if (Status == CloningStatus.Paused && !TryGetCostForCurrentCycle(out int cost))
         {
             sb.AppendLine();
-            sb.Append("RG_IncubationPaused".Translate("NoFuel".Translate()));
+            sb.Append("RG_IncubationPaused".Translate($"need x{cost} biomass loaded"));
         }
 
         return sb.ToString().TrimEndNewlines();
+    }
+
+    public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
+    {
+        foreach (StatDrawEntry state in base.SpecialDisplayStats())
+            yield return state;
+
+        var baseCost = BiomassCostPerCycle;
+        int baseCalibrationTicks = RimgateModSettings.BaseCalibrationTicks;
+        int baseIncubationTicks = RimgateModSettings.BaseIncubationTicks;
+
+        float modifierCost = 1f;
+        int stabilizerCount = ActiveBiomassStabilizerCount();
+        if (stabilizerCount > 0)
+        {
+            float reduction = RimgateModSettings.StabilizerBiomassCostReduction * stabilizerCount;
+            reduction = Mathf.Clamp(reduction, 0f, 0.5f); // max 50% reduction
+            modifierCost *= (1f - reduction);
+        }
+        float modifierCal = 1f;
+        float modifierInc = 1f;
+        if (HasActiveInducer())
+        {
+            modifierCal /= RimgateModSettings.InducerCalibrationSpeedFactor;
+            modifierInc /= RimgateModSettings.InducerIncubationSpeedFactor;
+        }
+
+        yield return GetCostStatFor("RG_BeginCloneGenome".Translate(), baseCost, modifierCost, 4494);
+
+        yield return GetCalibrationTicksFor("RG_BeginCloneGenome".Translate(), baseCalibrationTicks, modifierCal, 4494);
+
+        int genomeIncTicks = Mathf.Max(0, Mathf.RoundToInt(baseIncubationTicks * modifierInc));
+        yield return GetIncubationTicksFor("RG_BeginCloneGenome".Translate(), genomeIncTicks, modifierInc, 4494);
+
+        if (ResearchUtil.WraithCloneFullComplete)
+        {
+            int fullCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * RimgateModSettings.FullCloneFactor));
+            yield return GetCostStatFor("RG_BeginCloneFull".Translate(), fullCost, modifierCost, 4493);
+
+            int fullCalTicks = Mathf.Max(0, Mathf.RoundToInt(baseCalibrationTicks * RimgateModSettings.FullCloneFactor));
+            yield return GetCalibrationTicksFor("RG_BeginCloneFull".Translate(), fullCalTicks, modifierCal, 4493);
+
+            int fullIncTicks = Mathf.Max(0, Mathf.RoundToInt((baseIncubationTicks * RimgateModSettings.FullCloneFactor) * modifierInc));
+            yield return GetIncubationTicksFor("RG_BeginCloneFull".Translate(), fullIncTicks, modifierInc, 4493);
+        }
+
+        if (ResearchUtil.WraithCloneEnhancementComplete)
+        {
+            int enhancedCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * RimgateModSettings.EnhancedCloneFactor));
+            yield return GetCostStatFor("RG_BeginCloneSoldier".Translate(), enhancedCost, modifierCost, 4492);
+
+            int enhancedCalTicks = Mathf.Max(0, Mathf.RoundToInt(baseCalibrationTicks * RimgateModSettings.EnhancedCloneFactor));
+            yield return GetCalibrationTicksFor("RG_BeginCloneSoldier".Translate(), enhancedCalTicks, modifierCal, 4492);
+
+            int enhancedIncTicks = Mathf.Max(0, Mathf.RoundToInt((baseIncubationTicks * RimgateModSettings.EnhancedCloneFactor) * modifierInc));
+            yield return GetIncubationTicksFor("RG_BeginCloneSoldier".Translate(), enhancedIncTicks, modifierInc, 4492);
+        }
+
+        if (ResearchUtil.WraithCloneCorpseComplete)
+        {
+            int reconstructCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * RimgateModSettings.ReconstructionCloneFactor));
+            yield return GetCostStatFor("RG_BeginCloneCorpse".Translate(), reconstructCost, modifierCost, 4491);
+
+            int reconstructCalTicks = Mathf.Max(0, Mathf.RoundToInt(baseCalibrationTicks * RimgateModSettings.ReconstructionCloneFactor));
+            yield return GetCalibrationTicksFor("RG_BeginCloneCorpse".Translate(), reconstructCalTicks, modifierCal, 4491);
+
+            int reconstructIncTicks = Mathf.Max(0, Mathf.RoundToInt(baseIncubationTicks * RimgateModSettings.ReconstructionCloneFactor));
+            yield return GetIncubationTicksFor("RG_BeginCloneCorpse".Translate(), reconstructIncTicks, modifierInc, 4491);
+        }
+
+        static StatDrawEntry GetCostStatFor(string labelKey, int baseCost, float modifier, int priority)
+        {
+            int modifiedCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * modifier));
+            StringBuilder sb = new StringBuilder("RG_CloningPod_Stat_BiomassConsumption_Desc".Translate(labelKey));
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine("StatsReport_BaseValue".Translate() + $": {baseCost}");
+            sb.AppendLine();
+            if (modifier != 1f)
+            {
+                sb.AppendLine("RG_StatsReport_BiomassStabilizerMultiplier".Translate() + $": x{modifier.ToStringPercent()}");
+                sb.AppendLine();
+            }
+            sb.Append("StatsReport_FinalValue".Translate() + $": {modifiedCost.ToString("F0")}");
+            return new StatDrawEntry(
+                StatCategoryDefOf.Building,
+                "RG_CloningPod_Stat_BiomassConsumption_Label".Translate(labelKey),
+                modifiedCost.ToString("F0"),
+                sb.ToString().TrimEndNewlines(),
+                priority);
+        }
+
+        static StatDrawEntry GetCalibrationTicksFor(string labelKey, int baseTicks, float modifier, int priority)
+        {
+            int modifiedTicks = Mathf.Max(0, Mathf.RoundToInt(baseTicks * modifier));
+            StringBuilder sb = new StringBuilder("RG_CloningPod_Stat_CalibrationTicks_Desc".Translate(labelKey));
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine("StatsReport_BaseValue".Translate() + $": {baseTicks.ToStringTicksToDays()}");
+            sb.AppendLine();
+            if (modifier != 1f)
+            {
+                sb.AppendLine("RG_StatsReport_InducerMultiplier".Translate() + $": x{modifier.ToStringPercent()}");
+                sb.AppendLine();
+            }
+            sb.Append("StatsReport_FinalValue".Translate() + $": {modifiedTicks.ToStringTicksToDays()}");
+            return new StatDrawEntry(
+                StatCategoryDefOf.Building,
+                "RG_CloningPod_Stat_CalibrationTicks_Label".Translate(labelKey),
+                modifiedTicks.ToStringTicksToDays(),
+                sb.ToString().TrimEndNewlines(),
+                priority);
+        }
+
+        static StatDrawEntry GetIncubationTicksFor(string labelKey, int baseTicks, float modifier, int priority)
+        {
+            int modifiedTicks = Mathf.Max(0, Mathf.RoundToInt(baseTicks * modifier));
+            StringBuilder sb = new StringBuilder("RG_CloningPod_Stat_IncubationTicks_Desc".Translate(labelKey));
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine("StatsReport_BaseValue".Translate() + $": {baseTicks.ToStringTicksToDays()}");
+            sb.AppendLine();
+            if (modifier != 1f)
+            {
+                sb.AppendLine("RG_StatsReport_InducerMultiplier".Translate() + $": x{modifier.ToStringPercent()}");
+                sb.AppendLine();
+            }
+            sb.Append("StatsReport_FinalValue".Translate() + $": {modifiedTicks.ToStringTicksToDays()}");
+            return new StatDrawEntry(
+                StatCategoryDefOf.Building,
+                "RG_CloningPod_Stat_IncubationTicks_Label".Translate(labelKey),
+                modifiedTicks.ToStringTicksToDays(),
+                sb.ToString().TrimEndNewlines(),
+                priority);
+        }
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Deep.Look(ref _innerContainer, "_innerContainer", this);
+        Scribe_Deep.Look(ref _pendingCloneContainer, "_pendingCloneContainer", this);
+        Scribe_Values.Look(ref _contentsKnown, "_contentsKnown", false);
+        Scribe_Values.Look(ref OpenedSignal, "OpenedSignal");
+        Scribe_Values.Look(ref Status, "Status", CloningStatus.Idle);
+        Scribe_Values.Look(ref _cloningType, "_cloningType", CloneType.None);
+        Scribe_Values.Look(ref _calibrationTicksTotal, "_calibrationTicksTotal", 0);
+        Scribe_Values.Look(ref _calibrationWorkRemaining, "_calibrationWorkRemaining", 0f);
+        Scribe_Values.Look(ref _incubationTicksTotal, "_incubationTicksTotal", 0);
+        Scribe_Values.Look(ref _incubationTicksRemaining, "_incubationTicksRemaining", 0);
+        Scribe_Values.Look(ref _hadActiveInducer, "_hadActiveInducer", false);
+        Scribe_Values.Look(ref _fuelConsumedForCurrentCycle, "_fuelConsumedForCurrentCycle", false);
+        Scribe_Deep.Look(ref _calibrationOutcome, "_calibrationOutcome");
+        Scribe_Values.Look(ref _hostSavedFoodNeed, "_hostSavedFoodNeed", 0f);
+        Scribe_Values.Look(ref _hostSavedDbhThirstNeed, "_hostSavedDbhThirstNeed", 0f);
+        Scribe_Values.Look(ref _hostNeedsSnapshotTaken, "_hostNeedsSnapshotTaken", false);
+    }
+
+    public ThingOwner GetDirectlyHeldThings()
+    {
+        return _innerContainer;
+    }
+
+    public void GetChildHolders(List<IThingHolder> outChildren)
+    {
+        ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
+    }
+
+    public void Open()
+    {
+        if (HasHostPawn)
+        {
+            EjectContents();
+            Reset();
+            if (!OpenedSignal.NullOrEmpty())
+            {
+                Find.SignalManager.SendSignal(new Signal(OpenedSignal, this.Named("SUBJECT")));
+            }
+
+            DirtyMapMesh(base.Map);
+        }
+    }
+
+    public bool Accepts(Thing thing)
+    {
+        return _innerContainer.CanAcceptAnyOf(thing);
+    }
+
+    public bool TryAcceptThing(Thing thing, bool allowSpecialEffects = true)
+    {
+        if (!Accepts(thing))
+            return false;
+
+        bool flag;
+        if (thing.holdingOwner != null)
+        {
+            thing.holdingOwner.TryTransferToContainer(thing, _innerContainer, thing.stackCount);
+            flag = true;
+        }
+        else
+            flag = _innerContainer.TryAdd(thing);
+
+        if (flag)
+        {
+            if (thing.Faction != null && thing.Faction.IsPlayer)
+                _contentsKnown = true;
+
+            if (allowSpecialEffects)
+                SoundStarter.PlayOneShot(
+                    SoundDefOf.CryptosleepCasket_Accept,
+                    new TargetInfo(Position, Map, false));
+
+            return true;
+        }
+
+        return false;
     }
 
     public void SetCloningType(CloneType type)
@@ -842,12 +1002,114 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         _cloningType = type;
     }
 
-    public bool HasRequiredBiomass(float required = BiomassCostPerCycle) => Refuelable?.Fuel >= required;
-
-    public void InitiateCloningProcess(float workAmount)
+    public void InitiateCalibrationProcess()
     {
-        _calibrationWorkRemaining = workAmount;
+        _calibrationTicksTotal = GetTotalCalibrationTicks();
+        _calibrationWorkRemaining = _calibrationTicksTotal;
         SwitchState(); // Idle -> CloningStarted
+    }
+
+    public bool TryGetCostForCurrentCycle(out int result)
+    {
+        float cost = BiomassCostPerCycle;
+
+        if (_cloningType == CloneType.Full)
+            cost *= RimgateModSettings.FullCloneFactor;
+        else if (_cloningType == CloneType.Enhanced)
+            cost *= RimgateModSettings.EnhancedCloneFactor;
+        else if (_cloningType == CloneType.Reconstruct)
+            cost *= RimgateModSettings.ReconstructionCloneFactor;
+
+        int stabilizerCount = ActiveBiomassStabilizerCount();
+        if (stabilizerCount > 0)
+        {
+            float reduction = RimgateModSettings.StabilizerBiomassCostReduction * stabilizerCount;
+            reduction = Mathf.Clamp(reduction, 0f, 0.5f); // max 50% reduction
+            cost *= 1f - reduction;
+        }
+
+        result = Mathf.Max(0, Mathf.RoundToInt(cost));
+
+        return Refuelable?.Fuel >= result;
+    }
+
+    private int GetTotalCalibrationTicks()
+    {
+        int result = RimgateModSettings.BaseCalibrationTicks;
+
+        if (_cloningType == CloneType.Full)
+            result = (int)(result * RimgateModSettings.FullCloneFactor);
+        else if (_cloningType == CloneType.Enhanced)
+            result = (int)(result * RimgateModSettings.EnhancedCloneFactor);
+        else if (_cloningType == CloneType.Reconstruct)
+            result = (int)(result * RimgateModSettings.ReconstructionCloneFactor);
+
+        if (HasActiveInducer())
+            result = (int)(result / RimgateModSettings.InducerCalibrationSpeedFactor);
+
+        result = Mathf.Clamp(result, 0, int.MaxValue);
+
+        return result;
+    }
+
+    // Calibration work tick handled by JobDriver_CalibrateClonePod
+    public void TickCalibrationWork(Pawn actor)
+    {
+        float workDone = StatExtension.GetStatValue(actor, RimgateDefOf.MedicalOperationSpeed, true, -1);
+        _calibrationWorkRemaining -= workDone;
+
+        actor.skills.Learn(SkillDefOf.Intellectual, 0.11f, false, false);
+
+        if (_calibrationWorkRemaining > 0) return;
+
+        _calibrationWorkRemaining = 0f;
+        if (!TryStageClone())
+        {
+            Status = CloningStatus.Error;
+            Messages.Message(
+                "RG_CloningPodCalibrationFailed".Translate("RG_CloningPodCalibrationFailed_NotStaged".Translate()),
+                this,
+                MessageTypeDefOf.NegativeEvent);
+            return;
+        }
+
+        SwitchState(); // CloningStarted -> CalibrationFinished
+    }
+
+    public float GetCalibrationProgress()
+    {
+        if (Status != CloningStatus.CloningStarted || _calibrationTicksTotal <= 0)
+            return 0f;
+        float total = _calibrationTicksTotal;
+        float done = _calibrationTicksTotal - _calibrationWorkRemaining;
+        return Mathf.Clamp01(done / total);
+    }
+
+    private int GetTotalIncubationTicks(CalibrationOutcome outcome)
+    {
+        int result = RimgateModSettings.BaseIncubationTicks;
+
+        if (_cloningType == CloneType.Full)
+            result = (int)(result * RimgateModSettings.FullCloneFactor);
+        else if (_cloningType == CloneType.Enhanced)
+            result = (int)(result * RimgateModSettings.EnhancedCloneFactor);
+        else if (_cloningType == CloneType.Reconstruct)
+            result = (int)(result * RimgateModSettings.ReconstructionCloneFactor);
+
+        // Note: not displayed in special stats since outcome is unknown at that time
+        if (!outcome.AnyIssues)
+            result = (int)(result * 0.75f); // faster if no issues
+        else if (outcome.MajorIssues)
+            result = (int)(result * 1.5f); // slower if major failure occurs
+        else if (outcome.MinorIssues)
+            result = (int)(result * 1.25f); // slower if minor failure occurs
+
+        if (HasActiveInducer())
+            result = (int)(result / RimgateModSettings.InducerIncubationSpeedFactor);
+
+        result = Mathf.Clamp(result, 0, int.MaxValue);
+
+        return result;
     }
 
     private bool TryStageClone()
@@ -855,26 +1117,85 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         if (HasPendingClone)
             return false;
 
-        CloneUtility.TryCreateClonePawn(this, _cloningType, out Pawn clone, out CalibrationOutcome outcome);
-        if (clone == null || outcome == null)
+        if (!CloneUtility.TryCreateClonePawn(this, _cloningType, out Pawn clone, out CalibrationOutcome outcome))
             return false;
 
         _pendingCloneContainer.TryAdd(clone);
         _calibrationOutcome = outcome;
 
         // Determine incubation time based on outcome
-        _incubationTicksTotal = RimgateModSettings.BaseIncubationTicks;
-
-        if (!outcome.AnyIssues)
-            _incubationTicksTotal = (int)(_incubationTicksTotal * 0.75f); // faster if no issues
-        else if (outcome.MajorIssues)
-            _incubationTicksTotal = (int)(_incubationTicksTotal * 1.5f); // slower if major failure occurs
-        else if (outcome.MinorIssues)
-            _incubationTicksTotal = (int)(_incubationTicksTotal * 1.25f); // slower if minor failure occurs
-
+        _incubationTicksTotal = GetTotalIncubationTicks(outcome);
         _incubationTicksRemaining = _incubationTicksTotal;
 
         return true;
+    }
+
+    public float GetIncubationProgress()
+    {
+        if (Status != CloningStatus.Incubating || _incubationTicksTotal <= 0)
+            return 0f;
+        float total = _incubationTicksTotal;
+        float done = _incubationTicksTotal - _incubationTicksRemaining;
+        return Mathf.Clamp01(done / total);
+    }
+
+    private int ActiveBiomassStabilizerCount()
+    {
+        if (Facilities == null) return 0;
+        var list = Facilities.LinkedFacilitiesListForReading;
+        if (list == null || list.Count == 0) return 0;
+
+        int n = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            var t = list[i];
+            if (t?.def != RimgateDefOf.Rimgate_WraithBiomassStabilizer) continue;
+
+            // Must be powered to contribute
+            var power = t.TryGetComp<CompPowerTrader>();
+            if (power != null && power.PowerOn) n++;
+        }
+        return n;
+    }
+
+    private void DecayActiveBiomassStabilizers()
+    {
+        if (Facilities == null) return; // no fuel, no stabilizer effect
+
+        var list = Facilities.LinkedFacilitiesListForReading;
+        if (list == null || list.Count == 0) return;
+
+        float rate = RimgateModSettings.StabilizerDeteriorationFactor;
+        if (rate <= 0f) rate = 0;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            var t = list[i];
+            if (t == null || t.def != RimgateDefOf.Rimgate_WraithBiomassStabilizer) continue;
+
+            // Must be powered to contribute
+            var power = t.TryGetComp<CompPowerTrader>();
+            if (power != null && !power.PowerOn) continue;
+
+            if (Rand.Chance(0.72f))
+                t.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, t.def.BaseMaxHitPoints * rate));
+        }
+    }
+
+    private bool HasActiveInducer()
+    {
+        if (Facilities == null) return false;
+        var list = Facilities.LinkedFacilitiesListForReading;
+        if (list == null || list.Count == 0) return false;
+        for (int i = 0; i < list.Count; i++)
+        {
+            var t = list[i];
+            if (t?.def != RimgateDefOf.Rimgate_WraithCyclicWaveInducer) continue;
+            // Must be powered to contribute
+            var power = t.TryGetComp<CompPowerTrader>();
+            if (power != null && power.PowerOn) return true;
+        }
+        return false;
     }
 
     public void SwitchState()
@@ -921,13 +1242,42 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                 + $" to {Status.ToStringSafe().Colorize(Color.yellow)}");
     }
 
+    public void EjectContents()
+    {
+        if (!HasHostPawn)
+            return;
+
+        ThingDef filthSlime = ThingDefOf.Filth_Slime;
+        foreach (Thing thing in _innerContainer)
+        {
+            if (thing is not Pawn pawn)
+                continue;
+
+            PawnComponentsUtility.AddComponentsForSpawn(pawn);
+            pawn.filth.GainFilth(filthSlime);
+            if (pawn.RaceProps.IsFlesh)
+                pawn.health.AddHediff(RimgateDefOf.Rimgate_ClonePodSickness, null, null, null);
+        }
+
+        if (!Destroyed)
+            SoundStarter.PlayOneShot(
+                SoundDefOf.CryptosleepCasket_Eject,
+                SoundInfo.InMap(new TargetInfo(Position, Map, false), MaintenanceType.None));
+
+        _innerContainer.TryDropAll(InteractionCell, base.Map, ThingPlaceMode.Near);
+        _innerContainer.ClearAndDestroyContents();
+        _contentsKnown = true;
+    }
+
     public void Reset()
     {
         _cloningType = CloneType.None;
         Status = CloningStatus.Idle;
+        _hadActiveInducer = false;
 
         _calibrationWorkRemaining = 0f;
         _incubationTicksRemaining = 0;
+        _fuelConsumedForCurrentCycle = false;
         _calibrationOutcome = null;
 
         _hostSavedFoodNeed = 0f;
@@ -938,22 +1288,18 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         _pendingCloneContainer.ClearAndDestroyContents();
     }
 
-    public override void ExposeData()
+    private static int RescaleRemainingInt(int oldTotal, int oldRemaining, int newTotal)
     {
-        base.ExposeData();
-        Scribe_Deep.Look(ref _innerContainer, "_innerContainer", this);
-        Scribe_Deep.Look(ref _pendingCloneContainer, "_pendingCloneContainer", this);
-        Scribe_Values.Look(ref _contentsKnown, "_contentsKnown", false);
-        Scribe_Values.Look(ref OpenedSignal, "OpenedSignal");
-        Scribe_Values.Look(ref _calibrationWorkRemaining, "_calibrationWorkRemaining", 0f);
-        Scribe_Values.Look(ref Status, "Status", CloningStatus.Idle);
-        Scribe_Values.Look(ref _cloningType, "_cloningType", CloneType.None);
-        Scribe_Values.Look(ref _incubationTicksTotal, "_incubationTicksTotal", 0);
-        Scribe_Values.Look(ref _incubationTicksRemaining, "_incubationTicksRemaining", 0);
-        Scribe_Deep.Look(ref _calibrationOutcome, "_calibrationOutcome");
-        Scribe_Values.Look(ref _hostSavedFoodNeed, "_hostSavedFoodNeed", 0f);
-        Scribe_Values.Look(ref _hostSavedDbhThirstNeed, "_hostSavedDbhThirstNeed", 0f);
-        Scribe_Values.Look(ref _hostNeedsSnapshotTaken, "_hostNeedsSnapshotTaken", false);
+        if (oldTotal <= 0) return newTotal;
+        float progress = Mathf.Clamp01(1f - (oldRemaining / (float)oldTotal));
+        return Mathf.Clamp(Mathf.RoundToInt(newTotal * (1f - progress)), 0, newTotal);
+    }
+
+    private static float RescaleRemainingFloat(int oldTotal, float oldRemaining, int newTotal)
+    {
+        if (oldTotal <= 0) return newTotal;
+        float progress = Mathf.Clamp01(1f - (oldRemaining / oldTotal));
+        return Mathf.Clamp(newTotal * (1f - progress), 0f, newTotal);
     }
 
     public static Building_CloningPod FindCloningPodFor(
@@ -961,10 +1307,10 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
       Pawn traveler,
       bool ignoreOtherReservations = false)
     {
-        _cachedPods ??= DefDatabase<ThingDef>.AllDefs
+        _cachedPodDefs ??= DefDatabase<ThingDef>.AllDefs
             .Where<ThingDef>(def => typeof(Building_CloningPod).IsAssignableFrom(def.thingClass))
             .ToList();
-        foreach (ThingDef thingDef in _cachedPods)
+        foreach (ThingDef thingDef in _cachedPodDefs)
         {
             bool queuing = KeyBindingDefOf.QueueOrder.IsDownEvent;
             Building_CloningPod pod = GenClosest.ClosestThingReachable(

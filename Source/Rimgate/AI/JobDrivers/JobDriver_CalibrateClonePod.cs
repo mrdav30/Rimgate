@@ -38,7 +38,7 @@ public class JobDriver_CalibrateClonePod : JobDriver
                     return;
                 }
 
-                pod.InitiateCloningProcess(RimgateModSettings.BaseCalibrationTicks);
+                pod.InitiateCalibrationProcess();
             },
             tickAction = () =>
             {
@@ -54,12 +54,7 @@ public class JobDriver_CalibrateClonePod : JobDriver
         ToilEffects.WithProgressBar(
             calibrationWork,
             TargetIndex.A,
-            () =>
-            {
-                float total = RimgateModSettings.BaseCalibrationTicks;
-                float done = total - ClonePod.RemainingCalibrationWork;
-                return Mathf.Clamp01(done / total);
-            });
+            () => ClonePod.GetCalibrationProgress());
         calibrationWork.FailOnDespawnedOrNull(TargetIndex.A);
         calibrationWork.FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
         ToilEffects.WithEffect(calibrationWork, EffecterDefOf.Hacking, TargetIndex.A, null);

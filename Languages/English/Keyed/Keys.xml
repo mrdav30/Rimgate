@@ -139,7 +139,7 @@
 	<RG_CloningPodCalibrationFailed_NotStaged>no clone staged</RG_CloningPodCalibrationFailed_NotStaged>
 
 	<RG_EnterCloningPod>Enter cloning pod: {0}</RG_EnterCloningPod>
-	<RG_BeginCloneGenome>genome-only scan</RG_BeginCloneGenome>
+	<RG_BeginCloneGenome>genome scan</RG_BeginCloneGenome>
 	<RG_BeginCloneFull>deep scan</RG_BeginCloneFull>
 	<RG_BeginCloneSoldier>enhanced scan</RG_BeginCloneSoldier>
 	<RG_BeginCloneCorpse>reconstruct scan</RG_BeginCloneCorpse>
@@ -172,6 +172,18 @@
 
 	<RG_CommandCloningPodAbortIncubationLabel>Abort incubation</RG_CommandCloningPodAbortIncubationLabel>
 	<RG_CommandCloningPodAbortIncubationDesc>Abort the incubation process and eject the host.</RG_CommandCloningPodAbortIncubationDesc>
+
+	<RG_StatsReport_BiomassStabilizerMultiplier>Biomass stabilizer multiplier</RG_StatsReport_BiomassStabilizerMultiplier>
+	<RG_StatsReport_InducerMultiplier>Inducer multiplier</RG_StatsReport_InducerMultiplier>
+
+	<RG_CloningPod_Stat_BiomassConsumption_Label>Biomass need ({0})</RG_CloningPod_Stat_BiomassConsumption_Label>
+	<RG_CloningPod_Stat_BiomassConsumption_Desc>The amount of biomass this cloning pod consumes per {0} cloning operation.</RG_CloningPod_Stat_BiomassConsumption_Desc>
+
+	<RG_CloningPod_Stat_CalibrationTicks_Label>Calibration time ({0})</RG_CloningPod_Stat_CalibrationTicks_Label>
+	<RG_CloningPod_Stat_CalibrationTicks_Desc>The amount of time it takes to calibrate this cloning pod before beginning a cloning operation.</RG_CloningPod_Stat_CalibrationTicks_Desc>
+
+	<RG_CloningPod_Stat_IncubationTicks_Label>Incubation time ({0})</RG_CloningPod_Stat_IncubationTicks_Label>
+	<RG_CloningPod_Stat_IncubationTicks_Desc>The amount of time it takes to incubate a clone in this cloning pod.</RG_CloningPod_Stat_IncubationTicks_Desc>
 
 	<!-- Stargate -->
 

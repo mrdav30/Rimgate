@@ -148,6 +148,7 @@
 		<baseCost>5500</baseCost>
 		<prerequisites>
 			<li>Rimgate_MeatCultivation</li>
+			<li>Xenogermination</li>
 		</prerequisites>
 		<researchViewX>1.5</researchViewX>
 		<researchViewY>2.5</researchViewY>
@@ -197,6 +198,7 @@
 		<baseCost>5000</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithCloneFull</li>
+			<li>Archogenetics</li>
 		</prerequisites>
 		<researchViewX>3.5</researchViewX>
 		<researchViewY>2.5</researchViewY>
@@ -306,14 +308,15 @@
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_CloningPodOptimization</defName>
 		<label>cloning pod optimization</label>
-		<description>Apply ZPM-inspired power-shaping techniques to Wraith biotank architecture. While the pod’s biology still demands immense energy for accelerated growth, your engineers can now reconfigure the pump rhythms, enzyme heaters, and neural-imprint grids to draw power in smooth harmonics rather than violent spikes.\n\nIt won’t make the pod any less unsettling.\n\nBut it will make it about a third less hungry.</description>
+		<description>Apply ZPM-inspired power-shaping techniques to Wraith biotank architecture. By synchronizing pump rhythms, enzyme heaters, and neural-imprint grids to stable subspace harmonics, your engineers can dramatically smooth the cloning pod’s energy demands.\n\nThese insights also reveal a broader truth: the pod’s inefficiencies are not purely energetic, but cyclical. With proper harmonic control, biomass can be conditioned instead of wasted, and growth cycles can be entrained rather than brute-forced.\n\nThe result is a quieter, more efficient cloning system—supported by auxiliary bio-devices that stabilize nutrient flow and accelerate incubation through controlled resonance.\n\nIt won’t make the pod any less unsettling.\n\nBut it will make it smarter.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>9000</baseCost>
 
 		<prerequisites>
-			<li>Rimgate_SubspaceMasking</li>
-			<li>Rimgate_ParallelSubspaceCoupling</li>
 			<li>Rimgate_WraithCloneGenome</li>
+			<li>Rimgate_ParallelSubspaceCoupling</li>
+			<li>GrowthVats</li>
+			<li>Archogenetics</li>
 		</prerequisites>
 
 		<researchViewX>1.5</researchViewX>
@@ -345,7 +348,7 @@
 			</rulesStrings>
 		</generalRules>
 		<discoveredLetterTitle>About: Cloning pod optimization</discoveredLetterTitle>
-		<discoveredLetterText>Your team has successfully applied ZPM-inspired power-shaping techniques to Wraith biotank architecture. The cloning pod now draws power in smooth harmonics rather than violent spikes, reducing its overall energy consumption.\n\nWhile it remains unsettling, the pod is now about a third less hungry.</discoveredLetterText>
+		<discoveredLetterText>Your team has successfully applied ZPM-inspired power-shaping techniques to Wraith biotank architecture. The cloning pod now draws power in smooth subspace harmonics rather than violent spikes, reducing its overall energy consumption.\n\nMore importantly, this research has exposed deeper inefficiencies in the cloning process itself. By stabilizing biomass during imprint initiation and synchronizing growth cycles through controlled resonance, new auxiliary bio-devices can now be constructed to enhance cloning operations.\n\nThe pod remains quietly horrifying.\n\nIt is simply more disciplined now.</discoveredLetterText>
 	</ResearchProjectDef>
 
 </Defs>

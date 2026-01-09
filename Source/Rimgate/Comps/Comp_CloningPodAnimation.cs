@@ -106,7 +106,7 @@ public class Comp_CloningPodAnimation : ThingComp
         Vector3 panePos = drawPos;
         panePos.y = parent.def.altitudeLayer.AltitudeFor() - 0.01f;
 
-        if (_clonePod.Status == CloningStatus.Incubating)
+        if (_clonePod.FuelForCurrentCycleConsumed)
         {
             FullGraphic.Draw(
                 panePos,
@@ -134,7 +134,7 @@ public class Comp_CloningPodAnimation : ThingComp
                 0);
         }
 
-        if (_clonePod.Status == CloningStatus.Paused && !_clonePod.HasRequiredBiomass())
+        if (_clonePod.Status == CloningStatus.Paused && !_clonePod.TryGetCostForCurrentCycle(out _))
         {
             parent.Map.overlayDrawer.DrawOverlay(parent, OverlayTypes.OutOfFuel);
             return;
@@ -151,7 +151,7 @@ public class Comp_CloningPodAnimation : ThingComp
             var stageCount = Props.incubatingStagesGraphicData?.Count ?? 0;
             if (stageCount <= 0) return;
 
-            var percent = _clonePod.IncubationProgress;
+            var percent = _clonePod.GetIncubationProgress();
             if (percent <= 0) return;
 
             // once close enough, show full stage
@@ -162,7 +162,6 @@ public class Comp_CloningPodAnimation : ThingComp
 
                 var stageGraphic = Props.incubatingStagesGraphicData[stageIndex].Graphic;
                 var oppositeRot = rotation.Opposite;
-                //drawPos = SetFloatingOffset(drawPos, rotation, _clonePod.RemainingCalibrationWork);
                 drawPos += GetDrawOffset(rotation, ticks);
                 drawPos.y = _clonePod.HeldPawnDrawPos_Y;
                 stageGraphic.Draw(
@@ -230,6 +229,14 @@ public class Comp_CloningPodAnimation : ThingComp
     }
 
     public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
+    {
+        _operatingEffecter?.Cleanup();
+        _operatingEffecter = null;
+        _idleEffecter?.Cleanup();
+        _idleEffecter = null;
+    }
+
+    public override void PostDestroy(DestroyMode mode, Map previousMap)
     {
         _operatingEffecter?.Cleanup();
         _operatingEffecter = null;
