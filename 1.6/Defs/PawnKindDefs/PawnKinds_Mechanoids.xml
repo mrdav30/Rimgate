@@ -141,7 +141,7 @@
         <label>replicator (humanoid)</label>
         <race>Rimgate_ReplicatorHumanoid</race>
         <defaultFactionType>Rimgate_Replicator</defaultFactionType>
-        <combatPower>120</combatPower>
+        <combatPower>210</combatPower>
         <abilities>
             <li>Rimgate_ReplicatorSpikeAbility</li>
         </abilities>
