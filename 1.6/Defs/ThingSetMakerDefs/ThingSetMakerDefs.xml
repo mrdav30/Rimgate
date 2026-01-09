@@ -13,7 +13,7 @@
 
         <!-- Bucket: tagged techprints -->
         <li>
-          <weight>5</weight>
+          <weight>7</weight>
           <thingSetMaker Class="Rimgate.ThingSetMaker_TechprintsByTag">
             <techprintTags>
               <li>Rimgate_TechprintPool</li> <!-- ResearchProjectTagDef defName -->
@@ -27,7 +27,7 @@
 
         <!-- Bucket: glyphs/schematics -->
         <li>
-          <weight>2</weight>
+          <weight>3</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -43,7 +43,7 @@
 
         <!-- Bucket: scrap notes -->
         <li>
-          <weight>6</weight>
+          <weight>4</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -58,7 +58,7 @@
 
         <!-- Bucket: empty -->
         <li>
-          <weight>3</weight>
+          <weight>1.5</weight>
           <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
         </li>
 
@@ -73,7 +73,7 @@
 
         <!-- Luciferium -->
         <li>
-          <weight>1</weight>
+          <weight>0.5</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -81,14 +81,14 @@
                   <li>Luciferium</li>
                 </thingDefs>
               </filter>
-              <countRange>7~18</countRange>
+              <countRange>3~10</countRange>
             </fixedParams>
           </thingSetMaker>
         </li>
 
         <!-- Rimgate_GlyphParchment -->
         <li>
-          <weight>0.15</weight>
+          <weight>0.25</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -231,7 +231,7 @@
 
         <!-- Bucket: scrap notes -->
         <li>
-          <weight>2</weight>
+          <weight>1.0</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -261,7 +261,7 @@
 
         <!-- Artifacts -->
         <li>
-          <weight>0.7</weight>
+          <weight>0.4</weight>
           <thingSetMaker Class="ThingSetMaker_Count">
             <fixedParams>
               <filter>
@@ -297,13 +297,6 @@
               <qualityGenerator>Reward</qualityGenerator>
               <filter>
                 <thingDefs>
-                  <li>Rimgate_KullGun</li>
-                  <li>Rimgate_GoauldMaTokBlue</li>
-                  <li>Rimgate_GoauldZat</li>
-                  <li>Rimgate_TauriUSAS12Shotgun</li>
-                  <li>Rimgate_TauriRemington700Rifle</li>
-                  <li>Rimgate_WraithHandBlaster</li>
-                  <li>Rimgate_WraithSpear</li>
                   <li>TechprofSubpersonaCore</li>
                   <li>ArchotechEye</li>
                   <li>ArchotechArm</li>
@@ -314,16 +307,10 @@
                   <li>BionicLeg</li>
                   <li>BionicSpine</li>
                   <li>BionicHeart</li>
-                  <li>Rimgate_WraithCommunicationDevice</li>
-                  <li>Rimgate_GoauldKaraKesh</li>
                   <li>MechSerumHealer</li>
                   <li>MechSerumResurrector</li>
-                  <li>FlatscreenTelevision</li>
-                  <li>MegascreenTelevision</li>
-                  <li>SculptureGrand</li>
                 </thingDefs>
                 <thingSetMakerTagsToAllow>
-                  <li>SingleUseWeapon</li>
                   <li>SkillNeurotrainer</li>
                 </thingSetMakerTagsToAllow>
               </filter>
@@ -331,7 +318,7 @@
           </thingSetMaker>
         </li>
 
-        <!-- Luciferium -->
+        <!-- Tretonin -->
         <li>
           <weight>0.35</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
@@ -341,7 +328,7 @@
                   <li>Rimgate_Tretonin</li>
                 </thingDefs>
               </filter>
-              <countRange>5~20</countRange>
+              <countRange>2~4</countRange>
             </fixedParams>
           </thingSetMaker>
         </li>
@@ -379,7 +366,7 @@
 
         <!-- Bucket: scrap notes -->
         <li>
-          <weight>0.75</weight>
+          <weight>0.5</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -409,7 +396,7 @@
 
         <!-- Gold -->
         <li>
-          <weight>1</weight>
+          <weight>0.75</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -417,14 +404,14 @@
                   <li>Gold</li>
                 </thingDefs>
               </filter>
-              <countRange>30~45</countRange>
+              <countRange>45~75</countRange>
             </fixedParams>
           </thingSetMaker>
         </li>
 
         <!-- Rimgate_Naquadah -->
         <li>
-          <weight>0.5</weight>
+          <weight>0.35</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -439,7 +426,7 @@
 
         <!-- Advanced components -->
         <li>
-          <weight>1</weight>
+          <weight>0.35</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -447,14 +434,14 @@
                   <li>ComponentSpacer</li>
                 </thingDefs>
               </filter>
-              <countRange>4~8</countRange>
+              <countRange>5~8</countRange>
             </fixedParams>
           </thingSetMaker>
         </li>
 
         <!-- Ultratech meds -->
         <li>
-          <weight>1</weight>
+          <weight>0.5</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -469,7 +456,7 @@
 
         <!-- Utility apparel -->
         <li>
-          <weight>0.1</weight>
+          <weight>0.25</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -590,7 +577,7 @@
 
         <!-- Bucket: scrap notes -->
         <li>
-          <weight>0.75</weight>
+          <weight>0.35</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
             <fixedParams>
               <filter>
@@ -621,6 +608,24 @@
         <li>
           <weight>1</weight>
           <thingSetMaker Class="ThingSetMaker_UniqueWeapon" />
+        </li>
+
+        <li>
+          <weight>0.05</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Apparel_PsychicInsanityLance</li>
+                  <li>Apparel_PsychicShockLance</li>
+                  <li>OrbitalTargeterBombardment</li>
+                  <li>OrbitalTargeterPowerBeam</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_BiomutationLance</li>
+                </thingDefs>
+              </filter>
+              <countRange>2</countRange>
+            </fixedParams>
+          </thingSetMaker>
         </li>
 
         <!-- Bucket: scrap notes -->
@@ -677,7 +682,7 @@
 
         <!-- Bucket: empty -->
         <li>
-          <weight>0.25</weight>
+          <weight>0.15</weight>
           <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
         </li>
 
@@ -690,6 +695,7 @@
     <root Class="ThingSetMaker_RandomOption">
       <options>
 
+        <!-- Always give 1 queen -->
         <li>
           <weight>1</weight>
           <thingSetMaker Class="ThingSetMaker_StackCount">
