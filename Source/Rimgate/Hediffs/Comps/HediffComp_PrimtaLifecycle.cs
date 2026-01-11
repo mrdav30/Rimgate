@@ -23,6 +23,28 @@ public class HediffComp_PrimtaLifecycle : HediffComp
     private bool _matured;
     private bool _krintakTriggered;
 
+    public override string CompLabelInBracketsExtra 
+    {
+        get
+        {
+            if (parent?.pawn == null || _maturePeriod <= 0)
+                return null;
+
+            if (!_matured)
+            {
+                if (MaturityPct > 0f)
+                {
+                    int pct = Mathf.Clamp(Mathf.RoundToInt(MaturityPct * 100f), 0, 100);
+                    return pct + "%";
+                }
+
+                return "brood";
+            }
+
+            return "mature";
+        }
+    }
+
     public override void CompExposeData()
     {
         Scribe_Values.Look(ref _maturePeriod, "_maturePeriod");
@@ -47,6 +69,9 @@ public class HediffComp_PrimtaLifecycle : HediffComp
             || pawn.health == null) return;
 
         _ageTicks++;
+
+        if(!pawn.IsHashIntervalTick(GenTicks.TickRareInterval))
+            return;
 
         // Pouch must still exist
         if (!pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch))
@@ -85,28 +110,6 @@ public class HediffComp_PrimtaLifecycle : HediffComp
 
         if (Find.TickManager.TicksGame % 60000 == 0)
             EvaluateOverstayOutcome(pawn);
-    }
-
-    public override string CompLabelInBracketsExtra 
-    {
-        get
-        {
-            if (parent?.pawn == null || _maturePeriod <= 0)
-                return null;
-
-            if (!_matured)
-            {
-                if (MaturityPct > 0f)
-                {
-                    int pct = Mathf.Clamp(Mathf.RoundToInt(MaturityPct * 100f), 0, 100);
-                    return pct + "%";
-                }
-
-                return "brood";
-            }
-
-            return "mature";
-        }
     }
 
     private void TriggerKrintak(Pawn pawn)

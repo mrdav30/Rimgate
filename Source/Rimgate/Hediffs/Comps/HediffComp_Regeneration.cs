@@ -34,7 +34,7 @@ public class HediffComp_Regeneration : HediffComp
         if (pawn.Dead || pawn.health?.hediffSet == null || pawn.health.hediffSet.hediffs.Count == 0)
             return;
 
-        if(pawn.IsColonyMech)
+        if (pawn.IsColonyMech)
         {
             var energyNeed = pawn.needs.TryGetNeed<Need_MechEnergy>();
             if (energyNeed != null && energyNeed.CurLevel <= 0f)
@@ -176,52 +176,36 @@ public class HediffComp_Regeneration : HediffComp
         if (!Rand.Chance(Props.healChronicChance)) return false;
 
         var hediffSet = pawn.health.hediffSet;
-        var hediffs = hediffSet.hediffs;
+        var hediffs = hediffSet?.hediffs;
+
+        if(hediffs == null) return false;
 
         for (int i = 0; i < hediffs.Count; i++)
         {
             Hediff h = hediffs[i];
-
-            // Skip stuff we already handle or never want to remove
-            if (h is Hediff_MissingPart) continue;
-            // Chronic filter
-            // Skip permanent injuries here (scars handled elsewhere)
-            if (!h.def.isBad || !h.def.chronic || h is Hediff_Injury) continue;
-
-            // If the hediff is on a part,
-            // respect "added parts" ancestry (avoids weirdness with prosthetics)
-            if (h.Part != null && hediffSet.AncestorHasDirectlyAddedParts(h.Part))
-                continue;
+            if(!MedicalUtil.IsEligibleChronic(hediffSet, h)) continue;
 
             var maxHealth = h.Part?.def.GetMaxHealth(pawn) ?? 1;
             if (pawn.IsColonyMech)
                 AdjustMechEnergyUsage(pawn, maxHealth);
 
-            // Heal action:
-            if (h.def.lethalSeverity > 0f || h.def.maxSeverity > 0f || h.Severity > 0f)
+            // avoids *instant cures*
+            // Example: subtract a small amount per check; scale with severity.
+            float delta = 0.15f; // per interval; tune
+            h.Severity = Mathf.Max(0f, h.Severity - delta);
+
+            // Optionally add regen tissue marker on that body part
+            if (Props.regeneratingHediff != null && h.Part != null)
             {
-                // avoids *instant cures*
-                // Example: subtract a small amount per check; scale with severity.
-                float delta = 0.15f; // per interval; tune
-                h.Severity = Mathf.Max(0f, h.Severity - delta);
-
-                // Optionally add regen tissue marker on that body part
-                if (Props.regeneratingHediff != null && h.Part != null)
-                {
-                    var regen = HediffMaker.MakeHediff(Props.regeneratingHediff, pawn, h.Part);
-                    regen.Severity = (h.Part.def.GetMaxHealth(pawn) - 1f) * Props.regenerateChronicTimeFactor;
-                    pawn.health.AddHediff(regen);
-                }
-
-                // If it reaches 0, remove it
-                if (h.Severity <= 0.001f)
-                    pawn.health.RemoveHediff(h);
-
-                return true;
+                var regen = HediffMaker.MakeHediff(Props.regeneratingHediff, pawn, h.Part);
+                regen.Severity = (h.Part.def.GetMaxHealth(pawn) - 1f) * Props.regenerateChronicTimeFactor;
+                pawn.health.AddHediff(regen);
             }
 
-            // Binary chronic: just remove (rare)
-            pawn.health.RemoveHediff(h);
+            // If it reaches 0, remove it
+            if (h.Severity <= 0.001f)
+                pawn.health.RemoveHediff(h);
+
             return true;
         }
 
@@ -278,7 +262,7 @@ public class HediffComp_Regeneration : HediffComp
             MedicalUtil.TryResurrectPawn(inner, resurrectionParams);
             _resurrectionsLeft--;
 
-            if(_cachedMechWeapon != null)
+            if (_cachedMechWeapon != null)
             {
                 inner.equipment.AddEquipment(_cachedMechWeapon);
                 _cachedMechWeapon = null;

@@ -319,10 +319,12 @@
     <Compile Include="Abilities\CompAbilityEffect_LaunchMultipleProjectile.cs" />
     <Compile Include="Abilities\CompAbilityEffect_ApplyDrainLife.cs" />
     <Compile Include="Abilities\CompAbilityEffect_WraithCocoonWrap.cs" />
+    <Compile Include="Abilities\CompAbilityEffect_WraithEssenceMending.cs" />
     <Compile Include="Abilities\CompAbility_RequiresTrainable.cs" />
     <Compile Include="Abilities\Properties\CompProperties_AbilityEssenceCost.cs" />
     <Compile Include="Abilities\Properties\CompProperties_AbilityRequiresTrainable.cs" />
     <Compile Include="Abilities\Properties\CompProperties_AdjustNeedOnCast.cs" />
+    <Compile Include="Abilities\Properties\CompProperties_WraithEssenceMending.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryCorpseToCloningPod.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryToCloningPod.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryToSarcophagus.cs" />
@@ -342,6 +344,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_CloseStargate.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_Toggle.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_WraithCocoonPrisoner.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_WraithEssenceMending.cs" />
     <Compile Include="AI\JobGivers\JobGiver_SatisfyEssenceNeed.cs" />
     <Compile Include="AI\JobGivers\JobGiver_MaraudColony.cs" />
     <Compile Include="AI\JobGivers\JobGiver_Unas.cs" />

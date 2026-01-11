@@ -469,7 +469,7 @@
       <li>Unfinished</li>
     </thingCategories>
     <modExtensions>
-      <li Class="Rimgate.Rimgate_ScrapNoteExt">
+      <li Class="Rimgate.Item_ScrapNote_Ext">
         <keys>
           <li>RG_ScribbledNote1</li>
           <li>RG_ScribbledNote2</li>
@@ -486,6 +486,11 @@
           <li>RG_ScribbledNote13</li>
           <li>RG_ScribbledNote14</li>
           <li>RG_ScribbledNote15</li>
+          <li>RG_ScribbledNote16</li>
+          <li>RG_ScribbledNote17</li>
+          <li>RG_ScribbledNote18</li>
+          <li>RG_ScribbledNote19</li>
+          <li>RG_ScribbledNote20</li>
         </keys>
       </li>
     </modExtensions>

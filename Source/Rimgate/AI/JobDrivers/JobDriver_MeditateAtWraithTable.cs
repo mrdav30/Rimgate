@@ -8,7 +8,7 @@ namespace Rimgate;
 
 public class JobDriver_MeditateAtWraithTable : JobDriver_Meditate
 {
-    private const float SuccessChance = 0.7f;
+    private const float PostiveThoughtChance = 0.7f;
 
     private Building Table => job.targetA.Thing as Building;
 
@@ -99,7 +99,7 @@ public class JobDriver_MeditateAtWraithTable : JobDriver_Meditate
         if (!pawn.HasHiveConnection())
             return;
 
-        var def = Rand.Chance(SuccessChance)
+        var def = Rand.Chance(PostiveThoughtChance)
             ? RimgateDefOf.Rimgate_WraithCommunedWithHive
             : RimgateDefOf.Rimgate_WraithWhispersFromVoid;
 

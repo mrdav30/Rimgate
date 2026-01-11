@@ -17,7 +17,7 @@
         <recipeMaker>
             <researchPrerequisite>Rimgate_AntiReplicatorGun</researchPrerequisite>
             <skillRequirements>
-                <Crafting>4</Crafting>
+                <Crafting>6</Crafting>
             </skillRequirements>
         </recipeMaker>
         <weaponTags Inherit="False">
@@ -89,7 +89,7 @@
         <projectile>
             <damageDef>Rimgate_ReplicatorDisrupt</damageDef>
             <damageAmountBase>30</damageAmountBase>
-            <stoppingPower>0</stoppingPower>
+            <stoppingPower>1.5</stoppingPower>
             <speed>100</speed>
         </projectile>
     </ThingDef>

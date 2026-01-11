@@ -15,9 +15,7 @@ public class CompUseEffect_InstallSymbiote : CompUseEffect
         var pawn = usedBy;
         var thing = parent as Thing_GoualdSymbiote;
 
-        bool hasSymbiote = usedBy.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant)
-            || usedBy.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);
-        if (hasSymbiote)
+        if (usedBy.HasSymbiote())
         {
             Messages.Message(
                 "RG_RejectHost_HasSymbiote".Translate(pawn.Named("PAWN")),

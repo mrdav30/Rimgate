@@ -115,7 +115,8 @@
     <biostatArc>2</biostatArc>
 
     <statFactors>
-      <InjuryHealingFactor>2</InjuryHealingFactor>
+      <InjuryHealingFactor>2.5</InjuryHealingFactor>
+      <ImmunityGainSpeed>1.5</ImmunityGainSpeed>
     </statFactors>
 
     <biologicalAgeTickFactorFromAgeCurve>
@@ -204,6 +205,7 @@
 
     <abilities>
       <li>Rimgate_WraithLifeDrainAbility</li>
+      <li>Rimgate_WraithEssenceMendingAbility</li>
     </abilities>
 
     <resourceGizmoType>Rimgate.GeneGizmo_ResourceEssence</resourceGizmoType>

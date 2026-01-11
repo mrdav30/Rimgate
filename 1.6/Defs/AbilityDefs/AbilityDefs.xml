@@ -171,6 +171,60 @@
         </comps>
     </AbilityDef>
 
+    <!-- ==================== Wraith Mending ==================== -->
+
+    <AbilityDef>
+        <defName>Rimgate_WraithEssenceMendingAbility</defName>
+        <label>regenerative trance</label>
+        <description>Enter a predatory regenerative trance. If uninterrupted, the Wraith burns stored essence to purge one chronic condition.\n\nNote: This ability requires the Wraith to remain undisturbed for the duration to be effective.  Ensure you pick a safe location and avoid interruptions.</description>
+        <category>Wraith</category>
+        <iconPath>UI/Ability/RGWraithEssenceMendingIcon</iconPath>
+
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <violent>false</violent>
+            <range>-1</range>
+            <warmupTime>100</warmupTime><!-- 2.5 in-game hours -->
+            <requireLineOfSight>false</requireLineOfSight>
+            <drawAimPie>false</drawAimPie>
+            <drawHighlightWithLineOfSight>false</drawHighlightWithLineOfSight>
+            <targetParams>
+                <canTargetPawns>false</canTargetPawns>
+                <canTargetLocations>true</canTargetLocations>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetHumans>false</canTargetHumans>
+                <canTargetMechs>false</canTargetMechs>
+            </targetParams>
+        </verbProperties>
+
+        <jobDef>Rimgate_WraithEssenceMending</jobDef>
+        <cooldownTicksRange>90000</cooldownTicksRange> <!-- 1.5 days -->
+        <waitForJobEnd>true</waitForJobEnd>
+        <aiCanUse>false</aiCanUse>
+        <showWhenDrafted>false</showWhenDrafted>
+        <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+        <showCastingProgressBar>true</showCastingProgressBar>
+
+        <comps>
+            <li Class="CompProperties_AbilityRequiresCapacity">
+                <capacity>Consciousness</capacity>
+            </li>
+
+            <li Class="Rimgate.CompProperties_AbilityEssenceCost">
+                <essenceCost>0.45</essenceCost>
+                <payCostAtStart>false</payCostAtStart>
+            </li>
+
+            <li Class="Rimgate.CompProperties_WraithEssenceMending" />
+
+            <li Class="CompProperties_AbilityFleckOnTarget">
+                <fleckDef>HealingCross</fleckDef>
+            </li>
+        </comps>
+    </AbilityDef>
+
     <!-- ==================== Replicator Spike ==================== -->
 
     <AbilityDef>

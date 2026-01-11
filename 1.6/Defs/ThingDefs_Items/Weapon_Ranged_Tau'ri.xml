@@ -428,7 +428,7 @@
             <damageDef>Bomb</damageDef>
             <!-- Use default damage from explosion def -->
             <explosionRadius>1.4</explosionRadius>
-            <speed>60</speed>
+            <speed>65</speed>
         </projectile>
     </ThingDef>
 
@@ -875,7 +875,7 @@
             <damageDef>Bomb</damageDef>
             <!-- Use default damage from explosion def -->
             <explosionRadius>5.9</explosionRadius>
-            <speed>60</speed>
+            <speed>70</speed>
         </projectile>
     </ThingDef>
 

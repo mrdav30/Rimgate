@@ -14,6 +14,7 @@ public static class RimgateDefOf
     }
 
     public static AbilityDef Rimgate_WraithLifeDrainAbility;
+    public static AbilityDef Rimgate_WraithEssenceMendingAbility;
 
     public static BackstoryDef Rimgate_DamagedClone;
     public static BackstoryDef Rimgate_Replicant;
@@ -69,6 +70,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_SarcophagusHigh;
     public static HediffDef Rimgate_SarcophagusAddiction;
     public static HediffDef Rimgate_SymbioteImplant;
+    public static HediffDef Rimgate_SymbioteImplant_Kull;
     public static HediffDef Rimgate_SymbiotePlague;
     public static HediffDef Rimgate_SymbiotePouch;   
     public static HediffDef Rimgate_SymbioteWithdrawal;
@@ -108,6 +110,7 @@ public static class RimgateDefOf
     public static JobDef Rimgate_RescueToSarcophagus;
     public static JobDef Rimgate_Toggle;
     public static JobDef Rimgate_ToggleIris;
+    public static JobDef Rimgate_WraithEssenceMending;
 
     public static MapGeneratorDef Rimgate_TransitSiteMap;
 

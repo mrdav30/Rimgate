@@ -1,55 +1,78 @@
 ﻿using RimWorld;
+using System;
+using System.Collections.Generic;
 using System.Text;
 using Verse;
 
 namespace Rimgate;
 
+public class Hediff_SymbioteImplant_Ext : DefModExtension
+{
+    public int chronicHealCheckTicks = 30000; // once every in-game day
+
+    public float chronicHealChance = 0.15f;
+}
+
 public class Hediff_SymbioteImplant : Hediff_Implant
 {
     public HediffComp_SymbioteHeritage Heritage => _heritage ?? GetComp<HediffComp_SymbioteHeritage>();
 
+    public Hediff_SymbioteImplant_Ext Props => _cachedProps ??= def.GetModExtension<Hediff_SymbioteImplant_Ext>();
+
     public override bool Visible => true;
 
-    private string SymbioteLimitSuffix
-    {
-        get
-        {
-            var memory = Heritage?.Memory;
-            if (memory == null) return null;
-
-            // If the symbiote is already over limit, indicate it loudly.
-            // Otherwise, if it is at the limit, indicate it's at max.
-            if (memory.IsOverLimit) return " (exhausted)";
-            if (memory.IsAtLimit) return " (prime)";
-            return null;
-        }
-    }
+    public bool IsBlankSymbiote => Heritage == null;
 
     public string SymbioteLabel
     {
         get
         {
+            if (!_cachedSymbioteLabel.NullOrEmpty() || IsBlankSymbiote)
+                return _cachedSymbioteLabel;
+
             var name = Heritage?.Memory?.SymbioteName;
             if (name.NullOrEmpty()) return null;
 
             var baseLabel = "RG_SymbioteMemory_Name".Translate(name);
             var suffix = SymbioteLimitSuffix;
 
-            return suffix.NullOrEmpty() ? baseLabel : $"{baseLabel}{suffix}";
+            _cachedSymbioteLabel = suffix.NullOrEmpty()
+                ? baseLabel
+                : $"{baseLabel}{suffix}";
+
+            return _cachedSymbioteLabel;
         }
     }
 
-    public override string LabelBase => !SymbioteLabel.NullOrEmpty()
+    public override string LabelBase => !IsBlankSymbiote && !SymbioteLabel.NullOrEmpty()
         ? SymbioteLabel
         : base.LabelBase;
 
-    public override string Label => !SymbioteLabel.NullOrEmpty()
+    public override string Label => !IsBlankSymbiote && !SymbioteLabel.NullOrEmpty()
         ? SymbioteLabel
         : base.Label;
 
-    public override string LabelInBrackets => !SymbioteLabel.NullOrEmpty()
+    public override string LabelInBrackets => !IsBlankSymbiote && !SymbioteLabel.NullOrEmpty()
         ? SymbioteLabel
         : base.LabelInBrackets;
+
+    public string SymbioteLimitSuffix
+    {
+        get
+        {
+            if (IsBlankSymbiote) return null;
+            // If the symbiote is already over limit, indicate it loudly.
+            // Otherwise, if it is at the limit, indicate it's at max.
+            var memory = Heritage.Memory;
+            if (memory.IsOverLimit) return " (exhausted)";
+            if (memory.IsAtLimit) return " (prime)";
+            return null;
+        }
+    }
+
+    private string _cachedSymbioteLabel;
+
+    private Hediff_SymbioteImplant_Ext _cachedProps;
 
     private bool _immediateRejection;
 
@@ -65,7 +88,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         if (!IsValidHost(out string reason))
         {
             // Spawn mature symbiote item at pawn's position
-            if (pawn.Map != null)
+            if (!IsBlankSymbiote && pawn.Map != null)
             {
                 var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote);
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
@@ -98,7 +121,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
             Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_InstalledSymbiote, pawn.Named(HistoryEventArgsNames.Doer)));
 
-        if (Heritage == null) return;
+        if (IsBlankSymbiote) return;
 
         Heritage.Memory ??= new SymbioteMemory();
         Heritage.Memory.EnsureName();
@@ -118,6 +141,25 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         }
     }
 
+    public override void PostTick()
+    {
+        base.PostTick();
+
+        if (pawn == null || pawn.Dead) return;
+        var hs = pawn.health?.hediffSet;
+        if (hs == null || hs.hediffs.Count == 0) return;
+
+        if (!pawn.IsHashIntervalTick(Props.chronicHealCheckTicks)) return;
+
+        var memory = Heritage?.Memory;
+        if (memory?.IsOverLimit == true) return; // symbiote is exhausted; no free cures
+
+        if (!Rand.Chance(Props.chronicHealChance)) return;
+
+        if (MedicalUtil.TryHealOneChronic(pawn) && pawn.Spawned)
+            FleckMaker.ThrowMetaIcon(pawn.Position, pawn.Map, FleckDefOf.HealingCross);
+    }
+
     public bool IsValidHost(out string reason)
     {
         reason = null;
@@ -135,7 +177,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
     {
         base.PostRemoved();
 
-        if (_immediateRejection || pawn == null || pawn.health == null)
+        if (_immediateRejection || pawn == null || pawn.health == null || IsBlankSymbiote)
             return;
 
         if (!pawn.Dead
@@ -147,6 +189,20 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         }
 
         TrySpawnSymbiote();
+    }
+
+    public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
+    {
+        foreach (var stat in base.SpecialDisplayStats(req))
+            yield return stat;
+
+        if (!IsBlankSymbiote && Heritage?.Memory != null)
+            yield return new StatDrawEntry(
+                StatCategoryDefOf.BasicsImportant,
+                "RG_Symbiote_Stat_PreviousHostCount_Label".Translate(),
+                Heritage?.Memory.PriorHostCount.ToString("F0"),
+                "RG_Symbiote_Stat_PreviousHostCount_Desc".Translate(),
+                4994);
     }
 
     public override void Notify_PawnKilled()

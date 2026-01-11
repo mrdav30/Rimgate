@@ -164,8 +164,8 @@
 			<Mass>3.4</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.87</AccuracyShort>
-			<AccuracyMedium>0.77</AccuracyMedium>
-			<AccuracyLong>0.64</AccuracyLong>
+			<AccuracyMedium>0.72</AccuracyMedium>
+			<AccuracyLong>0.52</AccuracyLong>
 			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
 			<MarketValue>750</MarketValue>
 			<WorkToMake>8000</WorkToMake>
@@ -178,8 +178,8 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_MaTokProjectile</defaultProjectile>
-				<warmupTime>1.0</warmupTime>
-				<range>25.9</range>
+				<warmupTime>1.32</warmupTime>
+				<range>26.9</range>
 				<burstShotCount>1</burstShotCount>
 				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 				<soundCast>Rimgate_GoauldMaTokShot</soundCast>
@@ -280,7 +280,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>18</damageAmountBase>
 			<stoppingPower>1.5</stoppingPower>
-			<armorPenetrationBase>0.35</armorPenetrationBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
 			<speed>65</speed>
 		</projectile>
 	</ThingDef>
@@ -290,7 +290,7 @@
 	<ThingDef ParentName="Rimgate_GoauldGunBase">
 		<defName>Rimgate_GoauldZat</defName>
 		<label>Zat'nik'tel</label>
-		<description>One shot: stun. Two shots: kill. Three shots? Only one way to find out.\nCompact, terrifying, and universally feared by SG teams and modded colonists alike.</description>
+		<description>One shot: stun. Two shots: kill. Three shots? Only one way to find out.\nCompact, terrifying, and universally feared by SG teams and modded colonists alike.\n\nNote: This weapon delivers a neuroelectric shock that temporarily incapacitates targets.  Unfortunately, it's ineffective against any mechanical target.</description>
 		<costList>
 			<Steel>30</Steel>
 			<ComponentIndustrial>2</ComponentIndustrial>
@@ -305,10 +305,10 @@
 		<statBases>
 			<Mass>1.2</Mass>
 			<AccuracyTouch>0.91</AccuracyTouch>
-			<AccuracyShort>0.75</AccuracyShort>
-			<AccuracyMedium>0.55</AccuracyMedium>
-			<AccuracyLong>0.45</AccuracyLong>
-			<RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
+			<AccuracyShort>0.74</AccuracyShort>
+			<AccuracyMedium>0.32</AccuracyMedium>
+			<AccuracyLong>0.23</AccuracyLong>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
 			<MarketValue>1800</MarketValue>
 			<WorkToMake>4000</WorkToMake>
 		</statBases>
@@ -362,7 +362,7 @@
 		<defName>Rimgate_ZatProjectile</defName>
 		<thingClass>Rimgate.Projectile_ZatBlast</thingClass>
 		<label>zat'nik'tel shot</label>
-		<description>bullet</description>
+		<description>blast</description>
 		<graphicData>
 			<texPath>Things/Projectile/RGZatGunProjectile</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -372,10 +372,13 @@
 			<flyOverhead>false</flyOverhead>
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>5</damageAmountBase>
-			<stoppingPower>2</stoppingPower>
-			<armorPenetrationBase>0.85</armorPenetrationBase>
-			<speed>75</speed>
+			<stoppingPower>1</stoppingPower>
+			<armorPenetrationBase>0.05</armorPenetrationBase>
+			<speed>72</speed>
 		</projectile>
+		<modExtensions>
+			<li Class="Rimgate.Projectile_ZatBlast_Ext" />
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ========= Kull ========= -->
@@ -556,7 +559,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>25</damageAmountBase>
 			<stoppingPower>2</stoppingPower>
-			<armorPenetrationBase>0.45</armorPenetrationBase>
+			<armorPenetrationBase>0.35</armorPenetrationBase>
 			<speed>75</speed>
 		</projectile>
 	</ThingDef>

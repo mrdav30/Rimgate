@@ -1,70 +1,103 @@
 ﻿using System.Collections.Generic;
 using Verse;
 using RimWorld;
+using UnityEngine;
 
 namespace Rimgate;
 
-public class Projectile_ZatBlast_Extension : DefModExtension
+public class Projectile_ZatBlast_Ext : DefModExtension
 {
-    public float addHediffChance = 0.82f;
+    public float oddsOfCatatonia = 0.15f;
 
-    public FloatRange severityRange = new FloatRange(0.15f, 0.30f);
+    public float oddsOfHangover = 0.20f;
+
+    public float oddsOfZatShock = 0.55f;
+
+    public bool enableCorpseDisintegration = true;
 }
 
 public class Projectile_ZatBlast : Bullet
 {
-    public Projectile_ZatBlast_Extension Props => new Projectile_ZatBlast_Extension();
+    public Projectile_ZatBlast_Ext Props => _cachedProps ??= def.GetModExtension<Projectile_ZatBlast_Ext>();
+
+    private Projectile_ZatBlast_Ext _cachedProps;
+
+    private static readonly TraitDef PsychicSensitivityTraitDef = TraitDef.Named("PsychicSensitivity");
 
     protected override void Impact(Thing hitThing, bool blockedByShield = false)
     {
-        base.Impact(hitThing, false);
+        base.Impact(hitThing, blockedByShield);
+        if (blockedByShield) return;
+        if (Props == null || hitThing == null) return;
         ZatBlastImpact(hitThing);
     }
 
-    protected void ZatBlastImpact(Thing hitThing)
+    private void ZatBlastImpact(Thing hitThing)
     {
-        if (Props == null || hitThing == null) return;
+        Pawn hitPawn = hitThing is Corpse corpse
+            ? corpse.InnerPawn 
+            : hitThing as Pawn;
 
-        Corpse corpse = hitThing as Corpse ?? (hitThing as Pawn)?.Corpse;
-        if(corpse != null)
+        // zat doesn't affect non-flesh things or non-pawns
+        if (hitPawn == null || !hitPawn.RaceProps.IsFlesh) return;
+
+        // If the pawn already has zat shock, they can potentially die from additional blasts.
+        if (hitPawn.TryGetHediffOf(RimgateDefOf.Rimgate_ZatShock, out Hediff h))
         {
-            // Destroy any dead corpse regardless of whether or not it was hit by a zat gun.
-            corpse.Destroy();
+            if (Props.enableCorpseDisintegration && hitThing is Corpse && TryDisintegrateCorpse(hitThing as Corpse))
+                return;
+
+            float max = h.def.maxSeverity;
+            h.Severity = Mathf.Min(h.Severity + 1f, max);
+            if (h.Severity >= max)
+                hitPawn.Kill(null);
             return;
         }
 
-        if (hitThing is not Pawn hitPawn) return;
-
-        Hediff zatShocked = hitPawn.health?.hediffSet?.GetFirstHediffOfDef(RimgateDefOf.Rimgate_ZatShock);
-
-        float randomSeverity = Props.severityRange.RandomInRange;
-        if (zatShocked != null)
+        // If the pawn is psychically sensitive, or has bad luck, put them in a state of catatonia.
+        int psychicSensitivity = 0;
+        if (hitPawn.story?.traits != null
+            && hitPawn.story.traits.HasTrait(PsychicSensitivityTraitDef))
         {
-            // If the pawn has already been shot with the zat gun, the second shot is fatal.
-            if (RimgateMod.Debug)
-                Messages.Message("Rimgate :: Killing " + hitPawn.Name + " because of 2nd zat blast.", MessageTypeDefOf.NegativeEvent);
-            hitPawn.Kill(null);
+            Trait psychicSensitivityTrait = hitPawn.story.traits.GetTrait(PsychicSensitivityTraitDef);
+            psychicSensitivity = psychicSensitivityTrait.Degree;
         }
-        else
-        {           
-            float rand = Rand.Value;
-            if (rand > Props.addHediffChance)
-                return;
 
-            Hediff hediff;
-
-            // If the pawn is psychically sensitive, or has bad luck, put them in a state of catatonia.
-            int psychicSensitivity = 0;
-            if (hitPawn.story?.traits != null
-                && hitPawn.story.traits.HasTrait(TraitDef.Named("PsychicSensitivity")))
-            {
-                Trait psychicSensitivityTrait = hitPawn.story.traits.GetTrait(TraitDef.Named("PsychicSensitivity"));
-                psychicSensitivity = psychicSensitivityTrait.Degree;
-            }
-
-            hediff = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_ZatShock, hitPawn);
-            hediff.Severity = randomSeverity;
-            hitPawn.health.AddHediff(hediff);
+        if (psychicSensitivity > 0 && Rand.Chance(Props.oddsOfCatatonia))
+        {
+            hitPawn.health?.AddHediff(HediffDefOf.CatatonicBreakdown);
+            return;
         }
+
+        if (psychicSensitivity < -1 && Rand.Chance(Props.oddsOfHangover))
+        {
+            hitPawn.health?.AddHediff(HediffDefOf.PsychicHangover);
+            return;
+        }
+
+        if (!Rand.Chance(Props.oddsOfZatShock))
+            return;
+
+        var shock = hitPawn.health?.AddHediff(RimgateDefOf.Rimgate_ZatShock);
+        // small chance of less severe initial shock or none at all
+        shock.Severity = Rand.Chance(0.5f)
+            ? 1f
+            : Rand.Chance(0.5f)
+                ? 0.5f
+                : 0f;
+    }
+
+    private bool TryDisintegrateCorpse(Corpse corpse)
+    {
+        if (corpse == null) return false;
+        if (corpse.GetRotStage() != RotStage.Fresh) return false;
+
+        if (RimgateMod.Debug)
+            Messages.Message($"Rimgate :: {Label} disintegrated {corpse.InnerPawn.LabelShort}.", MessageTypeDefOf.NeutralEvent);
+
+        corpse.Destroy();
+        if (corpse.Spawned)
+            FleckMaker.ThrowExplosionCell(corpse.Position, corpse.Map, FleckDefOf.ExplosionFlash, Color.blue);
+        return true;
     }
 }

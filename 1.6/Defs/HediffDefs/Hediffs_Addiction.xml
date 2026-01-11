@@ -94,8 +94,7 @@
             </li>
         </comps>
         <stages>
-            <li>
-            </li>
+            <li></li>
             <li>
                 <label>withdrawal</label>
                 <painOffset>0.4</painOffset>
@@ -169,8 +168,7 @@
         <everCurableByItem>false</everCurableByItem>
         <scenarioCanAdd>false</scenarioCanAdd>
         <stages>
-            <li>
-            </li>
+            <li></li>
             <li>
                 <label>unmet</label>
                 <painOffset>0.4</painOffset>

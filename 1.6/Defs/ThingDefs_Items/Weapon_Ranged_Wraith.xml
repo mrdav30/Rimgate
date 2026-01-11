@@ -273,8 +273,8 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>10</damageAmountBase>
 			<stoppingPower>1.5</stoppingPower>
-			<armorPenetrationBase>0.65</armorPenetrationBase>
-			<speed>70</speed>
+			<armorPenetrationBase>0.42</armorPenetrationBase>
+			<speed>72</speed>
 		</projectile>
 		<comps>
 			<li Class="Rimgate.CompProperties_AdditionalDamage">
@@ -411,7 +411,7 @@
 			<damageDef>Flame</damageDef>
 			<damageAmountBase>8</damageAmountBase>
 			<stoppingPower>0.6</stoppingPower>
-			<armorPenetrationBase>0.35</armorPenetrationBase>
+			<armorPenetrationBase>0.28</armorPenetrationBase>
 			<speed>55</speed>
 		</projectile>
 		<comps>

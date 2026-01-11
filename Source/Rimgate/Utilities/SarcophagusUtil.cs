@@ -154,6 +154,29 @@ public static class SarcophagusUtil
         return true;
     }
 
+    public static bool HasUsageBlockingHediffs(
+    Pawn pawn,
+    List<HediffDef> usageBlockingHediffs,
+    out List<Hediff> blockingHediffs)
+    {
+        blockingHediffs = pawn?.health?.hediffSet?.hediffs
+            .Where(x => usageBlockingHediffs.Contains(x.def))
+            .ToList();
+
+        return blockingHediffs?.Count > 0;
+    }
+
+    public static bool HasUsageBlockingTraits(
+        Pawn pawn,
+        List<TraitDef> usageBlockingTraits,
+        out List<Trait> blockingTraits)
+    {
+        blockingTraits = pawn.story?.traits?.allTraits
+            .Where(x => usageBlockingTraits.Contains(x.def))
+            .ToList();
+        return blockingTraits?.Count > 0;
+    }
+
     public static bool ShouldSeekTreatment(
         Pawn patient,
         Building_Sarcophagus sarcophagus,
@@ -284,7 +307,7 @@ public static class SarcophagusUtil
         }
 
         // Does not have hediffs or traits that block the pawn from using Sarcophagi
-        if (MedicalUtil.HasUsageBlockingHediffs(
+        if (SarcophagusUtil.HasUsageBlockingHediffs(
             patient,
             usageBlockingHediffs,
             out List<Hediff> blockingHediffs))
@@ -293,7 +316,7 @@ public static class SarcophagusUtil
             return false;
         }
 
-        if (MedicalUtil.HasUsageBlockingTraits(
+        if (SarcophagusUtil.HasUsageBlockingTraits(
             patient,
             usageBlockingTraits,
             out List<Trait> blockingTraits))

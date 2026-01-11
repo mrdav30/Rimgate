@@ -220,7 +220,8 @@ internal static class Utils
     public static bool HasSymbiote(this Pawn pawn)
     {
         return pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant)
-            || pawn.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);
+            || pawn.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch)
+            || pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant_Kull);
     }
 
     public static bool CanSocialize(Pawn p1, Pawn p2)

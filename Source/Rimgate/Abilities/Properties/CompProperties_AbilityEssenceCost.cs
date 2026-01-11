@@ -9,6 +9,8 @@ public class CompProperties_AbilityEssenceCost : CompProperties_AbilityEffect
 {
     public float essenceCost;
 
+    public bool payCostAtStart = true;
+
     public CompProperties_AbilityEssenceCost() => compClass = typeof(CompAbilityEffect_EssenceCost);
 
     public override IEnumerable<string> ExtraStatSummary()

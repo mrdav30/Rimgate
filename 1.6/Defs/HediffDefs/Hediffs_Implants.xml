@@ -72,7 +72,7 @@
         <defName>Rimgate_SymbioteImplant</defName>
         <hediffClass>Rimgate.Hediff_SymbioteImplant</hediffClass>
         <label>Goa'uld symbiote</label>
-        <description>A living parasite from the Goa’uld species that has been implanted into the host’s body, either by force or willingly. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, sharper senses, and a disturbing fondness for referring to yourself as a god.\n\nRemoval is possible—but the body it’s been sustaining will not take the separation well.</description>
+        <description>A living parasite from the Goa’uld species that has been implanted into the host’s body, either by force or willingly. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, sharper senses, and a disturbing fondness for referring to yourself as a god.\n\nRemoval is possible—but the body it’s been sustaining will not take the separation well.\n\nNote: Healthy symbiotes will periodically heal chronic conditions afflicting their host.</description>
         <descriptionShort>A mature Goa'uld symbiote.</descriptionShort>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_GoauldSymbiote</ThingDef>
@@ -123,6 +123,61 @@
             </li>
         </stages>
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+        <modExtensions>
+            <li Class="Rimgate.Hediff_SymbioteImplant_Ext" />
+        </modExtensions>
+    </HediffDef>
+
+    <HediffDef>
+        <defName>Rimgate_SymbioteImplant_Kull</defName>
+        <hediffClass>Rimgate.Hediff_SymbioteImplant</hediffClass>
+        <label>Blank symbiote</label>
+        <description>A living parasite from the Goa'uld species that has been specifically bred for Kull warriors to lack genetic memory and free will.</description>
+        <descriptionShort>A blank Goa'uld symbiote.</descriptionShort>
+        <defaultInstallPart>Torso</defaultInstallPart>
+        <defaultLabelColor>(255, 0, 94)</defaultLabelColor>
+        <isBad>false</isBad>
+        <priceImpact>true</priceImpact>
+        <duplicationAllowed>false</duplicationAllowed>
+        <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+
+        <!-- same goauld symbiote benefits -->
+        <stages>
+            <li>
+                <painFactor>0.5</painFactor>
+                <hungerRateFactor>0.55</hungerRateFactor> <!-- Eats 55% less -->
+                <statFactors>
+                    <ImmunityGainSpeed>2</ImmunityGainSpeed> <!-- Immunity 200% more -->
+                    <InjuryHealingFactor>3</InjuryHealingFactor> <!-- Heals 400% more -->
+                    <RestFallRateFactor>0.5</RestFallRateFactor> <!-- Sleeps 50% less -->
+                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>0.25</offset>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <offset>0.25</offset>
+                    </li>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>0.25</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>0.25</offset>
+                    </li>
+                </capMods>
+                <statOffsets>
+                    <PsychicSensitivity>0.25</PsychicSensitivity>
+                </statOffsets>
+            </li>
+        </stages>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+        <modExtensions>
+            <li Class="Rimgate.Hediff_SymbioteImplant_Ext" />
+        </modExtensions>
     </HediffDef>
 
     <!-- ==================== Jaffa Forehead Symbol Base ==================== -->

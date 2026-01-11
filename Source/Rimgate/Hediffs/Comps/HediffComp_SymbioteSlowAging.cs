@@ -14,8 +14,6 @@ public class HediffComp_SymbioteSlowAging : HediffComp
 
     public override void CompPostTick(ref float severityAdjustment)
     {
-        base.CompPostTick(ref severityAdjustment);
-
         if (Pawn.Dead || Props == null)
             return;
 

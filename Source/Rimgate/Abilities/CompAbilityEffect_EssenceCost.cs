@@ -22,7 +22,8 @@ public class CompAbilityEffect_EssenceCost : CompAbilityEffect
     public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
     {
         base.Apply(target, dest);
-        BiologyUtil.OffsetEssence(parent.pawn, 0f - Props.essenceCost);
+        if (Props.payCostAtStart)
+            BiologyUtil.OffsetEssence(parent.pawn, 0f - Props.essenceCost);
     }
 
     public override bool GizmoDisabled(out string reason)

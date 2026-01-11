@@ -262,4 +262,18 @@
 		<reportString>draining life from TargetA.</reportString>
 	</JobDef>
 
+	<!-- =============== Wraith Trance =============== -->
+
+	<JobDef>
+		<defName>Rimgate_WraithEssenceMending</defName>
+		<driverClass>Rimgate.JobDriver_WraithEssenceMending</driverClass>
+		<reportString>going into a regenerative trance.</reportString>
+		<neverShowWeapon>true</neverShowWeapon>
+		<casualInterruptible>false</casualInterruptible>
+		<playerInterruptible>true</playerInterruptible>
+		<abilityCasting>true</abilityCasting>
+		<allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+		<dropThingBeforeJob>false</dropThingBeforeJob>
+	</JobDef>
+
 </Defs>

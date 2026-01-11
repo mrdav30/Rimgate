@@ -330,8 +330,8 @@
 		<projectile>
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>35</damageAmountBase>
-			<armorPenetrationBase>0.95</armorPenetrationBase>
-			<speed>110</speed>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<speed>125</speed>
 		</projectile>
 	</ThingDef>
 
@@ -748,7 +748,7 @@
 			<damageDef>Flame</damageDef>
 			<damageAmountBase>22</damageAmountBase>
 			<armorPenetrationBase>0.62</armorPenetrationBase>
-			<speed>92</speed>
+			<speed>72</speed>
 			<!-- small splash to punish clumps -->
 			<explosionRadius>1.25</explosionRadius>
 			<explosionDamageFalloff>true</explosionDamageFalloff>

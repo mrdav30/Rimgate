@@ -3,8 +3,10 @@ using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 using Verse.AI.Group;
+using static HarmonyLib.Code;
 
 namespace Rimgate;
 
@@ -16,27 +18,62 @@ public static class MedicalUtil
             && WorkGiver_DoBill.GetMedicalCareCategory(pawn) >= MedicalCareCategory.NormalOrWorse;
     }
 
-    public static bool HasUsageBlockingHediffs(
-        Pawn pawn,
-        List<HediffDef> usageBlockingHediffs,
-        out List<Hediff> blockingHediffs)
+    public static bool HasAnyChronic(this Pawn pawn)
     {
-        blockingHediffs = pawn?.health?.hediffSet?.hediffs
-            .Where(x => usageBlockingHediffs.Contains(x.def))
-            .ToList();
+        var hediffSet = pawn.health.hediffSet;
+        var hediffs = hediffSet?.hediffs;
 
-        return blockingHediffs?.Count > 0;
+        if (hediffs == null) return false;
+
+        for (int i = 0; i < hediffs.Count; i++)
+        {
+            Hediff h = hediffs[i];
+            if (IsEligibleChronic(hediffSet, h))
+                return true;
+        }
+
+        return false;
     }
 
-    public static bool HasUsageBlockingTraits(
-        Pawn pawn,
-        List<TraitDef> usageBlockingTraits,
-        out List<Trait> blockingTraits)
+    public static bool IsEligibleChronic(HediffSet set, Hediff hediff)
     {
-        blockingTraits = pawn.story?.traits?.allTraits
-            .Where(x => usageBlockingTraits.Contains(x.def))
-            .ToList();
-        return blockingTraits?.Count > 0;
+        if (hediff == null) return false;
+        if (hediff is Hediff_MissingPart) return false;
+        if (hediff is Hediff_Injury) return false;
+        if (!hediff.def.isBad || !hediff.def.chronic) return false;
+
+        if (hediff.Part != null && set?.AncestorHasDirectlyAddedParts(hediff.Part) == true)
+            return false;
+
+        return true;
+    }
+
+    public static bool TryHealOneChronic(Pawn pawn)
+    {
+        var set = pawn?.health?.hediffSet;
+        var list = set?.hediffs;
+        if (list == null || list.Count == 0) return false;
+
+        Hediff best = null;
+        float bestSeverity = -1f;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            Hediff h = list[i];
+            if (!IsEligibleChronic(set, h)) continue;
+
+            float sev = h.Severity;
+            if (sev > bestSeverity)
+            {
+                bestSeverity = sev;
+                best = h;
+            }
+        }
+
+        if (best == null) return false;
+
+        pawn.health.RemoveHediff(best);
+        return true;
     }
 
     public static bool HasImmunizableHediffs(
@@ -95,7 +132,6 @@ public static class MedicalUtil
             HealthUtility.Cure(hediff);
     }
 
-
     public static bool HasHediffOf(this Pawn pawn, HediffDef def)
     {
         HediffSet set = pawn?.health?.hediffSet;
@@ -120,6 +156,17 @@ public static class MedicalUtil
         if (set.TryGetHediff(def, out Hediff result))
             return result;
         return null;
+    }
+
+    public static bool TryGetHediffOf(this Pawn pawn, HediffDef def, out Hediff result)
+    {
+        result = null;
+        HediffSet set = pawn?.health?.hediffSet;
+        if (set is null || def is null) return false;
+
+        if (set.TryGetHediff(def, out result))
+            return true;
+        return false;
     }
 
     public static T GetHediff<T>(this Pawn pawn) where T : Hediff
@@ -233,13 +280,13 @@ public static class MedicalUtil
             Lord lord = pawn.GetLord();
             if (lord != null)
                 lord?.Notify_PawnUndowned(pawn);
-            else if (pawn.Faction != null 
-                && pawn.Faction != Faction.OfPlayer 
-                && pawn.HostileTo(Faction.OfPlayer) 
+            else if (pawn.Faction != null
+                && pawn.Faction != Faction.OfPlayer
+                && pawn.HostileTo(Faction.OfPlayer)
                 && (parms == null || !parms.noLord))
             {
-                LordMaker.MakeNewLord(lordJob: parms == null 
-                    ? new LordJob_MaraudColony(pawn.Faction) 
+                LordMaker.MakeNewLord(lordJob: parms == null
+                    ? new LordJob_MaraudColony(pawn.Faction)
                     : new LordJob_MaraudColony(pawn.Faction, parms.canKidnap, parms.canTimeoutOrFlee, parms.sappers, parms.useAvoidGridSmart, parms.canSteal, parms.breachers, parms.canPickUpOpportunisticWeapons),
                     faction: pawn.Faction,
                     map: pawn.Map,

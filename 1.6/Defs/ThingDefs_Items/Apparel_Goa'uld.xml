@@ -768,7 +768,7 @@
 			<Insulation_Heat>11</Insulation_Heat>
 			<EquipDelay>20</EquipDelay>
 			<EnergyShieldRechargeRate>0.013</EnergyShieldRechargeRate>
-			<EnergyShieldEnergyMax>2.0</EnergyShieldEnergyMax>
+			<EnergyShieldEnergyMax>2.5</EnergyShieldEnergyMax>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.50</MoveSpeed>
@@ -789,11 +789,11 @@
 		<tradeTags Inherit="False" />
 		<comps>
 			<li Class="CompProperties_Shield">
-				<startingTicksToReset>11500</startingTicksToReset><!-- 2.5 min -->
+				<startingTicksToReset>6400</startingTicksToReset><!-- 1 hour -->
 				<minDrawSize>1.4</minDrawSize>
 				<maxDrawSize>1.8</maxDrawSize>
 				<energyLossPerDamage>0.02</energyLossPerDamage>
-				<energyOnReset>2.0</energyOnReset>
+				<energyOnReset>2.5</energyOnReset>
 				<blocksRangedWeapons>false</blocksRangedWeapons>
 			</li>
 			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">

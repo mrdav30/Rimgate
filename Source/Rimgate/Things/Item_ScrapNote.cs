@@ -5,22 +5,26 @@ using Verse;
 namespace Rimgate
 {
     // Mod extension: defines which keyed notes this item can pull from
-    public class Rimgate_ScrapNoteExt : DefModExtension
+    public class Item_ScrapNote_Ext : DefModExtension
     {
         public List<string> keys;
     }
 
     public class Item_ScrapNote : ThingWithComps
     {
+        public Item_ScrapNote_Ext Props => _cachedProps ??= def.GetModExtension<Item_ScrapNote_Ext>();
+
+        private Item_ScrapNote_Ext _cachedProps;
+
         private int _keyIndex = -1;
 
         private List<string> KeyPool
         {
             get
             {
-                var ext = def?.GetModExtension<Rimgate_ScrapNoteExt>();
-                return (ext?.keys != null && ext.keys.Count > 0)
-                    ? ext.keys
+                var keys = Props?.keys;
+                return (keys != null && keys.Count > 0)
+                    ? keys
                     : new List<string>(); // Empty list means no usable notes
             }
         }
@@ -34,9 +38,7 @@ namespace Rimgate
 
                 // Clamp index in case defs changed since save
                 if (_keyIndex < 0 || _keyIndex >= pool.Count)
-                {
                     _keyIndex = 0;
-                }
 
                 return pool[_keyIndex];
             }
@@ -48,9 +50,7 @@ namespace Rimgate
             {
                 var key = CurrentKeyOrNull;
                 if (key.NullOrEmpty())
-                {
-                    return "A scrap of paper with illegible scribbles.";
-                }
+                    return "RG_ScribbledNote_Default".Translate();
                 return key.Translate();
             }
         }

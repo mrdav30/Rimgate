@@ -125,6 +125,9 @@
 	<RG_SymbioteMemory_MaxHostsPerishedLabel>Worn symbiote</RG_SymbioteMemory_MaxHostsPerishedLabel>
 	<RG_SymbioteMemory_MaxHostsPerishedText>The symbiote {0} has gone through to many hosts to survive losing another one. It perished shortly after being removed from its current host.</RG_SymbioteMemory_MaxHostsPerishedText>
 
+	<RG_Symbiote_Stat_PreviousHostCount_Label>Previous hosts</RG_Symbiote_Stat_PreviousHostCount_Label>
+	<RG_Symbiote_Stat_PreviousHostCount_Desc>The number of previous hosts this symbiote has inhabited.</RG_Symbiote_Stat_PreviousHostCount_Desc>
+
 	<!-- Cloning pod -->
 
 	<RG_CloneOccupantGenes>Create genome-only blank clone of {0}.</RG_CloneOccupantGenes>
@@ -377,6 +380,8 @@
 
 	<!-- Notes -->
 
+	<RG_ScribbledNote_Default>A scrap of paper with illegible scribbles.</RG_ScribbledNote_Default>
+
 	<RG_ScribbledNote1>Too late, offworlders. The treasure is gone, and so are we. Also, your door code was embarrassingly easy to guess.</RG_ScribbledNote1>
 	<RG_ScribbledNote2>I needed it more than you. By the time you read this, I’ll be light-years away, probably drunk on fermented space cactus.</RG_ScribbledNote2>
 	<RG_ScribbledNote3>You were warned. Next time, maybe guard your ancient tech with more than a single dead rat and a rusty turret.</RG_ScribbledNote3>
@@ -392,6 +397,11 @@
 	<RG_ScribbledNote13>Technically, this was never your loot. It belonged to the Ancients. I’m just doing my part to return it to their hidden stash. Somewhere. Probably.</RG_ScribbledNote13>
 	<RG_ScribbledNote14>Someone came. I left. If you find anything useful, it's probably a trap. Or my leftover lunch. Don't mix them up.</RG_ScribbledNote14>
 	<RG_ScribbledNote15>Glorious treasure was here. I remembered how much I hate sharing but felt I needed to leave something. Enjoy this commemorative piece of disappointment.</RG_ScribbledNote15>
+	<RG_ScribbledNote16>I took the artifact for safekeeping. By the time you read this, I’ll be light-years away, probably drunk on fermented space cactus.</RG_ScribbledNote16>
+	<RG_ScribbledNote17>Warning: The artifact is cursed. Or at least, that’s what I’m telling myself to justify why everything went wrong after I took it.</RG_ScribbledNote17>
+	<RG_ScribbledNote18>I’m not coming back. The treasure was a trap, and I’m done playing their game. If you find this, consider it a warning... or a dare.</RG_ScribbledNote18>
+	<RG_ScribbledNote19>Found the loot, but it’s booby-trapped. Left a few surprises for the next fool who comes along. You’re welcome.</RG_ScribbledNote19>
+	<RG_ScribbledNote20>This note is all that remains. The rest is stashed in a Dwarfgate buffer... somewhere. Enjoy your scavenger hunt.</RG_ScribbledNote20>
 
 	<!-- UI -->
 
