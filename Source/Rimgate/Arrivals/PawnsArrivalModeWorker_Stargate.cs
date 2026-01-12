@@ -10,27 +10,33 @@ namespace Rimgate;
 
 public class PawnsArrivalModeWorker_Stargate : PawnsArrivalModeWorker
 {
+    public override bool CanUseOnMap(Map map)
+    {
+        Building_Stargate stargate = Building_Stargate.GetStargateOnMap(map);
+        return stargate != null && !stargate.IsActive;
+    }
+
     public override void Arrive(List<Pawn> pawns, IncidentParms parms)
     {
         Map map = (Map)parms.target;
         Building_Stargate stargateOnMap = Building_Stargate.GetStargateOnMap(map);
-        Comp_StargateControl sgComp = stargateOnMap?.GateControl;
-        if (sgComp == null) return;
+        if (stargateOnMap == null) return;
 
-        sgComp.TicksSinceBufferUnloaded = -150;
+        stargateOnMap.TicksSinceBufferUnloaded = -150;
         foreach (Pawn pawn in pawns)
-            sgComp.AddToReceiveBuffer(pawn);
-        sgComp.ForceLocalOpenAsReceiver();
+            stargateOnMap.AddToReceiveBuffer(pawn);
+        stargateOnMap.ForceLocalOpenAsReceiver();
     }
 
     public override bool TryResolveRaidSpawnCenter(IncidentParms parms)
     {
         Map map = (Map)parms.target;
         Building_Stargate stargateOnMap = Building_Stargate.GetStargateOnMap(map);
-        Comp_StargateControl sgComp = stargateOnMap?.GateControl;
-        if (sgComp == null || sgComp.IsActive == true)
+        if (stargateOnMap == null || stargateOnMap.IsActive == true)
         {
-            parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+            parms.raidArrivalMode = map.Tile.LayerDef.isSpace
+                ? PawnsArrivalModeDefOf.EdgeDrop
+                : PawnsArrivalModeDefOf.EdgeWalkIn;
             return parms.raidArrivalMode?.Worker?.TryResolveRaidSpawnCenter(parms) ?? false;
         }
 

@@ -19,7 +19,7 @@ public class JobDriver_DialStargate : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         var dhd = job.targetA.Thing as Building_DHD;
-        var gate = dhd?.StargateControl;
+        var gate = dhd?.LinkedStargate;
         if (gate == null)
         {
             EndJobWith(JobCondition.Incompletable);

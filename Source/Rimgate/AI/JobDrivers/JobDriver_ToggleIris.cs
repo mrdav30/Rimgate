@@ -21,23 +21,24 @@ public class JobDriver_ToggleIris : JobDriver
         finalize.initAction = delegate
         {
             Pawn actor = finalize.actor;
-            ThingWithComps thingWithComps = (ThingWithComps)actor.CurJob.targetA.Thing;
-            if (thingWithComps is Building_DHD dhd)
+            var t = actor.CurJob.targetA.Thing;
+            var didSomething = false;
+            if (t is Building_DHD dhd)
             {
                 dhd.DoToggleIrisRemote();
-                base.Map.designationManager.DesignationOn(thingWithComps, RimgateDefOf.Rimgate_DesignationToggleIris)?.Delete();
-                return;
+                didSomething = true;
+
             }
 
-            for (int i = 0; i < thingWithComps.AllComps.Count; i++)
+            if (!didSomething && t is Building_Stargate gate && gate.WantsIrisToggled)
             {
-                if (thingWithComps.AllComps[i] is Comp_StargateControl stargate && stargate.WantsIrisToggled)
-                {
-                    stargate.DoToggleIris();
-                    base.Map.designationManager.DesignationOn(thingWithComps, RimgateDefOf.Rimgate_DesignationToggleIris)?.Delete();
-                    break;
-                }
+                gate.DoToggleIris();
+                didSomething = true;
             }
+
+            if (didSomething)
+                base.Map.designationManager.DesignationOn(t, RimgateDefOf.Rimgate_DesignationToggleIris)?.Delete();
+            return;
         };
         finalize.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return finalize;

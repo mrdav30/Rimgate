@@ -42,12 +42,11 @@ public class JobDriver_InstallIris : JobDriver
                 var user = pawn;
                 var gate = _gate;
                 var iris = _iris;
-                Comp_StargateControl gateComp = gate?.GateControl;
-                if (gateComp == null || gateComp.HasIris)
+                if (gate.HasIris)
                     return;
                 user.carryTracker.innerContainer.Remove(iris);
                 iris.Destroy();
-                gateComp.HasIris = true;
+                gate.HasIris = true;
             }
         };
 

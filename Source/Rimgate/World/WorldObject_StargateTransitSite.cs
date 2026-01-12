@@ -50,7 +50,7 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
     private bool _wasLooted;
 
     private static bool IsInfraDef(ThingDef def) =>
-    def == RimgateDefOf.Rimgate_Stargate || def == RimgateDefOf.Rimgate_DialHomeDevice;
+        def == RimgateDefOf.Rimgate_Dwarfgate || def == RimgateDefOf.Rimgate_DialHomeDevice;
 
     public override string GetInspectString()
     {
@@ -71,7 +71,7 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
     public override void SpawnSetup()
     {
         base.SpawnSetup();
-        Find.World.GetComponent<WorldComp_StargateAddresses>().AddAddress(Tile);
+        StargateUtil.AddGateAddress(Tile);
     }
 
     public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
@@ -224,7 +224,7 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
     public override void Destroy()
     {
         base.Destroy();
-        Find.World.GetComponent<WorldComp_StargateAddresses>().RemoveAddress(Tile);
+        StargateUtil.RemoveGateAddress(Tile);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()

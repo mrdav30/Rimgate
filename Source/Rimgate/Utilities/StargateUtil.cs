@@ -27,7 +27,7 @@ public static class StargateUtil
     public static bool TryGetActiveGateOnMap(Map map, out Building_Stargate gate)
     {
         gate = Building_Stargate.GetStargateOnMap(map);
-        return gate?.GateControl?.IsActive == true;
+        return gate?.IsActive == true;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -36,8 +36,24 @@ public static class StargateUtil
         return pawn.CanReach(gate, PathEndMode.ClosestTouch, Danger.Deadly);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void AddGateAddress(PlanetTile address)
+    {
+        if (WorldComp != null)
+            WorldComp.AddAddress(address);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void RemoveGateAddress(PlanetTile address)
+    {
+        if (WorldComp != null)
+            WorldComp.RemoveAddress(address);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ModificationEquipmentActive() => WorldComp?.ModificationEquipmentActive == true;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void SetModificationEquipmentActive(bool status)
     {
         if (WorldComp != null)
@@ -89,7 +105,7 @@ public static class StargateUtil
         }
 
         var gate = GenSpawn.Spawn(
-            RimgateDefOf.Rimgate_Stargate,
+            RimgateDefOf.Rimgate_Dwarfgate,
             spot,
             map,
             Rot4.North,

@@ -7,7 +7,7 @@ namespace Rimgate;
 
 public class GameCondition_StargatePsychicDrone : GameCondition_PsychicEmanation
 {
-    private Comp_StargateControl _heldComp;
+    private Building_Stargate _heldGate;
 
     public override void Init()
     {
@@ -25,40 +25,38 @@ public class GameCondition_StargatePsychicDrone : GameCondition_PsychicEmanation
     public override void GameConditionTick()
     {
         base.GameConditionTick();
-        if (_heldComp == null || _heldComp.parent?.Destroyed == true)
+        if (_heldGate == null || _heldGate.Destroyed == true)
             End();
-        if (_heldComp != null) 
-            _heldComp.TicksSinceBufferUnloaded = 0;
+        if (_heldGate != null)
+            _heldGate.TicksSinceBufferUnloaded = 0;
     }
 
     private void TryHoldLocalGate(Map map)
     {
         if (map == null) return;
-        var gate = map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Stargate)
+        var gate = map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
                    .OfType<Building_Stargate>()
                    .FirstOrDefault();
+
         if (gate == null) return;
+        _heldGate = gate;
 
-        var comp = gate.GateControl;
-        if (comp == null) return;
-
-        _heldComp = comp;
-        _heldComp.PushExternalHold();
+        _heldGate.PushExternalHold();
         // If the gate isn’t already open,
         // light it up as an “incoming” link
-        _heldComp.ForceLocalOpenAsReceiver();
+        _heldGate.ForceLocalOpenAsReceiver();
     }
 
     private void ReleaseHold()
     {
-        if (_heldComp == null) return;
+        if (_heldGate == null) return;
 
-        _heldComp.PopExternalHold();
+        _heldGate.PopExternalHold();
         // If nothing else is holding the gate
         // and it was an “incoming” fake link:
-        if (_heldComp.ExternalHoldCount == 0 && _heldComp.IsReceivingGate)
-            _heldComp.CloseStargate();
+        if (_heldGate.ExternalHoldCount == 0 && _heldGate.IsReceivingGate)
+            _heldGate.CloseStargate();
 
-        _heldComp = null;
+        _heldGate = null;
     }
 }

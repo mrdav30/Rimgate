@@ -39,5 +39,7 @@ public class CompProperties_StargateControl : CompProperties
         new IntVec3(0,0,-3)
     };
 
+    public List<SoundDef> teleportSounds;
+
     public CompProperties_StargateControl() => compClass = typeof(Comp_StargateControl);
 }

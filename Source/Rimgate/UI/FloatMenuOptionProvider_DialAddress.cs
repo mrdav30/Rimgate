@@ -5,14 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using Verse.AI;
-using static HarmonyLib.Code;
 
 namespace Rimgate;
 
 public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
 {
-    private WorldComp_StargateAddresses _cachedComp;
-
     protected override bool Drafted => true;
 
     protected override bool Undrafted => true;
@@ -28,7 +25,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
         if (dhd == null)
             yield break;
 
-        var control = dhd.StargateControl;
+        var control = dhd.LinkedStargate;
         if (control == null)
         {
             yield return new FloatMenuOption(
@@ -70,10 +67,15 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        _cachedComp ??= Find.World.GetComponent<WorldComp_StargateAddresses>();
+        var addressComp = StargateUtil.WorldComp;
+        if (addressComp == null)
+        {
+            Log.Error("Could not get WorldComp_StargateAddresses");
+            yield break;
+        }
 
-        _cachedComp.CleanupAddresses();
-        if (_cachedComp.AddressCount < 2) // home + another site
+        addressComp.CleanupAddresses();
+        if (addressComp.AddressCount < 2) // home + another site
         {
             yield return new FloatMenuOption(
                 "RG_CannotDialNoDestinations".Translate(),
@@ -89,7 +91,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        foreach (PlanetTile tile in _cachedComp.AddressList)
+        foreach (PlanetTile tile in addressComp.AddressList)
         {
             if (tile == control.GateAddress)
                 continue;

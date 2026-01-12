@@ -7,7 +7,7 @@ namespace Rimgate;
 
 public class GameCondition_StargateToxicFallout : GameCondition_ToxicFallout
 {
-    private Comp_StargateControl _heldComp;
+    private Building_Stargate _heldGate;
 
     public override void Init()
     {
@@ -24,33 +24,32 @@ public class GameCondition_StargateToxicFallout : GameCondition_ToxicFallout
     public override void GameConditionTick()
     {
         base.GameConditionTick();
-        if (_heldComp == null || _heldComp.parent?.Destroyed == true)
+        if (_heldGate == null || _heldGate.Destroyed == true)
             End();
-        if (_heldComp != null) 
-            _heldComp.TicksSinceBufferUnloaded = 0;
+        if (_heldGate != null)
+            _heldGate.TicksSinceBufferUnloaded = 0;
     }
 
     private void TryHoldLocalGate(Map map)
     {
         if (map == null) return;
-        var gate = map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Stargate)
+        var gate = map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
                    .OfType<Building_Stargate>()
                    .FirstOrDefault();
+
         if (gate == null) return;
+        _heldGate = gate;
 
-        _heldComp = gate.GateControl;
-        if (_heldComp == null) return;
-
-        _heldComp.PushExternalHold();
-        _heldComp.ForceLocalOpenAsReceiver();
+        _heldGate.PushExternalHold();
+        _heldGate.ForceLocalOpenAsReceiver();
     }
 
     private void ReleaseHold()
     {
-        if (_heldComp == null) return;
-        _heldComp.PopExternalHold();
-        if (_heldComp.ExternalHoldCount == 0 && _heldComp.IsReceivingGate)
-            _heldComp.CloseStargate();
-        _heldComp = null;
+        if (_heldGate == null) return;
+        _heldGate.PopExternalHold();
+        if (_heldGate.ExternalHoldCount == 0 && _heldGate.IsReceivingGate)
+            _heldGate.CloseStargate();
+        _heldGate = null;
     }
 }

@@ -14,6 +14,10 @@
         <canMakeRandomly>true</canMakeRandomly>
         <canSiege>true</canSiege>
         <canStageAttacks>true</canStageAttacks>
+        <arrivalLayerWhitelist>
+            <li>Surface</li>
+            <li MayRequire="Ludeon.RimWorld.Odyssey">Orbit</li>
+        </arrivalLayerWhitelist>
         <autoFlee>false</autoFlee>
         <leaderTitle>Commander</leaderTitle>
         <factionNameMaker>NamerFactionOutlander</factionNameMaker>

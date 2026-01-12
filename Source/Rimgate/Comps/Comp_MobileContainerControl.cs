@@ -519,7 +519,7 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, IThingHolder
         // If a gate was clicked, store it directly in targetC; otherwise use the cell
         if (dest.HasThing)
         {
-            if (dest.Thing is not Building_Stargate sg || !sg.GateControl.IsActive)
+            if (dest.Thing is not Building_Stargate sg || !sg.IsActive)
             {
                 Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), parent, MessageTypeDefOf.RejectInput);
                 return null;

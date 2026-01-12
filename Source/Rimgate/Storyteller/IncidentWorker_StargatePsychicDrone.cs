@@ -13,7 +13,7 @@ namespace Rimgate
             var map = parms.target as Map;
             if (map == null) return false;
 
-            bool hasGate = map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Stargate)
+            bool hasGate = map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
                             .OfType<Building_Stargate>()
                             .Any();
             return hasGate; // only if a receiver exists

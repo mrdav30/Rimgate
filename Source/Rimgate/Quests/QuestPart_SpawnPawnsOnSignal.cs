@@ -92,7 +92,7 @@ namespace Rimgate
             {
                 foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
                 {
-                    if (t.def == RimgateDefOf.Rimgate_Stargate)
+                    if (t.def == RimgateDefOf.Rimgate_Dwarfgate)
                     {
                         if (CellFinder.TryFindRandomCellNear(t.Position, map, 12, Valid, out var nearGate))
                             return nearGate;

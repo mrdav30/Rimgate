@@ -48,14 +48,14 @@
     <!-- ======= Dwarfgate ======= -->
 
     <ThingDef ParentName="Rimgate_StargateBase">
-        <defName>Rimgate_Stargate</defName>
+        <defName>Rimgate_Dwarfgate</defName>
         <label>Dwarfgate</label>
         <description>An ancient alien construct capable of instantaneous transit—but unlike the legendary Stargates of myth, these “Dwarfgates” are smaller, dimmer cousins. Their wormhole lattice is sealed into a closed planetary network; attempts to dial off-world fizzle as if an unseen hand blocks the path.
             \n\nRumors whisper that the Archotechs themselves tampered with them, corralling their use to a single world for inscrutable ends. Stranger still, scattered reports claim there are hundreds of such gates buried across the Rim—drawing fortune-seekers, warlords, and scholars alike to uncover the reason why they were left here… and what they are meant to protect.
             \n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard... naked."</description>
         <size>(5,1)</size>
         <graphicData>
-            <texPath>Things/Building/Artifact/RGStargateAncient</texPath>
+            <texPath>Things/Building/Artifact/RGDwarfgate</texPath>
             <graphicClass>Graphic_Multi</graphicClass>
             <drawSize>(5,5)</drawSize>
             <drawOffsetSouth>(0,0,0.85)</drawOffsetSouth>
@@ -99,6 +99,12 @@
                     <drawSize>(5,5)</drawSize>
                 </chevronHighlight>
                 <irisPowerConsumption>500</irisPowerConsumption>
+                <teleportSounds>
+                    <li>Rimgate_StargateTeleport01</li>
+                    <li>Rimgate_StargateTeleport02</li>
+                    <li>Rimgate_StargateTeleport03</li>
+                    <li>Rimgate_StargateTeleport04</li>
+                </teleportSounds>
             </li>
             <li Class="CompProperties_Power">
                 <compClass>CompPowerTrader</compClass>

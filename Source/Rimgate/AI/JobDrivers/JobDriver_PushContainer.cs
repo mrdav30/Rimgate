@@ -181,8 +181,7 @@ public class JobDriver_PushContainer : JobDriver
                 if (gate != null)
                 {
                     // sanity: gate usable?
-                    var sg = gate.GateControl;
-                    if (!sg.IsActive || sg.IsIrisActivated)
+                    if (!gate.IsActive || gate.IsIrisActivated)
                     {
                         Messages.Message(
                             "CannotEnterPortal".Translate(gate.Label),
@@ -201,11 +200,11 @@ public class JobDriver_PushContainer : JobDriver
                     ResetPushVisual();
 
                     // 2) hand the unspawned cart to the gate
-                    sg.AddToSendBuffer(gateCart);  // gate system will forward & spawn at receiver
+                    gate.AddToSendBuffer(gateCart);  // gate system will forward & spawn at receiver
 
                     if (job.def == RimgateDefOf.Rimgate_EnterStargateWithContainer)
                     {
-                        sg.AddToSendBuffer(pawn);
+                        gate.AddToSendBuffer(pawn);
                         pawn.DeSpawn();
                         EndJobWith(JobCondition.Succeeded);
                     }

@@ -13,6 +13,10 @@
     <canMakeRandomly>false</canMakeRandomly>
     <canSiege>false</canSiege>
     <canStageAttacks>true</canStageAttacks>
+    <arrivalLayerWhitelist>
+      <li>Surface</li>
+      <li MayRequire="Ludeon.RimWorld.Odyssey">Orbit</li>
+    </arrivalLayerWhitelist>
     <autoFlee>false</autoFlee>
     <leaderTitle>Queen</leaderTitle>
     <fixedName>Wraith Domain</fixedName>

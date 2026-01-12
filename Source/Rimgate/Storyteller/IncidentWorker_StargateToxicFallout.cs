@@ -11,7 +11,7 @@ public class IncidentWorker_StargateToxicFallout : IncidentWorker
         if (!base.CanFireNowSub(parms)) return false;
         var map = parms.target as Map;
         if (map == null) return false;
-        return map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Stargate)
+        return map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
                    .OfType<Building_Stargate>()
                    .Any();
     }

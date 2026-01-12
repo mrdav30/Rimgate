@@ -30,8 +30,7 @@ public class JobDriver_BringToStargate : JobDriver
     {
         this.FailOnDestroyedOrNull(TargetIndex.B);
         this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
-        this.FailOn(() => 
-            !(Stargate.GateControl?.IsActive == true));
+        this.FailOn(() => !(Stargate.IsActive == true));
 
         if (ThingToHaul as Pawn != null)
             this.FailOnMobile(TargetIndex.A);
@@ -43,9 +42,10 @@ public class JobDriver_BringToStargate : JobDriver
         {
             initAction = () =>
             {
-                Comp_StargateControl gateComp = Stargate.GateControl;
-                pawn.carryTracker.innerContainer.Remove(ThingToHaul);
-                gateComp.AddToSendBuffer(ThingToHaul);
+                Thing hauled = ThingToHaul;
+                Building_Stargate gate = Stargate;
+                pawn.carryTracker.innerContainer.Remove(hauled);
+                gate.AddToSendBuffer(hauled);
             }
         };
 

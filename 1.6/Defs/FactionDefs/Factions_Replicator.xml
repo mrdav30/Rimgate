@@ -38,6 +38,11 @@
 		<autoFlee>false</autoFlee>
 		<canUseAvoidGrid>false</canUseAvoidGrid>
 		<techLevel>Ultra</techLevel>
+		<canStageAttacks>true</canStageAttacks>
+		<arrivalLayerWhitelist>
+			<li>Surface</li>
+			<li MayRequire="Ludeon.RimWorld.Odyssey">Orbit</li>
+		</arrivalLayerWhitelist>
 		<earliestRaidDays>45</earliestRaidDays>
 		<permanentEnemy>true</permanentEnemy>
 		<hostileToFactionlessHumanlikes>true</hostileToFactionlessHumanlikes>

@@ -22,7 +22,7 @@ public class Building_DHD : Building
 
     public CompPowerTrader PowerTrader => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
-    public Comp_StargateControl StargateControl
+    public Building_Stargate LinkedStargate
     {
         get
         {
@@ -50,7 +50,7 @@ public class Building_DHD : Building
 
     private bool _wantIrisToggled;
 
-    private Comp_StargateControl _cachedStargateControl;
+    private Building_Stargate _cachedStargateControl;
 
     public override void TickRare()
     {
@@ -95,8 +95,8 @@ public class Building_DHD : Building
         foreach (Gizmo gizmo in base.GetGizmos())
             yield return gizmo;
 
-        var control = StargateControl;
-        if (control == null)
+        var linked = LinkedStargate;
+        if (linked == null)
             yield break;
 
         Command_Toggle closeGateCmd = new Command_Toggle
@@ -118,19 +118,19 @@ public class Building_DHD : Building
             }
         };
 
-        if (!control.IsActive)
+        if (!linked.IsActive)
             closeGateCmd.Disable("RG_GateIsNotActive".Translate());
-        else if (control.IsReceivingGate)
+        else if (linked.IsReceivingGate)
             closeGateCmd.Disable("RG_CannotCloseIncoming".Translate());
         else if (!Powered)
             closeGateCmd.Disable("PowerNotConnected".Translate());
 
         yield return closeGateCmd;
 
-        if (!DHDControl.Props.canToggleIris || !control.HasIris)
+        if (!DHDControl.Props.canToggleIris || !linked.HasIris)
             yield break;
 
-        var actionLabel = control.IsIrisActivated
+        var actionLabel = linked.IsIrisActivated
             ? "RG_OpenIris".Translate()
             : "RG_CloseIris".Translate();
 
@@ -138,7 +138,7 @@ public class Building_DHD : Building
         {
             defaultLabel = "RG_ToggleIris".Translate(actionLabel),
             defaultDesc = "RG_ToggleIrisDesc".Translate(actionLabel),
-            icon = control.ToggleIrisIcon,
+            icon = linked.GateControl.ToggleIrisIcon,
             isActive = () => _wantIrisToggled,
             toggleAction = delegate
             {
@@ -153,7 +153,7 @@ public class Building_DHD : Building
             }
         };
 
-        if (!control.HasPower || !Powered)
+        if (!linked.Powered || !Powered)
             toggleIrisCmd.Disable("PowerNotConnected".Translate());
 
         yield return toggleIrisCmd;
@@ -163,7 +163,7 @@ public class Building_DHD : Building
     {
         base.DrawAt(drawLoc, flip);
 
-        var control = StargateControl;
+        var control = LinkedStargate;
         if (control == null)
             return;
 
@@ -178,7 +178,7 @@ public class Building_DHD : Building
         DHDControl.ActiveGraphic.Draw(Utils.AddY(posAbove, +0.01f), rot, this);
     }
 
-    private bool TryGetLinkedStargate(out Comp_StargateControl gate)
+    private bool TryGetLinkedStargate(out Building_Stargate gate)
     {
         gate = null;
 
@@ -189,9 +189,9 @@ public class Building_DHD : Building
         foreach (var t in linked)
         {
             if (t is null) continue;
-            if (t.def != RimgateDefOf.Rimgate_Stargate) continue;
-            gate = t.TryGetComp<Comp_StargateControl>();
-            return gate != null;
+            if (t is not Building_Stargate found) continue;
+            gate = found;
+            return true;
         }
 
         return false;
@@ -199,7 +199,7 @@ public class Building_DHD : Building
 
     public void DoCloseGate()
     {
-        var control = StargateControl;
+        var control = LinkedStargate;
         if (control == null)
             return;
 
@@ -209,7 +209,7 @@ public class Building_DHD : Building
 
     public void DoToggleIrisRemote()
     {
-        var control = StargateControl;
+        var control = LinkedStargate;
         if (control == null)
             return;
 

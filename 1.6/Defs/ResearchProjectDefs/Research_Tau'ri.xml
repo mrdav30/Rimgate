@@ -103,7 +103,7 @@
         <label>Tau'ri turrets I</label>
         <description>Field up your defenses the Tau’ri way: a manned, shielded M2 that turns negotiations into noise. Teaches emplacement, feed, and “brace for recoil.”</description>
         <baseCost>2500</baseCost>
-        <researchViewX>2.5</researchViewX>
+        <researchViewX>3</researchViewX>
         <researchViewY>1</researchViewY>
         <prerequisites>
             <li>GunTurrets</li>
@@ -116,7 +116,7 @@
         <label>Tau'ri turrets II</label>
         <description>Apply refined naquadah to rail physics and call it “security.” Unlocks a manned railgun that ventilates armor and egos at extreme range.</description>
         <baseCost>2500</baseCost>
-        <researchViewX>3.5</researchViewX>
+        <researchViewX>4</researchViewX>
         <researchViewY>1</researchViewY>
         <prerequisites>
             <li>Rimgate_TauriTurretsTierOne</li>
@@ -204,7 +204,7 @@
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
-        <researchViewY>3</researchViewY>
+        <researchViewY>2.75</researchViewY>
 
         <discoveredLetterTitle>About: Tretonin</discoveredLetterTitle>
         <discoveredLetterText>After countless enzyme failures, biochemical meltdowns, and one unfortunate volunteer incident, your researchers have succeeded in stabilizing the Tretonin compound.\n\nDerived from Goa'uld symbiote enzymes, the serum grants total immunity to disease—so long as the subject never stops taking it.\n\nThe Tau’ri call it a medical revolution. The Tok’ra call it a bad idea. Both are right.</discoveredLetterText>
@@ -226,7 +226,7 @@
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TretoninSynthesisTierTwo</defName>
-        <label>Tretonin synthesis advancements</label>
+        <label>Synthesis advancements</label>
         <description>The Ancient's left extensive notes on biochemistry. Using these as reference, it should be possible to optimize and refine the Tretonin synthesis protocols to remove the biochemical dependency that requires a symbiote for processing the serum.</description>
         <techLevel>Ultra</techLevel>
         <baseCost>6500</baseCost>
@@ -237,7 +237,7 @@
             <li>Rimgate_AncientResearchBank</li>
         </requiredResearchFacilities>
         <researchViewX>3</researchViewX>
-        <researchViewY>3</researchViewY>
+        <researchViewY>2.75</researchViewY>
 
         <discoveredLetterTitle>About: Tretonin synthesis advancements</discoveredLetterTitle>
         <discoveredLetterText>Building on prior research and Ancient biochemistry notes, your team has refined the Tretonin synthesis process to eliminate the biochemical dependency on symbiote enzymes.\n\nThe new formulation provides the same robust immunity to disease without the need for ongoing symbiote interaction—marking a significant advancement in medical science.</discoveredLetterText>
@@ -271,7 +271,7 @@
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_RefrigeratedCarts</defName>
-        <label>Mobile refrigerated lining</label>
+        <label>Refrigerated lining</label>
         <description>Blueprints for refrigerated lining upgrades for carts. Keeps perishable goods fresh during long hauls through hot environments—because even in the far reaches of the galaxy, nobody wants spoiled food.</description>
         <baseCost>1500</baseCost>
         <prerequisites>

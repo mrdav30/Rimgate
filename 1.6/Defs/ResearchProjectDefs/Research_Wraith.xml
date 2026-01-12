@@ -162,7 +162,7 @@
 			<li>Rimgate_MeatCultivation</li>
 			<li>Xenogermination</li>
 		</prerequisites>
-		<researchViewX>1.5</researchViewX>
+		<researchViewX>2</researchViewX>
 		<researchViewY>2.5</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_WraithCloningPod</li>
@@ -198,7 +198,7 @@
 		<prerequisites>
 			<li>Rimgate_WraithCloneGenome</li>
 		</prerequisites>
-		<researchViewX>2.5</researchViewX>
+		<researchViewX>3</researchViewX>
 		<researchViewY>2.5</researchViewY>
 	</ResearchProjectDef>
 
@@ -212,7 +212,7 @@
 			<li>Rimgate_WraithCloneFull</li>
 			<li>Archogenetics</li>
 		</prerequisites>
-		<researchViewX>3.5</researchViewX>
+		<researchViewX>4</researchViewX>
 		<researchViewY>2.5</researchViewY>
 	</ResearchProjectDef>
 
@@ -225,7 +225,7 @@
 		<prerequisites>
 			<li>Rimgate_WraithCloneEnhancement</li>
 		</prerequisites>
-		<researchViewX>4.5</researchViewX>
+		<researchViewX>5</researchViewX>
 		<researchViewY>2.5</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
@@ -331,7 +331,7 @@
 			<li>Archogenetics</li>
 		</prerequisites>
 
-		<researchViewX>2.5</researchViewX>
+		<researchViewX>3</researchViewX>
 		<researchViewY>3</researchViewY>
 
 		<recalculatePower>true</recalculatePower>

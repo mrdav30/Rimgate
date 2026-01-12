@@ -19,7 +19,7 @@ public class WorldObject_StargateQuestSite : Site
     public override void SpawnSetup()
     {
         base.SpawnSetup();
-        Find.World.GetComponent<WorldComp_StargateAddresses>().AddAddress(Tile);
+        StargateUtil.AddGateAddress(Tile);
     }
 
     protected override void Tick()
@@ -68,7 +68,7 @@ public class WorldObject_StargateQuestSite : Site
     {
         var gate = Building_Stargate.GetStargateOnMap(Map);
         if (gate != null)
-            gate.GateControl.CleanupGate();
+            gate.CleanupGate();
 
         base.Notify_MyMapAboutToBeRemoved();
     }

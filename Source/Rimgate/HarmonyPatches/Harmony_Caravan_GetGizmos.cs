@@ -63,7 +63,7 @@ public class Harmony_Caravan_GetGizmos
             action = () =>
             {
                 // Remove exactly one Gate, then one DHD
-                bool removedGate = RemoveFirstWithInner(__instance, RimgateDefOf.Rimgate_Stargate);
+                bool removedGate = RemoveFirstWithInner(__instance, RimgateDefOf.Rimgate_Dwarfgate);
                 bool removedDhd = RemoveFirstWithInner(__instance, RimgateDefOf.Rimgate_DialHomeDevice);
 
                 var wo = (WorldObject_StargateTransitSite)

@@ -10,10 +10,7 @@ static class Patch_BlockStargateUninstall
     static void Postfix(Thing t, ref AcceptanceReport __result)
     {
         if (!__result.Accepted) return;
-        bool flag = t is Rimgate.Building_Stargate sg 
-            && sg.GateControl != null 
-            && (sg.GateControl.IsActive 
-                || sg.GateControl.ExternalHoldCount > 0);
+        bool flag = t is Rimgate.Building_Stargate sg && (sg.IsActive || sg.ExternalHoldCount > 0);
         if (flag)
             __result = "RG_StargateHeldCannotUninstall".Translate();
     }

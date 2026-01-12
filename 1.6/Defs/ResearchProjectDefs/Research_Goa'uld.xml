@@ -182,7 +182,7 @@
 			<li>GunTurrets</li>
 			<li>Rimgate_GoauldWeaponTierOne</li>
 		</prerequisites>
-		<researchViewX>1.5</researchViewX>
+		<researchViewX>2</researchViewX>
 		<researchViewY>1.5</researchViewY>
 	</ResearchProjectDef>
 
@@ -195,7 +195,7 @@
 		<prerequisites>
 			<li>Rimgate_GoauldTurretsTierOne</li>
 		</prerequisites>
-		<researchViewX>2.5</researchViewX>
+		<researchViewX>3</researchViewX>
 		<researchViewY>1.5</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
@@ -210,7 +210,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTurretsTierThree</defName>
-		<label>Shielded AI defense</label>
+		<label>Shielded defense</label>
 		<description>Integrate ancient shielding concepts into automated staff cannon turrets. The resulting emplacements shrug off small arms fire and shrug on a smug sense of superiority. Unlocks construction of shielded automated staff cannon turrets.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>5500</baseCost>
@@ -224,7 +224,7 @@
 			<li>Rimgate_GoauldTurretsTierTwo</li>
 		</prerequisites>
 
-		<researchViewX>3.5</researchViewX>
+		<researchViewX>4</researchViewX>
 		<researchViewY>1.5</researchViewY>
 	</ResearchProjectDef>
 

@@ -158,7 +158,7 @@ public static class RimgateDefOf
 
     public static ThingDef Gun_Autopistol;
     public static ThingDef Rimgate_DialHomeDevice;
-    public static ThingDef Rimgate_WraithCocoonPod;
+    public static ThingDef Rimgate_Dwarfgate;
     public static ThingDef Rimgate_GoauldThrone;
     public static ThingDef Rimgate_JammedBlastDoor;
     public static ThingDef Rimgate_Malp;
@@ -167,13 +167,13 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_PrimtaSymbiote;
     public static ThingDef Rimgate_PushedCartVisual;
     public static ThingDef Rimgate_SecretDoor;
-    public static ThingDef Rimgate_Stargate;
     public static ThingDef Rimgate_SymbioteSpawningPool;
     public static ThingDef Rimgate_GoauldSymbiote;
     public static ThingDef Rimgate_SubspacePhaseDiverter;
     public static ThingDef Rimgate_Wheelbarrow;
     public static ThingDef Rimgate_WraithBiomassStabilizer;
     public static ThingDef Rimgate_WraithCloningPod;
+    public static ThingDef Rimgate_WraithCocoonPod;
     public static ThingDef Rimgate_WraithCyclicWaveInducer;
     public static ThingDef Rimgate_WraithMeatLab;
     public static ThingDef Rimgate_WraithModificationEquipment;
