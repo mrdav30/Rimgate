@@ -15,14 +15,18 @@ public static class StargateUtil
 {
     public const string Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    private const int MaxGateSearchRadius =  50;
+    public static WorldComp_StargateAddresses WorldComp => _cachedWorldComp ??= Find.World.GetComponent<WorldComp_StargateAddresses>();
+
+    private const int MaxGateSearchRadius = 50;
 
     private const int MaxTries = 2000;
 
+    private static WorldComp_StargateAddresses _cachedWorldComp;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool ActiveGateOnMap(Map map)
+    public static bool TryGetActiveGateOnMap(Map map, out Building_Stargate gate)
     {
-        Building_Stargate gate = Building_Stargate.GetStargateOnMap(map);
+        gate = Building_Stargate.GetStargateOnMap(map);
         return gate?.GateControl?.IsActive == true;
     }
 
@@ -30,6 +34,14 @@ public static class StargateUtil
     public static bool CanEnterGate(Pawn pawn, Building_Stargate gate)
     {
         return pawn.CanReach(gate, PathEndMode.ClosestTouch, Danger.Deadly);
+    }
+
+    public static bool ModificationEquipmentActive() => WorldComp?.ModificationEquipmentActive == true;
+
+    public static void SetModificationEquipmentActive(bool status)
+    {
+        if (WorldComp != null)
+            WorldComp.ModificationEquipmentActive = status;
     }
 
     public static string GetStargateDesignation(PlanetTile address)

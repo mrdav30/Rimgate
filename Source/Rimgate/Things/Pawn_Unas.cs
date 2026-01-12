@@ -15,7 +15,10 @@ namespace Rimgate;
  */
 public class Pawn_Unas : Pawn
 {
+
+
     private List<WorkTypeDef> _cachedDisabledWorkTypes;
+
     private List<WorkTypeDef> _cachedDisabledWorkTypesPermanent;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)

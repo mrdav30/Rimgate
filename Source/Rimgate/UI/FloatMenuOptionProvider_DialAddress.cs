@@ -11,6 +11,8 @@ namespace Rimgate;
 
 public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
 {
+    private WorldComp_StargateAddresses _cachedComp;
+
     protected override bool Drafted => true;
 
     protected override bool Undrafted => true;
@@ -21,12 +23,13 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
 
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
-        Building_DHD dhd = clickedThing as Building_DHD;
-        if (dhd == null || dhd.DHDControl == null)
+        var dhd = clickedThing as Building_DHD;
+
+        if (dhd == null)
             yield break;
 
-        var control = dhd.DHDControl;
-        if (!control.IsConnectedToStargate)
+        var control = dhd.StargateControl;
+        if (control == null)
         {
             yield return new FloatMenuOption(
                 "RG_CannotDialNoGate".Translate(),
@@ -36,7 +39,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
 
         Pawn pawn = context.FirstSelectedPawn;
         bool canReach = pawn.CanReach(
-            dhd.InteractionCell,
+            clickedThing.InteractionCell,
             PathEndMode.Touch,
             Danger.Deadly,
             false,
@@ -50,8 +53,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        if (control.Props.requiresPower
-            && control.PowerTrader?.PowerOn == false)
+        if (!dhd.Powered)
         {
             yield return new FloatMenuOption(
                 "RG_CannotDialNoPower".Translate(),
@@ -59,8 +61,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        Comp_StargateControl stargate = control.GetLinkedStargate();
-        if (stargate.IsActive)
+        if (control.IsActive)
         {
             yield return new FloatMenuOption(
                 "RG_CannotDialGateIsActive".Translate(),
@@ -69,10 +70,10 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        WorldComp_StargateAddresses addressComp = Find.World.GetComponent<WorldComp_StargateAddresses>();
+        _cachedComp ??= Find.World.GetComponent<WorldComp_StargateAddresses>();
 
-        addressComp.CleanupAddresses();
-        if (addressComp.AddressCount < 2) // home + another site
+        _cachedComp.CleanupAddresses();
+        if (_cachedComp.AddressCount < 2) // home + another site
         {
             yield return new FloatMenuOption(
                 "RG_CannotDialNoDestinations".Translate(),
@@ -80,7 +81,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        if (stargate.TicksUntilOpen > -1)
+        if (control.TicksUntilOpen > -1)
         {
             yield return new FloatMenuOption(
                 "RG_CannotDialIncoming".Translate(),
@@ -88,9 +89,9 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        foreach (PlanetTile tile in addressComp.AddressList)
+        foreach (PlanetTile tile in _cachedComp.AddressList)
         {
-            if (tile == stargate.GateAddress)
+            if (tile == control.GateAddress)
                 continue;
 
             MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
@@ -100,8 +101,8 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
                 "RG_DialGate".Translate(designation, sgMap.Label),
                 () =>
                 {
-                    control.LastDialledAddress = tile;
-                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialStargate, dhd);
+                    dhd.LastDialledAddress = tile;
+                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialStargate, clickedThing);
                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                 });
         }

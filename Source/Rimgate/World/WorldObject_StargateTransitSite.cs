@@ -84,7 +84,8 @@ public class WorldObject_StargateTransitSite : MapParent, IRenameable
         _lastKnownHasDhd = dhdOnMap != null;
 
         // If the map is eligible to despawn, snapshot player things
-        bool canDespawn = !StargateUtil.ActiveGateOnMap(Map) && !Map.mapPawns.AnyPawnBlockingMapRemoval;
+        bool canDespawn = !StargateUtil.TryGetActiveGateOnMap(Map, out _) 
+            && !Map.mapPawns.AnyPawnBlockingMapRemoval;
 
         if (canDespawn)
         {

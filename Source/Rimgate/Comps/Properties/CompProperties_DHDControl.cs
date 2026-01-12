@@ -9,10 +9,6 @@ namespace Rimgate;
 
 public class CompProperties_DHDControl : CompProperties
 {
-    public bool selfDialler;
-
-    public bool requiresPower;
-
     public bool canToggleIris;
 
     public GraphicData activeGraphicData;

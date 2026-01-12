@@ -11,11 +11,13 @@ namespace Rimgate;
 
 public class WorldComp_StargateAddresses : WorldComponent
 {
-    private List<PlanetTile> _addressList = new();
-
     public List<PlanetTile> AddressList => _addressList;
 
     public int AddressCount => _addressList.Count;
+
+    public bool ModificationEquipmentActive;
+
+    private List<PlanetTile> _addressList = new();
 
     public WorldComp_StargateAddresses(World world) : base(world) { }
 
@@ -61,6 +63,7 @@ public class WorldComp_StargateAddresses : WorldComponent
     {
         base.ExposeData();
         Scribe_Collections.Look(ref _addressList, "_addressList");
+        Scribe_Values.Look(ref ModificationEquipmentActive, "ModificationEquipmentActive");
     }
 }
 

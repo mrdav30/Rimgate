@@ -28,9 +28,7 @@ public class WorldObject_StargateQuestSite : Site
 
         if (Map == null) return;
 
-        bool allowPeek = StargateUtil.ActiveGateOnMap(Map)
-            || ResearchUtil.WraithModificationEquipmentComplete;
-
+        bool allowPeek = StargateUtil.ModificationEquipmentActive();
         bool nobodyVisible = !Map.mapPawns.AnyPawnBlockingMapRemoval;
 
         // If no pawns, no active gate, and we’re still showing this map: hide + pop to world
@@ -80,7 +78,7 @@ public class WorldObject_StargateQuestSite : Site
         alsoRemoveWorldObject = false;
         // only removed when quest ends and no pawns
         var quest = ResolveQuest();
-        if (quest != null && quest.State == QuestState.Ongoing) 
+        if (quest != null && quest.State == QuestState.Ongoing)
             return false;
 
         if (Map.mapPawns.AnyPawnBlockingMapRemoval)
@@ -105,18 +103,15 @@ public class WorldObject_StargateQuestSite : Site
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
+        var hideMap = !StargateUtil.ModificationEquipmentActive();
         foreach (var g in base.GetGizmos())
         {
-            // lock "CommandShowMap" behind research
-            if (base.HasMap
-                && !ResearchUtil.WraithModificationEquipmentComplete)
+            // lock "CommandShowMap" behind gate mod equipment or active gate
+            if (g is Command_Action ca && base.HasMap)
             {
-                if (g is Command_Action ca)
-                {
-                    var lbl = ca.defaultLabel ?? string.Empty;
-                    if (lbl == "CommandShowMap".Translate())
-                        continue;
-                }
+                var lbl = ca.defaultLabel ?? string.Empty;
+                if (lbl == "CommandShowMap".Translate() && hideMap)
+                    ca.Disable("RG_StargateSiteHidden".Translate());
             }
 
             yield return g;

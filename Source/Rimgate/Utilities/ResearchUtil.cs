@@ -23,7 +23,5 @@ public static class ResearchUtil
 
     public static bool WraithCloneCorpseComplete => RimgateDefOf.Rimgate_WraithCloneCorpse.IsFinished;
 
-    public static bool WraithModificationEquipmentComplete => RimgateDefOf.Rimgate_WraithModificationEquipment.IsFinished;
-
     public static bool ZPMIntegrationComplete => RimgateDefOf.Rimgate_ZPMIntegration.IsFinished;
 }

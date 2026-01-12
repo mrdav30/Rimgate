@@ -51,7 +51,7 @@
                 <showRemainingTime>true</showRemainingTime>
             </li> -->
             <li Class="HediffCompProperties_SeverityPerDay">
-                <severityPerDay>-12</severityPerDay>
+                <severityPerDay>-16</severityPerDay>
                 <severityPerDayRange>-4</severityPerDayRange>
                 <showHoursToRecover>true</showHoursToRecover>
             </li>

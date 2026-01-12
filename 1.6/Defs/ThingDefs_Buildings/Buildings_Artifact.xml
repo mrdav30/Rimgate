@@ -45,7 +45,7 @@
         </comps>
     </ThingDef>
 
-    <!-- ======= Stargate Ancient ======= -->
+    <!-- ======= Dwarfgate ======= -->
 
     <ThingDef ParentName="Rimgate_StargateBase">
         <defName>Rimgate_Stargate</defName>
@@ -164,7 +164,7 @@
             <li>Artifacts</li>
         </thingCategories>
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-        <tickerType>Never</tickerType>
+        <tickerType>Rare</tickerType>
         <drawerType>RealtimeOnly</drawerType>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>

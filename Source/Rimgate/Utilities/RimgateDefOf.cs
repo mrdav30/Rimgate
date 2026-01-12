@@ -135,7 +135,6 @@ public static class RimgateDefOf
     public static ResearchProjectDef Rimgate_WraithCloneFull;
     public static ResearchProjectDef Rimgate_WraithCloneEnhancement;
     public static ResearchProjectDef Rimgate_WraithCloneCorpse;
-    public static ResearchProjectDef Rimgate_WraithModificationEquipment;
     public static ResearchProjectDef Rimgate_ZPMIntegration;
 
     public static RulePackDef Rimgate_NamerSymbiote;
@@ -177,6 +176,7 @@ public static class RimgateDefOf
     public static ThingDef Rimgate_WraithCloningPod;
     public static ThingDef Rimgate_WraithCyclicWaveInducer;
     public static ThingDef Rimgate_WraithMeatLab;
+    public static ThingDef Rimgate_WraithModificationEquipment;
     public static ThingDef Rimgate_WraithTable;
     public static ThingDef Rimgate_ZPM;
     public static ThingDef Rimgate_ZPMHousing;

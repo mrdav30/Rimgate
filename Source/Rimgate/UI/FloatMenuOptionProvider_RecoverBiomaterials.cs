@@ -10,9 +10,14 @@ namespace Rimgate;
 
 public class FloatMenuOptionProvider_RecoverBiomaterials : FloatMenuOptionProvider
 {
+    private static List<BiomaterialRecoveryDef> _cachedDefs;
+
     protected override bool Drafted => true;
+
     protected override bool Undrafted => true;
+
     protected override bool Multiselect => false;
+
     protected override bool RequiresManipulation => true;
 
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
@@ -29,10 +34,10 @@ public class FloatMenuOptionProvider_RecoverBiomaterials : FloatMenuOptionProvid
             yield break;
 
         var corpsePawn = corpse.InnerPawn;
-        var defs = DefDatabase<BiomaterialRecoveryDef>.AllDefsListForReading;
-        for (int i = 0; i < defs.Count; i++)
+        _cachedDefs ??= DefDatabase<BiomaterialRecoveryDef>.AllDefsListForReading;
+        for (int i = 0; i < _cachedDefs.Count; i++)
         {
-            BiomaterialRecoveryDef def = defs[i];
+            BiomaterialRecoveryDef def = _cachedDefs[i];
             if (def.removesHediff == null)
                 continue;
 

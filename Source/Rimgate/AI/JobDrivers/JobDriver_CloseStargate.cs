@@ -21,14 +21,12 @@ public class JobDriver_CloseStargate : JobDriver
         finalize.initAction = delegate
         {
             Pawn actor = finalize.actor;
-            ThingWithComps thingWithComps = (ThingWithComps)actor.CurJob.targetA.Thing;
-            for (int i = 0; i < thingWithComps.AllComps.Count; i++)
-            {
-                if (thingWithComps.AllComps[i] is Comp_DHDControl dhd && dhd.WantsGateClosed)
-                    dhd.DoCloseGate();
-            }
 
-            Map.designationManager.DesignationOn(thingWithComps, RimgateDefOf.Rimgate_DesignationCloseStargate)?.Delete();
+            if(actor.CurJob.targetA.Thing is Building_DHD dhd && dhd.WantsGateClosed)
+            {
+                dhd.DoCloseGate();
+                Map.designationManager.DesignationOn(dhd, RimgateDefOf.Rimgate_DesignationCloseStargate)?.Delete();
+            }
         };
         finalize.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return finalize;

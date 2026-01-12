@@ -276,6 +276,8 @@
 	<RG_GateIsNotActive>Dwarfgate is not active.</RG_GateIsNotActive>
 	<RG_CannotCloseIncoming>Cannot disengage an incoming wormhole.</RG_CannotCloseIncoming>
 
+	<RG_StargateSiteHidden>Site hidden</RG_StargateSiteHidden>
+
 	<!-- ZPM -->
 
 	<RG_ZpmDarkEnergyReserve>Dark Energy Reserve: {0} / {1}</RG_ZpmDarkEnergyReserve>
@@ -423,8 +425,8 @@
 
 	<RG_Abilitiy_TargetMustBePawn>Target must be a pawn.</RG_Abilitiy_TargetMustBePawn>
 	<RG_Abilitiy_TargetMustBeAlive>{PAWN_labelShort} must be alive and present.</RG_Abilitiy_TargetMustBeAlive>
-	<RG_Abilitiy_TargetMustBeColonyPrisoner>Only colony prisoners can be cocooned this way.</RG_Abilitiy_TargetMustBeColonyPrisoner>
-	<RG_Abilitiy_TargetMustBeSameMap>The target must be on the same map.</RG_Abilitiy_TargetMustBeSameMap>
+	<RG_Abilitiy_TargetMustBeColonyPrisoner>Only colony prisoners can be cocooned.</RG_Abilitiy_TargetMustBeColonyPrisoner>
+	<RG_Abilitiy_TargetMustBeSameMap>Target must be on the same map.</RG_Abilitiy_TargetMustBeSameMap>
 
 	<RG_WraithCocoonTrap_AlreadyCocooned>{PAWN_labelShort} is already cocooned.</RG_WraithCocoonTrap_AlreadyCocooned>
 	<RG_WraithCocoonTrap_Cocooned>{PAWN_labelShort} has been cocooned.</RG_WraithCocoonTrap_Cocooned>

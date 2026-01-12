@@ -55,7 +55,6 @@
 			</li>
 			<li Class="CompProperties_Flickable" />
 			<li Class="Rimgate.CompProperties_DHDControl">
-				<requiresPower>true</requiresPower>
 				<canToggleIris>true</canToggleIris>
 				<activeGraphicData>
 					<texPath>FX/Rimgate_TauriDialHomeDevice_Active</texPath>
@@ -80,6 +79,74 @@
 		<researchPrerequisites>
 			<li>Rimgate_StargateReplacementDHDResearch</li>
 		</researchPrerequisites>
+	</ThingDef>
+
+	<!-- ======================= Wraith Modification Equipment ======================= -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_WraithModificationEquipment</defName>
+		<label>gate modification equipment</label>
+		<description>A bulky set of bio-mechanical apparatus designed to interface with a Dwarfgate. When connected to a Dwarfgate, it enables the colony to safely observe both ends of an active wormhole.\n\nRequires a steady power supply to operate.</description>
+		<thingClass>Building</thingClass>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGWraithModificationEquipment</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.2,1.2)</drawSize>
+		</graphicData>
+
+		<passability>PassThroughOnly</passability>
+		<pathCost>42</pathCost>
+		<fillPercent>0.2</fillPercent>
+		<castEdgeShadows>false</castEdgeShadows>
+
+		<stackLimit>1</stackLimit>
+		<tradeability>None</tradeability>
+		<useHitPoints>true</useHitPoints>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<Mass>25</Mass>
+			<WorkToBuild>2400</WorkToBuild>
+			<Flammability>0</Flammability>
+		</statBases>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+
+		<altitudeLayer>Building</altitudeLayer>
+		<preventDroppingThingsOn>true</preventDroppingThingsOn>
+		<building>
+			<uninstallWork>3250</uninstallWork>
+		</building>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<designationCategory>Misc</designationCategory>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+		</placeWorkers>
+
+		<costList>
+			<Steel>55</Steel>
+			<Rimgate_Biomass>25</Rimgate_Biomass>
+			<Rimgate_Naquadah>15</Rimgate_Naquadah>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<researchPrerequisites>
+			<li>Rimgate_WraithModificationEquipment</li>
+		</researchPrerequisites>
+
+		<comps>
+            <li Class="CompProperties_AffectedByFacilities">
+                <linkableFacilities>
+                    <li>Rimgate_DialHomeDevice</li>
+                    <li>Rimgate_TauriDialHomeDevice</li>
+                </linkableFacilities>
+            </li>
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<shortCircuitInRain>false</shortCircuitInRain>
+				<basePowerConsumption>250</basePowerConsumption>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ======================= Cloning pod ======================= -->

@@ -204,7 +204,7 @@
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
-        <researchViewY>2.5</researchViewY>
+        <researchViewY>3</researchViewY>
 
         <discoveredLetterTitle>About: Tretonin</discoveredLetterTitle>
         <discoveredLetterText>After countless enzyme failures, biochemical meltdowns, and one unfortunate volunteer incident, your researchers have succeeded in stabilizing the Tretonin compound.\n\nDerived from Goa'uld symbiote enzymes, the serum grants total immunity to disease—so long as the subject never stops taking it.\n\nThe Tau’ri call it a medical revolution. The Tok’ra call it a bad idea. Both are right.</discoveredLetterText>
@@ -237,7 +237,7 @@
             <li>Rimgate_AncientResearchBank</li>
         </requiredResearchFacilities>
         <researchViewX>3</researchViewX>
-        <researchViewY>2.5</researchViewY>
+        <researchViewY>3</researchViewY>
 
         <discoveredLetterTitle>About: Tretonin synthesis advancements</discoveredLetterTitle>
         <discoveredLetterText>Building on prior research and Ancient biochemistry notes, your team has refined the Tretonin synthesis process to eliminate the biochemical dependency on symbiote enzymes.\n\nThe new formulation provides the same robust immunity to disease without the need for ongoing symbiote interaction—marking a significant advancement in medical science.</discoveredLetterText>
@@ -266,7 +266,7 @@
             <li>BiofuelRefining</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
-        <researchViewY>3</researchViewY>
+        <researchViewY>3.5</researchViewY>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
@@ -278,7 +278,7 @@
             <li>Rimgate_TrackedCart</li>
         </prerequisites>
         <researchViewX>3</researchViewX>
-        <researchViewY>3</researchViewY>
+        <researchViewY>3.5</researchViewY>
     </ResearchProjectDef>
 
 </Defs>

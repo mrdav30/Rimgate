@@ -14,12 +14,12 @@ public class CompAbilityEffect_WraithCocoonWrap : CompAbilityEffect
         if (targetPawn == null)
         {
             if (throwMessages)
-                SendPostProcessedMessage("RG_Abilitiy_TargetMustBePawn".Translate(), null, parent);
+                SendPostProcessedMessage("RG_Abilitiy_TargetMustBeColonyPrisoner".Translate(), null, parent);
             return false;
         }
 
         if (targetPawn.Dead || !targetPawn.Spawned)
-        {
+        { 
             if (throwMessages)
                 SendPostProcessedMessage("RG_Abilitiy_TargetMustBeAlive".Translate(targetPawn.Named("PAWN")), targetPawn, parent);
             return false;
