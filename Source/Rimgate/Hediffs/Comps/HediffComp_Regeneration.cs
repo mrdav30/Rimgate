@@ -11,6 +11,8 @@ namespace Rimgate;
 
 public class HediffComp_Regeneration : HediffComp
 {
+    private static readonly FleckDef RegeneratingTissueFleck = DefDatabase<FleckDef>.GetNamed("PsycastPsychicEffect");
+
     public HediffCompProperties_Regeneration Props => (HediffCompProperties_Regeneration)props;
 
     private static List<BodyPartRecord> _tmpCandidates;
@@ -252,7 +254,7 @@ public class HediffComp_Regeneration : HediffComp
         Delay.AfterNTicks(Props.resurrectionDelayRange.RandomInRange, () =>
         {
             SoundDefOf.PsychicPulseGlobal.PlayOneShot(new TargetInfo(corpse.Position, corpse.Map));
-            FleckMaker.AttachedOverlay(corpse, DefDatabase<FleckDef>.GetNamed("PsycastPsychicEffect"), Vector3.zero);
+            FleckMaker.AttachedOverlay(corpse, RegeneratingTissueFleck, Vector3.zero);
             ResurrectionParams resurrectionParams = new ResurrectionParams
             {
                 restoreMissingParts = false,

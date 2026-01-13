@@ -16,6 +16,13 @@ public class FloatMenuOptionProvider_CarryToCloningPod : FloatMenuOptionProvider
 
     protected override bool RequiresManipulation => true;
 
+    public override bool TargetThingValid(Thing thing, FloatMenuContext context)
+    {
+        return thing is Pawn pawn
+            && !pawn.Downed 
+            && pawn.RaceProps.IsFlesh;
+    }
+
     public virtual IEnumerable<FloatMenuOption> GetOptionsFor(Pawn clickedPawn, FloatMenuContext context)
     {
         if (!clickedPawn.Downed || !clickedPawn.RaceProps.IsFlesh)

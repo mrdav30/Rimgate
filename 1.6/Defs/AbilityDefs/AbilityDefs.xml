@@ -113,12 +113,11 @@
             <damageAmountBase>5</damageAmountBase>
             <speed>15</speed>
         </projectile>
-        <comps>
-            <li Class="Rimgate.CompProperties_AdditionalDamage">
-                <compClass>Rimgate.Comp_AdditionalDamage</compClass>
-                <damageType>Burn</damageType>
+        <modExtensions>
+            <li Class="Rimgate.Projectile_AdditionalDamage_Ext">
+                <damageDef>Burn</damageDef>
             </li>
-        </comps>
+        </modExtensions>
     </ThingDef>
 
     <!-- ==================== Wraith Cocoon Wrap ==================== -->
@@ -176,7 +175,7 @@
     <AbilityDef>
         <defName>Rimgate_WraithEssenceMendingAbility</defName>
         <label>regenerative trance</label>
-        <description>Enter a predatory regenerative trance. If uninterrupted, the Wraith burns stored essence to purge one chronic condition.\n\nNote: This ability requires the Wraith to remain undisturbed for the duration to be effective.  Ensure you pick a safe location and avoid interruptions.</description>
+        <description>Enter a predatory regenerative trance. If uninterrupted, the Wraith burns stored essence to purge one chronic condition.\n\nNote: This ability requires the Wraith to remain undisturbed for the duration to be effective. Ensure you pick a safe location and avoid interruptions.</description>
         <category>Wraith</category>
         <iconPath>UI/Ability/RGWraithEssenceMendingIcon</iconPath>
 

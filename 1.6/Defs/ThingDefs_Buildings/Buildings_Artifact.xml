@@ -79,33 +79,6 @@
             <MeditationFocusStrength>0.24</MeditationFocusStrength>
         </statBases>
         <comps>
-            <li Class="Rimgate.CompProperties_StargateControl">
-                <puddleGraphicData>
-                    <texPath>FX/RGEventHorizon</texPath>
-                    <graphicClass>Graphic_Multi</graphicClass>
-                    <shaderType>Mote</shaderType>
-                    <drawSize>(5,5)</drawSize>
-                </puddleGraphicData>
-                <irisGraphicData>
-                    <texPath>Things/Building/Misc/RGIris</texPath>
-                    <graphicClass>Graphic_Multi</graphicClass>
-                    <shaderType>Mote</shaderType>
-                    <drawSize>(5,5)</drawSize>
-                </irisGraphicData>
-                <chevronHighlight>
-                    <texPath>FX/RGStargateAncient_Active</texPath>
-                    <graphicClass>Graphic_Multi</graphicClass>
-                    <shaderType>Mote</shaderType>
-                    <drawSize>(5,5)</drawSize>
-                </chevronHighlight>
-                <irisPowerConsumption>500</irisPowerConsumption>
-                <teleportSounds>
-                    <li>Rimgate_StargateTeleport01</li>
-                    <li>Rimgate_StargateTeleport02</li>
-                    <li>Rimgate_StargateTeleport03</li>
-                    <li>Rimgate_StargateTeleport04</li>
-                </teleportSounds>
-            </li>
             <li Class="CompProperties_Power">
                 <compClass>CompPowerTrader</compClass>
                 <shortCircuitInRain>false</shortCircuitInRain>
@@ -139,6 +112,35 @@
                 </offsets>
             </li>
         </comps>
+        <modExtensions>
+            <li Class="Rimgate.Building_Stargate_Ext">
+                <puddleGraphicData>
+                    <texPath>FX/RGEventHorizon</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>Mote</shaderType>
+                    <drawSize>(5,5)</drawSize>
+                </puddleGraphicData>
+                <irisGraphicData>
+                    <texPath>Things/Building/Misc/RGIris</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>Mote</shaderType>
+                    <drawSize>(5,5)</drawSize>
+                </irisGraphicData>
+                <chevronHighlight>
+                    <texPath>FX/RGStargateAncient_Active</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>Mote</shaderType>
+                    <drawSize>(5,5)</drawSize>
+                </chevronHighlight>
+                <irisPowerConsumption>500</irisPowerConsumption>
+                <teleportSounds>
+                    <li>Rimgate_StargateTeleport01</li>
+                    <li>Rimgate_StargateTeleport02</li>
+                    <li>Rimgate_StargateTeleport03</li>
+                    <li>Rimgate_StargateTeleport04</li>
+                </teleportSounds>
+            </li>
+        </modExtensions>
     </ThingDef>
 
     <!-- =============== DHD =============== -->
@@ -186,14 +188,6 @@
             <li Class="CompProperties_Facility">
                 <requiresLOS>false</requiresLOS>
                 <maxSimultaneous>1</maxSimultaneous>
-            </li>
-            <li Class="Rimgate.CompProperties_DHDControl">
-                <activeGraphicData>
-                    <texPath>FX/RGDHD_Active</texPath>
-                    <graphicClass>Graphic_Multi</graphicClass>
-                    <shaderType>Mote</shaderType>
-                    <drawSize>(1.75,1.75)</drawSize>
-                </activeGraphicData>
             </li>
             <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
                 <analysisID>1000600</analysisID>
@@ -249,6 +243,16 @@
             <Mass>90</Mass>
         </statBases>
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <modExtensions>
+            <li Class="Rimgate.Building_DHD_Ext">
+                <activeGraphicData>
+                    <texPath>FX/RGDHD_Active</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>Mote</shaderType>
+                    <drawSize>(1.75,1.75)</drawSize>
+                </activeGraphicData>
+            </li>
+        </modExtensions>
     </ThingDef>
 
     <!-- =============== ZPM =============== -->

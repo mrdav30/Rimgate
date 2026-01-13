@@ -326,6 +326,7 @@
 
     <ThingDef ParentName="Rimgate_Unas">
         <defName>Rimgate_Unas_BerserkerRace</defName>
+        <thingClass>Pawn</thingClass>
         <label>berserk Unas</label>
         <description>A towering, reptilian humanoid press-ganged by the Goa'uld for hard labor and shock troops. These Unas have been gene-edited and fitted with crude cortical dampeners to blunt higher cognition—cheap obedience over culture. Fierce, durable, and trainable, but quick to rage if mistreated.\n\nThis particular specimen has entered a permanent berserk state, making it even more dangerous and unpredictable in combat.</description>
         <statBases>

@@ -6,15 +6,16 @@ using Verse.Sound;
 
 namespace Rimgate;
 
+public class Projectile_AdditionalDamage_Ext : DefModExtension
+{
+    public DamageDef damageDef;
+}
+
 public class Projectile_AdditionalDamage : Bullet
 {
-    private Comp_AdditionalDamage _settings;
+    public Projectile_AdditionalDamage_Ext Props => _cachedProps ??= def.GetModExtension<Projectile_AdditionalDamage_Ext>();
 
-    public override void SpawnSetup(Map map, bool respawningAfterLoad)
-    {
-        base.SpawnSetup(map, respawningAfterLoad);
-        _settings = GetComp<Comp_AdditionalDamage>();
-    }
+    private Projectile_AdditionalDamage_Ext _cachedProps;
 
     protected override void Impact(Thing hitThing, bool blockedByShield = false)
     {
@@ -55,11 +56,11 @@ public class Projectile_AdditionalDamage : Bullet
                 pawn.stances.stagger.StaggerFor(95);
             }
 
-            if (_settings == null || _settings.Props.damageType == null)
+            if (Props == null || Props.damageDef == null)
                 return;
 
             DamageInfo dinfo2 = new DamageInfo(
-                _settings.Props.damageType,
+                Props.damageDef,
                 amount / 2,
                 armorPenetration,
                 y,

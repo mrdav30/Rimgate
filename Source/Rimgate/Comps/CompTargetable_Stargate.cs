@@ -20,7 +20,7 @@ public class CompTargetable_Stargate : CompTargetable
             {
                 Building_Stargate gate = x.Thing as Building_Stargate;
                 bool canTarget = gate != null 
-                    && gate.GateControl.Props.canHaveIris 
+                    && gate.Props.canHaveIris 
                     && !gate.HasIris;
  
                 return canTarget;

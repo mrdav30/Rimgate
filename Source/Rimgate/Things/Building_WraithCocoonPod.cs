@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Rimgate;
+using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,22 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 
-namespace RimWorld;
+namespace Rimgate;
+
+public class Building_WraithCocoonPod_Ext : DefModExtension
+{
+    public List<PawnKindDef> containPawnKindAnyOf;
+
+    public bool spawnVictim = true;
+}
 
 public class Building_WraithCocoonPod : Building, IThingHolder
 {
     public const float DeteriorationRate = 2.0f; // base deterioration rate when empty
 
-    protected ThingOwner innerContainer;
+    public Building_WraithCocoonPod_Ext Props => _cachedProps ??= def.GetModExtension<Building_WraithCocoonPod_Ext>();
 
-    protected bool contentsKnown;
+    public bool IsAbilitySpawn { get; set; }
 
     public Thing ContainedThing
     {
@@ -33,6 +41,12 @@ public class Building_WraithCocoonPod : Building, IThingHolder
 
     public virtual bool CanOpen => HasAnyContents;
 
+    private Building_WraithCocoonPod_Ext _cachedProps;
+
+    protected ThingOwner innerContainer;
+
+    protected bool contentsKnown;
+
     public Building_WraithCocoonPod()
     {
         innerContainer = new ThingOwner<Thing>(this, true);
@@ -43,6 +57,15 @@ public class Building_WraithCocoonPod : Building, IThingHolder
         base.SpawnSetup(map, respawningAfterLoad);
         if (Faction.IsOfPlayerFaction())
             contentsKnown = true;
+        else if (!respawningAfterLoad
+            && !IsAbilitySpawn
+            && Props?.spawnVictim == true)
+        {
+            Log.Message($"Rimgate :: Spawning victim in cocoon pod at {Position} on map {Map}.");
+            Pawn victim = Utils.GeneratePawnForContainer(Map, null, Props.containPawnKindAnyOf);
+            TryAcceptThing(victim);
+            contentsKnown = false;
+        }
     }
 
     public override void TickRare()

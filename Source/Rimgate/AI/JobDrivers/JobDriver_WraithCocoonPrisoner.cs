@@ -56,7 +56,9 @@ public class JobDriver_WraithCocoonPrisoner : JobDriver
                 IntVec3 cell = Utils.BestDropCellNearThing(actor);
 
                 // Spawn cocoon pod at the victim's cell
-                var pod = GenSpawn.Spawn(RimgateDefOf.Rimgate_WraithCocoonPod, cell, map) as Building_WraithCocoonPod;
+                var pod = ThingMaker.MakeThing(RimgateDefOf.Rimgate_WraithCocoonPod) as Building_WraithCocoonPod;
+                pod.IsAbilitySpawn = true;
+                GenSpawn.Spawn(pod, cell, map, Rot4.North, WipeMode.Vanish);
                 pod.SetFaction(Faction.OfPlayer);
 
                 // Stuff pawn into the pod

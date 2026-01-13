@@ -78,3 +78,18 @@ public static class Harmony_Pawn_TryGetAttackVerb
         }
     }
 }
+
+
+[HarmonyPatch(typeof(Pawn), nameof(Pawn.GetDisabledWorkTypes))]
+public static class Harmony_Pawn_GetDisabledWorkTypes
+{
+    public static bool Prefix(ref List<WorkTypeDef> __result, Pawn __instance)
+    {
+        if (__instance is Pawn_Unas unas)
+        {
+            __result = unas.GetDisabledWorkTypes();
+            return false;
+        }
+        return true;
+    }
+}

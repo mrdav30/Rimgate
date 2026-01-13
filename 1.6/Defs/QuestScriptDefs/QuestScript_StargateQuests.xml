@@ -91,6 +91,7 @@
 				<li Class="QuestNode_GetSiteTile">
 					<storeAs>siteTile</storeAs>
 					<preferCloserTiles>false</preferCloserTiles>
+					<canSelectSpace>false</canSelectSpace>
 					<selectLandmarkChance>0.3</selectLandmarkChance>
 					<allowedLandmarks>
 						<li MayRequire="Ludeon.RimWorld.Odyssey">DryLake</li>

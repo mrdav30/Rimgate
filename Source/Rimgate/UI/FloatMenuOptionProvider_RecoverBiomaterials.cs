@@ -20,6 +20,11 @@ public class FloatMenuOptionProvider_RecoverBiomaterials : FloatMenuOptionProvid
 
     protected override bool RequiresManipulation => true;
 
+    public override bool TargetThingValid(Thing thing, FloatMenuContext context)
+    {
+        return thing is Corpse;
+    }
+
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
         if (clickedThing is not Corpse corpse)

@@ -1,7 +1,8 @@
 ﻿using Rimgate;
+using RimWorld;
 using Verse;
 
-namespace RimWorld;
+namespace Rimgate;
 
 public class CompAbilityEffect_EssenceCost : CompAbilityEffect
 {

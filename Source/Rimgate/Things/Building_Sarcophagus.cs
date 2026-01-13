@@ -23,13 +23,68 @@ public enum SarcophagusStatus
     Error
 }
 
+public class Building_Sarcophagus_Ext : DefModExtension
+{
+    public float maxDiagnosisTime = 5f;
+
+    public float maxPerHediffHealingTime = 10f;
+
+    public float diagnosisModePowerConsumption = 4000f;
+
+    public float healingModePowerConsumption = 16000f;
+
+    public float powerConsumptionReductionFactor = 0.65f;
+
+    public bool applyAddictionHediff;
+
+    public float addictiveness;
+
+    public float severity = -1f;
+
+    public float existingAddictionSeverityOffset = 0.1f;
+
+    public float needLevelOffset = 1f;
+
+    public GraphicData sarchophagusGlowGraphicData;
+
+    public List<HediffDef> alwaysTreatableHediffs;
+
+    public List<HediffDef> neverTreatableHediffs;
+
+    public List<HediffDef> nonCriticalTreatableHediffs;
+
+    public List<TraitDef> alwaysTreatableTraits;
+
+    public List<HediffDef> usageBlockingHediffs;
+
+    public List<TraitDef> usageBlockingTraits;
+
+    public List<string> disallowedRaces;
+
+    [MayRequireBiotech]
+    public List<XenotypeDef> disallowedXenotypes;
+
+    public virtual IEnumerable<string> ConfigErrors()
+    {
+        if (maxDiagnosisTime > 30f)
+        {
+            yield return $"{nameof(maxDiagnosisTime)} above allowed maximum; value capped at 30 seconds";
+            maxDiagnosisTime = 30f;
+        }
+
+        if (maxPerHediffHealingTime > 30f)
+        {
+            yield return $"{nameof(maxPerHediffHealingTime)} above allowed maximum; value capped at 30 seconds";
+            maxPerHediffHealingTime = 30f;
+        }
+    }
+}
+
 public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchableContents
 {
+    public Building_Sarcophagus_Ext Props => _cachedProps ??= def.GetModExtension<Building_Sarcophagus_Ext>();
+
     public CompPowerTrader Power => _powerTrader ??= GetComp<CompPowerTrader>();
-
-    public Comp_SarcophagusControl Control => _control ??= GetComp<Comp_SarcophagusControl>();
-
-    public Comp_TreatmentRestrictions Restrictions => _treatmentRestrictions ??= GetComp<Comp_TreatmentRestrictions>();
 
     public CompAssignableToPawn_Sarcophagus Assignable => _assignable ??= GetComp<CompAssignableToPawn_Sarcophagus>();
 
@@ -49,31 +104,29 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public float DefaultIdlePower => Power?.Props.PowerConsumption ?? 0;
 
-    public float DiagnosingPowerConsumption => 
-        Control.Props.diagnosisModePowerConsumption * CurrentPowerMultiplier;
+    public float DiagnosingPowerConsumption => Props.diagnosisModePowerConsumption * CurrentPowerMultiplier;
 
-    public float HealingPowerConsumption => 
-        Control.Props.healingModePowerConsumption * CurrentPowerMultiplier;
+    public float HealingPowerConsumption => Props.healingModePowerConsumption * CurrentPowerMultiplier;
 
     public float CurrentPowerMultiplier => ResearchUtil.SarcophagusOptimizationComplete
-            ? Control.Props.powerConsumptionReductionFactor
+            ? Props.powerConsumptionReductionFactor
             : 1f;
 
-    public List<HediffDef> AlwaysTreatableHediffs => Restrictions.Props.alwaysTreatableHediffs;
+    public List<HediffDef> AlwaysTreatableHediffs => Props.alwaysTreatableHediffs;
 
-    public List<HediffDef> NeverTreatableHediffs => Restrictions.Props.neverTreatableHediffs;
+    public List<HediffDef> NeverTreatableHediffs => Props.neverTreatableHediffs;
 
-    public List<HediffDef> NonCriticalTreatableHediffs => Restrictions.Props.nonCriticalTreatableHediffs;
+    public List<HediffDef> NonCriticalTreatableHediffs => Props.nonCriticalTreatableHediffs;
 
-    public List<HediffDef> UsageBlockingHediffs => Restrictions.Props.usageBlockingHediffs;
+    public List<HediffDef> UsageBlockingHediffs => Props.usageBlockingHediffs;
 
-    public List<TraitDef> UsageBlockingTraits => Restrictions.Props.usageBlockingTraits;
+    public List<TraitDef> UsageBlockingTraits => Props.usageBlockingTraits;
 
-    public List<TraitDef> AlwaysTreatableTraits => Restrictions.Props.alwaysTreatableTraits;
+    public List<TraitDef> AlwaysTreatableTraits => Props.alwaysTreatableTraits;
 
-    public List<string> DisallowedRaces => Restrictions.Props.disallowedRaces;
+    public List<string> DisallowedRaces => Props.disallowedRaces;
 
-    public List<XenotypeDef> DisallowedXenotypes => Restrictions.Props.disallowedXenotypes;
+    public List<XenotypeDef> DisallowedXenotypes => Props.disallowedXenotypes;
 
     public int ProgressHealingTicks = 0;
 
@@ -119,7 +172,13 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public bool HasAnyContents => _innerContainer.Count > 0;
 
+    private Building_Sarcophagus_Ext _cachedProps;
+
     public ThingOwner SearchableContents => _innerContainer;
+
+    private Mesh GlowMesh => Props.sarchophagusGlowGraphicData?.Graphic.MeshAt(Rotation);
+
+    private Material GlowMaterial => Props.sarchophagusGlowGraphicData?.Graphic.MatAt(Rotation, null);
 
     private List<Hediff> _patientTreatableHediffs = new();
 
@@ -132,10 +191,6 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
     private List<Trait> _patientTraitsToRemove = new();
 
     private CompPowerTrader _powerTrader;
-
-    private Comp_SarcophagusControl _control;
-
-    private Comp_TreatmentRestrictions _treatmentRestrictions;
 
     public CompAssignableToPawn_Sarcophagus _assignable;
 
@@ -150,8 +205,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
     {
         base.SpawnSetup(map, respawningAfterLoad);
 
-        MaxDiagnosingTicks = GenTicks.SecondsToTicks(Control.Props.maxDiagnosisTime);
-        MaxHealingTicks = GenTicks.SecondsToTicks(Control.Props.maxPerHediffHealingTime);
+        MaxDiagnosingTicks = GenTicks.SecondsToTicks(Props.maxDiagnosisTime);
+        MaxHealingTicks = GenTicks.SecondsToTicks(Props.maxPerHediffHealingTime);
 
         if (Faction?.IsPlayer == true)
             _contentsKnown = true;
@@ -248,7 +303,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                             DischargePatient(patient, true);
 
                             // if we're only using the sarcophagus for an addiction, adjust need
-                            Control.HandleAfterEffects(patient, false);
+                            HandleAfterEffects(patient, false);
 
                             EjectContents();
                             Status = SarcophagusStatus.PatientDischarged;
@@ -305,7 +360,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                         {
                             DischargePatient(patient);
                             // apply addiction and adjust needs
-                            Control.HandleAfterEffects(patient);
+                            HandleAfterEffects(patient);
                             EjectContents();
                             SwitchState();
                         }
@@ -524,11 +579,6 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
             stringBuilder.AppendInNewLine(powerReqs);
 
-            var useReqs = $" ({DiagnosingPowerConsumption.ToString("#####0")} W for diagnosis"
-                + $"  / {HealingPowerConsumption.ToString("#####0")} W for healing)";
-
-            stringBuilder.AppendInNewLine(useReqs);
-
             string inspectorStatus = string.Empty;
             switch (Status)
             {
@@ -572,6 +622,28 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             stringBuilder.AppendInNewLine(Analyzable.CompInspectStringExtra());
 
         return stringBuilder.ToString();
+    }
+
+    protected override void DrawAt(Vector3 drawLoc, bool flip = false)
+    {
+        base.DrawAt(drawLoc, flip);
+
+        if (!IsSarcophagusInUse()) return;
+
+        Vector3 sarchophagusGlowDrawPos = DrawPos;
+
+        float drawAltitude = AltitudeLayer.Pawn.AltitudeFor();
+
+        sarchophagusGlowDrawPos.y = drawAltitude + 0.06f;
+
+        Graphics.DrawMesh(
+            GlowMesh,
+            sarchophagusGlowDrawPos,
+            Quaternion.identity,
+            FadedMaterialPool.FadedVersionOf(
+                GlowMaterial,
+                1f),
+            0);
     }
 
     public ThingOwner GetDirectlyHeldThings() => _innerContainer;
@@ -919,12 +991,128 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         _wickSustainer = def.building.soundDispense.TrySpawnSustainer(info);
     }
 
+    // only apply addiction if the patient received full treatment
+    public void HandleAfterEffects(Pawn patient, bool isPostTreatment = true)
+    {
+        if (!Props.applyAddictionHediff || !patient.RaceProps.IsFlesh)
+            return;
+
+        Hediff_Addiction hediff_Addiction = AddictionUtility.FindAddictionHediff(patient, RimgateDefOf.Rimgate_SarcophagusChemical);
+
+        if (hediff_Addiction != null)
+            hediff_Addiction.Severity += Props.existingAddictionSeverityOffset;
+        else if (isPostTreatment)
+            ApplyAddiction(patient);
+
+        AdjustChemicalNeed(patient);
+        if (isPostTreatment)
+            ApplyHigh(patient);
+
+        patient.drugs?.Notify_DrugIngested(this);
+    }
+
+    public void ApplyAddiction(Pawn patient)
+    {
+        if (Rand.Value >= Props.addictiveness) return;
+
+        patient.health.AddHediff(RimgateDefOf.Rimgate_SarcophagusAddiction);
+        if (PawnUtility.ShouldSendNotificationAbout(patient))
+        {
+            Find.LetterStack.ReceiveLetter(
+                "LetterLabelNewlyAddicted"
+                    .Translate(RimgateDefOf.Rimgate_SarcophagusChemical.label)
+                    .CapitalizeFirst(),
+                "LetterNewlyAddicted"
+                    .Translate(
+                        patient.LabelShort,
+                        RimgateDefOf.Rimgate_SarcophagusChemical.label,
+                        patient.Named("PAWN"))
+                            .AdjustedFor(patient)
+                            .CapitalizeFirst(),
+                LetterDefOf.NegativeEvent,
+                patient);
+        }
+
+        AddictionUtility.CheckDrugAddictionTeachOpportunity(patient);
+    }
+
+    public void AdjustChemicalNeed(Pawn patient)
+    {
+        if (!patient.needs.TryGetNeed(RimgateDefOf.Rimgate_SarcophagusChemicalNeed, out var need))
+            return;
+
+        float effect = Props.needLevelOffset;
+        AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(
+            patient,
+            RimgateDefOf.Rimgate_SarcophagusChemical,
+            ref effect,
+            applyGeneToleranceFactor: false);
+        need.CurLevel += effect;
+    }
+
+    public void ApplyHigh(Pawn patient)
+    {
+        if (patient.health.hediffSet.HasHediff(RimgateDefOf.Rimgate_SarcophagusHigh))
+            return;
+
+        Hediff hediff = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SarcophagusHigh, patient);
+        float effect = Props.severity <= 0f
+            ? RimgateDefOf.Rimgate_SarcophagusHigh.initialSeverity
+            : Props.severity;
+        // body-size scaling
+        effect /= patient.BodySize;
+        hediff.Severity = effect;
+        patient.health.AddHediff(hediff);
+    }
+
     public override AcceptanceReport ClaimableBy(Faction fac)
     {
         if (!_contentsKnown && _innerContainer.Any)
             return false;
 
         return base.ClaimableBy(fac);
+    }
+
+    public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
+    {
+        foreach (StatDrawEntry state in base.SpecialDisplayStats())
+            yield return state;
+
+        // Compute current effective multiplier:
+        float multiplier = ResearchUtil.SarcophagusOptimizationComplete
+            ? Props.powerConsumptionReductionFactor
+            : 1f;
+
+        float diag = Props.diagnosisModePowerConsumption * multiplier;
+        float heal = Props.healingModePowerConsumption * multiplier;
+
+        yield return new StatDrawEntry(
+            StatCategoryDefOf.Building,
+            "RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Label".Translate(),
+            diag.ToString("F0") + " W",
+            "RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Desc".Translate(),
+            4994);
+
+        yield return new StatDrawEntry(
+            StatCategoryDefOf.Building,
+            "RG_Sarcophagus_Stat_PowerConsumptionHealing_Label".Translate(),
+            heal.ToString("F0") + " W",
+            "RG_Sarcophagus_Stat_PowerConsumptionHealing_Desc".Translate(),
+            4993);
+
+        yield return new StatDrawEntry(
+            StatCategoryDefOf.Building,
+            "RG_Sarcophagus_Stat_DiagnosisTime_Label".Translate(),
+            "RG_Sarcophagus_Stat_TimeSeconds".Translate(Props.maxDiagnosisTime),
+            "RG_Sarcophagus_Stat_DiagnosisTime_Desc".Translate(),
+            4992);
+
+        yield return new StatDrawEntry(
+            StatCategoryDefOf.Building,
+            "RG_Sarcophagus_Stat_PerHediffHealingTime_Label".Translate(),
+            "RG_Sarcophagus_Stat_TimeSeconds".Translate(Props.maxPerHediffHealingTime),
+            "RG_Sarcophagus_Stat_PerHediffHealingTime_Desc".Translate(),
+            4991);
     }
 
     public void Open()
@@ -978,7 +1166,6 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             district.Room.Notify_RoomShapeChanged();
         }
     }
-
 
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {

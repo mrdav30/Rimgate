@@ -7,7 +7,7 @@
 		<defName>Rimgate_TauriDialHomeDevice</defName>
 		<thingClass>Rimgate.Building_DHD</thingClass>
 		<label>Dial home device</label>
-		<description>A field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. Also bolted down better than the last one.</description>
+		<description>A field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. Also, this one is bolted down way better than the last one.</description>
 		<rotatable>false</rotatable>
 		<size>(1,1)</size>
 		<graphicData>
@@ -54,15 +54,6 @@
 				<maxDistance>99</maxDistance>
 			</li>
 			<li Class="CompProperties_Flickable" />
-			<li Class="Rimgate.CompProperties_DHDControl">
-				<canToggleIris>true</canToggleIris>
-				<activeGraphicData>
-					<texPath>FX/Rimgate_TauriDialHomeDevice_Active</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-					<shaderType>Mote</shaderType>
-					<drawSize>(2,2)</drawSize>
-				</activeGraphicData>
-			</li>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
 				<shortCircuitInRain>false</shortCircuitInRain>
@@ -79,6 +70,17 @@
 		<researchPrerequisites>
 			<li>Rimgate_StargateReplacementDHDResearch</li>
 		</researchPrerequisites>
+		<modExtensions>
+			<li Class="Rimgate.Building_DHD_Ext">
+				<canToggleIris>true</canToggleIris>
+				<activeGraphicData>
+					<texPath>FX/Rimgate_TauriDialHomeDevice_Active</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>Mote</shaderType>
+					<drawSize>(2,2)</drawSize>
+				</activeGraphicData>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ======================= Wraith Modification Equipment ======================= -->
@@ -134,12 +136,12 @@
 		</researchPrerequisites>
 
 		<comps>
-            <li Class="CompProperties_AffectedByFacilities">
-                <linkableFacilities>
-                    <li>Rimgate_DialHomeDevice</li>
-                    <li>Rimgate_TauriDialHomeDevice</li>
-                </linkableFacilities>
-            </li>
+			<li Class="CompProperties_AffectedByFacilities">
+				<linkableFacilities>
+					<li>Rimgate_DialHomeDevice</li>
+					<li>Rimgate_TauriDialHomeDevice</li>
+				</linkableFacilities>
+			</li>
 			<li Class="CompProperties_Flickable" />
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -517,6 +519,7 @@
 		<category>Building</category>
 		<thingClass>Rimgate.Building_MobileContainer</thingClass>
 		<designationCategory>Misc</designationCategory>
+		<designatorDropdown>Rimgate_MobileContainers</designatorDropdown>
 		<preventDroppingThingsOn>true</preventDroppingThingsOn>
 		<selectable>true</selectable>
 		<altitudeLayer>Building</altitudeLayer>
@@ -546,7 +549,6 @@
 		<inspectorTabs>
 			<li>Rimgate.ITab_MobileContainer</li>
 		</inspectorTabs>
-		<designatorDropdown>Rimgate_MobileContainers</designatorDropdown>
 	</ThingDef>
 
 	<!-- Proxy item (what the pawn “carries” while pushing) -->

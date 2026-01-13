@@ -85,7 +85,76 @@
         <maxAssignedPawnsCount>99</maxAssignedPawnsCount>
         <compClass>Rimgate.CompAssignableToPawn_Sarcophagus</compClass>
       </li>
-      <li Class="Rimgate.CompProperties_TreatmentRestrictions">
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <shortCircuitInRain>false</shortCircuitInRain>
+        <basePowerConsumption>500</basePowerConsumption> <!-- Idle power consumption -->
+      </li>
+      <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+        <analysisID>1000900</analysisID>
+        <requiresResearchDef>Rimgate_GoauldBasic</requiresResearchDef>
+
+        <!-- Analyze settings -->
+
+        <canStudyInPlace>true</canStudyInPlace>
+        <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+        <analysisDurationHours>10</analysisDurationHours>
+        <completedLetterLabel>Sarcophagus analysis complete: {RESEARCH} unlocked</completedLetterLabel>
+        <completedLetter>By studying the Goa’uld Sarcophagus, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.\n\nUnfortunately, the device collapsed into inert crystal fragments the moment its core field destabilized — as if refusing to share its secrets.</completedLetter>
+        <completedLetterDef>PositiveEvent</completedLetterDef>
+
+        <catastrophicFailureChance>0.25</catastrophicFailureChance>
+        <catastrophicDestroysThing>true</catastrophicDestroysThing>
+        <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+        <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+        <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+        <!-- Interactable -->
+
+        <maintainProgress>true</maintainProgress>
+        <activateTexPath>UI/Icons/Study</activateTexPath>
+        <activateLabelString>Analyze...</activateLabelString>
+        <activateDescString>Analyze the Goa'uld Sarcophagus.</activateDescString>
+        <jobString>Analyzing Sarcophagus</jobString>
+        <guiLabelString>Choose who should analyze this</guiLabelString>
+        <inspectString>Can be analyzed by a colonist.</inspectString>
+
+        <!-- Optional targeting -->
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="Rimgate.Building_Sarcophagus_Ext">
+        <applyAddictionHediff>true</applyAddictionHediff>
+        <severity>1.00</severity>
+        <needLevelOffset>0.9</needLevelOffset>
+        <addictiveness>1.0</addictiveness>
+
+        <!-- Timing -->
+        <maxDiagnosisTime>15</maxDiagnosisTime>
+        <maxPerHediffHealingTime>30</maxPerHediffHealingTime>
+
+        <!-- Base power usage BEFORE optimization -->
+        <diagnosisModePowerConsumption>4000</diagnosisModePowerConsumption>
+        <healingModePowerConsumption>8000</healingModePowerConsumption>
+
+        <!-- Fractional reduction once Rimgate_SarcophagusSubspaceOptimization is researched -->
+        <powerConsumptionReductionFactor>0.65</powerConsumptionReductionFactor>
+
+        <sarchophagusGlowGraphicData>
+          <texPath>FX/RGGoauldSarcophagusGlow</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>MoteGlow</shaderType>
+          <drawSize>(2, 3)</drawSize>
+        </sarchophagusGlowGraphicData>
+
+        <!-- Restrictions -->
         <alwaysTreatableHediffs>
           <li>Anesthetic</li>
           <li>ChemicalDamageModerate</li>
@@ -131,75 +200,7 @@
         <disallowedRaces />
         <disallowedXenotypes />
       </li>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <shortCircuitInRain>false</shortCircuitInRain>
-        <basePowerConsumption>500</basePowerConsumption> <!-- Idle power consumption -->
-      </li>
-      <li Class="Rimgate.CompProperties_AnimatedSarcophagus">
-        <sarchophagusGlowGraphicData>
-          <texPath>FX/RGGoauldSarcophagusGlow</texPath>
-          <graphicClass>Graphic_Multi</graphicClass>
-          <shaderType>MoteGlow</shaderType>
-          <drawSize>(2, 3)</drawSize>
-        </sarchophagusGlowGraphicData>
-      </li>
-      <li Class="Rimgate.CompProperties_SarcophagusControl">
-        <applyAddictionHediff>true</applyAddictionHediff>
-        <severity>1.00</severity>
-        <needLevelOffset>0.9</needLevelOffset>
-        <addictiveness>1.0</addictiveness>
-
-        <!-- Timing -->
-        <maxDiagnosisTime>15</maxDiagnosisTime>
-        <maxPerHediffHealingTime>30</maxPerHediffHealingTime>
-
-        <!-- Base power usage BEFORE optimization -->
-        <diagnosisModePowerConsumption>4000</diagnosisModePowerConsumption>
-        <healingModePowerConsumption>8000</healingModePowerConsumption>
-
-        <!-- Fractional reduction once Rimgate_SarcophagusSubspaceOptimization is researched -->
-        <powerConsumptionReductionFactor>0.65</powerConsumptionReductionFactor>
-      </li>
-      <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
-        <analysisID>1000900</analysisID>
-        <requiresResearchDef>Rimgate_GoauldBasic</requiresResearchDef>
-
-        <!-- Analyze settings -->
-
-        <canStudyInPlace>true</canStudyInPlace>
-        <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
-        <analysisDurationHours>10</analysisDurationHours>
-        <completedLetterLabel>Sarcophagus analysis complete: {RESEARCH} unlocked</completedLetterLabel>
-        <completedLetter>By studying the Goa’uld Sarcophagus, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.\n\nUnfortunately, the device collapsed into inert crystal fragments the moment its core field destabilized — as if refusing to share its secrets.</completedLetter>
-        <completedLetterDef>PositiveEvent</completedLetterDef>
-
-        <catastrophicFailureChance>0.25</catastrophicFailureChance>
-        <catastrophicDestroysThing>true</catastrophicDestroysThing>
-        <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
-
-        <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
-        <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
-
-        <!-- Interactable -->
-
-        <maintainProgress>true</maintainProgress>
-        <activateTexPath>UI/Icons/Study</activateTexPath>
-        <activateLabelString>Analyze...</activateLabelString>
-        <activateDescString>Analyze the Goa'uld Sarcophagus.</activateDescString>
-        <jobString>Analyzing Sarcophagus</jobString>
-        <guiLabelString>Choose who should analyze this</guiLabelString>
-        <inspectString>Can be analyzed by a colonist.</inspectString>
-
-        <!-- Optional targeting -->
-        <targetingParameters>
-          <canTargetBuildings>false</canTargetBuildings>
-          <canTargetAnimals>false</canTargetAnimals>
-          <canTargetMechs>false</canTargetMechs>
-          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
-        </targetingParameters>
-      </li>
-    </comps>
+    </modExtensions>
   </ThingDef>
 
   <!-- Goa'uld Throne -->

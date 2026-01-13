@@ -100,12 +100,11 @@
 			<stoppingPower>1</stoppingPower>
 			<explosionDelay>100</explosionDelay>
 		</projectile>
-		<comps>
-			<li Class="Rimgate.CompProperties_AdditionalDamage">
-				<compClass>Rimgate.Comp_AdditionalDamage</compClass>
-				<damageType>EMP</damageType>
+		<modExtensions>
+			<li Class="Rimgate.Projectile_AdditionalDamage_Ext">
+				<damageDef>EMP</damageDef>
 			</li>
-		</comps>
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ============ Goa'uld Gun Base ============ -->
@@ -290,7 +289,7 @@
 	<ThingDef ParentName="Rimgate_GoauldGunBase">
 		<defName>Rimgate_GoauldZat</defName>
 		<label>Zat'nik'tel</label>
-		<description>One shot: stun. Two shots: kill. Three shots? Only one way to find out.\nCompact, terrifying, and universally feared by SG teams and modded colonists alike.\n\nNote: This weapon delivers a neuroelectric shock that temporarily incapacitates targets.  Unfortunately, it's ineffective against any mechanical target.</description>
+		<description>One shot: stun. Two shots: kill. Three shots? Only one way to find out.\nCompact, terrifying, and universally feared by SG teams and modded colonists alike.\n\nNote: This weapon delivers a neuroelectric shock that temporarily incapacitates targets. Unfortunately, it's ineffective against any mechanical target.</description>
 		<costList>
 			<Steel>30</Steel>
 			<ComponentIndustrial>2</ComponentIndustrial>

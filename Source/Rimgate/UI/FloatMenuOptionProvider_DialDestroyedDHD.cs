@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
+public class FloatMenuOptionProvider_DialDestroyedDHD : FloatMenuOptionProvider
 {
     protected override bool Drafted => true;
 
@@ -20,28 +20,24 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
 
     public override bool TargetThingValid(Thing thing, FloatMenuContext context)
     {
-        return thing is Building_DHD;
+        return thing.def == RimgateDefOf.Rimgate_DialHomeDeviceDestroyed
+            && ResearchUtil.DHDLogicComplete;
     }
 
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
-        var dhd = clickedThing as Building_DHD;
-        if (dhd == null)
+        var dhd = clickedThing.def == RimgateDefOf.Rimgate_DialHomeDeviceDestroyed;
+        if (dhd == null || !ResearchUtil.DHDLogicComplete)
             yield break;
 
-        var control = dhd.LinkedStargate;
+        var control = Building_Stargate.GetStargateOnMap(clickedThing.Map);
         if (control == null)
-        {
-            yield return new FloatMenuOption(
-                "RG_CannotDial".Translate("RG_CannotDialNoGate".Translate()),
-                null);
             yield break;
-        }
 
         Pawn pawn = context.FirstSelectedPawn;
         bool canReach = pawn.CanReach(
-            clickedThing.InteractionCell,
-            PathEndMode.Touch,
+            clickedThing.Position,
+            PathEndMode.ClosestTouch,
             Danger.Deadly,
             false,
             false,
@@ -50,14 +46,6 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
         {
             yield return new FloatMenuOption(
                 "RG_CannotDial".Translate("RG_CannotDialNoReach".Translate()),
-                null);
-            yield break;
-        }
-
-        if (!dhd.Powered)
-        {
-            yield return new FloatMenuOption(
-                "RG_CannotDial".Translate("NoPower".Translate()),
                 null);
             yield break;
         }
@@ -95,24 +83,15 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        foreach (PlanetTile tile in addressComp.AddressList)
-        {
-            if (tile == control.GateAddress)
-                continue;
-
-            MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
-            string designation = StargateUtil.GetStargateDesignation(tile);
-            yield return new FloatMenuOption(
-                $"{"RG_DialGate".Translate()} {designation} ({sgMap.Label})",
-                () =>
-                {
-                    dhd.LastDialledAddress = tile;
-                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialStargate, clickedThing);
-                    job.count = 1;
-                    job.playerForced = true;
-                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                });
-        }
+        yield return new FloatMenuOption(
+            "RG_DialGate".Translate(),
+            () =>
+            {
+                Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialStargate, clickedThing);
+                job.count = 1;
+                job.playerForced = true;
+                pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            });
     }
 
     private static bool CanEnterGate(Pawn pawn, Building_Stargate gate)

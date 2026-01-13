@@ -90,7 +90,7 @@
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_StargateReplacementDHDResearch</defName>
 		<label>DHD logic</label>
-		<description>By studying salvaged Dwarfgate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.\nNote: SGC officially recommends bolting this one to the floor.</description>
+		<description>By studying salvaged Dwarfgate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>4000</baseCost>
 		<prerequisites>
@@ -103,7 +103,7 @@
 			<li>Rimgate_DialHomeDevice</li>
 		</requiredAnalyzed>
 		<discoveredLetterTitle>About: Replacement DHD</discoveredLetterTitle>
-		<discoveredLetterText>Through painstaking analysis — and at least one accidental power surge — your researchers have created a Tau’ri replacement for the ancient Dwarfgate dialer.\n\nIt’s not elegant, but it *works*: no line-of-sight needed, extended range, and full remote control of the gate’s iris. A triumph of modern engineering and excessive coffee consumption.\n\nJust don’t unplug it — the hum means it’s working.</discoveredLetterText>
+		<discoveredLetterText>Through painstaking analysis — and at least one accidental power surge — your researchers have created a Tau’ri replacement for the ancient Dwarfgate dialer.\n\nIt’s not elegant, but it *works*: no line-of-sight needed, extended range, and full remote control of the gate’s iris. A triumph of modern engineering and excessive coffee consumption.\n\nJust don’t unplug it — the hum means it’s working.\nNote: Your researchers also discovered that with this deeper understanding, they can train field members to use a destroyed DHD to directly interface with a gate and dial home in case of emergency.</discoveredLetterText>
 		<generalRules>
 			<rulesStrings>
 				<!-- Subject -->

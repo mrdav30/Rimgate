@@ -139,7 +139,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_50CalBullet</defaultProjectile>
 				<warmupTime>1.5</warmupTime>
-				<range>42</range>
+				<range>49.9</range>
 				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 				<burstShotCount>10</burstShotCount>
 				<soundCast>RG_M2Shot</soundCast>
@@ -307,7 +307,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Rimgate_RailgunBullet</defaultProjectile>
 				<warmupTime>1.7</warmupTime>
-				<range>50</range>
+				<range>99.9</range>
 				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
 				<burstShotCount>6</burstShotCount>
 				<soundCast>RG_M2Shot</soundCast>
@@ -337,6 +337,12 @@
 
 	<!-- ======================= Staff cannon =======================  -->
 
+	<DesignatorDropdownGroupDef>
+		<defName>Rimgate_StaffCannonTurrets</defName>
+		<label>staff cannon turrets</label>
+		<iconSource>Placed</iconSource>
+	</DesignatorDropdownGroupDef>
+
 	<!-- ==== Bases ==== -->
 
 	<ThingDef Name="Rimgate_StaffCannonTurretBase" ParentName="BuildingBase" Abstract="true">
@@ -360,6 +366,7 @@
 		<hasTooltip>true</hasTooltip>
 		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
 		<designationCategory>Security</designationCategory>
+		<designatorDropdown>Rimgate_StaffCannonTurrets</designatorDropdown>
 		<placeWorkers>
 			<li>PlaceWorker_TurretTop</li>
 			<li>Rimgate.PlaceWorker_ShowTurretRadiusWithOffset</li>
@@ -538,6 +545,7 @@
 		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
 		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
 		<designationCategory>Security</designationCategory>
+		<designatorDropdown>Rimgate_StaffCannonTurrets</designatorDropdown>
 		<costList>
 			<Steel>260</Steel>
 			<Rimgate_Naquadah>75</Rimgate_Naquadah>

@@ -276,12 +276,11 @@
 			<armorPenetrationBase>0.42</armorPenetrationBase>
 			<speed>72</speed>
 		</projectile>
-		<comps>
-			<li Class="Rimgate.CompProperties_AdditionalDamage">
-				<compClass>Rimgate.Comp_AdditionalDamage</compClass>
-				<damageType>Stun</damageType>
+		<modExtensions>
+			<li Class="Rimgate.Projectile_AdditionalDamage_Ext">
+				<damageDef>Stun</damageDef>
 			</li>
-		</comps>
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ====== Wraith Handblaster ====== -->
@@ -414,12 +413,11 @@
 			<armorPenetrationBase>0.28</armorPenetrationBase>
 			<speed>55</speed>
 		</projectile>
-		<comps>
-			<li Class="Rimgate.CompProperties_AdditionalDamage">
-				<compClass>Rimgate.Comp_AdditionalDamage</compClass>
-				<damageType>Stun</damageType>
+		<modExtensions>
+			<li Class="Rimgate.Projectile_AdditionalDamage_Ext">
+				<damageDef>Stun</damageDef>
 			</li>
-		</comps>
+		</modExtensions>
 	</ThingDef>
 
 

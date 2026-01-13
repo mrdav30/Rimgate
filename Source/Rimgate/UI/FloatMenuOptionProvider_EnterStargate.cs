@@ -20,12 +20,17 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
 
     protected override bool MechanoidCanDo => true;
 
+    public override bool TargetThingValid(Thing thing, FloatMenuContext context)
+    {
+        return thing is Building_Stargate;
+    }
+
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
         Building_Stargate gate = clickedThing as Building_Stargate;
         Pawn pawn = context.FirstSelectedPawn;
 
-        if (pawn == null || gate == null || gate.GateControl == null)
+        if (pawn == null || gate == null)
             yield break;
 
         if (!gate.IsActive)
@@ -67,6 +72,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
                 foreach (Pawn enteringPawn in tmpGateEnteringPawns)
                 {
                     Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_EnterStargate, gate);
+                    job.count = 1;
                     job.playerForced = true;
                     enteringPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                 }
@@ -115,6 +121,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
                         RimgateDefOf.Rimgate_BringToStargate,
                         t.Thing,
                         gate);
+                    job.count = 1;
                     job.playerForced = true;
                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                 });

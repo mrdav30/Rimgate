@@ -15,7 +15,7 @@ namespace Rimgate;
  */
 public class Pawn_Unas : Pawn
 {
-
+    private static List<WorkTypeDef> _allWorkTypes;
 
     private List<WorkTypeDef> _cachedDisabledWorkTypes;
 
@@ -26,7 +26,11 @@ public class Pawn_Unas : Pawn
         base.SpawnSetup(map, respawningAfterLoad);
 
         if (IsFormerHuman())
+        {
+            if(RimgateMod.Debug)
+                Log.Message($"Skipping Unas setup for former human {def.defName}" );
             return; // former humans have their own logic, ignore them
+        }
 
         // Can avoid this by making them using mech code,
         // but it may require way more work so this hack would do
@@ -63,16 +67,6 @@ public class Pawn_Unas : Pawn
         workSettings.Notify_DisabledWorkTypesChanged();
     }
 
-    public new bool WorkTagIsDisabled(WorkTags w)
-    {
-        return (CombinedDisabledWorkTags & w) != 0;
-    }
-
-    public new bool WorkTypeIsDisabled(WorkTypeDef w)
-    {
-        return GetDisabledWorkTypes().Contains(w);
-    }
-
     /**
      * Stripped to bare bones. Uses mechanoid tags for available job tags.
      */
@@ -81,6 +75,7 @@ public class Pawn_Unas : Pawn
         if (IsFormerHuman())
             return base.GetDisabledWorkTypes(permanentOnly);
 
+        _allWorkTypes ??= DefDatabase<WorkTypeDef>.AllDefsListForReading;
         if (permanentOnly)
         {
             _cachedDisabledWorkTypesPermanent ??= new();
@@ -96,10 +91,9 @@ public class Pawn_Unas : Pawn
 
         void FillList(List<WorkTypeDef> list)
         {
-            List<WorkTypeDef> allWorkTypes = DefDatabase<WorkTypeDef>.AllDefsListForReading;
-            for (int j = 0; j < allWorkTypes.Count; j++)
+            for (int j = 0; j < _allWorkTypes.Count; j++)
             {
-                var workType = allWorkTypes[j];
+                var workType = _allWorkTypes[j];
                 if (!RaceProps.mechEnabledWorkTypes.Contains(workType)
                     && !list.Contains(workType))
                 {

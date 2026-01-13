@@ -5,6 +5,8 @@ namespace Rimgate;
 
 public static class ResearchUtil
 {
+    public static bool DHDLogicComplete => RimgateDefOf.Rimgate_StargateReplacementDHDResearch.IsFinished;
+
     public static bool GlyphDecipheringComplete => RimgateDefOf.Rimgate_GlyphDeciphering.IsFinished;
 
     public static bool ParallelSubspaceCouplingComplete => RimgateDefOf.Rimgate_ParallelSubspaceCoupling.IsFinished;
@@ -14,8 +16,6 @@ public static class ResearchUtil
     public static bool SarcophagusOptimizationComplete => RimgateDefOf.Rimgate_SarcophagusOptimization.IsFinished;
 
     public static bool WraithCloneGenomeComplete => RimgateDefOf.Rimgate_WraithCloneGenome.IsFinished;
-
-    public static bool CloningPodOptimizationComplete => RimgateDefOf.Rimgate_CloningPodOptimization.IsFinished;
 
     public static bool WraithCloneFullComplete => RimgateDefOf.Rimgate_WraithCloneFull.IsFinished;
 

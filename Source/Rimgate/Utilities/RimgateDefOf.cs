@@ -126,7 +126,7 @@ public static class RimgateDefOf
     public static RaidStrategyDef ImmediateAttackSmart;
     public static RaidStrategyDef StageThenAttack;
 
-    public static ResearchProjectDef Rimgate_CloningPodOptimization;
+    public static ResearchProjectDef Rimgate_StargateReplacementDHDResearch;
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
     public static ResearchProjectDef Rimgate_ParallelSubspaceCoupling;
     public static ResearchProjectDef Rimgate_SarcophagusBioregeneration;
@@ -158,6 +158,7 @@ public static class RimgateDefOf
 
     public static ThingDef Gun_Autopistol;
     public static ThingDef Rimgate_DialHomeDevice;
+    public static ThingDef Rimgate_DialHomeDeviceDestroyed;
     public static ThingDef Rimgate_Dwarfgate;
     public static ThingDef Rimgate_GoauldThrone;
     public static ThingDef Rimgate_JammedBlastDoor;

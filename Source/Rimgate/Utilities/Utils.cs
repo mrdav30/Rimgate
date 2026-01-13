@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using KCSG;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -288,6 +289,16 @@ internal static class Utils
 
         // Or weighted (example; adjust weight source as you like):
         // return candidates.TryRandomElementByWeight(f => f.def.raidCommonalityFromPointsCurve?.Evaluate(1000f) ?? 1f, out faction);
+    }
+
+    public static Pawn GeneratePawnForContainer(Map map, Faction faction = null, List<PawnKindDef> pawnKindDefs = null)
+    {
+        if (pawnKindDefs != null && pawnKindDefs.Count > 0)
+        {
+            return PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnKindDefs.RandomElement(), faction, forceGenerateNewPawn: true));
+        }
+
+        return PawnGenerator.GeneratePawn(new PawnGenerationRequest(faction != null ? faction.RandomPawnKind() : PawnKindDefOf.Villager, faction, forceGenerateNewPawn: true));
     }
 
     public static string FormatTicksToPeriod(this float ticks)

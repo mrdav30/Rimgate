@@ -133,7 +133,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DialHomeDeviceDestroyed</defName>
         <label>ruined dial home device</label>
-        <description>A shattered relic of alien engineering once used to command a Dwarfgate. Its crystals are burnt out, its control ring frozen in place—no dialing, no escape, just a reminder of what was lost. Scavengers might still pry a trace of naquadah from its husk, but it will never open a wormhole again.</description>
+        <description>A shattered relic of alien engineering once used to command a Dwarfgate. Its crystals are burnt out, its control ring frozen in place—no dialing, no escape, just a reminder of what was lost. Scavengers might still pry a trace of naquadah from its husk, but it will probably never open a wormhole again.\n\nNote: With a deeper understanding of how DHDs function, it may be possible to bypass ancient protocols and use this to directly interface with a gate and dial home in case of emergency.</description>
         <rotatable>false</rotatable>
         <stealable>false</stealable>
         <passability>Impassable</passability>
@@ -170,7 +170,7 @@
         <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     </ThingDef>
 
-    <!-- ================c Mech Gestator Tank ================ -->
+    <!-- ================ Mech Gestator Tank ================ -->
 
     <ThingDef Name="Rimgate_AncientGestatorBase" ParentName="AncientMechBuildingBase" Abstract="True">
         <defName>Rimgate_AncientGestatorBase</defName>
@@ -902,7 +902,7 @@
         <defName>Rimgate_WraithCocoonPod</defName>
         <label>cocoon pod</label>
         <description>A Wraith-grown pod for storing humans the way sensible people store meals: sealed, warm, and inconveniently still alive.\n\nIt cocoons the occupant in sticky biopolymer webbing and holds them in stasis for ages—perfect for long flights, emergencies, or a "snack later" plan. Victims are usually out cold, sometimes twitchy enough to beg or struggle.\n\nDisturbingly, it’s padded and spine-friendly. Nothing says "ancient space vampire" like ergonomic prisoner storage.</description>
-        <thingClass>Building_WraithCocoonPod</thingClass>
+        <thingClass>Rimgate.Building_WraithCocoonPod</thingClass>
         <containedPawnsSelectable>false</containedPawnsSelectable>
         <graphicData>
             <texPath>Things/Building/Prop/RGWraithCocoonPod</texPath>
@@ -960,6 +960,9 @@
             </li>
         </comps>
         <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+        <modExtensions>
+            <li Class="Rimgate.Building_WraithCocoonPod_Ext" />
+        </modExtensions>
     </ThingDef>
 
     <!-- ======================= Symbiote Urn ======================= -->

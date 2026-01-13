@@ -33,11 +33,11 @@ public class PlaceWorker_Stargate : PlaceWorker
         Thing thing = null)
     {
         base.DrawGhost(def, c, rot, ghostCol, thing);
-        var compProps = def.GetCompProperties<CompProperties_StargateControl>();
-        if (compProps == null) return;
+        var props = def.GetModExtension<Building_Stargate_Ext>();
+        if (props == null) return;
 
         List<IntVec3> pattern = new List<IntVec3>();
-        foreach (var off in RotatedPatternLocal(rot, compProps.vortexPattern))
+        foreach (var off in RotatedPatternLocal(rot, props.vortexPattern))
         {
             var cell = c + off;
             pattern.Add(cell);

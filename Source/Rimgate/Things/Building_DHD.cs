@@ -12,11 +12,18 @@ using static HarmonyLib.Code;
 
 namespace Rimgate;
 
+public class Building_DHD_Ext : DefModExtension
+{
+    public bool canToggleIris;
+
+    public GraphicData activeGraphicData;
+}
+
 public class Building_DHD : Building
 {
     public PlanetTile LastDialledAddress;
 
-    public Comp_DHDControl DHDControl => _cachedDialHomeDevice ??= GetComp<Comp_DHDControl>();
+    public Building_DHD_Ext Props => _cachedProps ??= def.GetModExtension<Building_DHD_Ext>();
 
     public CompFacility Facility => _cachedFacility ??= GetComp<CompFacility>();
 
@@ -38,11 +45,13 @@ public class Building_DHD : Building
 
     public bool Powered => PowerTrader == null || PowerTrader.PowerOn;
 
+    public Graphic ActiveGraphic => Props.activeGraphicData?.Graphic;
+
     private bool _hadActiveModificationEquipment;
 
     private CompPowerTrader _cachedPowerTrader;
 
-    private Comp_DHDControl _cachedDialHomeDevice;
+    private Building_DHD_Ext _cachedProps;
 
     private CompFacility _cachedFacility;
 
@@ -127,7 +136,7 @@ public class Building_DHD : Building
 
         yield return closeGateCmd;
 
-        if (!DHDControl.Props.canToggleIris || !linked.HasIris)
+        if (!Props.canToggleIris || !linked.HasIris)
             yield break;
 
         var actionLabel = linked.IsIrisActivated
@@ -138,7 +147,7 @@ public class Building_DHD : Building
         {
             defaultLabel = "RG_ToggleIris".Translate(actionLabel),
             defaultDesc = "RG_ToggleIrisDesc".Translate(actionLabel),
-            icon = linked.GateControl.ToggleIrisIcon,
+            icon = linked.ToggleIrisIcon,
             isActive = () => _wantIrisToggled,
             toggleAction = delegate
             {
@@ -163,6 +172,10 @@ public class Building_DHD : Building
     {
         base.DrawAt(drawLoc, flip);
 
+        var active = ActiveGraphic;
+        if(active == null)
+            return;
+
         var control = LinkedStargate;
         if (control == null)
             return;
@@ -175,7 +188,7 @@ public class Building_DHD : Building
         var posAbove = Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) + drawOffset;
 
         // highlight floats above the dhd.
-        DHDControl.ActiveGraphic.Draw(Utils.AddY(posAbove, +0.01f), rot, this);
+        active.Draw(Utils.AddY(posAbove, +0.01f), rot, this);
     }
 
     private bool TryGetLinkedStargate(out Building_Stargate gate)

@@ -14,8 +14,44 @@ using static HarmonyLib.Code;
 
 namespace Rimgate;
 
+public class Building_Stargate_Ext : DefModExtension
+{
+    public bool canHaveIris = true;
+
+    public float irisPowerConsumption = 0;
+
+    public bool explodeOnUse = false;
+
+    public GraphicData puddleGraphicData;
+
+    public GraphicData irisGraphicData;
+
+    public GraphicData chevronHighlight;
+
+    public List<IntVec3> vortexPattern = new List<IntVec3>
+    {
+        new IntVec3(0,0,1),
+        new IntVec3(1,0,1),
+        new IntVec3(-1,0,1),
+        new IntVec3(0,0,0),
+        new IntVec3(1,0,0),
+        new IntVec3(-1,0,0),
+        new IntVec3(0,0,-1),
+        new IntVec3(1,0,-1),
+        new IntVec3(-1,0,-1),
+        new IntVec3(0,0,-2),
+        new IntVec3(1,0,-2),
+        new IntVec3(-1,0,-2),
+        new IntVec3(0,0,-3)
+    };
+
+    public List<SoundDef> teleportSounds;
+}
+
 public class Building_Stargate : Building
 {
+    public Building_Stargate_Ext Props => _cachedProps ??= def.GetModExtension<Building_Stargate_Ext>();
+
     private const int GlowRadius = 10;
 
     private const int IdleTimeout = 2500;
@@ -42,6 +78,31 @@ public class Building_Stargate : Building
 
     public Sustainer PuddleSustainer;
 
+    public Graphic StargatePuddle => Props.puddleGraphicData?.Graphic;
+
+    public Graphic StargateIris => Props.irisGraphicData?.Graphic;
+
+    public Graphic ChevronHighlight => Props.chevronHighlight?.Graphic;
+
+    public IEnumerable<IntVec3> VortexCells
+    {
+        get
+        {
+            var rot = Rotation;
+            if (rot == Rot4.North) // default is for north facing
+            {
+                foreach (IntVec3 offset in Props.vortexPattern)
+                    yield return offset + Position;
+                yield break;
+            }
+
+            foreach (var off in Props.vortexPattern)
+                yield return Position + Utils.RotateOffset(off, rot);
+        }
+    }
+
+    public Texture2D ToggleIrisIcon => _cachedIrisToggleIcon ??= ContentFinder<Texture2D>.Get(Props.irisGraphicData.texPath, true);
+
     public bool Powered => PowerTrader == null || PowerTrader.PowerOn;
 
     public int TicksUntilOpen => _ticksUntilOpen;
@@ -66,11 +127,11 @@ public class Building_Stargate : Building
 
     public CompTransporter Transporter => _cachedTransporter ??= GetComp<CompTransporter>();
 
-    public Comp_StargateControl GateControl => _cachedStargate ??= GetComp<Comp_StargateControl>();
-
     public CompGlower Glower => _cachedGlowComp ??= GetComp<CompGlower>();
 
     public CompExplosive Explosive => _cachedexplosiveComp ??= GetComp<CompExplosive>();
+
+    private Building_Stargate_Ext _cachedProps;
 
     private int _externalHoldCount;
 
@@ -92,13 +153,11 @@ public class Building_Stargate : Building
 
     private CompTransporter _cachedTransporter;
 
-    private Comp_StargateControl _cachedStargate;
-
     private CompGlower _cachedGlowComp;
 
     private CompExplosive _cachedexplosiveComp;
 
-    private Graphic _activeGraphic;
+    private Texture2D _cachedIrisToggleIcon;
 
     #endregion
 
@@ -124,7 +183,8 @@ public class Building_Stargate : Building
         }
 
         GateAddress = Map?.Tile ?? PlanetTile.Invalid;
-        StargateUtil.AddGateAddress(GateAddress);
+        if(GateAddress.Valid)
+            StargateUtil.AddGateAddress(GateAddress);
 
         if (IsActive)
         {
@@ -154,14 +214,11 @@ public class Building_Stargate : Building
     {
         base.Tick();
 
-        if (GateControl == null)
-            return;
-
         if (PowerTrader != null)
         {
             if (HasIris)
             {
-                float powerConsumption = -(GateControl.Props.irisPowerConsumption + PowerTrader.Props.PowerConsumption);
+                float powerConsumption = -(Props.irisPowerConsumption + PowerTrader.Props.PowerConsumption);
                 PowerTrader.PowerOutput = powerConsumption;
 
                 if (!Powered && IsIrisActivated)
@@ -219,7 +276,7 @@ public class Building_Stargate : Building
             // (i.e., raid arrivals, game conditions)
             if (!ConnectedAddress.Valid && _externalHoldCount == 0)
             {
-                CloseStargate();
+                CloseStargate(ConnectedGate != null);
                 return;
             }
         }
@@ -259,7 +316,7 @@ public class Building_Stargate : Building
             yield return gizmo;
         }
 
-        if (GateControl.Props.canHaveIris && HasIris)
+        if (Props.canHaveIris && HasIris)
         {
             var action = (_isIrisActivated
                 ? "RG_OpenIris"
@@ -268,7 +325,7 @@ public class Building_Stargate : Building
             {
                 defaultLabel = "RG_ToggleIris".Translate(action),
                 defaultDesc = "RG_ToggleIrisDesc".Translate(action),
-                icon = GateControl.ToggleIrisIcon,
+                icon = ToggleIrisIcon,
                 isActive = () => _wantsIrisToggled,
                 toggleAction = delegate
                 {
@@ -347,15 +404,15 @@ public class Building_Stargate : Building
 
         // Puddle is slightly below the iris.
         if (IsActive)
-            GateControl.StargatePuddle.Draw(Utils.AddY(posBelow, -0.02f), rot, this);
+            StargatePuddle?.Draw(Utils.AddY(posBelow, -0.02f), rot, this);
 
         // Iris sits a bit above the puddle.
         if (_isIrisActivated)
-            GateControl.StargateIris.Draw(Utils.AddY(posBelow, -0.01f), rot, this);
+            StargateIris?.Draw(Utils.AddY(posBelow, -0.01f), rot, this);
 
         // Chevron highlight floats above the gate/puddle/iris.
         if (IsActive)
-            GateControl.ChevronHighlight.Draw(Utils.AddY(posAbove, +0.01f), rot, this);
+            ChevronHighlight?.Draw(Utils.AddY(posAbove, +0.01f), rot, this);
     }
 
     public override string GetInspectString()
@@ -696,7 +753,7 @@ public class Building_Stargate : Building
                 Glower.PostSpawnSetup(false);
             }
 
-            if (GateControl.Props.explodeOnUse)
+            if (Props.explodeOnUse)
             {
                 if (Explosive == null)
                     Log.Warning($"Rimgate :: Stargate {this} has the explodeOnUse tag set to true but doesn't have CompExplosive.");
@@ -732,7 +789,7 @@ public class Building_Stargate : Building
         if (ConnectedAddress.Valid)
         {
             ConnectedGate = gate;
-            ConnectedGate.OpenAsReceivingGate(GateAddress);
+            ConnectedGate.OpenAsReceivingGate(this, GateAddress);
         }
 
         PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
@@ -748,14 +805,16 @@ public class Building_Stargate : Building
             Log.Message($"Rimgate :: finished opening gate {this}");
     }
 
-    public void OpenAsReceivingGate(PlanetTile connectedAddress)
+    public void OpenAsReceivingGate(Building_Stargate connectedGate, PlanetTile connectedAddress)
     {
         if (!connectedAddress.Valid) return;
 
         IsActive = true;
         IsReceivingGate = true;
         ConnectedAddress = connectedAddress;
-        ConnectedGate = this;
+        ConnectedGate = connectedGate;
+
+        if (Map == null || !Spawned) return;
 
         EvacuateVortexPath();
 
@@ -777,7 +836,7 @@ public class Building_Stargate : Building
 
     private void PlayTeleportSound()
     {
-        if (GateControl.TryGetTeleportSound(out SoundDef def))
+        if (TryGetTeleportSound(out SoundDef def))
             def.PlayOneShot(SoundInfo.InMap(this));
     }
 
@@ -793,7 +852,7 @@ public class Building_Stargate : Building
         // Small radius: exactly the cell the vortex passes through
         const float radius = 0.51f;
 
-        foreach (var cell in GateControl.VortexCells)
+        foreach (var cell in VortexCells)
         {
             if (!cell.InBounds(map)) continue;
 
@@ -824,7 +883,7 @@ public class Building_Stargate : Building
         // Hash the path and mark reserved
         // so we never place pawns back into it.
         var vortexSet = new HashSet<IntVec3>();
-        foreach (var c in GateControl.VortexCells)
+        foreach (var c in VortexCells)
             if (c.InBounds(map)) vortexSet.Add(c);
 
         if (vortexSet.Count == 0) return;
@@ -915,6 +974,18 @@ public class Building_Stargate : Building
         }
 
         return gate;
+    }
+
+    private bool TryGetTeleportSound(out SoundDef def)
+    {
+        if (Props.teleportSounds == null || Props.teleportSounds.Count == 0)
+        {
+            def = null;
+            return false;
+        }
+
+        def = Props.teleportSounds.RandomElement();
+        return true;
     }
 
     #endregion

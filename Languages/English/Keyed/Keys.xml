@@ -215,7 +215,8 @@
 	<RG_StargateHeldCannotUninstall>Cannot uninstall: Dwarfgate is currently active.</RG_StargateHeldCannotUninstall>
 	<RG_StargateHeldCannotReinstall>Cannot reinstall: Dwarfgate is currently active.</RG_StargateHeldCannotReinstall>
 	<RG_GateDialFailed>Could not activate Dwarfgate: Recieving gate no longer exists or is currently in use.</RG_GateDialFailed>
-
+	<RG_GateDialFailed_DHDDestroyed>{PAWN_nameDef} failed while attempting to dial home using a destroyed DHD.</RG_GateDialFailed_DHDDestroyed>
+	
 	<RG_GeneratingStargateSite>Generating Dwarfgate site</RG_GeneratingStargateSite>
 
 	<RG_EnterStargateAction>Enter Dwarfgate</RG_EnterStargateAction>
@@ -263,14 +264,15 @@
 
 	<!-- DHD-->
 
-	<RG_CannotDialNoGate>Cannot dial: no Dwarfgate connected</RG_CannotDialNoGate>
-	<RG_CannotDialNoReach>Cannot dial: cannot reach the DHD</RG_CannotDialNoReach>
-	<RG_CannotDialNoPower>Cannot dial: no power</RG_CannotDialNoPower>
-	<RG_CannotDialGateIsActive>Cannot dial: Dwarfgate is already active</RG_CannotDialGateIsActive>
-	<RG_CannotDialNoDestinations>Cannot dial: no available destinations</RG_CannotDialNoDestinations>
-	<RG_CannotDialIncoming>Cannot dial: incoming wormhole</RG_CannotDialIncoming>
+	<RG_CannotDial>Cannot dial: {0}</RG_CannotDial>
 
-	<RG_DialGate>Dial {0} ({1})</RG_DialGate>
+	<RG_CannotDialNoGate>no Dwarfgate connected</RG_CannotDialNoGate>
+	<RG_CannotDialNoReach>DHD out of reach</RG_CannotDialNoReach>
+	<RG_CannotDialGateIsActive>Dwarfgate already active</RG_CannotDialGateIsActive>
+	<RG_CannotDialNoDestinations>no available destinations</RG_CannotDialNoDestinations>
+	<RG_CannotDialIncoming>incoming wormhole</RG_CannotDialIncoming>
+
+	<RG_DialGate>Dial</RG_DialGate>
 	<RG_CloseStargate>Close Dwarfgate</RG_CloseStargate>
 	<RG_CloseStargateDesc>Close the linked Dwarfgate.</RG_CloseStargateDesc>
 	<RG_GateIsNotActive>Dwarfgate is not active.</RG_GateIsNotActive>

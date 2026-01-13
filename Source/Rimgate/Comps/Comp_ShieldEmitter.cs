@@ -11,6 +11,10 @@ namespace Rimgate;
 
 public class Comp_ShieldEmitter : ThingComp
 {
+    private static readonly FleckDef SkyfallerFleckA = DefDatabase<FleckDef>.GetNamed("ElectricalSpark");
+
+    private static readonly FleckDef SkyfallerFleckB = DefDatabase< FleckDef>.GetNamed("PsycastPsychicEffect");
+
     public const float MaxStressLevel = 1f;
 
     private float _curStressLevel;
@@ -358,8 +362,8 @@ public class Comp_ShieldEmitter : ThingComp
         {
             FleckMaker.ThrowHeatGlow(intVec3, skyFaller.Map, 1f);
             FleckMaker.ThrowLightningGlow(intVec3.ToVector3Shifted(), skyFaller.Map, 1f);
-            FleckMaker.Static(intVec3, skyFaller.Map, DefDatabase<FleckDef>.GetNamed("ElectricalSpark"), 2f);
-            FleckMaker.Static(intVec3, skyFaller.Map, DefDatabase<FleckDef>.GetNamed("PsycastPsychicEffect"), 2f);
+            FleckMaker.Static(intVec3, skyFaller.Map, SkyfallerFleckA, 2f);
+            FleckMaker.Static(intVec3, skyFaller.Map, SkyfallerFleckB, 2f);
         }
     }
 
