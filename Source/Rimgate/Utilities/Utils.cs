@@ -280,10 +280,10 @@ internal static class Utils
         return f.HostileTo(Faction.OfPlayer);
     }
 
-    public static bool TryFindEnemyFaction(out Faction faction, bool allowNeolithic = true)
+    public static bool TryFindEnemyFaction(out Faction faction, List<FactionDef> blacklist = null, bool allowNeolithic = true)
     {
         var candidates = Find.FactionManager.AllFactions
-            .Where(f => CanUseFaction(f, allowNeolithic));
+            .Where(f => CanUseFaction(f, allowNeolithic) && (!blacklist?.Contains(f.def) ?? true));
         // Flat random:
         return candidates.TryRandomElement(out faction);
 

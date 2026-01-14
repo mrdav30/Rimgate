@@ -191,7 +191,7 @@ public class Building_Stargate : Building
             if (ConnectedGate == null && ConnectedAddress.Valid)
             {
                 MapParent site = Find.WorldObjects.MapParentAt(ConnectedAddress);
-                if (site.HasMap)
+                if (!respawningAfterLoad && site.HasMap)
                     ConnectedGate = GetConnectedGate(site.Map);
                 else
                     CloseStargate();
@@ -522,100 +522,6 @@ public class Building_Stargate : Building
 
     #region Gate control
 
-    public void AddToSendBuffer(Thing thing)
-    {
-        _sendBuffer ??= new();
-        _sendBuffer.Add(thing);
-
-        // redraft flag travels as an ID on the destination comp
-        if (ConnectedGate != null && ShouldRedraftAfterSpawn(thing))
-            ConnectedGate.MarkRedraftOnArrival(thing);
-
-        PlayTeleportSound();
-    }
-
-    private void BeamSendBufferTo()
-    {
-        for (int i = 0; i < _sendBuffer.Count; i++)
-        {
-            Thing t = _sendBuffer[i];
-
-            if (IsReceivingGate)
-            {
-                if (!t.DestroyedOrNull())
-                    t.Kill();
-                continue;
-            }
-
-            ConnectedGate.AddToReceiveBuffer(t);
-        }
-
-        _sendBuffer.Clear();
-    }
-
-    public void AddToReceiveBuffer(Thing thing)
-    {
-        _recvBuffer ??= new();
-        _recvBuffer.Enqueue(thing);
-    }
-
-    private void SpawnFromReceiveBuffer()
-    {
-        TicksSinceBufferUnloaded = 0;
-
-        // check without removing
-        Thing t = _recvBuffer.Peek();
-        if (t == null || t.Destroyed)
-        {
-            _recvBuffer.Dequeue();
-            return;
-        }
-
-        if (!_isIrisActivated)
-        {
-            // Buildings (e.g., carts) must NOT spawn exactly on the gate/edifices.
-            IntVec3 drop = Utils.BestDropCellNearThing(this);
-            var spawned = GenSpawn.Spawn(t, drop, Map);
-            PlayTeleportSound();
-
-            // Cleanly re-draft on arrival
-            if (spawned is Pawn p && _redraftOnArrival?.Remove(p.thingIDNumber) == true)
-            {
-                // avoid lingering pre-teleport jobs
-                p.jobs?.StopAll();
-                if (p.drafter != null)
-                    p.drafter.Drafted = true;
-                // hold position for a tick; avoids wander
-                p.pather?.StopDead();
-            }
-        }
-        else
-        {
-            if (!t.DestroyedOrNull())
-                t.Kill();
-            RimgateDefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(this));
-        }
-
-        // remove after handling
-        _recvBuffer.Dequeue();
-    }
-
-    private static bool ShouldRedraftAfterSpawn(Thing t)
-    {
-        if (t is not Pawn p) return false;
-        if (!p.Faction.IsOfPlayerFaction()) return false;
-        if (p.Downed) return false;
-        if (p.drafter == null) return false;
-        if (!p.Drafted) return false;
-        return true;
-    }
-
-    public void MarkRedraftOnArrival(Thing t)
-    {
-        _redraftOnArrival ??= new();
-        _redraftOnArrival.Add(t.thingIDNumber);
-    }
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void PushExternalHold() => _externalHoldCount++;
 
@@ -639,6 +545,29 @@ public class Building_Stargate : Building
 
         PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
         RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(this));
+        if (Glower != null)
+        {
+            Glower.Props.glowRadius = GlowRadius;
+            Glower.PostSpawnSetup(false);
+        }
+    }
+
+    public void OpenAsReceivingGate(Building_Stargate connectedGate, PlanetTile connectedAddress)
+    {
+        if (!connectedAddress.Valid) return;
+
+        IsActive = true;
+        IsReceivingGate = true;
+        ConnectedAddress = connectedAddress;
+        ConnectedGate = connectedGate;
+
+        if (Map == null || !Spawned) return;
+
+        EvacuateVortexPath();
+
+        PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
+        RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(this));
+
         if (Glower != null)
         {
             Glower.Props.glowRadius = GlowRadius;
@@ -672,7 +601,7 @@ public class Building_Stargate : Building
             {
                 GetOrGenerateMapUtility.GetOrGenerateMap(
                     site.Tile,
-                    site is WorldObject_StargateTransitSite
+                    site is WorldObject_GateTransitSite
                             ? RimgateMod.MinMapSize
                             : Find.World.info.initialMapSize,
                     null);
@@ -690,11 +619,42 @@ public class Building_Stargate : Building
             });
         }
         else
-        {
-            if (site is WorldObject_StargateQuestSite wos)
-                wos.ToggleSiteMap();
             FinalizeOpen(address, site.Map);
+    }
+
+    private void FinalizeOpen(PlanetTile address, Map map)
+    {
+        Building_Stargate gate = GetConnectedGate(map);
+        bool invalid = gate == null || gate.IsActive;
+        if (invalid)
+        {
+            Messages.Message(
+                "RG_GateDialFailed".Translate(),
+                MessageTypeDefOf.NegativeEvent);
+            RimgateDefOf.Rimgate_StargateFailDial.PlayOneShot(SoundInfo.InMap(this));
+            return;
         }
+
+        IsActive = true;
+        ConnectedAddress = address;
+
+        if (ConnectedAddress.Valid)
+        {
+            ConnectedGate = gate;
+            ConnectedGate.OpenAsReceivingGate(this, GateAddress);
+        }
+
+        PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
+        RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(this));
+
+        if (Glower != null)
+        {
+            Glower.Props.glowRadius = GlowRadius;
+            Glower.PostSpawnSetup(false);
+        }
+
+        if (RimgateMod.Debug)
+            Log.Message($"Rimgate :: finished opening gate {this}");
     }
 
     public void CloseStargate(bool closeOtherGate = false)
@@ -770,62 +730,102 @@ public class Building_Stargate : Building
         IsReceivingGate = false;
     }
 
-    private void FinalizeOpen(PlanetTile address, Map map)
+    public void AddToSendBuffer(Thing thing)
     {
-        Building_Stargate gate = GetConnectedGate(map);
-        bool invalid = gate == null || gate.IsActive;
-        if (invalid)
+        _sendBuffer ??= new();
+        _sendBuffer.Add(thing);
+
+        // redraft flag travels as an ID on the destination comp
+        if (ConnectedGate != null && ShouldRedraftAfterSpawn(thing))
+            ConnectedGate.MarkRedraftOnArrival(thing);
+
+        PlayTeleportSound();
+    }
+
+    private void BeamSendBufferTo()
+    {
+        for (int i = 0; i < _sendBuffer.Count; i++)
         {
-            Messages.Message(
-                "RG_GateDialFailed".Translate(),
-                MessageTypeDefOf.NegativeEvent);
-            RimgateDefOf.Rimgate_StargateFailDial.PlayOneShot(SoundInfo.InMap(this));
+            Thing t = _sendBuffer[i];
+
+            if (IsReceivingGate)
+            {
+                if (!t.DestroyedOrNull())
+                    t.Kill();
+                continue;
+            }
+
+            ConnectedGate.AddToReceiveBuffer(t);
+        }
+
+        _sendBuffer.Clear();
+    }
+
+    public void AddToReceiveBuffer(Thing thing)
+    {
+        _recvBuffer ??= new();
+        _recvBuffer.Enqueue(thing);
+    }
+
+    private void SpawnFromReceiveBuffer()
+    {
+        TicksSinceBufferUnloaded = 0;
+
+        // check without removing
+        Thing t = _recvBuffer.Peek();
+        if (t == null || t.Destroyed)
+        {
+            _recvBuffer.Dequeue();
             return;
         }
 
-        IsActive = true;
-        ConnectedAddress = address;
-
-        if (ConnectedAddress.Valid)
+        if (!_isIrisActivated)
         {
-            ConnectedGate = gate;
-            ConnectedGate.OpenAsReceivingGate(this, GateAddress);
+            // Buildings (e.g., carts) must NOT spawn exactly on the gate/edifices.
+            IntVec3 drop = Utils.BestDropCellNearThing(this);
+            var spawned = GenSpawn.Spawn(t, drop, Map);
+            PlayTeleportSound();
+
+            // Cleanly re-draft on arrival
+            if (spawned is Pawn p && _redraftOnArrival?.Remove(p.thingIDNumber) == true)
+            {
+                // avoid lingering pre-teleport jobs
+                p.jobs?.StopAll();
+                if (p.drafter != null)
+                    p.drafter.Drafted = true;
+                // hold position for a tick; avoids wander
+                p.pather?.StopDead();
+            }
+        }
+        else
+        {
+            if (!t.DestroyedOrNull())
+                t.Kill();
+            RimgateDefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(this));
         }
 
-        PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
-        RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(this));
+        // toggle site map if applicable
+        if (Map.Parent is WorldObject_GateQuestSite wos)
+            wos.ToggleSiteMap();
 
-        if (Glower != null)
-        {
-            Glower.Props.glowRadius = GlowRadius;
-            Glower.PostSpawnSetup(false);
-        }
-
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: finished opening gate {this}");
+        // remove after handling
+        _recvBuffer.Dequeue();
     }
 
-    public void OpenAsReceivingGate(Building_Stargate connectedGate, PlanetTile connectedAddress)
+    private static bool ShouldRedraftAfterSpawn(Thing t)
     {
-        if (!connectedAddress.Valid) return;
+        if (t is not Pawn p) return false;
+        if (!p.Faction.IsOfPlayerFaction()) return false;
+        if (p.Downed) return false;
+        if (p.drafter == null) return false;
+        if (!p.Drafted) return false;
+        return true;
+    }
 
-        IsActive = true;
-        IsReceivingGate = true;
-        ConnectedAddress = connectedAddress;
-        ConnectedGate = connectedGate;
-
-        if (Map == null || !Spawned) return;
-
-        EvacuateVortexPath();
-
-        PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
-        RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(this));
-
-        if (Glower != null)
-        {
-            Glower.Props.glowRadius = GlowRadius;
-            Glower.PostSpawnSetup(false);
-        }
+    public void MarkRedraftOnArrival(Thing t)
+    {
+        _redraftOnArrival ??= new();
+        _redraftOnArrival.Add(t.thingIDNumber);
     }
 
     public void CleanupGate()

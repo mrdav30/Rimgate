@@ -216,7 +216,7 @@
 	<RG_StargateHeldCannotReinstall>Cannot reinstall: Dwarfgate is currently active.</RG_StargateHeldCannotReinstall>
 	<RG_GateDialFailed>Could not activate Dwarfgate: Recieving gate no longer exists or is currently in use.</RG_GateDialFailed>
 	<RG_GateDialFailed_DHDDestroyed>{PAWN_nameDef} failed while attempting to dial home using a destroyed DHD.</RG_GateDialFailed_DHDDestroyed>
-	
+
 	<RG_GeneratingStargateSite>Generating Dwarfgate site</RG_GeneratingStargateSite>
 
 	<RG_EnterStargateAction>Enter Dwarfgate</RG_EnterStargateAction>
@@ -229,8 +229,9 @@
 
 	<RG_RespawnGateString>Please respawn this gate (and its accompanying DHD) using devmode, as an update has broken it.</RG_RespawnGateString>
 
-	<RG_AbandonQuestSiteLabel>Abandon site</RG_AbandonQuestSiteLabel>
-	<RG_AbandonQuestSiteDesc>Shut down the link and forget this site. The quest will end.</RG_AbandonQuestSiteDesc>
+	<RG_AbandonQuestSite_Label>Abandon site</RG_AbandonQuestSite_Label>
+	<RG_AbandonQuestSite_Desc>Shut down the link and forget this site. The quest will end.</RG_AbandonQuestSite_Desc>
+	<RG_AbandonQuestSite_Disabled>there are colonists on the map.</RG_AbandonQuestSite_Disabled>
 
 	<RG_LetterRaidStargateComplexDesc>Raiders from {0} have arrived at the Dwarfgate complex drawn by whispers of relics, resources, or perhaps the secrets of the Archotech-locked gate network itself.</RG_LetterRaidStargateComplexDesc>
 
@@ -249,15 +250,20 @@
 
 	<!-- Stargate Glyphs -->
 
-	<RG_DecodeSGSymbols>Decode symbols</RG_DecodeSGSymbols>
-	<RG_CannotDecodeSGSymbols>Cannot decode: glyph deciphering not researched</RG_CannotDecodeSGSymbols>
-	<RG_CannotDecode_QuestActive>Cannot decode: quest site already active.</RG_CannotDecode_QuestActive>
 	<RG_MessageSGQuestAlreadyActive>A Dwarfgate site is already active. Complete or abandon it before decoding another address.</RG_MessageSGQuestAlreadyActive>
 
-	<!-- Ciphers -->
+	<RG_Glyph_LandLocked>{0} (P)</RG_Glyph_LandLocked>
+	<RG_Glyph_SpaceLocked>{0} (O)</RG_Glyph_SpaceLocked>
 
-	<RG_CannotDecodeCipherResearch>Cannot decode: {0} not researched</RG_CannotDecodeCipherResearch>
-	<RG_CannotDecodeCipherCount>Need at least {0} {1} (you have {2}).</RG_CannotDecodeCipherCount>
+	<RG_CannotDecode>Cannot decode: {0}</RG_CannotDecode>
+	<RG_CannotDecode_Unknown>undecipherable.</RG_CannotDecode_Unknown>
+	<RG_CannotDecode_QuestActive>quest site already active.</RG_CannotDecode_QuestActive>
+	<RG_CannotDecode_Research>{0} not researched.</RG_CannotDecode_Research>
+	<RG_CannotDecode_Count>need at least {0} {1} (you have {2}).</RG_CannotDecode_Count>
+
+	<RG_DecodeSGSymbols>Decode symbols</RG_DecodeSGSymbols>
+
+	<!-- Ciphers -->
 
 	<RG_CipherLetterLabel>Assembled Vault Cipher</RG_CipherLetterLabel>
 	<RG_CipherLetterText>The fragments lock together and the interface resolves into a full set of coordinates.\n\nThe treasure hunter's vault awaits—if you can reach it.</RG_CipherLetterText>
@@ -267,7 +273,6 @@
 	<RG_CannotDial>Cannot dial: {0}</RG_CannotDial>
 
 	<RG_CannotDialNoGate>no Dwarfgate connected</RG_CannotDialNoGate>
-	<RG_CannotDialNoReach>DHD out of reach</RG_CannotDialNoReach>
 	<RG_CannotDialGateIsActive>Dwarfgate already active</RG_CannotDialGateIsActive>
 	<RG_CannotDialNoDestinations>no available destinations</RG_CannotDialNoDestinations>
 	<RG_CannotDialIncoming>incoming wormhole</RG_CannotDialIncoming>

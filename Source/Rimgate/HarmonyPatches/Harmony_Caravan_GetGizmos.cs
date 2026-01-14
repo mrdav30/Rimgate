@@ -66,8 +66,8 @@ public class Harmony_Caravan_GetGizmos
                 bool removedGate = RemoveFirstWithInner(__instance, RimgateDefOf.Rimgate_Dwarfgate);
                 bool removedDhd = RemoveFirstWithInner(__instance, RimgateDefOf.Rimgate_DialHomeDevice);
 
-                var wo = (WorldObject_StargateTransitSite)
-                    WorldObjectMaker.MakeWorldObject(RimgateDefOf.Rimgate_StargateTransitSite);
+                var wo = (WorldObject_GateTransitSite)
+                    WorldObjectMaker.MakeWorldObject(RimgateDefOf.Rimgate_GateTransitSite);
                 wo.Tile = __instance.Tile;
 
                 // Record initial loadout for PostMapGenerate

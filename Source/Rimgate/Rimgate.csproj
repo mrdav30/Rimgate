@@ -362,6 +362,7 @@
     <Compile Include="Comps\CompUseEffect_InstallSymbiote.cs" />
     <Compile Include="Comps\Comp_BodyGraphicSwapper.cs" />
     <Compile Include="Comps\Properties\CompProperties_BodyGraphicSwapper.cs" />
+    <Compile Include="Comps\Properties\CompProperties_GlyphParchment.cs" />
     <Compile Include="Comps\Properties\CompProperties_UseEffectInstallSymbiote.cs" />
     <Compile Include="Comps\Comp_SymbiotePool.cs" />
     <Compile Include="Comps\Comp_SymbioteRottable.cs" />
@@ -412,6 +413,7 @@
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_Regeneration.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_Regeneration.cs" />
     <Compile Include="Misc\PawnRenderNode_BodySwapper.cs" />
+    <Compile Include="Quests\QuestNode_Root_GateSite.cs" />
     <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteKinship_Social.cs" />
@@ -429,7 +431,7 @@
     <Compile Include="HarmonyPatches\Harmony_MeditationUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_PowerNet.cs" />
     <Compile Include="HarmonyPatches\Harmony_Psycast.cs" />
-    <Compile Include="HarmonyPatches\Harmony_SiteMakerHelper.cs" />
+    <Compile Include="HarmonyPatches\Harmony_SiteMakerHelper_FactionCanOwn.cs" />
     <Compile Include="HarmonyPatches\Harmony_MechanitorUtility.cs" />
     <Compile Include="HarmonyPatches\Harmony_PawnGenerator.cs" />
     <Compile Include="HarmonyPatches\Harmony_Pawn_MechanitorTracker.cs" />
@@ -462,8 +464,6 @@
     <Compile Include="Storyteller\IncidentWorker_Asteroid.cs" />
     <Compile Include="Storyteller\IncidentWorker_KillAllClonesNow.cs" />
     <Compile Include="Storyteller\IncidentWorker_Marauders.cs" />
-    <Compile Include="Quests\QuestNode_GenerateStargateSite.cs" />
-    <Compile Include="Quests\QuestNode_GetFactionOfDef.cs" />
     <Compile Include="Quests\QuestNode_RaidForZPM.cs" />
     <Compile Include="Quests\QuestNode_RaidStargateComplex.cs" />
     <Compile Include="Quests\QuestNode_SpawnPawnsOnMap.cs" />
@@ -568,8 +568,8 @@
     <Compile Include="World\WorldComp_StargateAddresses.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="Misc\Verb_LaunchWithOffset.cs" />
-    <Compile Include="World\WorldObject_StargateQuestSite.cs" />
-    <Compile Include="World\WorldObject_StargateTransitSite.cs" />
+    <Compile Include="World\WorldObject_GateQuestSite.cs" />
+    <Compile Include="World\WorldObject_GateTransitSite.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />
     <Compile Include="Utilities\SarcophagusUtil.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_Doctor_CarryFromBedToSarcophagus.cs" />

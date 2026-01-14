@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Verse;
-using static RimWorld.ColonistBar;
 
 namespace Rimgate.HarmonyPatches;
 
@@ -37,7 +36,7 @@ public static class Harmony_ColonistBar
         _wasDirty = false;
 
         var trav = Traverse.Create(__instance);
-        var entries = trav.Field("cachedEntries").GetValue<List<Entry>>();
+        var entries = trav.Field("cachedEntries").GetValue<List<ColonistBar.Entry>>();
         if (entries == null || entries.Count == 0) return;
 
         // 1) Hide Stargate site maps with no pawns and no active gate
@@ -48,7 +47,8 @@ public static class Harmony_ColonistBar
         {
             var m = e.map;
             if (m == null) continue;
-            if (m.info?.parent is not WorldObject_StargateQuestSite) continue;
+            // only care about Stargate quest sites
+            if (m.info?.parent is not WorldObject_GateQuestSite) continue;
 
             bool showThisMap = (m.mapPawns?.AnyPawnBlockingMapRemoval ?? false);
             if (!showThisMap && StargateUtil.ModificationEquipmentActive())

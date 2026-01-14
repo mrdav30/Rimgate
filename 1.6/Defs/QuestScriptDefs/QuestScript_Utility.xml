@@ -2,19 +2,72 @@
 <Defs>
 
   <QuestScriptDef>
-    <defName>Util_GenerateStargateSite</defName>
-    <root Class="Rimgate.QuestNode_GenerateStargateSite">
-      <sitePartsParams>$sitePartsParams</sitePartsParams>
-      <hiddenSitePartsPossible>$hiddenSitePartsPossible</hiddenSitePartsPossible>
-      <storeAs>site</storeAs>
-      <faction>$siteFaction</faction>
-      <tile>$siteTile</tile>
-      <singleSitePartRules>
-        <rulesStrings>
-          <li>root(priority=1,sitePart==PossibleUnknownThreatMarker)->there may be an (*Threat)unknown threat(/Threat)</li>
-          <li>root->there's a [label]</li>
-        </rulesStrings>
-      </singleSitePartRules>
+    <defName>Util_GenerateGateSite_Planet</defName>
+    <root Class="Rimgate.QuestNode_Root_GateSite">
+      <factionDef>$siteFaction</factionDef>
+      <factionDefWhitelist>$siteFactionWhitelist</factionDefWhitelist>
+      <sitePartDefs>$siteParts</sitePartDefs>
+
+      <orbitOnly>false</orbitOnly>
+      <planetSurfaceOnly>true</planetSurfaceOnly>
+
+      <worldObjectDef>Rimgate_GateQuestSite_Planet</worldObjectDef>
+
+      <distanceFromColonyRange>20~80</distanceFromColonyRange>
+      <selectLandmarkChance>0.3</selectLandmarkChance>
+      <allowedLandmarks>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">DryLake</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Wetland</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Valley</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Chasm</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Cliffs</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Hollow</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">TerraformingScar</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Dunes</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Plateau</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Basin</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">LavaLake</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">LavaCrater</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">LavaFlow</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Iceberg</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Fjord</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Cove</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Bay</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Peninsula</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">CoastalIsland</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Archipelago</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">HotSprings</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">ToxicLake</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Pond</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">LakeWithIsland</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">LakeWithIslands</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Lake</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">Oasis</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">IceDunes</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">AncientSmokeVent</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">AncientToxVent</li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey">AncientHeatVent</li>
+      </allowedLandmarks>
+    </root>
+  </QuestScriptDef>
+
+  <QuestScriptDef>
+    <defName>Util_GenerateGateSite_Orbit</defName>
+    <root Class="Rimgate.QuestNode_Root_GateSite">
+      <layerWhitelist>
+        <li>Orbit</li>
+      </layerWhitelist>
+
+      <factionDef>$siteFaction</factionDef>
+      <factionDefWhitelist>$siteFactionWhitelist</factionDefWhitelist>
+      <sitePartDefs>$siteParts</sitePartDefs>
+
+      <orbitOnly>true</orbitOnly>
+      <planetSurfaceOnly>false</planetSurfaceOnly>
+
+      <worldObjectDef>Rimgate_GateQuestSite_Orbit</worldObjectDef>
+
+      <distanceFromColonyRange>2~8</distanceFromColonyRange>
     </root>
   </QuestScriptDef>
 

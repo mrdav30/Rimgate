@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- Tau'ri -->
+	<!-- =============== Tau'ri =============== -->
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
-		<defName>Rimgate_StargateSiteTauri</defName>
+		<defName>Rimgate_GateSiteTauri</defName>
 		<tags>
-			<li>Rimgate_StargateSiteTauri</li>
+			<li>Rimgate_GateSiteTauri_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
 	<GenStepDef>
-		<defName>Rimgate_StargateSiteTauri</defName>
-		<linkWithSite>Rimgate_StargateSiteTauri</linkWithSite>
+		<defName>Rimgate_GateSiteTauri</defName>
+		<linkWithSite>Rimgate_GateSiteTauri</linkWithSite>
 		<order>450</order>
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<fullClear>true</fullClear>
 			<structureLayoutDefs>
-				<!-- Tau'ri -->
 				<li>Rimgate_StructureSGC</li>
 				<li>Rimgate_StructureIndustrialTown</li>
 				<li>Rimgate_StructureTauriForwardOutpost</li>
@@ -29,10 +28,12 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- =============== Replicator =============== -->
+
 	<SitePartDef ParentName="Rimgate_SoldierBase">
 		<defName>Rimgate_SoldierReplicator</defName>
 		<tags>
-			<li>Rimgate_SoldierReplicator</li>
+			<li>Rimgate_SoldierReplicator_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -46,24 +47,25 @@
 		</genStep>
 	</GenStepDef>
 
-	<!-- Goa'uld -->
+	<!-- =============== Goa'uld =============== -->
+
+	<!-- Sites -->
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
-		<defName>Rimgate_StargateSiteGoauld</defName>
+		<defName>Rimgate_GateSiteGoauld</defName>
 		<tags>
-			<li>Rimgate_StargateSiteGoauld</li>
+			<li>Rimgate_GateSiteGoauld_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
 	<GenStepDef>
-		<defName>Rimgate_StargateSiteGoauld</defName>
-		<linkWithSite>Rimgate_StargateSiteGoauld</linkWithSite>
+		<defName>Rimgate_GateSiteGoauld</defName>
+		<linkWithSite>Rimgate_GateSiteGoauld</linkWithSite>
 		<order>450</order>
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<fullClear>true</fullClear>
 			<structureLayoutDefs>
-				<!-- Goa'uld -->
 				<li>Rimgate_StructureGoauldLostBase</li>
 				<li>Rimgate_StructureGoauldNaquadahStorehouse</li>
 				<li>Rimgate_StructureGoauldSarcophagusChamber</li>
@@ -74,10 +76,12 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- Pawns -->
+
 	<SitePartDef ParentName="Rimgate_SoldierBase">
 		<defName>Rimgate_SoldierGoauld</defName>
 		<tags>
-			<li>Rimgate_SoldierGoauld</li>
+			<li>Rimgate_SoldierGoauld_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -91,24 +95,25 @@
 		</genStep>
 	</GenStepDef>
 
-	<!-- Wraith -->
+	<!-- =============== Wraith =============== -->
+
+	<!-- Sites -->
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
-		<defName>Rimgate_StargateSiteWraith</defName>
+		<defName>Rimgate_GateSiteWraith</defName>
 		<tags>
-			<li>Rimgate_StargateSiteWraith</li>
+			<li>Rimgate_GateSiteWraith_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
 	<GenStepDef>
-		<defName>Rimgate_StargateSiteWraith</defName>
-		<linkWithSite>Rimgate_StargateSiteWraith</linkWithSite>
+		<defName>Rimgate_GateSiteWraith</defName>
+		<linkWithSite>Rimgate_GateSiteWraith</linkWithSite>
 		<order>450</order>
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<fullClear>true</fullClear>
 			<structureLayoutDefs>
-				<!-- Wraith -->
 				<li>Rimgate_StructureWraithHiveSiteAlpha</li>
 				<li>Rimgate_StructureWraithHiveSiteBravo</li>
 				<li>Rimgate_StructureWraithHiveSiteCharlie</li>
@@ -118,10 +123,12 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- Pawns -->
+
 	<SitePartDef ParentName="Rimgate_SoldierBase">
 		<defName>Rimgate_SoldierWraith</defName>
 		<tags>
-			<li>Rimgate_SoldierWraith</li>
+			<li>Rimgate_SoldierWraith_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -135,24 +142,25 @@
 		</genStep>
 	</GenStepDef>
 
-	<!-- Mech -->
+	<!-- =============== Mech =============== -->
+
+	<!-- Sites -->
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
-		<defName>Rimgate_StargateSiteMech</defName>
+		<defName>Rimgate_GateSiteMech</defName>
 		<tags>
-			<li>Rimgate_StargateSiteMech</li>
+			<li>Rimgate_GateSiteMech_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
 	<GenStepDef>
-		<defName>Rimgate_StargateSiteMech</defName>
-		<linkWithSite>Rimgate_StargateSiteMech</linkWithSite>
+		<defName>Rimgate_GateSiteMech</defName>
+		<linkWithSite>Rimgate_GateSiteMech</linkWithSite>
 		<order>450</order>
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<fullClear>true</fullClear>
 			<structureLayoutDefs>
-				<!-- Mech -->
 				<li>Rimgate_StructureMechHiveAlpha</li>
 				<li>Rimgate_StructureMechHiveBravo</li>
 			</structureLayoutDefs>
@@ -160,10 +168,12 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- Pawns -->
+
 	<SitePartDef ParentName="Rimgate_SoldierBase">
 		<defName>Rimgate_SoldierMech</defName>
 		<tags>
-			<li>Rimgate_SoldierMech</li>
+			<li>Rimgate_SoldierMech_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -177,10 +187,12 @@
 		</genStep>
 	</GenStepDef>
 
-	<!-- Misc -->
+	<!-- =============== Misc =============== -->
+
+	<!-- Sites-->
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
-		<defName>Rimgate_StargateSiteMisc</defName>
+		<defName>Rimgate_GateSiteMisc</defName>
 		<!-- <lootTable>
 			<li>
 				<thing>Steel</thing>
@@ -200,14 +212,14 @@
 			</li>
 		</lootTable> -->
 		<tags>
-			<li>Rimgate_StargateSiteMisc</li>
+			<li>Rimgate_GateSiteMisc_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
 	<GenStepDef>
-		<defName>Rimgate_StargateSiteMisc</defName>
-		<linkWithSite>Rimgate_StargateSiteMisc</linkWithSite>
+		<defName>Rimgate_GateSiteMisc</defName>
+		<linkWithSite>Rimgate_GateSiteMisc</linkWithSite>
 		<order>450</order>
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<fullClear>true</fullClear>
@@ -239,19 +251,36 @@
 		</genStep>
 	</GenStepDef>
 
-	<!-- Vault quest -->
+	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+		<defName>Rimgate_BarrenGate</defName>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_BarrenGate</defName>
+		<linkWithSite>Rimgate_BarrenGate</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<fullClear>true</fullClear>
+			<structureLayoutDefs>
+				<li>Rimgate_StructureBarrenGate</li>
+			</structureLayoutDefs>
+			<preventBridgeable>true</preventBridgeable>
+		</genStep>
+	</GenStepDef>
+
+	<!-- =============== Vault quest =============== -->
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
-		<defName>Rimgate_StargateSiteVault</defName>
+		<defName>Rimgate_GateSiteVault</defName>
 		<tags>
-			<li>Rimgate_StargateSiteVault</li>
+			<li>Rimgate_GateSiteVault_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
 		</tags>
 	</SitePartDef>
 
 	<GenStepDef>
-		<defName>Rimgate_StargateSiteVault</defName>
-		<linkWithSite>Rimgate_StargateSiteVault</linkWithSite>
+		<defName>Rimgate_GateSiteVault</defName>
+		<linkWithSite>Rimgate_GateSiteVault</linkWithSite>
 		<order>450</order>
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<fullClear>true</fullClear>

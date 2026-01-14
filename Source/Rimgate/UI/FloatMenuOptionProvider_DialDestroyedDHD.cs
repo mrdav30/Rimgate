@@ -45,7 +45,7 @@ public class FloatMenuOptionProvider_DialDestroyedDHD : FloatMenuOptionProvider
         if (!canReach)
         {
             yield return new FloatMenuOption(
-                "RG_CannotDial".Translate("RG_CannotDialNoReach".Translate()),
+                "RG_CannotDial".Translate("CannotReach".Translate()),
                 null);
             yield break;
         }

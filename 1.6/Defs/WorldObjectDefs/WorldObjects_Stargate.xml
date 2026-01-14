@@ -2,25 +2,46 @@
 <Defs>
 
 	<WorldObjectDef ParentName="StaticWorldObjectBase">
-		<defName>Rimgate_StargateQuestSite</defName>
+		<defName>Rimgate_GateQuestSite_Planet</defName>
 		<label>dwarfgate site</label>
-		<worldObjectClass>Rimgate.WorldObject_StargateQuestSite</worldObjectClass>
+		<worldObjectClass>Rimgate.WorldObject_GateQuestSite</worldObjectClass>
 		<expandingIcon>true</expandingIcon>
 		<expandingIconPriority>70</expandingIconPriority>
+		<!-- <canBePlayerHome>true</canBePlayerHome> -->
+		<IncidentTargetTags>
+			<li>Map_Misc</li>
+		</IncidentTargetTags>
+		<neverMultiSelect>true</neverMultiSelect>
 		<comps>
 			<li Class="WorldObjectCompProperties_FormCaravan" />
 			<li Class="WorldObjectCompProperties_EnterCooldown" />
 		</comps>
+	</WorldObjectDef>
+
+	<WorldObjectDef ParentName="StaticWorldObjectBase">
+		<defName>Rimgate_GateQuestSite_Orbit</defName>
+		<label>dwarfgate site</label>
+		<worldObjectClass>Rimgate.WorldObject_GateQuestSite</worldObjectClass>
+		<useDynamicDrawer>true</useDynamicDrawer>
+		<expandingIcon>true</expandingIcon>
+		<expandingIconPriority>70</expandingIconPriority>
+		<expandingIconColor>(255,255,255,255)</expandingIconColor> <!-- required -->
+		<expandingIconDrawSize>1.35</expandingIconDrawSize>
+		<fullyExpandedInSpace>true</fullyExpandedInSpace>
+		<canBePlayerHome>true</canBePlayerHome>
 		<IncidentTargetTags>
 			<li>Map_Misc</li>
 		</IncidentTargetTags>
+		<mapGenerator>Space</mapGenerator>
+		<neverMultiSelect>true</neverMultiSelect>
+		<requiresSignalJammerToReach>true</requiresSignalJammerToReach>
 	</WorldObjectDef>
 
 	<WorldObjectDef>
-		<defName>Rimgate_StargateTransitSite</defName>
+		<defName>Rimgate_GateTransitSite</defName>
 		<label>new Dwarfgate site</label>
 		<description>a Dwarfgate site, setup recently and mostly unknown to everyone but us.</description>
-		<worldObjectClass>Rimgate.WorldObject_StargateTransitSite</worldObjectClass>
+		<worldObjectClass>Rimgate.WorldObject_GateTransitSite</worldObjectClass>
 		<mapGenerator>Rimgate_TransitSiteMap</mapGenerator>
 		<canHaveFaction>false</canHaveFaction>
 		<texture>World/WorldObjects/Sites/GenericSite</texture>
@@ -28,6 +49,7 @@
 		<expandingIconTexture>UI/Map/RGStargateTransitSiteIcon</expandingIconTexture>
 		<expandingIconPriority>30</expandingIconPriority>
 		<expandMore>true</expandMore>
+		<neverMultiSelect>true</neverMultiSelect>
 		<comps>
 			<li Class="WorldObjectCompProperties_FormCaravan" />
 		</comps>

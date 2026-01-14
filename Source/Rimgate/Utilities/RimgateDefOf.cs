@@ -119,7 +119,8 @@ public static class RimgateDefOf
     public static NeedDef Rimgate_TretoninChemicalNeed;
 
     public static QuestScriptDef Rimgate_ProtectZPM;
-    public static QuestScriptDef Rimgate_StargateQuestScript;
+    public static QuestScriptDef Rimgate_GateQuestScript_Planet;
+    public static QuestScriptDef Rimgate_GateQuestScript_Orbit;
 
     public static PawnsArrivalModeDef Rimgate_StargateEnterMode;
 
@@ -127,6 +128,7 @@ public static class RimgateDefOf
     public static RaidStrategyDef StageThenAttack;
 
     public static ResearchProjectDef Rimgate_StargateReplacementDHDResearch;
+    public static ResearchProjectDef Rimgate_GateModification;
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
     public static ResearchProjectDef Rimgate_ParallelSubspaceCoupling;
     public static ResearchProjectDef Rimgate_SarcophagusBioregeneration;
@@ -194,6 +196,5 @@ public static class RimgateDefOf
 
     public static XenotypeDef Rimgate_Wraith;
 
-    public static WorldObjectDef Rimgate_StargateQuestSite;
-    public static WorldObjectDef Rimgate_StargateTransitSite;
+    public static WorldObjectDef Rimgate_GateTransitSite;
 }

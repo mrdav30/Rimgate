@@ -88,7 +88,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_WraithModificationEquipment</defName>
 		<label>gate modification equipment</label>
-		<description>A bulky set of bio-mechanical apparatus designed to interface with a Dwarfgate. When connected to a Dwarfgate, it enables the colony to safely observe both ends of an active wormhole.\n\nRequires a steady power supply to operate.</description>
+		<description>A bulky set of bio-mechanical apparatus designed by Wraith to interface with a Dwarfgate. When connected to a Dwarfgate, it enables the colony to safely observe both ends of an active wormhole.\n\nRequires a steady power supply to operate.</description>
 		<thingClass>Building</thingClass>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGWraithModificationEquipment</texPath>
@@ -132,7 +132,7 @@
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<researchPrerequisites>
-			<li>Rimgate_WraithModificationEquipment</li>
+			<li>Rimgate_GateModification</li>
 		</researchPrerequisites>
 
 		<comps>

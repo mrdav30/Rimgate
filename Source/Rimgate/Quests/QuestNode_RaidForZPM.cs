@@ -13,17 +13,14 @@ public class QuestNode_RaidForZPM : QuestNode
 
     private static IntRange _raidIntervalTicksRange = new IntRange(90000, 120000);
 
-    private static float _minRaidThreatPointsFactor = 0.9f;
+    private const float MinRaidThreatPointsFactor = 0.9f;
 
-    private static float _maxRaidThreatPointsFactor = 1.1f;
+    private const float MaxRaidThreatPointsFactor = 1.1f;
 
     protected override bool TestRunInt(Slate slate)
     {
-        if (!Find.Storyteller.difficulty.allowViolentQuests
-            || !Utils.TryFindEnemyFaction(out _, false))
-        {
+        if (!Find.Storyteller.difficulty.allowViolentQuests || !Utils.TryFindEnemyFaction(out _, allowNeolithic: false))
             return false;
-        }
 
         Map map = QuestGen_Get.GetMap();
         return map != null && Building_ZPM.FindZpmOnMap(map) != null;
@@ -41,12 +38,12 @@ public class QuestNode_RaidForZPM : QuestNode
         bool allowViolentQuests = Find.Storyteller.difficulty.allowViolentQuests;
         slate.Set("allowViolence", allowViolentQuests);
 
-        Map map = QuestGen.slate.Get<Map>("map");
+        Map map = slate.Get<Map>("map");
         Thing zpm = Building_ZPM.FindZpmOnMap(map);
 
         // If we can't run violent raids or can’t find an enemy faction,
         // add a terminal to allow ending.
-        if (!allowViolentQuests || !Utils.TryFindEnemyFaction(out _, false) || zpm == null)
+        if (!allowViolentQuests || zpm == null || !Utils.TryFindEnemyFaction(out _, allowNeolithic: false))
         {
             quest.End(QuestEndOutcome.Fail, 0, null, questEndSignal, QuestPart.SignalListenMode.OngoingOnly, sendStandardLetter: false);
             return;
@@ -64,7 +61,7 @@ public class QuestNode_RaidForZPM : QuestNode
         questPart_Delay.waitUntilPlayerHasHomeMap = true;
         quest.AddPart(questPart_Delay);
 
-        quest.Signal(raidDelaySignal, () => 
+        quest.Signal(raidDelaySignal, () =>
         {
             QuestPart_PassOutInterval part = new QuestPart_PassOutInterval
             {
@@ -76,13 +73,15 @@ public class QuestNode_RaidForZPM : QuestNode
             quest.AddPart(part);
         });
 
-        float num = QuestGen.slate.Get("points", 1f);
+        float points = slate.Get("points", 1f);
 
         QuestPart_RandomFactionRaid randomRaid = new QuestPart_RandomFactionRaid();
         randomRaid.inSignal = triggerRaidSignal;
         randomRaid.mapParent = map.Parent;
-        randomRaid.pointsRange = new FloatRange(num * _minRaidThreatPointsFactor, num * _maxRaidThreatPointsFactor);
-        randomRaid.arrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+        randomRaid.pointsRange = new FloatRange(points * MinRaidThreatPointsFactor, points * MaxRaidThreatPointsFactor);
+        randomRaid.arrivalMode = map.Tile.LayerDef.isSpace
+            ? PawnsArrivalModeDefOf.CenterDrop
+            : PawnsArrivalModeDefOf.EdgeWalkIn;
         randomRaid.raidStrategy = RimgateDefOf.ImmediateAttackSmart;
         randomRaid.AllowNeolithic = false;
         randomRaid.UseStargateIfAvailable = true;

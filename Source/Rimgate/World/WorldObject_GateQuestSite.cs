@@ -5,10 +5,11 @@ using RimWorld.Planet;
 using System.Linq;
 using System.Collections.Generic;
 using Verse.Noise;
+using System.Runtime.CompilerServices;
 
 namespace Rimgate;
 
-public class WorldObject_StargateQuestSite : Site
+public class WorldObject_GateQuestSite : Site
 {
     public int QuestId = -1;
 
@@ -34,14 +35,17 @@ public class WorldObject_StargateQuestSite : Site
         // If no pawns, no active gate, and we’re still showing this map: hide + pop to world
         if (!_mapHidden && !allowPeek && nobodyVisible)
         {
-            // Hide from colonist bar (your existing behavior)
+            // Hide from colonist bar
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: Hiding gate quest site map at tile {Tile} due to: " +
+                    $"map hidden - {_mapHidden}, allow peek - {allowPeek}, nobody visible - {nobodyVisible}");
             Find.ColonistBar.MarkColonistsDirty();
             _mapHidden = true;
-
-            // If the player is currently looking at this map, kick them out to the world
-            if (Find.CurrentMap == Map)
-                PopToWorldAndSelect();
         }
+
+        // If the player is currently looking at this map, kick them out to the world
+        if (_mapHidden && Find.CurrentMap == Map)
+            PopToWorldAndSelect();
     }
 
     private void PopToWorldAndSelect()
@@ -119,8 +123,8 @@ public class WorldObject_StargateQuestSite : Site
 
         var abandon = new Command_Action
         {
-            defaultLabel = "RG_AbandonQuestSiteLabel".Translate(),
-            defaultDesc = "RG_AbandonQuestSiteDesc".Translate(),
+            defaultLabel = "RG_AbandonQuestSite_Label".Translate(),
+            defaultDesc = "RG_AbandonQuestSite_Desc".Translate(),
             icon = RimgateTex.AbandonStargateSite,
             action = () =>
             {
@@ -138,7 +142,7 @@ public class WorldObject_StargateQuestSite : Site
         if (Map?.mapPawns?.AnyPawnBlockingMapRemoval == true)
         {
             abandon.Disabled = true;
-            abandon.disabledReason = "Disabled: There are colonists on the map.";
+            abandon.disabledReason = "RG_AbandonQuestSite_Disabled".Translate();
         }
 
         yield return abandon;

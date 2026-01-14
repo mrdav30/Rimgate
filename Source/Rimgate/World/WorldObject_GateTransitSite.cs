@@ -9,7 +9,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class WorldObject_StargateTransitSite : MapParent, IRenameable
+public class WorldObject_GateTransitSite : MapParent, IRenameable
 {
     public string SiteName;
 

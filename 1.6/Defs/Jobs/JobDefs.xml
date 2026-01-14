@@ -111,6 +111,8 @@
 		<defName>Rimgate_DecodeGlyphs</defName>
 		<driverClass>Rimgate.JobDriver_DecodeGlyphs</driverClass>
 		<reportString>Decoding stargate glyphs.</reportString>
+		<playerInterruptible>true</playerInterruptible>
+		<neverShowWeapon>true</neverShowWeapon>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 

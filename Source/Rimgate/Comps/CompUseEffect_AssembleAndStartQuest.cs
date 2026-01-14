@@ -16,18 +16,20 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
         if (Props.requiredProjectDef != null 
             && !Props.requiredProjectDef.IsFinished)
         {
-            return new AcceptanceReport("RG_CannotDecodeCipherResearch".Translate(Props.requiredProjectDef.label));
+            var message = "RG_CannotDecode".Translate("RG_CannotDecode_Research".Translate(Props.requiredProjectDef.label));
+            return new AcceptanceReport(message);
         }
 
         if (Utils.HasActiveQuestOf(Props.questScript))
         {
-            return new AcceptanceReport("RG_CannotDecode_QuestActive".Translate());
+            return new AcceptanceReport("RG_CannotDecode".Translate("RG_CannotDecode_QuestActive".Translate()));
         }
 
         int have = TotalFragmentsInPlayer();
         if (have < Props.requiredCount)
         {
-            return new AcceptanceReport("RG_CannotDecodeCipherCount".Translate(Props.requiredCount, parent.LabelShort, have));
+            var message = "RG_CannotDecode".Translate("RG_CannotDecodeCipherCount".Translate(Props.requiredCount, parent.LabelShort, have));
+            return new AcceptanceReport(message);
         }
 
         return true;

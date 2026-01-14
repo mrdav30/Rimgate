@@ -25,13 +25,18 @@ public class QuestNode_RaidStargateComplex : QuestNode
         if (!Find.Storyteller.difficulty.allowViolentQuests)
             return false;
 
-        // Must have enemy factions available
-        if (!Utils.TryFindEnemyFaction(out _))
-            return false;
-
         // Need a site target (map may or may not exist yet)
         var site = slate.Get<Site>("site");
-        return site != null;
+        if(site == null) 
+            return false;
+
+        bool isSpace = site.Tile.LayerDef.isSpace;
+
+        // Must have enemy factions available
+        if (!Utils.TryFindEnemyFaction(out _, allowNeolithic: !isSpace))
+            return false;
+
+        return true;
     }
 
     protected override void RunInt()
@@ -41,8 +46,11 @@ public class QuestNode_RaidStargateComplex : QuestNode
 
         // shouldn’t happen if TestRunInt passed
         var site = slate.Get<Site>("site");
-        if (site == null)
+        if (site == null || !site.Tile.Valid)
+        {
+            Log.Error("Rimgate :: no valid site found in slate.");
             return;
+        }
 
         // We’ll key everything off the site’s signals site.MapGenerated is the *first* kick.
         // From there we run a repeating interval signal.
@@ -64,14 +72,17 @@ public class QuestNode_RaidStargateComplex : QuestNode
         quest.AddPart(repeater);
 
         // 2) Actual raid executor (reusing your RandomFactionRaid part)
+        bool isSpace = site.Tile.LayerDef.isSpace;
         var raid = new QuestPart_RandomFactionRaid
         {
             inSignal = triggerRaidSignal,
             mapParent = site,
             pointsRange = RaidPointsFactor,
-            AllowNeolithic = false,
+            AllowNeolithic = !isSpace,
             UseStargateIfAvailable = true,
-            arrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn,
+            arrivalMode = isSpace
+                ? PawnsArrivalModeDefOf.EdgeDrop
+                : PawnsArrivalModeDefOf.EdgeWalkIn,
             raidStrategy = RimgateDefOf.ImmediateAttackSmart,
             generateFightersOnly = true,
             fallbackToPlayerHomeMap = false,

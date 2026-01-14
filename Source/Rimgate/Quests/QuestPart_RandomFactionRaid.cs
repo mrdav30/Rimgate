@@ -37,7 +37,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
         if (mapParent == null || !mapParent.HasMap)
             return;
 
-        if (!Utils.TryFindEnemyFaction(out faction, AllowNeolithic))
+        if (!Utils.TryFindEnemyFaction(out faction, allowNeolithic: AllowNeolithic))
             return;
 
         customLetterLabel = "Raid".Translate() + ": " + faction.Name;

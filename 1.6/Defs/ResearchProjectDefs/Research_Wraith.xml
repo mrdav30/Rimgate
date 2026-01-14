@@ -110,9 +110,9 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
-		<defName>Rimgate_WraithModificationEquipment</defName>
+		<defName>Rimgate_GateModification</defName>
 		<label>Gate Modification</label>
-		<description>Adaptations of Wraith neural interface rigs and sensory dampening gear.\n\nWith this knowledge, your scientists can alter Dwarfgate control systems to block long-range subspace "backscatter," preventing unauthorized remote peeks into connected sites. Only after this research can your colony safely observe both ends of an active wormhole.</description>
+		<description>Fragments of Wraith interface lore and signal hushwork.\n\nIt promises safer contact with the gate, but the real purpose is buried in the noise.</description>
 		<baseCost>5500</baseCost>
 		<techLevel>Archotech</techLevel>
 		<prerequisites>
@@ -135,6 +135,10 @@
 				<li>subject_gerund->integrating Wraith neural dampening tech into gate systems</li>
 			</rulesStrings>
 		</generalRules>
+
+		<discoveredLetterTitle>About: Gate Modification</discoveredLetterTitle>
+		<discoveredLetterText>The truth is clearer now. These methods unlock the blueprints for constructing gate modification equipment, allowing full integration with Dwarfgate controls.\n\nThese same routines also allow your colonists to finally decode the glyphs that appear to reveal orbital locations, and with the right equipment your gate can lock onto them.</discoveredLetterText>
+
 	</ResearchProjectDef>
 
 	<!-- ======== Buildings ========= -->

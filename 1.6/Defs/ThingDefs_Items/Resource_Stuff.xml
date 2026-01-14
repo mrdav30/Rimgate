@@ -394,10 +394,9 @@
     </comps>
   </ThingDef>
 
-
   <!-- ==================== Stargate Glyph ==================== -->
 
-  <ThingDef ParentName="ResourceBase">
+  <ThingDef Name="Rimgate_GlyphParchmentBase" ParentName="ResourceBase">
     <defName>Rimgate_GlyphParchment</defName>
     <label>glyph parchment</label>
     <description>A weathered parchment embossed with mysterious Dwarfgate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.</description>
@@ -426,8 +425,20 @@
       <li>RewardStandardHighFreq</li>
     </thingSetMakerTags>
     <comps>
-      <li>
-        <compClass>Rimgate.Comp_GlyphParchment</compClass>
+      <li Class="CompProperties_GlyphParchment">
+        <canDecodePlanet>true</canDecodePlanet>
+        <canDecodeOrbit>false</canDecodeOrbit>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimgate_GlyphParchmentBase">
+    <defName>Rimgate_GlyphParchment_Orbit</defName>
+    <description>A weathered parchment embossed with mysterious Dwarfgate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.\n\nThis one decodes to an orbital destination-Note: make sure to bring a vac-suit.</description>
+    <comps Inherit="False">
+      <li Class="CompProperties_GlyphParchment">
+        <canDecodePlanet>false</canDecodePlanet>
+        <canDecodeOrbit>true</canDecodeOrbit>
       </li>
     </comps>
   </ThingDef>

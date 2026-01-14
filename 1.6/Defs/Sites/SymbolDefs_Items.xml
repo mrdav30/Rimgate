@@ -6,6 +6,13 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_GlyphParchment</defName>
         <thing>Rimgate_GlyphParchment</thing>
+        <maxStackSize>1</maxStackSize>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GlyphParchment_Orbit</defName>
+        <thing>Rimgate_GlyphParchment_Orbit</thing>
+        <maxStackSize>1</maxStackSize>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

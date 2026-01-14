@@ -44,8 +44,8 @@ public class WorldComp_StargateAddresses : WorldComponent
         {
             null => false,
             { HasMap: true } => true,
-            WorldObject_StargateTransitSite => true,
-            WorldObject_StargateQuestSite => true,
+            WorldObject_GateTransitSite => true,
+            WorldObject_GateQuestSite => true,
             Site s when SiteHasPlayerPresence(s) => true,
             _ => false
         };
