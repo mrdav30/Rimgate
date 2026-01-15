@@ -45,11 +45,20 @@ namespace Rimgate
             if (count <= 0) return;
 
             // Make a lord so they immediately behave like a small raid
-            var lord = LordMaker.MakeNewLord(fac, new LordJob_MaraudColony(fac), map, null);
+            var lord = LordMaker.MakeNewLord(
+                fac,
+                new LordJob_MaraudColony(
+                    fac,
+                    canTimeoutOrFlee: false,
+                    useAvoidGridSmart: true,
+                    breachers: true,
+                    canPickUpOpportunisticWeapons: true),
+                map,
+                null);
 
             for (int i = 0; i < count; i++)
             {
-                IntVec3 cell = TryFindSpawnCell(map, spawnNearGate);
+                IntVec3 cell = Utils.TryFindSpawnCellNear(map, RimgateDefOf.Rimgate_Dwarfgate);
                 if (!cell.IsValid) cell = CellFinder.RandomSpawnCellForPawnNear(map.Center, map);
 
                 Pawn p = PawnGenerator.GeneratePawn(pawnKind, fac);
@@ -81,29 +90,5 @@ namespace Rimgate
             Scribe_Values.Look(ref spawnNearGate, "spawnNearGate", true);
         }
 
-        private static IntVec3 TryFindSpawnCell(Map map, bool preferGate)
-        {
-            bool Valid(IntVec3 c) =>
-                c.Standable(map) &&
-                (!c.Fogged(map)) &&
-                map.zoneManager.ZoneAt(c) == null; // optional: avoid zones
-
-            if (preferGate)
-            {
-                foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
-                {
-                    if (t.def == RimgateDefOf.Rimgate_Dwarfgate)
-                    {
-                        if (CellFinder.TryFindRandomCellNear(t.Position, map, 12, Valid, out var nearGate))
-                            return nearGate;
-                    }
-                }
-            }
-
-            if (CellFinder.TryFindRandomCellNear(map.Center, map, 20, Valid, out var alt))
-                return alt;
-
-            return CellFinder.RandomSpawnCellForPawnNear(map.Center, map);
-        }
     }
 }

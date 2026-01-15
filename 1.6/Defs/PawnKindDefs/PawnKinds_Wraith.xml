@@ -15,7 +15,7 @@
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>30~60</initialResistanceRange>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">false</apparelIgnorePollution>
     <backstoryFiltersOverride>
       <li>
         <categoriesChildhood>

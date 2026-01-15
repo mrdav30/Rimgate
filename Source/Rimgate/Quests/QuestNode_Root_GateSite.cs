@@ -4,6 +4,7 @@ using RimWorld.QuestGen;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 using Verse;
 
 namespace Rimgate;
@@ -14,7 +15,15 @@ public class QuestNode_Root_GateSite : QuestNode
 
     public const string FactionAlias = "enemyFaction";
 
-    private SlateRef<List<SitePartDef>> sitePartDefs;
+    public class SitePartOption
+    {
+        [NoTranslate]
+        public SitePartDef def;
+
+        public float chance = 1f;
+    }
+
+    private SlateRef<List<SitePartOption>> sitePartDefs;
     private SlateRef<WorldObjectDef> worldObjectDef;
 
     private SlateRef<FactionDef> factionDef;
@@ -66,24 +75,29 @@ public class QuestNode_Root_GateSite : QuestNode
             Log.Message($"Rimgate :: Generating gate site at tile {tile} for faction {resolvedFaction.Name}.");
 
         var points = slate.Get<float>("points", 0f);
-        List<SitePartDef> sitePartDefsFor = sitePartDefs.GetValue(slate);
+        List<SitePartOption> sitePartDefsFor = sitePartDefs.GetValue(slate);
         if (sitePartDefsFor.NullOrEmpty())
         {
             Log.Error("Rimgate :: No site part defs specified for site generation.");
             return;
         }
 
-        SitePartDefWithParams[] partDefWithParams = new SitePartDefWithParams[sitePartDefsFor.Count];
+        List<SitePartDefWithParams> partDefWithParams = new List<SitePartDefWithParams>();
         for (int i = 0; i < sitePartDefsFor.Count; i++)
         {
             var part = sitePartDefsFor[i];
+            float chance = Mathf.Clamp01(part.chance);
+            if (chance < 1f && !Rand.Chance(chance))
+                continue;
+
+            var def = part.def;
             if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Generating site part {part.defName} with {points} points.");
-            partDefWithParams[i] = new SitePartDefWithParams(sitePartDefsFor[i], new SitePartParams
+                Log.Message($"Rimgate :: Generating site part {def.defName} with {points} points.");
+            partDefWithParams.Add(new SitePartDefWithParams(def, new SitePartParams
             {
                 points = points,
                 threatPoints = points
-            });
+            }));
         }
 
         Site site = QuestGen_Sites.GenerateSite(

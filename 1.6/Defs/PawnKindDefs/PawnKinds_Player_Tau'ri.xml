@@ -6,7 +6,7 @@
     <combatPower>40</combatPower>
     <isFighter>true</isFighter>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">false</apparelIgnorePollution>
     <forceNormalGearQuality>true</forceNormalGearQuality>
     <initialWillRange>0~0</initialWillRange>
     <humanPregnancyChance>0.06</humanPregnancyChance>

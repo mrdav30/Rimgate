@@ -424,7 +424,7 @@
     <thingSetMakerTags>
       <li>RewardStandardHighFreq</li>
     </thingSetMakerTags>
-    <comps>
+    <comps Inherit="False">
       <li Class="CompProperties_GlyphParchment">
         <canDecodePlanet>true</canDecodePlanet>
         <canDecodeOrbit>false</canDecodeOrbit>

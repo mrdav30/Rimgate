@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <FactionDef Name="Rimgate_TreasureHuntersBase" ParentName="FactionBase" Abstract="True">
+    <FactionDef Name="Rimgate_TreasureHuntersBase" ParentName="FactionBase">
+        <defName>Rimgate_TreasureHunters</defName>
+        <label>neutral treasure hunters</label>
         <pawnSingular>treasure hunter</pawnSingular>
         <pawnsPlural>treasure hunters</pawnsPlural>
         <categoryTag>TreasureHunter</categoryTag>
@@ -12,7 +14,7 @@
         <fixedName>Treasure Hunters</fixedName>
         <canGenerateQuestSites>false</canGenerateQuestSites>
         <factionIconPath>World/WorldObjects/Expanding/Sites/DownedRefugee</factionIconPath>
-        <techLevel>Spacer</techLevel>
+        <techLevel>Ultra</techLevel>
         <hidden>true</hidden>
         <rescueesCanJoin>false</rescueesCanJoin>
         <autoFlee>false</autoFlee>
@@ -53,18 +55,8 @@
                 </options>
             </li>
         </pawnGroupMakers>
-        <messageDefendersAttacking>Treasure Hunter soldiers are attacking.</messageDefendersAttacking>
-    </FactionDef>
-
-    <FactionDef ParentName="Rimgate_TreasureHuntersBase">
-        <defName>Rimgate_TreasureHunters</defName>
-        <label>neutral treasure hunters</label>
-    </FactionDef>
-
-    <FactionDef ParentName="Rimgate_TreasureHuntersBase">
-        <defName>Rimgate_TreasureHuntersHostile</defName>
-        <label>hostile treasure hunters</label>
         <permanentEnemy>true</permanentEnemy>
+        <messageDefendersAttacking>Treasure Hunters are attacking.</messageDefendersAttacking>
     </FactionDef>
 
 </Defs>

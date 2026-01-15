@@ -11,8 +11,7 @@
             <li>Rimgate_WraithAssassin</li>
         </containPawnKindAnyOf>
         <faction>Rimgate_WraithEmpire</faction>
-        <spawnPartOfFaction>false</spawnPartOfFaction>
-        <defendSpawnPoint>true</defendSpawnPoint>
+        <spawnPartOfFaction>true</spawnPartOfFaction>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef ParentName="Rimgate_CryptosleepCasket_Wraith">
@@ -38,7 +37,7 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_WraithCocoonPod</defName>
         <thing>Rimgate_WraithCocoonPod</thing>
-        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <spawnPartOfFaction>true</spawnPartOfFaction>
         <defendSpawnPoint>false</defendSpawnPoint>
     </KCSG.SymbolDef>
 
@@ -61,8 +60,7 @@
             <li>Rimgate_TauriSpecialForces</li>
         </containPawnKindAnyOf>
         <faction>Rimgate_TauriFaction</faction>
-        <spawnPartOfFaction>false</spawnPartOfFaction>
-        <defendSpawnPoint>true</defendSpawnPoint>
+        <spawnPartOfFaction>true</spawnPartOfFaction>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef ParentName="Rimgate_CryptosleepPod_Tauri">
@@ -253,7 +251,7 @@
         <containPawnKindAnyOf>
             <li>Rimgate_TreasureHunter</li>
         </containPawnKindAnyOf>
-        <faction>Rimgate_TreasureHuntersHostile</faction>
+        <faction>Rimgate_TreasureHunters</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>
@@ -281,7 +279,7 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_TreasureHunter</defName>
         <pawnKindDef>Rimgate_TreasureHunter</pawnKindDef>
-        <faction>Rimgate_TreasureHuntersHostile</faction>
+        <faction>Rimgate_TreasureHunters</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>false</defendSpawnPoint>
     </KCSG.SymbolDef>
@@ -289,7 +287,7 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_TreasureHunterBoss</defName>
         <pawnKindDef>Rimgate_TreasureHunterBoss</pawnKindDef>
-        <faction>Rimgate_TreasureHuntersHostile</faction>
+        <faction>Rimgate_TreasureHunters</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>true</defendSpawnPoint>
     </KCSG.SymbolDef>

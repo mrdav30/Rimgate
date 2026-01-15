@@ -8,7 +8,7 @@
         <label>treasure hunter</label>
         <labelPlural>treasure hunters</labelPlural>
         <race>Human</race>
-        <defaultFactionDef>Rimgate_TreasureHuntersHostile</defaultFactionDef>
+        <defaultFactionDef>Rimgate_TreasureHunters</defaultFactionDef>
         <combatPower>120</combatPower>
         <minGenerationAge>20</minGenerationAge>
         <maxGenerationAge>55</maxGenerationAge>
@@ -151,7 +151,7 @@
         <label>treasure hunter primus</label>
         <labelPlural>treasure hunter primi</labelPlural>
         <race>Human</race>
-        <defaultFactionDef>Rimgate_TreasureHuntersHostile</defaultFactionDef>
+        <defaultFactionDef>Rimgate_TreasureHunters</defaultFactionDef>
         <factionLeader>true</factionLeader>
         <combatPower>260</combatPower>
         <minGenerationAge>32</minGenerationAge>

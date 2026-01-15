@@ -3,8 +3,11 @@
 
 	<!-- =============== Tau'ri =============== -->
 
+	<!-- Sites -->
+
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
 		<defName>Rimgate_GateSiteTauri</defName>
+		<description>Tau'ri outpost containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteTauri_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
@@ -28,10 +31,31 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- Pawns -->
+
+	<SitePartDef ParentName="Rimgate_SoldierBase">
+		<defName>Rimgate_SoldierTauri</defName>
+		<label>Tau'ri presence detected</label>
+		<tags>
+			<li>Rimgate_SoldierTauri_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_SoldierTauri</defName>
+		<linkWithSite>Rimgate_SoldierTauri</linkWithSite>
+		<order>450</order>
+		<genStep Class="Rimgate.GenStep_EnemiesPresence_NoSiteFaction">
+			<forcedFaction>Rimgate_TauriFaction</forcedFaction>
+			<defaultPointsRange>90~90</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
 	<!-- =============== Replicator =============== -->
 
 	<SitePartDef ParentName="Rimgate_SoldierBase">
 		<defName>Rimgate_SoldierReplicator</defName>
+		<label>Replicator presence detected</label>
 		<tags>
 			<li>Rimgate_SoldierReplicator_tag</li>
 		</tags>
@@ -41,8 +65,8 @@
 		<defName>Rimgate_SoldierReplicator</defName>
 		<linkWithSite>Rimgate_SoldierReplicator</linkWithSite>
 		<order>450</order>
-		<genStep Class="KCSG.GenStep_EnnemiesPresence">
-			<forcedfaction>Rimgate_Replicator</forcedfaction>
+		<genStep Class="Rimgate.GenStep_EnemiesPresence_NoSiteFaction">
+			<forcedFaction>Rimgate_Replicator</forcedFaction>
 			<defaultPointsRange>90~90</defaultPointsRange>
 		</genStep>
 	</GenStepDef>
@@ -53,6 +77,7 @@
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
 		<defName>Rimgate_GateSiteGoauld</defName>
+		<description>Goa'uld outpost containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteGoauld_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
@@ -80,6 +105,7 @@
 
 	<SitePartDef ParentName="Rimgate_SoldierBase">
 		<defName>Rimgate_SoldierGoauld</defName>
+		<label>Goa'uld presence detected</label>
 		<tags>
 			<li>Rimgate_SoldierGoauld_tag</li>
 		</tags>
@@ -89,8 +115,8 @@
 		<defName>Rimgate_SoldierGoauld</defName>
 		<linkWithSite>Rimgate_SoldierGoauld</linkWithSite>
 		<order>450</order>
-		<genStep Class="KCSG.GenStep_EnnemiesPresence">
-			<forcedfaction>Rimgate_GoauldBaal</forcedfaction>
+		<genStep Class="Rimgate.GenStep_EnemiesPresence_NoSiteFaction">
+			<forcedFaction>Rimgate_GoauldBaal</forcedFaction>
 			<defaultPointsRange>90~90</defaultPointsRange>
 		</genStep>
 	</GenStepDef>
@@ -101,6 +127,7 @@
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
 		<defName>Rimgate_GateSiteWraith</defName>
+		<description>Wraith outpost containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteWraith_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
@@ -127,6 +154,7 @@
 
 	<SitePartDef ParentName="Rimgate_SoldierBase">
 		<defName>Rimgate_SoldierWraith</defName>
+		<label>Wraith presence detected</label>
 		<tags>
 			<li>Rimgate_SoldierWraith_tag</li>
 		</tags>
@@ -136,8 +164,8 @@
 		<defName>Rimgate_SoldierWraith</defName>
 		<linkWithSite>Rimgate_SoldierWraith</linkWithSite>
 		<order>450</order>
-		<genStep Class="KCSG.GenStep_EnnemiesPresence">
-			<forcedfaction>Rimgate_WraithEmpire</forcedfaction>
+		<genStep Class="Rimgate.GenStep_EnemiesPresence_NoSiteFaction">
+			<forcedFaction>Rimgate_WraithEmpire</forcedFaction>
 			<defaultPointsRange>90~90</defaultPointsRange>
 		</genStep>
 	</GenStepDef>
@@ -148,6 +176,7 @@
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
 		<defName>Rimgate_GateSiteMech</defName>
+		<description>Mechanoid outpost containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteMech_tag</li>
 			<li>Rimgate_StargateQuestSite</li>
@@ -172,6 +201,7 @@
 
 	<SitePartDef ParentName="Rimgate_SoldierBase">
 		<defName>Rimgate_SoldierMech</defName>
+		<label>Mechanoid presence detected</label>
 		<tags>
 			<li>Rimgate_SoldierMech_tag</li>
 		</tags>
@@ -181,8 +211,8 @@
 		<defName>Rimgate_SoldierMech</defName>
 		<linkWithSite>Rimgate_SoldierMech</linkWithSite>
 		<order>450</order>
-		<genStep Class="KCSG.GenStep_EnnemiesPresence">
-			<forcedfaction>Mechanoid</forcedfaction>
+		<genStep Class="Rimgate.GenStep_EnemiesPresence_NoSiteFaction">
+			<forcedFaction>Mechanoid</forcedFaction>
 			<defaultPointsRange>90~90</defaultPointsRange>
 		</genStep>
 	</GenStepDef>
@@ -251,20 +281,22 @@
 		</genStep>
 	</GenStepDef>
 
-	<SitePartDef ParentName="Rimgate_StargateSiteBase">
-		<defName>Rimgate_BarrenGate</defName>
+	<!-- Pawns -->
+
+	<SitePartDef ParentName="Rimgate_SoldierBase">
+		<defName>Rimgate_EnemyPresence</defName>
+		<tags>
+			<li>Rimgate_EnemyPresence_tag</li>
+		</tags>
 	</SitePartDef>
 
 	<GenStepDef>
-		<defName>Rimgate_BarrenGate</defName>
-		<linkWithSite>Rimgate_BarrenGate</linkWithSite>
+		<defName>Rimgate_EnemyPresence</defName>
+		<linkWithSite>Rimgate_EnemyPresence</linkWithSite>
 		<order>450</order>
-		<genStep Class="KCSG.GenStep_CustomStructureGen">
-			<fullClear>true</fullClear>
-			<structureLayoutDefs>
-				<li>Rimgate_StructureBarrenGate</li>
-			</structureLayoutDefs>
-			<preventBridgeable>true</preventBridgeable>
+		<genStep Class="Rimgate.GenStep_EnemiesPresence_NoSiteFaction">
+			<useSiteFactionIfAny>false</useSiteFactionIfAny>
+			<defaultPointsRange>90~150</defaultPointsRange>
 		</genStep>
 	</GenStepDef>
 
@@ -272,6 +304,7 @@
 
 	<SitePartDef ParentName="Rimgate_StargateSiteBase">
 		<defName>Rimgate_GateSiteVault</defName>
+		<description>A hidden vault containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteVault_tag</li>
 			<li>Rimgate_StargateQuestSite</li>

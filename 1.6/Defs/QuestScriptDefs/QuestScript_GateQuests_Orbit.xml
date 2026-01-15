@@ -84,9 +84,18 @@
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
-										<li>Opportunity_MechanoidPlatform</li>
-										<li>ItemStash</li>
-										<li>Rimgate_SoldierMech</li>
+										<li>
+											<def>Opportunity_MechanoidPlatform</def>
+										</li>
+										<li>
+											<def>ItemStash</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierMech</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierReplicator</def>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_SubScript">
@@ -104,9 +113,23 @@
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
-										<li>OrbitalFugitivePlatform</li>
-										<li>ItemStash</li>
-										<li>KCSG_EnnemiesPresence</li>
+										<li>
+											<def>OrbitalFugitivePlatform</def>
+										</li>
+										<li>
+											<def>ItemStash</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierReplicator</def>
+											<chance>0.15</chance>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_Set">
@@ -127,9 +150,23 @@
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
-										<li>Opportunity_AbandonedPlatform</li>
-										<li>ItemStash</li>
-										<li>KCSG_EnnemiesPresence</li>
+										<li>
+											<def>Opportunity_AbandonedPlatform</def>
+										</li>
+										<li>
+											<def>ItemStash</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierReplicator</def>
+											<chance>0.15</chance>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_Set">
@@ -150,9 +187,23 @@
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
-										<li>Opportunity_OrbitalWreck</li>
-										<li>ItemStash</li>
-										<li>KCSG_EnnemiesPresence</li>
+										<li>
+											<def>Opportunity_OrbitalWreck</def>
+										</li>
+										<li>
+											<def>ItemStash</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierReplicator</def>
+											<chance>0.15</chance>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_Set">
@@ -179,7 +230,7 @@
 				<!-- <li Class="Rimgate.QuestNode_SpawnPawnsOnMap">
 					<inSignal>site.MapGenerated</inSignal>
 					<countRange>0~1</countRange>
-					<factionDef>Rimgate_TreasureHuntersHostile</factionDef>
+					<factionDef>Rimgate_TreasureHunters</factionDef>
 					<pawnKind>Rimgate_TreasureHunter</pawnKind>
 					<skipChance>0.45</skipChance>
 					<spawnNearGate>true</spawnNearGate>

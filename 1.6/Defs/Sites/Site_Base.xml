@@ -8,6 +8,7 @@
         <siteTexture>UI/Map/RGStargateComplexSiteIcon</siteTexture>
         <expandingIconTexture>UI/Map/RGStargateComplexSiteIcon</expandingIconTexture>
         <requiresFaction>true</requiresFaction>
+        <showFactionInInspectString>true</showFactionInInspectString>
         <approachOrderString>Investigate {0}</approachOrderString>
         <approachingReportString>Investigating {0}</approachingReportString>
         <arrivedLetter>There is a Dwarfgate in this area.</arrivedLetter>
@@ -19,8 +20,8 @@
     </SitePartDef>
 
     <SitePartDef Name="Rimgate_SoldierBase" Abstract="true">
-        <label>enemy presence</label>
-        <description>Enemies are present in this place.</description>
+        <label>Hostiles presence detected</label>
+        <description>Hostiles are present in this place.</description>
         <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
         <expandingIconTexture>World/WorldObjects/Expanding/Sites/Ambush</expandingIconTexture>
         <handlesWorldObjectTimeoutInspectString>true</handlesWorldObjectTimeoutInspectString>

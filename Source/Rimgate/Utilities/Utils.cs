@@ -185,6 +185,28 @@ internal static class Utils
         }
     }
 
+    public static IntVec3 TryFindSpawnCellNear(Map map, ThingDef def)
+    {
+        bool Valid(IntVec3 c) => c.Standable(map) && !c.Impassable(map); // optional: avoid zones
+
+        if (def != null)
+        {
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
+            {
+                if (t.def == def)
+                {
+                    if (CellFinder.TryFindRandomCellNear(t.Position, map, 12, Valid, out IntVec3 nearVec))
+                        return nearVec;
+                }
+            }
+        }
+
+        if (CellFinder.TryFindRandomCellNear(map.Center, map, 20, Valid, out IntVec3 alt))
+            return alt;
+
+        return CellFinder.TryFindRandomSpawnCellForPawnNear(map.Center, map, out IntVec3 result, extraValidator: Valid) ? result : IntVec3.Invalid;
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector3 AddY(Vector3 v, float dy) => new(v.x, v.y + dy, v.z);
 

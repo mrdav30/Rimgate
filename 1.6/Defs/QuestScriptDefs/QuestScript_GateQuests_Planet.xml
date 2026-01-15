@@ -90,8 +90,20 @@
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
-										<li>Rimgate_GateSiteGoauld</li>
-										<li>Rimgate_SoldierGoauld</li>
+										<li>
+											<def>Rimgate_GateSiteGoauld</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierGoauld</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierWraith</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_SubScript">
@@ -109,8 +121,20 @@
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
-										<li>Rimgate_GateSiteMech</li>
-										<li>Rimgate_SoldierMech</li>
+										<li>
+											<def>Rimgate_GateSiteMech</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierMech</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_SubScript">
@@ -128,8 +152,16 @@
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
-										<li>Rimgate_GateSiteMisc</li>
-										<li>KCSG_EnnemiesPresence</li>
+										<li>
+											<def>Rimgate_GateSiteMisc</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_SubScript">
@@ -144,8 +176,28 @@
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
-										<li>Rimgate_GateSiteTauri</li>
-										<li>KCSG_EnnemiesPresence</li>
+										<li>
+											<def>Rimgate_GateSiteTauri</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+										</li>
+										<li>
+											<!-- default, random faction enemies -->
+											<def>Rimgate_EnemyPresence</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierWraith</def>
+											<chance>0.1</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierGoauld</def>
+											<chance>0.1</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierReplicator</def>
+											<chance>0.1</chance>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_SubScript">
@@ -163,8 +215,20 @@
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
-										<li>Rimgate_GateSiteWraith</li>
-										<li>Rimgate_SoldierWraith</li>
+										<li>
+											<def>Rimgate_GateSiteWraith</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierWraith</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierGoauld</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_SubScript">
@@ -187,7 +251,7 @@
 				<li Class="Rimgate.QuestNode_SpawnPawnsOnMap">
 					<inSignal>site.MapGenerated</inSignal>
 					<countRange>0~1</countRange> <!-- 0–2 by default -->
-					<factionDef>Rimgate_TreasureHuntersHostile</factionDef>
+					<factionDef>Rimgate_TreasureHunters</factionDef>
 					<pawnKind>Rimgate_TreasureHunter</pawnKind>
 					<skipChance>0.45</skipChance>
 					<spawnNearGate>true</spawnNearGate>

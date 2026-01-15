@@ -21,8 +21,4 @@ public static class RimgateFactionOf
     private static Faction _ofTreasureHunters;
 
     public static Faction OfTreasureHunters => _ofTreasureHunters ??= Find.FactionManager.FirstFactionOfDef(RimgateDefOf.Rimgate_TreasureHunters);
-
-    private static Faction _ofTreasureHuntersHostile;
-
-    public static Faction OfTreasureHuntersHostile => _ofTreasureHuntersHostile ??= Find.FactionManager.FirstFactionOfDef(RimgateDefOf.Rimgate_TreasureHuntersHostile);
 }

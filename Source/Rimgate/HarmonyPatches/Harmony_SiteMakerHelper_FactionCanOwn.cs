@@ -25,8 +25,7 @@ public static class Harmony_SiteMakerHelper_FactionCanOwn
     public static readonly List<FactionDef> RimgateHiddenFactions = new()
     {
         RimgateDefOf.Rimgate_Replicator,
-        RimgateDefOf.Rimgate_TreasureHunters,
-        RimgateDefOf.Rimgate_TreasureHuntersHostile
+        RimgateDefOf.Rimgate_TreasureHunters
     };
 
     public static bool Prefix(

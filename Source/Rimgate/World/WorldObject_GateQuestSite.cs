@@ -21,6 +21,7 @@ public class WorldObject_GateQuestSite : Site
     {
         // register gate address for this site since gate is placed during mapgen
         StargateUtil.AddGateAddress(Tile);
+        base.SpawnSetup();
     }
 
     protected override void Tick()
@@ -73,6 +74,10 @@ public class WorldObject_GateQuestSite : Site
     public void ToggleSiteMap()
     {
         if (Map == null || !_mapHidden) return;
+
+        if (RimgateMod.Debug)
+            Log.Message($"Rimgate :: Revealing gate quest site map at tile {Tile} due to Stargate use");
+
         Find.ColonistBar.MarkColonistsDirty();
         _mapHidden = false;
     }

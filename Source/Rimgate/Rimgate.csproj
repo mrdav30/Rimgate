@@ -413,6 +413,7 @@
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_Regeneration.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_Regeneration.cs" />
     <Compile Include="Misc\PawnRenderNode_BodySwapper.cs" />
+    <Compile Include="Quests\GenStep_EnemiesPresence_NoSiteFaction.cs" />
     <Compile Include="Quests\QuestNode_Root_GateSite.cs" />
     <Compile Include="Quests\QuestNode_SetSiteQuestId.cs" />
     <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />

@@ -93,15 +93,16 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
         foreach (PlanetTile tile in addressList)
         {
             string designation = StargateUtil.GetStargateDesignation(tile);
+            MapParent gwo = Find.WorldObjects.MapParentAt(tile);
 
-            if(StargateUtil.ActiveQuestSitesAtLimit)
+            if (StargateUtil.ActiveQuestSitesAtLimit && !gwo.HasMap)
             {
                 bool isQuestSite = Find.WorldObjects.MapParentAt(tile) is WorldObject_GateQuestSite;
                 if (isQuestSite)
                 {
                     yield return new FloatMenuOption(
                         $"{"RG_DialGate".Translate()} {designation}"
-                        + $" ({"RG_CannotDial".Translate("RG_CannotDialQuestSiteLimit".Translate())})",
+                        + $" ({"RG_CannotDial".Translate("RG_CannotDialQuestSiteLimitReached".Translate())})",
                         null);
                     continue;
                 }
@@ -116,9 +117,8 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
                 continue;
             }
 
-            MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
             yield return new FloatMenuOption(
-                $"{"RG_DialGate".Translate()} {designation} ({sgMap.Label})",
+                $"{"RG_DialGate".Translate()} {designation} ({gwo.Label})",
                 () =>
                 {
                     dhd.LastDialledAddress = tile;
