@@ -9,6 +9,7 @@
         <categoryTag>TreasureHunter</categoryTag>
         <requiredCountAtGameStart>1</requiredCountAtGameStart>
         <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
+        <hostileToFactionlessHumanlikes>true</hostileToFactionlessHumanlikes>
         <configurationListOrderPriority>2000</configurationListOrderPriority>
         <displayInFactionSelection>false</displayInFactionSelection>
         <fixedName>Treasure Hunters</fixedName>
@@ -18,6 +19,9 @@
         <hidden>true</hidden>
         <rescueesCanJoin>false</rescueesCanJoin>
         <autoFlee>false</autoFlee>
+        <fixedLeaderKinds>
+            <li>Rimgate_TreasureHunterBoss</li>
+        </fixedLeaderKinds>
         <apparelStuffFilter>
             <thingDefs>
                 <li>Synthread</li>

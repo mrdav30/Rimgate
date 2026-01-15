@@ -227,14 +227,14 @@
 				<!-- Start custom detection raids once the site map generates -->
 				<li Class="Rimgate.QuestNode_RaidStargateComplex" />
 
-				<!-- <li Class="Rimgate.QuestNode_SpawnPawnsOnMap">
+				<li Class="Rimgate.QuestNode_SpawnPawnsOnMap">
 					<inSignal>site.MapGenerated</inSignal>
-					<countRange>0~1</countRange>
+					<countRange>0~2</countRange>
 					<factionDef>Rimgate_TreasureHunters</factionDef>
-					<pawnKind>Rimgate_TreasureHunter</pawnKind>
-					<skipChance>0.45</skipChance>
+					<pawnKind>Rimgate_TreasureHunterOrbit</pawnKind>
+					<skipChance>0.52</skipChance>
 					<spawnNearGate>true</spawnNearGate>
-				</li> -->
+				</li>
 
 				<li Class="QuestNode_WorldObjectTimeout">
 					<worldObject>$site</worldObject>

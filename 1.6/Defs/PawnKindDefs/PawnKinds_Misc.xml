@@ -3,13 +3,13 @@
 
     <!-- ==================== Man in Red ==================== -->
 
-    <PawnKindDef>
+    <PawnKindDef Name="Rimgate_TreasureHunterBase">
         <defName>Rimgate_TreasureHunter</defName>
         <label>treasure hunter</label>
         <labelPlural>treasure hunters</labelPlural>
         <race>Human</race>
         <defaultFactionDef>Rimgate_TreasureHunters</defaultFactionDef>
-        <combatPower>120</combatPower>
+        <combatPower>140</combatPower>
         <minGenerationAge>20</minGenerationAge>
         <maxGenerationAge>55</maxGenerationAge>
         <isFighter>true</isFighter>
@@ -119,7 +119,7 @@
             </li>
         </specificApparelRequirements>
         <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-        <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+        <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">false</apparelIgnorePollution>
         <apparelColor>(1, 0, 0)</apparelColor> <!-- Matches favoriteColor -->
         <ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
         <favoriteColor MayRequire="Ludeon.RimWorld.Ideology">Red</favoriteColor>
@@ -144,9 +144,32 @@
         </skills>
     </PawnKindDef>
 
+    <PawnKindDef ParentName="Rimgate_TreasureHunterBase">
+        <defName>Rimgate_TreasureHunterOrbit</defName>
+        <apparelRequired Inherit="False">
+            <li>Apparel_CollarShirt</li>
+            <li>Apparel_Pants</li>
+            <li>Apparel_Vacsuit</li>
+            <li>Apparel_VacsuitHelmet</li>
+            <li>Rimgate_GoauldKaraKesh</li>
+        </apparelRequired>
+        <specificApparelRequirements Inherit="False">
+            <li>
+                <bodyPartGroup>Torso</bodyPartGroup>
+                <apparelLayer>OnSkin</apparelLayer>
+                <stuff>Hyperweave</stuff>
+            </li>
+            <li>
+                <bodyPartGroup>Legs</bodyPartGroup>
+                <apparelLayer>OnSkin</apparelLayer>
+                <stuff>Hyperweave</stuff>
+            </li>
+        </specificApparelRequirements>
+    </PawnKindDef>
+
     <!-- Boss man -->
 
-    <PawnKindDef>
+    <PawnKindDef Name="Rimgate_TreasureHunterBossBase">
         <defName>Rimgate_TreasureHunterBoss</defName>
         <label>treasure hunter primus</label>
         <labelPlural>treasure hunter primi</labelPlural>

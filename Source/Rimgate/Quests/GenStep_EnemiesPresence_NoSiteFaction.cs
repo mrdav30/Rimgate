@@ -43,20 +43,16 @@ public class GenStep_EnemiesPresence_NoSiteFaction : GenStep
         // This genstep is intentionally pawn-only.
 
         Faction siteFaction = parms.sitePart?.site?.Faction;
-        bool hostileToSiteFaction = siteFaction != null && faction.HostileTo(siteFaction);
 
         LordJob job = (siteFaction != null && faction == siteFaction)
                 ? (LordJob)new LordJob_DefendBase(faction, map.Center, 25000)
-                : hostileToSiteFaction
-                    ? new LordJob_AssaultColony(faction, canKidnap: true, canTimeoutOrFlee: false, sappers: false,
-                    useAvoidGridSmart: true, canSteal: true, breachers: true, canPickUpOpportunisticWeapons: true)
-                    : new LordJob_DefendPoint(map.Center, addFleeToil: false);
+                :  new LordJob_DefendPoint(cell, wanderRadius: 15f, defendRadius: 20f, addFleeToil: false);
 
         Lord lord = LordMaker.MakeNewLord(faction, job, map);
 
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: Spawning enemies presence for faction '{faction.Name}' at {cell}"
-                + (siteFaction != null ? $"(site faction: '{siteFaction.Name}')" : "(no site faction)"));
+                + (siteFaction != null ? $" (site faction: '{siteFaction.Name}')" : " (no site faction)"));
 
         foreach (Pawn pawn in GeneratePawns(map, faction, parms))
         {
