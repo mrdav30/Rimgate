@@ -400,6 +400,7 @@
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
     <Compile Include="Comps\Comp_SymbioteHeritage.cs" />
+    <Compile Include="HarmonyPatches\Harmony_Messages_Message.cs" />
     <Compile Include="HarmonyPatches\Harmony_ITab_Pawn_Character_IsVisible.cs" />
     <Compile Include="HarmonyPatches\Harmony_Projectile_CheckForInterceptBetween.cs" />
     <Compile Include="HarmonyPatches\Harmony_Skyfaller_Tick.cs" />
