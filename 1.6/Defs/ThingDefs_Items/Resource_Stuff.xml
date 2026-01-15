@@ -399,7 +399,7 @@
   <ThingDef Name="Rimgate_GlyphParchmentBase" ParentName="ResourceBase">
     <defName>Rimgate_GlyphParchment</defName>
     <label>glyph parchment</label>
-    <description>A weathered parchment embossed with mysterious Dwarfgate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.</description>
+    <description>A crumpled sheet of glyphs, scrawled in a hurry by someone who clearly ran out of time and patience. There are finger smudges, a ring of stale recaf, and a margin note that says &quot;dial fast, duck faster.&quot;</description>
     <thingClass>ThingWithComps</thingClass>
     <graphicData>
       <texPath>Things/Item/Resource/GlyphParchment</texPath>
@@ -434,7 +434,7 @@
 
   <ThingDef ParentName="Rimgate_GlyphParchmentBase">
     <defName>Rimgate_GlyphParchment_Orbit</defName>
-    <description>A weathered parchment embossed with mysterious Dwarfgate glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.\n\nThis one decodes to an orbital destination-Note: make sure to bring a vac-suit.</description>
+    <description>A weathered parchment embossed with mysterious glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.\n\There's a note scribbled at the bottom - &quot;make sure to bring a vacsuit&quot;</description>
     <comps Inherit="False">
       <li Class="CompProperties_GlyphParchment">
         <canDecodePlanet>false</canDecodePlanet>

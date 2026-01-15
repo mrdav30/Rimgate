@@ -40,7 +40,7 @@ public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
                     _arrivalSite.def);
                 CaravanEnterMapUtility.Enter(caravan, _arrivalSite.Map, CaravanEnterMode.Center);
             },
-            "RG_GeneratingMapForTransitSite",
+            "RG_GeneratingGateSite_Transit",
             false,
             null);
     }

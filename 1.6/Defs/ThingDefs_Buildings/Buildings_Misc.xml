@@ -88,7 +88,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_WraithModificationEquipment</defName>
 		<label>gate modification equipment</label>
-		<description>A bulky set of bio-mechanical apparatus designed by Wraith to interface with a Dwarfgate. When connected to a Dwarfgate, it enables the colony to safely observe both ends of an active wormhole.\n\nRequires a steady power supply to operate.</description>
+		<description>A bulky set of bio-mechanical apparatus designed by Wraith to interface with the Dwarfgates. When linked to a DHD, the colony can safely observe both ends of an active wormhole.\n\nRequires a steady power supply to operate.  Once active, however, gates across the entire net should have increased range and improved signal stability.</description>
 		<thingClass>Building</thingClass>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGWraithModificationEquipment</texPath>

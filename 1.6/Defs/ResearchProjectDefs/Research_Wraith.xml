@@ -137,7 +137,7 @@
 		</generalRules>
 
 		<discoveredLetterTitle>About: Gate Modification</discoveredLetterTitle>
-		<discoveredLetterText>The truth is clearer now. These methods unlock the blueprints for constructing gate modification equipment, allowing full integration with Dwarfgate controls.\n\nThese same routines also allow your colonists to finally decode the glyphs that appear to reveal orbital locations, and with the right equipment your gate can lock onto them.</discoveredLetterText>
+		<discoveredLetterText>The truth is clearer now. These methods unlock the blueprints for constructing gate modification equipment, allowing full integration with Dwarfgate controls.\n\nThese same routines will also allow your colonists to finally decode the glyphs that reference locking onto orbital locations.</discoveredLetterText>
 
 	</ResearchProjectDef>
 

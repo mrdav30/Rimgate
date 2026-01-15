@@ -1,12 +1,13 @@
-﻿using System;
+﻿using HarmonyLib;
+using RimWorld;
+using RimWorld.Planet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HarmonyLib;
-using RimWorld;
 using UnityEngine;
-using RimWorld.Planet;
 using Verse;
+using static RimWorld.PsychicRitualRoleDef;
 
 namespace Rimgate.HarmonyPatches;
 
@@ -79,18 +80,20 @@ public class Harmony_Caravan_GetGizmos
             defaultDesc = "RG_CreateSGSiteDesc".Translate()
         };
 
-        var reason = new StringBuilder();
-        if (!containsStargate)
-        {
-            cmd.Disable("RG_NoGateInCaravan".Translate());
-        }
-        else if (!TileFinder.IsValidTileForNewSettlement(__instance.Tile, reason))
-        {
-            cmd.Disable(reason.ToString());
-        }
+        StringBuilder disabledReason = new();
+        if(StargateUtil.AddressBookFull)
+            disabledReason.Append("RG_Cannot_AddressBookFull".Translate());
+        else if (!containsStargate)
+            disabledReason.Append("RG_NoGateInCaravan".Translate());
         else if (IsBlockedByLandmark(__instance.Tile, out var landmarkLabel))
+            disabledReason.Append("RG_BlockedByLandmark".Translate(landmarkLabel));
+
+        if (disabledReason.Length > 0 || !TileFinder.IsValidTileForNewSettlement(__instance.Tile, disabledReason))
         {
-            cmd.Disable("RG_BlockedByLandmark".Translate(landmarkLabel));
+            string reason = disabledReason.Length > 0
+                ? disabledReason.ToString().TrimEndNewlines()
+                : "RG_InvalidTileForSettlement".Translate();
+            cmd.Disable("RG_CannotCreateTransientSite".Translate(reason));
         }
 
         yield return cmd;

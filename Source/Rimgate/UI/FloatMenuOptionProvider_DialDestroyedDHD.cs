@@ -59,15 +59,9 @@ public class FloatMenuOptionProvider_DialDestroyedDHD : FloatMenuOptionProvider
             yield break;
         }
 
-        var addressComp = StargateUtil.WorldComp;
-        if (addressComp == null)
-        {
-            Log.Error("Could not get WorldComp_StargateAddresses");
-            yield break;
-        }
-
-        addressComp.CleanupAddresses();
-        if (addressComp.AddressCount < 2) // home + another site
+        StargateUtil.CleanupAddresses();
+        var addressList = StargateUtil.WorldComp.AddressList.Where(t => t != control.GateAddress).ToList();
+        if (addressList == null || addressList.Count == 0)
         {
             yield return new FloatMenuOption(
                 "RG_CannotDial".Translate("RG_CannotDialNoDestinations".Translate()),

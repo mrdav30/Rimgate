@@ -49,6 +49,7 @@
 				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
 			</li>
 		</layouts>
+		<spawnConduits>false</spawnConduits>
 	</KCSG.StructureLayoutDef>
 
 	<!-- Jade Henge Bravo -->
@@ -95,6 +96,7 @@
 				<li>.,.,.,.,.,MineableJade,.,.,.,.,.,.,.,MineableJade,.,.,.,.,.,.,.,.,.</li>
 			</li>
 		</layouts>
+		<spawnConduits>false</spawnConduits>
 	</KCSG.StructureLayoutDef>
 
 	<!-- Barren Gate -->
@@ -124,6 +126,7 @@
 			</li>
 		</layouts>
 		<needRoofClearance>true</needRoofClearance>
+		<spawnConduits>false</spawnConduits>
 	</KCSG.StructureLayoutDef>
 
 	<!-- Barren Gate No DHD -->
@@ -153,6 +156,7 @@
 			</li>
 		</layouts>
 		<needRoofClearance>true</needRoofClearance>
+		<spawnConduits>false</spawnConduits>
 	</KCSG.StructureLayoutDef>
 
 	<!-- Maze Alpha -->

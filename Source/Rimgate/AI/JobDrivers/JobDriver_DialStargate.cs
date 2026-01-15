@@ -15,7 +15,9 @@ public class JobDriver_DialStargate : JobDriver
 
     private const int OpenDelayTicks = 200;
 
-    private const float BaseFailChance = 0.002f;
+    private const float BaseFailChance = 0.0002f;
+
+    private const float SkillFailReductionPerLevel = 0.00001f;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -34,17 +36,15 @@ public class JobDriver_DialStargate : JobDriver
         Building_Stargate gate = null;
         PlanetTile tile = PlanetTile.Invalid;
         IntVec3 destination = IntVec3.Invalid;
-        bool delayed = false;
+        bool delayed = t.def == RimgateDefOf.Rimgate_DialHomeDeviceDestroyed && ResearchUtil.DHDLogicComplete;
 
-        if (t.def == RimgateDefOf.Rimgate_DialHomeDeviceDestroyed
-            && ResearchUtil.DHDLogicComplete)
+        if (delayed)
         {
             gate = Building_Stargate.GetStargateOnMap(t.Map);
             tile = StargateUtil.WorldComp.AddressList
                 .Where(x => x != t.Map.Tile)
                 .RandomElement();
             destination = t.Position;
-            delayed = true;
         }
         else if (t is Building_DHD dhd)
         {
@@ -65,13 +65,12 @@ public class JobDriver_DialStargate : JobDriver
 
         if (delayed)
         {
-
             Toil repairToil = Toils_General.Wait(WaitTicks);
             repairToil.FailOnCannotTouch(TargetIndex.A, PathEndMode.ClosestTouch);
             repairToil.tickAction = () =>
             {
                 var skillLevel = pawn.skills?.GetSkill(SkillDefOf.Intellectual)?.Level ?? 0;
-                float failChance = Mathf.Clamp01(BaseFailChance - (skillLevel * 0.0001f));
+                float failChance = Mathf.Clamp01(BaseFailChance - (skillLevel * SkillFailReductionPerLevel));
                 if (Rand.Chance(failChance))
                 {
                     Messages.Message("RG_GateDialFailed_DHDDestroyed".Translate(pawn.Named("PAWN")), gate, MessageTypeDefOf.NegativeEvent);

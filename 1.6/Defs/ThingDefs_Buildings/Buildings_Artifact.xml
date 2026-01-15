@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
     <!-- =============== Stargate Base =============== -->
@@ -13,7 +13,6 @@
         <canOverlapZones>true</canOverlapZones>
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
         <passability>PassThroughOnly</passability>
-        <castEdgeShadows>false</castEdgeShadows>
         <pathCost>3</pathCost>
         <thingCategories>
             <li>Artifacts</li>
@@ -42,6 +41,9 @@
                 <max1PerGroup>true</max1PerGroup>
                 <massCapacity>999999</massCapacity>
             </li>
+            <li>
+                <compClass>CompColorable</compClass>
+            </li>
         </comps>
     </ThingDef>
 
@@ -50,13 +52,14 @@
     <ThingDef ParentName="Rimgate_StargateBase">
         <defName>Rimgate_Dwarfgate</defName>
         <label>Dwarfgate</label>
-        <description>An ancient alien construct capable of instantaneous transit—but unlike the legendary Stargates of myth, these “Dwarfgates” are smaller, dimmer cousins. Their wormhole lattice is sealed into a closed planetary network; attempts to dial off-world fizzle as if an unseen hand blocks the path.
+        <description>An ancient alien construct capable of instantaneous transit, but unlike the legendary Stargates of myth, these “Dwarfgates” are smaller, dimmer cousins. Their wormhole lattice is sealed into a closed planetary network; attempts to dial off-world fizzle as if an unseen hand blocks the path.
             \n\nRumors whisper that the Archotechs themselves tampered with them, corralling their use to a single world for inscrutable ends. Stranger still, scattered reports claim there are hundreds of such gates buried across the Rim—drawing fortune-seekers, warlords, and scholars alike to uncover the reason why they were left here… and what they are meant to protect.
             \n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard... naked."</description>
         <size>(5,1)</size>
         <graphicData>
             <texPath>Things/Building/Artifact/RGDwarfgate</texPath>
             <graphicClass>Graphic_Multi</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
             <drawSize>(5,5)</drawSize>
             <drawOffsetSouth>(0,0,0.85)</drawOffsetSouth>
             <drawOffsetNorth>(0,0,0.85)</drawOffsetNorth>
@@ -64,6 +67,9 @@
             <drawOffsetEast>(0,0,0)</drawOffsetEast>
             <addTopAltitudeBias>true</addTopAltitudeBias>
         </graphicData>
+        <castEdgeShadows>true</castEdgeShadows>
+        <staticSunShadowHeight>1.0</staticSunShadowHeight>
+        <blockLight>true</blockLight>
         <techLevel>Archotech</techLevel>
         <killedLeavings>
             <Steel>120</Steel>
@@ -117,19 +123,17 @@
                 <puddleGraphicData>
                     <texPath>FX/RGEventHorizon</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
-                    <shaderType>Mote</shaderType>
                     <drawSize>(5,5)</drawSize>
                 </puddleGraphicData>
                 <irisGraphicData>
                     <texPath>Things/Building/Misc/RGIris</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
-                    <shaderType>Mote</shaderType>
                     <drawSize>(5,5)</drawSize>
                 </irisGraphicData>
                 <chevronHighlight>
                     <texPath>FX/RGStargateAncient_Active</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
-                    <shaderType>Mote</shaderType>
+                    <shaderType>MoteGlow</shaderType>
                     <drawSize>(5,5)</drawSize>
                 </chevronHighlight>
                 <irisPowerConsumption>500</irisPowerConsumption>
@@ -149,7 +153,9 @@
         <defName>Rimgate_DialHomeDevice</defName>
         <thingClass>Rimgate.Building_DHD</thingClass>
         <label>Dial home device</label>
-        <description>An ancient alien control console designed to interface with a Dwarfgate. Punch in the right sequence, and the universe becomes your backyard—assuming you don’t misdial into a sun.\n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
+        <description>An ancient alien control console designed to interface with a Dwarfgate.
+            \n\nDwarfgates have a quirk: the global network can only store so many gate sites in memory before they refuse to hold more. Additionally, there seems to be a hard limit on the number of connections you can make to "restricted" gate sites before a passive cooldown buffer kicks in. Ancient tech, ancient bureaucracy.
+            \n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
         <graphicData>
             <texPath>Things/Building/Artifact/RGDHD</texPath>
             <graphicClass>Graphic_Multi</graphicClass>
@@ -260,7 +266,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_ZPM</defName>
         <label>zero point module</label>
-        <description>A self-contained miracle of Ancient technology, the ZPM draws energy from a subspace vacuum—basically finite power in a shiny cylinder. Makes other batteries look like AA cells from a cereal box.\n\nUnfortunately, such a thing is impossible to hide. Once installed in a power network, its archotech-grade signature will leak into the sky, luring factions across the Rim to your colony’s doorstep. Power eternal… and trouble unending.\n\n"It's kind of like a miniature universe in a bottle."</description>
+        <description>A self-contained miracle of Ancient technology, the ZPM draws energy from a subspace vacuumâ€”basically finite power in a shiny cylinder. Makes other batteries look like AA cells from a cereal box.\n\nUnfortunately, such a thing is impossible to hide. Once installed in a power network, its archotech-grade signature will leak into the sky, luring factions across the Rim to your colonyâ€™s doorstep. Power eternalâ€¦ and trouble unending.\n\n"It's kind of like a miniature universe in a bottle."</description>
         <thingClass>Rimgate.Building_ZPM</thingClass>
         <category>Building</category>
         <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
@@ -370,7 +376,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_ArchotechIdolOfResonance</defName>
         <label>archotech idol of resonance</label>
-        <description>A compact ancient artifact that hums in subspace harmonics. Nearby minds settle into an effortless focus—mood stabilizes, steps feel lighter, and even the stubborn find resolve. But listen too long and the static whispers back.</description>
+        <description>A compact ancient artifact that hums in subspace harmonics. Nearby minds settle into an effortless focusâ€”mood stabilizes, steps feel lighter, and even the stubborn find resolve. But listen too long and the static whispers back.</description>
         <category>Building</category>
         <thingClass>Building</thingClass>
         <selectable>true</selectable>
@@ -449,7 +455,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_AncientResearchBank</defName>
         <label>ancient research bank</label>
-        <description>A self-contained data core from a vanished civilization, still humming faintly with stored knowledge.\n\nWhen interfaced with a modern research bench, it boosts analysis speed by 35% through active cross-referencing of ancient archives and predictive heuristics.\n\nLimit one per workbench — most minds can only handle so much enlightenment at once.</description>
+        <description>A self-contained data core from a vanished civilization, still humming faintly with stored knowledge.\n\nWhen interfaced with a modern research bench, it boosts analysis speed by 35% through active cross-referencing of ancient archives and predictive heuristics.\n\nLimit one per workbench â€” most minds can only handle so much enlightenment at once.</description>
         <graphicData>
             <texPath>Things/Building/Artifact/RGAncientDatabase</texPath>
             <graphicClass>Graphic_Multi</graphicClass>

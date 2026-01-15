@@ -13,7 +13,7 @@
 
       <worldObjectDef>Rimgate_GateQuestSite_Planet</worldObjectDef>
 
-      <distanceFromColonyRange>20~80</distanceFromColonyRange>
+      <distanceFromColonyRange>10~160</distanceFromColonyRange>
       <selectLandmarkChance>0.3</selectLandmarkChance>
       <allowedLandmarks>
         <li MayRequire="Ludeon.RimWorld.Odyssey">DryLake</li>
@@ -67,7 +67,7 @@
 
       <worldObjectDef>Rimgate_GateQuestSite_Orbit</worldObjectDef>
 
-      <distanceFromColonyRange>2~8</distanceFromColonyRange>
+      <distanceFromColonyRange>3~8</distanceFromColonyRange>
     </root>
   </QuestScriptDef>
 

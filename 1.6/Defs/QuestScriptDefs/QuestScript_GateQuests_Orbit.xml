@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<QuestScriptDef>
@@ -12,64 +12,58 @@
 		<everAcceptableInSpace>true</everAcceptableInSpace>
 		<questNameRules>
 			<rulesStrings>
-				<li>questName->[adj] glyph [site]</li>
-				<li>questName->[adj] dwarfgate [site]</li>
+				<li>questName->[adj] signal [site]</li>
 				<li>questName->[adj] gate [site]</li>
+				<li>questName->[adj] derelict [site]</li>
+				<li>questName->[adj] anomaly [site]</li>
 
-				<li>adj->Forbidden</li>
-				<li>adj->Shrouded</li>
-				<li>adj->Hidden</li>
-				<li>adj->Forgotten</li>
-				<li>adj->Nameless</li>
+				<li>adj->Orbital</li>
+				<li>adj->Stellar</li>
+				<li>adj->Voidborne</li>
+				<li>adj->Drifting</li>
+				<li>adj->Silent</li>
+				<li>adj->Cold</li>
+				<li>adj->Dark</li>
+				<li>adj->Faint</li>
+				<li>adj->Distant</li>
+				<li>adj->Remote</li>
 				<li>adj->Lost</li>
 				<li>adj->Abandoned</li>
-				<li>adj->Remote</li>
-				<li>adj->Ancient</li>
-				<li>adj->Secret</li>
-				<li>adj->Old</li>
-				<li>adj->Dusty</li>
-				<li>adj->Dangerous</li>
-				<li>adj->Mysterious</li>
+				<li>adj->Derelict</li>
 				<li>adj->Uncharted</li>
-				<li>adj->Unexplored</li>
+				<li>adj->Unmapped</li>
+				<li>adj->Anomalous</li>
 
-				<li>site->chamber</li>
-				<li>site->vault</li>
-				<li>site->complex</li>
-				<li>site->site</li>
-				<li>site->location</li>
-				<li>site->point</li>
-				<li>site->outpost</li>
-				<li>site->base</li>
-				<li>site->facility</li>
-				<li>site->hollow</li>
-				<li>site->lair</li>
-				<li>site->compound</li>
-				<li>site->crypt</li>
-				<li>site->stronghold</li>
-				<li>site->ruins</li>
 				<li>site->station</li>
-				<li>site->encampment</li>
-				<li>site->installation</li>
-				<li>site->structure</li>
-				<li>site->edifice</li>
-				<li>site->construct</li>
-				<li>site->fortress</li>
-				<li>site->citadel</li>
-				<li>site->bastion</li>
-				<li>site->temple</li>
-				<li>site->sanctuary</li>
-				<li>site->shrine</li>
+				<li>site->platform</li>
+				<li>site->outpost</li>
+				<li>site->dock</li>
+				<li>site->relay</li>
+				<li>site->beacon</li>
+				<li>site->habitat</li>
+				<li>site->ring</li>
+				<li>site->spindle</li>
+				<li>site->ark</li>
+				<li>site->array</li>
+				<li>site->node</li>
+				<li>site->hub</li>
+				<li>site->terminal</li>
+				<li>site->hulk</li>
+				<li>site->wreck</li>
+				<li>site->vault</li>
+				<li>site->ruins</li>
 
 			</rulesStrings>
 		</questNameRules>
 
 		<questDescriptionRules>
 			<rulesStrings>
-				<li>questDescription->A sequence of glyphs leads to a site of unusual construction.\n\nThe architecture resembles something far older than your colony, and its purpose is unclear. Vault? Temple? Prison?\n\nOne thing is certain: whatever lies beyond was meant to remain sealed.</li>
-				<li>questDescription->The glyph sequence decodes to a location, but records are sparse.\n\nIt may be nothing but ruins. Or it may be the sort of “nothing” that eats expeditions whole.\n\nYour only way to know is to step through.</li>
-				<li>questDescription->Glyphs reference a constructed site tied to an operational gate.\n\nThe style suggests human hands—advanced, yet familiar. Whether military forward post, research hub, or derelict supply depot, it remains uncharted territory.\n\nExploration is advised, but caution is paramount.</li>
-				<li>questDescription->The glyphs describe a structure surrounding a dormant Dwarfgate.\n\nIt hums faintly with a resonance you can almost feel in your skull. Whether it is an abandoned lair, or something still stirring within, is impossible to tell from here.\n\nIt’s worth investigating, but be prepared for anything.</li>
+				<li>questDescription->A signal resolves into coordinates for a structure drifting in orbit.\n\nIts silhouette is all hard angles and silent bays, too old to be on any current charts. Beacon, depot, or trap, the void does not say.\n\nIf you go, go prepared.</li>
+				<li>questDescription->The transmission pinpoints a derelict installation beyond the main trade lanes.\n\nNo registry, no flags, just a cold hull and a faint power signature. It may be empty, or it may be waiting.\n\nOnly a boarding team will tell.</li>
+				<li>questDescription->Encrypted telemetry marks a gate-linked station hanging in the darkness.\n\nThe layout looks human-made but unfamiliar, as if built for a different gravity. Salvage could be significant, and so could the risk.\n\nProceed with caution.</li>
+				<li>questDescription->A faint relay pulse ties back to an orbital site of unknown origin.\n\nThe structure is wrapped around a dormant gate, humming just enough to raise the hair on your arms. There is no traffic. There is no welcome.\n\nInvestigate at your discretion.</li>
+				<li>questDescription->Coordinates resolve to a hulking wreck in a high orbit.\n\nThe hull is scarred and open to vacuum, but power still flickers inside. Loot, survivors, or something worse could be drifting within.\n\nSend a crew if you dare.</li>
+				<li>questDescription->A clean signal points to a sealed platform tucked behind debris.\n\nLife support is minimal, the airlocks are cold, and the logs are wiped. Someone wanted this place quiet.\n\nTake it slow and keep your comms open.</li>
 			</rulesStrings>
 		</questDescriptionRules>
 
@@ -201,19 +195,19 @@
 								<nodes>
 									<li Class="QuestNode_Letter">
 										<label>Quest expired: [resolvedQuestName]</label>
-										<text>By the time you mobilized, the site had already been disturbed. Faded symbols mark the walls, and the gate stands silent. Whatever treasure or terror it once held is gone… for now.</text>
+										<text>By the time you mobilized, the site had already been disturbed. Faded symbols mark the walls, and the gate stands silent. Whatever treasure or terror it once held is gone for now.</text>
 									</li>
 									<li Class="QuestNode_Letter">
 										<label>Quest expired: [resolvedQuestName]</label>
-										<text>By the time you mobilized, others had already stripped the site bare.\n\nThe Dwarfgate is gone, the tech looted, and the opportunity lost.\n\nNext time, bring snacks and move faster.</text>
+										<text>By the time you mobilized, others had already stripped the site bare.\n\nThe gate is gone, the tech salvaged, and the opportunity lost to the void.\n\nNext time, burn harder and move faster.</text>
 									</li>
 									<li Class="QuestNode_Letter">
 										<label>Quest expired: [resolvedQuestName]</label>
-										<text>The site has been swept clean. Equipment gone, power drained, gate dismantled. A faint smell of ozone lingers, as if someone just closed the door. Another mystery, lost to time.</text>
+										<text>The site has been swept clean. Equipment gone, power drained, gate dismantled. A faint tang of ozone hangs in the airlocks, as if someone just closed the hatch. Another mystery, lost to the drift.</text>
 									</li>
 									<li Class="QuestNode_Letter">
 										<label>Quest expired: [resolvedQuestName]</label>
-										<text>Only echoes remained. The Dwarfgate is gone, stripped by unseen hands. The resonance lingers, leaving your crew uneasy. Some things are best left forgotten.</text>
+										<text>Only echoes remained. The gate is gone, stripped by unseen hands. The resonance lingers in the bulkheads, leaving your crew uneasy. Some things are best left drifting.</text>
 									</li>
 								</nodes>
 							</li>

@@ -190,7 +190,9 @@
 
 	<!-- Stargate -->
 
-	<RG_GateAddress>Dwarfgate address: {0}</RG_GateAddress>
+	<RG_GateAddress>Gate address: {0}</RG_GateAddress>
+	<RG_ModificationEquipmentActive>Modification equipment active</RG_ModificationEquipmentActive>
+
 	<RG_SiteLoadout_Gate>Gate</RG_SiteLoadout_Gate>
 	<RG_SiteLoadout_NoGate>No Gate</RG_SiteLoadout_NoGate>
 	<RG_SiteLoadout_DHD>DHD</RG_SiteLoadout_DHD>
@@ -210,14 +212,18 @@
 	<RG_ToggleIris>{0} iris</RG_ToggleIris>
 	<RG_ToggleIrisDesc>{0} this Dwarfgate's iris.</RG_ToggleIrisDesc>
 
-	<RG_OnlyOneSGPerMap>Only one of this kind of building can be built per map.</RG_OnlyOneSGPerMap>
-	<RG_PocketMapDisallowed>Dwarfgates cannot be placed on pocket maps.</RG_PocketMapDisallowed>
+	<RG_CannotPlace_Dwarfgate>Cannot place Dwarfgate: {0}</RG_CannotPlace_Dwarfgate>
+
+	<RG_OnlyOneSGPerMap>only one per map allowed.</RG_OnlyOneSGPerMap>
+	<RG_PocketMapDisallowed>not allowed in pockets of space.</RG_PocketMapDisallowed>
+
 	<RG_StargateHeldCannotUninstall>Cannot uninstall: Dwarfgate is currently active.</RG_StargateHeldCannotUninstall>
 	<RG_StargateHeldCannotReinstall>Cannot reinstall: Dwarfgate is currently active.</RG_StargateHeldCannotReinstall>
+
 	<RG_GateDialFailed>Could not activate Dwarfgate: Recieving gate no longer exists or is currently in use.</RG_GateDialFailed>
 	<RG_GateDialFailed_DHDDestroyed>{PAWN_nameDef} failed while attempting to dial home using a destroyed DHD.</RG_GateDialFailed_DHDDestroyed>
 
-	<RG_GeneratingStargateSite>Generating Dwarfgate site</RG_GeneratingStargateSite>
+	<RG_GeneratingGateSite>Generating Dwarfgate site</RG_GeneratingGateSite>
 
 	<RG_EnterStargateAction>Enter Dwarfgate</RG_EnterStargateAction>
 	<RG_EnterReceivingStargateAction>Vaporize yourself</RG_EnterReceivingStargateAction>
@@ -240,26 +246,33 @@
 
 	<!-- Stargate Caravan -->
 
-	<RG_NoGateInCaravan>Dwarfgate required in caravan inventory.</RG_NoGateInCaravan>
-	<RG_BlockedByLandmark>Cannot set up a Dwarfgate site on this landmark: {0}.</RG_BlockedByLandmark>
 	<RG_CreateSGSite>Create new Dwarfgate site</RG_CreateSGSite>
 	<RG_CreateSGSiteDesc>Create a new Dwarfgate site at this location.</RG_CreateSGSiteDesc>
+
+	<RG_CannotCreateTransientSite>Cannot place gate: {0}</RG_CannotCreateTransientSite>
+
+	<RG_NoGateInCaravan>Dwarfgate required in caravan.</RG_NoGateInCaravan>
+	<RG_BlockedByLandmark>cannot set-up on {0} landmarks.</RG_BlockedByLandmark>
+
 	<RG_RenameGateSite>Rename Dwarfgate site</RG_RenameGateSite>
 	<RG_RenameGateSiteDesc>Rename this Dwarfgate site to a more recognizable name.</RG_RenameGateSiteDesc>
-	<RG_GeneratingMapForTransitSite>Generating map for Dwarfgate site</RG_GeneratingMapForTransitSite>
+	<RG_GeneratingGateSite_Transit>Generating transit gate site</RG_GeneratingGateSite_Transit>
 
 	<!-- Stargate Glyphs -->
 
 	<RG_MessageSGQuestAlreadyActive>A Dwarfgate site is already active. Complete or abandon it before decoding another address.</RG_MessageSGQuestAlreadyActive>
 
-	<RG_Glyph_LandLocked>{0} (P)</RG_Glyph_LandLocked>
-	<RG_Glyph_SpaceLocked>{0} (O)</RG_Glyph_SpaceLocked>
+	<RG_Glyph_LandLocked>(P)</RG_Glyph_LandLocked>
+	<RG_Glyph_SpaceLocked>(O)</RG_Glyph_SpaceLocked>
 
 	<RG_CannotDecode>Cannot decode: {0}</RG_CannotDecode>
 	<RG_CannotDecode_Unknown>undecipherable.</RG_CannotDecode_Unknown>
 	<RG_CannotDecode_QuestActive>quest site already active.</RG_CannotDecode_QuestActive>
 	<RG_CannotDecode_Research>{0} not researched.</RG_CannotDecode_Research>
 	<RG_CannotDecode_Count>need at least {0} {1} (you have {2}).</RG_CannotDecode_Count>
+	<RG_Cannot_AddressBookFull>address book full.</RG_Cannot_AddressBookFull>
+
+	<RG_CannotDecode_JobFailedMessage>{PAWN_nameDef} failed to decode the symbols.</RG_CannotDecode_JobFailedMessage>
 
 	<RG_DecodeSGSymbols>Decode symbols</RG_DecodeSGSymbols>
 
@@ -270,18 +283,23 @@
 
 	<!-- DHD-->
 
+	<RG_DialGate>Dial</RG_DialGate>
 	<RG_CannotDial>Cannot dial: {0}</RG_CannotDial>
 
-	<RG_CannotDialNoGate>no Dwarfgate connected</RG_CannotDialNoGate>
-	<RG_CannotDialGateIsActive>Dwarfgate already active</RG_CannotDialGateIsActive>
+	<RG_CannotDialNoGate>no gate connected</RG_CannotDialNoGate>
+	<RG_CannotDialGateIsActive>gate already active</RG_CannotDialGateIsActive>
 	<RG_CannotDialNoDestinations>no available destinations</RG_CannotDialNoDestinations>
 	<RG_CannotDialIncoming>incoming wormhole</RG_CannotDialIncoming>
+	<RG_CannotDialNoModEquipment>missing mod equipment</RG_CannotDialNoModEquipment>
+	<RG_CannotDialQuestSiteLimitReached>locked out</RG_CannotDialQuestSiteLimitReached>
 
-	<RG_DialGate>Dial</RG_DialGate>
 	<RG_CloseStargate>Close Dwarfgate</RG_CloseStargate>
 	<RG_CloseStargateDesc>Close the linked Dwarfgate.</RG_CloseStargateDesc>
 	<RG_GateIsNotActive>Dwarfgate is not active.</RG_GateIsNotActive>
 	<RG_CannotCloseIncoming>Cannot disengage an incoming wormhole.</RG_CannotCloseIncoming>
+
+	<RG_DHD_AddressListCounter>Addresses known: {0} / {1}</RG_DHD_AddressListCounter>
+	<RG_DHD_ActiveQuestCounter>Restricted connections: {0} / {1}</RG_DHD_ActiveQuestCounter>
 
 	<RG_StargateSiteHidden>Site hidden</RG_StargateSiteHidden>
 

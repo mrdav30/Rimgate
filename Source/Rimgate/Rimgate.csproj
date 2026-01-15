@@ -414,6 +414,7 @@
     <Compile Include="Hediffs\Comps\HediffComp_Regeneration.cs" />
     <Compile Include="Misc\PawnRenderNode_BodySwapper.cs" />
     <Compile Include="Quests\QuestNode_Root_GateSite.cs" />
+    <Compile Include="Quests\QuestNode_SetSiteQuestId.cs" />
     <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteKinship_Social.cs" />

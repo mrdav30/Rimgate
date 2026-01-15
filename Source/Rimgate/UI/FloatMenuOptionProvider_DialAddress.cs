@@ -3,6 +3,7 @@ using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using Verse;
 using Verse.AI;
 
@@ -71,15 +72,9 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        var addressComp = StargateUtil.WorldComp;
-        if (addressComp == null)
-        {
-            Log.Error("Could not get WorldComp_StargateAddresses");
-            yield break;
-        }
-
-        addressComp.CleanupAddresses();
-        if (addressComp.AddressCount < 2) // home + another site
+        StargateUtil.CleanupAddresses();
+        var addressList = StargateUtil.WorldComp.AddressList.Where(t => t != control.GateAddress).ToList();
+        if (addressList == null || addressList.Count == 0)
         {
             yield return new FloatMenuOption(
                 "RG_CannotDial".Translate("RG_CannotDialNoDestinations".Translate()),
@@ -95,13 +90,33 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        foreach (PlanetTile tile in addressComp.AddressList)
+        foreach (PlanetTile tile in addressList)
         {
-            if (tile == control.GateAddress)
+            string designation = StargateUtil.GetStargateDesignation(tile);
+
+            if(StargateUtil.ActiveQuestSitesAtLimit)
+            {
+                bool isQuestSite = Find.WorldObjects.MapParentAt(tile) is WorldObject_GateQuestSite;
+                if (isQuestSite)
+                {
+                    yield return new FloatMenuOption(
+                        $"{"RG_DialGate".Translate()} {designation}"
+                        + $" ({"RG_CannotDial".Translate("RG_CannotDialQuestSiteLimit".Translate())})",
+                        null);
+                    continue;
+                }
+            }
+
+            if (tile.LayerDef.isSpace && !StargateUtil.ModificationEquipmentActive)
+            {
+                yield return new FloatMenuOption(
+                    $"{"RG_DialGate".Translate()} {designation}"
+                    + $" ({"RG_CannotDial".Translate("RG_CannotDialNoModEquipment".Translate())})",
+                    null);
                 continue;
+            }
 
             MapParent sgMap = Find.WorldObjects.MapParentAt(tile);
-            string designation = StargateUtil.GetStargateDesignation(tile);
             yield return new FloatMenuOption(
                 $"{"RG_DialGate".Translate()} {designation} ({sgMap.Label})",
                 () =>

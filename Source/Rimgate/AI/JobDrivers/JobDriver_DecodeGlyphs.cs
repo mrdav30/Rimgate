@@ -20,6 +20,15 @@ public class JobDriver_DecodeGlyphs : JobDriver
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
+        if (StargateUtil.AddressBookFull)
+        {
+            Messages.Message("RG_CannotDecode".Translate("RG_Cannot_AddressBookFull".Translate()),
+                             MessageTypeDefOf.RejectInput,
+                             historical: false);
+            EndJobWith(JobCondition.Incompletable);
+            yield break;
+        }
+
         this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
 
         Comp_GlyphParchment comp = thing.TryGetComp<Comp_GlyphParchment>();
@@ -42,7 +51,7 @@ public class JobDriver_DecodeGlyphs : JobDriver
                 var glyph = thing;
                 var landlocked = comp.PlanetLocked;
                 var spacelocked = comp.OrbitLocked;
-                if (!TryStartStargateQuest(landlocked, spacelocked))
+                if (!TryStartGateQuest(landlocked, spacelocked))
                 {
                     EndJobWith(JobCondition.Incompletable);
                     return;
@@ -61,21 +70,12 @@ public class JobDriver_DecodeGlyphs : JobDriver
     }
 
     // returns true if we actually spawned a new quest
-    private static bool TryStartStargateQuest(bool landLocked, bool spaceLocked)
+    private bool TryStartGateQuest(bool landLocked, bool spaceLocked)
     {
-        // Hard cap: only one SG site quest at a time
-        if (Utils.HasActiveQuestOf(RimgateDefOf.Rimgate_GateQuestScript_Planet))
-        {
-            Messages.Message("RG_MessageSGQuestAlreadyActive".Translate(),
-                             MessageTypeDefOf.RejectInput,
-                             historical: false);
-            return false;
-        }
-
         var slate = new Slate();
-        var def = landLocked
+        var def = landLocked && !spaceLocked
             ? RimgateDefOf.Rimgate_GateQuestScript_Planet
-            : spaceLocked
+            : spaceLocked && !landLocked
                 ? RimgateDefOf.Rimgate_GateQuestScript_Orbit
                 : Rand.Element(new[]
                 {
@@ -83,6 +83,16 @@ public class JobDriver_DecodeGlyphs : JobDriver
                     RimgateDefOf.Rimgate_GateQuestScript_Orbit
                 });
         Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(def, slate);
+
+        if(quest.State != QuestState.Ongoing)
+        {
+            Log.ErrorOnce("Failed to start gate quest from decoding glyphs.", 12345678);
+            Messages.Message("RG_CannotDecode_JobFailedMessage".Translate(pawn.Named("PAWN")),
+                             MessageTypeDefOf.RejectInput,
+                             historical: false);
+            return false;
+        }
+
         QuestUtility.SendLetterQuestAvailable(quest);
         return true;
     }

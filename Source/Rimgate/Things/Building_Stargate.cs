@@ -22,6 +22,8 @@ public class Building_Stargate_Ext : DefModExtension
 
     public bool explodeOnUse = false;
 
+    public Color modActivatedColor = new Color(0.447f, 0.44f, 0.08f);
+
     public GraphicData puddleGraphicData;
 
     public GraphicData irisGraphicData;
@@ -123,6 +125,15 @@ public class Building_Stargate : Building
 
     public bool WantsIrisToggled => _wantsIrisToggled;
 
+    public bool IsHomeGate
+    {
+        get
+        {
+            return Map?.Parent is not WorldObject_GateQuestSite
+                && Map?.Parent is not WorldObject_GateTransitSite;
+        }
+    }
+
     public CompPowerTrader PowerTrader => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
     public CompTransporter Transporter => _cachedTransporter ??= GetComp<CompTransporter>();
@@ -165,7 +176,7 @@ public class Building_Stargate : Building
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        if(GetStargateOnMap(map) != null)
+        if (GetStargateOnMap(map) != null)
         {
             Log.Warning($"Rimgate :: Attempted to spawn a second active stargate {this} on map {map}. Destroying the new instance.");
             Destroy(DestroyMode.Vanish);
@@ -183,7 +194,7 @@ public class Building_Stargate : Building
         }
 
         GateAddress = Map?.Tile ?? PlanetTile.Invalid;
-        if(GateAddress.Valid)
+        if (GateAddress.Valid)
             StargateUtil.AddGateAddress(GateAddress);
 
         if (IsActive)
@@ -207,12 +218,22 @@ public class Building_Stargate : Building
                 + $" sgactive={IsActive},"
                 + $" connectgate={ConnectedGate},"
                 + $" connectaddress={ConnectedAddress},"
-                + $" mapparent={Map.Parent}");
+                + $" mapparent={Map.Parent},"
+                + $" isHomeGate={IsHomeGate}");
     }
 
     protected override void Tick()
     {
         base.Tick();
+
+        if (this.IsHashIntervalTick(GenTicks.TickRareInterval))
+        {
+            var colorComp = GetComp<CompColorable>();
+            if (StargateUtil.ModificationEquipmentActive && !colorComp.Active)
+                colorComp.SetColor(Props.modActivatedColor);
+            else if (!StargateUtil.ModificationEquipmentActive && colorComp.Active)
+                colorComp.Disable();
+        }
 
         if (PowerTrader != null)
         {
@@ -424,6 +445,9 @@ public class Building_Stargate : Building
 
         string address = StargateUtil.GetStargateDesignation(GateAddress);
         sb.AppendLine("RG_GateAddress".Translate(address));
+        if(StargateUtil.ModificationEquipmentActive)
+            sb.AppendLine("RG_ModificationEquipmentActive".Translate());
+
         if (!IsActive)
             sb.AppendLine("InactiveFacility".Translate().CapitalizeFirst());
         else
@@ -446,8 +470,6 @@ public class Building_Stargate : Building
         if (_ticksUntilOpen > 0)
             sb.AppendLine("RG_TimeUntilGateLock".Translate(_ticksUntilOpen.ToStringTicksToPeriod()));
 
-        return sb.ToString().TrimEndNewlines();
-
         if (HasIris && PowerTrader != null)
             sb.AppendLine(PowerTrader.CompInspectStringExtra());
 
@@ -456,13 +478,15 @@ public class Building_Stargate : Building
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
-        CleanupGate();
+        if (IsHomeGate)
+            CleanupGate();
         base.DeSpawn(mode);
     }
 
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {
-        CleanupGate();
+        if (!Spawned && IsHomeGate)
+            CleanupGate();
         base.Destroy(mode);
     }
 
@@ -607,7 +631,7 @@ public class Building_Stargate : Building
                     null);
 
             },
-            "RG_GeneratingStargateSite",
+            "RG_GeneratingGateSite",
             false,
             GameAndMapInitExceptionHandlers.ErrorWhileGeneratingMap,
             callback: delegate

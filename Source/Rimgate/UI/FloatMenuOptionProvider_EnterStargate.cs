@@ -47,7 +47,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
 
         if (!context.IsMultiselect)
         {
-            if (!StargateUtil.CanEnterGate(pawn, gate))
+            if (!pawn.CanReach(gate, PathEndMode.ClosestTouch, Danger.Deadly))
             {
                 yield return new FloatMenuOption("CannotEnterPortal".Translate(gate.Label) + ": " + "NoPath".Translate(), null);
                 yield break;
@@ -57,7 +57,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
         tmpGateEnteringPawns.Clear();
         foreach (Pawn validSelectedPawn in context.ValidSelectedPawns)
         {
-            if (StargateUtil.CanEnterGate(pawn, gate))
+            if (validSelectedPawn.CanReach(gate, PathEndMode.ClosestTouch, Danger.Deadly))
                 tmpGateEnteringPawns.Add(validSelectedPawn);
         }
 

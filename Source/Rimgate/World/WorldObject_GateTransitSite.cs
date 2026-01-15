@@ -30,14 +30,14 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     public string InspectLabel => Label;
 
     public bool HasGate => Map != null
-    ? Building_Stargate.GetStargateOnMap(Map) != null
-    : _lastKnownHasGate;
+        ? Building_Stargate.GetStargateOnMap(Map) != null
+        : _lastKnownHasGate;
 
     public bool HasDhd => Map != null
         ? Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice) != null
         : _lastKnownHasDhd;
 
-    private const float LootChanceItems = 0.35f;
+    private const float LootChanceItems = 0.0035f;
 
     private List<TransitStoredThing> _storedThings = new();
 
@@ -49,8 +49,15 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
 
     private bool _wasLooted;
 
-    private static bool IsInfraDef(ThingDef def) =>
-        def == RimgateDefOf.Rimgate_Dwarfgate || def == RimgateDefOf.Rimgate_DialHomeDevice;
+    // anything else can be removed by scavengers
+    private static bool IsImportant(ThingDef def) => def == RimgateDefOf.Rimgate_Dwarfgate 
+        || def == RimgateDefOf.Rimgate_DialHomeDevice;
+
+    public override void SpawnSetup()
+    {
+        // register gate address for this site since gate is placed during mapgen
+        StargateUtil.AddGateAddress(Tile);
+    }
 
     public override string GetInspectString()
     {
@@ -68,10 +75,43 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
             + "RG_SiteLoadout".Translate(state);
     }
 
-    public override void SpawnSetup()
+    public override void PostMapGenerate()
     {
-        base.SpawnSetup();
-        StargateUtil.AddGateAddress(Tile);
+        base.PostMapGenerate();
+
+        // Clear hostiles
+        var toWipe = Map.mapPawns.AllPawnsSpawned
+            .Where(p => !p.Faction.IsOfPlayerFaction() && p.HostileTo(Faction.OfPlayer))
+            .ToList();
+        foreach (var p in toWipe) p.Destroy();
+
+        // Salvage/place infra according to initial loadout
+        ValidateGateOnMap();
+
+        // Restore cached things (near gate if possible)
+        RestoreCachedThings();
+
+        // Inform the player if scavengers helped themselves while they were gone.
+        if (_wasLooted)
+        {
+            Find.LetterStack.ReceiveLetter(
+                "RG_LetterTransitSiteLootedLabel".Translate(),
+                "RG_LetterTransitSiteLootedText".Translate(Label),
+                LetterDefOf.NegativeEvent,
+                new LookTargets(Map.Center, Map));
+
+            _wasLooted = false;
+        }
+
+        RefreshPresenceCache();
+    }
+
+    public override void Notify_MyMapAboutToBeRemoved()
+    {
+        var gate = Building_Stargate.GetStargateOnMap(Map);
+        if (gate != null)
+            gate.CloseStargate(gate.ConnectedGate != null);
+        base.Notify_MyMapAboutToBeRemoved();
     }
 
     public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
@@ -93,7 +133,7 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
 
             if (_storedThings.Count > 0)
             {
-                int removed = _storedThings.RemoveAll(s => !IsInfraDef(s.Def) && Rand.Value < LootChanceItems);
+                int removed = _storedThings.RemoveAll(s => !IsImportant(s.Def) && Rand.Chance(LootChanceItems));
 
                 if (removed > 0)
                     _wasLooted = true;
@@ -136,35 +176,10 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
         _lastKnownHasDhd = sawDhd;
     }
 
-    public override void PostMapGenerate()
+    public override void Destroy()
     {
-        base.PostMapGenerate();
-
-        // Clear hostiles
-        var toWipe = Map.mapPawns.AllPawnsSpawned
-            .Where(p => !p.Faction.IsOfPlayerFaction() && p.HostileTo(Faction.OfPlayer))
-            .ToList();
-        foreach (var p in toWipe) p.Destroy();
-
-        // Salvage/place infra according to initial loadout
-        ValidateGateOnMap();
-
-        // Restore cached things (near gate if possible)
-        RestoreCachedThings();
-
-        // Inform the player if scavengers helped themselves while they were gone.
-        if (_wasLooted)
-        {
-            Find.LetterStack.ReceiveLetter(
-                "RG_LetterTransitSiteLootedLabel".Translate(),
-                "RG_LetterTransitSiteLootedText".Translate(Label),
-                LetterDefOf.NegativeEvent,
-                new LookTargets(Map.Center, Map));
-
-            _wasLooted = false;
-        }
-
-        RefreshPresenceCache();
+        StargateUtil.RemoveGateAddress(Tile);
+        base.Destroy();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -219,12 +234,6 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
         if (Map == null) return;
         _lastKnownHasGate = Building_Stargate.GetStargateOnMap(Map) != null;
         _lastKnownHasDhd = Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice) != null;
-    }
-
-    public override void Destroy()
-    {
-        base.Destroy();
-        StargateUtil.RemoveGateAddress(Tile);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()

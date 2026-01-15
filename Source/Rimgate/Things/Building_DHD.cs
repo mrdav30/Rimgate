@@ -85,18 +85,27 @@ public class Building_DHD : Building
 
     }
 
-    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+    protected override void DrawAt(Vector3 drawLoc, bool flip = false)
     {
-        if (_hadActiveModificationEquipment)
-            StargateUtil.SetModificationEquipmentActive(false);
-        base.DeSpawn(mode);
-    }
+        base.DrawAt(drawLoc, flip);
 
-    public override void ExposeData()
-    {
-        base.ExposeData();
-        Scribe_Values.Look(ref _hadActiveModificationEquipment, "hadActiveModificationEquipment", false);
-        Scribe_Values.Look(ref LastDialledAddress, "lastDialledAddress");
+        var active = ActiveGraphic;
+        if (active == null)
+            return;
+
+        var control = LinkedStargate;
+        if (control == null)
+            return;
+
+        if (!control.IsActive || !Powered) return;
+
+        var rot = Rotation;
+        var drawOffset = def.graphicData.DrawOffsetForRot(rot);
+
+        var posAbove = Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) + drawOffset;
+
+        // highlight floats above the dhd.
+        active.Draw(Utils.AddY(posAbove, +0.01f), rot, this);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -168,27 +177,31 @@ public class Building_DHD : Building
         yield return toggleIrisCmd;
     }
 
-    protected override void DrawAt(Vector3 drawLoc, bool flip = false)
+    public override string GetInspectString()
     {
-        base.DrawAt(drawLoc, flip);
+        StringBuilder sb = new StringBuilder(base.GetInspectString());
+        if(sb.Length > 0)
+            sb.AppendLine();
 
-        var active = ActiveGraphic;
-        if(active == null)
-            return;
+        // Address list and active quest counters, minus 1 to exclude the current gate's own address.
+        sb.AppendLine("RG_DHD_AddressListCounter".Translate(StargateUtil.AddressCount - 1, StargateUtil.MaxAddresses - 1));
+        sb.AppendLine("RG_DHD_ActiveQuestCounter".Translate(StargateUtil.ActiveQuestSiteCount, StargateUtil.MaxActiveQuestSiteCount));
 
-        var control = LinkedStargate;
-        if (control == null)
-            return;
+        return sb.ToString().TrimEndNewlines();
+    }
 
-        if (!control.IsActive || !Powered) return;
+    public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+    {
+        if (_hadActiveModificationEquipment)
+            StargateUtil.SetModificationEquipmentActive(false);
+        base.DeSpawn(mode);
+    }
 
-        var rot = Rotation;
-        var drawOffset = def.graphicData.DrawOffsetForRot(rot);
-
-        var posAbove = Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingOnTop) + drawOffset;
-
-        // highlight floats above the dhd.
-        active.Draw(Utils.AddY(posAbove, +0.01f), rot, this);
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref _hadActiveModificationEquipment, "hadActiveModificationEquipment", false);
+        Scribe_Values.Look(ref LastDialledAddress, "lastDialledAddress");
     }
 
     private bool TryGetLinkedStargate(out Building_Stargate gate)

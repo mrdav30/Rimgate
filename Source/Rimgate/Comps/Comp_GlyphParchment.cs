@@ -18,9 +18,9 @@ public class Comp_GlyphParchment : ThingComp
     public override string TransformLabel(string label)
     {
         if (PlanetLocked)
-            return "RG_Glyph_LandLocked".Translate(label);
+            return $"{label} {"RG_Glyph_LandLocked".Translate(label)}";
         if (OrbitLocked)
-            return "RG_Glyph_SpaceLocked".Translate(label);
+            return $"{label} {"RG_Glyph_SpaceLocked".Translate(label)}";
 
         return label;
     }
@@ -40,7 +40,7 @@ public class Comp_GlyphParchment : ThingComp
         }
 
         string researchReason = !ResearchUtil.GlyphDecipheringComplete
-            ? "RG_CannotDecode".Translate("RG_CannotDecode_Research".Translate(RimgateDefOf.Rimgate_GlyphDeciphering.label))
+            ? "RG_CannotDecode_Research".Translate(RimgateDefOf.Rimgate_GlyphDeciphering.label)
             : OrbitLocked && !ResearchUtil.GateModificationComplete
                 ? "RG_CannotDecode_Unknown".Translate()
                 : null;
@@ -51,9 +51,9 @@ public class Comp_GlyphParchment : ThingComp
             yield break;
         }
 
-        if (Utils.HasActiveQuestOf(RimgateDefOf.Rimgate_GateQuestScript_Planet))
+        if(StargateUtil.AddressBookFull)
         {
-            yield return new FloatMenuOption("RG_CannotDecode".Translate("RG_CannotDecode_QuestActive".Translate()), null);
+            yield return new FloatMenuOption("RG_CannotDecode".Translate("RG_Cannot_AddressBookFull".Translate()), null);
             yield break;
         }
 
@@ -64,7 +64,7 @@ public class Comp_GlyphParchment : ThingComp
                 : null;
         var label = "RG_DecodeSGSymbols".Translate();
         if (!postfix.NullOrEmpty())
-            label += $" ({postfix})";
+            label += $" {postfix}";
 
         yield return new FloatMenuOption(label, () =>
         {

@@ -15,11 +15,11 @@ public class WorldObject_GateQuestSite : Site
 
     private bool _mapHidden;
 
-    private Quest _questCached;
+    private Quest _cachedQuest;
 
     public override void SpawnSetup()
     {
-        base.SpawnSetup();
+        // register gate address for this site since gate is placed during mapgen
         StargateUtil.AddGateAddress(Tile);
     }
 
@@ -29,7 +29,7 @@ public class WorldObject_GateQuestSite : Site
 
         if (Map == null) return;
 
-        bool allowPeek = StargateUtil.ModificationEquipmentActive();
+        bool allowPeek = StargateUtil.ModificationEquipmentActive;
         bool nobodyVisible = !Map.mapPawns.AnyPawnBlockingMapRemoval;
 
         // If no pawns, no active gate, and we’re still showing this map: hide + pop to world
@@ -37,10 +37,19 @@ public class WorldObject_GateQuestSite : Site
         {
             // Hide from colonist bar
             if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Hiding gate quest site map at tile {Tile} due to: " +
-                    $"map hidden - {_mapHidden}, allow peek - {allowPeek}, nobody visible - {nobodyVisible}");
+                Log.Message($"Rimgate :: Hiding gate quest site map at tile {Tile} due to: " 
+                    + $"map hidden - {_mapHidden}, allow peek - {allowPeek}, nobody visible - {nobodyVisible}");
             Find.ColonistBar.MarkColonistsDirty();
             _mapHidden = true;
+        }
+
+        if(_mapHidden && allowPeek) {            
+            // Reveal to colonist bar
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: Revealing gate quest site map at tile {Tile} due to: " 
+                    + $"map hidden - {_mapHidden}, allow peek - {allowPeek}");
+            Find.ColonistBar.MarkColonistsDirty();
+            _mapHidden = false;
         }
 
         // If the player is currently looking at this map, kick them out to the world
@@ -68,12 +77,18 @@ public class WorldObject_GateQuestSite : Site
         _mapHidden = false;
     }
 
+    public override void PostMapGenerate()
+    {
+        StargateUtil.IncrementQuestSiteCount();
+        base.PostMapGenerate();
+    }
+
     public override void Notify_MyMapAboutToBeRemoved()
     {
         var gate = Building_Stargate.GetStargateOnMap(Map);
         if (gate != null)
-            gate.CleanupGate();
-
+            gate.CloseStargate(gate.ConnectedGate != null);
+        StargateUtil.DecrementQuestSiteCount();
         base.Notify_MyMapAboutToBeRemoved();
     }
 
@@ -81,8 +96,7 @@ public class WorldObject_GateQuestSite : Site
     {
         alsoRemoveWorldObject = false;
         // only removed when quest ends and no pawns
-        var quest = ResolveQuest();
-        if (quest != null && quest.State == QuestState.Ongoing)
+        if (TryResolveQuest(out Quest quest) && quest.State == QuestState.Ongoing)
             return false;
 
         if (Map.mapPawns.AnyPawnBlockingMapRemoval)
@@ -105,9 +119,15 @@ public class WorldObject_GateQuestSite : Site
         return true;
     }
 
+    public override void Destroy()
+    {
+        StargateUtil.RemoveGateAddress(Tile);
+        base.Destroy();
+    }
+
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        var hideMap = !StargateUtil.ModificationEquipmentActive();
+        var hideMap = !StargateUtil.ModificationEquipmentActive;
         foreach (var g in base.GetGizmos())
         {
             // lock "CommandShowMap" behind gate mod equipment or active gate
@@ -128,8 +148,7 @@ public class WorldObject_GateQuestSite : Site
             icon = RimgateTex.AbandonStargateSite,
             action = () =>
             {
-                var quest = ResolveQuest();
-                if (quest != null && quest.State == QuestState.Ongoing)
+                if (TryResolveQuest(out Quest quest) && quest.State == QuestState.Ongoing)
                 {
                     quest.End(QuestEndOutcome.Fail, false, false);
                     if (HasMap)
@@ -148,17 +167,35 @@ public class WorldObject_GateQuestSite : Site
         yield return abandon;
     }
 
-    private Quest ResolveQuest()
+    private bool TryResolveQuest(out Quest quest)
     {
-        if (_questCached != null) return _questCached;
-        if (QuestId == -1) return null;
+        quest = null;
+        if (_cachedQuest != null)
+        {
+            quest = _cachedQuest;
+            return true;
+        }
 
-        _questCached = Find.QuestManager.QuestsListForReading
+        // stale id
+        if (QuestId == -1)
+        {
+            _cachedQuest = null;
+            return false;
+        }
+
+        _cachedQuest = Find.QuestManager.QuestsListForReading
             .FirstOrDefault(q =>
                 q.id == QuestId
                 && q.State == QuestState.Ongoing);
-        if (_questCached == null) QuestId = -1; // stale id
-        return _questCached;
+
+        if (_cachedQuest == null)
+        {
+            QuestId = -1;
+            return false;
+        }
+
+        quest = _cachedQuest;
+        return true;
     }
 
     public override void ExposeData()

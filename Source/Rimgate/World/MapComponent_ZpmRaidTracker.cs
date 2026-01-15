@@ -93,6 +93,13 @@ public class MapComponent_ZpmRaidTracker : MapComponent
         slate.Set("points", StorytellerUtility.DefaultThreatPointsNow(map));
 
         Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(RimgateDefOf.Rimgate_ProtectZPM, slate);
+
+        if(quest.State != QuestState.Ongoing)
+        {
+            Log.ErrorOnce("Failed to start ZPM protection quest.", 12345678);
+            return;
+        }
+
         QuestUtility.SendLetterQuestAvailable(quest);
         _questCached = quest;
         _questId = quest.id;

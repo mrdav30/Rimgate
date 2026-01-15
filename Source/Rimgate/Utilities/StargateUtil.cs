@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -13,15 +14,30 @@ namespace Rimgate;
 
 public static class StargateUtil
 {
-    public const string Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // TODO: move this to mod config
+    public const int MaxAddresses = 11;
 
-    public static WorldComp_StargateAddresses WorldComp => _cachedWorldComp ??= Find.World.GetComponent<WorldComp_StargateAddresses>();
+    public const int MaxActiveQuestSiteCount = 2;
+
+    public const string Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private const int MaxGateSearchRadius = 50;
 
     private const int MaxTries = 2000;
 
+    public static WorldComp_StargateAddresses WorldComp => _cachedWorldComp ??= Find.World.GetComponent<WorldComp_StargateAddresses>();
+
     private static WorldComp_StargateAddresses _cachedWorldComp;
+
+    public static bool ModificationEquipmentActive => WorldComp?.ModificationEquipmentActive == true;
+
+    public static int AddressCount => WorldComp?.AddressList.Count ?? 0;
+
+    public static bool AddressBookFull => AddressCount >= MaxAddresses;
+
+    public static int ActiveQuestSiteCount => WorldComp?.ActiveQuestSiteCount ?? 0;
+
+    public static bool ActiveQuestSitesAtLimit => ActiveQuestSiteCount >= MaxActiveQuestSiteCount;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool TryGetActiveGateOnMap(Map map, out Building_Stargate gate)
@@ -31,33 +47,80 @@ public static class StargateUtil
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool CanEnterGate(Pawn pawn, Building_Stargate gate)
-    {
-        return pawn.CanReach(gate, PathEndMode.ClosestTouch, Danger.Deadly);
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddGateAddress(PlanetTile address)
     {
-        if (WorldComp != null)
-            WorldComp.AddAddress(address);
+        bool valid = WorldComp != null
+            && !AddressBookFull
+            && address.Valid
+            && !WorldComp.AddressList.Contains(address);
+        if (valid)
+            WorldComp.AddressList.Add(address);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void RemoveGateAddress(PlanetTile address)
     {
         if (WorldComp != null)
-            WorldComp.RemoveAddress(address);
+            WorldComp.AddressList.Remove(address);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool ModificationEquipmentActive() => WorldComp?.ModificationEquipmentActive == true;
+    public static void CleanupAddresses()
+    {
+        WorldComp.AddressList.RemoveAll(tile =>
+        {
+            if (!IsValidAddress(tile))
+            {
+                if (RimgateMod.Debug)
+                    Log.Message($"Rimgate :: Gate Address Cleanup: Removing invalid address at tile {tile}");
+                return true;
+            }
+            return false;
+        });
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void IncrementQuestSiteCount()
+    {
+        if (WorldComp != null)
+            WorldComp.ActiveQuestSiteCount = Mathf.Min(WorldComp.ActiveQuestSiteCount + 1, MaxActiveQuestSiteCount);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void DecrementQuestSiteCount()
+    {
+        if (WorldComp != null)
+            WorldComp.ActiveQuestSiteCount = Mathf.Max(WorldComp.ActiveQuestSiteCount - 1, 0);
+    }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void SetModificationEquipmentActive(bool status)
     {
         if (WorldComp != null)
             WorldComp.ModificationEquipmentActive = status;
+    }
+
+    public static bool IsValidAddress(PlanetTile address)
+    {
+        var mp = Find.WorldObjects.MapParentAt(address);
+        return mp switch
+        {
+            null => false,
+            { HasMap: true } => true,
+            WorldObject_GateTransitSite => true,
+            WorldObject_GateQuestSite => true,
+            Site s when SiteHasPlayerPresence(s) => true,
+            _ => false
+        };
+    }
+
+    public static bool SiteHasPlayerPresence(Site site)
+    {
+        if (site == null || !site.HasMap)
+            return false;
+
+        Map map = site.Map;
+        return map != null && map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer).Any();
     }
 
     public static string GetStargateDesignation(PlanetTile address)

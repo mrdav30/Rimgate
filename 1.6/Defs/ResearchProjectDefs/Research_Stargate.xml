@@ -15,6 +15,10 @@
 		<techLevel>Medieval</techLevel>
 		<researchViewX>0.00</researchViewX>
 		<researchViewY>0.00</researchViewY>
+
+		<discoveredLetterTitle>About: Glyph Deciphering</discoveredLetterTitle>
+		<discoveredLetterText>Your researchers have cracked the code behind the glyphs adorning the Dwarfgate.\n\nThese symbols are more than mere decoration; they represent coordinates and commands essential for operating the gate network.\n\nWith this newfound knowledge, your colony can now begin to unlock the secrets of gate travel.\n\nCaution is advised: some glyphs may lead to destinations best left unexplored.</discoveredLetterText>
+
 	</ResearchProjectDef>
 
 	<ResearchProjectDef Name="Rimgate_ResearchBase" Abstract="True">
@@ -102,8 +106,8 @@
 		<requiredAnalyzed>
 			<li>Rimgate_DialHomeDevice</li>
 		</requiredAnalyzed>
-		<discoveredLetterTitle>About: Replacement DHD</discoveredLetterTitle>
-		<discoveredLetterText>Through painstaking analysis — and at least one accidental power surge — your researchers have created a Tau’ri replacement for the ancient Dwarfgate dialer.\n\nIt’s not elegant, but it *works*: no line-of-sight needed, extended range, and full remote control of the gate’s iris. A triumph of modern engineering and excessive coffee consumption.\n\nJust don’t unplug it — the hum means it’s working.\nNote: Your researchers also discovered that with this deeper understanding, they can train field members to use a destroyed DHD to directly interface with a gate and dial home in case of emergency.</discoveredLetterText>
+		<discoveredLetterTitle>About: DHD Logic</discoveredLetterTitle>
+		<discoveredLetterText>Through painstaking analysis — and at least one accidental power surge — your researchers have created a Tau’ri replacement for the ancient Dwarfgate dialer.\n\nIt’s not elegant, but it *works*: no line-of-sight needed, extended range, and full remote control of the gate’s iris. A triumph of modern engineering and excessive coffee consumption.\n\nJust don’t unplug it — the hum means it’s working.\n\nNote: Your researchers also believe they can train field members how to salvage destroyed DHDs and hijack a direct gate interface link that will allow dialing out in case of emergency.</discoveredLetterText>
 		<generalRules>
 			<rulesStrings>
 				<!-- Subject -->
