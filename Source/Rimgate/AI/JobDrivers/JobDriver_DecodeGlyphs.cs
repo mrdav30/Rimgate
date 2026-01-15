@@ -51,6 +51,20 @@ public class JobDriver_DecodeGlyphs : JobDriver
                 var glyph = thing;
                 var landlocked = comp.PlanetLocked;
                 var spacelocked = comp.OrbitLocked;
+
+                // Random chance of failure based on pawn skill:
+                // - Uses Intellectual skill (research/decoding-adjacent).
+                // - Failure chance decreases with higher skill.
+                // - Adds small bonus/penalty based on manipulation, with a small random factor.
+                if (!RollDecodeSuccess(pawn))
+                {
+                    Messages.Message("RG_CannotDecode_JobFailedMessage".Translate(pawn.Named("PAWN")),
+                                     MessageTypeDefOf.RejectInput,
+                                     historical: false);
+                    EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
+
                 if (!TryStartGateQuest(landlocked, spacelocked))
                 {
                     EndJobWith(JobCondition.Incompletable);
@@ -84,7 +98,7 @@ public class JobDriver_DecodeGlyphs : JobDriver
                 });
         Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(def, slate);
 
-        if(quest.State != QuestState.Ongoing)
+        if (quest.State != QuestState.Ongoing)
         {
             Log.ErrorOnce("Failed to start gate quest from decoding glyphs.", 12345678);
             Messages.Message("RG_CannotDecode_JobFailedMessage".Translate(pawn.Named("PAWN")),
@@ -95,5 +109,31 @@ public class JobDriver_DecodeGlyphs : JobDriver
 
         QuestUtility.SendLetterQuestAvailable(quest);
         return true;
+    }
+
+    private static bool RollDecodeSuccess(Pawn p)
+    {
+        // If skill tracking is disabled or pawn is missing skills, assume success.
+        if (p?.skills == null)
+            return true;
+
+        int intellectual = p.skills.GetSkill(SkillDefOf.Intellectual)?.Level ?? 0;
+
+        // Base failure chance at skill 0, decreasing linearly to a floor at skill 20.
+        // Skill 0  => 35% fail
+        // Skill 10 => 17.5% fail
+        // Skill 20 => 0% fail (floor)
+        float failChance = Mathf.Lerp(0.35f, 0f, intellectual / 20f);
+
+        // Small modifier from manipulation (fine motor / careful work).
+        // Typical human manipulation ~1.0. Below 1 increases fail chance, above 1 decreases.
+        float manipulation = p.health?.capacities?.GetLevel(PawnCapacityDefOf.Manipulation) ?? 1f;
+        failChance *= Mathf.Lerp(1.25f, 0.85f, Mathf.InverseLerp(0.5f, 1.2f, manipulation));
+
+        // Tiny randomness so similarly-skilled pawns don't feel identical.
+        failChance *= Rand.Range(0.9f, 1.1f);
+
+        failChance = Mathf.Clamp01(failChance);
+        return Rand.Chance(1f - failChance);
     }
 }
