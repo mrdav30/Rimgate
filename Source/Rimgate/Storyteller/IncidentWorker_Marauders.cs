@@ -77,42 +77,48 @@ public class IncidentWorker_Marauders : IncidentWorker_RaidEnemy
         }
 
         GenerateRaidLoot(parms, parms.points, threatPawns);
-        TaggedString letterLabel = GetLetterLabel(parms);
-        TaggedString letterText = GetLetterText(parms, threatPawns);
-        PawnRelationUtility.Notify_PawnsSeenByPlayer_Letter(
-            threatPawns,
-            ref letterLabel,
-            ref letterText,
-            GetRelatedPawnsInfoLetterText(parms),
-            true,
-            true);
-        List<TargetInfo> targetInfoList = new List<TargetInfo>();
-        if (parms.pawnGroups != null)
-        {
-            List<List<Pawn>> splitPawns = IncidentParmsUtility.SplitIntoGroups(threatPawns, parms.pawnGroups);
-            List<Pawn> maxPawns = GenCollection.MaxBy<List<Pawn>, int>(splitPawns, (x => x.Count));
-            if (GenCollection.Any<Pawn>(maxPawns))
-                targetInfoList.Add(maxPawns[0]);
 
-            for (int index = 0; index < splitPawns.Count; ++index)
+        // only send a letter if the player can see the raiders arrive
+        bool someoneVisible = (parms.target as Map)?.mapPawns.AnyPawnBlockingMapRemoval == true;
+        if (someoneVisible)
+        {
+            TaggedString letterLabel = GetLetterLabel(parms);
+            TaggedString letterText = GetLetterText(parms, threatPawns);
+            PawnRelationUtility.Notify_PawnsSeenByPlayer_Letter(
+                threatPawns,
+                ref letterLabel,
+                ref letterText,
+                GetRelatedPawnsInfoLetterText(parms),
+                true,
+                true);
+            List<TargetInfo> targetInfoList = new List<TargetInfo>();
+            if (parms.pawnGroups != null)
             {
-                if (splitPawns[index] != maxPawns && GenCollection.Any<Pawn>(splitPawns[index]))
-                    targetInfoList.Add(splitPawns[index][0]);
-            }
-        }
-        else if (GenCollection.Any<Pawn>(threatPawns))
-        {
-            foreach (Pawn pawn in threatPawns)
-                targetInfoList.Add(pawn);
-        }
+                List<List<Pawn>> splitPawns = IncidentParmsUtility.SplitIntoGroups(threatPawns, parms.pawnGroups);
+                List<Pawn> maxPawns = GenCollection.MaxBy<List<Pawn>, int>(splitPawns, (x => x.Count));
+                if (GenCollection.Any<Pawn>(maxPawns))
+                    targetInfoList.Add(maxPawns[0]);
 
-        SendStandardLetter(
-            letterLabel,
-            letterText,
-            GetLetterDef(),
-            parms,
-            targetInfoList,
-            Array.Empty<NamedArgument>());
+                for (int index = 0; index < splitPawns.Count; ++index)
+                {
+                    if (splitPawns[index] != maxPawns && GenCollection.Any<Pawn>(splitPawns[index]))
+                        targetInfoList.Add(splitPawns[index][0]);
+                }
+            }
+            else if (GenCollection.Any<Pawn>(threatPawns))
+            {
+                foreach (Pawn pawn in threatPawns)
+                    targetInfoList.Add(pawn);
+            }
+
+            SendStandardLetter(
+                letterLabel,
+                letterText,
+                GetLetterDef(),
+                parms,
+                targetInfoList,
+                Array.Empty<NamedArgument>());
+        }
 
         Thing target = null;
         if (parms.attackTargets != null && parms.attackTargets.Count > 0)

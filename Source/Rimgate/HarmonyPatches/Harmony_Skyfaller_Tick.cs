@@ -7,7 +7,7 @@ using VEF.Apparels;
 using Verse;
 using Verse.Sound;
 
-namespace Rimgate;
+namespace Rimgate.HarmonyPatches;
 
 [HarmonyPatch(typeof(Skyfaller), "Tick")]
 public class Patch_Skyfaller_Tick

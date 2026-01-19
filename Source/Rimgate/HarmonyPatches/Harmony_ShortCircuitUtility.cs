@@ -10,7 +10,7 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch(typeof(ShortCircuitUtility), "DrainBatteriesAndCauseExplosion")]
 public static class Harmony_ShortCircuitUtility
 {
-    static bool Prefix(
+    public static bool Prefix(
         PowerNet net,
         Building culprit,
         ref float totalEnergy,

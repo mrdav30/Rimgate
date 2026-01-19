@@ -34,10 +34,7 @@ public class GameCondition_StargatePsychicDrone : GameCondition_PsychicEmanation
     private void TryHoldLocalGate(Map map)
     {
         if (map == null) return;
-        var gate = map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
-                   .OfType<Building_Stargate>()
-                   .FirstOrDefault();
-
+        var gate = Building_Stargate.GetStargateOnMap(map);
         if (gate == null) return;
         _heldGate = gate;
 

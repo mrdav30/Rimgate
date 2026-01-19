@@ -7,11 +7,9 @@
         <thingClass>Rimgate.Building_Stargate</thingClass>
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
-        <constructEffect>ConstructMetal</constructEffect>
         <altitudeLayer>BuildingOnTop</altitudeLayer>
-        <fillPercent>0.20</fillPercent>
+        <fillPercent>1</fillPercent>
         <canOverlapZones>true</canOverlapZones>
-        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
         <passability>PassThroughOnly</passability>
         <pathCost>3</pathCost>
         <thingCategories>
@@ -21,17 +19,21 @@
         <tickerType>Normal</tickerType>
         <drawerType>RealtimeOnly</drawerType>
         <preventDroppingThingsOn>true</preventDroppingThingsOn>
+        <scatterableOnMapGen>false</scatterableOnMapGen>
         <hasInteractionCell>True</hasInteractionCell>
-        <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+        <interactionCellOffset>(0,0,0)</interactionCellOffset>
         <building>
+            <ai_chillDestination>false</ai_chillDestination>
             <ai_neverTrashThis>true</ai_neverTrashThis>
+            <deconstructible>false</deconstructible>
             <uninstallWork>6250</uninstallWork>
         </building>
         <placeWorkers>
-            <li>PlaceWorker_PreventInteractionSpotOverlap</li>
             <li>Rimgate.PlaceWorker_Stargate</li>
         </placeWorkers>
         <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <thingSetMakerTags Inherit="False" />
+        <tradeTags Inherit="False" />
         <comps>
             <li Class="CompProperties_Glower">
                 <glowRadius>0</glowRadius> <!-- This is changed in C# -->
@@ -55,7 +57,7 @@
         <description>An ancient alien construct capable of instantaneous transit, but unlike the legendary Stargates of myth, these “Dwarfgates” are smaller, dimmer cousins. Their wormhole lattice is sealed into a closed planetary network; attempts to dial off-world fizzle as if an unseen hand blocks the path.
             \n\nRumors whisper that the Archotechs themselves tampered with them, corralling their use to a single world for inscrutable ends. Stranger still, scattered reports claim there are hundreds of such gates buried across the Rim—drawing fortune-seekers, warlords, and scholars alike to uncover the reason why they were left here… and what they are meant to protect.
             \n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard... naked."</description>
-        <size>(5,1)</size>
+        <size>(5,2)</size>
         <graphicData>
             <texPath>Things/Building/Artifact/RGDwarfgate</texPath>
             <graphicClass>Graphic_Multi</graphicClass>
@@ -66,9 +68,11 @@
             <drawOffsetWest>(0,0,0)</drawOffsetWest>
             <drawOffsetEast>(0,0,0)</drawOffsetEast>
             <addTopAltitudeBias>true</addTopAltitudeBias>
+            <shadowData>
+                <volume>(4.5, 1, 1.5)</volume>
+            </shadowData>
         </graphicData>
-        <castEdgeShadows>true</castEdgeShadows>
-        <staticSunShadowHeight>1.0</staticSunShadowHeight>
+        <castEdgeShadows>false</castEdgeShadows>
         <blockLight>true</blockLight>
         <techLevel>Archotech</techLevel>
         <killedLeavings>
@@ -80,6 +84,7 @@
         <statBases>
             <MarketValue>30000</MarketValue>
             <MaxHitPoints>6000</MaxHitPoints>
+            <Beauty>20</Beauty>
             <Flammability>0</Flammability>
             <Mass>290</Mass>
             <MeditationFocusStrength>0.24</MeditationFocusStrength>
@@ -130,6 +135,8 @@
                     <graphicClass>Graphic_Multi</graphicClass>
                     <drawSize>(5,5)</drawSize>
                 </irisGraphicData>
+                <irisIconTexPath>UI/Button/RGIris_Close</irisIconTexPath>
+                <irisIconOpenTexPath>UI/Button/RGIris_Open</irisIconOpenTexPath>
                 <chevronHighlight>
                     <texPath>FX/RGStargateAncient_Active</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
@@ -174,6 +181,7 @@
         <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
         <altitudeLayer>Building</altitudeLayer>
         <preventDroppingThingsOn>true</preventDroppingThingsOn>
+        <scatterableOnMapGen>false</scatterableOnMapGen>
         <thingCategories>
             <li>Artifacts</li>
         </thingCategories>
@@ -182,8 +190,12 @@
         <drawerType>RealtimeOnly</drawerType>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+        <thingSetMakerTags Inherit="False" />
+        <tradeTags Inherit="False" />
         <building>
+            <ai_chillDestination>false</ai_chillDestination>
             <ai_neverTrashThis>true</ai_neverTrashThis>
+            <deconstructible>false</deconstructible>
             <uninstallWork>3250</uninstallWork>
         </building>
         <placeWorkers>

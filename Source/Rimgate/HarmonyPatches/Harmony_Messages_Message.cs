@@ -41,7 +41,8 @@ public static class Harmony_Messages_Message
         if (!info.IsValid)
             return false;
         MapParent mapParent = info.Map?.Parent ?? null;
-        if (mapParent == null || mapParent is not WorldObject_GateQuestSite)
+        bool nobodyVisible = info.Map?.mapPawns.AnyPawnBlockingMapRemoval ?? true;
+        if (mapParent == null || mapParent is not WorldObject_GateQuestSite || nobodyVisible)
             return false;
 
         if (RimgateMod.Debug)

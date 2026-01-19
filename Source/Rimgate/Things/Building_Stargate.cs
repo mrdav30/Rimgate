@@ -28,6 +28,10 @@ public class Building_Stargate_Ext : DefModExtension
 
     public GraphicData irisGraphicData;
 
+    public string irisIconTexPath;
+
+    public string irisIconOpenTexPath;
+
     public GraphicData chevronHighlight;
 
     public List<IntVec3> vortexPattern = new List<IntVec3>
@@ -103,7 +107,13 @@ public class Building_Stargate : Building
         }
     }
 
-    public Texture2D ToggleIrisIcon => _cachedIrisToggleIcon ??= ContentFinder<Texture2D>.Get(Props.irisGraphicData.texPath, true);
+    public Texture2D ToggleIrisIcon => _cachedIrisToggleIcon ??= !Props.irisIconTexPath.NullOrEmpty()
+        ? ContentFinder<Texture2D>.Get(Props.irisIconTexPath, true)
+        : null;
+
+    public Texture2D ToggleIrisOpenIcon => !Props.irisIconOpenTexPath.NullOrEmpty()
+        ? ContentFinder<Texture2D>.Get(Props.irisIconOpenTexPath, true)
+        : null;
 
     public bool Powered => PowerTrader == null || PowerTrader.PowerOn;
 
@@ -174,13 +184,43 @@ public class Building_Stargate : Building
 
     #region Building overrides and lifecycle
 
+    public sealed class VortexPathBlock
+    {
+        public readonly HashSet<int> CellIndices = new HashSet<int>();
+        public bool Active; // true only while dangerous (dial/open/vortex)
+    }
+
+    public static readonly Dictionary<int, VortexPathBlock> GlobalVortexCellsCache = new();
+
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         if (GetStargateOnMap(map) != null)
         {
             Log.Warning($"Rimgate :: Attempted to spawn a second active stargate {this} on map {map}. Destroying the new instance.");
-            Destroy(DestroyMode.Vanish);
+            Destroy(DestroyMode.KillFinalize);
             return;
+        }
+
+        GateAddress = map?.Tile ?? PlanetTile.Invalid;
+        if (Destroyed || Spawned || GateAddress == PlanetTile.Invalid)
+        {
+            Log.Error($"Rimgate :: Invalid gate address for stargate {this} on map {map}. Destroying.");
+            Destroy(DestroyMode.KillFinalize);
+            return;
+        }
+
+        StargateUtil.AddGateAddress(GateAddress);
+
+        int key = map.uniqueID;
+        if (!GlobalVortexCellsCache.TryGetValue(key, out var block))
+        {
+            block = new();
+            foreach (var cell in VortexCells)
+            {
+                if (!cell.InBounds(map)) continue;
+                block.CellIndices.Add(map.cellIndices.CellToIndex(cell));
+            }
+            GlobalVortexCellsCache[key] = block;
         }
 
         base.SpawnSetup(map, respawningAfterLoad);
@@ -192,10 +232,6 @@ public class Building_Stargate : Building
                 Log.Warning($"Rimgate :: attempting to fix null container for {this.ThingID}");
             _cachedTransporter.innerContainer = new ThingOwner<Thing>(_cachedTransporter);
         }
-
-        GateAddress = Map?.Tile ?? PlanetTile.Invalid;
-        if (GateAddress.Valid)
-            StargateUtil.AddGateAddress(GateAddress);
 
         if (IsActive)
         {
@@ -226,6 +262,9 @@ public class Building_Stargate : Building
     {
         base.Tick();
 
+        if(!Spawned)
+            return;
+
         if (this.IsHashIntervalTick(GenTicks.TickRareInterval))
         {
             var colorComp = GetComp<CompColorable>();
@@ -249,18 +288,23 @@ public class Building_Stargate : Building
                 PowerTrader.PowerOutput = -PowerTrader.Props.PowerConsumption;
         }
 
+        var ticket = Map.uniqueID;
         if (_ticksUntilOpen > 0)
         {
+            GlobalVortexCellsCache[ticket].Active = true;
             _ticksUntilOpen--;
-            if (_ticksUntilOpen == 0)
+            if (_ticksUntilOpen <= 0)
             {
                 _ticksUntilOpen = -1;
                 Open(_queuedAddress);
                 _queuedAddress = PlanetTile.Invalid;
             }
         }
+        else
+            GlobalVortexCellsCache[ticket].Active = false;
 
-        if (!IsActive) return;
+        if (!IsActive)
+            return;
 
         if (!_isIrisActivated && TicksSinceOpened < UnstableVortexInterval && TicksSinceOpened % 10 == 0)
             DoUnstableVortex();
@@ -346,7 +390,7 @@ public class Building_Stargate : Building
             {
                 defaultLabel = "RG_ToggleIris".Translate(action),
                 defaultDesc = "RG_ToggleIrisDesc".Translate(action),
-                icon = ToggleIrisIcon,
+                icon = _isIrisActivated && ToggleIrisOpenIcon != null ? ToggleIrisOpenIcon : ToggleIrisIcon,
                 isActive = () => _wantsIrisToggled,
                 toggleAction = delegate
                 {
@@ -420,20 +464,19 @@ public class Building_Stargate : Building
         var rot = Rotation;
         var drawOffset = def.graphicData.DrawOffsetForRot(rot);
 
-        var posBelow = Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingBelowTop) + drawOffset;
-        var posAbove = Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Item) + drawOffset;
+        var drawPos = Utils.AddY(drawLoc + drawOffset, AltitudeLayer.Item.AltitudeFor());
 
         // Puddle is slightly below the iris.
-        if (IsActive)
-            StargatePuddle?.Draw(Utils.AddY(posBelow, -0.02f), rot, this);
+        if (IsActive && !_isIrisActivated)
+            StargatePuddle?.Draw(Utils.AddY(drawPos, -0.02f), rot, this);
 
         // Iris sits a bit above the puddle.
         if (_isIrisActivated)
-            StargateIris?.Draw(Utils.AddY(posBelow, -0.01f), rot, this);
+            StargateIris?.Draw(Utils.AddY(drawPos, -0.01f), rot, this);
 
         // Chevron highlight floats above the gate/puddle/iris.
         if (IsActive)
-            ChevronHighlight?.Draw(Utils.AddY(posAbove, +0.01f), rot, this);
+            ChevronHighlight?.Draw(Utils.AddY(drawPos, 0.01f), rot, this);
     }
 
     public override string GetInspectString()
@@ -445,7 +488,7 @@ public class Building_Stargate : Building
 
         string address = StargateUtil.GetStargateDesignation(GateAddress);
         sb.AppendLine("RG_GateAddress".Translate(address));
-        if(StargateUtil.ModificationEquipmentActive)
+        if (StargateUtil.ModificationEquipmentActive)
             sb.AppendLine("RG_ModificationEquipmentActive".Translate());
 
         if (!IsActive)
@@ -478,6 +521,9 @@ public class Building_Stargate : Building
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
+        // Clean up global vortex cache
+        GlobalVortexCellsCache.Remove(Map.uniqueID);
+
         if (IsHomeGate)
             CleanupGate();
         base.DeSpawn(mode);
@@ -565,33 +611,8 @@ public class Building_Stargate : Building
         ConnectedAddress = PlanetTile.Invalid;
         ConnectedGate = null;  // local-only, no remote
 
-        EvacuateVortexPath();
-
         PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
         RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(this));
-        if (Glower != null)
-        {
-            Glower.Props.glowRadius = GlowRadius;
-            Glower.PostSpawnSetup(false);
-        }
-    }
-
-    public void OpenAsReceivingGate(Building_Stargate connectedGate, PlanetTile connectedAddress)
-    {
-        if (!connectedAddress.Valid) return;
-
-        IsActive = true;
-        IsReceivingGate = true;
-        ConnectedAddress = connectedAddress;
-        ConnectedGate = connectedGate;
-
-        if (Map == null || !Spawned) return;
-
-        EvacuateVortexPath();
-
-        PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
-        RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(this));
-
         if (Glower != null)
         {
             Glower.Props.glowRadius = GlowRadius;
@@ -603,6 +624,9 @@ public class Building_Stargate : Building
     {
         _queuedAddress = address;
         _ticksUntilOpen = delay;
+
+        // only evacuate if we know when it's opening
+        EvacuateVortexPath();
     }
 
     private void Open(PlanetTile address)
@@ -665,7 +689,7 @@ public class Building_Stargate : Building
         if (ConnectedAddress.Valid)
         {
             ConnectedGate = gate;
-            ConnectedGate.OpenAsReceivingGate(this, GateAddress);
+            ConnectedGate.FinalizeOpenReceivingGate(this, GateAddress);
         }
 
         PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
@@ -679,6 +703,28 @@ public class Building_Stargate : Building
 
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: finished opening gate {this}");
+    }
+
+    // called on the receiving gate by the dialing gate
+    private void FinalizeOpenReceivingGate(Building_Stargate connectedGate, PlanetTile connectedAddress)
+    {
+        if (!connectedAddress.Valid) return;
+
+        IsActive = true;
+        IsReceivingGate = true;
+        ConnectedAddress = connectedAddress;
+        ConnectedGate = connectedGate;
+
+        if (Map == null || !Spawned) return;
+
+        PuddleSustainer = RimgateDefOf.Rimgate_StargateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
+        RimgateDefOf.Rimgate_StargateOpen.PlayOneShot(SoundInfo.InMap(this));
+
+        if (Glower != null)
+        {
+            Glower.Props.glowRadius = GlowRadius;
+            Glower.PostSpawnSetup(false);
+        }
     }
 
     public void CloseStargate(bool closeOtherGate = false)
@@ -846,7 +892,7 @@ public class Building_Stargate : Building
         return true;
     }
 
-    public void MarkRedraftOnArrival(Thing t)
+    private void MarkRedraftOnArrival(Thing t)
     {
         _redraftOnArrival ??= new();
         _redraftOnArrival.Add(t.thingIDNumber);
@@ -899,90 +945,111 @@ public class Building_Stargate : Building
 
     #region Helpers
 
-    private void EvacuateVortexPath()
+    public void EvacuateVortexPath()
     {
-        var map = Map;
+        Map map = Map;
         if (map == null) return;
 
-        // Hash the path and mark reserved
-        // so we never place pawns back into it.
-        var vortexSet = new HashSet<IntVec3>();
+        // Build reserved set starting with vortex cells
+        var reserved = new HashSet<IntVec3>();
         foreach (var c in VortexCells)
-            if (c.InBounds(map)) vortexSet.Add(c);
+            if (c.InBounds(map))
+                reserved.Add(c);
 
-        if (vortexSet.Count == 0) return;
+        if (reserved.Count == 0) return;
 
-        // Collect pawns currently standing on any vortex cell
+        // Collect pawns standing on vortex cells
         var pawnsToMove = new List<Pawn>();
-        foreach (var cell in vortexSet)
+        foreach (var cell in reserved) // reserved currently == vortex cells
         {
             var things = map.thingGrid.ThingsListAtFast(cell);
             for (int i = 0; i < things.Count; i++)
-                if (things[i] is Pawn p && p.Spawned && !p.Dead) pawnsToMove.Add(p);
+            {
+                if (things[i] is Pawn p && p.Spawned && !p.Dead)
+                    pawnsToMove.Add(p);
+            }
         }
 
         if (pawnsToMove.Count == 0) return;
 
-        // Keep track of targets we’ve picked to avoid stacking multiple pawns
-        var reserved = new HashSet<IntVec3>(vortexSet);
+        // ticks until open + kawoosh duration + small buffer
+        int holdTicks = Math.Max(180, _ticksUntilOpen > 0 ? _ticksUntilOpen + 120 : 360);
 
-        foreach (var p in pawnsToMove)
+        for (int pi = 0; pi < pawnsToMove.Count; pi++)
         {
-            // Prefer same-room tiles if the pawn is in a room;
-            // otherwise any standable tile works.
-            Room room = p.Position.GetRoom(map);
+            Pawn p = pawnsToMove[pi];
+            IntVec3 origin = p.Position;
 
-            bool IsGood(IntVec3 c) =>
-                c.InBounds(map)
-                && c.Walkable(map)
-                && !reserved.Contains(c)
-                && !vortexSet.Contains(c)
-                && (room == null || c.GetRoom(map) == room);
+            // If pawn already stepped off the vortex between collection and now, skip.
+            if (!reserved.Contains(origin))
+                continue;
 
-            bool IsOkay(IntVec3 c) =>
-                c.InBounds(map)
-                && c.Walkable(map)
-                && !reserved.Contains(c)
-                && !vortexSet.Contains(c);
+            Room pawnRoom = origin.GetRoom(map); // may be null outdoors
 
-            IntVec3 best = IntVec3.Invalid;
+            IntVec3 bestGood = IntVec3.Invalid;
+            IntVec3 bestOkay = IntVec3.Invalid;
 
-            // Try to find a nearby safe cell
-            foreach (var c in GenRadial.RadialCellsAround(p.Position, 9, true))
+            int maxCells = GenRadial.NumCellsInRadius(9f);
+            for (int i = 0; i < maxCells; i++)
             {
-                if (IsGood(c))
+                IntVec3 c = origin + GenRadial.RadialPattern[i];
+
+                // cheap rejects first
+                if (!c.InBounds(map)) continue;
+                if (reserved.Contains(c)) continue;      // also excludes vortex cells
+                if (!c.Walkable(map)) continue;
+
+                // remember first "okay"
+                if (!bestOkay.IsValid)
+                    bestOkay = c;
+
+                // only pay room cost if we can benefit from it
+                if (pawnRoom != null && c.GetRoom(map) != pawnRoom)
+                    continue;
+
+                bestGood = c;
+                break; // closest good in radial order
+            }
+
+            IntVec3 best = bestGood.IsValid ? bestGood : bestOkay;
+
+            // Fallback 1: near the pawn (cheap and reduces weird pathing)
+            if (!best.IsValid)
+            {
+                // Try a small random search. Predicate is minimal; uses reserved as "unsafe".
+                if (!CellFinder.TryFindRandomCellNear(origin, map, 12,
+                        c => c.InBounds(map) && c.Walkable(map) && !reserved.Contains(c),
+                        out best))
                 {
-                    best = c;
-                    break;
+                    // Fallback 2: gate-facing adjacent safe cell
+                    best = Position + Rotation.FacingCell;
+                    if (!best.InBounds(map) || !best.Walkable(map) || reserved.Contains(best))
+                        continue; // give up on this pawn safely
                 }
             }
 
-            if (!best.IsValid)
-            {
-                foreach (var c in GenRadial.RadialCellsAround(p.Position, 9, true))
-                {
-                    if (IsOkay(c))
-                    {
-                        best = c;
-                        break;
-                    }
-                }
-            }
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: Evacuating pawn {p.LabelShort} from {origin} to {best}");
 
-            if (!best.IsValid)
-            {
-                // Worst case: drop somewhere near the gate
-                // but off the vortex
-                best = Utils.BestDropCellNearThing(this);
-                if (vortexSet.Contains(best)) best = Position;
-            }
+            // Force a job so the job system doesn't immediately override pathing.
+            var gotoJob = JobMaker.MakeJob(JobDefOf.Goto, best);
+            gotoJob.count = 1;
+            gotoJob.playerForced = true;
+            gotoJob.expiryInterval = holdTicks;
+            gotoJob.locomotionUrgency = LocomotionUrgency.Sprint;
+            gotoJob.checkOverrideOnExpire = true;
 
-            // Move the pawn and clear any current jobs/path
-            // to avoid rubber-banding back 
-            p.pather?.StopDead();
+            var waitJob = JobMaker.MakeJob(JobDefOf.Wait, best);
+            waitJob.count = 1;
+            waitJob.playerForced = true;
+            waitJob.expiryInterval = holdTicks;
+            waitJob.checkOverrideOnExpire = true;
+
             p.jobs?.StopAll();
-            p.pather.StartPath(best, PathEndMode.OnCell);
+            p.jobs.StartJob(gotoJob, JobCondition.InterruptForced, null, resumeCurJobAfterwards: false);
+            p.jobs.jobQueue.EnqueueLast(waitJob);
 
+            // Reserve the chosen destination so other evacuees don't stack.
             reserved.Add(best);
         }
     }

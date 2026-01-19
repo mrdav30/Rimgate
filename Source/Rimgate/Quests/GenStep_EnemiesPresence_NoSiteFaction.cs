@@ -46,7 +46,7 @@ public class GenStep_EnemiesPresence_NoSiteFaction : GenStep
 
         LordJob job = (siteFaction != null && faction == siteFaction)
                 ? (LordJob)new LordJob_DefendBase(faction, map.Center, 25000)
-                :  new LordJob_DefendPoint(cell, wanderRadius: 15f, defendRadius: 20f, addFleeToil: false);
+                :  new LordJob_DefendPoint(cell, wanderRadius: 12f, defendRadius: 12f, addFleeToil: false);
 
         Lord lord = LordMaker.MakeNewLord(faction, job, map);
 

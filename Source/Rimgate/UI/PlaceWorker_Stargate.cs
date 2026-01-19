@@ -35,7 +35,6 @@ public class PlaceWorker_Stargate : PlaceWorker
         Color ghostCol,
         Thing thing = null)
     {
-        base.DrawGhost(def, c, rot, ghostCol, thing);
         var props = def.GetModExtension<Building_Stargate_Ext>();
         if (props == null) return;
 
