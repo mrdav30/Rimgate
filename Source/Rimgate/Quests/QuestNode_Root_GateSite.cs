@@ -299,10 +299,10 @@ public class QuestNode_Root_GateSite : QuestNode
         }
 
         var points = slate.Get<float>("points", 0f);
-        minThreatPoints = Mathf.Max(minThreatPoints, points);
         var threatPoints = Find.Storyteller.difficulty.allowViolentQuests
-            ? ThreatPointsOverPointsCurve.Evaluate(minThreatPoints)
+            ? ThreatPointsOverPointsCurve.Evaluate(points)
             : 0f;
+        threatPoints = Mathf.Max(minThreatPoints, threatPoints);
         slate.Set(SitePointsAlias, threatPoints);
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: Using {points} points and {threatPoints} threat points for site generation.");

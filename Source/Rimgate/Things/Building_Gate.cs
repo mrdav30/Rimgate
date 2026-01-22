@@ -199,7 +199,7 @@ public class Building_Gate : Building
         if (GetGateOnMap(map) != null)
         {
             Log.Warning($"Rimgate :: Attempted to spawn a second active gate {this} on map {map}. Destroying the new instance.");
-            Destroy(DestroyMode.KillFinalize);
+            this.MakeMinified();
             return;
         }
 
@@ -654,27 +654,26 @@ public class Building_Gate : Building
     {
         if (!address.Valid) return;
 
-        MapParent site = Find.WorldObjects.MapParentAt(address);
-        if (site == null)
+        MapParent mp = Find.WorldObjects.MapParentAt(address);
+        if (mp == null)
         {
             Log.Error($"Rimgate :: gate address at {address} doesn't have an associated MapParent.");
             return;
         }
 
-        if (!site.HasMap)
+        if (!mp.HasMap)
         {
             if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: generating map for {site} using {site.def.defName}");
+                Log.Message($"Rimgate :: generating map for {mp} using {mp.def.defName}");
 
-            bool isTransitSite = site is WorldObject_GateTransitSite;
-
+            bool isTransitSite = mp is WorldObject_GateTransitSite;
             LongEventHandler.QueueLongEvent(delegate
             {
                 GetOrGenerateMapUtility.GetOrGenerateMap(
-                    site.Tile,
+                    mp.Tile,
                     isTransitSite
                         ? RimgateMod.MinMapSize
-                        : Find.World.info.initialMapSize,
+                        : (mp as Site).PreferredMapSize,
                     null);
 
             },
@@ -686,11 +685,11 @@ public class Building_Gate : Building
                 if (RimgateMod.Debug)
                     Log.Message($"Rimgate :: finished generating map");
 
-                FinalizeOpen(address, site.Map);
+                FinalizeOpen(address, mp.Map);
             });
         }
         else
-            FinalizeOpen(address, site.Map);
+            FinalizeOpen(address, mp.Map);
     }
 
     private void FinalizeOpen(PlanetTile address, Map map)
@@ -968,29 +967,79 @@ public class Building_Gate : Building
         Map map = Map;
         if (map == null) return;
 
-        // Build reserved set starting with vortex cells
+        // Build vortex list + reserved set (reserved starts with vortex cells)
+        var vortex = new List<IntVec3>(16);
         var reserved = new HashSet<IntVec3>();
+
         foreach (var c in VortexCells)
-            if (c.InBounds(map))
-                reserved.Add(c);
-
-        if (reserved.Count == 0) return;
-
-        // Collect pawns standing on vortex cells
-        var pawnsToMove = new List<Pawn>();
-        foreach (var cell in reserved) // reserved currently == vortex cells
         {
-            var things = map.thingGrid.ThingsListAtFast(cell);
-            for (int i = 0; i < things.Count; i++)
+            if (!c.InBounds(map)) continue;
+            vortex.Add(c);
+            reserved.Add(c);
+        }
+
+        int vortexCount = vortex.Count;
+        if (vortexCount == 0) return;
+
+        // Expand pickup radius by 2
+        const int dangerRadius = 2;
+        const int dangerRadiusSq = dangerRadius * dangerRadius;
+
+        // Compute AABB around vortex cells for cheap early reject
+        int minX = int.MaxValue, maxX = int.MinValue;
+        int minZ = int.MaxValue, maxZ = int.MinValue;
+        for (int i = 0; i < vortexCount; i++)
+        {
+            IntVec3 v = vortex[i];
+            if (v.x < minX) minX = v.x;
+            if (v.x > maxX) maxX = v.x;
+            if (v.z < minZ) minZ = v.z;
+            if (v.z > maxZ) maxZ = v.z;
+        }
+        minX -= dangerRadius; maxX += dangerRadius;
+        minZ -= dangerRadius; maxZ += dangerRadius;
+
+        // Collect pawns near vortex cells (within radius)
+        var pawnsToMove = new List<Pawn>();
+        IReadOnlyList<Pawn> pawns = map.mapPawns.AllPawnsSpawned;
+        for (int i = 0; i < pawns.Count; i++)
+        {
+            Pawn p = pawns[i];
+            if (p == null || !p.Spawned || p.Dead) continue;
+
+            IntVec3 pos = p.Position;
+
+            // AABB early reject
+            if (pos.x < minX || pos.x > maxX || pos.z < minZ || pos.z > maxZ)
+                continue;
+
+            // Precise check: within 2 cells of any vortex cell
+            bool near = false;
+            for (int j = 0; j < vortexCount; j++)
             {
-                if (things[i] is Pawn p && p.Spawned && !p.Dead)
-                    pawnsToMove.Add(p);
+                IntVec3 v = vortex[j];
+                int dx = pos.x - v.x;
+                int dz = pos.z - v.z;
+                if (dx * dx + dz * dz <= dangerRadiusSq)
+                {
+                    near = true;
+                    break;
+                }
             }
+
+            var curPath = p.pather?.curPath;
+            if (curPath != null && curPath.NodesLeftCount > 0)
+            {
+                IntVec3 next = curPath.Peek(0);
+                if (reserved.Contains(next)) near = true;
+            }
+
+            if (near)
+                pawnsToMove.Add(p);
         }
 
         if (pawnsToMove.Count == 0) return;
 
-        // ticks until open + kawoosh duration + small buffer
         int holdTicks = Math.Max(320, IsOpeningQueued ? _ticksUntilOpen + 120 : 320);
 
         for (int pi = 0; pi < pawnsToMove.Count; pi++)
@@ -998,67 +1047,74 @@ public class Building_Gate : Building
             Pawn p = pawnsToMove[pi];
             IntVec3 origin = p.Position;
 
-            // If pawn already stepped off the vortex between collection and now, skip.
+            // If pawn already moved out of the danger radius between collection and now, skip.
+            // (Cheaper than recomputing full near-check: quick hash check covers "standing on vortex".)
             if (!reserved.Contains(origin))
-                continue;
+            {
+                // If not on vortex, still might be within danger radius; do quick re-check.
+                bool stillNear = false;
+                if (origin.x >= minX && origin.x <= maxX && origin.z >= minZ && origin.z <= maxZ)
+                {
+                    for (int j = 0; j < vortexCount; j++)
+                    {
+                        IntVec3 v = vortex[j];
+                        int dx = origin.x - v.x;
+                        int dz = origin.z - v.z;
+                        if (dx * dx + dz * dz <= dangerRadiusSq) { stillNear = true; break; }
+                    }
+                }
+                if (!stillNear) continue;
+            }
 
-            Room pawnRoom = origin.GetRoom(map); // may be null outdoors
+            Room pawnRoom = origin.GetRoom(map);
 
             IntVec3 bestGood = IntVec3.Invalid;
             IntVec3 bestOkay = IntVec3.Invalid;
 
-            int maxCells = GenRadial.NumCellsInRadius(9f);
+            // Slightly larger search radius for destination too
+            int maxCells = GenRadial.NumCellsInRadius(11f); // 9 + 2
             for (int i = 0; i < maxCells; i++)
             {
                 IntVec3 c = origin + GenRadial.RadialPattern[i];
 
-                // cheap rejects first
                 if (!c.InBounds(map)) continue;
-                if (reserved.Contains(c)) continue;      // also excludes vortex cells
+                if (reserved.Contains(c)) continue; // includes vortex + already chosen targets
                 if (!c.Walkable(map)) continue;
 
-                // remember first "okay"
                 if (!bestOkay.IsValid)
                     bestOkay = c;
 
-                // only pay room cost if we can benefit from it
                 if (pawnRoom != null && c.GetRoom(map) != pawnRoom)
                     continue;
 
                 bestGood = c;
-                break; // closest good in radial order
+                break;
             }
 
             IntVec3 best = bestGood.IsValid ? bestGood : bestOkay;
 
-            // Fallback 1: near the pawn (cheap and reduces weird pathing)
             if (!best.IsValid)
             {
-                // Try a small random search. Predicate is minimal; uses reserved as "unsafe".
                 if (!CellFinder.TryFindRandomCellNear(origin, map, 12,
                         c => c.InBounds(map) && c.Walkable(map) && !reserved.Contains(c),
                         out best))
                 {
-                    // Fallback 2: gate-facing adjacent safe cell
                     best = Position + Rotation.FacingCell;
                     if (!best.InBounds(map) || !best.Walkable(map) || reserved.Contains(best))
-                        continue; // give up on this pawn safely
+                        continue;
                 }
             }
 
             if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: Evacuating pawn {p.LabelShort} from {origin} to {best}");
 
-            // Force a job so the job system doesn't immediately override pathing.
             var gotoJob = JobMaker.MakeJob(JobDefOf.Goto, best);
-            gotoJob.count = 1;
             gotoJob.playerForced = true;
             gotoJob.expiryInterval = holdTicks;
             gotoJob.locomotionUrgency = LocomotionUrgency.Sprint;
             gotoJob.checkOverrideOnExpire = true;
 
             var waitJob = JobMaker.MakeJob(JobDefOf.Wait, best);
-            waitJob.count = 1;
             waitJob.playerForced = true;
             waitJob.expiryInterval = holdTicks;
             waitJob.checkOverrideOnExpire = true;
@@ -1067,7 +1123,6 @@ public class Building_Gate : Building
             p.jobs.StartJob(gotoJob, JobCondition.InterruptForced, null, resumeCurJobAfterwards: false);
             p.jobs.jobQueue.EnqueueLast(waitJob);
 
-            // Reserve the chosen destination so other evacuees don't stack.
             reserved.Add(best);
         }
     }

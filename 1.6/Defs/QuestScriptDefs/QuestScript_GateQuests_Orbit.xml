@@ -113,6 +113,9 @@
 										<li>
 											<def>Rimgate_SoldierReplicator</def>
 										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
+										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_Set">
@@ -138,12 +141,11 @@
 											<def>Rimgate_EnemyPresence</def>
 										</li>
 										<li>
-											<def>Rimgate_SoldierTauri</def>
+											<def>Rimgate_SoldierReplicator</def>
 											<chance>0.15</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierReplicator</def>
-											<chance>0.15</chance>
+											<def>Rimgate_SupplyCrates</def>
 										</li>
 									</value>
 								</li>
@@ -172,12 +174,15 @@
 											<def>Rimgate_EnemyPresence</def>
 										</li>
 										<li>
-											<def>Rimgate_SoldierTauri</def>
+											<def>Rimgate_SoldierReplicator</def>
 											<chance>0.15</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierReplicator</def>
+											<def>Rimgate_SoldierMech</def>
 											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
 										</li>
 									</value>
 								</li>
@@ -206,12 +211,15 @@
 											<def>Rimgate_EnemyPresence</def>
 										</li>
 										<li>
-											<def>Rimgate_SoldierTauri</def>
+											<def>Rimgate_SoldierReplicator</def>
 											<chance>0.15</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierReplicator</def>
+											<def>Rimgate_SoldierMech</def>
 											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
 										</li>
 									</value>
 								</li>

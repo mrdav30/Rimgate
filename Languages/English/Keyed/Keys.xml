@@ -240,6 +240,9 @@
 	<RG_AbandonQuestSite_Desc>Shut down the link and forget this site. The quest will end.</RG_AbandonQuestSite_Desc>
 	<RG_AbandonQuestSite_Disabled>there are colonists on the map.</RG_AbandonQuestSite_Disabled>
 
+	<RG_QuestGateRemoved_Label>Gate link severed</RG_QuestGateRemoved_Label>
+	<RG_QuestGateRemoved_Desc>With the gate removed, the link to this site has been severed and is no longer accessible. Scouts report back that the site is silent and barren.</RG_QuestGateRemoved_Desc>
+
 	<RG_LetterRaidGateComplexDesc>Raiders from {0} have arrived drawn by whispers of relics, resources, or perhaps the secrets of the Archotech-locked gate network itself.</RG_LetterRaidGateComplexDesc>
 
 	<RG_LetterTransitSiteLootedLabel>Transit site looted</RG_LetterTransitSiteLootedLabel>
@@ -302,6 +305,11 @@
 	<RG_DHD_ActiveQuestCounter>Restricted connections: {0} / {1}</RG_DHD_ActiveQuestCounter>
 
 	<RG_GateSiteHidden>Site hidden</RG_GateSiteHidden>
+
+	<RG_AbandonExplorationLabel>Abandon exploration</RG_AbandonExplorationLabel>
+	<RG_AbandonExplorationDesc>Shut down the gate link and forget this site. The exploration quest will end.</RG_AbandonExplorationDesc>
+	<RG_AbandonExplorationDisabled>there are colonists on the map.</RG_AbandonExplorationDisabled>
+	<RG_AbandonExplorationSuccess>The gate link has been shut down and the site forgotten.</RG_AbandonExplorationSuccess>
 
 	<!-- ZPM -->
 

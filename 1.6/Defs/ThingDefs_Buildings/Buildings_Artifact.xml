@@ -56,6 +56,7 @@
         <label>Dwarfgate</label>
         <description>An ancient alien construct capable of instantaneous transit, but unlike the legendary Stargates of myth, these “Dwarfgates” are smaller, dimmer cousins. Their wormhole lattice is sealed into a closed planetary network; attempts to dial off-world fizzle as if an unseen hand blocks the path.
             \n\nRumors whisper that the Archotechs themselves tampered with them, corralling their use to a single world for inscrutable ends. Stranger still, scattered reports claim there are hundreds of such gates buried across the Rim—drawing fortune-seekers, warlords, and scholars alike to uncover the reason why they were left here… and what they are meant to protect.
+            \n\nNote: when activated, the Dwarfgate will erupt a brief unstable vortex that distorts space and time around it-as well as completely obliterate anything caught in its path.
             \n\n"By the time you get to the other side, you're frozen stiff. Like you'd just been through a blizzard... naked."</description>
         <size>(5,2)</size>
         <graphicData>

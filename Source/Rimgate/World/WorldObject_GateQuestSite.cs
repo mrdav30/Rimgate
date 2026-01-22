@@ -28,33 +28,36 @@ public class WorldObject_GateQuestSite : Site
     {
         base.Tick();
 
-        if (Map == null) return;
+        var map = Map;
+        if (map == null) return;
 
         bool allowPeek = GateUtil.ModificationEquipmentActive;
-        bool nobodyVisible = !Map.mapPawns.AnyPawnBlockingMapRemoval;
+        bool hasBlockingPawns = map?.mapPawns?.AnyPawnBlockingMapRemoval ?? false;
+        bool shouldBeHidden = !allowPeek && !hasBlockingPawns;
 
         // If no pawns, no active gate, and we’re still showing this map: hide + pop to world
-        if (!_mapHidden && !allowPeek && nobodyVisible)
+        if (!_mapHidden && shouldBeHidden)
         {
             // Hide from colonist bar
             if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Hiding gate quest site map at tile {Tile} due to: " 
-                    + $"map hidden - {_mapHidden}, allow peek - {allowPeek}, nobody visible - {nobodyVisible}");
+                Log.Message($"Rimgate :: Hiding gate quest site map at tile {Tile} due to: "
+                    + $"map hidden - {_mapHidden}, allow peek - {allowPeek}, nobody visible - {!hasBlockingPawns}");
             Find.ColonistBar.MarkColonistsDirty();
             _mapHidden = true;
         }
 
-        if(_mapHidden && allowPeek) {            
+        if (_mapHidden && allowPeek)
+        {
             // Reveal to colonist bar
             if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Revealing gate quest site map at tile {Tile} due to: " 
+                Log.Message($"Rimgate :: Revealing gate quest site map at tile {Tile} due to: "
                     + $"map hidden - {_mapHidden}, allow peek - {allowPeek}");
             Find.ColonistBar.MarkColonistsDirty();
             _mapHidden = false;
         }
 
         // If the player is currently looking at this map, kick them out to the world
-        if (_mapHidden && Find.CurrentMap == Map)
+        if (_mapHidden && Find.CurrentMap == map)
             PopToWorldAndSelect();
     }
 
@@ -101,25 +104,33 @@ public class WorldObject_GateQuestSite : Site
     public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
     {
         alsoRemoveWorldObject = false;
-        // only removed when quest ends and no pawns
-        if (TryResolveQuest(out Quest quest) && quest.State == QuestState.Ongoing)
-            return false;
 
-        if (Map.mapPawns.AnyPawnBlockingMapRemoval)
+        // remove when there are blocking pawns, an active gate, or an ongoing quest
+        var map = Map;
+        if (map.mapPawns.AnyPawnBlockingMapRemoval)
             return false;
 
         foreach (PocketMapParent item in Find.World.pocketMaps.ToList())
         {
-            if (item.sourceMap == base.Map && item.Map.mapPawns.AnyPawnBlockingMapRemoval)
-            {
+            if (item.sourceMap == map && item.Map.mapPawns.AnyPawnBlockingMapRemoval)
                 return false;
-            }
         }
 
-        if (ModsConfig.OdysseyActive && base.Map.listerThings.AnyThingWithDef(ThingDefOf.GravAnchor))
-        {
+        if (ModsConfig.OdysseyActive && map.listerThings.AnyThingWithDef(ThingDefOf.GravAnchor))
             return false;
+
+        if (Building_Gate.GetGateOnMap(map) == null)
+        {
+            Find.LetterStack.ReceiveLetter(
+                "RG_QuestGateRemoved_Label".Translate(),
+                "RG_QuestGateRemoved_Desc".Translate(),
+                LetterDefOf.NegativeEvent);
+            alsoRemoveWorldObject = true;
+            return true;
         }
+
+        if (TryResolveQuest(out Quest quest) && quest.State == QuestState.Ongoing)
+            return false;
 
         alsoRemoveWorldObject = true;
         return true;
@@ -133,14 +144,17 @@ public class WorldObject_GateQuestSite : Site
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        var hideMap = !GateUtil.ModificationEquipmentActive;
+        Map map = Map;
+        bool allowPeak = GateUtil.ModificationEquipmentActive;
+        bool hasBlockingPawns = map?.mapPawns?.AnyPawnBlockingMapRemoval ?? false;
+        bool shouldBeHidden = !allowPeak && !hasBlockingPawns;
         foreach (var g in base.GetGizmos())
         {
             // lock "CommandShowMap" behind gate mod equipment or active gate
-            if (g is Command_Action ca && base.HasMap)
+            if (g is Command_Action ca && HasMap)
             {
                 var lbl = ca.defaultLabel ?? string.Empty;
-                if (lbl == "CommandShowMap".Translate() && hideMap)
+                if (lbl == "CommandShowMap".Translate() && shouldBeHidden)
                     ca.Disable("RG_GateSiteHidden".Translate());
             }
 
@@ -158,13 +172,13 @@ public class WorldObject_GateQuestSite : Site
                 {
                     quest.End(QuestEndOutcome.Fail, false, false);
                     if (HasMap)
-                        Current.Game.DeinitAndRemoveMap(Map, notifyPlayer: true);
+                        Current.Game.DeinitAndRemoveMap(map, notifyPlayer: true);
                     Destroy();
                 }
             }
         };
 
-        if (Map?.mapPawns?.AnyPawnBlockingMapRemoval == true)
+        if (hasBlockingPawns)
         {
             abandon.Disabled = true;
             abandon.disabledReason = "RG_AbandonQuestSite_Disabled".Translate();

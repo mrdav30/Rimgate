@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.Noise;
 using static HarmonyLib.Code;
 
@@ -147,36 +148,81 @@ public class Building_DHD : Building
 
         yield return closeGateCmd;
 
-        if (!Props.canToggleIris || !linked.HasIris)
-            yield break;
-
-        var actionLabel = linked.IsIrisActivated
-            ? "RG_OpenIris".Translate()
-            : "RG_CloseIris".Translate();
-
-        var toggleIrisCmd = new Command_Toggle
+        if (Props.canToggleIris && linked.HasIris)
         {
-            defaultLabel = "RG_ToggleIris".Translate(actionLabel),
-            defaultDesc = "RG_ToggleIrisDesc".Translate(actionLabel, linked.LabelCap),
-            icon = linked.ToggleIrisIcon,
-            isActive = () => _wantIrisToggled,
-            toggleAction = delegate
-            {
-                _wantIrisToggled = !_wantIrisToggled;
+            var actionLabel = linked.IsIrisActivated
+                ? "RG_OpenIris".Translate()
+                : "RG_CloseIris".Translate();
 
-                var dm = Map.designationManager;
-                var des = dm.DesignationOn(this, RimgateDefOf.Rimgate_DesignationToggleIris);
-                if (des == null)
-                    dm.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationToggleIris));
-                else
-                    des.Delete();
+            var toggleIrisCmd = new Command_Toggle
+            {
+                defaultLabel = "RG_ToggleIris".Translate(actionLabel),
+                defaultDesc = "RG_ToggleIrisDesc".Translate(actionLabel, linked.LabelCap),
+                icon = linked.ToggleIrisIcon,
+                isActive = () => _wantIrisToggled,
+                toggleAction = delegate
+                {
+                    _wantIrisToggled = !_wantIrisToggled;
+
+                    var dm = Map.designationManager;
+                    var des = dm.DesignationOn(this, RimgateDefOf.Rimgate_DesignationToggleIris);
+                    if (des == null)
+                        dm.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationToggleIris));
+                    else
+                        des.Delete();
+                }
+            };
+
+            if (!linked.Powered || !Powered)
+                toggleIrisCmd.Disable("PowerNotConnected".Translate());
+
+            yield return toggleIrisCmd;
+        }
+
+        var options = new List<FloatMenuOption>();
+        var addressList = GateUtil.GetAddressList(Tile);
+        foreach (var address in addressList)
+        {
+            MapParent gwo = Find.WorldObjects.MapParentAt(address);
+            if (gwo == null || gwo is WorldObject_GateTransitSite) // transit sites can only be abandoned via their own UI
+                continue;
+
+            string designation = GateUtil.GetGateDesignation(address);
+            string label = $"{designation} ({gwo.Label})";
+
+            if (gwo.Map?.mapPawns?.AnyPawnBlockingMapRemoval == true)
+            {
+                string reason = "RG_AbandonExplorationDisabled".Translate();
+                options.Add(new FloatMenuOption(label + ": " + reason, null));
+                continue;
             }
+
+            Action action = delegate
+            {
+                if (gwo is WorldObject_GateQuestSite wso)
+                    wso.Destroy();
+                else
+                    GateUtil.RemoveGateAddress(address);
+
+                Messages.Message("RG_AbandonExplorationSuccess".Translate(designation), MessageTypeDefOf.PositiveEvent);
+            };
+
+            options.Add(new FloatMenuOption(label, action));
+        }
+
+        Command_Action abandonExploration = new Command_Action
+        {
+            defaultLabel = "RG_AbandonExplorationLabel".Translate(),
+            defaultDesc = "RG_AbandonExplorationDesc".Translate(),
+            icon = RimgateTex.AbandonExploration,
+            action = () => Find.WindowStack.Add(new FloatMenu(options)),
+            activateSound = SoundDefOf.Tick_Tiny
         };
 
-        if (!linked.Powered || !Powered)
-            toggleIrisCmd.Disable("PowerNotConnected".Translate());
+        if (options.Count <= 0)
+            abandonExploration.Disable("RG_CannotDialNoDestinations".Translate());
 
-        yield return toggleIrisCmd;
+        yield return abandonExploration;
     }
 
     public override string GetInspectString()
@@ -185,7 +231,7 @@ public class Building_DHD : Building
             return null;
 
         StringBuilder sb = new StringBuilder(base.GetInspectString());
-        if(sb.Length > 0)
+        if (sb.Length > 0)
             sb.AppendLine();
 
         // Address list and active quest counters, minus 1 to exclude the current gate's own address.

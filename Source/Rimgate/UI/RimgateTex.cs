@@ -19,6 +19,8 @@ public static class RimgateTex
 
     public static readonly Texture2D AbandonGateSite = ContentFinder<Texture2D>.Get("UI/Button/RGAbandonGateSiteIcon");
 
+    public static readonly Texture2D AbandonExploration = ContentFinder<Texture2D>.Get("UI/Button/RGAbandonExplorationIcon");
+
     public static readonly Texture2D LoadCommandTex = ContentFinder<Texture2D>.Get("UI/Commands/LoadTransporter");
 
     public static readonly Texture2D PushCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGPushIcon");

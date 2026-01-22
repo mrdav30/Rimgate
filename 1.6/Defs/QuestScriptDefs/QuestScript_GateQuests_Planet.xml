@@ -170,20 +170,20 @@
 											<def>Rimgate_SoldierTauri</def>
 										</li>
 										<li>
-											<!-- default, random faction enemies -->
 											<def>Rimgate_EnemyPresence</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
 											<def>Rimgate_SoldierWraith</def>
-											<chance>0.1</chance>
+											<chance>0.5</chance>
 										</li>
 										<li>
 											<def>Rimgate_SoldierGoauld</def>
-											<chance>0.1</chance>
+											<chance>0.5</chance>
 										</li>
 										<li>
 											<def>Rimgate_SoldierReplicator</def>
-											<chance>0.1</chance>
+											<chance>0.5</chance>
 										</li>
 									</value>
 								</li>
@@ -212,6 +212,10 @@
 										</li>
 										<li>
 											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierReplicator</def>
 											<chance>0.15</chance>
 										</li>
 									</value>
@@ -275,6 +279,10 @@
 										</li>
 										<li>
 											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierReplicator</def>
 											<chance>0.15</chance>
 										</li>
 										<li>
