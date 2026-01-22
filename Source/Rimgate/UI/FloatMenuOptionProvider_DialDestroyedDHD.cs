@@ -30,7 +30,7 @@ public class FloatMenuOptionProvider_DialDestroyedDHD : FloatMenuOptionProvider
         if (dhd == null || !ResearchUtil.DHDLogicComplete)
             yield break;
 
-        var control = Building_Stargate.GetStargateOnMap(clickedThing.Map);
+        var control = Building_Gate.GetGateOnMap(clickedThing.Map);
         if (control == null)
             yield break;
 
@@ -59,8 +59,8 @@ public class FloatMenuOptionProvider_DialDestroyedDHD : FloatMenuOptionProvider
             yield break;
         }
 
-        StargateUtil.CleanupAddresses();
-        var addressList = StargateUtil.WorldComp.AddressList.Where(t => t != control.GateAddress).ToList();
+
+        var addressList = GateUtil.GetAddressList(control.GateAddress);
         if (addressList == null || addressList.Count == 0)
         {
             yield return new FloatMenuOption(
@@ -69,7 +69,7 @@ public class FloatMenuOptionProvider_DialDestroyedDHD : FloatMenuOptionProvider
             yield break;
         }
 
-        if (control.TicksUntilOpen > -1)
+        if (control.IsOpeningQueued)
         {
             yield return new FloatMenuOption(
                 "RG_CannotDial".Translate("RG_CannotDialIncoming".Translate()),
@@ -81,14 +81,14 @@ public class FloatMenuOptionProvider_DialDestroyedDHD : FloatMenuOptionProvider
             "RG_DialGate".Translate(),
             () =>
             {
-                Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialStargate, clickedThing);
+                Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialGate, clickedThing);
                 job.count = 1;
                 job.playerForced = true;
                 pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             });
     }
 
-    private static bool CanEnterGate(Pawn pawn, Building_Stargate gate)
+    private static bool CanEnterGate(Pawn pawn, Building_Gate gate)
     {
         return pawn.CanReach(gate, PathEndMode.ClosestTouch, Danger.Deadly);
     }

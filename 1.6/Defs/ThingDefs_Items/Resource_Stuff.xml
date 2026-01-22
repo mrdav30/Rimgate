@@ -394,12 +394,12 @@
     </comps>
   </ThingDef>
 
-  <!-- ==================== Stargate Glyph ==================== -->
+  <!-- ==================== Gate Glyph ==================== -->
 
   <ThingDef Name="Rimgate_GlyphParchmentBase" ParentName="ResourceBase">
     <defName>Rimgate_GlyphParchment</defName>
     <label>glyph parchment</label>
-    <description>A crumpled sheet of glyphs, scrawled in a hurry by someone who clearly ran out of time and patience. There are finger smudges, a ring of stale recaf, and a margin note that says &quot;dial fast, duck faster.&quot;</description>
+    <description>A crumpled sheet of glyphs, scrawled in a hurry by someone who clearly ran out of time and patience. There are finger smudges, a ring of stale decaf, and a margin note that says &quot;dial fast, duck faster.&quot;</description>
     <thingClass>ThingWithComps</thingClass>
     <graphicData>
       <texPath>Things/Item/Resource/GlyphParchment</texPath>
@@ -434,7 +434,11 @@
 
   <ThingDef ParentName="Rimgate_GlyphParchmentBase">
     <defName>Rimgate_GlyphParchment_Orbit</defName>
-    <description>A weathered parchment embossed with mysterious glyphs. The embossed symbols glow faintly, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely not cursed. Probably.\n\There's a note scribbled at the bottom - &quot;make sure to bring a vacsuit&quot;</description>
+    <description>A fancy parchment embossed with mysterious glyphs that do not appear in the "usual" set. The symbols trigger a deep resonance, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely worth investigating. Probably.\n\nThere's a note scribbled at the bottom - &quot;make sure to bring a vacsuit&quot;</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/GlyphParchmentOrbit</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
     <comps Inherit="False">
       <li Class="CompProperties_GlyphParchment">
         <canDecodePlanet>false</canDecodePlanet>
@@ -501,7 +505,6 @@
           <li>RG_ScribbledNote17</li>
           <li>RG_ScribbledNote18</li>
           <li>RG_ScribbledNote19</li>
-          <li>RG_ScribbledNote20</li>
         </keys>
       </li>
     </modExtensions>
@@ -609,7 +612,7 @@
         <showUseGizmo>true</showUseGizmo>
       </li>
       <li Class="CompProperties_Targetable">
-        <compClass>Rimgate.CompTargetable_Stargate</compClass>
+        <compClass>Rimgate.CompTargetable_Gate</compClass>
       </li>
     </comps>
   </ThingDef>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-  <!-- Stargate -->
+  <!-- Gate -->
 
   <WorkGiverDef>
-    <defName>Rimgate_CloseStargate</defName>
+    <defName>Rimgate_CloseGate</defName>
     <label>close dwarfgate</label>
-    <giverClass>Rimgate.WorkGiver_CloseStargate</giverClass>
+    <giverClass>Rimgate.WorkGiver_CloseGate</giverClass>
     <workType>BasicWorker</workType>
     <verb>close dwarfgate connection</verb>
     <gerund>closing dwarfgate connection</gerund>

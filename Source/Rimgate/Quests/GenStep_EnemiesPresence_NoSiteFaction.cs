@@ -1,6 +1,7 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
-using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI.Group;
 
@@ -14,11 +15,14 @@ namespace Rimgate;
 ///     2) a random enemy faction
 ///     3) AncientsHostile as final fallback
 /// </summary>
+/// TODO: add pawnGroupKindDef option, see GenStep_SitePawns
 public class GenStep_EnemiesPresence_NoSiteFaction : GenStep
 {
     public FactionDef forcedFaction;
 
     public bool useSiteFactionIfAny = true;
+
+    public PawnGroupKindDef pawnGroupKindDef;
 
     public float pointMultiplier = 1f;
 
@@ -96,22 +100,26 @@ public class GenStep_EnemiesPresence_NoSiteFaction : GenStep
 
         float threatPoints = parms.sitePart?.parms?.threatPoints ?? -1f;
         if (threatPoints >= defaultPointsRange.min && threatPoints <= defaultPointsRange.max)
-        {
             points = threatPoints;
-        }
         else
-        {
             points = defaultPointsRange.RandomInRange;
-        }
 
         points = Math.Max(points, 150f) * pointMultiplier;
 
-        return PawnGroupMakerUtility.GeneratePawns(new PawnGroupMakerParms
+        PawnGroupKindDef groupKind = pawnGroupKindDef;
+        if (groupKind == null || !faction.def.pawnGroupMakers.Any((PawnGroupMaker maker) => maker.kindDef == groupKind))
+            groupKind = PawnGroupKindDefOf.Combat;
+
+        PawnGroupMakerParms gmp = new PawnGroupMakerParms
         {
-            groupKind = PawnGroupKindDefOf.Combat,
+            groupKind = groupKind,
             tile = map.Tile,
             faction = faction,
-            points = points
-        });
+            generateFightersOnly = true,
+            inhabitants = faction == parms.sitePart?.site?.Faction
+        };
+        gmp.points = Mathf.Max(points, faction.def.MinPointsToGeneratePawnGroup(groupKind, gmp));
+
+        return PawnGroupMakerUtility.GeneratePawns(gmp);
     }
 }

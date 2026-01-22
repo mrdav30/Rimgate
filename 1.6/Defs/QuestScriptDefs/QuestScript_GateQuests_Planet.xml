@@ -6,7 +6,6 @@
 		<rootSelectionWeight>0</rootSelectionWeight>
 		<isRootSpecial>true</isRootSpecial>
 		<autoAccept>true</autoAccept>
-		<defaultChallengeRating>2</defaultChallengeRating>
 		<randomlySelectable>false</randomlySelectable>
 		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
 		<everAcceptableInSpace>true</everAcceptableInSpace>
@@ -76,6 +75,22 @@
 		<root Class="QuestNode_Sequence">
 			<nodes>
 
+				<li Class="QuestNode_GetRandomInRangeFloat">
+					<storeAs>points</storeAs>
+					<range>350~600</range>
+				</li>
+
+				<li Class="QuestNode_SubScript">
+					<def>Util_RandomizePointsChallengeRating</def>
+					<parms>
+						<selectionWeightOneStar>0</selectionWeightOneStar>
+					</parms>
+				</li>
+
+				<li Class="QuestNode_SubScript">
+					<def>Util_AdjustPointsForDistantFight</def>
+				</li>
+
 				<li Class="QuestNode_Set">
 					<name>askerIsNull</name>
 					<value>true</value>
@@ -106,11 +121,9 @@
 										</li>
 									</value>
 								</li>
-								<li Class="QuestNode_SubScript">
-									<def>Util_GenerateGateSite_Planet</def>
-									<parms>
-										<siteFaction>Rimgate_GoauldBaal</siteFaction>
-									</parms>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Rimgate_GoauldBaal</value>
 								</li>
 							</nodes>
 						</li>
@@ -137,35 +150,9 @@
 										</li>
 									</value>
 								</li>
-								<li Class="QuestNode_SubScript">
-									<def>Util_GenerateGateSite_Planet</def>
-									<parms>
-										<siteFaction>Mechanoid</siteFaction>
-									</parms>
-								</li>
-							</nodes>
-						</li>
-
-						<!-- Misc -->
-						<li Class="QuestNode_Sequence">
-							<nodes>
 								<li Class="QuestNode_Set">
-									<name>siteParts</name>
-									<value>
-										<li>
-											<def>Rimgate_GateSiteMisc</def>
-										</li>
-										<li>
-											<def>Rimgate_EnemyPresence</def>
-										</li>
-										<li>
-											<def>Rimgate_SoldierTauri</def>
-											<chance>0.15</chance>
-										</li>
-									</value>
-								</li>
-								<li Class="QuestNode_SubScript">
-									<def>Util_GenerateGateSite_Planet</def>
+									<name>siteFaction</name>
+									<value>Mechanoid</value>
 								</li>
 							</nodes>
 						</li>
@@ -200,11 +187,9 @@
 										</li>
 									</value>
 								</li>
-								<li Class="QuestNode_SubScript">
-									<def>Util_GenerateGateSite_Planet</def>
-									<parms>
-										<siteFaction>Rimgate_TauriFaction</siteFaction>
-									</parms>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Rimgate_TauriFaction</value>
 								</li>
 							</nodes>
 						</li>
@@ -231,11 +216,134 @@
 										</li>
 									</value>
 								</li>
-								<li Class="QuestNode_SubScript">
-									<def>Util_GenerateGateSite_Planet</def>
-									<parms>
-										<siteFaction>Rimgate_WraithEmpire</siteFaction>
-									</parms>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Rimgate_WraithEmpire</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Misc -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_GateSiteMisc</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
+									</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Random Enemy Outpost-->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+
+										<li>
+											<def>Rimgate_BanditCamp</def>
+										</li>
+										<li>
+											<def>Rimgate_BarrenGate</def>
+										</li>
+
+										<li>
+											<def>ItemStash</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.35</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierGoauld</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierWraith</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
+										</li>
+									</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Ancients -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_AncientComplex_Mechanitor</def>
+										</li>
+										<li>
+											<def>Rimgate_BarrenGate</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.45</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Ancients</value>
+								</li>
+							</nodes>
+						</li>
+
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_AncientComplex_Loot</def>
+										</li>
+										<li>
+											<def>Rimgate_BarrenGate</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.5</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierWraith</def>
+											<chance>0.5</chance>
+										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Ancients</value>
 								</li>
 							</nodes>
 						</li>
@@ -243,10 +351,14 @@
 					</nodes>
 				</li>
 
+				<li Class="QuestNode_SubScript">
+					<def>Util_GenerateGateSite_Planet</def>
+				</li>
+
 				<li Class="Rimgate.QuestNode_SetSiteQuestId" />
 
 				<!-- Start custom detection raids once the site map generates -->
-				<li Class="Rimgate.QuestNode_RaidStargateComplex" />
+				<li Class="Rimgate.QuestNode_RaidGateComplex" />
 
 				<li Class="Rimgate.QuestNode_SpawnPawnsOnMap">
 					<inSignal>site.MapGenerated</inSignal>

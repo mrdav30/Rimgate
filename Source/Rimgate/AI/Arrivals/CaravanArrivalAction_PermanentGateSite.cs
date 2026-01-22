@@ -9,7 +9,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
+public class CaravanArrivalAction_PermanentGateSite : CaravanArrivalAction
 {
     private MapParent _arrivalSite;
 
@@ -17,7 +17,7 @@ public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
 
     public override string ReportString => "ApproachingSite".Translate(_arrivalSite.Label);
 
-    public CaravanArrivalAction_PermanentStargateSite(MapParent site) => _arrivalSite = site;
+    public CaravanArrivalAction_PermanentGateSite(MapParent site) => _arrivalSite = site;
 
     public override FloatMenuAcceptanceReport StillValid(Caravan caravan, PlanetTile destinationTile)
     {
@@ -40,7 +40,7 @@ public class CaravanArrivalAction_PermanentStargateSite : CaravanArrivalAction
                     _arrivalSite.def);
                 CaravanEnterMapUtility.Enter(caravan, _arrivalSite.Map, CaravanEnterMode.Center);
             },
-            "RG_GeneratingGateSite_Transit",
+            "RG_EnteringGateSite_Transit",
             false,
             null);
     }

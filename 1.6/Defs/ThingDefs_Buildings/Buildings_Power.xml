@@ -61,6 +61,9 @@
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>3.0</fuelConsumptionRate>
         <fuelCapacity>30.0</fuelCapacity>
+        <fuelLabel>Naquadria</fuelLabel>
+        <fuelGizmoLabel>Naquadria</fuelGizmoLabel>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
         <fuelFilter>
           <thingDefs>
             <li>Rimgate_Naquadria</li>
@@ -92,7 +95,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
     <label>Industrial Naquadria generator</label>
-    <description>A sprawling Tau'ri industrial-grade naquadria reactor, usually reserved for deep-space facilities and "absolutely do not let this explode" Stargate sites.\n\nOutputs enough power to light a small city, run a full DHD emulator, and still have juice left over to annoy the neighbors. The humming sound in the walls is definitely normal. Probably.</description>
+    <description>A sprawling Tau'ri industrial-grade naquadria reactor, usually reserved for deep-space facilities and "absolutely do not let this explode" complexes.\n\nOutputs enough power to light a small city, run a full DHD emulator, and still have juice left over to annoy the neighbors. The humming sound in the walls is definitely normal. Probably.</description>
     <graphicData>
       <texPath>Things/Building/Power/RGIndustrialNaquadriaFiredGenerator</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -147,6 +150,9 @@
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>1.2</fuelConsumptionRate>
         <fuelCapacity>30.0</fuelCapacity>
+        <fuelLabel>Naquadria</fuelLabel>
+        <fuelGizmoLabel>Naquadria</fuelGizmoLabel>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
         <fuelFilter>
           <thingDefs>
             <li>Rimgate_Naquadria</li>
@@ -241,6 +247,9 @@
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>0.75</fuelConsumptionRate>
         <fuelCapacity>25.0</fuelCapacity>
+        <fuelLabel>Biomass</fuelLabel>
+        <fuelGizmoLabel>Biomass</fuelGizmoLabel>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
         <fuelFilter>
           <thingDefs>
             <li>Rimgate_Biomass</li>

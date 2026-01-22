@@ -46,7 +46,7 @@ public static class Harmony_Messages_Message
             return false;
 
         if (RimgateMod.Debug)
-            Log.Message($"[Rimgate] Suppressed message for GateQuestSite");
+            Log.Message($"Rimgate :: Suppressed message for GateQuestSite");
 
         return true;
     }

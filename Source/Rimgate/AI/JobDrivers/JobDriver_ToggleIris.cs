@@ -30,7 +30,7 @@ public class JobDriver_ToggleIris : JobDriver
 
             }
 
-            if (!didSomething && t is Building_Stargate gate && gate.WantsIrisToggled)
+            if (!didSomething && t is Building_Gate gate && gate.WantsIrisToggled)
             {
                 gate.DoToggleIris();
                 didSomething = true;

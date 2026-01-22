@@ -30,7 +30,7 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     public string InspectLabel => Label;
 
     public bool HasGate => Map != null
-        ? Building_Stargate.GetStargateOnMap(Map) != null
+        ? Building_Gate.GetGateOnMap(Map) != null
         : _lastKnownHasGate;
 
     public bool HasDhd => Map != null
@@ -56,13 +56,13 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     public override void SpawnSetup()
     {
         // register gate address for this site since gate is placed during mapgen
-        StargateUtil.AddGateAddress(Tile);
+        GateUtil.AddGateAddress(Tile);
     }
 
     public override string GetInspectString()
     {
         // Show address + compact loadout state
-        var address = StargateUtil.GetStargateDesignation(Tile);
+        var address = GateUtil.GetGateDesignation(Tile);
         var gateToken = HasGate
             ? "RG_SiteLoadout_Gate".Translate()
             : "RG_SiteLoadout_NoGate".Translate();
@@ -108,15 +108,15 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
 
     public override void Notify_MyMapAboutToBeRemoved()
     {
-        var gate = Building_Stargate.GetStargateOnMap(Map);
+        var gate = Building_Gate.GetGateOnMap(Map);
         if (gate != null)
-            gate.CloseStargate(gate.ConnectedGate != null);
+            gate.CloseGate(gate.ConnectedGate != null);
         base.Notify_MyMapAboutToBeRemoved();
     }
 
     public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
     {
-        var gateOnMap = Building_Stargate.GetStargateOnMap(Map);
+        var gateOnMap = Building_Gate.GetGateOnMap(Map);
         var dhdOnMap = Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice);
 
         // Cache last known presence
@@ -124,7 +124,7 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
         _lastKnownHasDhd = dhdOnMap != null;
 
         // If the map is eligible to despawn, snapshot player things
-        bool canDespawn = !StargateUtil.TryGetActiveGateOnMap(Map, out _) 
+        bool canDespawn = !GateUtil.TryGetActiveGateOnMap(Map, out _) 
             && !Map.mapPawns.AnyPawnBlockingMapRemoval;
 
         if (canDespawn)
@@ -158,7 +158,7 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
             if (t == null || !t.Spawned) continue;
 
             // Track infra presence
-            if (t is Building_Stargate) sawGate = true;
+            if (t is Building_Gate) sawGate = true;
             if (t is Building_DHD) sawDhd = true;
 
             if (!t.Faction.IsOfPlayerFaction()) continue;
@@ -178,7 +178,7 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
 
     public override void Destroy()
     {
-        StargateUtil.RemoveGateAddress(Tile);
+        GateUtil.RemoveGateAddress(Tile);
         base.Destroy();
     }
 
@@ -194,15 +194,15 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
         if (_ranInitialSetup || !InitialHadGate)
             return;
 
-        var gateOnMap = Building_Stargate.GetStargateOnMap(Map);
+        var gateOnMap = Building_Gate.GetGateOnMap(Map);
         if (gateOnMap == null)
-            gateOnMap = StargateUtil.PlaceRandomGate(Map, Faction.OfPlayer);
+            gateOnMap = GateUtil.PlaceRandomGate(Map, Faction.OfPlayer);
         else
             gateOnMap.SetFaction(Faction.OfPlayer);
 
         // Only ensure a DHD if the site was created with one
         if (InitialHadDhd)
-            StargateUtil.EnsureDhdNearGate(Map, gateOnMap, Faction.OfPlayer);
+            GateUtil.EnsureDhdNearGate(Map, gateOnMap, Faction.OfPlayer);
 
         _ranInitialSetup = true;
     }
@@ -232,7 +232,7 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     public void RefreshPresenceCache()
     {
         if (Map == null) return;
-        _lastKnownHasGate = Building_Stargate.GetStargateOnMap(Map) != null;
+        _lastKnownHasGate = Building_Gate.GetGateOnMap(Map) != null;
         _lastKnownHasDhd = Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice) != null;
     }
 
@@ -244,9 +244,9 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
         yield return new Command_Action
         {
             icon = RimgateTex.RenameCommandTex,
-            action = () => { Find.WindowStack.Add(new Dialog_RenameStargateSite(this)); },
-            defaultLabel = "RG_RenameGateSite".Translate(),
-            defaultDesc = "RG_RenameGateSiteDesc".Translate()
+            action = () => { Find.WindowStack.Add(new Dialog_RenameGateSite(this)); },
+            defaultLabel = "RG_RenameTransitGateSite".Translate(),
+            defaultDesc = "RG_RenameTransitGateSiteDesc".Translate()
         };
     }
 
@@ -254,7 +254,7 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     {
         return CaravanArrivalActionUtility.GetFloatMenuOptions(
             () => true,
-            () => new CaravanArrivalAction_PermanentStargateSite(this),
+            () => new CaravanArrivalAction_PermanentGateSite(this),
             $"Approach {Label}",
             caravan,
             Tile,

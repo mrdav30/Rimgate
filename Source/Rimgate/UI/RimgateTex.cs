@@ -15,9 +15,9 @@ public static class RimgateTex
 
     public static readonly Texture2D RenameCommandTex = ContentFinder<Texture2D>.Get("UI/Buttons/Rename");
 
-    public static readonly Texture2D TransitSiteCommandTex = ContentFinder<Texture2D>.Get("UI/Map/RGStargateTransitSiteIcon");
+    public static readonly Texture2D TransitSiteCommandTex = ContentFinder<Texture2D>.Get("UI/Map/RGGateTransitSiteIcon");
 
-    public static readonly Texture2D AbandonStargateSite = ContentFinder<Texture2D>.Get("UI/Button/RGAbandonStargateSiteIcon");
+    public static readonly Texture2D AbandonGateSite = ContentFinder<Texture2D>.Get("UI/Button/RGAbandonGateSiteIcon");
 
     public static readonly Texture2D LoadCommandTex = ContentFinder<Texture2D>.Get("UI/Commands/LoadTransporter");
 

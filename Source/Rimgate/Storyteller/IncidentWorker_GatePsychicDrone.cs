@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Rimgate
 {
-    public class IncidentWorker_StargatePsychicDrone : IncidentWorker
+    public class IncidentWorker_GatePsychicDrone : IncidentWorker
     {
         protected override bool CanFireNowSub(IncidentParms parms)
         {
@@ -14,7 +14,7 @@ namespace Rimgate
             if (map == null) return false;
 
             bool hasGate = map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
-                            .OfType<Building_Stargate>()
+                            .OfType<Building_Gate>()
                             .Any();
             return hasGate; // only if a receiver exists
         }
@@ -31,8 +31,8 @@ namespace Rimgate
                     ? PsychicDroneLevel.BadHigh 
                     : PsychicDroneLevel.BadMedium;
             var duration = (int)(GenDate.TicksPerDay * Rand.Range(0.75f, 1.75f));
-            var cond = (GameCondition_StargatePsychicDrone)GameConditionMaker.MakeCondition(
-                RimgateDefOf.Rimgate_StargatePsychicDrone,
+            var cond = (GameCondition_GatePsychicDrone)GameConditionMaker.MakeCondition(
+                RimgateDefOf.Rimgate_GatePsychicDrone,
                 duration);
             cond.level = level;
             cond.gender = Rand.Element(Gender.Male, Gender.Female);

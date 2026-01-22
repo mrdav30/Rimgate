@@ -188,7 +188,7 @@
 	<RG_CloningPod_Stat_IncubationTicks_Label>Incubation time ({0})</RG_CloningPod_Stat_IncubationTicks_Label>
 	<RG_CloningPod_Stat_IncubationTicks_Desc>The amount of time it takes to incubate a clone in this cloning pod.</RG_CloningPod_Stat_IncubationTicks_Desc>
 
-	<!-- Stargate -->
+	<!-- Gate -->
 
 	<RG_GateAddress>Gate address: {0}</RG_GateAddress>
 	<RG_ModificationEquipmentActive>Modification equipment active</RG_ModificationEquipmentActive>
@@ -201,7 +201,7 @@
 
 	<RG_IncomingConnection>incoming</RG_IncomingConnection>
 	<RG_OutgoingConnection>outgoing</RG_OutgoingConnection>
-	<RG_ConnectedToGate>Connected to Dwarfgate: {0} ({1})</RG_ConnectedToGate>
+	<RG_ConnectedToGate>Connected to {0}: {1} ({2})</RG_ConnectedToGate>
 	<RG_IrisOpenStatus>OPENED</RG_IrisOpenStatus>
 	<RG_IrisClosedStatus>CLOSED</RG_IrisClosedStatus>
 	<RG_IrisStatus>Iris is [{0}]</RG_IrisStatus>
@@ -210,57 +210,57 @@
 	<RG_OpenIris>Open</RG_OpenIris>
 	<RG_CloseIris>Close</RG_CloseIris>
 	<RG_ToggleIris>{0} iris</RG_ToggleIris>
-	<RG_ToggleIrisDesc>{0} this Dwarfgate's iris.</RG_ToggleIrisDesc>
+	<RG_ToggleIrisDesc>{0} this {1}'s iris.</RG_ToggleIrisDesc>
 
-	<RG_CannotPlace_Dwarfgate>Cannot place Dwarfgate: {0}</RG_CannotPlace_Dwarfgate>
+	<RG_CannotPlace_Gate>Cannot place {0}: {1}</RG_CannotPlace_Gate>
 
 	<RG_OnlyOneSGPerMap>only one per map allowed.</RG_OnlyOneSGPerMap>
 	<RG_PocketMapDisallowed>not allowed in pockets of space.</RG_PocketMapDisallowed>
 
-	<RG_StargateHeldCannotUninstall>Cannot uninstall: Dwarfgate is currently active.</RG_StargateHeldCannotUninstall>
-	<RG_StargateHeldCannotReinstall>Cannot reinstall: Dwarfgate is currently active.</RG_StargateHeldCannotReinstall>
+	<RG_GateHeldCannotUninstall>Cannot uninstall: {0} is currently active.</RG_GateHeldCannotUninstall>
+	<RG_GateHeldCannotReinstall>Cannot reinstall: {0} is currently active.</RG_GateHeldCannotReinstall>
 
-	<RG_GateDialFailed>Could not activate Dwarfgate: Recieving gate no longer exists or is currently in use.</RG_GateDialFailed>
-	<RG_GateDialFailed_DHDDestroyed>{PAWN_nameDef} failed while attempting to dial home using a destroyed DHD.</RG_GateDialFailed_DHDDestroyed>
+	<RG_GateDialFailed>Could not dial out: Recieving gate no longer exists or is currently in use.</RG_GateDialFailed>
+	<RG_GateDialFailed_DHDDestroyed>{PAWN_nameDef} failed while attempting to dial out using a destroyed DHD.</RG_GateDialFailed_DHDDestroyed>
 
-	<RG_GeneratingGateSite>Generating Dwarfgate site</RG_GeneratingGateSite>
+	<RG_GeneratingGateSite>Connecting to restricted site</RG_GeneratingGateSite>
+	<RG_GeneratingGateSite_Transit>Connecting to transit site</RG_GeneratingGateSite_Transit>
 
-	<RG_EnterStargateAction>Enter Dwarfgate</RG_EnterStargateAction>
-	<RG_EnterReceivingStargateAction>Vaporize yourself</RG_EnterReceivingStargateAction>
-	<RG_BringToReceivingStargate>Vaporize selected in Dwarfgate</RG_BringToReceivingStargate>
-	<RG_BringToStargate>Bring selected to Dwarfgate</RG_BringToStargate>
+	<RG_EnterGateAction>Enter {0}</RG_EnterGateAction>
+	<RG_EnterReceivingGateAction>Vaporize yourself in {0}</RG_EnterReceivingGateAction>
+	<RG_BringToReceivingGate>Vaporize selected in {0}</RG_BringToReceivingGate>
+	<RG_BringToGate>Bring selected to {0}</RG_BringToGate>
 
 	<RG_FailReasonGateInactive>not active.</RG_FailReasonGateInactive>
 	<RG_FailReasonGateIrisClosed>iris closed.</RG_FailReasonGateIrisClosed>
 
 	<RG_RespawnGateString>Please respawn this gate (and its accompanying DHD) using devmode, as an update has broken it.</RG_RespawnGateString>
 
-	<RG_AbandonQuestSite_Label>Abandon site</RG_AbandonQuestSite_Label>
+	<RG_AbandonQuestSite_Label>Abandon exploration</RG_AbandonQuestSite_Label>
 	<RG_AbandonQuestSite_Desc>Shut down the link and forget this site. The quest will end.</RG_AbandonQuestSite_Desc>
 	<RG_AbandonQuestSite_Disabled>there are colonists on the map.</RG_AbandonQuestSite_Disabled>
 
-	<RG_LetterRaidStargateComplexDesc>Raiders from {0} have arrived at the Dwarfgate complex drawn by whispers of relics, resources, or perhaps the secrets of the Archotech-locked gate network itself.</RG_LetterRaidStargateComplexDesc>
+	<RG_LetterRaidGateComplexDesc>Raiders from {0} have arrived drawn by whispers of relics, resources, or perhaps the secrets of the Archotech-locked gate network itself.</RG_LetterRaidGateComplexDesc>
 
-	<RG_LetterTransitSiteLootedLabel>Dwarfgate site looted</RG_LetterTransitSiteLootedLabel>
+	<RG_LetterTransitSiteLootedLabel>Transit site looted</RG_LetterTransitSiteLootedLabel>
 	<RG_LetterTransitSiteLootedText>Something’s amiss at {0}. Looks like scavengers stopped by — a few things are missing.</RG_LetterTransitSiteLootedText>
 
-	<!-- Stargate Caravan -->
+	<!-- Gate Caravan -->
 
-	<RG_CreateSGSite>Create new Dwarfgate site</RG_CreateSGSite>
-	<RG_CreateSGSiteDesc>Create a new Dwarfgate site at this location.</RG_CreateSGSiteDesc>
+	<RG_CreateTransitSite>Create new transit site</RG_CreateTransitSite>
+	<RG_CreateTransitSiteDesc>Create a new transit site at this location.</RG_CreateTransitSiteDesc>
 
 	<RG_CannotCreateTransientSite>Cannot place gate: {0}</RG_CannotCreateTransientSite>
 
-	<RG_NoGateInCaravan>Dwarfgate required in caravan.</RG_NoGateInCaravan>
+	<RG_NoGateInCaravan>Gate is required in caravan.</RG_NoGateInCaravan>
 	<RG_BlockedByLandmark>cannot set-up on {0} landmarks.</RG_BlockedByLandmark>
 
-	<RG_RenameGateSite>Rename Dwarfgate site</RG_RenameGateSite>
-	<RG_RenameGateSiteDesc>Rename this Dwarfgate site to a more recognizable name.</RG_RenameGateSiteDesc>
-	<RG_GeneratingGateSite_Transit>Generating transit gate site</RG_GeneratingGateSite_Transit>
+	<RG_RenameTransitGateSite>Rename transit gate site</RG_RenameTransitGateSite>
+	<RG_RenameTransitGateSiteDesc>Rename this transit gate site to a more recognizable name.</RG_RenameTransitGateSiteDesc>
 
-	<!-- Stargate Glyphs -->
+	<RG_EnteringGateSite_Transit>Entering transit gate site</RG_EnteringGateSite_Transit>
 
-	<RG_MessageSGQuestAlreadyActive>A Dwarfgate site is already active. Complete or abandon it before decoding another address.</RG_MessageSGQuestAlreadyActive>
+	<!-- Gate Glyphs -->
 
 	<RG_Glyph_LandLocked>(P)</RG_Glyph_LandLocked>
 	<RG_Glyph_SpaceLocked>(O)</RG_Glyph_SpaceLocked>
@@ -293,15 +293,15 @@
 	<RG_CannotDialNoModEquipment>missing mod equipment</RG_CannotDialNoModEquipment>
 	<RG_CannotDialQuestSiteLimitReached>locked out</RG_CannotDialQuestSiteLimitReached>
 
-	<RG_CloseStargate>Close Dwarfgate</RG_CloseStargate>
-	<RG_CloseStargateDesc>Close the linked Dwarfgate.</RG_CloseStargateDesc>
-	<RG_GateIsNotActive>Dwarfgate is not active.</RG_GateIsNotActive>
+	<RG_CloseGate>Close {0}</RG_CloseGate>
+	<RG_CloseGateDesc>Close the linked {0}.</RG_CloseGateDesc>
+	<RG_GateIsNotActive>{0} is not active.</RG_GateIsNotActive>
 	<RG_CannotCloseIncoming>Cannot disengage an incoming wormhole.</RG_CannotCloseIncoming>
 
 	<RG_DHD_AddressListCounter>Addresses known: {0} / {1}</RG_DHD_AddressListCounter>
 	<RG_DHD_ActiveQuestCounter>Restricted connections: {0} / {1}</RG_DHD_ActiveQuestCounter>
 
-	<RG_StargateSiteHidden>Site hidden</RG_StargateSiteHidden>
+	<RG_GateSiteHidden>Site hidden</RG_GateSiteHidden>
 
 	<!-- ZPM -->
 
@@ -384,9 +384,6 @@
 	<RG_CartNoFuel>Unable to push {0} (no fuel).</RG_CartNoFuel>
 	<RG_CannotReachDestination>No colonist can reach the designated target.</RG_CannotReachDestination>
 
-	<RG_PushCartThroughStargateAction>Push cart through the Dwarfgate.</RG_PushCartThroughStargateAction>
-	<RG_PushCartsThroughStargateAction>Push carts through the Dwarfgate.</RG_PushCartsThroughStargateAction>
-
 	<!-- Constant focus -->
 
 	<RG_MeditationFocusConstant>Constant {0}</RG_MeditationFocusConstant>
@@ -418,7 +415,7 @@
 	<RG_ScribbledNote7>Leave now if you value your organs. The last guy who opened the crate got hugged...Permanently.</RG_ScribbledNote7>
 	<RG_ScribbledNote8>Sorry, no loot today. I sold it for a shiny rock and half a sandwich. No regrets.</RG_ScribbledNote8>
 	<RG_ScribbledNote9>By the time you decrypt this, I’ll be in orbit. Or dead. Depends on how angry my partner is.</RG_ScribbledNote9>
-	<RG_ScribbledNote10>This note is all that remains. The rest is stashed in a Dwarfgate buffer... somewhere. Enjoy your scavenger hunt.</RG_ScribbledNote10>
+	<RG_ScribbledNote10>This note is all that remains. The rest is stashed in a gate buffer... somewhere. Enjoy your scavenger hunt.</RG_ScribbledNote10>
 	<RG_ScribbledNote11>If you're reading this, the trap didn't work. Again. I really need better bait than empty promises and ancient tech.</RG_ScribbledNote11>
 	<RG_ScribbledNote12>The crate was full of bugs. Literal ones. I took the good stuff and left the infestation as a gift. You're welcome.</RG_ScribbledNote12>
 	<RG_ScribbledNote13>Technically, this was never your loot. It belonged to the Ancients. I’m just doing my part to return it to their hidden stash. Somewhere. Probably.</RG_ScribbledNote13>
@@ -428,7 +425,6 @@
 	<RG_ScribbledNote17>Warning: The artifact is cursed. Or at least, that’s what I’m telling myself to justify why everything went wrong after I took it.</RG_ScribbledNote17>
 	<RG_ScribbledNote18>I’m not coming back. The treasure was a trap, and I’m done playing their game. If you find this, consider it a warning... or a dare.</RG_ScribbledNote18>
 	<RG_ScribbledNote19>Found the loot, but it’s booby-trapped. Left a few surprises for the next fool who comes along. You’re welcome.</RG_ScribbledNote19>
-	<RG_ScribbledNote20>This note is all that remains. The rest is stashed in a Dwarfgate buffer... somewhere. Enjoy your scavenger hunt.</RG_ScribbledNote20>
 
 	<!-- UI -->
 

@@ -45,6 +45,9 @@ public class JobGiver_SatisfyEssenceNeed : ThinkNode_JobGiver
             return job;
         }
 
+        // TODO: pods first. then if none,
+        // try colony prisoners similiar to Biotech DLC JobGiver_GetHemogen.CanFeedOnPrisoner
+
         return null;
     }
 }

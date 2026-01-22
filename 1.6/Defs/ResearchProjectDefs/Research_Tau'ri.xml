@@ -184,7 +184,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
         <label>Naquadria engineering</label>
-        <description>Advanced Tau'ri naquadria power engineering. Unlocks a heavily shielded, industrial-scale reactor capable of powering full Stargate complexes, deep-space platforms, and that one colonist who insists on running forty neural superchargers at once.</description>
+        <description>Advanced Tau'ri naquadria power engineering. Unlocks a heavily shielded, industrial-scale reactor capable of powering full complexes, deep-space platforms, and that one colonist who insists on running forty neural superchargers at once.</description>
         <baseCost>7000</baseCost>
         <prerequisites>
             <li>Rimgate_NaquadriaFiredGenerator</li>

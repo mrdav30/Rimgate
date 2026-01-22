@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Rimgate;
 
-public class CompTargetable_Stargate : CompTargetable
+public class CompTargetable_Gate : CompTargetable
 {
     protected override bool PlayerChoosesTarget => true;
 
@@ -18,7 +18,7 @@ public class CompTargetable_Stargate : CompTargetable
         {
             validator = (TargetInfo x) =>
             {
-                Building_Stargate gate = x.Thing as Building_Stargate;
+                Building_Gate gate = x.Thing as Building_Gate;
                 bool canTarget = gate != null 
                     && gate.Props.canHaveIris 
                     && !gate.HasIris;

@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public class JobDriver_DialStargate : JobDriver
+public class JobDriver_DialGate : JobDriver
 {
     private const int WaitTicks = 200;
 
@@ -33,24 +33,26 @@ public class JobDriver_DialStargate : JobDriver
             yield break;
         }
 
-        Building_Stargate gate = null;
+        Building_Gate gate = null;
         PlanetTile tile = PlanetTile.Invalid;
         IntVec3 destination = IntVec3.Invalid;
         bool delayed = t.def == RimgateDefOf.Rimgate_DialHomeDeviceDestroyed && ResearchUtil.DHDLogicComplete;
+        bool fastDial = false;
 
         if (delayed)
         {
-            gate = Building_Stargate.GetStargateOnMap(t.Map);
-            tile = StargateUtil.WorldComp.AddressList
+            gate = Building_Gate.GetGateOnMap(t.Map);
+            tile = GateUtil.WorldComp.AddressList
                 .Where(x => x != t.Map.Tile)
                 .RandomElement();
             destination = t.Position;
         }
         else if (t is Building_DHD dhd)
         {
-            gate = dhd?.LinkedStargate;
+            gate = dhd?.LinkedGate;
             tile = dhd?.LastDialledAddress ?? PlanetTile.Invalid;
             destination = dhd.InteractionCell;
+            fastDial = dhd.Props.canFastDial;
         }
         else
         {
@@ -89,7 +91,7 @@ public class JobDriver_DialStargate : JobDriver
         {
             initAction = () =>
             {
-                gate.QueueOpen(tile, OpenDelayTicks);
+                gate.QueueOpen(tile, fastDial ? (int)(OpenDelayTicks * 0.5f) : OpenDelayTicks);
             }
         };
 

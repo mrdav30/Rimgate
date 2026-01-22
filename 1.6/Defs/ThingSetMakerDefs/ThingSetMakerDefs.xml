@@ -67,7 +67,7 @@
   </ThingSetMakerDef>
 
   <ThingSetMakerDef>
-    <defName>Rimgate_StargateComplexLootAlpha</defName>
+    <defName>Rimgate_GateComplexLootAlpha</defName>
     <root Class="ThingSetMaker_RandomOption">
       <options>
 
@@ -255,7 +255,7 @@
   </ThingSetMakerDef>
 
   <ThingSetMakerDef>
-    <defName>Rimgate_StargateComplexLootBravo</defName>
+    <defName>Rimgate_GateComplexLootBravo</defName>
     <root Class="ThingSetMaker_RandomOption">
       <options>
 
@@ -390,7 +390,7 @@
   </ThingSetMakerDef>
 
   <ThingSetMakerDef>
-    <defName>Rimgate_StargateComplexLootCharlie</defName>
+    <defName>Rimgate_GateComplexLootCharlie</defName>
     <root Class="ThingSetMaker_RandomOption">
       <options>
 

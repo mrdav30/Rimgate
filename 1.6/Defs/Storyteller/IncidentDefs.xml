@@ -63,42 +63,42 @@
 		<ignoreRecentSelectionWeighting>true</ignoreRecentSelectionWeighting>
 	</IncidentDef>
 
-	<!-- via Stargate -->
+	<!-- via Gate -->
 
 	<IncidentDef>
-		<defName>Rimgate_StargatePsychicDrone</defName>
+		<defName>Rimgate_GatePsychicDrone</defName>
 		<label>dwarfgate psychic drone</label>
 		<category>Misc</category>
 		<targetTags>
 			<li>Map_PlayerHome</li>
 		</targetTags>
-		<workerClass>Rimgate.IncidentWorker_StargatePsychicDrone</workerClass>
+		<workerClass>Rimgate.IncidentWorker_GatePsychicDrone</workerClass>
 		<baseChance>0.8</baseChance>
 		<minRefireDays>15</minRefireDays>
 		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
 	</IncidentDef>
 
 	<IncidentDef>
-		<defName>Rimgate_StargateToxicFallout</defName>
+		<defName>Rimgate_GateToxicFallout</defName>
 		<label>dwarfgate toxic fallout</label>
 		<category>Misc</category>
 		<targetTags>
 			<li>Map_PlayerHome</li>
 		</targetTags>
-		<workerClass>Rimgate.IncidentWorker_StargateToxicFallout</workerClass>
+		<workerClass>Rimgate.IncidentWorker_GateToxicFallout</workerClass>
 		<baseChance>0.35</baseChance>
 		<minRefireDays>30</minRefireDays>
 		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
 	</IncidentDef>
 
 	<IncidentDef>
-		<defName>Rimgate_StargateHeatWave</defName>
+		<defName>Rimgate_GateHeatWave</defName>
 		<label>dwarfgate heat wave</label>
 		<category>Misc</category>
 		<targetTags>
 			<li>Map_PlayerHome</li>
 		</targetTags>
-		<workerClass>Rimgate.IncidentWorker_StargateHeatWave</workerClass>
+		<workerClass>Rimgate.IncidentWorker_GateHeatWave</workerClass>
 		<baseChance>0.45</baseChance>
 		<minRefireDays>25</minRefireDays>
 		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>

@@ -5,13 +5,13 @@ using Verse;
 namespace Rimgate.HarmonyPatches;
 
 [HarmonyPatch(typeof(Designator_Uninstall), nameof(Designator_Uninstall.CanDesignateThing))]
-static class Patch_BlockStargateUninstall
+public static class Harmony_BlockGateUninstall
 {
-    static void Postfix(Thing t, ref AcceptanceReport __result)
+    public static void Postfix(Thing t, ref AcceptanceReport __result)
     {
         if (!__result.Accepted) return;
-        bool flag = t is Rimgate.Building_Stargate sg && (sg.IsActive || sg.ExternalHoldCount > 0);
+        bool flag = t is Rimgate.Building_Gate sg && (sg.IsActive || sg.ExternalHoldCount > 0);
         if (flag)
-            __result = "RG_StargateHeldCannotUninstall".Translate();
+            __result = "RG_GateHeldCannotUninstall".Translate(t.LabelCap);
     }
 }

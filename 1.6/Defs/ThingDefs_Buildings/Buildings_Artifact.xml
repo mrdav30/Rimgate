@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <!-- =============== Stargate Base =============== -->
+    <!-- =============== Gate Base =============== -->
 
-    <ThingDef Name="Rimgate_StargateBase" ParentName="BuildingBase" Abstract="True">
-        <thingClass>Rimgate.Building_Stargate</thingClass>
+    <ThingDef Name="Rimgate_GateBase" ParentName="BuildingBase" Abstract="True">
+        <thingClass>Rimgate.Building_Gate</thingClass>
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
         <altitudeLayer>BuildingOnTop</altitudeLayer>
@@ -29,7 +29,7 @@
             <uninstallWork>6250</uninstallWork>
         </building>
         <placeWorkers>
-            <li>Rimgate.PlaceWorker_Stargate</li>
+            <li>Rimgate.PlaceWorker_Gate</li>
         </placeWorkers>
         <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
         <thingSetMakerTags Inherit="False" />
@@ -51,7 +51,7 @@
 
     <!-- ======= Dwarfgate ======= -->
 
-    <ThingDef ParentName="Rimgate_StargateBase">
+    <ThingDef ParentName="Rimgate_GateBase">
         <defName>Rimgate_Dwarfgate</defName>
         <label>Dwarfgate</label>
         <description>An ancient alien construct capable of instantaneous transit, but unlike the legendary Stargates of myth, these “Dwarfgates” are smaller, dimmer cousins. Their wormhole lattice is sealed into a closed planetary network; attempts to dial off-world fizzle as if an unseen hand blocks the path.
@@ -124,7 +124,7 @@
             </li>
         </comps>
         <modExtensions>
-            <li Class="Rimgate.Building_Stargate_Ext">
+            <li Class="Rimgate.Building_Gate_Ext">
                 <puddleGraphicData>
                     <texPath>FX/RGEventHorizon</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
@@ -138,17 +138,17 @@
                 <irisIconTexPath>UI/Button/RGIris_Close</irisIconTexPath>
                 <irisIconOpenTexPath>UI/Button/RGIris_Open</irisIconOpenTexPath>
                 <chevronHighlight>
-                    <texPath>FX/RGStargateAncient_Active</texPath>
+                    <texPath>FX/RGGate_Active</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
                     <shaderType>MoteGlow</shaderType>
                     <drawSize>(5,5)</drawSize>
                 </chevronHighlight>
                 <irisPowerConsumption>500</irisPowerConsumption>
                 <teleportSounds>
-                    <li>Rimgate_StargateTeleport01</li>
-                    <li>Rimgate_StargateTeleport02</li>
-                    <li>Rimgate_StargateTeleport03</li>
-                    <li>Rimgate_StargateTeleport04</li>
+                    <li>Rimgate_GateTeleport01</li>
+                    <li>Rimgate_GateTeleport02</li>
+                    <li>Rimgate_GateTeleport03</li>
+                    <li>Rimgate_GateTeleport04</li>
                 </teleportSounds>
             </li>
         </modExtensions>
@@ -209,7 +209,7 @@
             </li>
             <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
                 <analysisID>1000600</analysisID>
-                <requiresResearchDef>Rimgate_StargateAlloyResearch</requiresResearchDef>
+                <requiresResearchDef>Rimgate_AncientAlloyResearch</requiresResearchDef>
 
                 <!-- Analyzable -->
 
@@ -456,7 +456,6 @@
         </comps>
         <placeWorkers>
             <li>Rimgate.PlaceWorker_ResonanceIdol</li>
-            <li>Rimgate.PlaceWorker_Stargate</li>
         </placeWorkers>
         <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
         <thingSetMakerTags Inherit="False" />

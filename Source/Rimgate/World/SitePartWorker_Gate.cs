@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Rimgate;
 
-public class SitePartWorker_Stargate : SitePartWorker
+public class SitePartWorker_Gate : SitePartWorker
 {
     public override string GetPostProcessedThreatLabel(Site site, SitePart sitePart)
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("RG_GateAddress".Translate(StargateUtil.GetStargateDesignation(site.Tile)));
+        sb.Append("RG_GateAddress".Translate(GateUtil.GetGateDesignation(site.Tile)));
         return sb.ToString();
     }
 }

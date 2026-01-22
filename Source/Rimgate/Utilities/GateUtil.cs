@@ -12,7 +12,7 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public static class StargateUtil
+public static class GateUtil
 {
     // TODO: move this to mod config
     public const int MaxAddresses = 11;
@@ -25,9 +25,9 @@ public static class StargateUtil
 
     private const int MaxTries = 2000;
 
-    public static WorldComp_StargateAddresses WorldComp => _cachedWorldComp ??= Find.World.GetComponent<WorldComp_StargateAddresses>();
+    public static WorldComp_GateAddresses WorldComp => _cachedWorldComp ??= Find.World.GetComponent<WorldComp_GateAddresses>();
 
-    private static WorldComp_StargateAddresses _cachedWorldComp;
+    private static WorldComp_GateAddresses _cachedWorldComp;
 
     public static bool ModificationEquipmentActive => WorldComp?.ModificationEquipmentActive == true;
 
@@ -40,9 +40,9 @@ public static class StargateUtil
     public static bool ActiveQuestSitesAtLimit => ActiveQuestSiteCount >= MaxActiveQuestSiteCount;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool TryGetActiveGateOnMap(Map map, out Building_Stargate gate)
+    public static bool TryGetActiveGateOnMap(Map map, out Building_Gate gate)
     {
-        gate = Building_Stargate.GetStargateOnMap(map);
+        gate = Building_Gate.GetGateOnMap(map);
         return gate?.IsActive == true;
     }
 
@@ -79,6 +79,17 @@ public static class StargateUtil
         });
     }
 
+    public static List<PlanetTile> GetAddressList(PlanetTile exclude = default)
+    {
+        if (WorldComp == null)
+            return new List<PlanetTile>();
+
+        GateUtil.CleanupAddresses();
+        return WorldComp.AddressList
+            .Where(tile => tile != exclude)
+            .ToList();
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void IncrementQuestSiteCount()
     {
@@ -102,6 +113,9 @@ public static class StargateUtil
 
     public static bool IsValidAddress(PlanetTile address)
     {
+        if(!address.Valid)
+            return false;
+
         var mp = Find.WorldObjects.MapParentAt(address);
         return mp switch
         {
@@ -123,7 +137,7 @@ public static class StargateUtil
         return map != null && map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer).Any();
     }
 
-    public static string GetStargateDesignation(PlanetTile address)
+    public static string GetGateDesignation(PlanetTile address)
     {
         if (!address.Valid)
             return "UnknownLower".Translate();
@@ -141,7 +155,7 @@ public static class StargateUtil
         return designation;
     }
 
-    public static Building_Stargate PlaceRandomGate(Map map, Faction faction = null)
+    public static Building_Gate PlaceRandomGate(Map map, Faction faction = null)
     {
         // Find a safe spot for a new gate
         // (near-ish center, unfogged, standable, no edifice, not roofed)
@@ -172,17 +186,17 @@ public static class StargateUtil
             spot,
             map,
             Rot4.North,
-            WipeMode.Vanish) as Building_Stargate;
+            WipeMode.Vanish) as Building_Gate;
 
         if (faction != null) gate?.SetFaction(faction);
 
         if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Spawned a fallback Stargate at {spot} on {map}.");
+            Log.Message($"Rimgate :: Spawned a fallback gate at {spot} on {map}{(faction != null ? $" for faction {faction}" : "")}.");
 
         return gate;
     }
 
-    public static void EnsureDhdNearGate(Map map, Building_Stargate gate, Faction faction = null)
+    public static void EnsureDhdNearGate(Map map, Building_Gate gate, Faction faction = null)
     {
         // Any DHD within ~8 tiles (Facility default) is fine
         bool HasLinkedDhdNearby()
@@ -190,18 +204,18 @@ public static class StargateUtil
             return map.listerThings.AllThings.Any(t =>
                 t is Building_DHD
                 && t.Spawned
-                && t.Position.InHorDistOf(gate.Position, 8f));
+                && t.Position.InHorDistOf(gate.Position, 7f));
         }
 
         if (gate == null || HasLinkedDhdNearby())
             return;
 
-        // Find a near spot (4..8 tiles) that’s clean for a 1x1 DHD
+        // Find a near spot (4..8 tiles) that’s clear for a DHD
         IntVec3 near;
         bool found = CellFinder.TryFindRandomReachableNearbyCell(
             gate.Position,
             map,
-            6f,
+            7f,
             TraverseParms.For(TraverseMode.PassDoors),
             c => c.InBounds(map)
                 && c.Standable(map)
@@ -209,7 +223,7 @@ public static class StargateUtil
                 && !c.Roofed(map)
                 && !c.Fogged(map)
                 && c.GetEdifice(map) == null
-                && c.DistanceTo(gate.Position) >= 3f,
+                && c.DistanceTo(gate.Position) > 4f,
             null,
             out near);
 
@@ -224,13 +238,14 @@ public static class StargateUtil
         var dhdDef = RimgateDefOf.Rimgate_DialHomeDevice;
         var dhd = GenSpawn.Spawn(
             dhdDef,
-            near, map,
+            near,
+            map,
             Rot4.North,
             WipeMode.Vanish);
 
         if (faction != null) dhd?.SetFaction(faction);
 
         if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Spawned a fallback DHD at {near} on {map}.");
+            Log.Message($"Rimgate :: Spawned a fallback DHD at {near} on {map}{(faction != null ? $" for faction {faction}" : "")}.");
     }
 }

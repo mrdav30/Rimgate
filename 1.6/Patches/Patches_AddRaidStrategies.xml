@@ -4,14 +4,14 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/RaidStrategyDef[defName="ImmediateAttack"]/arriveModes</xpath>
 		<value>
-			<li>Rimgate_StargateEnterMode</li>
+			<li>Rimgate_GateEnterMode</li>
 		</value>
 	</Operation>
 	
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/RaidStrategyDef[defName="ImmediateAttackSmart"]/arriveModes</xpath>
 		<value>
-			<li>Rimgate_StargateEnterMode</li>
+			<li>Rimgate_GateEnterMode</li>
 		</value>
 	</Operation>
 

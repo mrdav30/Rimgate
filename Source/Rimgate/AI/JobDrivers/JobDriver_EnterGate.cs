@@ -8,24 +8,24 @@ using System.Linq;
 
 namespace Rimgate;
 
-public class JobDriver_EnterStargate : JobDriver
+public class JobDriver_EnterGate : JobDriver
 {
-    protected Building_Stargate StargateToEnter => job.targetA.Thing as Building_Stargate;
+    protected Building_Gate GateToEnter => job.targetA.Thing as Building_Gate;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDestroyedOrNull(TargetIndex.A);
-        this.FailOn(() => !StargateToEnter.IsActive);
+        this.FailOn(() => !GateToEnter.IsActive);
 
-        yield return Toils_Goto.GotoCell(StargateToEnter.InteractionCell, PathEndMode.OnCell);
+        yield return Toils_Goto.GotoCell(GateToEnter.InteractionCell, PathEndMode.OnCell);
         yield return new Toil
         {
             initAction = () =>
             {
                 var traveler = pawn;
-                var gate = StargateToEnter;
+                var gate = GateToEnter;
                 gate.AddToSendBuffer(traveler);
                 traveler.DeSpawn();
             }

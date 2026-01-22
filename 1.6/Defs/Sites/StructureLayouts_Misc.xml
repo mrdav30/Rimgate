@@ -104,25 +104,23 @@
 	<KCSG.StructureLayoutDef>
 		<defName>Rimgate_StructureBarrenGate</defName>
 		<terrainGrid>
-			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,Gravel,Gravel,Gravel,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,Gravel,Gravel,Gravel,Gravel,Gravel,.,.,.,.,.</li>
-			<li>.,.,.,.,.,Gravel,Gravel,Gravel,Gravel,Gravel,.,.,.,.,.</li>
-			<li>.,.,.,.,.,Gravel,Gravel,Gravel,Gravel,Gravel,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,Gravel,Gravel,Gravel,.</li>
+			<li>.,Gravel,Gravel,Gravel,.</li>
+			<li>.,Gravel,Gravel,Gravel,.</li>
+			<li>Gravel,Gravel,Gravel,Gravel,Gravel</li>
+			<li>Gravel,Gravel,Gravel,Gravel,Gravel</li>
+			<li>FlagstoneMarble,FlagstoneMarble,FlagstoneMarble,FlagstoneMarble,FlagstoneMarble</li>
+			<li>FlagstoneMarble,FlagstoneMarble,FlagstoneMarble,FlagstoneMarble,FlagstoneMarble</li>
 		</terrainGrid>
 		<layouts>
 			<li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,Rimgate_DialHomeDevice,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,Rimgate_Dwarfgate,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+				<li>.,.,.,.,.</li>
+				<li>.,.,Rimgate_DialHomeDevice,.,.</li>
+				<li>.,.,.,.,.</li>
+				<li>.,.,.,.,.</li>
+				<li>.,.,.,.,.</li>
+				<li>.,.,Rimgate_Dwarfgate,.,.</li>
+				<li>.,.,.,.,.</li>
 			</li>
 		</layouts>
 		<needRoofClearance>true</needRoofClearance>
@@ -134,25 +132,23 @@
 	<KCSG.StructureLayoutDef>
 		<defName>Rimgate_StructureBarrenGateNoDHD</defName>
 		<terrainGrid>
-			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.,.</li>
-			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.</li>
-			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.</li>
-			<li>.,.,.,.,.,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,.,.,.,.,.</li>
-			<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+			<li>.,MossyTerrain,MossyTerrain,MossyTerrain,.</li>
+			<li>.,MossyTerrain,MossyTerrain,MossyTerrain,.</li>
+			<li>.,MossyTerrain,MossyTerrain,MossyTerrain,.</li>
+			<li>MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain</li>
+			<li>MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain,MossyTerrain</li>
+			<li>FlagstoneMarble,FlagstoneMarble,FlagstoneMarble,FlagstoneMarble,FlagstoneMarble</li>
+			<li>FlagstoneMarble,FlagstoneMarble,FlagstoneMarble,FlagstoneMarble,FlagstoneMarble</li>
 		</terrainGrid>
 		<layouts>
 			<li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,Rimgate_DialHomeDeviceDestroyed,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,Rimgate_Dwarfgate,.,.,.,.,.,.,.</li>
-				<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+				<li>.,.,.,.,.</li>
+				<li>.,.,Rimgate_DialHomeDeviceDestroyed,.,.</li>
+				<li>.,.,.,.,.</li>
+				<li>.,.,.,.,.</li>
+				<li>.,.,.,.,.</li>
+				<li>.,.,Rimgate_Dwarfgate,.,.</li>
+				<li>.,.,.,.,.</li>
 			</li>
 		</layouts>
 		<needRoofClearance>true</needRoofClearance>

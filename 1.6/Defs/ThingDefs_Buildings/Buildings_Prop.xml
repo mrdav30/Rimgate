@@ -720,7 +720,7 @@
 
     <ThingDef Name="Rimgate_SupplyCrateBase" ParentName="CrateBase" Abstract="True">
         <label>Supply crate</label>
-        <description>A small crate that's still sealed. There may be valuables inside.</description>
+        <description>A sturdy, hermetically sealed supply crate used to store various goods and artifacts. These crates are usually found in ancient outposts and supply caches-but more commonly in the hands of explorers and scavengers.</description>
         <size>(1, 1)</size>
         <fillPercent>1</fillPercent>
         <statBases>
@@ -765,7 +765,7 @@
         </graphicData>
         <comps>
             <li Class="CompProperties_LootSpawn">
-                <contents>Rimgate_StargateComplexLootAlpha</contents>
+                <contents>Rimgate_GateComplexLootAlpha</contents>
             </li>
             <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
                 <graphicData>
@@ -794,7 +794,7 @@
         </graphicData>
         <comps>
             <li Class="CompProperties_LootSpawn">
-                <contents>Rimgate_StargateComplexLootBravo</contents>
+                <contents>Rimgate_GateComplexLootBravo</contents>
             </li>
             <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
                 <graphicData>
@@ -852,7 +852,7 @@
         </graphicData>
         <comps>
             <li Class="CompProperties_LootSpawn">
-                <contents>Rimgate_StargateComplexLootCharlie</contents>
+                <contents>Rimgate_GateComplexLootCharlie</contents>
             </li>
             <li Class="CompProperties_EmptyStateGraphic">
                 <graphicData>
@@ -883,7 +883,7 @@
         </stuffCategories>
         <comps>
             <li Class="CompProperties_LootSpawn">
-                <contents>Rimgate_StargateComplexLootCharlie</contents>
+                <contents>Rimgate_GateComplexLootCharlie</contents>
             </li>
             <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
                 <graphicData>

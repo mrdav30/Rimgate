@@ -4,7 +4,7 @@ using Verse.AI;
 
 namespace Rimgate;
 
-public class JobDriver_CloseStargate : JobDriver
+public class JobDriver_CloseGate : JobDriver
 {
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -14,7 +14,7 @@ public class JobDriver_CloseStargate : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         this.FailOnDespawnedOrNull(TargetIndex.A);
-        this.FailOn(() => base.Map.designationManager.DesignationOn(base.TargetThingA, RimgateDefOf.Rimgate_DesignationCloseStargate) == null);
+        this.FailOn(() => base.Map.designationManager.DesignationOn(base.TargetThingA, RimgateDefOf.Rimgate_DesignationCloseGate) == null);
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
         yield return Toils_General.Wait(15).FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch);
         Toil finalize = ToilMaker.MakeToil("MakeNewToils");
@@ -25,7 +25,7 @@ public class JobDriver_CloseStargate : JobDriver
             if(actor.CurJob.targetA.Thing is Building_DHD dhd && dhd.WantsGateClosed)
             {
                 dhd.DoCloseGate();
-                Map.designationManager.DesignationOn(dhd, RimgateDefOf.Rimgate_DesignationCloseStargate)?.Delete();
+                Map.designationManager.DesignationOn(dhd, RimgateDefOf.Rimgate_DesignationCloseGate)?.Delete();
             }
         };
         finalize.defaultCompleteMode = ToilCompleteMode.Instant;

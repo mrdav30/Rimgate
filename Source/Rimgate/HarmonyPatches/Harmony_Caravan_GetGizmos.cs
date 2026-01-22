@@ -54,8 +54,8 @@ public class Harmony_Caravan_GetGizmos
     {
         foreach (var g in gizmos) yield return g;
 
-        bool containsStargate = __instance.AllThings.Any(t =>
-            t.GetInnerIfMinified() is Building_Stargate bs 
+        bool containsGate = __instance.AllThings.Any(t =>
+            t.GetInnerIfMinified() is Building_Gate bs 
             && bs != null);
 
         var cmd = new Command_Action
@@ -76,14 +76,14 @@ public class Harmony_Caravan_GetGizmos
 
                 Find.WorldObjects.Add(wo);
             },
-            defaultLabel = "RG_CreateSGSite".Translate(),
-            defaultDesc = "RG_CreateSGSiteDesc".Translate()
+            defaultLabel = "RG_CreateTransitSite".Translate(),
+            defaultDesc = "RG_CreateTransitSiteDesc".Translate()
         };
 
         StringBuilder disabledReason = new();
-        if(StargateUtil.AddressBookFull)
+        if(GateUtil.AddressBookFull)
             disabledReason.Append("RG_Cannot_AddressBookFull".Translate());
-        else if (!containsStargate)
+        else if (!containsGate)
             disabledReason.Append("RG_NoGateInCaravan".Translate());
         else if (IsBlockedByLandmark(__instance.Tile, out var landmarkLabel))
             disabledReason.Append("RG_BlockedByLandmark".Translate(landmarkLabel));

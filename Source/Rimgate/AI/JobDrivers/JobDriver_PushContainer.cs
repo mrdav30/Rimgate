@@ -177,7 +177,7 @@ public class JobDriver_PushContainer : JobDriver
                     return;
                 }
 
-                var gate = job.targetC.Thing as Building_Stargate;
+                var gate = job.targetC.Thing as Building_Gate;
                 if (gate != null)
                 {
                     // sanity: gate usable?
@@ -202,7 +202,7 @@ public class JobDriver_PushContainer : JobDriver
                     // 2) hand the unspawned cart to the gate
                     gate.AddToSendBuffer(gateCart);  // gate system will forward & spawn at receiver
 
-                    if (job.def == RimgateDefOf.Rimgate_EnterStargateWithContainer)
+                    if (job.def == RimgateDefOf.Rimgate_EnterGateWithContainer)
                     {
                         gate.AddToSendBuffer(pawn);
                         pawn.DeSpawn();

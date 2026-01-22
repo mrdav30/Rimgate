@@ -270,7 +270,7 @@
 		<products>
 			<Rimgate_IrisInstallKit>1</Rimgate_IrisInstallKit>
 		</products>
-		<researchPrerequisite>Rimgate_StargateIrisResearch</researchPrerequisite>
+		<researchPrerequisite>Rimgate_GateIrisResearch</researchPrerequisite>
 	</RecipeDef>
 
 	<!-- ==================== Meat Cocoon ==================== -->

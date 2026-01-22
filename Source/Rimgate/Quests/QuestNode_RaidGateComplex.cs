@@ -7,10 +7,10 @@ using Verse;
 
 namespace Rimgate;
 
-/// Drives “timed detection” raids for a Stargate site, 
+/// Drives “timed detection” raids for a gate site, 
 /// without using the vanilla TimedDetectionRaids WO comp.
 /// Triggers on site.MapGenerated and then repeats on an interval until quest end.
-public class QuestNode_RaidStargateComplex : QuestNode
+public class QuestNode_RaidGateComplex : QuestNode
 {
     // ~0.5–1 day after map gen
     private static readonly IntRange InitialDelay = new IntRange(18000, 36000);
@@ -55,8 +55,8 @@ public class QuestNode_RaidStargateComplex : QuestNode
         // We’ll key everything off the site’s signals site.MapGenerated is the *first* kick.
         // From there we run a repeating interval signal.
         string startSignal = QuestGenUtility.HardcodedSignalWithQuestID("site.MapGenerated");
-        string triggerRaidSignal = QuestGen.GenerateNewSignal("StargateComplex.TriggerRaid");
-        string questEndSignal = QuestGenUtility.HardcodedSignalWithQuestID("stargate.site.QuestEnd");
+        string triggerRaidSignal = QuestGen.GenerateNewSignal("GateComplex.TriggerRaid");
+        string questEndSignal = QuestGenUtility.HardcodedSignalWithQuestID("gate.site.QuestEnd");
 
         // Stop raids if the site goes away (destroyed/abandoned)
         string siteRemovedSignal = QuestGenUtility.HardcodedSignalWithQuestID("site.MapRemoved");
@@ -79,14 +79,14 @@ public class QuestNode_RaidStargateComplex : QuestNode
             mapParent = site,
             pointsRange = RaidPointsFactor,
             AllowNeolithic = !isSpace,
-            UseStargateIfAvailable = true,
+            UseGateIfAvailable = true,
             arrivalMode = isSpace
                 ? PawnsArrivalModeDefOf.EdgeDrop
                 : PawnsArrivalModeDefOf.EdgeWalkIn,
             raidStrategy = RimgateDefOf.ImmediateAttackSmart,
             generateFightersOnly = true,
             fallbackToPlayerHomeMap = false,
-            UseLetterKey = "RG_LetterRaidStargateComplexDesc"
+            UseLetterKey = "RG_LetterRaidGateComplexDesc"
         };
 
         quest.AddPart(raid);

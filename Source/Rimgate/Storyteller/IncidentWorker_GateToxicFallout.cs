@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Rimgate;
 
-public class IncidentWorker_StargateToxicFallout : IncidentWorker
+public class IncidentWorker_GateToxicFallout : IncidentWorker
 {
     protected override bool CanFireNowSub(IncidentParms parms)
     {
@@ -12,7 +12,7 @@ public class IncidentWorker_StargateToxicFallout : IncidentWorker
         var map = parms.target as Map;
         if (map == null) return false;
         return map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
-                   .OfType<Building_Stargate>()
+                   .OfType<Building_Gate>()
                    .Any();
     }
 
@@ -21,8 +21,8 @@ public class IncidentWorker_StargateToxicFallout : IncidentWorker
         var map = (Map)parms.target;
         // ~1–3 days
         int ticks = GenDate.TicksPerDay * Rand.RangeInclusive(1, 3);
-        var cond = (GameCondition_StargateToxicFallout)GameConditionMaker
-            .MakeCondition(RimgateDefOf.Rimgate_StargateToxicFallout, ticks);
+        var cond = (GameCondition_GateToxicFallout)GameConditionMaker
+            .MakeCondition(RimgateDefOf.Rimgate_GateToxicFallout, ticks);
         map.gameConditionManager.RegisterCondition(cond);
 
         SendStandardLetter(cond.LabelCap, cond.LetterText, cond.def.letterDef, parms, LookTargets.Invalid);

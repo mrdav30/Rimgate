@@ -2,10 +2,10 @@
 <Defs>
 
     <GameConditionDef>
-        <defName>Rimgate_StargatePsychicDrone</defName>
+        <defName>Rimgate_GatePsychicDrone</defName>
         <label>dwarfgate-borne psychic drone</label>
         <description>A hostile transmitter has phase-locked to your Dwarfgate, flooding the area with hostile subspace patterns.</description>
-        <conditionClass>Rimgate.GameCondition_StargatePsychicDrone</conditionClass>
+        <conditionClass>Rimgate.GameCondition_GatePsychicDrone</conditionClass>
         <defaultDroneLevel>BadMedium</defaultDroneLevel>
         <endMessage>The psychic drone falls silent and the Dwarfgate calms.</endMessage>
         <letterText>A distant engine of hatred has hijacked your Dwarfgate and is beaming a focused psychic drone into this colony. For a time, every {0} colonist will be pushed toward instability.\n\nDrone level: {1}.</letterText>
@@ -18,10 +18,10 @@
     </GameConditionDef>
 
     <GameConditionDef>
-        <defName>Rimgate_StargateToxicFallout</defName>
+        <defName>Rimgate_GateToxicFallout</defName>
         <label>dwarfgate-borne toxic fallout</label>
         <description>Through a forced Dwarfgate link, a hostile emitter is dumping irradiated particulates through your ring, poisoning the skies.</description>
-        <conditionClass>Rimgate.GameCondition_StargateToxicFallout</conditionClass>
+        <conditionClass>Rimgate.GameCondition_GateToxicFallout</conditionClass>
         <letterText>Hostiles have hijacked your Dwarfgate to vent toxic particulates into this region. The air will grow poisonous until the stream collapses.</letterText>
         <endMessage>The toxic stream cuts off, and the Dwarfgate stabilizes.</endMessage>
         <letterDef>NegativeEvent</letterDef>
@@ -31,10 +31,10 @@
     </GameConditionDef>
 
     <GameConditionDef>
-        <defName>Rimgate_StargateHeatWave</defName>
+        <defName>Rimgate_GateHeatWave</defName>
         <label>dwarfgate-borne heat wave</label>
         <description>An enemy array is phase-coupling thermal energy through your Dwarfgate, spiking local temperatures to dangerous levels.</description>
-        <conditionClass>Rimgate.GameCondition_StargateHeatWave</conditionClass>
+        <conditionClass>Rimgate.GameCondition_GateHeatWave</conditionClass>
         <letterText>The Dwarfgate blooms white-hot—the air temperature surges as a hostile grid floods your region with thermal energy.</letterText>
         <endMessage>The thermal stream collapses; temperatures will fall.</endMessage>
         <letterDef>NegativeEvent</letterDef>

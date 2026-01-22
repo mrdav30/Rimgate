@@ -118,7 +118,7 @@
 		<prerequisites>
 			<li>Rimgate_GlyphDeciphering</li>
 			<li>Rimgate_SubspaceMasking</li>
-			<li>Rimgate_StargateReplacementDHDResearch</li>
+			<li>Rimgate_DHDResearch</li>
 			<li>Rimgate_WraithCommunicationDevice</li>
 		</prerequisites>
 		<researchViewX>3</researchViewX>

@@ -67,7 +67,7 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_StargateAlloyResearch</defName>
+		<defName>Rimgate_AncientAlloyResearch</defName>
 		<label>Ancient alloys</label>
 		<description>By combining Plasteel, Uranium, Naquadah, and Steel, our scientists have created an absurdly strong, absurdly unstable alloy.\nToo volatile for furniture, perfect for high-stakes wormhole shielding.</description>
 		<baseCost>4000</baseCost>
@@ -79,27 +79,27 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_StargateIrisResearch</defName>
+		<defName>Rimgate_GateIrisResearch</defName>
 		<label>Irises</label>
 		<description>By placing an ultra-thin barrier mere microns from a Dwarfgate's event horizon, we can prevent reintegration of inbound matter.\nIn simpler terms: unwanted guests go *splat*. Handy.</description>
 		<baseCost>6000</baseCost>
 		<prerequisites>
 			<li>Rimgate_GlyphDeciphering</li>
-			<li>Rimgate_StargateAlloyResearch</li>
+			<li>Rimgate_AncientAlloyResearch</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_StargateReplacementDHDResearch</defName>
+		<defName>Rimgate_DHDResearch</defName>
 		<label>DHD logic</label>
 		<description>By studying salvaged Dwarfgate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>4000</baseCost>
 		<prerequisites>
 			<li>Rimgate_GlyphDeciphering</li>
-			<li>Rimgate_StargateAlloyResearch</li>
+			<li>Rimgate_AncientAlloyResearch</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0.5</researchViewY>
@@ -159,7 +159,7 @@
 		<techLevel>Spacer</techLevel>
 		<baseCost>3000</baseCost>
 		<prerequisites>
-			<li>Rimgate_StargateAlloyResearch</li>
+			<li>Rimgate_AncientAlloyResearch</li>
 		</prerequisites>
 		<requiredAnalyzed>
 			<li>Rimgate_ReplicatorLink</li>
@@ -301,7 +301,7 @@
 		<baseCost>6500</baseCost>
 		<techLevel>Ultra</techLevel>
 		<prerequisites>
-			<li>Rimgate_StargateAlloyResearch</li>
+			<li>Rimgate_AncientAlloyResearch</li>
 			<li>ShipBasics</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>

@@ -12,7 +12,7 @@ public class JobDriver_InstallIris : JobDriver
 {
     private Thing _iris => (Thing)job.targetA.Thing;
 
-    private Building_Stargate _gate => (Building_Stargate)job.targetB.Thing;
+    private Building_Gate _gate => (Building_Gate)job.targetB.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {

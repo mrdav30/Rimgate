@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <SitePartDef Name="Rimgate_StargateSiteBase" Abstract="true">
+    <SitePartDef Name="Rimgate_GateSiteBase" Abstract="true">
         <label>Dwarfgate location</label>
         <description>A remote site known to contain a Dwarfgate.</description>
-        <workerClass>Rimgate.SitePartWorker_Stargate</workerClass>
-        <siteTexture>UI/Map/RGStargateComplexSiteIcon</siteTexture>
-        <expandingIconTexture>UI/Map/RGStargateComplexSiteIcon</expandingIconTexture>
+        <workerClass>Rimgate.SitePartWorker_Gate</workerClass>
+        <siteTexture>UI/Map/RGGateComplexSiteIcon</siteTexture>
+        <expandingIconTexture>UI/Map/RGGateComplexSiteIcon</expandingIconTexture>
         <requiresFaction>true</requiresFaction>
         <showFactionInInspectString>true</showFactionInInspectString>
         <approachOrderString>Investigate {0}</approachOrderString>
@@ -15,8 +15,10 @@
         <arrivedLetterDef>NeutralEvent</arrivedLetterDef>
         <copyQuestName>true</copyQuestName>
         <wantsThreatPoints>true</wantsThreatPoints>
-        <minThreatPoints>90</minThreatPoints>
-		<disallowsAutomaticDetectionTimerStart>true</disallowsAutomaticDetectionTimerStart>
+        <minThreatPoints>150</minThreatPoints>
+        <disallowsAutomaticDetectionTimerStart>true</disallowsAutomaticDetectionTimerStart>
+        <minMapSize>(250, 1, 250)</minMapSize>
+        <gravShipsCanLandOn>true</gravShipsCanLandOn>
     </SitePartDef>
 
     <SitePartDef Name="Rimgate_SoldierBase" Abstract="true">
@@ -26,6 +28,7 @@
         <expandingIconTexture>World/WorldObjects/Expanding/Sites/Ambush</expandingIconTexture>
         <handlesWorldObjectTimeoutInspectString>true</handlesWorldObjectTimeoutInspectString>
         <wantsThreatPoints>true</wantsThreatPoints>
+        <minThreatPoints>150</minThreatPoints>
     </SitePartDef>
 
 </Defs>

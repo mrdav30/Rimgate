@@ -16,6 +16,8 @@ public class Building_DHD_Ext : DefModExtension
 {
     public bool canToggleIris;
 
+    public bool canFastDial;
+
     public GraphicData activeGraphicData;
 }
 
@@ -29,13 +31,13 @@ public class Building_DHD : Building
 
     public CompPowerTrader PowerTrader => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
-    public Building_Stargate LinkedStargate
+    public Building_Gate LinkedGate
     {
         get
         {
-            if (_cachedStargateControl == null)
-                TryGetLinkedStargate(out _cachedStargateControl);
-            return _cachedStargateControl;
+            if (_cachedGateControl == null)
+                TryGetLinkedGate(out _cachedGateControl);
+            return _cachedGateControl;
         }
     }
 
@@ -59,7 +61,7 @@ public class Building_DHD : Building
 
     private bool _wantIrisToggled;
 
-    private Building_Stargate _cachedStargateControl;
+    private Building_Gate _cachedGateControl;
 
     public override void TickRare()
     {
@@ -73,13 +75,13 @@ public class Building_DHD : Building
                 if (t.def != RimgateDefOf.Rimgate_WraithModificationEquipment) continue;
                 var power = t.TryGetComp<CompPowerTrader>();
                 _hadActiveModificationEquipment = power?.PowerOn == true;
-                StargateUtil.SetModificationEquipmentActive(_hadActiveModificationEquipment);
+                GateUtil.SetModificationEquipmentActive(_hadActiveModificationEquipment);
                 return;
             }
 
         if (_hadActiveModificationEquipment)
         {
-            StargateUtil.SetModificationEquipmentActive(false);
+            GateUtil.SetModificationEquipmentActive(false);
             _hadActiveModificationEquipment = false;
         }
 
@@ -93,7 +95,7 @@ public class Building_DHD : Building
         if (active == null)
             return;
 
-        var control = LinkedStargate;
+        var control = LinkedGate;
         if (control == null)
             return;
 
@@ -113,31 +115,31 @@ public class Building_DHD : Building
         foreach (Gizmo gizmo in base.GetGizmos())
             yield return gizmo;
 
-        var linked = LinkedStargate;
+        var linked = LinkedGate;
         if (linked == null)
             yield break;
 
         Command_Toggle closeGateCmd = new Command_Toggle
         {
-            defaultLabel = "RG_CloseStargate".Translate(),
-            defaultDesc = "RG_CloseStargateDesc".Translate(),
+            defaultLabel = "RG_CloseGate".Translate(linked.LabelCap),
+            defaultDesc = "RG_CloseGateDesc".Translate(linked.LabelCap),
             icon = RimgateTex.CancelCommandTex,
             isActive = () => _wantGateClosed,
             toggleAction = delegate
             {
                 _wantGateClosed = !_wantGateClosed;
 
-                Designation designation = Map.designationManager.DesignationOn(this, RimgateDefOf.Rimgate_DesignationCloseStargate);
+                Designation designation = Map.designationManager.DesignationOn(this, RimgateDefOf.Rimgate_DesignationCloseGate);
 
                 if (designation == null)
-                    Map.designationManager.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationCloseStargate));
+                    Map.designationManager.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationCloseGate));
                 else
                     designation?.Delete();
             }
         };
 
         if (!linked.IsActive)
-            closeGateCmd.Disable("RG_GateIsNotActive".Translate());
+            closeGateCmd.Disable("RG_GateIsNotActive".Translate(linked.LabelCap));
         else if (linked.IsReceivingGate)
             closeGateCmd.Disable("RG_CannotCloseIncoming".Translate());
         else if (!Powered)
@@ -155,7 +157,7 @@ public class Building_DHD : Building
         var toggleIrisCmd = new Command_Toggle
         {
             defaultLabel = "RG_ToggleIris".Translate(actionLabel),
-            defaultDesc = "RG_ToggleIrisDesc".Translate(actionLabel),
+            defaultDesc = "RG_ToggleIrisDesc".Translate(actionLabel, linked.LabelCap),
             icon = linked.ToggleIrisIcon,
             isActive = () => _wantIrisToggled,
             toggleAction = delegate
@@ -179,13 +181,17 @@ public class Building_DHD : Building
 
     public override string GetInspectString()
     {
+        if (this.IsMinified())
+            return null;
+
         StringBuilder sb = new StringBuilder(base.GetInspectString());
         if(sb.Length > 0)
             sb.AppendLine();
 
         // Address list and active quest counters, minus 1 to exclude the current gate's own address.
-        sb.AppendLine("RG_DHD_AddressListCounter".Translate(StargateUtil.AddressCount - 1, StargateUtil.MaxAddresses - 1));
-        sb.AppendLine("RG_DHD_ActiveQuestCounter".Translate(StargateUtil.ActiveQuestSiteCount, StargateUtil.MaxActiveQuestSiteCount));
+        var count = GateUtil.GetAddressList(Tile).Count;
+        sb.AppendLine("RG_DHD_AddressListCounter".Translate(count, GateUtil.MaxAddresses - 1));
+        sb.AppendLine("RG_DHD_ActiveQuestCounter".Translate(GateUtil.ActiveQuestSiteCount, GateUtil.MaxActiveQuestSiteCount));
 
         return sb.ToString().TrimEndNewlines();
     }
@@ -193,7 +199,7 @@ public class Building_DHD : Building
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
         if (_hadActiveModificationEquipment)
-            StargateUtil.SetModificationEquipmentActive(false);
+            GateUtil.SetModificationEquipmentActive(false);
         base.DeSpawn(mode);
     }
 
@@ -204,7 +210,7 @@ public class Building_DHD : Building
         Scribe_Values.Look(ref LastDialledAddress, "lastDialledAddress");
     }
 
-    private bool TryGetLinkedStargate(out Building_Stargate gate)
+    private bool TryGetLinkedGate(out Building_Gate gate)
     {
         gate = null;
 
@@ -215,7 +221,7 @@ public class Building_DHD : Building
         foreach (var t in linked)
         {
             if (t is null) continue;
-            if (t is not Building_Stargate found) continue;
+            if (t is not Building_Gate found) continue;
             gate = found;
             return true;
         }
@@ -225,17 +231,17 @@ public class Building_DHD : Building
 
     public void DoCloseGate()
     {
-        var control = LinkedStargate;
+        var control = LinkedGate;
         if (control == null)
             return;
 
         _wantGateClosed = false;
-        control.CloseStargate(true);
+        control.CloseGate(true);
     }
 
     public void DoToggleIrisRemote()
     {
-        var control = LinkedStargate;
+        var control = LinkedGate;
         if (control == null)
             return;
 

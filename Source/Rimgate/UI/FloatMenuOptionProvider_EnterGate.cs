@@ -8,7 +8,7 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace Rimgate;
 
-public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
+public class FloatMenuOptionProvider_EnterGate : FloatMenuOptionProvider
 {
     private static List<Pawn> tmpGateEnteringPawns = new List<Pawn>();
 
@@ -22,12 +22,12 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
 
     public override bool TargetThingValid(Thing thing, FloatMenuContext context)
     {
-        return thing is Building_Stargate;
+        return thing is Building_Gate;
     }
 
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
-        Building_Stargate gate = clickedThing as Building_Stargate;
+        Building_Gate gate = clickedThing as Building_Gate;
         Pawn pawn = context.FirstSelectedPawn;
 
         if (pawn == null || gate == null)
@@ -64,14 +64,14 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
         if (!tmpGateEnteringPawns.NullOrEmpty())
         {
             var enterLabel = (gate.IsReceivingGate
-               ? "RG_EnterReceivingStargateAction"
-               : "RG_EnterStargateAction").Translate();
+               ? "RG_EnterReceivingGateAction"
+               : "RG_EnterGateAction").Translate(gate.LabelCap);
 
             yield return new FloatMenuOption(enterLabel, () =>
             {
                 foreach (Pawn enteringPawn in tmpGateEnteringPawns)
                 {
-                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_EnterStargate, gate);
+                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_EnterGate, gate);
                     job.count = 1;
                     job.playerForced = true;
                     enteringPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
@@ -82,8 +82,8 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
                 yield break;
 
             var bringLabel = (gate.IsReceivingGate
-                ? "RG_BringToReceivingStargate"
-                : "RG_BringToStargate").Translate();
+                ? "RG_BringToReceivingGate"
+                : "RG_BringToGate").Translate(gate.LabelCap);
             yield return new FloatMenuOption(bringLabel, () =>
             {
                 TargetingParameters parms = new TargetingParameters()
@@ -118,7 +118,7 @@ public class FloatMenuOptionProvider_EnterStargate : FloatMenuOptionProvider
                     }
 
                     Job job = JobMaker.MakeJob(
-                        RimgateDefOf.Rimgate_BringToStargate,
+                        RimgateDefOf.Rimgate_BringToGate,
                         t.Thing,
                         gate);
                     job.count = 1;

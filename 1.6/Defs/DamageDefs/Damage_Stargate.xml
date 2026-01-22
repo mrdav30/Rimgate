@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   
-	<!-- Stargate Explosion -->
+	<!-- gate Explosion -->
 	
 	<DamageDef>
 		<defName>Rimgate_KawooshExplosion</defName>
@@ -22,7 +22,7 @@
 		<explosionCellFleck>BlastDry</explosionCellFleck>
 		<explosionColorCenter>(0.55, 0.80, 1)</explosionColorCenter>
 		<explosionColorEdge>(0.45, 0.67, 0.95)</explosionColorEdge>
-		<soundExplosion>Rimgate_StargateKawooshExplosion</soundExplosion>
+		<soundExplosion>Rimgate_GateKawooshExplosion</soundExplosion>
 		<combatLogRules>Damage_Flame</combatLogRules>
 	</DamageDef>
 

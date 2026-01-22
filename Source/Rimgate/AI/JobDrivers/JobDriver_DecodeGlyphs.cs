@@ -11,6 +11,8 @@ namespace Rimgate;
 
 public class JobDriver_DecodeGlyphs : JobDriver
 {
+    private const float SkillLearnFactor = 0.25f;
+
     private Thing thing => job.targetA.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -20,7 +22,7 @@ public class JobDriver_DecodeGlyphs : JobDriver
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        if (StargateUtil.AddressBookFull)
+        if (GateUtil.AddressBookFull)
         {
             Messages.Message("RG_CannotDecode".Translate("RG_Cannot_AddressBookFull".Translate()),
                              MessageTypeDefOf.RejectInput,
@@ -40,7 +42,8 @@ public class JobDriver_DecodeGlyphs : JobDriver
 
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
 
-        Toil wait = Toils_General.Wait(comp.Props.useDuration);
+        var duration = comp.Props.useDuration;
+        Toil wait = Toils_General.Wait(duration);
         wait.WithProgressBarToilDelay(TargetIndex.A);
         yield return wait;
 
@@ -70,6 +73,9 @@ public class JobDriver_DecodeGlyphs : JobDriver
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
+
+                var accrument = duration * SkillLearnFactor;
+                pawn.skills?.Learn(SkillDefOf.Intellectual, accrument);
 
                 if (glyph.stackCount > 1)
                 {

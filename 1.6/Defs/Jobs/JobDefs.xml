@@ -60,41 +60,41 @@
 		<taleOnCompletion>PutIntoCloningPod</taleOnCompletion>
 	</JobDef>
 
-	<!-- =============== Stargate =============== -->
+	<!-- =============== Gates =============== -->
 
 	<JobDef>
-		<defName>Rimgate_EnterStargate</defName>
-		<driverClass>Rimgate.JobDriver_EnterStargate</driverClass>
+		<defName>Rimgate_EnterGate</defName>
+		<driverClass>Rimgate.JobDriver_EnterGate</driverClass>
 		<reportString>Entering TargetA.</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 		<checkOverrideOnDamage>Never</checkOverrideOnDamage>
 	</JobDef>
 
 	<JobDef>
-		<defName>Rimgate_DialStargate</defName>
-		<driverClass>Rimgate.JobDriver_DialStargate</driverClass>
+		<defName>Rimgate_DialGate</defName>
+		<driverClass>Rimgate.JobDriver_DialGate</driverClass>
 		<reportString>Using TargetA.</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 
 	<JobDef>
-		<defName>Rimgate_CloseStargate</defName>
-		<driverClass>Rimgate.JobDriver_CloseStargate</driverClass>
-		<reportString>closing stargate connection.</reportString>
+		<defName>Rimgate_CloseGate</defName>
+		<driverClass>Rimgate.JobDriver_CloseGate</driverClass>
+		<reportString>closing gate connection.</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 
 	<JobDef>
 		<defName>Rimgate_ToggleIris</defName>
 		<driverClass>Rimgate.JobDriver_ToggleIris</driverClass>
-		<reportString>toggle stargate iris.</reportString>
+		<reportString>toggle gate iris.</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 		<checkOverrideOnDamage>Never</checkOverrideOnDamage>
 	</JobDef>
 
 	<JobDef>
-		<defName>Rimgate_BringToStargate</defName>
-		<driverClass>Rimgate.JobDriver_BringToStargate</driverClass>
+		<defName>Rimgate_BringToGate</defName>
+		<driverClass>Rimgate.JobDriver_BringToGate</driverClass>
 		<reportString>Bringing TargetA to TargetB.</reportString>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 		<checkOverrideOnDamage>Never</checkOverrideOnDamage>
@@ -110,7 +110,7 @@
 	<JobDef>
 		<defName>Rimgate_DecodeGlyphs</defName>
 		<driverClass>Rimgate.JobDriver_DecodeGlyphs</driverClass>
-		<reportString>Decoding stargate glyphs.</reportString>
+		<reportString>Decoding gate glyphs.</reportString>
 		<playerInterruptible>true</playerInterruptible>
 		<neverShowWeapon>true</neverShowWeapon>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
@@ -138,7 +138,7 @@
 	</JobDef>
 
 	<JobDef>
-		<defName>Rimgate_EnterStargateWithContainer</defName>
+		<defName>Rimgate_EnterGateWithContainer</defName>
 		<driverClass>Rimgate.JobDriver_PushContainer</driverClass>
 		<reportString>Entering TargetC with cart.</reportString>
 		<casualInterruptible>true</casualInterruptible>

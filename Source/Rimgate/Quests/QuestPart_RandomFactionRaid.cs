@@ -20,7 +20,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
 
     public bool AllowNeolithic;
 
-    public bool UseStargateIfAvailable;
+    public bool UseGateIfAvailable;
 
     public override void Notify_QuestSignalReceived(Signal signal)
     {
@@ -80,14 +80,14 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
         incidentParms.generateFightersOnly = generateFightersOnly;
         incidentParms.sendLetter = sendLetter;
 
-        if (UseStargateIfAvailable)
+        if (UseGateIfAvailable)
         {
-            var sg = Building_Stargate.GetStargateOnMap(map);
+            var sg = Building_Gate.GetGateOnMap(map);
             bool isValid = sg != null
                 && !sg.IsActive
                 && !sg.IsIrisActivated;
             if (isValid)
-                incidentParms.raidArrivalMode = RimgateDefOf.Rimgate_StargateEnterMode;
+                incidentParms.raidArrivalMode = RimgateDefOf.Rimgate_GateEnterMode;
             else
                 incidentParms.raidArrivalMode = arrivalMode;
         }
@@ -112,6 +112,6 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
     {
         base.ExposeData();
         Scribe_Values.Look(ref AllowNeolithic, "AllowNeolithic");
-        Scribe_Values.Look(ref UseStargateIfAvailable, "UseStargateIfAvailable");
+        Scribe_Values.Look(ref UseGateIfAvailable, "UseGateIfAvailable");
     }
 }

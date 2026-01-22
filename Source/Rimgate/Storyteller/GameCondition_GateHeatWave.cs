@@ -5,9 +5,9 @@ using Verse.Noise;
 
 namespace Rimgate;
 
-public class GameCondition_StargateHeatWave : GameCondition_HeatWave
+public class GameCondition_GateHeatWave : GameCondition_HeatWave
 {
-    private Building_Stargate _heldGate;
+    private Building_Gate _heldGate;
 
     public override void Init()
     {
@@ -33,7 +33,7 @@ public class GameCondition_StargateHeatWave : GameCondition_HeatWave
     private void TryHoldLocalGate(Map map)
     {
         if (map == null) return;
-        var gate = Building_Stargate.GetStargateOnMap(map);
+        var gate = Building_Gate.GetGateOnMap(map);
         if (gate == null) return;
         _heldGate = gate;
 
@@ -46,7 +46,7 @@ public class GameCondition_StargateHeatWave : GameCondition_HeatWave
         if (_heldGate == null) return;
         _heldGate.PopExternalHold();
         if (_heldGate.ExternalHoldCount == 0 && _heldGate.IsReceivingGate)
-            _heldGate.CloseStargate();
+            _heldGate.CloseGate();
         _heldGate = null;
     }
 }

@@ -15,16 +15,6 @@ public class Comp_GlyphParchment : ThingComp
 
     public bool OrbitLocked => (Props?.canDecodeOrbit ?? false) && !(Props?.canDecodePlanet ?? false);
 
-    public override string TransformLabel(string label)
-    {
-        if (PlanetLocked)
-            return $"{label} {"RG_Glyph_LandLocked".Translate(label)}";
-        if (OrbitLocked)
-            return $"{label} {"RG_Glyph_SpaceLocked".Translate(label)}";
-
-        return label;
-    }
-
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
     {
         if (selPawn == null)
@@ -51,7 +41,7 @@ public class Comp_GlyphParchment : ThingComp
             yield break;
         }
 
-        if(StargateUtil.AddressBookFull)
+        if(GateUtil.AddressBookFull)
         {
             yield return new FloatMenuOption("RG_CannotDecode".Translate("RG_Cannot_AddressBookFull".Translate()), null);
             yield break;

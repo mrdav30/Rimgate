@@ -30,7 +30,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
         if (dhd == null)
             yield break;
 
-        var control = dhd.LinkedStargate;
+        var control = dhd.LinkedGate;
         if (control == null)
         {
             yield return new FloatMenuOption(
@@ -72,8 +72,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        StargateUtil.CleanupAddresses();
-        var addressList = StargateUtil.WorldComp.AddressList.Where(t => t != control.GateAddress).ToList();
+        var addressList = GateUtil.GetAddressList(control.GateAddress);
         if (addressList == null || addressList.Count == 0)
         {
             yield return new FloatMenuOption(
@@ -82,7 +81,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
             yield break;
         }
 
-        if (control.TicksUntilOpen > -1)
+        if (control.IsOpeningQueued)
         {
             yield return new FloatMenuOption(
                 "RG_CannotDial".Translate("RG_CannotDialIncoming".Translate()),
@@ -92,10 +91,10 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
 
         foreach (PlanetTile tile in addressList)
         {
-            string designation = StargateUtil.GetStargateDesignation(tile);
+            string designation = GateUtil.GetGateDesignation(tile);
             MapParent gwo = Find.WorldObjects.MapParentAt(tile);
 
-            if (StargateUtil.ActiveQuestSitesAtLimit && !gwo.HasMap)
+            if (GateUtil.ActiveQuestSitesAtLimit && !gwo.HasMap)
             {
                 bool isQuestSite = Find.WorldObjects.MapParentAt(tile) is WorldObject_GateQuestSite;
                 if (isQuestSite)
@@ -108,7 +107,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
                 }
             }
 
-            if (tile.LayerDef.isSpace && !StargateUtil.ModificationEquipmentActive)
+            if (tile.LayerDef.isSpace && !GateUtil.ModificationEquipmentActive)
             {
                 yield return new FloatMenuOption(
                     $"{"RG_DialGate".Translate()} {designation}"
@@ -122,7 +121,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
                 () =>
                 {
                     dhd.LastDialledAddress = tile;
-                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialStargate, clickedThing);
+                    Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DialGate, clickedThing);
                     job.count = 1;
                     job.playerForced = true;
                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
@@ -130,7 +129,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
         }
     }
 
-    private static bool CanEnterGate(Pawn pawn, Building_Stargate gate)
+    private static bool CanEnterGate(Pawn pawn, Building_Gate gate)
     {
         return pawn.CanReach(gate, PathEndMode.ClosestTouch, Danger.Deadly);
     }

@@ -6,7 +6,6 @@
 		<rootSelectionWeight>0</rootSelectionWeight>
 		<isRootSpecial>true</isRootSpecial>
 		<autoAccept>true</autoAccept>
-		<defaultChallengeRating>4</defaultChallengeRating>
 		<randomlySelectable>false</randomlySelectable>
 		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
 		<everAcceptableInSpace>true</everAcceptableInSpace>
@@ -70,6 +69,24 @@
 		<root Class="QuestNode_Sequence">
 			<nodes>
 
+				<li Class="QuestNode_GetRandomInRangeFloat">
+					<storeAs>points</storeAs>
+					<range>450~700</range>
+				</li>
+
+				<li Class="QuestNode_SubScript">
+					<def>Util_RandomizePointsChallengeRating</def>
+					<parms>
+						<selectionWeightOneStar>0</selectionWeightOneStar>
+						<pointsFactorTwoStar>2.5</pointsFactorTwoStar>
+						<pointsFactorThreeStar>3.5</pointsFactorThreeStar>
+					</parms>
+				</li>
+
+				<li Class="QuestNode_SubScript">
+					<def>Util_AdjustPointsForDistantFight</def>
+				</li>
+
 				<li Class="QuestNode_Set">
 					<name>askerIsNull</name>
 					<value>true</value>
@@ -98,11 +115,9 @@
 										</li>
 									</value>
 								</li>
-								<li Class="QuestNode_SubScript">
-									<def>Util_GenerateGateSite_Orbit</def>
-									<parms>
-										<siteFaction>Mechanoid</siteFaction>
-									</parms>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Mechanoid</value>
 								</li>
 							</nodes>
 						</li>
@@ -139,9 +154,6 @@
 										<li>AncientsHostile</li>
 									</value>
 								</li>
-								<li Class="QuestNode_SubScript">
-									<def>Util_GenerateGateSite_Orbit</def>
-								</li>
 							</nodes>
 						</li>
 
@@ -175,9 +187,6 @@
 										<li>Salvagers</li>
 										<li>AncientsHostile</li>
 									</value>
-								</li>
-								<li Class="QuestNode_SubScript">
-									<def>Util_GenerateGateSite_Orbit</def>
 								</li>
 							</nodes>
 						</li>
@@ -213,19 +222,20 @@
 										<li>AncientsHostile</li>
 									</value>
 								</li>
-								<li Class="QuestNode_SubScript">
-									<def>Util_GenerateGateSite_Orbit</def>
-								</li>
 							</nodes>
 						</li>
 
 					</nodes>
 				</li>
 
+				<li Class="QuestNode_SubScript">
+					<def>Util_GenerateGateSite_Orbit</def>
+				</li>
+
 				<li Class="Rimgate.QuestNode_SetSiteQuestId" />
 
 				<!-- Start custom detection raids once the site map generates -->
-				<li Class="Rimgate.QuestNode_RaidStargateComplex" />
+				<li Class="Rimgate.QuestNode_RaidGateComplex" />
 
 				<li Class="Rimgate.QuestNode_SpawnPawnsOnMap">
 					<inSignal>site.MapGenerated</inSignal>

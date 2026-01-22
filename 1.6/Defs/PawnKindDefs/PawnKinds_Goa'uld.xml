@@ -30,7 +30,6 @@
         <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.15</Pigskin>
         <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.15</Yttakin>
         <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.15</Dirtmole>
-        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.15</Highmate>
         <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
         <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
       </xenotypeChances>
@@ -124,7 +123,6 @@
         <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.15</Yttakin>
         <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.15</Dirtmole>
         <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
-        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.15</Highmate>
         <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
       </xenotypeChances>
     </xenotypeSet>
@@ -155,7 +153,6 @@
         <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
         <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
         <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
-        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.15</Highmate>
         <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
       </xenotypeChances>
     </xenotypeSet>

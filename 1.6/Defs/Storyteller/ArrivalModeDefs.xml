@@ -2,8 +2,8 @@
 <Defs>
 
   <PawnsArrivalModeDef>
-    <defName>Rimgate_StargateEnterMode</defName>
-    <workerClass>Rimgate.PawnsArrivalModeWorker_Stargate</workerClass>
+    <defName>Rimgate_GateEnterMode</defName>
+    <workerClass>Rimgate.PawnsArrivalModeWorker_Gate</workerClass>
     <selectionWeightCurve>
       <points>
         <li>(200, 0.0)</li>

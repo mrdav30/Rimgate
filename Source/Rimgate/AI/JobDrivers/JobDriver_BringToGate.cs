@@ -8,11 +8,11 @@ using System.Linq;
 
 namespace Rimgate;
 
-public class JobDriver_BringToStargate : JobDriver
+public class JobDriver_BringToGate : JobDriver
 {
     private Thing ThingToHaul => job.targetA.Thing;
 
-    private Building_Stargate Stargate => job.targetB.Thing as Building_Stargate;
+    private Building_Gate Gate => job.targetB.Thing as Building_Gate;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -30,20 +30,20 @@ public class JobDriver_BringToStargate : JobDriver
     {
         this.FailOnDestroyedOrNull(TargetIndex.B);
         this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
-        this.FailOn(() => !(Stargate.IsActive == true));
+        this.FailOn(() => !(Gate.IsActive == true));
 
         if (ThingToHaul as Pawn != null)
             this.FailOnMobile(TargetIndex.A);
 
         yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.Touch);
         yield return Toils_Haul.StartCarryThing(TargetIndex.A);
-        yield return Toils_Goto.GotoCell(Stargate.InteractionCell, PathEndMode.OnCell);
+        yield return Toils_Goto.GotoCell(Gate.InteractionCell, PathEndMode.OnCell);
         yield return new Toil
         {
             initAction = () =>
             {
                 Thing hauled = ThingToHaul;
-                Building_Stargate gate = Stargate;
+                Building_Gate gate = Gate;
                 pawn.carryTracker.innerContainer.Remove(hauled);
                 gate.AddToSendBuffer(hauled);
             }

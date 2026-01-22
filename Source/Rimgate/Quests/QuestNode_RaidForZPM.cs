@@ -84,7 +84,7 @@ public class QuestNode_RaidForZPM : QuestNode
             : PawnsArrivalModeDefOf.EdgeWalkIn;
         randomRaid.raidStrategy = RimgateDefOf.ImmediateAttackSmart;
         randomRaid.AllowNeolithic = false;
-        randomRaid.UseStargateIfAvailable = true;
+        randomRaid.UseGateIfAvailable = true;
         randomRaid.TargetDefs = new List<ThingDef> { RimgateDefOf.Rimgate_ZPM };
         randomRaid.TargetPredicate = (t) => t is Building_ZPM zpm && zpm.IsBroadcasting;
         randomRaid.UseLetterKey = "RG_LetterRaidZpmProtectDesc";

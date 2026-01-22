@@ -24,7 +24,7 @@ public static class RimgateDefOf
 
     public static DamageDef Rimgate_KawooshExplosion;
 
-    public static DesignationDef Rimgate_DesignationCloseStargate;
+    public static DesignationDef Rimgate_DesignationCloseGate;
     public static DesignationDef Rimgate_DesignationPushCart;
     public static DesignationDef Rimgate_DesignationToggle;
     public static DesignationDef Rimgate_DesignationToggleIris;
@@ -37,9 +37,9 @@ public static class RimgateDefOf
     public static FactionDef Rimgate_Replicator;
     public static FactionDef Rimgate_TreasureHunters;
 
-    public static GameConditionDef Rimgate_StargatePsychicDrone;
-    public static GameConditionDef Rimgate_StargateToxicFallout;
-    public static GameConditionDef Rimgate_StargateHeatWave;
+    public static GameConditionDef Rimgate_GatePsychicDrone;
+    public static GameConditionDef Rimgate_GateToxicFallout;
+    public static GameConditionDef Rimgate_GateHeatWave;
 
     [MayRequireBiotech]
     public static GeneDef Eyes_Red;
@@ -84,20 +84,20 @@ public static class RimgateDefOf
 
     public static IncidentDef Rimgate_Marauders;
 
-    public static JobDef Rimgate_BringToStargate;
+    public static JobDef Rimgate_BringToGate;
     public static JobDef Rimgate_CarryToSarcophagus;
     public static JobDef Rimgate_CarryToCloningPod;
     public static JobDef Rimgate_CarryCorpseToCloningPod;
     public static JobDef Rimgate_CalibrateClonePodForPawn;
-    public static JobDef Rimgate_CloseStargate;
+    public static JobDef Rimgate_CloseGate;
     public static JobDef Rimgate_DrainLifeFromCocoonedPrisoner;
     public static JobDef Rimgate_WraithCocoonPrisoner;
     public static JobDef Rimgate_DecodeGlyphs;
-    public static JobDef Rimgate_DialStargate;
+    public static JobDef Rimgate_DialGate;
     public static JobDef Rimgate_EjectZpmFromHousing;
     public static JobDef Rimgate_EnterCloningPod;
-    public static JobDef Rimgate_EnterStargate;
-    public static JobDef Rimgate_EnterStargateWithContainer;
+    public static JobDef Rimgate_EnterGate;
+    public static JobDef Rimgate_EnterGateWithContainer;
     public static JobDef Rimgate_HaulToContainer;
     public static JobDef Rimgate_InsertSymbioteQueen;
     public static JobDef Rimgate_InsertZpmIntoHousing;
@@ -121,12 +121,12 @@ public static class RimgateDefOf
     public static QuestScriptDef Rimgate_GateQuestScript_Planet;
     public static QuestScriptDef Rimgate_GateQuestScript_Orbit;
 
-    public static PawnsArrivalModeDef Rimgate_StargateEnterMode;
+    public static PawnsArrivalModeDef Rimgate_GateEnterMode;
 
     public static RaidStrategyDef ImmediateAttackSmart;
     public static RaidStrategyDef StageThenAttack;
 
-    public static ResearchProjectDef Rimgate_StargateReplacementDHDResearch;
+    public static ResearchProjectDef Rimgate_DHDResearch;
     public static ResearchProjectDef Rimgate_GateModification;
     public static ResearchProjectDef Rimgate_GlyphDeciphering;
     public static ResearchProjectDef Rimgate_ParallelSubspaceCoupling;
@@ -144,10 +144,10 @@ public static class RimgateDefOf
     public static SoundDef Rimgate_IrisOpen;
     public static SoundDef Rimgate_IrisClose;
     public static SoundDef Rimgate_IrisHit;
-    public static SoundDef Rimgate_StargateOpen;
-    public static SoundDef Rimgate_StargateFailDial;
-    public static SoundDef Rimgate_StargateIdle;
-    public static SoundDef Rimgate_StargateClose;
+    public static SoundDef Rimgate_GateOpen;
+    public static SoundDef Rimgate_GateFailDial;
+    public static SoundDef Rimgate_GateIdle;
+    public static SoundDef Rimgate_GateClose;
     public static SoundDef Rimgate_SymbioteSpawn;
     public static SoundDef Rimgate_WraithCocoonCast;
 

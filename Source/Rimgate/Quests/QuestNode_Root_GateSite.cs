@@ -15,6 +15,8 @@ public class QuestNode_Root_GateSite : QuestNode
 
     public const string FactionAlias = "enemyFaction";
 
+    public const string SitePointsAlias = "sitePoints";
+
     public class SitePartOption
     {
         [NoTranslate]
@@ -24,12 +26,13 @@ public class QuestNode_Root_GateSite : QuestNode
     }
 
     private SlateRef<List<SitePartOption>> sitePartDefs;
+    private SlateRef<float?> noneWeight;
     private SlateRef<WorldObjectDef> worldObjectDef;
 
     private SlateRef<FactionDef> factionDef;
-
     // list of candidate faction defs to use if factionDef is unset
     public SlateRef<List<FactionDef>> factionDefWhitelist;
+    public SlateRef<PawnGroupKindDef> pawnGroupKindDef;
 
     private SlateRef<List<BiomeDef>> allowedBiomes;
     private SlateRef<Hilliness?> maxHilliness;
@@ -46,6 +49,13 @@ public class QuestNode_Root_GateSite : QuestNode
     public SlateRef<bool> requireSameOrAdjacentLayer = true;
     public SlateRef<List<PlanetLayerDef>> layerWhitelist;
     public SlateRef<List<PlanetLayerDef>> layerBlacklist;
+
+    private static readonly SimpleCurve ThreatPointsOverPointsCurve = new SimpleCurve
+    {
+        new CurvePoint(35f, 38.5f),
+        new CurvePoint(400f, 165f),
+        new CurvePoint(10000f, 4125f)
+    };
 
     protected override bool TestRunInt(Slate slate)
     {
@@ -74,7 +84,6 @@ public class QuestNode_Root_GateSite : QuestNode
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: Generating gate site at tile {tile} for faction {resolvedFaction.Name}.");
 
-        var points = slate.Get<float>("points", 0f);
         List<SitePartOption> sitePartDefsFor = sitePartDefs.GetValue(slate);
         if (sitePartDefsFor.NullOrEmpty())
         {
@@ -82,23 +91,8 @@ public class QuestNode_Root_GateSite : QuestNode
             return;
         }
 
-        List<SitePartDefWithParams> partDefWithParams = new List<SitePartDefWithParams>();
-        for (int i = 0; i < sitePartDefsFor.Count; i++)
-        {
-            var part = sitePartDefsFor[i];
-            float chance = Mathf.Clamp01(part.chance);
-            if (chance < 1f && !Rand.Chance(chance))
-                continue;
-
-            var def = part.def;
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Generating site part {def.defName} with {points} points.");
-            partDefWithParams.Add(new SitePartDefWithParams(def, new SitePartParams
-            {
-                points = points,
-                threatPoints = points
-            }));
-        }
+        if (!TryGetSitePartDefs(sitePartDefsFor, slate, out var partDefWithParams))
+            return;
 
         Site site = QuestGen_Sites.GenerateSite(
             partDefWithParams,
@@ -138,7 +132,8 @@ public class QuestNode_Root_GateSite : QuestNode
         }
 
         // (3) Finally, try to find any enemy faction
-        if (Utils.TryFindEnemyFaction(out faction))
+        var kindDef = pawnGroupKindDef.GetValue(slate) ?? PawnGroupKindDefOf.Settlement;
+        if (Utils.TryFindEnemyFaction(out faction, groupKindDef: kindDef))
             return faction;
 
         // Default fallback if still null
@@ -276,5 +271,116 @@ public class QuestNode_Root_GateSite : QuestNode
 
             return true;
         }
+    }
+
+    protected virtual bool TryGetSitePartDefs(
+        List<SitePartOption> partOptions,
+        Slate slate,
+        out List<SitePartDefWithParams> partDefWithParams)
+    {
+        // 1) Always-include parts (chance >= 1)
+        List<SitePartOption> always = new List<SitePartOption>();
+        List<SitePartOption> optional = new List<SitePartOption>();
+
+        var minThreatPoints = 0f;
+        for (int i = 0; i < partOptions.Count; i++)
+        {
+            SitePartOption opt = partOptions[i];
+            if (opt == null || opt.def == null) continue;
+
+            minThreatPoints = Mathf.Max(minThreatPoints, opt.def.minThreatPoints);
+
+            // Treat >= 1 as always-included
+            if (opt.chance >= 1f)
+                always.Add(opt);
+            else if (opt.chance > 0f)
+                optional.Add(opt);
+            // <= 0 => never
+        }
+
+        var points = slate.Get<float>("points", 0f);
+        minThreatPoints = Mathf.Max(minThreatPoints, points);
+        var threatPoints = Find.Storyteller.difficulty.allowViolentQuests
+            ? ThreatPointsOverPointsCurve.Evaluate(minThreatPoints)
+            : 0f;
+        slate.Set(SitePointsAlias, threatPoints);
+        if (RimgateMod.Debug)
+            Log.Message($"Rimgate :: Using {points} points and {threatPoints} threat points for site generation.");
+
+        // Must have at least one always part (your rule)
+        if (always.Count == 0)
+        {
+            Log.Error("Rimgate :: GateSite requires at least one always-included site part (chance >= 1).");
+            partDefWithParams = null;
+            return false;
+        }
+
+        var result = new List<SitePartDefWithParams>(always.Count + 1);
+
+        // Add always parts
+        for (int i = 0; i < always.Count; i++)
+            AddPart(always[i].def);
+
+        // 2) Optional pool: pick at most one, or none
+        // "none" gets a baseline weight of 1.0 so that optional weights behave sensibly.
+        float noneW = noneWeight.GetValue(slate) ?? 1f;
+        SitePartOption picked = PickOneOptionalOrNone(optional, noneW);
+        if (picked != null)
+            AddPart(picked.def);
+
+        void AddPart(SitePartDef def)
+        {
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: Generating site part {def.defName}");
+
+            result.Add(new SitePartDefWithParams(def, new SitePartParams
+            {
+                points = points,
+                threatPoints = threatPoints
+            }));
+        }
+
+        partDefWithParams = result;
+        return true;
+    }
+
+    private static SitePartOption PickOneOptionalOrNone(List<SitePartOption> optional, float noneWeight)
+    {
+        if (optional == null || optional.Count == 0)
+            return null;
+
+        // Sum weights)
+        float total = noneWeight;
+        for (int i = 0; i < optional.Count; i++)
+        {
+            float w = optional[i].chance;
+            if (w > 0f) total += w;
+        }
+
+        if (total <= 0f) return null;
+
+        // Roll in [0, total)
+        float roll = Rand.Value * total;
+
+        // If we land in the "none" segment, pick none
+        if (roll < noneWeight)
+            return null;
+
+        roll -= noneWeight;
+
+        // Otherwise pick one weighted optional
+        for (int i = 0; i < optional.Count; i++)
+        {
+            float w = optional[i].chance;
+            if (w <= 0f) continue;
+
+            if (roll < w)
+                return optional[i];
+
+            roll -= w;
+        }
+
+        // Fallback shouldn't happen due to math, but keep it safe.
+        return null;
     }
 }

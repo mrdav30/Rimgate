@@ -10,7 +10,7 @@
   </DesignationDef>
 
   <DesignationDef>
-    <defName>Rimgate_DesignationCloseStargate</defName>
+    <defName>Rimgate_DesignationCloseGate</defName>
     <texturePath>Designations/Flick</texturePath>
     <targetType>Thing</targetType>
     <designateCancelable>false</designateCancelable>

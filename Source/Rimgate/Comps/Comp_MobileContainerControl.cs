@@ -519,7 +519,7 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, IThingHolder
         // If a gate was clicked, store it directly in targetC; otherwise use the cell
         if (dest.HasThing)
         {
-            if (dest.Thing is not Building_Stargate sg || !sg.IsActive)
+            if (dest.Thing is not Building_Gate sg || !sg.IsActive)
             {
                 Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), parent, MessageTypeDefOf.RejectInput);
                 return null;
@@ -532,7 +532,7 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, IThingHolder
             }
 
             targetInfo = dest.Thing;
-            def = RimgateDefOf.Rimgate_EnterStargateWithContainer;
+            def = RimgateDefOf.Rimgate_EnterGateWithContainer;
         }
         else
         {

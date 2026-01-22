@@ -14,7 +14,7 @@
 				<muteWhenPaused>True</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Buildings/RG_ClonePod_Run</clipPath>
+						<clipPath>Building/RG_ClonePod_Run</clipPath>
 					</li>
 				</grains>
 				<volumeRange>37</volumeRange>
@@ -32,7 +32,7 @@
 				<muteWhenPaused>True</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Buildings/RG_ClonePod_Start</clipPath>
+						<clipPath>Building/RG_ClonePod_Start</clipPath>
 					</li>
 				</grains>
 				<volumeRange>60</volumeRange>
@@ -55,7 +55,7 @@
 				<muteWhenPaused>True</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Buildings/RG_Sarcophagus_Running</clipPath>
+						<clipPath>Building/RG_Sarcophagus_Running</clipPath>
 					</li>
 				</grains>
 				<volumeRange>5</volumeRange>
@@ -78,7 +78,7 @@
 				<muteWhenPaused>True</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Buildings/RG_Symbiote_Spawn</clipPath>
+						<clipPath>Building/RG_Symbiote_Spawn</clipPath>
 					</li>
 				</grains>
 				<volumeRange>5</volumeRange>
@@ -87,10 +87,10 @@
 		</subSounds>
 	</SoundDef>
 
-	<!-- Stargate -->
+	<!-- Gate -->
 
 	<SoundDef>
-		<defName>Rimgate_StargateOpen</defName>
+		<defName>Rimgate_GateOpen</defName>
 		<context>MapOnly</context>
 		<maxSimultaneous>1</maxSimultaneous>
 		<subSounds>
@@ -98,7 +98,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Gate_Open</clipPath>
+						<clipPath>Gate/RG_Gate_Open</clipPath>
 					</li>
 				</grains>
 				<volumeRange>12</volumeRange>
@@ -107,7 +107,7 @@
 	</SoundDef>
 
 	<SoundDef>
-		<defName>Rimgate_StargateFailDial</defName>
+		<defName>Rimgate_GateFailDial</defName>
 		<context>MapOnly</context>
 		<maxSimultaneous>1</maxSimultaneous>
 		<subSounds>
@@ -115,7 +115,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Gate_Fail</clipPath>
+						<clipPath>Gate/RG_Gate_Fail</clipPath>
 					</li>
 				</grains>
 				<volumeRange>12</volumeRange>
@@ -124,7 +124,7 @@
 	</SoundDef>
 
 	<SoundDef>
-		<defName>Rimgate_StargateKawooshExplosion</defName>
+		<defName>Rimgate_GateKawooshExplosion</defName>
 		<maxSimultaneous>1</maxSimultaneous>
 		<subSounds>
 			<li>
@@ -140,7 +140,7 @@
 	</SoundDef>
 
 	<SoundDef>
-		<defName>Rimgate_StargateIdle</defName>
+		<defName>Rimgate_GateIdle</defName>
 		<sustain>True</sustain>
 		<context>MapOnly</context>
 		<maxSimultaneous>1</maxSimultaneous>
@@ -150,7 +150,7 @@
 				<muteWhenPaused>True</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Gate_Idle</clipPath>
+						<clipPath>Gate/RG_Gate_Idle</clipPath>
 					</li>
 				</grains>
 				<volumeRange>8</volumeRange>
@@ -160,7 +160,7 @@
 	</SoundDef>
 
 	<SoundDef>
-		<defName>Rimgate_StargateClose</defName>
+		<defName>Rimgate_GateClose</defName>
 		<context>MapOnly</context>
 		<maxSimultaneous>1</maxSimultaneous>
 		<subSounds>
@@ -168,7 +168,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Gate_Close</clipPath>
+						<clipPath>Gate/RG_Gate_Close</clipPath>
 					</li>
 				</grains>
 				<volumeRange>12</volumeRange>
@@ -177,7 +177,7 @@
 	</SoundDef>
 
 	<SoundDef>
-		<defName>Rimgate_StargateTeleport01</defName>
+		<defName>Rimgate_GateTeleport01</defName>
 		<context>MapOnly</context>
 		<maxSimultaneous>3</maxSimultaneous>
 		<subSounds>
@@ -185,7 +185,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Gate_Teleport01</clipPath>
+						<clipPath>Gate/RG_Gate_Teleport01</clipPath>
 					</li>
 				</grains>
 				<volumeRange>8</volumeRange>
@@ -195,7 +195,7 @@
 	</SoundDef>
 
 	<SoundDef>
-		<defName>Rimgate_StargateTeleport02</defName>
+		<defName>Rimgate_GateTeleport02</defName>
 		<context>MapOnly</context>
 		<maxSimultaneous>3</maxSimultaneous>
 		<subSounds>
@@ -203,7 +203,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Gate_Teleport02</clipPath>
+						<clipPath>Gate/RG_Gate_Teleport02</clipPath>
 					</li>
 				</grains>
 				<volumeRange>8</volumeRange>
@@ -213,7 +213,7 @@
 	</SoundDef>
 
 	<SoundDef>
-		<defName>Rimgate_StargateTeleport03</defName>
+		<defName>Rimgate_GateTeleport03</defName>
 		<context>MapOnly</context>
 		<maxSimultaneous>3</maxSimultaneous>
 		<subSounds>
@@ -221,7 +221,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Gate_Teleport03</clipPath>
+						<clipPath>Gate/RG_Gate_Teleport03</clipPath>
 					</li>
 				</grains>
 				<volumeRange>8</volumeRange>
@@ -231,7 +231,7 @@
 	</SoundDef>
 
 	<SoundDef>
-		<defName>Rimgate_StargateTeleport04</defName>
+		<defName>Rimgate_GateTeleport04</defName>
 		<context>MapOnly</context>
 		<maxSimultaneous>3</maxSimultaneous>
 		<subSounds>
@@ -239,7 +239,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Gate_Teleport04</clipPath>
+						<clipPath>Gate/RG_Gate_Teleport04</clipPath>
 					</li>
 				</grains>
 				<volumeRange>8</volumeRange>
@@ -257,7 +257,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Iris_Open</clipPath>
+						<clipPath>Gate/RG_Iris_Open</clipPath>
 					</li>
 				</grains>
 				<volumeRange>8</volumeRange>
@@ -275,7 +275,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Iris_Close</clipPath>
+						<clipPath>Gate/RG_Iris_Close</clipPath>
 					</li>
 				</grains>
 				<volumeRange>8</volumeRange>
@@ -293,7 +293,7 @@
 				<muteWhenPaused>False</muteWhenPaused>
 				<grains>
 					<li Class="AudioGrain_Clip">
-						<clipPath>Stargate/RG_Iris_Hit</clipPath>
+						<clipPath>Gate/RG_Iris_Hit</clipPath>
 					</li>
 				</grains>
 				<volumeRange>6</volumeRange>

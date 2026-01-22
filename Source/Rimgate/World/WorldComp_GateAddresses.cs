@@ -10,15 +10,15 @@ using Verse;
 
 namespace Rimgate;
 
-public class WorldComp_StargateAddresses : WorldComponent
+public class WorldComp_GateAddresses : WorldComponent
 {
-    public List<PlanetTile> AddressList = new(StargateUtil.MaxAddresses);
+    public List<PlanetTile> AddressList = new(GateUtil.MaxAddresses);
 
     public bool ModificationEquipmentActive;
 
     public int ActiveQuestSiteCount;
 
-    public WorldComp_StargateAddresses(World world) : base(world) { }
+    public WorldComp_GateAddresses(World world) : base(world) { }
 
     public override void ExposeData()
     {

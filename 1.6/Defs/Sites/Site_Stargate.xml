@@ -5,12 +5,12 @@
 
 	<!-- Sites -->
 
-	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
 		<defName>Rimgate_GateSiteTauri</defName>
 		<description>Tau'ri outpost containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteTauri_tag</li>
-			<li>Rimgate_StargateQuestSite</li>
+			<li>Rimgate_GateQuestSite_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -75,12 +75,12 @@
 
 	<!-- Sites -->
 
-	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
 		<defName>Rimgate_GateSiteGoauld</defName>
 		<description>Goa'uld outpost containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteGoauld_tag</li>
-			<li>Rimgate_StargateQuestSite</li>
+			<li>Rimgate_GateQuestSite_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -125,12 +125,12 @@
 
 	<!-- Sites -->
 
-	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
 		<defName>Rimgate_GateSiteWraith</defName>
 		<description>Wraith outpost containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteWraith_tag</li>
-			<li>Rimgate_StargateQuestSite</li>
+			<li>Rimgate_GateQuestSite_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -174,12 +174,12 @@
 
 	<!-- Sites -->
 
-	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
 		<defName>Rimgate_GateSiteMech</defName>
 		<description>Mechanoid outpost containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteMech_tag</li>
-			<li>Rimgate_StargateQuestSite</li>
+			<li>Rimgate_GateQuestSite_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -221,7 +221,7 @@
 
 	<!-- Sites-->
 
-	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
 		<defName>Rimgate_GateSiteMisc</defName>
 		<!-- <lootTable>
 			<li>
@@ -243,7 +243,7 @@
 		</lootTable> -->
 		<tags>
 			<li>Rimgate_GateSiteMisc_tag</li>
-			<li>Rimgate_StargateQuestSite</li>
+			<li>Rimgate_GateQuestSite_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -254,7 +254,6 @@
 		<genStep Class="KCSG.GenStep_CustomStructureGen">
 			<fullClear>true</fullClear>
 			<structureLayoutDefs>
-				<!-- Misc -->
 				<li>Rimgate_StructureAncientComplexAlpha</li>
 				<li>Rimgate_StructureAncientComplexBravo</li>
 				<li>Rimgate_StructureAncientComplexCharlie</li>
@@ -281,6 +280,111 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- Barren -->
+
+	<SitePartDef>
+		<defName>Rimgate_BarrenGate</defName>
+		<tags>
+			<li>Rimgate_Rimgate_BarrenGate_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_BarrenGate</defName>
+		<linkWithSite>Rimgate_BarrenGate</linkWithSite>
+		<order>390</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<fullClear>true</fullClear>
+			<structureLayoutDefs>
+				<li>Rimgate_StructureBarrenGate</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
+
+	<!-- Bandit camp -->
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_BanditCamp</defName>
+		<label>bandit camp</label>
+		<description>A bandit camp known for its ruthless inhabitants and frequent raids on nearby settlements. Also, they have a Dwarfgate.</description>
+		<tags>
+			<li>Rimgate_BanditCamp_tag</li>
+			<li>Rimgate_GateQuestSite_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_BanditCamp</defName>
+		<linkWithSite>Rimgate_BanditCamp</linkWithSite>
+		<order>410</order>
+		<genStep Class="GenStep_Outpost">
+			<pawnGroupKindDef>Settlement</pawnGroupKindDef>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
+		<defName>Rimgate_BanditCampTurrets</defName>
+		<linkWithSite>Rimgate_BanditCamp</linkWithSite>
+		<order>415</order>
+		<genStep Class="GenStep_Turrets">
+			<widthRange>
+				<min>3</min>
+				<max>4</max>
+			</widthRange>
+			<guardsCountRange>
+				<min>1</min>
+				<max>1</max>
+			</guardsCountRange>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
+		<defName>Rimgate_BanditCampPower</defName>
+		<linkWithSite>Rimgate_BanditCamp</linkWithSite>
+		<order>420</order>
+		<genStep Class="GenStep_Power" />
+	</GenStepDef>
+
+	<!-- Ancient Complexes -->
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_AncientComplex_Mechanitor</defName>
+		<description>An ancient complex known to contain a Dwarfgate.</description>
+		<tags>
+			<li>AncientComplex_tag</li>
+			<li>Rimgate_GateQuestSite_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_AncientComplex_Mechanitor</defName>
+		<linkWithSite>Rimgate_AncientComplex_Mechanitor</linkWithSite>
+		<order>410</order>
+		<genStep Class="Rimgate.GenStep_AncientComplex_GateSite">
+			<layoutDef>AncientComplex_Mechanitor_Loot</layoutDef>
+			<symbolStack>ancientMechanitorComplex</symbolStack>
+		</genStep>
+	</GenStepDef>
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_AncientComplex_Loot</defName>
+		<description>An ancient complex known to contain a Dwarfgate.</description>
+		<tags>
+			<li>AncientComplex_tag</li>
+			<li>Rimgate_GateQuestSite_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_AncientComplex_Loot</defName>
+		<linkWithSite>Rimgate_AncientComplex_Loot</linkWithSite>
+		<order>410</order>
+		<genStep Class="Rimgate.GenStep_AncientComplex_GateSite">
+			<layoutDef>AncientComplex_Loot</layoutDef>
+			<symbolStack>ancientComplex</symbolStack>
+		</genStep>
+	</GenStepDef>
+
 	<!-- Pawns -->
 
 	<SitePartDef ParentName="Rimgate_SoldierBase">
@@ -302,12 +406,12 @@
 
 	<!-- =============== Vault quest =============== -->
 
-	<SitePartDef ParentName="Rimgate_StargateSiteBase">
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
 		<defName>Rimgate_GateSiteVault</defName>
 		<description>A hidden vault containing a Dwarfgate.</description>
 		<tags>
 			<li>Rimgate_GateSiteVault_tag</li>
-			<li>Rimgate_StargateQuestSite</li>
+			<li>Rimgate_GateQuestSite_tag</li>
 		</tags>
 	</SitePartDef>
 
@@ -325,5 +429,49 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- loot -->
+
+	<SitePartDef>
+		<defName>Rimgate_SupplyCrates</defName>
+		<tags>
+			<li>Rimgate_SupplyCrates_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<order>900</order>
+		<defName>Rimgate_SupplyCrates</defName>
+		<linkWithSite>Rimgate_SupplyCrates</linkWithSite>
+		<genStep Class="GenStep_ScatterGroup">
+			<minSpacing>45</minSpacing>
+			<count>2</count>
+			<groups>
+				<li>
+					<things>
+						<!-- junk -->
+						<AncientSmallCrate>0.35</AncientSmallCrate>
+						<AncientMetalCrate>0.35</AncientMetalCrate>
+						<AncientMilitaryCrate>0.35</AncientMilitaryCrate>
+						<AncientAmmoStack>0.30</AncientAmmoStack>
+
+						<!-- loot -->
+						<AncientBox_ComponentIndustrial>0.28</AncientBox_ComponentIndustrial>
+						<AncientBox_ComponentSpacer>0.24</AncientBox_ComponentSpacer>
+
+						<Rimgate_SupplyCrateGreen>0.22</Rimgate_SupplyCrateGreen>
+						<Rimgate_SupplyCrateYellow>0.22</Rimgate_SupplyCrateYellow>
+						<Rimgate_SupplyCrateOrange>0.22</Rimgate_SupplyCrateOrange>
+
+						<Rimgate_SupplyCrate>0.15</Rimgate_SupplyCrate> <!-- techprints -->
+						<Rimgate_SupplyCrateRed>0.15</Rimgate_SupplyCrateRed> <!-- unique weapons -->
+					</things>
+					<weight>1</weight>
+					<indoorRuin>true</indoorRuin>
+					<coveredCellsPer10Cells>0.5~1.5</coveredCellsPer10Cells>
+					<clusterRectRadius>3~6</clusterRectRadius>
+				</li>
+			</groups>
+		</genStep>
+	</GenStepDef>
 
 </Defs>

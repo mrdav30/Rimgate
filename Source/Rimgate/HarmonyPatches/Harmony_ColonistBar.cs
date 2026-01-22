@@ -10,7 +10,7 @@ using Verse;
 namespace Rimgate.HarmonyPatches;
 
 // ColonistBar caches a flat list of entries (pawns), grouped by map/caravan.
-// We wait until it's rebuilt, then drop any entries belonging to a StargateSite
+// We wait until it's rebuilt, then drop any entries belonging to a Gate quest
 // map that has no “showable” pawns.
 [HarmonyPatch(typeof(ColonistBar), "CheckRecacheEntries")]
 public static class Harmony_ColonistBar
@@ -39,7 +39,7 @@ public static class Harmony_ColonistBar
         var entries = trav.Field("cachedEntries").GetValue<List<ColonistBar.Entry>>();
         if (entries == null || entries.Count == 0) return;
 
-        // 1) Hide Stargate site maps with no pawns and no active gate
+        // 1) Hide gate site maps with no pawns and no active gate
         _tmpRemovals ??= new HashSet<int>();
         _tmpRemovals.Clear();
 
@@ -47,11 +47,11 @@ public static class Harmony_ColonistBar
         {
             var m = e.map;
             if (m == null) continue;
-            // only care about Stargate quest sites
+            // only care about gate quest sites
             if (m.info?.parent is not WorldObject_GateQuestSite) continue;
 
             bool showThisMap = (m.mapPawns?.AnyPawnBlockingMapRemoval ?? false);
-            if (!showThisMap && StargateUtil.ModificationEquipmentActive)
+            if (!showThisMap && GateUtil.ModificationEquipmentActive)
                 showThisMap = true;
 
             if (!showThisMap)

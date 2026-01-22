@@ -20,7 +20,7 @@ public class WorldObject_GateQuestSite : Site
     public override void SpawnSetup()
     {
         // register gate address for this site since gate is placed during mapgen
-        StargateUtil.AddGateAddress(Tile);
+        GateUtil.AddGateAddress(Tile);
         base.SpawnSetup();
     }
 
@@ -30,7 +30,7 @@ public class WorldObject_GateQuestSite : Site
 
         if (Map == null) return;
 
-        bool allowPeek = StargateUtil.ModificationEquipmentActive;
+        bool allowPeek = GateUtil.ModificationEquipmentActive;
         bool nobodyVisible = !Map.mapPawns.AnyPawnBlockingMapRemoval;
 
         // If no pawns, no active gate, and we’re still showing this map: hide + pop to world
@@ -76,7 +76,7 @@ public class WorldObject_GateQuestSite : Site
         if (Map == null || !_mapHidden) return;
 
         if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Revealing gate quest site map at tile {Tile} due to Stargate use");
+            Log.Message($"Rimgate :: Revealing gate quest site map at tile {Tile} due to gate use");
 
         Find.ColonistBar.MarkColonistsDirty();
         _mapHidden = false;
@@ -84,16 +84,17 @@ public class WorldObject_GateQuestSite : Site
 
     public override void PostMapGenerate()
     {
-        StargateUtil.IncrementQuestSiteCount();
+        Building_Gate.GetOrCreateConnectedGate(Map);
+        GateUtil.IncrementQuestSiteCount();
         base.PostMapGenerate();
     }
 
     public override void Notify_MyMapAboutToBeRemoved()
     {
-        var gate = Building_Stargate.GetStargateOnMap(Map);
+        var gate = Building_Gate.GetGateOnMap(Map);
         if (gate != null)
-            gate.CloseStargate(gate.ConnectedGate != null);
-        StargateUtil.DecrementQuestSiteCount();
+            gate.CloseGate(gate.ConnectedGate != null);
+        GateUtil.DecrementQuestSiteCount();
         base.Notify_MyMapAboutToBeRemoved();
     }
 
@@ -126,13 +127,13 @@ public class WorldObject_GateQuestSite : Site
 
     public override void Destroy()
     {
-        StargateUtil.RemoveGateAddress(Tile);
+        GateUtil.RemoveGateAddress(Tile);
         base.Destroy();
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        var hideMap = !StargateUtil.ModificationEquipmentActive;
+        var hideMap = !GateUtil.ModificationEquipmentActive;
         foreach (var g in base.GetGizmos())
         {
             // lock "CommandShowMap" behind gate mod equipment or active gate
@@ -140,7 +141,7 @@ public class WorldObject_GateQuestSite : Site
             {
                 var lbl = ca.defaultLabel ?? string.Empty;
                 if (lbl == "CommandShowMap".Translate() && hideMap)
-                    ca.Disable("RG_StargateSiteHidden".Translate());
+                    ca.Disable("RG_GateSiteHidden".Translate());
             }
 
             yield return g;
@@ -150,7 +151,7 @@ public class WorldObject_GateQuestSite : Site
         {
             defaultLabel = "RG_AbandonQuestSite_Label".Translate(),
             defaultDesc = "RG_AbandonQuestSite_Desc".Translate(),
-            icon = RimgateTex.AbandonStargateSite,
+            icon = RimgateTex.AbandonGateSite,
             action = () =>
             {
                 if (TryResolveQuest(out Quest quest) && quest.State == QuestState.Ongoing)

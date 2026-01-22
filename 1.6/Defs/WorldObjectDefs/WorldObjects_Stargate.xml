@@ -46,7 +46,7 @@
 		<canHaveFaction>false</canHaveFaction>
 		<texture>World/WorldObjects/Sites/GenericSite</texture>
 		<expandingIcon>true</expandingIcon>
-		<expandingIconTexture>UI/Map/RGStargateTransitSiteIcon</expandingIconTexture>
+		<expandingIconTexture>UI/Map/RGGateTransitSiteIcon</expandingIconTexture>
 		<expandingIconPriority>30</expandingIconPriority>
 		<expandMore>true</expandMore>
 		<neverMultiSelect>true</neverMultiSelect>

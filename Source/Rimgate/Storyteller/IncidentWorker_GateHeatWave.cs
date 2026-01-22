@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Rimgate;
 
-public class IncidentWorker_StargateHeatWave : IncidentWorker
+public class IncidentWorker_GateHeatWave : IncidentWorker
 {
     protected override bool CanFireNowSub(IncidentParms parms)
     {
@@ -12,7 +12,7 @@ public class IncidentWorker_StargateHeatWave : IncidentWorker
         var map = parms.target as Map;
         if (map == null) return false;
         return map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
-                   .OfType<Building_Stargate>()
+                   .OfType<Building_Gate>()
                    .Any();
     }
 
@@ -21,8 +21,8 @@ public class IncidentWorker_StargateHeatWave : IncidentWorker
         var map = (Map)parms.target;
         // ~1–2 days
         int ticks = GenDate.TicksPerDay * Rand.RangeInclusive(1, 2);
-        var cond = (GameCondition_StargateHeatWave)GameConditionMaker
-            .MakeCondition(RimgateDefOf.Rimgate_StargateHeatWave, ticks);
+        var cond = (GameCondition_GateHeatWave)GameConditionMaker
+            .MakeCondition(RimgateDefOf.Rimgate_GateHeatWave, ticks);
         map.gameConditionManager.RegisterCondition(cond);
 
         SendStandardLetter(cond.LabelCap, cond.LetterText, cond.def.letterDef, parms, LookTargets.Invalid);

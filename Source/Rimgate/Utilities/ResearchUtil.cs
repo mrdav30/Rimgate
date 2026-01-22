@@ -5,7 +5,7 @@ namespace Rimgate;
 
 public static class ResearchUtil
 {
-    public static bool DHDLogicComplete => RimgateDefOf.Rimgate_StargateReplacementDHDResearch.IsFinished;
+    public static bool DHDLogicComplete => RimgateDefOf.Rimgate_DHDResearch.IsFinished;
 
     public static bool GateModificationComplete => RimgateDefOf.Rimgate_GateModification.IsFinished;
 

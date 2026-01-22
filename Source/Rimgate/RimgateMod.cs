@@ -11,13 +11,14 @@ public class RimgateMod : Mod
 {
     public static Harmony harmony;
 
+    // TODO: move into settings
     public static bool Debug = true;
 
     public static bool FlagAsteroids = true;
 
     public static readonly IntVec3 MinMapSize = new IntVec3(75, 1, 75);
 
-    public const string StargateQuestTag = "Rimgate_StargateQuestSite";
+    public const string GateQuestTag = "Rimgate_GateQuestSite_tag";
 
     public RimgateMod(ModContentPack pack) : base(pack)
     {

@@ -302,10 +302,12 @@ internal static class Utils
         return f.HostileTo(Faction.OfPlayer);
     }
 
-    public static bool TryFindEnemyFaction(out Faction faction, List<FactionDef> blacklist = null, bool allowNeolithic = true)
+    public static bool TryFindEnemyFaction(out Faction faction, List<FactionDef> blacklist = null, PawnGroupKindDef groupKindDef = null, bool allowNeolithic = true)
     {
         var candidates = Find.FactionManager.AllFactions
-            .Where(f => CanUseFaction(f, allowNeolithic) && (!blacklist?.Contains(f.def) ?? true));
+            .Where(f => CanUseFaction(f, allowNeolithic) 
+            && (!blacklist?.Contains(f.def) ?? true)
+            && (groupKindDef == null || f.def.pawnGroupMakers.Any(maker => maker.kindDef == groupKindDef)));
         // Flat random:
         return candidates.TryRandomElement(out faction);
 
@@ -326,6 +328,13 @@ internal static class Utils
     public static string FormatTicksToPeriod(this float ticks)
     {
         return ((int)Mathf.Max(0, ticks)).ToStringTicksToPeriod();
+    }
+
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsMinified(this Building building)
+    {
+        return building != null && building.ParentHolder is MinifiedThing;
     }
 
     internal static void ThrowDebugText(string text, Vector3 drawPos, Map map)

@@ -12,7 +12,7 @@ using Verse.AI;
 namespace Rimgate.HarmonyPatches;
 
 // <summary>
-// Patch AvoidGrid to add avoidance for Stargate vortex cells
+// Patch AvoidGrid to add avoidance for gate vortex cells
 // </summary>
 [HarmonyPatch(typeof(PathGrid))]
 public static class Harmony_PathGrid
@@ -24,7 +24,7 @@ public static class Harmony_PathGrid
         Map map = __instance.map;
         if (map == null || map.Tile == PlanetTile.Invalid) return;
 
-        if (!Building_Stargate.GlobalVortexCellsCache.TryGetValue(map.uniqueID, out var block))
+        if (!Building_Gate.GlobalVortexCellsCache.TryGetValue(map.uniqueID, out var block))
             return;
 
         if (!block.Active) return; // only during danger window
@@ -33,7 +33,7 @@ public static class Harmony_PathGrid
         if (block.CellIndices.Contains(idx))
         {
             if (RimgateMod.Debug)
-                Log.Message($"PathGrid.CalculatedCostAt: Increasing cost for vortex cell {c} on map {map} at tile {map.Tile}");
+                Log.Message($"Rimgate :: Increasing cost for vortex cell {c} on map {map} at tile {map.Tile}");
             // "almost impassable" but still technically passable if no other route
             __result = PathGrid.ImpassableCost - 1;
         }

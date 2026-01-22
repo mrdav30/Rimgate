@@ -162,7 +162,7 @@
     <HediffDef ParentName="AddictionBase">
         <defName>Rimgate_TretoninAddiction</defName>
         <label>Tretonin addiction</label>
-        <description>your body now runs on Tretonin like a Stargate runs on...whatever it runs on.\nMiss a dose, and things go downhill fast: pain, hunger, weakness, and eventually, death.\nOn the bright side—no more symbiote required!</description>
+        <description>your body now runs on Tretonin like a Dwarfgate runs on naquadah.\nMiss a dose, and things go downhill fast: pain, hunger, weakness, and eventually, death.\nOn the bright side—no more symbiote required!</description>
         <hediffClass>Hediff_Addiction</hediffClass>
         <chemicalNeed>Rimgate_TretoninChemicalNeed</chemicalNeed>
         <everCurableByItem>false</everCurableByItem>

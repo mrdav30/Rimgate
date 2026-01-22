@@ -5,9 +5,9 @@ using Verse.Noise;
 
 namespace Rimgate;
 
-public class GameCondition_StargatePsychicDrone : GameCondition_PsychicEmanation
+public class GameCondition_GatePsychicDrone : GameCondition_PsychicEmanation
 {
-    private Building_Stargate _heldGate;
+    private Building_Gate _heldGate;
 
     public override void Init()
     {
@@ -34,7 +34,7 @@ public class GameCondition_StargatePsychicDrone : GameCondition_PsychicEmanation
     private void TryHoldLocalGate(Map map)
     {
         if (map == null) return;
-        var gate = Building_Stargate.GetStargateOnMap(map);
+        var gate = Building_Gate.GetGateOnMap(map);
         if (gate == null) return;
         _heldGate = gate;
 
@@ -52,7 +52,7 @@ public class GameCondition_StargatePsychicDrone : GameCondition_PsychicEmanation
         // If nothing else is holding the gate
         // and it was an “incoming” fake link:
         if (_heldGate.ExternalHoldCount == 0 && _heldGate.IsReceivingGate)
-            _heldGate.CloseStargate();
+            _heldGate.CloseGate();
 
         _heldGate = null;
     }
