@@ -154,8 +154,10 @@ public class Building_ZPM : Building
 
     public override void TickRare()
     {
-        if (Battery == null) return;
-        if (Map == null) return;
+        if (!Spawned || this.IsMinified())
+            return;
+
+        if (Battery == null || Map == null) return;
 
         // Inert phase: no power, no dark energy, no broadcast.
         if (Faction.IsOfPlayerFaction()

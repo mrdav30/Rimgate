@@ -162,7 +162,7 @@
     <gearHealthRange>0.7~1.4</gearHealthRange>
     <initialWillRange>4~6</initialWillRange>
     <initialResistanceRange>50~80</initialResistanceRange>
-    <apparelMoney>800~1500</apparelMoney>
+    <apparelMoney>1200~2200</apparelMoney>
     <itemQuality>Good</itemQuality>
     <apparelTags>
       <li>Neolithic</li>
@@ -173,10 +173,17 @@
       <li>Apparel_CowboyHat</li>
       <li>Apparel_Duster</li>
     </apparelRequired>
-    <weaponMoney>2000~3900</weaponMoney>
+    <weaponMoney>2600~4500</weaponMoney>
     <weaponTags Inherit="False">
       <li>Rimgate_RodOfAnguish_tag</li>
     </weaponTags>
+    <techHediffsChance>0.42</techHediffsChance>
+    <techHediffsMoney>1000~2000</techHediffsMoney>
+    <techHediffsTags>
+      <li>Simple</li>
+      <li>AdvancedWeapon</li>
+      <li>ImplantEmpireCommon</li>
+    </techHediffsTags>
     <backstoryFiltersOverride>
       <li>
         <categoriesAdulthood>

@@ -30,8 +30,7 @@ public class FloatMenuOptionProvider_DialDestroyedDHD : FloatMenuOptionProvider
         if (dhd == null || !ResearchUtil.DHDLogicComplete)
             yield break;
 
-        var control = Building_Gate.GetGateOnMap(clickedThing.Map);
-        if (control == null)
+        if (!Building_Gate.TryGetSpawnedGateOnMap(clickedThing.Map, out Building_Gate control))
             yield break;
 
         Pawn pawn = context.FirstSelectedPawn;

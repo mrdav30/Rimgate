@@ -182,6 +182,8 @@ public class Building_Gate : Building
 
     private Texture2D _cachedIrisToggleIcon;
 
+    private bool _inert;
+
     #endregion
 
     #region Building overrides and lifecycle
@@ -196,13 +198,6 @@ public class Building_Gate : Building
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
-        if (GetGateOnMap(map) != null)
-        {
-            Log.Warning($"Rimgate :: Attempted to spawn a second active gate {this} on map {map}. Destroying the new instance.");
-            this.MakeMinified();
-            return;
-        }
-
         PlanetTile tile = map?.Tile ?? PlanetTile.Invalid;
         if (Destroyed || Spawned || tile == PlanetTile.Invalid)
         {
@@ -211,27 +206,32 @@ public class Building_Gate : Building
             return;
         }
 
-        if (!this.IsMinified())
+        // only one active gate allowed per map
+        // this should never happen normally, but just in-case let it spawn inert, then uninstall
+        if (TryGetSpawnedGateOnMap(map, out _))
         {
-            GateAddress = tile;
-            GateUtil.AddGateAddress(GateAddress);
-
-            int key = map.uniqueID;
-            if (!GlobalVortexCellsCache.TryGetValue(key, out var block))
-            {
-                if (RimgateMod.Debug)
-                    Log.Message($"Rimgate :: Computing vortex path cells for gate {this} on map {map} at tile {tile}.");
-                block = new();
-                foreach (var cell in VortexCells)
-                {
-                    if (!cell.InBounds(map)) continue;
-                    block.CellIndices.Add(map.cellIndices.CellToIndex(cell));
-                }
-                GlobalVortexCellsCache[key] = block;
-            }
+            if (RimgateMod.Debug)
+                Log.Warning($"Rimgate :: Attempted to spawn a second active gate {this} on map {map} - marking inert to prevent conflicts.");
+            _inert = true;
+            base.SpawnSetup(map, respawningAfterLoad);
+            return;
         }
-        else if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Minified gate {this} being spawned; skipping address assignment.");
+
+        GateAddress = tile;
+        GateUtil.AddGateAddress(GateAddress);
+        int key = map.uniqueID;
+        if (!GlobalVortexCellsCache.TryGetValue(key, out var block))
+        {
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: Computing vortex path cells for gate {this} on map {map} at tile {tile}.");
+            block = new();
+            foreach (var cell in VortexCells)
+            {
+                if (!cell.InBounds(map)) continue;
+                block.CellIndices.Add(map.cellIndices.CellToIndex(cell));
+            }
+            GlobalVortexCellsCache[key] = block;
+        }
 
         base.SpawnSetup(map, respawningAfterLoad);
 
@@ -249,14 +249,23 @@ public class Building_Gate : Building
             {
                 MapParent site = Find.WorldObjects.MapParentAt(ConnectedAddress);
                 if (!respawningAfterLoad && site.HasMap)
-                    ConnectedGate = GetOrCreateConnectedGate(site.Map);
+                {
+                    if (!TryGetReceivingGate(site.Map, out ConnectedGate))
+                    {
+                        Log.Error($"Rimgate :: could not re-establish connection for gate {this} to address {ConnectedAddress} on map {site.Map}.");
+                        CloseGate();
+                        return;
+                    }
+                }
                 else
+                {
                     CloseGate();
+                    return;
+                }
             }
 
             if (ConnectedGate != null || _externalHoldCount > 0)
-                PuddleSustainer = RimgateDefOf.Rimgate_GateIdle
-                    .TrySpawnSustainer(SoundInfo.InMap(this));
+                PuddleSustainer = RimgateDefOf.Rimgate_GateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
         }
 
         if (RimgateMod.Debug)
@@ -270,10 +279,15 @@ public class Building_Gate : Building
 
     protected override void Tick()
     {
-        base.Tick();
-
         if (!Spawned || this.IsMinified())
             return;
+
+        if(_inert)
+        {
+            _inert = false;
+            this.Uninstall(); // should be safe to uninstall now
+            return;
+        }
 
         if (this.IsHashIntervalTick(GenTicks.TickRareInterval))
         {
@@ -283,6 +297,8 @@ public class Building_Gate : Building
             else if (!GateUtil.ModificationEquipmentActive && colorComp.Active)
                 colorComp.Disable();
         }
+
+        base.Tick();
 
         if (PowerTrader != null)
         {
@@ -694,9 +710,7 @@ public class Building_Gate : Building
 
     private void FinalizeOpen(PlanetTile address, Map map)
     {
-        Building_Gate gate = GetOrCreateConnectedGate(map);
-        bool invalid = gate == null || gate.IsActive;
-        if (invalid)
+        if (!TryGetReceivingGate(map, out Building_Gate gate) || gate.IsActive)
         {
             Messages.Message(
                 "RG_GateDialFailed".Translate(),
@@ -1143,37 +1157,46 @@ public class Building_Gate : Building
 
     #region Static utility
 
-    public static Building_Gate GetOrCreateConnectedGate(Map map)
+    public static bool TryGetReceivingGate(Map map, out Building_Gate gate)
     {
-        var gate = Building_Gate.GetGateOnMap(map);
-        // ensure a valid gate and a DHD exist(and link)
-        if (gate == null)
-        {
-            gate = GateUtil.PlaceRandomGate(map);
-            GateUtil.EnsureDhdNearGate(map, gate, map.ParentFaction);
-        }
+        gate = null;
+        if (Building_Gate.TryGetSpawnedGateOnMap(map, out gate))
+            return true;
 
-        return gate;
+        gate = GateUtil.PlaceRandomGate(map);
+        if(gate == null)
+            return false;
+
+        // Ensure DHD is placed near the gate
+        GateUtil.EnsureDhdNearGate(map, gate, map.ParentFaction);
+        return true;
     }
 
-    public static Building_Gate GetGateOnMap(
+    public static bool TryGetSpawnedGateOnMap(
         Map map,
+        out Building_Gate gate,
         Thing thingToIgnore = null)
     {
-        if (map == null) return null;
+        if (map == null)
+        {
+            gate = null;
+            return false;
+        }
 
-        Building_Gate gateOnMap = null;
+        gate = null;
         foreach (Thing thing in map?.listerThings.AllThings)
         {
             if (thing != thingToIgnore
-                && thing is Building_Gate bsg)
+                && thing is Building_Gate bsg
+                && bsg.Spawned
+                && !bsg.IsMinified())
             {
-                gateOnMap = bsg;
+                gate = bsg;
                 break;
             }
         }
 
-        return gateOnMap;
+        return gate != null;
     }
 
     #endregion

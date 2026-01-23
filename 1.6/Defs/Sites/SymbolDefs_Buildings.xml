@@ -115,6 +115,11 @@
         <thing>Rimgate_WraithCloningPod</thing>
     </KCSG.SymbolDef>
 
+        <KCSG.SymbolDef>
+        <defName>Rimgate_WraithBiomassStabilizer</defName>
+        <thing>Rimgate_WraithBiomassStabilizer</thing>
+    </KCSG.SymbolDef>
+
     <KCSG.SymbolDef>
         <defName>Rimgate_AncientResearchBank</defName>
         <thing>Rimgate_AncientResearchBank</thing>

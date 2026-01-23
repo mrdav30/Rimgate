@@ -34,8 +34,7 @@ public class GameCondition_GatePsychicDrone : GameCondition_PsychicEmanation
     private void TryHoldLocalGate(Map map)
     {
         if (map == null) return;
-        var gate = Building_Gate.GetGateOnMap(map);
-        if (gate == null) return;
+        if (!Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gate) || gate.IsActive) return;
         _heldGate = gate;
 
         _heldGate.PushExternalHold();

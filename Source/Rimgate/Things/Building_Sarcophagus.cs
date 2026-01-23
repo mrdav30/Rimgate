@@ -214,6 +214,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     protected override void Tick()
     {
+        if (!Spawned || this.IsMinified())
+            return;
+
         base.Tick();
 
         // State-dependent power consumption

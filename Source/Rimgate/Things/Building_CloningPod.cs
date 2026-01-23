@@ -200,6 +200,9 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     protected override void Tick()
     {
+        if (!Spawned || this.IsMinified())
+            return;
+
         base.Tick();
 
         // State-dependent power consumption

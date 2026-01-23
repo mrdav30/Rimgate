@@ -876,6 +876,7 @@
             <!-- Use default damage from explosion def -->
             <explosionRadius>5.9</explosionRadius>
             <speed>70</speed>
+            <stoppingPower>3</stoppingPower>
         </projectile>
     </ThingDef>
 

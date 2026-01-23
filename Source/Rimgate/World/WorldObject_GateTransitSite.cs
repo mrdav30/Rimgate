@@ -30,11 +30,11 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     public string InspectLabel => Label;
 
     public bool HasGate => Map != null
-        ? Building_Gate.GetGateOnMap(Map) != null
+        ? Building_Gate.TryGetSpawnedGateOnMap(Map, out _)
         : _lastKnownHasGate;
 
     public bool HasDhd => Map != null
-        ? Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice) != null
+        ? Building_DHD.TryGetDhdOnMap(Map, out _, RimgateDefOf.Rimgate_DialHomeDevice)
         : _lastKnownHasDhd;
 
     private const float LootChanceItems = 0.0035f;
@@ -50,7 +50,7 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     private bool _wasLooted;
 
     // anything else can be removed by scavengers
-    private static bool IsImportant(ThingDef def) => def == RimgateDefOf.Rimgate_Dwarfgate 
+    private static bool IsImportant(ThingDef def) => def == RimgateDefOf.Rimgate_Dwarfgate
         || def == RimgateDefOf.Rimgate_DialHomeDevice;
 
     public override void SpawnSetup()
@@ -108,25 +108,19 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
 
     public override void Notify_MyMapAboutToBeRemoved()
     {
-        var gate = Building_Gate.GetGateOnMap(Map);
-        if (gate != null)
+        if (Building_Gate.TryGetSpawnedGateOnMap(Map, out Building_Gate gate))
             gate.CloseGate(gate.ConnectedGate != null);
         base.Notify_MyMapAboutToBeRemoved();
     }
 
     public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
     {
-        var gateOnMap = Building_Gate.GetGateOnMap(Map);
-        var dhdOnMap = Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice);
-
         // Cache last known presence
-        _lastKnownHasGate = gateOnMap != null;
-        _lastKnownHasDhd = dhdOnMap != null;
+        _lastKnownHasGate = Building_Gate.TryGetSpawnedGateOnMap(Map, out Building_Gate gateOnMap);
+        _lastKnownHasDhd = Building_DHD.TryGetDhdOnMap(Map, out Building_DHD dhdOnMap, RimgateDefOf.Rimgate_DialHomeDevice);
 
         // If the map is eligible to despawn, snapshot player things
-        bool canDespawn = !GateUtil.TryGetActiveGateOnMap(Map, out _) 
-            && !Map.mapPawns.AnyPawnBlockingMapRemoval;
-
+        bool canDespawn = !gateOnMap.IsActive && !Map.mapPawns.AnyPawnBlockingMapRemoval;
         if (canDespawn)
         {
             SnapshotPlayerThings(Map);
@@ -194,15 +188,15 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
         if (_ranInitialSetup || !InitialHadGate)
             return;
 
-        var gateOnMap = Building_Gate.GetGateOnMap(Map);
-        if (gateOnMap == null)
-            gateOnMap = GateUtil.PlaceRandomGate(Map, Faction.OfPlayer);
+        var map = Map;
+        if (!Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gateOnMap))
+            gateOnMap = GateUtil.PlaceRandomGate(map, Faction.OfPlayer);
         else
             gateOnMap.SetFaction(Faction.OfPlayer);
 
         // Only ensure a DHD if the site was created with one
         if (InitialHadDhd)
-            GateUtil.EnsureDhdNearGate(Map, gateOnMap, Faction.OfPlayer);
+            GateUtil.EnsureDhdNearGate(map, gateOnMap, Faction.OfPlayer);
 
         _ranInitialSetup = true;
     }
@@ -232,8 +226,8 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     public void RefreshPresenceCache()
     {
         if (Map == null) return;
-        _lastKnownHasGate = Building_Gate.GetGateOnMap(Map) != null;
-        _lastKnownHasDhd = Building_DHD.GetDhdOfOnMap(Map, RimgateDefOf.Rimgate_DialHomeDevice) != null;
+        _lastKnownHasGate = Building_Gate.TryGetSpawnedGateOnMap(Map, out _);
+        _lastKnownHasDhd = Building_DHD.TryGetDhdOnMap(Map, out _, RimgateDefOf.Rimgate_DialHomeDevice);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()

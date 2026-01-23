@@ -87,15 +87,15 @@ public class WorldObject_GateQuestSite : Site
 
     public override void PostMapGenerate()
     {
-        Building_Gate.GetOrCreateConnectedGate(Map);
+        if(!Building_Gate.TryGetReceivingGate(Map, out _) && RimgateMod.Debug)
+            Log.Warning($"Rimgate :: No receiving gate found on quest site map at tile {Tile} during PostMapGenerate");
         GateUtil.IncrementQuestSiteCount();
         base.PostMapGenerate();
     }
 
     public override void Notify_MyMapAboutToBeRemoved()
     {
-        var gate = Building_Gate.GetGateOnMap(Map);
-        if (gate != null)
+        if (Building_Gate.TryGetSpawnedGateOnMap(Map, out Building_Gate gate))
             gate.CloseGate(gate.ConnectedGate != null);
         GateUtil.DecrementQuestSiteCount();
         base.Notify_MyMapAboutToBeRemoved();
@@ -119,7 +119,7 @@ public class WorldObject_GateQuestSite : Site
         if (ModsConfig.OdysseyActive && map.listerThings.AnyThingWithDef(ThingDefOf.GravAnchor))
             return false;
 
-        if (Building_Gate.GetGateOnMap(map) == null)
+        if (!Building_Gate.TryGetSpawnedGateOnMap(map, out _))
         {
             Find.LetterStack.ReceiveLetter(
                 "RG_QuestGateRemoved_Label".Translate(),

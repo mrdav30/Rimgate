@@ -12,15 +12,13 @@ public class PawnsArrivalModeWorker_Gate : PawnsArrivalModeWorker
 {
     public override bool CanUseOnMap(Map map)
     {
-        Building_Gate gate = Building_Gate.GetGateOnMap(map);
-        return gate != null && !gate.IsActive;
+        return Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gate) && !gate.IsActive;
     }
 
     public override void Arrive(List<Pawn> pawns, IncidentParms parms)
     {
         Map map = (Map)parms.target;
-        Building_Gate gateOnMap = Building_Gate.GetGateOnMap(map);
-        if (gateOnMap == null) return;
+        if (!Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gateOnMap)) return;
 
         gateOnMap.TicksSinceBufferUnloaded = -150;
         foreach (Pawn pawn in pawns)
@@ -31,8 +29,7 @@ public class PawnsArrivalModeWorker_Gate : PawnsArrivalModeWorker
     public override bool TryResolveRaidSpawnCenter(IncidentParms parms)
     {
         Map map = (Map)parms.target;
-        Building_Gate gateOnMap = Building_Gate.GetGateOnMap(map);
-        if (gateOnMap == null || gateOnMap.IsActive == true)
+        if (!Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gateOnMap) || gateOnMap.IsActive)
         {
             parms.raidArrivalMode = map.Tile.LayerDef.isSpace
                 ? PawnsArrivalModeDefOf.EdgeDrop

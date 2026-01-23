@@ -66,6 +66,9 @@ public class Building_DHD : Building
 
     public override void TickRare()
     {
+        if (!Spawned || this.IsMinified())
+            return;
+
         base.TickRare();
 
         var linked = Facility?.LinkedBuildings;
@@ -295,34 +298,19 @@ public class Building_DHD : Building
         control.DoToggleIris();
     }
 
-    public static Building_DHD GetDhdOnMap(Map map)
+    public static bool TryGetDhdOnMap(Map map, out Building_DHD dhd, ThingDef def = null)
     {
-        Building_DHD dhdOnMap = null;
-        foreach (Thing thing in map.listerThings.AllThings)
-        {
-            if (thing is Building_DHD bdhd)
-            {
-                dhdOnMap = bdhd;
-                break;
-            }
-        }
-
-        return dhdOnMap;
-    }
-
-    public static Building_DHD GetDhdOfOnMap(Map map, ThingDef def)
-    {
-        Building_DHD dhdOnMap = null;
+        dhd = null;
         foreach (Thing thing in map.listerThings.AllThings)
         {
             if (thing is Building_DHD bdhd
-                && bdhd.def == def)
+                && (def == null || bdhd.def == def))
             {
-                dhdOnMap = bdhd;
+                dhd = bdhd;
                 break;
             }
         }
 
-        return dhdOnMap;
+        return dhd != null;
     }
 }

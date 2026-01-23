@@ -40,11 +40,9 @@ public static class GateUtil
     public static bool ActiveQuestSitesAtLimit => ActiveQuestSiteCount >= MaxActiveQuestSiteCount;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool TryGetActiveGateOnMap(Map map, out Building_Gate gate)
-    {
-        gate = Building_Gate.GetGateOnMap(map);
-        return gate?.IsActive == true;
-    }
+    public static bool TryGetActiveGateOnMap(Map map, out Building_Gate gate) => 
+        Building_Gate.TryGetSpawnedGateOnMap(map, out gate) 
+        && gate.IsActive;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddGateAddress(PlanetTile address)

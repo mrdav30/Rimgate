@@ -58,6 +58,9 @@ public class Building_MeatLab : Building_PlantGrower
 
     public override void TickRare()
     {
+        if (!Spawned || this.IsMinified())
+            return;
+
         base.TickRare();
 
         // Refresh cache if it's missing, despawned, on another map, or destroyed

@@ -221,6 +221,9 @@ public class Building_ZPMHousing : Building, IThingHolder
 
     public override void TickRare()
     {
+        if (!Spawned || this.IsMinified())
+            return;
+
         base.TickRare();
 
         ClampBatteryToEffectiveMax();

@@ -17,7 +17,11 @@
             <li>Rimgate_GoauldMelee_tag</li>
             <li>Rimgate_GoauldWeapons_tag</li>
             <li>MedievalMeleeBasic</li>
+            <li>NeolithicMeleeBasic</li>
         </weaponTags>
+        <weaponClasses>
+            <li>Neolithic</li>
+        </weaponClasses>
         <costStuffCount>35</costStuffCount>
         <statBases>
             <WorkToMake>2000</WorkToMake>
@@ -35,7 +39,7 @@
                     <li>Blunt</li>
                 </capacities>
                 <power>9</power>
-                <cooldownTime>2</cooldownTime>
+                <cooldownTime>1.5</cooldownTime>
             </li>
             <li>
                 <label>blade</label>
@@ -43,7 +47,7 @@
                     <li>Cut</li>
                 </capacities>
                 <power>18</power>
-                <cooldownTime>1.5</cooldownTime>
+                <cooldownTime>1.2</cooldownTime>
             </li>
             <li>
                 <label>point</label>
@@ -51,7 +55,7 @@
                     <li>Stab</li>
                 </capacities>
                 <power>20</power>
-                <cooldownTime>2</cooldownTime>
+                <cooldownTime>1.6</cooldownTime>
             </li>
         </tools>
         <recipeMaker>
@@ -113,12 +117,28 @@
             <li>Metallic</li>
         </stuffCategories>
 
+        <soundInteract>Interact_ZeusHammer</soundInteract>
+        <meleeHitSound>MeleeHit_ZeusHammer</meleeHitSound>
+
         <statBases>
             <Mass>1.4</Mass>
-            <MarketValue>1900</MarketValue>
+            <MarketValue>2500</MarketValue>
         </statBases>
 
+        <equippedStatOffsets>
+            <MeleeHitChance>0.5</MeleeHitChance>
+        </equippedStatOffsets>
+
         <tools>
+            <li>
+                <label>handle</label>
+                <capacities>
+                    <li>Poke</li>
+                </capacities>
+                <power>15</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+
             <!-- Primary strike: blunt impact + pain/stun rider -->
             <li>
                 <label>shock pulse</label>
@@ -127,17 +147,15 @@
                 </capacities>
                 <power>10</power>                 <!-- modest physical damage -->
                 <cooldownTime>1.55</cooldownTime> <!-- snappy -->
-                <chanceFactor>1.0</chanceFactor>
 
-                <!-- Riders: brief stun + tiny EMP splash so mechs/gear hiccup -->
                 <extraMeleeDamages>
                     <li>
                         <def>Stun</def>
-                        <amount>12</amount>           <!-- ~0.6–1.2 sec typical -->
+                        <amount>12</amount><!-- ~0.6–1.2 sec typical -->
                     </li>
                     <li>
                         <def>EMP</def>
-                        <amount>5</amount>            <!-- small mech disruption -->
+                        <amount>9</amount>
                     </li>
                 </extraMeleeDamages>
 
@@ -150,16 +168,12 @@
                         </li>
                         <li>
                             <def>EMP</def>
-                            <amount>12</amount>
+                            <amount>15</amount>
                         </li>
                     </extraMeleeDamages>
                 </surpriseAttack>
             </li>
         </tools>
-
-        <equippedStatOffsets>
-            <MeleeHitChance>0.04</MeleeHitChance>
-        </equippedStatOffsets>
 
         <comps>
             <li>

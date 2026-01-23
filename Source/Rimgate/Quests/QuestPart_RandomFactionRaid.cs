@@ -82,11 +82,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
 
         if (UseGateIfAvailable)
         {
-            var sg = Building_Gate.GetGateOnMap(map);
-            bool isValid = sg != null
-                && !sg.IsActive
-                && !sg.IsIrisActivated;
-            if (isValid)
+            if (Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gate) && !gate.IsActive && !gate.IsIrisActivated)
                 incidentParms.raidArrivalMode = RimgateDefOf.Rimgate_GateEnterMode;
             else
                 incidentParms.raidArrivalMode = arrivalMode;

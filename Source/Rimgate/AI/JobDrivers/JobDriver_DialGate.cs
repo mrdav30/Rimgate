@@ -41,7 +41,7 @@ public class JobDriver_DialGate : JobDriver
 
         if (delayed)
         {
-            gate = Building_Gate.GetGateOnMap(t.Map);
+            Building_Gate.TryGetSpawnedGateOnMap(t.Map, out gate);
             tile = GateUtil.WorldComp.AddressList
                 .Where(x => x != t.Map.Tile)
                 .RandomElement();
