@@ -213,7 +213,7 @@
     <graphicData>
       <drawSize>(4,4)</drawSize>
       <texPath>Things/Building/Furniture/RGGoauldThrone</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_Multi</graphicClass>
       <addTopAltitudeBias>true</addTopAltitudeBias>
       <shaderType>CutoutComplex</shaderType>
       <shadowData>
@@ -225,7 +225,7 @@
     </graphicData>
     <uiIconOffset>(0, 0.04)</uiIconOffset>
     <uiIconScale>1</uiIconScale>
-    <castEdgeShadows>False</castEdgeShadows>
+    <castEdgeShadows>true</castEdgeShadows>
     <size>(3,2)</size>
 
     <statBases>
@@ -248,6 +248,7 @@
     <costList>
       <Steel>200</Steel>
       <Gold>100</Gold>
+      <Rimgate_Naquadah>50</Rimgate_Naquadah>
     </costList>
 
     <building>
@@ -263,11 +264,12 @@
     <passability>Standable</passability>
     <drawGUIOverlay>true</drawGUIOverlay>
     <drawGUIOverlayQuality>false</drawGUIOverlayQuality>
-    <rotatable>false</rotatable>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <rotatable>true</rotatable>
     <altitudeLayer>Building</altitudeLayer>
     <category>Building</category>
     <hasInteractionCell>true</hasInteractionCell>
-    <interactionCellOffset>(0,0,0)</interactionCellOffset>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
     <socialPropernessMatters>true</socialPropernessMatters>
     <pathCost>30</pathCost>
     <fillPercent>0.4</fillPercent>

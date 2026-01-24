@@ -22,8 +22,8 @@ public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
         // Decide what cell we face while meditating
         yield return Toils_General.Do(delegate
         {
-            // Face "in front" of the throne (it only faces south)
-            IntVec3 faceCell = Throne.InteractionCell + Rot4.South.FacingCell;
+            // Face "in front" of the throne
+            IntVec3 faceCell = Throne.InteractionCell + Throne.Rotation.FacingCell;
             job.SetTarget(TargetIndex.B, faceCell);
         });
 
