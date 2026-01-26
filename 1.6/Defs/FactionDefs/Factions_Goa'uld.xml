@@ -191,6 +191,24 @@
         </options>
       </li>
       <li>
+        <!-- Guard squads -->
+        <kindDef>OrbitalCombat</kindDef>
+        <commonality>70</commonality>
+        <disallowedStrategies>
+          <li>Siege</li>
+        </disallowedStrategies>
+        <options>
+          <!-- Guards take the lead -->
+          <Rimgate_SerpentGuard>4</Rimgate_SerpentGuard>
+          <Rimgate_JackalGuard>4</Rimgate_JackalGuard>
+          <Rimgate_HorusGuard>4</Rimgate_HorusGuard>
+
+          <Rimgate_PrimeJackalGuard>0.7</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>0.7</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>0.7</Rimgate_PrimeHorusGuard>
+        </options>
+      </li>
+      <li>
         <!-- Kull strike -->
         <kindDef>Combat</kindDef>
         <commonality>5</commonality>

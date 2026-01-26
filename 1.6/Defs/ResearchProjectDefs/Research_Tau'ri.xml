@@ -71,6 +71,19 @@
         </prerequisites>
     </ResearchProjectDef>
 
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
+        <defName>Rimgate_TauriArmorsTierTwo</defName>
+        <label>Tau'ri Advanced Armor</label>
+        <description>Unlock advanced Tau'ri armor technologies and the true potential of the composition bench. Because sometimes, diplomacy fails and you need to survive the fallout.</description>
+        <baseCost>2500</baseCost>
+        <researchViewX>2</researchViewX>
+        <researchViewY>0</researchViewY>
+        <prerequisites>
+            <li>Rimgate_TauriArmors</li>
+            <li>Rimgate_NaquadahRefinement</li>
+        </prerequisites>
+    </ResearchProjectDef>
+
     <!-- ======== Tau'ri Weapons ======== -->
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">

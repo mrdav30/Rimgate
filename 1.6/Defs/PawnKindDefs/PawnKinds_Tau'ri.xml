@@ -21,7 +21,7 @@
 
     <PawnKindDef ParentName="Rimgate_TauriBase">
         <defName>Rimgate_TauriScientist</defName>
-        <label>Tau'ri scientist</label>
+        <label>SGC scientist</label>
         <isFighter>false</isFighter>
         <requiredWorkTags>
             <li>Intellectual</li>
@@ -130,9 +130,14 @@
             <li>IndustrialMilitaryAdvanced</li>
             <li>SpacerMilitary</li>
             <li>Rimgate_TauriApparel_tag</li>
-            <li>Rimgate_TauriTacticalVest</li>
-            <li>Rimgate_TauriBackpack_tag</li>
+            <li>Rimgate_TauriUtility_tag</li>
         </apparelTags>
+        <specificApparelRequirements>
+            <li>
+                <bodyPartGroup>UpperHead</bodyPartGroup>
+                <requiredTag>Rimgate_TauriApparel_tag</requiredTag>
+            </li>
+        </specificApparelRequirements>
         <apparelRequired>
             <li>Rimgate_TauriSGTeamBDU</li>
             <li>Rimgate_TauriTacticalVest</li>
@@ -160,17 +165,13 @@
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCSoldier</defName>
-        <label>Tau'ri soldier</label>
+        <label>Soldier</label>
         <combatPower>80</combatPower>
         <weaponTags>
             <li>Rimgate_TauriSubmachineGun_tag</li>
-            <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriPistol_tag</li>
             <li>Rimgate_TauriShotgun_tag</li>
         </weaponTags>
-        <apparelRequired>
-            <li>Rimgate_TauriBallisticHelmet</li>
-        </apparelRequired>
         <skills>
             <li>
                 <skill>Shooting</skill>
@@ -181,7 +182,7 @@
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCRocketman</defName>
-        <label>Tau'ri soldier</label>
+        <label>Soldier</label>
         <combatPower>135</combatPower>
         <weaponMoney>3000~3500</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
@@ -189,9 +190,6 @@
         <weaponTags>
             <li>Rimgate_TauriRocketLauncher_tag</li>
         </weaponTags>
-        <apparelRequired>
-            <li>Rimgate_TauriBallisticHelmet</li>
-        </apparelRequired>
         <skills>
             <li>
                 <skill>Shooting</skill>
@@ -202,16 +200,15 @@
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriRifleman</defName>
-        <label>Tau'ri rifleman</label>
+        <label>Rifleman</label>
         <race>Human</race>
         <combatPower>120</combatPower>
+        <apparelTags>
+            <li>Rimgate_TauriSpecialForcesApparel_tag</li>
+        </apparelTags>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
         </weaponTags>
-        <apparelRequired>
-            <li>Rimgate_TauriBallisticHelmet</li>
-            <li>Rimgate_TacticalVestSteelPlateInsert</li>
-        </apparelRequired>
         <inventoryOptions>
             <skipChance>0.9</skipChance>
             <subOptionsChooseOne>
@@ -228,26 +225,98 @@
         <skills>
             <li>
                 <skill>Shooting</skill>
-                <range>8~12</range>
+                <range>12~15</range>
             </li>
         </skills>
     </PawnKindDef>
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSpecialForces</defName>
-        <label>Tau'ri special forces</label>
+        <label>Tau'ri operator</label>
+        <race>Human</race>
+        <combatPower>140</combatPower>
+        <itemQuality>Excellent</itemQuality>
+        <weaponTags>
+            <li>Rimgate_TauriAssaultRifle_tag</li>
+            <li>Rimgate_TauriShotgun_tag</li>
+            <li>Rimgate_Tauri_SniperRifle</li>
+        </weaponTags>
+        <apparelTags>
+            <li>Rimgate_TauriSpecialForcesApparel_tag</li>
+        </apparelTags>
+        <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
+        <apparelRequired Inherit="false">
+            <li>Rimgate_TauriSGTeamBDU</li>
+            <li>Rimgate_TauriSpecOpsVest</li>
+            <li>Rimgate_NaquadahPlateInsert</li>
+            <li>Rimgate_TauriTacticalBackpack</li>
+        </apparelRequired>
+        <specificApparelRequirements Inherit="False">
+            <li>
+                <bodyPartGroup>UpperHead</bodyPartGroup>
+                <requiredTag>Rimgate_TauriSpecialForcesApparel_tag</requiredTag>
+            </li>
+        </specificApparelRequirements>
+        <inventoryOptions>
+            <skipChance>0.8</skipChance>
+            <subOptionsChooseOne>
+                <li>
+                    <thingDef>MedicineIndustrial</thingDef>
+                    <countRange>
+                        <min>1</min>
+                        <max>3</max>
+                    </countRange>
+                </li>
+            </subOptionsChooseOne>
+        </inventoryOptions>
+        <gearHealthRange>0.8~2.3</gearHealthRange>
+        <weaponMoney>3000~3500</weaponMoney>
+        <apparelMoney>7000~10000</apparelMoney>
+        <techHediffsMoney>1000~4000</techHediffsMoney>
+        <techHediffsMaxAmount>4</techHediffsMaxAmount>
+        <skills>
+            <li>
+                <skill>Shooting</skill>
+                <range>8~16</range>
+            </li>
+            <li>
+                <skill>Melee</skill>
+                <range>8~13</range>
+            </li>
+        </skills>
+        <techHediffsRequired>
+            <li>BionicEye</li>
+            <li>BionicEye</li>
+            <li>StoneskinGland</li>
+        </techHediffsRequired>
+        <disallowedTraits>
+            <li>Wimp</li>
+            <li>Nudist</li>
+            <li>BodyPurist</li>
+        </disallowedTraits>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
+        <defName>Rimgate_TauriSpaceForce</defName>
+        <label>Tau'ri guardian</label>
         <race>Human</race>
         <combatPower>150</combatPower>
         <itemQuality>Excellent</itemQuality>
         <weaponTags>
+            <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriShotgun_tag</li>
             <li>Rimgate_Tauri_SniperRifle</li>
         </weaponTags>
-        <apparelRequired>
-            <li>Rimgate_TauriGreenBoonieHat</li>
-            <li>Rimgate_TacticalVestCompositePlateInsert</li>
-            <li>Rimgate_TauriTacticalBackpack</li>
+        <apparelRequired Inherit="false">
+            <li>Rimgate_TauriSGTeamBDU</li>
+            <li>Rimgate_TacticalVacsuitHelm</li>
         </apparelRequired>
+        <specificApparelRequirements Inherit="False">
+            <li>
+                <bodyPartGroup>Torso</bodyPartGroup>
+                <requiredTag>SpacerMilitary</requiredTag>
+            </li>
+        </specificApparelRequirements>
         <inventoryOptions>
             <skipChance>0.8</skipChance>
             <subOptionsChooseOne>
@@ -289,7 +358,7 @@
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriCommander</defName>
-        <label>Tau'ri commander</label>
+        <label>Commander</label>
         <factionLeader>true</factionLeader>
         <canBeSapper>true</canBeSapper>
         <combatPower>175</combatPower>
@@ -298,9 +367,11 @@
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriPistol_tag</li>
         </weaponTags>
+        <specificApparelRequirements Inherit="False" />
+        <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
         <apparelRequired>
-            <li>Rimgate_TauriGreenCap</li>
-            <li>Rimgate_TacticalVestCompositePlateInsert</li>
+            <li>Rimgate_TauriBaseballCap</li>
+            <li>Rimgate_NaquadahPlateInsert</li>
         </apparelRequired>
         <gearHealthRange>0.85~3.5</gearHealthRange>
         <weaponMoney>3000~3500</weaponMoney>

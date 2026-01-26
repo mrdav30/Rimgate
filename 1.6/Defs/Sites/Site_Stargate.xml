@@ -400,6 +400,25 @@
 		<order>450</order>
 		<genStep Class="Rimgate.GenStep_EnemiesPresence_NoSiteFaction">
 			<useSiteFactionIfAny>false</useSiteFactionIfAny>
+			<pawnGroupKindDef>Combat</pawnGroupKindDef>
+			<defaultPointsRange>90~150</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<SitePartDef ParentName="Rimgate_SoldierBase">
+		<defName>Rimgate_EnemyPresenceOrbit</defName>
+		<tags>
+			<li>Rimgate_EnemyPresenceOrbit_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_EnemyPresenceOrbit</defName>
+		<linkWithSite>Rimgate_EnemyPresenceOrbit</linkWithSite>
+		<order>450</order>
+		<genStep Class="Rimgate.GenStep_EnemiesPresence_NoSiteFaction">
+			<useSiteFactionIfAny>false</useSiteFactionIfAny>
+			<pawnGroupKindDef>OrbitalCombat</pawnGroupKindDef>
 			<defaultPointsRange>90~150</defaultPointsRange>
 		</genStep>
 	</GenStepDef>

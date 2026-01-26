@@ -616,6 +616,7 @@
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags>
       <li>Rimgate_GoauldGuardApparel_tag</li>
+      <li>Rimgate_GoauldSpacer_tag</li>
     </apparelTags>
     <weaponMoney>3000~3500</weaponMoney>
     <weaponTags>
@@ -691,6 +692,7 @@
     </backstoryFiltersOverride>
     <apparelTags Inherit="False">
       <li>Rimgate_GoauldPrimeApparel_tag</li>
+      <li>Rimgate_GoauldPrimeSpacer_tag</li>
     </apparelTags>
     <apparelRequired Inherit="false">
       <li>Rimgate_FirstPrimeArmor</li>

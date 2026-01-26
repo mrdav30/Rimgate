@@ -123,6 +123,16 @@
         </disallowedStrategies>
       </li>
       <li>
+        <kindDef>OrbitalCombat</kindDef>
+        <options>
+          <Rimgate_WraithOrbitSoldier>35</Rimgate_WraithOrbitSoldier>
+          <Rimgate_WraithOrbitCommander>30</Rimgate_WraithOrbitCommander>
+        </options>
+        <disallowedStrategies>
+          <li>Siege</li> 
+        </disallowedStrategies>
+      </li>
+      <li>
         <kindDef>Trader</kindDef>
         <traders>
           <Rimgate_WraithTrader>1</Rimgate_WraithTrader>

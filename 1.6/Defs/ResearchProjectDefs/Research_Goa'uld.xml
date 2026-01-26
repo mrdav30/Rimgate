@@ -406,6 +406,7 @@
 			<li>Rimgate_SubspaceMasking</li>
 			<li>Rimgate_ParallelSubspaceCoupling</li>
 			<li>Rimgate_Sarcophagus</li>
+			<li>Rimgate_GoauldKaraKesh</li>
 		</prerequisites>
 
 		<researchViewX>2</researchViewX>

@@ -61,6 +61,15 @@
 				</options>
 			</li>
 			<li>
+				<kindDef>OrbitalCombat</kindDef>
+				<options>
+					<Rimgate_ReplicatorUranium>40</Rimgate_ReplicatorUranium>
+					<Rimgate_ReplicatorPlasteel>40</Rimgate_ReplicatorPlasteel>
+					<Rimgate_ReplicatorNaquadah>40</Rimgate_ReplicatorNaquadah>
+					<Rimgate_ReplicatorHumanoid>40</Rimgate_ReplicatorHumanoid>
+				</options>
+			</li>
+			<li>
 				<kindDef>Combat</kindDef>
 				<commonality>100</commonality>
 				<options>

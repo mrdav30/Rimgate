@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	<!-- ================== Wraith Apparel ================== -->
-
-	<!-- ============ Wraith Apparel Base ============ -->
+	<!-- ================== Wraith Apparel Base ================== -->
 
 	<ThingDef Name="Rimgate_WraithArmorBase" ParentName="ApparelBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
@@ -30,14 +28,16 @@
 		</tradeTags>
 	</ThingDef>
 
-	<!-- ========= Wraith headgear ========= -->
+	<!-- ========= Headgear ========= -->
+
+	<!-- Wraith helm -->
 
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithHelmet</defName>
 		<label>Wraith soldier helmet</label>
 		<description>Standard issue cranial casing for your average Wraith footsoldier. Looks like alien exoskeleton, smells like biomass.\nSurprisingly breathable for something grown in a vat.</description>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/WraithHelm/RGWraithHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/WraithHelm/RGWraithHelmetIcon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<costList>
@@ -59,18 +59,17 @@
 			<EquipDelay>2</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
 			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.67</VacuumResistance>
 			<ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
 		</equippedStatOffsets>
 		<apparel>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
 			<parentTagDef>ApparelHead</parentTagDef>
 			<renderSkipFlags>
 				<li>Beard</li>
 				<li>Eyes</li>
 			</renderSkipFlags>
-			<immuneToToxGasExposure>true</immuneToToxGasExposure>
 			<bodyPartGroups>
 				<li>FullHead</li>
 			</bodyPartGroups>
@@ -80,6 +79,7 @@
 			</layers>
 			<tags>
 				<li>Rimgate_WraithHeadgear_tag</li>
+				<li>Rimgate_WraithSpacer_tag</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -97,10 +97,12 @@
 		</recipeMaker>
 	</ThingDef>
 
+	<!-- Goggles -->
+
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithGoggles</defName>
-		<label>goggles</label>
-		<description>Standard-issue optics for Wraith soldiers who need to look cool and see through three dimensions of prey at once. Offers modest protection against sand, smoke, and sass. Possibly grafted directly to your skull. Don’t ask how you’re supposed to take them off—you’re not.</description>
+		<label>Goggles</label>
+		<description>Standard-issue optics for Wraith soldiers who need to look cool and see through three dimensions of prey at once. Offers modest protection against sand, smoke, and sass from superiors.\n\nFavored by Wraith assassins and reconnaissance units who need to stay sharp in the field.</description>
 		<thingCategories>
 			<li>Headgear</li>
 		</thingCategories>
@@ -124,7 +126,8 @@
 			<EquipDelay>1.5</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<PainShockThreshold>0.05</PainShockThreshold>
+			<MeleeHitChance>3</MeleeHitChance>
+			<PainShockThreshold>0.1</PainShockThreshold>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
 			<ToxicEnvironmentResistance>0.35</ToxicEnvironmentResistance>
 		</equippedStatOffsets>
@@ -167,9 +170,11 @@
 		</recipeMaker>
 	</ThingDef>
 
+	<!-- Circlet -->
+
 	<ThingDef ParentName="HatMakeableBase">
 		<defName>Rimgate_WraithCirclet</defName>
-		<label>circlet</label>
+		<label>Circlet</label>
 		<description>A ceremonial circlet worn only by Wraith queens and their chosen commanders. Forged from naquadah filigree fused with living biomass, the circlet amplifies psionic projection and lends its wearer an unsettling gravitas. To those who serve, it is a symbol of command and terror; to those who resist, a reminder that even a glance from the throne can feel like a blade at the throat.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/WraithCirclet/RGWraithCirclet</texPath>
@@ -237,7 +242,9 @@
 		</tradeTags>
 	</ThingDef>
 
-	<!-- ========= Wraith Soldier Armor ========= -->
+	<!-- ========= Torso ========= -->
+
+	<!-- Wraith Soldier Armor -->
 
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithSoldierArmor</defName>
@@ -273,7 +280,6 @@
 			<ComfyTemperatureMin>-5</ComfyTemperatureMin>
 			<MentalBreakThreshold>-0.1</MentalBreakThreshold>
 			<PainShockThreshold>0.15</PainShockThreshold>
-			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.3</VacuumResistance>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -304,7 +310,7 @@
 		</recipeMaker>
 	</ThingDef>
 
-	<!-- ========= Wraith Commander Armor ========= -->
+	<!-- Wraith Commander Armor -->
 
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithCommanderArmor</defName>
@@ -340,6 +346,7 @@
 			<ComfyTemperatureMin>-10</ComfyTemperatureMin>
 			<MentalBreakThreshold>-0.15</MentalBreakThreshold>
 			<PainShockThreshold>0.15</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
 			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.3</VacuumResistance>
 		</equippedStatOffsets>
 		<apparel>
@@ -371,7 +378,9 @@
 		</recipeMaker>
 	</ThingDef>
 
-	<!-- ========= Wraith communication device ========= -->
+	<!-- ========= Utility ========= -->
+
+	<!-- Wraith communication device -->
 
 	<ThingDef ParentName="Rimgate_WraithArmorBase">
 		<defName>Rimgate_WraithCommunicationDevice</defName>
@@ -482,11 +491,11 @@
 		</comps>
 	</ThingDef>
 
-	<!-- ========= Wraith Shield ========= -->
+	<!-- Wraith Shield -->
 
 	<ThingDef ParentName="BaseMeleeWeapon_Blunt_Quality">
 		<defName>Rimgate_WraithForceBuckler</defName>
-		<label>force buckler</label>
+		<label>Force buckler</label>
 		<description>A compact Wraith repulsor emitter bound into a forearm buckler. It projects a tight, reactive barrier that swats aside bullets and turns blades—until its field dips, at which point it’s little more than a heavy cuff. Favored by Wraith assassins who close the distance fast, break lines, and finish the job in a blur of claws and static.</description>
 		<thingClass>Rimgate.Apparel_WraithForceBuckler</thingClass>
 		<techLevel>Spacer</techLevel>
