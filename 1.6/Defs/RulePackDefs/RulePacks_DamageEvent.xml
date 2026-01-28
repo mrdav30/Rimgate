@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RulePackDef>
+        <defName>Rimgate_DamageEvent_IncludeExtra</defName>
+        <include>
+            <li>Combat_WoundIncludes</li>
+        </include>
+        <rulePack>
+            <rulesStrings>
+                <li>r_logentry->[damage_source] [RECIPIENT_nameDef], [destroyed_present] [RECIPIENT_possessive] [destroyed_targets], [extra_effect].</li>
+                <li>r_logentry->[damage_source] [RECIPIENT_nameDef], [destroyed_present] [RECIPIENT_possessive] [destroyed_targets] and [damaged_present] [RECIPIENT_possessive] [damaged_targets], [extra_effect].</li>
+                <li>r_logentry(recipient_part_destroyed_count==0)->[damage_source] [RECIPIENT_nameDef], [damaged_present] [RECIPIENT_possessive] [damaged_targets], [extra_effect].</li>
+                <li>r_logentry(p=0.1)->[damage_source] [RECIPIENT_nameDef], [extra_effect].</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>Rimgate_DamageEvent_SymbioteAmbushTrap</defName>
+        <include>
+            <li>Rimgate_DamageEvent_IncludeExtra</li>
+        </include>
+        <rulePack>
+            <rulesStrings>
+
+                <!-- Primary "damage_source" line -->
+                <li>damage_source->[feralbasin] erupted as [symbiote]</li>
+                <li>damage_source->[feralbasin] surged, then [symbiote]</li>
+                <li>damage_source->[feralbasin] splashed as [symbiote]</li>
+                <li>damage_source->[feralbasin] churned as [symbiote]</li>
+                <li>damage_source->[feralbasin] rippled, then [symbiote]</li>
+
+                <!-- Basin noun phrases -->
+                <li>feralbasin(p=4)->a feral symbiote basin</li>
+                <li>feralbasin(p=4)->the feral symbiote basin</li>
+                <li>feralbasin(p=3)->an abandoned spawning basin</li>
+                <li>feralbasin(p=3)->the spawning basin</li>
+                <li>feralbasin(p=2)->a stagnant symbiote pool</li>
+                <li>feralbasin(p=2)->the stagnant pool</li>
+                <li>feralbasin->the water</li>
+                <li>feralbasin->the murk</li>
+
+                <!-- Symbiote / prim'ta descriptors -->
+                <li>symbiote(p=4)->a half-grown symbiote [symbiote_action]</li>
+                <li>symbiote(p=4)->a feral symbiote [symbiote_action]</li>
+                <li>symbiote(p=3)->a starving symbiote [symbiote_action]</li>
+                <li>symbiote(p=2)->a slick, pale serpent [symbiote_action]</li>
+                <li>symbiote(p=2)->a thrashing parasite [symbiote_action]</li>
+
+                <li>symbiote_action->struck</li>
+                <li>symbiote_action->lunged at</li>
+                <li>symbiote_action->attacked</li>
+                <li>symbiote_action->assaulted</li>
+                <li>symbiote_action->mauled</li>
+
+                <!-- Attack verbs / present participles -->
+                <li>damaged_present->biting into</li>
+                <li>damaged_present->tearing at</li>
+                <li>damaged_present->ripping into</li>
+                <li>damaged_present->clawing at</li>
+                <li>damaged_present->gnawing into</li>
+                <li>damaged_present->latching onto</li>
+
+                <!-- Destroyed/overkill-ish verbs -->
+                <li>destroyed_present->shredding</li>
+                <li>destroyed_present->eviscerating</li>
+                <li>destroyed_present->rending</li>
+                <li>destroyed_present->mauling</li>
+                <li>destroyed_present->tearing apart</li>
+
+                <!-- Add some “not just damage” flavor hooks -->
+                <li>extra_effect->before vanishing into the murk</li>
+                <li>extra_effect->and then disappeared beneath the surface</li>
+                <li>extra_effect->before sinking back into the basin</li>
+                <li>extra_effect->and then retreating into the depths</li>
+                <li>extra_effect->before submerging back into the water</li>
+
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+</Defs>

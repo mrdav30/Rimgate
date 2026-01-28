@@ -98,12 +98,14 @@
     <description>A sprawling Tau'ri industrial-grade naquadria reactor, usually reserved for deep-space facilities and "absolutely do not let this explode" complexes.\n\nOutputs enough power to light a small city, run a full DHD emulator, and still have juice left over to annoy the neighbors. The humming sound in the walls is definitely normal. Probably.</description>
     <graphicData>
       <texPath>Things/Building/Power/RGIndustrialNaquadriaFiredGenerator</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(5,3)</drawSize>
-      <drawOffset>(0, 0, 0.35)</drawOffset>
+      <drawOffsetSouth>(0, 0, 0.35)</drawOffsetSouth>
+      <drawOffsetNorth>(0, 0, 0.35)</drawOffsetNorth>
       <addTopAltitudeBias>true</addTopAltitudeBias>
     </graphicData>
-    <rotatable>false</rotatable>
+    <rotatable>true</rotatable>
+    <defaultPlacingRot>South</defaultPlacingRot>
     <size>(5,2)</size>
     <statBases>
       <MaxHitPoints>5000</MaxHitPoints>

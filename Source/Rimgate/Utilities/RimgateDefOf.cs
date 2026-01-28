@@ -75,6 +75,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_SymbioteWithdrawal;
     public static HediffDef Rimgate_SystemShock;
     public static HediffDef Rimgate_TretoninAddiction;
+    public static HediffDef Rimgate_WildPrimtaTakeover;
     public static HediffDef Rimgate_WraithCocoonPodSickness;
     public static HediffDef Rimgate_WraithEssenceDeficit;
     public static HediffDef Rimgate_ZatShock;
@@ -139,6 +140,7 @@ public static class RimgateDefOf
     public static ResearchProjectDef Rimgate_ZPMIntegration;
 
     public static RulePackDef Rimgate_NamerSymbiote;
+    public static RulePackDef Rimgate_DamageEvent_SymbioteAmbushTrap;
 
     public static SoundDef Rimgate_GoauldGuardHelmToggle;
     public static SoundDef Rimgate_IrisOpen;

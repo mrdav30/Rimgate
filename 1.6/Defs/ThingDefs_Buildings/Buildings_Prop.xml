@@ -36,98 +36,6 @@
         <altitudeLayer>Building</altitudeLayer>
     </ThingDef>
 
-    <!-- ================ Wraith Table ================ -->
-
-    <ThingDef ParentName="BuildingBase">
-        <defName>Rimgate_WraithTable</defName>
-        <label>Wraith altar</label>
-        <description>A biomass-grown slab shaped into a ritual table, its surface pulsing with faint organic patterns and a central seal-like disc. To outsiders it resembles a primitive calendar or altar, but the Wraith use it as both a star chart and a focus for their hive rituals. When touched, the surface quivers faintly, as though alive, whispering in a tongue only the hive truly understands.</description>
-
-        <graphicData>
-            <texPath>Things/Building/Prop/RGWraithTable</texPath>
-            <graphicClass>Graphic_Multi</graphicClass>
-            <shaderType>CutoutComplex</shaderType>
-            <drawSize>(1,1)</drawSize>
-        </graphicData>
-        <size>(1,1)</size>
-
-        <statBases>
-            <MaxHitPoints>100</MaxHitPoints>
-            <WorkToBuild>4000</WorkToBuild>
-            <Flammability>1</Flammability>
-            <Beauty>15</Beauty>
-            <MarketValue>850</MarketValue>
-            <Mass>28.5</Mass>
-            <MeditationFocusStrength>0.24</MeditationFocusStrength>
-        </statBases>
-
-        <building>
-            <claimable>true</claimable>
-            <isInert>true</isInert>
-            <neverBuildable>true</neverBuildable>
-            <alwaysDeconstructible>true</alwaysDeconstructible>
-            <canLandGravshipOn>true</canLandGravshipOn>
-            <ai_chillDestination>false</ai_chillDestination>
-            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
-        </building>
-
-        <killedLeavingsRanges>
-            <Rimgate_Biomass>0~6</Rimgate_Biomass>
-            <Jade>0~4</Jade>
-        </killedLeavingsRanges>
-
-        <minifiedDef>MinifiedThing</minifiedDef>
-        <thingCategories>
-            <li>BuildingsMisc</li>
-        </thingCategories>
-
-        <hasInteractionCell>true</hasInteractionCell>
-        <socialPropernessMatters>true</socialPropernessMatters>
-        <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-        <fillPercent>0.4</fillPercent>
-        <castEdgeShadows>True</castEdgeShadows>
-        <staticSunShadowHeight>0.2</staticSunShadowHeight>
-        <noRightClickDraftAttack>true</noRightClickDraftAttack>
-        <passability>Impassable</passability>
-        <canOverlapZones>false</canOverlapZones>
-        <altitudeLayer>Building</altitudeLayer>
-
-        <placeWorkers>
-            <li>PlaceWorker_MeditationOffsetBuildingsNear</li>
-        </placeWorkers>
-
-        <comps>
-            <li Class="CompProperties_AssignableToPawn">
-                <drawUnownedAssignmentOverlay>false</drawUnownedAssignmentOverlay>
-                <compClass>CompAssignableToPawn_MeditationSpot</compClass>
-            </li>
-            <li Class="CompProperties_Glower">
-                <glowRadius>2.9</glowRadius>
-                <glowColor>(22,52,54,0)</glowColor>
-            </li>
-            <li Class="CompProperties_MeditationFocus">
-                <statDef>MeditationFocusStrength</statDef>
-                <focusTypes>
-                    <li>Void</li>
-                    <li>Morbid</li>
-                    <li>Natural</li>
-                </focusTypes>
-                <offsets>
-                    <li Class="FocusStrengthOffset_BuildingDefs">
-                        <defs>
-                            <li>Rimgate_WraithTable</li>
-                        </defs>
-                        <offsetPerBuilding>0.05</offsetPerBuilding>
-                        <radius>9.9</radius>
-                        <maxBuildings>4</maxBuildings>
-                        <explanationKey>MeditationFocusPerBuilding</explanationKey>
-                        <explanationKeyAbstract>MeditationFocusPerBuildingAbstract</explanationKeyAbstract>
-                    </li>
-                </offsets>
-            </li>
-        </comps>
-    </ThingDef>
-
     <!-- =============== Destroyed DHD =============== -->
 
     <ThingDef ParentName="BuildingBase">
@@ -1028,9 +936,12 @@
     <!-- ======================= Feral Pool ======================= -->
 
     <ThingDef ParentName="BuildingBase">
-        <defName>Rimgate_SymbioteSpawningPool_Hostile</defName>
-        <label>feral symbiote pool</label>
-        <description>A feral Goa'uld spawning basin carved into the rock. No controls. No caretakers. Just the quiet certainty that as its surface barely ripples, something beneath is listening-and probably hungry.</description>
+        <defName>Rimgate_FeralSymbioteTrap</defName>
+        <label>feral symbiote basin</label>
+        <description>A ruined Goa’uld spawning basin infested by escaped prim’ta and feral symbiotes.
+            \n\nWithout caretakers or conditioning, the brood within has devolved into violent, instinct-driven predators. As the surface barely ripples, something beneath is listening—and waiting.
+            \n\nApproach too closely and the basin may erupt in a sudden, brutal ambush.
+            \n\nThough most queens subjected to this state are irreversibly damaged, it is sometimes possible to reclaim a surviving queen from the remains. With exceptional care and retraining, such a specimen may yet be restored to produce stable, non-feral prim’ta once more.</description>
 
         <thingClass>Rimgate.Building_SymbioteAmbushTrap</thingClass>
 
@@ -1060,7 +971,9 @@
             <MaxHitPoints>300</MaxHitPoints>
             <Flammability>0</Flammability>
             <Beauty>-10</Beauty>
+            <Cleanliness>-10</Cleanliness>
             <Mass>80</Mass>
+            <TrapMeleeDamage>6</TrapMeleeDamage>
             <TrapSpringChance>0.35</TrapSpringChance>
         </statBases>
 
@@ -1082,11 +995,9 @@
 
         <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
         <killedLeavingsRanges>
-            <Rimgate_PrimtaSymbiote>1~3</Rimgate_PrimtaSymbiote>
-            <Rimgate_GoauldSymbiote>0~2</Rimgate_GoauldSymbiote>
             <Rimgate_SymbioteQueen>0~1</Rimgate_SymbioteQueen>
         </killedLeavingsRanges>
-        <killedLeavingsChance>0.90</killedLeavingsChance>
+        <killedLeavingsChance>0.42</killedLeavingsChance>
 
         <comps>
             <li Class="Rimgate.CompProperties_AnimatedSymbiotePool">

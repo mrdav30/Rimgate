@@ -84,13 +84,13 @@
 
     <KCSG.SymbolDef>
         <defName>Rimgate_HostileSymbiotePool_Granite</defName>
-        <thing>Rimgate_SymbioteSpawningPool_Hostile</thing>
+        <thing>Rimgate_FeralSymbioteTrap</thing>
         <stuff>BlocksGranite</stuff>
     </KCSG.SymbolDef> 
 
     <KCSG.SymbolDef>
         <defName>Rimgate_HostileSymbiotePool_Slate</defName>
-        <thing>Rimgate_SymbioteSpawningPool_Hostile</thing>
+        <thing>Rimgate_FeralSymbioteTrap</thing>
         <stuff>BlocksSlate</stuff>
     </KCSG.SymbolDef>
 

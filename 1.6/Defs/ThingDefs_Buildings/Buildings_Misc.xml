@@ -7,7 +7,7 @@
 		<defName>Rimgate_TauriDialHomeDevice</defName>
 		<thingClass>Rimgate.Building_DHD</thingClass>
 		<label>Dial home device</label>
-		<description>A field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done.  In addition to allowing colonists to dial out in half the time, it can close a gate iris remotely. Also, this one is bolted down way better than the last one.</description>
+		<description>A field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. In addition to allowing colonists to dial out in half the time, it can close a gate iris remotely. Also, this one is bolted down way better than the last one.</description>
 		<rotatable>false</rotatable>
 		<size>(1,1)</size>
 		<graphicData>
@@ -89,7 +89,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_WraithModificationEquipment</defName>
 		<label>gate modification equipment</label>
-		<description>A bulky set of bio-mechanical apparatus designed by Wraith to interface with the Dwarfgates. When linked to a DHD, the colony can safely observe both ends of an active wormhole.\n\nRequires a steady power supply to operate.  Once active, however, gates across the entire net should have increased range and improved signal stability.</description>
+		<description>A bulky set of bio-mechanical apparatus designed by Wraith to interface with the Dwarfgates. When linked to a DHD, the colony can safely observe both ends of an active wormhole.\n\nRequires a steady power supply to operate. Once active, however, gates across the entire net should have increased range and improved signal stability.</description>
 		<thingClass>Building</thingClass>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGWraithModificationEquipment</texPath>
@@ -753,7 +753,9 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_SymbioteSpawningPool</defName>
 		<label>symbiote spawning pool</label>
-		<description>A carved, stone-lined biopool designed to house a Goa'uld symbiote queen and her brood.\n\nThe bio-reactive medium preserves all symbiotic tissue indefinitely, preventing decomposition and stasis loss while submerged, until called to serve a new host.\n\nWhen stocked regularly with prepared feed, it will slowly produce new symbiotes ready for implantation. If neglected, the hunger in the pool does not simply go away—it waits for whatever is unfortunate enough to fall in.</description>
+		<description>A carved, stone-lined biopool engineered to house a Goa’uld symbiote queen and her brood.
+			\n\nThe bio-reactive medium preserves symbiotic tissue indefinitely, preventing decay while maintaining the controlled conditions required for safe maturation. When supplied with regular feed, a queen will steadily produce prim’ta suitable for implantation or further development.
+			\n\nNeglect, however, has consequences. Hunger erodes discipline, conditioning falters, and the brood turns inward. If left unfed for too long, the pool may collapse into a feral state—transforming from a controlled breeding site into a living ambush hazard.</description>
 		<descriptionHyperlinks>
 			<ThingDef>Rimgate_SymbioteQueen</ThingDef>
 			<ThingDef>Rimgate_GoauldSymbiote</ThingDef>
@@ -807,6 +809,7 @@
 		<costList>
 			<Steel>140</Steel>
 		</costList>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
 
 		<hasInteractionCell>true</hasInteractionCell>
 		<interactionCellOffset>(0,0,0)</interactionCellOffset>
@@ -875,6 +878,7 @@
 				<productSymbioteDef>Rimgate_PrimtaSymbiote</productSymbioteDef>
 				<daysPerSymbiote>3.0</daysPerSymbiote>
 				<fuelPerSymbiote>2.0</fuelPerSymbiote>
+				<feralTrapDef>Rimgate_FeralSymbioteTrap</feralTrapDef>
 			</li>
 			<li Class="Rimgate.CompProperties_AnimatedSymbiotePool" />
 		</comps>
@@ -1072,6 +1076,98 @@
 				<maxSimultaneous>1</maxSimultaneous>
 				<requiresLOS>false</requiresLOS>
 				<maxDistance>10</maxDistance>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================ Wraith Table ================ -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_WraithTable</defName>
+		<label>Wraith altar</label>
+		<description>A biomass-grown slab shaped into a ritual table, its surface pulsing with faint organic patterns and a central seal-like disc. To outsiders it resembles a primitive calendar or altar, but the Wraith use it as both a star chart and a focus for their hive rituals. When touched, the surface quivers faintly, as though alive, whispering in a tongue only the hive truly understands.</description>
+
+		<graphicData>
+			<texPath>Things/Building/Prop/RGWraithTable</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<size>(1,1)</size>
+
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>4000</WorkToBuild>
+			<Flammability>1</Flammability>
+			<Beauty>15</Beauty>
+			<MarketValue>850</MarketValue>
+			<Mass>28.5</Mass>
+			<MeditationFocusStrength>0.24</MeditationFocusStrength>
+		</statBases>
+
+		<building>
+			<claimable>true</claimable>
+			<isInert>true</isInert>
+			<neverBuildable>true</neverBuildable>
+			<alwaysDeconstructible>true</alwaysDeconstructible>
+			<canLandGravshipOn>true</canLandGravshipOn>
+			<ai_chillDestination>false</ai_chillDestination>
+			<artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+		</building>
+
+		<killedLeavingsRanges>
+			<Rimgate_Biomass>0~6</Rimgate_Biomass>
+			<Jade>0~4</Jade>
+		</killedLeavingsRanges>
+
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
+
+		<hasInteractionCell>true</hasInteractionCell>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<fillPercent>0.4</fillPercent>
+		<castEdgeShadows>True</castEdgeShadows>
+		<staticSunShadowHeight>0.2</staticSunShadowHeight>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<passability>Impassable</passability>
+		<canOverlapZones>false</canOverlapZones>
+		<altitudeLayer>Building</altitudeLayer>
+
+		<placeWorkers>
+			<li>PlaceWorker_MeditationOffsetBuildingsNear</li>
+		</placeWorkers>
+
+		<comps>
+			<li Class="CompProperties_AssignableToPawn">
+				<drawUnownedAssignmentOverlay>false</drawUnownedAssignmentOverlay>
+				<compClass>CompAssignableToPawn_MeditationSpot</compClass>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2.9</glowRadius>
+				<glowColor>(22,52,54,0)</glowColor>
+			</li>
+			<li Class="CompProperties_MeditationFocus">
+				<statDef>MeditationFocusStrength</statDef>
+				<focusTypes>
+					<li>Void</li>
+					<li>Morbid</li>
+					<li>Natural</li>
+				</focusTypes>
+				<offsets>
+					<li Class="FocusStrengthOffset_BuildingDefs">
+						<defs>
+							<li>Rimgate_WraithTable</li>
+						</defs>
+						<offsetPerBuilding>0.05</offsetPerBuilding>
+						<radius>9.9</radius>
+						<maxBuildings>4</maxBuildings>
+						<explanationKey>MeditationFocusPerBuilding</explanationKey>
+						<explanationKeyAbstract>MeditationFocusPerBuildingAbstract</explanationKeyAbstract>
+					</li>
+				</offsets>
 			</li>
 		</comps>
 	</ThingDef>

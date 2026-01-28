@@ -82,8 +82,14 @@
 	<RG_NextSymbioteCount>Next symbiote in: {0}</RG_NextSymbioteCount>
 	<RG_EjectSymbioteTooltip>Remove this from the symbiote pool.</RG_EjectSymbioteTooltip>
 
-	<RG_Letter_HostilePoolAmbush_Label>Something Stirs Beneath</RG_Letter_HostilePoolAmbush_Label>
-	<RG_Letter_HostilePoolAmbush_Desc>{0} was seized by something from the pool. Their eyes flash with an alien resolve.</RG_Letter_HostilePoolAmbush_Desc>
+	<RG_SymbiotePool_GoneFeral_Label>Feral symbiote outbreak</RG_SymbiotePool_GoneFeral_Label>
+	<RG_SymbiotePool_GoneFeral_Desc>The symbiote queen within this spawning pool has gone feral due to prolonged neglect. The biomedium has soured, the brood turned cannibal, and the basin has collapsed into a predatory hazard.\n\nKeep colonists away — it may erupt without warning.\n\nWhile the site may still conceal a surviving queen, reclaiming it will require force—and careful judgment.</RG_SymbiotePool_GoneFeral_Desc>
+
+	<!-- Feral Pool -->
+
+	<RG_Letter_FeralPoolAmbush_Label>Feral symbiote ambush</RG_Letter_FeralPoolAmbush_Label>
+	<RG_Letter_FeralPoolAmbush_LungeDesc>{0} stumbled too close to the pool. Something half-grown and starving erupted from the water and tore into them before vanishing back into the muck.</RG_Letter_FeralPoolAmbush_LungeDesc>
+	<RG_Letter_FeralPoolAmbush_TakeoverDesc>A wild prim’ta latched onto {0}. It’s untrained—thrashing for the brain. Without treatment, the takeover will be fatal.</RG_Letter_FeralPoolAmbush_TakeoverDesc>
 
 	<!-- Symbiotes -->
 

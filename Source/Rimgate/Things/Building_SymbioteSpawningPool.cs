@@ -24,9 +24,11 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, IThingHolde
 
     public bool HaulDestinationEnabled => true;
 
-    public bool HasAnyContents => GetDirectlyHeldThings()?.Count > 0;
+    public int HeldItemsCount => _innerContainer?.Count ?? 0;
 
-    public bool HasQueen => _innerContainer?.Any(t => t.def == SymbiotePool?.Props.symbioteQueenDef) ?? false;
+    public bool HasAnyContents => _innerContainer?.Count > 0;
+
+    public bool HasQueen => _innerContainer?.InnerListForReading?.Any(t => t?.def == SymbiotePool?.Props.symbioteQueenDef) == true;
 
     public int MaxHeldItems => def.building.maxItemsInCell;
 
@@ -102,7 +104,10 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, IThingHolde
 
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {
-        EjectContents();
+        if (mode == DestroyMode.KillFinalize)
+            InnerContainer.ClearAndDestroyContents();
+        else
+            EjectContents();
         base.Destroy(mode);
     }
 
@@ -154,8 +159,8 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, IThingHolde
                     Pawn pawn = target.Thing as Pawn;
                     if (pawn == null) return;
 
-                    // Recheck if pool might have recieved
-                    if (HasQueen == true)
+                    // Recheck if pool might have received
+                    if (HasQueen)
                     {
                         Messages.Message("RG_InsertQueenRejectOccupied".Translate(), this, MessageTypeDefOf.RejectInput);
                         return;

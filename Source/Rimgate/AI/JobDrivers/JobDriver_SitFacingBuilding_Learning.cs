@@ -13,8 +13,6 @@ public class JobDriver_SitFacingBuilding_Learning : JobDriver_SitFacingBuilding
 
     protected override void ModifyPlayToil(Toil toil)
     {
-        base.ModifyPlayToil(toil);
-
         // Pick a random skill once per job instance
         if (skillToTrain == null)
         {

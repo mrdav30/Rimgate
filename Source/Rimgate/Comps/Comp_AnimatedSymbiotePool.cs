@@ -47,6 +47,16 @@ public class Comp_AnimatedSymbiotePool : ThingComp
             TrySpawnSymbioteMote();    
     }
 
+    public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
+    {
+        _enabled = false;
+    }
+
+    public override void PostDestroy(DestroyMode mode, Map previousMap)
+    {
+        _enabled = false;
+    }
+
     private void TrySpawnSymbioteMote()
     {
         var map = parent.Map;

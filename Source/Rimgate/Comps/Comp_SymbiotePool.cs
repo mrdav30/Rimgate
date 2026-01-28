@@ -32,27 +32,6 @@ public class Comp_SymbiotePool : ThingComp
 
     private Texture2D _cachedInsertIcon;
 
-    public int LarvaeCount
-    {
-        get
-        {
-            int larvaeCount = 0;
-            var list = (parent as Building_SymbioteSpawningPool)?.InnerContainer?.InnerListForReading;
-            if (list == null) return larvaeCount;
-
-            for (int i = 0; i < list.Count; i++)
-            {
-                var t = list[i];
-                if (t.def == RimgateDefOf.Rimgate_PrimtaSymbiote
-                    || t.def == RimgateDefOf.Rimgate_GoauldSymbiote)
-                {
-                    larvaeCount++;
-                }
-            }
-            return larvaeCount;
-        }
-    }
-
     public override void PostExposeData()
     {
         Scribe_Values.Look(ref _progress, "progress", 0f);
@@ -66,32 +45,32 @@ public class Comp_SymbiotePool : ThingComp
         var pool = parent as Building_SymbioteSpawningPool;
         if (pool == null) return;
 
-        int larvaeCount = LarvaeCount;
-        if (larvaeCount > 0
-            && (Props.upkeepFuelPerDayBase > 0f || Props.upkeepFuelPerExtraSymbiote > 0f))
+        var larvaeCount = pool.HeldItemsCount;
+        if (larvaeCount > 0 && (Props.upkeepFuelPerDayBase > 0f || Props.upkeepFuelPerExtraSymbiote > 0f))
         {
-            int extraLarvae = Mathf.Max(0, larvaeCount - Props.freeSymbiotesBeforeUpkeep);
-            if (extraLarvae > 0)
+            float perDay = ComputeUpkeepPerDay(larvaeCount);
+            if (perDay > 0f)
             {
-                float perDay = Props.upkeepFuelPerDayBase + (extraLarvae * Props.upkeepFuelPerExtraSymbiote);
-                if (perDay > 0f)
+                // Convert daily upkeep to "per rare tick"
+                float upkeepPerRare = perDay * (TicksPerRare / GenDate.TicksPerDay);
+                if (Refuelable == null || !Refuelable.HasFuel || Refuelable.Fuel < upkeepPerRare)
                 {
-                    // Convert daily upkeep to "per rare tick"
-                    float upkeepPerRare = perDay * (TicksPerRare / GenDate.TicksPerDay);
-
-                    if (Refuelable == null || !Refuelable.HasFuel || Refuelable.Fuel < upkeepPerRare)
-                    {
-                        // No feed: brood begins to suffer.
-                        ApplyStarvationDamage(pool);
-                        return;
-                    }
-
-                    Refuelable.ConsumeFuel(upkeepPerRare);
+                    // No feed: symbiotes begins to suffer.
+                    ApplyStarvationOrGoFeral(pool);
+                    Animation?.Toggle(pool.HasAnyContents);
+                    return;
                 }
+
+                Refuelable.ConsumeFuel(upkeepPerRare);
+
+                HealAllInjuredThings(
+                    pool,
+                    Props.healPerThingPerUpkeepEvent,
+                    Props.maxThingsHealedPerUpkeepEvent);
             }
         }
 
-        // VFX
+        // VFX when there’s contents
         Animation?.Toggle(pool.HasAnyContents);
 
         // Need some fuel and a queen to progress production
@@ -121,30 +100,163 @@ public class Comp_SymbiotePool : ThingComp
         _progress = 0f;
     }
 
-    private void ApplyStarvationDamage(Building_SymbioteSpawningPool pool)
+    private float ComputeUpkeepPerDay(int larvaeCount)
     {
-        if (pool == null || !pool.HasAnyContents)
-            return;
+        if (larvaeCount <= 0) return 0f;
 
-        var list = pool.InnerContainer.InnerListForReading;
-        IntRange targetCount = new IntRange(1, list.Count);
-        var candidates = list
-            .TakeRandom(targetCount.RandomInRange)
-            .ToList();
-
-        if (candidates.Count == 0)
-            return;
-
-        // damage all things
-        foreach (var t in candidates)
+        if (Props.freeSymbiotesBeforeUpkeep > 0)
         {
-            if (t.Destroyed)
-                continue;
+            int extra = Mathf.Max(0, larvaeCount - Props.freeSymbiotesBeforeUpkeep);
+            return Props.upkeepFuelPerDayBase + extra * Props.upkeepFuelPerExtraSymbiote;
+        }
 
-            t.TakeDamage(new DamageInfo(DamageDefOf.Rotting, 1f));
+        return Props.upkeepFuelPerDayBase + larvaeCount * Props.upkeepFuelPerExtraSymbiote;
+    }
+
+    private void ApplyStarvationOrGoFeral(Building_SymbioteSpawningPool pool)
+    {
+        if (!pool.HasAnyContents) return;
+
+        // Prefer damaging larvae first (prim'ta / symbiote items), then queen.
+        Thing target = FindRandomLarva(pool);
+        if (target != null)
+        {
+            DamageThing(target, Props.starvationDamagePerEvent);
+            return;
+        }
+
+        Thing queen = FindQueen(pool);
+        if (queen != null)
+        {
+            DamageThing(queen, Props.starvationDamagePerEvent);
+
+            // If queen is sufficiently injured, collapse the basin into a feral trap.
+            if (ShouldConvertToFeral(pool, queen))
+                ConvertPoolToFeralTrap(pool);
         }
     }
 
+    private Thing FindRandomLarva(Building_SymbioteSpawningPool pool)
+    {
+        var list = pool.InnerContainer?.InnerListForReading;
+        if (list == null || list.Count == 0) return null;
+
+        // Reservoir-pick one larva without allocating.
+        Thing picked = null;
+        int seen = 0;
+
+        var queenDef = Props.symbioteQueenDef;
+        for (int i = 0; i < list.Count; i++)
+        {
+            Thing t = list[i];
+            if (t == null || t.Destroyed || t.def == queenDef) continue;
+
+            seen++;
+            if (Rand.RangeInclusive(1, seen) == 1)
+                picked = t;
+        }
+
+        return picked;
+    }
+
+    private void DamageThing(Thing t, int amount)
+    {
+        if (t == null || t.Destroyed || amount <= 0) return;
+        t.TakeDamage(new DamageInfo(DamageDefOf.Rotting, amount));
+    }
+
+    private Thing FindQueen(Building_SymbioteSpawningPool pool)
+    {
+        var queenDef = Props.symbioteQueenDef;
+        if (queenDef == null) return null;
+
+        var list = pool.InnerContainer?.InnerListForReading;
+        if (list == null) return null;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            Thing t = list[i];
+            if (t != null && !t.Destroyed && t.def == queenDef)
+                return t;
+        }
+
+        return null;
+    }
+
+    private bool ShouldConvertToFeral(Building_SymbioteSpawningPool pool, Thing queen)
+    {
+        if (Props.feralTrapDef == null) return false;
+        if (!pool.Spawned) return false;
+
+        // Only convert once.
+        if (pool.Map == null) return false;
+
+        // Use hitpoints ratio (Thing has HitPoints / MaxHitPoints).
+        if (!queen.def.useHitPoints) return false;
+
+        float hpPct = (float)queen.HitPoints / Mathf.Max(1, queen.MaxHitPoints);
+        return hpPct <= Props.queenHealthPctToGoFeral;
+    }
+
+    private void ConvertPoolToFeralTrap(Building_SymbioteSpawningPool pool)
+    {
+        Map map = pool.Map;
+        if (map == null) return;
+
+        bool wasPlayerOwned = pool.Faction?.IsPlayer == true;
+        IntVec3 pos = pool.Position;
+        Rot4 rot = pool.Rotation;
+        ThingDef stuff = pool.Stuff;
+        IEnumerable<IntVec3> cells = pool.OccupiedRect().Cells;
+
+        // Destroy the pool first (including contents)
+        pool.Destroy(DestroyMode.KillFinalize);
+
+        // Change terrain to marsh
+        foreach (var cell in cells)
+            map.terrainGrid.SetTerrain(cell, TerrainDefOf.Marsh);
+
+        // Spawn feral trap basin
+        Thing trap = ThingMaker.MakeThing(Props.feralTrapDef, stuff);
+        GenSpawn.Spawn(trap, pos, map, rot);
+        trap.SetFaction(null); // neutral
+
+        // Optional: message/letter if player owned
+        if (wasPlayerOwned)
+        {
+            Find.LetterStack.ReceiveLetter(
+                "RG_SymbiotePool_GoneFeral_Label".Translate(),
+                "RG_SymbiotePool_GoneFeral_Desc".Translate(),
+                LetterDefOf.ThreatBig,
+                new TargetInfo(pos, map));
+        }
+    }
+
+    private void HealAllInjuredThings(Building_SymbioteSpawningPool pool, int healAmountPerThing, int maxThingsToHeal)
+    {
+        if (healAmountPerThing <= 0 || maxThingsToHeal <= 0) return;
+
+        var list = pool.InnerContainer?.InnerListForReading;
+        if (list == null || list.Count == 0) return;
+
+        int healed = 0;
+
+        for (int i = 0; i < list.Count && healed < maxThingsToHeal; i++)
+        {
+            Thing t = list[i];
+            if (t == null || t.Destroyed) continue;
+            if (!t.def.useHitPoints) continue;
+
+            int maxHp = t.MaxHitPoints;
+            if (maxHp <= 0) continue;
+
+            if (t.HitPoints >= maxHp) continue;
+
+            int newHp = t.HitPoints + healAmountPerThing;
+            t.HitPoints = (newHp > maxHp) ? maxHp : newHp;
+            healed++;
+        }
+    }
 
     private void TryProduceSymbiote()
     {
@@ -181,12 +293,10 @@ public class Comp_SymbiotePool : ThingComp
                 sb.Append("RG_NextSymbioteCount".Translate(ticksRemaining.FormatTicksToPeriod()));
             }
 
-            int larvaeCount = LarvaeCount;
-            if (larvaeCount > 0
-                && (Props.upkeepFuelPerDayBase > 0f || Props.upkeepFuelPerExtraSymbiote > 0f))
+            int larvaeCount = pool.HeldItemsCount;
+            if (larvaeCount > 0 && (Props.upkeepFuelPerDayBase > 0f || Props.upkeepFuelPerExtraSymbiote > 0f))
             {
-                int extra = Mathf.Max(0, larvaeCount - Props.freeSymbiotesBeforeUpkeep);
-                float perDay = Props.upkeepFuelPerDayBase + extra * Props.upkeepFuelPerExtraSymbiote;
+                float perDay = ComputeUpkeepPerDay(larvaeCount);
                 if (perDay > 0f)
                 {
                     sb.AppendLine();
