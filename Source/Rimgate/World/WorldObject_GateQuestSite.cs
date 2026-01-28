@@ -11,11 +11,15 @@ namespace Rimgate;
 
 public class WorldObject_GateQuestSite : Site
 {
-    public int QuestId = -1;
+    public bool WasEverVisited => _wasEverVisited;
+
+    private int _questId = -1;
 
     private bool _mapHidden;
 
     private Quest _cachedQuest;
+
+    private bool _wasEverVisited;
 
     public override void SpawnSetup()
     {
@@ -30,6 +34,9 @@ public class WorldObject_GateQuestSite : Site
 
         var map = Map;
         if (map == null) return;
+
+        if (map != null && !_wasEverVisited && map.mapPawns.FreeColonistsSpawnedCount > 0)
+            _wasEverVisited = true;
 
         bool allowPeek = GateUtil.ModificationEquipmentActive;
         bool hasBlockingPawns = map?.mapPawns?.AnyPawnBlockingMapRemoval ?? false;
@@ -98,6 +105,7 @@ public class WorldObject_GateQuestSite : Site
         if (Building_Gate.TryGetSpawnedGateOnMap(Map, out Building_Gate gate))
             gate.CloseGate(gate.ConnectedGate != null);
         GateUtil.DecrementQuestSiteCount();
+        RimgateEvents.Notify_GateQuestSiteRemoving(this);
         base.Notify_MyMapAboutToBeRemoved();
     }
 
@@ -138,6 +146,8 @@ public class WorldObject_GateQuestSite : Site
 
     public override void Destroy()
     {
+        if(!HasMap)
+            RimgateEvents.Notify_GateQuestSiteRemoving(this);
         GateUtil.RemoveGateAddress(Tile);
         base.Destroy();
     }
@@ -187,6 +197,12 @@ public class WorldObject_GateQuestSite : Site
         yield return abandon;
     }
 
+    public void SetQuest(Quest quest)
+    {
+        _questId = quest?.id ?? -1;
+        _cachedQuest = quest;
+    }
+
     private bool TryResolveQuest(out Quest quest)
     {
         quest = null;
@@ -197,7 +213,7 @@ public class WorldObject_GateQuestSite : Site
         }
 
         // stale id
-        if (QuestId == -1)
+        if (_questId == -1)
         {
             _cachedQuest = null;
             return false;
@@ -205,12 +221,12 @@ public class WorldObject_GateQuestSite : Site
 
         _cachedQuest = Find.QuestManager.QuestsListForReading
             .FirstOrDefault(q =>
-                q.id == QuestId
+                q.id == _questId
                 && q.State == QuestState.Ongoing);
 
         if (_cachedQuest == null)
         {
-            QuestId = -1;
+            _questId = -1;
             return false;
         }
 
@@ -221,7 +237,8 @@ public class WorldObject_GateQuestSite : Site
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref QuestId, "_questId");
+        Scribe_Values.Look(ref _questId, "_questId");
         Scribe_Values.Look(ref _mapHidden, "_mapHidden", false);
+        Scribe_Values.Look(ref _wasEverVisited, "_wasEverVisited", false);
     }
 }

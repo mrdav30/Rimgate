@@ -57,8 +57,8 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
 
         pawn.TryGiveThought(thought);
 
-        if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
-            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_InstalledSymbiote, pawn.Named(HistoryEventArgsNames.Doer)));
+        if (!isConfigStage)
+            RimgateEvents.Notify_ColonyOfPawnEvent(pawn, RimgateDefOf.Rimgate_InstalledSymbiote);
     }
 
     public bool IsValidHost(out string reason)

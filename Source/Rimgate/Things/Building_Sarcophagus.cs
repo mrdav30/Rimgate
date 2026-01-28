@@ -977,7 +977,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         Messages.Message(popupMessage, patient, popupMessageType, true);
 
         if (finishTreatmentNormally)
-            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_UsedGoauldSarcophagus, patient.Named(HistoryEventArgsNames.Doer)));
+            RimgateEvents.Notify_ColonyOfPawnEvent(patient, RimgateDefOf.Rimgate_UsedSarcophagus);
 
         if (RimgateMod.Debug)
         {

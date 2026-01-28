@@ -258,8 +258,6 @@
 				<li>Rimgate_StructureAncientComplexBravo</li>
 				<li>Rimgate_StructureAncientComplexCharlie</li>
 				<li>Rimgate_StructureAncientComplexDelta</li>
-				<li>Rimgate_StructureBarrenGate</li>
-				<li>Rimgate_StructureBarrenGateNoDHD</li>
 				<li>Rimgate_StructureCastleAlpha</li>
 				<li>Rimgate_StructureCastleBravo</li>
 				<li>Rimgate_StructureCastleDelta</li>
@@ -297,6 +295,7 @@
 			<fullClear>true</fullClear>
 			<structureLayoutDefs>
 				<li>Rimgate_StructureBarrenGate</li>
+				<li>Rimgate_StructureBarrenGateNoDHD</li>
 			</structureLayoutDefs>
 		</genStep>
 	</GenStepDef>
@@ -449,6 +448,44 @@
 	</GenStepDef>
 
 	<!-- loot -->
+
+	<SitePartDef>
+		<defName>Rimgate_ItemStash</defName>
+		<description>A stash of valuable items.</description>
+		<workerClass>SitePartWorker_ItemStash</workerClass>
+		<handlesWorldObjectTimeoutInspectString>true</handlesWorldObjectTimeoutInspectString>
+		<tags>
+			<li>Rimgate_ItemStash_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_ItemStash</defName>
+		<linkWithSite>Rimgate_ItemStash</linkWithSite>
+		<order>400</order>
+		<genStep Class="GenStep_ItemStash">
+			<count>1</count>
+			<thingSetMakerDef>MapGen_AncientTempleContents</thingSetMakerDef>
+			<nearMapCenter>true</nearMapCenter>
+		</genStep>
+	</GenStepDef>
+
+	<SitePartDef>
+		<defName>Rimgate_OrbitalItemStash</defName>
+		<description>A stash of valuable items.</description>
+		<workerClass>SitePartWorker_ItemStash</workerClass>
+		<handlesWorldObjectTimeoutInspectString>true</handlesWorldObjectTimeoutInspectString>
+		<tags>
+			<li>Rimgate_OrbitalItemStash_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalItemStash</defName>
+		<linkWithSite>Rimgate_OrbitalItemStash</linkWithSite>
+		<order>500</order>
+		<genStep Class="GenStep_AsteroidItemStash" />
+	</GenStepDef>
 
 	<SitePartDef>
 		<defName>Rimgate_SupplyCrates</defName>

@@ -25,6 +25,6 @@ public class QuestNode_SetSiteQuestId : QuestNode
             return;
         }
 
-        wos.QuestId = QuestGen.quest.id;
+        wos.SetQuest(QuestGen.quest);
     }
 }

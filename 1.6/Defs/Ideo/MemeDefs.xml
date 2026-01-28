@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
+    <!-- =============== Symbiotic Dominion =============== -->
+
     <MemeDef>
         <defName>Rimgate_SymbioticDominion</defName>
         <label>symbiotic dominion</label>
         <description>The belief that those who host symbiotes are divinely chosen to rule over lesser beings. Adherents see themselves as superior, destined to lead through strength and cunning, with symbiotes viewed as sacred gifts that enhance their power and authority.\nPerfect for those who aspire to command with an iron fist (and a living parasite).</description>
-        <iconPath>UI/Meme/RG_SymbioticDominion</iconPath>
+        <iconPath>UI/Meme/RG_Meme_SymbioticDominion</iconPath>
         <groupDef MayRequire="Ludeon.RimWorld.Ideology">Misc</groupDef>
         <impact>2</impact>
-
-        <!-- <deityCount>0</deityCount>
-        <allowSymbolsFromDeity>false</allowSymbolsFromDeity> -->
 
         <!-- Make sure this meme always drags in the "symbiote revered" precept -->
         <requireOne>
@@ -139,6 +138,25 @@
             <li>Kind</li>
             <li>Wimp</li>
         </disagreeableTraits>
+    </MemeDef>
+
+    <!-- =============== Dwarfgate Explorers =============== -->
+
+    <MemeDef>
+        <defName>Rimgate_Meme_DwarfgateExplorers</defName>
+        <label>Dwarfgate explorers</label>
+        <description>The Dwarfgate is not part of the wider network—but it still opens onto ancient sites worth claiming, studying, and surviving.</description>
+        <iconPath>UI/Meme/RG_Meme_DwarfgateExplorers</iconPath>
+        <impact>2</impact>
+        <requireOne>
+            <li>
+                <li>Rimgate_DwarfgateExpeditions_Encouraged</li>
+                <li>Rimgate_DwarfgateExpeditions_Expected</li>
+            </li>
+            <li>
+                <li>Rimgate_DwarfgateSiteIgnored_Disapproved</li>
+            </li>
+        </requireOne>
     </MemeDef>
 
 </Defs>

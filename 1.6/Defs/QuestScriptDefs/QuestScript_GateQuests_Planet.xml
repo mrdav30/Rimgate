@@ -248,6 +248,27 @@
 							</nodes>
 						</li>
 
+						<!-- Barren -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_BarrenGate</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.52</chance>
+										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
+										</li>
+									</value>
+								</li>
+							</nodes>
+						</li>
+
 						<!-- Random Enemy Outpost-->
 						<li Class="QuestNode_Sequence">
 							<nodes>
@@ -263,7 +284,7 @@
 										</li>
 
 										<li>
-											<def>ItemStash</def>
+											<def>Rimgate_ItemStash</def>
 										</li>
 										<li>
 											<def>Rimgate_EnemyPresence</def>
@@ -284,9 +305,6 @@
 										<li>
 											<def>Rimgate_SoldierReplicator</def>
 											<chance>0.15</chance>
-										</li>
-										<li>
-											<def>Rimgate_SupplyCrates</def>
 										</li>
 									</value>
 								</li>

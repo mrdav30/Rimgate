@@ -4,7 +4,7 @@
     <IssueDef>
         <defName>Rimgate_SymbioteHosting</defName>
         <label>Goa'uld symbiosis</label>
-        <iconPath>UI/Issue/RG_GoauldSymbiosis</iconPath> <!-- reuse or swap icon later -->
+        <iconPath>UI/Issue/RG_GoauldSymbiosis</iconPath>
     </IssueDef>
 
     <!-- =============== Precepts =============== -->
@@ -94,6 +94,7 @@
         </comps>
     </PreceptDef>
 
+    <!-- Don't Care -->
     <PreceptDef>
         <defName>Rimgate_Symbiote_DontCare</defName>
         <issue>Rimgate_SymbioteHosting</issue>
@@ -123,7 +124,7 @@
         <associatedMemes>
             <li>AnimalPersonhood</li>
             <li>Inhuman</li>
-             <li>Rimgate_SymbioticDominion</li>
+            <li>Rimgate_SymbioticDominion</li>
         </associatedMemes>
         <conflictingMemes>
             <li>HumanPrimacy</li>
@@ -198,7 +199,6 @@
         </stages>
     </ThoughtDef>
 
-
     <!-- Having one is bad -->
     <ThoughtDef>
         <defName>Rimgate_HasSymbiote_Abhorrent</defName>
@@ -223,7 +223,6 @@
             </li>
         </stages>
     </ThoughtDef>
-
 
     <!-- Social -->
     <ThoughtDef>
@@ -252,7 +251,6 @@
             </li>
         </stages>
     </ThoughtDef>
-
 
     <!-- ==== Disapproved ==== -->
 

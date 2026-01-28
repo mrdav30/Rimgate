@@ -27,6 +27,7 @@ public class JobDriver_EnterGate : JobDriver
                 var traveler = pawn;
                 var gate = GateToEnter;
                 gate.AddToSendBuffer(traveler);
+                RimgateEvents.Notify_ColonistEnteredGate(traveler, gate);
                 traveler.DeSpawn();
             }
         };

@@ -46,6 +46,8 @@ public class JobDriver_BringToGate : JobDriver
                 Building_Gate gate = Gate;
                 pawn.carryTracker.innerContainer.Remove(hauled);
                 gate.AddToSendBuffer(hauled);
+                if(hauled is Pawn hauledPawn)
+                    RimgateEvents.Notify_ColonistEnteredGate(hauledPawn, gate);
             }
         };
 

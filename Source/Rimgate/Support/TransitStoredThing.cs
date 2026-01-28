@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Pool;
 using Verse;
 
+namespace Rimgate;
+
 public class TransitStoredThing : IExposable
 {
     public ThingDef Def;

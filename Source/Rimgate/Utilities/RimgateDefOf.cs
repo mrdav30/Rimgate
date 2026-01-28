@@ -80,8 +80,10 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_WraithEssenceDeficit;
     public static HediffDef Rimgate_ZatShock;
 
-    public static HistoryEventDef Rimgate_UsedGoauldSarcophagus;
+    public static HistoryEventDef Rimgate_UsedSarcophagus;
     public static HistoryEventDef Rimgate_InstalledSymbiote;
+    public static HistoryEventDef Rimgate_Dwarfgate_ExpeditionStarted;
+    public static HistoryEventDef Rimgate_Dwarfgate_SiteExpiredUnvisited;
 
     public static IncidentDef Rimgate_Marauders;
 

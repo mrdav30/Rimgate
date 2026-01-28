@@ -5,7 +5,7 @@
     <defName>Rimgate_WraithEmpire</defName>
     <categoryTag>Rimgate_WraithFaction</categoryTag>
     <label>Wraith Colony</label>
-    <description>A predatory hive ruled by telepathic queens and the worst diet plan—yours.\nCut off from the wider hive by the private gate lattice, this splinter feeds, studies, and schemes: piggyback on the Archotech signal or turn the local biosphere into a snack bar while they keep trying.</description>
+    <description>A predatory hive ruled by telepathic queens and the worst diet plan—you.\nCut off from the wider hive by the private gate lattice, this splinter feeds, studies, and schemes: piggyback on the Archotech signal or turn the local biosphere into a snack bar while they keep trying.\n\nOne thing is certain, they've been slowly taking over any ancient outpost they come across looking for something.</description>
     <pawnsPlural>Wraith</pawnsPlural>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>

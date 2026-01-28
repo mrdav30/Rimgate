@@ -118,8 +118,8 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
         pawn.RemoveHediffOf(RimgateDefOf.Rimgate_TretoninAddiction);
 
-        if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
-            Find.HistoryEventsManager.RecordEvent(new HistoryEvent(RimgateDefOf.Rimgate_InstalledSymbiote, pawn.Named(HistoryEventArgsNames.Doer)));
+        if (!isConfigStage)
+            RimgateEvents.Notify_ColonyOfPawnEvent(pawn, RimgateDefOf.Rimgate_InstalledSymbiote);
 
         if (IsBlankSymbiote) return;
 
@@ -129,7 +129,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         // Copy memory into hediff and apply bonuses to host
         Heritage.ApplyMemoryPostEffect(pawn);
 
-        if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
+        if (!isConfigStage && pawn.IsFreeColonist)
         {
             var msg = "RG_SymbioteSkillInheritance".Translate(
                 pawn.Named("PAWN"),

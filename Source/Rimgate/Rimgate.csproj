@@ -414,17 +414,19 @@
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SurgeryInspectionBiosignature.cs" />
     <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_Regeneration.cs" />
     <Compile Include="Hediffs\Comps\HediffComp_Regeneration.cs" />
+    <Compile Include="Misc\GameComponent_RimgateDwarfgateTracker.cs" />
     <Compile Include="Misc\PawnRenderNode_BodySwapper.cs" />
     <Compile Include="Quests\GenStep_AncientComplex_GateSite.cs" />
     <Compile Include="Quests\GenStep_EnemiesPresence_NoSiteFaction.cs" />
     <Compile Include="Quests\QuestNode_Root_GateSite.cs" />
     <Compile Include="Quests\QuestNode_SetSiteQuestId.cs" />
     <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />
+    <Compile Include="Social\ThoughtWorker_Precept_DwarfgateNoExpedition .cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteKinship_Social.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_HasNoSymbioteImplant.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_HasSymbioteImplant.cs" />
-    <Compile Include="Support\BiomaterialRecoveryDef.cs" />
+    <Compile Include="Defs\BiomaterialRecoveryDef.cs" />
     <Compile Include="Support\CalibrationOutcome.cs" />
     <Compile Include="Support\SymbioteMemory.cs" />
     <Compile Include="Genes\Gene_WraithEssenceMetabolism.cs" />
@@ -562,6 +564,7 @@
     <Compile Include="Utilities\MentalStateUtil.cs" />
     <Compile Include="Utilities\MobileContainerUtility.cs" />
     <Compile Include="Utilities\ResearchUtil.cs" />
+    <Compile Include="Utilities\RimgateEvents.cs" />
     <Compile Include="Utilities\RimgateFactionOf.cs" />
     <Compile Include="Utilities\GateUtil.cs" />
     <Compile Include="World\MapComponent_ShieldList.cs" />
@@ -569,7 +572,7 @@
     <Compile Include="World\SitePartWorker_Gate.cs" />
     <Compile Include="Utilities\CloneUtility.cs" />
     <Compile Include="Rimgate_Settings.cs" />
-    <Compile Include="World\TransitStoredThing.cs" />
+    <Compile Include="Support\TransitStoredThing.cs" />
     <Compile Include="World\WorldComp_GateAddresses.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="Misc\Verb_LaunchWithOffset.cs" />
