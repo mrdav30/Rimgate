@@ -280,10 +280,6 @@
 											<def>Rimgate_BanditCamp</def>
 										</li>
 										<li>
-											<def>Rimgate_BarrenGate</def>
-										</li>
-
-										<li>
 											<def>Rimgate_ItemStash</def>
 										</li>
 										<li>
@@ -311,7 +307,7 @@
 							</nodes>
 						</li>
 
-						<!-- Ancients -->
+						<!-- Ancients (mechanitor) -->
 						<li Class="QuestNode_Sequence">
 							<nodes>
 								<li Class="QuestNode_Set">
@@ -319,9 +315,6 @@
 									<value>
 										<li>
 											<def>Rimgate_AncientComplex_Mechanitor</def>
-										</li>
-										<li>
-											<def>Rimgate_BarrenGate</def>
 										</li>
 										<li>
 											<def>Rimgate_EnemyPresence</def>
@@ -343,6 +336,7 @@
 							</nodes>
 						</li>
 
+						<!-- Ancients (loot) -->
 						<li Class="QuestNode_Sequence">
 							<nodes>
 								<li Class="QuestNode_Set">
@@ -350,9 +344,6 @@
 									<value>
 										<li>
 											<def>Rimgate_AncientComplex_Loot</def>
-										</li>
-										<li>
-											<def>Rimgate_BarrenGate</def>
 										</li>
 										<li>
 											<def>Rimgate_EnemyPresence</def>

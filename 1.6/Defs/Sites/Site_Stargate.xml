@@ -280,7 +280,7 @@
 
 	<!-- Barren -->
 
-	<SitePartDef>
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
 		<defName>Rimgate_BarrenGate</defName>
 		<tags>
 			<li>Rimgate_Rimgate_BarrenGate_tag</li>
@@ -311,6 +311,19 @@
 			<li>Rimgate_GateQuestSite_tag</li>
 		</tags>
 	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_BanditCamp_Gate</defName>
+		<linkWithSite>Rimgate_BanditCamp</linkWithSite>
+		<order>390</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<fullClear>true</fullClear>
+			<structureLayoutDefs>
+				<li>Rimgate_StructureBarrenGate</li>
+				<li>Rimgate_StructureBarrenGateNoDHD</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
 
 	<GenStepDef>
 		<defName>Rimgate_BanditCamp</defName>
@@ -344,7 +357,7 @@
 		<genStep Class="GenStep_Power" />
 	</GenStepDef>
 
-	<!-- Ancient Complexes -->
+	<!-- Ancient Complex (mechanitor) -->
 
 	<SitePartDef ParentName="Rimgate_GateSiteBase">
 		<defName>Rimgate_AncientComplex_Mechanitor</defName>
@@ -356,6 +369,19 @@
 	</SitePartDef>
 
 	<GenStepDef>
+		<defName>Rimgate_AncientComplex_Mechanitor_Gate</defName>
+		<linkWithSite>Rimgate_AncientComplex_Mechanitor</linkWithSite>
+		<order>390</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<fullClear>true</fullClear>
+			<structureLayoutDefs>
+				<li>Rimgate_StructureBarrenGate</li>
+				<li>Rimgate_StructureBarrenGateNoDHD</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
 		<defName>Rimgate_AncientComplex_Mechanitor</defName>
 		<linkWithSite>Rimgate_AncientComplex_Mechanitor</linkWithSite>
 		<order>410</order>
@@ -365,6 +391,8 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- Ancient Complex (loot) -->
+
 	<SitePartDef ParentName="Rimgate_GateSiteBase">
 		<defName>Rimgate_AncientComplex_Loot</defName>
 		<description>An ancient complex known to contain a Dwarfgate.</description>
@@ -373,6 +401,19 @@
 			<li>Rimgate_GateQuestSite_tag</li>
 		</tags>
 	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_AncientComplex_Loot_Gate</defName>
+		<linkWithSite>Rimgate_AncientComplex_Loot</linkWithSite>
+		<order>390</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<fullClear>true</fullClear>
+			<structureLayoutDefs>
+				<li>Rimgate_StructureBarrenGate</li>
+				<li>Rimgate_StructureBarrenGateNoDHD</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
 
 	<GenStepDef>
 		<defName>Rimgate_AncientComplex_Loot</defName>
@@ -447,7 +488,9 @@
 		</genStep>
 	</GenStepDef>
 
-	<!-- loot -->
+	<!-- =============== Loot =============== -->
+
+	<!-- Item stash -->
 
 	<SitePartDef>
 		<defName>Rimgate_ItemStash</defName>
@@ -470,6 +513,8 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- Orbital item stash -->
+
 	<SitePartDef>
 		<defName>Rimgate_OrbitalItemStash</defName>
 		<description>A stash of valuable items.</description>
@@ -487,6 +532,8 @@
 		<genStep Class="GenStep_AsteroidItemStash" />
 	</GenStepDef>
 
+	<!-- Supply crates -->
+
 	<SitePartDef>
 		<defName>Rimgate_SupplyCrates</defName>
 		<tags>
@@ -499,32 +546,59 @@
 		<defName>Rimgate_SupplyCrates</defName>
 		<linkWithSite>Rimgate_SupplyCrates</linkWithSite>
 		<genStep Class="GenStep_ScatterGroup">
-			<minSpacing>45</minSpacing>
-			<count>2</count>
+			<minSpacing>22</minSpacing>
+			<count>3</count>
 			<groups>
+				<!-- Prefer indoor ruins -->
 				<li>
 					<things>
 						<!-- junk -->
-						<AncientSmallCrate>0.35</AncientSmallCrate>
-						<AncientMetalCrate>0.35</AncientMetalCrate>
-						<AncientMilitaryCrate>0.35</AncientMilitaryCrate>
+						<AncientSmallCrate>0.83</AncientSmallCrate>
+						<AncientMetalCrate>0.73</AncientMetalCrate>
+						<AncientMilitaryCrate>0.40</AncientMilitaryCrate>
 						<AncientAmmoStack>0.30</AncientAmmoStack>
 
-						<!-- loot -->
+						<!-- mid loot -->
 						<AncientBox_ComponentIndustrial>0.28</AncientBox_ComponentIndustrial>
-						<AncientBox_ComponentSpacer>0.24</AncientBox_ComponentSpacer>
+						<AncientBox_ComponentSpacer>0.25</AncientBox_ComponentSpacer>
+
+						<!-- loot crates -->
+						<Rimgate_SupplyCrateGreen>0.25</Rimgate_SupplyCrateGreen>
+						<Rimgate_SupplyCrateYellow>0.25</Rimgate_SupplyCrateYellow>
+						<Rimgate_SupplyCrateOrange>0.25</Rimgate_SupplyCrateOrange>
+
+						<!-- rare -->
+						<Rimgate_SupplyCrate>0.20</Rimgate_SupplyCrate>
+						<Rimgate_SupplyCrateRed>0.20</Rimgate_SupplyCrateRed>
+					</things>
+					<weight>1</weight>
+					<indoorRuin>true</indoorRuin>
+					<coveredCellsPer10Cells>0.5~2.5</coveredCellsPer10Cells>
+					<clusterRectRadius>3~6</clusterRectRadius>
+				</li>
+
+				<!-- Fallback: allow outdoor scatter if no valid indoor spot -->
+				<li>
+					<things>
+						<AncientSmallCrate>0.83</AncientSmallCrate>
+						<AncientMetalCrate>0.73</AncientMetalCrate>
+						<AncientMilitaryCrate>0.40</AncientMilitaryCrate>
+						<AncientAmmoStack>0.30</AncientAmmoStack>
+
+						<AncientBox_ComponentIndustrial>0.28</AncientBox_ComponentIndustrial>
+						<AncientBox_ComponentSpacer>0.22</AncientBox_ComponentSpacer>
 
 						<Rimgate_SupplyCrateGreen>0.22</Rimgate_SupplyCrateGreen>
 						<Rimgate_SupplyCrateYellow>0.22</Rimgate_SupplyCrateYellow>
 						<Rimgate_SupplyCrateOrange>0.22</Rimgate_SupplyCrateOrange>
 
-						<Rimgate_SupplyCrate>0.15</Rimgate_SupplyCrate> <!-- techprints -->
-						<Rimgate_SupplyCrateRed>0.15</Rimgate_SupplyCrateRed> <!-- unique weapons -->
+						<Rimgate_SupplyCrate>0.15</Rimgate_SupplyCrate>
+						<Rimgate_SupplyCrateRed>0.15</Rimgate_SupplyCrateRed>
 					</things>
-					<weight>1</weight>
-					<indoorRuin>true</indoorRuin>
-					<coveredCellsPer10Cells>0.5~1.5</coveredCellsPer10Cells>
-					<clusterRectRadius>3~6</clusterRectRadius>
+					<weight>0.35</weight> <!-- lower so indoor is preferred -->
+					<indoorRuin>false</indoorRuin>
+					<coveredCellsPer10Cells>1.5~2.5</coveredCellsPer10Cells>
+					<clusterRectRadius>3~8</clusterRectRadius>
 				</li>
 			</groups>
 		</genStep>
