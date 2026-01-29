@@ -17,7 +17,7 @@ public static class Harmony_BlockZpmFromBatteryDistribution
     // Remember the original list per-net so we can restore post-call
     private static readonly Dictionary<PowerNet, List<CompPowerBattery>> SavedLists = new();
 
-    static void Prefix(PowerNet __instance, ref float energy)
+    private static void Prefix(PowerNet __instance, ref float energy)
     {
         // Nothing to do if no energy or field not found
         if (energy <= 0f || BatteryCompsField == null) return;
@@ -38,7 +38,7 @@ public static class Harmony_BlockZpmFromBatteryDistribution
         BatteryCompsField.SetValue(__instance, filtered);
     }
 
-    static void Postfix(PowerNet __instance)
+    private static void Postfix(PowerNet __instance)
     {
         if (BatteryCompsField == null) return;
 

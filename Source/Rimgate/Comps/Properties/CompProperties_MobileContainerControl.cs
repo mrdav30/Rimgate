@@ -33,9 +33,6 @@ public class CompProperties_MobileContainerControl : CompProperties
     [DebuggerHidden]
     public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
     {
-        foreach (StatDrawEntry specialDisplayStat in base.SpecialDisplayStats(req))
-            yield return specialDisplayStat;
-
         yield return new StatDrawEntry(
             StatCategoryDefOf.Building,
             "RG_Stat_Cart_LoadoutRange_Label".Translate(),

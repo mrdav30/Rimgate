@@ -723,6 +723,9 @@
 		<defName>Rimgate_HorusHelmet</defName>
 		<label>Horus helmet</label>
 		<description>The signature helm of Ra’s elite peacocks—er, warriors. High shine, moderate armor, and excellent against everything but bullets. Just don’t try to look up stairs in it.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_HorusHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
 		</graphicData>
@@ -754,6 +757,9 @@
 		<defName>Rimgate_HorusHelmetOpen</defName>
 		<label>Horus helmet (open)</label>
 		<description>For when you want to cosplay as a Space Falcon but still show off your luscious beard. Same sleek Horus look, 100% more chin exposure.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_HorusHelmet</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
 		</graphicData>
@@ -778,6 +784,9 @@
 		<defName>Rimgate_PrimeHorusHelmet</defName>
 		<label>First Prime Horus helmet</label>
 		<description>Ra’s personal blinged-out bucket. Only the most loyal—and loud—First Primes get to wear this. Good luck surviving the honor.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeHorusHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGHorusPrimeHelmet</texPath>
 		</graphicData>
@@ -809,6 +818,9 @@
 		<defName>Rimgate_PrimeHorusHelmetOpen</defName>
 		<label>First Prime Horus helmet (open)</label>
 		<description>Same prestigious helm, just open-faced for when yelling “Jaffa, kree!” requires better airflow. Or when Ra wants to see your disappointed face after failure.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeHorusHelmet</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGHorusPrimeHelmet</texPath>
 		</graphicData>
@@ -834,6 +846,9 @@
 		<defName>Rimgate_JackalHelmet</defName>
 		<label>Jackal helmet</label>
 		<description>The unmistakable jackal-headed helm worn by Anubis' guards. Scary-looking, sure, but has the tactical sense of a fancy trash can lid.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_JackalHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</texPath>
 		</graphicData>
@@ -864,6 +879,9 @@
 		<defName>Rimgate_JackalHelmetOpen</defName>
 		<label>Jackal helmet (open)</label>
 		<description>Open version of the jackal helm for guards who want to breathe, blink, or eat something without removing their entire personality.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_JackalHelmet</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</texPath>
 		</graphicData>
@@ -888,6 +906,9 @@
 		<defName>Rimgate_PrimeJackalHelmet</defName>
 		<label>First Prime Jackal helmet</label>
 		<description>Worn by Anubis' most trusted murder machine. If you're sporting this, you're either elite—or about to be shot first in every raid.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeJackalHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</texPath>
 		</graphicData>
@@ -918,6 +939,9 @@
 		<defName>Rimgate_PrimeJackalHelmetOpen</defName>
 		<label>First Prime Jackal helmet (open)</label>
 		<description>Same as the Prime version, but now you can grimace menacingly while being vaporized by a P90.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeJackalHelmet</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGJackalPrimeHelmet</texPath>
 		</graphicData>
@@ -942,6 +966,9 @@
 		<defName>Rimgate_SerpentHelmet</defName>
 		<label>Serpent helmet</label>
 		<description>The hallmark helmet of Apophis' Serpent Guards. Stylish, sinister, and just slightly more protective than shouting “I have plot armor!”</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_SerpentHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</texPath>
 		</graphicData>
@@ -966,6 +993,9 @@
 		<defName>Rimgate_SerpentHelmetOpen</defName>
 		<label>Serpent helmet (open)</label>
 		<description>Serpent helm, de-snaked. Ideal for First Primes with strong jawlines or claustrophobia.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_SerpentHelmet</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</texPath>
 		</graphicData>
@@ -989,6 +1019,9 @@
 		<defName>Rimgate_PrimeSerpentHelmet</defName>
 		<label>First Prime Serpent helmet</label>
 		<description>Only the most loyal warriors of Apophis get this helm. High rank, high honor, high likelihood of exploding on screen first.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeSerpentHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</texPath>
 		</graphicData>
@@ -1013,6 +1046,9 @@
 		<defName>Rimgate_PrimeSerpentHelmetOpen</defName>
 		<label>First Prime Serpent helmet (open)</label>
 		<description>The open-face Prime variant. It's regal, it's dramatic, and it lets you smirk just before your shield fails.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeSerpentHelmet</ThingDef>
+		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</texPath>
 		</graphicData>

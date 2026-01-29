@@ -9,6 +9,7 @@ using Verse;
 
 namespace Rimgate.HarmonyPatches;
 
+// Makes it so that drafted Malps do not show the command radius of their overseer's mechanitor tracker (it's unlimited)
 [HarmonyPatch(
     typeof(Pawn_MechanitorTracker),
     nameof(Pawn_MechanitorTracker.DrawCommandRadius),

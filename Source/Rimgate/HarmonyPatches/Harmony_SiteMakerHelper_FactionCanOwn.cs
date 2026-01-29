@@ -14,10 +14,10 @@ namespace Rimgate.HarmonyPatches;
     "FactionCanOwn",
     new Type[4]
     {
-              typeof (SitePartDef),
-              typeof (Faction),
-              typeof (bool),
-              typeof (Predicate<Faction>)
+        typeof (SitePartDef),
+        typeof (Faction),
+        typeof (bool),
+        typeof (Predicate<Faction>)
     })]
 public static class Harmony_SiteMakerHelper_FactionCanOwn
 {

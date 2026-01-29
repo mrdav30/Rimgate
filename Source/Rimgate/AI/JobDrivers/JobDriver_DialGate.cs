@@ -11,7 +11,7 @@ namespace Rimgate;
 
 public class JobDriver_DialGate : JobDriver
 {
-    private const int WaitTicks = 200;
+    private const int RepairWaitTicks = 200;
 
     private const int OpenDelayTicks = 200;
 
@@ -67,7 +67,7 @@ public class JobDriver_DialGate : JobDriver
 
         if (delayed)
         {
-            Toil repairToil = Toils_General.Wait(WaitTicks);
+            Toil repairToil = Toils_General.Wait(RepairWaitTicks);
             repairToil.FailOnCannotTouch(TargetIndex.A, PathEndMode.ClosestTouch);
             repairToil.tickAction = () =>
             {

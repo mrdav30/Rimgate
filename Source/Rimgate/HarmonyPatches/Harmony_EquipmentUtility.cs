@@ -3,34 +3,38 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
-using static UnityEngine.Networking.UnityWebRequest;
 
 namespace Rimgate.HarmonyPatches;
 
-[HarmonyPatch(typeof(EquipmentUtility), "CanEquip")]
+[HarmonyPatch]
 public static class Harmony_EquipmentUtility
 {
-    public static void PostFix(Thing thing, Pawn pawn, ref string cantReason, ref bool checkBonded)
+    public static MethodBase TargetMethod()
     {
-        if (!checkBonded)
-            return;
+        return AccessTools.Method(
+            typeof(EquipmentUtility),
+            "CanEquip",
+            new Type[4]
+            {
+                typeof(Thing),
+                typeof(Pawn),
+                typeof(string).MakeByRefType(),
+                typeof(bool)
+            });
+    }
 
-        if (thing is not Apparel apparel)
-            return;
+    public static void Postfix(ref bool __result, Thing thing, Pawn pawn, ref string cantReason, bool checkBonded = true)
+    {
+        if (thing is not Apparel apparel) return;
 
         Comp_FrameApparel comp = ThingCompUtility.TryGetComp<Comp_FrameApparel>(apparel);
-        if (comp.Props == null || comp.Props.requiredFrameDefNames == null || pawn.apparel == null)
-            return;
+        if (comp == null || !comp.ShouldUnequipFrameComponent(pawn)) return;
 
-        var hasEquipped = GenCollection.Any<Apparel>(pawn.apparel.WornApparel, x =>
-            comp.Props.requiredFrameDefNames.Contains(x.def.defName));
-        if(!hasEquipped)
-        {
-            checkBonded = false;
-            cantReason = comp.Props.failReason;
-        }
+        cantReason = comp.Props.failReasonKey.Translate();
+        __result = false;
     }
 }

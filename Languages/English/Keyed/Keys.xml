@@ -6,6 +6,11 @@
 	<RG_SwitchToCommandLabel>Switch {0}</RG_SwitchToCommandLabel>
 	<RG_SwitchToCommand_Desc>Switch to {0}.</RG_SwitchToCommand_Desc>
 
+	<RG_FrameApparel_CannotWear_NoFrame>no attachable equipment available.</RG_FrameApparel_CannotWear_NoFrame>
+	
+	<RG_Stat_FrameApparel_RequiredFrames_Label>Attaches to</RG_Stat_FrameApparel_RequiredFrames_Label>
+	<RG_Stat_FrameApparel_RequiredFrames_Desc>The equipment required to be worn so this can attach to it.</RG_Stat_FrameApparel_RequiredFrames_Desc>
+
 	<!-- Incidents -->
 
 	<RG_LetterNaquadahAsteroid_Label>Naquadah asteroid</RG_LetterNaquadahAsteroid_Label>
@@ -468,6 +473,6 @@
 
 	<!-- Hediffs -->
 
-	<RG_NaniteResurrection_Message>{PAWN_labelShort} has been resurrected by nanites!</RG_NaniteResurrection_Message>
+	<RG_NaniteResurrection_Message>{PAWN_labelShort} has been resurrected by nanites replicators!</RG_NaniteResurrection_Message>
 
 </LanguageData>

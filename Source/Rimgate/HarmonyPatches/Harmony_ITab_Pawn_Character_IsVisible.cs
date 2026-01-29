@@ -12,11 +12,7 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch(typeof(ITab_Pawn_Character), "get_IsVisible", new Type[0])]
 public static class Harmony_ITab_Pawn_Character_IsVisible
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage(
-        "CodeQuality",
-        "IDE0051:Remove unused private members",
-        Justification = "Harmony")]
-    static void Postfix(ref bool __result)
+    public static void Postfix(ref bool __result)
     {
         Thing SelThing = Find.Selector.SingleSelectedThing;
 

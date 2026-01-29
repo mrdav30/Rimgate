@@ -5,8 +5,12 @@ using Verse;
 namespace Rimgate.HarmonyPatches;
 
 [HarmonyPatch(
-    typeof(MechanitorUtility), nameof(MechanitorUtility.InMechanitorCommandRange),
-    new Type[] { typeof(Pawn), typeof(LocalTargetInfo) })]
+    typeof(MechanitorUtility),
+    nameof(MechanitorUtility.InMechanitorCommandRange),
+    new Type[] { 
+        typeof(Pawn), 
+        typeof(LocalTargetInfo)
+    })]
 static class PatchMechanitorUtility_InMechanitorCommandRange
 {
     static bool Prefix(

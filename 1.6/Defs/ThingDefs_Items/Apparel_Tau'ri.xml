@@ -73,6 +73,12 @@
         <defName>Rimgate_TauriTacticalVest</defName>
         <label>Utility tactical vest</label>
         <description>SGC-issued tactical vest for hauling gear and stopping bullets (well, most of them).\nPairs nicely with a steady hand, quick reflexes, and mild paranoia.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TacticalVestSteelPlateInsert</ThingDef>
+            <ThingDef>Rimgate_TacticalVestCompositePlateInsert</ThingDef>
+            <ThingDef>Rimgate_NaquadahPlateInsert</ThingDef>
+            <ThingDef>Rimgate_TauriTacticalBackpack</ThingDef>
+        </descriptionHyperlinks>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
@@ -97,12 +103,12 @@
             <EquipDelay>5</EquipDelay>
         </statBases>
         <equippedStatOffsets>
-            <MoveSpeed>-0.10</MoveSpeed>
+            <MoveSpeed>-0.15</MoveSpeed>
             <TradePriceImprovement>0.18</TradePriceImprovement>
-            <WorkSpeedGlobal>0.2</WorkSpeedGlobal>
-            <GeneralLaborSpeed>0.2</GeneralLaborSpeed>
+            <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
+            <GeneralLaborSpeed>0.15</GeneralLaborSpeed>
             <MedicalTendSpeed>0.1</MedicalTendSpeed>
-            <FishingSpeed>0.25</FishingSpeed>
+            <FishingSpeed>0.2</FishingSpeed>
         </equippedStatOffsets>
         <thingCategories>
             <li>ApparelArmor</li>
@@ -130,6 +136,11 @@
         <tradeTags>
             <li>Rimgate_TauriApparelTrade_tag</li>
         </tradeTags>
+        <comps>
+            <li Class="Rimgate.CompProperties_FrameApparel">
+                <isFrameRoot>true</isFrameRoot>
+            </li>
+        </comps>
     </ThingDef>
 
     <!-- Spec Ops Vest -->
@@ -155,10 +166,10 @@
         </statBases>
         <equippedStatOffsets Inherit="false">
             <MoveSpeed>-0.12</MoveSpeed>
-            <PainShockThreshold>0.15</PainShockThreshold>
-            <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.15</SlaveSuppressionOffset>
-            <RangedCooldownFactor>-0.2</RangedCooldownFactor>
-            <AimingDelayFactor>-0.2</AimingDelayFactor>
+            <PainShockThreshold>0.2</PainShockThreshold>
+            <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.2</SlaveSuppressionOffset>
+            <RangedCooldownFactor>-0.1</RangedCooldownFactor>
+            <AimingDelayFactor>-0.1</AimingDelayFactor>
         </equippedStatOffsets>
         <costList>
             <Cloth>20</Cloth>
@@ -176,6 +187,10 @@
     <!-- ====== Vest Plate Inserts ====== -->
 
     <ThingDef Name="Rimgate_PlateInsertBase" ParentName="ArmorMachineableBase" Abstract="true">
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriTacticalVest</ThingDef>
+            <ThingDef>Rimgate_TauriSpecOpsVest</ThingDef>
+        </descriptionHyperlinks>
         <techLevel>Industrial</techLevel>
         <thingCategories>
             <li>ApparelArmor</li>
@@ -201,11 +216,10 @@
         </apparel>
         <comps>
             <li Class="Rimgate.CompProperties_FrameApparel">
-                <requiredFrameDefNames>
+                <frameRootDefs>
                     <li>Rimgate_TauriTacticalVest</li>
                     <li>Rimgate_TauriSpecOpsVest</li>
-                </requiredFrameDefNames>
-                <failReason>requires attachable equipment</failReason>
+                </frameRootDefs>
             </li>
         </comps>
         <tradeTags>
@@ -218,7 +232,7 @@
     <ThingDef ParentName="Rimgate_PlateInsertBase">
         <defName>Rimgate_TacticalVestSteelPlateInsert</defName>
         <label>Steel plate insert</label>
-        <description>Steel plate insert for Tau'ri vests. Turns your ribcage into a glorified bunker wall.\nHeavy, loud, but delightfully ricochet-y.</description>
+        <description>Steel plate insert for Tau'ri tactical vests. Turns your ribcage into a glorified bunker wall.\nHeavy, loud, but delightfully ricochet-y.</description>
         <recipeMaker>
             <skillRequirements>
                 <Crafting>4</Crafting>
@@ -251,7 +265,7 @@
     <ThingDef ParentName="Rimgate_PlateInsertBase">
         <defName>Rimgate_TacticalVestCompositePlateInsert</defName>
         <label>Composite plate insert</label>
-        <description>Composite plate insert—because steel's too mainstream. Offers solid protection against heat and blunt trauma.\nApproved by SG-1’s fashion-forward scientists and tactical nerds alike.</description>
+        <description>Composite plate insert for Tau'ri tactical vests—because steel's too mainstream. Offers solid protection against heat and blunt trauma.\nApproved by SG-1’s fashion-forward scientists and tactical nerds alike.</description>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <skillRequirements>
@@ -329,6 +343,10 @@
         <defName>Rimgate_TauriTacticalBackpack</defName>
         <label>Tactical backpack</label>
         <description>Standard Tau'ri tactical backpack for offworld excursions. Perfect for hauling rations, ammo, and that ancient alien device you definitely shouldn’t touch.\nRequires vest attachment because SGC frowns on space chiropractors.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriTacticalVest</ThingDef>
+            <ThingDef>Rimgate_TauriSpecOpsVest</ThingDef>
+        </descriptionHyperlinks>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
@@ -425,11 +443,10 @@
         </apparel>
         <comps>
             <li Class="Rimgate.CompProperties_FrameApparel">
-                <requiredFrameDefNames>
+                <frameRootDefs>
                     <li>Rimgate_TauriTacticalVest</li>
                     <li>Rimgate_TauriSpecOpsVest</li>
-                </requiredFrameDefNames>
-                <failReason>requires attachable equipment</failReason>
+                </frameRootDefs>
             </li>
         </comps>
         <tradeTags>

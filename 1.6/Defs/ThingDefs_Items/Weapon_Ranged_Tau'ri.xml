@@ -272,6 +272,9 @@
         <defName>Rimgate_TauriM4A1_M203Gun</defName>
         <label>M4A1 w/ M203 Launcher</label>
         <description>the M4A1, now with 100% more boom.\nIncludes an M203 launcher for when bullets just aren't persuasive enough.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriM4A1_M203_GrenadeLauncher</ThingDef>
+        </descriptionHyperlinks>
         <smeltable>false</smeltable>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriM4M203</texPath>
@@ -352,6 +355,9 @@
         <defName>Rimgate_TauriM4A1_M203_GrenadeLauncher</defName>
         <label>M203 underbarrel launcher</label>
         <description>the underbarrel M203 grenade launcher.\nFor those subtle conversations that start with a *thoom* and end with fire.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriM4A1_M203Gun</ThingDef>
+        </descriptionHyperlinks>
         <smeltable>false</smeltable>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGTauriM4M203</texPath>
