@@ -109,10 +109,11 @@
                     <Rimgate_TauriSGCSoldier>25</Rimgate_TauriSGCSoldier>
                     <Rimgate_TauriSGCRocketman>15</Rimgate_TauriSGCRocketman>
                     <Rimgate_TauriSpecialForces>15</Rimgate_TauriSpecialForces>
+                    <Rimgate_TauriMedic>10</Rimgate_TauriMedic>
                     <Rimgate_TauriCommander>5</Rimgate_TauriCommander>
                     <!-- Rare mech support; keeps average at ~0–1 per raid -->
-                    <Rimgate_Malp>0.45</Rimgate_Malp>
-                    <Mech_Scyther>0.65</Mech_Scyther>
+                    <Mech_Scyther>1</Mech_Scyther>
+                    <Rimgate_Malp>0.5</Rimgate_Malp>
                 </options>
             </li>
             <li>
@@ -120,17 +121,18 @@
                 <options>
                     <Rimgate_TauriSpaceForce>60</Rimgate_TauriSpaceForce>
                     <!-- Rare mech support; keeps average at ~0–1 per raid -->
-                    <Rimgate_Malp>0.35</Rimgate_Malp>
-                    <Mech_Scyther>0.5</Mech_Scyther>
+                    <Mech_Scyther>1</Mech_Scyther>
+                    <Rimgate_Malp>0.5</Rimgate_Malp>
                 </options>
             </li>
             <li>
                 <kindDef>Peaceful</kindDef>
                 <options>
                     <Rimgate_TauriScientist>12</Rimgate_TauriScientist>
-                    <Rimgate_TauriSGCSoldier>6</Rimgate_TauriSGCSoldier>
+                    <Rimgate_TauriMedic>10</Rimgate_TauriMedic>
+                    <Rimgate_TauriSGCSoldier>10</Rimgate_TauriSGCSoldier>
                     <Rimgate_TauriSpecialForces>5</Rimgate_TauriSpecialForces>
-                    <Rimgate_Malp>0.2</Rimgate_Malp>
+                    <Rimgate_Malp>0.5</Rimgate_Malp>
                 </options>
             </li>
             <li>
@@ -138,6 +140,7 @@
                 <options>
                     <Rimgate_TauriRifleman>14</Rimgate_TauriRifleman>
                     <Rimgate_TauriSGCSoldier>10</Rimgate_TauriSGCSoldier>
+                    <Rimgate_TauriMedic>10</Rimgate_TauriMedic>
                     <Rimgate_TauriSGCRocketman>6</Rimgate_TauriSGCRocketman>
                     <Rimgate_TauriSpecialForces>6</Rimgate_TauriSpecialForces>
                     <Rimgate_TauriScientist>8</Rimgate_TauriScientist>
@@ -159,6 +162,7 @@
                 </carriers>
                 <guards>
                     <Rimgate_TauriSGCSoldier>4</Rimgate_TauriSGCSoldier>
+                    <Rimgate_TauriMedic>5</Rimgate_TauriMedic>
                     <Rimgate_TauriRifleman>7</Rimgate_TauriRifleman>
                     <Rimgate_Malp>0.4</Rimgate_Malp>
                 </guards>

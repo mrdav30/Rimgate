@@ -32,12 +32,11 @@
             <EquipDelay>1.5</EquipDelay>
         </statBases>
         <equippedStatOffsets>
-            <SocialImpact>0.05</SocialImpact>
-            <MoveSpeed>0.10</MoveSpeed>
-            <ComfyTemperatureMin>-2</ComfyTemperatureMin>
-            <PainShockThreshold>0.05</PainShockThreshold>
-            <HuntingStealth>0.20</HuntingStealth>
+            <SocialImpact>0.15</SocialImpact>
+            <PainShockThreshold>0.1</PainShockThreshold>
             <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+            <ComfyTemperatureMin>-10</ComfyTemperatureMin>
+            <HuntingStealth>0.20</HuntingStealth>
         </equippedStatOffsets>
         <apparel>
             <bodyPartGroups>
@@ -73,12 +72,6 @@
         <defName>Rimgate_TauriTacticalVest</defName>
         <label>Utility tactical vest</label>
         <description>SGC-issued tactical vest for hauling gear and stopping bullets (well, most of them).\nPairs nicely with a steady hand, quick reflexes, and mild paranoia.</description>
-        <descriptionHyperlinks>
-            <ThingDef>Rimgate_TacticalVestSteelPlateInsert</ThingDef>
-            <ThingDef>Rimgate_TacticalVestCompositePlateInsert</ThingDef>
-            <ThingDef>Rimgate_NaquadahPlateInsert</ThingDef>
-            <ThingDef>Rimgate_TauriTacticalBackpack</ThingDef>
-        </descriptionHyperlinks>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
@@ -104,11 +97,7 @@
         </statBases>
         <equippedStatOffsets>
             <MoveSpeed>-0.15</MoveSpeed>
-            <TradePriceImprovement>0.18</TradePriceImprovement>
-            <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
-            <GeneralLaborSpeed>0.15</GeneralLaborSpeed>
-            <MedicalTendSpeed>0.1</MedicalTendSpeed>
-            <FishingSpeed>0.2</FishingSpeed>
+            <TradePriceImprovement>0.2</TradePriceImprovement>
         </equippedStatOffsets>
         <thingCategories>
             <li>ApparelArmor</li>
@@ -166,10 +155,10 @@
         </statBases>
         <equippedStatOffsets Inherit="false">
             <MoveSpeed>-0.12</MoveSpeed>
-            <PainShockThreshold>0.2</PainShockThreshold>
-            <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.2</SlaveSuppressionOffset>
-            <RangedCooldownFactor>-0.1</RangedCooldownFactor>
-            <AimingDelayFactor>-0.1</AimingDelayFactor>
+            <MentalBreakThreshold>-0.10</MentalBreakThreshold>
+            <PainShockThreshold>0.10</PainShockThreshold>
+            <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+            <MeleeDodgeChance>4</MeleeDodgeChance>
         </equippedStatOffsets>
         <costList>
             <Cloth>20</Cloth>
@@ -178,7 +167,7 @@
         </costList>
         <apparel>
             <wornGraphicPath>Things/Item/Apparel/Torso/SpecOpsVest/RGSpecOpsVest</wornGraphicPath>
-            <tags>
+            <tags Inherit="false">
                 <li>Rimgate_TauriSpecialForcesApparel_tag</li>
             </tags>
         </apparel>
@@ -214,7 +203,11 @@
                 <li>Soldier</li>
             </defaultOutfitTags>
         </apparel>
-        <comps>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
+        <comps Inherit="false">
+            <li Class="CompProperties_Forbiddable" />
             <li Class="Rimgate.CompProperties_FrameApparel">
                 <frameRootDefs>
                     <li>Rimgate_TauriTacticalVest</li>
@@ -222,9 +215,6 @@
                 </frameRootDefs>
             </li>
         </comps>
-        <tradeTags>
-            <li>Rimgate_TauriApparelTrade_tag</li>
-        </tradeTags>
     </ThingDef>
 
     <!-- Steel Plates -->
@@ -268,6 +258,9 @@
         <description>Composite plate insert for Tau'ri tactical vests—because steel's too mainstream. Offers solid protection against heat and blunt trauma.\nApproved by SG-1’s fashion-forward scientists and tactical nerds alike.</description>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
+            <recipeUsers Inherit="false">
+                <li>Rimgate_CompositionBench</li>
+            </recipeUsers>
             <skillRequirements>
                 <Crafting>5</Crafting>
             </skillRequirements>
@@ -279,7 +272,7 @@
         </graphicData>
         <statBases>
             <MarketValue>550</MarketValue>
-            <WorkToMake>1000</WorkToMake>
+            <WorkToMake>1500</WorkToMake>
             <MaxHitPoints>200</MaxHitPoints>
             <Mass>2</Mass>
             <Flammability>0</Flammability>
@@ -301,10 +294,16 @@
     <ThingDef ParentName="Rimgate_PlateInsertBase">
         <defName>Rimgate_NaquadahPlateInsert</defName>
         <label>Naquadah plate insert</label>
-        <description>Advanced naquadah plate insert for Tau'ri tactical vests. Provides exceptional protection against energy weapons and ballistic impacts.\nA favorite among SG teams who prefer their armor to double as a portable bunker.</description>
+        <description>Advanced naquadah plate insert for the Tau'ri SpecOps tactical vest. Provides exceptional protection against energy weapons and ballistic impacts.\nA favorite among SG teams who prefer their armor to double as a portable bunker.</description>
+        <descriptionHyperlinks Inherit="false">
+            <ThingDef>Rimgate_TauriSpecOpsVest</ThingDef>
+        </descriptionHyperlinks>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmorsTierTwo</researchPrerequisite>
+            <recipeUsers Inherit="false">
+                <li>Rimgate_CompositionBench</li>
+            </recipeUsers>
             <skillRequirements>
                 <Crafting>6</Crafting>
             </skillRequirements>
@@ -316,7 +315,7 @@
         </graphicData>
         <statBases>
             <MarketValue>1200</MarketValue>
-            <WorkToMake>1000</WorkToMake>
+            <WorkToMake>2000</WorkToMake>
             <MaxHitPoints>250</MaxHitPoints>
             <Mass>2</Mass>
             <Flammability>0</Flammability>
@@ -335,123 +334,20 @@
             <Steel>5</Steel>
             <Uranium>5</Uranium>
         </costList>
-    </ThingDef>
-
-    <!-- ====== SG Team Backpack ====== -->
-
-    <ThingDef ParentName="ArmorMachineableBase">
-        <defName>Rimgate_TauriTacticalBackpack</defName>
-        <label>Tactical backpack</label>
-        <description>Standard Tau'ri tactical backpack for offworld excursions. Perfect for hauling rations, ammo, and that ancient alien device you definitely shouldn’t touch.\nRequires vest attachment because SGC frowns on space chiropractors.</description>
-        <descriptionHyperlinks>
-            <ThingDef>Rimgate_TauriTacticalVest</ThingDef>
-            <ThingDef>Rimgate_TauriSpecOpsVest</ThingDef>
-        </descriptionHyperlinks>
-        <techLevel>Industrial</techLevel>
-        <recipeMaker>
-            <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
-            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-            <skillRequirements>
-                <Crafting>4</Crafting>
-            </skillRequirements>
-        </recipeMaker>
-        <graphicData>
-            <texPath>Things/Item/Apparel/Utility/Backpack/RGTacticalBackpackIcon</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-        </graphicData>
-        <statBases>
-            <WorkToMake>1000</WorkToMake>
-            <MaxHitPoints>200</MaxHitPoints>
-            <Mass>2</Mass>
-            <Flammability>0.6</Flammability>
-            <ArmorRating_Sharp>0.12</ArmorRating_Sharp>
-            <ArmorRating_Blunt>0.08</ArmorRating_Blunt>
-            <ArmorRating_Heat>0.09</ArmorRating_Heat>
-            <Insulation_Cold>1</Insulation_Cold>
-            <EquipDelay>5</EquipDelay>
-        </statBases>
-        <equippedStatOffsets>
-            <CarryingCapacity>40</CarryingCapacity>
-            <ForagedNutritionPerDay>0.5</ForagedNutritionPerDay>
-        </equippedStatOffsets>
-        <thingCategories>
-            <li>ApparelArmor</li>
-        </thingCategories>
-        <costList>
-            <Cloth>45</Cloth>
-        </costList>
         <apparel>
-            <countsAsClothingForNudity>false</countsAsClothingForNudity>
-            <scoreOffset>4</scoreOffset>
-            <bodyPartGroups>
-                <li>Torso</li>
-                <li>Shoulders</li>
-            </bodyPartGroups>
-            <wornGraphicPath>Things/Item/Apparel/Utility/Backpack/RGTacticalBackpack</wornGraphicPath>
-            <wornGraphicData>
-                <renderUtilityAsPack>true</renderUtilityAsPack>
-                <east>
-                    <offset>(-0.35,0)</offset>
-                    <thin>
-                        <offset>(0.05,0)</offset>
-                    </thin>
-                    <hulk>
-                        <offset>(-0.1,0)</offset>
-                    </hulk>
-                    <fat>
-                        <offset>(-0.15,0)</offset>
-                    </fat>
-                </east>
-                <west>
-                    <offset>(0.35,0)</offset>
-                    <thin>
-                        <offset>(-0.05,0)</offset>
-                    </thin>
-                    <hulk>
-                        <offset>(0.1,0)</offset>
-                    </hulk>
-                    <fat>
-                        <offset>(0.15,0)</offset>
-                    </fat>
-                </west>
-                <male>
-                    <scale>(0.75,0.75)</scale>
-                </male>
-                <female>
-                    <scale>(0.75,0.75)</scale>
-                </female>
-                <thin>
-                    <scale>(0.7,0.7)</scale>
-                </thin>
-                <hulk>
-                    <scale>(0.9,0.9)</scale>
-                </hulk>
-                <fat>
-                    <scale>(0.9,0.9)</scale>
-                </fat>
-
-            </wornGraphicData>
-            <layers>
-                <li>Belt</li>
-            </layers>
-            <tags>
-                <li>Rimgate_TauriUtility_tag</li>
+            <tags Inherit="false">
+                <li>Rimgate_TauriSpecialForcesApparel_tag</li>
             </tags>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
         </apparel>
-        <comps>
+        <!-- Only attachable to spec ops vest -->
+        <comps Inherit="false">
+            <li Class="CompProperties_Forbiddable" />
             <li Class="Rimgate.CompProperties_FrameApparel">
                 <frameRootDefs>
-                    <li>Rimgate_TauriTacticalVest</li>
                     <li>Rimgate_TauriSpecOpsVest</li>
                 </frameRootDefs>
             </li>
         </comps>
-        <tradeTags>
-            <li>Rimgate_TauriApparelTrade_tag</li>
-        </tradeTags>
     </ThingDef>
 
     <!-- ================== Headgear ================== -->
@@ -754,6 +650,376 @@
         <tradeTags>
             <li>Rimgate_TauriApparelTrade_tag</li>
         </tradeTags>
+    </ThingDef>
+
+    <!-- ================== Utility ================== -->
+
+    <!-- ====== SG Team Backpack ====== -->
+
+    <ThingDef ParentName="ArmorMachineableBase">
+        <defName>Rimgate_TauriTacticalBackpack</defName>
+        <label>Tactical backpack</label>
+        <description>Standard Tau'ri tactical backpack for offworld excursions. Perfect for hauling rations, ammo, and that ancient alien device you definitely shouldn’t touch.\nRequires vest attachment because SGC frowns on space chiropractors.</description>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriTacticalVest</ThingDef>
+            <ThingDef>Rimgate_TauriSpecOpsVest</ThingDef>
+        </descriptionHyperlinks>
+        <techLevel>Industrial</techLevel>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
+            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+            <skillRequirements>
+                <Crafting>4</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Utility/Backpack/RGTacticalBackpackIcon</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <WorkToMake>1500</WorkToMake>
+            <MaxHitPoints>200</MaxHitPoints>
+            <Mass>2</Mass>
+            <Flammability>0.6</Flammability>
+            <ArmorRating_Sharp>0.12</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.08</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.09</ArmorRating_Heat>
+            <Insulation_Cold>1</Insulation_Cold>
+            <EquipDelay>5</EquipDelay>
+        </statBases>
+        <equippedStatOffsets>
+            <CarryingCapacity>40</CarryingCapacity>
+            <ForagedNutritionPerDay>0.5</ForagedNutritionPerDay>
+        </equippedStatOffsets>
+        <thingCategories>
+            <li>ApparelArmor</li>
+        </thingCategories>
+        <costList>
+            <Cloth>45</Cloth>
+        </costList>
+        <apparel>
+            <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <scoreOffset>4</scoreOffset>
+            <bodyPartGroups>
+                <li>Torso</li>
+                <li>Shoulders</li>
+            </bodyPartGroups>
+            <layers>
+                <li>Belt</li>
+            </layers>
+            <wornGraphicPath>Things/Item/Apparel/Utility/Backpack/RGTacticalBackpack</wornGraphicPath>
+            <wornGraphicData>
+                <renderUtilityAsPack>true</renderUtilityAsPack>
+                <east>
+                    <offset>(-0.35,0)</offset>
+                    <thin>
+                        <offset>(0.05,0)</offset>
+                    </thin>
+                    <hulk>
+                        <offset>(-0.1,0)</offset>
+                    </hulk>
+                    <fat>
+                        <offset>(-0.15,0)</offset>
+                    </fat>
+                </east>
+                <west>
+                    <offset>(0.35,0)</offset>
+                    <thin>
+                        <offset>(-0.05,0)</offset>
+                    </thin>
+                    <hulk>
+                        <offset>(0.1,0)</offset>
+                    </hulk>
+                    <fat>
+                        <offset>(0.15,0)</offset>
+                    </fat>
+                </west>
+                <male>
+                    <scale>(0.75,0.75)</scale>
+                </male>
+                <female>
+                    <scale>(0.75,0.75)</scale>
+                </female>
+                <thin>
+                    <scale>(0.7,0.7)</scale>
+                </thin>
+                <hulk>
+                    <scale>(0.9,0.9)</scale>
+                </hulk>
+                <fat>
+                    <scale>(0.9,0.9)</scale>
+                </fat>
+
+            </wornGraphicData>
+            <tags>
+                <li>Rimgate_TauriUtility_tag</li>
+                <li>Rimgate_TauriSpecOpsUtility_tag</li>
+            </tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+        </apparel>
+        <comps>
+            <li Class="Rimgate.CompProperties_FrameApparel">
+                <frameRootDefs>
+                    <li>Rimgate_TauriTacticalVest</li>
+                    <li>Rimgate_TauriSpecOpsVest</li>
+                </frameRootDefs>
+            </li>
+        </comps>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ====== Vest attachments ====== -->
+
+    <ThingDef Name="Rimgate_VestAttachmentBase" ParentName="ArmorMachineableBase" Abstract="true">
+        <uiIconScale>1.3</uiIconScale>
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_TauriTacticalVest</ThingDef>
+        </descriptionHyperlinks>
+        <techLevel>Industrial</techLevel>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
+            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+            <recipeUsers Inherit="false">
+                <li>Rimgate_CompositionBench</li>
+            </recipeUsers>
+            <skillRequirements>
+                <Crafting>4</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <statBases>
+            <WorkToMake>1000</WorkToMake>
+            <MaxHitPoints>50</MaxHitPoints>
+            <Mass>2</Mass>
+            <Flammability>0.1</Flammability>
+            <EquipDelay>2</EquipDelay>
+        </statBases>
+        <thingCategories>
+            <li>ApparelArmor</li>
+        </thingCategories>
+        <apparel>
+            <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <bodyPartGroups>
+                <li>Waist</li>
+            </bodyPartGroups>
+            <layers>
+                <li>Belt</li>
+            </layers>
+        </apparel>
+        <comps Inherit="false">
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="Rimgate.CompProperties_FrameApparel">
+                <frameRootDefs>
+                    <li>Rimgate_TauriTacticalVest</li>
+                </frameRootDefs>
+            </li>
+        </comps>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
+    </ThingDef>
+
+    <ThingDef Name="Rimgate_AllVestAttachmentBase" ParentName="Rimgate_VestAttachmentBase" Abstract="true">
+        <descriptionHyperlinks Inherit="false">
+            <ThingDef>Rimgate_TauriTacticalVest</ThingDef>
+            <ThingDef>Rimgate_TauriSpecOpsVest</ThingDef>
+        </descriptionHyperlinks>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriArmorsTierTwo</researchPrerequisite>
+        </recipeMaker>
+        <comps Inherit="false">
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="Rimgate.CompProperties_FrameApparel">
+                <frameRootDefs>
+                    <li>Rimgate_TauriTacticalVest</li>
+                    <li>Rimgate_TauriSpecOpsVest</li>
+                </frameRootDefs>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- Construction Kit -->
+    <ThingDef ParentName="Rimgate_VestAttachmentBase">
+        <defName>Rimgate_TacticalConstructionKit</defName>
+        <label>Construction kit</label>
+        <description>Essential construction kit attachment for Tau'ri tactical vests. Equipped with tools and materials for on-the-fly repairs and fortifications.\nPerfect for engineers and builders venturing into hostile environments.</description>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Utility/Attachment/RGConstructionBagAttachment</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <Mass>2</Mass>
+        </statBases>
+        <equippedStatOffsets>
+            <GeneralLaborSpeed>0.2</GeneralLaborSpeed>
+            <ConstructionSpeed>0.3</ConstructionSpeed>
+            <ConstructSuccessChance>0.1</ConstructSuccessChance>
+            <SmoothingSpeed>0.3</SmoothingSpeed>
+            <SmeltingSpeed>0.3</SmeltingSpeed>
+        </equippedStatOffsets>
+        <costList>
+            <Steel>15</Steel>
+            <ComponentIndustrial>5</ComponentIndustrial>
+        </costList>
+    </ThingDef>
+
+    <!-- Fishing Tackle Kit -->
+    <ThingDef ParentName="Rimgate_VestAttachmentBase">
+        <defName>Rimgate_TacticalFishingTackle</defName>
+        <label>Fishing tackle kit</label>
+        <description>Specialized fishing tackle kit attachment for Tau'ri tactical vests. Equipped with fishing gear and bait for offworld angling adventures.\nIdeal for colonists who enjoy fishing during downtime on hostile planets.</description>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Utility/Attachment/RGFishingTackleAttachment</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <Mass>1</Mass>
+        </statBases>
+        <equippedStatOffsets>
+            <FishingSpeed>0.25</FishingSpeed>
+            <ForagedNutritionPerDay>0.3</ForagedNutritionPerDay>
+        </equippedStatOffsets>
+        <costList>
+            <WoodLog>20</WoodLog>
+            <ComponentIndustrial>3</ComponentIndustrial>
+        </costList>
+    </ThingDef>
+
+    <!-- Electronic Kit -->
+    <ThingDef ParentName="Rimgate_VestAttachmentBase">
+        <defName>Rimgate_TacticalElectronicKit</defName>
+        <label>Electronic kit</label>
+        <description>Advanced electronic kit attachment for Tau'ri tactical vests. Equipped with tools and components for repairing and hacking electronic devices.\nPerfect for tech-savvy colonists venturing into alien worlds filled with mysterious technology.</description>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Utility/Attachment/RGElectronicKitAttachment</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <Mass>1.5</Mass>
+        </statBases>
+        <equippedStatOffsets>
+            <HackingSpeed>0.2</HackingSpeed>
+            <HackingStealth>0.15</HackingStealth>
+            <ButcheryMechanoidEfficiency>0.2</ButcheryMechanoidEfficiency>
+            <FixBrokenDownBuildingSuccessChance>0.1</FixBrokenDownBuildingSuccessChance>
+            <MechRepairSpeed MayRequire="Ludeon.RimWorld.Biotech">0.1</MechRepairSpeed>
+        </equippedStatOffsets>
+        <costList>
+            <Steel>10</Steel>
+            <ComponentIndustrial>5</ComponentIndustrial>
+        </costList>
+    </ThingDef>
+
+    <!-- Gardening Kit -->
+    <ThingDef ParentName="Rimgate_VestAttachmentBase">
+        <defName>Rimgate_TacticalGardeningKit</defName>
+        <label>Gardening kit</label>
+        <description>Essential gardening kit attachment for Tau'ri tactical vests. Equipped with tools and supplies for tending to plants and crops in offworld colonies.\nIdeal for colonists with a green thumb looking to cultivate life in hostile environments.</description>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Utility/Attachment/RGGardeningKitAttachment</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <Mass>1</Mass>
+        </statBases>
+        <equippedStatOffsets>
+            <PlantWorkSpeed>0.62</PlantWorkSpeed>
+            <PlantHarvestYield>0.3</PlantHarvestYield>
+            <AnimalGatherSpeed>0.3</AnimalGatherSpeed>
+            <ForagedNutritionPerDay>0.3</ForagedNutritionPerDay>
+        </equippedStatOffsets>
+        <costList>
+            <WoodLog>15</WoodLog>
+            <ComponentIndustrial>3</ComponentIndustrial>
+        </costList>
+    </ThingDef>
+
+    <!-- Medic Bag -->
+    <ThingDef ParentName="Rimgate_AllVestAttachmentBase">
+        <defName>Rimgate_TacticalMedicBag</defName>
+        <label>Medic bag</label>
+        <description>Standard Tau'ri medic bag attachment for tactical vests. Equipped with essential medical supplies for field treatment of injuries.\nA must-have for any offworld mission where getting shot at is a possibility.</description>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Utility/Attachment/RGMedicBagAttachment</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <Mass>1.5</Mass>
+        </statBases>
+        <equippedStatOffsets>
+            <MedicalTendSpeed>0.15</MedicalTendSpeed>
+            <MedicalTendQuality>0.15</MedicalTendQuality>
+        </equippedStatOffsets>
+        <costList>
+            <Cloth>20</Cloth>
+            <ComponentIndustrial>5</ComponentIndustrial>
+        </costList>
+        <apparel>
+            <tags>
+                <li>Rimgate_TauriUtility_tag</li>
+                <li>Rimgate_TauriSpecOpsUtility_tag</li>
+            </tags>
+        </apparel>
+    </ThingDef>
+
+    <!-- Ammo Pouch -->
+    <ThingDef ParentName="Rimgate_AllVestAttachmentBase">
+        <defName>Rimgate_TacticalAmmoPouch</defName>
+        <label>Ammo pouch</label>
+        <description>Essential ammo pouch attachment for Tau'ri tactical vests. Designed to hold extra magazines and ammunition for extended firefights.\nA favorite among soldiers and mercenaries operating in hostile offworld environments.</description>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Utility/Attachment/RGAmmoPouchAttachment</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <Mass>1</Mass>
+        </statBases>
+        <equippedStatOffsets>
+            <RangedCooldownFactor>-0.25</RangedCooldownFactor>
+        </equippedStatOffsets>
+        <costList>
+            <Steel>10</Steel>
+            <ComponentIndustrial>3</ComponentIndustrial>
+        </costList>
+        <apparel>
+            <tags>
+                <li>Rimgate_TauriUtility_tag</li>
+                <li>Rimgate_TauriSpecOpsUtility_tag</li>
+            </tags>
+        </apparel>
+    </ThingDef>
+
+    <!-- Melee Pouch -->
+    <ThingDef ParentName="Rimgate_AllVestAttachmentBase">
+        <defName>Rimgate_TacticalMeleePouch</defName>
+        <label>Melee pouch</label>
+        <description>Specialized melee pouch attachment for Tau'ri tactical vests. Designed to hold extra melee weapons and tools for close-quarters combat.\nPerfect for colonists who prefer to get up close and personal with their enemies.</description>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Utility/Attachment/RGMeleePouchAttachment</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <Mass>1</Mass>
+        </statBases>
+        <equippedStatOffsets>
+            <MeleeCooldownFactor>0.7</MeleeCooldownFactor>
+            <MeleeHitChance>2</MeleeHitChance>
+            <MeleeDodgeChance>4</MeleeDodgeChance>
+            <PawnTrapSpringChance>0.52</PawnTrapSpringChance>
+        </equippedStatOffsets>
+        <costList>
+            <Steel>10</Steel>
+            <ComponentIndustrial>3</ComponentIndustrial>
+        </costList>
+        <apparel>
+            <tags>
+                <li>Rimgate_TauriUtility_tag</li>
+                <li>Rimgate_TauriSpecOpsUtility_tag</li>
+            </tags>
+        </apparel>
     </ThingDef>
 
 </Defs> 

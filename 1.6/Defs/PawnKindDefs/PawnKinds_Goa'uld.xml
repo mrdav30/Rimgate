@@ -11,8 +11,6 @@
     <initialResistanceRange>30~60</initialResistanceRange>
     <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
     <biocodeWeaponChance>0.2</biocodeWeaponChance>
-    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
   </PawnKindDef>
 
   <!-- ============ Goa'uld Civilian Classes ============ -->
@@ -229,6 +227,8 @@
   <!-- ============ Goa'uld Boss ============ -->
 
   <PawnKindDef Name="Rimagate_GoauldBoss" ParentName="Rimgate_GoauldBase" Abstract="True">
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
     <isFighter>true</isFighter>
     <canBeSapper>true</canBeSapper>
     <combatPower>150</combatPower>
@@ -340,6 +340,8 @@
   <!-- ============ Goa'uld Jaffa ============ -->
 
   <PawnKindDef Name="Rimgate_GoauldMilBase" ParentName="Rimgate_GoauldBase" Abstract="True">
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
     <xenotypeSet>
       <xenotypeChances>
         <Rimgate_GoauldJaffa>999</Rimgate_GoauldJaffa>

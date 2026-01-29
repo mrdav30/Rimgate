@@ -586,14 +586,14 @@
 						<AncientAmmoStack>0.30</AncientAmmoStack>
 
 						<AncientBox_ComponentIndustrial>0.28</AncientBox_ComponentIndustrial>
-						<AncientBox_ComponentSpacer>0.22</AncientBox_ComponentSpacer>
+						<AncientBox_ComponentSpacer>0.25</AncientBox_ComponentSpacer>
 
-						<Rimgate_SupplyCrateGreen>0.22</Rimgate_SupplyCrateGreen>
-						<Rimgate_SupplyCrateYellow>0.22</Rimgate_SupplyCrateYellow>
-						<Rimgate_SupplyCrateOrange>0.22</Rimgate_SupplyCrateOrange>
+						<Rimgate_SupplyCrateGreen>0.25</Rimgate_SupplyCrateGreen>
+						<Rimgate_SupplyCrateYellow>0.25</Rimgate_SupplyCrateYellow>
+						<Rimgate_SupplyCrateOrange>0.25</Rimgate_SupplyCrateOrange>
 
-						<Rimgate_SupplyCrate>0.15</Rimgate_SupplyCrate>
-						<Rimgate_SupplyCrateRed>0.15</Rimgate_SupplyCrateRed>
+						<Rimgate_SupplyCrate>0.20</Rimgate_SupplyCrate>
+						<Rimgate_SupplyCrateRed>0.20</Rimgate_SupplyCrateRed>
 					</things>
 					<weight>0.35</weight> <!-- lower so indoor is preferred -->
 					<indoorRuin>false</indoorRuin>

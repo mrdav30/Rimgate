@@ -291,8 +291,8 @@
                 <statOffsets>
                     <PawnBeauty>-4</PawnBeauty>
                     <PsychicSensitivity>-0.15</PsychicSensitivity>
-                    <MeleeHitChance>0.08</MeleeHitChance>
-                    <MentalBreakThreshold>-0.05</MentalBreakThreshold>
+                    <MeleeHitChance>0.5</MeleeHitChance>
+                    <MentalBreakThreshold>-0.1</MentalBreakThreshold>
                 </statOffsets>
             </li>
         </stages>
@@ -335,7 +335,7 @@
                 <statOffsets>
                     <PawnBeauty>-4</PawnBeauty>
                     <PsychicSensitivity>-0.25</PsychicSensitivity>
-                    <MeleeHitChance>0.16</MeleeHitChance>
+                    <MeleeHitChance>1</MeleeHitChance>
                     <MentalBreakThreshold>-0.10</MentalBreakThreshold>
                 </statOffsets>
             </li>

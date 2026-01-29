@@ -114,6 +114,8 @@
     </PawnKindDef>
 
     <PawnKindDef Name="Rimgate_TauriUniformedBase" ParentName="Rimgate_TauriBase" Abstract="True">
+        <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+        <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
         <isFighter>true</isFighter>
         <canBeSapper>true</canBeSapper>
         <canUseAvoidGrid>true</canUseAvoidGrid>
@@ -135,6 +137,10 @@
         <specificApparelRequirements>
             <li>
                 <bodyPartGroup>UpperHead</bodyPartGroup>
+                <requiredTag>Rimgate_TauriApparel_tag</requiredTag>
+            </li>
+            <li>
+                <bodyPartGroup>Torso</bodyPartGroup>
                 <requiredTag>Rimgate_TauriApparel_tag</requiredTag>
             </li>
         </specificApparelRequirements>
@@ -181,6 +187,42 @@
     </PawnKindDef>
 
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
+        <defName>Rimgate_TauriMedic</defName>
+        <label>Medic</label>
+        <combatPower>90</combatPower>
+        <weaponTags>
+            <li>Rimgate_TauriSubmachineGun_tag</li>
+            <li>Rimgate_TauriPistol_tag</li>
+        </weaponTags>
+        <apparelRequired>
+            <li>Rimgate_TauriTacticalBackpack</li>
+            <li>Rimgate_TacticalMedicBag</li>
+        </apparelRequired>
+        <skills>
+            <li>
+                <skill>Shooting</skill>
+                <range>6~9</range>
+            </li>
+            <li>
+                <skill>Medicine</skill>
+                <range>6~10</range>
+            </li>
+        </skills>
+        <inventoryOptions>
+            <skipChance>0</skipChance>
+            <subOptionsChooseOne>
+                <li>
+                    <thingDef>MedicineIndustrial</thingDef>
+                    <countRange>
+                        <min>1</min>
+                        <max>3</max>
+                    </countRange>
+                </li>
+            </subOptionsChooseOne>
+        </inventoryOptions>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCRocketman</defName>
         <label>Soldier</label>
         <combatPower>135</combatPower>
@@ -209,15 +251,6 @@
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
         </weaponTags>
-        <inventoryOptions>
-            <skipChance>0.9</skipChance>
-            <subOptionsChooseOne>
-                <li>
-                    <thingDef>MealSurvivalPack</thingDef>
-                    <countRange>2</countRange>
-                </li>
-            </subOptionsChooseOne>
-        </inventoryOptions>
         <gearHealthRange>0.75~2.3</gearHealthRange>
         <weaponMoney>1550~2700</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
@@ -241,8 +274,12 @@
             <li>Rimgate_TauriShotgun_tag</li>
             <li>Rimgate_Tauri_SniperRifle</li>
         </weaponTags>
-        <apparelTags>
+        <apparelTags Inherit="false">
+            <li>IndustrialMilitaryAdvanced</li>
+            <li>SpacerMilitary</li>
+            <li>Rimgate_TauriApparel_tag</li>
             <li>Rimgate_TauriSpecialForcesApparel_tag</li>
+            <li>Rimgate_TauriSpecOpsUtility_tag</li>
         </apparelTags>
         <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
         <apparelRequired Inherit="false">
@@ -256,9 +293,13 @@
                 <bodyPartGroup>UpperHead</bodyPartGroup>
                 <requiredTag>Rimgate_TauriSpecialForcesApparel_tag</requiredTag>
             </li>
+            <li>
+                <bodyPartGroup>Torso</bodyPartGroup>
+                <requiredTag>Rimgate_TauriSpecialForcesApparel_tag</requiredTag>
+            </li>
         </specificApparelRequirements>
         <inventoryOptions>
-            <skipChance>0.8</skipChance>
+            <skipChance>0.5</skipChance>
             <subOptionsChooseOne>
                 <li>
                     <thingDef>MedicineIndustrial</thingDef>
@@ -282,6 +323,10 @@
             <li>
                 <skill>Melee</skill>
                 <range>8~13</range>
+            </li>
+            <li>
+                <skill>Medicine</skill>
+                <range>4~8</range>
             </li>
         </skills>
         <techHediffsRequired>
@@ -318,7 +363,7 @@
             </li>
         </specificApparelRequirements>
         <inventoryOptions>
-            <skipChance>0.8</skipChance>
+            <skipChance>0.5</skipChance>
             <subOptionsChooseOne>
                 <li>
                     <thingDef>MedicineIndustrial</thingDef>
@@ -342,6 +387,10 @@
             <li>
                 <skill>Melee</skill>
                 <range>8~13</range>
+            </li>
+            <li>
+                <skill>Medicine</skill>
+                <range>4~8</range>
             </li>
         </skills>
         <techHediffsRequired>
@@ -382,7 +431,7 @@
             </li>
         </startingHediffs>
         <inventoryOptions>
-            <skipChance>0.8</skipChance>
+            <skipChance>0.5</skipChance>
             <subOptionsChooseOne>
                 <li>
                     <thingDef>MedicineIndustrial</thingDef>
@@ -401,6 +450,10 @@
             <li>
                 <skill>Melee</skill>
                 <range>8~13</range>
+            </li>
+            <li>
+                <skill>Medicine</skill>
+                <range>4~8</range>
             </li>
         </skills>
 

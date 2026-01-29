@@ -14,8 +14,6 @@
     <chemicalAddictionChance>0.035</chemicalAddictionChance>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>30~60</initialResistanceRange>
-    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">false</apparelIgnorePollution>
     <backstoryFiltersOverride>
       <li>
         <categoriesChildhood>
@@ -150,6 +148,8 @@
   <!-- ============ Wraith Military Base ============ -->
 
   <PawnKindDef Name="Rimgate_WraithMilBase" ParentName="Rimgate_WraithBase" Abstract="True">
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">false</apparelIgnorePollution>
     <isFighter>true</isFighter>
     <canBeSapper>true</canBeSapper>
     <requiredWorkTags>
@@ -269,7 +269,7 @@
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithAssassin</defName>
     <label>Wraith assassin</label>
-    <combatPower>150</combatPower>
+    <combatPower>160</combatPower>
     <apparelMoney>5000~8000</apparelMoney>
     <itemQuality>Good</itemQuality>
     <weaponMoney>2200~3800</weaponMoney>
@@ -391,6 +391,10 @@
     <specificApparelRequirements Inherit="False">
       <li>
         <bodyPartGroup>FullHead</bodyPartGroup>
+        <requiredTag>SpacerMilitary</requiredTag>
+      </li>
+      <li>
+        <bodyPartGroup>Torso</bodyPartGroup>
         <requiredTag>SpacerMilitary</requiredTag>
       </li>
     </specificApparelRequirements>

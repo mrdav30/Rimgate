@@ -60,7 +60,6 @@
 		</statBases>
 		<equippedStatOffsets>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
-			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.67</VacuumResistance>
 			<ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
 		</equippedStatOffsets>
 		<apparel>
@@ -127,6 +126,7 @@
 		</statBases>
 		<equippedStatOffsets>
 			<MeleeHitChance>3</MeleeHitChance>
+			<PawnTrapSpringChance>0.42</PawnTrapSpringChance>
 			<PainShockThreshold>0.1</PainShockThreshold>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
 			<ToxicEnvironmentResistance>0.35</ToxicEnvironmentResistance>
@@ -421,9 +421,9 @@
 		<equippedStatOffsets>
 			<MechBandwidth MayRequire="Ludeon.RimWorld.Biotech">6</MechBandwidth>
 			<MechControlGroups MayRequire="Ludeon.RimWorld.Biotech">1</MechControlGroups>
-			<HackingSpeed>0.25</HackingSpeed>
-			<HackingStealth>0.25</HackingStealth>
-			<ResearchSpeed>0.25</ResearchSpeed>
+			<MechRepairSpeed MayRequire="Ludeon.RimWorld.Biotech">0.2</MechRepairSpeed>
+			<HackingSpeed>0.35</HackingSpeed>
+			<HackingStealth>0.55</HackingStealth>
 		</equippedStatOffsets>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>
@@ -555,9 +555,9 @@
 			<EnergyShieldEnergyMax>3.5</EnergyShieldEnergyMax>
 		</statBases>
 		<equippedStatOffsets>
-			<PainShockThreshold>0.05</PainShockThreshold>
-			<ShootingAccuracyPawn>-3</ShootingAccuracyPawn>
-			<MeleeDodgeChance>1</MeleeDodgeChance>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<ShootingAccuracyPawn>-5</ShootingAccuracyPawn>
+			<MeleeDodgeChance>4</MeleeDodgeChance>
 		</equippedStatOffsets>
 		<tools>
 			<li>

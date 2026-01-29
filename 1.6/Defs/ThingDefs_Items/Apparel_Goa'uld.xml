@@ -295,10 +295,10 @@
 		<generateAllowChance>0.15</generateAllowChance>
 		<equippedStatOffsets>
 			<WorkSpeedGlobal>0.15</WorkSpeedGlobal>
-			<MedicalSurgerySuccessChance>0.15</MedicalSurgerySuccessChance>
+			<MedicalSurgerySuccessChance>0.25</MedicalSurgerySuccessChance>
 			<MedicalOperationSpeed>0.25</MedicalOperationSpeed>
-			<MedicalTendQuality>0.15</MedicalTendQuality>
-			<MedicalTendSpeed>0.15</MedicalTendSpeed>
+			<MedicalTendQuality>0.25</MedicalTendQuality>
+			<MedicalTendSpeed>0.35</MedicalTendSpeed>
 		</equippedStatOffsets>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>
@@ -974,7 +974,7 @@
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.15</PsychicSensitivity>
-			<MeleeHitChance>0.08</MeleeHitChance>
+			<MeleeHitChance>0.5</MeleeHitChance>
 			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<apparel>
@@ -1027,7 +1027,7 @@
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.25</PsychicSensitivity>
-			<MeleeHitChance>0.16</MeleeHitChance>
+			<MeleeHitChance>1</MeleeHitChance>
 			<MentalBreakThreshold>-0.10</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<apparel>
@@ -1054,7 +1054,7 @@
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.2</PsychicSensitivity>
-			<MeleeHitChance>0.1</MeleeHitChance>
+			<MeleeHitChance>0.5</MeleeHitChance>
 			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<apparel>
