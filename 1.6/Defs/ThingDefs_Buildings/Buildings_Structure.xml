@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- ================ Goauld wall =================== -->
+  <!-- ================ Walls ================ -->
+
+  <!-- ====== Goauld wall ====== -->
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_GoauldWall</defName>
@@ -98,7 +100,7 @@
     </researchPrerequisites>
   </ThingDef>
 
-  <!-- ================ Wraith wall =================== -->
+  <!-- ====== Wraith wall ====== -->
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithHiveWall</defName>
@@ -194,7 +196,155 @@
     </researchPrerequisites>
   </ThingDef>
 
-  <!-- =============== Force Field Door =============== -->
+  <!-- ====== Chain-Link Fence ====== -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_ChainLinkFence</defName>
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+
+    <label>Chain-link fence</label>
+    <description>A sturdy industrial-grade chain-link fence. Provides a basic level of perimeter security while allowing visibility through to the other side.\n\nNot capable of stopping determined intruders or holding up a roof.</description>
+
+    <graphicData>
+      <texPath>Things/Building/Structure/RGChainLinkFence</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <linkType>Basic</linkType>
+      <linkFlags>
+        <li>Custom7</li>
+      </linkFlags>
+      <shadowData>
+        <volume>(0.3, 0.5, 0.3)</volume>
+        <offset>(0,0,-0.23)</offset>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>Things/Building/Structure/RGChainLinkFenceIcon</uiIconPath>
+
+    <noRightClickDraftAttack>true</noRightClickDraftAttack>
+    <replaceTags>
+      <li>Wall</li>
+    </replaceTags>
+
+    <stuffCategories Inherit="False">
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>4</costStuffCount>
+    <costList>
+      <Steel>1</Steel>
+    </costList>
+
+    <statBases>
+      <MaxHitPoints>450</MaxHitPoints>
+      <WorkToBuild>450</WorkToBuild>
+      <Flammability>0</Flammability>
+    </statBases>
+
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <staticSunShadowHeight>0</staticSunShadowHeight> <!-- disable static shadow -->
+    <castEdgeShadows>false</castEdgeShadows>
+    <blockWind>false</blockWind>
+    <blockLight>false</blockLight>
+    <fillPercent>0.2</fillPercent>
+    <coversFloor>false</coversFloor>
+    <drawStyleCategory>Walls</drawStyleCategory>
+    <tickerType>Never</tickerType>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <useStuffTerrainAffordance>true</useStuffTerrainAffordance>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <holdsRoof>false</holdsRoof>
+    <designationCategory>Structure</designationCategory>
+    <canOverlapZones>false</canOverlapZones>
+    <fertility>0</fertility>
+
+    <disableImpassableShotOverConfigError>true</disableImpassableShotOverConfigError>
+
+    <building>
+      <isInert>true</isInert>
+      <isWall>true</isWall>
+      <isPlaceOverableWall>true</isPlaceOverableWall>
+      <ai_chillDestination>false</ai_chillDestination>
+      <supportsWallAttachments>false</supportsWallAttachments>
+      <isStuffableAirtight>false</isStuffableAirtight>
+      <blueprintGraphicData>
+        <texPath>Things/Building/Structure/RGChainLinkFence_Blueprint</texPath>
+      </blueprintGraphicData>
+      <relatedBuildCommands>
+        <li>Rimgate_ChainLinkFenceGate</li>
+      </relatedBuildCommands>
+    </building>
+
+    <damageMultipliers>
+      <li>
+        <damageDef>Bomb</damageDef>
+        <multiplier>0.25</multiplier>
+      </li>
+      <li>
+        <damageDef>Thump</damageDef>
+        <multiplier>0.25</multiplier>
+      </li>
+    </damageMultipliers>
+
+    <researchPrerequisites>
+      <li>Rimgate_TauriManufacturing</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+  </ThingDef>
+
+  <!-- ================ Doors ================ -->
+
+  <ThingDef ParentName="DoorBase">
+    <defName>Rimgate_ChainLinkFenceGate</defName>
+    <thingClass>Building_Door</thingClass>
+
+    <label>Chain-link gate</label>
+    <description>A swinging gate made of industrial-grade chain-link fencing. Provides easy access while keeping out unwanted visitors.</description>
+    <graphicData>
+      <texPath>Things/Building/Structure/RGChainLinkGate_Mover</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+      <shadowData>
+        <volume>(0.3, 0.5, 0.3)</volume>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>Things/Building/Structure/RGChainLinkGateIcon</uiIconPath>
+
+    <stuffCategories Inherit="False">
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>6</costStuffCount>
+    <costList>
+      <Steel>1</Steel>
+    </costList>
+
+    <statBases>
+      <MaxHitPoints>225</MaxHitPoints>
+      <WorkToBuild>900</WorkToBuild>
+      <Flammability>0</Flammability>
+    </statBases>
+
+    <holdsRoof>false</holdsRoof>
+    <staticSunShadowHeight>0</staticSunShadowHeight> <!-- disable static shadow -->
+    <castEdgeShadows>false</castEdgeShadows>
+    <blockWind>false</blockWind>
+    <blockLight>false</blockLight>
+    <fillPercent>0.2</fillPercent>
+
+    <building>
+      <paintable>false</paintable>
+    </building>
+
+    <researchPrerequisites>
+      <li>Rimgate_TauriManufacturing</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+  </ThingDef>
+
+  <!-- ====== Force Field Door ====== -->
 
   <ThingDef ParentName="DoorBase">
     <defName>Rimgate_ForceFieldDoor</defName>
@@ -258,9 +408,9 @@
     </comps>
   </ThingDef>
 
-  <!-- ================ Jammed Doors =================== -->
+  <!-- ====== Jammed Doors ====== -->
 
-  <!-- ===== Jammed door: abstract base you can inherit for any “pry-to-open” door ===== -->
+  <!-- Jammed door: abstract base for any “pry-to-open” door -->
   <ThingDef Name="Rimgate_JammedDoorBase" ParentName="Door" Abstract="True">
     <defName>Rimgate_JammedDoorBase</defName>
     <label>jammed door (base)</label>
@@ -288,6 +438,7 @@
 
   </ThingDef>
 
+  <!-- Metal Jammed Blast Door -->
   <ThingDef ParentName="Rimgate_JammedDoorBase">
     <defName>Rimgate_JammedBlastDoor</defName>
     <label>jammed blast door</label>
@@ -338,6 +489,7 @@
     </comps>
   </ThingDef>
 
+  <!-- Stoney Secret Door -->
   <ThingDef ParentName="Rimgate_JammedDoorBase">
     <defName>Rimgate_SecretDoor</defName>
     <label>secret door</label>
