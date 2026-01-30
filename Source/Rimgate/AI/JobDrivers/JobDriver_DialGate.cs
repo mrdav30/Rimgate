@@ -13,7 +13,7 @@ public class JobDriver_DialGate : JobDriver
 {
     private const int RepairWaitTicks = 200;
 
-    private const int OpenDelayTicks = 200;
+    private const int OpenDelayTicks = 500;
 
     private const float BaseFailChance = 0.0002f;
 

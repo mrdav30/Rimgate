@@ -219,6 +219,7 @@
         </tradeTags>
         <comps Inherit="false">
             <li Class="CompProperties_Forbiddable" />
+            <compClass>CompQuality</compClass>
             <li Class="Rimgate.CompProperties_FrameApparel">
                 <frameRootDefs>
                     <li>Rimgate_TauriTacticalVest</li>
@@ -353,6 +354,7 @@
         <!-- Only attachable to spec ops vest -->
         <comps Inherit="false">
             <li Class="CompProperties_Forbiddable" />
+            <compClass>CompQuality</compClass>
             <li Class="Rimgate.CompProperties_FrameApparel">
                 <frameRootDefs>
                     <li>Rimgate_TauriSpecOpsVest</li>

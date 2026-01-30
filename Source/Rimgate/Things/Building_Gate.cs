@@ -146,6 +146,19 @@ public class Building_Gate : Building
         }
     }
 
+    public Building_DHD ConnectedDHD
+    {
+        get
+        {
+            var facilities = Facilities?.LinkedFacilitiesListForReading;
+            if (facilities == null || facilities.Count <= 0) return null;
+
+            return facilities.FirstOrDefault(f => f is Building_DHD && f.Spawned) as Building_DHD;
+        }
+    }
+
+    public CompAffectedByFacilities Facilities => _cachedFacilities ??= GetComp<CompAffectedByFacilities>();
+
     public CompPowerTrader PowerTrader => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
     public CompTransporter Transporter => _cachedTransporter ??= GetComp<CompTransporter>();
@@ -171,6 +184,8 @@ public class Building_Gate : Building
     private bool _wantsIrisToggled;
 
     private PlanetTile _queuedAddress;
+
+    private CompAffectedByFacilities _cachedFacilities;
 
     private CompPowerTrader _cachedPowerTrader;
 
@@ -565,6 +580,23 @@ public class Building_Gate : Building
         if (RimgateMod.Debug)
             Log.Message($"Rimgate :: Cleaning up gate {this}.");
 
+        // Remove designations on connected DHD that would target this gate
+        var dm = Map?.designationManager;
+        if (dm != null)
+        {
+            var connectedDHD = ConnectedDHD;
+            if(connectedDHD != null)
+            {
+                Designation designation = dm.DesignationOn(connectedDHD, RimgateDefOf.Rimgate_DesignationCloseGate);
+                if (designation != null)
+                    designation?.Delete();
+
+                designation = dm.DesignationOn(connectedDHD, RimgateDefOf.Rimgate_DesignationToggleIris);
+                if (designation != null)
+                    designation?.Delete();
+            }
+        }
+
         GlobalVortexCellsCache.Remove(Map.uniqueID);
         CloseGate(ConnectedGate != null);
         GateUtil.RemoveGateAddress(GateAddress);
@@ -770,6 +802,14 @@ public class Building_Gate : Building
             return;
 
         Transporter?.CancelLoad();
+
+        var connectedDHD = ConnectedDHD;
+        if(connectedDHD != null)
+        {
+            Designation designation = Map.designationManager.DesignationOn(connectedDHD, RimgateDefOf.Rimgate_DesignationCloseGate);
+            if (designation != null)
+                designation?.Delete();
+        }
 
         // clear buffers just in case
         var drop = Utils.BestDropCellNearThing(this);

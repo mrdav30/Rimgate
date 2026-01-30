@@ -281,9 +281,7 @@ public class Building_DHD : Building
     public void DoCloseGate()
     {
         var control = LinkedGate;
-        if (control == null)
-            return;
-
+        if (control == null) return;
         _wantGateClosed = false;
         control.CloseGate(true);
     }
