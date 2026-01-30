@@ -194,6 +194,7 @@
 		</stuffCategories>
 		<costStuffCount>10</costStuffCount>
 		<costList>
+			<Jade>10</Jade>
 			<Rimgate_Naquadah>5</Rimgate_Naquadah>
 			<Rimgate_Biomass>1</Rimgate_Biomass>
 		</costList>
@@ -398,14 +399,18 @@
 				<Crafting>10</Crafting>
 			</skillRequirements>
 		</recipeMaker>
+		<smeltable>false</smeltable>
 		<costList>
-			<ComponentSpacer>2</ComponentSpacer>
 			<Steel>25</Steel>
 			<Plasteel>25</Plasteel>
-			<Rimgate_Biomass>5</Rimgate_Biomass>
+			<Rimgate_Biomass>25</Rimgate_Biomass>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+			<SignalChip>2</SignalChip>
+			<PowerfocusChip>2</PowerfocusChip>
 		</costList>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Utility/RGWraithCommunicatonDevice</texPath>
+			<texPath>Things/Item/Apparel/Utility/RGWraithCommunicationDevice</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>

@@ -47,6 +47,7 @@
 				<li>Shoulders</li>
 				<li>Arms</li>
 				<li>Legs</li>
+				<li>Feet</li>
 			</bodyPartGroups>
 			<layers>
 				<li>Middle</li>
@@ -104,7 +105,6 @@
 			<tags>
 				<li>Rimgate_GoauldApparel_tag</li>
 				<li>Rimgate_GoauldGuardApparel_tag</li>
-				<li>Rimgate_GoauldSpacer_tag</li>
 			</tags>
 		</apparel>
 	</ThingDef>
@@ -151,7 +151,6 @@
 			<wornGraphicPath>Things/Item/Apparel/Torso/Prime/RGPrimeArmor</wornGraphicPath>
 			<tags>
 				<li>Rimgate_GoauldPrimeApparel_tag</li>
-				<li>Rimgate_GoauldPrimeSpacer_tag</li>
 			</tags>
 		</apparel>
 	</ThingDef>
@@ -462,8 +461,8 @@
 			<EquipDelay>2</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
-			<PainShockThreshold>0.05</PainShockThreshold>
+			<ShootingAccuracyPawn>-0.1</ShootingAccuracyPawn>
+			<PainShockThreshold>0.1</PainShockThreshold>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -503,8 +502,8 @@
 			<EquipDelay>2</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<PainShockThreshold>0.1</PainShockThreshold>
-			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.15</SlaveSuppressionOffset>
+			<PainShockThreshold>0.2</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.2</SlaveSuppressionOffset>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -544,12 +543,12 @@
 			<ArmorRating_Sharp>1</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.47</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.9</ArmorRating_Heat>
-			<Insulation_Cold>6</Insulation_Cold>
-			<Insulation_Heat>4</Insulation_Heat>
+			<Insulation_Cold>16</Insulation_Cold>
+			<Insulation_Heat>8</Insulation_Heat>
 			<EquipDelay>6</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+			<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
 			<ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.2</SlaveSuppressionOffset>
 			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.69</VacuumResistance>
@@ -602,7 +601,6 @@
 			</bodyPartGroups>
 			<tags>
 				<li>Rimgate_GoauldGuardApparel_tag</li>
-				<li>Rimgate_GoauldSpacer_tag</li>
 			</tags>
 		</apparel>
 	</ThingDef>
@@ -678,7 +676,6 @@
 			</bodyPartGroups>
 			<tags>
 				<li>Rimgate_GoauldPrimeApparel_tag</li>
-				<li>Rimgate_GoauldPrimeSpacer_tag</li>
 			</tags>
 		</apparel>
 		<tradeTags Inherit="False" />

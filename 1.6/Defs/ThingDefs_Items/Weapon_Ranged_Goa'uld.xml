@@ -113,7 +113,7 @@
 		<techLevel>Ultra</techLevel>
 		<weaponTags>
 			<li>Rimgate_GoauldWeapons_tag</li>
-			<li>Rimgate_GoauldRanged_Tag</li>
+			<li>Rimgate_GoauldRanged_tag</li>
 		</weaponTags>
 		<smeltable>false</smeltable>
 		<recipeMaker>

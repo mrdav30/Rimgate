@@ -272,10 +272,12 @@
     <gearHealthRange>1.0~2.3</gearHealthRange>
     <weaponMoney>1200~4500</weaponMoney>
     <weaponTags>
-      <li>Rimgate_GoauldRanged_Tag</li>
+      <li>Rimgate_GoauldRanged_tag</li>
     </weaponTags>
     <apparelMoney>4300~7000</apparelMoney>
     <apparelTags>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
       <li>Rimgate_GoauldPrimeApparel_tag</li>
       <li>Rimgate_GoauldKaraKesh_tag</li>
     </apparelTags>
@@ -370,11 +372,19 @@
     <apparelMoney>5000~8000</apparelMoney>
     <itemQuality>Normal</itemQuality>
     <apparelTags>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
       <li>Rimgate_GoauldApparel_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_JaffaArmor</li>
     </apparelRequired>
+    <specificApparelRequirements>
+      <li>
+        <bodyPartGroup>UpperHead</bodyPartGroup>
+        <requiredTag>Rimgate_GoauldApparel_tag</requiredTag>
+      </li>
+    </specificApparelRequirements>
     <weaponMoney>1100~2500</weaponMoney>
     <techHediffsChance>0</techHediffsChance>
     <techHediffsMoney>0</techHediffsMoney>
@@ -439,7 +449,7 @@
     <label>Anubis Jaffa warrior</label>
     <combatPower>100</combatPower>
     <weaponTags>
-      <li>Rimgate_GoauldRanged_Tag</li>
+      <li>Rimgate_GoauldRanged_tag</li>
     </weaponTags>
   </PawnKindDef>
 
@@ -478,7 +488,7 @@
     <label>Apophis Jaffa warrior</label>
     <combatPower>100</combatPower>
     <weaponTags>
-      <li>Rimgate_GoauldRanged_Tag</li>
+      <li>Rimgate_GoauldRanged_tag</li>
     </weaponTags>
   </PawnKindDef>
 
@@ -517,7 +527,7 @@
     <label>Ra Jaffa warrior</label>
     <combatPower>100</combatPower>
     <weaponTags>
-      <li>Rimgate_GoauldRanged_Tag</li>
+      <li>Rimgate_GoauldRanged_tag</li>
     </weaponTags>
   </PawnKindDef>
 
@@ -590,6 +600,7 @@
       <li>Rimgate_KullArmor</li>
       <li>Rimgate_KullHelmet</li>
     </apparelRequired>
+    <specificApparelRequirements Inherit="False" />
     <weaponMoney>2600~3100</weaponMoney>
     <weaponTags Inherit="False">
       <li>Rimgate_KullRanged_tag</li>
@@ -618,11 +629,16 @@
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags>
       <li>Rimgate_GoauldGuardApparel_tag</li>
-      <li>Rimgate_GoauldSpacer_tag</li>
     </apparelTags>
+    <specificApparelRequirements Inherit="False">
+      <li>
+        <bodyPartGroup>FullHead</bodyPartGroup>
+        <requiredTag>Rimgate_GoauldGuardApparel_tag</requiredTag>
+      </li>
+    </specificApparelRequirements>
     <weaponMoney>3000~3500</weaponMoney>
     <weaponTags>
-      <li>Rimgate_GoauldWeapons_tag</li>
+      <li>Rimgate_GoauldRanged_tag</li>
     </weaponTags>
     <skills>
       <li>
@@ -694,8 +710,13 @@
     </backstoryFiltersOverride>
     <apparelTags Inherit="False">
       <li>Rimgate_GoauldPrimeApparel_tag</li>
-      <li>Rimgate_GoauldPrimeSpacer_tag</li>
     </apparelTags>
+    <specificApparelRequirements Inherit="False">
+      <li>
+        <bodyPartGroup>FullHead</bodyPartGroup>
+        <requiredTag>Rimgate_GoauldPrimeApparel_tag</requiredTag>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired Inherit="false">
       <li>Rimgate_FirstPrimeArmor</li>
     </apparelRequired>
