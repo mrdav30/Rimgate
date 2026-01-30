@@ -207,16 +207,29 @@
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
+        <defName>Rimgate_TauriMedicalProcedures</defName>
+        <label>Tau'ri medical procedures</label>
+        <description>Unlocks Tau'ri medical protocols: triage techniques, surgical procedures, and field treatments adapted from off-world military medicine.\n\nDramatically improves medical care quality and survival rates for severe injuries.</description>
+        <baseCost>3000</baseCost>
+        <prerequisites>
+            <li>SterileMaterials</li>
+            <li>Rimgate_TauriManufacturing</li>
+        </prerequisites>
+        <researchViewX>2</researchViewX>
+        <researchViewY>2.75</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TretoninSynthesis</defName>
         <label>Tretonin synthesis</label>
         <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\n\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\n\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
-            <li>Rimgate_TauriManufacturing</li>
+            <li>Rimgate_TauriMedicalProcedures</li>
             <li>Rimgate_SymbioteStudy</li>
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
-        <researchViewX>2</researchViewX>
+        <researchViewX>3</researchViewX>
         <researchViewY>2.75</researchViewY>
 
         <discoveredLetterTitle>About: Tretonin</discoveredLetterTitle>
@@ -249,7 +262,7 @@
         <requiredResearchFacilities>
             <li>Rimgate_AncientResearchBank</li>
         </requiredResearchFacilities>
-        <researchViewX>3</researchViewX>
+        <researchViewX>4</researchViewX>
         <researchViewY>2.75</researchViewY>
 
         <discoveredLetterTitle>About: Tretonin synthesis advancements</discoveredLetterTitle>

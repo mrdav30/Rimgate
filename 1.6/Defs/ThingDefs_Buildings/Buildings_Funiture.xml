@@ -333,4 +333,68 @@
     </comps>
   </ThingDef>
 
+  <!-- Tau'ri Hospital Bed -->
+
+  <ThingDef ParentName="BedWithQualityBase">
+    <defName>Rimgate_TauriHospitalBed</defName>
+    <label>MASH field bed</label>
+    <description>Based on off-world Tau'ri medical protocols, this hospital bed is designed to optimize patient recovery through advanced ergonomics and integrated care features.\n\nIts adjustable frame, pressure-relieving mattress, and built-in monitoring systems ensure that patients receive the best possible care during their stay.\n\nIdeal for clinics and hospitals aiming to provide top-tier medical treatment.</description>
+    <graphicData>
+      <texPath>Things/Building/Furniture/RGTauriHospitalBed</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(3,3)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToBuild>3000</WorkToBuild>
+      <Flammability>0.8</Flammability>
+      <Beauty>2</Beauty>
+      <BedRestEffectiveness>1.1</BedRestEffectiveness>
+      <Comfort>0.90</Comfort>
+      <ImmunityGainSpeedFactor>1.2</ImmunityGainSpeedFactor>
+      <MedicalTendQualityOffset>0.15</MedicalTendQualityOffset>
+      <SurgerySuccessChanceFactor>1.2</SurgerySuccessChanceFactor>
+      <BirthRitualQualityOffset MayRequire="Ludeon.RimWorld.Biotech">5</BirthRitualQualityOffset>
+      <Mass>60</Mass>
+    </statBases>
+    <designationCategory>Furniture</designationCategory>
+    <fillPercent>0.4</fillPercent>
+    <staticSunShadowHeight>0.17</staticSunShadowHeight>
+    <passability>PassThroughOnly</passability>
+    <pathCost>60</pathCost>
+    <castEdgeShadows>True</castEdgeShadows>
+    <size>(1,2)</size>
+    <techLevel>Industrial</techLevel>
+    <costList>
+      <Steel>40</Steel>
+      <Cloth>50</Cloth>
+      <ComponentIndustrial>3</ComponentIndustrial>
+    </costList>
+    <building>
+      <bed_showSleeperBody>false</bed_showSleeperBody>
+      <bed_healPerDay>12</bed_healPerDay>
+      <bed_defaultMedical>true</bed_defaultMedical>
+      <buildingSizeCategory>Small</buildingSizeCategory>
+    </building>
+    <researchPrerequisites>
+      <li>Rimgate_TauriMedicalProcedures</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    <comps>
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>EndTable</li>
+          <li>Dresser</li>
+          <li>VitalsMonitor</li>
+          <li MayRequire="Vanillaexpanded.Vfemedical">Facility_VitalsCentre</li>
+          <li MayRequire="Vanillaexpanded.Vfemedical">Facility_IVDrip</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">SleepAccelerator</li>
+          <li>Rimgate_TauriSurgeryLights</li>
+          <li>Rimgate_TauriWallMonitor</li>
+        </linkableFacilities>
+      </li>
+    </comps>
+  </ThingDef>
+
 </Defs>

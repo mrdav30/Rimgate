@@ -1080,6 +1080,138 @@
 		</comps>
 	</ThingDef>
 
+	<!-- ======================= Hospital Upgrades ======================= -->
+
+	<ThingDef Abstract="True" ParentName="FurnitureWithQualityBase" Name="Rimgate_TauriHospitalUpgradeBase">
+		<designationCategory>Misc</designationCategory>
+		<thingClass>Building</thingClass>
+		<fillPercent>0.4</fillPercent>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<pathCost>150</pathCost>
+		<castEdgeShadows>true</castEdgeShadows>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+		</placeWorkers>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<canOverlapZones>false</canOverlapZones>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_TauriHospitalUpgradeBase">
+		<defName>Rimgate_TauriSurgeryLights</defName>
+		<label>Surgical lights</label>
+		<description>A set of adjustable surgical lamps that provide optimal lighting conditions for medical procedures. Must be placed next to a hospital bed.</description>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGTauriSurgicalLamp</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(3,3)</drawSize>
+		</graphicData>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<size>(2,1)</size>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToBuild>3000</WorkToBuild>
+			<Flammability>0.8</Flammability>
+			<Beauty>2</Beauty>
+			<Mass>40</Mass>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<costList>
+			<Steel>40</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<researchPrerequisites>
+			<li>Rimgate_TauriMedicalProcedures</li>
+		</researchPrerequisites>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>140</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>ColoredLights</researchProject>
+						<factor>0.5</factor>
+					</li>
+				</powerUpgrades>
+			</li>
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Facility">
+				<statOffsets>
+					<SurgerySuccessChanceFactor>0.15</SurgerySuccessChanceFactor>
+				</statOffsets>
+				<maxSimultaneous>1</maxSimultaneous>
+				<mustBePlacedAdjacent>true</mustBePlacedAdjacent>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>5</glowRadius>
+				<overlightRadius>3</overlightRadius>
+				<glowColor>(235,180,130,255)</glowColor>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_TauriHospitalUpgradeBase">
+		<defName>Rimgate_TauriWallMonitor</defName>
+		<label>Vital wall monitor</label>
+		<description>A wall-mounted medical monitor that continuously tracks a patient's vital signs, providing real-time data to attending medical staff. Must be placed next to a hospital bed.</description>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<graphicData>
+			<texPath>Things/Building/Misc/RGTauriWallMonitor</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(3,3)</drawSize>
+		</graphicData>
+		<uiIconPath>Things/Building/Misc/RGTauriWallMonitorIcon</uiIconPath>
+		<size>(1,1)</size>
+		<pathCost>0</pathCost>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToBuild>3000</WorkToBuild>
+			<Flammability>0.8</Flammability>
+			<Beauty>2</Beauty>
+			<Mass>20</Mass>
+		</statBases>
+		<building>
+			<isEdifice>false</isEdifice>
+			<isAttachment>true</isAttachment>
+		</building>
+		<placeWorkers>
+			<li>Placeworker_AttachedToWall</li>
+		</placeWorkers>
+		<techLevel>Industrial</techLevel>
+		<costList>
+			<Steel>20</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<Plasteel>20</Plasteel>
+		</costList>
+		<researchPrerequisites>
+			<li>Rimgate_TauriMedicalProcedures</li>
+		</researchPrerequisites>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<shortCircuitInRain>true</shortCircuitInRain>
+				<basePowerConsumption>50</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(25,110,150,0)</glowColor>
+			</li>
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Facility">
+				<statOffsets>
+					<ImmunityGainSpeedFactor>0.04</ImmunityGainSpeedFactor>
+					<SurgerySuccessChanceFactor>0.05</SurgerySuccessChanceFactor>
+					<MedicalTendQualityOffset>0.1</MedicalTendQualityOffset>
+				</statOffsets>
+				<maxSimultaneous>1</maxSimultaneous>
+				<maxDistance>4.9</maxDistance>
+				<requiresLOS>true</requiresLOS>
+			</li>
+		</comps>
+	</ThingDef>
+
 	<!-- ================ Wraith Table ================ -->
 
 	<ThingDef ParentName="BuildingBase">
