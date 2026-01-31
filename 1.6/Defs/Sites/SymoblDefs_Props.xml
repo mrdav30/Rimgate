@@ -86,7 +86,7 @@
         <defName>Rimgate_HostileSymbiotePool_Granite</defName>
         <thing>Rimgate_FeralSymbioteTrap</thing>
         <stuff>BlocksGranite</stuff>
-    </KCSG.SymbolDef> 
+    </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
         <defName>Rimgate_HostileSymbiotePool_Slate</defName>
@@ -102,8 +102,24 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_Corpse_Ancient</defName>
+        <pawnKindDef>AncientSoldier</pawnKindDef>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <spawnDead>true</spawnDead>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_CorpseRotten</defName>
         <pawnKindDef>Villager</pawnKindDef>
+        <spawnPartOfFaction>false</spawnPartOfFaction>
+        <spawnDead>true</spawnDead>
+        <spawnRotten>true</spawnRotten>
+        <spawnFilthAround>true</spawnFilthAround>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CorpseRotten_Ancient</defName>
+        <pawnKindDef>AncientSoldier</pawnKindDef>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <spawnDead>true</spawnDead>
         <spawnRotten>true</spawnRotten>

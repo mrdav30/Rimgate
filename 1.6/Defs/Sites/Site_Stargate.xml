@@ -217,6 +217,32 @@
 		</genStep>
 	</GenStepDef>
 
+	<!-- =============== Insects =============== -->
+
+	<!-- Sites -->
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_GateSiteInsect</defName>
+		<description>Insectoid nest containing a Dwarfgate.</description>
+		<tags>
+			<li>Rimgate_GateSiteInsect_tag</li>
+			<li>Rimgate_GateQuestSite_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_GateSiteInsect</defName>
+		<linkWithSite>Rimgate_GateSiteInsect</linkWithSite>
+		<order>450</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<fullClear>true</fullClear>
+			<structureLayoutDefs>
+				<li>Rimgate_StructureInsectLairAlpha</li>
+				<li>Rimgate_StructureInsectLairBravo</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
+
 	<!-- =============== Misc =============== -->
 
 	<!-- Sites-->

@@ -96,6 +96,7 @@
 					<value>true</value>
 				</li>
 
+				<!-- Select site parts and faction based on random choice -->
 				<li Class="QuestNode_RandomNode">
 					<nodes>
 
@@ -153,6 +154,24 @@
 								<li Class="QuestNode_Set">
 									<name>siteFaction</name>
 									<value>Mechanoid</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Insects -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_GateSiteInsect</def>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Insect</value>
 								</li>
 							</nodes>
 						</li>
