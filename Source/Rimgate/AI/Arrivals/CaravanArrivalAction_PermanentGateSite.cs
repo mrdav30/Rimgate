@@ -11,13 +11,13 @@ namespace Rimgate;
 
 public class CaravanArrivalAction_PermanentGateSite : CaravanArrivalAction
 {
-    private MapParent _arrivalSite;
+    private WorldObject_GateTransitSite _arrivalSite;
 
     public override string Label => "ApproachSite".Translate(_arrivalSite.Label);
 
     public override string ReportString => "ApproachingSite".Translate(_arrivalSite.Label);
 
-    public CaravanArrivalAction_PermanentGateSite(MapParent site) => _arrivalSite = site;
+    public CaravanArrivalAction_PermanentGateSite(MapParent site) => _arrivalSite = site as WorldObject_GateTransitSite;
 
     public override FloatMenuAcceptanceReport StillValid(Caravan caravan, PlanetTile destinationTile)
     {
@@ -32,11 +32,14 @@ public class CaravanArrivalAction_PermanentGateSite : CaravanArrivalAction
             LetterDefOf.NeutralEvent,
             caravan.PawnsListForReading);
 
+        IntVec3 mapSize = _arrivalSite.def.overrideMapSize.HasValue
+            ? _arrivalSite.def.overrideMapSize.Value
+            : new IntVec3(75, 1, 75); // default size if not specified
         LongEventHandler.QueueLongEvent(() =>
             {
                 Map map = GetOrGenerateMapUtility.GetOrGenerateMap(
                     _arrivalSite.Tile,
-                    RimgateMod.MinMapSize,
+                    mapSize,
                     _arrivalSite.def);
                 CaravanEnterMapUtility.Enter(caravan, _arrivalSite.Map, CaravanEnterMode.Center);
             },

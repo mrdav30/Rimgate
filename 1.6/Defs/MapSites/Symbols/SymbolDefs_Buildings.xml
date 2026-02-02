@@ -17,6 +17,11 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_WraithModificationEquipment</defName>
+        <thing>Rimgate_WraithModificationEquipment</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_GoauldWall</defName>
         <thing>Rimgate_GoauldWall</thing>
     </KCSG.SymbolDef>
@@ -115,7 +120,7 @@
         <thing>Rimgate_WraithCloningPod</thing>
     </KCSG.SymbolDef>
 
-        <KCSG.SymbolDef>
+    <KCSG.SymbolDef>
         <defName>Rimgate_WraithBiomassStabilizer</defName>
         <thing>Rimgate_WraithBiomassStabilizer</thing>
     </KCSG.SymbolDef>

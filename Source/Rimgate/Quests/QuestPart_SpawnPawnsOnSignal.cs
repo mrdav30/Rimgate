@@ -27,7 +27,7 @@ namespace Rimgate
         public bool alwaysAtLeastOne = false;
 
         public bool spawnNearGate = true;
- 
+
         public override void Notify_QuestSignalReceived(Signal signal)
         {
             if (signal.tag != inSignal) return;
@@ -63,6 +63,8 @@ namespace Rimgate
 
                 Pawn p = PawnGenerator.GeneratePawn(pawnKind, fac);
                 GenSpawn.Spawn(p, cell, map, Rot4.Random);
+                if (p.Faction != fac)
+                    p.SetFaction(fac); // make sure faction is set
 
                 lord.AddPawn(p);
 

@@ -601,6 +601,7 @@
 			</bodyPartGroups>
 			<tags>
 				<li>Rimgate_GoauldGuardApparel_tag</li>
+				<li>Rimgate_GoauldGuardSpaceApparel_tag</li>
 			</tags>
 		</apparel>
 	</ThingDef>

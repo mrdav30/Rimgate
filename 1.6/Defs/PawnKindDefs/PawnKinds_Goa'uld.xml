@@ -629,11 +629,12 @@
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags>
       <li>Rimgate_GoauldGuardApparel_tag</li>
+      <li>Rimgate_GoauldGuardSpaceApparel_tag</li>
     </apparelTags>
     <specificApparelRequirements Inherit="False">
       <li>
         <bodyPartGroup>FullHead</bodyPartGroup>
-        <requiredTag>Rimgate_GoauldGuardApparel_tag</requiredTag>
+        <requiredTag>Rimgate_GoauldGuardSpaceApparel_tag</requiredTag>
       </li>
     </specificApparelRequirements>
     <weaponMoney>3000~3500</weaponMoney>

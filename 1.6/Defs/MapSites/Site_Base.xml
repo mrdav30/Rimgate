@@ -18,7 +18,8 @@
         <minThreatPoints>150</minThreatPoints>
         <disallowsAutomaticDetectionTimerStart>true</disallowsAutomaticDetectionTimerStart>
         <minMapSize>(250, 1, 250)</minMapSize>
-        <gravShipsCanLandOn>true</gravShipsCanLandOn>
+        <gravShipsCanLandOn>true</gravShipsCanLandOn> 
+		<considerEnteringAsAttack>false</considerEnteringAsAttack>
     </SitePartDef>
 
     <SitePartDef Name="Rimgate_SoldierBase" Abstract="true">

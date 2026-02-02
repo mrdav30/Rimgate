@@ -4,6 +4,7 @@
   <QuestScriptDef>
     <defName>Util_GenerateGateSite_Planet</defName>
     <root Class="Rimgate.QuestNode_Root_GateSite">
+
       <factionDef>$siteFaction</factionDef>
       <factionDefWhitelist>$siteFactionWhitelist</factionDefWhitelist>
       <sitePartDefs>$siteParts</sitePartDefs>
@@ -12,7 +13,7 @@
       <orbitOnly>false</orbitOnly>
       <planetSurfaceOnly>true</planetSurfaceOnly>
 
-      <worldObjectDef>Rimgate_GateQuestSite_Planet</worldObjectDef>
+      <worldObjectDef>$siteWorldObjectDef</worldObjectDef>
 
       <distanceFromColonyRange>10~999</distanceFromColonyRange>
       <selectLandmarkChance>0.3</selectLandmarkChance>
@@ -62,11 +63,12 @@
       <factionDef>$siteFaction</factionDef>
       <factionDefWhitelist>$siteFactionWhitelist</factionDefWhitelist>
       <sitePartDefs>$siteParts</sitePartDefs>
+      <noneWeight>0</noneWeight>
 
       <orbitOnly>true</orbitOnly>
       <planetSurfaceOnly>false</planetSurfaceOnly>
 
-      <worldObjectDef>Rimgate_GateQuestSite_Orbit</worldObjectDef>
+      <worldObjectDef>$siteWorldObjectDef</worldObjectDef>
 
       <distanceFromColonyRange>3~20</distanceFromColonyRange>
     </root>

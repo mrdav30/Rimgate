@@ -130,7 +130,7 @@
 
     <KCSG.SymbolDef>
         <defName>Rimgate_TechprintCrate</defName>
-        <thing>Rimgate_SupplyCrate</thing>
+        <thing>Rimgate_SupplyCrateBlue</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

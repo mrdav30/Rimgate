@@ -110,15 +110,20 @@
 											<def>Rimgate_GateSiteGoauld</def>
 										</li>
 										<li>
-											<def>Rimgate_SoldierGoauld</def>
-										</li>
-										<li>
-											<def>Rimgate_SoldierWraith</def>
-											<chance>0.15</chance>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.25</chance>
 										</li>
 										<li>
 											<def>Rimgate_SoldierTauri</def>
-											<chance>0.15</chance>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.25</chance>
 										</li>
 									</value>
 								</li>
@@ -139,15 +144,12 @@
 											<def>Rimgate_GateSiteMech</def>
 										</li>
 										<li>
-											<def>Rimgate_SoldierMech</def>
-										</li>
-										<li>
-											<def>Rimgate_SoldierReplicator</def>
+											<def>Rimgate_EnemyReplicator</def>
 											<chance>0.25</chance>
 										</li>
 										<li>
 											<def>Rimgate_SoldierTauri</def>
-											<chance>0.15</chance>
+											<chance>0.25</chance>
 										</li>
 									</value>
 								</li>
@@ -166,6 +168,10 @@
 									<value>
 										<li>
 											<def>Rimgate_GateSiteInsect</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.25</chance>
 										</li>
 									</value>
 								</li>
@@ -186,22 +192,15 @@
 											<def>Rimgate_GateSiteTauri</def>
 										</li>
 										<li>
-											<def>Rimgate_SoldierTauri</def>
-										</li>
-										<li>
 											<def>Rimgate_EnemyPresence</def>
 											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierWraith</def>
+											<def>Rimgate_EnemyReplicator</def>
 											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierGoauld</def>
-											<chance>0.5</chance>
-										</li>
-										<li>
-											<def>Rimgate_SoldierReplicator</def>
+											<def>Rimgate_EnemyMech</def>
 											<chance>0.5</chance>
 										</li>
 									</value>
@@ -223,19 +222,20 @@
 											<def>Rimgate_GateSiteWraith</def>
 										</li>
 										<li>
-											<def>Rimgate_SoldierWraith</def>
-										</li>
-										<li>
-											<def>Rimgate_SoldierGoauld</def>
-											<chance>0.15</chance>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.25</chance>
 										</li>
 										<li>
 											<def>Rimgate_SoldierTauri</def>
-											<chance>0.15</chance>
+											<chance>0.25</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierReplicator</def>
-											<chance>0.15</chance>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.25</chance>
 										</li>
 									</value>
 								</li>
@@ -256,11 +256,8 @@
 											<def>Rimgate_GateSiteMisc</def>
 										</li>
 										<li>
-											<def>Rimgate_EnemyPresence</def>
-										</li>
-										<li>
 											<def>Rimgate_SoldierTauri</def>
-											<chance>0.15</chance>
+											<chance>0.25</chance>
 										</li>
 									</value>
 								</li>
@@ -302,23 +299,15 @@
 											<def>Rimgate_ItemStash</def>
 										</li>
 										<li>
-											<def>Rimgate_EnemyPresence</def>
-											<chance>0.35</chance>
-										</li>
-										<li>
-											<def>Rimgate_SoldierGoauld</def>
-											<chance>0.15</chance>
-										</li>
-										<li>
-											<def>Rimgate_SoldierWraith</def>
-											<chance>0.15</chance>
-										</li>
-										<li>
 											<def>Rimgate_SoldierTauri</def>
 											<chance>0.15</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierReplicator</def>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
 											<chance>0.15</chance>
 										</li>
 									</value>
@@ -340,7 +329,11 @@
 											<chance>0.45</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierReplicator</def>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
 											<chance>0.25</chance>
 										</li>
 										<li>
@@ -369,7 +362,11 @@
 											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierWraith</def>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.5</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
 											<chance>0.5</chance>
 										</li>
 										<li>
@@ -385,6 +382,14 @@
 						</li>
 
 					</nodes>
+				</li>
+
+				<li Class="QuestNode_IsSet">
+					<name>siteWorldObjectDef</name>
+					<elseNode Class="QuestNode_Set">
+						<name>siteWorldObjectDef</name>
+						<value>Rimgate_GateQuestSite_Planet</value>
+					</elseNode>
 				</li>
 
 				<li Class="QuestNode_SubScript">

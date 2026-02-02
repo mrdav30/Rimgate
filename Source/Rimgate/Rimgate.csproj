@@ -400,9 +400,9 @@
     <Compile Include="Comps\Comp_SwitchWeapon.cs" />
     <Compile Include="Comps\Comp_FrameApparel.cs" />
     <Compile Include="Comps\Comp_SymbioteHeritage.cs" />
+    <Compile Include="HarmonyPatches\Harmony_GenStep_Asteroid.cs" />
     <Compile Include="HarmonyPatches\Harmony_Messages_Message.cs" />
     <Compile Include="HarmonyPatches\Harmony_ITab_Pawn_Character_IsVisible.cs" />
-    <Compile Include="HarmonyPatches\Harmony_PathGrid.cs" />
     <Compile Include="HarmonyPatches\Harmony_Projectile_CheckForInterceptBetween.cs" />
     <Compile Include="HarmonyPatches\Harmony_Skyfaller_Tick.cs" />
     <Compile Include="HarmonyPatches\Harmony_Widgets_DefIcon_BiomaterialRecoveryDef.cs" />
@@ -417,7 +417,8 @@
     <Compile Include="Misc\GameComponent_RimgateDwarfgateTracker.cs" />
     <Compile Include="Misc\PawnRenderNode_BodySwapper.cs" />
     <Compile Include="Quests\GenStep_AncientComplex_GateSite.cs" />
-    <Compile Include="Quests\GenStep_EnemiesPresence_NoSiteFaction.cs" />
+    <Compile Include="Quests\GenStep_PawnPresence.cs" />
+    <Compile Include="Quests\GenStep_SpawnStructureLayout.cs" />
     <Compile Include="Quests\QuestNode_Root_GateSite.cs" />
     <Compile Include="Quests\QuestNode_SetSiteQuestId.cs" />
     <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />

@@ -1,11 +1,12 @@
-﻿using UnityEngine;
-using Verse;
-using RimWorld;
+﻿using RimWorld;
 using RimWorld.Planet;
-using System.Linq;
+using System;
 using System.Collections.Generic;
-using Verse.Noise;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using UnityEngine;
+using Verse;
+using Verse.Noise;
 
 namespace Rimgate;
 
@@ -20,6 +21,8 @@ public class WorldObject_GateQuestSite : Site
     private Quest _cachedQuest;
 
     private bool _wasEverVisited;
+
+    public override bool GravShipCanLandOn => !base.HasMap;
 
     public override void SpawnSetup()
     {
@@ -125,6 +128,9 @@ public class WorldObject_GateQuestSite : Site
         }
 
         if (ModsConfig.OdysseyActive && map.listerThings.AnyThingWithDef(ThingDefOf.GravAnchor))
+            return false;
+
+        if (TransporterUtility.IncomingTransporterPreventingMapRemoval(base.Map))
             return false;
 
         if (!Building_Gate.TryGetSpawnedGateOnMap(map, out _))

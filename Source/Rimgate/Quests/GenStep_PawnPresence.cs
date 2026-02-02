@@ -15,8 +15,7 @@ namespace Rimgate;
 ///     2) a random enemy faction
 ///     3) AncientsHostile as final fallback
 /// </summary>
-/// TODO: add pawnGroupKindDef option, see GenStep_SitePawns
-public class GenStep_EnemiesPresence_NoSiteFaction : GenStep
+public class GenStep_PawnPresence : GenStep
 {
     public FactionDef forcedFaction;
 
@@ -47,15 +46,15 @@ public class GenStep_EnemiesPresence_NoSiteFaction : GenStep
         // This genstep is intentionally pawn-only.
 
         Faction siteFaction = parms.sitePart?.site?.Faction;
-
-        LordJob job = (siteFaction != null && faction == siteFaction)
+        bool isSiteFaction = siteFaction != null && siteFaction == faction;
+        LordJob job = isSiteFaction
                 ? (LordJob)new LordJob_DefendBase(faction, map.Center, 25000)
                 :  new LordJob_DefendPoint(cell, wanderRadius: 12f, defendRadius: 12f, addFleeToil: false);
 
         Lord lord = LordMaker.MakeNewLord(faction, job, map);
 
         if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Spawning enemies presence for faction '{faction.Name}' at {cell}"
+            Log.Message($"Rimgate :: Spawning {(isSiteFaction ? "site" : "enemy")} presence for faction '{faction.Name}' at {cell}"
                 + (siteFaction != null ? $" (site faction: '{siteFaction.Name}')" : " (no site faction)"));
 
         foreach (Pawn pawn in GeneratePawns(map, faction, parms))

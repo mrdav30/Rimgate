@@ -638,7 +638,7 @@
     </ThingDef>
 
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
-        <defName>Rimgate_SupplyCrate</defName>
+        <defName>Rimgate_SupplyCrateBlue</defName>
         <graphicData>
             <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilled</texPath>
             <graphicClass>Graphic_Single</graphicClass>

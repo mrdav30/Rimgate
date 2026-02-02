@@ -1,7 +1,6 @@
 ﻿using RimWorld;
 using System.Linq;
 using Verse;
-using static RimWorld.Building_HoldingPlatform;
 
 namespace Rimgate;
 

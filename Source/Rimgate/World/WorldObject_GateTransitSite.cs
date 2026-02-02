@@ -134,9 +134,14 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
             }
         }
 
+        if (TransporterUtility.IncomingTransporterPreventingMapRemoval(base.Map))
+        {
+            alsoRemoveWorldObject = false;
+            return false;
+        }
+
         // remove the world object only when BOTH are gone
         alsoRemoveWorldObject = gateOnMap == null && dhdOnMap == null;
-
         return canDespawn;
     }
 

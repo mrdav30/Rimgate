@@ -203,14 +203,6 @@ public class Building_Gate : Building
 
     #region Building overrides and lifecycle
 
-    public sealed class VortexPathBlock
-    {
-        public readonly HashSet<int> CellIndices = new HashSet<int>();
-        public bool Active; // true only while dangerous (dial/open/vortex)
-    }
-
-    public static readonly Dictionary<int, VortexPathBlock> GlobalVortexCellsCache = new();
-
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         PlanetTile tile = map?.Tile ?? PlanetTile.Invalid;
@@ -234,20 +226,6 @@ public class Building_Gate : Building
 
         GateAddress = tile;
         GateUtil.AddGateAddress(GateAddress);
-        int key = map.uniqueID;
-        if (!GlobalVortexCellsCache.TryGetValue(key, out var block))
-        {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Computing vortex path cells for gate {this} on map {map} at tile {tile}.");
-            block = new();
-            foreach (var cell in VortexCells)
-            {
-                if (!cell.InBounds(map)) continue;
-                block.CellIndices.Add(map.cellIndices.CellToIndex(cell));
-            }
-            GlobalVortexCellsCache[key] = block;
-        }
-
         base.SpawnSetup(map, respawningAfterLoad);
 
         // prevent nullreferenceexception in-case innercontainer disappears
@@ -297,7 +275,7 @@ public class Building_Gate : Building
         if (!Spawned || this.IsMinified())
             return;
 
-        if(_inert)
+        if (_inert)
         {
             _inert = false;
             this.Uninstall(); // should be safe to uninstall now
@@ -341,9 +319,6 @@ public class Building_Gate : Building
                 _queuedAddress = PlanetTile.Invalid;
             }
         }
-
-        if (GlobalVortexCellsCache.TryGetValue(ticket, out var vortexBlock))
-            vortexBlock.Active = ticking;
 
         if (!IsActive)
             return;
@@ -585,7 +560,7 @@ public class Building_Gate : Building
         if (dm != null)
         {
             var connectedDHD = ConnectedDHD;
-            if(connectedDHD != null)
+            if (connectedDHD != null)
             {
                 Designation designation = dm.DesignationOn(connectedDHD, RimgateDefOf.Rimgate_DesignationCloseGate);
                 if (designation != null)
@@ -597,7 +572,6 @@ public class Building_Gate : Building
             }
         }
 
-        GlobalVortexCellsCache.Remove(Map.uniqueID);
         CloseGate(ConnectedGate != null);
         GateUtil.RemoveGateAddress(GateAddress);
     }
@@ -714,18 +688,19 @@ public class Building_Gate : Building
             if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: generating map for {mp} using {mp.def.defName}");
 
-            bool isTransitSite = mp is WorldObject_GateTransitSite;
+            IntVec3 mapSize = mp.def.overrideMapSize.HasValue
+                ? mp.def.overrideMapSize.Value
+                : (mp as Site).PreferredMapSize;
             LongEventHandler.QueueLongEvent(delegate
             {
+                // note: world object is created via quest initialization;
+                // if we don't have a wo yet, something went wrong
                 GetOrGenerateMapUtility.GetOrGenerateMap(
                     mp.Tile,
-                    isTransitSite
-                        ? RimgateMod.MinMapSize
-                        : (mp as Site).PreferredMapSize,
+                    mapSize,
                     null);
-
             },
-            isTransitSite ? "RG_GeneratingGateSite_Transit" : "RG_GeneratingGateSite",
+            (mp is WorldObject_GateTransitSite) ? "RG_GeneratingGateSite_Transit" : "RG_GeneratingGateSite",
             false,
             GameAndMapInitExceptionHandlers.ErrorWhileGeneratingMap,
             callback: delegate
@@ -804,7 +779,7 @@ public class Building_Gate : Building
         Transporter?.CancelLoad();
 
         var connectedDHD = ConnectedDHD;
-        if(connectedDHD != null)
+        if (connectedDHD != null)
         {
             Designation designation = Map.designationManager.DesignationOn(connectedDHD, RimgateDefOf.Rimgate_DesignationCloseGate);
             if (designation != null)
@@ -1053,9 +1028,9 @@ public class Building_Gate : Building
         minX -= dangerRadius; maxX += dangerRadius;
         minZ -= dangerRadius; maxZ += dangerRadius;
 
-        // Collect pawns near vortex cells (within radius)
+        // Collect humans near vortex cells (within radius)
         var pawnsToMove = new List<Pawn>();
-        IReadOnlyList<Pawn> pawns = map.mapPawns.AllPawnsSpawned;
+        IReadOnlyList<Pawn> pawns = map.mapPawns.AllHumanlike;
         for (int i = 0; i < pawns.Count; i++)
         {
             Pawn p = pawns[i];
@@ -1065,7 +1040,11 @@ public class Building_Gate : Building
 
             // AABB early reject
             if (pos.x < minX || pos.x > maxX || pos.z < minZ || pos.z > maxZ)
+            {
+                if (RimgateMod.Debug)
+                    Log.Message($"Rimgate :: Skipping pawn {p.LabelShort} at {pos} outside AABB [{minX},{minZ}] - [{maxX},{maxZ}]");
                 continue;
+            }
 
             // Precise check: within 2 cells of any vortex cell
             bool near = false;
@@ -1088,74 +1067,32 @@ public class Building_Gate : Building
                 if (reserved.Contains(next)) near = true;
             }
 
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: Pawn {p.LabelShort} at {pos} is {(near ? "" : "not ")}near vortex.");
+
             if (near)
                 pawnsToMove.Add(p);
         }
 
         if (pawnsToMove.Count == 0) return;
 
-        int holdTicks = Math.Max(320, IsOpeningQueued ? _ticksUntilOpen + 120 : 320);
+        int holdTicks = Math.Max(620, IsOpeningQueued ? _ticksUntilOpen + 120 : 620);
 
         for (int pi = 0; pi < pawnsToMove.Count; pi++)
         {
             Pawn p = pawnsToMove[pi];
             IntVec3 origin = p.Position;
 
-            // If pawn already moved out of the danger radius between collection and now, skip.
-            // (Cheaper than recomputing full near-check: quick hash check covers "standing on vortex".)
-            if (!reserved.Contains(origin))
+            IntVec3 best = IntVec3.Invalid;
+            if (!CellFinder.TryFindRandomCellNear(origin, map, 12, c => 
+                c.InBounds(map) && c.Walkable(map) && !reserved.Contains(c), out best))
             {
-                // If not on vortex, still might be within danger radius; do quick re-check.
-                bool stillNear = false;
-                if (origin.x >= minX && origin.x <= maxX && origin.z >= minZ && origin.z <= maxZ)
+                best = Position + Rotation.FacingCell;
+                if (!best.InBounds(map) || !best.Walkable(map) || reserved.Contains(best))
                 {
-                    for (int j = 0; j < vortexCount; j++)
-                    {
-                        IntVec3 v = vortex[j];
-                        int dx = origin.x - v.x;
-                        int dz = origin.z - v.z;
-                        if (dx * dx + dz * dz <= dangerRadiusSq) { stillNear = true; break; }
-                    }
-                }
-                if (!stillNear) continue;
-            }
-
-            Room pawnRoom = origin.GetRoom(map);
-
-            IntVec3 bestGood = IntVec3.Invalid;
-            IntVec3 bestOkay = IntVec3.Invalid;
-
-            // Slightly larger search radius for destination too
-            int maxCells = GenRadial.NumCellsInRadius(11f); // 9 + 2
-            for (int i = 0; i < maxCells; i++)
-            {
-                IntVec3 c = origin + GenRadial.RadialPattern[i];
-
-                if (!c.InBounds(map)) continue;
-                if (reserved.Contains(c)) continue; // includes vortex + already chosen targets
-                if (!c.Walkable(map)) continue;
-
-                if (!bestOkay.IsValid)
-                    bestOkay = c;
-
-                if (pawnRoom != null && c.GetRoom(map) != pawnRoom)
+                    if (RimgateMod.Debug)
+                        Log.Message($"Rimgate :: Could not evacuate pawn {p.LabelShort} from {origin}; no valid cells.");
                     continue;
-
-                bestGood = c;
-                break;
-            }
-
-            IntVec3 best = bestGood.IsValid ? bestGood : bestOkay;
-
-            if (!best.IsValid)
-            {
-                if (!CellFinder.TryFindRandomCellNear(origin, map, 12,
-                        c => c.InBounds(map) && c.Walkable(map) && !reserved.Contains(c),
-                        out best))
-                {
-                    best = Position + Rotation.FacingCell;
-                    if (!best.InBounds(map) || !best.Walkable(map) || reserved.Contains(best))
-                        continue;
                 }
             }
 
@@ -1204,7 +1141,7 @@ public class Building_Gate : Building
             return true;
 
         gate = GateUtil.PlaceRandomGate(map);
-        if(gate == null)
+        if (gate == null)
             return false;
 
         // Ensure DHD is placed near the gate

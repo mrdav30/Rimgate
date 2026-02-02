@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- =============== Abandoned Dwarfgate Platform =============== -->
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_OrbitalAbandonedPlatform</defName>
+		<description>An abandoned orbital Dwarfgate platform containing valuable resources.</description>
+		<expandingIconTexture>World/WorldObjects/Expanding/AbandonedPlatform</expandingIconTexture>
+		<tags>
+			<li>Rimgate_OrbitalAbandonedPlatform_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalAbandonedPlatform</defName>
+		<linkWithSite>Rimgate_OrbitalAbandonedPlatform</linkWithSite>
+		<order>200</order>
+		<genStep Class="GenStep_OrbitalPlatform">
+			<factionDef>AncientsHostile</factionDef>
+			<platformTerrain>OrbitalPlatform</platformTerrain>
+			<layoutDef>Rimgate_OrbitalAbandonedPlatform</layoutDef>
+			<orbitalDebrisDef>Manmade</orbitalDebrisDef>
+			<temperature>20</temperature>
+			<spawnSentryDrones>true</spawnSentryDrones>
+			<exteriorPrefabs>
+				<CrashedShuttle>0~1</CrashedShuttle>
+				<BaricadeTurret>2~5</BaricadeTurret>
+				<Rimgate_Exterior_OrbitalDwarfgate>1</Rimgate_Exterior_OrbitalDwarfgate>
+			</exteriorPrefabs>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalAbandonedPlatform_SitePawns</defName>
+		<linkWithSite>Rimgate_OrbitalAbandonedPlatform</linkWithSite>
+		<order>890</order>
+		<genStep Class="Rimgate.GenStep_PawnPresence">
+			<useSiteFactionIfAny>false</useSiteFactionIfAny>
+			<forcedFaction>Salvagers</forcedFaction>
+			<defaultPointsRange>100~250</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<!-- =============== Dwarfgate Settlement Platform =============== -->
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_OrbitalSettlementPlatform</defName>
+		<description>An orbital Dwarfgate platform inhabited by pirates and their loot.</description>
+		<expandingIconTexture>World/WorldObjects/Expanding/SettlementPlatform</expandingIconTexture>
+		<tags>
+			<li>Rimgate_OrbitalSettlementPlatform_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalSettlementPlatform</defName>
+		<linkWithSite>Rimgate_OrbitalSettlementPlatform</linkWithSite>
+		<order>200</order>
+		<genStep Class="GenStep_OrbitalPlatform">
+			<platformTerrain>OrbitalPlatform</platformTerrain>
+			<useSiteFaction>true</useSiteFaction>
+			<layoutDef>Rimgate_OrbitalSettlementPlatform</layoutDef>
+			<cannonDef>GaussCannon</cannonDef>
+			<temperature>20</temperature>
+			<exteriorPrefabs>
+				<BaricadeTurret>2~5</BaricadeTurret>
+			</exteriorPrefabs>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalSettlementPlatform_SitePawns</defName>
+		<linkWithSite>Rimgate_OrbitalSettlementPlatform</linkWithSite>
+		<order>450</order>
+		<genStep Class="Rimgate.GenStep_PawnPresence">
+			<useSiteFactionIfAny>true</useSiteFactionIfAny>
+			<pawnGroupKindDef>Settlement</pawnGroupKindDef>
+			<defaultPointsRange>100~250</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalSettlementPlatform_PawnsLoot</defName>
+		<linkWithSite>Rimgate_OrbitalSettlementPlatform</linkWithSite>
+		<order>700</order>
+		<genStep Class="GenStep_SettlementPawnsLoot">
+			<requiresRoof>true</requiresRoof>
+		</genStep>
+	</GenStepDef>
+
+	<!-- =============== Mechanoid Dwarfgate Platform =============== -->
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_OrbitalMechanoidPlatform</defName>
+		<description>An orbital Dwarfgate platform used to produce mechanoids, controlled by a distant mechhive.</description>
+		<expandingIconTexture>World/WorldObjects/Expanding/MechanoidPlatform</expandingIconTexture>
+		<tags>
+			<li>Rimgate_OrbitalMechanoidPlatform_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalMechanoidPlatform</defName>
+		<linkWithSite>Rimgate_OrbitalMechanoidPlatform</linkWithSite>
+		<order>200</order>
+		<genStep Class="GenStep_OrbitalPlatform">
+			<factionDef>Mechanoid</factionDef>
+			<platformTerrain>MechanoidPlatform</platformTerrain>
+			<layoutDef>Rimgate_OrbitalMechanoidPlatform</layoutDef>
+			<orbitalDebrisDef>Mechanoid</orbitalDebrisDef>
+			<fogOfWarColor>(52,55,45)</fogOfWarColor>
+			<exteriorPrefabs>
+				<Rimgate_Exterior_OrbitalDwarfgate>1</Rimgate_Exterior_OrbitalDwarfgate>
+			</exteriorPrefabs>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalMechanoidPlatform_SitePawns</defName>
+		<linkWithSite>Rimgate_OrbitalMechanoidPlatform</linkWithSite>
+		<order>890</order>
+		<genStep Class="Rimgate.GenStep_PawnPresence">
+			<useSiteFactionIfAny>true</useSiteFactionIfAny>
+			<forcedFaction>Mechanoid</forcedFaction>
+			<defaultPointsRange>100~250</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<!-- =============== Orbital Dwarfgate Wreck =============== -->
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_OrbitalWreck</defName>
+		<description>The wreckage of an orbital Dwarfgate platform containing valuable resources. These wrecks are commonly guarded by orbital pirates.</description>
+		<expandingIconTexture>World/WorldObjects/Expanding/SpaceWreck</expandingIconTexture>
+		<tags>
+			<li>Rimgate_OrbitalWreck_tag</li>
+		</tags>
+		<considerEnteringAsAttack>false</considerEnteringAsAttack>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalWreck</defName>
+		<linkWithSite>Rimgate_OrbitalWreck</linkWithSite>
+		<order>200</order>
+		<genStep Class="GenStep_OrbitalWreck">
+			<factionDef>AncientsHostile</factionDef>
+			<orbitalDebrisDef>Manmade</orbitalDebrisDef>
+			<prefabs>
+				<Exterior_OrbitalRuinsLargeRectangle>2</Exterior_OrbitalRuinsLargeRectangle>
+				<AncientTransportPod />
+				<Exterior_OrbitalRuinsWall />
+				<Exterior_OrbitalRuinsSquare>0.05</Exterior_OrbitalRuinsSquare>
+				<Exterior_OrbitalRuinsSmallSquare>0.5</Exterior_OrbitalRuinsSmallSquare>
+				<Exterior_OrbitalRuinsRoomWithSteel>0.05</Exterior_OrbitalRuinsRoomWithSteel>
+				<AncientAntenna_Rows>0.5</AncientAntenna_Rows>
+				<Exterior_ShipChunk_Mech>0.5</Exterior_ShipChunk_Mech>
+				<Rimgate_Exterior_OrbitalSupplyRoom>0.5</Rimgate_Exterior_OrbitalSupplyRoom>
+			</prefabs>
+			<layouts>
+				<Rimgate_OrbitalWreck />
+			</layouts>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalWreck_Gate</defName>
+		<linkWithSite>Rimgate_OrbitalWreck</linkWithSite>
+		<order>390</order>
+		<genStep Class="KCSG.GenStep_CustomStructureGen">
+			<fullClear>true</fullClear>
+			<structureLayoutDefs>
+				<li>Rimgate_StructureOrbitalGate</li>
+			</structureLayoutDefs>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalWreck_SitePawns</defName>
+		<linkWithSite>Rimgate_OrbitalWreck</linkWithSite>
+		<order>890</order>
+		<genStep Class="Rimgate.GenStep_PawnPresence">
+			<useSiteFactionIfAny>false</useSiteFactionIfAny>
+			<forcedFaction>Salvagers</forcedFaction>
+			<defaultPointsRange>100~250</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<!-- =============== Orbital Dwarfgate Satellite =============== -->
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_OrbitalSatellite</defName>
+		<description>An unmanned satellite incapable of supporting life contains a Dwarfgate for transportation and communication.</description>
+		<expandingIconTexture>World/WorldObjects/Expanding/Satellite</expandingIconTexture>
+		<tags>
+			<li>Rimgate_OrbitalSatellite_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalSatellite</defName>
+		<linkWithSite>Rimgate_OrbitalSatellite</linkWithSite>
+		<order>450</order>
+		<genStep Class="GenStep_OrbitalSatellite">
+			<layoutDef>Rimgate_OrbitalSatellite</layoutDef>
+			<factionDef>AncientsHostile</factionDef>
+			<spawnSentryDrones>true</spawnSentryDrones>
+			<prefabs>
+				<SolarArray />
+				<AutoturretBarricade />
+			</prefabs>
+		</genStep>
+	</GenStepDef>
+
+	<GenStepDef>
+		<defName>Rimgate_OrbitalSatellite_SitePawns</defName>
+		<linkWithSite>Rimgate_OrbitalSatellite</linkWithSite>
+		<order>890</order>
+		<genStep Class="Rimgate.GenStep_PawnPresence">
+			<useSiteFactionIfAny>false</useSiteFactionIfAny>
+			<forcedFaction>Salvagers</forcedFaction>
+			<defaultPointsRange>100~250</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<!-- =============== Asteroid =============== -->
+
+	<SitePartDef ParentName="Rimgate_GateSiteBase">
+		<defName>Rimgate_Asteroid</defName>
+		<description>A vacstone asteroid that was towed into orbit around the planet as part of a mining operation long ago.\n\nThis location can be reached using transport pods, shuttles, gravship, or even better-Dwarfgate.</description>
+		<expandingIconTexture>World/WorldObjects/Expanding/ResourceAsteroid</expandingIconTexture>
+		<tags>
+			<li>Rimgate_Asteroid_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_Asteroid_SitePawns</defName>
+		<linkWithSite>Rimgate_Asteroid</linkWithSite>
+		<order>890</order>
+		<genStep Class="Rimgate.GenStep_PawnPresence">
+			<useSiteFactionIfAny>false</useSiteFactionIfAny>
+			<forcedFaction>Salvagers</forcedFaction>
+			<defaultPointsRange>100~250</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<!-- =============== Pawn presence =============== -->
+
+	<!-- Random Enemies -->
+	<SitePartDef ParentName="Rimgate_SoldierBase">
+		<defName>Rimgate_EnemyPresenceOrbit</defName>
+		<tags>
+			<li>Rimgate_EnemyPresenceOrbit_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_EnemyPresenceOrbit</defName>
+		<linkWithSite>Rimgate_EnemyPresenceOrbit</linkWithSite>
+		<order>900</order>
+		<genStep Class="Rimgate.GenStep_PawnPresence">
+			<useSiteFactionIfAny>false</useSiteFactionIfAny>
+			<pawnGroupKindDef>OrbitalCombat</pawnGroupKindDef>
+			<defaultPointsRange>100~250</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+	<!-- Friendly Tau'ri -->
+
+	<SitePartDef ParentName="Rimgate_SoldierBase">
+		<defName>Rimgate_SoldierTauriOrbit</defName>
+		<label>Tau'ri presence detected</label>
+		<tags>
+			<li>Rimgate_SoldierTauriOrbit_tag</li>
+		</tags>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>Rimgate_SoldierTauriOrbit</defName>
+		<linkWithSite>Rimgate_SoldierTauriOrbit</linkWithSite>
+		<order>900</order>
+		<genStep Class="Rimgate.GenStep_PawnPresence">
+			<forcedFaction>Rimgate_TauriFaction</forcedFaction>
+			<pawnGroupKindDef>OrbitalCombat</pawnGroupKindDef>
+			<defaultPointsRange>100~150</defaultPointsRange>
+		</genStep>
+	</GenStepDef>
+
+</Defs>

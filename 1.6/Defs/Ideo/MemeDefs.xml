@@ -147,6 +147,7 @@
         <label>Dwarfgate explorers</label>
         <description>The Dwarfgate is not part of the wider network—but it still opens onto ancient sites worth claiming, studying, and surviving.</description>
         <iconPath>UI/Meme/RG_Meme_DwarfgateExplorers</iconPath>
+        <groupDef MayRequire="Ludeon.RimWorld.Ideology">Misc</groupDef>
         <impact>2</impact>
         <requireOne>
             <li>
@@ -157,6 +158,45 @@
                 <li>Rimgate_DwarfgateSiteIgnored_Disapproved</li>
             </li>
         </requireOne>
+        <generalRules>
+            <rulesStrings>
+                <!-- Adjectives -->
+                <li>memeAdjective->dwarfgate</li>
+                <li>memeAdjective->ancient</li>
+                <li>memeAdjective->explorer</li>
+                <li>memeAdjective->pioneer</li>
+
+                <!-- Creeds / group nouns -->
+                <li>memeCreed->expedition</li>
+                <li>memeCreed->explorers</li>
+                <li>memeCreed->seekers</li>
+                <li>memeCreed->pathfinders</li>
+
+                <!-- Hyphen prefixes -->
+                <li>memeHyphenPrefix->gate</li>
+                <li>memeHyphenPrefix->dwarf</li>
+                <li>memeHyphenPrefix->ancient</li>
+                <li>memeHyphenPrefix->lost</li>
+
+                <!-- Core concepts -->
+                <li>memeConcept->exploration</li>
+                <li>memeConcept->discovery</li>
+                <li>memeConcept->adventure</li>
+                <li>memeConcept->ancient sites</li>
+                <li>memeConcept->relics</li>
+                <li>memeConcept->pioneering</li>
+
+                <!-- Leaders / moral authorities -->
+                <li>memeLeaderNoun->expedition leader</li>
+                <li>memeLeaderNoun->pathfinder</li>
+                <li>memeLeaderNoun->scout captain</li>
+                <li>memeLeaderNoun->trailblazer</li>
+
+                <li>memeMoralist->explorer</li>
+                <li>memeMoralist->seeker</li>
+                <li>memeMoralist->pathfinder</li>
+            </rulesStrings>
+        </generalRules>
     </MemeDef>
 
 </Defs>

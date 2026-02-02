@@ -95,26 +95,22 @@
 				<li Class="QuestNode_RandomNode">
 					<nodes>
 
-						<!-- Mechanoids -->
+						<!-- Mechanoid Platform -->
 						<li Class="QuestNode_Sequence">
 							<nodes>
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
 										<li>
-											<def>Opportunity_MechanoidPlatform</def>
+											<def>Rimgate_OrbitalMechanoidPlatform</def>
 										</li>
 										<li>
-											<def>Rimgate_OrbitalItemStash</def>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierMech</def>
-										</li>
-										<li>
-											<def>Rimgate_SoldierReplicator</def>
-										</li>
-										<li>
-											<def>Rimgate_SupplyCrates</def>
+											<def>Rimgate_SoldierTauriOrbit</def>
+											<chance>0.5</chance>
 										</li>
 									</value>
 								</li>
@@ -125,115 +121,178 @@
 							</nodes>
 						</li>
 
-						<!-- Misc -->
+						<!-- Abandoned Platform -->
 						<li Class="QuestNode_Sequence">
 							<nodes>
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
 										<li>
-											<def>OrbitalFugitivePlatform</def>
-										</li>
-										<li>
-											<def>Rimgate_OrbitalItemStash</def>
+											<def>Rimgate_OrbitalAbandonedPlatform</def>
 										</li>
 										<li>
 											<def>Rimgate_EnemyPresenceOrbit</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierReplicator</def>
-											<chance>0.15</chance>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SupplyCrates</def>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.5</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauriOrbit</def>
+											<chance>0.5</chance>
 										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_Set">
-									<name>siteFactionWhitelist</name>
-									<value>
-										<li>Salvagers</li>
-										<li>AncientsHostile</li>
-									</value>
+									<name>siteFaction</name>
+									<value>AncientsHostile</value>
 								</li>
 							</nodes>
 						</li>
 
+						<!-- Wreck -->
 						<li Class="QuestNode_Sequence">
 							<nodes>
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
 										<li>
-											<def>Opportunity_AbandonedPlatform</def>
-										</li>
-										<li>
-											<def>Rimgate_OrbitalItemStash</def>
+											<def>Rimgate_OrbitalWreck</def>
 										</li>
 										<li>
 											<def>Rimgate_EnemyPresenceOrbit</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierReplicator</def>
-											<chance>0.15</chance>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierMech</def>
-											<chance>0.15</chance>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SupplyCrates</def>
+											<def>Rimgate_SoldierTauriOrbit</def>
+											<chance>0.5</chance>
 										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_Set">
-									<name>siteFactionWhitelist</name>
-									<value>
-										<li>Salvagers</li>
-										<li>AncientsHostile</li>
-									</value>
+									<name>siteFaction</name>
+									<value>AncientsHostile</value>
 								</li>
 							</nodes>
 						</li>
 
+						<!-- Satellite -->
 						<li Class="QuestNode_Sequence">
 							<nodes>
 								<li Class="QuestNode_Set">
 									<name>siteParts</name>
 									<value>
 										<li>
-											<def>Opportunity_OrbitalWreck</def>
-										</li>
-										<li>
-											<def>Rimgate_OrbitalItemStash</def>
+											<def>Rimgate_OrbitalSatellite</def>
 										</li>
 										<li>
 											<def>Rimgate_EnemyPresenceOrbit</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierReplicator</def>
-											<chance>0.15</chance>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SoldierMech</def>
-											<chance>0.15</chance>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.5</chance>
 										</li>
 										<li>
-											<def>Rimgate_SupplyCrates</def>
+											<def>Rimgate_SoldierTauriOrbit</def>
+											<chance>0.5</chance>
 										</li>
 									</value>
 								</li>
 								<li Class="QuestNode_Set">
-									<name>siteFactionWhitelist</name>
+									<name>siteFaction</name>
+									<value>AncientsHostile</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Settlement Platform -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
 									<value>
-										<li>Salvagers</li>
-										<li>AncientsHostile</li>
+										<li>
+											<def>Rimgate_OrbitalSettlementPlatform</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresenceOrbit</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.25</chance>
+										</li>
 									</value>
+								</li>
+
+								<li Class="QuestNode_Set">
+									<name>siteWorldObjectDef</name>
+									<value>Rimgate_GateQuestSite_OrbitalSettlement</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Asteroid -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_Asteroid</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresenceOrbit</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauriOrbit</def>
+											<chance>0.25</chance>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteWorldObjectDef</name>
+									<value>Rimgate_GateQuestSite_Asteroid</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>AncientsHostile</value>
 								</li>
 							</nodes>
 						</li>
 
 					</nodes>
+				</li>
+
+				<li Class="QuestNode_IsSet">
+					<name>siteWorldObjectDef</name>
+					<elseNode Class="QuestNode_Set">
+						<name>siteWorldObjectDef</name>
+						<value>Rimgate_GateQuestSite_Orbit</value>
+					</elseNode>
 				</li>
 
 				<li Class="QuestNode_SubScript">

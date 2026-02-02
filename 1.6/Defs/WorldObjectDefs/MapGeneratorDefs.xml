@@ -23,4 +23,46 @@
         </genSteps>
     </MapGeneratorDef>
 
+    <MapGeneratorDef ParentName="SpaceMapGenerator">
+        <defName>Rimgate_OrbitalItemStash</defName>
+        <label>orbital item stash</label>
+        <genSteps>
+            <li>Rimgate_Asteroid_NoRuins</li>
+            <li>AsteroidBasicTransportPods</li>
+            <li>MechShipChunk_Asteroid</li>
+            <li>Rimgate_AsteroidItemStash</li>
+            <li>RockChunks</li>
+        </genSteps>
+    </MapGeneratorDef>
+
+    <GenStepDef>
+        <defName>Rimgate_Asteroid_NoRuins</defName>
+        <order>200</order>
+        <genStep Class="GenStep_Asteroid">
+            <numChunks>4~6</numChunks>
+            <ruinsChance>0</ruinsChance>
+            <archeanTreeChance>0.25</archeanTreeChance>
+            <mineableCounts>
+                <MineableGold>14~22</MineableGold>
+                <MineableSilver>50~70</MineableSilver>
+                <Rimgate_MineableNaquadah>20~35</Rimgate_MineableNaquadah>
+                <MineableSteel>80~110</MineableSteel>
+                <MineableUranium>15~25</MineableUranium>
+                <MineablePlasteel>12~15</MineablePlasteel>
+                <MineableComponentsIndustrial>65~85</MineableComponentsIndustrial>
+                <MineableJade>20~35</MineableJade>
+            </mineableCounts>
+        </genStep>
+    </GenStepDef>
+
+    <GenStepDef>
+        <defName>Rimgate_AsteroidItemStash</defName>
+        <linkWithSite>Rimgate_Asteroid</linkWithSite>
+        <order>500</order>
+        <genStep Class="Rimgate.GenStep_SpawnStructureLayout">
+            <layoutDef>Rimgate_OrbitalItemStash</layoutDef>
+            <orbitalDebrisDef>Asteroid</orbitalDebrisDef>
+        </genStep>
+    </GenStepDef>
+
 </Defs>

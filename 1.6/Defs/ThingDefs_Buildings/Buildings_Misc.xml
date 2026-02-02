@@ -1097,6 +1097,8 @@
 		<canOverlapZones>false</canOverlapZones>
 	</ThingDef>
 
+	<!-- Surgery Lights -->
+
 	<ThingDef ParentName="Rimgate_TauriHospitalUpgradeBase">
 		<defName>Rimgate_TauriSurgeryLights</defName>
 		<label>Surgical lights</label>
@@ -1150,6 +1152,8 @@
 			</li>
 		</comps>
 	</ThingDef>
+
+	<!-- Wall Monitor -->
 
 	<ThingDef ParentName="Rimgate_TauriHospitalUpgradeBase">
 		<defName>Rimgate_TauriWallMonitor</defName>
