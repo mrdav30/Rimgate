@@ -163,7 +163,7 @@
     <minGenerationAge>19</minGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
     <apparelAllowHeadgearChance>0.72</apparelAllowHeadgearChance>
-    <apparelMoney>1250~2500</apparelMoney>
+    <apparelMoney>1250~3500</apparelMoney>
     <specificApparelRequirements>
       <li>
         <bodyPartGroup>Torso</bodyPartGroup>
@@ -176,7 +176,7 @@
         <stuff>Synthread</stuff>
       </li>
     </specificApparelRequirements>
-    <weaponMoney>1100~2500</weaponMoney>
+    <weaponMoney>1100~3500</weaponMoney>
     <techHediffsMoney>1000~1500</techHediffsMoney>
     <techHediffsChance>0.4</techHediffsChance>
     <techHediffsTags>
@@ -207,6 +207,7 @@
 
   <!-- ====== Wraith Military classes ====== -->
 
+  <!-- Soldier -->
   <PawnKindDef Name="Rimgate_WraithSoldierBase" ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithSoldier</defName>
     <label>Wraith soldier</label>
@@ -215,10 +216,10 @@
     <apparelTags>
       <li>Tribal</li>
       <li>Neolithic</li>
-      <li>IndustrialAdvanced</li>
+      <li>IndustrialBasic</li>
+      <li>IndustrialMilitaryBasic</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
       <li>Rimgate_WraithHeadgear_tag</li>
-      <li>Rimgate_WraithSpacer_tag</li>
     </apparelTags>
     <specificApparelRequirements>
       <li>
@@ -244,15 +245,13 @@
     </skills>
   </PawnKindDef>
 
+  <!-- Orbit Soldier -->
   <PawnKindDef ParentName="Rimgate_WraithSoldierBase">
     <defName>Rimgate_WraithOrbitSoldier</defName>
     <apparelTags Inherit="False">
-      <li>Tribal</li>
-      <li>Neolithic</li>
       <li>IndustrialAdvanced</li>
       <li>IndustrialMilitaryAdvanced</li>
       <li>SpacerMilitary</li>
-      <li>Rimgate_WraithSpacer_tag</li>
     </apparelTags>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelRequired>
@@ -266,6 +265,7 @@
     </specificApparelRequirements>
   </PawnKindDef>
 
+  <!-- Assassin -->
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithAssassin</defName>
     <label>Wraith assassin</label>
@@ -276,14 +276,16 @@
     <techHediffsMoney>2000~2500</techHediffsMoney>
     <startingHediffs>
       <li>
-        <def>Rimgate_InitPsylink</def>
+        <def>Rimgate_InitPsylinkWraith</def>
         <severity>0.1</severity>
       </li>
     </startingHediffs>
     <apparelTags>
       <li>Tribal</li>
       <li>Neolithic</li>
+      <li>IndustrialBasic</li>
       <li>IndustrialAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
       <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
       <li>Rimgate_WraithForceBuckler_tag</li>
@@ -305,6 +307,7 @@
     </skills>
   </PawnKindDef>
 
+  <!-- Commander -->
   <PawnKindDef Name="Rimgate_WraithCommanderBase" ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithCommander</defName>
     <label>Wraith commander</label>
@@ -323,7 +326,9 @@
     <itemQuality>Good</itemQuality>
     <apparelMoney>6000~9000</apparelMoney>
     <apparelTags>
+      <li>IndustrialBasic</li>
       <li>IndustrialAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
       <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithEliteHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
@@ -347,7 +352,7 @@
     <techHediffsChance>0.62</techHediffsChance>
     <startingHediffs>
       <li>
-        <def>Rimgate_InitPsylink</def>
+        <def>Rimgate_InitPsylinkWraith</def>
         <severity>0.1</severity>
       </li>
     </startingHediffs>
@@ -382,12 +387,14 @@
     </skills>
   </PawnKindDef>
 
+  <!-- Orbit Commander -->
   <PawnKindDef ParentName="Rimgate_WraithCommanderBase">
     <defName>Rimgate_WraithOrbitCommander</defName>
     <apparelTags>
       <li>SpacerMilitary</li>
     </apparelTags>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
+    <apparelRequired Inherit="False" />
     <specificApparelRequirements Inherit="False">
       <li>
         <bodyPartGroup>FullHead</bodyPartGroup>
@@ -400,6 +407,7 @@
     </specificApparelRequirements>
   </PawnKindDef>
 
+  <!-- Queen -->
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithQueen</defName>
     <label>Wraith queen</label>
@@ -421,8 +429,10 @@
     <itemQuality>Excellent</itemQuality>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags>
-      <li>Tribal</li>
-      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithEliteHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
       <li>Rimgate_WraithUtility_tag</li>
@@ -441,7 +451,7 @@
     <techHediffsChance>0.62</techHediffsChance>
     <startingHediffs>
       <li>
-        <def>Rimgate_InitPsylink</def>
+        <def>Rimgate_InitPsylinkWraith</def>
         <severity>0.1</severity>
       </li>
       <li>

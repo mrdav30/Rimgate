@@ -52,6 +52,7 @@
             </layers>
             <tags>
                 <li>Rimgate_TauriApparel_tag</li>
+                <li>SpacerMilitary</li>
             </tags>
             <defaultOutfitTags>
                 <li>Worker</li>
@@ -95,6 +96,9 @@
             <MaxHitPoints>250</MaxHitPoints>
             <Mass>2</Mass>
             <Flammability>0.6</Flammability>
+            <StuffEffectMultiplierArmor>0.7</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.2</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0.15</StuffEffectMultiplierInsulation_Heat>
             <ArmorRating_Sharp>0.10</ArmorRating_Sharp>
             <ArmorRating_Blunt>0.10</ArmorRating_Blunt>
             <ArmorRating_Heat>0.10</ArmorRating_Heat>
@@ -108,9 +112,22 @@
         <thingCategories>
             <li>ApparelArmor</li>
         </thingCategories>
+        <stuffCategories>
+            <li>Leathery</li>
+        </stuffCategories>
+        <colorPerStuff>
+            <li>
+                <stuff>Leather_Plain</stuff>
+                <color>(255,255,255)</color>
+            </li>
+            <li>
+                <stuff>Leather_Heavy</stuff>
+                <color>(255,255,255)</color>
+            </li>
+        </colorPerStuff>
+        <costStuffCount>25</costStuffCount>
         <costList>
             <Cloth>30</Cloth>
-            <Leather_Plain>15</Leather_Plain>
             <Synthread>15</Synthread>
         </costList>
         <apparel>
@@ -161,6 +178,9 @@
         <statBases>
             <MaxHitPoints>300</MaxHitPoints>
             <Mass>3</Mass>
+            <StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
             <Insulation_Cold>0</Insulation_Cold>
             <EquipDelay>4</EquipDelay>
         </statBases>
@@ -172,8 +192,6 @@
             <MeleeDodgeChance>4</MeleeDodgeChance>
         </equippedStatOffsets>
         <costList>
-            <Cloth>30</Cloth>
-            <Leather_Plain>15</Leather_Plain>
             <Hyperweave>15</Hyperweave>
         </costList>
         <apparel>
@@ -208,7 +226,7 @@
                 <li>Shell</li>
             </layers>
             <tags>
-                <li>Rimgate_TauriApparel_tag</li>
+                <li>Rimgate_VestInsert_tag</li>
             </tags>
             <defaultOutfitTags>
                 <li>Soldier</li>
@@ -234,7 +252,7 @@
     <!-- Steel Plates -->
 
     <ThingDef ParentName="Rimgate_PlateInsertBase">
-        <defName>Rimgate_TacticalVestSteelPlateInsert</defName>
+        <defName>Rimgate_SteelPlateInsert</defName>
         <label>Steel plate insert</label>
         <description>Steel plate insert for Tau'ri tactical vests. Turns your ribcage into a glorified bunker wall.\nHeavy, loud, but delightfully ricochet-y.</description>
         <recipeMaker>
@@ -267,7 +285,7 @@
     <!-- Composite Plate -->
 
     <ThingDef ParentName="Rimgate_PlateInsertBase">
-        <defName>Rimgate_TacticalVestCompositePlateInsert</defName>
+        <defName>Rimgate_CompositePlateInsert</defName>
         <label>Composite plate insert</label>
         <description>Composite plate insert for Tau'ri tactical vests—because steel's too mainstream. Offers solid protection against heat and blunt trauma.\nApproved by SG-1’s fashion-forward scientists and tactical nerds alike.</description>
         <techLevel>Industrial</techLevel>
@@ -290,7 +308,7 @@
             <MaxHitPoints>200</MaxHitPoints>
             <Mass>2</Mass>
             <Flammability>0</Flammability>
-            <ArmorRating_Sharp>0.45</ArmorRating_Sharp>
+            <ArmorRating_Sharp>0.55</ArmorRating_Sharp>
             <ArmorRating_Blunt>1.00</ArmorRating_Blunt>
             <ArmorRating_Heat>0.8</ArmorRating_Heat>
             <Insulation_Cold>0</Insulation_Cold>
@@ -350,7 +368,7 @@
         </costList>
         <apparel>
             <tags Inherit="false">
-                <li>Rimgate_TauriSpecialForcesApparel_tag</li>
+                <li>Rimgate_SpecialForcesVestInsert_tag</li>
             </tags>
         </apparel>
         <!-- Only attachable to spec ops vest -->
@@ -840,6 +858,9 @@
             <MaxHitPoints>200</MaxHitPoints>
             <Mass>2</Mass>
             <Flammability>0.6</Flammability>
+            <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.10</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
             <ArmorRating_Sharp>0.12</ArmorRating_Sharp>
             <ArmorRating_Blunt>0.08</ArmorRating_Blunt>
             <ArmorRating_Heat>0.09</ArmorRating_Heat>
@@ -853,9 +874,22 @@
         <thingCategories>
             <li>ApparelUtility</li>
         </thingCategories>
+        <stuffCategories>
+            <li>Leathery</li>
+        </stuffCategories>
+        <colorPerStuff>
+            <li>
+                <stuff>Leather_Plain</stuff>
+                <color>(255,255,255)</color>
+            </li>
+            <li>
+                <stuff>Leather_Heavy</stuff>
+                <color>(255,255,255)</color>
+            </li>
+        </colorPerStuff>
+        <costStuffCount>20</costStuffCount>
         <costList>
             <Cloth>45</Cloth>
-            <Leather_Plain>20</Leather_Plain>
             <Synthread>20</Synthread>
         </costList>
         <apparel>

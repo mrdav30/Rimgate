@@ -30,9 +30,14 @@
     <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
     <apparelMoney>1000~2400</apparelMoney>
     <apparelTags>
+      <li>Tribal</li>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
+      <li>IndustrialMilitaryBasic</li>
       <li>IndustrialMilitaryAdvanced</li>
       <li>SpacerMilitary</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
+      <li>Rimgate_WraithHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
     </apparelTags>
     <backstoryFiltersOverride>

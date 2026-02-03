@@ -63,16 +63,18 @@
 					<def>StartingThing_Defined</def>
 					<thingDef>Rimgate_TauriTacticalVest</thingDef>
 					<count>3</count>
+					<stuff>Leather_Heavy</stuff>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
-					<thingDef>Rimgate_TacticalVestSteelPlateInsert</thingDef>
+					<thingDef>Rimgate_SteelPlateInsert</thingDef>
 					<count>3</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
 					<thingDef>Rimgate_TauriTacticalBackpack</thingDef>
 					<count>3</count>
+					<stuff>Leather_Plain</stuff>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
@@ -113,7 +115,7 @@
 				<li Class="ScenPart_ScatterThingsNearPlayerStart">
 					<def>ScatterThingsNearPlayerStart</def>
 					<thingDef>Rimgate_GlyphParchment</thingDef>
-					<count>1</count>
+					<count>2</count>
 				</li>
 				<!-- Starting research -->
 				<li Class="ScenPart_StartingResearch">

@@ -29,9 +29,11 @@
     <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
     <apparelMoney>1000~2400</apparelMoney>
     <apparelTags>
-      <li>Rimgate_TauriApparel_tag</li>
       <li>IndustrialMilitaryAdvanced</li>
       <li>SpacerMilitary</li>
+      <li>Rimgate_TauriApparel_tag</li>
+      <li>Rimgate_TauriUtility_tag</li>
+      <li>Rimgate_VestInsert_tag</li>
     </apparelTags>
     <weaponMoney>1200~2000</weaponMoney>
     <weaponTags>

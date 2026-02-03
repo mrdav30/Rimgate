@@ -92,7 +92,6 @@
         </fixedLeaderKinds>
         <permanentEnemyToEveryoneExcept>
             <li>Rimgate_GoauldPlayerColony</li>
-            <li>Rimgate_TauriPlayerColony</li>
             <li>Rimgate_WraithPlayerColony</li>
             <li>PlayerTribe</li>
             <li>PlayerColony</li>

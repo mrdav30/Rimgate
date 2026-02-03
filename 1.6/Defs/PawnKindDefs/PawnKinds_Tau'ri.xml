@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+    <!-- ============================ Tau'ri Base ============================ -->
+
     <PawnKindDef Name="Rimgate_TauriBase" Abstract="True">
         <defaultFactionType>Rimgate_TauriFaction</defaultFactionType>
         <race>Human</race>
@@ -18,6 +20,8 @@
         </techHediffsTags>
         <biocodeWeaponChance>0.2</biocodeWeaponChance>
     </PawnKindDef>
+
+    <!-- ============ Tau'ri Civilian Classes ============ -->
 
     <PawnKindDef ParentName="Rimgate_TauriBase">
         <defName>Rimgate_TauriScientist</defName>
@@ -113,6 +117,8 @@
         <initialResistanceRange>16~25</initialResistanceRange>
     </PawnKindDef>
 
+    <!-- ============ Tau'ri Military Base ============ -->
+
     <PawnKindDef Name="Rimgate_TauriUniformedBase" ParentName="Rimgate_TauriBase" Abstract="True">
         <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
         <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
@@ -133,6 +139,7 @@
             <li>SpacerMilitary</li>
             <li>Rimgate_TauriApparel_tag</li>
             <li>Rimgate_TauriUtility_tag</li>
+            <li>Rimgate_VestInsert_tag</li>
         </apparelTags>
         <specificApparelRequirements>
             <li>
@@ -140,8 +147,8 @@
                 <requiredTag>Rimgate_TauriApparel_tag</requiredTag>
             </li>
             <li>
-                <bodyPartGroup>Torso</bodyPartGroup>
-                <requiredTag>Rimgate_TauriApparel_tag</requiredTag>
+                <apparelDef>Rimgate_TauriTacticalVest</apparelDef>
+                <stuff>Leather_Heavy</stuff>
             </li>
         </specificApparelRequirements>
         <apparelRequired>
@@ -169,6 +176,7 @@
         </inventoryOptions>
     </PawnKindDef>
 
+    <!-- Soldier -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCSoldier</defName>
         <label>Soldier</label>
@@ -178,6 +186,9 @@
             <li>Rimgate_TauriPistol_tag</li>
             <li>Rimgate_TauriShotgun_tag</li>
         </weaponTags>
+        <apparelRequired>
+            <li>Rimgate_SteelPlateInsert</li>
+        </apparelRequired>
         <skills>
             <li>
                 <skill>Shooting</skill>
@@ -186,6 +197,7 @@
         </skills>
     </PawnKindDef>
 
+    <!-- Medic -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriMedic</defName>
         <label>Medic</label>
@@ -197,6 +209,7 @@
         <apparelRequired>
             <li>Rimgate_TauriTacticalBackpack</li>
             <li>Rimgate_TacticalMedicBag</li>
+            <li>Rimgate_SteelPlateInsert</li>
         </apparelRequired>
         <skills>
             <li>
@@ -222,16 +235,20 @@
         </inventoryOptions>
     </PawnKindDef>
 
+    <!-- Rocketman -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCRocketman</defName>
         <label>Soldier</label>
-        <combatPower>135</combatPower>
+        <combatPower>165</combatPower>
         <weaponMoney>3000~3500</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
         <itemQuality>Good</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriRocketLauncher_tag</li>
         </weaponTags>
+        <apparelRequired>
+            <li>Rimgate_SteelPlateInsert</li>
+        </apparelRequired>
         <skills>
             <li>
                 <skill>Shooting</skill>
@@ -240,6 +257,7 @@
         </skills>
     </PawnKindDef>
 
+    <!-- Rifleman -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriRifleman</defName>
         <label>Rifleman</label>
@@ -255,6 +273,9 @@
         <weaponMoney>1550~2700</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
         <itemQuality>Good</itemQuality>
+        <apparelRequired>
+            <li>Rimgate_CompositePlateInsert</li>
+        </apparelRequired>
         <skills>
             <li>
                 <skill>Shooting</skill>
@@ -263,12 +284,13 @@
         </skills>
     </PawnKindDef>
 
+    <!-- Special Forces -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSpecialForces</defName>
         <label>Tau'ri operator</label>
         <race>Human</race>
         <combatPower>140</combatPower>
-        <itemQuality>Excellent</itemQuality>
+        <itemQuality>Good</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriShotgun_tag</li>
@@ -280,6 +302,7 @@
             <li>Rimgate_TauriApparel_tag</li>
             <li>Rimgate_TauriSpecialForcesApparel_tag</li>
             <li>Rimgate_TauriSpecOpsUtility_tag</li>
+            <li>Rimgate_SpecialForcesVestInsert_tag</li>
         </apparelTags>
         <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
         <apparelRequired Inherit="false">
@@ -294,8 +317,8 @@
                 <requiredTag>Rimgate_TauriSpecialForcesApparel_tag</requiredTag>
             </li>
             <li>
-                <bodyPartGroup>Torso</bodyPartGroup>
-                <requiredTag>Rimgate_TauriSpecialForcesApparel_tag</requiredTag>
+                <apparelDef>Rimgate_TauriSpecOpsVest</apparelDef>
+                <stuff>Leather_Heavy</stuff>
             </li>
         </specificApparelRequirements>
         <inventoryOptions>
@@ -341,6 +364,7 @@
         </disallowedTraits>
     </PawnKindDef>
 
+    <!-- Space Force -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSpaceForce</defName>
         <label>Tau'ri guardian</label>
@@ -352,6 +376,13 @@
             <li>Rimgate_TauriShotgun_tag</li>
             <li>Rimgate_Tauri_SniperRifle</li>
         </weaponTags>
+        <apparelTags Inherit="false">
+            <li>IndustrialMilitaryAdvanced</li>
+            <li>SpacerMilitary</li>
+            <li>Rimgate_TauriApparel_tag</li>
+            <li>Rimgate_TauriSpecialForcesApparel_tag</li>
+            <li>Rimgate_TauriSpecOpsUtility_tag</li>
+        </apparelTags>
         <apparelRequired Inherit="false">
             <li>Rimgate_TauriSGTeamBDU</li>
             <li>Rimgate_TacticalVacsuitHelm</li>
@@ -405,6 +436,7 @@
         </disallowedTraits>
     </PawnKindDef>
 
+    <!-- Commander -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriCommander</defName>
         <label>Commander</label>
@@ -416,11 +448,14 @@
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriPistol_tag</li>
         </weaponTags>
+        <apparelTags>
+            <li>Rimgate_TauriSpecialForcesApparel_tag</li>
+            <li>Rimgate_TauriSpecOpsUtility_tag</li>
+        </apparelTags>
         <specificApparelRequirements Inherit="False" />
         <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
         <apparelRequired>
             <li>Rimgate_TauriBaseballCap</li>
-            <li>Rimgate_NaquadahPlateInsert</li>
         </apparelRequired>
         <gearHealthRange>0.85~3.5</gearHealthRange>
         <weaponMoney>3000~3500</weaponMoney>

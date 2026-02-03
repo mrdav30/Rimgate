@@ -32,7 +32,7 @@ public static class Harmony_EquipmentUtility
         if (thing is not Apparel apparel) return;
 
         Comp_FrameApparel comp = ThingCompUtility.TryGetComp<Comp_FrameApparel>(apparel);
-        if (comp == null || !comp.ShouldUnequipFrameComponent(pawn)) return;
+        if (comp == null || !comp.IsFrameComponent || comp.HasAnyRequiredRootEquipped(pawn)) return;
 
         cantReason = comp.Props.failReasonKey.Translate();
         __result = false;

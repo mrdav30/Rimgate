@@ -175,13 +175,13 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
-        <defName>Rimgate_TacticalVestSteelPlateInsert</defName>
-        <thing>Rimgate_TacticalVestSteelPlateInsert</thing>
+        <defName>Rimgate_SteelPlateInsert</defName>
+        <thing>Rimgate_SteelPlateInsert</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
-        <defName>Rimgate_TacticalVestCompositePlateInsert</defName>
-        <thing>Rimgate_TacticalVestCompositePlateInsert</thing>
+        <defName>Rimgate_CompositePlateInsert</defName>
+        <thing>Rimgate_CompositePlateInsert</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>

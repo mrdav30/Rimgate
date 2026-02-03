@@ -78,7 +78,6 @@
 			</layers>
 			<tags>
 				<li>Rimgate_WraithHeadgear_tag</li>
-				<li>Rimgate_WraithSpacer_tag</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
@@ -285,14 +284,14 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
+				<li>Neck</li>
 				<li>Shoulders</li>
 				<li>Arms</li>
 				<li>Legs</li>
-				<li>Hands</li>
-				<li>Feet</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmor</wornGraphicPath>
 			<layers>
+				<li>Middle</li>
 				<li>Shell</li>
 			</layers>
 			<tags>
@@ -348,16 +347,14 @@
 			<MentalBreakThreshold>-0.15</MentalBreakThreshold>
 			<PainShockThreshold>0.15</PainShockThreshold>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
-			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.3</VacuumResistance>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
+				<li>Neck</li>
 				<li>Shoulders</li>
 				<li>Arms</li>
 				<li>Legs</li>
-				<li>Hands</li>
-				<li>Feet</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Torso/WraithCommander/RGWraithCommanderArmor</wornGraphicPath>
 			<layers>
