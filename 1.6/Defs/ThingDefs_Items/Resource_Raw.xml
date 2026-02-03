@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- =============== Naquadah ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_Naquadah</defName>
+    <label>Naquadah</label>
+    <description>A dense, metallic mineral that hums faintly under stress and can power everything from hand weapons to planetary extinction events.\n\nOnce refined, it becomes Naquadria — exponentially more powerful, exponentially more likely to redecorate your map in plasma.\n\nHandle with insulated gloves and smug superiority.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGNaquadah</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <useHitPoints>false</useHitPoints>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <statBases>
+      <MarketValue>80</MarketValue>
+      <Mass>0.3</Mass>
+      <StuffPower_Armor_Sharp>1.08</StuffPower_Armor_Sharp>
+      <StuffPower_Armor_Blunt>0.54</StuffPower_Armor_Blunt>
+      <StuffPower_Armor_Heat>0.9</StuffPower_Armor_Heat>
+      <StuffPower_Insulation_Cold>3</StuffPower_Insulation_Cold>
+      <StuffPower_Insulation_Heat>0</StuffPower_Insulation_Heat>
+      <SharpDamageMultiplier>1.1</SharpDamageMultiplier>
+      <BluntDamageMultiplier>1.5</BluntDamageMultiplier>
+    </statBases>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <stuffProps>
+      <categories>
+        <li>Metallic</li>
+      </categories>
+      <appearance>Metal</appearance>
+      <isAirtight>true</isAirtight>
+      <commonality>0</commonality>
+      <constructEffect>ConstructMetal</constructEffect>
+      <color>(114,114,114)</color>
+      <soundImpactBullet>BulletImpact_Metal</soundImpactBullet>
+      <soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
+      <soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>
+      <soundImpactMelee>Pawn_Melee_Punch_HitBuilding_Metal</soundImpactMelee>
+      <statFactors>
+        <MaxHitPoints>2.0</MaxHitPoints>
+        <Beauty>3.2</Beauty>
+        <Flammability>0.2</Flammability>
+        <DoorOpenSpeed>1</DoorOpenSpeed>
+        <WorkToMake>2.5</WorkToMake>
+        <WorkToBuild>2.5</WorkToBuild>
+        <BedRestEffectiveness>0.85</BedRestEffectiveness>
+        <MeleeWeapon_CooldownMultiplier>1</MeleeWeapon_CooldownMultiplier>
+      </statFactors>
+      <statFactorsQuality>
+        <li>
+          <stat>PsychicSensitivityFactor</stat>
+          <awful>1.06</awful>
+          <poor>1.08</poor>
+          <normal>1.1</normal>
+          <good>1.13</good>
+          <excellent>1.15</excellent>
+          <masterwork>1.17</masterwork>
+          <legendary>1.20</legendary>
+        </li>
+      </statFactorsQuality>
+      <statOffsetsQuality>
+        <li MayRequireAnyOf="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Biotech">
+          <stat>PsychicEntropyMaxOffset</stat>
+          <awful>4</awful>
+          <poor>6</poor>
+          <normal>8</normal>
+          <good>11</good>
+          <excellent>13</excellent>
+          <masterwork>15</masterwork>
+          <legendary>18</legendary>
+        </li>
+        <li MayRequireAnyOf="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Biotech">
+          <stat>PsychicEntropyRecoveryRateOffset</stat>
+          <awful>0.04</awful>
+          <poor>0.04</poor>
+          <normal>0.04</normal>
+          <good>0.04</good>
+          <excellent>0.04</excellent>
+          <masterwork>0.04</masterwork>
+          <legendary>0.04</legendary>
+        </li>
+      </statOffsetsQuality>
+    </stuffProps>
+    <deepCommonality>6</deepCommonality>
+    <deepCountPerPortion>45</deepCountPerPortion>
+    <deepLumpSizeRange>
+      <min>30</min>
+      <max>40</max>
+    </deepLumpSizeRange>
+    <comps>
+      <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+        <analysisID>1000800</analysisID>
+        <requiresResearchDef>AdvancedFabrication</requiresResearchDef>
+        <canStudyInPlace>false</canStudyInPlace>
+        <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+        <analysisDurationHours>8</analysisDurationHours>
+        <maintainProgress>true</maintainProgress>
+
+        <catastrophicFailureChance>0.25</catastrophicFailureChance>
+        <catastrophicDestroysThing>true</catastrophicDestroysThing>
+        <catastrophicExplosion>true</catastrophicExplosion>
+        <catastrophicExplosionRadius>1.5</catastrophicExplosionRadius>
+        <catastrophicExplosionDamage>10</catastrophicExplosionDamage>
+        <catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+        <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+        <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+        <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+        <activateTexPath>UI/Icons/Study</activateTexPath>
+        <activateLabelString>Analyze...</activateLabelString>
+        <activateDescString>Analyze the Naquadah sample.</activateDescString>
+        <jobString>Analyzing Naquadah sample</jobString>
+        <guiLabelString>Choose who should analyze this</guiLabelString>
+        <inspectString>Can be analyzed by a colonist.</inspectString>
+
+        <completedLetterLabel>{RESEARCH} unlocked</completedLetterLabel>
+        <completedLetter>{PAWN_labelShort} has successfully analyzed the Naquadah sample and unlocked {RESEARCH} research.\n\nThe residue flash-vaporized during testing, coating the lab in a faintly glowing dust.\n\nAll nearby Geiger counters have been advised to stop screaming.</completedLetter>
+        <completedLetterDef>PositiveEvent</completedLetterDef>
+
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- =============== Biomass ==================== -->
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>Rimgate_Biomass</defName>
+    <label>Biomass</label>
+    <description>a squishy, processed pulp of organic matter. Mostly meat. Essential for crafting Wraith biotech and excellent for ruining appetites.\nSmells like victory... and protein.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGBiomass</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <useHitPoints>false</useHitPoints>
+    <soundInteract>Standard_Pickup</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <statBases>
+      <MarketValue>1.3</MarketValue>
+      <Mass>0.3</Mass>
+    </statBases>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+  </ThingDef>
+
+  <!-- ==================== Symbiote Queen ==================== -->
+
+  <ThingDef>
+    <defName>Rimgate_SymbioteQueen</defName>
+    <label>Goa'uld symbiote queen</label>
+    <description>A massive, mature Goa'uld symbiote capable of spawning new larvae. Too large and willful to be used as an implant—its proper place is submerged in a prepared spawning pool, fed regularly and watched carefully.</description>
+    <descriptionHyperlinks>
+      <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
+    </descriptionHyperlinks>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGGoauldSymbioteQueen</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>0.75</drawSize>
+    </graphicData>
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <drawerType>MapMeshOnly</drawerType>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <tickerType>Rare</tickerType>
+    <alwaysHaulable>true</alwaysHaulable>
+    <pathCost>14</pathCost>
+    <allowedArchonexusCount>1</allowedArchonexusCount>
+    <rotatable>false</rotatable>
+    <statBases>
+      <Mass>5</Mass>
+      <MarketValue>1800</MarketValue>
+      <MaxHitPoints>120</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <Beauty>-4</Beauty>
+      <DeteriorationRate>2.0</DeteriorationRate>
+    </statBases>
+    <size>(1,1)</size>
+    <stackLimit>1</stackLimit>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <thingSetMakerTags Inherit="False" />
+    <tradeability>Sellable</tradeability>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="Rimgate.CompProperties_SymbioteRottable">
+        <daysToRotStart>1</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

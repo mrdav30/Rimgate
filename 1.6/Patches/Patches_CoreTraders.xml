@@ -40,9 +40,7 @@
 			<!-- Prevent any traders from selling Sarcophagus buildings -->
 
 			<li Class="PatchOperationConditional">
-				<xpath>
-					Defs/TraderKindDef/stockGenerators/li[categoryDef="BuildingsFurniture"]/excludedThingDefs
-				</xpath>
+				<xpath>Defs/TraderKindDef/stockGenerators/li[categoryDef="BuildingsFurniture"]/excludedThingDefs</xpath>
 				<nomatch Class="PatchOperationAdd">
 					<xpath>Defs/TraderKindDef/stockGenerators/li[categoryDef="BuildingsFurniture"]</xpath>
 					<value>
@@ -52,8 +50,7 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>
-					Defs/TraderKindDef/stockGenerators/li[categoryDef="BuildingsFurniture"]/excludedThingDefs</xpath>
+				<xpath>Defs/TraderKindDef/stockGenerators/li[categoryDef="BuildingsFurniture"]/excludedThingDefs</xpath>
 				<value>
 					<li>Rimgate_GoauldSarcophagus</li>
 				</value>
@@ -62,7 +59,7 @@
 			<!-- Make VanometicPowerCell tradeable -->
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VanometricPowerCell"]/tradeability</xpath>
+				<xpath>Defs/ThingDef[defName="VanometricPowerCell"]/tradeability</xpath>
 				<value>
 					<tradeability>All</tradeability>
 				</value>

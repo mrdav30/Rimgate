@@ -37,8 +37,44 @@
 		<researchPrerequisite>Rimgate_NaquadahRefinement</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- Bulk -->
+	<RecipeDef>
+		<defName>Rimgate_MakeNaquadriaBulk</defName>
+		<label>refine Naquadria x4</label>
+		<description>make a bulk batch of Naquadria from Naquadah.</description>
+		<jobString>making bulk Naquadria.</jobString>
+		<effectWorking>Cremate</effectWorking>
+		<soundWorking>Recipe_Cremate</soundWorking>
+		<workAmount>7500</workAmount>
+		<workSpeedStat>SmeltingSpeed</workSpeedStat>
+		<recipeUsers>
+			<li>FabricationBench</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_Naquadah</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<workSkill>Crafting</workSkill>
+		<products>
+			<Rimgate_Naquadria>4</Rimgate_Naquadria>
+		</products>
+		<researchPrerequisite>Rimgate_NaquadahRefinement</researchPrerequisite>
+	</RecipeDef>
+
 	<!-- ==================== Tretonin ==================== -->
 
+	<!-- Prim'ta Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_MakeTretonin</defName>
 		<label>refine Tretonin</label>
@@ -80,11 +116,12 @@
 		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- Bulk Prim'ta Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_MakeTretonin_x4</defName>
 		<label>refine Tretonin x4</label>
 		<description>make a large batch of Tretonin from Prim'ta symbiotes.</description>
-		<jobString>making Tretonin.</jobString>
+		<jobString>making bulk Tretonin.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_CookMeal</soundWorking>
 		<workAmount>7500</workAmount>
@@ -121,14 +158,15 @@
 		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- Symbiote Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_MakeTretonin_Symbiote</defName>
 		<label>refine Tretonin (Goa'uld symbiote)</label>
-		<description>make a batch of Tretonin by refining a mature Goa'uld symbiote.</description>
-		<jobString>making Tretonin.</jobString>
+		<description>make a bulk batch of Tretonin by refining a mature Goa'uld symbiote.</description>
+		<jobString>making bulk Tretonin.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_CookMeal</soundWorking>
-		<workAmount>2000</workAmount>
+		<workAmount>5000</workAmount>
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<workSkill>Intellectual</workSkill>
 		<skillRequirements>
@@ -162,6 +200,7 @@
 		<researchPrerequisite>Rimgate_TretoninSynthesis</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- Medicine Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_MakeTretonin_Medicine</defName>
 		<label>refine Tretonin (no symbiote)</label>
@@ -169,7 +208,7 @@
 		<jobString>making Tretonin.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_CookMeal</soundWorking>
-		<workAmount>2000</workAmount>
+		<workAmount>5000</workAmount>
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<workSkill>Intellectual</workSkill>
 		<skillRequirements>
@@ -194,7 +233,7 @@
 						<li>Rimgate_Naquadah</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>6</count>
 			</li>
 		</ingredients>
 		<products>
@@ -310,14 +349,15 @@
 		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- Bulk Cocooned Meat Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_WraithMakeMeatCocoon_x4</defName>
 		<label>Cocoon meat x4</label>
 		<description>make a large batch of cocooned meat.</description>
-		<jobString>making cocooned meat.</jobString>
+		<jobString>making bulk cocooned meat.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>600</workAmount>
+		<workAmount>550</workAmount>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<recipeUsers>
 			<li>Rimgate_CocoonStation</li>
@@ -347,6 +387,7 @@
 
 	<!-- ==================== Biomass ==================== -->
 
+	<!-- Cocooned Meat Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_MakeCocoonedMeatBiomass</defName>
 		<label>make Biomass from cocooned meat</label>
@@ -389,14 +430,15 @@
 		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- Bulk Cocooned Meat Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_MakeCocoonedMeatBiomass_4x</defName>
 		<label>make Biomass from cocooned meat x4</label>
 		<description>make a large batch of Biomass.</description>
-		<jobString>making Biomass.</jobString>
+		<jobString>making bulk Biomass.</jobString>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>550</workAmount>
+		<workAmount>1200</workAmount>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<recipeUsers>
 			<li>Rimgate_CocoonStation</li>
@@ -431,6 +473,7 @@
 		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- Meat Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_MakeMeatBiomass</defName>
 		<label>make Biomass from meat</label>
@@ -487,15 +530,16 @@
 		<researchPrerequisite>Rimgate_MeatCultivation</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- Bulk Meat Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_MakeMeatBiomass_x4</defName>
 		<label>make Biomass from meat x4</label>
-		<description>make a batch of Biomass from meat.</description>
-		<jobString>making biomass.</jobString>
+		<description>make a large batch of Biomass from meat.</description>
+		<jobString>making bulk biomass.</jobString>
 		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
 		<effectWorking>ButcherFlesh</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<workAmount>650</workAmount>
+		<workAmount>1700</workAmount>
 		<allowMixingIngredients>true</allowMixingIngredients>
 		<ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
 		<recipeUsers>
@@ -625,6 +669,187 @@
 		</products>
 
 		<researchPrerequisite>Bionics</researchPrerequisite>
+	</RecipeDef>
+
+	<!-- ==================== Cement + Concrete ==================== -->
+
+	<!-- Cement -->
+	<RecipeDef>
+		<defName>Rimgate_MakeCement</defName>
+		<label>smelt stone into cement</label>
+		<description>use high heat to calcine limestone or other stone into cement, a key ingredient for concrete.</description>
+		<jobString>smelting stone into cement.</jobString>
+		<workAmount>1500</workAmount>
+		<workSpeedStat>SmeltingSpeed</workSpeedStat>
+		<effectWorking>Smelt</effectWorking>
+		<soundWorking>Recipe_Smelt</soundWorking>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredientValueGetterClass>Rimgate.IngredientValueGetter_Cement</ingredientValueGetterClass>
+		<recipeUsers>
+			<li>ElectricSmelter</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>StoneBlocks</li><!-- 15 limestone blocks or 30 other stone blocks -->
+						<li>StoneChunks</li><!-- 1 limestone chunks or ~2 other stone chunks -->
+					</categories>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<products>
+			<Rimgate_Cement>2</Rimgate_Cement>
+		</products>
+		<fixedIngredientFilter>
+			<categories>
+				<li>StoneBlocks</li>
+				<li>StoneChunks</li>
+			</categories>
+		</fixedIngredientFilter>
+		<researchPrerequisites>
+			<li>Rimgate_TauriManufacturing</li>
+			<li>Stonecutting</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+	<!-- Bulk Cement -->
+	<RecipeDef>
+		<defName>Rimgate_MakeCementBulk</defName>
+		<label>smelt stone into cement x4</label>
+		<description>use high heat to calcine limestone or other stone into cement to produce concrete.</description>
+		<jobString>smelting bulk stone into cement.</jobString>
+		<workAmount>5500</workAmount>
+		<workSpeedStat>SmeltingSpeed</workSpeedStat>
+		<effectWorking>Smelt</effectWorking>
+		<soundWorking>Recipe_Smelt</soundWorking>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredientValueGetterClass>Rimgate.IngredientValueGetter_Cement</ingredientValueGetterClass>
+		<recipeUsers>
+			<li>ElectricSmelter</li>
+			<li>ElectricCrematorium</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>StoneBlocks</li><!-- 80 limestone blocks or 120 other stone blocks -->
+						<li>StoneChunks</li><!-- 4 limestone chunks or ~6 other stone chunks -->
+					</categories>
+				</filter>
+				<count>120</count>
+			</li>
+		</ingredients>
+		<products>
+			<Rimgate_Cement>8</Rimgate_Cement>
+		</products>
+		<fixedIngredientFilter>
+			<categories>
+				<li>StoneBlocks</li>
+				<li>StoneChunks</li>
+			</categories>
+		</fixedIngredientFilter>
+		<researchPrerequisites>
+			<li>Rimgate_TauriManufacturing</li>
+			<li>Stonecutting</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+	<!-- Concrete -->
+
+	<RecipeDef>
+		<defName>Rimgate_MakeConcrete</defName>
+		<label>mix concrete</label>
+		<description>Mix cement, aggregate, and water to produce concrete.\n\nNote: Concrete must be used quickly before it hardens and is no longer workable.\n\nNote 2: Near impossible to use in freezing temperatures (below 0°C).</description>
+		<jobString>Mixing concrete.</jobString>
+		<workAmount>2100</workAmount>
+		<effectWorking>Smelt</effectWorking>
+		<soundWorking>Recipe_Cremate</soundWorking>
+		<recipeUsers>
+			<li>BiofuelRefinery</li>
+			<li>ElectricCrematorium</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Cement</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<categories>
+						<li>StoneChunks</li>
+					</categories>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<products>
+			<Rimgate_Concrete>45</Rimgate_Concrete>
+		</products>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_Cement</li>
+			</thingDefs>
+			<categories>
+				<li>StoneChunks</li>
+			</categories>
+		</fixedIngredientFilter>
+		<researchPrerequisites>
+			<li>Rimgate_TauriManufacturing</li>
+			<li>Stonecutting</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+	<!-- Bulk Concrete -->
+	<RecipeDef>
+		<defName>Rimgate_MakeConcreteBulk</defName>
+		<label>mix concrete x4</label>
+		<description>Mix cement, aggregate, and water in bulk to produce concrete.\n\nNote: Concrete must be used quickly before it hardens and is no longer workable.\n\nNote 2: Near impossible to use in freezing temperatures (below 0°C).</description>
+		<jobString>Mixing bulk concrete.</jobString>
+		<workAmount>7900</workAmount>
+		<effectWorking>Smelt</effectWorking>
+		<soundWorking>Recipe_Cremate</soundWorking>
+		<recipeUsers>
+			<li>BiofuelRefinery</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Cement</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<categories>
+						<li>StoneChunks</li>
+					</categories>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<products>
+			<Rimgate_Concrete>180</Rimgate_Concrete>
+		</products>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_Cement</li>
+			</thingDefs>
+			<categories>
+				<li>StoneChunks</li>
+			</categories>
+		</fixedIngredientFilter>
+		<researchPrerequisites>
+			<li>Rimgate_TauriManufacturing</li>
+			<li>Stonecutting</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 </Defs>

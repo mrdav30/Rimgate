@@ -7,7 +7,7 @@
 	<RG_SwitchToCommand_Desc>Switch to {0}.</RG_SwitchToCommand_Desc>
 
 	<RG_FrameApparel_CannotWear_NoFrame>no attachable equipment available.</RG_FrameApparel_CannotWear_NoFrame>
-	
+
 	<RG_Stat_FrameApparel_RequiredFrames_Label>Attaches to</RG_Stat_FrameApparel_RequiredFrames_Label>
 	<RG_Stat_FrameApparel_RequiredFrames_Desc>The equipment required to be worn so this can attach to it.</RG_Stat_FrameApparel_RequiredFrames_Desc>
 
@@ -353,6 +353,11 @@
 	<RG_MessageSleepingPawnsAlerted>Enemies have woken from hibernation.</RG_MessageSleepingPawnsAlerted>
 	<RG_MessageSleepingThreatDelayActivated>Enemies will wake up in {0}.</RG_MessageSleepingThreatDelayActivated>
 
+	<!-- Dissolution -->
+
+	<RG_DissolvesEvery>{0} {1} {2} every {3}</RG_DissolvesEvery>
+	<RG_DissolveFrozenDestroys>Frozen solid (ruined)</RG_DissolveFrozenDestroys>
+
 	<!-- Shield -->
 
 	<RG_ShieldGenRadiusLabel>Set Radius</RG_ShieldGenRadiusLabel>
@@ -474,5 +479,9 @@
 	<!-- Hediffs -->
 
 	<RG_NaniteResurrection_Message>{PAWN_labelShort} has been resurrected by nanites replicators!</RG_NaniteResurrection_Message>
+
+	<!-- Resources -->
+
+	<RG_CementValueDesc>Raw stone chunks go {0}x further than other stone materials and anything made of limestone reduces the cost by {1}.</RG_CementValueDesc>
 
 </LanguageData>

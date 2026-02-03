@@ -361,7 +361,9 @@
     <Compile Include="Comps\CompAssignableToPawn_Sarcophagus.cs" />
     <Compile Include="Comps\CompUseEffect_InstallSymbiote.cs" />
     <Compile Include="Comps\Comp_BodyGraphicSwapper.cs" />
+    <Compile Include="Comps\Comp_Dissolves.cs" />
     <Compile Include="Comps\Properties\CompProperties_BodyGraphicSwapper.cs" />
+    <Compile Include="Comps\Properties\CompProperties_Dissolves.cs" />
     <Compile Include="Comps\Properties\CompProperties_GlyphParchment.cs" />
     <Compile Include="Comps\Properties\CompProperties_UseEffectInstallSymbiote.cs" />
     <Compile Include="Comps\Comp_SymbiotePool.cs" />
@@ -421,6 +423,7 @@
     <Compile Include="Quests\GenStep_SpawnStructureLayout.cs" />
     <Compile Include="Quests\QuestNode_Root_GateSite.cs" />
     <Compile Include="Quests\QuestNode_SetSiteQuestId.cs" />
+    <Compile Include="Recipes\IngredientValueGetter_Cement.cs" />
     <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_DwarfgateNoExpedition .cs" />
     <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />

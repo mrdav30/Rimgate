@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- ================ Walls ================ -->
+  <!-- ======================= Walls ======================= -->
 
   <!-- ====== Goauld wall ====== -->
 
@@ -210,7 +210,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <linkType>Basic</linkType>
       <linkFlags>
-        <li>Custom7</li>
+        <li>Custom10</li>
       </linkFlags>
       <shadowData>
         <volume>(0.3, 0.5, 0.3)</volume>
@@ -279,6 +279,94 @@
     <damageMultipliers>
       <li>
         <damageDef>Bomb</damageDef>
+        <multiplier>0.5</multiplier>
+      </li>
+      <li>
+        <damageDef>Thump</damageDef>
+        <multiplier>0.5</multiplier>
+      </li>
+    </damageMultipliers>
+
+    <researchPrerequisites>
+      <li>Rimgate_TauriManufacturing</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+  </ThingDef>
+
+  <!-- ====== Concrete Fence ====== -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_ConcreteBlockFence</defName>
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+
+    <label>Concrete block fence</label>
+    <description>A sturdy industrial-grade concrete block fence. Provides a basic level of perimeter security.\n\nNot capable of stopping determined intruders or holding up a roof.</description>
+
+    <graphicData>
+      <texPath>Things/Building/Structure/RGConcreteBlockFence</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <linkType>Basic</linkType>
+      <linkFlags>
+        <li>Custom10</li>
+      </linkFlags>
+    </graphicData>
+    <uiIconPath>Things/Building/Structure/RGConcreteBlockFenceIcon</uiIconPath>
+
+    <noRightClickDraftAttack>true</noRightClickDraftAttack>
+    <replaceTags>
+      <li>Wall</li>
+    </replaceTags>
+
+    <stuffCategories Inherit="False" />
+    <costList>
+      <Rimgate_Concrete>4</Rimgate_Concrete>
+    </costList>
+
+    <statBases>
+      <MaxHitPoints>650</MaxHitPoints>
+      <WorkToBuild>500</WorkToBuild>
+      <Flammability>0</Flammability>
+    </statBases>
+
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <staticSunShadowHeight>1</staticSunShadowHeight>
+    <castEdgeShadows>false</castEdgeShadows>
+    <blockWind>true</blockWind>
+    <blockLight>true</blockLight>
+    <fillPercent>1</fillPercent>
+    <coversFloor>false</coversFloor>
+    <drawStyleCategory>Walls</drawStyleCategory>
+    <tickerType>Never</tickerType>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <holdsRoof>false</holdsRoof>
+    <designationCategory>Structure</designationCategory>
+    <canOverlapZones>false</canOverlapZones>
+    <fertility>0</fertility>
+
+    <building>
+      <isInert>true</isInert>
+      <isWall>true</isWall>
+      <isPlaceOverableWall>true</isPlaceOverableWall>
+      <ai_chillDestination>false</ai_chillDestination>
+      <supportsWallAttachments>false</supportsWallAttachments>
+      <isStuffableAirtight>false</isStuffableAirtight>
+      <blueprintGraphicData>
+        <texPath>Things/Building/Structure/RGConcreteBlockFence_Blueprint</texPath>
+      </blueprintGraphicData>
+      <relatedBuildCommands>
+        <li>Rimgate_ChainLinkFenceGate</li>
+      </relatedBuildCommands>
+    </building>
+
+    <damageMultipliers>
+      <li>
+        <damageDef>Bomb</damageDef>
         <multiplier>0.25</multiplier>
       </li>
       <li>
@@ -289,11 +377,12 @@
 
     <researchPrerequisites>
       <li>Rimgate_TauriManufacturing</li>
+      <li>Stonecutting</li>
     </researchPrerequisites>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
   </ThingDef>
 
-  <!-- ================ Doors ================ -->
+  <!-- ======================= Doors ======================= -->
 
   <ThingDef ParentName="DoorBase">
     <defName>Rimgate_ChainLinkFenceGate</defName>

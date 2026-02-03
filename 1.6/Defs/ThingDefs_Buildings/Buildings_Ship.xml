@@ -21,6 +21,7 @@
     <defaultPlacingRot>East</defaultPlacingRot>
     <pathCost>50</pathCost>
     <drawOffscreen>true</drawOffscreen>
+    <fillPercent>0.65</fillPercent>
     <passability>PassThroughOnly</passability>
     <stealable>false</stealable>
     <altitudeLayer>Building</altitudeLayer>
@@ -206,6 +207,7 @@
     <defaultPlacingRot>East</defaultPlacingRot>
     <pathCost>50</pathCost>
     <drawOffscreen>true</drawOffscreen>
+    <fillPercent>0.3</fillPercent>
     <passability>PassThroughOnly</passability>
     <stealable>false</stealable>
     <altitudeLayer>Building</altitudeLayer>
@@ -388,7 +390,7 @@
     </graphicData>
     <defaultPlacingRot>East</defaultPlacingRot>
     <tickerType>Normal</tickerType>
-    <fillPercent>0.4</fillPercent>
+    <fillPercent>0.5</fillPercent>
     <pathCost>50</pathCost>
     <drawOffscreen>true</drawOffscreen>
     <passability>PassThroughOnly</passability>

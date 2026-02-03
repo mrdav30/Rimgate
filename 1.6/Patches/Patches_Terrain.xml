@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+    <Operation Class="PatchOperationSequence">
+        <operations>
+
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/TerrainDef[defName="Concrete"]/costList</xpath>
+                <value>
+                    <costList>
+                        <Rimgate_Concrete>1</Rimgate_Concrete>
+                    </costList>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/TerrainDef[defName="PavedTile"]/costList</xpath>
+                <value>
+                    <costList>
+                        <Rimgate_Concrete>2</Rimgate_Concrete>
+                    </costList>
+                </value>
+            </li>
+
+        </operations>
+    </Operation>
+
+</Patch>

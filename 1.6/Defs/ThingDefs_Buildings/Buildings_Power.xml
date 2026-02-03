@@ -24,7 +24,7 @@
     <passability>PassThroughOnly</passability>
     <pathCost>150</pathCost>
     <blockWind>true</blockWind>
-    <fillPercent>1.0</fillPercent>
+    <fillPercent>0.5</fillPercent>
     <castEdgeShadows>false</castEdgeShadows>
     <statBases>
       <MaxHitPoints>350</MaxHitPoints>
@@ -129,6 +129,7 @@
       <ComponentSpacer>8</ComponentSpacer>
     </costList>
     <noRightClickDraftAttack>true</noRightClickDraftAttack>
+    <fillPercent>0.5</fillPercent>
     <passability>PassThroughOnly</passability>
     <canOverlapZones>false</canOverlapZones>
     <altitudeLayer>Building</altitudeLayer>
@@ -208,7 +209,7 @@
     <passability>PassThroughOnly</passability>
     <pathCost>150</pathCost>
     <blockWind>true</blockWind>
-    <fillPercent>1.0</fillPercent>
+    <fillPercent>0.5</fillPercent>
     <castEdgeShadows>false</castEdgeShadows>
     <statBases>
       <MaxHitPoints>350</MaxHitPoints>
@@ -288,7 +289,7 @@
     <size>(2,2)</size>
     <passability>PassThroughOnly</passability>
     <pathCost>60</pathCost>
-    <fillPercent>1</fillPercent>
+    <fillPercent>0.5</fillPercent>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
 
     <graphicData>

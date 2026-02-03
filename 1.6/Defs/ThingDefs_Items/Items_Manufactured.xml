@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- ==================== Iris ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_IrisInstallKit</defName>
+        <label>Iris installation kit</label>
+        <description>a high-tech deployment kit for installing an iris over a Dwarfgate.\nTurns your wormhole into a one-way trip—great for defense, less great for diplomacy.</description>
+        <thingClass>ThingWithComps</thingClass>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGIrisUpgradeKit</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stackLimit>1</stackLimit>
+        <useHitPoints>true</useHitPoints>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Mass>80</Mass>
+            <Flammability>0</Flammability>
+        </statBases>
+        <techLevel>Spacer</techLevel>
+        <thingCategories>
+            <li>Manufactured</li>
+        </thingCategories>
+        <tradeability>None</tradeability>
+        <comps>
+            <li Class="CompProperties_Usable">
+                <useJob>Rimgate_InstallIris</useJob>
+                <useLabel>Install Iris</useLabel>
+                <useDuration>5000</useDuration>
+                <showUseGizmo>true</showUseGizmo>
+            </li>
+            <li Class="CompProperties_Targetable">
+                <compClass>Rimgate.CompTargetable_Gate</compClass>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ==================== Biomaterial Procurement Kit ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_BiomaterialProcurementKit</defName>
+        <label>biomaterial procurement kit</label>
+        <description>Sterile field tools, preservative gel, and a disappointingly sharp set of cutters. Required to recover intact biomaterials from corpses without turning them into soup.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/ProcurementKit</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+            <drawSize>0.85</drawSize>
+        </graphicData>
+        <uiIconForStackCount>1</uiIconForStackCount>
+        <techLevel>Ultra</techLevel>
+        <possessionCount>1</possessionCount>
+        <statBases>
+            <MarketValue>120</MarketValue>
+            <Mass>0.8</Mass>
+            <DeteriorationRate>2.0</DeteriorationRate>
+        </statBases>
+        <stackLimit>3</stackLimit>
+        <thingCategories>
+            <li>Manufactured</li>
+        </thingCategories>
+        <tradeTags>
+            <li>ExoticMisc</li>
+        </tradeTags>
+    </ThingDef>
+
+    <!-- ==================== Naquadria ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_Naquadria</defName>
+        <label>Naquadria</label>
+        <description>a highly enriched, dangerously unstable derivative of Naquadah. Perfect for experiments that end in glorious explosions—or annihilating your base if you sneeze too hard.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGNaquadria</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <possessionCount>20</possessionCount>
+        <tickerType>Normal</tickerType>
+        <stackLimit>150</stackLimit>
+        <healthAffectsPrice>false</healthAffectsPrice>
+        <soundInteract>Metal_Drop</soundInteract>
+        <soundDrop>Metal_Drop</soundDrop>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <MarketValue>800</MarketValue>
+            <Mass>0.3</Mass>
+            <Flammability>2.0</Flammability>
+            <DeteriorationRate>1.0</DeteriorationRate>
+        </statBases>
+        <tradeTags>
+            <li>ExoticMisc</li>
+        </tradeTags>
+        <thingSetMakerTags>
+            <li>RewardStandardCore</li>
+        </thingSetMakerTags>
+        <thingCategories>
+            <li>Manufactured</li>
+        </thingCategories>
+        <comps>
+            <li Class="CompProperties_Explosive">
+                <explosiveRadius>2.66</explosiveRadius>
+                <explosiveDamageType>Flame</explosiveDamageType>
+                <explosiveExpandPerStackcount>0.037</explosiveExpandPerStackcount>
+                <startWickOnDamageTaken>
+                    <li>Flame</li>
+                </startWickOnDamageTaken>
+                <startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+                <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+                <preExplosionSpawnChance>1</preExplosionSpawnChance>
+                <wickTicks>70~150</wickTicks>
+            </li>
+        </comps>
+        <allowedArchonexusCount>150</allowedArchonexusCount>
+    </ThingDef>
+
+    <!-- ==================== Cement ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_Cement</defName>
+        <label>cement</label>
+        <description>A powder produced by heating limestone or other stony materials at high temperatures, creating a key ingredient for concrete.\n\nNote: must be stored properly to prevent hardening.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/Cement</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <resourceReadoutPriority>Middle</resourceReadoutPriority>
+        <soundInteract>Stone_Drop</soundInteract>
+        <soundDrop>Stone_Drop</soundDrop>
+        <stackLimit>75</stackLimit>
+        <useHitPoints>true</useHitPoints>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <MarketValue>1</MarketValue>
+            <Mass>0.5</Mass>
+            <Flammability>0</Flammability>
+            <DeteriorationRate>2.0</DeteriorationRate>
+        </statBases>
+        <thingCategories>
+            <li>Manufactured</li>
+        </thingCategories>
+        <drawGUIOverlay>true</drawGUIOverlay>
+        <tradeability>Sellable</tradeability>
+        <techLevel>Industrial</techLevel>
+    </ThingDef>
+
+    <!-- ==================== Concrete ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_Concrete</defName>
+
+        <label>concrete slurry</label>
+        <description>A mixture of cement and aggregate which can be easily poured into a hard, resilient stony material.\n\nNote: Concrete must be used quickly before it hardens and is no longer workable.\n\nNote 2: Near impossible to use in freezing temperatures (below 0°C).</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGConcrete</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <soundInteract>Stone_Drop</soundInteract>
+        <soundDrop>Stone_Drop</soundDrop>
+
+        <statBases>
+            <MaxHitPoints>200</MaxHitPoints>
+            <MarketValue>2.1</MarketValue>
+            <Mass>1.5</Mass>
+            <SharpDamageMultiplier>0.8</SharpDamageMultiplier>
+            <BluntDamageMultiplier>1.1</BluntDamageMultiplier>
+            <ConstructionSpeedFactor>1.1</ConstructionSpeedFactor>
+            <DeteriorationRate>2.0</DeteriorationRate>
+        </statBases>
+
+        <useHitPoints>true</useHitPoints>
+        <healthAffectsPrice>false</healthAffectsPrice>
+        <thingCategories>
+            <li>Manufactured</li>
+        </thingCategories>
+        <burnableByRecipe>false</burnableByRecipe>
+        <smeltable>false</smeltable>
+        <tradeability>None</tradeability>
+
+        <stuffProps>
+            <categories>
+                <li>Stony</li>
+            </categories>
+            <commonality>0.16</commonality>
+            <appearance>Bricks</appearance>
+            <isAirtight>true</isAirtight>
+
+            <color>(107,109,107)</color>
+
+            <constructEffect>ConstructMetal</constructEffect>
+            <soundImpactBullet>BulletImpact_Ground</soundImpactBullet>
+            <soundMeleeHitSharp>MeleeHit_Stone</soundMeleeHitSharp>
+            <soundMeleeHitBlunt>MeleeHit_Stone</soundMeleeHitBlunt>
+            <soundImpactMelee>Pawn_Melee_Punch_HitBuilding_Stone</soundImpactMelee>
+
+            <statOffsets>
+                <WorkToBuild>120</WorkToBuild>
+            </statOffsets>
+            <statFactors>
+                <MarketValue>0.4</MarketValue>
+                <Beauty>0.8</Beauty>
+                <Flammability>0</Flammability>
+                <MaxHitPoints>1.6</MaxHitPoints>
+                <WorkToBuild>0.5</WorkToBuild>
+                <DoorOpenSpeed>0.5</DoorOpenSpeed>
+                <BedRestEffectiveness>0.6</BedRestEffectiveness>
+                <MeleeWeapon_CooldownMultiplier>1.4</MeleeWeapon_CooldownMultiplier>
+            </statFactors>
+        </stuffProps>
+
+        <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+        <allowedArchonexusCount>100</allowedArchonexusCount>
+
+        <comps>
+            <li Class="Rimgate.CompProperties_Dissolves">
+                <dissolutionAfterDays>1</dissolutionAfterDays>
+                <amountPerDissolution>5</amountPerDissolution>
+                <dissolutionFactorIndoors>2</dissolutionFactorIndoors>
+                <dissolutionFactorRain>1</dissolutionFactorRain>
+                <destroyIfFrozen>true</destroyIfFrozen>
+                <dissolveEveryActionVerb>hardens</dissolveEveryActionVerb>
+            </li>
+        </comps>
+    </ThingDef>
+
+</Defs>
