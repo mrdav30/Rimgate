@@ -12,7 +12,11 @@ public class HediffCompProperties_GivePsylinkOnAdded : HediffCompProperties
 
     public IntRange extraPsycasts = new IntRange(1, 2);
 
-    public List<string> abilityTags;
+    public List<string> whiteListAbilityDefs;
+
+    public List<string> blackListAbilityDefs;
+
+    public List<string> blackListAbilityCategories;
 
     // optional tag filter (defName or abilityTags)
     public string requiredGene;

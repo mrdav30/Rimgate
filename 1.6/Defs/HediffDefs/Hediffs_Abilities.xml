@@ -116,8 +116,7 @@
 
     <!-- ==================== Psylink on Spawn ==================== -->
 
-    <HediffDef>
-        <defName>Rimgate_InitPsylink</defName>
+    <HediffDef Name="Rimgate_InitPsylinkBase" Abstract="true">
         <label>psionic attunement</label>
         <description>This hediff adds psylink levels to a pawn then removes itself.</description>
         <scenarioCanAdd>false</scenarioCanAdd>
@@ -125,22 +124,28 @@
         <tendable>false</tendable>
         <initialSeverity>0.1</initialSeverity>
         <hediffClass>HediffWithComps</hediffClass>
-        <comps>
+        <!-- <comps>
             <li Class="Rimgate.HediffCompProperties_GivePsylinkOnAdded">
-                <!-- tuning per pawnkind -->
+                tuning per pawnkind
                 <minLevel>2</minLevel>
                 <maxLevel>4</maxLevel>
                 <extraPsycasts>1~3</extraPsycasts>
-                <!-- Optional filter so only “control/disruption” flavored casts are picked -->
-                <!-- You may also create your own tag strings and add them to AbilityDefs -->
-                <!-- <abilityTags>
+                Optional filter so only “control/disruption” flavored casts are picked
+                You may also create your own tag strings and add them to AbilityDefs
+                <whiteListAbilityDefs>
                     <li>Calm</li>
                     <li>Shock</li>
                     <li>Vertigo</li>
                     <li>Chaos</li>
-                </abilityTags> -->
+                </whiteListAbilityDefs>
+                <blackListAbilityDefs>
+                    <li>Calm</li>
+                    <li>Shock</li>
+                    <li>Vertigo</li>
+                    <li>Chaos</li>
+                </blackListAbilityDefs>
             </li>
-        </comps>
+        </comps> -->
         <!-- Keep it invisible to players -->
         <stages>
             <li>
@@ -152,6 +157,32 @@
         </stages>
         <duplicationAllowed>false</duplicationAllowed>
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+
+        <comps>
+            <li Class="HediffCompProperties_Disappears"> <!-- make sure this goes away -->
+                <disappearsAfterTicks>30000</disappearsAfterTicks> <!-- half a day -->
+                <showRemainingTime>true</showRemainingTime>
+            </li>
+        </comps>
+    </HediffDef>
+
+    <HediffDef ParentName="Rimgate_InitPsylinkBase">
+        <defName>Rimgate_InitPsylinkWraith</defName>
+        <comps>
+            <li Class="Rimgate.HediffCompProperties_GivePsylinkOnAdded">
+                <minLevel>2</minLevel>
+                <maxLevel>3</maxLevel>
+                <extraPsycasts>1~2</extraPsycasts>
+                <blackListAbilityCategories>
+                    <li>Skip</li>
+                    <li>WordOf</li>
+                </blackListAbilityCategories>
+                <blackListAbilityDefs>
+                    <li>BerserkPulse</li>
+                    <li>Neuroquake</li>
+                </blackListAbilityDefs>
+            </li>
+        </comps>
     </HediffDef>
 
     <!-- ==================== Unas Roar ==================== -->

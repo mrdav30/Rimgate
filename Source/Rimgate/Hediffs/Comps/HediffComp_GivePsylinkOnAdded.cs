@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
@@ -6,9 +7,13 @@ namespace Rimgate;
 
 public class HediffComp_GivePsylinkOnAdded : HediffComp
 {
+    public HediffCompProperties_GivePsylinkOnAdded Props => (HediffCompProperties_GivePsylinkOnAdded)props;
+
     private bool _done;
 
-    public HediffCompProperties_GivePsylinkOnAdded Props => (HediffCompProperties_GivePsylinkOnAdded)props;
+    private static readonly List<AbilityDef> _allCandidates = DefDatabase<AbilityDef>.AllDefs.Where(ad => ad.IsPsycast).ToList();
+
+    private static List<AbilityDef> _configuredCandidates;
 
     public override void CompPostPostAdd(DamageInfo? dinfo)
     {
@@ -25,16 +30,17 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
     {
         if (_done) return;
         var pawn = parent.pawn;
-        if (pawn == null || pawn.Dead) return;
+        if (pawn == null || pawn.Dead || pawn.abilities == null)
+        {
+            MarkDoneAndRemove();
+            return;
+        }
 
         // Optional gene gate (useful for Wraith-only)
-        if (!string.IsNullOrEmpty(Props.requiredGene))
+        if (!string.IsNullOrEmpty(Props.requiredGene) && !pawn.HasActiveGeneOf(Props.requiredGene))
         {
-            if (!pawn.HasActiveGeneOf(Props.requiredGene))
-            {
-                MarkDoneAndRemove();
-                return;
-            }
+            MarkDoneAndRemove();
+            return;
         }
 
         // Ensure psylink hediff exists
@@ -47,16 +53,24 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
                 MarkDoneAndRemove();
                 return;
             }
+
+            // Give random psycasts at level 1 first to avoid Hediff_Psylink auto-assigning psycasts we don't want
+            GiveRandomPsycasts(pawn, 1, 1);
+
             psylink = HediffMaker.MakeHediff(HediffDefOf.PsychicAmplifier, pawn, brain) as Hediff_Psylink;
+            psylink.level = 1;
+            psylink.suppressPostAddLetter = true;
             pawn.health.AddHediff(psylink);
         }
 
-        // Level it
+        // Level it, use Hediff_Level to manage levels to prevent Hediff_Psylink from giving unwanted psycasts
         int level = Rand.RangeInclusive(Props.minLevel, Props.maxLevel);
-        (psylink as Hediff_Level).ChangeLevel(level);
-
-        // Add a few psycasts (respect level + optional tags)
-        GiveRandomPsycasts(pawn, level);
+        int toGive = Props.extraPsycasts.RandomInRange;
+        for(int i = 0; i < level; i++)
+        {
+            GiveRandomPsycasts(pawn, i, toGive);
+            psylink.level += 1;
+        }
 
         pawn.psychicEntropy?.SetInitialPsyfocusLevel();
 
@@ -67,40 +81,59 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
         MarkDoneAndRemove();
     }
 
-    private void GiveRandomPsycasts(Pawn pawn, int level)
+    private void GiveRandomPsycasts(Pawn pawn, int level, int toGive = 1)
     {
-        var pool = DefDatabase<AbilityDef>.AllDefs.Where(ad =>
+        _configuredCandidates ??= _allCandidates.Where(ad =>
         {
-            // not a psycast
-            if (!ad.IsPsycast) return false;
-            // too high level
-            if (ad.level > level) return false;
-            // already has
-            if (pawn.abilities?.GetAbility(ad) != null) return false;
+            if (Props.whiteListAbilityDefs != null && Props.whiteListAbilityDefs.Count > 0)
+            {
+                bool tagHit = Props.whiteListAbilityDefs.Any(t => ad.defName.IndexOf(t, System.StringComparison.OrdinalIgnoreCase) >= 0);
+                if (tagHit)
+                    return true;
+            }
 
             // Optional defName filter
-            if (Props.abilityTags != null && Props.abilityTags.Count > 0)
+            if (Props.blackListAbilityCategories != null && Props.blackListAbilityCategories.Count > 0)
             {
-                bool tagHit = Props.abilityTags.Any(t => ad.defName.IndexOf(t, System.StringComparison.OrdinalIgnoreCase) >= 0);
-                if (!tagHit) 
+                bool categoryHit = Props.blackListAbilityCategories.Any(t => ad.category != null && ad.category.defName.IndexOf(t, System.StringComparison.OrdinalIgnoreCase) >= 0);
+                if (categoryHit)
                     return false;
             }
+
+            if (Props.blackListAbilityDefs != null && Props.blackListAbilityDefs.Count > 0)
+            {
+                bool tagHit = Props.blackListAbilityDefs.Any(t => ad.defName.IndexOf(t, System.StringComparison.OrdinalIgnoreCase) >= 0);
+                if (tagHit)
+                    return false;
+            }
+
+            if (RimgateMod.Debug)
+                Log.Message($"Rimgate :: Psycast pool candidate: {ad.defName}");
+
             return true;
         }).ToList();
 
-        int toGive = Props.extraPsycasts.RandomInRange;
-        for (int i = 0; i < toGive && pool.Count > 0; i++)
+        var filteredByLevel = _configuredCandidates.Where(ad => ad.level <= level && pawn.abilities.GetAbility(ad) == null).ToList();
+
+        for (int i = 0; i < toGive && filteredByLevel.Count > 0; i++)
         {
-            var pick = pool.RandomElement();
-            pawn.abilities?.GainAbility(pick);
-            pool.Remove(pick);
+            var pick = filteredByLevel.RandomElement();
+            pawn.abilities.GainAbility(pick);
+            filteredByLevel.Remove(pick);
         }
     }
 
     private void MarkDoneAndRemove()
     {
         _done = true;
+
         // Remove the initializer hediff so nothing ticks forever
-        parent.pawn.health?.RemoveHediff(parent);
+        parent.pawn?.health?.RemoveHediff(parent);
+    }
+
+    public override void CompExposeData()
+    {
+        base.CompExposeData();
+        Scribe_Values.Look(ref _done, "done", false);
     }
 }

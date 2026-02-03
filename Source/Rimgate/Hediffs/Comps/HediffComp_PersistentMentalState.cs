@@ -11,7 +11,6 @@ public class HediffComp_PersistentMentalState : HediffComp
 
     public override void CompExposeData()
     {
-        base.CompExposeData();
         Scribe_Values.Look(ref _state.initialized, "initialized", false);
         Scribe_Values.Look(ref _state.nextCheckTick, "nextCheckTick", 0);
         Scribe_Values.Look(ref _state.retryUntilTick, "retryUntilTick", 0);

@@ -239,7 +239,7 @@
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCRocketman</defName>
         <label>Soldier</label>
-        <combatPower>165</combatPower>
+        <combatPower>180</combatPower>
         <weaponMoney>3000~3500</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
         <itemQuality>Good</itemQuality>
