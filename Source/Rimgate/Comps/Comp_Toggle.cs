@@ -6,25 +6,18 @@ using Verse.Sound;
 
 namespace Rimgate;
 
+// Like a flickable, but for toggling things on and off independent of power
 public class Comp_Toggle : ThingComp
 {
-    public const string OffGraphicSuffix = "_Off";
+    protected CompProperties_Toggle Props => (CompProperties_Toggle)props;
 
-    public const string FlickedOnSignal = "FlickedOn";
+    public Graphic OffGraphic => Props.offGraphicData?.Graphic;
 
-    public const string FlickedOffSignal = "FlickedOff";
+    public Texture2D CommandOnTex => _cachedCommandOnTex ??= ContentFinder<Texture2D>.Get(Props.commandOnIconTexPath);
 
-    private CompProperties_Toggle Props => (CompProperties_Toggle)props;
-
-    private bool _switchOnInt = false;
-
-    private bool _wantSwitchOn = false;
-
-    private Graphic _offGraphic;
-
-    public Texture2D CommandTex => _cachedCommandTex ??= ContentFinder<Texture2D>.Get(Props.commandTexture);
-
-    private Texture2D _cachedCommandTex;
+    public Texture2D CommandOffTex => _cachedCommandOffTex ??= !Props.commandOffIconTexPath.NullOrEmpty()
+        ? ContentFinder<Texture2D>.Get(Props.commandOffIconTexPath, true)
+        : null;
 
     public bool SwitchIsOn
     {
@@ -35,9 +28,9 @@ public class Comp_Toggle : ThingComp
             {
                 _switchOnInt = value;
                 if (_switchOnInt)
-                    parent.BroadcastCompSignal("FlickedOn");
+                    parent.BroadcastCompSignal(Props.onSignal);
                 else
-                    parent.BroadcastCompSignal("FlickedOff");
+                    parent.BroadcastCompSignal(Props.offSignal);
 
                 if (!parent.Spawned)
                     return;
@@ -47,77 +40,74 @@ public class Comp_Toggle : ThingComp
         }
     }
 
-    public Graphic CurrentGraphic
-    {
-        get
-        {
-            if (SwitchIsOn)
-                return parent.DefaultGraphic;
+    public bool WantsToggle => _wantToggle;
 
-            if (_offGraphic == null)
-            {
-                _offGraphic = GraphicDatabase.Get(
-                    parent.def.graphicData.graphicClass,
-                    parent.def.graphicData.texPath + "_Off",
-                    parent.def.graphicData.shaderType.Shader,
-                    parent.def.graphicData.drawSize,
-                    parent.DrawColor,
-                    parent.DrawColorTwo);
-            }
+    protected bool _switchOnInt = false;
 
-            return _offGraphic;
-        }
-    }
+    protected bool _wantToggle = false;
+
+    private Texture2D _cachedCommandOnTex;
+
+    private Texture2D _cachedCommandOffTex;
 
     public override void Initialize(CompProperties props)
     {
         base.Initialize(props);
-        _switchOnInt = Props.defaultState;
-        _wantSwitchOn = Props.defaultState;
+        _switchOnInt = Props.isOnByDefault;
+        _wantToggle = false;
     }
 
     public override void PostExposeData()
     {
-        base.PostExposeData();
-        Scribe_Values.Look(ref _switchOnInt, "_switchOn", defaultValue: false);
-        Scribe_Values.Look(ref _wantSwitchOn, "_wantSwitchOn", defaultValue: false);
+        Scribe_Values.Look(ref _switchOnInt, "_switchOnInt", defaultValue: false);
+        Scribe_Values.Look(ref _wantToggle, "_wantToggle", defaultValue: false);
     }
 
-    public bool WantsFlick() => _wantSwitchOn != _switchOnInt;
-
-    public void DoFlick()
+    public virtual void DoToggle()
     {
         SwitchIsOn = !SwitchIsOn;
+        _wantToggle = false;
         SoundDefOf.FlickSwitch.PlayOneShot(new TargetInfo(parent.Position, parent.Map));
     }
 
-    public void ResetToOn()
+    public virtual void SetToggleStatus(bool status)
     {
-        _switchOnInt = true;
-        _wantSwitchOn = true;
+        _switchOnInt = status;
+        _wantToggle = false;
+    }
+
+    public override bool DontDrawParent() => OffGraphic != null && !SwitchIsOn;
+
+    public override void DrawAt(Vector3 drawLoc, bool flip = false)
+    {
+        if (OffGraphic == null || SwitchIsOn)
+            return;
+
+        OffGraphic.Draw(drawLoc, flip ? parent.Rotation.Opposite : parent.Rotation, parent);
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        if (parent.Faction.IsOfPlayerFaction())
-        {
-            Command_Toggle command_Toggle = new Command_Toggle();
-            command_Toggle.hotKey = KeyBindingDefOf.Command_TogglePower;
-            command_Toggle.icon = CommandTex;
-            command_Toggle.defaultLabel = Props.commandLabelKey.Translate(parent.Label);
-            command_Toggle.defaultDesc = Props.commandDescKey.Translate(parent.Label);
-            command_Toggle.isActive = () => _wantSwitchOn;
-            command_Toggle.toggleAction = delegate
-            {
-                _wantSwitchOn = !_wantSwitchOn;
-                Designation designation = parent.Map.designationManager.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationToggle);
+        if (!parent.Faction.IsOfPlayerFaction()) yield break;
 
-                if (designation == null)
-                    parent.Map.designationManager.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationToggle));
-                else
-                    designation?.Delete();
-            };
-            yield return command_Toggle;
-        }
+        Command_Toggle command_Toggle = new Command_Toggle();
+        command_Toggle.icon = _switchOnInt && CommandOffTex != null ? CommandOffTex : CommandOnTex;
+        command_Toggle.defaultLabel = Props.commandLabelKey.Translate(parent.Label);
+        command_Toggle.defaultDesc = Props.commandDescKey.Translate(parent.Label);
+        command_Toggle.isActive = () => _wantToggle;
+        command_Toggle.toggleAction = delegate
+        {
+            _wantToggle = !_wantToggle;
+
+            var dm = parent.Map.designationManager;
+            Designation des = dm.DesignationOn(parent, RimgateDefOf.Rimgate_DesignationToggle);
+
+            if (_wantToggle && des == null)
+                dm.AddDesignation(new Designation(parent, RimgateDefOf.Rimgate_DesignationToggle));
+            else
+                des?.Delete();
+        };
+
+        yield return command_Toggle;
     }
 }

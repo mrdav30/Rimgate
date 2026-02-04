@@ -53,7 +53,7 @@ public class JobDriver_PushContainer : JobDriver
             initAction = () =>
             {
                 var dest = job.targetC.HasThing
-                    ? job.targetC.Thing.Position
+                    ? job.targetC.Thing.InteractionCell // destination is a gate
                     : job.targetC.IsValid
                         ? job.targetC.Cell
                         : pawn.Position;  // final desired cell

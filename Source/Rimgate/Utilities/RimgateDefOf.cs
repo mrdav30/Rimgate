@@ -27,7 +27,6 @@ public static class RimgateDefOf
     public static DesignationDef Rimgate_DesignationCloseGate;
     public static DesignationDef Rimgate_DesignationPushCart;
     public static DesignationDef Rimgate_DesignationToggle;
-    public static DesignationDef Rimgate_DesignationToggleIris;
 
     public static DutyDef Rimgate_MaraudColony;
 
@@ -111,7 +110,6 @@ public static class RimgateDefOf
     public static JobDef Rimgate_RecoverBiomaterialFromCorpse;
     public static JobDef Rimgate_RescueToSarcophagus;
     public static JobDef Rimgate_Toggle;
-    public static JobDef Rimgate_ToggleIris;
     public static JobDef Rimgate_WraithEssenceMending;
 
     public static MapGeneratorDef Rimgate_TransitSiteMap;

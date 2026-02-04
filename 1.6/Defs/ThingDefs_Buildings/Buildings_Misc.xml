@@ -23,7 +23,7 @@
 		<fillPercent>0.40</fillPercent>
 		<canOverlapZones>true</canOverlapZones>
 		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-		<tickerType>Never</tickerType>
+		<tickerType>Rare</tickerType>
 		<drawerType>RealtimeOnly</drawerType>
 		<hasInteractionCell>True</hasInteractionCell>
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
@@ -47,6 +47,18 @@
 			<li>PlaceWorker_ShowFacilitiesConnections</li>
 			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
 		</placeWorkers>
+
+		<statBases>
+			<MaxHitPoints>3000</MaxHitPoints>
+			<Flammability>0.4</Flammability>
+			<WorkToBuild>14000</WorkToBuild>
+			<Mass>30</Mass>
+		</statBases>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<researchPrerequisites>
+			<li>Rimgate_DHDResearch</li>
+		</researchPrerequisites>
+
 		<comps>
 			<li Class="CompProperties_Facility">
 				<requiresLOS>false</requiresLOS>
@@ -59,20 +71,16 @@
 				<shortCircuitInRain>false</shortCircuitInRain>
 				<basePowerConsumption>800</basePowerConsumption>
 			</li>
+			<li Class="Rimgate.CompProperties_Toggle">
+				<compClass>Rimgate.Comp_ToggleIris</compClass>
+				<commandOnIconTexPath>UI/Button/RGIris_Close</commandOnIconTexPath>
+				<commandOffIconTexPath>UI/Button/RGIris_Open</commandOffIconTexPath>
+				<onSignal>OpenIris</onSignal>
+				<offSignal>CloseIris</offSignal>
+			</li>
 		</comps>
-		<statBases>
-			<MaxHitPoints>3000</MaxHitPoints>
-			<Flammability>0.4</Flammability>
-			<WorkToBuild>14000</WorkToBuild>
-			<Mass>30</Mass>
-		</statBases>
-		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-		<researchPrerequisites>
-			<li>Rimgate_DHDResearch</li>
-		</researchPrerequisites>
 		<modExtensions>
 			<li Class="Rimgate.Building_DHD_Ext">
-				<canToggleIris>true</canToggleIris>
 				<canFastDial>true</canFastDial>
 				<activeGraphicData>
 					<texPath>FX/Rimgate_TauriDialHomeDevice_Active</texPath>
@@ -150,6 +158,11 @@
 				<basePowerConsumption>250</basePowerConsumption>
 			</li>
 		</comps>
+
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
 	</ThingDef>
 
 	<!-- ======================= Mobile Containers ======================= -->
@@ -1082,19 +1095,21 @@
 
 	<!-- ======================= Hospital Upgrades ======================= -->
 
-	<ThingDef Abstract="True" ParentName="FurnitureWithQualityBase" Name="Rimgate_TauriHospitalUpgradeBase">
+	<ThingDef Abstract="True" ParentName="FurnitureBase" Name="Rimgate_TauriHospitalUpgradeBase">
 		<designationCategory>Misc</designationCategory>
 		<thingClass>Building</thingClass>
 		<fillPercent>0.4</fillPercent>
-		<altitudeLayer>Building</altitudeLayer>
-		<passability>PassThroughOnly</passability>
-		<pathCost>150</pathCost>
 		<castEdgeShadows>true</castEdgeShadows>
 		<placeWorkers>
 			<li>PlaceWorker_ShowFacilitiesConnections</li>
 		</placeWorkers>
 		<socialPropernessMatters>true</socialPropernessMatters>
 		<canOverlapZones>false</canOverlapZones>
+
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
 	</ThingDef>
 
 	<!-- Surgery Lights -->
@@ -1109,6 +1124,8 @@
 			<drawSize>(3,3)</drawSize>
 		</graphicData>
 		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<pathCost>150</pathCost>
+		<passability>PassThroughOnly</passability>
 		<size>(2,1)</size>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
@@ -1163,11 +1180,12 @@
 		<graphicData>
 			<texPath>Things/Building/Misc/RGTauriWallMonitor</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(3,3)</drawSize>
+			<drawSize>(2.5,2.5)</drawSize>
 		</graphicData>
 		<uiIconPath>Things/Building/Misc/RGTauriWallMonitorIcon</uiIconPath>
 		<size>(1,1)</size>
 		<pathCost>0</pathCost>
+		<passability>Standable</passability>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToBuild>3000</WorkToBuild>
@@ -1306,6 +1324,110 @@
 				</offsets>
 			</li>
 		</comps>
+	</ThingDef>
+
+	<!-- ================ Remote Gate Control ================ -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_RemoteGateControl</defName>
+
+		<label>Remote gate control</label>
+		<description>A wall-mounted control panel that allows remote operation of a nearby gates's iris mechanism. When linked to a gate, it enables authorized personnel to open or close the iris from a distance, enhancing security and convenience during gate operations.</description>
+
+		<graphicData>
+			<texPath>Things/Building/Misc/RemoteControl/RGRemoteControlButton_ON</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(2,2)</drawSize>
+			<damageData>
+				<enabled>false</enabled>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Misc/RemoteControl/RGRemoteControlButtonIcon</uiIconPath>
+		<drawerType>RealtimeOnly</drawerType>
+		<tickerType>Rare</tickerType>
+
+		<statBases>
+			<MaxHitPoints>45</MaxHitPoints>
+			<WorkToBuild>1600</WorkToBuild>
+			<Flammability>0.5</Flammability>
+			<Mass>1</Mass>
+		</statBases>
+
+		<building>
+			<isEdifice>false</isEdifice>
+			<isAttachment>true</isAttachment>
+		</building>
+
+		<techLevel>Industrial</techLevel>
+		<designationCategory>Misc</designationCategory>
+		<fillPercent>0</fillPercent>
+		<passability>Standable</passability>
+		<size>(1,1)</size>
+		<pathCost>0</pathCost>
+		<overrideMinifiedRot>North</overrideMinifiedRot>
+		<minifiedDrawOffset>(0, -0.01, -0.65)</minifiedDrawOffset>
+		<castEdgeShadows>true</castEdgeShadows>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+		<terrainAffordanceNeeded IsNull="True" />
+
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+			<li>Placeworker_AttachedToWall</li>
+		</placeWorkers>
+
+		<costList>
+			<Steel>5</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<researchPrerequisites>
+			<li>Rimgate_GateIrisResearch</li>
+		</researchPrerequisites>
+		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<shortCircuitInRain>true</shortCircuitInRain>
+				<basePowerConsumption>50</basePowerConsumption>
+				<powerUpgrades>
+					<li>
+						<researchProject>ColoredLights</researchProject>
+						<factor>0.5</factor>
+					</li>
+				</powerUpgrades>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>1.5</glowRadius>
+				<glowColor>(214,148,94,0)</glowColor>
+			</li>
+			<li Class="CompProperties_Facility">
+				<requiresLOS>false</requiresLOS>
+				<maxSimultaneous>1</maxSimultaneous>
+				<maxDistance>99</maxDistance>
+			</li>
+			<li Class="Rimgate.CompProperties_Toggle">
+				<compClass>Rimgate.Comp_ToggleIris</compClass>
+				<commandOnIconTexPath>UI/Button/RGIris_Close</commandOnIconTexPath>
+				<commandOffIconTexPath>UI/Button/RGIris_Open</commandOffIconTexPath>
+				<onSignal>OpenIris</onSignal>
+				<offSignal>CloseIris</offSignal>
+
+				<offGraphicData>
+					<texPath>Things/Building/Misc/RemoteControl/RGRemoteControlButton_OFF</texPath>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<drawSize>(2,2)</drawSize>
+					<damageData>
+						<enabled>false</enabled>
+					</damageData>
+				</offGraphicData>
+			</li>
+		</comps>
+
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsMisc</li>
+		</thingCategories>
 	</ThingDef>
 
 </Defs>

@@ -28,10 +28,6 @@ public class Building_Gate_Ext : DefModExtension
 
     public GraphicData irisGraphicData;
 
-    public string irisIconTexPath;
-
-    public string irisIconOpenTexPath;
-
     public GraphicData chevronHighlight;
 
     public List<IntVec3> vortexPattern = new List<IntVec3>
@@ -56,6 +52,8 @@ public class Building_Gate_Ext : DefModExtension
 
 public class Building_Gate : Building
 {
+    public static readonly Dictionary<int, int> GlobalVortexEntryCellCache = new();
+
     public Building_Gate_Ext Props => _cachedProps ??= def.GetModExtension<Building_Gate_Ext>();
 
     private const int GlowRadius = 10;
@@ -107,14 +105,6 @@ public class Building_Gate : Building
         }
     }
 
-    public Texture2D ToggleIrisIcon => _cachedIrisToggleIcon ??= !Props.irisIconTexPath.NullOrEmpty()
-        ? ContentFinder<Texture2D>.Get(Props.irisIconTexPath, true)
-        : null;
-
-    public Texture2D ToggleIrisOpenIcon => !Props.irisIconOpenTexPath.NullOrEmpty()
-        ? ContentFinder<Texture2D>.Get(Props.irisIconOpenTexPath, true)
-        : null;
-
     public bool Powered => PowerTrader == null || PowerTrader.PowerOn;
 
     public int TicksUntilOpen => _ticksUntilOpen;
@@ -134,8 +124,6 @@ public class Building_Gate : Building
     }
 
     public bool IsIrisActivated => _isIrisActivated;
-
-    public bool WantsIrisToggled => _wantsIrisToggled;
 
     public bool IsHomeGate
     {
@@ -181,8 +169,6 @@ public class Building_Gate : Building
 
     private bool _isIrisActivated = false;
 
-    private bool _wantsIrisToggled;
-
     private PlanetTile _queuedAddress;
 
     private CompAffectedByFacilities _cachedFacilities;
@@ -226,6 +212,11 @@ public class Building_Gate : Building
 
         GateAddress = tile;
         GateUtil.AddGateAddress(GateAddress);
+
+        int key = map.uniqueID;
+        // cache interaction cell, there should only be one gate per map
+        GlobalVortexEntryCellCache[key] = map.cellIndices.CellToIndex(InteractionCell); 
+
         base.SpawnSetup(map, respawningAfterLoad);
 
         // prevent nullreferenceexception in-case innercontainer disappears
@@ -299,9 +290,6 @@ public class Building_Gate : Building
             {
                 float powerConsumption = -(Props.irisPowerConsumption + PowerTrader.Props.PowerConsumption);
                 PowerTrader.PowerOutput = powerConsumption;
-
-                if (!Powered && IsIrisActivated)
-                    _isIrisActivated = !_isIrisActivated;
             }
             else
                 PowerTrader.PowerOutput = -PowerTrader.Props.PowerConsumption;
@@ -394,38 +382,6 @@ public class Building_Gate : Building
             }
 
             yield return gizmo;
-        }
-
-        if (Props.canHaveIris && HasIris)
-        {
-            var action = (_isIrisActivated
-                ? "RG_OpenIris"
-                : "RG_CloseIris").Translate();
-            Command_Toggle command = new Command_Toggle
-            {
-                defaultLabel = "RG_ToggleIris".Translate(action),
-                defaultDesc = "RG_ToggleIrisDesc".Translate(action, LabelCap),
-                icon = _isIrisActivated && ToggleIrisOpenIcon != null ? ToggleIrisOpenIcon : ToggleIrisIcon,
-                isActive = () => _wantsIrisToggled,
-                toggleAction = delegate
-                {
-                    _wantsIrisToggled = !_wantsIrisToggled;
-
-                    var dm = Map?.designationManager;
-                    if (dm == null) return;
-
-                    Designation designation = dm.DesignationOn(this, RimgateDefOf.Rimgate_DesignationToggleIris);
-                    if (designation == null)
-                        dm.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationToggleIris));
-                    else
-                        designation?.Delete();
-                }
-            };
-
-            if (!Powered)
-                command.Disable("PowerNotConnected".Translate());
-
-            yield return command;
         }
 
         if (!Prefs.DevMode)
@@ -522,9 +478,9 @@ public class Building_Gate : Building
 
         if (HasIris)
         {
-            var irisLabel = (_isIrisActivated
-                ? "RG_IrisClosedStatus"
-                : "RG_IrisOpenStatus").Translate();
+            var irisLabel = _isIrisActivated
+                ? "RG_IrisClosedStatus".Translate()
+                : "RG_IrisOpenStatus".Translate();
             sb.AppendLine("RG_IrisStatus".Translate(irisLabel));
         }
 
@@ -561,16 +517,10 @@ public class Building_Gate : Building
         {
             var connectedDHD = ConnectedDHD;
             if (connectedDHD != null)
-            {
-                Designation designation = dm.DesignationOn(connectedDHD, RimgateDefOf.Rimgate_DesignationCloseGate);
-                if (designation != null)
-                    designation?.Delete();
-
-                designation = dm.DesignationOn(connectedDHD, RimgateDefOf.Rimgate_DesignationToggleIris);
-                if (designation != null)
-                    designation?.Delete();
-            }
+                dm.RemoveAllDesignationsOn(connectedDHD);
         }
+
+        GlobalVortexEntryCellCache.Remove(Map?.uniqueID ?? -1);
 
         CloseGate(ConnectedGate != null);
         GateUtil.RemoveGateAddress(GateAddress);
@@ -582,10 +532,9 @@ public class Building_Gate : Building
 
         Scribe_Values.Look(ref IsActive, "IsActive");
         Scribe_Values.Look(ref _externalHoldCount, "_externalHoldCount");
-        Scribe_Values.Look(ref IsReceivingGate, "IsRecievingGate");
+        Scribe_Values.Look(ref IsReceivingGate, "IsReceivingGate");
         Scribe_Values.Look(ref HasIris, "HasIris");
-        Scribe_Values.Look(ref _isIrisActivated, "_irisIsActivated");
-        Scribe_Values.Look(ref _wantsIrisToggled, "_wantsIrisToggled");
+        Scribe_Values.Look(ref _isIrisActivated, "_isIrisActivated");
         Scribe_Values.Look(ref TicksSinceOpened, "TicksSinceOpened");
         Scribe_Values.Look(ref ConnectedAddress, "ConnectedAddress");
         Scribe_Values.Look(ref GateAddress, "GateAddress");
@@ -622,10 +571,13 @@ public class Building_Gate : Building
 
     #region Iris handling
 
-    public void DoToggleIris()
+    public void SetIrisActive(bool status)
     {
-        _isIrisActivated = !_isIrisActivated;
-        _wantsIrisToggled = false;
+        bool previous = _isIrisActivated;
+        _isIrisActivated = status;
+        if (previous == _isIrisActivated)
+            return;
+
         var snd = _isIrisActivated ? RimgateDefOf.Rimgate_IrisClose
                                    : RimgateDefOf.Rimgate_IrisOpen;
         snd.PlayOneShot(SoundInfo.InMap(this));
@@ -780,11 +732,7 @@ public class Building_Gate : Building
 
         var connectedDHD = ConnectedDHD;
         if (connectedDHD != null)
-        {
-            Designation designation = Map.designationManager.DesignationOn(connectedDHD, RimgateDefOf.Rimgate_DesignationCloseGate);
-            if (designation != null)
-                designation?.Delete();
-        }
+            Map.designationManager.RemoveAllDesignationsOn(connectedDHD);
 
         // clear buffers just in case
         var drop = Utils.BestDropCellNearThing(this);

@@ -340,7 +340,6 @@
     <Compile Include="AI\JobDrivers\JobDriver_PushContainer.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_RecoverBiomaterialFromCorpse.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_SitFacingBuilding_Learning.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_ToggleIris.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CloseGate.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_Toggle.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_WraithCocoonPrisoner.cs" />
@@ -354,7 +353,6 @@
     <Compile Include="AI\WorkGivers\WorkGiver_LoadContainer.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CalibrateCloningPod.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_PushContainer.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_ToggleIris.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CloseGate.cs" />
     <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
@@ -362,6 +360,7 @@
     <Compile Include="Comps\CompUseEffect_InstallSymbiote.cs" />
     <Compile Include="Comps\Comp_BodyGraphicSwapper.cs" />
     <Compile Include="Comps\Comp_Dissolves.cs" />
+    <Compile Include="Comps\Comp_ToggleIris.cs" />
     <Compile Include="Comps\Properties\CompProperties_BodyGraphicSwapper.cs" />
     <Compile Include="Comps\Properties\CompProperties_Dissolves.cs" />
     <Compile Include="Comps\Properties\CompProperties_GlyphParchment.cs" />
@@ -405,6 +404,7 @@
     <Compile Include="HarmonyPatches\Harmony_GenStep_Asteroid.cs" />
     <Compile Include="HarmonyPatches\Harmony_Messages_Message.cs" />
     <Compile Include="HarmonyPatches\Harmony_ITab_Pawn_Character_IsVisible.cs" />
+    <Compile Include="HarmonyPatches\Harmony_PathGrid.cs" />
     <Compile Include="HarmonyPatches\Harmony_Projectile_CheckForInterceptBetween.cs" />
     <Compile Include="HarmonyPatches\Harmony_Skyfaller_Tick.cs" />
     <Compile Include="HarmonyPatches\Harmony_Widgets_DefIcon_BiomaterialRecoveryDef.cs" />

@@ -13,8 +13,6 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
 
     private static readonly List<AbilityDef> _allCandidates = DefDatabase<AbilityDef>.AllDefs.Where(ad => ad.IsPsycast).ToList();
 
-    private static List<AbilityDef> _configuredCandidates;
-
     public override void CompPostPostAdd(DamageInfo? dinfo)
     {
         base.CompPostPostAdd(dinfo);
@@ -43,47 +41,7 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
             return;
         }
 
-        // Ensure psylink hediff exists
-        var psylink = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.PsychicAmplifier) as Hediff_Psylink;
-        if (psylink == null)
-        {
-            var brain = pawn.health.hediffSet.GetBrain();
-            if (brain == null)
-            {
-                MarkDoneAndRemove();
-                return;
-            }
-
-            // Give random psycasts at level 1 first to avoid Hediff_Psylink auto-assigning psycasts we don't want
-            GiveRandomPsycasts(pawn, 1, 1);
-
-            psylink = HediffMaker.MakeHediff(HediffDefOf.PsychicAmplifier, pawn, brain) as Hediff_Psylink;
-            psylink.level = 1;
-            psylink.suppressPostAddLetter = true;
-            pawn.health.AddHediff(psylink);
-        }
-
-        // Level it, use Hediff_Level to manage levels to prevent Hediff_Psylink from giving unwanted psycasts
-        int level = Rand.RangeInclusive(Props.minLevel, Props.maxLevel);
-        int toGive = Props.extraPsycasts.RandomInRange;
-        for(int i = 0; i < level; i++)
-        {
-            GiveRandomPsycasts(pawn, i, toGive);
-            psylink.level += 1;
-        }
-
-        pawn.psychicEntropy?.SetInitialPsyfocusLevel();
-
-        // Seed psyfocus (optional)
-        if (Props.initialPsyfocus >= 0f)
-            pawn.psychicEntropy?.TryAddEntropy(Props.initialPsyfocus);
-
-        MarkDoneAndRemove();
-    }
-
-    private void GiveRandomPsycasts(Pawn pawn, int level, int toGive = 1)
-    {
-        _configuredCandidates ??= _allCandidates.Where(ad =>
+        List<AbilityDef> configuredCandidates = _allCandidates.Where(ad =>
         {
             if (Props.whiteListAbilityDefs != null && Props.whiteListAbilityDefs.Count > 0)
             {
@@ -113,7 +71,46 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
             return true;
         }).ToList();
 
-        var filteredByLevel = _configuredCandidates.Where(ad => ad.level <= level && pawn.abilities.GetAbility(ad) == null).ToList();
+        // Ensure psylink hediff exists
+        var psylink = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.PsychicAmplifier) as Hediff_Psylink;
+        if (psylink == null)
+        {
+            var brain = pawn.health.hediffSet.GetBrain();
+            if (brain == null)
+            {
+                MarkDoneAndRemove();
+                return;
+            }
+
+            // Give random psycasts at level 1 first to avoid Hediff_Psylink auto-assigning psycasts we don't want
+            GiveRandomPsycasts(pawn, 1, configuredCandidates, 1);
+
+            psylink = HediffMaker.MakeHediff(HediffDefOf.PsychicAmplifier, pawn, brain) as Hediff_Psylink;
+            psylink.level = 1;
+            psylink.suppressPostAddLetter = true;
+            pawn.health.AddHediff(psylink);
+        }
+
+        // Level it, use Hediff_Level to manage levels to prevent Hediff_Psylink from giving unwanted psycasts
+        int level = Rand.RangeInclusive(Props.minLevel, Props.maxLevel);
+        for(int i = 0; i < level; i++)
+        {
+            GiveRandomPsycasts(pawn, i, configuredCandidates, Props.extraPsycasts.RandomInRange);
+            psylink.level += 1;
+        }
+
+        pawn.psychicEntropy?.SetInitialPsyfocusLevel();
+
+        // Seed psyfocus (optional)
+        if (Props.initialPsyfocus >= 0f)
+            pawn.psychicEntropy?.TryAddEntropy(Props.initialPsyfocus);
+
+        MarkDoneAndRemove();
+    }
+
+    private static void GiveRandomPsycasts(Pawn pawn, int level, List<AbilityDef> candidates, int toGive = 1)
+    {
+        var filteredByLevel = candidates.Where(ad => ad.level <= level && pawn.abilities.GetAbility(ad) == null).ToList();
 
         for (int i = 0; i < toGive && filteredByLevel.Count > 0; i++)
         {

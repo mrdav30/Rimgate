@@ -4,10 +4,17 @@ namespace Rimgate;
 
 public class CompProperties_Toggle : CompProperties
 {
-    public bool defaultState;
+    public bool isOnByDefault;
+
+    public string onSignal = "ToggledOn";
+
+    public string offSignal = "ToggledOff";
 
     [NoTranslate]
-    public string commandTexture = "UI/Commands/DesirePower";
+    public string commandOnIconTexPath = "UI/Commands/DesirePower";
+
+    [NoTranslate]
+    public string commandOffIconTexPath;
 
     [NoTranslate]
     public string commandLabelKey = "RG_ToggleLabel";
@@ -15,5 +22,5 @@ public class CompProperties_Toggle : CompProperties
     [NoTranslate]
     public string commandDescKey = "RG_ToggleDescription";
 
-    public CompProperties_Toggle() => compClass = typeof(Comp_Toggle);
+    public GraphicData offGraphicData;
 }

@@ -30,8 +30,7 @@ public class FloatMenuOptionProvider_DialAddress : FloatMenuOptionProvider
         if (dhd == null)
             yield break;
 
-        var control = dhd.LinkedGate;
-        if (control == null)
+        if (!dhd.TryGetLinkedGate(out Building_Gate control))
         {
             yield return new FloatMenuOption(
                 "RG_CannotDial".Translate("RG_CannotDialNoGate".Translate()),

@@ -11,7 +11,7 @@
         <fillPercent>1</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <passability>PassThroughOnly</passability>
-        <pathCost>3</pathCost>
+        <pathCost>5000</pathCost>
         <thingCategories>
             <li>Artifacts</li>
         </thingCategories>
@@ -101,6 +101,7 @@
                 <linkableFacilities>
                     <li>Rimgate_DialHomeDevice</li>
                     <li>Rimgate_TauriDialHomeDevice</li>
+                    <li>Rimgate_RemoteGateControl</li>
                 </linkableFacilities>
             </li>
             <li Class="CompProperties_MeditationFocus">
@@ -123,6 +124,13 @@
                     </li>
                 </offsets>
             </li>
+            <li Class="Rimgate.CompProperties_Toggle">
+                <compClass>Rimgate.Comp_ToggleIris</compClass>
+                <commandOnIconTexPath>UI/Button/RGIris_Close</commandOnIconTexPath>
+                <commandOffIconTexPath>UI/Button/RGIris_Open</commandOffIconTexPath>
+                <onSignal>OpenIris</onSignal>
+                <offSignal>CloseIris</offSignal>
+            </li>
         </comps>
         <modExtensions>
             <li Class="Rimgate.Building_Gate_Ext">
@@ -136,8 +144,6 @@
                     <graphicClass>Graphic_Multi</graphicClass>
                     <drawSize>(5,5)</drawSize>
                 </irisGraphicData>
-                <irisIconTexPath>UI/Button/RGIris_Close</irisIconTexPath>
-                <irisIconOpenTexPath>UI/Button/RGIris_Open</irisIconOpenTexPath>
                 <chevronHighlight>
                     <texPath>FX/RGGate_Active</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>
@@ -487,14 +493,14 @@
         <uiIconScale>0.75</uiIconScale>
         <size>(1,1)</size>
         <altitudeLayer>BuildingOnTop</altitudeLayer>
-        <passability>PassThroughOnly</passability>
+        <passability>Standable</passability>
         <castEdgeShadows>false</castEdgeShadows>
         <staticSunShadowHeight>0.51</staticSunShadowHeight>
         <fillPercent>0.5</fillPercent>
         <canOverlapZones>false</canOverlapZones>
         <rotatable>true</rotatable>
         <terrainAffordanceNeeded IsNull="True" />
-        <pathCost>15</pathCost>
+        <pathCost>5</pathCost>
         <statBases>
             <MaxHitPoints>100</MaxHitPoints>
             <Mass>20</Mass>

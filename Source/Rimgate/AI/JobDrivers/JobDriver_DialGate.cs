@@ -49,7 +49,7 @@ public class JobDriver_DialGate : JobDriver
         }
         else if (t is Building_DHD dhd)
         {
-            gate = dhd?.LinkedGate;
+            dhd?.TryGetLinkedGate(out gate);
             tile = dhd?.LastDialledAddress ?? PlanetTile.Invalid;
             destination = dhd.InteractionCell;
             fastDial = dhd.Props.canFastDial;

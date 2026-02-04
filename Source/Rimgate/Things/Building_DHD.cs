@@ -15,8 +15,6 @@ namespace Rimgate;
 
 public class Building_DHD_Ext : DefModExtension
 {
-    public bool canToggleIris;
-
     public bool canFastDial;
 
     public GraphicData activeGraphicData;
@@ -31,18 +29,6 @@ public class Building_DHD : Building
     public CompFacility Facility => _cachedFacility ??= GetComp<CompFacility>();
 
     public CompPowerTrader PowerTrader => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
-
-    public Building_Gate LinkedGate
-    {
-        get
-        {
-            if (_cachedGateControl == null)
-                TryGetLinkedGate(out _cachedGateControl);
-            return _cachedGateControl;
-        }
-    }
-
-    public bool WantsIrisToggled => _wantIrisToggled;
 
     public bool WantsGateClosed => _wantGateClosed;
 
@@ -59,10 +45,6 @@ public class Building_DHD : Building
     private CompFacility _cachedFacility;
 
     private bool _wantGateClosed;
-
-    private bool _wantIrisToggled;
-
-    private Building_Gate _cachedGateControl;
 
     public override void TickRare()
     {
@@ -88,7 +70,6 @@ public class Building_DHD : Building
             GateUtil.SetModificationEquipmentActive(false);
             _hadActiveModificationEquipment = false;
         }
-
     }
 
     protected override void DrawAt(Vector3 drawLoc, bool flip = false)
@@ -99,8 +80,7 @@ public class Building_DHD : Building
         if (active == null)
             return;
 
-        var control = LinkedGate;
-        if (control == null)
+        if (!TryGetLinkedGate(out Building_Gate control))
             return;
 
         if (!control.IsActive || !Powered) return;
@@ -119,8 +99,7 @@ public class Building_DHD : Building
         foreach (Gizmo gizmo in base.GetGizmos())
             yield return gizmo;
 
-        var linked = LinkedGate;
-        if (linked == null)
+        if (!TryGetLinkedGate(out Building_Gate linked))
             yield break;
 
         Command_Toggle closeGateCmd = new Command_Toggle
@@ -133,54 +112,27 @@ public class Building_DHD : Building
             {
                 _wantGateClosed = !_wantGateClosed;
 
-                Designation designation = Map.designationManager.DesignationOn(this, RimgateDefOf.Rimgate_DesignationCloseGate);
+                var dm = Map.designationManager;
+                Designation des = dm.DesignationOn(this, RimgateDefOf.Rimgate_DesignationCloseGate);
 
-                if (designation == null)
+                if (_wantGateClosed && des == null)
                     Map.designationManager.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationCloseGate));
                 else
-                    designation?.Delete();
+                    des?.Delete();
             }
         };
 
         if (!linked.IsActive)
+        {
+            _wantGateClosed = false;
             closeGateCmd.Disable("RG_GateIsNotActive".Translate(linked.LabelCap));
+        }
         else if (linked.IsReceivingGate)
             closeGateCmd.Disable("RG_CannotCloseIncoming".Translate());
         else if (!Powered)
             closeGateCmd.Disable("PowerNotConnected".Translate());
 
         yield return closeGateCmd;
-
-        if (Props.canToggleIris && linked.HasIris)
-        {
-            var actionLabel = linked.IsIrisActivated
-                ? "RG_OpenIris".Translate()
-                : "RG_CloseIris".Translate();
-
-            var toggleIrisCmd = new Command_Toggle
-            {
-                defaultLabel = "RG_ToggleIris".Translate(actionLabel),
-                defaultDesc = "RG_ToggleIrisDesc".Translate(actionLabel, linked.LabelCap),
-                icon = linked.ToggleIrisIcon,
-                isActive = () => _wantIrisToggled,
-                toggleAction = delegate
-                {
-                    _wantIrisToggled = !_wantIrisToggled;
-
-                    var dm = Map.designationManager;
-                    var des = dm.DesignationOn(this, RimgateDefOf.Rimgate_DesignationToggleIris);
-                    if (des == null)
-                        dm.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationToggleIris));
-                    else
-                        des.Delete();
-                }
-            };
-
-            if (!linked.Powered || !Powered)
-                toggleIrisCmd.Disable("PowerNotConnected".Translate());
-
-            yield return toggleIrisCmd;
-        }
 
         var options = new List<FloatMenuOption>();
         var addressList = GateUtil.GetAddressList(Tile);
@@ -259,7 +211,7 @@ public class Building_DHD : Building
         Scribe_Values.Look(ref LastDialledAddress, "lastDialledAddress");
     }
 
-    private bool TryGetLinkedGate(out Building_Gate gate)
+    public bool TryGetLinkedGate(out Building_Gate gate)
     {
         gate = null;
 
@@ -280,20 +232,9 @@ public class Building_DHD : Building
 
     public void DoCloseGate()
     {
-        var control = LinkedGate;
-        if (control == null) return;
+        if (!TryGetLinkedGate(out Building_Gate control)) return;
         _wantGateClosed = false;
         control.CloseGate(true);
-    }
-
-    public void DoToggleIrisRemote()
-    {
-        var control = LinkedGate;
-        if (control == null)
-            return;
-
-        _wantIrisToggled = false;
-        control.DoToggleIris();
     }
 
     public static bool TryGetDhdOnMap(Map map, out Building_DHD dhd, ThingDef def = null)

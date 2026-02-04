@@ -804,7 +804,7 @@
             <WorkToMake>80000</WorkToMake>
             <MarketValue>950</MarketValue>
             <Mass>6</Mass>
-            <RangedWeapon_Cooldown>5.5</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
         </statBases>
         <costList>
             <Steel>50</Steel>
@@ -833,7 +833,7 @@
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Rimgate_FIMStingerProjectile</defaultProjectile>
                 <forcedMissRadius>1.5</forcedMissRadius>
-                <warmupTime>5.5</warmupTime>
+                <warmupTime>8.5</warmupTime>
                 <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
                 <range>45.9</range>
                 <burstShotCount>1</burstShotCount>

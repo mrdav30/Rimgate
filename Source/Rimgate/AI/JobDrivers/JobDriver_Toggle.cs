@@ -27,16 +27,14 @@ public class JobDriver_Toggle : JobDriver
             ThingWithComps thingWithComps = (ThingWithComps)actor.CurJob.targetA.Thing;
             for (int i = 0; i < thingWithComps.AllComps.Count; i++)
             {
-                if (thingWithComps.AllComps[i] is Comp_Toggle compFlickable
-                    && compFlickable.WantsFlick())
-                {
-                    compFlickable.DoFlick();
-                }
+                if (thingWithComps.AllComps[i] is Comp_Toggle toggle && toggle.WantsToggle)
+                    toggle.DoToggle();
             }
 
             actor.records.Increment(RecordDefOf.SwitchesFlicked);
             Map.designationManager.DesignationOn(thingWithComps, RimgateDefOf.Rimgate_DesignationToggle)?.Delete();
         };
+        finalize.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return finalize;
     }
 }

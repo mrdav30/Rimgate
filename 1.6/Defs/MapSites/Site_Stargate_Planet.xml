@@ -570,13 +570,13 @@
 				<li>
 					<things>
 						<!-- junk -->
-						<AncientSmallCrate>0.53</AncientSmallCrate>
-						<AncientMetalCrate>0.53</AncientMetalCrate>
+						<AncientSmallCrate>0.40</AncientSmallCrate>
+						<AncientMetalCrate>0.40</AncientMetalCrate>
 						<AncientMilitaryCrate>0.40</AncientMilitaryCrate>
 						<AncientAmmoStack>0.30</AncientAmmoStack>
 
 						<!-- mid loot -->
-						<AncientBox_ComponentIndustrial>0.28</AncientBox_ComponentIndustrial>
+						<AncientBox_ComponentIndustrial>0.25</AncientBox_ComponentIndustrial>
 						<AncientBox_ComponentSpacer>0.25</AncientBox_ComponentSpacer>
 
 						<!-- loot crates -->
@@ -597,12 +597,12 @@
 				<!-- Fallback: allow outdoor scatter if no valid indoor spot -->
 				<li>
 					<things>
-						<AncientSmallCrate>0.53</AncientSmallCrate>
-						<AncientMetalCrate>0.53</AncientMetalCrate>
+						<AncientSmallCrate>0.40</AncientSmallCrate>
+						<AncientMetalCrate>0.40</AncientMetalCrate>
 						<AncientMilitaryCrate>0.40</AncientMilitaryCrate>
 						<AncientAmmoStack>0.30</AncientAmmoStack>
 
-						<AncientBox_ComponentIndustrial>0.28</AncientBox_ComponentIndustrial>
+						<AncientBox_ComponentIndustrial>0.25</AncientBox_ComponentIndustrial>
 						<AncientBox_ComponentSpacer>0.25</AncientBox_ComponentSpacer>
 
 						<Rimgate_SupplyCrateGreen>0.25</Rimgate_SupplyCrateGreen>

@@ -85,14 +85,6 @@
 	</JobDef>
 
 	<JobDef>
-		<defName>Rimgate_ToggleIris</defName>
-		<driverClass>Rimgate.JobDriver_ToggleIris</driverClass>
-		<reportString>toggle gate iris.</reportString>
-		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-		<checkOverrideOnDamage>Never</checkOverrideOnDamage>
-	</JobDef>
-
-	<JobDef>
 		<defName>Rimgate_BringToGate</defName>
 		<driverClass>Rimgate.JobDriver_BringToGate</driverClass>
 		<reportString>Bringing TargetA to TargetB.</reportString>

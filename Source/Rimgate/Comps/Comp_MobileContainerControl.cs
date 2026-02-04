@@ -525,13 +525,13 @@ public class Comp_MobileContainerControl : ThingComp, IThingHolder, IThingHolder
                 return null;
             }
 
-            if (!pawn.CanReach(dest, PathEndMode.Touch, Danger.Deadly))
+            if (!pawn.CanReach(sg.InteractionCell, PathEndMode.OnCell, Danger.Deadly))
             {
                 Messages.Message("RG_CannotReachDestination".Translate(), parent, MessageTypeDefOf.RejectInput);
                 return null;
             }
 
-            targetInfo = dest.Thing;
+            targetInfo = sg;
             def = RimgateDefOf.Rimgate_EnterGateWithContainer;
         }
         else
