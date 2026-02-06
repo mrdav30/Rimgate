@@ -165,7 +165,7 @@
     <ThingDef ParentName="Rimgate_TacticalVestBase">
         <defName>Rimgate_TauriSpecOpsVest</defName>
         <label>Spec ops vest</label>
-        <description>Advanced tactical vest used by Tau'ri special operations forces. Features modular design for attaching additional gear and enhanced ballistic protection.\nFavored by SG teams for its balance of mobility and defense in high-risk missions.</description>
+        <description>Advanced tactical vest used by Tau'ri special operations forces interlaced with Naquadah fibers. Features modular design for attaching additional gear and enhanced ballistic protection.\nFavored by SG teams for its balance of mobility and defense in high-risk missions.</description>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmorsTierTwo</researchPrerequisite>
             <skillRequirements>
@@ -193,6 +193,7 @@
         </equippedStatOffsets>
         <costList>
             <Hyperweave>15</Hyperweave>
+            <Rimgate_Naquadah>2</Rimgate_Naquadah>
         </costList>
         <apparel>
             <wornGraphicPath>Things/Item/Apparel/Torso/SpecOpsVest/RGSpecOpsVest</wornGraphicPath>

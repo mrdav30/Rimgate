@@ -38,7 +38,7 @@
 		<description>Learn to stabilize and refine raw Naquadah into Naquadria — a hyperreactive isotope capable of powering anything from handheld energy weapons to planetary-scale disasters.\n\nThe process is equal parts chemistry, theoretical physics, and prayer.\n\nOne misplaced decimal and you’ll discover a new crater where your lab used to be — but hey, progress has casualties.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
-			<li>AdvancedFabrication</li>
+			<li>Fabrication</li>
 		</prerequisites>
 		<researchViewX>0</researchViewX>
 		<researchViewY>1</researchViewY>
@@ -86,6 +86,7 @@
 		<prerequisites>
 			<li>Rimgate_GlyphDeciphering</li>
 			<li>Rimgate_AncientAlloyResearch</li>
+			<li>Machining</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0</researchViewY>
@@ -100,6 +101,7 @@
 		<prerequisites>
 			<li>Rimgate_GlyphDeciphering</li>
 			<li>Rimgate_AncientAlloyResearch</li>
+			<li>AdvancedFabrication</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0.5</researchViewY>
@@ -160,6 +162,8 @@
 		<baseCost>3000</baseCost>
 		<prerequisites>
 			<li>Rimgate_AncientAlloyResearch</li>
+			<li>StandardMechtech</li>
+			<li>AdvancedFabrication</li>
 		</prerequisites>
 		<requiredAnalyzed>
 			<li>Rimgate_ReplicatorLink</li>
@@ -270,7 +274,6 @@
 		<researchViewY>1</researchViewY>
 		<prerequisites>
 			<li>Rimgate_ReplicatorLink</li>
-			<li>ChargedShot</li>
 		</prerequisites>
 
 		<discoveredLetterTitle>About: Anti-Replicator Weaponry</discoveredLetterTitle>
@@ -303,6 +306,8 @@
 		<prerequisites>
 			<li>Rimgate_AncientAlloyResearch</li>
 			<li>ShipBasics</li>
+			<li>Shuttles</li>
+			<li>OrbitalTech</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>1.5</researchViewY>
@@ -329,6 +334,40 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_AncientStructures</defName>
+		<label>Ancient Structures</label>
+		<description>By studying the construction techniques of Ancient architecture, we can adapt their methods to build more durable and efficient structures. These designs incorporate advanced materials and energy distribution systems that enhance the resilience of our buildings against environmental hazards and attacks.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>8000</baseCost>
+
+		<researchViewX>1</researchViewX>
+		<researchViewY>2</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_AncientAlloyResearch</li>
+			<li>Autodoors</li>
+			<li>FlakArmor</li>
+			<li>AdvancedFabrication</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithFaction</li>
+			<li>Rimgate_TauriFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+
+	</ResearchProjectDef>
+
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ZPMIntegration</defName>
 		<label>ZPM core</label>
@@ -336,10 +375,11 @@
 		<techLevel>Spacer</techLevel>
 		<baseCost>3200</baseCost>
 		<prerequisites>
-			<li>Electricity</li>
+			<li>Batteries</li>
+			<li>MicroelectronicsBasics</li>
 		</prerequisites>
 		<researchViewX>0</researchViewX>
-		<researchViewY>2.5</researchViewY>
+		<researchViewY>3</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_ZPM</li>
 		</requiredAnalyzed>
@@ -377,9 +417,10 @@
 		<baseCost>8000</baseCost>
 		<prerequisites>
 			<li>Rimgate_ZPMIntegration</li>
+			<li>Fabrication</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>2.5</researchViewY>
+		<researchViewY>3</researchViewY>
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>
 		</requiredResearchFacilities>
@@ -393,9 +434,10 @@
 		<baseCost>10000</baseCost>
 		<prerequisites>
 			<li>Rimgate_ZPMIntegration</li>
+			<li>Fabrication</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>3</researchViewY>
+		<researchViewY>3.5</researchViewY>
 		<discoveredLetterTitle>About: Phase Diverter</discoveredLetterTitle>
 		<discoveredLetterText>By expressing vacuum fluctuations across parallel subspace branes, your engineers can “phase-hop” a ZPM’s intake. Connected ZPMs will now gradually replenish reserves while a diverter runs on the same power net. Don’t stare at the interference fringes too long.</discoveredLetterText>
 		<requiredResearchFacilities>
@@ -411,11 +453,13 @@
 		<baseCost>10000</baseCost>
 
 		<researchViewX>2</researchViewX>
-		<researchViewY>2.5</researchViewY>
+		<researchViewY>3</researchViewY>
 
 		<prerequisites>
 			<li>Rimgate_SubspaceMasking</li>
 			<li>Rimgate_ParallelSubspaceCoupling</li>
+			<li>Rimgate_AncientStructures</li>
+			<li>AdvancedFabrication</li>
 		</prerequisites>
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>
@@ -433,15 +477,17 @@
 		<baseCost>10000</baseCost>
 
 		<researchViewX>3</researchViewX>
-		<researchViewY>2.5</researchViewY>
+		<researchViewY>3</researchViewY>
 
 		<prerequisites>
 			<li>Rimgate_ZPMHousing</li>
+			<li>ShieldBelt</li>
 		</prerequisites>
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>
 		</requiredResearchFacilities>
 
 	</ResearchProjectDef>
+
 
 </Defs>

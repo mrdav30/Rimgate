@@ -23,9 +23,9 @@
 		<researchViewX>0</researchViewX>
 		<researchViewY>1.5</researchViewY>
 		<prerequisites>
-			<li>MicroelectronicsBasics</li>
+			<li>AdvancedFabrication</li>
 		</prerequisites>
-		<techprintCount>1</techprintCount>
+		<techprintCount>2</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
@@ -45,6 +45,7 @@
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
+			<li>ReconArmor</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>0</researchViewY>
@@ -52,12 +53,12 @@
 
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTierTwo</defName>
-		<label>Guard armor</label>
+		<label>Goa'uld Guard armor</label>
 		<description>Unlock specialized armor worn by elite Jaffa guards and First Primes. Offers increased protection and 200% more self-importance.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldArmorTierOne</li>
-			<li>ReconArmor</li>
+			<li>PoweredArmor</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0</researchViewY>
@@ -71,9 +72,9 @@
 		<baseCost>5000</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldArmorTierTwo</li>
-			<li>PoweredArmor</li>
-			<li>ShieldBelt</li>
 			<li>Rimgate_NaquadahRefinement</li>
+			<li>ShieldBelt</li>
+			<li>CataphractArmor</li>
 		</prerequisites>
 		<researchViewX>3</researchViewX>
 		<researchViewY>0</researchViewY>
@@ -151,6 +152,7 @@
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldWeaponTierOne</li>
+			<li>BeamWeapons</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>1</researchViewY>
@@ -179,7 +181,7 @@
 		<description>Scale up staff-weapon physics into a manned emplacement. Unlocks the Goa’uld staff cannon—because sometimes diplomacy needs a sun-hot punctuation mark.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
-			<li>GunTurrets</li>
+			<li>HeavyTurrets</li>
 			<li>Rimgate_GoauldWeaponTierOne</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
@@ -238,7 +240,6 @@
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
 			<li>Rimgate_NaquadahRefinement</li>
-			<li>AdvancedFabrication</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>2</researchViewY>
@@ -263,6 +264,8 @@
 			<li>Rimgate_GoauldBasic</li>
 			<li>Rimgate_NaquadahRefinement</li>
 			<li>ShipBasics</li>
+			<li>Shuttles</li>
+			<li>OrbitalTech</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>2.5</researchViewY>
@@ -406,7 +409,6 @@
 			<li>Rimgate_SubspaceMasking</li>
 			<li>Rimgate_ParallelSubspaceCoupling</li>
 			<li>Rimgate_Sarcophagus</li>
-			<li>Rimgate_GoauldKaraKesh</li>
 		</prerequisites>
 
 		<researchViewX>2</researchViewX>
@@ -446,13 +448,22 @@
 		<label>Symbiote basics</label>
 		<description>Delve deeper into the biology of Goa'uld symbiotes to decode how they bond, heal, and dominate their hosts. Learn how to “safely” extract one—or install it with only moderate screaming. The line between cure and conquest has never been thinner.</description>
 		<baseCost>5000</baseCost>
+
 		<researchViewX>0</researchViewX>
 		<researchViewY>4</researchViewY>
+
+		<prerequisites>
+			<li>SterileMaterials</li>
+			<li>MedicineProduction</li>
+		</prerequisites>
+
 		<requiredAnalyzed>
 			<li>Rimgate_GoauldSymbiote</li>
 		</requiredAnalyzed>
+
 		<discoveredLetterTitle>About: Goa'uld Symbiotes</discoveredLetterTitle>
 		<discoveredLetterText>Recovered field notes describe the Goa'uld as both parasite and miracle cure—capable of healing mortal wounds while rewriting the host from the inside out. Your researchers are confident they can replicate this relationship without the “enslavement” part. Probably.</discoveredLetterText>
+
 		<generalRules>
 			<rulesStrings>
 				<!-- subjects -->
@@ -479,12 +490,17 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_UnasBiology</defName>
 		<label>Unas biology</label>
-		<description>After performing a surgical inspection on a living Unas, study their biological characteristics using the knowledge of the Ancients to unlock new research options related to their physiology and potential applications.</description>
+		<description>After performing a surgical inspection on a living Unas, study their biological characteristics by referencing knowledge of the Ancients to unlock new research options related to their physiology and potential applications.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>2500</baseCost>
 
 		<researchViewX>0</researchViewX>
 		<researchViewY>4.5</researchViewY>
+
+		<prerequisites>
+			<li>SterileMaterials</li>
+			<li>MedicineProduction</li>
+		</prerequisites>
 
 		<requiredAnalyzed>
 			<li>Rimgate_UnasBiosignature</li>
@@ -550,6 +566,7 @@
 
 		<prerequisites>
 			<li>Rimgate_CorticalDampenerHacking</li>
+			<li>Bioregeneration</li>
 		</prerequisites>
 		<requiredResearchFacilities>
 			<li>Rimgate_AncientResearchBank</li>

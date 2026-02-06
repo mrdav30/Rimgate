@@ -1,7 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- ======================= M2 =======================  -->
+	<!-- ======================= Military Barriers =======================  -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_MilitaryBarrier</defName>
+		<label>military barrier</label>
+		<description>A deployable barrier used for controlling traffic and providing cover in combat zones. Made from reinforced materials to withstand small arms fire and explosions.</description>
+
+		<graphicData>
+			<texPath>Things/Building/Security/RGMilitaryBarrier</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(2,1)</drawSize>
+		</graphicData>
+
+		<size>(2, 1)</size>
+		<rotatable>true</rotatable>
+		<fillPercent>0.3</fillPercent>
+		<defaultPlacingRot>South</defaultPlacingRot>
+
+		<statBases>
+			<WorkToBuild>3000</WorkToBuild>
+			<MaxHitPoints>750</MaxHitPoints>
+			<Beauty>-10</Beauty>
+			<Flammability>0</Flammability>
+		</statBases>
+
+		<costList>
+			<Rimgate_Concrete>10</Rimgate_Concrete>
+			<Steel>10</Steel>
+		</costList>
+
+		<designationCategory>Security</designationCategory>
+		<passability>PassThroughOnly</passability>
+		<pathCost>42</pathCost>
+		<castEdgeShadows>true</castEdgeShadows>
+		<staticSunShadowHeight>0.5</staticSunShadowHeight>
+		<pathCostIgnoreRepeat>true</pathCostIgnoreRepeat>
+		<fillPercent>0.65</fillPercent>
+		<canOverlapZones>false</canOverlapZones>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+
+		<building>
+			<isInert>true</isInert>
+			<ai_chillDestination>false</ai_chillDestination>
+			<claimable>false</claimable>
+			<canLandGravshipOn>true</canLandGravshipOn>
+		</building>
+
+		<researchPrerequisites>
+			<li>Rimgate_TauriManufacturing</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_ConcreteBarrier</defName>
+		<label>concrete barrier</label>
+		<description>A solid concrete barrier used for controlling traffic and providing cover in combat zones. Its sturdy construction offers reliable protection against small arms fire.</description>
+
+		<graphicData>
+			<texPath>Things/Building/Security/RGConcreteBarrier</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+
+		<rotatable>false</rotatable>
+
+		<statBases>
+			<MaxHitPoints>500</MaxHitPoints>
+			<Beauty>-10</Beauty>
+			<Flammability>0</Flammability>
+			<WorkToBuild>600</WorkToBuild>
+		</statBases>
+
+		<costList>
+			<Rimgate_Concrete>5</Rimgate_Concrete>
+			<Steel>5</Steel>
+		</costList>
+
+		<designationCategory>Security</designationCategory>
+		<castEdgeShadows>true</castEdgeShadows>
+		<staticSunShadowHeight>0.2</staticSunShadowHeight>
+		<pathCost>42</pathCost>
+		<pathCostIgnoreRepeat>true</pathCostIgnoreRepeat>
+		<passability>PassThroughOnly</passability>
+		<fillPercent>0.60</fillPercent>
+		<canOverlapZones>false</canOverlapZones>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+
+		<building>
+			<isInert>true</isInert>
+			<ai_chillDestination>false</ai_chillDestination>
+			<canLandGravshipOn>true</canLandGravshipOn>
+		</building>
+
+		<repairEffect>ConstructDirt</repairEffect>
+		<researchPrerequisites>
+			<li>Rimgate_TauriManufacturing</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<!-- ======================= M2 Turret =======================  -->
 
 	<!-- ==== Bases ==== -->
 

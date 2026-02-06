@@ -22,10 +22,19 @@
 		<description>Begin unlocking the secrets of Wraith bio-engineering—where everything is grown, pulsing, and slightly slimy.\nWarning: side effects may include telepathy and power hunger.</description>
 		<baseCost>3000</baseCost>
 		<prerequisites>
-			<li>MicroelectronicsBasics</li>
+			<li>AdvancedFabrication</li>
 		</prerequisites>
 		<researchViewX>0</researchViewX>
 		<researchViewY>0.5</researchViewY>
+		<techprintCount>2</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
 	</ResearchProjectDef>
 
 	<!-- ======== Armor ========= -->
@@ -52,6 +61,7 @@
 		<prerequisites>
 			<li>Rimgate_WraithArmorTierOne</li>
 			<li>ShieldBelt</li>
+			<li>Machining</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0</researchViewY>
@@ -86,9 +96,10 @@
 		<label>Wraith hacking</label>
 		<description>Reverse-engineer Wraith neural interface tech to bend machines to your will. Great for remote control, terrible for privacy.</description>
 		<baseCost>3500</baseCost>
-		<prerequisites>
-			<li>StandardMechtech</li>
+		<prerequisites>		
 			<li>Rimgate_WraithWeaponsTierOne</li>
+			<li>UltraMechtech</li>
+			<li>Machining</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0.5</researchViewY>
@@ -113,7 +124,7 @@
 		<defName>Rimgate_GateModification</defName>
 		<label>Gate Modification</label>
 		<description>Fragments of Wraith interface lore and signal hushwork.\n\nIt promises safer contact with the gate, but the real purpose is buried in the noise.</description>
-		<baseCost>5500</baseCost>
+		<baseCost>10000</baseCost>
 		<techLevel>Archotech</techLevel>
 		<prerequisites>
 			<li>Rimgate_GlyphDeciphering</li>
@@ -150,6 +161,7 @@
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Hydroponics</li>
+			<li>NutrientPaste</li>
 			<li>Rimgate_WraithBasic</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
@@ -272,6 +284,8 @@
 		<prerequisites>
 			<li>Rimgate_WraithGenerator</li>
 			<li>ShipBasics</li>
+			<li>Shuttles</li>
+			<li>OrbitalTech</li>
 		</prerequisites>
 		<researchViewX>3</researchViewX>
 		<researchViewY>1</researchViewY>
@@ -305,7 +319,7 @@
 		<label>Advanced bioengineering</label>
 		<description>Optimize the meat cultivation process by applying advanced bioengineering techniques to increase the power yield of biomass generators and reduce resource consumption of meat labs.</description>
 		<techLevel>Archotech</techLevel>
-		<baseCost>3500</baseCost>
+		<baseCost>9000</baseCost>
 
 		<prerequisites>
 			<li>Rimgate_WraithGenerator</li>

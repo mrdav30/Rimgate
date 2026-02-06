@@ -14,11 +14,8 @@ namespace Rimgate;
 /// </summary>
 public class Building_HackableForceField : Building_SupportedDoor, IHackable
 {
-    private CompHackable _hackable;
-    private CompPowerTrader _power;
-
-    private CompHackable Hackable => _hackable ??= GetComp<CompHackable>();
-    private CompPowerTrader Power => _power ??= GetComp<CompPowerTrader>();
+    private CompHackable Hackable => _cachedHackable ??= GetComp<CompHackable>();
+    private CompPowerTrader Power => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
     private bool RequiresPower => Power != null;
     private bool IsPowered => !RequiresPower || Power.PowerOn;
@@ -35,6 +32,10 @@ public class Building_HackableForceField : Building_SupportedDoor, IHackable
     protected override bool AlwaysOpen => FreePassage ? true : false;
     protected override float OpenPct => FreePassage ? 1f : 0f;
     protected override bool CanDrawMovers => false;
+
+    private CompHackable _cachedHackable;
+
+    private CompPowerTrader _cachedPowerTrader;
 
     public override bool PawnCanOpen(Pawn p)
     {

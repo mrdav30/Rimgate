@@ -482,6 +482,8 @@
     <Compile Include="Quests\QuestPart_RandomFactionRaid.cs" />
     <Compile Include="Quests\QuestPart_SpawnPawnsOnSignal.cs" />
     <Compile Include="Storyteller\IncidentWorker_SymbiotePlague.cs" />
+    <Compile Include="Things\Building_HackableMultiTileDoor.cs" />
+    <Compile Include="Things\Building_HackableSingleDoor.cs" />
     <Compile Include="Things\Building_SymbioteAmbushTrap.cs" />
     <Compile Include="Things\Building_SymbioteSpawningPool.cs" />
     <Compile Include="Things\Building_ZPMHousing.cs" />

@@ -92,7 +92,7 @@
         <description>Unlock pulse-pounding, projectile-slinging freedom—courtesy of Earth’s finest ballistic engineering.\nWarning: may provoke Goa’uld, Wraith, and anyone with plasma-based superiority complexes.</description>
         <baseCost>2500</baseCost>
         <researchViewX>2</researchViewX>
-        <researchViewY>0.5</researchViewY>
+        <researchViewY>0.75</researchViewY>
         <prerequisites>
             <li>PrecisionRifling</li>
             <li>Rimgate_TauriManufacturing</li>
@@ -105,9 +105,10 @@
         <description>Advances in Tau’ri weapons engineering bring the next generation of battlefield tools into your arsenal. Building on prior designs, this tier delivers more specialized options, improved stopping power, and refined technology for dealing with threats at any range. The Goa’uld call it escalation. The Tau’ri call it preparedness.</description>
         <baseCost>2500</baseCost>
         <researchViewX>3</researchViewX>
-        <researchViewY>0.5</researchViewY>
+        <researchViewY>0.75</researchViewY>
         <prerequisites>
             <li>Rimgate_TauriWeaponsTierOne</li>
+            <li>Fabrication</li>
         </prerequisites>
     </ResearchProjectDef>
 
@@ -117,7 +118,7 @@
         <description>Field up your defenses the Tau’ri way: a manned, shielded M2 that turns negotiations into noise. Teaches emplacement, feed, and “brace for recoil.”</description>
         <baseCost>2500</baseCost>
         <researchViewX>3</researchViewX>
-        <researchViewY>1</researchViewY>
+        <researchViewY>1.25</researchViewY>
         <prerequisites>
             <li>GunTurrets</li>
             <li>Rimgate_TauriWeaponsTierOne</li>
@@ -130,10 +131,12 @@
         <description>Apply refined naquadah to rail physics and call it “security.” Unlocks a manned railgun that ventilates armor and egos at extreme range.</description>
         <baseCost>2500</baseCost>
         <researchViewX>4</researchViewX>
-        <researchViewY>1</researchViewY>
+        <researchViewY>1.25</researchViewY>
         <prerequisites>
             <li>Rimgate_TauriTurretsTierOne</li>
             <li>Rimgate_NaquadahRefinement</li>
+            <li>Fabrication</li>
+            <li>HeavyTurrets</li>
         </prerequisites>
     </ResearchProjectDef>
 
@@ -142,15 +145,17 @@
         <label>MALP mech tech</label>
         <description>By tearing down a ruined Tau’ri MALP and tracing its signal routing, your researchers believe they can build a locally manufacturable probe with sturdier parts and less mystery.\n\nWe won’t have their classified control stack, so we’ll have to figure it out ourselves — and make it better.</description>
         <prerequisites>
-            <li>ShieldBelt</li>
             <li>Rimgate_TauriManufacturing</li>
+            <li>Fabrication</li>
+            <li>HighMechtech</li>
+            <li>ShieldBelt</li>
         </prerequisites>
         <requiredAnalyzed>
             <li>Rimgate_DestroyedMalp</li>
         </requiredAnalyzed>
         <baseCost>3500</baseCost>
         <researchViewX>2</researchViewX>
-        <researchViewY>1.5</researchViewY>
+        <researchViewY>1.75</researchViewY>
         <discoveredLetterTitle>About: MALP reverse-engineering</discoveredLetterTitle>
         <discoveredLetterText>The ruined Tau’ri MALP wasn’t a total loss. Its cabling, crystal mounts, and actuator layout tell a clear story: we can fabricate a ruggedized copy that runs on our tools, our power, and our patience.\n\nIt won’t match the Tau’ri’s classified control stack, but it’ll drive, probe, and—most importantly—go through the Dwarfgate first.</discoveredLetterText>
         <generalRules>
@@ -180,9 +185,10 @@
         <prerequisites>
             <li>Rimgate_TauriManufacturing</li>
             <li>Rimgate_NaquadahRefinement</li>
+            <li>Fabrication</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
-        <researchViewY>2</researchViewY>
+        <researchViewY>2.25</researchViewY>
         <techprintCount>1</techprintCount>
         <techprintCommonality>3</techprintCommonality>
         <techprintMarketValue>3000</techprintMarketValue>
@@ -201,9 +207,10 @@
         <baseCost>7000</baseCost>
         <prerequisites>
             <li>Rimgate_NaquadriaFiredGenerator</li>
+            <li>AdvancedFabrication</li>
         </prerequisites>
         <researchViewX>3</researchViewX>
-        <researchViewY>2</researchViewY>
+        <researchViewY>2.25</researchViewY>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
@@ -212,11 +219,12 @@
         <description>Unlocks Tau'ri medical protocols: triage techniques, surgical procedures, and field treatments adapted from off-world military medicine.\n\nDramatically improves medical care quality and survival rates for severe injuries.</description>
         <baseCost>3000</baseCost>
         <prerequisites>
-            <li>SterileMaterials</li>
             <li>Rimgate_TauriManufacturing</li>
+            <li>SterileMaterials</li>
+            <li>MedicineProduction</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
-        <researchViewY>2.75</researchViewY>
+        <researchViewY>3</researchViewY>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
@@ -230,7 +238,7 @@
             <li>Rimgate_NaquadahRefinement</li>
         </prerequisites>
         <researchViewX>3</researchViewX>
-        <researchViewY>2.75</researchViewY>
+        <researchViewY>3</researchViewY>
 
         <discoveredLetterTitle>About: Tretonin</discoveredLetterTitle>
         <discoveredLetterText>After countless enzyme failures, biochemical meltdowns, and one unfortunate volunteer incident, your researchers have succeeded in stabilizing the Tretonin compound.\n\nDerived from Goa'uld symbiote enzymes, the serum grants total immunity to disease—so long as the subject never stops taking it.\n\nThe Tau’ri call it a medical revolution. The Tok’ra call it a bad idea. Both are right.</discoveredLetterText>
@@ -263,7 +271,7 @@
             <li>Rimgate_AncientResearchBank</li>
         </requiredResearchFacilities>
         <researchViewX>4</researchViewX>
-        <researchViewY>2.75</researchViewY>
+        <researchViewY>3</researchViewY>
 
         <discoveredLetterTitle>About: Tretonin synthesis advancements</discoveredLetterTitle>
         <discoveredLetterText>Building on prior research and Ancient biochemistry notes, your team has refined the Tretonin synthesis process to eliminate the biochemical dependency on symbiote enzymes.\n\nThe new formulation provides the same robust immunity to disease without the need for ongoing symbiote interaction—marking a significant advancement in medical science.</discoveredLetterText>
@@ -290,9 +298,11 @@
         <prerequisites>
             <li>Rimgate_TauriManufacturing</li>
             <li>BiofuelRefining</li>
+            <li>Fabrication</li>
+            <li>Machining</li>
         </prerequisites>
         <researchViewX>2</researchViewX>
-        <researchViewY>3.5</researchViewY>
+        <researchViewY>3.75</researchViewY>
     </ResearchProjectDef>
 
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
@@ -304,7 +314,7 @@
             <li>Rimgate_TrackedCart</li>
         </prerequisites>
         <researchViewX>3</researchViewX>
-        <researchViewY>3.5</researchViewY>
+        <researchViewY>3.75</researchViewY>
     </ResearchProjectDef>
 
 </Defs>
