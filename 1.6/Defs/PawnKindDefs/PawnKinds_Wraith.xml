@@ -288,7 +288,7 @@
       <li>IndustrialMilitaryBasic</li>
       <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
-      <li>Rimgate_WraithForceBuckler_tag</li>
+      <li>Rimgate_WraithAssassin_tag</li>
       <li>Rimgate_WraithHeadgear_tag</li>
     </apparelTags>
     <apparelRequired>
@@ -298,6 +298,7 @@
     </apparelRequired>
     <weaponTags>
       <li>Spear</li>
+      <li>Rimgate_WraithAssassin_tag</li>
     </weaponTags>
     <skills>
       <li>

@@ -221,14 +221,21 @@
                 <range>6~10</range>
             </li>
         </skills>
-        <inventoryOptions>
-            <skipChance>0</skipChance>
+        <inventoryOptions Inherit="false">
+            <skipChance>0.7</skipChance>
             <subOptionsChooseOne>
                 <li>
                     <thingDef>MedicineIndustrial</thingDef>
                     <countRange>
-                        <min>1</min>
+                        <min>2</min>
                         <max>3</max>
+                    </countRange>
+                </li>
+                <li>
+                    <thingDef>MealSurvivalPack</thingDef>
+                    <countRange>
+                        <min>1</min>
+                        <max>2</max>
                     </countRange>
                 </li>
             </subOptionsChooseOne>

@@ -34,6 +34,8 @@
         <makesAnimalsFlee>false</makesAnimalsFlee>
     </DamageDef>
 
+    <!-- Siege Blunt -->
+
     <DamageDef>
         <defName>Rimgate_SiegeBlunt</defName>
         <label>crush</label>
@@ -68,6 +70,23 @@
         <causeStun>true</causeStun>
         <stunResistStat MayRequireAnyOf="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Anomaly">EMPResistance</stunResistStat>
         <stunAdaptationTicks>2200</stunAdaptationTicks>
+    </DamageDef>
+
+    <!-- Poison -->
+
+    <DamageDef>
+        <defName>Rimgate_WraithPoison</defName>
+        <label>poison</label>
+        <workerClass>DamageWorker_Nerve</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been killed by wraith poison.</deathMessage>
+        <hediff>Cut</hediff>
+        <hediffSolid>Crack</hediffSolid>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <impactSoundType>Slice</impactSoundType>
+        <armorCategory>Sharp</armorCategory>
+        <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+        <makesAnimalsFlee>true</makesAnimalsFlee>
     </DamageDef>
 
 </Defs>

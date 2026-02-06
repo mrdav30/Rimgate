@@ -73,6 +73,8 @@
         </tradeTags>
     </ThingDef>
 
+    <!-- ==================== Rod of Anguish ==================== -->
+
     <ThingDef ParentName="BaseWeapon">
         <defName>Rimgate_RodOfAnguish</defName>
         <label>rod of anguish</label>
@@ -185,6 +187,97 @@
                 <minQualityForArtistic>Excellent</minQualityForArtistic>
             </li>
         </comps>
+    </ThingDef>
+
+    <!-- ==================== Wraith Assassin Blade ==================== -->
+
+    <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+        <defName>Rimgate_WraithAssassinBlade</defName>
+        <label>Wraith assassin blade</label>
+        <description>A sleek and deadly melee weapon used by Wraith assassins. Its razor-sharp edge is designed for swift, silent kills, making it ideal for covert operations and close-quarters combat. Additionally, the blade is infused with a potent poison derived from biomass that incapacitates targets quickly.</description>
+
+        <techLevel>Ultra</techLevel>
+
+        <graphicData>
+            <texPath>Things/Item/Weapon/Melee/RGWraithAssassinBlade</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <equippedAngleOffset>-65</equippedAngleOffset>
+
+        <soundInteract>Interact_MonoSword</soundInteract>
+        <meleeHitSound>MeleeHit_MonoSword</meleeHitSound>
+
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_WraithAssassin</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>10</Crafting>
+            </skillRequirements>
+            <recipeUsers Inherit="False">
+                <li>FabricationBench</li>
+            </recipeUsers>
+        </recipeMaker>
+
+        <statBases>
+            <WorkToMake>14000</WorkToMake>
+            <MarketValue>2000</MarketValue>
+            <Mass>1.2</Mass>
+        </statBases>
+
+        <costList>
+            <Plasteel>130</Plasteel>
+            <Rimgate_Biomass>50</Rimgate_Biomass>
+            <ComponentSpacer>3</ComponentSpacer>
+        </costList>
+
+        <weaponTags>
+            <li>UltratechMelee</li>
+            <li>Rimgate_WraithAssassin_tag</li>
+        </weaponTags>
+        <weaponClasses>
+            <li>Ultratech</li>
+        </weaponClasses>
+        <tradeTags IsNull="True" />
+
+        <tools>
+            <li>
+                <label>handle</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>12</power>
+                <cooldownTime>1.4</cooldownTime>
+            </li>
+            <li>
+                <label>point</label>
+                <capacities>
+                    <li>Stab</li>
+                </capacities>
+                <power>23</power>
+                <cooldownTime>1.6</cooldownTime>
+                <armorPenetration>0.9</armorPenetration>
+                <extraMeleeDamages>
+                    <li>
+                        <def>Rimgate_WraithPoison</def>
+                        <amount>9</amount>
+                    </li>
+                </extraMeleeDamages>
+            </li>
+            <li>
+                <label>edge</label>
+                <capacities>
+                    <li>Cut</li>
+                </capacities>
+                <power>23</power>
+                <cooldownTime>1.6</cooldownTime>
+                <armorPenetration>0.9</armorPenetration>
+                <extraMeleeDamages>
+                    <li>
+                        <def>Rimgate_WraithPoison</def>
+                        <amount>9</amount>
+                    </li>
+                </extraMeleeDamages>
+            </li>
+        </tools>
     </ThingDef>
 
 </Defs>

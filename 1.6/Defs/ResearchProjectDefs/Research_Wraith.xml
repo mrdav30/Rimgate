@@ -53,15 +53,18 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
-		<defName>Rimgate_WraithArmorTierTwo</defName>
-		<label>Force buckler</label>
+		<defName>Rimgate_WraithAssassin</defName>
 		<techLevel>Archotech</techLevel>
-		<description>Reverse-engineer a wrist-mounted Wraith repulsor field. Study captured shield matrices and mesh them with human shield-belt theory to fabricate compact bucklers that block both melee and gunfire. Caution: when the field collapses, the bearer is exposed—train your melee to strike while the glow still holds.</description>
+		<label>Wraith assassin gear</label>
+		<description>Unlock the secrets of Wraith assassin gear: bio-engineered armor and weapons optimized for stealth, speed, and silent lethality.\n\nThis research grants access to advanced melee weaponry and lightweight armor that enhances agility while providing moderate protection. Perfect for operatives who prefer to strike from the shadows.</description>
+		
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithArmorTierOne</li>
+			<li>Rimgate_WraithWeaponsTierOne</li>
 			<li>ShieldBelt</li>
 			<li>Machining</li>
+			<li>LongBlades</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
 		<researchViewY>0</researchViewY>

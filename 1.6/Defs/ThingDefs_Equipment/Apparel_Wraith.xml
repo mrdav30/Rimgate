@@ -162,7 +162,7 @@
 			</forceEyesVisibleForRotations>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithAssassin</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
@@ -508,7 +508,7 @@
 		</graphicData>
 		<equippedAngleOffset>0</equippedAngleOffset>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithArmorTierTwo</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithAssassin</researchPrerequisite>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 			<skillRequirements>
 				<Crafting>7</Crafting>
@@ -542,7 +542,7 @@
 				<li>VFEC_OuterShell</li>
 			</layers>
 			<tags>
-				<li>Rimgate_WraithForceBuckler_tag</li>
+				<li>Rimgate_WraithAssassin_tag</li>
 			</tags>
 		</apparel>
 		<statBases>
