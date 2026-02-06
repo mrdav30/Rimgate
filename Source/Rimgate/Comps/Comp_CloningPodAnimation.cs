@@ -19,11 +19,11 @@ public class Comp_CloningPodAnimation : ThingComp
 
     private Mesh BackgroundMesh => _cachedBackgroundMesh ??= Props.backgroundGraphicData?.Graphic.MeshAt(parent.Rotation);
 
-    private Mesh _cachedBackgroundMesh;
-
     private Material BackgroundMat => _cachedBackgroundMat ??= Props.backgroundGraphicData?.Graphic.MatAt(parent.Rotation, null);
 
     private Material _cachedBackgroundMat;
+
+    private Mesh _cachedBackgroundMesh;
 
     private Effecter _idleEffecter;
 
@@ -129,7 +129,7 @@ public class Comp_CloningPodAnimation : ThingComp
             Graphics.DrawMesh(
                 BackgroundMesh,
                 backgroundPos,
-                Quaternion.identity,
+                rotation.AsQuat,
                 BackgroundMat,
                 0);
         }
@@ -230,6 +230,9 @@ public class Comp_CloningPodAnimation : ThingComp
 
     public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
+        _cachedBackgroundMat = null;
+        _cachedBackgroundMesh = null;
+
         _operatingEffecter?.Cleanup();
         _operatingEffecter = null;
         _idleEffecter?.Cleanup();

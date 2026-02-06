@@ -22,6 +22,8 @@ public static class RimgateDefOf
 
     public static ChemicalDef Rimgate_SarcophagusChemical;
 
+    public static ConceptDef Rimgate_GateIrisProtection;
+
     public static DamageDef Rimgate_KawooshExplosion;
 
     public static DesignationDef Rimgate_DesignationCloseGate;

@@ -431,6 +431,8 @@
     <Compile Include="Social\ThoughtWorker_Precept_HasNoSymbioteImplant.cs" />
     <Compile Include="Social\ThoughtWorker_Precept_HasSymbioteImplant.cs" />
     <Compile Include="Defs\BiomaterialRecoveryDef.cs" />
+    <Compile Include="Storyteller\GameCondition_Gate.cs" />
+    <Compile Include="Storyteller\IncidentWorker_Gate.cs" />
     <Compile Include="Support\CalibrationOutcome.cs" />
     <Compile Include="Support\SymbioteMemory.cs" />
     <Compile Include="Genes\Gene_WraithEssenceMetabolism.cs" />

@@ -176,9 +176,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public ThingOwner SearchableContents => _innerContainer;
 
-    private Mesh GlowMesh => Props.sarchophagusGlowGraphicData?.Graphic.MeshAt(Rotation);
+    private Mesh GlowMesh => _cachedGlowMesh ??= Props.sarchophagusGlowGraphicData?.Graphic.MeshAt(Rotation);
 
-    private Material GlowMaterial => Props.sarchophagusGlowGraphicData?.Graphic.MatAt(Rotation, null);
+    private Material GlowMaterial => _cachedGlowMaterial ??= Props.sarchophagusGlowGraphicData?.Graphic.MatAt(Rotation, null);
 
     private List<Hediff> _patientTreatableHediffs = new();
 
@@ -192,9 +192,13 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     private CompPowerTrader _powerTrader;
 
-    public CompAssignableToPawn_Sarcophagus _assignable;
+    private CompAssignableToPawn_Sarcophagus _assignable;
 
-    public Comp_AnalyzableResearchWhen _analyzable;
+    private Comp_AnalyzableResearchWhen _analyzable;
+
+    private Material _cachedGlowMaterial;
+
+    private Mesh _cachedGlowMesh;
 
     public Building_Sarcophagus()
     {
@@ -642,10 +646,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         Graphics.DrawMesh(
             GlowMesh,
             sarchophagusGlowDrawPos,
-            Quaternion.identity,
-            FadedMaterialPool.FadedVersionOf(
-                GlowMaterial,
-                1f),
+            Rotation.AsQuat,
+            GlowMaterial,
             0);
     }
 
@@ -1149,6 +1151,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
+        _cachedGlowMaterial = null;
+        _cachedGlowMesh = null;
+
         if (Power.PowerOn
             && (Status == SarcophagusStatus.DiagnosisFinished
                 || Status == SarcophagusStatus.HealingStarted

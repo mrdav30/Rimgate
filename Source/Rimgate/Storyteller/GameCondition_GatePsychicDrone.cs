@@ -1,58 +1,85 @@
 ﻿using RimWorld;
-using Verse;
+using System.Collections.Generic;
 using System.Linq;
+using Verse;
+using Verse.Grammar;
 using Verse.Noise;
 
 namespace Rimgate;
 
-public class GameCondition_GatePsychicDrone : GameCondition_PsychicEmanation
+public class GameCondition_GatePsychicDrone : GameCondition_Gate
 {
-    private Building_Gate _heldGate;
+    public Gender gender;
+
+    public PsychicDroneLevel level = PsychicDroneLevel.BadMedium;
+
+    public const float MaxPointsDroneLow = 800f;
+
+    public const float MaxPointsDroneMedium = 2000f;
+
+    public override string Label
+    {
+        get
+        {
+            if (level == PsychicDroneLevel.GoodMedium)
+                return def.label + ": " + gender.GetLabel().CapitalizeFirst();
+
+            if (gender != 0)
+                return def.label + ": " + level.GetLabel().CapitalizeFirst() + " (" + gender.GetLabel().ToLower() + ")";
+
+            return def.label + ": " + level.GetLabel().CapitalizeFirst();
+        }
+    }
+
+    public override string LetterText
+    {
+        get
+        {
+            if (level == PsychicDroneLevel.GoodMedium)
+                return def.letterText.Formatted(gender.GetLabel().ToLower());
+
+            return def.letterText.Formatted(gender.GetLabel().ToLower(), level.GetLabel());
+        }
+    }
+
+    public override string Description => base.Description.Formatted(gender.GetLabel().ToLower());
 
     public override void Init()
     {
+        LessonAutoActivator.TeachOpportunity(RimgateDefOf.Rimgate_GateIrisProtection, OpportunityType.Critical);
         base.Init();
-        // keep receiver open during the drone
-        TryHoldLocalGate(SingleMap);
     }
 
-    public override void End()
+    public override void PostMake()
     {
-        ReleaseHold();
-        base.End();
+        base.PostMake();
+        level = def.defaultDroneLevel;
     }
 
-    public override void GameConditionTick()
+    public override void RandomizeSettings(float points, Map map, List<Rule> outExtraDescriptionRules, Dictionary<string, string> outExtraDescriptionConstants)
     {
-        base.GameConditionTick();
-        if (_heldGate == null || _heldGate.Destroyed == true)
-            End();
-        if (_heldGate != null)
-            _heldGate.TicksSinceBufferUnloaded = 0;
+        if (def.defaultDroneLevel == PsychicDroneLevel.GoodMedium)
+            level = PsychicDroneLevel.GoodMedium;
+        else if (points < 800f)
+            level = PsychicDroneLevel.BadLow;
+        else if (points < 2000f)
+            level = PsychicDroneLevel.BadMedium;
+        else
+            level = PsychicDroneLevel.BadHigh;
+
+        if (map.mapPawns.FreeColonistsCount > 0)
+            gender = map.mapPawns.FreeColonists.RandomElement().gender;
+        else
+            gender = Rand.Element(Gender.Male, Gender.Female);
+
+        outExtraDescriptionRules.Add(new Rule_String("psychicDroneLevel", level.GetLabel()));
+        outExtraDescriptionRules.Add(new Rule_String("psychicDroneGender", gender.GetLabel()));
     }
 
-    private void TryHoldLocalGate(Map map)
+    public override void ExposeData()
     {
-        if (map == null) return;
-        if (!Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gate) || gate.IsActive) return;
-        _heldGate = gate;
-
-        _heldGate.PushExternalHold();
-        // If the gate isn’t already open,
-        // light it up as an “incoming” link
-        _heldGate.ForceLocalOpenAsReceiver();
-    }
-
-    private void ReleaseHold()
-    {
-        if (_heldGate == null) return;
-
-        _heldGate.PopExternalHold();
-        // If nothing else is holding the gate
-        // and it was an “incoming” fake link:
-        if (_heldGate.ExternalHoldCount == 0 && _heldGate.IsReceivingGate)
-            _heldGate.CloseGate();
-
-        _heldGate = null;
+        base.ExposeData();
+        Scribe_Values.Look(ref gender, "gender", Gender.None);
+        Scribe_Values.Look(ref level, "level", PsychicDroneLevel.None);
     }
 }

@@ -65,9 +65,6 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
                     return false;
             }
 
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Psycast pool candidate: {ad.defName}");
-
             return true;
         }).ToList();
 

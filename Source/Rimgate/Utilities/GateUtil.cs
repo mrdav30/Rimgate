@@ -87,7 +87,6 @@ public static class GateUtil
             .Where(tile => tile != exclude)
             .ToList();
     }
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void IncrementQuestSiteCount()
     {
@@ -107,6 +106,22 @@ public static class GateUtil
     {
         if (WorldComp != null)
             WorldComp.ModificationEquipmentActive = status;
+    }
+
+    public static bool IsGateConditionActive(Map map)
+    {
+        var conditions = map.GameConditionManager.ActiveConditions;
+        for (int i = 0; i < conditions.Count; i++)
+        {
+            var x = conditions[i];
+            bool isGateCondition = x.def == RimgateDefOf.Rimgate_GatePsychicDrone
+                || x.def == RimgateDefOf.Rimgate_GateHeatWave
+                || x.def == RimgateDefOf.Rimgate_GateToxicFallout;
+            if (isGateCondition)
+                return true;
+        }
+
+        return false;
     }
 
     public static bool IsValidAddress(PlanetTile address)

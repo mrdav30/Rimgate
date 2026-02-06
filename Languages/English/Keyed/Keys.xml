@@ -223,6 +223,9 @@
 	<RG_ToggleIris>{0} iris</RG_ToggleIris>
 	<RG_ToggleIrisDesc>{0} this {1}'s iris.</RG_ToggleIrisDesc>
 
+	<RG_IrisPowerConsumption>Iris power required: {0} W</RG_IrisPowerConsumption>
+	<RG_IrisNonFunctional>Iris non-functional: no power</RG_IrisNonFunctional>
+
 	<RG_CannotPlace_Gate>Cannot place {0}: {1}</RG_CannotPlace_Gate>
 
 	<RG_OnlyOneSGPerMap>only one per map allowed.</RG_OnlyOneSGPerMap>

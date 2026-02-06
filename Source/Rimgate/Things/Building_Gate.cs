@@ -22,11 +22,13 @@ public class Building_Gate_Ext : DefModExtension
 
     public bool explodeOnUse = false;
 
-    public Color modActivatedColor = new Color(0.447f, 0.44f, 0.08f);
+    public Color modActivatedColor = new Color(0.38f, 0.53f, 0.49f);
 
     public GraphicData puddleGraphicData;
 
     public GraphicData irisGraphicData;
+
+    public GraphicData irisGlowGraphicData;
 
     public GraphicData chevronHighlight;
 
@@ -85,6 +87,10 @@ public class Building_Gate : Building
     public Graphic GatePuddle => Props.puddleGraphicData?.Graphic;
 
     public Graphic GateIris => Props.irisGraphicData?.Graphic;
+
+    private Mesh IrisGlowMesh => _cachedIrisGlowMesh ??= Props.irisGlowGraphicData?.Graphic.MeshAt(Rotation);
+
+    private Material IrisGlowMat => _cachedIrisGlowMat ??= Props.irisGlowGraphicData?.Graphic.MatAt(Rotation, null);
 
     public Graphic ChevronHighlight => Props.chevronHighlight?.Graphic;
 
@@ -185,6 +191,12 @@ public class Building_Gate : Building
 
     private bool _inert;
 
+    private bool _gateConditionActive;
+
+    private Material _cachedIrisGlowMat;
+
+    private Mesh _cachedIrisGlowMesh;
+
     #endregion
 
     #region Building overrides and lifecycle
@@ -215,7 +227,7 @@ public class Building_Gate : Building
 
         int key = map.uniqueID;
         // cache interaction cell, there should only be one gate per map
-        GlobalVortexEntryCellCache[key] = map.cellIndices.CellToIndex(InteractionCell); 
+        GlobalVortexEntryCellCache[key] = map.cellIndices.CellToIndex(InteractionCell);
 
         base.SpawnSetup(map, respawningAfterLoad);
 
@@ -280,6 +292,8 @@ public class Building_Gate : Building
                 colorComp.SetColor(Props.modActivatedColor);
             else if (!GateUtil.ModificationEquipmentActive && colorComp.Active)
                 colorComp.Disable();
+
+            _gateConditionActive = GateUtil.IsGateConditionActive(Map);
         }
 
         base.Tick();
@@ -435,19 +449,32 @@ public class Building_Gate : Building
         var rot = Rotation;
         var drawOffset = def.graphicData.DrawOffsetForRot(rot);
 
-        var drawPos = Utils.AddY(drawLoc + drawOffset, AltitudeLayer.BuildingOnTop.AltitudeFor());
+        var drawPos = Utils.AddY(drawLoc + drawOffset, AltitudeLayer.Blueprint.AltitudeFor());
 
         // Puddle is slightly below the iris.
-        if (IsActive && !_isIrisActivated)
-            GatePuddle?.Draw(Utils.AddY(drawPos, 0.01f), rot, this);
+        if (IsActive && !_isIrisActivated && GatePuddle != null)
+            GatePuddle.Draw(Utils.AddY(drawPos, 0.01f), rot, this);
 
         // Iris sits a bit above the puddle.
-        if (_isIrisActivated)
-            GateIris?.Draw(Utils.AddY(drawPos, 0.02f), rot, this);
+        if (_isIrisActivated && GateIris != null)
+        {
+            var irisDrawPos = Utils.AddY(drawPos, 0.02f);
+            GateIris.Draw(irisDrawPos, rot, this);
+
+            if (_gateConditionActive)
+                Graphics.DrawMesh(
+                    IrisGlowMesh,
+                    irisDrawPos,
+                    Rotation.AsQuat,
+                    FadedMaterialPool.FadedVersionOf(
+                        IrisGlowMat,
+                        0.5f),
+                    0);
+        }
 
         // Chevron highlight floats above the gate/puddle/iris.
-        if (IsOpeningQueued || IsActive)
-            ChevronHighlight?.Draw(Utils.AddY(drawPos, 0.01f), rot, this);
+        if ((IsOpeningQueued || IsActive) && ChevronHighlight != null)
+            ChevronHighlight.Draw(Utils.AddY(drawPos, 0.01f), rot, this);
     }
 
     public override string GetInspectString()
@@ -487,14 +514,21 @@ public class Building_Gate : Building
         if (IsOpeningQueued)
             sb.AppendLine("RG_TimeUntilGateLock".Translate(_ticksUntilOpen.ToStringTicksToPeriod()));
 
-        if (HasIris && PowerTrader != null)
-            sb.AppendLine(PowerTrader.CompInspectStringExtra());
+        if (HasIris && PowerTrader != null && Props.irisPowerConsumption > 0)
+        {
+            sb.AppendLine("RG_IrisPowerConsumption".Translate(Props.irisPowerConsumption.ToString("F0")));
+            if (!Powered)
+                sb.AppendLine("RG_IrisNonFunctional".Translate());
+        }
 
         return sb.ToString().TrimEndNewlines();
     }
 
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
+        _cachedIrisGlowMat = null;
+        _cachedIrisGlowMesh = null;
+
         CleanupGate();
         base.DeSpawn(mode);
     }
@@ -542,6 +576,8 @@ public class Building_Gate : Building
         Scribe_Values.Look(ref _ticksUntilOpen, "_ticksUntilOpen", -1);
         Scribe_Values.Look(ref TicksSinceBufferUnloaded, "TicksSinceBufferUnloaded");
         Scribe_Values.Look(ref _queuedAddress, "_queuedAddress");
+        Scribe_Values.Look(ref _inert, "_inert", false);
+        Scribe_Values.Look(ref _gateConditionActive, "_gateConditionActive", false);
 
         // --- SEND buffer (List<Thing>) ---
         Scribe_Collections.Look(ref _sendBuffer, "_sendBuffer", LookMode.Reference);
@@ -1032,7 +1068,7 @@ public class Building_Gate : Building
             IntVec3 origin = p.Position;
 
             IntVec3 best = IntVec3.Invalid;
-            if (!CellFinder.TryFindRandomCellNear(origin, map, 12, c => 
+            if (!CellFinder.TryFindRandomCellNear(origin, map, 12, c =>
                 c.InBounds(map) && c.Walkable(map) && !reserved.Contains(c), out best))
             {
                 best = Position + Rotation.FacingCell;

@@ -4,18 +4,8 @@ using System.Linq;
 
 namespace Rimgate;
 
-public class IncidentWorker_GateHeatWave : IncidentWorker
+public class IncidentWorker_GateHeatWave : IncidentWorker_Gate
 {
-    protected override bool CanFireNowSub(IncidentParms parms)
-    {
-        if (!base.CanFireNowSub(parms)) return false;
-        var map = parms.target as Map;
-        if (map == null) return false;
-        return map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
-                   .OfType<Building_Gate>()
-                   .Any();
-    }
-
     protected override bool TryExecuteWorker(IncidentParms parms)
     {
         var map = (Map)parms.target;
@@ -25,7 +15,7 @@ public class IncidentWorker_GateHeatWave : IncidentWorker
             .MakeCondition(RimgateDefOf.Rimgate_GateHeatWave, ticks);
         map.gameConditionManager.RegisterCondition(cond);
 
-        SendStandardLetter(cond.LabelCap, cond.LetterText, cond.def.letterDef, parms, LookTargets.Invalid);
+        SendIncidentLetter(cond.LabelCap, cond.LetterText, cond.def.letterDef, parms, LookTargets.Invalid, def);
 
         return true;
     }

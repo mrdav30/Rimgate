@@ -11,6 +11,10 @@ namespace Rimgate;
 [StaticConstructorOnStartup]
 public static class RimgateTex
 {
+    public static readonly Material ForceFieldMat = MaterialPool.MatFrom("Other/ForceField", ShaderDatabase.MoteGlow);
+
+    public static readonly Material ForceFieldConeMat = MaterialPool.MatFrom("Other/ForceFieldCone", ShaderDatabase.MoteGlow);
+
     public static readonly Texture2D CancelCommandTex = ContentFinder<Texture2D>.Get("UI/Designators/Cancel");
 
     public static readonly Texture2D RenameCommandTex = ContentFinder<Texture2D>.Get("UI/Buttons/Rename");
@@ -26,10 +30,6 @@ public static class RimgateTex
     public static readonly Texture2D PushCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGPushIcon");
 
     public static readonly Texture2D PushAndDumpCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGPushAndDumpIcon");
-
-    public static readonly Material ForceFieldMat = MaterialPool.MatFrom("Other/ForceField", ShaderDatabase.MoteGlow);
-
-    public static readonly Material ForceFieldConeMat = MaterialPool.MatFrom("Other/ForceFieldCone", ShaderDatabase.MoteGlow);
 
     public static readonly Texture2D ShieldRadiusCommandTex = ContentFinder<Texture2D>.Get("UI/Button/RGShieldRadius");
 

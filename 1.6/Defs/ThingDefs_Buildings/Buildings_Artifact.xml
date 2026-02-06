@@ -7,7 +7,7 @@
         <thingClass>Rimgate.Building_Gate</thingClass>
         <minifiedDef>MinifiedThing</minifiedDef>
         <stealable>false</stealable>
-        <altitudeLayer>BuildingOnTop</altitudeLayer>
+        <altitudeLayer>Blueprint</altitudeLayer>
         <fillPercent>1</fillPercent>
         <canOverlapZones>true</canOverlapZones>
         <passability>PassThroughOnly</passability>
@@ -144,6 +144,12 @@
                     <graphicClass>Graphic_Multi</graphicClass>
                     <drawSize>(5,5)</drawSize>
                 </irisGraphicData>
+                <irisGlowGraphicData>
+                    <texPath>FX/RGIrisGlow</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <shaderType>MoteGlow</shaderType>
+                    <drawSize>(5, 5)</drawSize>
+                </irisGlowGraphicData>
                 <chevronHighlight>
                     <texPath>FX/RGGate_Active</texPath>
                     <graphicClass>Graphic_Multi</graphicClass>

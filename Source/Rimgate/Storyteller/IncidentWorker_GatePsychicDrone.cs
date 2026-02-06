@@ -4,21 +4,8 @@ using System.Linq;
 
 namespace Rimgate
 {
-    public class IncidentWorker_GatePsychicDrone : IncidentWorker
+    public class IncidentWorker_GatePsychicDrone : IncidentWorker_Gate
     {
-        protected override bool CanFireNowSub(IncidentParms parms)
-        {
-            if (!base.CanFireNowSub(parms)) return false;
-
-            var map = parms.target as Map;
-            if (map == null) return false;
-
-            bool hasGate = map.listerThings.ThingsOfDef(RimgateDefOf.Rimgate_Dwarfgate)
-                            .OfType<Building_Gate>()
-                            .Any();
-            return hasGate; // only if a receiver exists
-        }
-
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
             var map = (Map)parms.target;
@@ -38,7 +25,7 @@ namespace Rimgate
             cond.gender = Rand.Element(Gender.Male, Gender.Female);
             map.gameConditionManager.RegisterCondition(cond);
 
-            SendStandardLetter(cond.LabelCap, cond.LetterText, cond.def.letterDef, parms, LookTargets.Invalid);
+            SendIncidentLetter(cond.LabelCap, cond.LetterText, cond.def.letterDef, parms, LookTargets.Invalid, def);
 
             return true;
         }
