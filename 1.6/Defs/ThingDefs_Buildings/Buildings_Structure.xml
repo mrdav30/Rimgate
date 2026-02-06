@@ -383,7 +383,7 @@
   </ThingDef>
 
   <ThingDef Name="AncientFortifiedWall" ParentName="Wall">
-    <defName>Rimgate_VaultWall</defName>
+    <defName>Rimgate_DurableWall</defName>
     <label>durable wall</label>
     <description>A heavily-reinforced concrete wall with a shell made of an ultratech Naquadah polymer to provide exceptional protection against most forms of attack.\n\nNote: Once the last seam is welded, the only way to remove a section of this wall is through destruction.</description>
 
@@ -414,9 +414,9 @@
       <claimable>false</claimable>
       <isAirtight>true</isAirtight>
       <relatedBuildCommands>
-        <li>Rimgate_VaultDoor</li>
-        <li>Rimgate_VaultDoorDouble</li>
-        <li>Rimgate_VaultDoorTriple</li>
+        <li>Rimgate_DurableDoor</li>
+        <li>Rimgate_DurableDoorDouble</li>
+        <li>Rimgate_DurableDoorTriple</li>
       </relatedBuildCommands>
     </building>
 
@@ -697,12 +697,19 @@
     </comps>
   </ThingDef>
 
-  <!-- ====== Vault Doors ====== -->
+  <!-- ====== Durable Doors ====== -->
 
   <!-- === Buildable Doors === -->
 
+  <DesignatorDropdownGroupDef>
+    <defName>Rimgate_DurableDoors</defName>
+    <label>durable doors</label>
+    <iconSource>Placed</iconSource>
+  </DesignatorDropdownGroupDef>
+
   <!-- Base -->
-  <ThingDef ParentName="DoorBase" Name="Rimgate_VaultDoorBase" Abstract="True">
+  <ThingDef ParentName="DoorBase" Name="Rimgate_DurableDoorBase" Abstract="True">
+    <designatorDropdown>Rimgate_DurableDoors</designatorDropdown>
 
     <statBases>
       <DoorOpenSpeed>0.2</DoorOpenSpeed>
@@ -740,19 +747,19 @@
   </ThingDef>
 
   <!-- Single -->
-  <ThingDef ParentName="Rimgate_VaultDoorBase">
-    <defName>Rimgate_VaultDoor</defName>
+  <ThingDef ParentName="Rimgate_DurableDoorBase">
+    <defName>Rimgate_DurableDoor</defName>
     <label>durable door</label>
     <description>A reinforced door designed to withstand extreme force. Opening it requires significant effort, however, this silent sentinel is unmatched in securing high-value targets or fortifying critical chokepoints.\n\nNote: Once the last component is locked in place, the only way to remove one of these is through destruction.</description>
 
     <graphicData>
-      <texPath>Things/Building/Structure/Vault/RGVaultDoor_Mover</texPath>
+      <texPath>Things/Building/Structure/DurableDoors/RGDurableDoor_Mover</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <damageData>
         <enabled>false</enabled>
       </damageData>
     </graphicData>
-    <uiIconPath>Things/Building/Structure/Vault/RGVaultDoorIcon_south</uiIconPath>
+    <uiIconPath>Things/Building/Structure/DurableDoors/RGDurableDoorIcon_south</uiIconPath>
 
     <statBases>
       <WorkToBuild>60000</WorkToBuild>
@@ -770,7 +777,7 @@
 
     <building>
       <blueprintGraphicData>
-        <texPath>Things/Building/Structure/Vault/RGVaultDoorIcon</texPath>
+        <texPath>Things/Building/Structure/DurableDoors/RGDurableDoorIcon</texPath>
         <graphicClass>Graphic_Multi</graphicClass>
         <shaderType>EdgeDetect</shaderType>
       </blueprintGraphicData>
@@ -785,21 +792,21 @@
   </ThingDef>
 
   <!-- Double Door -->
-  <ThingDef ParentName="Rimgate_VaultDoorBase">
-    <defName>Rimgate_VaultDoorDouble</defName>
+  <ThingDef ParentName="Rimgate_DurableDoorBase">
+    <defName>Rimgate_DurableDoorDouble</defName>
     <label>large durable door</label>
     <description>A large, reinforced door designed to withstand extreme force. Opening it requires significant effort, however, this silent sentinel is unmatched in securing high-value targets or fortifying critical chokepoints.\n\nNote: Once the last component is locked in place, the only way to remove one of these is through destruction.</description>
     <thingClass>Building_MultiTileDoor</thingClass>
 
     <graphicData>
-      <texPath>Things/Building/Structure/Vault/RGVaultDoorDouble_Mover</texPath>
+      <texPath>Things/Building/Structure/DurableDoors/RGDurableDoorDouble_Mover</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(2,1)</drawSize>
       <damageData>
         <enabled>false</enabled>
       </damageData>
     </graphicData>
-    <uiIconPath>Things/Building/Structure/Vault/RGVaultDoorDoubleIcon_south</uiIconPath>
+    <uiIconPath>Things/Building/Structure/DurableDoors/RGDurableDoorDoubleIcon_south</uiIconPath>
 
     <size>(2,1)</size>
     <rotatable>true</rotatable>
@@ -820,7 +827,7 @@
 
     <building>
       <blueprintGraphicData>
-        <texPath>Things/Building/Structure/Vault/RGVaultDoorDoubleIcon</texPath>
+        <texPath>Things/Building/Structure/DurableDoors/RGDurableDoorDoubleIcon</texPath>
         <graphicClass>Graphic_Multi</graphicClass>
         <shaderType>EdgeDetect</shaderType>
         <drawSize>(2, 1)</drawSize>
@@ -840,21 +847,21 @@
   </ThingDef>
 
   <!-- Triple Door -->
-  <ThingDef ParentName="Rimgate_VaultDoorBase">
-    <defName>Rimgate_VaultDoorTriple</defName>
+  <ThingDef ParentName="Rimgate_DurableDoorBase">
+    <defName>Rimgate_DurableDoorTriple</defName>
     <label>huge durable door</label>
     <description>A huge, reinforced door designed to withstand extreme force. Opening it requires significant effort, however, this silent sentinel is unmatched in securing high-value targets or fortifying critical chokepoints.\n\nNote: Once the last component is locked in place, the only way to remove one of these is through destruction.</description>
     <thingClass>Building_MultiTileDoor</thingClass>
 
     <graphicData>
-      <texPath>Things/Building/Structure/Vault/RGVaultDoorTriple_Mover</texPath>
+      <texPath>Things/Building/Structure/DurableDoors/RGDurableDoorTriple_Mover</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(3,1)</drawSize>
       <damageData>
         <enabled>false</enabled>
       </damageData>
     </graphicData>
-    <uiIconPath>Things/Building/Structure/Vault/RGVaultDoorTripleIcon_south</uiIconPath>
+    <uiIconPath>Things/Building/Structure/DurableDoors/RGDurableDoorTripleIcon_south</uiIconPath>
 
     <size>(3,1)</size>
     <rotatable>true</rotatable>
@@ -875,7 +882,7 @@
 
     <building>
       <blueprintGraphicData>
-        <texPath>Things/Building/Structure/Vault/RGVaultDoorTripleIcon</texPath>
+        <texPath>Things/Building/Structure/DurableDoors/RGDurableDoorTripleIcon</texPath>
         <graphicClass>Graphic_Multi</graphicClass>
         <shaderType>EdgeDetect</shaderType>
         <drawSize>(3, 1)</drawSize>
@@ -897,11 +904,12 @@
 
   <!-- === Aegis Doors (non-buildable) === -->
 
-  <!-- Hackable Vault Door Base -->
-  <ThingDef ParentName="Rimgate_VaultDoorBase" Name="Rimgate_HackableVaultDoorBase" Abstract="True">
+  <!-- Hackable Durable Door Base -->
+  <ThingDef ParentName="Rimgate_DurableDoorBase" Name="Rimgate_HackableDurableDoorBase" Abstract="True">
     <useBlueprintGraphicAsGhost>false</useBlueprintGraphicAsGhost>
 
     <designationCategory IsNull="True" />
+    <designatorDropdown IsNull="True" />
 
     <constructionSkillPrerequisite IsNull="True" />
     <researchPrerequisites IsNull="True" />
@@ -915,14 +923,14 @@
   </ThingDef>
 
   <!-- Single -->
-  <ThingDef ParentName="Rimgate_HackableVaultDoorBase">
-    <defName>Rimgate_HackableVaultDoor</defName>
+  <ThingDef ParentName="Rimgate_HackableDurableDoorBase">
+    <defName>Rimgate_HackableDurableDoor</defName>
     <thingClass>Rimgate.Building_HackableSingleDoor</thingClass>
     <label>aegis door</label>
     <description>A massive, reinforced door designed to withstand extreme force. Originally intended to secure high-value targets or fortify critical chokepoints, it now stands as a silent sentinel. Hacking the control terminal will disable the lock.</description>
 
     <graphicData>
-      <texPath>Things/Building/Structure/Vault/RGVaultDoor_Mover</texPath>
+      <texPath>Things/Building/Structure/DurableDoors/RGDurableDoor_Mover</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <damageData>
         <enabled>false</enabled>
@@ -940,7 +948,7 @@
         <showProgressAfterHackCompletion>false</showProgressAfterHackCompletion>
 
         <unhackedGraphicData>
-          <texPath>Things/Building/Structure/Vault/RGVaultDoor_HackingTerminal</texPath>
+          <texPath>Things/Building/Structure/DurableDoors/RGAegisDoor_HackingTerminal</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
         </unhackedGraphicData>
         <unhackedGraphicOffset>(0,0.05,0)</unhackedGraphicOffset>
@@ -950,14 +958,14 @@
   </ThingDef>
 
   <!-- Double -->
-  <ThingDef ParentName="Rimgate_HackableVaultDoorBase">
-    <defName>Rimgate_HackableVaultDoorDouble</defName>
+  <ThingDef ParentName="Rimgate_HackableDurableDoorBase">
+    <defName>Rimgate_HackableDurableDoorDouble</defName>
     <thingClass>Rimgate.Building_HackableMultiTileDoor</thingClass>
     <label>aegis door</label>
     <description>A massive, reinforced doors designed to withstand extreme force. Originally intended to secure high-value targets or fortify critical chokepoints, they now stand as silent sentinels. Hacking the control terminal will disable the lock.</description>
 
     <graphicData>
-      <texPath>Things/Building/Structure/Vault/RGVaultDoorDouble_Mover</texPath>
+      <texPath>Things/Building/Structure/DurableDoors/RGDurableDoorDouble_Mover</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(2,1)</drawSize>
       <damageData>
@@ -979,7 +987,7 @@
         <showProgressAfterHackCompletion>false</showProgressAfterHackCompletion>
 
         <unhackedGraphicData>
-          <texPath>Things/Building/Structure/Vault/RGVaultDoor_HackingTerminal</texPath>
+          <texPath>Things/Building/Structure/DurableDoors/RGAegisDoor_HackingTerminal</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>(2,1)</drawSize>
         </unhackedGraphicData>
@@ -990,14 +998,14 @@
   </ThingDef>
 
   <!-- Triple -->
-  <ThingDef ParentName="Rimgate_HackableVaultDoorBase">
-    <defName>Rimgate_HackableVaultDoorTriple</defName>
+  <ThingDef ParentName="Rimgate_HackableDurableDoorBase">
+    <defName>Rimgate_HackableDurableDoorTriple</defName>
     <thingClass>Rimgate.Building_HackableMultiTileDoor</thingClass>
     <label>aegis door</label>
     <description>A massive, reinforced door designed to withstand extreme force. Originally intended to secure high-value targets or fortify critical chokepoints, it now stands as a silent sentinel. Hacking the control terminal will disable the lock.</description>
 
     <graphicData>
-      <texPath>Things/Building/Structure/Vault/RGVaultDoorTriple_Mover</texPath>
+      <texPath>Things/Building/Structure/DurableDoors/RGDurableDoorTriple_Mover</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(3,1)</drawSize>
       <damageData>
@@ -1019,7 +1027,7 @@
         <showProgressAfterHackCompletion>false</showProgressAfterHackCompletion>
 
         <unhackedGraphicData>
-          <texPath>Things/Building/Structure/Vault/RGVaultDoor_HackingTerminal</texPath>
+          <texPath>Things/Building/Structure/DurableDoors/RGAegisDoor_HackingTerminal</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>(3,1)</drawSize>
         </unhackedGraphicData>

@@ -171,7 +171,6 @@
 		<defName>Rimgate_MobileContainers</defName>
 		<label>mobile containers</label>
 		<iconSource>Placed</iconSource>
-		<!-- <useGridMenu>true</useGridMenu> -->
 	</DesignatorDropdownGroupDef>
 
 	<!-- ABSTRACT base for all mobile containers -->

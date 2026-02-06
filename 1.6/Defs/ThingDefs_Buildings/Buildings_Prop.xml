@@ -1007,4 +1007,77 @@
 
     </ThingDef>
 
+    <!-- ======================= Banners ======================= -->
+
+    <ThingDef ParentName="BuildingBase" Name="Rimgate_BannerBase" Abstract="True">
+        <category>Building</category>
+
+        <building>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <paintable>false</paintable>
+        </building>
+
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+
+        <altitudeLayer>Blueprint</altitudeLayer>
+        <blockWind>false</blockWind>
+        <castEdgeShadows>false</castEdgeShadows>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>BuildingsFurniture</li>
+        </thingCategories>
+
+        <passability>PassThroughOnly</passability>
+        <pathCost>60</pathCost>
+
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_BannerBase">
+        <defName>Rimgate_BannerBaal</defName>
+        <label>Baal banner</label>
+        <description>A decorative banner emblazoned with the sigil of Baal, System Lord of the Goa'uld Empire. Such banners were often displayed in the halls of high-ranking Goa'uld to signify their power and status.</description>
+
+        <graphicData>
+            <texPath>Things/Building/Prop/RGBannerBaal</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5,5)</drawSize>
+        </graphicData>
+
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <WorkToBuild>600</WorkToBuild>
+            <Flammability>0.2</Flammability>
+            <Mass>5</Mass>
+            <Beauty>25</Beauty>
+        </statBases>
+
+        <size>(1,1)</size>
+        <rotatable>false</rotatable>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_BannerBase">
+        <defName>Rimgate_BannerTauri</defName>
+        <label>Tau'ri flag</label>
+        <description>A decorative banner bearing the emblem of the Tau'ri (humans from Earth). Such banners are often displayed to honor the resilience and achievements of humanity in the face of cosmic threats.</description>
+
+        <graphicData>
+            <texPath>Things/Building/Prop/RGBannerTauri</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5,5)</drawSize>
+        </graphicData>
+
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <WorkToBuild>600</WorkToBuild>
+            <Flammability>0.2</Flammability>
+            <Mass>5</Mass>
+            <Beauty>25</Beauty>
+        </statBases>
+
+        <size>(1,1)</size>
+        <rotatable>false</rotatable>
+    </ThingDef>
+
 </Defs>

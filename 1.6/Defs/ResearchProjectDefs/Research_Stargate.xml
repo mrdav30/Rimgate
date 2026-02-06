@@ -334,7 +334,6 @@
 		</generalRules>
 	</ResearchProjectDef>
 
-
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientStructures</defName>
 		<label>Ancient Structures</label>
