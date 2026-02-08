@@ -223,4 +223,72 @@
         </comps>
     </ThingDef>
 
+    <!-- ==================== Tok'ra Tunnel Crystal ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_TokraTunnelCrystal</defName>
+        <label>Tunnel crystal</label>
+        <description>A programmed, palm-sized crystal derived from Tok'ra technology that initiates a rapid growth process to form underground tunnels. When activated, it resonates through stone and clears nearby mining designations—shearing away rock as if it were soft clay.\n\nUse it after marking rock with the Mine designation. The crystal will clear a limited number of designated tiles in the targeted area.\n\nNote: These crystals are delicate and will dissipate if left unused for too long.</description>
+
+        <graphicData>
+            <texPath>Things/Item/Resource/TunnelCrystal</texPath>
+            <graphicClass>Graphic_Random</graphicClass>
+        </graphicData>
+
+        <stackLimit>1</stackLimit>
+        <tradeNeverStack>true</tradeNeverStack>
+        <useHitPoints>true</useHitPoints>
+        <statBases>
+            <MarketValue>1200</MarketValue>
+            <Mass>0.4</Mass>
+            <MaxHitPoints>60</MaxHitPoints>
+        </statBases>
+
+        <thingCategories>
+            <li>Manufactured</li>
+        </thingCategories>
+        <burnableByRecipe>false</burnableByRecipe>
+        <smeltable>false</smeltable>
+        <tradeability>None</tradeability>
+
+        <thingSetMakerTags IsNull="true" />
+
+        <comps>
+            <li Class="CompProperties_Usable">
+                <useJob>Rimgate_UseTunnelCrystal</useJob>
+                <useLabel>Activate {0_label}</useLabel>
+                <showUseGizmo>true</showUseGizmo>
+                <useDuration>180</useDuration>
+            </li>
+            <li Class="CompProperties_Targetable">
+                <compClass>Rimgate.CompTargetable_TokraTunnelCrystal</compClass>
+                <doCameraShake>true</doCameraShake>
+                <fleckOnUsed>PsycastAreaEffect</fleckOnUsed>
+                <fleckOnUsedScale>6</fleckOnUsedScale>
+            </li>
+            <li>
+                <compClass>Rimgate.CompTargetEffect_TokraTunnelCrystal</compClass>
+            </li>
+            <li Class="CompProperties_UseEffectDestroySelf" />
+
+            <li Class="Rimgate.CompProperties_Dissolves">
+                <dissolutionAfterDays>10</dissolutionAfterDays>
+                <amountPerDissolution>2</amountPerDissolution>
+                <dissolutionFactorIndoors>2</dissolutionFactorIndoors>
+                <dissolutionFactorRain>2</dissolutionFactorRain>
+                <destroyIfFrozen>false</destroyIfFrozen>
+                <dissolveEveryActionVerb>dissipates</dissolveEveryActionVerb>
+            </li>
+        </comps>
+
+        <modExtensions>
+            <li Class="Rimgate.TokraTunnelCrystalDefModExt">
+                <radius>8</radius>
+                <maxTiles>18</maxTiles>
+                <destroySpawnsYield>true</destroySpawnsYield>
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+
 </Defs>

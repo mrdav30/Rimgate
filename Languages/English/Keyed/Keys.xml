@@ -487,4 +487,6 @@
 
 	<RG_CementValueDesc>Raw stone chunks go {0}x further than other stone materials and anything made of limestone reduces the cost by {1}.</RG_CementValueDesc>
 
+	<RG_TunnelCrystalClearedDesignation>Tunneling crystal resonance clears {0} designated tiles.</RG_TunnelCrystalClearedDesignation>
+
 </LanguageData>

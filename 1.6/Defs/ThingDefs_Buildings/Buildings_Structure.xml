@@ -13,7 +13,6 @@
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Structure/RGGoauldWall</texPath>
-      <color>(108,78,55)</color>
       <graphicClass>Graphic_Single</graphicClass>
       <linkType>CornerFiller</linkType>
       <linkFlags>
@@ -61,6 +60,7 @@
     <blockLight>true</blockLight>
     <canOverlapZones>false</canOverlapZones>
     <building>
+      <paintable>false</paintable>
       <isWall>true</isWall>
       <supportsWallAttachments>true</supportsWallAttachments>
       <isAirtight>true</isAirtight>
@@ -157,6 +157,7 @@
     <blockLight>true</blockLight>
     <canOverlapZones>false</canOverlapZones>
     <building>
+      <paintable>false</paintable>
       <isWall>true</isWall>
       <supportsWallAttachments>true</supportsWallAttachments>
       <isAirtight>true</isAirtight>
@@ -262,6 +263,7 @@
     <disableImpassableShotOverConfigError>true</disableImpassableShotOverConfigError>
 
     <building>
+      <paintable>false</paintable>
       <isInert>true</isInert>
       <isWall>true</isWall>
       <isPlaceOverableWall>true</isPlaceOverableWall>
@@ -350,6 +352,7 @@
     <fertility>0</fertility>
 
     <building>
+      <paintable>false</paintable>
       <isInert>true</isInert>
       <isWall>true</isWall>
       <isPlaceOverableWall>true</isPlaceOverableWall>
@@ -584,7 +587,7 @@
     </statBases>
 
     <building>
-      <!-- <paintable>false</paintable> -->
+      <paintable>false</paintable>
       <deconstructible>false</deconstructible>
       <claimable>false</claimable>
       <neverBuildable>true</neverBuildable>

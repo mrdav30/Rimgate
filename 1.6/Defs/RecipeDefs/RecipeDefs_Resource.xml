@@ -852,4 +852,53 @@
 		</researchPrerequisites>
 	</RecipeDef>
 
+	<!-- ==================== To'kra Tunnel Crystal ==================== -->
+
+	<RecipeDef>
+		<defName>Rimage_MakeTunnelCrystal</defName>
+		<label>program tunnel crystal</label>
+		<description>craft a programmable tunnel crystal by refining Naquadah with stone.</description>
+		<jobString>making tunnel crystal.</jobString>
+		<effectWorking>Sculpt</effectWorking>
+		<soundWorking>Recipe_Sculpt</soundWorking>
+		<workAmount>2000</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Artistic</workSkill>
+		<recipeUsers>
+			<li>TableSculpting</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+				<count>25</count>
+			</li>
+			<li>
+				<filter>
+					<categories>
+						<li>StoneChunks</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Rimgate_Naquadah</li>
+			</thingDefs>
+			<categories>
+				<li>StoneChunks</li>
+			</categories>
+		</fixedIngredientFilter>
+		<products>
+			<Rimgate_TokraTunnelCrystal>1</Rimgate_TokraTunnelCrystal>
+		</products>
+		<researchPrerequisites>
+			<li>Rimgate_TokraTunnelCrystals</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
 </Defs>

@@ -270,4 +270,13 @@
 		<dropThingBeforeJob>false</dropThingBeforeJob>
 	</JobDef>
 
+	<!-- =============== To'kra Tunnel Crystal =============== -->
+
+  <JobDef>
+    <defName>Rimgate_UseTunnelCrystal</defName>
+    <driverClass>Rimgate.JobDriver_GoToAndUseItem</driverClass>
+    <reportString>using To'kra tunnel crystal.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
 </Defs>

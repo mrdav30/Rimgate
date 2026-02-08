@@ -488,5 +488,38 @@
 
 	</ResearchProjectDef>
 
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_TokraTunnelCrystals</defName>
+		<label>Tok'ra Tunnel Crystals</label>
+		<description>By studying the techniques used by the Tok'ra to "program" crystals to rapidly grow tunnels underground, your researchers believe that they can develop a new method for efficient mining and excavation.</description>
+		<techLevel>Ultra</techLevel>
+		<baseCost>8000</baseCost>
+
+		<researchViewX>0</researchViewX>
+		<researchViewY>4</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_AncientAlloyResearch</li>
+			<li>Stonecutting</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_GoauldBaal</li>
+			<li>Rimgate_TauriFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+
+		<discoveredLetterTitle>About: Tok'ra Tunnel Crystals</discoveredLetterTitle>
+		<discoveredLetterText>Your researchers have uncovered the secrets behind the Tok'ra's tunnel crystals.\n\nBy mixing raw stone and Naquadah together, we should be able to make our own "programmable" crystals that can be used to rapidly clear designated mining areas.\n\nWhile harnessing this technology opens up new possibilities for resource extraction and base expansion, caution is advised. The rapid growth of these crystals can lead to structural instability if not properly managed.</discoveredLetterText>
+
+	</ResearchProjectDef>
 
 </Defs>

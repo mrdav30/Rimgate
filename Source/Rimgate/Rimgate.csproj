@@ -342,6 +342,7 @@
     <Compile Include="AI\JobDrivers\JobDriver_SitFacingBuilding_Learning.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CloseGate.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_Toggle.cs" />
+    <Compile Include="AI\JobDrivers\JobDriver_GoToAndUseItem.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_WraithCocoonPrisoner.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_WraithEssenceMending.cs" />
     <Compile Include="AI\JobGivers\JobGiver_SatisfyEssenceNeed.cs" />
@@ -357,6 +358,8 @@
     <Compile Include="AI\WorkGivers\WorkGiver_CloseGate.cs" />
     <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
     <Compile Include="Comps\CompAssignableToPawn_Sarcophagus.cs" />
+    <Compile Include="Comps\CompTargetable_TokraTunnelCrystal.cs" />
+    <Compile Include="Comps\CompTargetEffect_TokraTunnelCrystal.cs" />
     <Compile Include="Comps\CompUseEffect_InstallSymbiote.cs" />
     <Compile Include="Comps\Comp_BodyGraphicSwapper.cs" />
     <Compile Include="Comps\Comp_Dissolves.cs" />
