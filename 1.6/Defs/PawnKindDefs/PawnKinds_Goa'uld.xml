@@ -87,7 +87,7 @@
       <subOptionsTakeAll>
         <li>
           <thingDef>Silver</thingDef>
-          <countRange>30~100</countRange>
+          <countRange>300~1000</countRange>
         </li>
       </subOptionsTakeAll>
     </inventoryOptions>
@@ -286,6 +286,16 @@
       <li>Rimgate_FirstPrimeArmor</li>
       <li>Rimgate_GoauldKaraKesh</li>
     </apparelRequired>
+    <specificApparelRequirements>
+      <li>
+        <apparelDef>Rimgate_FirstPrimeHelmet</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_FirstPrimeArmor</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+    </specificApparelRequirements>
     <invNutrition>2.55</invNutrition>
     <inventoryOptions>
       <skipChance>0.75</skipChance>
@@ -368,7 +378,7 @@
     <minGenerationAge>19</minGenerationAge>
     <maxGenerationAge>110</maxGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
-    <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
+    <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelMoney>5000~8000</apparelMoney>
     <itemQuality>Normal</itemQuality>
     <apparelTags>
@@ -377,12 +387,27 @@
       <li>Rimgate_GoauldApparel_tag</li>
     </apparelTags>
     <apparelRequired>
+      <li>Rimgate_JaffaHelmet</li>
       <li>Rimgate_JaffaArmor</li>
+      <li>Rimgate_JaffaDemiGauntlets</li>
+      <li>Rimgate_JaffaArmoredBoots</li>
     </apparelRequired>
     <specificApparelRequirements>
       <li>
-        <bodyPartGroup>UpperHead</bodyPartGroup>
-        <requiredTag>Rimgate_GoauldApparel_tag</requiredTag>
+        <apparelDef>Rimgate_JaffaHelmet</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaArmor</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaDemiGauntlets</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaArmoredBoots</apparelDef>
+        <stuff>Steel</stuff>
       </li>
     </specificApparelRequirements>
     <weaponMoney>1100~2500</weaponMoney>
@@ -405,18 +430,8 @@
       <skipChance>0.8</skipChance>
       <subOptionsChooseOne>
         <li>
-          <thingDef>Silver</thingDef>
-          <countRange>
-            <min>50</min>
-            <max>200</max>
-          </countRange>
-        </li>
-        <li>
-          <thingDef>MedicineIndustrial</thingDef>
-          <countRange>
-            <min>1</min>
-            <max>2</max>
-          </countRange>
+          <thingDef>Rimgate_JaffaKnife</thingDef>
+          <countRange>1</countRange>
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
@@ -450,25 +465,6 @@
     <combatPower>100</combatPower>
     <weaponTags>
       <li>Rimgate_GoauldRanged_tag</li>
-    </weaponTags>
-  </PawnKindDef>
-
-  <PawnKindDef ParentName="Rimgate_GoauldAnubisBase">
-    <defName>Rimgate_GoauldMeleeAnubis</defName>
-    <label>Anubis Jaffa warrior</label>
-    <combatPower>90</combatPower>
-    <weaponTags>
-      <li>NeolithicMeleeAdvanced</li>
-      <li>MedievalMeleeAdvanced</li>
-      <li>Rimgate_GoauldMelee_tag</li>
-    </weaponTags>
-  </PawnKindDef>
-
-  <PawnKindDef ParentName="Rimgate_GoauldAnubisBase">
-    <defName>Rimgate_GoauldGrenadierAnubis</defName>
-    <label>Anubis Jaffa warrior</label>
-    <combatPower>90</combatPower>
-    <weaponTags>
       <li>Rimgate_GoauldGrenade_tag</li>
     </weaponTags>
   </PawnKindDef>
@@ -489,25 +485,6 @@
     <combatPower>100</combatPower>
     <weaponTags>
       <li>Rimgate_GoauldRanged_tag</li>
-    </weaponTags>
-  </PawnKindDef>
-
-  <PawnKindDef ParentName="Rimgate_GoauldApophisBase">
-    <defName>Rimgate_GoauldMeleeApophis</defName>
-    <label>Apophis Jaffa warrior</label>
-    <combatPower>90</combatPower>
-    <weaponTags>
-      <li>NeolithicMeleeAdvanced</li>
-      <li>MedievalMeleeAdvanced</li>
-      <li>Rimgate_GoauldMelee_tag</li>
-    </weaponTags>
-  </PawnKindDef>
-
-  <PawnKindDef ParentName="Rimgate_GoauldApophisBase">
-    <defName>Rimgate_GoauldGrenadierApophis</defName>
-    <label>Apophis Jaffa warrior</label>
-    <combatPower>90</combatPower>
-    <weaponTags>
       <li>Rimgate_GoauldGrenade_tag</li>
     </weaponTags>
   </PawnKindDef>
@@ -528,25 +505,6 @@
     <combatPower>100</combatPower>
     <weaponTags>
       <li>Rimgate_GoauldRanged_tag</li>
-    </weaponTags>
-  </PawnKindDef>
-
-  <PawnKindDef ParentName="Rimgate_GoauldRaBase">
-    <defName>Rimgate_GoauldMeleeRa</defName>
-    <label>Ra Jaffa warrior</label>
-    <combatPower>90</combatPower>
-    <weaponTags>
-      <li>NeolithicMeleeAdvanced</li>
-      <li>MedievalMeleeAdvanced</li>
-      <li>Rimgate_GoauldMelee_tag</li>
-    </weaponTags>
-  </PawnKindDef>
-
-  <PawnKindDef ParentName="Rimgate_GoauldRaBase">
-    <defName>Rimgate_GoauldGrenadierRa</defName>
-    <label>Ra Jaffa warrior</label>
-    <combatPower>90</combatPower>
-    <weaponTags>
       <li>Rimgate_GoauldGrenade_tag</li>
     </weaponTags>
   </PawnKindDef>
@@ -582,6 +540,9 @@
       <li>ImplantEmpireCommon</li>
       <li>AdvancedWeapon</li>
     </techHediffsTags>
+    <techHediffsRequired>
+      <li>DeathAcidifier</li>
+    </techHediffsRequired>
     <startingHediffs Inherit="False">
       <li>
         <def>Rimgate_Unrecruitable</def>
@@ -600,7 +561,6 @@
       <li>Rimgate_KullArmor</li>
       <li>Rimgate_KullHelmet</li>
     </apparelRequired>
-    <specificApparelRequirements Inherit="False" />
     <weaponMoney>2600~3100</weaponMoney>
     <weaponTags Inherit="False">
       <li>Rimgate_KullRanged_tag</li>
@@ -629,12 +589,28 @@
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
     <apparelTags>
       <li>Rimgate_GoauldGuardApparel_tag</li>
-      <li>Rimgate_GoauldGuardSpaceApparel_tag</li>
     </apparelTags>
+    <apparelRequired Inherit="False"> <!-- All guards wear the same armor, just different helmets -->
+      <li>Rimgate_JaffaArmor</li>
+      <li>Rimgate_JaffaDemiGauntlets</li>
+      <li>Rimgate_JaffaArmoredBoots</li>
+    </apparelRequired>
     <specificApparelRequirements Inherit="False">
       <li>
         <bodyPartGroup>FullHead</bodyPartGroup>
-        <requiredTag>Rimgate_GoauldGuardSpaceApparel_tag</requiredTag>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaArmor</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaDemiGauntlets</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaArmoredBoots</apparelDef>
+        <stuff>Steel</stuff>
       </li>
     </specificApparelRequirements>
     <weaponMoney>3000~3500</weaponMoney>
@@ -710,17 +686,36 @@
       </li>
     </backstoryFiltersOverride>
     <apparelTags Inherit="False">
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>SpacerMilitary</li>
       <li>Rimgate_GoauldPrimeApparel_tag</li>
     </apparelTags>
+    <apparelRequired Inherit="false">
+      <li>Rimgate_FirstPrimeArmor</li>
+      <li>Rimgate_PrimeDemiGauntlets</li>
+      <li>Rimgate_PrimeArmoredBoots</li>
+    </apparelRequired>
     <specificApparelRequirements Inherit="False">
       <li>
         <bodyPartGroup>FullHead</bodyPartGroup>
-        <requiredTag>Rimgate_GoauldPrimeApparel_tag</requiredTag>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_FirstPrimeArmor</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_PrimeDemiGauntlets</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_PrimeArmoredBoots</apparelDef>
+        <stuff>Steel</stuff>
       </li>
     </specificApparelRequirements>
-    <apparelRequired Inherit="false">
-      <li>Rimgate_FirstPrimeArmor</li>
-    </apparelRequired>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_PrimeBase">

@@ -132,23 +132,14 @@
         </disallowedStrategies>
         <options>
           <!-- Line troops dominate -->
-          <Rimgate_GoauldMeleeAnubis>12</Rimgate_GoauldMeleeAnubis>
-          <Rimgate_GoauldMeleeApophis>12</Rimgate_GoauldMeleeApophis>
-          <Rimgate_GoauldMeleeRa>12</Rimgate_GoauldMeleeRa>
-
           <Rimgate_GoauldRangedAnubis>18</Rimgate_GoauldRangedAnubis>
           <Rimgate_GoauldRangedApophis>18</Rimgate_GoauldRangedApophis>
           <Rimgate_GoauldRangedRa>18</Rimgate_GoauldRangedRa>
 
-          <!-- Grenadiers spice up mid points -->
-          <Rimgate_GoauldGrenadierAnubis>8</Rimgate_GoauldGrenadierAnubis>
-          <Rimgate_GoauldGrenadierApophis>8</Rimgate_GoauldGrenadierApophis>
-          <Rimgate_GoauldGrenadierRa>8</Rimgate_GoauldGrenadierRa>
-
           <!-- Guards are rare in field raids -->
-          <Rimgate_SerpentGuard>3</Rimgate_SerpentGuard>
-          <Rimgate_JackalGuard>3</Rimgate_JackalGuard>
-          <Rimgate_HorusGuard>3</Rimgate_HorusGuard>
+          <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
+          <Rimgate_JackalGuard>10</Rimgate_JackalGuard>
+          <Rimgate_HorusGuard>10</Rimgate_HorusGuard>
 
           <!-- Elites: extremely rare sprinkles -->
           <Rimgate_PrimeJackalGuard>0.6</Rimgate_PrimeJackalGuard>
@@ -171,17 +162,9 @@
           <Rimgate_GoauldRangedApophis>22</Rimgate_GoauldRangedApophis>
           <Rimgate_GoauldRangedRa>22</Rimgate_GoauldRangedRa>
 
-          <Rimgate_GoauldGrenadierAnubis>12</Rimgate_GoauldGrenadierAnubis>
-          <Rimgate_GoauldGrenadierApophis>12</Rimgate_GoauldGrenadierApophis>
-          <Rimgate_GoauldGrenadierRa>12</Rimgate_GoauldGrenadierRa>
-
-          <Rimgate_GoauldMeleeAnubis>8</Rimgate_GoauldMeleeAnubis>
-          <Rimgate_GoauldMeleeApophis>8</Rimgate_GoauldMeleeApophis>
-          <Rimgate_GoauldMeleeRa>8</Rimgate_GoauldMeleeRa>
-
-          <Rimgate_SerpentGuard>4</Rimgate_SerpentGuard>
-          <Rimgate_JackalGuard>4</Rimgate_JackalGuard>
-          <Rimgate_HorusGuard>4</Rimgate_HorusGuard>
+          <Rimgate_SerpentGuard>14</Rimgate_SerpentGuard>
+          <Rimgate_JackalGuard>14</Rimgate_JackalGuard>
+          <Rimgate_HorusGuard>14</Rimgate_HorusGuard>
 
           <Rimgate_PrimeJackalGuard>0.7</Rimgate_PrimeJackalGuard>
           <Rimgate_PrimeSerpentGuard>0.7</Rimgate_PrimeSerpentGuard>
@@ -199,9 +182,9 @@
         </disallowedStrategies>
         <options>
           <!-- Guards take the lead -->
-          <Rimgate_SerpentGuard>4</Rimgate_SerpentGuard>
-          <Rimgate_JackalGuard>4</Rimgate_JackalGuard>
-          <Rimgate_HorusGuard>4</Rimgate_HorusGuard>
+          <Rimgate_SerpentGuard>14</Rimgate_SerpentGuard>
+          <Rimgate_JackalGuard>14</Rimgate_JackalGuard>
+          <Rimgate_HorusGuard>14</Rimgate_HorusGuard>
 
           <Rimgate_PrimeJackalGuard>0.7</Rimgate_PrimeJackalGuard>
           <Rimgate_PrimeSerpentGuard>0.7</Rimgate_PrimeSerpentGuard>
@@ -233,9 +216,9 @@
           <Elephant>1</Elephant>
         </carriers>
         <guards>
-          <Rimgate_GoauldRangedAnubis>3</Rimgate_GoauldRangedAnubis>
-          <Rimgate_GoauldMeleeRa>3</Rimgate_GoauldMeleeRa>
-          <Rimgate_GoauldRangedApophis>3</Rimgate_GoauldRangedApophis>
+          <Rimgate_SerpentGuard>3</Rimgate_SerpentGuard>
+          <Rimgate_JackalGuard>3</Rimgate_JackalGuard>
+          <Rimgate_HorusGuard>3</Rimgate_HorusGuard>
         </guards>
       </li>
       <li>
@@ -243,19 +226,16 @@
         <options>
           <Rimgate_GoauldColonist>15</Rimgate_GoauldColonist>
           <Rimgate_GoauldSlave>10</Rimgate_GoauldSlave>
-          <Rimgate_GoauldMeleeAnubis>5</Rimgate_GoauldMeleeAnubis>
-          <Rimgate_GoauldMeleeApophis>5</Rimgate_GoauldMeleeApophis>
-          <Rimgate_GoauldMeleeRa>5</Rimgate_GoauldMeleeRa>
           <Rimgate_GoauldRangedAnubis>10</Rimgate_GoauldRangedAnubis>
           <Rimgate_GoauldRangedApophis>10</Rimgate_GoauldRangedApophis>
           <Rimgate_GoauldRangedRa>10</Rimgate_GoauldRangedRa>
           <Rimgate_SerpentGuard>15</Rimgate_SerpentGuard>
           <Rimgate_JackalGuard>15</Rimgate_JackalGuard>
           <Rimgate_HorusGuard>15</Rimgate_HorusGuard>
-          <Rimgate_PrimeJackalGuard>0.7</Rimgate_PrimeJackalGuard>
-          <Rimgate_PrimeSerpentGuard>0.7</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>0.7</Rimgate_PrimeHorusGuard>
-          <Rimgate_KullWarrior>0.5</Rimgate_KullWarrior>
+          <Rimgate_KullWarrior>5</Rimgate_KullWarrior>
+          <Rimgate_PrimeJackalGuard>5</Rimgate_PrimeJackalGuard>
+          <Rimgate_PrimeSerpentGuard>5</Rimgate_PrimeSerpentGuard>
+          <Rimgate_PrimeHorusGuard>5</Rimgate_PrimeHorusGuard>
           <Rimgate_GoauldLeader>0.1</Rimgate_GoauldLeader>
         </options>
       </li>

@@ -233,7 +233,18 @@
   <StatDef>
     <defName>Rimgate_EssenceGainFactor</defName>
     <label>essence gain multiplier</label>
-    <description>A multiplier on the amount of essence gained.</description>
+    <description>A multiplier on the amount of essence gained from actions and abilities.</description>
+    <category>PawnHealth</category>
+    <toStringStyle>PercentZero</toStringStyle>
+    <defaultBaseValue>1</defaultBaseValue>
+    <hideAtValue>1</hideAtValue>
+    <showOnDrones>false</showOnDrones>
+  </StatDef>
+
+  <StatDef>
+    <defName>Rimgate_EssenceCostFactor</defName>
+    <label>essence cost multiplier</label>
+    <description>A multiplier on the amount of essence lost for actions and abilities.</description>
     <category>PawnHealth</category>
     <toStringStyle>PercentZero</toStringStyle>
     <defaultBaseValue>1</defaultBaseValue>

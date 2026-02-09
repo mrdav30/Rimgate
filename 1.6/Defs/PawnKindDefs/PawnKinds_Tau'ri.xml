@@ -141,6 +141,11 @@
             <li>Rimgate_TauriUtility_tag</li>
             <li>Rimgate_VestInsert_tag</li>
         </apparelTags>
+        <apparelRequired>
+            <li>Rimgate_TauriSGTeamBDU</li>
+            <li>Rimgate_TauriTacticalVest</li>
+            <li>Rimgate_TauriTacticalBoots</li>
+        </apparelRequired>
         <specificApparelRequirements>
             <li>
                 <bodyPartGroup>UpperHead</bodyPartGroup>
@@ -150,11 +155,11 @@
                 <apparelDef>Rimgate_TauriTacticalVest</apparelDef>
                 <stuff>Leather_Heavy</stuff>
             </li>
+            <li>
+                <apparelDef>Rimgate_TauriSGTeamBDU</apparelDef>
+                <stuff>Cloth</stuff>
+            </li>
         </specificApparelRequirements>
-        <apparelRequired>
-            <li>Rimgate_TauriSGTeamBDU</li>
-            <li>Rimgate_TauriTacticalVest</li>
-        </apparelRequired>
         <inventoryOptions>
             <skipChance>0.7</skipChance>
             <subOptionsChooseOne>
@@ -163,13 +168,6 @@
                     <countRange>
                         <min>1</min>
                         <max>2</max>
-                    </countRange>
-                </li>
-                <li>
-                    <thingDef>MealSurvivalPack</thingDef>
-                    <countRange>
-                        <min>2</min>
-                        <max>4</max>
                     </countRange>
                 </li>
             </subOptionsChooseOne>
@@ -231,13 +229,6 @@
                         <max>3</max>
                     </countRange>
                 </li>
-                <li>
-                    <thingDef>MealSurvivalPack</thingDef>
-                    <countRange>
-                        <min>1</min>
-                        <max>2</max>
-                    </countRange>
-                </li>
             </subOptionsChooseOne>
         </inventoryOptions>
     </PawnKindDef>
@@ -246,7 +237,7 @@
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCRocketman</defName>
         <label>Soldier</label>
-        <combatPower>180</combatPower>
+        <combatPower>220</combatPower>
         <weaponMoney>3000~3500</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
         <itemQuality>Good</itemQuality>
@@ -278,7 +269,7 @@
         </weaponTags>
         <gearHealthRange>0.75~2.3</gearHealthRange>
         <weaponMoney>1550~2700</weaponMoney>
-        <apparelMoney>2300~3450</apparelMoney>
+        <apparelMoney>2300~5450</apparelMoney>
         <itemQuality>Good</itemQuality>
         <apparelRequired>
             <li>Rimgate_CompositePlateInsert</li>
@@ -314,6 +305,7 @@
         <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
         <apparelRequired Inherit="false">
             <li>Rimgate_TauriSGTeamBDU</li>
+            <li>Rimgate_TauriTacticalBoots</li>
             <li>Rimgate_TauriSpecOpsVest</li>
             <li>Rimgate_NaquadahPlateInsert</li>
             <li>Rimgate_TauriTacticalBackpack</li>
@@ -322,6 +314,10 @@
             <li>
                 <bodyPartGroup>UpperHead</bodyPartGroup>
                 <requiredTag>Rimgate_TauriSpecialForcesApparel_tag</requiredTag>
+            </li>
+            <li>
+                <apparelDef>Rimgate_TauriSGTeamBDU</apparelDef>
+                <stuff>Cloth</stuff>
             </li>
             <li>
                 <apparelDef>Rimgate_TauriSpecOpsVest</apparelDef>
@@ -398,6 +394,10 @@
             <li>
                 <bodyPartGroup>Torso</bodyPartGroup>
                 <requiredTag>SpacerMilitary</requiredTag>
+            </li>
+            <li>
+                <apparelDef>Rimgate_TauriSGTeamBDU</apparelDef>
+                <stuff>Hyperweave</stuff>
             </li>
         </specificApparelRequirements>
         <inventoryOptions>

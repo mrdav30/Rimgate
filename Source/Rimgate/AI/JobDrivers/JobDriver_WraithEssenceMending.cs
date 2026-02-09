@@ -77,7 +77,7 @@ public class JobDriver_WraithEssenceMending : JobDriver_CastVerbOnce
             var ability = actor.abilities.GetAbility(RimgateDefOf.Rimgate_WraithEssenceMendingAbility);
             var costComp = ability?.CompOfType<CompAbilityEffect_EssenceCost>();
             if (costComp != null && !costComp.Props.payCostAtStart)
-                BiologyUtil.OffsetEssence(actor, 0f - costComp.Props.essenceCost);
+                BiologyUtil.OffsetEssenceCost(actor, 0f - costComp.Props.essenceCost);
 
             int totalToHeal = ability?.CompOfType<CompAbilityEffect_WraithEssenceMending>()?.Props?.totalChronicToHeal ?? 1;
             for (int i = 0; i < totalToHeal; i++)

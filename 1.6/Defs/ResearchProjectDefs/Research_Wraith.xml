@@ -41,14 +41,27 @@
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithArmorTierOne</defName>
-		<label>Wraith armor</label>
-		<description>Research armor grown from bio-organic materials tailored to Wraith physiology. Flexible, durable, and mildly unsettling to the touch.</description>
+		<label>Wraith Warrior armor</label>
+		<description>Research armor grown from bio-organic materials tailored to Wraith physiology. Flexible, durable, and mildly unsettling to the touch.\n\nNote: Wraith armor is a bit unorthodox since it is grown rather than forged, blending biological and technological elements. We'll have to adapt our manufacturing processes accordingly.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithBasic</li>
 			<li>ReconArmor</li>
+			<li>Machining</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithArmorTierTwo</defName>
+		<label>Wraith Commander armor</label>
+		<description>Unlock the secrets of Wraith commander armor: bio-engineered to enhance strength, resilience, and intimidation factor.\n\nThis research grants access to advanced armor plating and integrated enzyme sacks, perfect for elite operatives who lead from the front.</description>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithArmorTierOne</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
@@ -57,16 +70,16 @@
 		<techLevel>Archotech</techLevel>
 		<label>Wraith assassin gear</label>
 		<description>Unlock the secrets of Wraith assassin gear: bio-engineered armor and weapons optimized for stealth, speed, and silent lethality.\n\nThis research grants access to advanced melee weaponry and lightweight armor that enhances agility while providing moderate protection. Perfect for operatives who prefer to strike from the shadows.</description>
-		
-		<baseCost>2500</baseCost>
+
+		<baseCost>4500</baseCost>
 		<prerequisites>
-			<li>Rimgate_WraithArmorTierOne</li>
+			<li>Rimgate_WraithArmorTierTwo</li>
 			<li>Rimgate_WraithWeaponsTierOne</li>
 			<li>ShieldBelt</li>
 			<li>Machining</li>
 			<li>LongBlades</li>
 		</prerequisites>
-		<researchViewX>2</researchViewX>
+		<researchViewX>3</researchViewX>
 		<researchViewY>0</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
@@ -91,7 +104,7 @@
 			<li>ChargedShot</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>0.5</researchViewY>
+		<researchViewY>0.75</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -99,13 +112,13 @@
 		<label>Wraith hacking</label>
 		<description>Reverse-engineer Wraith neural interface tech to bend machines to your will. Great for remote control, terrible for privacy.</description>
 		<baseCost>3500</baseCost>
-		<prerequisites>		
+		<prerequisites>
 			<li>Rimgate_WraithWeaponsTierOne</li>
 			<li>UltraMechtech</li>
 			<li>Machining</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>0.5</researchViewY>
+		<researchViewY>0.75</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_WraithCommunicationDevice</li>
 		</requiredAnalyzed>
@@ -136,7 +149,7 @@
 			<li>Rimgate_WraithCommunicationDevice</li>
 		</prerequisites>
 		<researchViewX>3</researchViewX>
-		<researchViewY>0.5</researchViewY>
+		<researchViewY>0.75</researchViewY>
 
 		<generalRules>
 			<rulesStrings>
@@ -168,7 +181,7 @@
 			<li>Rimgate_WraithBasic</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>1.25</researchViewY>
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
@@ -266,7 +279,7 @@
 			<li>Rimgate_MeatCultivation</li>
 		</prerequisites>
 		<researchViewX>2</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>1.25</researchViewY>
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
@@ -291,7 +304,7 @@
 			<li>OrbitalTech</li>
 		</prerequisites>
 		<researchViewX>3</researchViewX>
-		<researchViewY>1</researchViewY>
+		<researchViewY>1.25</researchViewY>
 		<requiredAnalyzed>
 			<li>Rimgate_DestroyedDart</li>
 		</requiredAnalyzed>
@@ -330,7 +343,7 @@
 		</prerequisites>
 
 		<researchViewX>3</researchViewX>
-		<researchViewY>1.5</researchViewY>
+		<researchViewY>1.75</researchViewY>
 
 		<recalculatePower>true</recalculatePower>
 

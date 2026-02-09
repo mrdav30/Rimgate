@@ -22,6 +22,10 @@
         <weaponClasses>
             <li>Neolithic</li>
         </weaponClasses>
+        <stuffCategories>
+            <li>Metallic</li>
+        </stuffCategories>
+        <defaultStuff>Steel</defaultStuff>
         <costStuffCount>35</costStuffCount>
         <statBases>
             <WorkToMake>2000</WorkToMake>
@@ -29,9 +33,6 @@
         </statBases>
         <equippedAngleOffset>-65</equippedAngleOffset>
         <burnableByRecipe>false</burnableByRecipe>
-        <stuffCategories>
-            <li>Metallic</li>
-        </stuffCategories>
         <tools>
             <li>
                 <label>handle</label>

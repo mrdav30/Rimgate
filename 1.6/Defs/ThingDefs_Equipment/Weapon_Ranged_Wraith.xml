@@ -336,7 +336,7 @@
 				<cooldownTime>1.1</cooldownTime>
 			</li>
 		</tools>
-		<weaponTags>
+		<weaponTags Inherit="False">
 			<li>Rimgate_WraithHandBlaster_tag</li>
 		</weaponTags>
 		<thingSetMakerTags>

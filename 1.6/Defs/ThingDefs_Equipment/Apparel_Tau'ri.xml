@@ -8,15 +8,26 @@
     <ThingDef ParentName="ApparelMakeableBase">
         <defName>Rimgate_TauriSGTeamBDU</defName>
         <label>SGC BDU</label>
-        <description>Standard field fatigues for SG teams. Durable, practical, and 100% cotton-blend—perfect for offworld diplomacy or high-stakes firefights with snake-worshiping megalomaniacs.\nBonus: now with just enough pockets to lose things in.</description>
+        <description>Standard field fatigues for SG teams. Durable, practical, and perfect for offworld diplomacy or high-stakes firefights with snake-worshiping megalomaniacs.\nBonus: now with just enough pockets to lose things in.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Torso/SGCBDU/RGSGCBDUIcon</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
+        <stuffCategories>
+            <li>Fabric</li>
+        </stuffCategories>
+        <defaultStuff>Cloth</defaultStuff>
+        <costStuffCount>20</costStuffCount>
         <costList>
-            <Cloth>40</Cloth>
-            <Synthread>40</Synthread>
+            <Cloth>10</Cloth>
+            <Synthread>5</Synthread>
         </costList>
+        <colorPerStuff>
+            <li>
+                <stuff>Cloth</stuff>
+                <color>(1,1,1,1)</color>
+            </li>
+        </colorPerStuff>
         <thingCategories>
             <li>ApparelMisc</li>
         </thingCategories>
@@ -25,7 +36,11 @@
             <WorkToMake>2700</WorkToMake>
             <Mass>0.3</Mass>
             <Flammability>0.6</Flammability>
-            <ArmorRating_Sharp>0.157</ArmorRating_Sharp>
+            <StuffEffectMultiplierArmor>0.24</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
+            <ArmorRating_Sharp>0.057</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.01</ArmorRating_Blunt>
             <ArmorRating_Heat>0.435</ArmorRating_Heat>
             <Insulation_Cold>4.7</Insulation_Cold>
             <Insulation_Heat>1.8</Insulation_Heat>
@@ -52,7 +67,6 @@
             </layers>
             <tags>
                 <li>Rimgate_TauriApparel_tag</li>
-                <li>SpacerMilitary</li>
             </tags>
             <defaultOutfitTags>
                 <li>Worker</li>
@@ -118,17 +132,17 @@
         <colorPerStuff>
             <li>
                 <stuff>Leather_Plain</stuff>
-                <color>(255,255,255)</color>
+                <color>(1,1,1,1)</color>
             </li>
             <li>
                 <stuff>Leather_Heavy</stuff>
-                <color>(255,255,255)</color>
+                <color>(1,1,1,1)</color>
             </li>
         </colorPerStuff>
-        <costStuffCount>25</costStuffCount>
+        <costStuffCount>35</costStuffCount>
         <costList>
-            <Cloth>30</Cloth>
-            <Synthread>15</Synthread>
+            <Cloth>10</Cloth>
+            <Synthread>5</Synthread>
         </costList>
         <apparel>
             <bodyPartGroups>
@@ -191,9 +205,9 @@
             <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
             <MeleeDodgeChance>4</MeleeDodgeChance>
         </equippedStatOffsets>
-        <costList>
-            <Hyperweave>15</Hyperweave>
-            <Rimgate_Naquadah>2</Rimgate_Naquadah>
+        <costList Inherit="false">
+            <Hyperweave>10</Hyperweave>
+            <Synthread>10</Synthread>
         </costList>
         <apparel>
             <wornGraphicPath>Things/Item/Apparel/Torso/SpecOpsVest/RGSpecOpsVest</wornGraphicPath>
@@ -398,19 +412,32 @@
         </graphicData>
         <techLevel>Industrial</techLevel>
         <tradeability>Sellable</tradeability>
+        <stuffCategories>
+            <li>Leathery</li>
+        </stuffCategories>
+        <defaultStuff>Leather_Plain</defaultStuff>
+        <costStuffCount>5</costStuffCount>
         <costList>
-            <Cloth>10</Cloth>
-            <Plasteel>5</Plasteel>
-            <Leather_Plain>5</Leather_Plain>
-            <Synthread>5</Synthread>
+            <Cloth>3</Cloth>
+            <Plasteel>3</Plasteel>
+            <Synthread>1</Synthread>
         </costList>
+        <colorPerStuff>
+            <li>
+                <stuff>Leather_Plain</stuff>
+                <color>(1,1,1,1)</color>
+            </li>
+        </colorPerStuff>
         <statBases>
             <MaxHitPoints>120</MaxHitPoints>
             <WorkToMake>3500</WorkToMake>
             <Mass>1</Mass>
             <Flammability>0.2</Flammability>
-            <ArmorRating_Sharp>0.34</ArmorRating_Sharp>
-            <ArmorRating_Blunt>0.12</ArmorRating_Blunt>
+            <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+            <ArmorRating_Sharp>0.24</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.02</ArmorRating_Blunt>
             <ArmorRating_Heat>0.12</ArmorRating_Heat>
             <Insulation_Cold>2</Insulation_Cold>
             <Insulation_Heat>4</Insulation_Heat>
@@ -432,6 +459,7 @@
             </bodyPartGroups>
             <layers>
                 <li>Middle</li>
+                <li>Shell</li>
             </layers>
             <tags>
                 <li>Rimgate_TauriApparel_tag</li>
@@ -463,25 +491,39 @@
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TauriTacticalBoots</defName>
         <label>Tactical boots</label>
+        <description>Rugged steel-toed tactical boots designed for offworld operations. Provide excellent protection and support for extended missions in diverse environments.\nFavored by Tau'ri special operations forces for their durability and comfort.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Footwear/RGTauriTacticalBoots</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <techLevel>Industrial</techLevel>
         <tradeability>Sellable</tradeability>
+        <stuffCategories>
+            <li>Leathery</li>
+        </stuffCategories>
+        <defaultStuff>Leather_Plain</defaultStuff>
+        <costStuffCount>15</costStuffCount>
         <costList>
-            <Leather_Plain>30</Leather_Plain>
-            <Cloth>10</Cloth>
-            <Synthread>10</Synthread>
-            <Steel>5</Steel>
+            <Synthread>5</Synthread>
+            <Cloth>3</Cloth>
+            <Steel>3</Steel>
         </costList>
+        <colorPerStuff>
+            <li>
+                <stuff>Leather_Plain</stuff>
+                <color>(1,1,1,1)</color>
+            </li>
+        </colorPerStuff>
         <statBases>
             <MaxHitPoints>120</MaxHitPoints>
             <WorkToMake>3500</WorkToMake>
             <Mass>1</Mass>
             <Flammability>0.2</Flammability>
-            <ArmorRating_Sharp>0.34</ArmorRating_Sharp>
-            <ArmorRating_Blunt>0.12</ArmorRating_Blunt>
+            <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+            <ArmorRating_Sharp>0.24</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.02</ArmorRating_Blunt>
             <ArmorRating_Heat>0.12</ArmorRating_Heat>
             <Insulation_Cold>2</Insulation_Cold>
             <Insulation_Heat>4</Insulation_Heat>
@@ -502,6 +544,7 @@
             </bodyPartGroups>
             <layers>
                 <li>Middle</li>
+                <li>Shell</li>
             </layers>
             <tags>
                 <li>Rimgate_TauriApparel_tag</li>
@@ -567,7 +610,8 @@
             <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
         </equippedStatOffsets>
         <costList>
-            <Steel>65</Steel>
+            <Steel>25</Steel>
+            <Plasteel>15</Plasteel>
         </costList>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
@@ -619,8 +663,8 @@
         <costList Inherit="false">
             <Rimgate_TauriBallisticHelmet>1</Rimgate_TauriBallisticHelmet>
             <Apparel_Gunlink>1</Apparel_Gunlink>
-            <Steel>10</Steel>
-            <ComponentIndustrial>5</ComponentIndustrial>
+            <Rimgate_Naquadah>5</Rimgate_Naquadah>
+            <ComponentIndustrial>1</ComponentIndustrial>
         </costList>
         <apparel>
             <wornGraphicPath>Things/Item/Apparel/Headgear/TacticalGunlink/RGTacticalGunlink</wornGraphicPath>
@@ -662,8 +706,8 @@
         <costList Inherit="false">
             <Rimgate_TauriBallisticHelmet>1</Rimgate_TauriBallisticHelmet>
             <Apparel_GasMask>1</Apparel_GasMask>
-            <Steel>10</Steel>
-            <ComponentIndustrial>5</ComponentIndustrial>
+            <Rimgate_Naquadah>5</Rimgate_Naquadah>
+            <ComponentIndustrial>1</ComponentIndustrial>
         </costList>
         <apparel>
             <immuneToToxGasExposure>true</immuneToToxGasExposure>
@@ -721,8 +765,8 @@
             <Rimgate_TauriBallisticHelmet>1</Rimgate_TauriBallisticHelmet>
             <Apparel_VacsuitHelmet>1</Apparel_VacsuitHelmet>
             <Apparel_Gunlink>1</Apparel_Gunlink>
-            <Steel>10</Steel>
-            <ComponentIndustrial>5</ComponentIndustrial>
+            <Rimgate_Naquadah>5</Rimgate_Naquadah>
+            <ComponentIndustrial>1</ComponentIndustrial>
         </costList>
         <apparel>
             <immuneToToxGasExposure>true</immuneToToxGasExposure>
@@ -753,17 +797,9 @@
         <graphicData>
             <texPath>Things/Item/Apparel/Headgear/Cap/RGTauriBaseballCap</texPath>
         </graphicData>
-        <costList>
-            <Cloth>20</Cloth>
-        </costList>
         <uiIconScale>1.25</uiIconScale>
         <statBases>
-            <WorkToMake>1800</WorkToMake>
-            <Mass>0.14</Mass>
-            <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
-            <StuffEffectMultiplierInsulation_Cold>0.10</StuffEffectMultiplierInsulation_Cold>
             <StuffEffectMultiplierInsulation_Heat>0.40</StuffEffectMultiplierInsulation_Heat>
-            <EquipDelay>0.8</EquipDelay>
         </statBases>
         <equippedStatOffsets>
             <ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
@@ -798,21 +834,9 @@
         <graphicData>
             <texPath>Things/Item/Apparel/Headgear/Boonie/RGBoonieHat</texPath>
         </graphicData>
-        <costList>
-            <Cloth>35</Cloth>
-        </costList>
         <uiIconScale>1.25</uiIconScale>
-        <statBases>
-            <WorkToMake>1800</WorkToMake>
-            <Mass>0.14</Mass>
-            <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
-            <StuffEffectMultiplierInsulation_Cold>0.10</StuffEffectMultiplierInsulation_Cold>
-            <StuffEffectMultiplierInsulation_Heat>0.50</StuffEffectMultiplierInsulation_Heat>
-            <EquipDelay>0.8</EquipDelay>
-        </statBases>
         <equippedStatOffsets>
             <ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
-            <SocialImpact>0.1</SocialImpact>
         </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
@@ -859,11 +883,11 @@
             <MaxHitPoints>200</MaxHitPoints>
             <Mass>2</Mass>
             <Flammability>0.6</Flammability>
-            <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
             <StuffEffectMultiplierInsulation_Cold>0.10</StuffEffectMultiplierInsulation_Cold>
             <StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
-            <ArmorRating_Sharp>0.12</ArmorRating_Sharp>
-            <ArmorRating_Blunt>0.08</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.01</ArmorRating_Blunt>
             <ArmorRating_Heat>0.09</ArmorRating_Heat>
             <Insulation_Cold>1</Insulation_Cold>
             <EquipDelay>5</EquipDelay>
@@ -881,11 +905,11 @@
         <colorPerStuff>
             <li>
                 <stuff>Leather_Plain</stuff>
-                <color>(255,255,255)</color>
+                <color>(1,1,1,1)</color>
             </li>
             <li>
                 <stuff>Leather_Heavy</stuff>
-                <color>(255,255,255)</color>
+                <color>(1,1,1,1)</color>
             </li>
         </colorPerStuff>
         <costStuffCount>20</costStuffCount>
@@ -1204,7 +1228,7 @@
             <MeleeCooldownFactor>0.7</MeleeCooldownFactor>
             <MeleeHitChance>2</MeleeHitChance>
             <MeleeDodgeChance>4</MeleeDodgeChance>
-            <PawnTrapSpringChance>0.52</PawnTrapSpringChance>
+            <PawnTrapSpringChance>0.72</PawnTrapSpringChance>
         </equippedStatOffsets>
         <costList>
             <Steel>10</Steel>

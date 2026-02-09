@@ -323,7 +323,6 @@
     <Compile Include="Abilities\CompAbility_RequiresTrainable.cs" />
     <Compile Include="Abilities\Properties\CompProperties_AbilityEssenceCost.cs" />
     <Compile Include="Abilities\Properties\CompProperties_AbilityRequiresTrainable.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_AdjustNeedOnCast.cs" />
     <Compile Include="Abilities\Properties\CompProperties_WraithEssenceMending.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryCorpseToCloningPod.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryToCloningPod.cs" />
@@ -356,7 +355,6 @@
     <Compile Include="AI\WorkGivers\WorkGiver_PushContainer.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CloseGate.cs" />
-    <Compile Include="Abilities\CompAbilityEffect_AdjustNeedOnCast.cs" />
     <Compile Include="Comps\CompAssignableToPawn_Sarcophagus.cs" />
     <Compile Include="Comps\CompTargetable_TokraTunnelCrystal.cs" />
     <Compile Include="Comps\CompTargetEffect_TokraTunnelCrystal.cs" />
@@ -408,6 +406,7 @@
     <Compile Include="HarmonyPatches\Harmony_Messages_Message.cs" />
     <Compile Include="HarmonyPatches\Harmony_ITab_Pawn_Character_IsVisible.cs" />
     <Compile Include="HarmonyPatches\Harmony_PathGrid.cs" />
+    <Compile Include="HarmonyPatches\Harmony_PawnInventoryOption_GenerateThings.cs" />
     <Compile Include="HarmonyPatches\Harmony_Projectile_CheckForInterceptBetween.cs" />
     <Compile Include="HarmonyPatches\Harmony_Skyfaller_Tick.cs" />
     <Compile Include="HarmonyPatches\Harmony_Widgets_DefIcon_BiomaterialRecoveryDef.cs" />

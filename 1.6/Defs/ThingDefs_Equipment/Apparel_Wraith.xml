@@ -2,37 +2,34 @@
 <Defs>
 	<!-- ================== Wraith Apparel Base ================== -->
 
-	<ThingDef Name="Rimgate_WraithArmorBase" ParentName="ApparelBase" Abstract="True">
+	<ThingDef Name="Rimgate_WraithApparelBase" ParentName="ApparelNoQualityBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
 			<effectWorking>Smith</effectWorking>
 			<soundWorking>Recipe_Machining</soundWorking>
-			<recipeUsers>
-				<li>FabricationBench</li>
-			</recipeUsers>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 		</recipeMaker>
-		<colorGenerator Class="ColorGenerator_Options">
-			<options>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(1,1,1,1)</only>
-				</li>
-			</options>
-		</colorGenerator>
+		<colorGenerator IsNull="True" />
 		<tradeTags>
 			<li>Rimgate_WraithApparelTrade_tag</li>
 			<li>ExoticMisc</li>
 		</tradeTags>
+
+		<comps Inherit="False">
+			<li Class="CompProperties_Forbiddable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ========= Headgear ========= -->
 
 	<!-- Wraith helm -->
 
-	<ThingDef ParentName="Rimgate_WraithArmorBase">
+	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithHelmet</defName>
 		<label>Wraith soldier helmet</label>
 		<description>Standard issue cranial casing for your average Wraith footsoldier. Looks like alien exoskeleton, smells like biomass.\nSurprisingly breathable for something grown in a vat.</description>
@@ -41,9 +38,8 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<costList>
-			<ComponentIndustrial>1</ComponentIndustrial>
-			<Steel>20</Steel>
-			<Rimgate_Biomass>10</Rimgate_Biomass>
+			<Rimgate_Biomass>25</Rimgate_Biomass>
+			<Steel>10</Steel>
 		</costList>
 		<statBases>
 			<MarketValue>650</MarketValue>
@@ -89,15 +85,18 @@
 		</thingCategories>
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
 			<skillRequirements>
-				<Crafting>5</Crafting>
+				<Crafting>6</Crafting>
 			</skillRequirements>
 		</recipeMaker>
 	</ThingDef>
 
 	<!-- Goggles -->
 
-	<ThingDef ParentName="Rimgate_WraithArmorBase">
+	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithGoggles</defName>
 		<label>Goggles</label>
 		<description>Standard-issue optics for Wraith soldiers who need to look cool and see through three dimensions of prey at once. Offers modest protection against sand, smoke, and sass from superiors.\n\nFavored by Wraith assassins and reconnaissance units who need to stay sharp in the field.</description>
@@ -111,9 +110,15 @@
 		</graphicData>
 		<uiIconScale>1.15</uiIconScale>
 		<stuffCategories>
-			<li>Fabric</li>
+			<li>Leathery</li>
 		</stuffCategories>
+		<defaultStuff>Leather_Plain</defaultStuff>
 		<costStuffCount>20</costStuffCount>
+		<costList>
+			<Steel>5</Steel>
+			<Rimgate_Biomass>2</Rimgate_Biomass>
+			<Cloth>1</Cloth>
+		</costList>
 		<statBases>
 			<WorkToMake>1400</WorkToMake>
 			<MaxHitPoints>80</MaxHitPoints>
@@ -162,16 +167,19 @@
 			</forceEyesVisibleForRotations>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithAssassin</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
+			<recipeUsers>
+				<li>TableMachining</li>
+			</recipeUsers>
 		</recipeMaker>
 	</ThingDef>
 
 	<!-- Circlet -->
 
-	<ThingDef ParentName="HatMakeableBase">
+	<ThingDef ParentName="ArmorSmithableBase">
 		<defName>Rimgate_WraithCirclet</defName>
 		<label>Circlet</label>
 		<description>A ceremonial circlet worn only by Wraith queens and their chosen commanders. Forged from naquadah filigree fused with living biomass, the circlet amplifies psionic projection and lends its wearer an unsettling gravitas. To those who serve, it is a symbol of command and terror; to those who resist, a reminder that even a glance from the throne can feel like a blade at the throat.</description>
@@ -183,24 +191,31 @@
 		<tradeability>Sellable</tradeability>
 		<generateCommonality>0.3</generateCommonality>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithArmorTierTwo</researchPrerequisite>
 			<skillRequirements>
-				<Crafting>12</Crafting>
+				<Crafting>8</Crafting>
+				<Artistic>6</Artistic>
 			</skillRequirements>
+			<defaultIngredientFilter>
+				<disallowedThingDefs Inherit="False" IsNull="true" />
+			</defaultIngredientFilter>
 		</recipeMaker>
 		<stuffCategories>
 			<li>Metallic</li>
 		</stuffCategories>
+		<defaultStuff>Gold</defaultStuff>
 		<costStuffCount>10</costStuffCount>
 		<costList>
-			<Jade>10</Jade>
-			<Rimgate_Naquadah>5</Rimgate_Naquadah>
-			<Rimgate_Biomass>1</Rimgate_Biomass>
+			<Steel>5</Steel>
+			<Rimgate_Biomass>5</Rimgate_Biomass>
 		</costList>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
 			<WorkToMake>4800</WorkToMake>
 			<Mass>0.1</Mass>
+			<StuffEffectMultiplierArmor>0.22</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
 			<ArmorRating_Sharp>0</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0</ArmorRating_Blunt>
 			<ArmorRating_Heat>0</ArmorRating_Heat>
@@ -214,12 +229,15 @@
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.3</SlaveSuppressionOffset>
 			<PsychicSensitivityOffset>0.2</PsychicSensitivityOffset>
 			<PsychicEntropyRecoveryRate>0.07</PsychicEntropyRecoveryRate>
+			<Rimgate_EssenceGainFactor>0.15</Rimgate_EssenceGainFactor>
+			<Rimgate_EssenceCostFactor>0.1</Rimgate_EssenceCostFactor>
 		</equippedStatOffsets>
 		<thingCategories Inherit="False">
 			<li>Headgear</li>
 		</thingCategories>
 		<apparel>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/WraithCirclet/RGWraithCirclet</wornGraphicPath>
+			<parentTagDef>ApparelHead</parentTagDef>
 			<countsAsClothingForNudity>false</countsAsClothingForNudity>
 			<bodyPartGroups>
 				<li>UpperHead</li>
@@ -240,25 +258,40 @@
 			<li>ExoticMisc</li>
 			<li>Artifact</li>
 		</tradeTags>
+		<comps Inherit="False">
+			<li Class="CompProperties_Forbiddable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ========= Torso ========= -->
 
 	<!-- Wraith Soldier Armor -->
 
-	<ThingDef ParentName="Rimgate_WraithArmorBase">
+	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithSoldierArmor</defName>
-		<label>Wraith soldier armor</label>
-		<description>Chitinous plating extruded from nightmares and grown with care. Offers solid protection and a mildly unsettling squelch sound when equipped.\nWorn by Wraith soldiers who prefer their armor organic and their enemies terrified.</description>
+		<label>Chitin breastplate</label>
+		<description>Chitinous plating extruded from nightmares and grown with care. Offers solid protection and a mildly unsettling squelch sound when equipped.\n\nWorn by Wraith soldiers who prefer their armor organic and their enemies terrified.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
+		<stuffCategories>
+			<li>Leathery</li>
+		</stuffCategories>
+		<defaultStuff>Leather_Plain</defaultStuff>
+		<costStuffCount>35</costStuffCount>
 		<costList>
-			<ComponentIndustrial>5</ComponentIndustrial>
-			<Steel>100</Steel>
-			<Rimgate_Biomass>50</Rimgate_Biomass>
+			<Rimgate_Biomass>60</Rimgate_Biomass>
 		</costList>
+		<colorPerStuff>
+			<li>
+				<stuff>Leather_Plain</stuff>
+                <color>(1,1,1,1)</color>
+			</li>
+		</colorPerStuff>
 		<thingCategories>
 			<li>ApparelArmor</li>
 		</thingCategories>
@@ -267,8 +300,11 @@
 			<MaxHitPoints>200</MaxHitPoints>
 			<WorkToMake>12500</WorkToMake>
 			<Mass>4</Mass>
-			<ArmorRating_Sharp>0.9</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.45</ArmorRating_Blunt>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.2</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.82</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.46</ArmorRating_Heat>
 			<Insulation_Cold>64</Insulation_Cold>
 			<Insulation_Heat>9</Insulation_Heat>
@@ -276,23 +312,20 @@
 			<EquipDelay>3</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>0.10</MoveSpeed>
-			<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+			<ComfyTemperatureMin>-10</ComfyTemperatureMin>
 			<MentalBreakThreshold>-0.1</MentalBreakThreshold>
-			<PainShockThreshold>0.15</PainShockThreshold>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
 				<li>Neck</li>
 				<li>Shoulders</li>
-				<li>Arms</li>
-				<li>Legs</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmor</wornGraphicPath>
 			<layers>
 				<li>Middle</li>
-				<li>Shell</li>
 			</layers>
 			<tags>
 				<li>Rimgate_WraithSoldierApparel_tag</li>
@@ -305,27 +338,40 @@
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
 			<skillRequirements>
-				<Crafting>5</Crafting>
+				<Crafting>6</Crafting>
 			</skillRequirements>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
 		</recipeMaker>
 	</ThingDef>
 
 	<!-- Wraith Commander Armor -->
 
-	<ThingDef ParentName="Rimgate_WraithArmorBase">
+	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithCommanderArmor</defName>
-		<label>Wraith commander armor</label>
-		<description>Elegant bio-armor for the discerning Wraith leader who wants to look good while draining life force.\nHigh resistance, high fashion—and guaranteed to ruin your colonist’s day from 40 tiles away.</description>
+		<label>Armored overcoat</label>
+		<description>Elegant bio-armor for the discerning Wraith leader who wants high resistance and high fashion while draining life force.\n\nInterweaved with bio-organic fibers that enhance essence absorption and reduce essence expenditure.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/WraithCommander/RGWraithCommanderArmor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
+		<stuffCategories>
+			<li>Leathery</li>
+		</stuffCategories>
+		<defaultStuff>Leather_Plain</defaultStuff>
+		<costStuffCount>80</costStuffCount>
 		<costList>
-			<ComponentIndustrial>5</ComponentIndustrial>
-			<Steel>100</Steel>
-			<Cloth>50</Cloth>
 			<Rimgate_Biomass>50</Rimgate_Biomass>
+			<Synthread>25</Synthread>
 		</costList>
+		<colorPerStuff>
+			<li>
+				<stuff>Leather_Plain</stuff>
+                <color>(1,1,1,1)</color>
+			</li>
+		</colorPerStuff>
 		<thingCategories>
 			<li>ApparelArmor</li>
 		</thingCategories>
@@ -334,16 +380,20 @@
 			<MaxHitPoints>300</MaxHitPoints>
 			<WorkToMake>12500</WorkToMake>
 			<Mass>4</Mass>
-			<ArmorRating_Sharp>1</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.2</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.45</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.5</ArmorRating_Heat>
 			<Insulation_Cold>68</Insulation_Cold>
 			<Insulation_Heat>10</Insulation_Heat>
 			<EquipDelay>3</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>0.15</MoveSpeed>
-			<ComfyTemperatureMin>-10</ComfyTemperatureMin>
+			<Rimgate_EssenceGainFactor>0.25</Rimgate_EssenceGainFactor>
+			<Rimgate_EssenceCostFactor>0.1</Rimgate_EssenceCostFactor>
+			<ComfyTemperatureMin>-15</ComfyTemperatureMin>
 			<MentalBreakThreshold>-0.15</MentalBreakThreshold>
 			<PainShockThreshold>0.15</PainShockThreshold>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
@@ -369,40 +419,225 @@
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
+			<researchPrerequisite>Rimgate_WraithArmorTierTwo</researchPrerequisite>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
 			<skillRequirements>
-				<Crafting>5</Crafting>
+				<Crafting>8</Crafting>
+				<Artistic>4</Artistic>
 			</skillRequirements>
 		</recipeMaker>
+	</ThingDef>
+
+	<!-- ====== Wraith Bracers ====== -->
+
+	<ThingDef ParentName="Rimgate_WraithApparelBase">
+		<defName>Rimgate_WraithBracers</defName>
+		<label>Spacer bracers</label>
+		<description>Lightweight bracers that provide minimal protection and maximum style.\n\nAs a side note, they also store enzymatic enhancers for draining life force and a bio-organic weapon interface.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Handwear/RGWraithBracers</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<techLevel>Industrial</techLevel>
+		<tradeability>Sellable</tradeability>
+
+		<statBases>
+			<MarketValue>350</MarketValue>
+			<MaxHitPoints>120</MaxHitPoints>
+			<WorkToMake>5000</WorkToMake>
+			<Mass>1.5</Mass>
+			<StuffEffectMultiplierArmor>0.12</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.06</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.25</ArmorRating_Heat>
+			<Insulation_Cold>12</Insulation_Cold>
+			<Insulation_Heat>3</Insulation_Heat>
+			<Flammability>0.6</Flammability>
+			<EquipDelay>2</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<GeneralLaborSpeed>-0.05</GeneralLaborSpeed>
+			<AimingDelayFactor>-0.15</AimingDelayFactor>
+			<Rimgate_EssenceGainFactor>0.15</Rimgate_EssenceGainFactor>
+		</equippedStatOffsets>
+
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<defaultStuff>Steel</defaultStuff>
+		<costStuffCount>20</costStuffCount>
+		<costList>
+			<Cloth>10</Cloth>
+			<Rimgate_Biomass>5</Rimgate_Biomass>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<colorPerStuff>
+			<li>
+				<stuff>Steel</stuff>
+                <color>(1,1,1,1)</color>
+			</li>
+		</colorPerStuff>
+
+		<thingCategories>
+			<li>ApparelMisc</li>
+		</thingCategories>
+		<apparel>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>Arms</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Rimgate_WraithSoldierApparel_tag</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>4</Crafting>
+				<Intellectual>4</Intellectual>
+			</skillRequirements>
+			<defaultIngredientFilter>
+				<disallowedThingDefs Inherit="False">
+					<li>Gold</li>
+					<li>Silver</li>
+					<li>Jade</li>
+					<li MayRequire="Ludeon.RimWorld.Anomaly">Bioferrite</li>
+					<li MayRequire="Ludeon.RimWorld.Odyssey">Obsidian</li>
+					<li>Rimgate_Naquadah</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- ====== Wraith Boots ====== -->
+
+	<ThingDef ParentName="ApparelMakeableBase">
+		<defName>Rimgate_WraithLeatherBoots</defName>
+		<label>Knee-high leather boots</label>
+		<description>Boots made from tanned chitin and reinforced with bio-organic fibers. They offer decent protection and a satisfying squelch when walking.\n\nWraith soldiers favor them for their combination of style, comfort, and the ability to leave unsettling footprints in soft terrain.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Footwear/RGWraithLeatherBoots</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<techLevel>Industrial</techLevel>
+		<tradeability>Sellable</tradeability>
+
+		<stuffCategories>
+			<li>Leathery</li>
+		</stuffCategories>
+		<defaultStuff>Leather_Plain</defaultStuff>
+		<costStuffCount>30</costStuffCount>
+		<costList>
+			<Rimgate_Biomass>25</Rimgate_Biomass>
+		</costList>
+		<colorPerStuff>
+			<li>
+				<stuff>Leather_Plain</stuff>
+                <color>(1,1,1,1)</color>
+			</li>
+		</colorPerStuff>
+
+		<statBases>
+			<MarketValue>400</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>6000</WorkToMake>
+			<Mass>2.5</Mass>
+			<StuffEffectMultiplierArmor>0.15</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.3</ArmorRating_Heat>
+			<Insulation_Cold>18</Insulation_Cold>
+			<Insulation_Heat>4</Insulation_Heat>
+			<Flammability>0.6</Flammability>
+			<EquipDelay>2.5</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.1</MoveSpeed>
+			<HuntingStealth>0.20</HuntingStealth>
+			<PawnTrapSpringChance>0.75</PawnTrapSpringChance>
+		</equippedStatOffsets>
+
+		<thingCategories>
+			<li>ApparelMisc</li>
+		</thingCategories>
+		<apparel>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>Feet</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Rimgate_WraithSoldierApparel_tag</li>
+				<li>Rimgate_WraithCommanderApparel_tag</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_WraithArmorTierOne</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>4</Crafting>
+				<Artistic>2</Artistic>
+			</skillRequirements>
+		</recipeMaker>
+		<tradeTags>
+			<li>Rimgate_WraithApparelTrade_tag</li>
+		</tradeTags>
+		<comps Inherit="False">
+			<li Class="CompProperties_Forbiddable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ========= Utility ========= -->
 
 	<!-- Wraith communication device -->
 
-	<ThingDef ParentName="Rimgate_WraithArmorBase">
+	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithCommunicationDevice</defName>
 		<label>Wraith communication device</label>
 		<description>Wraith-built synaptic interface for coordinating mechs, hacking systems, and maybe ordering takeout from the hive mind.</description>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
 			<researchPrerequisite>Rimgate_WraithCommunicationDevice</researchPrerequisite>
-			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-			<workSkill>Crafting</workSkill>
-			<effectWorking>Smith</effectWorking>
-			<soundWorking>Recipe_Machining</soundWorking>
 			<useIngredientsForColor>false</useIngredientsForColor>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
 			<skillRequirements>
 				<Crafting>10</Crafting>
+				<Intellectual>6</Intellectual>
 			</skillRequirements>
 		</recipeMaker>
 		<smeltable>false</smeltable>
 		<costList>
+			<Rimgate_Biomass>50</Rimgate_Biomass>
 			<Steel>25</Steel>
 			<Plasteel>25</Plasteel>
-			<Rimgate_Biomass>25</Rimgate_Biomass>
-			<ComponentIndustrial>4</ComponentIndustrial>
-			<ComponentSpacer>2</ComponentSpacer>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentSpacer>4</ComponentSpacer>
 			<SignalChip>2</SignalChip>
 			<PowerfocusChip>2</PowerfocusChip>
 		</costList>
@@ -437,9 +672,6 @@
 			<layers Inherit="false">
 				<li>Belt</li>
 			</layers>
-			<tags>
-				<li>Rimgate_WraithUtility_tag</li>
-			</tags>
 		</apparel>
 		<tickerType>Normal</tickerType>
 		<thingCategories Inherit="False">
@@ -511,17 +743,19 @@
 			<researchPrerequisite>Rimgate_WraithAssassin</researchPrerequisite>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 			<skillRequirements>
-				<Crafting>7</Crafting>
+				<Crafting>8</Crafting>
+				<Intellectual>6</Intellectual>
 			</skillRequirements>
 			<recipeUsers Inherit="False">
 				<li>FabricationBench</li>
 			</recipeUsers>
 		</recipeMaker>
 		<costList>
-			<ComponentSpacer>4</ComponentSpacer>
-			<Plasteel>75</Plasteel>
+			<Plasteel>25</Plasteel>
 			<Uranium>25</Uranium>
-			<Rimgate_Naquadria>5</Rimgate_Naquadria>
+			<Rimgate_Biomass>15</Rimgate_Biomass>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentSpacer>4</ComponentSpacer>
 		</costList>
 		<thingCategories Inherit="False">
 			<li>VFEC_Shields</li>

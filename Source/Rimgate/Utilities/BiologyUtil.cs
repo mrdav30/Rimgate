@@ -60,13 +60,13 @@ public static class BiologyUtil
             || !disallowedXenotypes.Contains(xenotype);
     }
 
-    public static void OffsetEssence(Pawn pawn, float offset, bool applyStatFactor = true)
+    public static void OffsetEssenceCost(Pawn pawn, float offset, bool applyStatFactor = true)
     {
         if (!ModsConfig.BiotechActive)
             return;
 
         if (offset > 0f && applyStatFactor)
-            offset *= pawn.GetStatValue(RimgateDefOf.Rimgate_EssenceGainFactor);
+            offset *= Mathf.Clamp01(1 - pawn.GetStatValue(RimgateDefOf.Rimgate_EssenceCostFactor));
 
         Gene_WraithEssenceMetabolism geneEssence = pawn.GetActiveGene<Gene_WraithEssenceMetabolism>();
         if (geneEssence != null)
@@ -79,7 +79,9 @@ public static class BiologyUtil
         GeneDef geneDef,
         float essenceGainAmount,
         bool allowFreeDraw = false,
-        OutcomeAffects affects = OutcomeAffects.Target)
+        OutcomeAffects affects = OutcomeAffects.Target,
+        bool applyStatFactor = true)
+
     {
         if (geneDef == null || essenceGainAmount <= 0f) return;
 
@@ -99,7 +101,10 @@ public static class BiologyUtil
         if (gainerGene == null) return;
 
         // How much could the gainer actually accept?
-        float want = Mathf.Clamp01(essenceGainAmount);
+        float factor = applyStatFactor 
+            ? Mathf.Clamp01(gainer.GetStatValue(RimgateDefOf.Rimgate_EssenceGainFactor)) 
+            : 0f;
+        float want = Mathf.Ceil(essenceGainAmount * (1 + factor));
         float canAccept = Mathf.Max(0f, (gainerGene.Max - gainerGene.Value - gainerGene.MaxLevelOffset));
         float gain = Mathf.Min(want, canAccept);
 

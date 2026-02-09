@@ -36,7 +36,7 @@
       <isAirtight>true</isAirtight>
       <commonality>0</commonality>
       <constructEffect>ConstructMetal</constructEffect>
-      <color>(114,114,114)</color>
+      <color>(114,209,181)</color>
       <soundImpactBullet>BulletImpact_Metal</soundImpactBullet>
       <soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
       <soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>

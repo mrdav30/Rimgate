@@ -156,6 +156,7 @@ public static class RimgateDefOf
     public static SoundDef Rimgate_WraithCocoonCast;
 
     public static StatDef MedicalOperationSpeed;
+    public static StatDef Rimgate_EssenceCostFactor;
     public static StatDef Rimgate_EssenceGainFactor;
 
     public static TattooDef NoTattoo_Body;

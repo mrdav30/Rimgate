@@ -125,7 +125,7 @@
       <subOptionsTakeAll>
         <li>
           <thingDef>Silver</thingDef>
-          <countRange>30~100</countRange>
+          <countRange>300~1000</countRange>
         </li>
       </subOptionsTakeAll>
     </inventoryOptions>
@@ -164,42 +164,25 @@
     <gearHealthRange>0.7~2.3</gearHealthRange>
     <apparelAllowHeadgearChance>0.72</apparelAllowHeadgearChance>
     <apparelMoney>1250~3500</apparelMoney>
-    <specificApparelRequirements>
-      <li>
-        <bodyPartGroup>Torso</bodyPartGroup>
-        <apparelLayer>OnSkin</apparelLayer>
-        <stuff>Synthread</stuff>
-      </li>
-      <li>
-        <bodyPartGroup>Legs</bodyPartGroup>
-        <apparelLayer>OnSkin</apparelLayer>
-        <stuff>Synthread</stuff>
-      </li>
-    </specificApparelRequirements>
+    <apparelColor>(0.2, 0.2, 0.2)</apparelColor>
     <weaponMoney>1100~3500</weaponMoney>
     <techHediffsMoney>1000~1500</techHediffsMoney>
     <techHediffsChance>0.4</techHediffsChance>
     <techHediffsTags>
       <li>Advanced</li>
     </techHediffsTags>
+    <destroyGearOnDrop>true</destroyGearOnDrop>
+    <techHediffsRequired>
+      <li>DeathAcidifier</li>
+    </techHediffsRequired>
     <combatEnhancingDrugsCount>0~2</combatEnhancingDrugsCount>
     <biocodeWeaponChance>0.15</biocodeWeaponChance>
     <inventoryOptions>
       <skipChance>0.8</skipChance>
       <subOptionsChooseOne>
         <li>
-          <thingDef>Silver</thingDef>
-          <countRange>
-            <min>50</min>
-            <max>200</max>
-          </countRange>
-        </li>
-        <li>
           <thingDef>MedicineIndustrial</thingDef>
-          <countRange>
-            <min>1</min>
-            <max>1</max>
-          </countRange>
+          <countRange>1~2</countRange>
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
@@ -221,15 +204,30 @@
       <li>Rimgate_WraithSoldierApparel_tag</li>
       <li>Rimgate_WraithHeadgear_tag</li>
     </apparelTags>
+    <apparelRequired>
+      <li>Rimgate_WraithSoldierArmor</li>
+      <li>Apparel_FlakPants</li>
+      <li>Rimgate_WraithBracers</li>
+      <li>Rimgate_WraithLeatherBoots</li>
+    </apparelRequired>
     <specificApparelRequirements>
       <li>
         <bodyPartGroup>FullHead</bodyPartGroup>
         <requiredTag>Rimgate_WraithHeadgear_tag</requiredTag>
       </li>
+      <li>
+        <apparelDef>Rimgate_WraithSoldierArmor</apparelDef>
+        <stuff>Leather_Plain</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_WraithBracers</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_WraithLeatherBoots</apparelDef>
+        <stuff>Leather_Plain</stuff>
+      </li>
     </specificApparelRequirements>
-    <apparelRequired>
-      <li>Rimgate_WraithSoldierArmor</li>
-    </apparelRequired>
     <weaponTags>
       <li>Rimgate_WraithWeapons_tag</li>
     </weaponTags>
@@ -254,7 +252,7 @@
       <li>SpacerMilitary</li>
     </apparelTags>
     <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
-    <apparelRequired>
+    <apparelRequired Inherit="False">
       <li>Rimgate_WraithHelmet</li>
     </apparelRequired>
     <specificApparelRequirements Inherit="False">
@@ -295,10 +293,31 @@
       <li>Rimgate_WraithSoldierArmor</li>
       <li>Rimgate_WraithGoggles</li>
       <li>Rimgate_WraithForceBuckler</li>
+      <li>Rimgate_WraithBracers</li>
+      <li>Rimgate_WraithLeatherBoots</li>
     </apparelRequired>
+    <specificApparelRequirements>
+      <li>
+        <apparelDef>Rimgate_WraithGoggles</apparelDef>
+        <stuff>Cloth</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_WraithSoldierArmor</apparelDef>
+        <stuff>Leather_Plain</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_WraithBracers</apparelDef>
+        <stuff>Leather_Plain</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_WraithLeatherBoots</apparelDef>
+        <stuff>Leather_Plain</stuff>
+      </li>
+    </specificApparelRequirements>
     <weaponTags>
       <li>Spear</li>
       <li>Rimgate_WraithAssassin_tag</li>
+      <li>Rimgate_WraithHandBlaster_tag</li>
     </weaponTags>
     <skills>
       <li>
@@ -333,17 +352,25 @@
       <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithEliteHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
-      <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
-    <specificApparelRequirements>
+    <apparelRequired>
+      <li>Rimgate_WraithCommanderArmor</li>
+      <li>Rimgate_WraithLeatherBoots</li>
+    </apparelRequired>
+    <specificApparelRequirements Inherit="False">
       <li>
         <bodyPartGroup>UpperHead</bodyPartGroup>
         <requiredTag>Rimgate_WraithEliteHeadgear_tag</requiredTag>
       </li>
+      <li>
+        <apparelDef>Rimgate_WraithCommanderArmor</apparelDef>
+        <stuff>Leather_Plain</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_WraithLeatherBoots</apparelDef>
+        <stuff>Leather_Plain</stuff>
+      </li>
     </specificApparelRequirements>
-    <apparelRequired>
-      <li>Rimgate_WraithCommanderArmor</li>
-    </apparelRequired>
     <weaponMoney>3000~3500</weaponMoney>
     <weaponTags>
       <li>Rimgate_WraithSpear_tag</li>
@@ -357,22 +384,16 @@
         <severity>0.1</severity>
       </li>
     </startingHediffs>
-    <inventoryOptions>
+    <inventoryOptions Inherit="False">
       <skipChance>0.8</skipChance>
       <subOptionsChooseOne>
         <li>
           <thingDef>Silver</thingDef>
-          <countRange>
-            <min>180</min>
-            <max>400</max>
-          </countRange>
+          <countRange>180~400</countRange>
         </li>
         <li>
-          <thingDef>MedicineIndustrial</thingDef>
-          <countRange>
-            <min>1</min>
-            <max>2</max>
-          </countRange>
+          <thingDef>Rimgate_WraithCommunicationDevice</thingDef>
+          <countRange>1</countRange>
         </li>
       </subOptionsChooseOne>
     </inventoryOptions>
@@ -436,12 +457,26 @@
       <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithEliteHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
-      <li>Rimgate_WraithUtility_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_WraithCirclet</li>
       <li>Rimgate_WraithCommanderArmor</li>
+      <li>Rimgate_WraithLeatherBoots</li>
     </apparelRequired>
+    <specificApparelRequirements Inherit="False">
+      <li>
+        <apparelDef>Rimgate_WraithCirclet</apparelDef>
+        <stuff>Gold</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_WraithCommanderArmor</apparelDef>
+        <stuff>Leather_Plain</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_WraithLeatherBoots</apparelDef>
+        <stuff>Leather_Plain</stuff>
+      </li>
+    </specificApparelRequirements>
     <apparelMoney>7000~10000</apparelMoney>
     <weaponMoney>1550~2700</weaponMoney>
     <weaponTags>
@@ -459,6 +494,19 @@
         <def>Rimgate_Unrecruitable</def>
       </li>
     </startingHediffs>
+    <inventoryOptions Inherit="False">
+      <skipChance>0.8</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>400~1000</countRange>
+        </li>
+        <li>
+          <thingDef>Rimgate_WraithCommunicationDevice</thingDef>
+          <countRange>1</countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <skills>
       <li>
         <skill>Shooting</skill>
