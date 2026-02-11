@@ -20,7 +20,7 @@ public class CompTargetable_Gate : CompTargetable
             {
                 Building_Gate gate = x.Thing as Building_Gate;
                 bool canTarget = gate != null 
-                    && gate.Props.canHaveIris 
+                    && gate.Ext.canHaveIris 
                     && !gate.HasIris;
  
                 return canTarget;

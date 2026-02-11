@@ -541,4 +541,48 @@
         </stages>
     </HediffDef>
 
+    <!-- ==================== Tok'ra tunnel crystal after-effect ==================== -->
+
+    <HediffDef ParentName="DiseaseBase">
+        <defName>Rimgate_CrystalResonanceEffect</defName>
+        <label>crystal resonance</label>
+        <labelNoun>crystal resonance effect</labelNoun>
+        <description>After being exposed to the crystal tunnel, the patient experiences a lingering resonance in their nervous system. This causes a persistent buzzing sensation, heightened sensitivity to stimuli, and mild tremors. The effect is temporary but can be quite uncomfortable.</description>
+        <isBad>true</isBad>
+        <initialSeverity>1</initialSeverity>
+        <maxSeverity>1</maxSeverity>
+
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+
+        <stages>
+            <li>
+                <label>buzzing</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                </capMods>
+                <hungerRateFactor>1.5</hungerRateFactor>
+                <statFactors>
+                    <RestFallRateFactor>1.5</RestFallRateFactor>
+                </statFactors>
+            </li>
+        </stages>
+
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>45000~120000</disappearsAfterTicks>
+            </li>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-0.8</severityPerDay>
+            </li>
+        </comps>
+    </HediffDef>
+
 </Defs>

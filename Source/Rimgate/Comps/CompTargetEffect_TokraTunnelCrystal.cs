@@ -56,6 +56,8 @@ public class CompTargetEffect_TokraTunnelCrystal : CompTargetEffect
             cleared++;
         }
 
+        user.ApplyHediff(RimgateDefOf.Rimgate_CrystalResonanceEffect);
+
         if (user.Faction.IsOfPlayerFaction())
         {
             Messages.Message(

@@ -2,7 +2,7 @@
 <Defs>
 	<!-- ================== Wraith Apparel Base ================== -->
 
-	<ThingDef Name="Rimgate_WraithApparelBase" ParentName="ApparelNoQualityBase" Abstract="True">
+	<ThingDef Name="Rimgate_WraithApparelBase" ParentName="ApparelBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
@@ -11,18 +11,12 @@
 			<soundWorking>Recipe_Machining</soundWorking>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 		</recipeMaker>
-		<colorGenerator IsNull="True" />
 		<tradeTags>
 			<li>Rimgate_WraithApparelTrade_tag</li>
 			<li>ExoticMisc</li>
 		</tradeTags>
 
-		<comps Inherit="False">
-			<li Class="CompProperties_Forbiddable" />
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-		</comps>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
 	</ThingDef>
 
 	<!-- ========= Headgear ========= -->
@@ -79,6 +73,8 @@
 				<li>Soldier</li>
 			</defaultOutfitTags>
 			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
 		</apparel>
 		<thingCategories>
 			<li>ArmorHeadgear</li>
@@ -92,6 +88,15 @@
 				<Crafting>6</Crafting>
 			</skillRequirements>
 		</recipeMaker>
+
+		<colorGenerator IsNull="True" />
+
+		<comps Inherit="False">
+			<li Class="CompProperties_Forbiddable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- Goggles -->
@@ -211,7 +216,7 @@
 		</costList>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
-			<WorkToMake>4800</WorkToMake>
+			<WorkToMake>8200</WorkToMake>
 			<Mass>0.1</Mass>
 			<StuffEffectMultiplierArmor>0.22</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
@@ -258,12 +263,7 @@
 			<li>ExoticMisc</li>
 			<li>Artifact</li>
 		</tradeTags>
-		<comps Inherit="False">
-			<li Class="CompProperties_Forbiddable" />
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-		</comps>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
 	</ThingDef>
 
 	<!-- ========= Torso ========= -->
@@ -280,7 +280,7 @@
 		</graphicData>
 		<stuffCategories>
 			<li>Leathery</li>
-		</stuffCategories> 
+		</stuffCategories>
 		<defaultStuff>Leather_Plain</defaultStuff>
 		<costStuffCount>35</costStuffCount>
 		<costList>
@@ -289,7 +289,7 @@
 		<colorPerStuff>
 			<li>
 				<stuff>Leather_Plain</stuff>
-                <color>(1,1,1,1)</color>
+				<color>(1,1,1,1)</color>
 			</li>
 		</colorPerStuff>
 		<thingCategories>
@@ -370,7 +370,7 @@
 		<colorPerStuff>
 			<li>
 				<stuff>Leather_Plain</stuff>
-                <color>(1,1,1,1)</color>
+				<color>(1,1,1,1)</color>
 			</li>
 		</colorPerStuff>
 		<thingCategories>
@@ -480,7 +480,7 @@
 		<colorPerStuff>
 			<li>
 				<stuff>Steel</stuff>
-                <color>(1,1,1,1)</color>
+				<color>(1,1,1,1)</color>
 			</li>
 		</colorPerStuff>
 
@@ -548,7 +548,7 @@
 		<colorPerStuff>
 			<li>
 				<stuff>Leather_Plain</stuff>
-                <color>(1,1,1,1)</color>
+				<color>(1,1,1,1)</color>
 			</li>
 		</colorPerStuff>
 
@@ -604,12 +604,7 @@
 		<tradeTags>
 			<li>Rimgate_WraithApparelTrade_tag</li>
 		</tradeTags>
-		<comps Inherit="False">
-			<li Class="CompProperties_Forbiddable" />
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-		</comps>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
 	</ThingDef>
 
 	<!-- ========= Utility ========= -->
@@ -681,7 +676,14 @@
 		<thingSetMakerTags>
 			<li>RewardStandardLowFreq</li>
 		</thingSetMakerTags>
-		<comps>
+
+		<colorGenerator IsNull="True" />
+
+		<comps Inherit="False">
+			<li Class="CompProperties_Forbiddable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
 			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
 				<analysisID>1000100</analysisID>
 				<requiresResearchDef>StandardMechtech</requiresResearchDef>
@@ -739,6 +741,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>1.5</drawSize>
 		</graphicData>
+		<tickerType>Normal</tickerType>
 		<equippedAngleOffset>0</equippedAngleOffset>
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_WraithAssassin</researchPrerequisite>
@@ -807,7 +810,12 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
-		<tickerType>Normal</tickerType>
+		<tradeTags>
+			<li>Rimgate_WraithApparelTrade_tag</li>
+			<li>ExoticMisc</li>
+			<li>Artifact</li>
+		</tradeTags>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
 		<comps>
 			<li Class="VEF.Apparels.CompProperties_Shield">
 				<shieldTags>
@@ -855,11 +863,6 @@
 				<blocksRangedWeapons>false</blocksRangedWeapons>
 			</li>
 		</comps>
-		<tradeTags>
-			<li>Rimgate_WraithApparelTrade_tag</li>
-			<li>ExoticMisc</li>
-			<li>Artifact</li>
-		</tradeTags>
 	</ThingDef>
 
 </Defs>

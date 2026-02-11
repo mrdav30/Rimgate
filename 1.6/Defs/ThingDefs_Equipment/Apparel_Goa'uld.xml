@@ -29,7 +29,6 @@
 			<texPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmorIcon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<colorGenerator IsNull="True" />
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_GoauldArmorTierOne</researchPrerequisite>
 			<soundWorking>Recipe_Machining</soundWorking>
@@ -98,12 +97,7 @@
 		<thingCategories>
 			<li>ApparelArmor</li>
 		</thingCategories>
-		<comps Inherit="False">
-			<li Class="CompProperties_Forbiddable" />
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-		</comps>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
 	</ThingDef>
 
 	<!-- Prime-->
@@ -492,12 +486,7 @@
 		<tradeTags Inherit="False">
 			<li>Rimgate_GoauldApparelTrade_tag</li>
 		</tradeTags>
-		<comps Inherit="False">
-			<li Class="CompProperties_Forbiddable" />
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-		</comps>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
 	</ThingDef>
 
 	<!-- Prime -->
@@ -630,12 +619,7 @@
 		<tradeTags>
 			<li>Rimgate_GoauldApparelTrade_tag</li>
 		</tradeTags>
-		<comps Inherit="False">
-			<li Class="CompProperties_Forbiddable" />
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-		</comps>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
 	</ThingDef>
 
 	<!-- Prime -->
@@ -689,12 +673,11 @@
 
 	<!-- ====== Helm Base ====== -->
 
-	<ThingDef Name="Rimgate_GoauldHeadgearBase" ParentName="ApparelNoQualityBase" Abstract="True">
+	<ThingDef Name="Rimgate_GoauldHeadgearBase" ParentName="ApparelBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<colorGenerator IsNull="True" />
 		<tradeTags>
 			<li>Rimgate_GoauldApparelTrade_tag</li>
 			<li>HiTechArmor</li>
@@ -714,12 +697,7 @@
 			<li>ArmorHeadgear</li>
 		</thingCategories>
 
-		<comps Inherit="False">
-			<li Class="CompProperties_Forbiddable" />
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-		</comps>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
 	</ThingDef>
 
 	<!-- Maker base-->
@@ -909,6 +887,9 @@
 			<tags>
 				<li>Rimgate_GoauldGuardApparel_tag</li>
 			</tags>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
 		</apparel>
 	</ThingDef>
 
@@ -978,6 +959,7 @@
 		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.15</PsychicSensitivity>
@@ -1033,6 +1015,7 @@
 		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<equippedStatOffsets>
 			<PainShockThreshold>0.10</PainShockThreshold>
@@ -1087,6 +1070,7 @@
 		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.15</PsychicSensitivity>
@@ -1219,6 +1203,7 @@
 		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.25</PsychicSensitivity>
@@ -1275,6 +1260,7 @@
 		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<equippedStatOffsets>
 			<PainShockThreshold>0.20</PainShockThreshold>
@@ -1329,6 +1315,7 @@
 		</descriptionHyperlinks>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.25</PsychicSensitivity>

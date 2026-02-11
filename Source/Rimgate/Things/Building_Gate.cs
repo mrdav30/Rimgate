@@ -56,7 +56,7 @@ public class Building_Gate : Building
 {
     public static readonly Dictionary<int, int> GlobalVortexEntryCellCache = new();
 
-    public Building_Gate_Ext Props => _cachedProps ??= def.GetModExtension<Building_Gate_Ext>();
+    public Building_Gate_Ext Ext => _cachedProps ??= def.GetModExtension<Building_Gate_Ext>() ?? new();
 
     private const int GlowRadius = 10;
 
@@ -84,15 +84,15 @@ public class Building_Gate : Building
 
     public Sustainer PuddleSustainer;
 
-    public Graphic GatePuddle => Props.puddleGraphicData?.Graphic;
+    public Graphic GatePuddle => Ext.puddleGraphicData?.Graphic;
 
-    public Graphic GateIris => Props.irisGraphicData?.Graphic;
+    public Graphic GateIris => Ext.irisGraphicData?.Graphic;
 
-    private Mesh IrisGlowMesh => _cachedIrisGlowMesh ??= Props.irisGlowGraphicData?.Graphic.MeshAt(Rotation);
+    private Mesh IrisGlowMesh => _cachedIrisGlowMesh ??= Ext.irisGlowGraphicData?.Graphic.MeshAt(Rotation);
 
-    private Material IrisGlowMat => _cachedIrisGlowMat ??= Props.irisGlowGraphicData?.Graphic.MatAt(Rotation, null);
+    private Material IrisGlowMat => _cachedIrisGlowMat ??= Ext.irisGlowGraphicData?.Graphic.MatAt(Rotation, null);
 
-    public Graphic ChevronHighlight => Props.chevronHighlight?.Graphic;
+    public Graphic ChevronHighlight => Ext.chevronHighlight?.Graphic;
 
     public IEnumerable<IntVec3> VortexCells
     {
@@ -101,12 +101,12 @@ public class Building_Gate : Building
             var rot = Rotation;
             if (rot == Rot4.North) // default is for north facing
             {
-                foreach (IntVec3 offset in Props.vortexPattern)
+                foreach (IntVec3 offset in Ext.vortexPattern)
                     yield return offset + Position;
                 yield break;
             }
 
-            foreach (var off in Props.vortexPattern)
+            foreach (var off in Ext.vortexPattern)
                 yield return Position + Utils.RotateOffset(off, rot);
         }
     }
@@ -289,7 +289,7 @@ public class Building_Gate : Building
         {
             var colorComp = GetComp<CompColorable>();
             if (GateUtil.ModificationEquipmentActive && !colorComp.Active)
-                colorComp.SetColor(Props.modActivatedColor);
+                colorComp.SetColor(Ext.modActivatedColor);
             else if (!GateUtil.ModificationEquipmentActive && colorComp.Active)
                 colorComp.Disable();
 
@@ -302,7 +302,7 @@ public class Building_Gate : Building
         {
             if (HasIris)
             {
-                float powerConsumption = -(Props.irisPowerConsumption + PowerTrader.Props.PowerConsumption);
+                float powerConsumption = -(Ext.irisPowerConsumption + PowerTrader.Props.PowerConsumption);
                 PowerTrader.PowerOutput = powerConsumption;
             }
             else
@@ -514,9 +514,9 @@ public class Building_Gate : Building
         if (IsOpeningQueued)
             sb.AppendLine("RG_TimeUntilGateLock".Translate(_ticksUntilOpen.ToStringTicksToPeriod()));
 
-        if (HasIris && PowerTrader != null && Props.irisPowerConsumption > 0)
+        if (HasIris && PowerTrader != null && Ext.irisPowerConsumption > 0)
         {
-            sb.AppendLine("RG_IrisPowerConsumption".Translate(Props.irisPowerConsumption.ToString("F0")));
+            sb.AppendLine("RG_IrisPowerConsumption".Translate(Ext.irisPowerConsumption.ToString("F0")));
             if (!Powered)
                 sb.AppendLine("RG_IrisNonFunctional".Translate());
         }
@@ -819,7 +819,7 @@ public class Building_Gate : Building
                 Glower.PostSpawnSetup(false);
             }
 
-            if (Props.explodeOnUse)
+            if (Ext.explodeOnUse)
             {
                 if (Explosive == null)
                     Log.Warning($"Rimgate :: {this} has the explodeOnUse tag set to true but doesn't have CompExplosive.");
@@ -1104,13 +1104,13 @@ public class Building_Gate : Building
 
     private bool TryGetTeleportSound(out SoundDef def)
     {
-        if (Props.teleportSounds == null || Props.teleportSounds.Count == 0)
+        if (Ext.teleportSounds == null || Ext.teleportSounds.Count == 0)
         {
             def = null;
             return false;
         }
 
-        def = Props.teleportSounds.RandomElement();
+        def = Ext.teleportSounds.RandomElement();
         return true;
     }
 

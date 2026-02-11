@@ -58,11 +58,12 @@ public static class RimgateDefOf
     public static GeneDef Skin_SheerWhite;
 
     public static HediffDef Rimgate_Clone;
+    public static HediffDef Rimgate_ClonedEnduring;
     public static HediffDef Hediff_ClonedTracker;
     public static HediffDef Rimgate_ClonePodSickness;
     public static HediffDef Rimgate_CorticalCatalyst;
     public static HediffDef Rimgate_CorticalCatalyst_Mk2;
-    public static HediffDef Rimgate_ClonedEnduring;
+    public static HediffDef Rimgate_CrystalResonanceEffect;
     public static HediffDef Rimgate_KrintakSickness;
     public static HediffDef Rimgate_PouchDegeneration;
     public static HediffDef Rimgate_PrimtaInPouch;
@@ -72,7 +73,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_SymbioteImplant;
     public static HediffDef Rimgate_SymbioteImplant_Kull;
     public static HediffDef Rimgate_SymbiotePlague;
-    public static HediffDef Rimgate_SymbiotePouch;   
+    public static HediffDef Rimgate_SymbiotePouch;
     public static HediffDef Rimgate_SymbioteWithdrawal;
     public static HediffDef Rimgate_SystemShock;
     public static HediffDef Rimgate_TretoninAddiction;
