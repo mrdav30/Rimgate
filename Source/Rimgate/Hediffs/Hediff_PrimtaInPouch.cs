@@ -19,7 +19,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
     {
         base.PostAdd(dinfo);
 
-        bool isConfigStage = Find.GameInitData != null;
+        bool isConfigStage = Current.ProgramState != ProgramState.Playing;
 
         if (!IsValidHost(out string reason))
         {
@@ -124,9 +124,9 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
 
     public override void Notify_PawnKilled()
     {
-        base.Notify_PawnKilled();
         // Prim'ta absorbed into body upon death
         _immediateRejection = true;
+        base.Notify_PawnKilled();
         pawn.RemoveHediff(this);
     }
 }

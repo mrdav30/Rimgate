@@ -75,11 +75,13 @@
 					<def>StartingThing_Defined</def>
 					<thingDef>Rimgate_JaffaArmor</thingDef>
 					<count>2</count>
+					<stuff>Steel</stuff>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
 					<thingDef>Rimgate_JaffaHelmet</thingDef>
 					<count>2</count>
+					<stuff>Steel</stuff>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>

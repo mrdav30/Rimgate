@@ -449,9 +449,20 @@
 
   <!-- ====== Goa'uld Jaffa classes ========= -->
 
+  <PawnKindDef Name="Rimagate_GoaulJaffaBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
+    <combatPower>100</combatPower>
+    <weaponTags>
+      <li>Rimgate_GoauldRanged_tag</li>
+      <li>Rimgate_GoauldGrenade_tag</li>
+      <li>GrenadeDestructive</li>
+    </weaponTags>
+  </PawnKindDef>
+
   <!-- Anubis -->
 
-  <PawnKindDef Name="Rimgate_GoauldAnubisBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
+  <PawnKindDef ParentName="Rimagate_GoaulJaffaBase">
+    <defName>Rimgate_GoauldRangedAnubis</defName>
+    <label>Anubis Jaffa warrior</label>
     <startingHediffs>
       <li>
         <def>Rimgate_JaffaForeheadSymbolImplantAnubis</def>
@@ -459,19 +470,11 @@
     </startingHediffs>
   </PawnKindDef>
 
-  <PawnKindDef ParentName="Rimgate_GoauldAnubisBase">
-    <defName>Rimgate_GoauldRangedAnubis</defName>
-    <label>Anubis Jaffa warrior</label>
-    <combatPower>100</combatPower>
-    <weaponTags>
-      <li>Rimgate_GoauldRanged_tag</li>
-      <li>Rimgate_GoauldGrenade_tag</li>
-    </weaponTags>
-  </PawnKindDef>
-
   <!-- Apophis -->
 
-  <PawnKindDef Name="Rimgate_GoauldApophisBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
+  <PawnKindDef ParentName="Rimagate_GoaulJaffaBase">
+    <defName>Rimgate_GoauldRangedApophis</defName>
+    <label>Apophis Jaffa warrior</label>
     <startingHediffs>
       <li>
         <def>Rimgate_JaffaForeheadSymbolImplantApophis</def>
@@ -479,19 +482,11 @@
     </startingHediffs>
   </PawnKindDef>
 
-  <PawnKindDef ParentName="Rimgate_GoauldApophisBase">
-    <defName>Rimgate_GoauldRangedApophis</defName>
-    <label>Apophis Jaffa warrior</label>
-    <combatPower>100</combatPower>
-    <weaponTags>
-      <li>Rimgate_GoauldRanged_tag</li>
-      <li>Rimgate_GoauldGrenade_tag</li>
-    </weaponTags>
-  </PawnKindDef>
-
   <!-- Ra -->
 
-  <PawnKindDef Name="Rimgate_GoauldRaBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
+  <PawnKindDef ParentName="Rimagate_GoaulJaffaBase">
+    <defName>Rimgate_GoauldRangedRa</defName>
+    <label>Ra Jaffa warrior</label>
     <startingHediffs>
       <li>
         <def>Rimgate_JaffaForeheadSymbolImplantRa</def>
@@ -499,88 +494,10 @@
     </startingHediffs>
   </PawnKindDef>
 
-  <PawnKindDef ParentName="Rimgate_GoauldRaBase">
-    <defName>Rimgate_GoauldRangedRa</defName>
-    <label>Ra Jaffa warrior</label>
-    <combatPower>100</combatPower>
-    <weaponTags>
-      <li>Rimgate_GoauldRanged_tag</li>
-      <li>Rimgate_GoauldGrenade_tag</li>
-    </weaponTags>
-  </PawnKindDef>
-
-  <!-- ============ Kull Warrior ============ -->
-
-  <PawnKindDef Name="Rimgate_GoauldKull" ParentName="Rimgate_GoauldMilBase">
-    <defName>Rimgate_KullWarrior</defName>
-    <label>Kull warrior</label>
-    <combatPower>175</combatPower>
-    <minGenerationAge>26</minGenerationAge>
-    <gearHealthRange>0.8~3.5</gearHealthRange>
-    <useFactionXenotypes>false</useFactionXenotypes>
-    <xenotypeSet Inherit="False">
-      <xenotypeChances>
-        <Rimgate_KullWarrior>999</Rimgate_KullWarrior>
-      </xenotypeChances>
-    </xenotypeSet>
-    <backstoryFiltersOverride Inherit="False" />
-    <fixedChildBackstories>
-      <li>Rimgate_KullVatBorn</li>
-      <li>Rimgate_KullCombatImprint</li>
-    </fixedChildBackstories>
-    <fixedAdultBackstories>
-      <li>Rimgate_KullPhaseTwo</li>
-      <li>Rimgate_KullOnyxEnforcer</li>
-    </fixedAdultBackstories>
-    <useFactionXenotypes>false</useFactionXenotypes>
-    <techHediffsChance>0.72</techHediffsChance>
-    <techHediffsMoney>1000~2000</techHediffsMoney>
-    <techHediffsTags Inherit="false">
-      <li>Advanced</li>
-      <li>ImplantEmpireCommon</li>
-      <li>AdvancedWeapon</li>
-    </techHediffsTags>
-    <techHediffsRequired>
-      <li>DeathAcidifier</li>
-    </techHediffsRequired>
-    <startingHediffs Inherit="False">
-      <li>
-        <def>Rimgate_Unrecruitable</def>
-      </li>
-      <li>
-        <def>Rimgate_SymbioteImplant_Kull</def>
-      </li>
-    </startingHediffs>
-    <itemQuality>Good</itemQuality>
-    <apparelMoney>6000~9000</apparelMoney>
-    <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
-    <apparelTags Inherit="False">
-      <li>Rimgate_KullApparel_tag</li>
-    </apparelTags>
-    <apparelRequired Inherit="False">
-      <li>Rimgate_KullArmor</li>
-      <li>Rimgate_KullHelmet</li>
-    </apparelRequired>
-    <weaponMoney>2600~3100</weaponMoney>
-    <weaponTags Inherit="False">
-      <li>Rimgate_KullRanged_tag</li>
-    </weaponTags>
-    <skills>
-      <li>
-        <skill>Shooting</skill>
-        <range>12~20</range>
-      </li>
-      <li>
-        <skill>Melee</skill>
-        <range>12~20</range>
-      </li>
-    </skills>
-  </PawnKindDef>
-
   <!-- ============ Jaffa Guard Base ============ -->
 
   <PawnKindDef Name="Rimgate_GoauldGuardBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
-    <combatPower>135</combatPower>
+    <combatPower>130</combatPower>
     <initialWillRange>3~6</initialWillRange>
     <initialResistanceRange>55~64</initialResistanceRange>
     <itemQuality>Good</itemQuality>
@@ -755,6 +672,74 @@
         <def>Rimgate_PrimeForeheadSymbolImplantAnubis</def>
       </li>
     </startingHediffs>
+  </PawnKindDef>
+
+  <!-- ============ Kull Warrior ============ -->
+
+  <PawnKindDef Name="Rimgate_GoauldKull" ParentName="Rimgate_GoauldMilBase">
+    <defName>Rimgate_KullWarrior</defName>
+    <label>Kull warrior</label>
+    <combatPower>150</combatPower>
+    <minGenerationAge>26</minGenerationAge>
+    <gearHealthRange>0.8~3.5</gearHealthRange>
+    <useFactionXenotypes>false</useFactionXenotypes>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Rimgate_KullWarrior>999</Rimgate_KullWarrior>
+      </xenotypeChances>
+    </xenotypeSet>
+    <backstoryFiltersOverride Inherit="False" />
+    <fixedChildBackstories>
+      <li>Rimgate_KullVatBorn</li>
+      <li>Rimgate_KullCombatImprint</li>
+    </fixedChildBackstories>
+    <fixedAdultBackstories>
+      <li>Rimgate_KullPhaseTwo</li>
+      <li>Rimgate_KullOnyxEnforcer</li>
+    </fixedAdultBackstories>
+    <useFactionXenotypes>false</useFactionXenotypes>
+    <techHediffsChance>0.72</techHediffsChance>
+    <techHediffsMoney>1000~2000</techHediffsMoney>
+    <techHediffsTags Inherit="false">
+      <li>Advanced</li>
+      <li>ImplantEmpireCommon</li>
+      <li>AdvancedWeapon</li>
+    </techHediffsTags>
+    <techHediffsRequired>
+      <li>DeathAcidifier</li>
+    </techHediffsRequired>
+    <startingHediffs Inherit="False">
+      <li>
+        <def>Rimgate_Unrecruitable</def>
+      </li>
+      <li>
+        <def>Rimgate_SymbioteImplant_Kull</def>
+      </li>
+    </startingHediffs>
+    <itemQuality>Good</itemQuality>
+    <apparelMoney>6000~9000</apparelMoney>
+    <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
+    <apparelTags Inherit="False">
+      <li>Rimgate_KullApparel_tag</li>
+    </apparelTags>
+    <apparelRequired Inherit="False">
+      <li>Rimgate_KullArmor</li>
+      <li>Rimgate_KullHelmet</li>
+    </apparelRequired>
+    <weaponMoney>2600~3100</weaponMoney>
+    <weaponTags Inherit="False">
+      <li>Rimgate_KullRanged_tag</li>
+    </weaponTags>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>12~20</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>12~20</range>
+      </li>
+    </skills>
   </PawnKindDef>
 
 </Defs>

@@ -110,12 +110,12 @@
             <MaxHitPoints>250</MaxHitPoints>
             <Mass>2</Mass>
             <Flammability>0.6</Flammability>
-            <StuffEffectMultiplierArmor>0.7</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierArmor>0.82</StuffEffectMultiplierArmor>
             <StuffEffectMultiplierInsulation_Cold>0.2</StuffEffectMultiplierInsulation_Cold>
             <StuffEffectMultiplierInsulation_Heat>0.15</StuffEffectMultiplierInsulation_Heat>
             <ArmorRating_Sharp>0.10</ArmorRating_Sharp>
             <ArmorRating_Blunt>0.10</ArmorRating_Blunt>
-            <ArmorRating_Heat>0.10</ArmorRating_Heat>
+            <ArmorRating_Heat>0.01</ArmorRating_Heat>
             <Insulation_Cold>1</Insulation_Cold>
             <EquipDelay>5</EquipDelay>
         </statBases>
@@ -147,6 +147,7 @@
         <apparel>
             <bodyPartGroups>
                 <li>Torso</li>
+                <li>Neck</li>
                 <li>Shoulders</li>
             </bodyPartGroups>
             <wornGraphicPath>Things/Item/Apparel/Torso/TacticalVest/RGTacticalVest</wornGraphicPath>
@@ -192,9 +193,10 @@
         <statBases>
             <MaxHitPoints>300</MaxHitPoints>
             <Mass>3</Mass>
-            <StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierArmor>0.92</StuffEffectMultiplierArmor>
             <StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
             <StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+            <ArmorRating_Heat>0.025</ArmorRating_Heat>
             <Insulation_Cold>0</Insulation_Cold>
             <EquipDelay>4</EquipDelay>
         </statBases>
@@ -236,6 +238,8 @@
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
             <bodyPartGroups>
                 <li>Torso</li>
+                <li>Neck</li>
+                <li>Shoulders</li>
             </bodyPartGroups>
             <layers>
                 <li>Shell</li>
@@ -286,9 +290,9 @@
             <MaxHitPoints>180</MaxHitPoints>
             <Mass>4</Mass>
             <Flammability>0.6</Flammability>
-            <ArmorRating_Sharp>1.00</ArmorRating_Sharp>
-            <ArmorRating_Blunt>0.36</ArmorRating_Blunt>
-            <ArmorRating_Heat>0.27</ArmorRating_Heat>
+            <ArmorRating_Sharp>1.10</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.28</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.3</ArmorRating_Heat>
             <Insulation_Cold>0</Insulation_Cold>
             <EquipDelay>5</EquipDelay>
         </statBases>
@@ -323,9 +327,9 @@
             <MaxHitPoints>200</MaxHitPoints>
             <Mass>2</Mass>
             <Flammability>0</Flammability>
-            <ArmorRating_Sharp>0.55</ArmorRating_Sharp>
-            <ArmorRating_Blunt>1.00</ArmorRating_Blunt>
-            <ArmorRating_Heat>0.8</ArmorRating_Heat>
+            <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.60</ArmorRating_Heat>
             <Insulation_Cold>0</Insulation_Cold>
             <EquipDelay>4</EquipDelay>
         </statBases>
@@ -341,7 +345,7 @@
     <ThingDef ParentName="Rimgate_PlateInsertBase">
         <defName>Rimgate_NaquadahPlateInsert</defName>
         <label>Naquadah plate insert</label>
-        <description>Advanced naquadah plate insert for the Tau'ri SpecOps tactical vest. Provides exceptional protection against energy weapons and ballistic impacts.\nA favorite among SG teams who prefer their armor to double as a portable bunker.</description>
+        <description>Advanced naquadah plate insert for the Tau'ri SpecOps tactical vest. The naquadah core provides exceptional protection against energy weapons, ballistic impacts, and psionic attacks.\nA favorite among SG teams who prefer their armor to double as a portable bunker.</description>
         <descriptionHyperlinks Inherit="false">
             <ThingDef>Rimgate_TauriSpecOpsVest</ThingDef>
         </descriptionHyperlinks>
@@ -366,9 +370,9 @@
             <MaxHitPoints>250</MaxHitPoints>
             <Mass>2</Mass>
             <Flammability>0</Flammability>
-            <ArmorRating_Sharp>0.72</ArmorRating_Sharp>
-            <ArmorRating_Blunt>0.72</ArmorRating_Blunt>
-            <ArmorRating_Heat>0.52</ArmorRating_Heat>
+            <ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.62</ArmorRating_Heat>
             <Insulation_Cold>0</Insulation_Cold>
             <EquipDelay>3</EquipDelay>
         </statBases>

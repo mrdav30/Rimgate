@@ -53,13 +53,14 @@
         <li>(4000, 1125)</li>
       </points>
     </raidLootValueFromPointsCurve>
+    <raidLootMaker>Rimgate_WraithRaidLootMaker</raidLootMaker>
     <maxPawnCostPerTotalPointsCurve>
       <points>
         <!-- keep early raids to Soldiers/occasional Commander -->
-        <li>(0, 55)</li>
-        <li>(400, 90)</li>     <!-- let Soldiers (90 cp) be common -->
-        <li>(1200, 135)</li>   <!-- allow Commanders at ~1.2k pts -->
-        <li>(2200, 170)</li>   <!-- Assassins mix in -->
+        <li>(0, 100)</li>
+        <li>(400, 150)</li>     <!-- let Soldiers (90 cp) be common -->
+        <li>(1200, 170)</li>   <!-- allow Commanders at ~1.2k pts -->
+        <li>(2200, 200)</li>   <!-- Assassins mix in -->
         <li>(3500, 240)</li>   <!-- Queens viable late -->
         <li>(100000, 10000)</li>
       </points>
@@ -129,7 +130,7 @@
           <Rimgate_WraithOrbitCommander>30</Rimgate_WraithOrbitCommander>
         </options>
         <disallowedStrategies>
-          <li>Siege</li> 
+          <li>Siege</li>
         </disallowedStrategies>
       </li>
       <li>
@@ -160,5 +161,21 @@
       </li>
     </pawnGroupMakers>
   </FactionDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_WraithRaidLootMaker</defName>
+    <root Class="ThingSetMaker_MarketValue">
+      <fixedParams>
+        <filter>
+          <thingDefs>
+            <li>Silver</li>
+            <li>Jade</li>
+            <li>Rimgate_Biomass</li>
+            <li>Rimgate_CocoonedMeat</li>
+          </thingDefs>
+        </filter>
+      </fixedParams>
+    </root>
+  </ThingSetMakerDef>
 
 </Defs>

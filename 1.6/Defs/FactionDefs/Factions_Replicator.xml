@@ -16,7 +16,7 @@
 				<li>(0, 1)</li> <!--Constant 1 at all points levels-->
 			</points>
 		</raidCommonalityFromPointsCurve>
-		<raidLootMaker>MechanoidRaidLootMaker</raidLootMaker>
+		<raidLootMaker>Rimgate_ReplicatorRaidLootMaker</raidLootMaker>
 		<raidLootValueFromPointsCurve>
 			<points>
 				<li>(35, 15)</li>
@@ -28,9 +28,8 @@
 		</raidLootValueFromPointsCurve>
 		<maxPawnCostPerTotalPointsCurve>
 			<points>
-				<li>(400,200)</li>
-				<li>(900,300)</li>
-				<li>(100000,10000)</li>
+				<li>(100,100)</li>
+				<li>(10000,10000)</li>
 			</points>
 		</maxPawnCostPerTotalPointsCurve>
 		<humanlikeFaction>false</humanlikeFaction>
@@ -94,5 +93,21 @@
 		</pawnGroupMakers>
 	</FactionDef>
 
+	<ThingSetMakerDef>
+		<defName>Rimgate_ReplicatorRaidLootMaker</defName>
+		<root Class="ThingSetMaker_MarketValue">
+			<fixedParams>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+						<li>ComponentIndustrial</li>
+						<li>Steel</li>
+						<li>Uranium</li>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</filter>
+			</fixedParams>
+		</root>
+	</ThingSetMakerDef>
 
 </Defs>

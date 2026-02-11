@@ -131,9 +131,9 @@
         </requiredWorkTags>
         <invNutrition>2.25</invNutrition>
         <gearHealthRange>0.6~1.3</gearHealthRange>
-        <apparelMoney>1250~2500</apparelMoney>
+        <apparelMoney>2250~4500</apparelMoney>
         <itemQuality>Normal</itemQuality>
-        <weaponMoney>2600~3100</weaponMoney>
+        <weaponMoney>3600~4500</weaponMoney>
         <apparelTags>
             <li>IndustrialMilitaryAdvanced</li>
             <li>SpacerMilitary</li>
@@ -178,7 +178,7 @@
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCSoldier</defName>
         <label>Soldier</label>
-        <combatPower>80</combatPower>
+        <combatPower>100</combatPower>
         <weaponTags>
             <li>Rimgate_TauriSubmachineGun_tag</li>
             <li>Rimgate_TauriPistol_tag</li>
@@ -235,14 +235,15 @@
 
     <!-- Rocketman -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
-        <defName>Rimgate_TauriSGCRocketman</defName>
+        <defName>Rimgate_TauriSGCDemolition</defName>
         <label>Soldier</label>
-        <combatPower>220</combatPower>
-        <weaponMoney>3000~3500</weaponMoney>
+        <combatPower>130</combatPower>
+        <weaponMoney>3200~4500</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
         <itemQuality>Good</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriRocketLauncher_tag</li>
+            <li>EmpireGrenadeDestructive</li>
         </weaponTags>
         <apparelRequired>
             <li>Rimgate_SteelPlateInsert</li>
@@ -250,7 +251,11 @@
         <skills>
             <li>
                 <skill>Shooting</skill>
-                <range>5~14</range>
+                <range>8~12</range>
+            </li>
+            <li>
+                <skill>Melee</skill>
+                <range>6~8</range>
             </li>
         </skills>
     </PawnKindDef>
@@ -260,15 +265,16 @@
         <defName>Rimgate_TauriRifleman</defName>
         <label>Rifleman</label>
         <race>Human</race>
-        <combatPower>120</combatPower>
+        <combatPower>130</combatPower>
         <apparelTags>
             <li>Rimgate_TauriSpecialForcesApparel_tag</li>
         </apparelTags>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
+            <li>Rimgate_TauriSniperRifle_tag</li>
         </weaponTags>
         <gearHealthRange>0.75~2.3</gearHealthRange>
-        <weaponMoney>1550~2700</weaponMoney>
+        <weaponMoney>2700~3200</weaponMoney>
         <apparelMoney>2300~5450</apparelMoney>
         <itemQuality>Good</itemQuality>
         <apparelRequired>
@@ -283,16 +289,16 @@
     </PawnKindDef>
 
     <!-- Special Forces -->
-    <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
+    <PawnKindDef Name="Rimgate_SpecialForcesBase" ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSpecialForces</defName>
         <label>Tau'ri operator</label>
         <race>Human</race>
-        <combatPower>140</combatPower>
+        <combatPower>150</combatPower>
         <itemQuality>Good</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriShotgun_tag</li>
-            <li>Rimgate_Tauri_SniperRifle</li>
+            <li>Rimgate_TauriSniperRifle_tag</li>
         </weaponTags>
         <apparelTags Inherit="false">
             <li>IndustrialMilitaryAdvanced</li>
@@ -337,7 +343,7 @@
             </subOptionsChooseOne>
         </inventoryOptions>
         <gearHealthRange>0.8~2.3</gearHealthRange>
-        <weaponMoney>3000~3500</weaponMoney>
+        <weaponMoney>3200~4500</weaponMoney>
         <apparelMoney>7000~10000</apparelMoney>
         <techHediffsMoney>1000~4000</techHediffsMoney>
         <techHediffsMaxAmount>4</techHediffsMaxAmount>
@@ -377,7 +383,7 @@
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
             <li>Rimgate_TauriShotgun_tag</li>
-            <li>Rimgate_Tauri_SniperRifle</li>
+            <li>Rimgate_TauriSniperRifle_tag</li>
         </weaponTags>
         <apparelTags Inherit="false">
             <li>IndustrialMilitaryAdvanced</li>
@@ -449,7 +455,7 @@
         <label>Commander</label>
         <factionLeader>true</factionLeader>
         <canBeSapper>true</canBeSapper>
-        <combatPower>175</combatPower>
+        <combatPower>150</combatPower>
         <itemQuality>Excellent</itemQuality>
         <weaponTags>
             <li>Rimgate_TauriAssaultRifle_tag</li>
@@ -461,8 +467,12 @@
         </apparelTags>
         <specificApparelRequirements Inherit="False" />
         <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
-        <apparelRequired>
+        <apparelRequired Inherit="false">
             <li>Rimgate_TauriBaseballCap</li>
+            <li>Rimgate_TauriSGTeamBDU</li>
+            <li>Rimgate_TauriTacticalBoots</li>
+            <li>Rimgate_TauriSpecOpsVest</li>
+            <li>Rimgate_NaquadahPlateInsert</li>
         </apparelRequired>
         <gearHealthRange>0.85~3.5</gearHealthRange>
         <weaponMoney>3000~3500</weaponMoney>
@@ -477,10 +487,11 @@
             <subOptionsChooseOne>
                 <li>
                     <thingDef>MedicineIndustrial</thingDef>
-                    <countRange>
-                        <min>1</min>
-                        <max>4</max>
-                    </countRange>
+                    <countRange>1~3</countRange>
+                </li>
+                <li>
+                    <thingDef>Silver</thingDef>
+                    <countRange>300~800</countRange>
                 </li>
             </subOptionsChooseOne>
         </inventoryOptions>

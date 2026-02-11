@@ -26,7 +26,7 @@
 			</li>
 		</colorPerStuff>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmor</texPath>
+			<texPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmorIcon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<colorGenerator IsNull="True" />
@@ -148,7 +148,7 @@
 			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.32</VacuumResistance>
 		</equippedStatOffsets>
 		<apparel>
-			<tags>
+			<tags Inherit="False">
 				<li>Rimgate_GoauldPrimeApparel_tag</li>
 			</tags>
 		</apparel>
@@ -183,7 +183,7 @@
 		</recipeMaker>
 		<colorGenerator IsNull="True" />
 		<graphicData>
-			<texPath>Things/Item/Apparel/Torso/Kull/RGKullArmor</texPath>
+			<texPath>Things/Item/Apparel/Torso/Kull/RGKullArmorIcon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
@@ -687,7 +687,7 @@
 
 	<!-- ================== Headgear ================== -->
 
-	<!-- ====== Jaffa Helm Base ====== -->
+	<!-- ====== Helm Base ====== -->
 
 	<ThingDef Name="Rimgate_GoauldHeadgearBase" ParentName="ApparelNoQualityBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
@@ -778,7 +778,7 @@
 		</colorPerStuff>
 
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/JaffaHelm/RGJaffaHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/JaffaHelm/RGJaffaHelmetIcon</texPath>
 		</graphicData>
 		<statBases>
 			<MarketValue>650</MarketValue>
@@ -917,7 +917,7 @@
 	<ThingDef Name="Rimgate_OpenGuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearBase" Abstract="True">
 		<smeltable>false</smeltable>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</texPath>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpenIcon</texPath>
 		</graphicData>
 		<statBases>
 			<MarketValue>950</MarketValue>
@@ -931,6 +931,17 @@
 			<Flammability>0.6</Flammability>
 			<EquipDelay>2</EquipDelay>
 		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<defaultStuff>Steel</defaultStuff>
+		<costStuffCount>20</costStuffCount>
+		<colorPerStuff>
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 1, 1, 1)</color>
+			</li>
+		</colorPerStuff>
 		<equippedStatOffsets>
 			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0</VacuumResistance>
 		</equippedStatOffsets>
@@ -945,6 +956,13 @@
 			<tags>
 				<li>Rimgate_GoauldGuardApparel_tag</li>
 			</tags>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
 		</apparel>
 		<tradeTags Inherit="False" />
 	</ThingDef>
@@ -959,7 +977,7 @@
 			<ThingDef>Rimgate_HorusHelmetOpen</ThingDef>
 		</descriptionHyperlinks>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmetIcon</texPath>
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.15</PsychicSensitivity>
@@ -1014,7 +1032,7 @@
 			<ThingDef>Rimgate_JackalHelmetOpen</ThingDef>
 		</descriptionHyperlinks>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmetIcon</texPath>
 		</graphicData>
 		<equippedStatOffsets>
 			<PainShockThreshold>0.10</PainShockThreshold>
@@ -1068,7 +1086,7 @@
 			<ThingDef>Rimgate_SerpentHelmetOpen</ThingDef>
 		</descriptionHyperlinks>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmetIcon</texPath>
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.15</PsychicSensitivity>
@@ -1077,6 +1095,13 @@
 		</equippedStatOffsets>
 		<apparel>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</wornGraphicPath>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
@@ -1149,7 +1174,7 @@
 			<bodyPartGroups>
 				<li>FullHead</li>
 			</bodyPartGroups>
-			<tags>
+			<tags Inherit="False">
 				<li>Rimgate_GoauldPrimeApparel_tag</li>
 			</tags>
 		</apparel>
@@ -1161,7 +1186,7 @@
 	<ThingDef Name="Rimgate_OpenPrimeGuardHeadgearBase" ParentName="Rimgate_OpenGuardHeadgearBase" Abstract="True">
 		<smeltable>false</smeltable>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</texPath>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpenIcon</texPath>
 			<color>(1, 0.93, 0.48)</color>
 		</graphicData>
 		<colorPerStuff Inherit="False">
@@ -1193,7 +1218,7 @@
 			<ThingDef>Rimgate_PrimeHorusHelmetOpen</ThingDef>
 		</descriptionHyperlinks>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmetIcon</texPath>
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.25</PsychicSensitivity>
@@ -1249,7 +1274,7 @@
 			<ThingDef>Rimgate_PrimeJackalHelmetOpen</ThingDef>
 		</descriptionHyperlinks>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmetIcon</texPath>
 		</graphicData>
 		<equippedStatOffsets>
 			<PainShockThreshold>0.20</PainShockThreshold>
@@ -1303,7 +1328,7 @@
 			<ThingDef>Rimgate_PrimeSerpentHelmetOpen</ThingDef>
 		</descriptionHyperlinks>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/PrimeGuardHelm/RGSerpentPrimeHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmetIcon</texPath>
 		</graphicData>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.25</PsychicSensitivity>
@@ -1312,6 +1337,13 @@
 		</equippedStatOffsets>
 		<apparel>
 			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</wornGraphicPath>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
 		</apparel>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
@@ -1363,7 +1395,7 @@
 			</skillRequirements>
 		</recipeMaker>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Headgear/KullHelm/RGKullHelmet</texPath>
+			<texPath>Things/Item/Apparel/Headgear/KullHelm/RGKullHelmetIcon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>

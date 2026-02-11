@@ -76,6 +76,7 @@
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
 					<thingDef>Rimgate_WraithSoldierArmor</thingDef>
+					<stuff>Leather_Plain</stuff>
 					<count>2</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
@@ -99,6 +100,7 @@
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>
 					<thingDef>Rimgate_WraithCommanderArmor</thingDef>
+					<stuff>Leather_Plain</stuff>
 					<count>2</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">

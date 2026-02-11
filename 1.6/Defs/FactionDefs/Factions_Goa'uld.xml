@@ -42,12 +42,13 @@
         <li>(4000, 1100)</li>
       </points>
     </raidLootValueFromPointsCurve>
+    <raidLootMaker>Rimgate_GoauldRaidLootMaker</raidLootMaker>
     <maxPawnCostPerTotalPointsCurve>
       <points>
         <!-- keep early raids to line troops -->
-        <li>(0, 55)</li>
-        <li>(300, 85)</li>
-        <li>(700, 120)</li>
+        <li>(0, 100)</li>
+        <li>(300, 100)</li>
+        <li>(700, 130)</li>
         <li>(1200, 150)</li>
         <li>(2000, 220)</li>
         <li>(3500, 270)</li>
@@ -242,5 +243,21 @@
     </pawnGroupMakers>
   </FactionDef>
 
+  <ThingSetMakerDef>
+    <defName>Rimgate_GoauldRaidLootMaker</defName>
+    <root Class="ThingSetMaker_MarketValue">
+      <fixedParams>
+        <filter>
+          <thingDefs>
+            <li>Gold</li>
+            <li>MedicineUltratech</li>
+            <li>Rimgate_Naquadah</li>
+            <li>MealSurvivalPack</li>
+            <li>Silver</li>
+          </thingDefs>
+        </filter>
+      </fixedParams>
+    </root>
+  </ThingSetMakerDef>
 
 </Defs>

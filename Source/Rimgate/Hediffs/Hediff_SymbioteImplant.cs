@@ -82,7 +82,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
     {
         base.PostAdd(dinfo);
 
-        bool isConfigStage = Find.GameInitData != null;
+        bool isConfigStage = Current.ProgramState != ProgramState.Playing;
 
         // Safety: don't allow pawns that already have a symbiote
         if (!IsValidHost(out string reason))
@@ -207,8 +207,8 @@ public class Hediff_SymbioteImplant : Hediff_Implant
 
     public override void Notify_PawnKilled()
     {
-        base.Notify_PawnKilled();
         _immediateRejection = true;
+        base.Notify_PawnKilled();
         TrySpawnSymbiote();
         pawn.RemoveHediff(this);
     }

@@ -16,7 +16,7 @@ public class Comp_AlternateApparel : ThingComp
     public Pawn Pawn => Apparel?.Wearer;
 
     // Either open or closed, whichever is not this
-    private Apparel _cachedAlternate;
+    public Apparel CachedAlternate;
 
     public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
     {
@@ -40,7 +40,7 @@ public class Comp_AlternateApparel : ThingComp
             return;
 
         GetOrCreateAlternate();
-        if (_cachedAlternate == null)
+        if (CachedAlternate == null)
         {
             if (RimgateMod.Debug)
                 Log.Warning($"Rimgate :: unable to get alternate for {Apparel}");
@@ -48,37 +48,28 @@ public class Comp_AlternateApparel : ThingComp
         }
 
         // Equip the alternate
-        Pawn.apparel.Wear(_cachedAlternate, dropReplacedApparel: false);
+        Pawn.apparel.Wear(CachedAlternate, dropReplacedApparel: false);
     }
 
     private Apparel GetOrCreateAlternate()
     {
         // Make other version if needed
-        if (_cachedAlternate == null)
+        if (CachedAlternate == null)
         {
             if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: creating new alternate {Props.alternateDef} for {Apparel}");
+                Log.Message($"Rimgate :: creating new alternate {Props.alternateDef} for {Apparel} {(Apparel.Stuff != null ? $"using {Apparel.Stuff}" : "")}");
 
-            _cachedAlternate = (Apparel)ThingMaker.MakeThing(Props.alternateDef);
-            if (_cachedAlternate == null) return null;
+            CachedAlternate = (Apparel)ThingMaker.MakeThing(Props.alternateDef, Apparel.Stuff);
+            if (CachedAlternate == null) return null;
         }
 
-        _cachedAlternate.compQuality = Apparel.compQuality;
+        CachedAlternate.compQuality = Apparel.compQuality;
+        CachedAlternate.HitPoints = Apparel.HitPoints;
 
-        // Copy material if stuffable
-        if (Apparel?.def.MadeFromStuff == true
-            && Apparel.Stuff != null
-            && _cachedAlternate.def.MadeFromStuff)
-        {
-            _cachedAlternate.SetStuffDirect(Apparel.Stuff);
-        }
-
-        _cachedAlternate.HitPoints = Apparel.HitPoints;
-
-        Comp_AlternateApparel comp = ThingCompUtility.TryGetComp<Comp_AlternateApparel>(_cachedAlternate);
+        Comp_AlternateApparel comp = ThingCompUtility.TryGetComp<Comp_AlternateApparel>(CachedAlternate);
         if (comp != null)
-            comp._cachedAlternate ??= Apparel;
+            comp.CachedAlternate ??= Apparel;
 
-        return _cachedAlternate;
+        return CachedAlternate;
     }
 }

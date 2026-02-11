@@ -163,7 +163,7 @@
     <minGenerationAge>19</minGenerationAge>
     <gearHealthRange>0.7~2.3</gearHealthRange>
     <apparelAllowHeadgearChance>0.72</apparelAllowHeadgearChance>
-    <apparelMoney>1250~3500</apparelMoney>
+    <apparelMoney>2250~4500</apparelMoney>
     <apparelColor>(0.2, 0.2, 0.2)</apparelColor>
     <weaponMoney>1100~3500</weaponMoney>
     <techHediffsMoney>1000~1500</techHediffsMoney>
@@ -194,13 +194,15 @@
   <PawnKindDef Name="Rimgate_WraithSoldierBase" ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithSoldier</defName>
     <label>Wraith soldier</label>
-    <combatPower>110</combatPower>
+    <combatPower>100</combatPower>
     <itemQuality>Normal</itemQuality>
     <apparelTags>
       <li>Tribal</li>
       <li>Neolithic</li>
       <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
       <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
       <li>Rimgate_WraithHeadgear_tag</li>
     </apparelTags>
@@ -267,7 +269,7 @@
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithAssassin</defName>
     <label>Wraith assassin</label>
-    <combatPower>160</combatPower>
+    <combatPower>170</combatPower>
     <apparelMoney>5000~8000</apparelMoney>
     <itemQuality>Good</itemQuality>
     <weaponMoney>2200~3800</weaponMoney>
@@ -286,34 +288,14 @@
       <li>IndustrialMilitaryBasic</li>
       <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
+      <li>Rimgate_WraithCommanderApparel_tag</li>
       <li>Rimgate_WraithAssassin_tag</li>
       <li>Rimgate_WraithHeadgear_tag</li>
     </apparelTags>
     <apparelRequired>
-      <li>Rimgate_WraithSoldierArmor</li>
       <li>Rimgate_WraithGoggles</li>
       <li>Rimgate_WraithForceBuckler</li>
-      <li>Rimgate_WraithBracers</li>
-      <li>Rimgate_WraithLeatherBoots</li>
     </apparelRequired>
-    <specificApparelRequirements>
-      <li>
-        <apparelDef>Rimgate_WraithGoggles</apparelDef>
-        <stuff>Cloth</stuff>
-      </li>
-      <li>
-        <apparelDef>Rimgate_WraithSoldierArmor</apparelDef>
-        <stuff>Leather_Plain</stuff>
-      </li>
-      <li>
-        <apparelDef>Rimgate_WraithBracers</apparelDef>
-        <stuff>Leather_Plain</stuff>
-      </li>
-      <li>
-        <apparelDef>Rimgate_WraithLeatherBoots</apparelDef>
-        <stuff>Leather_Plain</stuff>
-      </li>
-    </specificApparelRequirements>
     <weaponTags>
       <li>Spear</li>
       <li>Rimgate_WraithAssassin_tag</li>
@@ -351,6 +333,7 @@
       <li>IndustrialMilitaryBasic</li>
       <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithEliteHeadgear_tag</li>
+      <li>Rimgate_WraithSoldierApparel_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
     </apparelTags>
     <apparelRequired>
@@ -436,7 +419,7 @@
     <factionLeader>true</factionLeader>
     <fixedGender>Female</fixedGender>
     <minGenerationAge>26</minGenerationAge>
-    <combatPower>220</combatPower>
+    <combatPower>170</combatPower>
     <backstoryFiltersOverride Inherit="False">
       <li>
         <categoriesChildhood>

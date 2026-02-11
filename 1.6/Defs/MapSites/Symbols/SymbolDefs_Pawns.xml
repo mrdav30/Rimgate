@@ -55,7 +55,7 @@
         <thing>AncientCryptosleepPod</thing>
         <containPawnKindAnyOf>
             <li>Rimgate_TauriSGCSoldier</li>
-            <li>Rimgate_TauriSGCRocketman</li>
+            <li>Rimgate_TauriSGCDemolition</li>
             <li>Rimgate_TauriRifleman</li>
             <li>Rimgate_TauriSpecialForces</li>
         </containPawnKindAnyOf>

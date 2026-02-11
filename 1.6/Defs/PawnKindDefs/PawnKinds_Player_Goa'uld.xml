@@ -40,7 +40,8 @@
     <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
     <apparelMoney>1200~2400</apparelMoney>
     <apparelTags>
-      <li>Spacer</li>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
       <li>Rimgate_GoauldApparel_tag</li>
     </apparelTags>
     <weaponMoney>1200~2500</weaponMoney>
@@ -73,7 +74,8 @@
     <apparelAllowHeadgearChance>0.8</apparelAllowHeadgearChance>
     <apparelMoney>1800~3000</apparelMoney>
     <apparelTags>
-      <li>Spacer</li>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
       <li>Rimgate_GoauldApparel_tag</li>
     </apparelTags>
     <weaponMoney>2000~4000</weaponMoney>
@@ -104,6 +106,7 @@
     <apparelTags>
       <li>Tribal</li>
       <li>Neolithic</li>
+      <li>IndustrialBasic</li>
     </apparelTags>
     <chemicalAddictionChance>0.5</chemicalAddictionChance>
     <apparelMoney>270~900</apparelMoney>

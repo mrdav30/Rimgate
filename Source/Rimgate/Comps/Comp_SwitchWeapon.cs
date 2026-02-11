@@ -11,7 +11,7 @@ public class Comp_SwitchWeapon : ThingComp
 
     public ThingWithComps Weapon => parent;
 
-    private ThingWithComps _cachedSwitchWeapon;
+    public ThingWithComps CachedSwitchWeapon;
 
     private Pawn _cachedPawn;
     public Pawn Pawn
@@ -55,7 +55,7 @@ public class Comp_SwitchWeapon : ThingComp
 
         GetOrCreateAlternate();
 
-        if (_cachedSwitchWeapon == null)
+        if (CachedSwitchWeapon == null)
         {
             if (RimgateMod.Debug)
                 Log.Warning($"Rimgate :: unable to get switch weapon for {Weapon}");
@@ -63,37 +63,28 @@ public class Comp_SwitchWeapon : ThingComp
         }
 
         Pawn.equipment.Remove(Weapon);
-        Pawn.equipment.AddEquipment(_cachedSwitchWeapon);
+        Pawn.equipment.AddEquipment(CachedSwitchWeapon);
     }
 
     public ThingWithComps GetOrCreateAlternate()
     {
         // Make other version if needed
-        if (_cachedSwitchWeapon == null)
+        if (CachedSwitchWeapon == null)
         {
             if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: creating new switch weapon {Props.alternateDef} for {Weapon}");
+                Log.Message($"Rimgate :: creating new switch weapon {Props.alternateDef} for {Weapon} {(Weapon.Stuff != null ? $"using {Weapon.Stuff}" : "")}");
 
-            _cachedSwitchWeapon = (ThingWithComps)ThingMaker.MakeThing(Props.alternateDef, null);
-            if (_cachedSwitchWeapon == null) return null;
+            CachedSwitchWeapon = (ThingWithComps)ThingMaker.MakeThing(Props.alternateDef, Weapon.Stuff);
+            if (CachedSwitchWeapon == null) return null;
         }
 
-        _cachedSwitchWeapon.compQuality = Weapon.compQuality;
+        CachedSwitchWeapon.compQuality = Weapon.compQuality;
+        CachedSwitchWeapon.HitPoints = Weapon.HitPoints;
 
-        // Copy material if stuffable
-        if (Weapon?.def.MadeFromStuff == true
-            && Weapon.Stuff != null
-            && _cachedSwitchWeapon.def.MadeFromStuff)
-        {
-            _cachedSwitchWeapon.SetStuffDirect(Weapon.Stuff);
-        }
-
-        _cachedSwitchWeapon.HitPoints = Weapon.HitPoints;
-
-        Comp_SwitchWeapon comp = ThingCompUtility.TryGetComp<Comp_SwitchWeapon>(_cachedSwitchWeapon);
+        Comp_SwitchWeapon comp = ThingCompUtility.TryGetComp<Comp_SwitchWeapon>(CachedSwitchWeapon);
         if (comp != null)
-            comp._cachedSwitchWeapon ??= Weapon;
+            comp.CachedSwitchWeapon ??= Weapon;
 
-        return _cachedSwitchWeapon;
+        return CachedSwitchWeapon;
     }
 }

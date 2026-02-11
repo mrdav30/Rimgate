@@ -273,14 +273,14 @@
 	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithSoldierArmor</defName>
 		<label>Chitin breastplate</label>
-		<description>Chitinous plating extruded from nightmares and grown with care. Offers solid protection and a mildly unsettling squelch sound when equipped.\n\nWorn by Wraith soldiers who prefer their armor organic and their enemies terrified.</description>
+		<description>A durable shirt of bio-organic material that was grown with care to have chitinous plating extrude from it to form into a breastplate. Offers solid protection and a mildly unsettling squelch sound when equipped.\n\nWorn by warriors who prefer their armor organic and their enemies terrified.</description>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmor</texPath>
+			<texPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmorIcon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<stuffCategories>
 			<li>Leathery</li>
-		</stuffCategories>
+		</stuffCategories> 
 		<defaultStuff>Leather_Plain</defaultStuff>
 		<costStuffCount>35</costStuffCount>
 		<costList>
@@ -325,6 +325,7 @@
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmor</wornGraphicPath>
 			<layers>
+				<li>OnSkin</li>
 				<li>Middle</li>
 			</layers>
 			<tags>
@@ -354,7 +355,7 @@
 		<label>Armored overcoat</label>
 		<description>Elegant bio-armor for the discerning Wraith leader who wants high resistance and high fashion while draining life force.\n\nInterweaved with bio-organic fibers that enhance essence absorption and reduce essence expenditure.</description>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Torso/WraithCommander/RGWraithCommanderArmor</texPath>
+			<texPath>Things/Item/Apparel/Torso/WraithCommander/RGWraithCommanderArmorIcon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<stuffCategories>
