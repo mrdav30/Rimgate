@@ -208,7 +208,7 @@
   <ThingDef ParentName="FurnitureWithQualityBase">
     <defName>Rimgate_GoauldThrone</defName>
     <label>Goa'uld throne</label>
-    <description>Once graced by the golden posterior of a self-proclaimed god, this majestic Goa’uld throne is less “furniture” and more “divine flex.” Forged from arrogance and overdesigned with an absurd number of comfort features — including integrated body massagers, an atmospheric pressure bidet, and a modesty-preserving nanosteam shower — it’s perfect for those who like to rule, gloat, and exfoliate at the same time.\n\nJust don’t let a Tok’ra sit in it. Ever.</description>
+    <description>Once only graced by the golden posterior of a self-proclaimed god, this majestic Goa’uld throne is less “furniture” and more “divine flex.” Forged from arrogance and overdesigned with an absurd number of comfort features — including integrated body massagers, an atmospheric pressure bidet, and a modesty-preserving nanosteam shower — it’s perfect for those who like to rule, gloat, and exfoliate at the same time.\n\nJust don’t let a Tok’ra sit in it. Ever.</description>
 
     <graphicData>
       <drawSize>(4,4)</drawSize>
@@ -241,14 +241,13 @@
 
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
+      <li>Stony</li>
+      <li>Metallic</li>
     </stuffCategories>
-    <costStuffCount>150</costStuffCount>
+    <costStuffCount>250</costStuffCount>
     <costList>
-      <Steel>200</Steel>
-      <Gold>100</Gold>
-      <Rimgate_Naquadah>50</Rimgate_Naquadah>
+      <Gold>150</Gold>
+      <Rimgate_Naquadah>75</Rimgate_Naquadah>
     </costList>
 
     <building>
@@ -337,7 +336,7 @@
 
   <ThingDef ParentName="BedWithQualityBase">
     <defName>Rimgate_TauriHospitalBed</defName>
-    <label>MASH field bed</label>
+    <label>MASH bed</label>
     <description>Based on off-world Tau'ri medical protocols, this hospital bed is designed to optimize patient recovery through advanced ergonomics and integrated care features.\n\nIts adjustable frame, pressure-relieving mattress, and built-in monitoring systems ensure that patients receive the best possible care during their stay.\n\nIdeal for clinics and hospitals aiming to provide top-tier medical treatment.</description>
     <graphicData>
       <texPath>Things/Building/Furniture/RGTauriHospitalBed</texPath>

@@ -470,7 +470,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientShieldEmitter</defName>
-		<label>Shield Emitter</label>
+		<label>Ancient Shield Technology</label>
 		<description>Ancient notes describe a way to interweave hyper-activated quantum fields to create a defensive barrier around your base. With the help of a ZPM housing, it's actually feasible to power such a device on a large enough scale to protect against incoming attacks and provide a safe haven for your colonists.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>10000</baseCost>
@@ -490,8 +490,8 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_TokraTunnelCrystals</defName>
-		<label>Tok'ra Tunnel Crystals</label>
-		<description>Discover techniques used by the Tok'ra to "program" crystals to rapidly grow tunnels underground. By cross-referencing ancient texts and modern crystal growth studies, your researchers believe that they can develop a new method for efficient mining and excavation.</description>
+		<label>Tok'ra Excavation</label>
+		<description>Discover techniques used by the Tok'ra to "program" crystals to rapidly grow tunnels underground. The Tok'ra don’t dig. They *negotiate* with geology. This project focuses on crystal programming—embedding a resonance “instruction” into a living lattice so it can propagate through stone, shed material, and leave stable passage behind.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>8000</baseCost>
 
@@ -515,14 +515,14 @@
 		</tags>
 
 		<discoveredLetterTitle>About: Tok'ra Tunnel Crystals</discoveredLetterTitle>
-		<discoveredLetterText>Your researchers have uncovered the secrets behind the Tok'ra's tunnel crystals.\n\nBy mixing raw stone and Naquadah together, we should be able to make our own "programmable" crystals that can be used to rapidly clear designated mining areas.\n\nWhile harnessing this technology opens up new possibilities for resource extraction and base expansion, caution is advised. The rapid growth of these crystals can lead to structural instability if not properly managed.</discoveredLetterText>
+		<discoveredLetterText>Your researchers have unlocked a new method for embedding resonance “instructions” into living crystal lattices.\n\nBy mixing raw stone and Naquadah together, we can make our own "programmable" crystals that can be used to rapidly clear designated mining areas.\n\nWhile harnessing this technology opens up new possibilities for resource extraction and base expansion, caution is advised. The rapid growth caused by these crystals can lead to structural instability if not properly managed.</discoveredLetterText>
 
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_TokraClimateControl</defName>
 		<label>Tok'ra Climate Control</label>
-		<description>By analyzing the Tok'ra's use of crystals to regulate temperature in their caverns, your researchers believe they can develop a system for climate control. This technology could be used to create more hospitable environments for your colonists, as well as to mitigate the effects of extreme weather events.</description>
+		<description>Tok'ra caverns aren’t heated or cooled in the usual sense. Instead, living crystal lattices regulate thermal flow, balancing rooms like a tuned instrument—drawing excess heat into the surrounding stone, or pulling it back when the cold bites.\n\nYour researchers believe the same resonance principles can be adapted for surface colonies, provided the crystal is kept healthy with periodic naquadah feeding. The end result is climate control with no moving parts, no wiring… and a device that behaves less like a machine and more like a very cooperative organism.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>8000</baseCost>
 

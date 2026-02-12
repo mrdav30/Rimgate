@@ -1,11 +1,13 @@
 ﻿using RimWorld;
 using RimWorld;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace Rimgate;
 
@@ -14,8 +16,8 @@ public class TokraClimateCrystalDefModExt : DefModExtension
     public float maxDeltaPerRareTick = 1.6f;
     public float fuelPerDegree = 0.06f;
 
-    public float softClampMin = -10f;
-    public float softClampMax = 40f;
+    public int softClampMin = -10;
+    public int softClampMax = 40;
 
     // state graphics (texPath, no extensions)
     public string texPathIdle;
@@ -124,6 +126,49 @@ public class Building_TokraClimateCrystal : Building_TempControl
         float fuelUsed = Mathf.Abs(delta) * Ext.fuelPerDegree;
         if (fuelUsed > 0f)
             Refuel.ConsumeFuel(fuelUsed);
+    }
+
+    public override IEnumerable<Gizmo> GetGizmos()
+    {
+        foreach(var refuelGizmo in Refuel.CompGetGizmosExtra())
+            yield return refuelGizmo;
+
+        Command_Action commandAction = new Command_Action();
+        commandAction.defaultLabel = "RG_SetTemperatureLabel".Translate();
+        commandAction.defaultDesc = "RG_SetTemperatureDescription".Translate();
+        commandAction.icon = ContentFinder<Texture2D>.Get("UI/Commands/TempReset");
+        commandAction.action = () =>
+        {
+            Find.WindowStack.Add(new Dialog_SliderWithValue(
+                "RG_SetTemperatureTitle".Translate(),
+                Ext.softClampMin,
+                Ext.softClampMax,
+                val => TempControl.TargetTemperature = val,
+                Mathf.RoundToInt(TempControl.TargetTemperature),
+                unitLabel: "degrees"));
+        };
+        yield return commandAction;
+
+        if (def.Minifiable && (Faction.IsOfPlayerFaction() || def.building.alwaysUninstallable))
+            yield return InstallationDesignatorDatabase.DesignatorFor(def);
+
+        ColorInt? glowerColorOverride = null;
+        CompGlower comp = GetComp<CompGlower>();
+        if (comp != null && comp.HasGlowColorOverride)
+            glowerColorOverride = comp.GlowColor;
+
+        if (!def.building.neverBuildable)
+        {
+            Command command = BuildCopyCommandUtility.BuildCopyCommand(def, Stuff, StyleSourcePrecept as Precept_Building, StyleDef, styleOverridden: true, glowerColorOverride);
+            if (command != null)
+                yield return command;
+        }
+
+        if (Faction.IsOfPlayerFaction() || def.building.alwaysShowRelatedBuildCommands)
+        {
+            foreach (Command item in BuildRelatedCommandUtility.RelatedBuildCommands(def))
+                yield return item;
+        }
     }
 
     // Override to fix whitespace issue caused by CompTempControl since we don't use CompPower.

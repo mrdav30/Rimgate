@@ -12,6 +12,7 @@
         <graphicData>
             <texPath>Things/Item/Apparel/Torso/SGCBDU/RGSGCBDUIcon</texPath>
             <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
         </graphicData>
         <stuffCategories>
             <li>Fabric</li>
@@ -68,6 +69,7 @@
             <tags>
                 <li>Rimgate_TauriApparel_tag</li>
             </tags>
+            <useWornGraphicMask>true</useWornGraphicMask>
             <defaultOutfitTags>
                 <li>Worker</li>
                 <li>Soldier</li>
@@ -189,6 +191,7 @@
         </recipeMaker>
         <graphicData>
             <texPath>Things/Item/Apparel/Torso/SpecOpsVest/RGSpecOpsVestIcon</texPath>
+            <shaderType>CutoutComplex</shaderType>
         </graphicData>
         <statBases>
             <MaxHitPoints>300</MaxHitPoints>
@@ -213,6 +216,7 @@
         </costList>
         <apparel>
             <wornGraphicPath>Things/Item/Apparel/Torso/SpecOpsVest/RGSpecOpsVest</wornGraphicPath>
+            <useWornGraphicMask>true</useWornGraphicMask>
             <tags Inherit="false">
                 <li>Rimgate_TauriSpecialForcesApparel_tag</li>
             </tags>

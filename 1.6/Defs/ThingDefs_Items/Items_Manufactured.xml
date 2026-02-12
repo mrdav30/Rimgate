@@ -228,7 +228,7 @@
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_TokraTunnelCrystal</defName>
         <label>Tunnel crystal</label>
-        <description>A programmed, palm-sized crystal derived from Tok'ra technology that initiates a rapid growth process to form underground tunnels. When activated, it resonates through stone and clears nearby mining designations—shearing away rock as if it were soft clay.\n\nUse it after marking rock with the Mine designation. The crystal will clear a limited number of designated tiles in the targeted area.\n\nNote: These crystals are delicate and will dissipate if left unused for too long.</description>
+        <description>A palm-sized Tok'ra crystal, pre-programmed to “grow” through rock. When activated, it floods the surrounding stone with a resonance pattern and the marked strata simply… lets go—splitting along invisible fault lines as if it were soft clay.\n\nUse after designating rock for mining. The crystal will clear a limited number of marked tiles in the targeted area.\n\nTok'ra crystals are delicate and temperamental. Unused, they slowly dissolve into dust as the lattice collapses.</description>
 
         <graphicData>
             <texPath>Things/Item/Resource/TunnelCrystal</texPath>

@@ -372,6 +372,12 @@
 	<RG_ShieldToggleLabel>Toggle shield</RG_ShieldToggleLabel>
 	<RG_ShieldToggleDescription>Designate {0} to have the shield disabled. A colonist will come soon to toggle the switch.</RG_ShieldToggleDescription>
 
+	<!-- Climate Crystal -->
+
+	<RG_SetTemperatureLabel>Set Temperature</RG_SetTemperatureLabel>
+	<RG_SetTemperatureDescription>Set the climate crystal's target temperature for the room.</RG_SetTemperatureDescription>
+	<RG_SetTemperatureTitle>Target Temperature</RG_SetTemperatureTitle>
+
 	<!-- Toggle -->
 
 	<RG_ToggleLabel>Toggle {0}</RG_ToggleLabel>

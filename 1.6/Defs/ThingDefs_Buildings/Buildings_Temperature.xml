@@ -4,7 +4,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_TokraClimateControlCrystal</defName>
         <label>Climate crystal</label>
-        <description>A grown Tok'ra crystal lattice that harmonizes a room's temperature toward a chosen setpoint.\n\nIt requires periodic feeding with refined naquadah to sustain healthy growth and resonance.</description>
+        <description>A Tok'ra-grown crystal lattice used to regulate underground habitats. It does not generate heat or cold so much as it *convinces* the air to behave—drawing warmth from crowded bodies, shedding it into stone, and reversing the flow just as easily.\n\nDespite its clean geometry, the lattice is alive. Neglect it and the resonance decays into inert glass. Feed it raw naquadah to maintain growth, then set a target temperature and let the crystal do what Tok'ra technology does best: quietly make the impossible look mundane.</description>
 
         <thingClass>Rimgate.Building_TokraClimateCrystal</thingClass>
 
@@ -45,7 +45,8 @@
         </stuffCategories>
         <costStuffCount>30</costStuffCount>
         <costList>
-            <Rimgate_Naquadah>5</Rimgate_Naquadah>
+            <Rimgate_Naquadah>15</Rimgate_Naquadah>
+            <ComponentSpacer>1</ComponentSpacer>
         </costList>
 
         <researchPrerequisites>
@@ -69,6 +70,9 @@
             <li Class="CompProperties_Refuelable">
                 <fuelCapacity>25</fuelCapacity>
                 <fuelConsumptionRate>0</fuelConsumptionRate>
+                <fuelLabel>Naquadah</fuelLabel>
+                <fuelGizmoLabel>Naquadah</fuelGizmoLabel>
+                <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
                 <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
                 <showFuelGizmo>true</showFuelGizmo>
                 <fuelFilter>
