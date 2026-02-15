@@ -106,6 +106,19 @@ public class Comp_CloningPodAnimation : ThingComp
         Vector3 panePos = drawPos;
         panePos.y = parent.def.altitudeLayer.AltitudeFor() - 0.01f;
 
+        if (Props.backgroundGraphicData != null)
+        {
+            Vector3 backgroundPos = drawPos;
+            backgroundPos.y -= 2.0f;
+
+            Graphics.DrawMesh(
+                BackgroundMesh,
+                backgroundPos,
+                Quaternion.identity,
+                BackgroundMat,
+                0);
+        }
+
         if (_clonePod.FuelForCurrentCycleConsumed)
         {
             FullGraphic.Draw(
@@ -119,19 +132,6 @@ public class Comp_CloningPodAnimation : ThingComp
                 panePos,
                 rotation,
                 parent);
-        }
-
-        if (Props.backgroundGraphicData != null)
-        {
-            Vector3 backgroundPos = drawPos;
-            backgroundPos.y -= 2.0f;
-
-            Graphics.DrawMesh(
-                BackgroundMesh,
-                backgroundPos,
-                rotation.AsQuat,
-                BackgroundMat,
-                0);
         }
 
         if (_clonePod.Status == CloningStatus.Paused && !_clonePod.TryGetCostForCurrentCycle(out _))

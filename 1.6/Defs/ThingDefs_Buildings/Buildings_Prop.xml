@@ -626,23 +626,26 @@
 
     <!-- ======================= Supply crate ======================= -->
 
+    <!-- Base -->
     <ThingDef Name="Rimgate_SupplyCrateBase" ParentName="CrateBase" Abstract="True">
         <label>Supply crate</label>
         <description>A sturdy, hermetically sealed supply crate used to store various goods and artifacts. These crates are usually found in ancient outposts and supply caches-but more commonly in the hands of explorers and scavengers.</description>
         <size>(1, 1)</size>
-        <fillPercent>1</fillPercent>
+        <fillPercent>0.5</fillPercent>
         <statBases>
             <MaxHitPoints>50</MaxHitPoints>
         </statBases>
         <rotatable>false</rotatable>
     </ThingDef>
 
+    <!-- NOTE: cannot figure out the alpha mask issue with the default graphic; cutcomplex is ignored for some reason -->
+
+    <!-- Blue -->
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateBlue</defName>
         <graphicData>
             <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilled</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(1,1)</drawSize>
         </graphicData>
         <comps>
             <li Class="CompProperties_LootSpawn">
@@ -652,30 +655,28 @@
                 <graphicData>
                     <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
-                    <drawSize>(1,1)</drawSize>
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
                 <glowRadius>1.5</glowRadius>
-                <glowColor>(151,243,255,0)</glowColor>
+                <glowColor>(166,222,239,0)</glowColor>
             </li>
         </comps>
     </ThingDef>
 
+    <!-- Green -->
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateGreen</defName>
         <graphicData>
-            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilled</texPath>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilledGreen</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <shaderType>Cutout</shaderType>
-            <drawSize>(1,1)</drawSize>
-            <color>(126,177,161)</color>
         </graphicData>
+
         <comps>
             <li Class="CompProperties_LootSpawn">
                 <contents>Rimgate_GateComplexLootAlpha</contents>
             </li>
-            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
+            <li Class="CompProperties_EmptyStateGraphic">
                 <graphicData>
                     <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
@@ -691,43 +692,38 @@
         </comps>
     </ThingDef>
 
+    <!-- Orange -->
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateOrange</defName>
         <graphicData>
-            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilled</texPath>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilledOrange</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <shaderType>Cutout</shaderType>
-            <drawSize>(1,1)</drawSize>
-            <color>(160,116,27)</color>
         </graphicData>
         <comps>
             <li Class="CompProperties_LootSpawn">
                 <contents>Rimgate_GateComplexLootBravo</contents>
             </li>
-            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
+            <li Class="CompProperties_EmptyStateGraphic">
                 <graphicData>
                     <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
                     <shaderType>CutoutComplex</shaderType>
-                    <drawSize>(1,1)</drawSize>
-                    <color>(160,116,27)</color>
+                    <color>(159,117,43)</color>
                 </graphicData>
             </li>
             <li Class="CompProperties_Glower">
                 <glowRadius>1.5</glowRadius>
-                <glowColor>(160,116,27,0)</glowColor>
+                <glowColor>(159,117,43,0)</glowColor>
             </li>
         </comps>
     </ThingDef>
 
+    <!-- Red -->
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateRed</defName>
         <graphicData>
-            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilled</texPath>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilledRed</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <shaderType>Cutout</shaderType>
-            <drawSize>(1,1)</drawSize>
-            <color>(109,13,13)</color>
         </graphicData>
         <comps>
             <li Class="CompProperties_LootSpawn">
@@ -738,7 +734,6 @@
                     <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
                     <shaderType>CutoutComplex</shaderType>
-                    <drawSize>(1,1)</drawSize>
                     <color>(109,13,13)</color>
                 </graphicData>
             </li>
@@ -749,14 +744,12 @@
         </comps>
     </ThingDef>
 
+    <!-- Yellow -->
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateYellow</defName>
         <graphicData>
-            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilled</texPath>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilledYellow</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <shaderType>Cutout</shaderType>
-            <drawSize>(1,1)</drawSize>
-            <color>(221,220,28)</color>
         </graphicData>
         <comps>
             <li Class="CompProperties_LootSpawn">
@@ -767,7 +760,6 @@
                     <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
                     <shaderType>CutoutComplex</shaderType>
-                    <drawSize>(1,1)</drawSize>
                     <color>(221,220,28)</color>
                 </graphicData>
             </li>
@@ -778,10 +770,11 @@
         </comps>
     </ThingDef>
 
+    <!-- Stone -->
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateStone</defName>
         <graphicData>
-            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilledStone</texPath>
+            <texPath>Things/Building/Prop/Crate/RGStoneSupplyCrateFilled</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <shaderType>CutoutComplex</shaderType>
             <drawSize>(1,1)</drawSize>
@@ -795,7 +788,7 @@
             </li>
             <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
                 <graphicData>
-                    <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmptyStone</texPath>
+                    <texPath>Things/Building/Prop/Crate/RGStoneSupplyCrateEmpty</texPath>
                     <graphicClass>Graphic_Single</graphicClass>
                     <shaderType>CutoutComplex</shaderType>
                     <drawSize>(1,1)</drawSize>

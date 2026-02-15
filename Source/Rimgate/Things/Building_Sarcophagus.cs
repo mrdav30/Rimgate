@@ -646,7 +646,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         Graphics.DrawMesh(
             GlowMesh,
             sarchophagusGlowDrawPos,
-            Rotation.AsQuat,
+            Quaternion.identity,
             GlowMaterial,
             0);
     }

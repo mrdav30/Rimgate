@@ -16,8 +16,7 @@ public class Comp_TintedEmptyStateGraphic : ThingComp
 
     private Color _lastSecondary = Color.white;
 
-    public CompProperties_TintedEmptyStateGraphic Props
-        => (CompProperties_TintedEmptyStateGraphic)props;
+    public CompProperties_TintedEmptyStateGraphic Props => (CompProperties_TintedEmptyStateGraphic)props;
 
     private bool ParentIsEmpty
     {

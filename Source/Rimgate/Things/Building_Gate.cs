@@ -465,7 +465,7 @@ public class Building_Gate : Building
                 Graphics.DrawMesh(
                     IrisGlowMesh,
                     irisDrawPos,
-                    Rotation.AsQuat,
+                    Quaternion.identity,
                     FadedMaterialPool.FadedVersionOf(
                         IrisGlowMat,
                         0.5f),
