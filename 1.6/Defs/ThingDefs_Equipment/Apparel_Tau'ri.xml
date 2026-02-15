@@ -579,6 +579,176 @@
         </comps>
     </ThingDef>
 
+    <!-- ====== Tactical Elbow Pads ====== -->
+
+    <ThingDef ParentName="ArmorMachineableBase">
+        <defName>Rimgate_TauriTacticalElbowPads</defName>
+        <label>Tactical elbow pads</label>
+        <description>Durable tactical elbow pads designed for combat and utility tasks. Provide decent protection while maintaining flexibility for handling weapons and equipment.\nStandard issue for Tau'ri special operations forces.</description>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Armwear/RGTauriTacticalElbowPads</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <techLevel>Industrial</techLevel>
+        <tradeability>Sellable</tradeability>
+        <stuffCategories>
+            <li>Leathery</li>
+        </stuffCategories>
+        <defaultStuff>Leather_Plain</defaultStuff>
+        <costStuffCount>5</costStuffCount>
+        <costList>
+            <Cloth>3</Cloth>
+            <Plasteel>3</Plasteel>
+            <Synthread>1</Synthread>
+        </costList>
+        <colorPerStuff>
+            <li>
+                <stuff>Leather_Plain</stuff>
+                <color>(1,1,1,1)</color>
+            </li>   
+        </colorPerStuff>
+        <statBases>
+            <MaxHitPoints>120</MaxHitPoints>
+            <WorkToMake>3500</WorkToMake>
+            <Mass>1</Mass>
+            <Flammability>0.2</Flammability>
+            <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+            <ArmorRating_Sharp>0.24</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.02</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.12</ArmorRating_Heat>
+            <Insulation_Cold>2</Insulation_Cold>
+            <Insulation_Heat>4</Insulation_Heat>
+            <EquipDelay>2.5</EquipDelay>
+        </statBases>
+        <equippedStatOffsets>
+            <SocialImpact>0.1</SocialImpact>
+            <MeleeDodgeChance>4</MeleeDodgeChance>
+            <ComfyTemperatureMin>-2</ComfyTemperatureMin>
+        </equippedStatOffsets>
+        <thingCategories>
+            <li>ApparelMisc</li>
+        </thingCategories>
+        <apparel>
+            <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <bodyPartGroups>
+                <li>Arms</li>
+            </bodyPartGroups>
+            <layers>
+                <li>Middle</li>
+                <li>Shell</li>
+            </layers>
+            <tags>
+                <li>Rimgate_TauriApparel_tag</li>
+                <li>Rimgate_TauriSpecialForcesApparel_tag</li>
+            </tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+        </apparel>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>5</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
+        <comps Inherit="False">
+            <li Class="CompProperties_Forbiddable" />
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ====== Tactical Knee Pads ====== -->
+
+    <ThingDef ParentName="ArmorMachineableBase">
+        <defName>Rimgate_TauriTacticalKneePads</defName>
+        <label>Tactical knee pads</label>
+        <description>Durable tactical knee pads designed for combat and utility tasks. Provide decent protection while maintaining flexibility for handling weapons and equipment.\nStandard issue for Tau'ri special operations forces.</description>
+        <graphicData>
+            <texPath>Things/Item/Apparel/Legwear/RGTauriTacticalKneePads</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <techLevel>Industrial</techLevel>
+        <tradeability>Sellable</tradeability>
+        <stuffCategories>
+            <li>Leathery</li>
+        </stuffCategories>
+        <defaultStuff>Leather_Plain</defaultStuff>
+        <costStuffCount>5</costStuffCount>
+        <costList>
+            <Cloth>3</Cloth>
+            <Plasteel>3</Plasteel>
+            <Synthread>1</Synthread>
+        </costList>
+        <colorPerStuff>
+            <li>
+                <stuff>Leather_Plain</stuff>
+                <color>(1,1,1,1)</color>
+            </li>   
+        </colorPerStuff>
+        <statBases>
+            <MaxHitPoints>120</MaxHitPoints>
+            <WorkToMake>3500</WorkToMake>
+            <Mass>1</Mass>
+            <Flammability>0.2</Flammability>
+            <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
+            <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
+            <StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+            <ArmorRating_Sharp>0.24</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.02</ArmorRating_Blunt>
+            <ArmorRating_Heat>0.12</ArmorRating_Heat>
+            <Insulation_Cold>2</Insulation_Cold>
+            <Insulation_Heat>4</Insulation_Heat>
+            <EquipDelay>2.5</EquipDelay>
+        </statBases>
+        <equippedStatOffsets Inherit="false">
+            <SocialImpact>0.1</SocialImpact>
+            <MeleeDodgeChance>4</MeleeDodgeChance>
+            <ComfyTemperatureMin>-2</ComfyTemperatureMin>
+        </equippedStatOffsets>
+        <thingCategories>
+            <li>ApparelMisc</li>
+        </thingCategories>
+        <apparel>
+            <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <bodyPartGroups>
+                <li>Legs</li>
+            </bodyPartGroups>
+            <layers>
+                <li>Middle</li>
+                <li>Shell</li>
+            </layers>
+            <tags>
+                <li>Rimgate_TauriApparel_tag</li>
+                <li>Rimgate_TauriSpecialForcesApparel_tag</li>
+            </tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+        </apparel>
+        <recipeMaker>
+            <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
+            <skillRequirements>
+                <Crafting>5</Crafting>
+            </skillRequirements>
+        </recipeMaker>
+        <tradeTags>
+            <li>Rimgate_TauriApparelTrade_tag</li>
+        </tradeTags>
+        <comps Inherit="False">
+            <li Class="CompProperties_Forbiddable" />
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+        </comps>
+    </ThingDef>
+
     <!-- ================== Headgear ================== -->
 
     <!-- ====== Ballistic Helmet ====== -->
