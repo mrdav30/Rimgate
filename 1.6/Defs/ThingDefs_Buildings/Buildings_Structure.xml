@@ -211,7 +211,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <linkType>Basic</linkType>
       <linkFlags>
-        <li>Custom10</li>
+        <li>Custom9</li>
       </linkFlags>
       <shadowData>
         <volume>(0.3, 0.5, 0.3)</volume>
@@ -453,6 +453,8 @@
   </ThingDef>
 
   <!-- ======================= Doors ======================= -->
+
+  <!-- ====== Chain Link Fence Gate ====== -->
 
   <ThingDef ParentName="DoorBase">
     <defName>Rimgate_ChainLinkFenceGate</defName>
@@ -1032,7 +1034,7 @@
         <unhackedGraphicData>
           <texPath>Things/Building/Structure/DurableDoors/RGAegisDoor_HackingTerminal</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>(3,1)</drawSize>
+          <drawSize>(2,1)</drawSize>
         </unhackedGraphicData>
         <unhackedGraphicOffset>(0,0.05,0)</unhackedGraphicOffset>
         <graphicDrawerType>RealtimeOnly</graphicDrawerType>

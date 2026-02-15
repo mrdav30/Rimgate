@@ -14,7 +14,7 @@ public class PlaceWorker_Gate : PlaceWorker
        Thing thingToIgnore = null,
        Thing thing = null)
     {
-        if (!Building_Gate.TryGetSpawnedGateOnMap(map, out _, thingToIgnore: thing))
+        if (Building_Gate.TryGetSpawnedGateOnMap(map, out _, thingToIgnore: thing))
             return new AcceptanceReport("RG_CannotPlace_Gate".Translate(checkingDef.LabelCap, "RG_OnlyOneSGPerMap".Translate()));
 
         if(GateUtil.AddressBookFull)

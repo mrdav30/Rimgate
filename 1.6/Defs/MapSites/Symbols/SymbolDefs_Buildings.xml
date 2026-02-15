@@ -32,6 +32,22 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_DurableWall</defName>
+        <thing>Rimgate_DurableWall</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ChainLinkFence</defName>
+        <thing>Rimgate_ChainLinkFence</thing>
+        <stuff>Steel</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ConcreteBlockFence</defName>
+        <thing>Rimgate_ConcreteBlockFence</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_NaquadahColumn</defName>
         <thing>Column</thing>
         <stuff>Rimgate_Naquadah</stuff>
@@ -86,7 +102,7 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_GoauldThrone</defName>
         <thing>Rimgate_GoauldThrone</thing>
-        <stuff>Leather_Panthera</stuff>
+        <stuff>Obsidian</stuff>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -131,6 +147,21 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_TauriHospitalBed</defName>
+        <thing>Rimgate_TauriHospitalBed</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriSurgeryLights</defName>
+        <thing>Rimgate_TauriSurgeryLights</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriWallMonitor</defName>
+        <thing>Rimgate_TauriWallMonitor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_M2Turret</defName>
         <thing>Rimgate_M2Turret</thing>
     </KCSG.SymbolDef>
@@ -138,6 +169,12 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_AutoStaffCannonTurret</defName>
         <thing>Rimgate_AutoStaffCannonTurret</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ChainLinkFenceGate</defName>
+        <thing>Rimgate_ChainLinkFenceGate</thing>
+        <stuff>Steel</stuff>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -159,6 +196,12 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_SecretDoor_Marble</defName>
+        <thing>Rimgate_SecretDoor</thing>
+        <stuff>BlocksMarble</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_SecretDoor_Sandstone</defName>
         <thing>Rimgate_SecretDoor</thing>
         <stuff>BlocksSandstone</stuff>
@@ -167,6 +210,21 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_ForceFieldDoor</defName>
         <thing>Rimgate_ForceFieldDoor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_HackableDurableDoor</defName>
+        <thing>Rimgate_HackableDurableDoor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_HackableDurableDoorDouble</defName>
+        <thing>Rimgate_HackableDurableDoorDouble</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_HackableDurableDoorTriple</defName>
+        <thing>Rimgate_HackableDurableDoorTriple</thing>
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
@@ -195,6 +253,16 @@
         <defName>Rimgate_MobileHoverSkid</defName>
         <thing>Rimgate_MobileHoverSkid</thing>
         <stuff>Steel</stuff>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ConcreteBarrier</defName>
+        <thing>Rimgate_ConcreteBarrier</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_MilitaryBarrier</defName>
+        <thing>Rimgate_MilitaryBarrier</thing>
     </KCSG.SymbolDef>
 
 </Defs>

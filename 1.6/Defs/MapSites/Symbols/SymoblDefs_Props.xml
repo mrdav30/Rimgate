@@ -95,6 +95,18 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
+        <defName>Rimgate_BannerTauri</defName>
+        <thing>Rimgate_BannerTauri</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_BannerBaal</defName>
+        <thing>Rimgate_BannerBaal</thing>
+    </KCSG.SymbolDef>
+
+    <!-- Corpses -->
+
+    <KCSG.SymbolDef>
         <defName>Rimgate_Corpse</defName>
         <pawnKindDef>Villager</pawnKindDef>
         <spawnPartOfFaction>false</spawnPartOfFaction>
@@ -156,6 +168,7 @@
     <KCSG.SymbolDef>
         <defName>Rimgate_LootCrateNatural</defName>
         <thing>Rimgate_SupplyCrateStone</thing>
+        <stuff>BlocksGranite</stuff>
     </KCSG.SymbolDef>
 
 </Defs>

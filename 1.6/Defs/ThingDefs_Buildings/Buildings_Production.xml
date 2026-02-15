@@ -135,7 +135,7 @@
   <ThingDef ParentName="BenchBase">
     <defName>Rimgate_CompositionBench</defName>
     <label>composition bench</label>
-    <description>A Tau’ri-pattern composition bench standardized for Ancient-adjacent work. Dual subcores handle precision feeds and safety interlocks while the operator focuses on the build.\n\nTurns raw materials into rugged, serviceable hardware—provided you keep the power flowing.</description>
+    <description>A Tau’ri designed composition bench standardized for advanced machining and fabrication work. Dual subcores handle precision feeds and safety interlocks while the operator focuses on the build.\n\nTurns raw materials into rugged, serviceable hardware—provided you keep the power flowing.</description>
     <thingClass>Building_WorkTable</thingClass>
     <size>(3,1)</size>
     <graphicData>

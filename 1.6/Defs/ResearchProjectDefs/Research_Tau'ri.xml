@@ -39,7 +39,9 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriManufacturing</defName>
         <label>Tauri Manufacturing</label>
-        <description>Standardize Tau’ri-pattern fabrication on colony tools: adapter jigs, crystal mounts, shielded cabling, and subcore I/O buses that play nice with human power grids.\n\nThis establishes the fixtures and safety protocols needed to assemble Ancient-adjacent hardware without guesswork (or explosions).</description>
+        <description>The Goa'uld and Wraith scavenge, repurpose, and falsely claim technology as their own. The Tau'ri? They build it themselves, with a healthy load of brackets, adapters, and shielding.
+            \n\nBy standardizing fabrication fixtures—crystal mounts, subcore regulators, hardened power buses, and “do not touch” interlocks—your engineers can safely assemble Ancient-adjacent hardware using human industry. Nothing elegant. Nothing alive. Just reliable, serviceable machinery that won’t vaporize the operator if wired correctly.
+            \n\nEstablishes a foundation for Tau'ri-pattern manufacturing and unlocks dedicated production equipment and construction materials.</description>
         <prerequisites>
             <li>Machining</li>
             <li>Rimgate_TauriBasic</li>
@@ -48,6 +50,11 @@
         <baseCost>3500</baseCost>
         <researchViewX>1</researchViewX>
         <researchViewY>1.5</researchViewY>
+
+        <discoveredLetterTitle>Tau'ri Manufacturing Standardized</discoveredLetterTitle>
+        <discoveredLetterText>Your engineers have finalized Tau'ri-pattern fabrication standards.\n\nWith proper mounts, regulators, and enough shielding to make a safety officer cry, the colony can now assemble complex offworld hardware without guesswork—or explosions.
+            \n\nHuman engineering wins again: inelegant, overbuilt, and dependable.</discoveredLetterText>
+
     </ResearchProjectDef>
 
     <ResearchProjectDef Name="Rimgate_TauriResearchHiBase" ParentName="Rimgate_TauriResearchBase" Abstract="True">

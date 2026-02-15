@@ -33,6 +33,7 @@
               <filter>
                 <thingDefs>
                   <li>Rimgate_GlyphParchment</li>
+                  <li>Rimgate_GlyphParchment_Orbit</li>
                   <li>Schematic</li>
                 </thingDefs>
               </filter>
@@ -94,6 +95,7 @@
               <filter>
                 <thingDefs>
                   <li>Rimgate_GlyphParchment</li>
+                  <li>Rimgate_GlyphParchment_Orbit</li>
                 </thingDefs>
               </filter>
               <countRange>1</countRange>
@@ -282,6 +284,7 @@
               <filter>
                 <thingDefs>
                   <li>Rimgate_GlyphParchment</li>
+                  <li>Rimgate_GlyphParchment_Orbit</li>
                 </thingDefs>
               </filter>
               <countRange>1</countRange>

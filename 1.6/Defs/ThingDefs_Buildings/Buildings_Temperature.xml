@@ -43,10 +43,11 @@
         <stuffCategories>
             <li>Stony</li>
         </stuffCategories>
-        <costStuffCount>30</costStuffCount>
+        <costStuffCount>40</costStuffCount>
         <costList>
             <Rimgate_Naquadah>15</Rimgate_Naquadah>
-            <ComponentSpacer>1</ComponentSpacer>
+            <Silver>10</Silver>
+            <Gold>5</Gold>
         </costList>
 
         <researchPrerequisites>
