@@ -209,10 +209,29 @@
     <graphicData>
       <texPath>Things/Building/Structure/RGChainLinkFence</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <linkType>Basic</linkType>
+      
       <linkFlags>
         <li>Custom9</li>
       </linkFlags>
+      <linkType>Asymmetric</linkType>
+      <asymmetricLink>
+        <linkFlags>
+          <li>Wall</li>
+          <li>Rock</li>
+        </linkFlags>
+        <linkToDoors>true</linkToDoors>
+        <drawDoorBorderEast>
+          <color>(0,0,0)</color>
+          <size>(0.04, 0.77)</size>
+          <offset>(0.5, 0, 0.02)</offset>
+        </drawDoorBorderEast>
+        <drawDoorBorderWest>
+          <color>(0,0,0)</color>
+          <size>(0.04, 0.77)</size>
+          <offset>(-0.5, 0, 0.02)</offset>
+        </drawDoorBorderWest>
+      </asymmetricLink>
+
       <shadowData>
         <volume>(0.3, 0.5, 0.3)</volume>
         <offset>(0,0,-0.23)</offset>
@@ -231,10 +250,11 @@
     <costStuffCount>4</costStuffCount>
     <costList>
       <Steel>1</Steel>
+      <Rimgate_Concrete>1</Rimgate_Concrete>
     </costList>
 
     <statBases>
-      <MaxHitPoints>450</MaxHitPoints>
+      <MaxHitPoints>350</MaxHitPoints>
       <WorkToBuild>450</WorkToBuild>
       <Flammability>0</Flammability>
     </statBases>
@@ -291,6 +311,7 @@
 
     <researchPrerequisites>
       <li>Rimgate_TauriManufacturing</li>
+      <li>Smithing</li>
     </researchPrerequisites>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
   </ThingDef>
@@ -301,16 +322,35 @@
     <thingClass>Building</thingClass>
     <category>Building</category>
 
-    <label>Concrete block fence</label>
-    <description>A sturdy industrial-grade concrete block fence. Provides a basic level of perimeter security.\n\nNot capable of stopping determined intruders or holding up a roof.</description>
+    <label>Concrete slab fence</label>
+    <description>A sturdy industrial-grade slab fence made from reinforced concrete. Provides a basic level of perimeter security.\n\nNot capable of stopping determined intruders or holding up a roof.</description>
 
     <graphicData>
       <texPath>Things/Building/Structure/RGConcreteBlockFence</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <linkType>Basic</linkType>
+
       <linkFlags>
         <li>Custom10</li>
       </linkFlags>
+      <linkType>Asymmetric</linkType>
+      <asymmetricLink>
+        <linkFlags>
+          <li>Wall</li>
+          <li>Rock</li>
+        </linkFlags>
+        <linkToDoors>true</linkToDoors>
+        <drawDoorBorderEast>
+          <color>(0,0,0)</color>
+          <size>(0.04, 0.77)</size>
+          <offset>(0.5, 0, 0.02)</offset>
+        </drawDoorBorderEast>
+        <drawDoorBorderWest>
+          <color>(0,0,0)</color>
+          <size>(0.04, 0.77)</size>
+          <offset>(-0.5, 0, 0.02)</offset>
+        </drawDoorBorderWest>
+      </asymmetricLink>
+
     </graphicData>
     <uiIconPath>Things/Building/Structure/RGConcreteBlockFenceIcon</uiIconPath>
 
@@ -321,7 +361,7 @@
 
     <stuffCategories Inherit="False" />
     <costList>
-      <Rimgate_Concrete>4</Rimgate_Concrete>
+      <Rimgate_Concrete>5</Rimgate_Concrete>
     </costList>
 
     <statBases>
@@ -385,14 +425,33 @@
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
   </ThingDef>
 
-  <ThingDef Name="AncientFortifiedWall" ParentName="Wall">
+  <!-- ===== Durable Wall ===== -->
+  <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_DurableWall</defName>
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+
     <label>durable wall</label>
-    <description>A heavily-reinforced concrete wall with a shell made of an ultratech Naquadah polymer to provide exceptional protection against most forms of attack.\n\nNote: Once the last seam is welded, the only way to remove a section of this wall is through destruction.</description>
+    <description>A heavily-reinforced concrete wall with a shell made of an ultratech Naquadah polymer to provide exceptional protection against most forms of attack. These are reminiscent of the walls found in ancient military installations, which were designed to withstand significant assaults.\n\nNote: Once the last seam is welded, the only way to remove a section of this wall is through destruction.</description>
 
     <graphicData>
       <texPath>Things/Building/Structure/RGDurableWall_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <linkType>CornerFiller</linkType>
+      <linkFlags>
+        <li>Wall</li>
+        <li>Rock</li>
+      </linkFlags>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+        <edgeTop>Damage/Edge</edgeTop>
+        <edgeBot>Damage/Edge</edgeBot>
+        <edgeLeft>Damage/Edge</edgeLeft>
+        <edgeRight>Damage/Edge</edgeRight>
+      </damageData>
     </graphicData>
     <uiIconPath>Things/Building/Structure/RGDurableWallIcon</uiIconPath>
 
@@ -400,8 +459,12 @@
       <WorkToBuild>35000</WorkToBuild>
       <MaxHitPoints>7500</MaxHitPoints>
       <MarketValue>30</MarketValue>
+      <Flammability>0</Flammability>
+      <MeditationFocusStrength>0.23</MeditationFocusStrength>
     </statBases>
 
+    <stuffCategories Inherit="False" />
+    <costStuffCount>0</costStuffCount>
     <costList>
       <Steel>80</Steel>
       <Rimgate_Concrete>40</Rimgate_Concrete>
@@ -411,11 +474,19 @@
     </costList>
 
     <building>
+      <isPlaceOverableWall>true</isPlaceOverableWall>
+      <ai_chillDestination>false</ai_chillDestination>
+      <supportsWallAttachments>true</supportsWallAttachments>
+      <isInert>true</isInert>
+      <isWall>true</isWall>
       <paintable>false</paintable>
       <deconstructible>false</deconstructible>
       <alwaysDeconstructible>false</alwaysDeconstructible>
       <claimable>false</claimable>
       <isAirtight>true</isAirtight>
+      <blueprintGraphicData>
+        <texPath>Things/Building/Linked/Wall_Blueprint_Atlas</texPath>
+      </blueprintGraphicData>
       <relatedBuildCommands>
         <li>Rimgate_DurableDoor</li>
         <li>Rimgate_DurableDoorDouble</li>
@@ -423,23 +494,34 @@
       </relatedBuildCommands>
     </building>
 
-    <stuffCategories Inherit="False" />
-    <costStuffCount>0</costStuffCount>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <blockWind>true</blockWind>
+    <castEdgeShadows>true</castEdgeShadows>
+    <fillPercent>1</fillPercent>
+    <coversFloor>true</coversFloor>
+    <drawStyleCategory>Walls</drawStyleCategory>
+    <tickerType>Never</tickerType>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <holdsRoof>true</holdsRoof>
+    <designationCategory>Structure</designationCategory>
+    <uiOrder>2000</uiOrder>
+    <staticSunShadowHeight>1.0</staticSunShadowHeight>
+    <blockLight>true</blockLight>
+    <canOverlapZones>false</canOverlapZones>
+    <fertility>0</fertility>
     <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <noRightClickDraftAttack>true</noRightClickDraftAttack>
 
     <constructionSkillPrerequisite>12</constructionSkillPrerequisite>
     <researchPrerequisites>
       <li>Rimgate_AncientStructures</li>
     </researchPrerequisites>
 
-    <statBases>
-      <MaxHitPoints>7500</MaxHitPoints>
-      <Flammability>0</Flammability>
-      <MeditationFocusStrength>0</MeditationFocusStrength>
-    </statBases>
-
-    <comps Inherit="False" />
     <damageMultipliers Inherit="False">
       <li>
         <damageDef>Bomb</damageDef>
@@ -450,6 +532,16 @@
         <multiplier>1</multiplier>
       </li>
     </damageMultipliers>
+
+    <comps Inherit="False">
+      <li Class="CompProperties_MeditationFocus">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Minimal</li>
+        </focusTypes>
+      </li>
+    </comps>
+
   </ThingDef>
 
   <!-- ======================= Doors ======================= -->
@@ -486,6 +578,7 @@
       <MaxHitPoints>225</MaxHitPoints>
       <WorkToBuild>900</WorkToBuild>
       <Flammability>0</Flammability>
+      <DoorOpenSpeed>1.15</DoorOpenSpeed>
     </statBases>
 
     <holdsRoof>false</holdsRoof>
@@ -497,10 +590,17 @@
 
     <building>
       <paintable>false</paintable>
+      <ai_chillDestination>false</ai_chillDestination>
+      <relatedBuildCommands>
+        <li>PenMarker</li>
+      </relatedBuildCommands>
+      <soundDoorOpenManual>Door_FenceGateManual</soundDoorOpenManual>
+      <soundDoorCloseManual>Door_FenceGateManual</soundDoorCloseManual>
     </building>
 
     <researchPrerequisites>
       <li>Rimgate_TauriManufacturing</li>
+      <li>Smithing</li>
     </researchPrerequisites>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
   </ThingDef>
