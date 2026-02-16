@@ -452,7 +452,7 @@
 		<baseCost>5000</baseCost>
 
 		<researchViewX>0</researchViewX>
-		<researchViewY>4</researchViewY>
+		<researchViewY>4.5</researchViewY>
 
 		<prerequisites>
 			<li>SterileMaterials</li>
@@ -489,6 +489,46 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- after symbiote study, unlock canopic jars -->
+	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
+		<defName>Rimgate_CanopicJars</defName>
+		<label>Canopic jars</label>
+		<description>Unlock the secrets of Goa'uld canopic jars: bio-containers that preserve and stabilize symbiote larvae. These jars will allow us to safely store and study symbiotes—or maybe even use them for more questionable purposes.</description>
+		<baseCost>5500</baseCost>
+
+		<researchViewX>1</researchViewX>
+		<researchViewY>4.5</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_SymbioteStudy</li>
+		</prerequisites>
+		<discoveredLetterTitle>About: Goa'uld Canopic Jars</discoveredLetterTitle>
+		<discoveredLetterText>Your researchers have successfully reverse-engineered a Goa'uld canopic jar. By replicating its internal environment controls, they can now safely store and study symbiote larvae—or maybe even use them for more questionable purposes. Handle with care: these jars are designed to preserve biomaterial indefinitely.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- subjects -->
+				<li>subject->Goa'uld canopic jar</li>
+				<li>subject->symbiote bio-container</li>
+				<li>subject->larval preservation vessel</li>
+
+				<!-- adjectives -->
+				<li>subject_adj->Ancient-derived</li>
+				<li>subject_adj->biologically attuned</li>
+				<li>subject_adj->symbiote-optimized</li>
+
+				<!-- story beats -->
+				<li>subject_story->a sealed jar that maintains a microenvironment perfectly suited for symbiote larvae</li>
+				<li>subject_story->internal controls that regulate temperature, humidity, and nutrient infusion with uncanny precision</li>
+				<li>subject_story->a design that suggests the Goa'uld intended these jars for long-term storage and transport of their precious cargo</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->replicating canopic jar microenvironment controls</li>
+				<li>subject_gerund->testing larval viability over extended storage periods</li>
+				<li>subject_gerund->exploring alternative uses for the jars’ preservation capabilities</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_UnasBiology</defName>
 		<label>Unas biology</label>
@@ -497,7 +537,7 @@
 		<baseCost>2500</baseCost>
 
 		<researchViewX>0</researchViewX>
-		<researchViewY>4.5</researchViewY>
+		<researchViewY>5.25</researchViewY>
 
 		<prerequisites>
 			<li>SterileMaterials</li>
@@ -520,7 +560,7 @@
 		<baseCost>5500</baseCost>
 
 		<researchViewX>1</researchViewX>
-		<researchViewY>4.5</researchViewY>
+		<researchViewY>5.25</researchViewY>
 
 		<prerequisites>
 			<li>Rimgate_UnasBiology</li>
@@ -564,7 +604,7 @@
 		<baseCost>6500</baseCost>
 
 		<researchViewX>2</researchViewX>
-		<researchViewY>4.5</researchViewY>
+		<researchViewY>5.25</researchViewY>
 
 		<prerequisites>
 			<li>Rimgate_CorticalDampenerHacking</li>

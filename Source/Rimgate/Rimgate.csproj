@@ -489,6 +489,7 @@
     <Compile Include="Things\Building_HackableMultiTileDoor.cs" />
     <Compile Include="Things\Building_HackableSingleDoor.cs" />
     <Compile Include="Things\Building_SymbioteAmbushTrap.cs" />
+    <Compile Include="Things\Building_CanopicJar.cs" />
     <Compile Include="Things\Building_SymbioteSpawningPool.cs" />
     <Compile Include="Things\Building_TokraClimateCrystal.cs" />
     <Compile Include="Things\Building_ZPMHousing.cs" />
@@ -498,6 +499,7 @@
     <Compile Include="UI\FloatMenuOptionProvider_DialDestroyedDHD.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_EquipMechanoid.cs" />
     <Compile Include="UI\FloatMenuOptionProvider_RecoverBiomaterials.cs" />
+    <Compile Include="UI\ITab_CanopicJar.cs" />
     <Compile Include="UI\ITab_SymbiotePool.cs" />
     <Compile Include="UI\RimgateTex.cs" />
     <Compile Include="Social\ThoughtWorker_WraithEssenceCraving.cs" />

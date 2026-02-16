@@ -638,7 +638,7 @@
         <rotatable>false</rotatable>
     </ThingDef>
 
-    <!-- NOTE: cannot figure out the alpha mask issue with the default graphic; cutcomplex is ignored for some reason -->
+    <!-- NOTE: can't figure out the alpha mask issue with the default graphic; cutcomplex is ignored for some reason -->
 
     <!-- Blue -->
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
@@ -872,7 +872,7 @@
         <graphicData>
             <texPath>Things/Building/Prop/RGSymbioteContainer</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(1,1)</drawSize>
+            <drawSize>(1.2,1.2)</drawSize>
         </graphicData>
         <size>(1, 1)</size>
         <fillPercent>0.4</fillPercent>

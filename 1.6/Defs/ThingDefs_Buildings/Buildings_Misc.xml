@@ -764,6 +764,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_SymbioteSpawningPool</defName>
+		<thingClass>Rimgate.Building_SymbioteSpawningPool</thingClass>
 		<label>symbiote spawning pool</label>
 		<description>A carved, stone-lined biopool engineered to house a Goa’uld symbiote queen and her brood.
 			\n\nThe bio-reactive medium preserves symbiotic tissue indefinitely, preventing decay while maintaining the controlled conditions required for safe maturation. When supplied with regular feed, a queen will steadily produce prim’ta suitable for implantation or further development.
@@ -773,8 +774,6 @@
 			<ThingDef>Rimgate_GoauldSymbiote</ThingDef>
 			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
 		</descriptionHyperlinks>
-
-		<thingClass>Rimgate.Building_SymbioteSpawningPool</thingClass>
 
 		<size>(2,2)</size>
 		<altitudeLayer>FloorEmplacement</altitudeLayer>
@@ -864,6 +863,7 @@
 
 		<researchPrerequisites>
 			<li>Rimgate_SymbioteStudy</li>
+			<li>Stonecutting</li>
 		</researchPrerequisites>
 
 		<comps>

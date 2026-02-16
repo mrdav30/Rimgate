@@ -1,103 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Pawns -->
+  <!-- ====== Goa'uld Art ====== -->
 
-  <RulePackDef>
-    <defName>Rimgate_NamerPersonJaffaM</defName>
-    <rulePack>
-      <rulesStrings>
-        <li>name->[RG_GoauldFirstM] [RG_GoauldLast]</li>
-        <li>name->[comboname] [RG_GoauldLast]</li>
-        <li>comboname-&gt;[RG_Goauld_FirstPartM][RG_Goauld_SecondPartM]</li>
-      </rulesStrings>
-      <rulesFiles>
-        <li>RG_GoauldFirstM->NameBanks/Goauld/Names_First_JaffaM</li>
-        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Jaffa</li>
-        <li>RG_Goauld_FirstPartM->NameBanks/Goauld/Names_FirstPart_JaffaM</li>
-        <li>RG_Goauld_SecondPartM->NameBanks/Goauld/Names_SecondPart_JaffaM</li>
-      </rulesFiles>
-    </rulePack>
-  </RulePackDef>
-
-  <RulePackDef>
-    <defName>Rimgate_NamerPersonJaffaF</defName>
-    <rulePack>
-      <rulesStrings>
-        <li>name->[RG_GoauldFirstF] [RG_GoauldLast]</li>
-        <li>name->[comboname] [RG_GoauldLast]</li>
-        <li>comboname-&gt;[RG_Goauld_FirstPartF][RG_Goauld_SecondPartF]</li>
-      </rulesStrings>
-      <rulesFiles>
-        <li>RG_GoauldFirstF->NameBanks/Goauld/Names_First_JaffaF</li>
-        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Jaffa</li>
-        <li>RG_Goauld_FirstPartF->NameBanks/Goauld/Names_FirstPart_JaffaF</li>
-        <li>RG_Goauld_SecondPartF->NameBanks/Goauld/Names_SecondPart_JaffaF</li>
-      </rulesFiles>
-    </rulePack>
-  </RulePackDef>
-
-  <RulePackDef>
-    <defName>Rimgate_NamerSymbiote</defName>
-    <rulePack>
-      <rulesStrings>
-        <li>name->[RG_SymbioteName]</li>
-      </rulesStrings>
-      <rulesFiles>
-        <li>RG_SymbioteName->NameBanks/Goauld/Names_Symbiote_Unisex</li>
-      </rulesFiles>
-    </rulePack>
-  </RulePackDef>
-
-  <RulePackDef>
-    <defName>Rimgate_NamerKull</defName>
-    <rulePack>
-      <rulesStrings>
-        <li>name->[RG_KullName]</li>
-
-        <li>RG_KullName->[Gore]-[kull_serial]</li>
-        <li>RG_KullName->[RG_KullCodeName]</li>
-        <li>RG_KullName->[Weapon]-[kull_serial]</li>
-        <li>RG_KullName->[ConceptBadass]-[kull_serial]</li>
-        <li>RG_KullName->[RG_KullUnisexName] [kull_serial]</li>
-
-        <li>RG_KullCodeName->[RomanNumeral]</li>
-        <li>RG_KullCodeName->[kull_serial]</li>
-
-        <li>kull_serial->[maybe_letter][maybe_numbers][maybe_letter]</li>
-        <li>kull_serial->[maybe_letter][RomanNumeral][maybe_letter]</li>
-        <li>kull_serial->[maybe_letter][RomanNumeral][Digit][maybe_letter]</li>
-        <li>kull_serial->[maybe_letter][Digit][RomanNumeral][maybe_letter]</li>
-        <li>kull_serial->[maybe_letter][Digit][RomanNumeral][Digit][maybe_letter]</li>
-        <li>kull_serial->[maybe_letter][RomanNumeral][Digit][RomanNumeral][maybe_letter]</li>
-        <li>kull_serial->[maybe_letter][RomanNumeral][maybe_numbers][RomanNumeral][maybe_letter]</li>
-
-        <li>maybe_letter->[Letter]</li>
-        <li>maybe_letter->[Letter][Letter]</li>
-
-        <li>maybe_numbers->[Digit]</li>
-        <li>maybe_numbers->[Digit][Digit]</li>
-        <li>maybe_numbers->[Digit][Digit][Digit]</li>
-      </rulesStrings>
-      <rulesFiles>
-        <li>ConceptBadass->Words/Nouns/Concepts_Badass</li>
-        <li>Weapon->Words/Nouns/Weapons</li>
-        <li>Gore->Words/Nouns/Gore</li>
-        <li>Letter->WordParts/CapitalLetters</li>
-        <li>RG_KullUnisexName->NameBanks/Goauld/Names_Kull_Unisex</li>
-        <li>RomanNumeral->Words/Misc/Numbers_SmallRoman</li>
-      </rulesFiles>
-      <rulesRaw>
-        <li Class="Rule_Number">
-          <keyword>Digit</keyword>
-          <range>0~9</range>
-        </li>
-      </rulesRaw>
-    </rulePack>
-  </RulePackDef>
-
-  <!-- Art -->
-
+  <!-- Name -->
   <RulePackDef>
     <defName>NamerArt_GoauldSculpture</defName>
     <rulePack>
@@ -156,6 +62,7 @@
     </rulePack>
   </RulePackDef>
 
+  <!-- Description -->
   <RulePackDef>
     <defName>ArtDescription_GoauldSculpture</defName>
     <rulePack>
@@ -222,6 +129,113 @@
         <li>menace_clause->Onlookers feel their backs straighten unbidden.</li>
         <li>menace_clause->Standing nearby invites careful silence.</li>
         <li>menace_clause->Something about it discourages disobedience.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <!-- Canopic Jars -->
+
+  <!-- Name -->
+  <RulePackDef>
+    <defName>NamerArt_GoauldCanopicJar</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_art_name->[jar_title] of [honored_aspect]</li>
+        <li>r_art_name->[guardian_title] of [burial_domain]</li>
+        <li>r_art_name->[vessel_title] of [eternal_charge]</li>
+
+        <li>jar_title->Canopic Reliquary</li>
+        <li>jar_title->Sealed Vessel</li>
+        <li>jar_title->Preserved Offering</li>
+        <li>jar_title->Golden Canopic</li>
+
+        <li>guardian_title->Watcher Jar</li>
+        <li>guardian_title->Custodian Vessel</li>
+        <li>guardian_title->Silent Sentinel</li>
+
+        <li>vessel_title->Jar of Reverence</li>
+        <li>vessel_title->Vessel of Tribute</li>
+        <li>vessel_title->Urn of Command</li>
+
+        <li>honored_aspect->Breath</li>
+        <li>honored_aspect->Blood</li>
+        <li>honored_aspect->Memory</li>
+        <li>honored_aspect->Judgment</li>
+
+        <li>burial_domain->the Burial Stars</li>
+        <li>burial_domain->the Silent Court</li>
+        <li>burial_domain->the Sand Tombs</li>
+
+        <li>eternal_charge->Endless Guardianship</li>
+        <li>eternal_charge->Unbroken Service</li>
+        <li>eternal_charge->the Last Rite</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <!-- Description -->
+  <RulePackDef>
+    <defName>ArtDescription_GoauldCanopicJar</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>physical_description_root->This [jar_object] [depicts] [image]. [desc_sentence_group]</li>
+        <li>physical_description_root->On this [jar_object] is a [depiction] of [image]. [desc_sentence_group]</li>
+        <li>physical_description_root->This [jar_object] bears [glyph_style] invoking [funerary_power]. [desc_sentence_group]</li>
+
+        <li>jar_object->canopic jar</li>
+        <li>jar_object->gilded canopic vessel</li>
+        <li>jar_object->seal-bound funerary jar</li>
+        <li>jar_object->inscribed burial urn</li>
+
+        <li>depicts->depicts</li>
+        <li>depicts->shows</li>
+        <li>depicts->portrays</li>
+
+        <li>depiction->relief</li>
+        <li>depiction->panel</li>
+        <li>depiction->carving</li>
+
+        <li>glyph_style->tight hieroglyphs</li>
+        <li>glyph_style->knife-cut hieroglyphs</li>
+        <li>glyph_style->worn hieroglyphs</li>
+        <li>glyph_style->gold-filled hieroglyphs</li>
+
+        <li>funerary_power->the Eternal Court</li>
+        <li>funerary_power->the Keepers of Passage</li>
+        <li>funerary_power->the Serpent Throne</li>
+
+        <li>image->a jackal-headed guardian seated before sealed chambers</li>
+        <li>image->a serpent crest curling around four sacred organs</li>
+        <li>image->a procession of priests carrying jars beneath desert stars</li>
+        <li>image->a winged sigil closing over a tomb entrance</li>
+        <li>image->a ruler offering tribute to the dead in a gold-lit hall</li>
+        <li>image->a ringed gateway framing a field of funeral braziers</li>
+
+        <li>desc_sentence_group->[material_clause] [mood_clause] [menace_clause]</li>
+
+        <li>material_clause->Its [seal_material] lid is [finish] from handling.</li>
+        <li>material_clause->Fine [inlay] traces each line of the carving.</li>
+        <li>material_clause->A [seal_material] stopper sits heavy in its collar.</li>
+
+        <li>seal_material->obsidian</li>
+        <li>seal_material->basalt</li>
+        <li>seal_material->black naquadah</li>
+
+        <li>inlay->lapis</li>
+        <li>inlay->obsidian glass</li>
+        <li>inlay->dark electrum</li>
+
+        <li>finish->smooth</li>
+        <li>finish->scarred</li>
+        <li>finish->thumb-worn</li>
+
+        <li>mood_clause->The air nearby feels dry and ceremonial.</li>
+        <li>mood_clause->Its carved face seems to observe every movement.</li>
+        <li>mood_clause->The chamber around it grows strangely still.</li>
+
+        <li>menace_clause->Onlookers lower their voices without deciding to.</li>
+        <li>menace_clause->Standing close brings a faint sense of judgment.</li>
+        <li>menace_clause->It carries the quiet threat of ancient rites.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
