@@ -47,6 +47,9 @@
         <defName>Rimgate_SymbiotePouchMutation</defName>
         <label>symbiote pouch</label>
         <description>This gene rewrites the host’s anatomy to form a specialized abdominal pouch. Once considered a grotesque mark of servitude to the Goa’uld, it is also a symbol of power—granting the bearer the ability to house a living symbiote within. Without a symbiote, the pouch lies dormant, a hollow reminder of dependency.</description>
+        <descriptionHyperlinks>
+            <HediffDef>Rimgate_SymbiotePouch</HediffDef>
+        </descriptionHyperlinks>
         <iconPath>UI/Gene/RGSymbiotePouchMutationGeneIcon</iconPath>
         <displayCategory>Miscellaneous</displayCategory>
 

@@ -463,6 +463,7 @@
 
 	<RG_SetTo>Set to</RG_SetTo>
 	<RG_IncompatibleWeaponType>Incompatible weapon type</RG_IncompatibleWeaponType>
+	<RG_AlreadyHas>already has {0}</RG_AlreadyHas>
 
 	<!-- Cocoon pod -->
 
@@ -492,7 +493,6 @@
 	<!-- Resources -->
 
 	<RG_CementValueDesc>Raw stone chunks go {0}x further than other stone materials and anything made of limestone reduces the cost by {1}.</RG_CementValueDesc>
-
 	<RG_TunnelCrystalClearedDesignation>Tunneling crystal resonance clears {0} designated tiles.</RG_TunnelCrystalClearedDesignation>
 
 </LanguageData>

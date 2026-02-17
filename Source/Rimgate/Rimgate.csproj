@@ -356,6 +356,8 @@
     <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
     <Compile Include="AI\WorkGivers\WorkGiver_CloseGate.cs" />
     <Compile Include="Comps\CompAssignableToPawn_Sarcophagus.cs" />
+    <Compile Include="Comps\CompUseEffect_AddGene.cs" />
+    <Compile Include="Comps\Properties\CompProperties_UseEffectAddGene.cs" />
     <Compile Include="Comps\CompTargetable_TokraTunnelCrystal.cs" />
     <Compile Include="Comps\CompTargetEffect_TokraTunnelCrystal.cs" />
     <Compile Include="Comps\CompUseEffect_InstallSymbiote.cs" />

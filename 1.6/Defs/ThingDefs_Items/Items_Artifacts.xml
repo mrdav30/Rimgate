@@ -162,4 +162,73 @@
         </comps>
     </ThingDef>
 
+    <!-- ==================== Primogenitor Sphere ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_PrimogenitorSphere</defName>
+        <thingClass>ThingWithComps</thingClass>
+        <label>primogenitor sphere</label>
+
+        <description>A perfectly spherical container, made of an unknown alloy that is cool to the touch and completely impervious to damage. The surface is etched with intricate, interlocking glyphs that seem to shift and rearrange when observed from different angles. It hums with a faint, otherworldly energy, and emits a soft glow that pulses rhythmically, as if it has a heartbeat of its own. The sphere is perfectly balanced, resting on any surface without rolling, and it cannot be opened by conventional means.\n\nThis ancient artifact is Goa'uld technology used to create Jaffa hosts. When activated, it will surgically implant a symbiote pouch into the user, allowing them to serve as a host for a Prim'ta. The activation sequence consumes the device's arcane power reserves in a single, irreversible process—the glyphs fade to ash, and the sphere crumbles to dust upon completion.</description>
+        <descriptionHyperlinks>
+            <GeneDef>Rimgate_SymbiotePouchMutation</GeneDef>
+        </descriptionHyperlinks>
+
+        <graphicData>
+            <texPath>Things/Item/Artifact/RGPrimogenitorSphere</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>0.62</drawSize>
+        </graphicData>
+
+        <techLevel>Archotech</techLevel>
+        <category>Item</category>
+
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Beauty>10</Beauty>
+            <Mass>0.5</Mass>
+            <MarketValue>1200</MarketValue>
+            <DeteriorationRate>0</DeteriorationRate>
+            <Flammability>0.7</Flammability>
+        </statBases>
+
+        <drawerType>MapMeshOnly</drawerType>
+        <useHitPoints>true</useHitPoints>
+        <pathCost>14</pathCost>
+        <selectable>true</selectable>
+        <altitudeLayer>Item</altitudeLayer>
+        <tickerType>Never</tickerType>
+        <alwaysHaulable>true</alwaysHaulable>
+        <resourceReadoutPriority>Middle</resourceReadoutPriority>
+        <stackLimit>1</stackLimit>
+        <socialPropernessMatters>true</socialPropernessMatters>
+
+        <tradeTags>
+            <li>Artifact</li>
+        </tradeTags>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <thingSetMakerTags>
+            <li>RewardStandardLowFreq</li>
+        </thingSetMakerTags>
+
+        <comps>
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Usable">
+                <useJob>UseArtifact</useJob>
+                <useLabel>Activate {0_label} to become a Jaffa</useLabel>
+                <showUseGizmo>true</showUseGizmo>
+                <useDuration>320</useDuration>     
+            </li>
+            <li Class="Rimgate.CompProperties_UseEffectAddGene">
+                <geneDef>Rimgate_SymbiotePouchMutation</geneDef>
+            </li>
+            <li Class="CompProperties_UseEffectPlaySound">
+                <soundOnUsed>PsyAmpInstalled</soundOnUsed>
+            </li>
+            <li Class="CompProperties_UseEffectDestroySelf" />
+        </comps>
+    </ThingDef>
+
 </Defs>

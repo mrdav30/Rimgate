@@ -39,6 +39,13 @@ public static class BiologyUtil
             : gene;
     }
 
+    public static Gene AddGene(this Pawn pawn, GeneDef geneDef, bool xenogene = false)
+    {
+        if (pawn.genes is null) return null;
+        if(pawn.GetActiveGeneOf(geneDef) != null) return null;
+        return pawn.genes.AddGene(geneDef, xenogene);
+    }
+
     public static bool IsXenoTypeOf(this Pawn pawn, XenotypeDef xenotypeDef)
     {
         if (xenotypeDef is null) return false;
