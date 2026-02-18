@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ToolCapacityDef>
+		<defName>Rimgate_SiegeBlunt</defName>
+		<label>replicator crush</label>
+	</ToolCapacityDef>
+
+	<ToolCapacityDef>
+		<defName>Rimgate_FlashPulse</defName>
+		<label>flash pulse</label>
+	</ToolCapacityDef>
+
+</Defs>

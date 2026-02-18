@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
+    <!-- Base Include -->
     <RulePackDef>
         <defName>Rimgate_DamageEvent_IncludeExtra</defName>
         <include>
@@ -16,6 +17,7 @@
         </rulePack>
     </RulePackDef>
 
+    <!-- Symbiote Ambush Trap -->
     <RulePackDef>
         <defName>Rimgate_DamageEvent_SymbioteAmbushTrap</defName>
         <include>
@@ -76,6 +78,46 @@
                 <li>extra_effect->and then retreating into the depths</li>
                 <li>extra_effect->before submerging back into the water</li>
 
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <!-- Flash Pulse -->
+
+    <RulePackDef>
+        <defName>Maneuver_FlashPulse_MeleeHit</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>r_logentry->[INITIATOR_definite] emitted a flash pulse at [RECIPIENT_definite].</li>
+                <li>r_logentry(p=0.2)->[INITIATOR_definite] emitted a blinding flash pulse at [RECIPIENT_definite].</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>Maneuver_FlashPulse_MeleeDeflect</defName>
+        <!-- I'm pretty sure this can't actually happen -->
+        <rulePack>
+            <rulesStrings>
+                <li>r_logentry->[INITIATOR_definite] emitted a flash pulse at [RECIPIENT_definite], but [RECIPIENT_definite] deflected it.</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>Maneuver_FlashPulse_MeleeMiss</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>r_logentry->[INITIATOR_definite] emitted a flash pulse at [RECIPIENT_definite], but missed.</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>Maneuver_FlashPulse_MeleeDodge</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>r_logentry->[INITIATOR_definite] emitted a flash pulse at [RECIPIENT_definite], but [RECIPIENT_definite] dodged out of the way.</li>
             </rulesStrings>
         </rulePack>
     </RulePackDef>

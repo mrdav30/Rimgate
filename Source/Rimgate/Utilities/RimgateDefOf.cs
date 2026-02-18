@@ -20,6 +20,8 @@ public static class RimgateDefOf
     public static BackstoryDef Rimgate_Replicant;
     public static BackstoryDef Rimgate_EnhancedClone;
 
+    public static BodyPartTagDef SightSource;
+
     public static ChemicalDef Rimgate_SarcophagusChemical;
 
     public static ConceptDef Rimgate_GateIrisProtection;
@@ -64,6 +66,7 @@ public static class RimgateDefOf
     public static HediffDef Rimgate_CorticalCatalyst;
     public static HediffDef Rimgate_CorticalCatalyst_Mk2;
     public static HediffDef Rimgate_CrystalResonanceEffect;
+    public static HediffDef Rimgate_FlashPulse;
     public static HediffDef Rimgate_KrintakSickness;
     public static HediffDef Rimgate_PouchDegeneration;
     public static HediffDef Rimgate_PrimtaInPouch;

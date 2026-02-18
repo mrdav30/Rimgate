@@ -75,7 +75,7 @@
   <FactionDef ParentName="Rimgate_GoauldFactionBase">
     <defName>Rimgate_GoauldBaal</defName>
     <label>Supreme System Lord Ba'aal</label>
-    <description>Once a mid-tier underlord with a flair for drama, Ba’al clawed his way to the top via cloning, cunning, and copious ego.\nAllegedly destroyed, but Goa’uld never truly die—they franchise.\nNow he hunts this RimWorld’s “dwarf-gates”: smaller Stargates bound to an Archotech-locked lattice. If he finds the master key, nobody leaves without his permission.</description>
+    <description>Once a mid-tier underlord with theatrical ambitions, Ba'al engineered his rise to supremacy through cloning, cunning, and an absolutely insufferable ego.\nAllegedly destroyed across multiple timelines, but the Goa'uld don't do permanent—they rebrand.\n\nHaving made his way to the Rim, Ba'al sees an opportunity to establish a new stronghold for his symbiotic dynasty. Now he pursues the Dwarfgates with singular obsession, convinced their Archotech mechanisms are the key to absolute dominion.\nAs an enemy of any power that rivals his own, he will stop at nothing to seize them—and everyone in his way should pray they're useful as hosts.</description>
     <fixedName>Supreme System Lord Ba'aal</fixedName>
     <factionIconPath>UI/Map/RGBaalBaseIcon</factionIconPath>
 

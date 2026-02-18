@@ -3,6 +3,7 @@
 
     <!-- ======================= Replicators ======================= -->
 
+    <!-- Vanilla -->
     <ThingDef Name="Rimgate_ReplicatorRaceBase" ParentName="BaseMechanoid">
         <defName>Rimgate_Replicator</defName>
         <label>Replicator</label>
@@ -61,10 +62,11 @@
             <ArmorRating_Blunt>0.30</ArmorRating_Blunt>
             <ArmorRating_Heat>2.00</ArmorRating_Heat>
             <PsychicSensitivity>0.75</PsychicSensitivity>
-            <MoveSpeed>4.7</MoveSpeed>
             <Flammability>0</Flammability>
             <ToxicResistance>1</ToxicResistance>
             <BandwidthCost MayRequire="Ludeon.Rimworld.Biotech">4</BandwidthCost>
+            <WastepacksPerRecharge MayRequire="Ludeon.RimWorld.Biotech">1</WastepacksPerRecharge>
+            <MechEnergyUsageFactor MayRequire="Ludeon.RimWorld.Biotech">0.5</MechEnergyUsageFactor>
             <MoveSpeed>4.5</MoveSpeed>
         </statBases>
         <race>
@@ -111,6 +113,7 @@
         </tradeTags>
     </ThingDef>
 
+    <!-- Plasteel -->
     <ThingDef ParentName="Rimgate_ReplicatorRaceBase">
         <defName>Rimgate_ReplicatorPlasteel</defName>
         <tools Inherit="false">
@@ -174,6 +177,7 @@
         </butcherProducts>
     </ThingDef>
 
+    <!-- Uranium -->
     <ThingDef ParentName="Rimgate_ReplicatorRaceBase">
         <defName>Rimgate_ReplicatorUranium</defName>
         <tools Inherit="false">
@@ -237,6 +241,7 @@
         </butcherProducts>
     </ThingDef>
 
+    <!-- Naquadah -->
     <ThingDef ParentName="Rimgate_ReplicatorRaceBase">
         <defName>Rimgate_ReplicatorNaquadah</defName>
         <tools Inherit="false">
@@ -486,10 +491,6 @@
 
         </race>
 
-        <!-- <recipes>
-
-        </recipes> -->
-
         <butcherProducts>
             <Steel>30</Steel>
             <Plasteel>10</Plasteel>
@@ -565,6 +566,7 @@
             <ArmorRating_Sharp>0.8</ArmorRating_Sharp>
             <BandwidthCost>3</BandwidthCost>
             <MechEnergyLossPerHP>0.7</MechEnergyLossPerHP>
+            <MechEnergyUsageFactor MayRequire="Ludeon.RimWorld.Biotech">0.62</MechEnergyUsageFactor>
             <CleaningSpeed>1.5</CleaningSpeed>
             <MiningSpeed>1.5</MiningSpeed>
             <ConstructionSpeed>1.5</ConstructionSpeed>
@@ -621,6 +623,7 @@
                 </li>
             </lifeStageAges>
         </race>
+
         <tools>
             <li>
                 <label>grapple arm claw</label>
@@ -634,6 +637,7 @@
                 <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
             </li>
         </tools>
+
         <comps>
             <li Class="CompProperties_Shield">
                 <startingTicksToReset>11500</startingTicksToReset><!-- 2.5 min -->
@@ -642,6 +646,114 @@
                 <energyLossPerDamage>0.015</energyLossPerDamage>
                 <energyOnReset>1.5</energyOnReset>
                 <blocksRangedWeapons>false</blocksRangedWeapons>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ======================= Wraith tracking drone ======================= -->
+
+    <ThingDef ParentName="BaseMechanoid">
+        <defName>Rimgate_TrackingDrone</defName>
+        <label>tracking drone</label>
+        <description>A Wraith-style hunter-seeker straight out of a mechanophobe's nightmares: fast, twitchy, and always watching. Built to stalk prey and feed allies real-time target data, it can project a tactical support field that sharpens nearby friendly aim and cuts down aiming delay.\n\nIf something gets too close, the drone's flash emitter answers with a blinding pulse that stuns and fries optics. Looks like a scout platform, fights like an ambush coordinator.</description>
+        <statBases>
+            <MarketValue>7777</MarketValue>
+            <MoveSpeed>8.2</MoveSpeed>
+            <Flammability>0</Flammability>
+            <ToxicResistance>1</ToxicResistance>
+            <ComfyTemperatureMin>-100</ComfyTemperatureMin>
+            <ComfyTemperatureMax>250</ComfyTemperatureMax>
+            <MeatAmount>0</MeatAmount>
+            <ArmorRating_Blunt>0.10</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.30</ArmorRating_Sharp>
+            <ArmorRating_Heat>2.00</ArmorRating_Heat>
+            <PawnTrapSpringChance>0</PawnTrapSpringChance>
+            <MeleeDamageFactor>2</MeleeDamageFactor>
+            <PsychicSensitivity>0</PsychicSensitivity>
+            <BandwidthCost>2</BandwidthCost>
+            <MeleeHitChance>6</MeleeHitChance>
+            <MeleeDodgeChance>72</MeleeDodgeChance>
+            <ControlTakingTime>15</ControlTakingTime>
+            <MechEnergyLossPerHP>0.2</MechEnergyLossPerHP>
+            <MechEnergyUsageFactor MayRequire="Ludeon.RimWorld.Biotech">0.2</MechEnergyUsageFactor>
+            <WorkSpeedGlobal MayRequire="Ludeon.RimWorld.Biotech">1</WorkSpeedGlobal>
+            <WastepacksPerRecharge>1</WastepacksPerRecharge>
+            <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
+        </statBases>
+        <butcherProducts>
+            <Steel>20</Steel>
+            <Plasteel>10</Plasteel>
+            <Rimgate_Biomass>1</Rimgate_Biomass>
+            <ComponentSpacer>1</ComponentSpacer>
+        </butcherProducts>
+
+        <race>
+            <fleshType>Mechanoid</fleshType>
+            <lifeExpectancy>2500</lifeExpectancy>
+
+            <intelligence>ToolUser</intelligence>
+            <thinkTreeMain>Mechanoid</thinkTreeMain>
+            <thinkTreeConstant>Rimgate_TrackingDroneConstant</thinkTreeConstant>
+            <trainability>None</trainability>
+            <hideTrainingTab>true</hideTrainingTab>
+
+            <alwaysAwake>true</alwaysAwake>
+            <disableIgniteVerb>true</disableIgniteVerb>
+            <mechWeightClass>Light</mechWeightClass>
+            <body>Rimgate_TrackingDrone</body>
+            <baseBodySize>0.5</baseBodySize>
+            <baseHealthScale>0.5</baseHealthScale>
+            <hasMeat>false</hasMeat>
+            <makesFootprints>false</makesFootprints>
+
+            <mechFixedSkillLevel>6</mechFixedSkillLevel>
+
+            <lifeStageAges>
+                <li MayRequire="Ludeon.RimWorld.Biotech">
+                    <def>MechanoidFullyFormed</def>
+                    <minAge>0</minAge>
+                    <soundWounded>Pawn_Wasp_Wounded</soundWounded>
+                    <soundDeath>Pawn_Wasp_Death</soundDeath>
+                    <soundCall>Pawn_Wasp_Call</soundCall>
+                </li>
+                <li>
+                    <def>MechanoidFullyFormed</def>
+                    <minAge>100</minAge>
+                    <soundWounded>Pawn_Wasp_Wounded</soundWounded>
+                    <soundDeath>Pawn_Wasp_Death</soundDeath>
+                    <soundCall>Pawn_Wasp_Call</soundCall>
+                </li>
+            </lifeStageAges>
+        </race>
+
+        <tools>
+            <li>
+                <label>flash emitter</label>
+                <capacities>
+                    <li>Rimgate_FlashPulse</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>2.9</cooldownTime>
+                <linkedBodyPartsGroup>Rimgate_FlashPulseTool</linkedBodyPartsGroup>
+                <chanceFactor>1.25</chanceFactor>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+            </li>
+            <li>
+                <label>shell</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>2.6</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>1</chanceFactor>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+            </li>
+        </tools>
+
+        <comps>
+            <li>
+                <compClass>CompSentryDrone</compClass>
             </li>
         </comps>
     </ThingDef>

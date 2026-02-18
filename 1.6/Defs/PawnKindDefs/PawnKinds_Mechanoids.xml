@@ -3,6 +3,7 @@
 
     <!-- ======================= Replicators ======================= -->
 
+    <!-- Vanilla -->
     <PawnKindDef Name="Rimgate_ReplicatorBase" ParentName="BaseMechanoidKind">
         <defName>Rimgate_Replicator</defName>
         <label>replicator</label>
@@ -11,6 +12,8 @@
         <aiAvoidCover>true</aiAvoidCover>
         <canUseAvoidGrid>true</canUseAvoidGrid>
         <combatPower>90</combatPower>
+        <weaponMoney Inherit="False" IsNull="True" />
+        <weaponTags Inherit="False" IsNull="True" />
         <lifeStages>
             <li MayRequire="Ludeon.RimWorld.Biotech">
                 <bodyGraphicData>
@@ -33,10 +36,9 @@
         </lifeStages>
         <isGoodBreacher>true</isGoodBreacher>
         <allowInMechClusters>false</allowInMechClusters>
-        <weaponMoney>9999~9999</weaponMoney>
-        <weaponTags />
     </PawnKindDef>
 
+    <!-- Plasteel -->
     <PawnKindDef ParentName="Rimgate_ReplicatorBase">
         <defName>Rimgate_ReplicatorPlasteel</defName>
         <label>replicator (plasteel)</label>
@@ -69,6 +71,7 @@
         </lifeStages>
     </PawnKindDef>
 
+    <!-- Uranium -->
     <PawnKindDef ParentName="Rimgate_ReplicatorBase">
         <defName>Rimgate_ReplicatorUranium</defName>
         <label>replicator (uranium)</label>
@@ -101,6 +104,7 @@
         </lifeStages>
     </PawnKindDef>
 
+    <!-- Naquadah -->
     <PawnKindDef ParentName="Rimgate_ReplicatorBase">
         <defName>Rimgate_ReplicatorNaquadah</defName>
         <label>replicator (naquadah)</label>
@@ -278,9 +282,9 @@
         <defName>Rimgate_Malp</defName>
         <label>MALP</label>
         <race>Rimgate_Malp</race>
-        <weaponMoney>9999~9999</weaponMoney>
-        <combatPower>400</combatPower>
-        <weaponTags></weaponTags>
+        <combatPower>140</combatPower>
+        <weaponMoney Inherit="False" IsNull="True" />
+        <weaponTags Inherit="False" IsNull="True" />
         <aiAvoidCover>true</aiAvoidCover>
         <techHediffsChance MayRequire="Ludeon.RimWorld.Biotech">1</techHediffsChance>
         <techHediffsMoney>9999~9999</techHediffsMoney>
@@ -304,6 +308,48 @@
                     <drawSize>2</drawSize>
                     <shadowData>
                         <volume>(0.6, 0.8, 0.6)</volume>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+        </lifeStages>
+        <controlGroupPortraitZoom>0.65</controlGroupPortraitZoom>
+    </PawnKindDef>
+
+    <!-- ======================= Tracking Drone ======================= -->
+
+    <PawnKindDef ParentName="BaseMechanoidKind">
+        <defName>Rimgate_TrackingDrone</defName>
+        <label>tracking drone</label>
+        <race>Rimgate_TrackingDrone</race>
+        <defaultFactionType>Rimgate_WraithEmpire</defaultFactionType>
+        <combatPower>120</combatPower>
+        <weaponMoney Inherit="False" IsNull="True" />
+        <weaponTags Inherit="False" IsNull="True" />
+        <allowInMechClusters>false</allowInMechClusters>
+        <abilities>
+            <li>Rimgate_TrackingDroneSupport</li>
+        </abilities>
+        <!-- <startingHediffs>
+            <li>
+                <def>Rimgate_NaniteRegeneration</def>
+            </li>
+        </startingHediffs> -->
+        <lifeStages>
+            <li MayRequire="Ludeon.RimWorld.Biotech">
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/TrackingDrone/RGTrackingDrone</texPath>
+                    <drawSize>0.8</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
+                    </shadowData>
+                </bodyGraphicData>
+            </li>
+            <li>
+                <bodyGraphicData>
+                    <texPath>Things/Pawn/Mechanoid/TrackingDrone/RGTrackingDrone</texPath>
+                    <drawSize>0.8</drawSize>
+                    <shadowData>
+                        <volume>(0.25, 0.3, 0.25)</volume>
                     </shadowData>
                 </bodyGraphicData>
             </li>

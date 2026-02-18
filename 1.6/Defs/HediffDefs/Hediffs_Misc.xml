@@ -332,7 +332,7 @@
         <label>nanite regeneration</label>
         <defaultLabelColor>(232, 157, 27)</defaultLabelColor>
         <hediffClass>HediffWithComps</hediffClass>
-        <description>The nanite replicators that make up the humanoid body rapidly repair injuries and regenerate tissue, significantly accelerating the healing process-even in extreme conditions, like being dead.</description>
+        <description>Nanites coursing through the body continuously repair injuries and regenerate missing parts, significantly accelerating the healing process-even in extreme conditions, like being dead.</description>
         <isBad>false</isBad>
         <everCurableByItem>false</everCurableByItem>
         <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>
@@ -361,7 +361,7 @@
         <label>regenerating</label>
         <labelNoun>regenerating nanites</labelNoun>
         <defaultLabelColor>(220,200,180)</defaultLabelColor>
-        <description>Nanites actively repairing synthetic tissue. It works, but is fragile while it stabilizes.</description>
+        <description>Nanites actively repairing damage. It works, but is fragile until it stabilizes.</description>
 
         <isBad>false</isBad>
         <tendable>false</tendable>

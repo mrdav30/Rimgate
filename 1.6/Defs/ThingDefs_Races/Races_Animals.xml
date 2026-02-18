@@ -108,7 +108,7 @@
             <ArmorRating_Heat>0.54</ArmorRating_Heat>
             <ArmorRating_Blunt>0.80</ArmorRating_Blunt>
             <ArmorRating_Sharp>0.72</ArmorRating_Sharp>
-            <MeleeDodgeChance>15</MeleeDodgeChance>
+            <MeleeDodgeChance>12</MeleeDodgeChance>
             <PsychicSensitivity>0.75</PsychicSensitivity>
             <ToxicResistance>0.90</ToxicResistance>
             <LeatherAmount>55</LeatherAmount>
@@ -157,6 +157,17 @@
                 <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
                 <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
                 <chanceFactor>0.15</chanceFactor>
+            </li>
+            <li>
+                <label>kick material</label>
+                <capacities>
+                    <li>KickMaterialInEyes</li>
+                </capacities>
+                <hediff>DirtInEyes</hediff>
+                <cooldownTime>1.5</cooldownTime>
+                <chanceFactor>0.15</chanceFactor>
+                <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
             </li>
         </tools>
 

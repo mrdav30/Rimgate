@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
+	<!-- Unas -->
 	<ThinkTreeDef>
 		<defName>Rimgate_Unas</defName>
 		<insertTag>Animal_PreWander</insertTag>
@@ -28,6 +29,7 @@
 		</thinkRoot>
 	</ThinkTreeDef>
 
+	<!-- Satisfy Essence Need -->
 	<ThinkTreeDef>
 		<defName>Rimgate_SatisfyEssenceNeed</defName>
 		<insertTag>Humanlike_PostDuty</insertTag>
@@ -44,6 +46,68 @@
 			</subNodes>
 		</thinkRoot>
 
+	</ThinkTreeDef>
+
+	<!-- Tracking Drone -->
+
+	<ThinkTreeDef>
+		<defName>Rimgate_TrackingDroneConstant</defName>
+		<thinkRoot Class="ThinkNode_Priority">
+			<subNodes>
+
+				<!-- Despawned -->
+				<li Class="ThinkNode_Subtree">
+					<treeDef>Despawned</treeDef>
+				</li>
+
+				<!-- Board/leave gravship -->
+				<li Class="JobGiver_BoardOrLeaveGravship" />
+
+				<li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
+					<subNodes>
+
+						<!-- Tracking Support -->
+						<li Class="ThinkNode_ConditionalHasAbility">
+							<ability>Rimgate_TrackingDroneSupport</ability>
+							<subNodes>
+								<li Class="JobGiver_AICastAbilityOnSelf">
+									<ability>Rimgate_TrackingDroneSupport</ability>
+								</li>
+							</subNodes>
+						</li>
+
+						<li Class="ThinkNode_ConditionalSentryDroneMode">
+							<mode>Patrol</mode>
+							<subNodes>
+
+								<li Class="ThinkNode_ConditionalPlayerMech">
+									<subNodes>
+										<li Class="JobGiver_WanderColony" />
+									</subNodes>
+								</li>
+
+								<li Class="JobGiver_SentryPatrol" />
+
+							</subNodes>
+						</li>
+
+						<li Class="ThinkNode_ConditionalSentryDroneMode">
+							<mode>Attack</mode>
+							<subNodes>
+								<li Class="JobGiver_AIFightEnemies">
+									<targetAcquireRadius>65</targetAcquireRadius>
+									<targetKeepRadius>72</targetKeepRadius>
+									<humanlikesOnly>true</humanlikesOnly>
+									<needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
+								</li>
+								<li Class="JobGiver_AIGotoNearestHostile" />
+							</subNodes>
+						</li>
+
+					</subNodes>
+				</li>
+			</subNodes>
+		</thinkRoot>
 	</ThinkTreeDef>
 
 </Defs>

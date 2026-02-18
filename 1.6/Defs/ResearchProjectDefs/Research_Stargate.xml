@@ -6,6 +6,7 @@
 		<label>Dwarfgate</label>
 	</ResearchTabDef>
 
+	<!-- Glyph Deciphering -->
 	<ResearchProjectDef>
 		<tab>Rimgate_ResearchTab</tab>
 		<defName>Rimgate_GlyphDeciphering</defName>
@@ -21,6 +22,7 @@
 
 	</ResearchProjectDef>
 
+	<!-- Base -->
 	<ResearchProjectDef Name="Rimgate_ResearchBase" Abstract="True">
 		<tab>Rimgate_ResearchTab</tab>
 		<techLevel>Industrial</techLevel>
@@ -30,8 +32,7 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
-	<!-- ==================== Research ==================== -->
-
+	<!-- Naquadah Refinement -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_NaquadahRefinement</defName>
 		<label>Refine Naquadah</label>
@@ -66,6 +67,7 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- Ancient Alloys -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientAlloyResearch</defName>
 		<label>Ancient alloys</label>
@@ -92,6 +94,7 @@
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
+	<!-- DHD logic -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_DHDResearch</defName>
 		<label>DHD logic</label>
@@ -154,6 +157,7 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- Replicator technology -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ReplicatorLink</defName>
 		<label>Replicator link</label>
@@ -193,6 +197,7 @@
 
 	</ResearchProjectDef>
 
+	<!-- Replicator gestation -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ReplicatorGestation</defName>
 		<label>Replicator gestation</label>
@@ -227,6 +232,7 @@
 
 	</ResearchProjectDef>
 
+	<!-- Humanoid Replicator gestation -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ReplicatorHumanoidGestation</defName>
 		<label>Humanoid Replicator gestation</label>
@@ -264,6 +270,7 @@
 
 	</ResearchProjectDef>
 
+	<!-- Anti-Replicator weaponry -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AntiReplicatorGun</defName>
 		<label>Anti-Replicator</label>
@@ -334,10 +341,11 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- Ancient Structures -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientStructures</defName>
 		<label>Ancient Structures</label>
-		<description>By studying the construction techniques of Ancient architecture, we can adapt their methods to build more durable and efficient structures. These designs incorporate advanced materials and energy distribution systems that enhance the resilience of our buildings against environmental hazards and attacks.</description>
+		<description>If we could get our hands on the construction techniques of Ancient architecture, we could adapt their methods to build more durable and efficient structures. Legends tell of designs that incorporate advanced materials and energy distribution systems that enhance the resilience of our buildings against environmental hazards and attacks.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>8000</baseCost>
 
@@ -367,6 +375,60 @@
 
 	</ResearchProjectDef>
 
+	<!-- Tok'ra Technology -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_TokraTunnelCrystals</defName>
+		<label>Tok'ra Excavation</label>
+		<description>The Tok'ra don’t dig. They *negotiate* with geology by utilizing crystal programming to embe a resonance “instruction” into a living lattice so it can propagate through stone, shed material, and leave stable passage behind. With the right notes on these techniques, researchers can use the methods employed by the Tok'ra to "program" crystals to rapidly grow tunnels underground.</description>
+		<techLevel>Ultra</techLevel>
+		<baseCost>8000</baseCost>
+
+		<researchViewX>2</researchViewX>
+		<researchViewY>2.25</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_AncientAlloyResearch</li>
+			<li>Stonecutting</li>
+		</prerequisites>
+
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_GoauldBaal</li>
+			<li>Rimgate_TauriFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+
+		<discoveredLetterTitle>About: Tok'ra Tunnel Crystals</discoveredLetterTitle>
+		<discoveredLetterText>Your researchers have unlocked a new method for embedding resonance “instructions” into living crystal lattices.\n\nBy mixing raw stone and Naquadah together, we can make our own "programmable" crystals that can be used to rapidly clear designated mining areas.\n\nWhile harnessing this technology opens up new possibilities for resource extraction and base expansion, caution is advised. The rapid growth caused by these crystals can lead to structural instability if not properly managed.</discoveredLetterText>
+
+	</ResearchProjectDef>
+
+	<!-- Tok'ra Climate Control -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_TokraClimateControl</defName>
+		<label>Tok'ra Climate Control</label>
+		<description>Tok'ra caverns aren’t heated or cooled in the usual sense. Instead, living crystal lattices regulate thermal flow, balancing rooms like a tuned instrument—drawing excess heat into the surrounding stone, or pulling it back when the cold bites.\n\nYour researchers believe the same resonance principles can be adapted for surface colonies, provided the crystal is kept healthy with periodic naquadah feeding. The end result is climate control with no moving parts, no wiring… and a device that behaves less like a machine and more like a very cooperative organism.</description>
+		<techLevel>Ultra</techLevel>
+		<baseCost>8000</baseCost>
+
+		<researchViewX>3</researchViewX>
+		<researchViewY>2.25</researchViewY>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<prerequisites>
+			<li>Rimgate_TokraTunnelCrystals</li>
+			<li>AirConditioning</li>
+		</prerequisites>
+
+	</ResearchProjectDef>
+
+	<!-- ZPM Integration -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ZPMIntegration</defName>
 		<label>ZPM core</label>
@@ -408,6 +470,7 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- Subspace Masking -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_SubspaceMasking</defName>
 		<label>Subspace masking</label>
@@ -425,6 +488,7 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
+	<!-- Subspace Coupling -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ParallelSubspaceCoupling</defName>
 		<label>Subspace coupling</label>
@@ -444,6 +508,7 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
+	<!-- ZPM Housing -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ZPMHousing</defName>
 		<label>ZPM Housing</label>
@@ -468,6 +533,7 @@
 		<discoveredLetterText>When the final glyph-lock snapped into place, your researchers didn’t cheer—they just stepped back, very slowly, as the holographic interface resolved itself into something unmistakably… Ancient.\n\nThe device before them isn’t just a docking frame. It’s a harmonizer, a stabilizer, and a very polite suggestion to the universe that several sealed micro-cosms should all pretend to act like one big battery.\n\nThrough careful reconstruction (and one memorable incident with a lab bench now permanently fused to the ceiling), your team decoded how the Ancients balanced parallel zero-point feeds.\n\nWith a proper containment housing, multiple ZPMs can now be aligned, synchronized, and—gods help you—combined.\n\nJust remember: the Ancients built these things under strict conditions, not next to a wooden barracks full of hungry boomrats.</discoveredLetterText>
 	</ResearchProjectDef>
 
+	<!-- Ancient Shield Technology -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientShieldEmitter</defName>
 		<label>Ancient Shield Technology</label>
@@ -486,56 +552,15 @@
 			<li>Rimgate_AncientResearchBank</li>
 		</requiredResearchFacilities>
 
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_TokraTunnelCrystals</defName>
-		<label>Tok'ra Excavation</label>
-		<description>Discover techniques used by the Tok'ra to "program" crystals to rapidly grow tunnels underground. The Tok'ra don’t dig. They *negotiate* with geology. This project focuses on crystal programming—embedding a resonance “instruction” into a living lattice so it can propagate through stone, shed material, and leave stable passage behind.</description>
-		<techLevel>Ultra</techLevel>
-		<baseCost>8000</baseCost>
-
-		<researchViewX>0</researchViewX>
-		<researchViewY>4.5</researchViewY>
-
-		<prerequisites>
-			<li>Rimgate_AncientAlloyResearch</li>
-			<li>Stonecutting</li>
-		</prerequisites>
-
 		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
-			<li>Rimgate_GoauldBaal</li>
-			<li>Rimgate_TauriFaction</li>
+			<li>Rimgate_WraithEmpire</li>
 		</heldByFactionCategoryTags>
 		<tags>
 			<li>Rimgate_TechprintPool</li>
 		</tags>
-
-		<discoveredLetterTitle>About: Tok'ra Tunnel Crystals</discoveredLetterTitle>
-		<discoveredLetterText>Your researchers have unlocked a new method for embedding resonance “instructions” into living crystal lattices.\n\nBy mixing raw stone and Naquadah together, we can make our own "programmable" crystals that can be used to rapidly clear designated mining areas.\n\nWhile harnessing this technology opens up new possibilities for resource extraction and base expansion, caution is advised. The rapid growth caused by these crystals can lead to structural instability if not properly managed.</discoveredLetterText>
-
-	</ResearchProjectDef>
-
-	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
-		<defName>Rimgate_TokraClimateControl</defName>
-		<label>Tok'ra Climate Control</label>
-		<description>Tok'ra caverns aren’t heated or cooled in the usual sense. Instead, living crystal lattices regulate thermal flow, balancing rooms like a tuned instrument—drawing excess heat into the surrounding stone, or pulling it back when the cold bites.\n\nYour researchers believe the same resonance principles can be adapted for surface colonies, provided the crystal is kept healthy with periodic naquadah feeding. The end result is climate control with no moving parts, no wiring… and a device that behaves less like a machine and more like a very cooperative organism.</description>
-		<techLevel>Ultra</techLevel>
-		<baseCost>8000</baseCost>
-
-		<researchViewX>1</researchViewX>
-		<researchViewY>4.5</researchViewY>
-		<requiredResearchFacilities>
-			<li>Rimgate_AncientResearchBank</li>
-		</requiredResearchFacilities>
-
-		<prerequisites>
-			<li>Rimgate_TokraTunnelCrystals</li>
-			<li>AirConditioning</li>
-		</prerequisites>
 
 	</ResearchProjectDef>
 

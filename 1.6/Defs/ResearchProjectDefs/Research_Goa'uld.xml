@@ -6,6 +6,8 @@
 		<label>Goa'uld</label>
 	</ResearchTabDef>
 
+	<!-- ======== Base ========= -->
+
 	<ResearchProjectDef Name="Rimgate_GoauldResearchBase" Abstract="True">
 		<techLevel>Spacer</techLevel>
 		<tab>Rimgate_GoauldTechnology</tab>
@@ -15,17 +17,19 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
+	<!-- ======== Basic ========= -->
+
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldBasic</defName>
 		<label>Goa'uld tech</label>
-		<description>Unlock foundational Goa'uld tech, including interface protocols, energy matrices, and that smug sense of superiority you've been missing.</description>
+		<description>Unlock foundational Goa'uld tech, including interface protocols, energy matrices, and that smug sense of superiority you only get after ruling galaxies for centuries.</description>
 		<baseCost>3000</baseCost>
 		<researchViewX>0</researchViewX>
 		<researchViewY>1.5</researchViewY>
 		<prerequisites>
 			<li>AdvancedFabrication</li>
 		</prerequisites>
-		<techprintCount>2</techprintCount>
+		<techprintCount>1</techprintCount>
 		<techprintCommonality>3</techprintCommonality>
 		<techprintMarketValue>3000</techprintMarketValue>
 		<heldByFactionCategoryTags>
@@ -38,6 +42,7 @@
 
 	<!-- ======== Armor ========= -->
 
+	<!-- Jaffa armor -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTierOne</defName>
 		<label>Jaffa armor</label>
@@ -53,6 +58,7 @@
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
+	<!-- Prime armor-->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTierTwo</defName>
 		<label>Goa'uld Guard armor</label>
@@ -66,6 +72,7 @@
 		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
+	<!-- Kull armor -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_KullArmor</defName>
 		<label>Kull armor</label>
@@ -98,6 +105,7 @@
 
 	</ResearchProjectDef>
 
+	<!-- Kara kesh -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldKaraKesh</defName>
 		<label>Kara kesh</label>
@@ -132,6 +140,7 @@
 
 	<!-- ======== Weapon ========= -->
 
+	<!-- Jaffa weapons -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldWeaponTierOne</defName>
 		<label>Jaffa weapons</label>
@@ -146,6 +155,7 @@
 		<researchViewY>1</researchViewY>
 	</ResearchProjectDef>
 
+	<!-- Kull weapons -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldWeaponTierTwo</defName>
 		<label>Kull weapons</label>
@@ -175,8 +185,9 @@
 		</generalRules>
 	</ResearchProjectDef>
 
-	<!-- Turrets -->
+	<!-- ======== Weapon ========= -->
 
+	<!-- staff cannon -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTurretsTierOne</defName>
 		<label>Staff Cannon</label>
@@ -190,6 +201,7 @@
 		<researchViewY>1.5</researchViewY>
 	</ResearchProjectDef>
 
+	<!-- Automated staff cannon -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTurretsTierTwo</defName>
 		<label>AI defense</label>
@@ -212,6 +224,7 @@
 		</tags>
 	</ResearchProjectDef>
 
+	<!-- Shielded staff cannon -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTurretsTierThree</defName>
 		<label>Shielded defense</label>
@@ -224,7 +237,7 @@
 		</requiredResearchFacilities>
 
 		<prerequisites>
-			<li>ShieldBelt</li>
+			<li>Rimgate_AncientShieldEmitter</li>
 			<li>Rimgate_GoauldTurretsTierTwo</li>
 		</prerequisites>
 
@@ -234,14 +247,16 @@
 
 	<!-- ======== Misc ========= -->
 
+	<!-- Hover skid -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_HoverSkid</defName>
 		<label>Hover skid</label>
-		<description>Reverse-engineer a gravitic cargo skid with Naquadah focusing rails. It floats wherever the handler steps, turning backbreaking salvage runs into a glide. Handle with care—if the field collapses under load, everything goes up in a very educational flash.</description>
+		<description>The Goa'uld have been working with Naquadah for centuries and have developed advanced focusing techniques. If we could "borrow" their knowledge, our engineers could use it to design a cargo skid with Naquadah focusing rails that won't collapse under load.</description>
 		<baseCost>1500</baseCost>
 		<prerequisites>
 			<li>Rimgate_GoauldBasic</li>
 			<li>Rimgate_NaquadahRefinement</li>
+			<li>Rimgate_TrackedCart</li>
 		</prerequisites>
 		<researchViewX>1</researchViewX>
 		<researchViewY>2</researchViewY>
@@ -256,6 +271,7 @@
 		</tags>
 	</ResearchProjectDef>
 
+	<!-- Tel'tak -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTelTak</defName>
 		<label>Tel'tak</label>
@@ -303,6 +319,7 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- Sarcophagus -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_Sarcophagus</defName>
 		<label>Sarcophagus</label>
@@ -350,6 +367,7 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- Sarcophagus Bioregeneration -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_SarcophagusBioregeneration</defName>
 		<label>sarcophagus regeneration</label>
@@ -396,10 +414,11 @@
 		<discoveredLetterText>Your researchers have modified the Goa’uld sarcophagus to coax it into regrowing lost tissue. By integrating Glitterworld bioregeneration protocols with naquadah-accelerated pulse envelopes, they’ve pushed the device beyond stabilization into full reconstruction.\n\nEthical concerns aside, this is a remarkable leap forward. Fingers and toes are just the beginning.</discoveredLetterText>
 	</ResearchProjectDef>
 
+	<!-- Sarcophagus Optimization -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_SarcophagusOptimization</defName>
 		<label>sarcophagus calibration</label>
-		<description>Integrate the knowledge gained from studying ZPMs directly into the sarcophagus pulse envelope.\n\nBy reshaping its carrier fields instead of brute-forcing raw wattage, your engineers can reconfigure the sarcophagus to sip power from the grid instead of ripping it out in great chunks.\n\nIt still hums like a minor god. It just does so about a third more efficiently.</description>
+		<description>If we could gather the centuries of knowledge the Goa'uld have accumulated on Sarcophagus technology, and combine it with a deep understanding of ancient power systems, we may be able to optimize the sarcophagus' pulse envelope for maximum efficiency.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>9000</baseCost>
 
@@ -443,8 +462,20 @@
 		</generalRules>
 		<discoveredLetterTitle>About: Sarcophagus Optimization</discoveredLetterTitle>
 		<discoveredLetterText>Your team has successfully integrated ZPM subspace harmonics into the Goa’uld sarcophagus pulse envelope. By reshaping its carrier fields, they’ve reduced the device’s power draw significantly—allowing it to operate from a stable grid connection instead of ripping power in violent bursts.\n\nIt still hums like a minor god. It just does so about a third more efficiently.</discoveredLetterText>
+
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_GoauldBaal</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+
 	</ResearchProjectDef>
 
+	<!-- Symbiote Study -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_SymbioteStudy</defName>
 		<label>Symbiote basics</label>
@@ -489,7 +520,7 @@
 		</generalRules>
 	</ResearchProjectDef>
 
-	<!-- after symbiote study, unlock canopic jars -->
+	<!-- canopic jars -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_CanopicJars</defName>
 		<label>Canopic jars</label>
@@ -500,6 +531,7 @@
 		<researchViewY>4.5</researchViewY>
 
 		<prerequisites>
+			<li>Rimgate_GoauldBasic</li>
 			<li>Rimgate_SymbioteStudy</li>
 		</prerequisites>
 		<discoveredLetterTitle>About: Goa'uld Canopic Jars</discoveredLetterTitle>
@@ -529,6 +561,7 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- Unas biology -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_UnasBiology</defName>
 		<label>Unas biology</label>
@@ -552,10 +585,11 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 
+	<!-- Cortical dampener hacking -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_CorticalDampenerHacking</defName>
 		<label>Cortical dampener hacking</label>
-		<description>Reverse-engineer the cortical dampener's neural interface to gain control over its effects and unlock its hidden potential.</description>
+		<description>Reverse-engineer the cortical dampener's neural interface by cross-referencing Goa'uld field notes to gain control over its effects and unlock its hidden potential.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>5500</baseCost>
 
@@ -563,6 +597,7 @@
 		<researchViewY>5.25</researchViewY>
 
 		<prerequisites>
+			<li>Rimgate_GoauldBasic</li>
 			<li>Rimgate_UnasBiology</li>
 			<li>Bionics</li>
 		</prerequisites>
@@ -596,12 +631,13 @@
 		</generalRules>
 	</ResearchProjectDef>
 
+	<!-- Unas bioregeneration -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_UnasBioregeneration</defName>
 		<label>Unas bioregeneration</label>
 		<description>Refines cortical catalyst protocols to trigger dormant regrowth pathways in conditioned Unas. Lost limbs can be regenerated over time, though the process is taxing and leaves tissue tender during regrowth.</description>
 		<techLevel>Archotech</techLevel>
-		<baseCost>6500</baseCost>
+		<baseCost>9000</baseCost>
 
 		<researchViewX>2</researchViewX>
 		<researchViewY>5.25</researchViewY>

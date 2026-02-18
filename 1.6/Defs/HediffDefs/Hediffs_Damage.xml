@@ -99,4 +99,26 @@
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
     </HediffDef>
 
+    <!-- Wraith Drone flash pulse -->
+
+    <HediffDef>
+        <defName>Rimgate_FlashPulse</defName>
+        <label>flash pulse</label>
+        <labelNoun>flash pulse</labelNoun>
+        <description>A blinding flash pulse emitted by a Wraith Drone. It temporarily impairs vision, but the effect is short-lived.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <battleStateLabel>blind</battleStateLabel>
+        <maxSeverity>1</maxSeverity>
+        <stages>
+            <li>
+                <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_SelfHeal">
+                <healAmount>0.05</healAmount>
+            </li>
+        </comps>
+    </HediffDef>
+
 </Defs>

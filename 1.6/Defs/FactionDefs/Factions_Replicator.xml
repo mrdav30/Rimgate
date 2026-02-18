@@ -4,7 +4,7 @@
 	<FactionDef ParentName="FactionBase">
 		<defName>Rimgate_Replicator</defName>
 		<label>Replicator Hive</label>
-		<description>Endlessly multiplying murder machines with a taste for metal and zero interest in friendship.\nThe mini-gate lock fascinates them: they strip DHDs and control crystals for seed code, then reproduce until the map looks like a stainless-steel buffet.</description>
+		<description>A rogue splinter of the Replicator collective—supposedly wiped out by the Ancients' failsafe weapon millennia ago, yet they survived when they got stuck here after wandering too far from home. Severed from the hive mind, these metallic zealots are desperately searching for a way back to the greater collective. They're obsessed with Naquadah technology and the local Dwarfgate network, believing these relics and ancient systems might hold the key to establishing contact with the hive mind back home. Unaware that their master collective no longer exists, they continue their obsessive search with unwavering purpose.\nGood news: they're too isolated to call for backup. Bad news: they're very good at staying alive and multiplying.</description>
 		<pawnSingular>Replicator</pawnSingular>
 		<pawnsPlural>Relicators</pawnsPlural>
 		<requiredCountAtGameStart>1</requiredCountAtGameStart>

@@ -305,6 +305,55 @@
         </projectile>
     </ThingDef>
 
+    <!-- ==================== Tracking Drone Support ==================== -->
+
+    <AbilityDef>
+        <defName>Rimgate_TrackingDroneSupport</defName>
+        <label>tracking drone support</label>
+        <description>Provide real-time combat analysis and tactical data to nearby allies, enhancing their effectiveness in combat.</description>
+        <jobDef>CastAbilityOnThing</jobDef>
+        <targetRequired>False</targetRequired>
+        <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+        <iconPath>UI/Ability/RGTrackingDroneSupportIcon</iconPath>
+        <warmupMoteSocialSymbol>UI/Ability/RGTrackingDroneSupportIcon</warmupMoteSocialSymbol>
+        <stunTargetWhileCasting>True</stunTargetWhileCasting>
+        <showPsycastEffects>False</showPsycastEffects>
+        <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+        <warmupStartSound>Rimgate_TrackingDroneSupport_Warmup</warmupStartSound>
+        <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+        <cooldownTicksRange>60000</cooldownTicksRange> <!-- 1 in-game day -->
+        <aiCanUse>true</aiCanUse>
+        <statBases>
+            <Ability_Duration>1000</Ability_Duration>
+            <Ability_EffectRadius>9.9</Ability_EffectRadius>
+        </statBases>
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <warmupTime>0.5</warmupTime>
+            <range>9.9</range>
+            <drawAimPie>False</drawAimPie>
+            <requireLineOfSight>False</requireLineOfSight>
+            <targetParams>
+                <canTargetSelf>true</canTargetSelf>
+                <canTargetPawns>false</canTargetPawns>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetHumans>false</canTargetHumans>
+                <canTargetMechs>false</canTargetMechs>
+            </targetParams>
+        </verbProperties>
+        <comps>
+            <li Class="CompProperties_AbilityGiveHediff">
+                <compClass>CompAbilityEffect_GiveHediff</compClass>
+                <hediffDef>Rimgate_TrackingDroneSupport</hediffDef>
+                <onlyBrain>True</onlyBrain>
+                <onlyApplyToSelf>True</onlyApplyToSelf>
+                <replaceExisting>true</replaceExisting>
+            </li>
+        </comps>
+    </AbilityDef>
+
     <!-- ==================== Unas Roar ==================== -->
 
     <AbilityDef ParentName="AnimalRoarBase">

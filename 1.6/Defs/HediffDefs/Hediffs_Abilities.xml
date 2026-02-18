@@ -185,6 +185,105 @@
         </comps>
     </HediffDef>
 
+    <!-- ==================== Tracking Drone Support ==================== -->
+
+    <!-- Caster Hediff -->
+
+    <ThingDef ParentName="MoteBase">
+        <defName>Mote_TrackingDroneSupport</defName>
+        <thingClass>MoteAttached</thingClass>
+        <altitudeLayer>LightingOverlay</altitudeLayer>
+        <drawOffscreen>true</drawOffscreen>
+        <mote>
+            <solidTime>9999999</solidTime>
+            <needsMaintenance>true</needsMaintenance>
+        </mote>
+        <graphicData>
+            <graphicClass>Graphic_Mote</graphicClass>
+            <texPath>FX/RGTrackingDroneSupportMask</texPath>
+            <shaderType>MoteGlow</shaderType>
+            <color>(155, 216, 219)</color>
+            <drawSize>20</drawSize>
+        </graphicData>
+    </ThingDef>
+
+    <HediffDef>
+        <defName>Rimgate_TrackingDroneSupport</defName>
+        <label>tracking drone support</label>
+        <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
+        <description>By supplying real-time combat analysis and tactical data to nearby allies, this drone can enhance their effectiveness in combat.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <showRemainingTime>True</showRemainingTime>
+            </li>
+            <li Class="HediffCompProperties_DisappearsOnDeath" />
+            <li Class="HediffCompProperties_GiveHediffsInRange">
+                <range>9.9</range>
+                <mote>Mote_TrackingDroneSupport</mote>
+                <hideMoteWhenNotDrafted>true</hideMoteWhenNotDrafted>
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetColonists>true</onlyTargetColonists>
+                </targetingParameters>
+                <hediff>Rimgate_TrackingDroneSupportBuff</hediff>
+            </li>
+        </comps>
+    </HediffDef>
+
+    <!-- Ally Buff-->
+
+    <ThingDef ParentName="MoteBase">
+        <defName>Mote_TrackingDroneSupportLinkLine</defName>
+        <thingClass>MoteDualAttached</thingClass>
+        <altitudeLayer>MoteLow</altitudeLayer>
+        <mote>
+            <fadeInTime>0.1</fadeInTime>
+            <fadeOutTime>0.1</fadeOutTime>
+            <solidTime>999999</solidTime>
+            <needsMaintenance>True</needsMaintenance>
+            <rotateTowardsTarget>True</rotateTowardsTarget>
+            <scaleToConnectTargets>True</scaleToConnectTargets>
+        </mote>
+        <graphicData>
+            <shaderType>MoteGlow</shaderType>
+            <texPath>FX/RGTrackingDroneSupportLinkLine</texPath>
+        </graphicData>
+    </ThingDef>
+
+    <HediffDef>
+        <defName>Rimgate_TrackingDroneSupportBuff</defName>
+        <label>tracking drone support</label>
+        <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
+        <description>Combat abilities are boosted thanks to being supplied combat data by a nearby tracking drone.</description>
+        <debugLabelExtra>other</debugLabelExtra>
+        <hediffClass>HediffWithComps</hediffClass>
+        <isBad>false</isBad>
+        <stages>
+            <li>
+                <statOffsets>
+                    <ShootingAccuracyPawn>5</ShootingAccuracyPawn>
+                    <AimingDelayFactor>-0.5</AimingDelayFactor>
+                    <MortarMissRadiusFactor>-0.5</MortarMissRadiusFactor>
+                </statOffsets>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_Disappears">
+                <showRemainingTime>false</showRemainingTime>
+            </li>
+            <li Class="HediffCompProperties_DisappearsOnDeath" />
+            <li Class="HediffCompProperties_Link">
+                <requireLinkOnOtherPawn>false</requireLinkOnOtherPawn>
+                <maxDistance>10</maxDistance>
+                <customMote>Mote_TrackingDroneSupportLinkLine</customMote>
+            </li>
+        </comps>
+    </HediffDef>
+
     <!-- ==================== Unas Roar ==================== -->
 
     <HediffDef>

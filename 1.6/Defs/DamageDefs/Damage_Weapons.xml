@@ -89,4 +89,30 @@
         <makesAnimalsFlee>true</makesAnimalsFlee>
     </DamageDef>
 
+    <!-- Tracking Drone Flash Pulse -->
+
+    <DamageDef>
+        <defName>Rimgate_FlashPulse</defName>
+        <label>flash pulse</label>
+        <makesBlood>false</makesBlood>
+        <workerClass>Rimgate.DamageWorker_ApplyHediffToBodyPartTag</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been pulsed to death.</deathMessage>
+        <defaultDamage>10</defaultDamage>
+        <explosionCellFleck>BlastDry</explosionCellFleck>
+        <soundExplosion>Explosion_Stun</soundExplosion>
+        <combatLogRules>Damage_Stun</combatLogRules>
+        <causeStun>true</causeStun>
+        <impactSoundType>Electric</impactSoundType>
+        <armorCategory>Sharp</armorCategory>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <modExtensions>
+            <li Class="Rimgate.DamageWorker_ApplyHediffToBodyPartTag_Ext">
+                <bodypartTagTarget>SightSource</bodypartTagTarget>
+                <hediffToApply>Rimgate_FlashPulse</hediffToApply>
+                <shouldStun>true</shouldStun>
+            </li>
+        </modExtensions>
+    </DamageDef>
+
 </Defs>

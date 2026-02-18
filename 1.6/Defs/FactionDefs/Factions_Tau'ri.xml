@@ -5,7 +5,7 @@
         <defName>Rimgate_TauriFaction</defName>
         <categoryTag>Rimgate_TauriFaction</categoryTag>
         <label>Tau'ri</label>
-        <description>Technologically savvy, diplomatically flexible, and accidentally in charge of galactic cleanup.\nThis underfunded SGC detachment maps the locked mini-gate network and keeps it out of tyrant tentacles.\nOfficial mission: survey and aid. Unofficial: beat Ba’al and the Wraith to the Archotech backdoor—and try not to misdial into a star.</description>
+        <description>Technologically savvy, diplomatically flexible, and accidentally in charge of galactic cleanup. This underfunded SGC detachment is tasked with mapping out the Dwarfgate network and keeping it out of tyrant tentacles. A huge part of their wide-spread success has been capturing and repurposing units from the Mechanoid Hive into front-line field forces.\n\nOfficial mission: survey and aid. Unofficial: beat Ba'al and the Wraith to the Archotech backdoor—and try not to misdial into a star.</description>
         <fixedName>Tau'ri</fixedName>
         <pawnsPlural>Tau'ri</pawnsPlural>
         <requiredCountAtGameStart>1</requiredCountAtGameStart>
@@ -111,8 +111,8 @@
                     <Rimgate_TauriSpecialForces>25</Rimgate_TauriSpecialForces>
                     <Rimgate_TauriSGCDemolition>10</Rimgate_TauriSGCDemolition>
                     <Rimgate_TauriMedic>10</Rimgate_TauriMedic>
+                    <Mech_Scyther>8</Mech_Scyther>
                     <Rimgate_TauriCommander>5</Rimgate_TauriCommander>
-                    <Mech_Scyther>2</Mech_Scyther>
                     <Rimgate_Malp>0.5</Rimgate_Malp>
                 </options>
             </li>
@@ -129,9 +129,9 @@
                 <options>
                     <Rimgate_TauriScientist>12</Rimgate_TauriScientist>
                     <Rimgate_TauriMedic>15</Rimgate_TauriMedic>
-                    <Rimgate_TauriSGCSoldier>10</Rimgate_TauriSGCSoldier>
-                    <Rimgate_TauriSpecialForces>5</Rimgate_TauriSpecialForces>
-                    <Rimgate_Malp>0.5</Rimgate_Malp>
+                    <Rimgate_TauriSGCSoldier>15</Rimgate_TauriSGCSoldier>
+                    <Rimgate_TauriSpecialForces>10</Rimgate_TauriSpecialForces>
+                    <Rimgate_Malp>1</Rimgate_Malp>
                 </options>
             </li>
             <li>
