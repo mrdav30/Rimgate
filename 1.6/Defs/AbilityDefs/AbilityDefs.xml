@@ -18,7 +18,7 @@
             <verbClass>Verb_CastAbilityTouch</verbClass>
             <drawAimPie>false</drawAimPie>
             <range>-1</range>
-            <warmupTime>0.25</warmupTime>
+            <warmupTime>0.5</warmupTime>
             <soundCast>Rimgate_WraithDrainLifeCast</soundCast>
             <targetParams>
                 <canTargetPawns>true</canTargetPawns>
@@ -70,7 +70,7 @@
         <verbProperties>
             <verbClass>Verb_CastAbility</verbClass>
             <range>16.9</range>
-            <warmupTime>0.25</warmupTime>
+            <warmupTime>0.5</warmupTime>
             <soundCast>Rimgate_WraithCocoonCast</soundCast>
             <targetParams>
                 <canTargetLocations>false</canTargetLocations>
@@ -146,7 +146,7 @@
             <verbClass>Verb_CastAbilityTouch</verbClass>
             <range>-1</range>
             <requireLineOfSight>false</requireLineOfSight>
-            <warmupTime>0</warmupTime>
+            <warmupTime>0.25</warmupTime>
             <targetParams>
                 <canTargetBuildings>false</canTargetBuildings>
                 <canTargetAnimals>false</canTargetAnimals>
@@ -305,22 +305,22 @@
         </projectile>
     </ThingDef>
 
-    <!-- ==================== Tracking Drone Support ==================== -->
+    <!-- ==================== Tactical Relay Support ==================== -->
 
     <AbilityDef>
-        <defName>Rimgate_TrackingDroneSupport</defName>
-        <label>tracking drone support</label>
+        <defName>Rimgate_TacticalRelaySupport</defName>
+        <label>tactical relay support</label>
         <description>Provide real-time combat analysis and tactical data to nearby allies, enhancing their effectiveness in combat.</description>
         <jobDef>CastAbilityOnThing</jobDef>
         <targetRequired>False</targetRequired>
         <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-        <iconPath>UI/Ability/RGTrackingDroneSupportIcon</iconPath>
-        <warmupMoteSocialSymbol>UI/Ability/RGTrackingDroneSupportIcon</warmupMoteSocialSymbol>
+        <iconPath>UI/Ability/RGTacticalRelaySupportIcon</iconPath>
+        <warmupMoteSocialSymbol>UI/Ability/RGTacticalRelaySupportIcon</warmupMoteSocialSymbol>
         <stunTargetWhileCasting>True</stunTargetWhileCasting>
         <showPsycastEffects>False</showPsycastEffects>
         <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
         <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
-        <warmupStartSound>Rimgate_TrackingDroneSupport_Warmup</warmupStartSound>
+        <warmupStartSound>Rimgate_TacticalRelaySupport_Warmup</warmupStartSound>
         <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
         <cooldownTicksRange>60000</cooldownTicksRange> <!-- 1 in-game day -->
         <aiCanUse>true</aiCanUse>
@@ -344,9 +344,12 @@
             </targetParams>
         </verbProperties>
         <comps>
+            <li Class="Rimgate.CompProperties_AbilityMechEnergyCost">
+                <mechEnergyCostPct>0.2</mechEnergyCostPct>
+            </li>
             <li Class="CompProperties_AbilityGiveHediff">
                 <compClass>CompAbilityEffect_GiveHediff</compClass>
-                <hediffDef>Rimgate_TrackingDroneSupport</hediffDef>
+                <hediffDef>Rimgate_TrackingRelay</hediffDef>
                 <onlyBrain>True</onlyBrain>
                 <onlyApplyToSelf>True</onlyApplyToSelf>
                 <replaceExisting>true</replaceExisting>

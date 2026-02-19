@@ -290,6 +290,9 @@
         <techHediffsMoney>9999~9999</techHediffsMoney>
         <controlGroupPortraitZoom>0.8</controlGroupPortraitZoom>
         <allowInMechClusters>false</allowInMechClusters>
+        <abilities>
+            <li>Rimgate_TacticalRelaySupport</li>
+        </abilities>
         <canUseAvoidGrid>true</canUseAvoidGrid>
         <combatPower>250</combatPower>
         <lifeStages>
@@ -327,13 +330,13 @@
         <weaponTags Inherit="False" IsNull="True" />
         <allowInMechClusters>false</allowInMechClusters>
         <abilities>
-            <li>Rimgate_TrackingDroneSupport</li>
+            <li>Rimgate_TacticalRelaySupport</li>
         </abilities>
-        <!-- <startingHediffs>
+        <startingHediffs>
             <li>
                 <def>Rimgate_NaniteRegeneration</def>
             </li>
-        </startingHediffs> -->
+        </startingHediffs>
         <lifeStages>
             <li MayRequire="Ludeon.RimWorld.Biotech">
                 <bodyGraphicData>

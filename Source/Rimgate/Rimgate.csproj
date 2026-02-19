@@ -318,10 +318,12 @@
     <Compile Include="Abilities\CompAbilityEffect_EssenceCost.cs" />
     <Compile Include="Abilities\CompAbilityEffect_LaunchMultipleProjectile.cs" />
     <Compile Include="Abilities\CompAbilityEffect_ApplyDrainLife.cs" />
+    <Compile Include="Abilities\CompAbilityEffect_MechEnergyCost.cs" />
     <Compile Include="Abilities\CompAbilityEffect_WraithCocoonWrap.cs" />
     <Compile Include="Abilities\CompAbilityEffect_WraithEssenceMending.cs" />
     <Compile Include="Abilities\CompAbility_RequiresTrainable.cs" />
     <Compile Include="Abilities\Properties\CompProperties_AbilityEssenceCost.cs" />
+    <Compile Include="Abilities\Properties\CompProperties_AbilityMechEnergyCost.cs" />
     <Compile Include="Abilities\Properties\CompProperties_AbilityRequiresTrainable.cs" />
     <Compile Include="Abilities\Properties\CompProperties_WraithEssenceMending.cs" />
     <Compile Include="AI\JobDrivers\JobDriver_CarryCorpseToCloningPod.cs" />

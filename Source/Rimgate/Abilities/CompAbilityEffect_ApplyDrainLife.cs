@@ -17,18 +17,15 @@ public class CompAbilityEffect_ApplyDrainLife : CompAbilityEffect
     // AI can only target pawns within range limits
     public override bool AICanTargetNow(LocalTargetInfo target)
     {
-        Pawn pawn = parent?.pawn;
-        Pawn pawn2 = target.Pawn;
-        if (pawn == null
-            || pawn2 == null
-            || pawn2.Dead
-            || !pawn2.RaceProps.IsFlesh
-            || pawn.ThingID == pawn2.ThingID)
-            return false;
-
         if (!Props.aiRangeLimit.IsValid) return true;
 
-        var distance = pawn.Position.DistanceToSquared(pawn2.Position);
+        Pawn caster = parent?.pawn;
+        Pawn victim = target.Pawn;
+        if (caster == null || victim == null) return false;
+        if(caster.ThingID == victim.ThingID) return false;
+        if (!victim.RaceProps.IsFlesh || victim.Dead) return false;
+
+        var distance = caster.Position.DistanceToSquared(victim.Position);
         return distance >= Props.MinRangeSquared
             && distance <= Props.MaxRangeSquared;
     }

@@ -19,7 +19,7 @@
                         <li>Plasteel</li>
                     </thingDefs>
                 </filter>
-                <count>225</count>
+                <count>125</count>
             </li>
             <li>
                 <filter>
@@ -28,14 +28,6 @@
                     </thingDefs>
                 </filter>
                 <count>125</count>
-            </li>
-            <li>
-                <filter>
-                    <thingDefs>
-                        <li>Gold</li>
-                    </thingDefs>
-                </filter>
-                <count>25</count>
             </li>
             <li>
                 <filter>
@@ -49,6 +41,14 @@
                 <filter>
                     <thingDefs>
                         <li>ComponentSpacer</li>
+                    </thingDefs>
+                </filter>
+                <count>5</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Gold</li>
                     </thingDefs>
                 </filter>
                 <count>5</count>
@@ -100,7 +100,7 @@
                         <li>Steel</li>
                     </thingDefs>
                 </filter>
-                <count>75</count>
+                <count>50</count>
             </li>
             <li>
                 <filter>
@@ -108,7 +108,7 @@
                         <li>Plasteel</li>
                     </thingDefs>
                 </filter>
-                <count>75</count>
+                <count>35</count>
             </li>
             <li>
                 <filter>
@@ -116,7 +116,15 @@
                         <li>ComponentIndustrial</li>
                     </thingDefs>
                 </filter>
-                <count>10</count>
+                <count>5</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_Naquadria</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>
@@ -388,6 +396,14 @@
                     </thingDefs>
                 </filter>
                 <count>15</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Gold</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
             </li>
             <li>
                 <filter>

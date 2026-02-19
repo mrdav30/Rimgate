@@ -486,6 +486,10 @@
 	<RG_WraithCocoonTrap_AlreadyCocooned>{PAWN_labelShort} is already cocooned.</RG_WraithCocoonTrap_AlreadyCocooned>
 	<RG_WraithCocoonTrap_Cocooned>{PAWN_labelShort} has been cocooned.</RG_WraithCocoonTrap_Cocooned>
 
+	<RG_AbilityMechEnergyCost>Energy cost</RG_AbilityMechEnergyCost>
+	<RG_AbilityDisabledNoMechEnergyNeeded>{0_labelShort} is not a mechanoid.</RG_AbilityDisabledNoMechEnergyNeeded>
+	<RG_AbilityDisabledNoMechEnergy>{0_labelShort} does not have enough energy.</RG_AbilityDisabledNoMechEnergy>
+
 	<!-- Hediffs -->
 
 	<RG_NaniteResurrection_Message>{PAWN_labelShort} has been resurrected by nanites replicators!</RG_NaniteResurrection_Message>

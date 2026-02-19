@@ -935,7 +935,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             // De-aging
             float ageRemoval = 900000f; //3600000f - 1 year
             int num = (int)(ageRemoval * patient.ageTracker.AdultAgingMultiplier);
-            long val = (long)(3600000f * patient.ageTracker.AdultMinAge);
+            long val = (long)(3600000f * patient.ageTracker.AdultMinAge); // minimum biological age in ticks
             patient.ageTracker.AgeBiologicalTicks = Math.Max(val, patient.ageTracker.AgeBiologicalTicks - num);
 
             if (ModsConfig.BiotechActive)

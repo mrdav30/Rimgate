@@ -336,6 +336,10 @@
         <isBad>false</isBad>
         <everCurableByItem>false</everCurableByItem>
         <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>
+
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+
         <comps>
             <li Class="Rimgate.HediffCompProperties_Regeneration">
                 <regeneratingHediff>Rimgate_RegeneratingNanites</regeneratingHediff>

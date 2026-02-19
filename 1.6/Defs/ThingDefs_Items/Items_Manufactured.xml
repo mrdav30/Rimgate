@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
+    <!-- =============== Biomass ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_Biomass</defName>
+        <label>Biomass</label>
+        <description>A dense slurry of rendered meat and powdered naquadah, processed into a reactive biofeedstock. Under heat, pressure, or enzyme catalysts, it becomes extremely malleable, allowing Wraith forges to shape it into living armor, structural biotech, and cloning substrates, or crack it down into high-energy fuel.\nWarm, wet, and unpleasantly valuable.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/RGBiomass</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <useHitPoints>false</useHitPoints>
+        <soundInteract>Standard_Pickup</soundInteract>
+        <soundDrop>Standard_Drop</soundDrop>
+        <statBases>
+            <MarketValue>1.3</MarketValue>
+            <Mass>0.3</Mass>
+        </statBases>
+        <thingCategories>
+            <li>Manufactured</li>
+        </thingCategories>
+    </ThingDef>
+
     <!-- ==================== Iris ==================== -->
 
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_IrisInstallKit</defName>
         <label>Iris installation kit</label>
-        <description>a high-tech deployment kit for installing an iris over a Dwarfgate.\nTurns your wormhole into a one-way trip—great for defense, less great for diplomacy.</description>
+        <description>A high-tech deployment kit for installing an iris over a Dwarfgate.\nTurns your wormhole into a one-way trip—great for defense, less great for diplomacy.</description>
         <thingClass>ThingWithComps</thingClass>
         <graphicData>
             <texPath>Things/Item/Resource/RGIrisUpgradeKit</texPath>
@@ -70,7 +92,7 @@
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_Naquadria</defName>
         <label>Naquadria</label>
-        <description>a highly enriched, dangerously unstable derivative of Naquadah. Perfect for experiments that end in glorious explosions—or annihilating your base if you sneeze too hard.</description>
+        <description>A highly enriched, dangerously unstable derivative of Naquadah. Perfect for experiments that end in glorious explosions—or annihilating your base if you sneeze too hard.</description>
         <graphicData>
             <texPath>Things/Item/Resource/RGNaquadria</texPath>
             <graphicClass>Graphic_Single</graphicClass>

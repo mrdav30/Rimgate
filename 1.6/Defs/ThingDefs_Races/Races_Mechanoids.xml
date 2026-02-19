@@ -552,18 +552,18 @@
     <ThingDef ParentName="BaseMechanoid">
         <defName>Rimgate_Malp</defName>
         <label>MALP</label>
-        <description>The Mobile Analytic Laboratory Probe (M.A.L.P.) was originally designed as an uncrewed scout platform, used by the Tau’ri to probe hostile or unknown environments through a Dwarfgate before risking a manned expedition.\n\nThis Rimworld-adapted chassis has been retrofitted with a compact energy shield emitter, allowing it to shrug off incoming fire far beyond what its survey frame was meant to endure. Thanks to advanced long-range transmitters, this model operates without the usual command bandwidth tether—making it the only mechanoid capable of autonomous deployment across any distance, even beyond traditional mechinator control range.\n\nThough the Tau’ri were reluctant to share control protocols, they eventually released stripped-down blueprints that allow colonists to build and deploy MALPs as field assets. It is a gift of convenience with a touch of condescension: the machine can be constructed, fueled, and maintained by outsiders, but never truly commanded as the Tau’ri do. In effect, it is both a tool of exploration and a quiet reminder of who still holds the upper hand in technology.</description>
+        <description>The Mobile Analytic Laboratory Probe was built by the Tau'ri as a remote gate scout: send the machine first, send people second.\n\nThis colony pattern comes from reverse-engineering a destroyed MALP. Without the Tau'ri command stack, your engineers replaced tight remote piloting with a rugged local control core and mechanoid work routines. The result behaves like a true mech pawn in colony service while keeping the MALP's original purpose: cross rough ground, survive first contact, and report back.\n\nA compact shield package and hardened frame make it far tougher than a normal survey platform, turning an expendable probe into a dependable frontier workhorse.\n\nNote: Due to their advanced comms suite, MALPs are invaluable as gate scouts since they aren't limited by mechanitor command range.</description>
         <statBases>
             <WorkSpeedGlobal>3</WorkSpeedGlobal>
             <MarketValue>13777</MarketValue>
-            <MoveSpeed>6.30</MoveSpeed>
+            <MoveSpeed>2.3</MoveSpeed>
             <Flammability>0</Flammability>
             <ToxicResistance>1</ToxicResistance>
             <ArmorRating_Heat>2.00</ArmorRating_Heat>
             <CaravanRidingSpeedFactor>1.3</CaravanRidingSpeedFactor>
             <ControlTakingTime>23</ControlTakingTime>
-            <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
-            <ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.74</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.92</ArmorRating_Sharp>
             <BandwidthCost>3</BandwidthCost>
             <MechEnergyLossPerHP>0.7</MechEnergyLossPerHP>
             <MechEnergyUsageFactor MayRequire="Ludeon.RimWorld.Biotech">0.62</MechEnergyUsageFactor>

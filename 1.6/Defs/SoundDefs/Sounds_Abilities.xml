@@ -40,7 +40,7 @@
     </SoundDef>
 
     <SoundDef>
-        <defName>Rimgate_TrackingDroneSupport_Warmup</defName>
+        <defName>Rimgate_TacticalRelaySupport_Warmup</defName>
         <context>MapOnly</context>
         <maxSimultaneous>5</maxSimultaneous>
         <priorityMode>PrioritizeNearest</priorityMode>
@@ -48,7 +48,7 @@
             <li>
                 <grains>
                     <li Class="AudioGrain_Clip">
-                        <clipPath>Ability/RG_TrackingDroneSupport_Warmup</clipPath>
+                        <clipPath>Ability/RG_TacticalRelaySupport_Warmup</clipPath>
                     </li>
                 </grains>
                 <volumeRange>6</volumeRange>

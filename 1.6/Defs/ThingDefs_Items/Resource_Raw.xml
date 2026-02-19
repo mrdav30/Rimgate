@@ -133,28 +133,6 @@
     </comps>
   </ThingDef>
 
-  <!-- =============== Biomass ==================== -->
-
-  <ThingDef ParentName="ResourceBase">
-    <defName>Rimgate_Biomass</defName>
-    <label>Biomass</label>
-    <description>a squishy, processed pulp of organic matter. Mostly meat. Essential for crafting Wraith biotech and excellent for ruining appetites.\nSmells like victory... and protein.</description>
-    <graphicData>
-      <texPath>Things/Item/Resource/RGBiomass</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <useHitPoints>false</useHitPoints>
-    <soundInteract>Standard_Pickup</soundInteract>
-    <soundDrop>Standard_Drop</soundDrop>
-    <statBases>
-      <MarketValue>1.3</MarketValue>
-      <Mass>0.3</Mass>
-    </statBases>
-    <thingCategories>
-      <li>ResourcesRaw</li>
-    </thingCategories>
-  </ThingDef>
-
   <!-- ==================== Symbiote Queen ==================== -->
 
   <ThingDef>

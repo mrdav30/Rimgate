@@ -66,23 +66,16 @@
 				<li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
 					<subNodes>
 
-						<!-- Tracking Support -->
-						<li Class="ThinkNode_ConditionalHasAbility">
-							<ability>Rimgate_TrackingDroneSupport</ability>
-							<subNodes>
-								<li Class="JobGiver_AICastAbilityOnSelf">
-									<ability>Rimgate_TrackingDroneSupport</ability>
-								</li>
-							</subNodes>
-						</li>
-
 						<li Class="ThinkNode_ConditionalSentryDroneMode">
 							<mode>Patrol</mode>
 							<subNodes>
 
 								<li Class="ThinkNode_ConditionalPlayerMech">
 									<subNodes>
-										<li Class="JobGiver_WanderColony" />
+										<li Class="JobGiver_WanderColony">
+											<maxDanger>Deadly</maxDanger>
+											<reportStringOverride>Patrolling.</reportStringOverride>
+										</li>
 									</subNodes>
 								</li>
 

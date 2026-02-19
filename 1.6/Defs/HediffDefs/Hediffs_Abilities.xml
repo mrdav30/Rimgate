@@ -20,6 +20,7 @@
                 <disappearsAfterTicks>240000</disappearsAfterTicks> <!-- 4 days -->
                 <!-- <showRemainingTime>true</showRemainingTime> -->
             </li>
+            <li Class="HediffCompProperties_DisappearsOnDeath" />
         </comps>
         <stages>
             <li>
@@ -75,6 +76,7 @@
                 <disappearsAfterTicks>120000</disappearsAfterTicks> <!-- 2 days -->
                 <!-- <showRemainingTime>true</showRemainingTime> -->
             </li>
+            <li Class="HediffCompProperties_DisappearsOnDeath" />
         </comps>
         <stages>
             <li>
@@ -155,14 +157,17 @@
                 <capMods />
             </li>
         </stages>
+
         <duplicationAllowed>false</duplicationAllowed>
         <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 
         <comps>
-            <li Class="HediffCompProperties_Disappears"> <!-- make sure this goes away -->
+            <!-- make sure this goes away -->
+            <li Class="HediffCompProperties_Disappears">
                 <disappearsAfterTicks>30000</disappearsAfterTicks> <!-- half a day -->
                 <showRemainingTime>true</showRemainingTime>
             </li>
+            <li Class="HediffCompProperties_DisappearsOnDeath" />
         </comps>
     </HediffDef>
 
@@ -190,7 +195,7 @@
     <!-- Caster Hediff -->
 
     <ThingDef ParentName="MoteBase">
-        <defName>Mote_TrackingDroneSupport</defName>
+        <defName>Mote_TrackingRelay</defName>
         <thingClass>MoteAttached</thingClass>
         <altitudeLayer>LightingOverlay</altitudeLayer>
         <drawOffscreen>true</drawOffscreen>
@@ -200,7 +205,7 @@
         </mote>
         <graphicData>
             <graphicClass>Graphic_Mote</graphicClass>
-            <texPath>FX/RGTrackingDroneSupportMask</texPath>
+            <texPath>FX/RGTrackingRelayMask</texPath>
             <shaderType>MoteGlow</shaderType>
             <color>(155, 216, 219)</color>
             <drawSize>20</drawSize>
@@ -208,12 +213,26 @@
     </ThingDef>
 
     <HediffDef>
-        <defName>Rimgate_TrackingDroneSupport</defName>
-        <label>tracking drone support</label>
+        <defName>Rimgate_TrackingRelay</defName>
+        <label>tracking relay</label>
         <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
-        <description>By supplying real-time combat analysis and tactical data to nearby allies, this drone can enhance their effectiveness in combat.</description>
+        <description>This mechanoid is supplying real-time combat analysis and tactical data to nearby allies, enhancing their effectiveness in combat.</description>
         <hediffClass>HediffWithComps</hediffClass>
         <isBad>false</isBad>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.2</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+
         <comps>
             <li Class="HediffCompProperties_Disappears">
                 <showRemainingTime>True</showRemainingTime>
@@ -221,7 +240,7 @@
             <li Class="HediffCompProperties_DisappearsOnDeath" />
             <li Class="HediffCompProperties_GiveHediffsInRange">
                 <range>9.9</range>
-                <mote>Mote_TrackingDroneSupport</mote>
+                <mote>Mote_TrackingRelay</mote>
                 <hideMoteWhenNotDrafted>true</hideMoteWhenNotDrafted>
                 <targetingParameters>
                     <canTargetBuildings>false</canTargetBuildings>
@@ -229,7 +248,7 @@
                     <canTargetMechs>false</canTargetMechs>
                     <onlyTargetColonists>true</onlyTargetColonists>
                 </targetingParameters>
-                <hediff>Rimgate_TrackingDroneSupportBuff</hediff>
+                <hediff>Rimgate_TacticalSupportBuff</hediff>
             </li>
         </comps>
     </HediffDef>
@@ -237,7 +256,7 @@
     <!-- Ally Buff-->
 
     <ThingDef ParentName="MoteBase">
-        <defName>Mote_TrackingDroneSupportLinkLine</defName>
+        <defName>Mote_TacticalSupportLinkLine</defName>
         <thingClass>MoteDualAttached</thingClass>
         <altitudeLayer>MoteLow</altitudeLayer>
         <mote>
@@ -250,15 +269,15 @@
         </mote>
         <graphicData>
             <shaderType>MoteGlow</shaderType>
-            <texPath>FX/RGTrackingDroneSupportLinkLine</texPath>
+            <texPath>FX/RGTacticalSupportLinkLine</texPath>
         </graphicData>
     </ThingDef>
 
     <HediffDef>
-        <defName>Rimgate_TrackingDroneSupportBuff</defName>
-        <label>tracking drone support</label>
+        <defName>Rimgate_TacticalSupportBuff</defName>
+        <label>tactical support</label>
         <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
-        <description>Combat abilities are boosted thanks to being supplied combat data by a nearby tracking drone.</description>
+        <description>Combat abilities are boosted thanks to being supplied combat data from a nearby mechanoid.</description>
         <debugLabelExtra>other</debugLabelExtra>
         <hediffClass>HediffWithComps</hediffClass>
         <isBad>false</isBad>
@@ -266,11 +285,15 @@
             <li>
                 <statOffsets>
                     <ShootingAccuracyPawn>5</ShootingAccuracyPawn>
-                    <AimingDelayFactor>-0.5</AimingDelayFactor>
                     <MortarMissRadiusFactor>-0.5</MortarMissRadiusFactor>
+                    <AimingDelayFactor>-0.2</AimingDelayFactor>
                 </statOffsets>
             </li>
         </stages>
+
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+
         <comps>
             <li Class="HediffCompProperties_Disappears">
                 <showRemainingTime>false</showRemainingTime>
@@ -279,7 +302,7 @@
             <li Class="HediffCompProperties_Link">
                 <requireLinkOnOtherPawn>false</requireLinkOnOtherPawn>
                 <maxDistance>10</maxDistance>
-                <customMote>Mote_TrackingDroneSupportLinkLine</customMote>
+                <customMote>Mote_TacticalSupportLinkLine</customMote>
             </li>
         </comps>
     </HediffDef>
@@ -318,6 +341,7 @@
             <li Class="HediffCompProperties_Disappears">
                 <showRemainingTime>true</showRemainingTime>
             </li>
+            <li Class="HediffCompProperties_DisappearsOnDeath" />
         </comps>
     </HediffDef>
 
