@@ -201,6 +201,7 @@
                   <li>PsychicSoothePulser</li>
                   <li>TechprofSubpersonaCore</li>
                   <li>TornadoGenerator</li>
+                  <li>Rimgate_PrimogenitorSphere</li>
                   <li>VanometricPowerCell</li>
                   <li MayRequire="Ludeon.RimWorld.Biotech">ArchiteCapsule</li>
                   <li MayRequire="Ludeon.RimWorld.Biotech">DeathrestCapacitySerum</li>
@@ -301,6 +302,7 @@
               <filter>
                 <thingDefs>
                   <li>TechprofSubpersonaCore</li>
+                  <li>Rimgate_PrimogenitorSphere</li>
                   <li>ArchotechEye</li>
                   <li>ArchotechArm</li>
                   <li>ArchotechLeg</li>
@@ -466,6 +468,7 @@
                 <thingDefs>
                   <li>Rimgate_GoauldKaraKesh</li>
                   <li>Rimgate_WraithCommunicationDevice</li>
+                  <li>Rimgate_WraithQueensPendant</li>
                   <li MayRequire="Ludeon.RimWorld.Royalty">Apparel_PackJump</li>
                   <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_DisruptorFlarePack</li>
                   <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_PackTurret</li>
@@ -504,7 +507,6 @@
                   <li>BionicSpine</li>
                   <li>BionicHeart</li>
                   <li>BionicStomach</li>
-                  <li>ReinforcedBarrel</li>
                   <li>Neurotrainer_Shooting</li>
                   <li>Neurotrainer_Melee</li>
                   <li>Neurotrainer_Construction</li>
@@ -549,6 +551,7 @@
                   <li>TechprofSubpersonaCore</li>
                   <li>TornadoGenerator</li>
                   <li>VanometricPowerCell</li>
+                  <li>Rimgate_PrimogenitorSphere</li>
                   <li MayRequire="Ludeon.RimWorld.Biotech">ArchiteCapsule</li>
                   <li MayRequire="Ludeon.RimWorld.Biotech">DeathrestCapacitySerum</li>
                   <li MayRequire="Ludeon.RimWorld.Anomaly">BiomutationPulser</li>

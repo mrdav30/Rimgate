@@ -335,6 +335,7 @@
       <li>Rimgate_WraithEliteHeadgear_tag</li>
       <li>Rimgate_WraithSoldierApparel_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
+      <li>Rimgate_WraithEliteNeckwear_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_WraithCommanderArmor</li>
@@ -440,9 +441,11 @@
       <li>IndustrialMilitaryAdvanced</li>
       <li>Rimgate_WraithEliteHeadgear_tag</li>
       <li>Rimgate_WraithCommanderApparel_tag</li>
+      <li>Rimgate_WraithEliteNeckwear_tag</li>
     </apparelTags>
     <apparelRequired>
       <li>Rimgate_WraithCirclet</li>
+      <li>Rimgate_WraithQueensPendant</li>
       <li>Rimgate_WraithCommanderArmor</li>
       <li>Rimgate_WraithLeatherBoots</li>
     </apparelRequired>

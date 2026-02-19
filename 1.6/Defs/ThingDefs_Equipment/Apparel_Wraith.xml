@@ -198,7 +198,7 @@
 		<recipeMaker>
 			<researchPrerequisite>Rimgate_WraithArmorTierTwo</researchPrerequisite>
 			<skillRequirements>
-				<Crafting>8</Crafting>
+				<Crafting>6</Crafting>
 				<Artistic>6</Artistic>
 			</skillRequirements>
 			<defaultIngredientFilter>
@@ -233,7 +233,7 @@
 			<TradePriceImprovement>0.20</TradePriceImprovement>
 			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.3</SlaveSuppressionOffset>
 			<PsychicSensitivityOffset>0.2</PsychicSensitivityOffset>
-			<PsychicEntropyRecoveryRate>0.07</PsychicEntropyRecoveryRate>
+			<PsychicEntropyRecoveryRate>0.073</PsychicEntropyRecoveryRate>
 			<Rimgate_EssenceGainFactor>0.15</Rimgate_EssenceGainFactor>
 			<Rimgate_EssenceCostFactor>0.1</Rimgate_EssenceCostFactor>
 		</equippedStatOffsets>
@@ -266,7 +266,98 @@
 		<colorGenerator Class="ColorGenerator_StandardApparel" />
 	</ThingDef>
 
-	<!-- ========= Torso ========= -->
+	<!-- ========= Neck ========= -->
+
+	<!-- Queens Pendant -->
+
+	<ThingDef ParentName="Rimgate_WraithApparelBase">
+		<defName>Rimgate_WraithQueensPendant</defName>
+		<label>Queen's pendant</label>
+		<description>A pendant worn around the neck of Wraith queens and their most favored commanders. Crafted from a single piece of naquadah crystal that has been carefully shaped and infused with biomass, the pendant serves as both a symbol of authority and a conduit for psionic energy. It enhances the wearer's ability to project their will over others and provides a modest boost to psychic defenses.\n\nWorn by those who command respect through power and presence, the Queen's pendant is a coveted item among Wraiths who aspire to leadership.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Neck/RGWraithPendant</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<techLevel>Ultra</techLevel>
+		<tradeability>Sellable</tradeability>
+
+		<generateCommonality>0.2</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_WraithArmorTierTwo</researchPrerequisite>
+			<recipeUsers>
+				<li>TableSculpting</li>
+			</recipeUsers>
+			<skillRequirements>
+				<Crafting>6</Crafting>
+				<Artistic>6</Artistic>
+			</skillRequirements>
+			<defaultIngredientFilter>
+				<disallowedThingDefs Inherit="False" IsNull="true" />
+			</defaultIngredientFilter>
+		</recipeMaker>
+
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<defaultStuff>Rimgate_Naquadah</defaultStuff>
+		<costStuffCount>10</costStuffCount>
+		<costList>
+			<Steel>5</Steel>
+			<Rimgate_Biomass>5</Rimgate_Biomass>
+		</costList>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>8200</WorkToMake>
+			<Mass>0.1</Mass>
+			<StuffEffectMultiplierArmor>0.22</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0</ArmorRating_Blunt>
+			<ArmorRating_Heat>0</ArmorRating_Heat>
+			<Insulation_Cold>0</Insulation_Cold>
+			<Insulation_Heat>0</Insulation_Heat>
+			<EquipDelay>0.2</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<SocialImpact>0.1</SocialImpact>
+			<TradePriceImprovement>0.1</TradePriceImprovement>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+			<PsychicSensitivityOffset>0.1</PsychicSensitivityOffset>
+			<PsychicEntropyRecoveryRate>0.05</PsychicEntropyRecoveryRate>
+			<Rimgate_EssenceGainFactor>0.08</Rimgate_EssenceGainFactor>
+			<Rimgate_EssenceCostFactor>0.05</Rimgate_EssenceCostFactor>
+		</equippedStatOffsets>
+		<thingCategories Inherit="False">
+			<li>ApparelNoble</li>
+		</thingCategories>
+		<apparel>
+			<parentTagDef>ApparelBody</parentTagDef>
+			<bodyPartGroups>
+				<li>Neck</li>
+			</bodyPartGroups>
+			<renderSkipFlags>
+				<li>None</li>
+			</renderSkipFlags>
+			<layers>
+				<li>OnSkin</li>
+			</layers>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<tags>
+				<li>Rimgate_WraithEliteNeckwear_tag</li>
+			</tags>
+		</apparel>
+		<tradeTags>
+			<li>Rimgate_WraithApparelTrade_tag</li>
+			<li>ExoticMisc</li>
+			<li>Artifact</li>
+		</tradeTags>
+
+	</ThingDef>
+
+	<!-- ========= Headgear ========= -->
 
 	<!-- Wraith Soldier Armor -->
 
