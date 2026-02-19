@@ -55,10 +55,15 @@
     <DamageDef ParentName="StunBase">
         <defName>Rimgate_ReplicatorDisrupt</defName>
         <label>replicator disruption pulse</label>
+        <workerClass>Rimgate.DamageWorker_ReplicatorDisrupt</workerClass>
         <deathMessage>{0} collapsed into inert nanite dust.</deathMessage>
         <externalViolenceForMechanoids>true</externalViolenceForMechanoids>
-        <harmsHealth>false</harmsHealth>
+        <harmsHealth>true</harmsHealth>
+        <hediff>EnergyBolt</hediff>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
         <impactSoundType>Electric</impactSoundType>
+        <armorCategory>Sharp</armorCategory>
+        <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
         <defaultDamage>50</defaultDamage>
         <explosionSnowMeltAmount>0</explosionSnowMeltAmount>
         <explosionCellFleck>BlastEMP</explosionCellFleck>
@@ -70,6 +75,8 @@
         <causeStun>true</causeStun>
         <stunResistStat MayRequireAnyOf="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Anomaly">EMPResistance</stunResistStat>
         <stunAdaptationTicks>2200</stunAdaptationTicks>
+        <isRanged>true</isRanged>
+        <makesAnimalsFlee>true</makesAnimalsFlee>
     </DamageDef>
 
     <!-- Poison -->

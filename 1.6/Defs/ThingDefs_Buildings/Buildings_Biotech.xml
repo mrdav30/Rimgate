@@ -63,9 +63,9 @@
         </building>
         <costList>
             <Steel>140</Steel>
-            <Rimgate_Naquadah>50</Rimgate_Naquadah>
             <Rimgate_Biomass>100</Rimgate_Biomass>
             <ComponentIndustrial>6</ComponentIndustrial>
+            <Rimgate_Naquadria>4</Rimgate_Naquadria>
             <ComponentSpacer>2</ComponentSpacer>
         </costList>
         <placeWorkers>
@@ -263,7 +263,7 @@
 
         <costList>
             <Steel>5</Steel>
-            <Rimgate_Naquadah>1</Rimgate_Naquadah>
+            <Rimgate_Naquadria>1</Rimgate_Naquadria>
             <Rimgate_Biomass>1</Rimgate_Biomass>
             <ComponentIndustrial>1</ComponentIndustrial>
         </costList>
@@ -343,8 +343,8 @@
 
         <costList>
             <Steel>55</Steel>
-            <Rimgate_Naquadah>15</Rimgate_Naquadah>
             <Rimgate_Biomass>20</Rimgate_Biomass>
+            <Rimgate_Naquadria>4</Rimgate_Naquadria>
             <ComponentIndustrial>3</ComponentIndustrial>
             <ComponentSpacer>1</ComponentSpacer>
         </costList>

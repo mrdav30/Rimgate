@@ -299,6 +299,14 @@
             <li>
                 <filter>
                     <thingDefs>
+                        <li>Rimgate_Naquadria</li>
+                    </thingDefs>
+                </filter>
+                <count>4</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
                         <li>AIPersonaCore</li>
                     </thingDefs>
                 </filter>
@@ -352,6 +360,14 @@
                 </filter>
                 <count>10</count>
             </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_Naquadria</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
         </ingredients>
         <fixedIngredientFilter>
             <thingDefs>
@@ -400,14 +416,6 @@
             <li>
                 <filter>
                     <thingDefs>
-                        <li>Gold</li>
-                    </thingDefs>
-                </filter>
-                <count>1</count>
-            </li>
-            <li>
-                <filter>
-                    <thingDefs>
                         <li>ComponentIndustrial</li>
                     </thingDefs>
                 </filter>
@@ -420,6 +428,22 @@
                     </thingDefs>
                 </filter>
                 <count>4</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_Naquadria</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Gold</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
             </li>
             <li>
                 <filter>
@@ -485,6 +509,14 @@
                     </thingDefs>
                 </filter>
                 <count>2</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_Naquadria</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
             </li>
         </ingredients>
         <fixedIngredientFilter>

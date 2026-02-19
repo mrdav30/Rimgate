@@ -681,8 +681,8 @@
             <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
         </statBases>
         <butcherProducts>
-            <Steel>20</Steel>
-            <Plasteel>10</Plasteel>
+            <Steel>5</Steel>
+            <Plasteel>5</Plasteel>
             <Rimgate_Biomass>1</Rimgate_Biomass>
             <ComponentSpacer>1</ComponentSpacer>
         </butcherProducts>

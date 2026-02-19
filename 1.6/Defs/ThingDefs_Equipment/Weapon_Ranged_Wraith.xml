@@ -12,9 +12,9 @@
 		<tickerType>Normal</tickerType>
 		<costList>
 			<Steel>20</Steel>
-			<Chemfuel>40</Chemfuel>
-			<Rimgate_Naquadah>10</Rimgate_Naquadah>
+			<Chemfuel>15</Chemfuel>
 			<Rimgate_Biomass>10</Rimgate_Biomass>
+			<Rimgate_Naquadria>1</Rimgate_Naquadria>
 		</costList>
 		<graphicData>
 			<texPath>Things/Item/Weapon/Grenade/RGWraithGrenade</texPath>

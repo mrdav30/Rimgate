@@ -7,7 +7,7 @@
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_AntiReplicatorGun</defName>
         <label>anti-replicator gun</label>
-        <description>Reverse-engineered emitter tuned to disrupt Replicator cohesion fields.\n\nMediocre on organics; miraculous on breaking up block parties, one pulse at a time.</description>
+        <description>Reverse-engineered disruptor emitter tuned to scramble mechanoid control lattices. Originally built for Replicators, but it crashes mechanoid block parties of any pattern.\n\nAgainst organics, it is just a very expensive noisemaker.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGAntiReplicatorGun</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -33,7 +33,7 @@
             <AccuracyShort>0.85</AccuracyShort>
             <AccuracyMedium>0.70</AccuracyMedium>
             <AccuracyLong>0.35</AccuracyLong>
-            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
         </statBases>
         <costList>
             <Steel>50</Steel>
@@ -48,7 +48,7 @@
                 <hasStandardCommand>true</hasStandardCommand>
                 <defaultProjectile>Rimgate_AntiReplicatorProjectile</defaultProjectile>
                 <warmupTime>0.2</warmupTime>
-                <range>15.9</range>
+                <range>19.9</range>
                 <soundCast>ChargeLance_Fire</soundCast>
                 <soundCastTail>GunTail_Light</soundCastTail>
                 <muzzleFlashScale>9</muzzleFlashScale>
@@ -88,8 +88,8 @@
         </graphicData>
         <projectile>
             <damageDef>Rimgate_ReplicatorDisrupt</damageDef>
-            <damageAmountBase>30</damageAmountBase>
-            <stoppingPower>1.5</stoppingPower>
+            <damageAmountBase>48</damageAmountBase>
+            <stoppingPower>2.5</stoppingPower>
             <speed>100</speed>
         </projectile>
     </ThingDef>

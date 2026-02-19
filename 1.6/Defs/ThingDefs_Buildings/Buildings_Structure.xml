@@ -92,8 +92,8 @@
     <designationHotKey>Misc3</designationHotKey>
     <costList>
       <Steel>2</Steel>
-      <Gold>1</Gold>
       <Rimgate_Naquadah>2</Rimgate_Naquadah>
+      <Gold>1</Gold>
     </costList>
     <researchPrerequisites>
       <li>Rimgate_GoauldBasic</li>
@@ -188,9 +188,8 @@
     </damageMultipliers>
     <designationHotKey>Misc3</designationHotKey>
     <costList>
-      <Steel>3</Steel>
-      <Rimgate_Naquadah>1</Rimgate_Naquadah>
-      <Rimgate_Biomass>5</Rimgate_Biomass>
+      <Steel>2</Steel>
+      <Rimgate_Biomass>3</Rimgate_Biomass>
     </costList>
     <researchPrerequisites>
       <li>Rimgate_WraithBasic</li>
@@ -209,7 +208,7 @@
     <graphicData>
       <texPath>Things/Building/Structure/RGChainLinkFence</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      
+
       <linkFlags>
         <li>Custom9</li>
       </linkFlags>
@@ -466,10 +465,10 @@
     <stuffCategories Inherit="False" />
     <costStuffCount>0</costStuffCount>
     <costList>
-      <Steel>80</Steel>
-      <Rimgate_Concrete>40</Rimgate_Concrete>
-      <Plasteel>10</Plasteel>
-      <Uranium>10</Uranium>
+      <Steel>15</Steel>
+      <Plasteel>15</Plasteel>
+      <Rimgate_Concrete>8</Rimgate_Concrete>
+      <Uranium>5</Uranium>
       <Rimgate_Naquadah>5</Rimgate_Naquadah>
     </costList>
 
@@ -569,9 +568,9 @@
     <stuffCategories Inherit="False">
       <li>Metallic</li>
     </stuffCategories>
-    <costStuffCount>6</costStuffCount>
+    <costStuffCount>10</costStuffCount>
     <costList>
-      <Steel>1</Steel>
+      <Steel>10</Steel>
     </costList>
 
     <statBases>
@@ -873,11 +872,11 @@
     </statBases>
 
     <costList>
-      <Steel>120</Steel>
-      <Plasteel>20</Plasteel>
-      <Uranium>10</Uranium>
-      <Rimgate_Naquadah>10</Rimgate_Naquadah>
-      <ComponentSpacer>3</ComponentSpacer>
+      <Steel>5</Steel>
+      <Plasteel>5</Plasteel>
+      <Uranium>5</Uranium>
+      <Rimgate_Naquadah>5</Rimgate_Naquadah>
+      <ComponentSpacer>1</ComponentSpacer>
     </costList>
 
     <building>
@@ -923,11 +922,11 @@
     </statBases>
 
     <costList>
-      <Steel>240</Steel>
-      <Plasteel>40</Plasteel>
-      <Uranium>20</Uranium>
-      <Rimgate_Naquadah>20</Rimgate_Naquadah>
-      <ComponentSpacer>4</ComponentSpacer>
+      <Steel>10</Steel>
+      <Plasteel>10</Plasteel>
+      <Uranium>10</Uranium>
+      <Rimgate_Naquadah>10</Rimgate_Naquadah>
+      <ComponentSpacer>2</ComponentSpacer>
     </costList>
 
     <building>
@@ -978,11 +977,11 @@
     </statBases>
 
     <costList>
-      <Steel>360</Steel>
-      <Plasteel>60</Plasteel>
-      <Uranium>30</Uranium>
-      <Rimgate_Naquadah>30</Rimgate_Naquadah>
-      <ComponentSpacer>4</ComponentSpacer>
+      <Steel>15</Steel>
+      <Plasteel>15</Plasteel>
+      <Uranium>15</Uranium>
+      <Rimgate_Naquadah>15</Rimgate_Naquadah>
+      <ComponentSpacer>3</ComponentSpacer>
     </costList>
 
     <building>

@@ -136,8 +136,8 @@
 		<costList>
 			<Steel>55</Steel>
 			<Rimgate_Biomass>25</Rimgate_Biomass>
-			<Rimgate_Naquadah>15</Rimgate_Naquadah>
 			<ComponentIndustrial>5</ComponentIndustrial>
+			<Rimgate_Naquadria>4</Rimgate_Naquadria>
 			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<researchPrerequisites>

@@ -48,6 +48,7 @@
             <Rimgate_Naquadah>15</Rimgate_Naquadah>
             <Silver>10</Silver>
             <Gold>5</Gold>
+            <Rimgate_Naquadria>1</Rimgate_Naquadria>
         </costList>
 
         <researchPrerequisites>

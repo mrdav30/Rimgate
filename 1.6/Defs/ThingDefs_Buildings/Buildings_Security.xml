@@ -364,8 +364,9 @@
 		</comps>
 		<costList>
 			<Steel>300</Steel>
-			<Rimgate_Naquadah>75</Rimgate_Naquadah>
+			<Rimgate_Naquadah>40</Rimgate_Naquadah>
 			<ComponentIndustrial>10</ComponentIndustrial>
+			<Rimgate_Naquadria>2</Rimgate_Naquadria>
 		</costList>
 		<building>
 			<turretTopDrawSize>5.5</turretTopDrawSize>
@@ -514,8 +515,9 @@
 		</statBases>
 		<costList>
 			<Steel>260</Steel>
-			<Rimgate_Naquadah>50</Rimgate_Naquadah>
+			<Rimgate_Naquadah>40</Rimgate_Naquadah>
 			<ComponentIndustrial>8</ComponentIndustrial>
+			<Rimgate_Naquadria>2</Rimgate_Naquadria>
 		</costList>
 		<building>
 			<turretTopDrawSize>4.5</turretTopDrawSize>
@@ -646,9 +648,10 @@
 		<designatorDropdown>Rimgate_StaffCannonTurrets</designatorDropdown>
 		<costList>
 			<Steel>260</Steel>
-			<Rimgate_Naquadah>75</Rimgate_Naquadah>
+			<Rimgate_Naquadah>40</Rimgate_Naquadah>
 			<ComponentIndustrial>8</ComponentIndustrial>
 			<ComponentSpacer>4</ComponentSpacer>
+			<Rimgate_Naquadria>2</Rimgate_Naquadria>
 			<AIPersonaCore>1</AIPersonaCore>
 		</costList>
 		<thingCategories>
