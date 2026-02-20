@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- Ma'Tok Burn -->
+
+    <HediffDef ParentName="InjuryBase">
+        <defName>Rimgate_Staff_Weapon_Burn</defName>
+        <label>Ma'Tok Burn</label>
+        <labelNoun>a staff weapon burn</labelNoun>
+        <description>A searing plasma burn caused by a Ma'Tok staff weapon.\nNot as elegant as a Zat, but far more satisfying to the user—and far less to the recipient.</description>
+        <comps>
+            <li Class="HediffCompProperties_TendDuration">
+                <labelTendedWell>bandaged</labelTendedWell>
+                <labelTendedWellInner>tended</labelTendedWellInner>
+                <labelSolidTendedWell>tended</labelSolidTendedWell>
+            </li>
+            <li Class="HediffCompProperties_Infecter">
+                <infectionChance>0.30</infectionChance>
+            </li>
+            <li Class="HediffCompProperties_GetsPermanent">
+                <permanentLabel>burn scar</permanentLabel>
+            </li>
+        </comps>
+        <injuryProps>
+            <painPerSeverity>0.01875</painPerSeverity>
+            <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+            <canMerge>true</canMerge>
+            <destroyedLabel>Burned off</destroyedLabel>
+            <destroyedOutLabel>Burned out</destroyedOutLabel>
+        </injuryProps>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+    </HediffDef>
+
+    <!-- Zat Blast -->
+
+    <HediffDef>
+        <defName>Rimgate_ZatShock</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
+        <label>Zat shock</label>
+        <labelNoun>a shock</labelNoun>
+        <description>A neuroelectric shock induced by a Zat'nik'tel blast. Body goes limp, mind goes fuzzy, pants may be soiled. Effects are temporary—dignity, less so.</description>
+        <initialSeverity>0</initialSeverity>
+        <minSeverity>0</minSeverity>
+        <maxSeverity>3.0</maxSeverity>
+        <everCurableByItem>false</everCurableByItem>
+        <tendable>false</tendable>
+        <comps>
+            <!-- <li Class="HediffCompProperties_Disappears">
+                <disappearsAfterTicks>2500~4800</disappearsAfterTicks>
+                <showRemainingTime>true</showRemainingTime>
+            </li> -->
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-16</severityPerDay>
+                <severityPerDayRange>-4</severityPerDayRange>
+                <showHoursToRecover>true</showHoursToRecover>
+            </li>
+        </comps>
+        <stages>
+            <li></li>
+
+            <li>
+                <minSeverity>0.5</minSeverity>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.5</offset>
+                    </li>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                </capMods>
+            </li>
+
+            <li>
+                <minSeverity>1</minSeverity>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.7</setMax>
+                    </li>
+                </capMods>
+            </li>
+
+            <li>
+                <minSeverity>2</minSeverity>
+                <lifeThreatening>true</lifeThreatening>
+                <deathMtbDays>0.5</deathMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.1</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+        <duplicationAllowed>false</duplicationAllowed>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+    </HediffDef>
+
+    <!-- Wraith Drone flash pulse -->
+
+    <HediffDef>
+        <defName>Rimgate_FlashPulse</defName>
+        <label>flash pulse</label>
+        <labelNoun>flash pulse</labelNoun>
+        <description>A blinding flash pulse emitted by a Wraith Drone. It temporarily impairs vision, but the effect is short-lived.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <battleStateLabel>blind</battleStateLabel>
+        <maxSeverity>1</maxSeverity>
+        <stages>
+            <li>
+                <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_SelfHeal">
+                <healAmount>0.05</healAmount>
+            </li>
+        </comps>
+    </HediffDef>
+
+</Defs>

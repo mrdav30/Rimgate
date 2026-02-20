@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- ==================== Gate Glyph ==================== -->
+
+    <ThingDef Name="Rimgate_GlyphParchmentBase" ParentName="ResourceBase">
+        <defName>Rimgate_GlyphParchment</defName>
+        <label>glyph parchment</label>
+        <description>A crumpled sheet of glyphs, scrawled in a hurry by someone who clearly ran out of time and patience. There are finger smudges, a ring of stale decaf, and a margin note that says &quot;dial fast, duck faster.&quot;</description>
+        <thingClass>ThingWithComps</thingClass>
+        <graphicData>
+            <texPath>Things/Item/Resource/GlyphParchment</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <stackLimit>3</stackLimit>
+        <tradeNeverStack>true</tradeNeverStack>
+        <useHitPoints>true</useHitPoints>
+        <statBases>
+            <MarketValue>900</MarketValue>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Mass>80</Mass>
+            <Flammability>0</Flammability>
+        </statBases>
+        <techLevel>Medieval</techLevel>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <tradeTags>
+            <li>ExoticMisc</li>
+        </tradeTags>
+        <thingSetMakerTags>
+            <li>RewardStandardHighFreq</li>
+        </thingSetMakerTags>
+        <comps Inherit="False">
+            <li Class="CompProperties_GlyphParchment">
+                <canDecodePlanet>true</canDecodePlanet>
+                <canDecodeOrbit>false</canDecodeOrbit>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_GlyphParchmentBase">
+        <defName>Rimgate_GlyphParchment_Orbit</defName>
+        <description>A fancy parchment embossed with mysterious glyphs that do not appear in the "usual" set. The symbols trigger a deep resonance, and you swear it whispered “Dial it up” when no one was looking.\nDefinitely worth investigating. Probably.\n\nThere's a note scribbled at the bottom - &quot;make sure to bring a vacsuit&quot;</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/GlyphParchmentOrbit</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <comps Inherit="False">
+            <li Class="CompProperties_GlyphParchment">
+                <canDecodePlanet>false</canDecodePlanet>
+                <canDecodeOrbit>true</canDecodeOrbit>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ==================== Cipher ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_TreasureCipherFragment</defName>
+        <label>cipher fragment</label>
+        <description>A fractured slice of an encoded starmap—coordinates, signatures, and an Archotech checksum that hurts to look at. Three fragments can be assembled into a coherent path to a hidden vault.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/TreasureCipher</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <stackLimit>3</stackLimit>
+        <tradeability>Sellable</tradeability>
+        <statBases>
+            <MarketValue>400</MarketValue>
+            <Mass>0.1</Mass>
+        </statBases>
+        <comps>
+            <li Class="CompProperties_Usable">
+                <useLabel>Assemble cipher</useLabel>
+                <useJob>UseItem</useJob>
+                <showUseGizmo>true</showUseGizmo>
+            </li>
+            <li Class="Rimgate.CompProperties_UseEffectAssembleAndStartQuest">
+                <requiredCount>3</requiredCount>
+                <requiredProjectDef>Rimgate_GlyphDeciphering</requiredProjectDef>
+                <questScript>Rimgate_TreasureVaultQuest</questScript>
+                <letterLabel>RG_CipherLetterLabel</letterLabel>
+                <letterText>RG_CipherLetterText</letterText>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ==================== Biosignatures ==================== -->
+
+    <ThingDef Name="Rimgate_BiosignatureBase" Abstract="true">
+        <thingClass>ThingWithComps</thingClass>
+        <category>Item</category>
+
+        <altitudeLayer>Item</altitudeLayer>
+        <useHitPoints>true</useHitPoints>
+        <isUnfinishedThing>true</isUnfinishedThing>
+        <scatterableOnMapGen>false</scatterableOnMapGen>
+        <selectable>true</selectable>
+        <tradeability>None</tradeability>
+        <drawerType>MapMeshOnly</drawerType>
+
+        <techLevel>Ultra</techLevel>
+        <statBases>
+            <MarketValue>0</MarketValue>
+            <MaxHitPoints>50</MaxHitPoints>
+            <DeteriorationRate>2.0</DeteriorationRate>
+            <Beauty>-8</Beauty>
+            <Mass>0.2</Mass>
+            <Flammability>0</Flammability>
+        </statBases>
+
+        <alwaysHaulable>true</alwaysHaulable>
+        <rotatable>false</rotatable>
+        <pathCost>14</pathCost>
+
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+
+        <comps>
+            <li Class="CompProperties_Forbiddable" />
+        </comps>
+    </ThingDef>
+
+    <!-- Unas Biosignature -->
+
+    <ThingDef ParentName="Rimgate_BiosignatureBase">
+        <defName>Rimgate_UnasBiosignature</defName>
+
+        <label>Unas biosignature</label>
+        <description>A genetic biosignature that can be found when surgically inspecting an Unas. After analysis, it will unlock new research options related to Unas biology and potential applications.</description>
+
+        <graphicData>
+            <texPath>Things/Item/Health/HealthItem</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+
+        <comps>
+            <li Class="CompProperties_CompAnalyzableUnlockResearch">
+                <analysisID>1000820</analysisID>
+
+                <!-- Analyzable -->
+
+                <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+                <completedLetterLabel>{BIOSIGNATURE} studied</completedLetterLabel>
+                <completedLetter>While performing a surgical inspection, {PAWN_labelShort} has isolated the {BIOSIGNATURE}. This provides the insight needed for {RESEARCH} research.\n\nYour researchers can now use research benches to begin adapting the findings.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <repeatCompletedLetterLabel>{BIOSIGNATURE} complete</repeatCompletedLetterLabel>
+                <repeatCompletedLetter>{PAWN_nameDef} has completed {PAWN_possessive} analysis of the Unas biology. It carries the previously discovered {BIOSIGNATURE}.\n\nNothing new has been discovered.</repeatCompletedLetter>
+                <repeatCompletedLetterDef>NeutralEvent</repeatCompletedLetterDef>
+
+                <!-- Interactable -->
+
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ==================== Primogenitor Sphere ==================== -->
+
+    <ThingDef ParentName="ResourceBase">
+        <defName>Rimgate_PrimogenitorSphere</defName>
+        <thingClass>ThingWithComps</thingClass>
+        <label>primogenitor sphere</label>
+
+        <description>A perfectly spherical container, made of an unknown alloy that is cool to the touch and completely impervious to damage. The surface is etched with intricate, interlocking glyphs that seem to shift and rearrange when observed from different angles. It hums with a faint, otherworldly energy, and emits a soft glow that pulses rhythmically, as if it has a heartbeat of its own. The sphere is perfectly balanced, resting on any surface without rolling, and it cannot be opened by conventional means.\n\nThis ancient artifact is Goa'uld technology used to create Jaffa hosts. When activated, it will surgically implant a symbiote pouch into the user, allowing them to serve as a host for a Prim'ta. The activation sequence consumes the device's arcane power reserves in a single, irreversible process—the glyphs fade to ash, and the sphere crumbles to dust upon completion.</description>
+        <descriptionHyperlinks>
+            <GeneDef>Rimgate_SymbiotePouchMutation</GeneDef>
+        </descriptionHyperlinks>
+
+        <graphicData>
+            <texPath>Things/Item/Artifact/RGPrimogenitorSphere</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>0.62</drawSize>
+        </graphicData>
+
+        <techLevel>Archotech</techLevel>
+        <category>Item</category>
+
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Beauty>10</Beauty>
+            <Mass>0.5</Mass>
+            <MarketValue>1200</MarketValue>
+            <DeteriorationRate>0</DeteriorationRate>
+            <Flammability>0.7</Flammability>
+        </statBases>
+
+        <drawerType>MapMeshOnly</drawerType>
+        <useHitPoints>true</useHitPoints>
+        <pathCost>14</pathCost>
+        <selectable>true</selectable>
+        <altitudeLayer>Item</altitudeLayer>
+        <tickerType>Never</tickerType>
+        <alwaysHaulable>true</alwaysHaulable>
+        <resourceReadoutPriority>Middle</resourceReadoutPriority>
+        <stackLimit>1</stackLimit>
+        <socialPropernessMatters>true</socialPropernessMatters>
+
+        <tradeTags>
+            <li>Artifact</li>
+        </tradeTags>
+        <thingCategories>
+            <li>Artifacts</li>
+        </thingCategories>
+        <thingSetMakerTags>
+            <li>RewardStandardLowFreq</li>
+        </thingSetMakerTags>
+
+        <comps>
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Usable">
+                <useJob>UseArtifact</useJob>
+                <useLabel>Activate {0_label} to become a Jaffa</useLabel>
+                <showUseGizmo>true</showUseGizmo>
+                <useDuration>320</useDuration>     
+            </li>
+            <li Class="Rimgate.CompProperties_UseEffectAddGene">
+                <geneDef>Rimgate_SymbiotePouchMutation</geneDef>
+            </li>
+            <li Class="CompProperties_UseEffectPlaySound">
+                <soundOnUsed>PsyAmpInstalled</soundOnUsed>
+            </li>
+            <li Class="CompProperties_UseEffectDestroySelf" />
+        </comps>
+    </ThingDef>
+
+</Defs>

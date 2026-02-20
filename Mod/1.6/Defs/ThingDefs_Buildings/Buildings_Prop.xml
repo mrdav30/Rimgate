@@ -1,0 +1,1076 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- ================ Destroyed Desk ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedDesk</defName>
+        <label>Ancient desk</label>
+        <description>Once used to crunch data, it is now completely inoperable. Its usable parts were smashed or looted long ago.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGDestroyedDesk</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
+            <drawSize>(4,3.5)</drawSize>
+        </graphicData>
+        <size>(3,1)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>17.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <castEdgeShadows>True</castEdgeShadows>
+        <staticSunShadowHeight>0.2</staticSunShadowHeight>
+        <surfaceType>Item</surfaceType>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <noRightClickDraftAttack>true</noRightClickDraftAttack>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+    </ThingDef>
+
+    <!-- =============== Destroyed DHD =============== -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DialHomeDeviceDestroyed</defName>
+        <label>ruined dial home device</label>
+        <description>A shattered relic of alien engineering once used to command a Dwarfgate. Its crystals are burnt out, its control ring frozen in place—no dialing, no escape, just a reminder of what was lost. Scavengers might still pry a trace of naquadah from its husk, but it will probably never open a wormhole again.\n\nNote: With a deeper understanding of how DHDs function, it may be possible to bypass ancient protocols and use this to directly interface with a gate and dial home in case of emergency.</description>
+        <rotatable>false</rotatable>
+        <stealable>false</stealable>
+        <passability>Impassable</passability>
+        <constructEffect>ConstructMetal</constructEffect>
+        <fillPercent>0.40</fillPercent>
+        <canOverlapZones>true</canOverlapZones>
+        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <tickerType>Never</tickerType>
+        <altitudeLayer>Building</altitudeLayer>
+        <building>
+            <repairable>false</repairable>
+            <claimable>false</claimable>
+            <ai_neverTrashThis>true</ai_neverTrashThis>
+            <neverBuildable>true</neverBuildable>
+            <isInert>true</isInert>
+        </building>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGDHD_Destroyed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(2,2)</drawSize>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
+        </graphicData>
+        <killedLeavings>
+            <Rimgate_Naquadah>1</Rimgate_Naquadah>
+        </killedLeavings>
+        <killedLeavingsChance>0.1</killedLeavingsChance>
+        <statBases>
+            <MaxHitPoints>2500</MaxHitPoints>
+            <Flammability>0</Flammability>
+            <Mass>45</Mass>
+        </statBases>
+        <size>(1,1)</size>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    </ThingDef>
+
+    <!-- ================ Mech Gestator Tank ================ -->
+
+    <ThingDef Name="Rimgate_AncientGestatorBase" ParentName="AncientMechBuildingBase" Abstract="True">
+        <defName>Rimgate_AncientGestatorBase</defName>
+        <label>ancient mech vat (base)</label>
+        <description>An ancient device capable of forming new mechanoids, or sustaining injured units while they rejuvenate.</description>
+        <rotatable>true</rotatable>
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+        </statBases>
+        <building>
+            <claimable>false</claimable>
+            <deconstructible>false</deconstructible>
+            <neverBuildable>true</neverBuildable>
+        </building>
+        <killedLeavings>
+            <ChunkMechanoidSlag>1</ChunkMechanoidSlag>
+        </killedLeavings>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_AncientGestatorBase">
+        <defName>Rimgate_AncientMechGestatorTank</defName>
+        <label>ancient mech vat</label>
+        <graphicData>
+            <texPath>Things/Building/Mech/AncientMechGestatorIntact_Empty/AncientMechGestatorIntact_Empty</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <drawSize>(4,4)</drawSize>
+            <shadowData>
+                <volume>(1.8, 2, 1.8)</volume>
+            </shadowData>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
+        </graphicData>
+        <size>(2,2)</size>
+        <tickerType>Normal</tickerType>
+        <dontPrint>true</dontPrint> <!-- Printed onto map mesh by comp -->
+        <comps>
+            <li Class="CompProperties_MechGestatorTank">
+                <triggeredMessage>A {0_labelShort} has emerged from a mech vat.</triggeredMessage>
+                <triggerRadiusRange>5~10</triggerRadiusRange>
+                <triggerSound>GestatorGlassShattered</triggerSound>
+
+                <mechKindOptions>
+                    <Mech_Scyther />
+                    <Mech_Lancer />
+                    <Mech_Cyclops MayRequire="Ludeon.RimWorld.Odyssey" />
+                    <Mech_Scorcher MayRequire="Ludeon.RimWorld.Biotech" />
+                    <Mech_Tesseron MayRequire="Ludeon.RimWorld.Biotech" />
+                </mechKindOptions>
+
+                <dormantGraphic>
+                    <texPath>Things/Building/Mech/AncientMechGestatorIntact_Full/AncientMechGestatorIntact_Full</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>(4,4)</drawSize>
+                    <shadowData>
+                        <volume>(1.8, 2, 1.8)</volume>
+                    </shadowData>
+                    <addTopAltitudeBias>true</addTopAltitudeBias>
+                </dormantGraphic>
+
+                <emptyGraphic>
+                    <texPath>Things/Building/Mech/AncientMechGestatorIntact_Empty/AncientMechGestatorIntact_Empty</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>(4,4)</drawSize>
+                    <shadowData>
+                        <volume>(1.8, 2, 1.8)</volume>
+                    </shadowData>
+                    <addTopAltitudeBias>true</addTopAltitudeBias>
+                </emptyGraphic>
+            </li>
+
+            <!-- Auto-set initial tank state on spawn -->
+            <li Class="Rimgate.CompProperties_SetInitialGestatorState">
+                <initialState>Proximity</initialState>
+                <chance>0.9</chance>
+                <requirePowerOn>false</requirePowerOn>
+            </li>
+
+            <li Class="CompProperties_Glower">
+                <glowRadius>4.9</glowRadius>
+                <glowColor>(255,150,100,0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_AncientGestatorBase">
+        <defName>Rimgate_AncientReplicatorVat_Small</defName>
+        <label>ancient replicator vat</label>
+        <description>An ancient compact gestation tank retrofitted for self-assembling Replicator units. Smaller footprint, same unpleasant surprise.</description>
+
+        <!-- Half the footprint/visuals of the full vat -->
+        <graphicData>
+            <texPath>Things/Building/Mech/AncientMechGestatorIntact_Empty/AncientMechGestatorIntact_Empty</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <drawSize>(2,2)</drawSize>
+            <shadowData>
+                <volume>(0.9, 1.0, 0.9)</volume>
+            </shadowData>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
+        </graphicData>
+        <size>(1,1)</size>
+        <tickerType>Normal</tickerType>
+        <dontPrint>true</dontPrint> <!-- Printed onto map mesh by comp -->
+        <comps>
+            <li Class="CompProperties_MechGestatorTank">
+                <triggeredMessage>A {0_labelShort} has swarmed out of a replicator vat.</triggeredMessage>
+                <triggerRadiusRange>4~8</triggerRadiusRange>
+                <triggerSound>GestatorGlassShattered</triggerSound>
+
+                <!-- Restrict to your replicator mech kinds -->
+                <mechKindOptions>
+                    <Rimgate_Replicator />
+                    <Rimgate_ReplicatorPlasteel />
+                    <Rimgate_ReplicatorUranium />
+                    <Rimgate_ReplicatorNaquadah />
+                </mechKindOptions>
+
+                <dormantGraphic>
+                    <texPath>Things/Building/Mech/AncientMechGestatorIntact_Full/AncientMechGestatorIntact_Full</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>(2,2)</drawSize>
+                    <shadowData>
+                        <volume>(0.9, 1.0, 0.9)</volume>
+                    </shadowData>
+                    <addTopAltitudeBias>true</addTopAltitudeBias>
+                </dormantGraphic>
+
+                <emptyGraphic>
+                    <texPath>Things/Building/Mech/AncientMechGestatorIntact_Empty/AncientMechGestatorIntact_Empty</texPath>
+                    <graphicClass>Graphic_Multi</graphicClass>
+                    <drawSize>(2,2)</drawSize>
+                    <shadowData>
+                        <volume>(0.9, 1.0, 0.9)</volume>
+                    </shadowData>
+                    <addTopAltitudeBias>true</addTopAltitudeBias>
+                </emptyGraphic>
+            </li>
+
+            <!-- Keep the same auto-state setup; tweak if you want some to be empty sometimes -->
+            <li Class="Rimgate.CompProperties_SetInitialGestatorState">
+                <initialState>Proximity</initialState>
+                <chance>0.9</chance>
+                <requirePowerOn>false</requirePowerOn>
+            </li>
+
+            <li Class="CompProperties_Glower">
+                <glowRadius>3.9</glowRadius>
+                <glowColor>(200,255,255,0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_AncientGestatorBase">
+        <defName>Rimgate_AncientReplicatorVat_EmptySmall</defName>
+        <label>ancient replicator vat</label>
+        <description>An ancient compact gestation tank retrofitted for self-assembling Replicator units. Valuable parts are missing, and everything else is degraded to uselessness.</description>
+
+        <!-- Half the footprint/visuals of the full vat -->
+        <graphicData>
+            <texPath>Things/Building/Mech/AncientMechGestatorIntact_Empty/AncientMechGestatorIntact_Empty</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <drawSize>(2,2)</drawSize>
+            <shadowData>
+                <volume>(0.9, 1.0, 0.9)</volume>
+            </shadowData>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
+        </graphicData>
+        <size>(1,1)</size>
+    </ThingDef>
+
+    <!-- ================ Destroyed Malp ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedMalp</defName>
+        <label>abandoned MALP</label>
+        <description>A disabled Tau'ri MALP. It is now completely inoperable, but its wiring runs and crystal beds still tell a story to anyone patient enough to listen.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/DestroyedMalp</texPath>
+            <graphicClass>Graphic_Random</graphicClass>
+            <drawSize>2</drawSize>
+        </graphicData>
+        <size>(2,1)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>30.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+        <rotatable>false</rotatable>
+        <comps>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000700</analysisID>
+                <requiresResearchDef>Rimgate_TauriManufacturing</requiresResearchDef>
+
+                <!-- Analyze settings -->
+                <requiresMechanitor>true</requiresMechanitor>
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+                <maintainProgress>true</maintainProgress>
+
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicExplosion>true</catastrophicExplosion>
+                <catastrophicExplosionRadius>3.0</catastrophicExplosionRadius>
+                <catastrophicExplosionDamage>45</catastrophicExplosionDamage>
+                <catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+                <!-- UI / strings -->
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Study the remains for usable patterns.</activateDescString>
+                <jobString>Analyzing MALP chassis</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist with mechtech knowledge.</inspectString>
+
+                <!-- Completion feedback; ties into research via the project's <requiredAnalyzed> -->
+                <completedLetterLabel>MALP analysis complete: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By mapping the signal pathways and chassis mounting on the ruined MALP, {PAWN_labelShort} has revealed enough to begin our own design.\n\nThe old circuitry corroded completely under power-on testing, reducing the machine to scrap and smoke.\n\nResearch project(s) {RESEARCH} are now available at the bench.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <!-- Optional targeting -->
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ================ Destroyed Jumper ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedJumper</defName>
+        <label>dilapitated puddle jumper</label>
+        <description>A shattered Ancient scout vessel, its crystal conduits still pulsing faintly with residual subspace charge.\n\nMost of its systems are fused or looted, but the data spine and flight control lattice might still whisper secrets to anyone patient enough to listen.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGPuddleJumper_Destroyed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(3,3)</drawSize>
+        </graphicData>
+        <size>(3,3)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>30.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+        <rotatable>false</rotatable>
+        <comps>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000710</analysisID>
+                <requiresResearchDef>ShipBasics</requiresResearchDef>
+
+                <!-- Analyze settings -->
+
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+                <completedLetterLabel>Puddle Jumper studied: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By studying the remnants of an Ancient Puddle Jumper, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.\n\nThe craft’s systems fused into glass when reactivated, erasing whatever ghost intelligence still lingered within.\n\nYour engineers can now attempt to reproduce the vessel—without the existential dread of the original AI.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+
+                <!-- Interactable -->
+
+                <maintainProgress>true</maintainProgress>
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Analyze the dilapitated Ancient Puddle Jumper.</activateDescString>
+                <jobString>Analyzing Puddle Jumper</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist.</inspectString>
+
+                <!-- Optional targeting -->
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ================ Destroyed Tel'tak ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedTeltak</defName>
+        <label>deteriorating Tel'tak</label>
+        <description>A gutted Goa'uld courier craft: hull scorched, crystal racks shattered, and half the control studs fused from heat.\n\nUseless as a ship—but its systems still whisper how it once slipped through blockades and sensor nets.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGTeltak_Destroyed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5.5,5.5)</drawSize>
+        </graphicData>
+        <size>(5,4)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>30.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+        <rotatable>false</rotatable>
+        <comps>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000720</analysisID>
+                <requiresResearchDef>ShipBasics</requiresResearchDef>
+
+                <!-- Analyze settings -->
+
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+                <completedLetterLabel>Tel'tak analysis complete: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By studying the remnants of a Goa’uld Tel’tak, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.\n\nThe remaining naquadah conduits overloaded during testing, disintegrating the hull and leaving only a crater where pride once stood.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+                <!-- Interactable -->
+
+                <maintainProgress>true</maintainProgress>
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Analyze the deteriorating Goa'uld Tel'tak.</activateDescString>
+                <jobString>Analyzing Tel'tak</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist.</inspectString>
+
+                <!-- Optional targeting -->
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ================ Destroyed Dart ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedDart</defName>
+        <label>decaying dart</label>
+        <description>A shattered Wraith Dart, its organic hull slowly liquefying.\n\nBiopolymer veins still twitch with residual charge, and faint hums echo from what’s left of its stasis chamber.\n\nIt’s more carcass than craft now—but one that remembers how to fly.</description>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGDart_Destroyed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5,3)</drawSize>
+        </graphicData>
+        <size>(5,2)</size>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <Mass>30.5</Mass>
+        </statBases>
+        <fillPercent>0.4</fillPercent>
+        <building>
+            <claimable>false</claimable>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>true</alwaysDeconstructible>
+            <canLandGravshipOn>true</canLandGravshipOn>
+        </building>
+        <passability>Impassable</passability>
+        <canOverlapZones>false</canOverlapZones>
+        <altitudeLayer>Building</altitudeLayer>
+        <rotatable>false</rotatable>
+        <comps>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000730</analysisID>
+                <requiresResearchDef>ShipBasics</requiresResearchDef>
+
+                <!-- Analyze settings -->
+
+                <canStudyInPlace>true</canStudyInPlace>
+                <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+                <analysisDurationHours>10</analysisDurationHours>
+                <completedLetterLabel>Dart analysis complete: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By dissecting the remnants of a Wraith Dart, {PAWN_labelShort} has mapped its bio-alloy struts and energy lattice patterns, laying the foundation for {RESEARCH} research.\n\nThe craft’s organic frame began to decay the instant its neural core was exposed, hissing away into vapor as if offended by mortal curiosity.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+                <!-- Interactable -->
+
+                <maintainProgress>true</maintainProgress>
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Analyze the decaying Wraith Dart.</activateDescString>
+                <jobString>Analyzing Dart</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist.</inspectString>
+
+                <!-- Optional targeting -->
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ================ Destroyed Generator ================ -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_DestroyedGeothermalGenerator</defName>
+        <label>ancient geothermal generator</label>
+        <description>A ruined geothermal generator. It is now completely inoperable. Its usable parts were smashed or looted long ago.</description>
+        <thingClass>Building</thingClass>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGDestroyedGeothermalGenerator</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(6,6)</drawSize>
+            <shadowData>
+                <volume>(6.03,1.0,5.25)</volume>
+                <offset>(0,0,-0.25)</offset>
+            </shadowData>
+            <damageData>
+                <rect>(0.3,0,5.4,6)</rect>
+            </damageData>
+        </graphicData>
+        <altitudeLayer>Building</altitudeLayer>
+        <passability>Impassable</passability>
+        <blockWind>true</blockWind>
+        <scatterableOnMapGen>true</scatterableOnMapGen>
+        <fillPercent>1</fillPercent>
+        <blockLight>true</blockLight>
+        <canOverlapZones>false</canOverlapZones>
+        <statBases>
+            <MaxHitPoints>250</MaxHitPoints>
+            <Flammability>0.5</Flammability>
+            <Beauty>-30</Beauty>
+        </statBases>
+        <size>(6,6)</size>
+        <rotatable>false</rotatable>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <building>
+            <claimable>false</claimable>
+            <deconstructible>false</deconstructible>
+            <neverBuildable>true</neverBuildable>
+            <repairable>false</repairable>
+            <displayAttackToDestroyOnInspectPane>true</displayAttackToDestroyOnInspectPane>
+            <alwaysDeconstructible>false</alwaysDeconstructible>
+            <ai_chillDestination>false</ai_chillDestination>
+            <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+        </building>
+    </ThingDef>
+
+    <!-- ================ Tox Geyser ================ -->
+
+    <ThingDef ParentName="BaseAncientVentThing">
+        <defName>Rimgate_ToxicSpout</defName>
+        <label>toxic spout</label>
+        <description>A naturally-occurring break in the ground from which toxic fumes escape from an underground megastructure. It will regularly cause toxic fallout in the area.</description>
+        <graphicData>
+            <texPath>Things/Building/GeothermalVent</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5,5)</drawSize>
+        </graphicData>
+        <size>(5,5)</size>
+        <comps>
+            <li Class="CompProperties_AncientVentEmitter">
+                <compClass>CompAncientToxVent</compClass>
+                <conditionToCause>ToxicFallout</conditionToCause>
+                <onDurationMtbDays>12</onDurationMtbDays>
+                <offDurationMtbDays>1</offDurationMtbDays>
+                <heatToPush>60</heatToPush>
+                <startupMessageKey>AncientToxVentStartUp</startupMessageKey>
+                <shutdownMessageKey>AncientToxVentShutdown</shutdownMessageKey>
+                <activeInspectStringKey>AncientToxVentActive</activeInspectStringKey>
+                <activeSound>AncientVent_Ambient</activeSound>
+            </li>
+            <li Class="CompProperties_FleckEmitterLongTerm">
+                <fleckDef>AncientToxicCloud</fleckDef>
+                <spawnRadius>1.5</spawnRadius>
+                <spawnChance>0.05</spawnChance>
+                <spawnOffsetFromCenter>(0.0,0.0,0.0)</spawnOffsetFromCenter>
+                <prewarmCycles>1.0</prewarmCycles>
+                <fleckScale>2.0</fleckScale>
+                <minRotationRate>-20.0</minRotationRate>
+                <maxRotationRate>20.0</maxRotationRate>
+                <minVelocityAngle>-20.0</minVelocityAngle>
+                <maxVelocityAngle>20.0</maxVelocityAngle>
+                <minVelocitySpeed>0.0</minVelocitySpeed>
+                <maxVelocitySpeed>0.1</maxVelocitySpeed>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ======================= Supply crate ======================= -->
+
+    <!-- Base -->
+    <ThingDef Name="Rimgate_SupplyCrateBase" ParentName="CrateBase" Abstract="True">
+        <label>Supply crate</label>
+        <description>A sturdy, hermetically sealed supply crate used to store various goods and artifacts. These crates are usually found in ancient outposts and supply caches-but more commonly in the hands of explorers and scavengers.</description>
+        <size>(1, 1)</size>
+        <fillPercent>0.5</fillPercent>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+        </statBases>
+        <rotatable>false</rotatable>
+    </ThingDef>
+
+    <!-- NOTE: can't figure out the alpha mask issue with the default graphic; cutcomplex is ignored for some reason -->
+
+    <!-- Blue -->
+    <ThingDef ParentName="Rimgate_SupplyCrateBase">
+        <defName>Rimgate_SupplyCrateBlue</defName>
+        <graphicData>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilled</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_Techprints</contents>
+            </li>
+            <li Class="CompProperties_EmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                </graphicData>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1.5</glowRadius>
+                <glowColor>(166,222,239,0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- Green -->
+    <ThingDef ParentName="Rimgate_SupplyCrateBase">
+        <defName>Rimgate_SupplyCrateGreen</defName>
+        <graphicData>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilledGreen</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_GateComplexLootAlpha</contents>
+            </li>
+            <li Class="CompProperties_EmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>(1,1)</drawSize>
+                    <color>(126,177,161)</color>
+                </graphicData>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1.5</glowRadius>
+                <glowColor>(126,177,161,0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- Orange -->
+    <ThingDef ParentName="Rimgate_SupplyCrateBase">
+        <defName>Rimgate_SupplyCrateOrange</defName>
+        <graphicData>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilledOrange</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_GateComplexLootBravo</contents>
+            </li>
+            <li Class="CompProperties_EmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <color>(159,117,43)</color>
+                </graphicData>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1.5</glowRadius>
+                <glowColor>(159,117,43,0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- Red -->
+    <ThingDef ParentName="Rimgate_SupplyCrateBase">
+        <defName>Rimgate_SupplyCrateRed</defName>
+        <graphicData>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilledRed</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_WeaponStash</contents>
+            </li>
+            <li Class="CompProperties_EmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <color>(109,13,13)</color>
+                </graphicData>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1.5</glowRadius>
+                <glowColor>(109,13,13,0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- Yellow -->
+    <ThingDef ParentName="Rimgate_SupplyCrateBase">
+        <defName>Rimgate_SupplyCrateYellow</defName>
+        <graphicData>
+            <texPath>Things/Building/Prop/Crate/RGSupplyCrateFilledYellow</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_GateComplexLootCharlie</contents>
+            </li>
+            <li Class="CompProperties_EmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/Crate/RGSupplyCrateEmpty</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <color>(221,220,28)</color>
+                </graphicData>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1.5</glowRadius>
+                <glowColor>(221,220,28,0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- Stone -->
+    <ThingDef ParentName="Rimgate_SupplyCrateBase">
+        <defName>Rimgate_SupplyCrateStone</defName>
+        <graphicData>
+            <texPath>Things/Building/Prop/Crate/RGStoneSupplyCrateFilled</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
+            <drawSize>(1,1)</drawSize>
+        </graphicData>
+        <stuffCategories>
+            <li>Stony</li>
+        </stuffCategories>
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_GateComplexLootCharlie</contents>
+            </li>
+            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/Crate/RGStoneSupplyCrateEmpty</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <shaderType>CutoutComplex</shaderType>
+                    <drawSize>(1,1)</drawSize>
+                </graphicData>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ======================= Wraith Cocoon Pod ======================= -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_WraithCocoonPod</defName>
+        <label>cocoon pod</label>
+        <description>A Wraith-grown pod for storing humans the way sensible people store meals: sealed, warm, and inconveniently still alive.\n\nIt cocoons the occupant in sticky biopolymer webbing and holds them in stasis for ages—perfect for long flights, emergencies, or a "snack later" plan. Victims are usually out cold, sometimes twitchy enough to beg or struggle.\n\nDisturbingly, it’s padded and spine-friendly. Nothing says "ancient space vampire" like ergonomic prisoner storage.</description>
+        <thingClass>Rimgate.Building_WraithCocoonPod</thingClass>
+        <containedPawnsSelectable>false</containedPawnsSelectable>
+        <graphicData>
+            <texPath>Things/Building/Prop/RGWraithCocoonPod</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1, 1.5)</drawSize>
+            <drawOffset>(0,0,0.25)</drawOffset>
+            <shadowData>
+                <volume>(0.83, 0.3, 1.7)</volume>
+            </shadowData>
+            <addTopAltitudeBias>true</addTopAltitudeBias>
+        </graphicData>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <rotatable>false</rotatable>
+        <altitudeLayer>Building</altitudeLayer>
+        <passability>PassThroughOnly</passability>
+        <pathCost>55</pathCost>
+        <blockWind>true</blockWind>
+        <fillPercent>0.5</fillPercent>
+        <canOverlapZones>false</canOverlapZones>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <Flammability>2</Flammability>
+            <Beauty>-35</Beauty>
+        </statBases>
+        <tickerType>Rare</tickerType>
+        <size>(1,1)</size>
+        <building>
+            <repairable>false</repairable>
+            <claimable>false</claimable>
+            <ai_neverTrashThis>true</ai_neverTrashThis>
+            <ai_chillDestination>false</ai_chillDestination>
+            <neverBuildable>true</neverBuildable>
+            <alwaysDeconstructible>false</alwaysDeconstructible>
+            <preventDeteriorationInside>true</preventDeteriorationInside>
+            <isEscapableContainer>false</isEscapableContainer>
+            <isPlayerEjectable>true</isPlayerEjectable>
+            <destroySound>BuildingDestroyed_Wood_Small</destroySound>
+        </building>
+        <killedLeavings>
+            <Rimgate_Biomass>2</Rimgate_Biomass>
+        </killedLeavings>
+        <comps>
+            <li Class="CompProperties_EmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/RGWraithCocoonPodOpen</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <drawSize>(1, 1.5)</drawSize>
+                    <drawOffset>(0,0,0.25)</drawOffset>
+                    <shadowData>
+                        <volume>(0.83, 0.3, 1.7)</volume>
+                    </shadowData>
+                    <addTopAltitudeBias>true</addTopAltitudeBias>
+                </graphicData>
+                <alwaysDrawParent>false</alwaysDrawParent>
+            </li>
+        </comps>
+        <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+        <modExtensions>
+            <li Class="Rimgate.Building_WraithCocoonPod_Ext" />
+        </modExtensions>
+    </ThingDef>
+
+    <!-- ======================= Symbiote Urn ======================= -->
+
+    <ThingDef Name="Rimgate_SymbioteUrnBase" ParentName="CrateBase" Abstract="True">
+        <graphicData>
+            <texPath>Things/Building/Prop/RGSymbioteContainer</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1.2,1.2)</drawSize>
+        </graphicData>
+        <size>(1, 1)</size>
+        <fillPercent>0.4</fillPercent>
+        <stuffCategories>
+            <li>Metallic</li>
+        </stuffCategories>
+        <building>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <deconstructible>false</deconstructible>
+            <claimable>false</claimable>
+            <ai_chillDestination>false</ai_chillDestination>
+            <paintable>false</paintable>
+        </building>
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <Flammability>0</Flammability>
+        </statBases>
+        <rotatable>false</rotatable>
+        <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
+        <comps>
+            <li Class="Rimgate.CompProperties_TintedEmptyStateGraphic">
+                <graphicData>
+                    <texPath>Things/Building/Prop/RGSymbioteContainer_Empty</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <drawSize>(1,1)</drawSize>
+                </graphicData>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_SymbioteUrnBase">
+        <defName>Rimgate_SymbioteUrn</defName>
+        <label>Goa'uld Symbiote urn</label>
+        <description>A small urn that is hermetically sealed to contain a Goa'uld symbiote.</description>
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_SymbioteContainer</contents>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_SymbioteUrnBase">
+        <defName>Rimgate_SymbioteQueenUrn</defName>
+        <label>Goa'uld Queen Symbiote urn</label>
+        <description>A small urn that is hermetically sealed to contain a Goa'uld Queen symbiote.</description>
+        <comps>
+            <li Class="CompProperties_LootSpawn">
+                <contents>Rimgate_SymbioteQueenContainer</contents>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ======================= Feral Pool ======================= -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_FeralSymbioteTrap</defName>
+        <label>feral symbiote basin</label>
+        <description>A ruined Goa’uld spawning basin infested by escaped prim’ta and feral symbiotes.
+            \n\nWithout caretakers or conditioning, the brood within has devolved into violent, instinct-driven predators. As the surface barely ripples, something beneath is listening—and waiting.
+            \n\nApproach too closely and the basin may erupt in a sudden, brutal ambush.
+            \n\nThough most queens subjected to this state are irreversibly damaged, it is sometimes possible to reclaim a surviving queen from the remains. With exceptional care and retraining, such a specimen may yet be restored to produce stable, non-feral prim’ta once more.</description>
+
+        <thingClass>Rimgate.Building_SymbioteAmbushTrap</thingClass>
+
+        <size>(2,2)</size>
+        <altitudeLayer>FloorEmplacement</altitudeLayer>
+        <passability>PassThroughOnly</passability>
+        <rotatable>false</rotatable>
+        <useHitPoints>true</useHitPoints>
+        <tickerType>Normal</tickerType>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <castEdgeShadows>false</castEdgeShadows>
+        <stealable>false</stealable>
+        <terrainAffordanceNeeded>ShallowWater</terrainAffordanceNeeded>
+
+        <graphicData>
+            <texPath>Things/Building/Prop/RGSymbioteSpawningPoolHostile</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1.75,1.75)</drawSize>
+            <shaderType>CutoutComplex</shaderType>
+        </graphicData>
+
+        <stuffCategories>
+            <li>Stony</li>
+        </stuffCategories>
+
+        <statBases>
+            <MaxHitPoints>300</MaxHitPoints>
+            <Flammability>0</Flammability>
+            <Beauty>-10</Beauty>
+            <Cleanliness>-10</Cleanliness>
+            <Mass>80</Mass>
+            <TrapMeleeDamage>6</TrapMeleeDamage>
+            <TrapSpringChance>0.35</TrapSpringChance>
+        </statBases>
+
+        <category>Building</category>
+        <neverMultiSelect>false</neverMultiSelect>
+        <hasInteractionCell>false</hasInteractionCell>
+        <designationCategory />
+
+        <building>
+            <isTrap>true</isTrap>
+            <trapDestroyOnSpring>false</trapDestroyOnSpring>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <deconstructible>false</deconstructible>
+            <claimable>false</claimable>
+            <ai_chillDestination>false</ai_chillDestination>
+            <paintable>false</paintable>
+        </building>
+
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <killedLeavingsRanges>
+            <Rimgate_SymbioteQueen>0~1</Rimgate_SymbioteQueen>
+        </killedLeavingsRanges>
+        <killedLeavingsChance>0.42</killedLeavingsChance>
+
+        <comps>
+            <li Class="Rimgate.CompProperties_AnimatedSymbiotePool">
+                <enabledByDefault>true</enabledByDefault>
+            </li>
+        </comps>
+
+    </ThingDef>
+
+    <!-- ======================= Banners ======================= -->
+
+    <ThingDef ParentName="BuildingBase" Name="Rimgate_BannerBase" Abstract="True">
+        <category>Building</category>
+
+        <building>
+            <isInert>true</isInert>
+            <neverBuildable>true</neverBuildable>
+            <paintable>false</paintable>
+        </building>
+
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+
+        <altitudeLayer>Blueprint</altitudeLayer>
+        <blockWind>false</blockWind>
+        <castEdgeShadows>false</castEdgeShadows>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>BuildingsFurniture</li>
+        </thingCategories>
+
+        <passability>PassThroughOnly</passability>
+        <pathCost>60</pathCost>
+
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_BannerBase">
+        <defName>Rimgate_BannerBaal</defName>
+        <label>Baal banner</label>
+        <description>A decorative banner emblazoned with the sigil of Baal, System Lord of the Goa'uld Empire. Such banners were often displayed in the halls of high-ranking Goa'uld to signify their power and status.</description>
+
+        <graphicData>
+            <texPath>Things/Building/Prop/RGBannerBaal</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5,5)</drawSize>
+        </graphicData>
+
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <WorkToBuild>600</WorkToBuild>
+            <Flammability>0.2</Flammability>
+            <Mass>5</Mass>
+            <Beauty>25</Beauty>
+        </statBases>
+
+        <size>(1,1)</size>
+        <rotatable>false</rotatable>
+    </ThingDef>
+
+    <ThingDef ParentName="Rimgate_BannerBase">
+        <defName>Rimgate_BannerTauri</defName>
+        <label>Tau'ri flag</label>
+        <description>A decorative banner bearing the emblem of the Tau'ri (humans from Earth). Such banners are often displayed to honor the resilience and achievements of humanity in the face of cosmic threats.</description>
+
+        <graphicData>
+            <texPath>Things/Building/Prop/RGBannerTauri</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(5,5)</drawSize>
+        </graphicData>
+
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <WorkToBuild>600</WorkToBuild>
+            <Flammability>0.2</Flammability>
+            <Mass>5</Mass>
+            <Beauty>25</Beauty>
+        </statBases>
+
+        <size>(1,1)</size>
+        <rotatable>false</rotatable>
+    </ThingDef>
+
+</Defs>

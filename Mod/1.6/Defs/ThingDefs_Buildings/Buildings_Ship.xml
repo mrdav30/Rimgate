@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- =============== Tel'tak =============== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_GoauldTeltak</defName>
+    <label>Goa'uld Tel'tak</label>
+    <description>a compact Goa'uld transport craft built for swift infiltration, planetary landings, and discreet extractions. Lacks firepower—but makes up for it with sheer speed, stealth plating, and enough ego to carry a system lord.</description>
+    <thingClass>Building_PassengerShuttle</thingClass>
+    <preventDroppingThingsOn>true</preventDroppingThingsOn>
+    <size>(5,6)</size>
+    <graphicData>
+      <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(6,6)</drawSize>
+      <shadowData>
+        <volume>(0.8, 0.6, 0.8)</volume>
+      </shadowData>
+    </graphicData>
+    <defaultPlacingRot>East</defaultPlacingRot>
+    <pathCost>50</pathCost>
+    <drawOffscreen>true</drawOffscreen>
+    <fillPercent>0.65</fillPercent>
+    <passability>PassThroughOnly</passability>
+    <stealable>false</stealable>
+    <altitudeLayer>Building</altitudeLayer>
+    <receivesSignals>true</receivesSignals>
+    <neverMultiSelect>true</neverMultiSelect>
+    <statBases>
+      <MaxHitPoints>4400</MaxHitPoints>
+      <WorkToBuild>24000</WorkToBuild>
+      <Mass>450</Mass>
+      <Flammability>0.5</Flammability>
+      <Comfort>0.75</Comfort>
+    </statBases>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(4, 0, 0)</interactionCellOffset>
+    <selectable>true</selectable>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <preventSkyfallersLandingOn>true</preventSkyfallersLandingOn>
+    <drawerType>RealtimeOnly</drawerType>
+    <repairEffect>ConstructMetal</repairEffect>
+    <building>
+      <claimable>false</claimable>
+      <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+      <isInert>true</isInert>
+    </building>
+    <designationCategory>Odyssey</designationCategory>
+    <costList>
+      <Steel>1000</Steel>
+      <Gold>200</Gold>
+      <Plasteel>250</Plasteel>
+      <ComponentIndustrial>16</ComponentIndustrial>
+      <ComponentSpacer>5</ComponentSpacer>
+      <Rimgate_Naquadah>100</Rimgate_Naquadah>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Shuttle">
+        <shipDef>Rimgate_GoauldTeltakShip</shipDef>
+      </li>
+      <li Class="CompProperties_Launchable">
+        <fuelPerTile>4.0</fuelPerTile>
+        <minFuelCost>75</minFuelCost>
+        <skyfallerLeaving>Rimgate_TeltakLeaving</skyfallerLeaving>
+        <worldObjectDef>Rimgate_GoauldTeltak</worldObjectDef>
+        <cooldownTicks>4000</cooldownTicks>
+        <fixedLaunchDistanceMax>120</fixedLaunchDistanceMax>
+        <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
+      </li>
+      <li Class="CompProperties_Transporter">
+        <massCapacity>2200</massCapacity>
+        <max1PerGroup>true</max1PerGroup>
+        <canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+        <pawnLoadedSound>Shuttle_PawnLoaded</pawnLoadedSound>
+        <pawnExitSound>Shuttle_PawnExit</pawnExitSound>
+        <showMassInInspectString>true</showMassInInspectString>
+      </li>
+      <li Class="CompProperties_Refuelable">
+        <fuelCapacity>3000</fuelCapacity>
+        <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+        <initialConfigurableTargetFuelLevel>3000</initialConfigurableTargetFuelLevel>
+        <fuelFilter>
+          <thingDefs>
+            <li>Rimgate_Naquadria</li>
+          </thingDefs>
+        </fuelFilter>
+        <initialFuelPercent>0.25</initialFuelPercent>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <autoRefuelPercent>1</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+        <canEjectFuel>true</canEjectFuel>
+      </li>
+    </comps>
+    <inspectorTabs>
+      <li>ITab_ContentsTransporter</li>
+    </inspectorTabs>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <researchPrerequisites>
+      <li>Rimgate_GoauldTelTak</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+  </ThingDef>
+
+  <ThingDef ParentName="ShuttleSkyfallerBase">
+    <defName>Rimgate_TeltakIncoming</defName>
+    <label>Goa'uld Tel'tak (incoming)</label>
+    <thingClass>PassengerShuttleIncoming</thingClass>
+    <graphicData>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(6,6)</drawSize>
+    </graphicData>
+    <skyfaller>
+      <anticipationSound>Shuttle_Landing</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
+      <ticksToImpactRange>160~200</ticksToImpactRange>
+      <shadowSize>(6.5,6.5)</shadowSize>
+      <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
+      <rotationCurve>
+        <points>
+          <li>(0,25)</li>
+          <li>(0.5,4)</li>
+          <li>(0.9,-4)</li>
+          <li>(0.95,0)</li>
+        </points>
+      </rotationCurve>
+      <zPositionCurve>
+        <points>
+          <li>(0.95,2.5)</li>
+          <li>(1,0)</li>
+        </points>
+      </zPositionCurve>
+      <speedCurve>
+        <points>
+          <li>(0.6,0.8)</li>
+          <li>(0.95,0.12)</li>
+        </points>
+      </speedCurve>
+    </skyfaller>
+  </ThingDef>
+
+  <ThingDef ParentName="ShuttleSkyfallerBase">
+    <defName>Rimgate_TeltakLeaving</defName>
+    <label>Goa'uld Tel'tak (leaving)</label>
+    <thingClass>PassengerShuttleLeaving</thingClass>
+    <rotatable>true</rotatable>
+    <graphicData>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <texPath>Things/Ship/Teltak/RGGoauldTeltak</texPath>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(6,6)</drawSize>
+    </graphicData>
+    <skyfaller>
+      <reversed>true</reversed>
+      <anticipationSound>Shuttle_Leaving</anticipationSound>
+      <anticipationSoundTicks>-10</anticipationSoundTicks>
+      <ticksToImpactRange>-40~-15</ticksToImpactRange>
+      <moteSpawnTime>0.05</moteSpawnTime>
+      <shadow>Things/Ship/Teltak/RGGoauldTeltakShadow</shadow>
+      <shadowSize>(6.5,6.5)</shadowSize>
+      <motesPerCell>1</motesPerCell>
+      <rotationCurve>
+        <points>
+          <li>(0,0)</li>
+          <li>(0.15,12)</li>
+          <li>(0.5,-4)</li>
+        </points>
+      </rotationCurve>
+      <zPositionCurve>
+        <points>
+          <li>(0,0)</li>
+          <li>(0.08,2)</li>
+        </points>
+      </zPositionCurve>
+      <speedCurve>
+        <points>
+          <li>(0,0.25)</li>
+          <li>(0.4,0.9)</li>
+        </points>
+      </speedCurve>
+    </skyfaller>
+  </ThingDef>
+
+  <!-- =============== Wraith Dart =============== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_WraithDart</defName>
+    <label>Wraith Dart</label>
+    <description>razor-fast and biomechanically fused, the Wraith Dart excels at hit-and-run attacks, stasis harvesting, and sudden disappearances. Its sinister hum alone is enough to send villagers fleeing.</description>
+    <thingClass>Building_PassengerShuttle</thingClass>
+    <preventDroppingThingsOn>true</preventDroppingThingsOn>
+    <size>(3,5)</size>
+    <graphicData>
+      <texPath>Things/Ship/Dart/RGWraithDart</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,5)</drawSize>
+      <shadowData>
+        <volume>(0.8, 0.6, 0.8)</volume>
+      </shadowData>
+    </graphicData>
+    <defaultPlacingRot>East</defaultPlacingRot>
+    <pathCost>50</pathCost>
+    <drawOffscreen>true</drawOffscreen>
+    <fillPercent>0.3</fillPercent>
+    <passability>PassThroughOnly</passability>
+    <stealable>false</stealable>
+    <altitudeLayer>Building</altitudeLayer>
+    <receivesSignals>true</receivesSignals>
+    <neverMultiSelect>true</neverMultiSelect>
+    <statBases>
+      <MaxHitPoints>1500</MaxHitPoints>
+      <WorkToBuild>24000</WorkToBuild>
+      <Mass>150</Mass>
+      <Flammability>0.5</Flammability>
+      <Comfort>0.65</Comfort>
+    </statBases>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(2, 0, 1)</interactionCellOffset>
+    <selectable>true</selectable>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <preventSkyfallersLandingOn>true</preventSkyfallersLandingOn>
+    <drawerType>RealtimeOnly</drawerType>
+    <repairEffect>ConstructMetal</repairEffect>
+    <building>
+      <claimable>false</claimable>
+      <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+      <isInert>true</isInert>
+    </building>
+    <designationCategory>Odyssey</designationCategory>
+    <costList>
+      <Steel>100</Steel>
+      <Plasteel>250</Plasteel>
+      <ComponentIndustrial>16</ComponentIndustrial>
+      <ComponentSpacer>5</ComponentSpacer>
+      <Rimgate_Biomass>750</Rimgate_Biomass>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Shuttle">
+        <shipDef>Rimgate_WraithDartShip</shipDef>
+      </li>
+      <li Class="CompProperties_Launchable">
+        <fuelPerTile>2.2</fuelPerTile>
+        <minFuelCost>45</minFuelCost>
+        <skyfallerLeaving>Rimgate_DartLeaving</skyfallerLeaving>
+        <worldObjectDef>Rimgate_WraithDart</worldObjectDef>
+        <cooldownTicks>2500</cooldownTicks>
+        <fixedLaunchDistanceMax>120</fixedLaunchDistanceMax>
+        <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
+      </li>
+      <li Class="CompProperties_Transporter">
+        <massCapacity>150</massCapacity>
+        <max1PerGroup>true</max1PerGroup>
+        <canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+        <pawnLoadedSound>Shuttle_PawnLoaded</pawnLoadedSound>
+        <pawnExitSound>Shuttle_PawnExit</pawnExitSound>
+        <showMassInInspectString>true</showMassInInspectString>
+      </li>
+      <li Class="CompProperties_Refuelable">
+        <fuelCapacity>1500</fuelCapacity>
+        <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+        <initialConfigurableTargetFuelLevel>1500</initialConfigurableTargetFuelLevel>
+        <fuelFilter>
+          <thingDefs>
+            <li>Rimgate_Biomass</li>
+          </thingDefs>
+        </fuelFilter>
+        <initialFuelPercent>0.25</initialFuelPercent>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <autoRefuelPercent>1</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+        <canEjectFuel>true</canEjectFuel>
+      </li>
+    </comps>
+    <inspectorTabs>
+      <li>ITab_ContentsTransporter</li>
+    </inspectorTabs>
+    <researchPrerequisites>
+      <li>Rimgate_WraithDart</li>
+    </researchPrerequisites>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+  </ThingDef>
+
+  <ThingDef ParentName="ShuttleSkyfallerBase">
+    <defName>Rimgate_DartIncoming</defName>
+    <label>Wraith Dart (incoming)</label>
+    <thingClass>PassengerShuttleIncoming</thingClass>
+    <graphicData>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <texPath>Things/Ship/Dart/RGWraithDart</texPath>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(3,5)</drawSize>
+    </graphicData>
+    <skyfaller>
+      <anticipationSound>Shuttle_Landing</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
+      <ticksToImpactRange>160~200</ticksToImpactRange>
+      <shadowSize>(3.5,5.5)</shadowSize>
+      <shadow>Things/Ship/Dart/RGWraithDartShadow</shadow>
+      <rotationCurve>
+        <points>
+          <li>(0,25)</li>
+          <li>(0.5,4)</li>
+          <li>(0.9,-4)</li>
+          <li>(0.95,0)</li>
+        </points>
+      </rotationCurve>
+      <zPositionCurve>
+        <points>
+          <li>(0.95,2.5)</li>
+          <li>(1,0)</li>
+        </points>
+      </zPositionCurve>
+      <speedCurve>
+        <points>
+          <li>(0.6,0.8)</li>
+          <li>(0.95,0.12)</li>
+        </points>
+      </speedCurve>
+    </skyfaller>
+  </ThingDef>
+
+  <ThingDef ParentName="ShuttleSkyfallerBase">
+    <defName>Rimgate_DartLeaving</defName>
+    <label>Wraith Dart (leaving)</label>
+    <thingClass>PassengerShuttleLeaving</thingClass>
+    <rotatable>true</rotatable>
+    <graphicData>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <texPath>Things/Ship/Dart/RGWraithDart</texPath>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(3,5)</drawSize>
+    </graphicData>
+    <skyfaller>
+      <reversed>true</reversed>
+      <anticipationSound>Shuttle_Leaving</anticipationSound>
+      <anticipationSoundTicks>-10</anticipationSoundTicks>
+      <ticksToImpactRange>-40~-15</ticksToImpactRange>
+      <moteSpawnTime>0.05</moteSpawnTime>
+      <shadow>Things/Ship/Dart/RGWraithDartShadow</shadow>
+      <shadowSize>(3.5,5.5)</shadowSize>
+      <motesPerCell>1</motesPerCell>
+      <rotationCurve>
+        <points>
+          <li>(0,0)</li>
+          <li>(0.15,12)</li>
+          <li>(0.5,-4)</li>
+        </points>
+      </rotationCurve>
+      <zPositionCurve>
+        <points>
+          <li>(0,0)</li>
+          <li>(0.08,2)</li>
+        </points>
+      </zPositionCurve>
+      <speedCurve>
+        <points>
+          <li>(0,0.25)</li>
+          <li>(0.4,0.9)</li>
+        </points>
+      </speedCurve>
+    </skyfaller>
+  </ThingDef>
+
+  <!-- =============== Tauri Puddle Jumper =============== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_AncientPuddleJumper</defName>
+    <label>Ancient Puddle Jumper</label>
+    <description>A marvel of Ancient engineering, retrofitted by the Tau’ri. Compact and equipped with a powerful deflector shield, the Puddle Jumper excels at stealth ops, extractions, and rapid deployment. Unfortunately, the Jumper’s hull dimensions mean it cannot fit through the smaller Dwarfgates scattered across the Rim, limiting its use to planetary travel and spaceflight.</description>
+    <thingClass>Building_PassengerShuttle</thingClass>
+    <size>(3,6)</size>
+    <graphicData>
+      <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,6)</drawSize>
+      <shadowData>
+        <volume>(0.8, 0.6, 0.8)</volume>
+      </shadowData>
+    </graphicData>
+    <defaultPlacingRot>East</defaultPlacingRot>
+    <tickerType>Normal</tickerType>
+    <fillPercent>0.5</fillPercent>
+    <pathCost>50</pathCost>
+    <drawOffscreen>true</drawOffscreen>
+    <passability>PassThroughOnly</passability>
+    <stealable>false</stealable>
+    <altitudeLayer>Building</altitudeLayer>
+    <receivesSignals>true</receivesSignals>
+    <neverMultiSelect>true</neverMultiSelect>
+    <preventDroppingThingsOn>true</preventDroppingThingsOn>
+    <blockWind>true</blockWind>
+    <statBases>
+      <MaxHitPoints>3000</MaxHitPoints>
+      <WorkToBuild>24000</WorkToBuild>
+      <Mass>250</Mass>
+      <Flammability>0.5</Flammability>
+      <Comfort>0.65</Comfort>
+    </statBases>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0, 0, -3)</interactionCellOffset>
+    <selectable>true</selectable>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <preventSkyfallersLandingOn>true</preventSkyfallersLandingOn>
+    <drawerType>RealtimeOnly</drawerType>
+    <repairEffect>ConstructMetal</repairEffect>
+    <building>
+      <claimable>false</claimable>
+      <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+      <isInert>true</isInert>
+    </building>
+    <designationCategory>Odyssey</designationCategory>
+    <costList>
+      <Steel>750</Steel>
+      <Plasteel>250</Plasteel>
+      <BroadshieldCore>2</BroadshieldCore>
+      <ComponentIndustrial>16</ComponentIndustrial>
+      <ComponentSpacer>15</ComponentSpacer>
+      <Rimgate_Naquadah>75</Rimgate_Naquadah>
+    </costList>
+    <inspectorTabs>
+      <li>ITab_ContentsTransporter</li>
+    </inspectorTabs>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <researchPrerequisites>
+      <li>Rimgate_AncientPuddleJumper</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
+    <comps>
+      <li Class="CompProperties_Shuttle">
+        <shipDef>Rimgate_AncientPuddleJumperShip</shipDef>
+      </li>
+      <li Class="CompProperties_Launchable">
+        <fuelPerTile>2.8</fuelPerTile>
+        <minFuelCost>65</minFuelCost>
+        <skyfallerLeaving>Rimgate_PuddleJumperLeaving</skyfallerLeaving>
+        <worldObjectDef>Rimgate_AncientPuddleJumper</worldObjectDef>
+        <cooldownTicks>3000</cooldownTicks>
+        <fixedLaunchDistanceMax>120</fixedLaunchDistanceMax>
+        <cooldownEndedMessage>{0} is ready to launch again.</cooldownEndedMessage>
+      </li>
+      <li Class="CompProperties_Transporter">
+        <massCapacity>1100</massCapacity>
+        <max1PerGroup>true</max1PerGroup>
+        <canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+        <pawnLoadedSound>Shuttle_PawnLoaded</pawnLoadedSound>
+        <pawnExitSound>Shuttle_PawnExit</pawnExitSound>
+        <showMassInInspectString>true</showMassInInspectString>
+      </li>
+      <li Class="Rimgate.CompProperties_Toggle">
+        <compClass>Rimgate.Comp_Toggle</compClass>
+        <commandLabelKey>RG_ShieldToggleLabel</commandLabelKey>
+        <commandDescKey>RG_ShieldToggleDescription</commandDescKey>
+      </li>
+      <li Class="CompProperties_Refuelable">
+        <fuelCapacity>2500</fuelCapacity>
+        <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+        <initialConfigurableTargetFuelLevel>2500</initialConfigurableTargetFuelLevel>
+        <fuelFilter>
+          <thingDefs>
+            <li>Rimgate_Naquadria</li>
+          </thingDefs>
+        </fuelFilter>
+        <initialFuelPercent>0.25</initialFuelPercent>
+        <fuelConsumptionRate>125</fuelConsumptionRate>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <autoRefuelPercent>1</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+        <canEjectFuel>true</canEjectFuel>
+      </li>
+      <li Class="Rimgate.CompProperties_ShieldEmitter">
+        <compClass>Rimgate.Comp_ShieldEmitter</compClass>
+        <interceptAirProjectiles>true</interceptAirProjectiles>
+        <interceptGroundProjectiles>true</interceptGroundProjectiles>
+        <podBlocker>false</podBlocker>
+        <resetTime>4000</resetTime>
+        <sizeScalesFuelUsage>true</sizeScalesFuelUsage>
+        <fuelConsumptionRange>325~675</fuelConsumptionRange>
+        <stressPerDamage>0.02</stressPerDamage>
+        <empDamageFactor>4.5</empDamageFactor>
+        <shieldOverloadThreshold>0.9</shieldOverloadThreshold>
+        <shieldOverloadChance>0.05</shieldOverloadChance>
+        <extraOverloadRange>10</extraOverloadRange>
+        <overloadDamageType>EMP</overloadDamageType>
+        <explodeOnCollapse>false</explodeOnCollapse>
+        <shieldCanBeScaled>true</shieldCanBeScaled>
+        <shieldScaleLimits>4~6</shieldScaleLimits>
+        <shieldScaleDefault>4</shieldScaleDefault>
+        <shieldColor>(237, 227, 133)</shieldColor>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="ShuttleSkyfallerBase">
+    <defName>Rimgate_PuddleJumperIncoming</defName>
+    <label>Tau'ri Puddle Jumper (incoming)</label>
+    <thingClass>PassengerShuttleIncoming</thingClass>
+    <graphicData>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(3,6)</drawSize>
+    </graphicData>
+    <skyfaller>
+      <anticipationSound>Shuttle_Landing</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
+      <ticksToImpactRange>160~200</ticksToImpactRange>
+      <shadowSize>(3.5,6.5)</shadowSize>
+      <shadow>Things/Ship/PuddleJumper/RGTauriPuddleJumperShadow</shadow>
+      <rotationCurve>
+        <points>
+          <li>(0,25)</li>
+          <li>(0.5,4)</li>
+          <li>(0.9,-4)</li>
+          <li>(0.95,0)</li>
+        </points>
+      </rotationCurve>
+      <zPositionCurve>
+        <points>
+          <li>(0.95,2.5)</li>
+          <li>(1,0)</li>
+        </points>
+      </zPositionCurve>
+      <speedCurve>
+        <points>
+          <li>(0.6,0.8)</li>
+          <li>(0.95,0.12)</li>
+        </points>
+      </speedCurve>
+    </skyfaller>
+  </ThingDef>
+
+  <ThingDef ParentName="ShuttleSkyfallerBase">
+    <defName>Rimgate_PuddleJumperLeaving</defName>
+    <label>Tarui Puddle Jumper (leaving)</label>
+    <thingClass>PassengerShuttleLeaving</thingClass>
+    <rotatable>true</rotatable>
+    <graphicData>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <texPath>Things/Ship/PuddleJumper/RGTauriPuddleJumper</texPath>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(3,6)</drawSize>
+    </graphicData>
+    <skyfaller>
+      <reversed>true</reversed>
+      <anticipationSound>Shuttle_Leaving</anticipationSound>
+      <anticipationSoundTicks>-10</anticipationSoundTicks>
+      <ticksToImpactRange>-40~-15</ticksToImpactRange>
+      <moteSpawnTime>0.05</moteSpawnTime>
+      <shadow>Things/Ship/PuddleJumper/RGTauriPuddleJumperShadow</shadow>
+      <shadowSize>(3.5,6.5)</shadowSize>
+      <motesPerCell>1</motesPerCell>
+      <rotationCurve>
+        <points>
+          <li>(0,0)</li>
+          <li>(0.15,12)</li>
+          <li>(0.5,-4)</li>
+        </points>
+      </rotationCurve>
+      <zPositionCurve>
+        <points>
+          <li>(0,0)</li>
+          <li>(0.08,2)</li>
+        </points>
+      </zPositionCurve>
+      <speedCurve>
+        <points>
+          <li>(0,0.25)</li>
+          <li>(0.4,0.9)</li>
+        </points>
+      </speedCurve>
+    </skyfaller>
+  </ThingDef>
+
+</Defs>

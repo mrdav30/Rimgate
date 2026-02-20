@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- Staff Weapon Blast -->
+
+    <DamageDef>
+        <defName>Rimgate_StaffBlast</defName>
+        <label>staff blast</label>
+        <workerClass>DamageWorker_AddInjury</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been killed.</deathMessage>
+        <hediff>Rimgate_Staff_Weapon_Burn</hediff>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <impactSoundType>Bullet</impactSoundType>
+        <armorCategory>Sharp</armorCategory>
+        <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+        <isRanged>true</isRanged>
+        <makesAnimalsFlee>true</makesAnimalsFlee>
+    </DamageDef>
+
+    <!-- Zat Stun -->
+
+    <DamageDef>
+        <defName>Rimgate_ZatStun</defName>
+        <label>zat stun</label>
+        <workerClass>DamageWorker_Stun</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been stunned.</deathMessage>
+        <defaultDamage>20</defaultDamage>
+        <explosionCellFleck>BlastDry</explosionCellFleck>
+        <soundExplosion>Explosion_Stun</soundExplosion>
+        <combatLogRules>Damage_Stun</combatLogRules>
+        <isRanged>true</isRanged>
+        <makesAnimalsFlee>false</makesAnimalsFlee>
+    </DamageDef>
+
+    <!-- Siege Blunt -->
+
+    <DamageDef>
+        <defName>Rimgate_SiegeBlunt</defName>
+        <label>crush</label>
+        <workerClass>Rimgate.DamageWorker_Siege</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been crushed to death.</deathMessage>
+        <hediff>Crush</hediff>
+        <hediffSkin>Shredded</hediffSkin>
+        <hediffSolid>Crack</hediffSolid>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <impactSoundType>Blunt</impactSoundType>
+        <armorCategory>Blunt</armorCategory>
+    </DamageDef>
+
+    <!-- Replicator Gun -->
+
+    <DamageDef ParentName="StunBase">
+        <defName>Rimgate_ReplicatorDisrupt</defName>
+        <label>replicator disruption pulse</label>
+        <workerClass>Rimgate.DamageWorker_ReplicatorDisrupt</workerClass>
+        <deathMessage>{0} collapsed into inert nanite dust.</deathMessage>
+        <externalViolenceForMechanoids>true</externalViolenceForMechanoids>
+        <harmsHealth>true</harmsHealth>
+        <hediff>EnergyBolt</hediff>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <impactSoundType>Electric</impactSoundType>
+        <armorCategory>Sharp</armorCategory>
+        <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+        <defaultDamage>50</defaultDamage>
+        <explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+        <explosionCellFleck>BlastEMP</explosionCellFleck>
+        <explosionInteriorFleck>ElectricalSpark</explosionInteriorFleck>
+        <explosionColorCenter>(0.6, 0.8, 1.0)</explosionColorCenter>
+        <explosionColorEdge>(0.2, 0.4, 0.8)</explosionColorEdge>
+        <soundExplosion>Explosion_EMP</soundExplosion>
+        <combatLogRules>Damage_EMP</combatLogRules>
+        <causeStun>true</causeStun>
+        <stunResistStat MayRequireAnyOf="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Anomaly">EMPResistance</stunResistStat>
+        <stunAdaptationTicks>2200</stunAdaptationTicks>
+        <isRanged>true</isRanged>
+        <makesAnimalsFlee>true</makesAnimalsFlee>
+    </DamageDef>
+
+    <!-- Poison -->
+
+    <DamageDef>
+        <defName>Rimgate_WraithPoison</defName>
+        <label>poison</label>
+        <workerClass>DamageWorker_Nerve</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been killed by wraith poison.</deathMessage>
+        <hediff>Cut</hediff>
+        <hediffSolid>Crack</hediffSolid>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <impactSoundType>Slice</impactSoundType>
+        <armorCategory>Sharp</armorCategory>
+        <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+        <makesAnimalsFlee>true</makesAnimalsFlee>
+    </DamageDef>
+
+    <!-- Tracking Drone Flash Pulse -->
+
+    <DamageDef>
+        <defName>Rimgate_FlashPulse</defName>
+        <label>flash pulse</label>
+        <makesBlood>false</makesBlood>
+        <workerClass>Rimgate.DamageWorker_ApplyHediffToBodyPartTag</workerClass>
+        <externalViolence>true</externalViolence>
+        <deathMessage>{0} has been pulsed to death.</deathMessage>
+        <defaultDamage>10</defaultDamage>
+        <explosionCellFleck>BlastDry</explosionCellFleck>
+        <soundExplosion>Explosion_Stun</soundExplosion>
+        <combatLogRules>Damage_Stun</combatLogRules>
+        <causeStun>true</causeStun>
+        <impactSoundType>Electric</impactSoundType>
+        <armorCategory>Sharp</armorCategory>
+        <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+        <modExtensions>
+            <li Class="Rimgate.DamageWorker_ApplyHediffToBodyPartTag_Ext">
+                <bodypartTagTarget>SightSource</bodypartTagTarget>
+                <hediffToApply>Rimgate_FlashPulse</hediffToApply>
+                <shouldStun>true</shouldStun>
+            </li>
+        </modExtensions>
+    </DamageDef>
+
+</Defs>

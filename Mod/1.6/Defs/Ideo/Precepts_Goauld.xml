@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <IssueDef>
+        <defName>Rimgate_SymbioteHosting</defName>
+        <label>Goa'uld symbiosis</label>
+        <iconPath>UI/Issue/RG_GoauldSymbiosis</iconPath>
+    </IssueDef>
+
+    <!-- =============== Precepts =============== -->
+
+    <!-- Abhorrent -->
+    <PreceptDef>
+        <defName>Rimgate_Symbiote_Abhorrent</defName>
+        <issue>Rimgate_SymbioteHosting</issue>
+        <label>abhorrent</label>
+        <description>Letting a Goa'uld live in your body is seen as the ultimate betrayal—part slavery, part blasphemy, and entirely unacceptable.</description>
+        <impact>High</impact>
+        <displayOrderInIssue>30</displayOrderInIssue>
+        <displayOrderInImpact>100</displayOrderInImpact>
+
+        <conflictingMemes>
+            <li>AnimalPersonhood</li>
+            <li>Inhuman</li>
+        </conflictingMemes>
+        <associatedMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </associatedMemes>
+
+        <comps>
+            <!-- “I took a symbiote” = bad -->
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>Rimgate_InstalledSymbiote</eventDef>
+                <thought>Rimgate_InstalledSymbiote_Abhorrent</thought>
+            </li>
+
+            <!-- “I know someone took a symbiote” = bad -->
+            <li Class="PreceptComp_KnowsMemoryThought">
+                <eventDef>Rimgate_InstalledSymbiote</eventDef>
+                <thought>Rimgate_InstalledSymbiote_Know_Abhorrent</thought>
+            </li>
+
+            <!-- “I have a symbiote” = ongoing debuff -->
+            <li Class="PreceptComp_SituationalThought">
+                <thought>Rimgate_HasSymbiote_Abhorrent</thought>
+            </li>
+
+            <!-- “That pawn is a host” = social penalty;
+         reuse your existing hostility worker here -->
+            <li Class="PreceptComp_SituationalThought">
+                <thought>Rimgate_HasSymbiote_Abhorrent_Social</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <!-- Disapproved -->
+    <PreceptDef>
+        <defName>Rimgate_Symbiote_Disapproved</defName>
+        <issue>Rimgate_SymbioteHosting</issue>
+        <label>disapproved</label>
+        <description>Symbiotes are tolerated in emergencies, but living with one is seen as unsettling and morally questionable.</description>
+        <impact>Medium</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>100</displayOrderInImpact>
+
+        <conflictingMemes>
+            <li>AnimalPersonhood</li>
+            <li>Inhuman</li>
+        </conflictingMemes>
+        <associatedMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </associatedMemes>
+
+        <comps>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>Rimgate_InstalledSymbiote</eventDef>
+                <thought>Rimgate_InstalledSymbiote_Disapproved</thought>
+            </li>
+
+            <li Class="PreceptComp_KnowsMemoryThought">
+                <eventDef>Rimgate_InstalledSymbiote</eventDef>
+                <thought>Rimgate_InstalledSymbiote_Know_Disapproved</thought>
+            </li>
+
+            <li Class="PreceptComp_SituationalThought">
+                <thought>Rimgate_HasSymbiote_Disapproved</thought>
+            </li>
+
+            <li Class="PreceptComp_SituationalThought">
+                <thought>Rimgate_HasSymbiote_Disapproved_Social</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <!-- Don't Care -->
+    <PreceptDef>
+        <defName>Rimgate_Symbiote_DontCare</defName>
+        <issue>Rimgate_SymbioteHosting</issue>
+        <label>don't care</label>
+        <description>Whether or not someone hosts a symbiote is a personal choice.</description>
+        <impact>Low</impact>
+        <displayOrderInIssue>10</displayOrderInIssue>
+        <displayOrderInImpact>100</displayOrderInImpact>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </conflictingMemes>
+    </PreceptDef>
+
+    <!-- Revered -->
+    <PreceptDef>
+        <defName>Rimgate_Symbiote_Revered</defName>
+        <issue>Rimgate_SymbioteHosting</issue>
+        <label>revered</label>
+        <description>To carry a symbiote is to be touched by alien power. Hosts are living vessels of divinity—or at least very impressive biotech.</description>
+        <impact>Medium</impact>
+        <displayOrderInIssue>0</displayOrderInIssue>
+        <displayOrderInImpact>100</displayOrderInImpact>
+
+        <associatedMemes>
+            <li>AnimalPersonhood</li>
+            <li>Inhuman</li>
+            <li>Rimgate_SymbioticDominion</li>
+        </associatedMemes>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </conflictingMemes>
+
+        <comps>
+            <!-- No symbiote = mild “you’re wasting your potential” -->
+            <li Class="PreceptComp_SituationalThought">
+                <thought>Rimgate_HasNoSymbiote_Revered</thought>
+            </li>
+
+            <!-- Having a symbiote = big personal buff -->
+            <li Class="PreceptComp_SituationalThought">
+                <thought>Rimgate_HasSymbiote_Revered</thought>
+            </li>
+
+            <!-- Social: non-hosts slightly envy / revere hosts -->
+            <li Class="PreceptComp_SituationalThought">
+                <thought>Rimgate_HasNoSymbiote_Revered_Social</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <!-- =============== Thoughts =============== -->
+
+    <!-- ==== Abhorrent ==== -->
+
+    <!-- Installed symbiote (self) -->
+    <ThoughtDef>
+        <defName>Rimgate_InstalledSymbiote_Abhorrent</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>5</durationDays>
+        <stackLimit>1</stackLimit>
+        <nullifyingTraits>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>accepted a parasite</label>
+                <description>Letting a Goa'uld symbiote into my body felt like a violation—an alien presence taking root where it doesn't belong.</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Installed symbiote (other) -->
+    <ThoughtDef>
+        <defName>Rimgate_InstalledSymbiote_Know_Abhorrent</defName>
+        <thoughtClass>Thought_MemorySocial</thoughtClass>
+        <durationDays>10</durationDays>
+        <stackLimit>1</stackLimit>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Masochist</li>
+            <li>Kind</li>
+            <li>Bloodlust</li>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>betrayed by host</label>
+                <description>They chose to share their body with a Goa'uld. Hard to trust someone who invited a false god into their rib cage.</description>
+                <baseOpinionOffset>-15</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Having one is bad -->
+    <ThoughtDef>
+        <defName>Rimgate_HasSymbiote_Abhorrent</defName>
+        <thoughtClass>Thought_Situational</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_Precept_HasSymbioteImplant</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Masochist</li>
+            <li>Kind</li>
+            <li>Bloodlust</li>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>tainted by symbiote</label>
+                <description>I can feel the alien presence in my veins, whispering in the quiet moments. It doesn't matter who’s in control—it feels wrong.</description>
+                <baseMoodEffect>-6</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Social -->
+    <ThoughtDef>
+        <defName>Rimgate_HasSymbiote_Abhorrent_Social</defName>
+        <thoughtClass>Thought_SituationalSocial</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_Precept_SymbioteHostility_Social</workerClass>
+        <durationDays>-1</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Masochist</li>
+            <li>Kind</li>
+            <li>Bloodlust</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>abhorrent symbiote host</label>
+                <description>I despise those who host Goa'uld symbiotes. It's a vile betrayal of one's own body and soul.</description>
+                <baseOpinionOffset>-12</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- ==== Disapproved ==== -->
+
+    <!-- Installed symbiote (self) -->
+    <ThoughtDef>
+        <defName>Rimgate_InstalledSymbiote_Disapproved</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>4</durationDays>
+        <stackLimit>1</stackLimit>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Masochist</li>
+            <li>Kind</li>
+            <li>Bloodlust</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>let the snake in</label>
+                <description>Accepting a symbiote felt grubby—useful, maybe, but still wrong on several biological and spiritual levels.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Installed symbiote (other) -->
+    <ThoughtDef>
+        <defName>Rimgate_InstalledSymbiote_Know_Disapproved</defName>
+        <thoughtClass>Thought_MemorySocial</thoughtClass>
+        <durationDays>6</durationDays>
+        <stackLimit>1</stackLimit>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Masochist</li>
+            <li>Kind</li>
+            <li>Bloodlust</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>uneasy about new host</label>
+                <description>They took in a symbiote. It's not outright evil, but it's definitely the kind of decision you side-eye long-term.</description>
+                <baseOpinionOffset>-6</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Having one is mildly bad -->
+    <ThoughtDef>
+        <defName>Rimgate_HasSymbiote_Disapproved</defName>
+        <thoughtClass>Thought_Situational</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_Precept_HasSymbioteImplant</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Masochist</li>
+            <li>Kind</li>
+            <li>Bloodlust</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>living with a passenger</label>
+                <description>The symbiote inside me is a constant reminder of the uneasy bargain I've made. It's not outright wrong, but it still feels… off.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Social -->
+    <ThoughtDef>
+        <defName>Rimgate_HasSymbiote_Disapproved_Social</defName>
+        <thoughtClass>Thought_SituationalSocial</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_Precept_SymbioteHostility_Social</workerClass>
+        <durationDays>-1</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Masochist</li>
+            <li>Kind</li>
+            <li>Bloodlust</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>uneasy about hosts</label>
+                <description>I don't approve of those who host Goa'uld symbiotes. It's not the worst thing, but it's definitely unsettling.</description>
+                <baseOpinionOffset>-4</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- ==== Revered ==== -->
+
+    <!-- Having one is good -->
+    <ThoughtDef>
+        <defName>Rimgate_HasSymbiote_Revered</defName>
+        <thoughtClass>Thought_Situational</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_Precept_HasSymbioteImplant</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>blessed by symbiote</label>
+                <description>The symbiote within me is a source of strength and wonder. Its alien power courses through my veins, elevating me beyond ordinary limits.</description>
+                <baseMoodEffect>6</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Not having one is slightly bad -->
+    <ThoughtDef>
+        <defName>Rimgate_HasNoSymbiote_Revered</defName>
+        <thoughtClass>Thought_Situational</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_Precept_HasNoSymbioteImplant</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>lacking symbiote</label>
+                <description>Others carry living icons of power in their flesh. I, meanwhile, just have… organs. Very ordinary organs.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Social -->
+    <ThoughtDef>
+        <defName>Rimgate_HasNoSymbiote_Revered_Social</defName>
+        <thoughtClass>Thought_SituationalSocial</thoughtClass>
+        <workerClass>Rimgate.ThoughtWorker_Precept_SymbioteKinship_Social</workerClass>
+        <durationDays>-1</durationDays>
+        <stackLimit>1</stackLimit>
+        <validWhileDespawned>true</validWhileDespawned>
+        <replaceThoughts>
+            <li>Rimgate_Opinion_SymbioteKinship</li>
+        </replaceThoughts>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>power among power</label>
+                <description>Another bearer of the symbiote. Power recognizes power.</description>
+                <baseOpinionOffset>8</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ======================= Meat lab ======================= -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_WraithMeatLab</defName>
+    <label>meat lab</label>
+    <description>a bio-organic chamber that cultivates meat at an alarming rate using nutrient baths and questionable ethics. Wraith tech at its finest—perfect for those who think farms are too mainstream.</description>
+    <thingClass>Rimgate.Building_MeatLab</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Production/MeatLab/RGMeatLab</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <drawerType>RealtimeOnly</drawerType>
+    <techLevel>Spacer</techLevel>
+    <stackLimit>1</stackLimit>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsProduction</li>
+    </thingCategories>
+    <altitudeLayer>LowPlant</altitudeLayer>
+    <castEdgeShadows>true</castEdgeShadows>
+    <pathCost>30</pathCost>
+    <constructEffect>ConstructMetal</constructEffect>
+    <fillPercent>0.30</fillPercent>
+    <canOverlapZones>false</canOverlapZones>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <statBases>
+      <Mass>150</Mass>
+      <WorkToBuild>3500</WorkToBuild>
+      <MaxHitPoints>150</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Cleanliness>-3</Cleanliness>
+    </statBases>
+    <size>(1,1)</size>
+    <costList>
+      <Rimgate_Biomass>100</Rimgate_Biomass>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <fertility>3</fertility>
+    <building>
+      <defaultPlantToGrow>Rimgate_CulturedMeatCrop</defaultPlantToGrow>
+      <sowTag>Rimgate_WraithMeatLab_tag</sowTag>
+      <buildingTags>
+        <li>Production</li>
+      </buildingTags>
+    </building>
+    <tickerType>Rare</tickerType>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>450</basePowerConsumption>
+        <shortCircuitInRain>false</shortCircuitInRain>
+        <powerUpgrades>
+          <li>
+            <researchProject>Rimgate_BiomassOptimization</researchProject>
+            <factor>0.6</factor> <!-- 40% reduction -->
+          </li>
+        </powerUpgrades>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>2.9</glowRadius>
+        <glowColor>(33,202,255,0)</glowColor>
+      </li>
+    </comps>
+    <researchPrerequisites>
+      <li>Rimgate_MeatCultivation</li>
+    </researchPrerequisites>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <designationCategory>Production</designationCategory>
+  </ThingDef>
+
+  <!-- ======================= Cocoon station ======================= -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_CocoonStation</defName>
+    <description>A specialized spot for cocooning meat in an efficient, disturbingly clinical manner. Because nothing says "advanced civilization" like wrapping your food in a sticky alien silk sac.</description>
+    <label>cocoon spot</label>
+    <thingClass>Building_WorkTable</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Production/RGCocooningSpot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <size>(1,1)</size>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <useHitPoints>false</useHitPoints>
+    <statBases>
+      <WorkToBuild>0</WorkToBuild>
+      <Beauty>5</Beauty>
+      <WorkTableWorkSpeedFactor>1.25</WorkTableWorkSpeedFactor>
+    </statBases>
+    <placeWorkers>
+      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+    </placeWorkers>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <designationCategory>Production</designationCategory>
+    <passability>Standable</passability>
+    <pathCost>50</pathCost>
+    <hasInteractionCell>True</hasInteractionCell>
+    <surfaceType>Item</surfaceType>
+    <canOverlapZones>false</canOverlapZones>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+      <ai_chillDestination>false</ai_chillDestination>
+      <ai_neverTrashThis>true</ai_neverTrashThis>
+      <forceShowRoomStats>true</forceShowRoomStats>
+      <workTableRoomRole>Kitchen</workTableRoomRole>
+      <workTableNotInRoomRoleFactor>1</workTableNotInRoomRoleFactor>
+      <buildingTags>
+        <li>Production</li>
+      </buildingTags>
+    </building>
+    <researchPrerequisites>
+      <li>Rimgate_MeatCultivation</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <!-- ======================= Composition bench ======================= -->
+
+  <ThingDef ParentName="BenchBase">
+    <defName>Rimgate_CompositionBench</defName>
+    <label>composition bench</label>
+    <description>A Tau’ri designed composition bench standardized for advanced machining and fabrication work. Dual subcores handle precision feeds and safety interlocks while the operator focuses on the build.\n\nTurns raw materials into rugged, serviceable hardware—provided you keep the power flowing.</description>
+    <thingClass>Building_WorkTable</thingClass>
+    <size>(3,1)</size>
+    <graphicData>
+      <texPath>Things/Building/Production/RGCompositionBench</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(3.5,1.5)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToBuild>8000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Cleanliness>-2</Cleanliness>
+      <WorkTableWorkSpeedFactor>1.35</WorkTableWorkSpeedFactor>
+    </statBases>
+    <fillPercent>0.5</fillPercent>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <hasInteractionCell>true</hasInteractionCell>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Production</designationCategory>
+    <surfaceType>Item</surfaceType>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    <minifiedDef />
+    <thingCategories Inherit="false" />
+    <costList>
+      <Steel>450</Steel>
+      <Plasteel>50</Plasteel>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>10</ComponentSpacer>
+      <SubcoreRegular>2</SubcoreRegular>
+    </costList>
+    <castEdgeShadows>true</castEdgeShadows>
+    <staticSunShadowHeight>0.20</staticSunShadowHeight>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <comps>
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>ToolCabinet</li>
+          <li MayRequire="vanillaexpanded.vfeproduction">VFE_MachiningCabinet</li>
+        </linkableFacilities>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>600</basePowerConsumption>
+        <shortCircuitInRain>true</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Breakdownable" />
+    </comps>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <workTableRoomRole>Workshop</workTableRoomRole>
+      <workTableNotInRoomRoleFactor>0.8</workTableNotInRoomRoleFactor>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_ShowFacilitiesConnections</li>
+    </placeWorkers>
+    <researchPrerequisites>
+      <li>Rimgate_TauriManufacturing</li>
+    </researchPrerequisites>
+    <modExtensions>
+      <li Class="VEF.Buildings.RecipeInheritanceExtension">
+        <inheritRecipesFrom>
+          <li>TableMachining</li>
+          <li>FabricationBench</li>
+        </inheritRecipesFrom>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+</Defs>

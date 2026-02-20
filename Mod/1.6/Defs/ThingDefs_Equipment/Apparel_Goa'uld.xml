@@ -1,0 +1,1420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ================== Torso ================== -->
+
+	<!-- ====== Goa'uld Armor ====== -->
+
+	<ThingDef Name="Rimgate_JaffaArmorBase" ParentName="ArmorSmithableBase">
+		<defName>Rimgate_JaffaArmor</defName>
+		<label>Jaffa armor</label>
+		<description>Standard-issue Jaffa power armor: bulky, impressive, and likely to protect everything except your feelings. Consists of a chainmail tunic with attaching chest and back plates. \n\nBonus points if you shout “Shol'va!” mid-charge.</description>
+		<techLevel>Spacer</techLevel>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<defaultStuff>Steel</defaultStuff>
+		<costStuffCount>60</costStuffCount>
+		<costList>
+			<Steel>60</Steel>
+			<Rimgate_Naquadah>25</Rimgate_Naquadah>
+		</costList>
+		<colorPerStuff>
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 1, 1, 1)</color>
+			</li>
+		</colorPerStuff>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmorIcon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTierOne</researchPrerequisite>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<skillRequirements>
+				<Crafting>6</Crafting>
+			</skillRequirements>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<defaultIngredientFilter>
+				<disallowedThingDefs>
+					<li>Rimgate_Naquadah</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+		<statBases>
+			<MarketValue>750</MarketValue>
+			<MaxHitPoints>280</MaxHitPoints>
+			<WorkToMake>12500</WorkToMake>
+			<Mass>15</Mass>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.82</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.48</ArmorRating_Heat>
+			<Insulation_Cold>35</Insulation_Cold>
+			<Insulation_Heat>11</Insulation_Heat>
+			<Flammability>0.4</Flammability>
+			<EquipDelay>15</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.15</MoveSpeed>
+			<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.3</VacuumResistance>
+		</equippedStatOffsets>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Torso/Jaffa/RGJaffaArmor</wornGraphicPath>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<soundWear>Wear_PowerArmor</soundWear>
+			<soundRemove>Remove_PowerArmor</soundRemove>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Rimgate_GoauldApparel_tag</li>
+				<li>Rimgate_GoauldGuardApparel_tag</li>
+			</tags>
+		</apparel>
+		<tradeTags>
+			<li>Rimgate_GoauldApparelTrade_tag</li>
+			<li>HiTechArmor</li>
+			<li>ExoticMisc</li>
+		</tradeTags>
+		<thingCategories>
+			<li>ApparelArmor</li>
+		</thingCategories>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
+	</ThingDef>
+
+	<!-- Prime-->
+
+	<ThingDef ParentName="Rimgate_JaffaArmorBase">
+		<defName>Rimgate_FirstPrimeArmor</defName>
+		<label>First Prime armor</label>
+		<description>Reserved for System Lords and their shiny First Primes. Now you too can look both menacing and highly flammable in gold trim.</description>
+		<costList>
+			<Gold>2</Gold>
+		</costList>
+		<colorPerStuff Inherit="False">
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 0.93, 0.48, 1)</color>
+			</li>
+		</colorPerStuff>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
+			<skillRequirements>
+				<Artistic>4</Artistic>
+			</skillRequirements>
+		</recipeMaker>
+		<graphicData>
+			<color>(1, 0.93, 0.48)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>1200</MarketValue>
+			<MaxHitPoints>300</MaxHitPoints>
+			<Mass>17</Mass>
+			<StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>0.93</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.42</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.48</ArmorRating_Heat>
+			<Flammability>0.6</Flammability>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.2</MoveSpeed>
+			<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+			<PainShockThreshold>0.15</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.2</SlaveSuppressionOffset>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.32</VacuumResistance>
+		</equippedStatOffsets>
+		<apparel>
+			<tags Inherit="False">
+				<li>Rimgate_GoauldPrimeApparel_tag</li>
+			</tags>
+		</apparel>
+	</ThingDef>
+
+	<!-- ====== Kull Armor ====== -->
+
+	<ThingDef ParentName="ArmorMachineableBase">
+		<defName>Rimgate_KullArmor</defName>
+		<label>Kull armor</label>
+		<description>Heavy as a Goa’uld ego, this armor makes you practically bulletproof—and also the slowest thing on the map. Great for long walks... through enemy fire.</description>
+		<techLevel>Ultra</techLevel>
+		<costList>
+			<Plasteel>70</Plasteel>
+			<Cloth>50</Cloth>
+			<Uranium>30</Uranium>
+			<Synthread>25</Synthread>
+			<Rimgate_Naquadah>15</Rimgate_Naquadah>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentSpacer>4</ComponentSpacer>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_KullArmor</researchPrerequisite>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<skillRequirements>
+				<Crafting>10</Crafting>
+				<Intellectual>6</Intellectual>
+			</skillRequirements>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+		</recipeMaker>
+		<colorGenerator IsNull="True" />
+		<graphicData>
+			<texPath>Things/Item/Apparel/Torso/Kull/RGKullArmorIcon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2500</MarketValue>
+			<MaxHitPoints>350</MaxHitPoints>
+			<WorkToMake>12500</WorkToMake>
+			<Mass>17</Mass>
+			<Flammability>0.6</Flammability>
+			<ArmorRating_Sharp>1.18</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.45</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.55</ArmorRating_Heat>
+			<Insulation_Cold>35</Insulation_Cold>
+			<Insulation_Heat>11</Insulation_Heat>
+			<EquipDelay>20</EquipDelay>
+			<EnergyShieldRechargeRate>0.013</EnergyShieldRechargeRate>
+			<EnergyShieldEnergyMax>2.5</EnergyShieldEnergyMax>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.50</MoveSpeed>
+			<PainShockThreshold>0.2</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.3</VacuumResistance>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Hands</li>
+				<li>Legs</li>
+				<li>Feet</li>
+			</bodyPartGroups>
+			<layers>
+				<li>OnSkin</li>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<soundWear>Wear_PowerArmor</soundWear>
+			<soundRemove>Remove_PowerArmor</soundRemove>
+			<wornGraphicPath>Things/Item/Apparel/Torso/Kull/RGKullArmor</wornGraphicPath>
+			<tags>
+				<li>Rimgate_KullApparel_tag</li>
+			</tags>
+		</apparel>
+		<tickerType>Normal</tickerType>
+		<tradeTags Inherit="False" />
+		<thingCategories>
+			<li>ApparelArmor</li>
+		</thingCategories>
+		<comps Inherit="False">
+			<li Class="CompProperties_Forbiddable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Shield">
+				<startingTicksToReset>6400</startingTicksToReset><!-- 1 hour -->
+				<minDrawSize>1.4</minDrawSize>
+				<maxDrawSize>1.8</maxDrawSize>
+				<energyLossPerDamage>0.02</energyLossPerDamage>
+				<energyOnReset>2.5</energyOnReset>
+				<blocksRangedWeapons>false</blocksRangedWeapons>
+			</li>
+			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+				<analysisID>1000210</analysisID>
+				<requiresResearchDef>ChargedShot</requiresResearchDef>
+
+				<!-- Analyzable -->
+
+				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+				<analysisDurationHours>6</analysisDurationHours>
+				<completedLetterLabel>Kull armor studied: {RESEARCH} unlocked</completedLetterLabel>
+				<completedLetter>By studying the Kull’s armor, {PAWN_labelShort} has acquired the insight needed for the research project(s) {RESEARCH}.\n\nThe composite plating reacted violently when its power matrix was breached, vaporizing most of the sample.\n\nYour researchers can now use research benches to begin exploring how to replicate the technology.</completedLetter>
+				<completedLetterDef>PositiveEvent</completedLetterDef>
+
+				<!-- Interactable -->
+
+				<maintainProgress>true</maintainProgress>
+				<activateTexPath>UI/Icons/Study</activateTexPath>
+
+				<activateLabelString>Analyze...</activateLabelString>
+				<activateDescString>Analyze the Kull's armor.</activateDescString>
+				<jobString>Analyzing Kull armor</jobString>
+				<guiLabelString>Choose who should analyze this</guiLabelString>
+				<inspectString>Can be analyzed by a colonist.</inspectString>
+
+				<targetingParameters>
+					<canTargetBuildings>false</canTargetBuildings>
+					<canTargetAnimals>false</canTargetAnimals>
+					<canTargetMechs>false</canTargetMechs>
+					<onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+				</targetingParameters>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ====== Goa'uld Kara Kesh ====== -->
+
+	<ThingDef ParentName="ApparelNoQualityBase">
+		<defName>Rimgate_GoauldKaraKesh</defName>
+		<label>Goa'uld Kara kesh</label>
+		<description>The famous Goa’uld hand device. Stylishly zaps incoming bullets like a diva flicking lint. Useless in melee, allergic to EMPs, and completely unfair in tribal raids.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Utility/RGGoauldKaraKesh</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<techLevel>Ultra</techLevel>
+
+		<tickerType>Normal</tickerType>
+		<recipeMaker>
+			<unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+			<researchPrerequisite>Rimgate_GoauldKaraKesh</researchPrerequisite>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<skillRequirements>
+				<Crafting>10</Crafting>
+				<Intellectual>8</Intellectual>
+				<Artistic>4</Artistic>
+			</skillRequirements>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<Steel>25</Steel>
+			<Rimgate_Naquadah>25</Rimgate_Naquadah>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1500</MarketValue>
+			<Mass>1.5</Mass>
+			<WorkToMake>14000</WorkToMake>
+			<Flammability>0.4</Flammability>
+			<EquipDelay>2</EquipDelay>
+			<EnergyShieldRechargeRate>0.008</EnergyShieldRechargeRate>
+			<EnergyShieldEnergyMax>1.5</EnergyShieldEnergyMax>
+		</statBases>
+		<tradeability>Sellable</tradeability>
+		<generateAllowChance>0.15</generateAllowChance>
+		<equippedStatOffsets>
+			<WorkSpeedGlobal>0.15</WorkSpeedGlobal>
+			<MedicalSurgerySuccessChance>0.25</MedicalSurgerySuccessChance>
+			<MedicalOperationSpeed>0.25</MedicalOperationSpeed>
+			<MedicalTendQuality>0.25</MedicalTendQuality>
+			<MedicalTendSpeed>0.35</MedicalTendSpeed>
+		</equippedStatOffsets>
+		<apparel>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
+			<careIfDamaged>false</careIfDamaged>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>Hands</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Middle</li>
+			</layers>
+			<tags>
+				<li>Rimgate_GoauldKaraKesh_tag</li>
+			</tags>
+		</apparel>
+		<colorGenerator IsNull="True" />
+
+		<tradeTags />
+		<thingCategories>
+			<li>ApparelUtility</li>
+		</thingCategories>
+		<thingSetMakerTags>
+			<li>RewardStandardLowFreq</li>
+		</thingSetMakerTags>
+
+		<comps Inherit="False">
+			<li Class="CompProperties_Forbiddable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Shield">
+				<startingTicksToReset>4600</startingTicksToReset><!-- 1 min -->
+				<minDrawSize>1.4</minDrawSize>
+				<maxDrawSize>1.8</maxDrawSize>
+				<energyLossPerDamage>0.025</energyLossPerDamage>
+				<energyOnReset>1.0</energyOnReset>
+				<blocksRangedWeapons>false</blocksRangedWeapons>
+			</li>
+			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+				<analysisID>1000200</analysisID>
+				<requiresResearchDef>ShieldBelt</requiresResearchDef>
+
+				<!-- Analyzable -->
+
+				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+				<analysisDurationHours>9</analysisDurationHours>
+				<completedLetterLabel>Goa'uld Kara kesh studied: {RESEARCH} unlocked</completedLetterLabel>
+				<completedLetter>The device emitted a final pulse of energy before collapsing into dust, as though its arrogance couldn’t survive mortal hands.\n\nHowever, by studying the Goa’uld Kara Kesh, {PAWN_labelShort} has acquired the insight needed for further {RESEARCH} research.</completedLetter>
+				<completedLetterDef>PositiveEvent</completedLetterDef>
+
+				<!-- Interactable -->
+
+				<maintainProgress>true</maintainProgress>
+				<activateTexPath>UI/Icons/Study</activateTexPath>
+
+				<activateLabelString>Analyze...</activateLabelString>
+				<activateDescString>Analyze the Goa'uld Kara kesh.</activateDescString>
+				<jobString>Analyzing Goa'uld Kara kesh</jobString>
+				<guiLabelString>Choose who should analyze this</guiLabelString>
+				<inspectString>Can be analyzed by a colonist.</inspectString>
+
+				<targetingParameters>
+					<canTargetBuildings>false</canTargetBuildings>
+					<canTargetAnimals>false</canTargetAnimals>
+					<canTargetMechs>false</canTargetMechs>
+					<onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+				</targetingParameters>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ====== Jaffa Demi-Gauntlets ====== -->
+
+	<ThingDef Name="Rimgate_JaffaGauntletsBase" ParentName="ArmorSmithableBase">
+		<defName>Rimgate_JaffaDemiGauntlets</defName>
+		<label>Jaffa demi-gauntlets</label>
+		<description>Lightweight gauntlets worn by Jaffa warriors. Offers modest protection while allowing maximum dexterity for handling staffs, weapons, and ceremonial tea cups.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Handwear/RGJaffaDemiGauntlets</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<techLevel>Industrial</techLevel>
+		<tradeability>Sellable</tradeability>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<defaultStuff>Steel</defaultStuff>
+		<costStuffCount>15</costStuffCount>
+		<costList>
+			<Steel>15</Steel>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+		</costList>
+		<colorPerStuff>
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 1, 1, 1)</color>
+			</li>
+		</colorPerStuff>
+
+		<statBases>
+			<MarketValue>300</MarketValue>
+			<MaxHitPoints>120</MaxHitPoints>
+			<WorkToMake>2500</WorkToMake>
+			<Mass>1.2</Mass>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.09</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.12</ArmorRating_Heat>
+			<Flammability>0.4</Flammability>
+			<EquipDelay>3</EquipDelay>
+		</statBases>
+
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PainShockThreshold>0.05</PainShockThreshold>
+			<GeneralLaborSpeed>-0.05</GeneralLaborSpeed>
+		</equippedStatOffsets>
+
+		<thingCategories>
+			<li>ApparelMisc</li>
+		</thingCategories>
+		<apparel>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>Hands</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Rimgate_GoauldApparel_tag</li>
+				<li>Rimgate_GoauldGuardApparel_tag</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTierOne</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+			<defaultIngredientFilter>
+				<disallowedThingDefs>
+					<li>Rimgate_Naquadah</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+		<tradeTags Inherit="False">
+			<li>Rimgate_GoauldApparelTrade_tag</li>
+		</tradeTags>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
+	</ThingDef>
+
+	<!-- Prime -->
+
+	<ThingDef ParentName="Rimgate_JaffaGauntletsBase">
+		<defName>Rimgate_PrimeDemiGauntlets</defName>
+		<label>Prime demi-gauntlets</label>
+		<description>Ornate gauntlets for those promoted to yelling "Kree!" the loudest. A step up in looks, if not actual survivability. The gold accent says "Prime"; the stats say "still squishy."</description>
+		<graphicData>
+			<color>(1, 0.93, 0.48)</color>
+		</graphicData>
+		<costList>
+			<Gold>1</Gold>
+		</costList>
+		<colorPerStuff Inherit="False">
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 0.93, 0.48, 1)</color>
+			</li>
+		</colorPerStuff>
+
+		<statBases>
+			<MarketValue>400</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>3500</WorkToMake>
+			<Mass>1.4</Mass>
+			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.10</ArmorRating_Heat>
+			<Flammability>0.6</Flammability>
+		</statBases>
+
+		<equippedStatOffsets Inherit="False">
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<GeneralLaborSpeed>-0.1</GeneralLaborSpeed>
+		</equippedStatOffsets>
+
+		<apparel>
+			<tags Inherit="False">
+				<li>Rimgate_GoauldPrimeApparel_tag</li>
+			</tags>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
+			<skillRequirements>
+				<Artistic>4</Artistic>
+			</skillRequirements>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- ====== Jaffa Boots ====== -->
+
+	<ThingDef Name="Rimgate_JaffaArmoredBootsBase" ParentName="ArmorSmithableBase">
+		<defName>Rimgate_JaffaArmoredBoots</defName>
+		<label>Jaffa Armored boots</label>
+		<description>Sturdy armored boots worn by Jaffa warriors. Designed to provide solid protection while allowing for agile movement across various terrains.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Footwear/RGJaffaArmoredBoots</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<techLevel>Industrial</techLevel>
+		<tradeability>Sellable</tradeability>
+
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<defaultStuff>Steel</defaultStuff>
+		<costStuffCount>20</costStuffCount>
+		<costList>
+			<Steel>20</Steel>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+		</costList>
+		<colorPerStuff>
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 1, 1, 1)</color>
+			</li>
+		</colorPerStuff>
+
+		<statBases>
+			<MarketValue>350</MarketValue>
+			<MaxHitPoints>130</MaxHitPoints>
+			<WorkToMake>3000</WorkToMake>
+			<Mass>1.5</Mass>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.30</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.09</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.15</ArmorRating_Heat>
+			<Flammability>0.4</Flammability>
+			<EquipDelay>3</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.05</MoveSpeed>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<HuntingStealth>-0.1</HuntingStealth>
+		</equippedStatOffsets>
+
+		<thingCategories>
+			<li>ApparelMisc</li>
+		</thingCategories>
+		<apparel>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>Feet</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Rimgate_GoauldApparel_tag</li>
+				<li>Rimgate_GoauldGuardApparel_tag</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTierOne</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>4</Crafting>
+			</skillRequirements>
+			<defaultIngredientFilter>
+				<disallowedThingDefs>
+					<li>Rimgate_Naquadah</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+		<tradeTags>
+			<li>Rimgate_GoauldApparelTrade_tag</li>
+		</tradeTags>
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
+	</ThingDef>
+
+	<!-- Prime -->
+
+	<ThingDef ParentName="Rimgate_JaffaArmoredBootsBase">
+		<defName>Rimgate_PrimeArmoredBoots</defName>
+		<label>Prime Armored boots</label>
+		<description>Sturdy armored boots worn by Prime Jaffa warriors. Designed to provide superior protection while allowing for agile movement across various terrains.</description>
+		<graphicData>
+			<color>(1, 0.93, 0.48)</color>
+		</graphicData>
+		<colorPerStuff Inherit="False">
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 0.93, 0.48, 1)</color>
+			</li>
+		</colorPerStuff>
+
+		<costList>
+			<Gold>1</Gold>
+		</costList>
+		<statBases>
+			<MarketValue>450</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>4000</WorkToMake>
+			<Mass>1.7</Mass>
+			<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.10</ArmorRating_Heat>
+			<Flammability>0.6</Flammability>
+		</statBases>
+		<equippedStatOffsets Inherit="False">
+			<MoveSpeed>0.1</MoveSpeed>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<HuntingStealth>-0.2</HuntingStealth>
+		</equippedStatOffsets>
+
+		<apparel>
+			<tags Inherit="False">
+				<li>Rimgate_GoauldPrimeApparel_tag</li>
+			</tags>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
+			<skillRequirements>
+				<Artistic>4</Artistic>
+			</skillRequirements>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- ================== Headgear ================== -->
+
+	<!-- ====== Helm Base ====== -->
+
+	<ThingDef Name="Rimgate_GoauldHeadgearBase" ParentName="ApparelBase" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<tradeTags>
+			<li>Rimgate_GoauldApparelTrade_tag</li>
+			<li>HiTechArmor</li>
+			<li>ExoticMisc</li>
+		</tradeTags>
+		<apparel>
+			<parentTagDef>ApparelHead</parentTagDef>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+		</apparel>
+		<thingCategories>
+			<li>ArmorHeadgear</li>
+		</thingCategories>
+
+		<colorGenerator Class="ColorGenerator_StandardApparel" />
+	</ThingDef>
+
+	<!-- Maker base-->
+
+	<ThingDef Name="Rimgate_GoauldHeadgearMakerBase" ParentName="Rimgate_GoauldHeadgearBase" Abstract="True">
+		<equippedStatOffsets>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.1</SlaveSuppressionOffset>
+			<SuppressionPower MayRequire="Ludeon.RimWorld.Ideology">0.1</SuppressionPower>
+		</equippedStatOffsets>
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<skillRequirements>
+				<Crafting>4</Crafting>
+			</skillRequirements>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<researchPrerequisite>Rimgate_GoauldArmorTierOne</researchPrerequisite>
+			<defaultIngredientFilter>
+				<disallowedThingDefs Inherit="False">
+					<li>Gold</li>
+					<li>Silver</li>
+					<li>Jade</li>
+					<li MayRequire="Ludeon.RimWorld.Anomaly">Bioferrite</li>
+					<li MayRequire="Ludeon.RimWorld.Odyssey">Obsidian</li>
+					<li>Rimgate_Naquadah</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- ====== Jaffa Helmet ====== -->
+
+	<ThingDef Name="Rimgate_JaffaHelmetBase" ParentName="Rimgate_GoauldHeadgearMakerBase">
+		<defName>Rimgate_JaffaHelmet</defName>
+		<label>Jaffa helmet</label>
+		<description>Lightweight ceremonial headgear favored by Jaffa cannon fodder. Offers mild protection and maximum intimidation—mostly to unarmed colonists and small wildlife.</description>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<defaultStuff>Steel</defaultStuff>
+		<costStuffCount>15</costStuffCount>
+		<costList>
+			<Steel>10</Steel>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+		</costList>
+		<colorPerStuff>
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 1, 1, 1)</color>
+			</li>
+		</colorPerStuff>
+
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/JaffaHelm/RGJaffaHelmetIcon</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>650</MarketValue>
+			<MaxHitPoints>80</MaxHitPoints>
+			<WorkToMake>1000</WorkToMake>
+			<Mass>0.9</Mass>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.38</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.23</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.16</ArmorRating_Heat>
+			<Flammability>0.4</Flammability>
+			<EquipDelay>2</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.1</ShootingAccuracyPawn>
+			<PainShockThreshold>0.1</PainShockThreshold>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/JaffaHelm/RGJaffaHelmet</wornGraphicPath>
+			<tags>
+				<li>Rimgate_GoauldApparel_tag</li>
+			</tags>
+		</apparel>
+	</ThingDef>
+
+	<!-- Prime -->
+
+	<ThingDef ParentName="Rimgate_JaffaHelmetBase">
+		<defName>Rimgate_FirstPrimeHelmet</defName>
+		<label>First Prime helmet</label>
+		<description>Ornate headgear for the First Prime, the most elite of Jaffa warriors. The gold accent says "Prime"; the stats say "still squishy."</description>
+		<costList>
+			<Gold>1</Gold>
+		</costList>
+		<colorPerStuff Inherit="False">
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 0.93, 0.48, 1)</color>
+			</li>
+		</colorPerStuff>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
+			<skillRequirements>
+				<Artistic>4</Artistic>
+			</skillRequirements>
+		</recipeMaker>
+		<graphicData>
+			<color>(1, 0.93, 0.48)</color>
+		</graphicData>
+		<statBases>
+			<Mass>1.2</Mass>
+			<MarketValue>750</MarketValue>
+			<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.2</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets Inherit="False">
+			<PainShockThreshold>0.2</PainShockThreshold>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.2</SlaveSuppressionOffset>
+			<SuppressionPower MayRequire="Ludeon.RimWorld.Ideology">0.1</SuppressionPower>
+		</equippedStatOffsets>
+		<apparel>
+			<tags Inherit="False">
+				<li>Rimgate_GoauldPrimeApparel_tag</li>
+			</tags>
+		</apparel>
+	</ThingDef>
+
+	<!-- ====== Guard Helm ====== -->
+
+	<!-- Base -->
+
+	<ThingDef Name="Rimgate_GuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearMakerBase" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>6</Crafting>
+				<Intellectual>4</Intellectual>
+			</skillRequirements>
+		</recipeMaker>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<defaultStuff>Steel</defaultStuff>
+		<costStuffCount>20</costStuffCount>
+		<costList>
+			<Steel>20</Steel>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<colorPerStuff>
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 1, 1, 1)</color>
+			</li>
+		</colorPerStuff>
+
+		<statBases>
+			<MarketValue>950</MarketValue>
+			<MaxHitPoints>200</MaxHitPoints>
+			<WorkToMake>7500</WorkToMake>
+			<Mass>1.5</Mass>
+			<StuffEffectMultiplierArmor>0.23</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0</StuffEffectMultiplierInsulation_Heat>
+			<ArmorRating_Sharp>0.82</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.32</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.60</ArmorRating_Heat>
+			<Insulation_Cold>15</Insulation_Cold>
+			<Insulation_Heat>5</Insulation_Heat>
+			<Flammability>0.6</Flammability>
+			<EquipDelay>2</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.67</VacuumResistance>
+		</equippedStatOffsets>
+		<apparel>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<tags>
+				<li>Rimgate_GoauldGuardApparel_tag</li>
+			</tags>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+		</apparel>
+	</ThingDef>
+
+	<!-- Open Base -->
+
+	<ThingDef Name="Rimgate_OpenGuardHeadgearBase" ParentName="Rimgate_GoauldHeadgearBase" Abstract="True">
+		<smeltable>false</smeltable>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpenIcon</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>950</MarketValue>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1.5</Mass>
+			<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.30</ArmorRating_Heat>
+			<Insulation_Cold>0</Insulation_Cold>
+			<Insulation_Heat>0</Insulation_Heat>
+			<Flammability>0.6</Flammability>
+			<EquipDelay>2</EquipDelay>
+		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<defaultStuff>Steel</defaultStuff>
+		<costStuffCount>20</costStuffCount>
+		<colorPerStuff>
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 1, 1, 1)</color>
+			</li>
+		</colorPerStuff>
+		<equippedStatOffsets>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0</VacuumResistance>
+		</equippedStatOffsets>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</wornGraphicPath>
+			<renderSkipFlags>
+				<li>Beard</li>
+			</renderSkipFlags>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<tags>
+				<li>Rimgate_GoauldGuardApparel_tag</li>
+			</tags>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
+		</apparel>
+		<tradeTags Inherit="False" />
+	</ThingDef>
+
+	<!-- === Horus Helmet === -->
+
+	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
+		<defName>Rimgate_HorusHelmet</defName>
+		<label>Horus helmet</label>
+		<description>The signature helm of Ra’s elite peacocks—er, warriors. High shine, moderate armor, and excellent against everything but bullets. Just don’t try to look up stairs in it.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_HorusHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.15</PsychicSensitivity>
+			<SocialImpact>0.15</SocialImpact>
+			<TradePriceImprovement>0.05</TradePriceImprovement>
+		</equippedStatOffsets>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</wornGraphicPath>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
+		</apparel>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_HorusHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_OpenGuardHeadgearBase">
+		<defName>Rimgate_HorusHelmetOpen</defName>
+		<label>Horus helmet (open)</label>
+		<description>For when you want to cosplay as a Space Falcon but still show off your luscious beard. Same sleek Horus look, 100% more chin exposure.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_HorusHelmet</ThingDef>
+		</descriptionHyperlinks>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.1</PsychicSensitivity>
+			<SocialImpact>0.1</SocialImpact>
+		</equippedStatOffsets>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_HorusHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- === Jackal Helmet === -->
+
+	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
+		<defName>Rimgate_JackalHelmet</defName>
+		<label>Jackal helmet</label>
+		<description>The unmistakable jackal-headed helm worn by Anubis' guards. Scary-looking, sure, but has the tactical sense of a fancy trash can lid.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_JackalHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<equippedStatOffsets>
+			<PainShockThreshold>0.10</PainShockThreshold>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+		</equippedStatOffsets>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</wornGraphicPath>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
+		</apparel>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_JackalHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_OpenGuardHeadgearBase">
+		<defName>Rimgate_JackalHelmetOpen</defName>
+		<label>Jackal helmet (open)</label>
+		<description>Open version of the jackal helm for guards who want to breathe, blink, or eat something without removing their entire personality.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_JackalHelmet</ThingDef>
+		</descriptionHyperlinks>
+		<equippedStatOffsets>
+			<PainShockThreshold>0.05</PainShockThreshold>
+			<PsychicSensitivity>0.1</PsychicSensitivity>
+		</equippedStatOffsets>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_JackalHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- === Serpent Helmet === -->
+
+	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
+		<defName>Rimgate_SerpentHelmet</defName>
+		<label>Serpent helmet</label>
+		<description>The hallmark helmet of Apophis' Serpent Guards. Stylish, sinister, and just slightly more protective than shouting “I have plot armor!”</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_SerpentHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.15</PsychicSensitivity>
+			<MeleeHitChance>0.5</MeleeHitChance>
+			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
+		</equippedStatOffsets>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</wornGraphicPath>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
+		</apparel>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_SerpentHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_OpenGuardHeadgearBase">
+		<defName>Rimgate_SerpentHelmetOpen</defName>
+		<label>Serpent helmet (open)</label>
+		<description>Serpent helm, de-snaked. Ideal for First Primes with strong jawlines or claustrophobia.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_SerpentHelmet</ThingDef>
+		</descriptionHyperlinks>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.1</PsychicSensitivity>
+		</equippedStatOffsets>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_SerpentHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ====== Prime Guard Helm ====== -->
+
+	<!-- Base-->
+
+	<ThingDef Name="Rimgate_PrimeGuardHeadgearBase" ParentName="Rimgate_GuardHeadgearBase" Abstract="True">
+		<graphicData>
+			<color>(1, 0.93, 0.48)</color>
+		</graphicData>
+		<colorPerStuff Inherit="False">
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 0.93, 0.48, 1)</color>
+			</li>
+		</colorPerStuff>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldArmorTierTwo</researchPrerequisite>
+			<skillRequirements>
+				<Artistic>4</Artistic>
+			</skillRequirements>
+		</recipeMaker>
+		<costList>
+			<Gold>1</Gold>
+		</costList>
+		<statBases>
+			<MarketValue>1200</MarketValue>
+			<MaxHitPoints>250</MaxHitPoints>
+			<WorkToMake>9500</WorkToMake>
+			<Mass>2.5</Mass>
+			<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.95</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.70</ArmorRating_Heat>
+			<Insulation_Cold>25</Insulation_Cold>
+			<Insulation_Heat>15</Insulation_Heat>
+			<Flammability>0.8</Flammability>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.69</VacuumResistance>
+		</equippedStatOffsets>
+		<apparel>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<tags Inherit="False">
+				<li>Rimgate_GoauldPrimeApparel_tag</li>
+			</tags>
+		</apparel>
+		<tradeTags Inherit="False" />
+	</ThingDef>
+
+	<!-- Open Base -->
+
+	<ThingDef Name="Rimgate_OpenPrimeGuardHeadgearBase" ParentName="Rimgate_OpenGuardHeadgearBase" Abstract="True">
+		<smeltable>false</smeltable>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpenIcon</texPath>
+			<color>(1, 0.93, 0.48)</color>
+		</graphicData>
+		<colorPerStuff Inherit="False">
+			<li>
+				<stuff>Steel</stuff>
+				<color>(1, 0.93, 0.48, 1)</color>
+			</li>
+		</colorPerStuff>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGGuardHelmetOpen</wornGraphicPath>
+		</apparel>
+		<statBases>
+			<MarketValue>1200</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<Mass>2.5</Mass>
+			<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.35</ArmorRating_Heat>
+			<Flammability>0.8</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<!-- Prime Horus Helmet -->
+
+	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
+		<defName>Rimgate_PrimeHorusHelmet</defName>
+		<label>First Prime Horus helmet</label>
+		<description>Ra’s personal blinged-out bucket. Only the most loyal—and loud—First Primes get to wear this. Good luck surviving the honor.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeHorusHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.25</PsychicSensitivity>
+			<SocialImpact>0.30</SocialImpact>
+			<TradePriceImprovement>0.10</TradePriceImprovement>
+		</equippedStatOffsets>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGHorusHelmet</wornGraphicPath>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
+		</apparel>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_PrimeHorusHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_OpenPrimeGuardHeadgearBase">
+		<defName>Rimgate_PrimeHorusHelmetOpen</defName>
+		<label>First Prime Horus helmet (open)</label>
+		<description>Same prestigious helm, just open-faced for when yelling “Jaffa, kree!” requires better airflow. Or when Ra wants to see your disappointed face after failure.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeHorusHelmet</ThingDef>
+		</descriptionHyperlinks>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.2</PsychicSensitivity>
+			<SocialImpact>0.25</SocialImpact>
+			<TradePriceImprovement>0.05</TradePriceImprovement>
+		</equippedStatOffsets>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_PrimeHorusHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Prime Jackal Helmet -->
+
+	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
+		<defName>Rimgate_PrimeJackalHelmet</defName>
+		<label>First Prime Jackal helmet</label>
+		<description>Worn by Anubis' most trusted murder machine. If you're sporting this, you're either elite—or about to be shot first in every raid.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeJackalHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<equippedStatOffsets>
+			<PainShockThreshold>0.20</PainShockThreshold>
+			<PsychicSensitivity>0.30</PsychicSensitivity>
+		</equippedStatOffsets>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGJackalHelmet</wornGraphicPath>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
+		</apparel>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_PrimeJackalHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_OpenPrimeGuardHeadgearBase">
+		<defName>Rimgate_PrimeJackalHelmetOpen</defName>
+		<label>First Prime Jackal helmet (open)</label>
+		<description>Same as the Prime version, but now you can grimace menacingly while being vaporized by a P90.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeJackalHelmet</ThingDef>
+		</descriptionHyperlinks>
+		<equippedStatOffsets>
+			<PainShockThreshold>0.15</PainShockThreshold>
+			<PsychicSensitivity>0.25</PsychicSensitivity>
+		</equippedStatOffsets>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_PrimeJackalHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Prime Serpent Helmet -->
+
+	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
+		<defName>Rimgate_PrimeSerpentHelmet</defName>
+		<label>First Prime Serpent helmet</label>
+		<description>Only the most loyal warriors of Apophis get this helm. High rank, high honor, high likelihood of exploding on screen first.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeSerpentHelmetOpen</ThingDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmetIcon</texPath>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.25</PsychicSensitivity>
+			<MeleeHitChance>1</MeleeHitChance>
+			<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+		</equippedStatOffsets>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/GuardHelm/RGSerpentHelmet</wornGraphicPath>
+			<drawData>
+				<dataNorth>
+					<layer>72</layer>
+					<!--across, depth, height-->
+					<offset>(0, 1, 0)</offset>
+				</dataNorth>
+			</drawData>
+		</apparel>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_PrimeSerpentHelmetOpen</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+				<isAlternateOnly>true</isAlternateOnly>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_OpenPrimeGuardHeadgearBase">
+		<defName>Rimgate_PrimeSerpentHelmetOpen</defName>
+		<label>First Prime Serpent helmet (open)</label>
+		<description>The open-face Prime variant. It's regal, it's dramatic, and it lets you smirk just before your shield fails.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimeSerpentHelmet</ThingDef>
+		</descriptionHyperlinks>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.2</PsychicSensitivity>
+			<MeleeHitChance>0.5</MeleeHitChance>
+			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
+		</equippedStatOffsets>
+		<comps>
+			<li Class="Rimgate.CompProperties_AlternateApparel">
+				<alternateDef>Rimgate_PrimeSerpentHelmet</alternateDef>
+				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ====== Kull Helmet ====== -->
+
+	<ThingDef ParentName="Rimgate_GoauldHeadgearMakerBase">
+		<defName>Rimgate_KullHelmet</defName>
+		<label>Kull helmet</label>
+		<description>Forged for Anubis' unstoppable supersoldiers, this helmet shrugs off gunfire like your colonists shrug off mental breaks. Heavy, deadly, and suspiciously quiet.</description>
+		<costList>
+			<Plasteel>35</Plasteel>
+			<Uranium>15</Uranium>
+			<Rimgate_Naquadah>8</Rimgate_Naquadah>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_KullArmor</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+				<Intellectual>6</Intellectual>
+			</skillRequirements>
+		</recipeMaker>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Headgear/KullHelm/RGKullHelmetIcon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1200</MarketValue>
+			<WorkToMake>28250</WorkToMake>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Mass>2</Mass>
+			<Flammability>0.4</Flammability>
+			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.47</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.9</ArmorRating_Heat>
+			<Insulation_Cold>16</Insulation_Cold>
+			<Insulation_Heat>8</Insulation_Heat>
+			<EquipDelay>6</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
+			<ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
+			<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">-0.2</SlaveSuppressionOffset>
+			<VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.69</VacuumResistance>
+		</equippedStatOffsets>
+		<apparel>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Headgear/KullHelm/RGKullHelmet</wornGraphicPath>
+			<tags>
+				<li>Rimgate_KullApparel_tag</li>
+			</tags>
+		</apparel>
+		<tradeTags Inherit="False" />
+	</ThingDef>
+
+</Defs>

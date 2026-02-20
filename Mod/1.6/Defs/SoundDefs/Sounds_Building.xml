@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Clone Pod -->
+
+	<SoundDef>
+		<defName>Rimgate_ClonePod_Operating</defName>
+		<sustain>True</sustain>
+		<context>MapOnly</context>
+		<maxSimultaneous>2</maxSimultaneous>
+		<priorityMode>PrioritizeNearest</priorityMode>
+		<subSounds>
+			<li>
+				<muteWhenPaused>True</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Building/RG_ClonePod_Run</clipPath>
+					</li>
+				</grains>
+				<volumeRange>37</volumeRange>
+				<distRange>10~30</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_ClonePod_Start</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>True</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Building/RG_ClonePod_Start</clipPath>
+					</li>
+				</grains>
+				<volumeRange>60</volumeRange>
+				<distRange>10~70</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<!-- Sarcophagus -->
+
+	<SoundDef>
+		<defName>Rimgate_SarcophagusRunning</defName>
+		<sustain>True</sustain>
+		<sustainFadeoutTime>1</sustainFadeoutTime>
+		<maxSimultaneous>3</maxSimultaneous>
+		<context>MapOnly</context>
+		<priorityMode>PrioritizeNearest</priorityMode>
+		<subSounds>
+			<li>
+				<muteWhenPaused>True</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Building/RG_Sarcophagus_Running</clipPath>
+					</li>
+				</grains>
+				<volumeRange>5</volumeRange>
+				<distRange>0~40</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<!-- Symbiote Spawn -->
+
+	<SoundDef>
+		<defName>Rimgate_SymbioteSpawn</defName>
+		<sustain>false</sustain>
+		<sustainFadeoutTime>1</sustainFadeoutTime>
+		<maxSimultaneous>1</maxSimultaneous>
+		<context>MapOnly</context>
+		<priorityMode>PrioritizeNearest</priorityMode>
+		<subSounds>
+			<li>
+				<muteWhenPaused>True</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Building/RG_Symbiote_Spawn</clipPath>
+					</li>
+				</grains>
+				<volumeRange>5</volumeRange>
+				<distRange>0~20</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<!-- Gate -->
+
+	<SoundDef>
+		<defName>Rimgate_GateOpen</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Gate_Open</clipPath>
+					</li>
+				</grains>
+				<volumeRange>12</volumeRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_GateFailDial</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Gate_Fail</clipPath>
+					</li>
+				</grains>
+				<volumeRange>12</volumeRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_GateKawooshExplosion</defName>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<onCamera>True</onCamera>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>UI/TinyBell</clipPath>
+					</li>
+				</grains>
+				<volumeRange>0~0</volumeRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_GateIdle</defName>
+		<sustain>True</sustain>
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<priorityMode>PrioritizeNearest</priorityMode>
+		<subSounds>
+			<li>
+				<muteWhenPaused>True</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Gate_Idle</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<distRange>10~30</distRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_GateClose</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>1</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Gate_Close</clipPath>
+					</li>
+				</grains>
+				<volumeRange>12</volumeRange>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_GateTeleport01</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Gate_Teleport01</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_GateTeleport02</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Gate_Teleport02</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_GateTeleport03</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Gate_Teleport03</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_GateTeleport04</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Gate_Teleport04</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_IrisOpen</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Iris_Open</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_IrisClose</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Iris_Close</clipPath>
+					</li>
+				</grains>
+				<volumeRange>8</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+	<SoundDef>
+		<defName>Rimgate_IrisHit</defName>
+		<context>MapOnly</context>
+		<maxSimultaneous>3</maxSimultaneous>
+		<subSounds>
+			<li>
+				<muteWhenPaused>False</muteWhenPaused>
+				<grains>
+					<li Class="AudioGrain_Clip">
+						<clipPath>Gate/RG_Iris_Hit</clipPath>
+					</li>
+				</grains>
+				<volumeRange>6</volumeRange>
+				<tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+			</li>
+		</subSounds>
+	</SoundDef>
+
+</Defs>

@@ -1,6 +1,69 @@
+# Unity generated folders (case-insensitive)
+UnityAssetBuilder/[Ll]ibrary/
+UnityAssetBuilder/[Tt]emp/
+UnityAssetBuilder/[Oo]bj/
+UnityAssetBuilder/[Bb]uild/
+UnityAssetBuilder/[Bb]uilds/
+UnityAssetBuilder/[Ll]ogs/
+UnityAssetBuilder/[Uu]ser[Ss]ettings/
+UnityAssetBuilder/[Mm]emoryCaptures/
+UnityAssetBuilder/[Rr]ecordings/
+
+# Visual Studio and IDE files
+.vs/
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+*.vsconfig
+*.pidb
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Generated plugin and asset files
+UnityAssetBuilder/[Aa]ssets/Plugins/Editor/JetBrains*
+UnityAssetBuilder/ServerData
+UnityAssetBuilder/[Aa]ssets/StreamingAssets/aa*
+UnityAssetBuilder/[Aa]ssets/AddressableAssetsData/*/*.bin*
+UnityAssetBuilder/[Aa]ssets/Unity.VisualScripting.Generated/
+
+# Build outputs
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Crash and temp files
+sysinfo.txt
+*.log
+.utmp
+mono_crash.*
+
+# Version control & misc
+.gitignore
+*.DotSettings.user
+.gradle/
+ExportedObj/
+.consulo/
+*.tmp
+*.blend1
+
+# Specific deployment build files
+Mod/1.6/Assemblies/Rimgate.dll
+Mod/Assets/
+
+# Source folder generated files
 Source/Rimgate/obj/
 Source/.vs/
-Source/Assemblies/
 Source/Rimgate/.vs/
-1.6/Assemblies/Rimgate.dll
-.vscode/
+Source/Assemblies/
+
+# Ensure metadata is tracked
+!UnityAssetBuilder/[Aa]ssets/**/*.meta
+UnityAssetBuilder/Assets/Data

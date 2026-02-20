@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ResearchTabDef>
+		<defName>Rimgate_WraithTechnology</defName>
+		<label>Wraith</label>
+	</ResearchTabDef>
+
+	<!-- ======== Base ========= -->
+
+	<ResearchProjectDef Name="Rimgate_WraithResearchBase" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<tab>Rimgate_WraithTechnology</tab>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+	<!-- ======== Basic ========= -->
+
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithBasic</defName>
+		<label>Wraith science</label>
+		<description>Begin unlocking the secrets of Wraith bio-engineering—where everything is grown, pulsing, and slightly slimy.\nWarning: side effects may include telepathy and power hunger.</description>
+		<baseCost>3000</baseCost>
+		<prerequisites>
+			<li>AdvancedFabrication</li>
+		</prerequisites>
+		<researchViewX>0</researchViewX>
+		<researchViewY>0.5</researchViewY>
+		<techprintCount>2</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+	</ResearchProjectDef>
+
+	<!-- ======== Armor ========= -->
+
+	<!-- Warrior armor -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithArmorTierOne</defName>
+		<label>Wraith Warrior armor</label>
+		<description>Research armor grown from bio-organic materials tailored to Wraith physiology. Flexible, durable, and mildly unsettling to the touch.\n\nNote: Wraith armor is a bit unorthodox since it is grown rather than forged, blending biological and technological elements. We'll have to adapt our manufacturing processes accordingly.</description>
+		<baseCost>2500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithBasic</li>
+			<li>ReconArmor</li>
+			<li>Machining</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- Commander armor -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithArmorTierTwo</defName>
+		<label>Wraith Commander armor</label>
+		<description>Unlock the secrets of Wraith commander armor: bio-engineered to enhance strength, resilience, and intimidation factor.\n\nThis research grants access to advanced armor plating and integrated enzyme sacks, perfect for elite operatives who lead from the front.</description>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithArmorTierOne</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- Assassin gear -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithAssassin</defName>
+		<techLevel>Archotech</techLevel>
+		<label>Wraith assassin gear</label>
+		<description>Unlock the secrets of Wraith assassin gear: bio-engineered armor and weapons optimized for stealth, speed, and silent lethality.\n\nThis research grants access to advanced melee weaponry and lightweight armor that enhances agility while providing moderate protection. Perfect for operatives who prefer to strike from the shadows.</description>
+
+		<baseCost>4500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithArmorTierTwo</li>
+			<li>Rimgate_WraithWeaponsTierOne</li>
+			<li>ShieldBelt</li>
+			<li>Machining</li>
+			<li>LongBlades</li>
+		</prerequisites>
+		<researchViewX>3</researchViewX>
+		<researchViewY>0</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+	</ResearchProjectDef>
+
+	<!-- ======== Weapon ========= -->
+
+	<!-- Tier 1 -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithWeaponsTierOne</defName>
+		<label>Wraith weapons</label>
+		<description>Reverse-engineer Wraith energy weapons—organic-looking tools of destruction designed for elegant disintegration and maximum dread.</description>
+		<baseCost>2500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithBasic</li>
+			<li>ChargedShot</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>0.75</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- ======== Buildings ========= -->
+
+	<!-- Meatlab -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_MeatCultivation</defName>
+		<label>Meat cultivation</label>
+		<description>Learn to bio-cultivate fresh, nutritious meat without hunting, farming, or asking permission from your livestock.\nA breakthrough in sustainable horror.</description>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Hydroponics</li>
+			<li>NutrientPaste</li>
+			<li>Rimgate_WraithBasic</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>1.25</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- Biomass generator -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithGenerator</defName>
+		<label>Biomass generator</label>
+		<description>Unlock the Wraith biomass generator—an advanced power source fueled by cultivated organic matter processed into biomass.</description>
+		<baseCost>4500</baseCost>
+		<prerequisites>
+			<li>Rimgate_MeatCultivation</li>
+			<li>Machining</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>1.25</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+	</ResearchProjectDef>
+
+	<!-- Wraith Dart -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithDart</defName>
+		<label>Wraith Dart</label>
+		<description>Gain access to the Wraith Dart: a biomechanical interceptor that blends flesh, alloy, and arrogance.\n\nFast enough to outfly missiles, light enough to panic your pilot, and just roomy enough to abduct someone who disagreed with you.\n\nFuel efficiency is theoretical; terror efficiency is unmatched.</description>
+		<baseCost>3500</baseCost>
+		<techLevel>Spacer</techLevel>
+		<prerequisites>
+			<li>Rimgate_WraithGenerator</li>
+			<li>ShipBasics</li>
+			<li>Shuttles</li>
+			<li>OrbitalTech</li>
+		</prerequisites>
+		<researchViewX>3</researchViewX>
+		<researchViewY>1.25</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_DestroyedDart</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Wraith Dart</discoveredLetterTitle>
+		<discoveredLetterText>The Wraith Dart’s structure isn’t built—it’s grown. Its hull is a living capacitor tuned to pulse drives and stasis cells.\n\nReverse-engineering it means learning to trick life itself into wanting to fly.\n\nWe probably shouldn’t—but we will anyway.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- subject anchors -->
+				<li>subject->Wraith Dart</li>
+				<li>subject->bio-organic interceptor</li>
+				<li>subject->hunter craft</li>
+
+				<!-- story beats -->
+				<li>subject_story->a shrieking silhouette that melts into the clouds</li>
+				<li>subject_story->a cockpit that hums like a heartbeat</li>
+				<li>subject_story->a hull that heals from bullet holes like closing wounds</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->decoding neural flight control patterns</li>
+				<li>subject_gerund->synthesizing biopolymer hull tissues under vacuum</li>
+				<li>subject_gerund->splicing Wraith protein matrices into human-grade fuel cells</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<!-- Biomass optimization -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_BiomassOptimization</defName>
+		<label>Advanced bioengineering</label>
+		<description>Optimize the meat cultivation process by applying advanced bioengineering techniques to increase the power yield of biomass generators and reduce resource consumption of meat labs.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>9000</baseCost>
+
+		<prerequisites>
+			<li>Rimgate_WraithGenerator</li>
+			<li>Rimgate_WraithCloneGenome</li>
+		</prerequisites>
+
+		<researchViewX>3</researchViewX>
+		<researchViewY>2</researchViewY>
+
+		<recalculatePower>true</recalculatePower>
+
+		<discoveredLetterTitle>About: Advanced bioengineering</discoveredLetterTitle>
+		<discoveredLetterText>Advanced bioengineering techniques have been applied to optimize the meat cultivation process by increasing the power yield of biomass generators and reducing resource consumption of meat labs.</discoveredLetterText>
+	</ResearchProjectDef>
+
+	<!-- Hacking -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithCommunicationDevice</defName>
+		<label>Wraith hacking</label>
+		<description>Reverse-engineer Wraith neural interface tech to bend machines to your will. Great for remote control, terrible for privacy.</description>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>UltraMechtech</li>
+			<li>Machining</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>2.5</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_WraithCommunicationDevice</li>
+		</requiredAnalyzed>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Wraith neural interface</li>
+
+				<li>subject_story->extracted a faint signal pulse from a dormant Wraith comm node</li>
+				<li>subject_story->spliced human tech into a decomposing Wraith device and it blinked at me</li>
+				<li>subject_story->picked up encrypted chatter between hibernating hive nodes</li>
+				<li>subject_story->accidentally connected to a Wraith drone's memory stream... and now I can't unsee it</li>
+
+				<li>subject_gerund->tapping into Wraith communication tech</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<!-- Tracking Drone -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_TrackingDroneGestation</defName>
+		<label>Tracking Drone</label>
+		<description>With an understanding of Wraith neural interface tech, decode recovered techprints to replicate Tracking Drone gestation. These small, fast, and twitchy Wraith-style hunter-seekers are built to stalk prey and feed allies real-time target data.</description>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithCommunicationDevice</li>
+			<li>UltraMechtech</li>
+		</prerequisites>
+
+		<researchViewX>2</researchViewX>
+		<researchViewY>2</researchViewY>
+
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+	</ResearchProjectDef>
+
+	<!-- Gate Modification -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_GateModification</defName>
+		<label>Gate Modification</label>
+		<description>Fragments of Wraith interface lore and signal hushwork.\n\nIt promises safer contact with the gate, but the real purpose is buried in the noise.</description>
+		<baseCost>10000</baseCost>
+		<techLevel>Archotech</techLevel>
+		<prerequisites>
+			<li>Rimgate_GlyphDeciphering</li>
+			<li>Rimgate_SubspaceMasking</li>
+			<li>Rimgate_DHDResearch</li>
+			<li>Rimgate_WraithCommunicationDevice</li>
+			<li>Rimgate_BiomassOptimization</li>
+		</prerequisites>
+		<researchViewX>4</researchViewX>
+		<researchViewY>2.5</researchViewY>
+
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Wraith gate modification rig</li>
+
+				<li>subject_story->a rig that hums with suppressed subspace frequencies</li>
+				<li>subject_story->a device that cloaks gate signals from prying eyes</li>
+				<li>subject_story->a modification that silences the wormhole's telltale glow</li>
+
+				<li>subject_gerund->integrating Wraith neural dampening tech into gate systems</li>
+			</rulesStrings>
+		</generalRules>
+
+		<discoveredLetterTitle>About: Gate Modification</discoveredLetterTitle>
+		<discoveredLetterText>The truth is clearer now. These methods unlock the blueprints for constructing gate modification equipment that creates a bio-mechanical interface with Dwarfgate controls.\n\nThese same routines will also allow your colonists to finally decode the glyphs that reference locking onto orbital locations.</discoveredLetterText>
+
+	</ResearchProjectDef>
+
+	<!-- Cloning -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithCloneGenome</defName>
+		<label>Cloning</label>
+		<description>Unlock Wraith genome templating: growth protocols, enzyme baths, and neural imprint scaffolds that skip childhood entirely.\n\nFresh bodies on demand—morals sold separately. Expect epigenetic drift, occasional extra teeth, and complaints from HR.</description>
+		<techLevel>Ultra</techLevel>
+		<baseCost>5500</baseCost>
+		<prerequisites>
+			<li>Rimgate_MeatCultivation</li>
+			<li>Xenogermination</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>3</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_WraithCloningPod</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Wraith Cloning</discoveredLetterTitle>
+		<discoveredLetterText>Your team has decoded Wraith growth-cycle notations: biomass liquefaction, lattice seeding, and accelerated maturation inside pressurized biotanks.\n\nIt works disturbingly well. Results exhibit minor personality artifacts and a strong opinion about lighting.\n\nProceed if you’re comfortable printing people.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- subject anchors -->
+				<li>subject->Wraith cloning pod</li>
+				<li>subject->genome slurry</li>
+				<li>subject->neural imprint scaffold</li>
+
+				<!-- story beats -->
+				<li>subject_story->a glass lung that breathes new soldiers into being</li>
+				<li>subject_story->a whispering vat that remembers hunger</li>
+				<li>subject_story->a growth cycle timed by the rhythm of pumps and prayers</li>
+
+				<!-- gerunds / research actions -->
+				<li>subject_gerund->stitching genomes into self-assembling tissue</li>
+				<li>subject_gerund->bathing biomass in enzymatic accelerants</li>
+				<li>subject_gerund->pinning memories to fresh synapses before they harden</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<!-- Cloning pod optimization -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_CloningPodOptimization</defName>
+		<label>cloning pod optimization</label>
+		<description>Apply ZPM-inspired power-shaping techniques to Wraith biotank architecture. By synchronizing pump rhythms, enzyme heaters, and neural-imprint grids to stable subspace harmonics, your engineers can dramatically smooth the cloning pod’s energy demands.\n\nThese insights also reveal a broader truth: the pod’s inefficiencies are not purely energetic, but cyclical. With proper harmonic control, biomass can be conditioned instead of wasted, and growth cycles can be entrained rather than brute-forced.\n\nThe result is a quieter, more efficient cloning system—supported by auxiliary bio-devices that stabilize nutrient flow and accelerate incubation through controlled resonance.\n\nIt won’t make the pod any less unsettling.\n\nBut it will make it smarter.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>9000</baseCost>
+
+		<prerequisites>
+			<li>Rimgate_WraithCloneGenome</li>
+			<li>Rimgate_ParallelSubspaceCoupling</li>
+			<li>GrowthVats</li>
+			<li>Archogenetics</li>
+		</prerequisites>
+
+		<researchViewX>3</researchViewX>
+		<researchViewY>3.5</researchViewY>
+
+		<recalculatePower>true</recalculatePower>
+
+		<generalRules>
+			<rulesStrings>
+				<!-- subject anchors -->
+				<li>subject->Wraith cloning pod</li>
+				<li>subject->biotank harmonic tuning</li>
+				<li>subject->enzyme-pulse stabilization</li>
+
+				<!-- adjectives -->
+				<li>subject_adj->ZPM-assisted</li>
+				<li>subject_adj->phase-adaptive</li>
+				<li>subject_adj->quietly horrifying</li>
+
+				<!-- story beats -->
+				<li>subject_story->a Wraith growth chamber guided by Ancient field math</li>
+				<li>subject_story->a pod that no longer screams for power in fits and bursts</li>
+				<li>subject_story->a biotank whose heartbeat syncs to subspace harmonics</li>
+
+				<!-- gerunds -->
+				<li>subject_gerund->stabilizing growth-cycle power flux</li>
+				<li>subject_gerund->modulating imprint heaters with ZPM carrier noise</li>
+				<li>subject_gerund->teaching a Wraith biotank to sip instead of devour</li>
+			</rulesStrings>
+		</generalRules>
+		<discoveredLetterTitle>About: Cloning pod optimization</discoveredLetterTitle>
+		<discoveredLetterText>Your team has successfully applied ZPM-inspired power-shaping techniques to Wraith biotank architecture. The cloning pod now draws power in smooth subspace harmonics rather than violent spikes, reducing its overall energy consumption.\n\nMore importantly, this research has exposed deeper inefficiencies in the cloning process itself. By stabilizing biomass during imprint initiation and synchronizing growth cycles through controlled resonance, new auxiliary bio-devices can now be constructed to enhance cloning operations.\n\nThe pod remains quietly horrifying.\n\nIt is simply more disciplined now.</discoveredLetterText>
+	</ResearchProjectDef>
+
+	<!-- Clone full -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithCloneFull</defName>
+		<label>Full-body replication</label>
+		<description>Enable full-body replication for any pawn—Wraith, human, or unlucky intern.\n\nCopies quirks, scars, and bedtime fears with alarming fidelity. Printing colonists is now a workflow.</description>
+		<techLevel>Ultra</techLevel>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithCloneGenome</li>
+		</prerequisites>
+		<researchViewX>3</researchViewX>
+		<researchViewY>3</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- Clone enhancement -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithCloneEnhancement</defName>
+		<label>Clone enhancement</label>
+		<description>Optimize the slurry: stronger bones, faster reflexes, cleaner neural binds.\n\nSide effects may include telepathy, hissing, and a belief that hallways should be darker.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>5000</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithCloneFull</li>
+			<li>Archogenetics</li>
+		</prerequisites>
+		<researchViewX>4</researchViewX>
+		<researchViewY>3</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- Clone corpse -->
+	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
+		<defName>Rimgate_WraithCloneCorpse</defName>
+		<label>Reconstruction</label>
+		<description>Reconstruction protocols extend cloning into reclamation: if you have biomass and a template, death becomes a scheduling error.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>6500</baseCost>
+		<prerequisites>
+			<li>Rimgate_WraithCloneEnhancement</li>
+		</prerequisites>
+		<researchViewX>5</researchViewX>
+		<researchViewY>3</researchViewY>
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+	</ResearchProjectDef>
+
+</Defs>

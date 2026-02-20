@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			
+			<!-- Allow injured but ambulatory non-colony guests to prioritize using Sarcophagi (that allow guests) over self-tending -->
+			<li Class="PatchOperationInsert">
+				<xpath>Defs/ThinkTreeDef[defName="Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_QueuedJob"]</xpath>
+				<value>
+					<li Class="ThinkNode_ConditionalNonPlayerNonHostileFactionOrFactionless">
+						<subNodes>
+							<li Class="Rimgate.JobGiver_PatientGoToSarcophagus" />
+						</subNodes>
+					</li>
+				</value>
+			</li>
+			
+			<!-- Allow injured but ambulatory prisoners to use Sarcophagi -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThinkTreeDef[defName="Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalPrisoner"]/subNodes/li[@Class="ThinkNode_Tagger"][tagToGive="RestingForMedicalReasons"]/subNodes</xpath>
+				<order>Prepend</order>
+				<value>
+					<li Class="Rimgate.JobGiver_PatientGoToSarcophagus" />
+				</value>
+			</li>
+				
+		</operations>
+	</Operation>
+	
+</Patch>

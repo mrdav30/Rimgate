@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Rimgate_GoauldTeltak.label>Goa'uld Tel'tak</Rimgate_GoauldTeltak.label>
+  <Rimgate_GoauldTeltak.description>Goa'uld Tel'taks are small transportships capable of carrying people, items, or animals. Can be used for sending gifts, transporting people or supplies, surprise attacks, or reinforcing battles.</Rimgate_GoauldTeltak.description>
+  <Blueprint_Rimgate_GoauldTeltak.label>Tel'taks (blueprint)</Blueprint_Rimgate_GoauldTeltak.label>
+  <Frame_Rimgate_GoauldTeltak.label>Tel'tak (building)</Frame_Rimgate_GoauldTeltak.label>
+  <Frame_Rimgate_GoauldTeltak.description>Goa'uld Tel'taks are small transportships capable of carrying people, items, or animals. Can be used for sending gifts, transporting people or supplies, surprise attacks, or reinforcing battles.</Frame_Rimgate_GoauldTeltak.description>
+
+  <Rimgate_WraithDart.label>Wraith Dart</Rimgate_WraithDart.label>
+  <Rimgate_WraithDart.description>Wraith Darts are single-pilot ships used by the Wraith both for combat missions or culling human planets.</Rimgate_WraithDart.description>
+  <Blueprint_Rimgate_WraithDart.label>Dart (blueprint)</Blueprint_Rimgate_WraithDart.label>
+  <Frame_Rimgate_WraithDart.label>Dart (building)</Frame_Rimgate_WraithDart.label>
+  <Frame_Rimgate_WraithDart.description>Wraith Darts are single-pilot ships used by the Wraith both for combat missions or culling human planets.</Frame_Rimgate_WraithDart.description>
+
+  <Rimgate_AncientPuddleJumper.label>Ancient Puddle Jumper</Rimgate_AncientPuddleJumper.label>
+  <Rimgate_AncientPuddleJumper.description>An Ancient Puddle spacecraft equipped with a defense shield.</Rimgate_AncientPuddleJumper.description>
+  <Blueprint_Rimgate_AncientPuddleJumper.label>Puddle Jumper (blueprint)</Blueprint_Rimgate_AncientPuddleJumper.label>
+  <Frame_Rimgate_AncientPuddleJumper.label>Puddle Jumper (building)</Frame_Rimgate_AncientPuddleJumper.label>
+  <Frame_Rimgate_AncientPuddleJumper.description>An Ancient Puddle spacecraft equipped with a defense shield.</Frame_Rimgate_AncientPuddleJumper.description>
+
+</LanguageData>

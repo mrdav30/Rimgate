@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ============ Tok'kal Stun Grenade ========= -->
+
+	<ThingDef ParentName="BaseMakeableGrenade">
+		<defName>Rimgate_GoauldTokKal</defName>
+		<label>Goa'uld Tok'Kal</label>
+		<description>A Goa'uld-issued stun grenade used by Jaffa for crowd control, prisoner retrieval, or ruining your day.\nDoesn’t kill—just ensures you *wish* it had.</description>
+		<tickerType>Normal</tickerType>
+		<costList>
+			<Steel>20</Steel>
+			<Chemfuel>65</Chemfuel>
+			<Rimgate_Naquadah>10</Rimgate_Naquadah>
+		</costList>
+		<graphicData>
+			<texPath>Things/Item/Weapon/Grenade/RGGoauldTokkal</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Grenade</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<statBases>
+			<Mass>1</Mass>
+			<RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+			<WorkToMake>12000</WorkToMake>
+		</statBases>
+		<weaponTags>
+			<li>Rimgate_GoauldGrenade_tag</li>
+			<li>Rimgate_GoauldWeapons_tag</li>
+		</weaponTags>
+		<thingCategories>
+			<li>Grenades</li>
+		</thingCategories>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.66</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li>
+		</comps>
+		<verbs>
+			<li>
+				<label>Throw Tok'Kal grenade</label>
+				<verbClass>Verb_LaunchProjectile</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>15.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<warmupTime>1.9</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Rimgate_GoauldTokKalProjectile</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+			<researchPrerequisite>Rimgate_GoauldWeaponTierOne</researchPrerequisite>
+		</recipeMaker>
+		<tradeTags>
+			<li>Rimgate_GoauldWeaponsTrade_tag</li>
+			<li>ExoticMisc</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- ========= Tok'kal Stun Grenade Projectile ========= -->
+
+	<ThingDef>
+		<defName>Rimgate_GoauldTokKalProjectile</defName>
+		<label>Goa'uld Tok'Kal</label>
+		<thingClass>Rimgate.Projectile_AdditionalDamage</thingClass>
+		<category>Projectile</category>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<thingClass>Projectile_Explosive</thingClass>
+		<label>Projectile</label>
+		<tickerType>Normal</tickerType>
+		<useHitPoints>False</useHitPoints>
+		<neverMultiSelect>True</neverMultiSelect>
+		<graphicData>
+			<texPath>Things/Projectile/RGTokkalGrenadeProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>Transparent</shaderType>
+		</graphicData>
+		<projectile>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+			<explosionRadius>1.9</explosionRadius>
+			<damageDef>Stun</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<stoppingPower>1</stoppingPower>
+			<explosionDelay>100</explosionDelay>
+		</projectile>
+		<modExtensions>
+			<li Class="Rimgate.Projectile_AdditionalDamage_Ext">
+				<damageDef>EMP</damageDef>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ============ Goa'uld Gun Base ============ -->
+
+	<ThingDef Name="Rimgate_GoauldGunBase" ParentName="BaseGunWithQuality" Abstract="True">
+		<techLevel>Ultra</techLevel>
+		<weaponTags>
+			<li>Rimgate_GoauldWeapons_tag</li>
+			<li>Rimgate_GoauldRanged_tag</li>
+		</weaponTags>
+		<smeltable>false</smeltable>
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<workAmount>500</workAmount>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+			<researchPrerequisite>Gunsmithing</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>7</Crafting>
+			</skillRequirements>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<researchPrerequisite>Rimgate_GoauldWeaponTierOne</researchPrerequisite>
+		</recipeMaker>
+		<graphicData>
+			<drawSize>1</drawSize>
+		</graphicData>
+		<tradeTags>
+			<li>Rimgate_GoauldWeaponsTrade_tag</li>
+			<li>ExoticMisc</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- ========= Ma'Tok Staff ========= -->
+
+	<ThingDef Name="Rimgate_GoauldMaTok" ParentName="Rimgate_GoauldGunBase">
+		<defName>Rimgate_GoauldMaTokBlue</defName>
+		<label>Ma'Tok staff</label>
+		<description>The iconic staff weapon of the Jaffa. Fires devastating energy blasts and doubles as a blunt object for when diplomacy fails.\nLoud, flashy, and extremely compensatory.</description>
+		<costList>
+			<Steel>75</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<Rimgate_Naquadah>15</Rimgate_Naquadah>
+		</costList>
+		<graphicData>
+			<texPath>Things/Item/Weapon/Ranged/RGGoauldMaTokStaffBlue</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<uiIconScale>1.4</uiIconScale>
+		<soundInteract>Interact_ChargeRifle</soundInteract>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<statBases>
+			<Mass>3.4</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.87</AccuracyShort>
+			<AccuracyMedium>0.72</AccuracyMedium>
+			<AccuracyLong>0.52</AccuracyLong>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<MarketValue>750</MarketValue>
+			<WorkToMake>8000</WorkToMake>
+		</statBases>
+		<weaponClasses>
+			<li>RangedHeavy</li>
+		</weaponClasses>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_MaTokProjectile</defaultProjectile>
+				<warmupTime>1.32</warmupTime>
+				<range>26.9</range>
+				<burstShotCount>1</burstShotCount>
+				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				<soundCast>Rimgate_GoauldMaTokShot</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>shaft</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>15</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>25</power>
+				<armorPenetration>0.25</armorPenetration>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_GoauldMaTok">
+		<defName>Rimgate_GoauldMaTokViolet</defName>
+		<graphicData>
+			<texPath>Things/Item/Weapon/Ranged/RGGoauldMaTokStaffViolet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_GoauldMaTok">
+		<defName>Rimgate_GoauldMaTokBlue_Unique</defName>
+		<label>unique Ma'Tok staff</label>
+		<description>The iconic staff weapon of the Jaffa with customized parts.</description>
+		<!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+		<!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+		<comps Inherit="False">
+			<li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Styleable" />
+			<li Class="CompProperties_Biocodable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+			<li Class="CompProperties_UniqueWeapon">
+				<weaponCategories>
+					<li>Ranged</li>
+					<li>Gun</li>
+					<li>PulseCharge</li>
+				</weaponCategories>
+				<namerLabels>
+					<li>charge lance</li>
+				</namerLabels>
+			</li>
+		</comps>
+		<generateAllowChance>0</generateAllowChance>
+		<possessionCount>0</possessionCount>
+		<tradeability>Sellable</tradeability>
+		<thingSetMakerTags Inherit="False">
+			<li>RewardStandardLowFreq</li>
+			<li>UniqueWeapon</li>
+		</thingSetMakerTags>
+		<recipeMaker Inherit="False" IsNull="True" />
+		<thingCategories Inherit="False">
+			<li>WeaponsUnique</li>
+		</thingCategories>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_GoauldMaTokBlue</ThingDef>
+		</descriptionHyperlinks>
+	</ThingDef>
+
+	<!-- ====== Ma'Tok Projectile ====== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_MaTokProjectile</defName>
+		<label>Ma'Tok shot</label>
+		<graphicData>
+			<texPath>Things/Projectile/RGMaTokProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>18</damageAmountBase>
+			<stoppingPower>1.5</stoppingPower>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<speed>65</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ========= Zat'nik'tel ========= -->
+
+	<ThingDef ParentName="Rimgate_GoauldGunBase">
+		<defName>Rimgate_GoauldZat</defName>
+		<label>Zat'nik'tel</label>
+		<description>One shot: stun. Two shots: kill. Three shots? Only one way to find out.\nCompact, terrifying, and universally feared by SG teams and modded colonists alike.\n\nNote: This weapon delivers a neuroelectric shock that temporarily incapacitates targets. Unfortunately, it's ineffective against any mechanical target.</description>
+		<costList>
+			<Steel>30</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Rimgate_Naquadah>5</Rimgate_Naquadah>
+		</costList>
+		<graphicData>
+			<texPath>Things/Item/Weapon/Ranged/RGGoauldZat</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<uiIconScale>1.4</uiIconScale>
+		<soundInteract>Rimgate_ZatInteract</soundInteract>
+		<statBases>
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.74</AccuracyShort>
+			<AccuracyMedium>0.32</AccuracyMedium>
+			<AccuracyLong>0.23</AccuracyLong>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<MarketValue>1800</MarketValue>
+			<WorkToMake>4000</WorkToMake>
+		</statBases>
+		<weaponClasses>
+			<li>RangedLight</li>
+		</weaponClasses>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_ZatProjectile</defaultProjectile>
+				<warmupTime>1.2</warmupTime>
+				<range>18</range>
+				<minRange>0.5</minRange>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Rimgate_ZatShot</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<targetParams>
+					<canTargetCorpses>true</canTargetCorpses>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
+	</ThingDef>
+
+	<!-- ====== Zat'nik'tel Projectile ====== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_ZatProjectile</defName>
+		<thingClass>Rimgate.Projectile_ZatBlast</thingClass>
+		<label>zat'nik'tel shot</label>
+		<description>blast</description>
+		<graphicData>
+			<texPath>Things/Projectile/RGZatGunProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<stoppingPower>1</stoppingPower>
+			<armorPenetrationBase>0.05</armorPenetrationBase>
+			<speed>72</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="Rimgate.Projectile_ZatBlast_Ext" />
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ========= Kull ========= -->
+
+	<ThingDef Name="Rimgate_KullGun" ParentName="Rimgate_GoauldGunBase">
+		<defName>Rimgate_KullGun</defName>
+		<label>Plasma repeater</label>
+		<description>A devastating wrist-mounted weapon used by Kull warriors. Fires rapid energy bursts designed to overwhelm enemies and confidence alike.</description>
+		<techLevel>Spacer</techLevel>
+		<recipeMaker>
+			<researchPrerequisite>Rimgate_GoauldWeaponTierTwo</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Plasteel>50</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Rimgate_Naquadria>4</Rimgate_Naquadria>
+		</costList>
+		<graphicData>
+			<texPath>Things/Item/Weapon/Ranged/RGKullGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<MarketValue>1400</MarketValue>
+			<WorkToMake>30000</WorkToMake>
+			<Mass>3.4</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.24</AccuracyShort>
+			<AccuracyMedium>0.24</AccuracyMedium>
+			<AccuracyLong>0.18</AccuracyLong>
+			<RangedWeapon_Cooldown>2.26</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_KullGunProjectile</defaultProjectile>
+				<warmupTime>0.9</warmupTime>
+				<range>24</range>
+				<minRange>0.5</minRange>
+				<burstShotCount>4</burstShotCount>
+				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+				<soundCast>Rimgate_KullGunShot</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>4</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>haft</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<weaponTags Inherit="False">
+			<li>Rimgate_KullRanged_tag</li>
+		</weaponTags>
+		<tradeTags Inherit="False" />
+		<comps>
+			<li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+				<analysisID>1000400</analysisID>
+				<requiresResearchDef>ChargedShot</requiresResearchDef>
+
+				<!-- Analyzable -->
+
+				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+				<analysisDurationHours>6</analysisDurationHours>
+				<completedLetterLabel>Kull weapon studied: {RESEARCH} unlocked</completedLetterLabel>
+				<completedLetter>By studying the Kull’s weapon, {PAWN_labelShort} has acquired the insight needed for {RESEARCH} research.\n\nThe weapon’s core destabilized during disassembly, fusing itself into an unrecognizable lump of scorched alloy.\n\nYour researchers can now use research benches to begin developing compatible energy systems.</completedLetter>
+				<completedLetterDef>PositiveEvent</completedLetterDef>
+
+				<catastrophicFailureChance>0.25</catastrophicFailureChance>
+				<catastrophicDestroysThing>true</catastrophicDestroysThing>
+				<catastrophicExplosion>true</catastrophicExplosion>
+				<catastrophicExplosionRadius>2.0</catastrophicExplosionRadius>
+				<catastrophicExplosionDamage>15</catastrophicExplosionDamage>
+				<catastrophicExplosionDamageDef>Bomb</catastrophicExplosionDamageDef>
+				<catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+				<catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+				<catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+				<!-- Interactable -->
+
+				<maintainProgress>true</maintainProgress>
+				<activateTexPath>UI/Icons/Study</activateTexPath>
+
+				<activateLabelString>Analyze...</activateLabelString>
+				<activateDescString>Analyze the Kull's weapon.</activateDescString>
+				<jobString>Analyzing Kull weapon</jobString>
+				<guiLabelString>Choose who should analyze this</guiLabelString>
+				<inspectString>Can be analyzed by a colonist.</inspectString>
+
+				<targetingParameters>
+					<canTargetBuildings>false</canTargetBuildings>
+					<canTargetAnimals>false</canTargetAnimals>
+					<canTargetMechs>false</canTargetMechs>
+					<onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+				</targetingParameters>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_KullGun">
+		<defName>Rimgate_KullGun_Unique</defName>
+		<label>unique Kull wrist gun</label>
+		<description>A wrist-mounted weapon with customized parts.</description>
+		<!-- Can't inherit comps because we need to override CompEquippable with CompEquippableAbility -->
+		<!-- If changes are made to the comps of BaseHumanMakeableGun or parents then they will need to be replicated here -->
+		<comps Inherit="False">
+			<li Class="CompProperties_EquippableAbilityReloadable" /> <!-- Props are populated by traits -->
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Styleable" />
+			<li Class="CompProperties_Biocodable" />
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+			<li Class="CompProperties_UniqueWeapon">
+				<weaponCategories>
+					<li>Ranged</li>
+					<li>Gun</li>
+					<li>BurstFire</li>
+					<li>BeamWeapon</li>
+				</weaponCategories>
+				<namerLabels>
+					<li>repeater</li>
+					<li>beam repeater</li>
+					<li>beamgun</li>
+				</namerLabels>
+			</li>
+		</comps>
+		<generateAllowChance>0</generateAllowChance>
+		<possessionCount>0</possessionCount>
+		<tradeability>Sellable</tradeability>
+		<thingSetMakerTags Inherit="False">
+			<li>RewardStandardLowFreq</li>
+			<li>UniqueWeapon</li>
+		</thingSetMakerTags>
+		<recipeMaker Inherit="False" IsNull="True" />
+		<thingCategories Inherit="False">
+			<li>WeaponsUnique</li>
+		</thingCategories>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_KullGun</ThingDef>
+		</descriptionHyperlinks>
+	</ThingDef>
+
+	<!-- ====== Kull Projectile ====== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_KullGunProjectile</defName>
+		<label>Kull weapon shot</label>
+		<description>bullet</description>
+		<graphicData>
+			<texPath>Things/Projectile/LauncherShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<stoppingPower>1.5</stoppingPower>
+			<armorPenetrationBase>0.35</armorPenetrationBase>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+
+</Defs>

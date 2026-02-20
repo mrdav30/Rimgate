@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Meat crop ==================== -->
+
+	<ThingDef>
+		<defName>Rimgate_CulturedMeatCrop</defName>
+		<thingClass>Rimgate.Plant_MeatPlant</thingClass>
+		<label>Cultivated meat.</label>
+		<description>Meat? Long growth process but high nutrition value.</description>
+		<category>Plant</category>
+		<altitudeLayer>LowPlant</altitudeLayer>
+		<useHitPoints>True</useHitPoints>
+		<statBases>
+			<Flammability>0.8</Flammability>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Nutrition>0.20</Nutrition>
+		</statBases>
+		<tickerType>Long</tickerType>
+		<selectable>false</selectable>
+		<neverMultiSelect>True</neverMultiSelect>
+		<drawerType>MapMeshOnly</drawerType>
+		<pathCostIgnoreRepeat>false</pathCostIgnoreRepeat>
+		<graphicData>
+			<texPath>Things/Item/Resource/CulturedMeatGrowing</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+			<shaderType>CutoutPlant</shaderType>
+		</graphicData>
+		<ingestible>
+			<foodType>Meat</foodType>
+			<preferability>RawBad</preferability>
+			<canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>
+		</ingestible>
+		<plant>
+			<neverBlightable>true</neverBlightable>
+			<growMinGlow>0</growMinGlow>
+			<growOptimalGlow>0</growOptimalGlow>
+			<harvestFailable>false</harvestFailable>
+			<dieIfNoSunlight>false</dieIfNoSunlight>
+			<allowAutoCut>false</allowAutoCut>
+			<maxMeshCount>1</maxMeshCount>
+			<dieIfLeafless>false</dieIfLeafless>
+			<pollution>Any</pollution>
+			<harvestTag>Standard</harvestTag>
+			<harvestedThingDef>Rimgate_CulturedMeat</harvestedThingDef>
+			<harvestYield>28</harvestYield>
+			<growDays>3.5</growDays>
+			<sowTags>
+				<li>Rimgate_WraithMeatLab_tag</li>
+			</sowTags>
+			<soundHarvesting>Harvest_Standard</soundHarvesting>
+			<soundHarvestFinish>Harvest_Standard_Finish</soundHarvestFinish>
+			<harvestWork>190</harvestWork>
+			<sowWork>260</sowWork>
+			<topWindExposure>0</topWindExposure>
+			<visualSizeRange>1~1</visualSizeRange>
+			<purpose>Food</purpose>
+			<minGrowthTemperature>-35</minGrowthTemperature>
+			<maxGrowthTemperature>75</maxGrowthTemperature>
+		</plant>
+		<pathCost>10</pathCost>
+	</ThingDef>
+
+</Defs>

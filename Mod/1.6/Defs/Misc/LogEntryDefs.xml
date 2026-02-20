@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <LogEntryDef>
+        <defName>Rimgate_FlashPulse</defName>
+        <iconDamaged>Things/Mote/BattleSymbols/RGFlashPulse</iconDamaged>
+        <iconDamagedFromInstigator>Things/Mote/BattleSymbols/RGFlashPulseTarget</iconDamagedFromInstigator>
+    </LogEntryDef>
+
+</Defs>

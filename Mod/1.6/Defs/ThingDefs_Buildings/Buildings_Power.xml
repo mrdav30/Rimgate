@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- =============== Naquadria Generator ======== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_NaquadriaFiredGenerator</defName>
+    <label>Naquadria generator</label>
+    <description>A compact Tau'ri power unit that burns refined naquadria like a nervous scientist burns coffee.\n\nPuts out absurd amounts of power for its size and only occasionally makes the lights flicker in a "the universe is screaming" kind of way. Colonists insist it is safe. Mostly.</description>
+    <thingClass>Building</thingClass>
+    <size>(1,2)</size>
+    <graphicData>
+      <texPath>Things/Building/Power/NaquadriaGenerator/RGNaquadriaFiredGenerator</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+    <defaultPlacingRot>East</defaultPlacingRot>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsPower</li>
+    </thingCategories>
+    <uiIconPath>Things/Building/Power/NaquadriaGenerator/RGNaquadriaFiredGenerator</uiIconPath>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>150</pathCost>
+    <blockWind>true</blockWind>
+    <fillPercent>0.5</fillPercent>
+    <castEdgeShadows>false</castEdgeShadows>
+    <statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+      <WorkToBuild>3000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Mass>30</Mass>
+      <Beauty>-25</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <canOverlapZones>false</canOverlapZones>
+    <costList>
+      <Steel>125</Steel>
+      <Rimgate_Naquadah>50</Rimgate_Naquadah>
+      <ComponentIndustrial>15</ComponentIndustrial>
+      <ComponentSpacer>4</ComponentSpacer>
+    </costList>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <designationHotKey>Misc3</designationHotKey>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>Rimgate_NaquadriaFiredGenerator</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerPlant</compClass>
+        <basePowerConsumption>-4600</basePowerConsumption>
+        <transmitsPower>true</transmitsPower>
+        <shortCircuitInRain>true</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <!-- Fuel-hungry but not insane: ~3 Naquadria/day, 10 days to empty -->
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>3.0</fuelConsumptionRate>
+        <fuelCapacity>30.0</fuelCapacity>
+        <fuelLabel>Naquadria</fuelLabel>
+        <fuelGizmoLabel>Naquadria</fuelGizmoLabel>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+        <fuelFilter>
+          <thingDefs>
+            <li>Rimgate_Naquadria</li>
+          </thingDefs>
+        </fuelFilter>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>3.9</glowRadius>
+        <glowColor>(33,85,255,0)</glowColor>
+      </li>
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>6</heatPerSecond>
+      </li>
+      <li Class="CompProperties_Breakdownable" />
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>7.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <explodeOnKilled>true</explodeOnKilled>
+        <startWickHitPointsPercent>0.92</startWickHitPointsPercent>
+        <chanceNeverExplodeFromDamage>0.25</chanceNeverExplodeFromDamage>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- =============== Industrial Naquadria Generator ======== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
+    <label>Industrial Naquadria generator</label>
+    <description>A sprawling Tau'ri industrial-grade naquadria reactor, usually reserved for deep-space facilities and "absolutely do not let this explode" complexes.\n\nOutputs enough power to light a small city, run a full DHD emulator, and still have juice left over to annoy the neighbors. The humming sound in the walls is definitely normal. Probably.</description>
+    <graphicData>
+      <texPath>Things/Building/Power/RGIndustrialNaquadriaFiredGenerator</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(5,3)</drawSize>
+      <drawOffsetSouth>(0, 0, 0.35)</drawOffsetSouth>
+      <drawOffsetNorth>(0, 0, 0.35)</drawOffsetNorth>
+      <addTopAltitudeBias>true</addTopAltitudeBias>
+    </graphicData>
+    <rotatable>true</rotatable>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <size>(5,2)</size>
+    <statBases>
+      <MaxHitPoints>5000</MaxHitPoints>
+      <WorkToBuild>12000</WorkToBuild>
+      <Flammability>0</Flammability>
+      <Mass>300</Mass>
+      <Beauty>-40</Beauty>
+    </statBases>
+    <building>
+      <claimable>false</claimable>
+      <isInert>true</isInert>
+      <alwaysDeconstructible>true</alwaysDeconstructible>
+      <canLandGravshipOn>true</canLandGravshipOn>
+    </building>
+    <costList>
+      <Steel>450</Steel>
+      <Plasteel>250</Plasteel>
+      <Rimgate_Naquadah>150</Rimgate_Naquadah>
+      <Rimgate_Naquadria>40</Rimgate_Naquadria>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>8</ComponentSpacer>
+    </costList>
+    <noRightClickDraftAttack>true</noRightClickDraftAttack>
+    <fillPercent>0.5</fillPercent>
+    <passability>PassThroughOnly</passability>
+    <canOverlapZones>false</canOverlapZones>
+    <altitudeLayer>Building</altitudeLayer>
+    <tickerType>Normal</tickerType>
+    <pathCost>350</pathCost>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>Rimgate_IndustrialNaquadriaFiredGenerator</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerPlant</compClass>
+        <basePowerConsumption>-9600</basePowerConsumption>
+        <transmitsPower>true</transmitsPower>
+        <shortCircuitInRain>true</shortCircuitInRain>
+      </li>
+      <!-- Very hungry: 1.2 Naquadria/day, 30 capacity => 25 days to empty -->
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>1.2</fuelConsumptionRate>
+        <fuelCapacity>30.0</fuelCapacity>
+        <fuelLabel>Naquadria</fuelLabel>
+        <fuelGizmoLabel>Naquadria</fuelGizmoLabel>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+        <fuelFilter>
+          <thingDefs>
+            <li>Rimgate_Naquadria</li>
+          </thingDefs>
+        </fuelFilter>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>12</heatPerSecond>
+      </li>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>680</wickTicks>
+        <explosiveRadius>15.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <explodeOnKilled>true</explodeOnKilled>
+        <startWickHitPointsPercent>0.92</startWickHitPointsPercent>
+        <chanceNeverExplodeFromDamage>0.25</chanceNeverExplodeFromDamage>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>4.9</glowRadius>
+        <glowColor>(217,112,33,0)</glowColor>
+      </li>
+      <li Class="CompProperties_Breakdownable" />
+    </comps>
+  </ThingDef>
+
+  <!-- =============== Wraith Generator ======== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_WraithGenerator</defName>
+    <label>Biomass fired generator</label>
+    <label>biomass generator</label>
+    <description>A living power plant of Wraith design, its chambers packed with seething, organic matter that slowly digests biomass into raw energy. Though grotesque, it is brutally efficient—turning anything that once lived into fuel. The soft glow and faint chitter of its innards remind you this is less a machine than a creature chained to a wall.</description>
+    <thingClass>Building</thingClass>
+    <size>(1,2)</size>
+    <graphicData>
+      <texPath>Things/Building/Power/BiomassGenerator/RGBiomassGenerator</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <shadowData>
+        <volume>(1.93,1,1.69)</volume>
+        <offset>(-0.03,0,-0.1)</offset>
+      </shadowData>
+    </graphicData>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsPower</li>
+    </thingCategories>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>150</pathCost>
+    <blockWind>true</blockWind>
+    <fillPercent>0.5</fillPercent>
+    <castEdgeShadows>false</castEdgeShadows>
+    <statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+      <WorkToBuild>3000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Mass>30</Mass>
+      <Beauty>-25</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <canOverlapZones>false</canOverlapZones>
+    <costList>
+      <Steel>60</Steel>
+      <Rimgate_Biomass>70</Rimgate_Biomass>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <designationCategory>Power</designationCategory>
+    <designationHotKey>Misc3</designationHotKey>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>Rimgate_WraithGenerator</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerPlant</compClass>
+        <basePowerConsumption>-3000</basePowerConsumption>
+        <transmitsPower>true</transmitsPower>
+        <shortCircuitInRain>false</shortCircuitInRain>
+        <powerUpgrades>
+          <li>
+            <researchProject>Rimgate_BiomassOptimization</researchProject>
+            <factor>1.2</factor> <!-- 20% increase -->
+          </li>
+        </powerUpgrades>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>0.75</fuelConsumptionRate>
+        <fuelCapacity>25.0</fuelCapacity>
+        <fuelLabel>Biomass</fuelLabel>
+        <fuelGizmoLabel>Biomass</fuelGizmoLabel>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+        <fuelFilter>
+          <thingDefs>
+            <li>Rimgate_Biomass</li>
+          </thingDefs>
+        </fuelFilter>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>3.9</glowRadius>
+        <glowColor>(33,202,255,0)</glowColor>
+      </li>
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>6</heatPerSecond>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- =============== ZPM Containment Housing =============== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimgate_ZPMHousing</defName>
+    <label>ZPM containment housing</label>
+    <description>A reinforced subspace-alignment cradle designed to hold and synchronize up to three zero point modules.\n\nInserted ZPMs are automatically phase-locked and routed through a unified power manifold, letting the housing act as the visible “battery” on your grid.\n\nEmpty, it’s inert.\n\nLoaded, it becomes one of the most stable—yet unmistakably conspicuous—power sources in the Rim.</description>
+
+    <thingClass>Rimgate.Building_ZPMHousing</thingClass>
+    <category>Building</category>
+
+    <altitudeLayer>Building</altitudeLayer>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <useHitPoints>true</useHitPoints>
+    <rotatable>true</rotatable>
+    <selectable>true</selectable>
+
+    <size>(2,2)</size>
+    <passability>PassThroughOnly</passability>
+    <pathCost>60</pathCost>
+    <fillPercent>0.5</fillPercent>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+
+    <graphicData>
+      <texPath>Things/Building/Power/RGZPMHousing</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(0.6,0.4,0.6)</volume>
+      </shadowData>
+    </graphicData>
+
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+
+    <statBases>
+      <MaxHitPoints>800</MaxHitPoints>
+      <WorkToBuild>4000</WorkToBuild>
+      <Flammability>0.0</Flammability>
+      <Mass>120</Mass>
+      <Beauty>-2</Beauty>
+    </statBases>
+
+    <building>
+      <isInert>false</isInert>
+      <uninstallWork>2500</uninstallWork>
+    </building>
+
+    <costList>
+      <Steel>320</Steel>
+      <Plasteel>160</Plasteel>
+      <Rimgate_Naquadah>100</Rimgate_Naquadah>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>8</ComponentSpacer>
+    </costList>
+
+    <researchPrerequisites>
+      <li>Rimgate_ZPMHousing</li>
+    </researchPrerequisites>
+
+    <designationCategory>Power</designationCategory>
+    <designationHotKey>Misc1</designationHotKey>
+
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsPower</li>
+    </thingCategories>
+    <stackLimit>1</stackLimit>
+    <tradeability>None</tradeability>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <resourcesFractionWhenDeconstructed>0.5</resourcesFractionWhenDeconstructed>
+
+    <comps>
+      <!-- 
+        Battery capacity here is the physical max (3 × 48000). 
+        Building_ZPMHousing clamps effective capacity based on ZpmCount.
+      -->
+      <li Class="CompProperties_Battery">
+        <storedEnergyMax>144000</storedEnergyMax> <!-- 3 * 48000 -->
+        <efficiency>1</efficiency>
+        <transmitsPower>true</transmitsPower>
+        <shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+
+      <li Class="CompProperties_Flickable" />
+
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>Rimgate_SubspaceShroudEmitter</li>
+          <li>Rimgate_SubspacePhaseDiverter</li>
+        </linkableFacilities>
+      </li>
+    </comps>
+
+  </ThingDef>
+
+</Defs>

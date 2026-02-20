@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <PawnKindDef Name="Rimgate_TauriPlayerBase" Abstract="True">
+    <race>Human</race>
+    <combatPower>40</combatPower>
+    <isFighter>true</isFighter>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+    <forceNormalGearQuality>true</forceNormalGearQuality>
+    <initialWillRange>0~0</initialWillRange>
+    <humanPregnancyChance>0.06</humanPregnancyChance>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_TauriPlayerBase">
+    <defName>Rimgate_TauriPlayer</defName>
+    <label>SGC member</label>
+    <defaultFactionType>Rimgate_TauriPlayerColony</defaultFactionType>
+    <chemicalAddictionChance>0.5</chemicalAddictionChance>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Baseliner>999</Baseliner>
+      </xenotypeChances>
+    </xenotypeSet>
+    <initialResistanceRange>13~21</initialResistanceRange>
+    <minGenerationAge>18</minGenerationAge>
+    <maxGenerationAge>45</maxGenerationAge>
+    <gearHealthRange>0.7~2.3</gearHealthRange>
+    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
+    <apparelMoney>1000~2400</apparelMoney>
+    <apparelTags>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>SpacerMilitary</li>
+      <li>Rimgate_TauriApparel_tag</li>
+      <li>Rimgate_TauriUtility_tag</li>
+      <li>Rimgate_VestInsert_tag</li>
+    </apparelTags>
+    <weaponMoney>1200~2000</weaponMoney>
+    <weaponTags>
+      <li>Rimgate_TauriSubmachineGun_tag</li>
+      <li>Rimgate_TauriAssaultRifle_tag</li>
+      <li>Rimgate_TauriPistol_tag</li>
+      <li>Rimgate_TauriShotgun_tag</li>
+    </weaponTags>
+    <techHediffsChance>1</techHediffsChance>
+    <techHediffsMoney>1000~2000</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
+    <techHediffsTags>
+      <li>Simple</li>
+      <li>Advanced</li>
+      <li>ImplantEmpireCommon</li>
+    </techHediffsTags>
+    <techHediffsDisallowTags>
+      <li>PainCauser</li>
+    </techHediffsDisallowTags>
+    <biocodeWeaponChance>0.2</biocodeWeaponChance>
+  </PawnKindDef>
+
+</Defs>

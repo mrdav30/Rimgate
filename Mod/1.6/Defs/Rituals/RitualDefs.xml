@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <PreceptDef>
+        <defName>Rimgate_PrimtaRenewal</defName>
+        <label>Prim'ta renewal</label>
+        <description>A formal Jaffa ceremony to replace a maturing prim'ta with a fresh larva. The host stands before the symbol of their god while the warriors chant, witnessing another cycle of borrowed life begin.</description>
+        <issue>Ritual</issue>
+        <preceptClass>Precept_Ritual</preceptClass>
+        <visible>false</visible>
+        <classic>true</classic>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
+        <selectionWeight>1.0</selectionWeight>
+        <ritualPatternBase>Rimgate_PrimtaRenewal</ritualPatternBase>
+        <iconPath>UI/Ritual/RG_PrimtaRenewal</iconPath>
+        <usesIdeoVisualEffects>false</usesIdeoVisualEffects>
+        <mergeRitualGizmosFromAllIdeos>true</mergeRitualGizmosFromAllIdeos>
+        <useRepeatPenalty>false</useRepeatPenalty>
+        <showRitualFloatMenuOption>true</showRitualFloatMenuOption>
+    </PreceptDef>
+
+    <RitualPatternDef>
+        <defName>Rimgate_PrimtaRenewal</defName>
+        <ritualOnlyForIdeoMembers>false</ritualOnlyForIdeoMembers>
+        <ritualBehavior>Rimgate_PrimtaRenewal</ritualBehavior>
+        <ritualTargetFilter>SelectedThing</ritualTargetFilter>
+        <ritualObligationTargetFilter>Rimgate_SymbiotePool</ritualObligationTargetFilter>
+        <ritualOutcomeEffect>Rimgate_PrimtaRenewal</ritualOutcomeEffect>
+        <playsIdeoMusic>false</playsIdeoMusic>
+        <canStartAnytime>true</canStartAnytime>
+        <alwaysStartAnytime>true</alwaysStartAnytime>
+    </RitualPatternDef>
+
+    <RitualObligationTargetFilterDef>
+        <defName>Rimgate_SymbiotePool</defName>
+        <workerClass>Rimgate.RitualObligationTargetWorker_SymbiotePool</workerClass>
+    </RitualObligationTargetFilterDef>
+
+    <RitualBehaviorDef>
+        <defName>Rimgate_PrimtaRenewal</defName>
+        <durationTicks>4500</durationTicks> <!-- ~1 hour -->
+        <roles>
+            <li Class="Rimgate.RitualRole_PrimtaHost">
+                <label>host</label>
+                <id>organizer</id>
+                <required>true</required>
+                <maxCount>1</maxCount>
+                <defaultForSelectedColonist>true</defaultForSelectedColonist>
+                <noCandidatesGizmoDesc>Need a pawn with a symbiote pouch.</noCandidatesGizmoDesc>
+                <allowChild>false</allowChild>
+                <customChildDisallowMessage>Only adult Jaffa can undergo Prim'ta renewal.</customChildDisallowMessage>
+            </li>
+        </roles>
+        <spectatorsLabel>Participants</spectatorsLabel>
+        <spectatorGerund>participate</spectatorGerund>
+        <stages>
+            <!-- Jaffa moves to ritual position. -->
+            <li>
+                <defaultDuty>SpectateSocial</defaultDuty>
+                <showProgressBar>false</showProgressBar>
+                <endTriggers>
+                    <li Class="StageEndTrigger_PawnDown">
+                        <roleId>organizer</roleId>
+                    </li>
+                    <li Class="StageEndTrigger_RolesArrived">
+                        <roleIds>
+                            <li>organizer</li>
+                        </roleIds>
+                    </li>
+                </endTriggers>
+                <spectateDistanceOverride>3~5</spectateDistanceOverride>
+                <roleBehaviors>
+                    <li>
+                        <roleId>organizer</roleId>
+                        <dutyDef>ArriveToCell</dutyDef>
+                        <customPositions>
+                            <li Class="RitualPosition_PreferredAdjacentCellCardinal">
+                                <faceThing>true</faceThing>
+                            </li>
+                        </customPositions>
+                    </li>
+                </roleBehaviors>
+            </li>
+            <!-- Everyone waits for the ceremony to finish. -->
+            <li>
+                <defaultDuty>SpectateSocial</defaultDuty>
+                <endTriggers>
+                    <li Class="StageEndTrigger_DurationPercentage">
+                        <percentage>1</percentage>
+                    </li>
+                    <li Class="StageEndTrigger_PawnDown">
+                        <roleId>organizer</roleId>
+                    </li>
+                </endTriggers>
+                <spectateDistanceOverride>3~5</spectateDistanceOverride>
+                <roleBehaviors>
+                    <li>
+                        <roleId>organizer</roleId>
+                        <dutyDef>Idle</dutyDef>
+                        <jobReportOverride>performing Prim'ta ceremony</jobReportOverride>
+                        <customPositions>
+                            <li Class="RitualPosition_PreferredAdjacentCellCardinal">
+                                <faceThing>true</faceThing>
+                            </li>
+                        </customPositions>
+                    </li>
+                </roleBehaviors>
+            </li>
+        </stages>
+    </RitualBehaviorDef>
+
+    <RitualOutcomeEffectDef>
+        <defName>Rimgate_PrimtaRenewal</defName>
+        <workerClass>Rimgate.RitualOutcomeEffectWorker_PrimtaRenewal</workerClass>
+        <description>Depending on ceremony quality, participants will get between {MINMOOD} and {MAXMOOD} mood for {MOODDAYS} days.</description>
+        <allowAttachableOutcome>false</allowAttachableOutcome>
+        <warnOnLowQuality>false</warnOnLowQuality>
+        <givesDevelopmentPoints>false</givesDevelopmentPoints>
+        <comps>
+            <li Class="RitualOutcomeComp_ParticipantCount">
+                <label>participant count</label>
+                <curve>
+                    <points>
+                        <li>(1, 0.2)</li>
+                        <li>(3, 0.5)</li>
+                        <li>(6, 0.8)</li>
+                        <li>(10, 1)</li>
+                    </points>
+                </curve>
+            </li>
+        </comps>
+        <outcomeChances>
+            <li>
+                <label>Awkward</label>
+                <chance>0.15</chance>
+                <memory>Rimgate_AwkwardPrimta</memory>
+                <positivityIndex>-1</positivityIndex>
+                <description>The {0} was awkward. {1} seemed uncomfortable, and the ceremony didn't go as smoothly as it should have.</description>
+            </li>
+            <li>
+                <label>Satisfying</label>
+                <chance>0.65</chance>
+                <memory>Rimgate_SatisfyingPrimta</memory>
+                <description>The {0} went well. {1} appeared at ease, and the ceremony proceeded as expected.</description>
+                <positivityIndex>1</positivityIndex>
+            </li>
+            <li>
+                <label>Spectacular</label>
+                <chance>0.2</chance>
+                <memory>Rimgate_SpectacularPrimta</memory>
+                <description>The {0} was spectacular. {1} radiated confidence, and the ceremony was a resounding success, inspiring all who witnessed it.</description>
+                <positivityIndex>2</positivityIndex>
+            </li>
+        </outcomeChances>
+    </RitualOutcomeEffectDef>
+
+</Defs>

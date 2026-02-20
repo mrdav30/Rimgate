@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ====== Wraith (unisex) ====== -->
+
+  <RulePackDef>
+    <defName>Rimgate_NamerPersonWraith</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[RG_WraithFirst] [RG_WraithLast]</li>
+        <li>name->[RG_Nickname] [RG_WraithFirst]</li>
+        <li>name->[RG_WraithFirst] '[RG_Nickname]' [RG_WraithLast]</li>
+        <li>name->[RG_WraithFirst] [RG_Nickname]</li>
+      </rulesStrings>
+
+      <rulesFiles>
+        <li>RG_WraithFirst->NameBanks/Wraith/Names_First_Wraith</li>
+        <li>RG_WraithLast->NameBanks/Wraith/Names_Last_Wraith</li>
+        <li>RG_Nickname->NameBanks/Wraith/Names_Nickname_Wraith</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+
+  <!-- ====== Goa'uld ====== -->
+
+  <!-- Male -->
+  <RulePackDef>
+    <defName>Rimgate_NamerPersonJaffaM</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[RG_GoauldFirstM] [RG_GoauldLast]</li>
+        <li>name->[comboname] [RG_GoauldLast]</li>
+        <li>comboname-&gt;[RG_Goauld_FirstPartM][RG_Goauld_SecondPartM]</li>
+      </rulesStrings>
+      <rulesFiles>
+        <li>RG_GoauldFirstM->NameBanks/Goauld/Names_First_JaffaM</li>
+        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Jaffa</li>
+        <li>RG_Goauld_FirstPartM->NameBanks/Goauld/Names_FirstPart_JaffaM</li>
+        <li>RG_Goauld_SecondPartM->NameBanks/Goauld/Names_SecondPart_JaffaM</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+  <!-- Female -->
+  <RulePackDef>
+    <defName>Rimgate_NamerPersonJaffaF</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[RG_GoauldFirstF] [RG_GoauldLast]</li>
+        <li>name->[comboname] [RG_GoauldLast]</li>
+        <li>comboname-&gt;[RG_Goauld_FirstPartF][RG_Goauld_SecondPartF]</li>
+      </rulesStrings>
+      <rulesFiles>
+        <li>RG_GoauldFirstF->NameBanks/Goauld/Names_First_JaffaF</li>
+        <li>RG_GoauldLast->NameBanks/Goauld/Names_Last_Jaffa</li>
+        <li>RG_Goauld_FirstPartF->NameBanks/Goauld/Names_FirstPart_JaffaF</li>
+        <li>RG_Goauld_SecondPartF->NameBanks/Goauld/Names_SecondPart_JaffaF</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+  <!-- Symbiote (unisex) -->
+  <RulePackDef>
+    <defName>Rimgate_NamerSymbiote</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[RG_SymbioteName]</li>
+      </rulesStrings>
+      <rulesFiles>
+        <li>RG_SymbioteName->NameBanks/Goauld/Names_Symbiote_Unisex</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+  <!-- Kull (unisex) -->
+  <RulePackDef>
+    <defName>Rimgate_NamerKull</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[RG_KullName]</li>
+
+        <li>RG_KullName->[Gore]-[kull_serial]</li>
+        <li>RG_KullName->[RG_KullCodeName]</li>
+        <li>RG_KullName->[Weapon]-[kull_serial]</li>
+        <li>RG_KullName->[ConceptBadass]-[kull_serial]</li>
+        <li>RG_KullName->[RG_KullUnisexName] [kull_serial]</li>
+
+        <li>RG_KullCodeName->[RomanNumeral]</li>
+        <li>RG_KullCodeName->[kull_serial]</li>
+
+        <li>kull_serial->[maybe_letter][maybe_numbers][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][RomanNumeral][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][RomanNumeral][Digit][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][Digit][RomanNumeral][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][Digit][RomanNumeral][Digit][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][RomanNumeral][Digit][RomanNumeral][maybe_letter]</li>
+        <li>kull_serial->[maybe_letter][RomanNumeral][maybe_numbers][RomanNumeral][maybe_letter]</li>
+
+        <li>maybe_letter->[Letter]</li>
+        <li>maybe_letter->[Letter][Letter]</li>
+
+        <li>maybe_numbers->[Digit]</li>
+        <li>maybe_numbers->[Digit][Digit]</li>
+        <li>maybe_numbers->[Digit][Digit][Digit]</li>
+      </rulesStrings>
+      <rulesFiles>
+        <li>ConceptBadass->Words/Nouns/Concepts_Badass</li>
+        <li>Weapon->Words/Nouns/Weapons</li>
+        <li>Gore->Words/Nouns/Gore</li>
+        <li>Letter->WordParts/CapitalLetters</li>
+        <li>RG_KullUnisexName->NameBanks/Goauld/Names_Kull_Unisex</li>
+        <li>RomanNumeral->Words/Misc/Numbers_SmallRoman</li>
+      </rulesFiles>
+      <rulesRaw>
+        <li Class="Rule_Number">
+          <keyword>Digit</keyword>
+          <range>0~9</range>
+        </li>
+      </rulesRaw>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

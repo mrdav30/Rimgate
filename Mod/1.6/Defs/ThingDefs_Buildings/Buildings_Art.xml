@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- Goa'uld Art -->
+
+    <ThingDef ParentName="ArtBuildingBase">
+        <thingClass>Rimgate.Building_Artistic</thingClass>
+        <defName>Rimgate_GoauldSculpture</defName>
+        <label>Goa'uld sculpture</label>
+        <description>A gilt idol worked in naquadah-veined gold, its planes cut with knife-sharp hieroglyphs. The script praises distant “lords” and seems to rearrange itself when no one is watching. Standing near it straightens backs and quiets whispers. Slaves linger longer in fearful obedience.</description>
+
+        <!-- Not buildable or craftable; loot-only -->
+        <designationCategory IsNull="True" />
+        <building>
+            <neverBuildable>true</neverBuildable>
+            <deconstructible>false</deconstructible>
+            <claimable>true</claimable>
+        </building>
+        <costList /> <!-- none -->
+
+        <graphicData>
+            <graphicClass>Graphic_Random</graphicClass>
+            <texPath>Things/Building/Art/GoauldSculptures</texPath>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <size>(2,2)</size>
+        <rotatable>false</rotatable>
+        <fillPercent>0.5</fillPercent>
+        <uiIconScale>0.66</uiIconScale>
+
+        <!-- Lootable, but not tradable in normal markets -->
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+            <li>BuildingsArt</li>
+        </thingCategories>
+
+        <statBases>
+            <MaxHitPoints>150</MaxHitPoints>
+            <Mass>15</Mass>
+            <Beauty>45</Beauty>
+            <TerrorSource MayRequire="Ludeon.RimWorld.Ideology">25</TerrorSource>
+            <MeditationFocusStrength>0.20</MeditationFocusStrength>
+        </statBases>
+
+        <!-- Pure Art -->
+        <comps Inherit="False">
+
+            <li Class="CompProperties_Art">
+                <nameMaker>NamerArt_GoauldSculpture</nameMaker>
+                <descriptionMaker>ArtDescription_GoauldSculpture</descriptionMaker>
+                <minQualityForArtistic>Awful</minQualityForArtistic>
+                <canBeEnjoyedAsArt>true</canBeEnjoyedAsArt>
+            </li>
+
+        </comps>
+
+        <placeWorkers />
+    </ThingDef>
+
+    <!-- ======================= Goa'uld Canopic Jar ======================= -->
+
+    <ThingDef ParentName="BuildingBase">
+        <defName>Rimgate_GoauldCanopicJar</defName>
+        <thingClass>Rimgate.Building_CanopicJar</thingClass>
+        <label>Canopic Jar</label>
+        <description>A hermetically sealed storage container designed to preserve Goa'uld symbiotes indefinitely. The airtight seal maintains ideal biopreservation conditions, preventing deterioration while the symbiote rests in stasis. Functions as a compact, secure storage unit for living symbiotes, extracted organs, or other sensitive biological specimens. Multiple jars can be arranged for efficient organization of valuable biosamples.\n\nNote: Only a truly skilled artisan can be trusted to carve the delicate glyphs that keep an angry symbiote from realizing it's in a jar.</description>
+        <graphicData>
+            <texPath>Things/Building/Art/CanopicJars</texPath>
+            <graphicClass>Graphic_Random</graphicClass>
+            <drawSize>(1.2,1.2)</drawSize>
+            <shaderType>CutoutComplex</shaderType>
+            <shadowData>
+                <volume>(0.55, 0.35, 0.3)</volume>
+                <offset>(0, 0, -0.28)</offset>
+            </shadowData>
+            <damageData>
+                <rect>(0.3,0,0.3,0.9)</rect>
+            </damageData>
+        </graphicData>
+        <uiIconPath>Things/Building/Art/RGCanopicJarIcon</uiIconPath>
+        <useBlueprintGraphicAsGhost>true</useBlueprintGraphicAsGhost>
+        <size>(1,1)</size>
+
+        <fillPercent>0.4</fillPercent>
+        <altitudeLayer>Building</altitudeLayer>
+        <passability>PassThroughOnly</passability>
+        <pathCost>50</pathCost>
+        <rotatable>false</rotatable>
+        <selectable>true</selectable>
+        <tickerType>Rare</tickerType>
+        <!-- <drawGUIOverlay>true</drawGUIOverlay> -->
+        <thingCategories>
+            <li>BuildingsMisc</li>
+        </thingCategories>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+        <category>Building</category>
+        <designationCategory>Misc</designationCategory>
+        <useHitPoints>true</useHitPoints>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <canOverlapZones>false</canOverlapZones>
+
+        <statBases>
+            <MaxHitPoints>80</MaxHitPoints>
+            <WorkToBuild>1200</WorkToBuild>
+            <Flammability>0.5</Flammability>
+            <Beauty>25</Beauty>
+            <Mass>15</Mass>
+            <MarketValue>800</MarketValue>
+        </statBases>
+
+        <building>
+            <storageGroupTag>Shelf</storageGroupTag>
+            <blueprintClass>Blueprint_Storage</blueprintClass>
+            <ai_chillDestination>false</ai_chillDestination>
+            <isInert>true</isInert>
+            <paintable>false</paintable>
+            <claimable>true</claimable>
+            <preventDeteriorationInside>true</preventDeteriorationInside>
+            <haulToContainerDuration>250</haulToContainerDuration>
+            <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+            <defaultStorageSettings>
+                <priority>Important</priority>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_PrimtaSymbiote</li>
+                        <li>Rimgate_GoauldSymbiote</li>
+                        <li>Rimgate_SymbioteQueen</li>
+                    </thingDefs>
+                    <categories>
+                        <li>BodyPartsNatural</li>
+                    </categories>
+                </filter>
+            </defaultStorageSettings>
+            <fixedStorageSettings>
+                <filter>
+                    <thingDefs>
+                        <li>Rimgate_PrimtaSymbiote</li>
+                        <li>Rimgate_GoauldSymbiote</li>
+                        <li>Rimgate_SymbioteQueen</li>
+                    </thingDefs>
+                    <categories>
+                        <li>BodyPartsNatural</li>
+                    </categories>
+                </filter>
+            </fixedStorageSettings>
+            <maxItemsInCell>1</maxItemsInCell>
+            <blueprintClass>Blueprint_Build</blueprintClass>
+            <blueprintGraphicData>
+                <texPath>Things/Building/Art/RGCanopicJarIcon</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <shaderType>EdgeDetect</shaderType>
+            </blueprintGraphicData>
+        </building>
+
+        <stuffCategories>
+            <li>Stony</li>
+        </stuffCategories>
+        <costStuffCount>20</costStuffCount>
+        <costList>
+            <Steel>20</Steel>
+            <Rimgate_Naquadah>5</Rimgate_Naquadah>
+            <Gold>3</Gold>
+            <ComponentIndustrial>2</ComponentIndustrial>
+            <ComponentSpacer>1</ComponentSpacer>
+        </costList>
+
+        <researchPrerequisites>
+            <li>Rimgate_SymbioteStudy</li>
+            <li>Stonecutting</li>
+        </researchPrerequisites>
+
+        <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+        <artisticSkillPrerequisite>6</artisticSkillPrerequisite>
+
+        <inspectorTabs>
+            <li>ITab_Art</li>
+            <li>ITab_Storage</li>
+            <li>Rimgate.ITab_CanopicJar</li>
+        </inspectorTabs>
+
+        <comps>
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+            <li Class="CompProperties_Art">
+                <nameMaker>NamerArt_GoauldCanopicJar</nameMaker>
+                <descriptionMaker>ArtDescription_GoauldCanopicJar</descriptionMaker>
+                <minQualityForArtistic>Good</minQualityForArtistic>
+                <canBeEnjoyedAsArt>true</canBeEnjoyedAsArt>
+            </li>
+            <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                    <li>Morbid</li>
+                </focusTypes>
+                <offsets>
+                    <li Class="FocusStrengthOffset_BuildingDefs">
+                        <defs>
+                            <li>Rimgate_GoauldCanopicJar</li>
+                        </defs>
+                        <offsetPerBuilding>0.02</offsetPerBuilding>
+                        <radius>9.9</radius>
+                        <maxBuildings>6</maxBuildings>
+                        <explanationKey>MeditationFocusPerBuilding</explanationKey>
+                        <explanationKeyAbstract>MeditationFocusPerBuildingAbstract</explanationKeyAbstract>
+                    </li>
+                    <li Class="FocusStrengthOffset_NearbyGraves">
+                        <defs>
+                            <li>Grave</li>
+                            <li>Sarcophagus</li>
+                        </defs>
+                        <offsetPerBuilding>0.01</offsetPerBuilding>
+                        <radius>9.9</radius>
+                        <maxBuildings>4</maxBuildings>
+                        <focusPerFullGrave>0.01</focusPerFullGrave>
+                        <explanationKey>MeditationFocusPerGrave</explanationKey>
+                        <explanationKeyAbstract>MeditationFocusPerGraveAbstract</explanationKeyAbstract>
+                    </li>
+                </offsets>
+            </li>
+        </comps>
+    </ThingDef>
+
+</Defs>

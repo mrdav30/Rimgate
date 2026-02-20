@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- =============== Symbiotic Dominion =============== -->
+
+    <MemeDef>
+        <defName>Rimgate_SymbioticDominion</defName>
+        <label>symbiotic dominion</label>
+        <description>The belief that those who host symbiotes are divinely chosen to rule over lesser beings. Adherents see themselves as superior, destined to lead through strength and cunning, with symbiotes viewed as sacred gifts that enhance their power and authority.\nPerfect for those who aspire to command with an iron fist (and a living parasite).</description>
+        <iconPath>UI/Meme/RG_Meme_SymbioticDominion</iconPath>
+        <groupDef MayRequire="Ludeon.RimWorld.Ideology">Misc</groupDef>
+        <impact>2</impact>
+
+        <!-- Make sure this meme always drags in the "symbiote revered" precept -->
+        <requireOne>
+            <li>
+                <li>Rimgate_Symbiote_Revered</li>
+            </li>
+        </requireOne>
+
+        <!-- Name / flavor symbol generation -->
+        <generalRules>
+            <rulesStrings>
+                <!-- Adjectives -->
+                <li>memeAdjective->symbiotic</li>
+                <li>memeAdjective->serpentine</li>
+                <li>memeAdjective->divine</li>
+                <li>memeAdjective->imperious</li>
+                <li>memeAdjective->gilded</li>
+                <li>memeAdjective->false-god</li>
+
+                <!-- Creeds / group nouns -->
+                <li>memeCreed->throne</li>
+                <li>memeCreed->court</li>
+                <li>memeCreed->dynasty</li>
+                <li>memeCreed->empire</li>
+                <li>memeCreed->cult</li>
+
+                <!-- Hyphen prefixes -->
+                <li>memeHyphenPrefix->serpent</li>
+                <li>memeHyphenPrefix->host</li>
+                <li>memeHyphenPrefix->god</li>
+                <li>memeHyphenPrefix->vessel</li>
+
+                <!-- Core concepts -->
+                <li>memeConcept->dominion</li>
+                <li>memeConcept->hosts</li>
+                <li>memeConcept->vessels</li>
+                <li>memeConcept->false gods</li>
+                <li>memeConcept->living thrones</li>
+                <li>memeConcept->subjugation</li>
+                <li>memeConcept->serpents</li>
+
+                <!-- Leaders / moral authorities -->
+                <li>memeLeaderNoun->system lord</li>
+                <li>memeLeaderNoun->high host</li>
+                <li>memeLeaderNoun->vessel-of-gods</li>
+                <li>memeLeaderNoun->throne-bearer</li>
+
+                <li>memeLeaderAdjective->anointed</li>
+                <li>memeLeaderAdjective->serpentine</li>
+                <li>memeLeaderAdjective->radiant</li>
+                <li>memeLeaderAdjective->golden-eyed</li>
+
+                <li>memeMoralist->gene-priest</li>
+                <li>memeMoralist->symbiarch</li>
+                <li>memeMoralist->pouch-keeper</li>
+                <li>memeMoralist->voice-of-the-hosts</li>
+            </rulesStrings>
+        </generalRules>
+
+        <!-- Lore snippets / narrative hooks -->
+        <descriptionMaker>
+            <rules>
+                <rulesStrings>
+                    <!-- theist myth -->
+                    <li>creation(tag=meme_Rimgate_SymbioticDominion) ->[deity0_name] descended as a serpent of living fire and chose the first hosts, coiling within their flesh so they would rule in [deity0_possessive] name.</li>
+                    <li>episode(uses=1,tag=meme_Rimgate_SymbioticDominion) ->When the tribes of the [place_summary] [place_name] defied [deity0_name], [deity0_pronoun] whispered into the blood of the hosts and they crushed the rebels in a single night.</li>
+
+                    <!-- theist founder -->
+                    <li>intro(tag=meme_Rimgate_SymbioticDominion) ->On the [place_summary] [place_name], a simple [place_job] named [founderName] knelt before the [altarName]. The serpent of [deity0_name] entered [founder_possessive] flesh and made [founder_objective] the first living throne.</li>
+                    <li>conflict(tag=meme_Rimgate_SymbioticDominion) ->A jealous [foeLeader] called the hosts "parasites" and sent [foeLeader_possessive] [foeSoldiers] to purge them from the [place_community].</li>
+                    <li>founderJoin(tag=meme_Rimgate_SymbioticDominion) ->As the blades descended, [founderName]'s eyes blazed with the will of [deity0_name]. The serpent within hissed its command, and the [foeSoldiers] fell to their knees in terror.</li>
+                    <li>victory(tag=meme_Rimgate_SymbioticDominion) ->When the dust cleared, the rebels lay broken beneath the hosts' sandaled feet, and [deity0_name] declared that only the blended would rule from the [place_powerCenter].</li>
+
+                    <!-- ideological founder (non-theist framing) -->
+                    <li>setup(tag=meme_Rimgate_SymbioticDominion) ->Our founder [founderName] studied a thousand petty tyrants and saw the same flaw in all of them: Their power ended with their own frail bodies. A host, however, endures through many vessels.</li>
+                    <li>story(uses=1,tag=meme_Rimgate_SymbioticDominion) ->[founderName] gathered those willing to bear the serpent and forged a court where rule passed not by bloodline, but by which symbiote claimed the body.</li>
+
+                    <!-- ideological lesson -->
+                    <li>lessonIntro(tag=meme_Rimgate_SymbioticDominion) ->Watching lesser leaders grow old, weak, and fearful while our hosts remained sharp-eyed and eternal, I realized a single truth:</li>
+                    <li>lesson(tag=meme_Rimgate_SymbioticDominion) ->no one who walks alone in their own flesh is fit to rule those who share their body with another mind</li>
+                    <li>lessonReinforcement(tag=meme_Rimgate_SymbioticDominion) ->Once you have seen a serpent-voiced ruler speak with centuries of stolen experience, all unblended rulers look like frightened children wearing crowns.</li>
+
+                    <!-- archist-style framing (if paired with archotech memes) -->
+                    <li>archistBasis(tag=meme_Rimgate_SymbioticDominion) ->The archotechs layered many minds into single machine-gods; the symbiotes are their crude echo in flesh, building thrones out of living bodies.</li>
+                    <li>archistFact(tag=meme_Rimgate_SymbioticDominion) ->Each host is a tiny archotech of meat and memory – many lives, one will.</li>
+                    <li>archistProphecy(tag=meme_Rimgate_SymbioticDominion) ->[inTheEnd], those who bear the serpents will be the only ones who can understand the archotechs' final command, and only they will be obeyed.</li>
+
+                    <!-- animist-style framing -->
+                    <li>animistBasis(tag=meme_Rimgate_SymbioticDominion) ->Spirits cling to flesh and blood. A symbiote is a wandering spirit with teeth, seeking vessels strong enough to hold it.</li>
+                    <li>animistFact(tag=meme_Rimgate_SymbioticDominion) ->When a serpent binds itself to a host, their spirits braid together. The stronger will rules, but both grow mightier.</li>
+                    <li>animistProphecy(tag=meme_Rimgate_SymbioticDominion) ->[itIsSaid] that when the last serpent finds its perfect vessel, host and symbiote will ascend as a single shining god while the unblended watch from below.</li>
+                </rulesStrings>
+            </rules>
+        </descriptionMaker>
+
+        <symbolPacks>
+            <li>
+                <ideoName>Symbiotic Dominion</ideoName>
+                <theme>dominion</theme>
+                <adjective>symbiotic</adjective>
+                <member>host</member>
+            </li>
+            <li>
+                <ideoName>Serpent Throne</ideoName>
+                <theme>serpents</theme>
+                <adjective>serpentine</adjective>
+                <member>vessel</member>
+            </li>
+            <li>
+                <ideoName>Divine Hosts</ideoName>
+                <theme>divinity</theme>
+                <adjective>divine</adjective>
+                <member>bearer</member>
+            </li>
+        </symbolPacks>
+
+        <!-- Traits that fit / clash -->
+        <agreeableTraits>
+            <Nerves>1</Nerves>
+            <Industriousness>1</Industriousness>
+            <li>Psychopath</li>
+        </agreeableTraits>
+        <disagreeableTraits>
+            <li>BodyPurist</li>
+            <li>Transhumanist</li>
+            <li>Kind</li>
+            <li>Wimp</li>
+        </disagreeableTraits>
+    </MemeDef>
+
+    <!-- =============== Dwarfgate Explorers =============== -->
+
+    <MemeDef>
+        <defName>Rimgate_Meme_DwarfgateExplorers</defName>
+        <label>Dwarfgate explorers</label>
+        <description>The Dwarfgate is not part of the wider network—but it still opens onto ancient sites worth claiming, studying, and surviving.</description>
+        <iconPath>UI/Meme/RG_Meme_DwarfgateExplorers</iconPath>
+        <groupDef MayRequire="Ludeon.RimWorld.Ideology">Misc</groupDef>
+        <impact>2</impact>
+        <requireOne>
+            <li>
+                <li>Rimgate_DwarfgateExpeditions_Encouraged</li>
+                <li>Rimgate_DwarfgateExpeditions_Expected</li>
+            </li>
+            <li>
+                <li>Rimgate_DwarfgateSiteIgnored_Disapproved</li>
+            </li>
+        </requireOne>
+        <generalRules>
+            <rulesStrings>
+                <!-- Adjectives -->
+                <li>memeAdjective->dwarfgate</li>
+                <li>memeAdjective->ancient</li>
+                <li>memeAdjective->explorer</li>
+                <li>memeAdjective->pioneer</li>
+
+                <!-- Creeds / group nouns -->
+                <li>memeCreed->expedition</li>
+                <li>memeCreed->explorers</li>
+                <li>memeCreed->seekers</li>
+                <li>memeCreed->pathfinders</li>
+
+                <!-- Hyphen prefixes -->
+                <li>memeHyphenPrefix->gate</li>
+                <li>memeHyphenPrefix->dwarf</li>
+                <li>memeHyphenPrefix->ancient</li>
+                <li>memeHyphenPrefix->lost</li>
+
+                <!-- Core concepts -->
+                <li>memeConcept->exploration</li>
+                <li>memeConcept->discovery</li>
+                <li>memeConcept->adventure</li>
+                <li>memeConcept->ancient sites</li>
+                <li>memeConcept->relics</li>
+                <li>memeConcept->pioneering</li>
+
+                <!-- Leaders / moral authorities -->
+                <li>memeLeaderNoun->expedition leader</li>
+                <li>memeLeaderNoun->pathfinder</li>
+                <li>memeLeaderNoun->scout captain</li>
+                <li>memeLeaderNoun->trailblazer</li>
+
+                <li>memeMoralist->explorer</li>
+                <li>memeMoralist->seeker</li>
+                <li>memeMoralist->pathfinder</li>
+            </rulesStrings>
+        </generalRules>
+    </MemeDef>
+
+</Defs>

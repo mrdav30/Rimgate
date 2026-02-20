@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <ConceptDef>
+        <defName>Rimgate_GateIrisProtection</defName>
+        <label>Gate iris protection</label>
+        <priority>15</priority>
+        <helpText>While the gate's iris is closed, it will prevent any incoming matter from rematerializing through the gate.  However, smaller particles and energy will still pass through unimpeded.</helpText>
+    </ConceptDef>
+
+</Defs>

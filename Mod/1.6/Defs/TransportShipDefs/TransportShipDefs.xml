@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <TransportShipDef>
+        <defName>Rimgate_GoauldTeltakShip</defName>
+        <label>Goa'uld Tel'tak</label>
+        <shipThing>Rimgate_GoauldTeltak</shipThing>
+        <arrivingSkyfaller>Rimgate_TeltakIncoming</arrivingSkyfaller>
+        <leavingSkyfaller>Rimgate_TeltakLeaving</leavingSkyfaller>
+        <worldObject>Rimgate_GoauldTeltak</worldObject>
+        <playerShuttle>true</playerShuttle>
+    </TransportShipDef>
+
+    <TransportShipDef>
+        <defName>Rimgate_WraithDartShip</defName>
+        <label>Wraith Dart</label>
+        <shipThing>Rimgate_WraithDart</shipThing>
+        <arrivingSkyfaller>Rimgate_DartIncoming</arrivingSkyfaller>
+        <leavingSkyfaller>Rimgate_DartLeaving</leavingSkyfaller>
+        <worldObject>Rimgate_WraithDart</worldObject>
+        <playerShuttle>true</playerShuttle>
+    </TransportShipDef>
+
+    <TransportShipDef>
+        <defName>Rimgate_AncientPuddleJumperShip</defName>
+        <label>Ancient Puddle Jumper</label>
+        <shipThing>Rimgate_AncientPuddleJumper</shipThing>
+        <arrivingSkyfaller>Rimgate_PuddleJumperIncoming</arrivingSkyfaller>
+        <leavingSkyfaller>Rimgate_PuddleJumperLeaving</leavingSkyfaller>
+        <worldObject>Rimgate_AncientPuddleJumper</worldObject>
+        <playerShuttle>true</playerShuttle>
+    </TransportShipDef>
+
+</Defs>

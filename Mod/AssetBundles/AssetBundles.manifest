@@ -1,0 +1,9 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.9f1
+CRC: 4080577437
+HashAppended: 0
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: rimgate_core
+      Dependencies: {}

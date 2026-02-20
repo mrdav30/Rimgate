@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- =============== Sarcophagus =============== -->
+
+	<JobDef>
+		<defName>Rimgate_CarryToSarcophagus</defName>
+		<driverClass>Rimgate.JobDriver_CarryToSarcophagus</driverClass>
+		<reportString>carrying TargetA to TargetB.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+		<carryThingAfterJob>true</carryThingAfterJob>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_PatientGoToSarcophagus</defName>
+		<driverClass>Rimgate.JobDriver_PatientGoToSarcophagus</driverClass>
+		<reportString>receiving treatment in TargetA.</reportString>
+		<suspendable>false</suspendable>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_RescueToSarcophagus</defName>
+		<driverClass>Rimgate.JobDriver_CarryToSarcophagus</driverClass>
+		<reportString>rescuing TargetA to TargetB.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+		<carryThingAfterJob>true</carryThingAfterJob>
+	</JobDef>
+
+	<!-- =============== Cloning Pod =============== -->
+
+	<JobDef>
+		<defName>Rimgate_EnterCloningPod</defName>
+		<driverClass>Rimgate.JobDriver_EnterCloningPod</driverClass>
+		<reportString>entering cloning pod.</reportString>
+		<taleOnCompletion>EnteredCloningPod</taleOnCompletion>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CalibrateClonePodForPawn</defName>
+		<driverClass>Rimgate.JobDriver_CalibrateClonePod</driverClass>
+		<reportString>calibrating cloning pod.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CarryToCloningPod</defName>
+		<driverClass>Rimgate.JobDriver_CarryToCloningPod</driverClass>
+		<reportString>carrying TargetA to cloning pod.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+		<taleOnCompletion>PutIntoCloningPod</taleOnCompletion>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CarryCorpseToCloningPod</defName>
+		<driverClass>Rimgate.JobDriver_CarryCorpseToCloningPod</driverClass>
+		<reportString>carrying TargetA to cloning pod.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+		<taleOnCompletion>PutIntoCloningPod</taleOnCompletion>
+	</JobDef>
+
+	<!-- =============== Gates =============== -->
+
+	<JobDef>
+		<defName>Rimgate_EnterGate</defName>
+		<driverClass>Rimgate.JobDriver_EnterGate</driverClass>
+		<reportString>Entering TargetA.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+		<checkOverrideOnDamage>Never</checkOverrideOnDamage>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_DialGate</defName>
+		<driverClass>Rimgate.JobDriver_DialGate</driverClass>
+		<reportString>Using TargetA.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_CloseGate</defName>
+		<driverClass>Rimgate.JobDriver_CloseGate</driverClass>
+		<reportString>closing gate connection.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_BringToGate</defName>
+		<driverClass>Rimgate.JobDriver_BringToGate</driverClass>
+		<reportString>Bringing TargetA to TargetB.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+		<checkOverrideOnDamage>Never</checkOverrideOnDamage>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_InstallIris</defName>
+		<driverClass>Rimgate.JobDriver_InstallIris</driverClass>
+		<reportString>Installing iris on TargetB.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_DecodeGlyphs</defName>
+		<driverClass>Rimgate.JobDriver_DecodeGlyphs</driverClass>
+		<reportString>Decoding gate glyphs.</reportString>
+		<playerInterruptible>true</playerInterruptible>
+		<neverShowWeapon>true</neverShowWeapon>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<!-- =============== Mobile Container =============== -->
+
+	<JobDef>
+		<defName>Rimgate_HaulToContainer</defName>
+		<driverClass>Rimgate.JobDriver_HaulToMobileContainer</driverClass>
+		<reportString>hauling TargetA.</reportString>
+		<suspendable>false</suspendable>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+		<dropThingBeforeJob>false</dropThingBeforeJob>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_PushContainer</defName>
+		<driverClass>Rimgate.JobDriver_PushContainer</driverClass>
+		<reportString>pushing cart.</reportString>
+		<casualInterruptible>true</casualInterruptible>
+		<alwaysShowWeapon>false</alwaysShowWeapon>
+		<dropThingBeforeJob>true</dropThingBeforeJob>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_EnterGateWithContainer</defName>
+		<driverClass>Rimgate.JobDriver_PushContainer</driverClass>
+		<reportString>Entering TargetC with cart.</reportString>
+		<casualInterruptible>true</casualInterruptible>
+		<alwaysShowWeapon>false</alwaysShowWeapon>
+		<dropThingBeforeJob>true</dropThingBeforeJob>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<!-- =============== Joy =============== -->
+
+	<JobDef>
+		<defName>Rimgate_MesmerizedResonanceIdol</defName>
+		<driverClass>JobDriver_WatchBuilding</driverClass>
+		<reportString>mesmerized by TargetA.</reportString>
+		<joyDuration>4000</joyDuration>
+		<joyMaxParticipants>5</joyMaxParticipants>
+		<joySkill>Intellectual</joySkill>
+		<joyXpPerTick>0.004</joyXpPerTick>
+		<joyKind>Meditative</joyKind>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+		<isCrawlingIfDowned>false</isCrawlingIfDowned>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_PlayTauriResearchDesk</defName>
+		<driverClass>Rimgate.JobDriver_SitFacingBuilding_Learning</driverClass>
+		<reportString>using Tau'ri research terminal.</reportString>
+		<joyDuration>4000</joyDuration>
+		<joyKind>Gaming_Cerebral</joyKind>
+		<taleOnCompletion>PlayedGame</taleOnCompletion>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_MeditateOnGoauldThrone</defName>
+		<driverClass>Rimgate.JobDriver_MeditateOnGoauldThrone</driverClass>
+		<joyKind>Meditative</joyKind>
+		<joyDuration>6000</joyDuration> <!-- same ballpark as Meditate -->
+		<reportString>meditating on the throne.</reportString>
+		<neverShowWeapon>true</neverShowWeapon>
+		<taleOnCompletion>Meditated</taleOnCompletion>
+		<isCrawlingIfDowned>false</isCrawlingIfDowned>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_MeditateAtWraithTable</defName>
+		<driverClass>Rimgate.JobDriver_MeditateAtWraithTable</driverClass>
+		<joyKind>Meditative</joyKind>
+		<joyDuration>6000</joyDuration>
+		<reportString>meditating at the Wraith table.</reportString>
+		<neverShowWeapon>true</neverShowWeapon>
+		<taleOnCompletion>Meditated</taleOnCompletion>
+		<isCrawlingIfDowned>false</isCrawlingIfDowned>
+	</JobDef>
+
+	<!-- =============== Misc =============== -->
+
+	<JobDef>
+		<defName>Rimgate_Toggle</defName>
+		<driverClass>Rimgate.JobDriver_Toggle</driverClass>
+		<reportString>toggling switch.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+
+	<!-- =============== Symbiote pool =============== -->
+
+	<JobDef>
+		<defName>Rimgate_InsertSymbioteQueen</defName>
+		<driverClass>Rimgate.JobDriver_InsertSymbioteQueen</driverClass>
+		<reportString>inserting symbiote queen.</reportString>
+		<casualInterruptible>true</casualInterruptible>
+	</JobDef>
+
+	<!-- =============== ZPM housing =============== -->
+
+	<JobDef>
+		<defName>Rimgate_InsertZpmIntoHousing</defName>
+		<driverClass>Rimgate.JobDriver_InsertZpmIntoHousing</driverClass>
+		<reportString>inserting ZPM into housing.</reportString>
+		<casualInterruptible>true</casualInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_EjectZpmFromHousing</defName>
+		<driverClass>Rimgate.JobDriver_EjectZpmFromHousing</driverClass>
+		<reportString>ejecting a ZPM from housing.</reportString>
+		<casualInterruptible>true</casualInterruptible>
+	</JobDef>
+
+	<!-- =============== Symbiote =============== -->
+
+	<JobDef>
+		<defName>UseSymbiote</defName>
+		<driverClass>JobDriver_UseItem</driverClass>
+		<reportString>implanting TargetA.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<!-- =============== Biomaterials =============== -->
+
+	<JobDef>
+		<defName>Rimgate_RecoverBiomaterialFromCorpse</defName>
+		<driverClass>Rimgate.JobDriver_RecoverBiomaterialFromCorpse</driverClass>
+		<reportString>recovering biomaterials from TargetA.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+
+	<!-- =============== Wraith Cocoon =============== -->
+
+	<JobDef>
+		<defName>Rimgate_WraithCocoonPrisoner</defName>
+		<driverClass>Rimgate.JobDriver_WraithCocoonPrisoner</driverClass>
+		<reportString>cocooning TargetA.</reportString>
+		<neverShowWeapon>true</neverShowWeapon>
+		<casualInterruptible>false</casualInterruptible>
+		<playerInterruptible>true</playerInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>Rimgate_DrainLifeFromCocoonedPrisoner</defName>
+		<driverClass>Rimgate.JobDriver_DrainLifeFromCocoonedPrisoner</driverClass>
+		<reportString>draining life from TargetA.</reportString>
+	</JobDef>
+
+	<!-- =============== Wraith Trance =============== -->
+
+	<JobDef>
+		<defName>Rimgate_WraithEssenceMending</defName>
+		<driverClass>Rimgate.JobDriver_WraithEssenceMending</driverClass>
+		<reportString>going into a regenerative trance.</reportString>
+		<neverShowWeapon>true</neverShowWeapon>
+		<casualInterruptible>false</casualInterruptible>
+		<playerInterruptible>true</playerInterruptible>
+		<abilityCasting>true</abilityCasting>
+		<allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+		<dropThingBeforeJob>false</dropThingBeforeJob>
+	</JobDef>
+
+	<!-- =============== To'kra Tunnel Crystal =============== -->
+
+  <JobDef>
+    <defName>Rimgate_UseTunnelCrystal</defName>
+    <driverClass>Rimgate.JobDriver_GoToAndUseItem</driverClass>
+    <reportString>using To'kra tunnel crystal.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
+</Defs>

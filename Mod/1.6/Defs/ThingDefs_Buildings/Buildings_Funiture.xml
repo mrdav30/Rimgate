@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Sarcophagus -->
+
+  <ThingDef ParentName="FurnitureBase">
+    <defName>Rimgate_GoauldSarcophagus</defName>
+    <label>Goa'uld sarcophagus</label>
+    <description>Based on Ancient technology, the Goa'uld sarcophagus rapidly heals injuries and diseases with eerie precision—and breeds dependency just as precisely.\n\nIt also scrubs time off your biological clock, dragging you back toward your physical prime (no, it won’t turn you into a child—Goa’uld evil has standards).\n\nSide effects include glowing eyes, god complexes, and moral decay. Use with caution… or embrace your inner System Lord.</description>
+    <descriptionHyperlinks>
+      <HediffDef>Rimgate_SarcophagusHigh</HediffDef>
+      <HediffDef>Rimgate_SarcophagusAddiction</HediffDef>
+    </descriptionHyperlinks>
+    <thingClass>Rimgate.Building_Sarcophagus</thingClass>
+    <containedPawnsSelectable>false</containedPawnsSelectable>
+    <size>(2,3)</size>
+    <graphicData>
+      <texPath>Things/Building/Furniture/RGGoauldSarcophagus</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(2,3)</drawSize>
+      <damageData>
+        <rect>(0,0.04,1,1.89)</rect>
+      </damageData>
+    </graphicData>
+
+    <selectable>true</selectable>
+    <altitudeLayer>Building</altitudeLayer>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+
+    <statBases>
+      <MarketValue>80000</MarketValue>
+      <!-- Ensures market value is reflected in colony wealth calculations -->
+      <MarketValueIgnoreHp>80000</MarketValueIgnoreHp>
+      <MaxHitPoints>380</MaxHitPoints>
+      <WorkToBuild>25000</WorkToBuild>
+      <Mass>400</Mass>
+      <Beauty>20</Beauty>
+      <Flammability>0.2</Flammability>
+      <Comfort>0.95</Comfort>
+    </statBases>
+
+    <costList>
+      <Steel>350</Steel>
+      <Gold>250</Gold>
+      <Plasteel>75</Plasteel>
+      <Rimgate_Naquadah>150</Rimgate_Naquadah>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>25</ComponentSpacer>
+    </costList>
+    <stuffCategories>
+      <li>Stony</li>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>150</costStuffCount>
+    <building>
+      <soundDispense>Rimgate_SarcophagusRunning</soundDispense>
+      <uninstallWork>4250</uninstallWork>
+    </building>
+
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,2)</interactionCellOffset>
+    <castEdgeShadows>true</castEdgeShadows>
+    <tickerType>Normal</tickerType>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <repairEffect>Repair</repairEffect>
+    <canOverlapZones>false</canOverlapZones>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <fillPercent>0.4</fillPercent>
+    <pathCost>60</pathCost>
+    <leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
+    <staticSunShadowHeight>0.2</staticSunShadowHeight>
+    <researchPrerequisites>
+      <li>Rimgate_Sarcophagus</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
+    <techLevel>Ultra</techLevel>
+
+    <comps>
+      <li Class="CompProperties_Breakdownable" />
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
+        <maxAssignedPawnsCount>99</maxAssignedPawnsCount>
+        <compClass>Rimgate.CompAssignableToPawn_Sarcophagus</compClass>
+      </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <shortCircuitInRain>false</shortCircuitInRain>
+        <basePowerConsumption>500</basePowerConsumption> <!-- Idle power consumption -->
+      </li>
+      <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+        <analysisID>1000900</analysisID>
+        <requiresResearchDef>Rimgate_GoauldBasic</requiresResearchDef>
+
+        <!-- Analyze settings -->
+
+        <canStudyInPlace>true</canStudyInPlace>
+        <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
+        <analysisDurationHours>10</analysisDurationHours>
+        <completedLetterLabel>Sarcophagus analysis complete: {RESEARCH} unlocked</completedLetterLabel>
+        <completedLetter>By studying the Goa’uld Sarcophagus, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.\n\nUnfortunately, the device collapsed into inert crystal fragments the moment its core field destabilized — as if refusing to share its secrets.</completedLetter>
+        <completedLetterDef>PositiveEvent</completedLetterDef>
+
+        <catastrophicFailureChance>0.25</catastrophicFailureChance>
+        <catastrophicDestroysThing>true</catastrophicDestroysThing>
+        <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+        <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+        <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+        <!-- Interactable -->
+
+        <maintainProgress>true</maintainProgress>
+        <activateTexPath>UI/Icons/Study</activateTexPath>
+        <activateLabelString>Analyze...</activateLabelString>
+        <activateDescString>Analyze the Goa'uld Sarcophagus.</activateDescString>
+        <jobString>Analyzing Sarcophagus</jobString>
+        <guiLabelString>Choose who should analyze this</guiLabelString>
+        <inspectString>Can be analyzed by a colonist.</inspectString>
+
+        <!-- Optional targeting -->
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="Rimgate.Building_Sarcophagus_Ext">
+        <applyAddictionHediff>true</applyAddictionHediff>
+        <severity>1.00</severity>
+        <needLevelOffset>0.9</needLevelOffset>
+        <addictiveness>1.0</addictiveness>
+
+        <!-- Timing -->
+        <maxDiagnosisTime>15</maxDiagnosisTime>
+        <maxPerHediffHealingTime>30</maxPerHediffHealingTime>
+
+        <!-- Base power usage BEFORE optimization -->
+        <diagnosisModePowerConsumption>4000</diagnosisModePowerConsumption>
+        <healingModePowerConsumption>8000</healingModePowerConsumption>
+
+        <!-- Fractional reduction once Rimgate_SarcophagusSubspaceOptimization is researched -->
+        <powerConsumptionReductionFactor>0.65</powerConsumptionReductionFactor>
+
+        <sarchophagusGlowGraphicData>
+          <texPath>FX/RGGoauldSarcophagusGlow</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>MoteGlow</shaderType>
+          <drawSize>(2, 3)</drawSize>
+        </sarchophagusGlowGraphicData>
+
+        <!-- Restrictions -->
+        <alwaysTreatableHediffs>
+          <li>Anesthetic</li>
+          <li>ChemicalDamageModerate</li>
+          <li>ChemicalDamageSevere</li>
+          <li>Cirrhosis</li>
+          <li>FoodPoisoning</li>
+          <li>LuciferiumHigh</li>
+          <li>ResurrectionPsychosis</li>
+          <li>ToxicBuildup</li>
+          <li>TraumaSavant</li>
+        </alwaysTreatableHediffs>
+        <neverTreatableHediffs>
+          <li>Sterilized</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">PregnancyLabor</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">PregnancyLaborPushing</li>
+          <li>Rimgate_SarcophagusHigh</li>
+          <li>Rimgate_SarcophagusAddiction</li>
+          <li>Rimgate_TretoninAddiction</li>
+          <li>Rimgate_KrintakSickness</li>
+          <li>Rimgate_PouchDegeneration</li>
+          <li>Rimgate_SymbioteWithdrawal</li>
+        </neverTreatableHediffs>
+        <nonCriticalTreatableHediffs>
+          <li>AlcoholHigh</li>
+          <li>AlcoholTolerance</li>
+          <li>AmbrosiaHigh</li>
+          <li>AmbrosiaTolerance</li>
+          <li>FlakeHigh</li>
+          <li>GoJuiceHigh</li>
+          <li>GoJuiceTolerance</li>
+          <li>LungRotExposure</li>
+          <li>PsychiteTolerance</li>
+          <li>SmokeleafHigh</li>
+          <li>SmokeleafTolerance</li>
+          <li>WakeUpHigh</li>
+          <li>WakeUpTolerance</li>
+          <li>YayoHigh</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty">PsychicSuppression</li>
+        </nonCriticalTreatableHediffs>
+        <usageBlockingHediffs />
+        <usageBlockingTraits />
+        <alwaysTreatableTraits />
+        <disallowedRaces />
+        <disallowedXenotypes />
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+  <!-- Goa'uld Throne -->
+
+  <ThingDef ParentName="FurnitureWithQualityBase">
+    <defName>Rimgate_GoauldThrone</defName>
+    <label>Goa'uld throne</label>
+    <description>Once only graced by the golden posterior of a self-proclaimed god, this majestic Goa’uld throne is less “furniture” and more “divine flex.” Forged from arrogance and overdesigned with an absurd number of comfort features — including integrated body massagers, an atmospheric pressure bidet, and a modesty-preserving nanosteam shower — it’s perfect for those who like to rule, gloat, and exfoliate at the same time.\n\nJust don’t let a Tok’ra sit in it. Ever.</description>
+
+    <graphicData>
+      <drawSize>(4,4)</drawSize>
+      <texPath>Things/Building/Furniture/RGGoauldThrone</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <addTopAltitudeBias>true</addTopAltitudeBias>
+      <shaderType>CutoutComplex</shaderType>
+      <shadowData>
+        <volume>(2.1,0.5,1.5)</volume>
+      </shadowData>
+      <damageData>
+        <rect>(0.1,0.1,2.8,1.8)</rect>
+      </damageData>
+    </graphicData>
+    <uiIconOffset>(0, 0.04)</uiIconOffset>
+    <uiIconScale>1</uiIconScale>
+    <castEdgeShadows>true</castEdgeShadows>
+    <size>(3,2)</size>
+
+    <statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+      <WorkToBuild>40000</WorkToBuild>
+      <Mass>100</Mass>
+      <Flammability>1.0</Flammability>
+      <Beauty>60</Beauty>
+      <Comfort>1.75</Comfort>
+      <MeditationFocusStrength>0.25</MeditationFocusStrength>
+      <TerrorSource MayRequire="Ludeon.RimWorld.Ideology">45</TerrorSource>
+    </statBases>
+
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <stuffCategories>
+      <li>Stony</li>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>250</costStuffCount>
+    <costList>
+      <Gold>150</Gold>
+      <Rimgate_Naquadah>75</Rimgate_Naquadah>
+    </costList>
+
+    <building>
+      <isSittable>true</isSittable>
+      <paintable>false</paintable>
+      <ai_chillDestination>false</ai_chillDestination>
+      <buildingSizeCategory>Medium</buildingSizeCategory>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_MeditationOffsetBuildingsNear</li>
+    </placeWorkers>
+
+    <passability>Standable</passability>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <drawGUIOverlayQuality>false</drawGUIOverlayQuality>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <rotatable>true</rotatable>
+    <altitudeLayer>Building</altitudeLayer>
+    <category>Building</category>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <pathCost>30</pathCost>
+    <fillPercent>0.4</fillPercent>
+    <thingSetMakerTags>
+      <li>RewardStandardLowFreq</li>
+    </thingSetMakerTags>
+    <researchPrerequisites>
+      <li>ComplexFurniture</li>
+      <li>Rimgate_GoauldBasic</li>
+    </researchPrerequisites>
+
+    <comps>
+      <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
+        <drawUnownedAssignmentOverlay>false</drawUnownedAssignmentOverlay>
+        <compClass>CompAssignableToPawn_MeditationSpot</compClass>
+      </li>
+      <li Class="CompProperties_MeditationFocus">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Dignified</li>
+          <li>Artistic</li>
+        </focusTypes>
+        <offsets>
+          <li Class="FocusStrengthOffset_BuildingDefs">
+            <defs>
+              <li>Brazier</li>
+            </defs>
+            <offsetPerBuilding>0.04</offsetPerBuilding>
+            <radius>9.9</radius>
+            <maxBuildings>4</maxBuildings>
+            <explanationKey>MeditationFocusPerBuilding</explanationKey>
+            <explanationKeyAbstract>MeditationFocusPerBuildingAbstract</explanationKeyAbstract>
+          </li>
+          <li Class="FocusStrengthOffset_Quality">
+            <curve>
+              <points>
+                <li>(0,0.12)</li> <!-- awful -->
+                <li>(1,0.16)</li> <!-- poor -->
+                <li>(2,0.20)</li> <!-- normal -->
+                <li>(3,0.22)</li> <!-- good -->
+                <li>(4,0.24)</li> <!-- excellent -->
+                <li>(5,0.26)</li> <!-- masterwork -->
+                <li>(6,0.28)</li> <!-- legendary -->
+              </points>
+            </curve>
+          </li>
+          <li Class="FocusStrengthOffset_RoomImpressiveness">
+            <curve>
+              <points>
+                <li>(0, -0.05)</li>
+                <li>(30, 0.00)</li>
+                <li>(60, 0.04)</li>
+                <li>(100, 0.08)</li>
+                <li>(170, 0.10)</li>
+              </points>
+            </curve>
+          </li>
+        </offsets>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- Tau'ri Hospital Bed -->
+
+  <ThingDef ParentName="BedWithQualityBase">
+    <defName>Rimgate_TauriHospitalBed</defName>
+    <label>MASH bed</label>
+    <description>Based on off-world Tau'ri medical protocols, this hospital bed is designed to optimize patient recovery through advanced ergonomics and integrated care features.\n\nIts adjustable frame, pressure-relieving mattress, and built-in monitoring systems ensure that patients receive the best possible care during their stay.\n\nIdeal for clinics and hospitals aiming to provide top-tier medical treatment.</description>
+    <graphicData>
+      <texPath>Things/Building/Furniture/RGTauriHospitalBed</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(3,3)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToBuild>3000</WorkToBuild>
+      <Flammability>0.8</Flammability>
+      <Beauty>2</Beauty>
+      <BedRestEffectiveness>1.1</BedRestEffectiveness>
+      <Comfort>0.90</Comfort>
+      <ImmunityGainSpeedFactor>1.2</ImmunityGainSpeedFactor>
+      <MedicalTendQualityOffset>0.15</MedicalTendQualityOffset>
+      <SurgerySuccessChanceFactor>1.2</SurgerySuccessChanceFactor>
+      <BirthRitualQualityOffset MayRequire="Ludeon.RimWorld.Biotech">5</BirthRitualQualityOffset>
+      <Mass>60</Mass>
+    </statBases>
+    <designationCategory>Furniture</designationCategory>
+    <fillPercent>0.4</fillPercent>
+    <staticSunShadowHeight>0.17</staticSunShadowHeight>
+    <passability>PassThroughOnly</passability>
+    <pathCost>60</pathCost>
+    <castEdgeShadows>True</castEdgeShadows>
+    <size>(1,2)</size>
+    <techLevel>Industrial</techLevel>
+    <costList>
+      <Steel>40</Steel>
+      <Cloth>50</Cloth>
+      <ComponentIndustrial>3</ComponentIndustrial>
+    </costList>
+    <building>
+      <bed_showSleeperBody>false</bed_showSleeperBody>
+      <bed_healPerDay>12</bed_healPerDay>
+      <bed_defaultMedical>true</bed_defaultMedical>
+      <buildingSizeCategory>Small</buildingSizeCategory>
+    </building>
+    <researchPrerequisites>
+      <li>Rimgate_TauriMedicalProcedures</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    <comps>
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>EndTable</li>
+          <li>Dresser</li>
+          <li>VitalsMonitor</li>
+          <li MayRequire="Vanillaexpanded.Vfemedical">Facility_VitalsCentre</li>
+          <li MayRequire="Vanillaexpanded.Vfemedical">Facility_IVDrip</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">SleepAccelerator</li>
+          <li>Rimgate_TauriSurgeryLights</li>
+          <li>Rimgate_TauriWallMonitor</li>
+        </linkableFacilities>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

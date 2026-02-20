@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<!-- ==================== Krin’tak fever ==================== -->
+
+	<HediffDef>
+		<defName>Rimgate_KrintakSickness</defName>
+		<label>Krin’tak fever</label>
+		<labelNoun>Krin’tak fever</labelNoun>
+		<description>A mild but uncomfortable fever marking the final stage of Prim’ta maturation. Chills, sweating, nausea, and general weakness are common.\n\nWhile rarely dangerous on its own, it warns that the larval symbiote is nearing the point where it will try to take control unless removed.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
+		</descriptionHyperlinks>
+		<hediffClass>HediffWithComps</hediffClass>
+		<isBad>true</isBad>
+		<tendable>false</tendable>
+		<comps>
+			<li Class="HediffCompProperties_Immunizable">
+				<severityPerDayNotImmune>0</severityPerDayNotImmune>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>mild</label>
+				<painOffset>0.10</painOffset>
+				<vomitMtbDays>4</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<statFactors>
+					<RestRateMultiplier>0.92</RestRateMultiplier>
+					<RestFallRateFactor>1.10</RestFallRateFactor>
+				</statFactors>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- ==================== Pouch Degeneration ==================== -->
+
+	<HediffDef>
+		<defName>Rimgate_PouchDegeneration</defName>
+		<label>pouch degeneration</label>
+		<labelNoun>pouch degeneration</labelNoun>
+		<description>The empty symbiote pouch is slowly destabilizing the host's body. Organs are failing, immune function is collapsing, and their altered biology is tearing itself apart in search of a Prim’ta that never came.\n\nWithout intervention like tretonin or a symbiote, this path only ends one way.</description>
+		<descriptionHyperlinks>
+			<ThingDef>Rimgate_PrimtaSymbiote</ThingDef>
+			<ThingDef>Rimgate_Tretonin</ThingDef>
+		</descriptionHyperlinks>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
+		<chronic>true</chronic>
+		<initialSeverity>0.01</initialSeverity>
+		<lethalSeverity>1</lethalSeverity>
+		<everCurableByItem>false</everCurableByItem>
+		<tendable>false</tendable>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.35</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>strain</label>
+				<painOffset>0.1</painOffset>
+				<statFactors>
+					<RestFallRateFactor>1.5</RestFallRateFactor>
+					<InjuryHealingFactor>0.75</InjuryHealingFactor>
+				</statFactors>
+				<capMods>
+					<li>
+						<capacity>Metabolism</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>collapse</label>
+				<minSeverity>0.5</minSeverity>
+				<lifeThreatening>true</lifeThreatening>
+				<deathMtbDays>1</deathMtbDays>
+				<painOffset>0.4</painOffset>
+				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.2</offset>
+					</li>
+					<li>
+						<capacity>BloodFiltration</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>BloodPumping</capacity>
+						<offset>-0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<duplicationAllowed>false</duplicationAllowed>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+	</HediffDef>
+
+	<!-- ==================== Symbiote Plague ==================== -->
+
+	<HediffDef ParentName="InfectionBase">
+		<defName>Rimgate_SymbiotePlague</defName>
+		<hediffClass>Rimgate.Hediff_SymbiotePlague</hediffClass>
+		<label>symbiote pathogen</label>
+		<description>A virulent pathogen specifically engineered to target Goa'uld symbiotes. If left untreated, it can fatally damage or destroy the symbiote, leaving the host weakened, unstable, or suddenly very mortal.\n\nThose not yet carrying a symbiote are safe, but should still keep their distance—this strain may not be picky about it's next test subjects.</description>
+		<defaultLabelColor>(0.5, 1.0, 0.3)</defaultLabelColor>
+		<makesSickThought>true</makesSickThought>
+		<lethalSeverity>1</lethalSeverity>
+		<tendable>true</tendable>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<comps>
+			<li Class="HediffCompProperties_TendDuration">
+				<baseTendDurationHours>12</baseTendDurationHours>
+				<severityPerDayTended>-0.43</severityPerDayTended>
+			</li>
+			<li Class="HediffCompProperties_Immunizable">
+				<severityPerDayNotImmune>0.82</severityPerDayNotImmune>
+				<severityPerDayImmune>-0.233</severityPerDayImmune>
+				<immunityPerDayNotSick>-0.02</immunityPerDayNotSick>
+				<immunityPerDaySick>0.195</immunityPerDaySick>
+			</li>
+
+			<li Class="Rimgate.HediffCompProperties_SymbioteKiller">
+				<killThreshold>0.75</killThreshold>
+				<killChance>0.35</killChance>
+			</li>
+
+			<li Class="Rimgate.HediffCompProperties_SymbioteContagious">
+				<infectionMtbDays>1.5</infectionMtbDays>
+				<infectionRadius>4.9</infectionRadius>
+			</li>
+		</comps>
+
+		<stages>
+			<li>
+				<label>initial</label>
+				<minSeverity>0</minSeverity>
+				<vomitMtbDays>10</vomitMtbDays>
+				<painOffset>0.2</painOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.35</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.25</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>serious</label>
+				<minSeverity>0.4</minSeverity>
+				<vomitMtbDays>4</vomitMtbDays>
+				<painOffset>0.35</painOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.4</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.35</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>Breathing</capacity>
+						<offset>-0.15</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>critical</label>
+				<minSeverity>0.7</minSeverity>
+				<painOffset>0.6</painOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.55</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.35</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Breathing</capacity>
+						<offset>-0.25</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>terminal</label>
+				<minSeverity>0.9</minSeverity>
+				<lifeThreatening>true</lifeThreatening>
+				<painOffset>0.85</painOffset>
+				<deathMtbDays>1</deathMtbDays>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.65</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.35</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.25</offset>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Breathing</capacity>
+						<offset>-0.25</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<duplicationAllowed>false</duplicationAllowed>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+	</HediffDef>
+
+	<!-- ==================== Clones ==================== -->
+
+	<HediffDef ParentName="DiseaseBase">
+		<defName>Rimgate_SystemShock</defName>
+		<label>clone activation shock</label>
+		<labelNoun>activation shock</labelNoun>
+		<description>Short-term neurological shock from the clone activation process. The sudden reawakening of bodily functions and neural activity can overwhelm the mind, causing disorientation, dizziness, and temporary unconsciousness</description>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>20000~35000</disappearsAfterTicks>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.1</setMax>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<duplicationAllowed>false</duplicationAllowed>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+	</HediffDef>
+
+	<HediffDef ParentName="DiseaseBase">
+		<defName>Rimgate_ClonePodSickness</defName>
+		<label>clone pod sickness</label>
+		<description>Nausea and disorientation caused by prolonged confinement within a cloning pod. Symptoms include dizziness, vomiting, and general weakness as the body readjusts to normal function after extended stasis.</description>
+		<makesSickThought>true</makesSickThought>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>10000~40000</disappearsAfterTicks>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<vomitMtbDays>0.125</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<postFactor>0.8</postFactor>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<postFactor>0.5</postFactor>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<postFactor>0.5</postFactor>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<duplicationAllowed>false</duplicationAllowed>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+	</HediffDef>
+
+	<!-- ==================== Wraith Cocoon Pod Sickness ==================== -->
+
+	<HediffDef ParentName="DiseaseBase">
+		<defName>Rimgate_WraithCocoonPodSickness</defName>
+		<label>cocoon pod sickness</label>
+		<description>Nausea and disorientation caused by prolonged confinement within a wraith cocoon pod. Symptoms include dizziness, vomiting, and general weakness as the body readjusts to normal function after extended stasis.</description>
+		<defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
+		<makesSickThought>true</makesSickThought>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>10000~40000</disappearsAfterTicks>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<vomitMtbDays>0.125</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<postFactor>0.8</postFactor>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<postFactor>0.5</postFactor>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<postFactor>0.5</postFactor>
+					</li>
+				</capMods>
+				<hungerRateFactor>1.5</hungerRateFactor>
+				<statFactors>
+					<RestFallRateFactor>1.5</RestFallRateFactor>
+				</statFactors>
+			</li>
+		</stages>
+		<duplicationAllowed>false</duplicationAllowed>
+		<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+
+	</HediffDef>
+
+
+</Defs>

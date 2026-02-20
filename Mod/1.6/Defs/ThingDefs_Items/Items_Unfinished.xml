@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Iris ==================== -->
+
+	<ThingDef ParentName="UnfinishedBase">
+		<defName>Rimgate_UnfinishedIrisInstallKit</defName>
+		<label>unfinished iris installation kit</label>
+		<description>an unfinished iris installation kit.</description>
+		<statBases>
+			<Flammability>0</Flammability>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Item/Unfinished/UnfinishedComponent</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stuffCategories Inherit="false" />
+	</ThingDef>
+
+	<!-- ==================== Scrap note ==================== -->
+
+	<ThingDef>
+		<defName>Rimgate_ScrapNote</defName>
+		<category>Item</category>
+		<label>scribbled note</label>
+		<description>(intentionally left blank)</description>
+		<thingClass>Rimgate.Item_ScrapNote</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Resource/RGScrapNote</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stackLimit>1</stackLimit>
+		<altitudeLayer>Item</altitudeLayer>
+		<useHitPoints>true</useHitPoints>
+		<tradeNeverStack>true</tradeNeverStack>
+		<isUnfinishedThing>true</isUnfinishedThing>
+		<scatterableOnMapGen>false</scatterableOnMapGen>
+		<selectable>true</selectable>
+		<tradeability>None</tradeability>
+		<drawerType>MapMeshOnly</drawerType>
+		<statBases>
+			<MaxHitPoints>5</MaxHitPoints>
+			<DeteriorationRate>2.0</DeteriorationRate>
+			<Beauty>0</Beauty>
+			<Mass>1</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+		</comps>
+		<alwaysHaulable>true</alwaysHaulable>
+		<rotatable>false</rotatable>
+		<pathCost>14</pathCost>
+		<thingCategories>
+			<li>Unfinished</li>
+		</thingCategories>
+		<modExtensions>
+			<li Class="Rimgate.Item_ScrapNote_Ext">
+				<keys>
+					<li>RG_ScribbledNote1</li>
+					<li>RG_ScribbledNote2</li>
+					<li>RG_ScribbledNote3</li>
+					<li>RG_ScribbledNote4</li>
+					<li>RG_ScribbledNote5</li>
+					<li>RG_ScribbledNote6</li>
+					<li>RG_ScribbledNote7</li>
+					<li>RG_ScribbledNote8</li>
+					<li>RG_ScribbledNote9</li>
+					<li>RG_ScribbledNote10</li>
+					<li>RG_ScribbledNote11</li>
+					<li>RG_ScribbledNote12</li>
+					<li>RG_ScribbledNote13</li>
+					<li>RG_ScribbledNote14</li>
+					<li>RG_ScribbledNote15</li>
+					<li>RG_ScribbledNote16</li>
+					<li>RG_ScribbledNote17</li>
+					<li>RG_ScribbledNote18</li>
+					<li>RG_ScribbledNote19</li>
+				</keys>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef>
+		<defName>Rimgate_ScrapNotice</defName>
+		<category>Item</category>
+		<label>scribbled note</label>
+		<description>Hey pal, figured you cracked my cipher and came sniffin’ for my stash.\n\nBad news: I already hauled it out through the Gate.\n\nGood news: I left you some company. They get hungry when the lights go out.\n\n— K</description>
+		<thingClass>ThingWithComps</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Resource/RGScrapNote</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stackLimit>1</stackLimit>
+		<altitudeLayer>Item</altitudeLayer>
+		<useHitPoints>true</useHitPoints>
+		<tradeNeverStack>true</tradeNeverStack>
+		<isUnfinishedThing>true</isUnfinishedThing>
+		<scatterableOnMapGen>false</scatterableOnMapGen>
+		<selectable>true</selectable>
+		<tradeability>None</tradeability>
+		<drawerType>MapMeshOnly</drawerType>
+		<statBases>
+			<MaxHitPoints>5</MaxHitPoints>
+			<DeteriorationRate>2.0</DeteriorationRate>
+			<Beauty>0</Beauty>
+			<Mass>1</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+		</comps>
+		<alwaysHaulable>true</alwaysHaulable>
+		<rotatable>false</rotatable>
+		<pathCost>14</pathCost>
+		<thingCategories>
+			<li>Unfinished</li>
+		</thingCategories>
+	</ThingDef>
+
+</Defs>

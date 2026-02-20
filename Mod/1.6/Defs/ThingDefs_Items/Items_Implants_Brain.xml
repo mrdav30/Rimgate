@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- ==================== Cortical Dampener ==================== -->
+
+    <ThingDef ParentName="BodyPartBase">
+        <defName>Rimgate_CorticalDampener</defName>
+
+        <label>cortical dampener</label>
+        <description>A crude neural implant designed to suppress higher cognitive functions and enforce obedience. Used by the Goa'uld to control Unas and other laborers, this device dulls critical thinking and emotional response, making the host more compliant but also more prone to rage when mistreated.\n\nWith an understanding of Unas' biology and Bionics, the cortical dampener can be removed for further analysis to reveal its inner workings-potentially unlocking new applications.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_RemoveCorticalDampenerImplant</RecipeDef>
+            <Rimgate.BiomaterialRecoveryDef>Rimgate_Recover_CorticalDampener</Rimgate.BiomaterialRecoveryDef>
+        </descriptionHyperlinks>
+
+        <techLevel>Ultra</techLevel>
+        <statBases>
+            <MarketValue>150</MarketValue>
+            <Mass>4</Mass>
+        </statBases>
+
+        <tradeability>Sellable</tradeability>
+        <thingCategories>
+            <li>BodyPartsBionic</li>
+        </thingCategories>
+        <graphicData>
+            <texPath>Things/Item/Implant/RG_CorticalDampener</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+
+        <statBases>
+            <DeteriorationRate>2.0</DeteriorationRate>
+        </statBases>
+
+        <tradeTags Inherit="False">
+            <li>None</li>
+        </tradeTags>
+        <thingSetMakerTags>
+            <li>NotForGuests</li>
+        </thingSetMakerTags>
+
+        <comps>
+            <li Class="Rimgate.CompProperties_AnalyzableResearchWhen">
+                <analysisID>1000300</analysisID>
+                <requiresResearchDef>Bionics</requiresResearchDef>
+
+                <!-- Analyzable -->
+
+                <destroyedOnAnalyzed>false</destroyedOnAnalyzed>
+                <analysisDurationHours>6</analysisDurationHours>
+                <completedLetterLabel>Cortical dampener studied: {RESEARCH} unlocked</completedLetterLabel>
+                <completedLetter>By studying a cortical dampener, {PAWN_labelShort} has acquired the insight needed for {RESEARCH} research.\n\nThe implant was irreparably damaged during analysis.\n\nYour researchers can now use research benches to begin adapting the findings.</completedLetter>
+                <completedLetterDef>PositiveEvent</completedLetterDef>
+
+                <catastrophicFailureChance>0.25</catastrophicFailureChance>
+                <catastrophicDestroysThing>true</catastrophicDestroysThing>
+                <catastrophicBlocksResearch>true</catastrophicBlocksResearch>
+
+                <catastrophicLetterLabelKey>RG_AnalysisCatastrophicLabel</catastrophicLetterLabelKey>
+                <catastrophicLetterTextKey>RG_AnalysisCatastrophicText</catastrophicLetterTextKey>
+
+                <!-- Interactable -->
+
+                <maintainProgress>true</maintainProgress>
+                <activateTexPath>UI/Icons/Study</activateTexPath>
+
+                <activateLabelString>Analyze...</activateLabelString>
+                <activateDescString>Analyze a cortical dampener.</activateDescString>
+                <jobString>Analyzing cortical dampener</jobString>
+                <guiLabelString>Choose who should analyze this</guiLabelString>
+                <inspectString>Can be analyzed by a colonist.</inspectString>
+
+                <targetingParameters>
+                    <canTargetBuildings>false</canTargetBuildings>
+                    <canTargetAnimals>false</canTargetAnimals>
+                    <canTargetMechs>false</canTargetMechs>
+                    <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+                </targetingParameters>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <!-- ==================== Cortical Catalyst ==================== -->
+
+    <ThingDef ParentName="BodyPartBase">
+        <defName>Rimgate_CorticalCatalyst</defName>
+
+        <label>cortical catalyst</label>
+        <description>A modified neural implant derived from the cortical dampener design. This version enhances cognitive function and allows for direct mental control by the user, unlocking latent abilities and heightened awareness. While it offers significant advantages, the implant can also lead to increased mental strain and occasional uncontrollable outbursts of power.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>Rimgate_InstallCorticalCatalystImplant</RecipeDef>
+            <Rimgate.BiomaterialRecoveryDef>Rimgate_Recover_CorticalCatalyst</Rimgate.BiomaterialRecoveryDef>
+        </descriptionHyperlinks>
+
+        <techLevel>Ultra</techLevel>
+        <statBases>
+            <MarketValue>150</MarketValue>
+            <Mass>4</Mass>
+        </statBases>
+
+        <tradeability>Sellable</tradeability>
+        <thingCategories>
+            <li>BodyPartsBionic</li>
+        </thingCategories>
+        <graphicData>
+            <texPath>Things/Item/Implant/RG_CorticalCatalyst</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+
+        <statBases>
+            <WorkToMake>26000</WorkToMake>
+            <DeteriorationRate>2.0</DeteriorationRate>
+        </statBases>
+
+        <costList>
+            <Rimgate_CorticalDampener>1</Rimgate_CorticalDampener>
+        </costList>
+        <recipeMaker>
+            <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+            <workSkill>Crafting</workSkill>
+            <effectWorking>Smith</effectWorking>
+            <soundWorking>Recipe_Machining</soundWorking>
+            <skillRequirements>
+                <Crafting>10</Crafting>
+            </skillRequirements>
+            <recipeUsers>
+                <li>FabricationBench</li>
+            </recipeUsers>
+            <unfinishedThingDef>UnfinishedHealthItemBionic</unfinishedThingDef>
+            <researchPrerequisite>Rimgate_CorticalDampenerHacking</researchPrerequisite>
+        </recipeMaker>
+
+        <tradeTags Inherit="False">
+            <li>None</li>
+        </tradeTags>
+        <thingSetMakerTags>
+            <li>NotForGuests</li>
+        </thingSetMakerTags>
+
+    </ThingDef>
+
+</Defs>

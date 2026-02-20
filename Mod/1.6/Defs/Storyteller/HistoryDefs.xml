@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <HistoryEventDef>
+        <defName>Rimgate_UsedSarcophagus</defName>
+        <label>used goa'uld sarcophagus</label>
+    </HistoryEventDef>
+
+    <HistoryEventDef>
+        <defName>Rimgate_InstalledSymbiote</defName>
+        <label>accepted symbiote</label>
+    </HistoryEventDef>
+
+    <HistoryEventDef>
+        <defName>Rimgate_Dwarfgate_ExpeditionStarted</defName>
+        <label>dwarfgate expedition launched</label>
+    </HistoryEventDef>
+
+    <HistoryEventDef>
+        <defName>Rimgate_Dwarfgate_SiteExpiredUnvisited</defName>
+        <label>dwarfgate site ignored</label>
+    </HistoryEventDef>
+
+</Defs>

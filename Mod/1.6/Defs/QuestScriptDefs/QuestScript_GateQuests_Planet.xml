@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<QuestScriptDef>
+		<defName>Rimgate_GateQuestScript_Planet</defName>
+		<rootSelectionWeight>0</rootSelectionWeight>
+		<isRootSpecial>true</isRootSpecial>
+		<autoAccept>true</autoAccept>
+		<randomlySelectable>false</randomlySelectable>
+		<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
+		<everAcceptableInSpace>true</everAcceptableInSpace>
+		<questNameRules>
+			<rulesStrings>
+				<li>questName->[adj] glyph [site]</li>
+				<li>questName->[adj] dwarfgate [site]</li>
+				<li>questName->[adj] gate [site]</li>
+
+				<li>adj->Forbidden</li>
+				<li>adj->Shrouded</li>
+				<li>adj->Hidden</li>
+				<li>adj->Forgotten</li>
+				<li>adj->Nameless</li>
+				<li>adj->Lost</li>
+				<li>adj->Abandoned</li>
+				<li>adj->Remote</li>
+				<li>adj->Ancient</li>
+				<li>adj->Secret</li>
+				<li>adj->Old</li>
+				<li>adj->Dusty</li>
+				<li>adj->Dangerous</li>
+				<li>adj->Mysterious</li>
+				<li>adj->Uncharted</li>
+				<li>adj->Unexplored</li>
+
+				<li>site->chamber</li>
+				<li>site->vault</li>
+				<li>site->complex</li>
+				<li>site->site</li>
+				<li>site->location</li>
+				<li>site->point</li>
+				<li>site->outpost</li>
+				<li>site->base</li>
+				<li>site->facility</li>
+				<li>site->hollow</li>
+				<li>site->lair</li>
+				<li>site->compound</li>
+				<li>site->crypt</li>
+				<li>site->stronghold</li>
+				<li>site->ruins</li>
+				<li>site->station</li>
+				<li>site->encampment</li>
+				<li>site->installation</li>
+				<li>site->structure</li>
+				<li>site->edifice</li>
+				<li>site->construct</li>
+				<li>site->fortress</li>
+				<li>site->citadel</li>
+				<li>site->bastion</li>
+				<li>site->temple</li>
+				<li>site->sanctuary</li>
+				<li>site->shrine</li>
+
+			</rulesStrings>
+		</questNameRules>
+
+		<questDescriptionRules>
+			<rulesStrings>
+				<li>questDescription->A sequence of glyphs leads to a site of unusual construction.\n\nThe architecture resembles something far older than your colony, and its purpose is unclear. Vault? Temple? Prison?\n\nOne thing is certain: whatever lies beyond was meant to remain sealed.</li>
+				<li>questDescription->The glyph sequence decodes to a location, but records are sparse.\n\nIt may be nothing but ruins. Or it may be the sort of “nothing” that eats expeditions whole.\n\nYour only way to know is to step through.</li>
+				<li>questDescription->Glyphs reference a constructed site tied to an operational gate.\n\nThe style suggests human hands—advanced, yet familiar. Whether military forward post, research hub, or derelict supply depot, it remains uncharted territory.\n\nExploration is advised, but caution is paramount.</li>
+				<li>questDescription->The glyphs describe a structure surrounding a dormant Dwarfgate.\n\nIt hums faintly with a resonance you can almost feel in your skull. Whether it is an abandoned lair, or something still stirring within, is impossible to tell from here.\n\nIt’s worth investigating, but be prepared for anything.</li>
+			</rulesStrings>
+		</questDescriptionRules>
+
+		<root Class="QuestNode_Sequence">
+			<nodes>
+
+				<li Class="QuestNode_GetRandomInRangeFloat">
+					<storeAs>points</storeAs>
+					<range>350~600</range>
+				</li>
+
+				<li Class="QuestNode_SubScript">
+					<def>Util_RandomizePointsChallengeRating</def>
+					<parms>
+						<selectionWeightOneStar>0</selectionWeightOneStar>
+					</parms>
+				</li>
+
+				<li Class="QuestNode_SubScript">
+					<def>Util_AdjustPointsForDistantFight</def>
+				</li>
+
+				<li Class="QuestNode_Set">
+					<name>askerIsNull</name>
+					<value>true</value>
+				</li>
+
+				<!-- Select site parts and faction based on random choice -->
+				<li Class="QuestNode_RandomNode">
+					<nodes>
+
+						<!-- Goa'uld -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_GateSiteGoauld</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.25</chance>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Rimgate_GoauldBaal</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Mechanoids -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_GateSiteMech</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.25</chance>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Mechanoid</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Insects -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_GateSiteInsect</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.25</chance>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Insect</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Tau'ri -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_GateSiteTauri</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.5</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.5</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.5</chance>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Rimgate_TauriFaction</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Wraith -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_GateSiteWraith</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.25</chance>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Rimgate_WraithEmpire</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Misc -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_GateSiteMisc</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.25</chance>
+										</li>
+									</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Barren -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_BarrenGate</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.52</chance>
+										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
+										</li>
+									</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Random Enemy Outpost-->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+
+										<li>
+											<def>Rimgate_BanditCamp</def>
+										</li>
+										<li>
+											<def>Rimgate_ItemStash</def>
+										</li>
+										<li>
+											<def>Rimgate_SoldierTauri</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.15</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.15</chance>
+										</li>
+									</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Ancients (mechanitor) -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_AncientComplex_Mechanitor</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.45</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.25</chance>
+										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Ancients</value>
+								</li>
+							</nodes>
+						</li>
+
+						<!-- Ancients (loot) -->
+						<li Class="QuestNode_Sequence">
+							<nodes>
+								<li Class="QuestNode_Set">
+									<name>siteParts</name>
+									<value>
+										<li>
+											<def>Rimgate_AncientComplex_Loot</def>
+										</li>
+										<li>
+											<def>Rimgate_EnemyPresence</def>
+											<chance>0.5</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyReplicator</def>
+											<chance>0.5</chance>
+										</li>
+										<li>
+											<def>Rimgate_EnemyMech</def>
+											<chance>0.5</chance>
+										</li>
+										<li>
+											<def>Rimgate_SupplyCrates</def>
+										</li>
+									</value>
+								</li>
+								<li Class="QuestNode_Set">
+									<name>siteFaction</name>
+									<value>Ancients</value>
+								</li>
+							</nodes>
+						</li>
+
+					</nodes>
+				</li>
+
+				<li Class="QuestNode_IsSet">
+					<name>siteWorldObjectDef</name>
+					<elseNode Class="QuestNode_Set">
+						<name>siteWorldObjectDef</name>
+						<value>Rimgate_GateQuestSite_Planet</value>
+					</elseNode>
+				</li>
+
+				<li Class="QuestNode_SubScript">
+					<def>Util_GenerateGateSite_Planet</def>
+				</li>
+
+				<li Class="Rimgate.QuestNode_SetSiteQuestId" />
+
+				<!-- Start custom detection raids once the site map generates -->
+				<li Class="Rimgate.QuestNode_RaidGateComplex" />
+
+				<li Class="Rimgate.QuestNode_SpawnPawnsOnMap">
+					<inSignal>site.MapGenerated</inSignal>
+					<countRange>0~1</countRange> <!-- 0–2 by default -->
+					<factionDef>Rimgate_TreasureHunters</factionDef>
+					<pawnKind>Rimgate_TreasureHunter</pawnKind>
+					<skipChance>0.45</skipChance>
+					<spawnNearGate>true</spawnNearGate>
+				</li>
+
+				<li Class="QuestNode_WorldObjectTimeout">
+					<worldObject>$site</worldObject>
+					<isQuestTimeout>true</isQuestTimeout>
+					<delayTicks>900000</delayTicks>
+					<node Class="QuestNode_Sequence">
+						<nodes>
+							<li Class="QuestNode_RandomNode">
+								<nodes>
+									<li Class="QuestNode_Letter">
+										<label>Quest expired: [resolvedQuestName]</label>
+										<text>By the time you mobilized, the site had already been disturbed. Faded symbols mark the walls, and the gate stands silent. Whatever treasure or terror it once held is gone… for now.</text>
+									</li>
+									<li Class="QuestNode_Letter">
+										<label>Quest expired: [resolvedQuestName]</label>
+										<text>By the time you mobilized, others had already stripped the site bare.\n\nThe Dwarfgate is gone, the tech looted, and the opportunity lost.\n\nNext time, bring snacks and move faster.</text>
+									</li>
+									<li Class="QuestNode_Letter">
+										<label>Quest expired: [resolvedQuestName]</label>
+										<text>The site has been swept clean. Equipment gone, power drained, gate dismantled. A faint smell of ozone lingers, as if someone just closed the door. Another mystery, lost to time.</text>
+									</li>
+									<li Class="QuestNode_Letter">
+										<label>Quest expired: [resolvedQuestName]</label>
+										<text>Only echoes remained. The Dwarfgate is gone, stripped by unseen hands. The resonance lingers, leaving your crew uneasy. Some things are best left forgotten.</text>
+									</li>
+								</nodes>
+							</li>
+
+							<li Class="QuestNode_End">
+								<outcome>Fail</outcome>
+							</li>
+						</nodes>
+					</node>
+				</li>
+
+				<li Class="QuestNode_NoWorldObject">
+					<worldObject>$site</worldObject>
+					<node Class="QuestNode_End" />
+				</li>
+
+			</nodes>
+		</root>
+	</QuestScriptDef>
+
+</Defs>

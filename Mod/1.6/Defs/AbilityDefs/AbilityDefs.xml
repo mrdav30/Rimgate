@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <AbilityCategoryDef>
+        <defName>Wraith</defName>
+        <displayOrder>1000000</displayOrder>
+    </AbilityCategoryDef>
+
+    <!-- ==================== Wraith Life Drain ==================== -->
+
+    <AbilityDef>
+        <defName>Rimgate_WraithLifeDrainAbility</defName>
+        <label>drain life</label>
+        <description>Embrace your inner Iratus.\nDrains the life force from a nearby pawn, stealing their regeneration, speed, and brainpower for 24 glorious hours. Hostile? Absolutely. Morally questionable? Also yes. Delicious? Very.</description>
+        <category>Wraith</category>
+        <iconPath>UI/Ability/RGWraithDrainLifeIcon</iconPath>
+        <verbProperties>
+            <verbClass>Verb_CastAbilityTouch</verbClass>
+            <drawAimPie>false</drawAimPie>
+            <range>-1</range>
+            <warmupTime>0.5</warmupTime>
+            <soundCast>Rimgate_WraithDrainLifeCast</soundCast>
+            <targetParams>
+                <canTargetPawns>true</canTargetPawns>
+                <canTargetLocations>false</canTargetLocations>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetSelf>false</canTargetSelf>
+                <canTargetBuildings>true</canTargetBuildings>
+                <canTargetMechs>false</canTargetMechs>
+            </targetParams>
+        </verbProperties>
+        <cooldownTicksRange>30000</cooldownTicksRange>
+        <jobDef>CastAbilityOnThingMelee</jobDef>
+        <aiCanUse>true</aiCanUse>
+        <hostile>true</hostile>
+        <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+        <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+        <comps>
+            <li Class="CompProperties_AbilityRequiresCapacity">
+                <capacity>Manipulation</capacity>
+            </li>
+            <li Class="Rimgate.CompProperties_ApplyDrainLife">
+                <aiRangeLimit>0~6</aiRangeLimit>
+                <geneDef>Rimgate_WraithEssenceMetabolism</geneDef>
+                <essenceGainAmount>0.25</essenceGainAmount> <!-- ~35% per drain; ~3 to fill up -->
+                <affects>Caster</affects>
+                <hediffToReceive>Rimgate_WraithLifeDrainRegen</hediffToReceive>
+                <hediffToGive>Rimgate_WraithLifeDrainTarget</hediffToGive>
+                <hediffToGiveSeverity>0.25</hediffToGiveSeverity>
+                <thoughtToGiveTarget>Rimgate_WraithLifeDrainThought</thoughtToGiveTarget>
+                <opinionThoughtToGiveTarget>Rimgate_WraithLifeDrainThought_Social</opinionThoughtToGiveTarget>
+            </li>
+            <li Class="CompProperties_AbilityFleckOnTarget">
+                <fleckDef>PsycastPsychicEffect</fleckDef>
+            </li>
+        </comps>
+    </AbilityDef>
+
+    <!-- ==================== Wraith Cocoon Trap ====================-->
+
+    <AbilityDef>
+        <defName>Rimgate_WraithCocoonTrapAbility</defName>
+        <label>web shot</label>
+        <description>Launches sticky webs that wrap your victim up tighter than a low-quality sleeping bag, stunning and searing them in one fell swoop.\n\nThe webbing will dissolve in a matter of moments, so attackers should act quickly to take advantage of their helpless prey.</description>
+        <category>Wraith</category>
+        <iconPath>UI/Ability/RGWraithCocoonTrapIcon</iconPath>
+        <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+        <jobDef>CastAbilityOnThingWithoutWeapon</jobDef>
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <range>16.9</range>
+            <warmupTime>0.5</warmupTime>
+            <soundCast>Rimgate_WraithCocoonCast</soundCast>
+            <targetParams>
+                <canTargetLocations>false</canTargetLocations>
+                <canTargetPawns>true</canTargetPawns>
+                <canTargetSelf>false</canTargetSelf>
+                <canTargetBuildings>false</canTargetBuildings>
+            </targetParams>
+        </verbProperties>
+        <cooldownTicksRange>420</cooldownTicksRange>
+        <aiCanUse>true</aiCanUse>
+        <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+        <comps>
+            <li Class="CompProperties_AbilityRequiresCapacity">
+                <capacity>Manipulation</capacity>
+            </li>
+            <li Class="Rimgate.CompProperties_AbilityEssenceCost">
+                <essenceCost>0.1</essenceCost>
+            </li>
+            <li Class="Rimgate.CompProperties_MultipleProjectile">
+                <compClass>Rimgate.CompAbilityEffect_LaunchMultipleProjectile</compClass>
+                <projectile>Rimgate_WraithWeb</projectile>
+                <numberOfProjectiles>2</numberOfProjectiles>
+            </li>
+        </comps>
+    </AbilityDef>
+
+    <ThingDef ParentName="BaseBullet">
+        <defName>Rimgate_WraithWeb</defName>
+        <label>web</label>
+        <thingClass>Rimgate.Projectile_AdditionalDamage</thingClass>
+        <graphicData>
+            <texPath>Things/Projectile/RGCocoonTrapAbilityProjectile</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>1.5</drawSize>
+        </graphicData>
+        <projectile>
+            <flyOverhead>false</flyOverhead>
+            <damageDef>Stun</damageDef>
+            <damageAmountBase>5</damageAmountBase>
+            <speed>15</speed>
+        </projectile>
+        <modExtensions>
+            <li Class="Rimgate.Projectile_AdditionalDamage_Ext">
+                <damageDef>Burn</damageDef>
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+    <!-- ==================== Wraith Cocoon Wrap ==================== -->
+
+    <AbilityDef>
+        <defName>Rimgate_WraithCocoonWrapAbility</defName>
+        <label>cocoon wrap</label>
+        <description>Wrap a captive prisoner in organic webbing, sealing them into a cocoon pod for later feeding. Victims remain alive, aware, and exquisitely helpless.</description>
+        <category>Wraith</category>
+        <iconPath>UI/Ability/RGWraithCocoonWrapIcon</iconPath>
+        <targetRequired>true</targetRequired>
+        <cooldownTicksRange>1800~2400</cooldownTicksRange>
+        <jobDef>CastAbilityOnThingWithoutWeapon</jobDef>
+
+        <aiCanUse>false</aiCanUse>
+        <showWhenDrafted>false</showWhenDrafted>
+        <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+
+        <statBases>
+            <Ability_Duration>0</Ability_Duration>
+        </statBases>
+        <warmupSound>PsycastCastLoop</warmupSound>
+
+        <verbProperties>
+            <verbClass>Verb_CastAbilityTouch</verbClass>
+            <range>-1</range>
+            <requireLineOfSight>false</requireLineOfSight>
+            <warmupTime>0.25</warmupTime>
+            <targetParams>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetMechs>false</canTargetMechs>
+                <canTargetEntities>false</canTargetEntities>
+                <canTargetPawns>true</canTargetPawns>
+                <onlyTargetPrisonersOfColony>true</onlyTargetPrisonersOfColony>
+            </targetParams>
+        </verbProperties>
+
+        <comps>
+            <li Class="CompProperties_AbilityRequiresCapacity">
+                <capacity>Manipulation</capacity>
+            </li>
+            <li Class="Rimgate.CompProperties_AbilityEssenceCost">
+                <essenceCost>0.4</essenceCost>
+            </li>
+            <li>
+                <compClass>Rimgate.CompAbilityEffect_WraithCocoonWrap</compClass>
+            </li>
+        </comps>
+    </AbilityDef>
+
+    <!-- ==================== Wraith Mending ==================== -->
+
+    <AbilityDef>
+        <defName>Rimgate_WraithEssenceMendingAbility</defName>
+        <label>regenerative trance</label>
+        <description>Enter a predatory regenerative trance. If uninterrupted, the Wraith burns stored essence to purge one chronic condition.\n\nNote: This ability requires the Wraith to remain undisturbed for the duration to be effective. Ensure you pick a safe location and avoid interruptions.</description>
+        <category>Wraith</category>
+        <iconPath>UI/Ability/RGWraithEssenceMendingIcon</iconPath>
+
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <violent>false</violent>
+            <range>-1</range>
+            <warmupTime>100</warmupTime><!-- 2.5 in-game hours -->
+            <requireLineOfSight>false</requireLineOfSight>
+            <drawAimPie>false</drawAimPie>
+            <drawHighlightWithLineOfSight>false</drawHighlightWithLineOfSight>
+            <targetParams>
+                <canTargetPawns>false</canTargetPawns>
+                <canTargetLocations>true</canTargetLocations>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetHumans>false</canTargetHumans>
+                <canTargetMechs>false</canTargetMechs>
+            </targetParams>
+        </verbProperties>
+
+        <jobDef>Rimgate_WraithEssenceMending</jobDef>
+        <cooldownTicksRange>90000</cooldownTicksRange> <!-- 1.5 days -->
+        <waitForJobEnd>true</waitForJobEnd>
+        <aiCanUse>false</aiCanUse>
+        <showWhenDrafted>false</showWhenDrafted>
+        <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+        <showCastingProgressBar>true</showCastingProgressBar>
+
+        <comps>
+            <li Class="CompProperties_AbilityRequiresCapacity">
+                <capacity>Consciousness</capacity>
+            </li>
+
+            <li Class="Rimgate.CompProperties_AbilityEssenceCost">
+                <essenceCost>0.45</essenceCost>
+                <payCostAtStart>false</payCostAtStart>
+            </li>
+
+            <li Class="Rimgate.CompProperties_WraithEssenceMending" />
+
+            <li Class="CompProperties_AbilityFleckOnTarget">
+                <fleckDef>HealingCross</fleckDef>
+            </li>
+        </comps>
+    </AbilityDef>
+
+    <!-- ==================== Replicator Spike ==================== -->
+
+    <AbilityDef>
+        <defName>Rimgate_ReplicatorSpikeAbility</defName>
+        <label>spike launch</label>
+        <description>Launch a metal spike at a target.</description>
+        <cooldownTicksRange>120</cooldownTicksRange>
+        <aiCanUse>true</aiCanUse>
+        <hostile>true</hostile>
+        <verbProperties>
+            <verbClass>Verb_AbilityShoot</verbClass>
+            <warmupTime>0.5</warmupTime>
+            <soundCast>Ability_SpineLaunch</soundCast>
+            <ai_IsWeapon>false</ai_IsWeapon>
+            <range>12.9</range>
+            <defaultProjectile>Rimgate_ReplicatorSpike</defaultProjectile>
+        </verbProperties>
+    </AbilityDef>
+
+    <ThingDef ParentName="BaseBullet">
+        <defName>Rimgate_ReplicatorSpike</defName>
+        <label>spike</label>
+        <graphicData>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <damageDef>RangedStab</damageDef>
+            <damageAmountBase>9</damageAmountBase>
+            <armorPenetrationBase>1</armorPenetrationBase>
+            <stoppingPower>1</stoppingPower>
+            <speed>65</speed>
+        </projectile>
+        <graphicData>
+            <texPath>Things/Projectile/RGReplicatorSpikeProjectile</texPath>
+        </graphicData>
+    </ThingDef>
+
+    <!-- ==================== Replicator Psyspike ==================== -->
+
+    <AbilityDef>
+        <defName>Rimgate_ReplicatorPsyspikeAbility</defName>
+        <label>psyspikes</label>
+        <description>Launch a pair of psy-infused metal spikes at a target.</description>
+        <writeCombatLog>True</writeCombatLog>
+        <showPsycastEffects>False</showPsycastEffects>
+        <cooldownTicksRange>90~180</cooldownTicksRange> <!-- 1.5 to 3 seconds -->
+        <aiCanUse>true</aiCanUse>
+        <hostile>true</hostile>
+        <verbProperties>
+            <verbClass>Verb_AbilityShoot</verbClass>
+            <defaultProjectile>Bullet_ReplicatorPsyspike</defaultProjectile>
+            <range>16.9</range>
+            <soundCast>Heatspikes_Shot</soundCast>
+            <soundCastTail>Heatspikes_Tail</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+            <warmupTime>0</warmupTime>
+            <burstShotCount>2</burstShotCount>
+            <accuracyTouch>0.9</accuracyTouch>
+            <accuracyShort>0.8</accuracyShort>
+            <accuracyMedium>0.7</accuracyMedium>
+            <accuracyLong>0.6</accuracyLong>
+            <ai_IsWeapon>false</ai_IsWeapon>
+        </verbProperties>
+    </AbilityDef>
+
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_ReplicatorPsyspike</defName>
+        <label>psyspike shot</label>
+        <graphicData>
+            <texPath>Things/Projectile/RGReplicatorPsyspikeProjectile</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+        </graphicData>
+        <projectile>
+            <damageDef>EnergyBolt</damageDef>
+            <damageAmountBase>9</damageAmountBase>
+            <speed>90</speed>
+        </projectile>
+    </ThingDef>
+
+    <!-- ==================== Tactical Relay Support ==================== -->
+
+    <AbilityDef>
+        <defName>Rimgate_TacticalRelaySupport</defName>
+        <label>tactical relay support</label>
+        <description>Provide real-time combat analysis and tactical data to nearby allies, enhancing their effectiveness in combat.</description>
+        <jobDef>CastAbilityOnThing</jobDef>
+        <targetRequired>False</targetRequired>
+        <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+        <iconPath>UI/Ability/RGTacticalRelaySupportIcon</iconPath>
+        <warmupMoteSocialSymbol>UI/Ability/RGTacticalRelaySupportIcon</warmupMoteSocialSymbol>
+        <stunTargetWhileCasting>True</stunTargetWhileCasting>
+        <showPsycastEffects>False</showPsycastEffects>
+        <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+        <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+        <warmupStartSound>Rimgate_TacticalRelaySupport_Warmup</warmupStartSound>
+        <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+        <cooldownTicksRange>60000</cooldownTicksRange> <!-- 1 in-game day -->
+        <aiCanUse>true</aiCanUse>
+        <statBases>
+            <Ability_Duration>1000</Ability_Duration>
+            <Ability_EffectRadius>9.9</Ability_EffectRadius>
+        </statBases>
+        <verbProperties>
+            <verbClass>Verb_CastAbility</verbClass>
+            <warmupTime>0.5</warmupTime>
+            <range>9.9</range>
+            <drawAimPie>False</drawAimPie>
+            <requireLineOfSight>False</requireLineOfSight>
+            <targetParams>
+                <canTargetSelf>true</canTargetSelf>
+                <canTargetPawns>false</canTargetPawns>
+                <canTargetBuildings>false</canTargetBuildings>
+                <canTargetAnimals>false</canTargetAnimals>
+                <canTargetHumans>false</canTargetHumans>
+                <canTargetMechs>false</canTargetMechs>
+            </targetParams>
+        </verbProperties>
+        <comps>
+            <li Class="Rimgate.CompProperties_AbilityMechEnergyCost">
+                <mechEnergyCostPct>0.2</mechEnergyCostPct>
+            </li>
+            <li Class="CompProperties_AbilityGiveHediff">
+                <compClass>CompAbilityEffect_GiveHediff</compClass>
+                <hediffDef>Rimgate_TrackingRelay</hediffDef>
+                <onlyBrain>True</onlyBrain>
+                <onlyApplyToSelf>True</onlyApplyToSelf>
+                <replaceExisting>true</replaceExisting>
+            </li>
+        </comps>
+    </AbilityDef>
+
+    <!-- ==================== Unas Roar ==================== -->
+
+    <AbilityDef ParentName="AnimalRoarBase">
+        <defName>Rimgate_UnasRoar</defName>
+        <label>unas' roar</label>
+        <description>Unas' roar is a terrifying sound that can be used to intimidate enemies and cause them to flee in terror.</description>
+        <statBases>
+            <Ability_EffectRadius>19.9</Ability_EffectRadius>
+        </statBases>
+        <comps>
+            <li Class="Rimgate.CompProperties_AbilityRequiresTrainable">
+                <trainableDef>Rimgate_UnasRoar</trainableDef>
+                <requireCompleted>true</requireCompleted>
+                <aiCanCastWithoutTrainable>false</aiCanCastWithoutTrainable>
+            </li>
+            <li Class="CompProperties_AbilityGiveHediff">
+                <compClass>CompAbilityEffect_GiveHediff</compClass>
+                <hediffDef>Rimgate_UnasRoar</hediffDef>
+                <durationSecondsOverride>20~30</durationSecondsOverride>
+            </li>
+            <li Class="CompProperties_AbilityGiveMentalState">
+                <compClass>CompAbilityEffect_GiveMentalState</compClass>
+                <stateDef>Terror</stateDef>
+            </li>
+        </comps>
+    </AbilityDef>
+
+</Defs>

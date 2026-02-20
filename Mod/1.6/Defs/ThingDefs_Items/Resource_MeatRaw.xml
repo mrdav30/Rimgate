@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- =============== Cultured Meat (meat plant crop) ==================== -->
+
+  <ThingDef ParentName="OrganicProductBase">
+    <defName>Rimgate_CulturedMeat</defName>
+    <label>Cultured meat</label>
+    <description>Grown in a vat from Wraith biotech, this “meat” is technically food, arguably ethical, and absolutely disturbing.\nBest served raw.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGCultivatedMeat</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <ingestible>
+      <foodType>Meat</foodType>
+      <preferability>RawBad</preferability>
+      <ingestEffect>EatMeat</ingestEffect>
+      <ingestSound>RawMeat_Eat</ingestSound>
+      <tasteThought>AteRawFood</tasteThought>
+    </ingestible>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <statBases>
+      <Nutrition>0.20</Nutrition>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+      <MarketValue>2</MarketValue>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>5</DeteriorationRate>
+      <Mass>0.20</Mass>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>3</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+    <thingCategories>
+      <li>MeatRaw</li>
+    </thingCategories>
+    <tickerType>Rare</tickerType>
+  </ThingDef>
+
+  <!-- ==================== Cocooned Meat ==================== -->
+
+  <ThingDef ParentName="OrganicProductBase">
+    <defName>Rimgate_CocoonedMeat</defName>
+    <label>cocooned meat</label>
+    <description>some meat, now lovingly wrapped in alien silk for freshness.\nSmells faintly of despair and industrial solvents. At least it won’t rot!</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/RGCocoonedMeat</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <ingestible>
+      <foodType>Kibble</foodType>
+      <preferability>MealFine</preferability>
+      <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+      <defaultNumToIngestAtOnce>1</defaultNumToIngestAtOnce>
+      <ingestEffect>EatMeat</ingestEffect>
+      <ingestSound>RawMeat_Eat</ingestSound>
+      <tasteThought>AteRawFood</tasteThought>
+    </ingestible>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <statBases>
+      <DeteriorationRate Inherit="False">0</DeteriorationRate>
+      <Nutrition>0.20</Nutrition>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+      <MarketValue>2</MarketValue>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <Mass>0.25</Mass>
+    </statBases>
+    <thingCategories>
+      <li>MeatRaw</li>
+    </thingCategories>
+  </ThingDef>
+
+</Defs>

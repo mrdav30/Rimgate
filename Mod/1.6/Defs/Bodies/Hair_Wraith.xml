@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Category -->
+
+  <StyleItemCategoryDef>
+    <defName>HairWraith</defName>
+    <label>Wraith</label>
+  </StyleItemCategoryDef>
+
+  <!-- Hair -->
+
+  <HairDef Name="WraithHairBase" Abstract="True">
+    <category>HairWraith</category>
+    <requiredGene>Rimgate_WraithBeauty</requiredGene>
+    <styleTags>
+      <li>HairWraith</li>
+    </styleTags>
+  </HairDef>
+
+  <HairDef ParentName="WraithHairBase">
+    <defName>RG_Pony_Fishtail</defName>
+    <label>wraith pony with fishtails</label>
+    <styleGender>Male</styleGender>
+    <texPath>Things/Pawn/Humanlike/Hair/PonyFishtail/RGPonyFishtail</texPath>
+  </HairDef>
+
+  <HairDef ParentName="WraithHairBase">
+    <defName>RG_Fishtail_Braid</defName>
+    <label>wraith fishtail braid</label>
+    <styleGender>Male</styleGender>
+    <texPath>Things/Pawn/Humanlike/Hair/Fishtail/RGFishtailBraid</texPath>
+  </HairDef>
+
+  <HairDef ParentName="WraithHairBase">
+    <defName>RG_Deep_Braid</defName>
+    <label>wraith deep braid</label>
+    <styleGender>Female</styleGender>
+    <texPath>Things/Pawn/Humanlike/Hair/Deep/RGDeepBraid</texPath>
+  </HairDef>
+
+  <HairDef ParentName="WraithHairBase">
+    <defName>RG_Curly</defName>
+    <label>wraith curly</label>
+    <styleGender>Male</styleGender>
+    <texPath>Things/Pawn/Humanlike/Hair/Curly/RGCurly</texPath>
+  </HairDef>
+
+  <HairDef ParentName="WraithHairBase">
+    <defName>RG_Pompadour</defName>
+    <label>wraith pompadour</label>
+    <styleGender>Male</styleGender>
+    <texPath>Things/Pawn/Humanlike/Hair/Pompadour/RGPompadour</texPath>
+  </HairDef>
+
+  <HairDef ParentName="WraithHairBase">
+    <defName>RG_High_Pony</defName>
+    <label>wraith high ponytail</label>
+    <styleGender>Female</styleGender>
+    <texPath>Things/Pawn/Humanlike/Hair/HighPony/RGHighPony</texPath>
+  </HairDef>
+
+  <HairDef ParentName="WraithHairBase">
+    <defName>RG_Unbound</defName>
+    <label>wraith unbound</label>
+    <styleGender>Female</styleGender>
+    <texPath>Things/Pawn/Humanlike/Hair/Unbound/RGUnbound</texPath>
+  </HairDef>
+
+</Defs>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ManeuverDef>
+		<defName>Rimgate_SiegeBlunt</defName>
+		<requiredCapacity>Rimgate_SiegeBlunt</requiredCapacity>
+		<verb>
+			<verbClass>Verb_MeleeAttackDamage</verbClass>
+			<meleeDamageDef>Rimgate_SiegeBlunt</meleeDamageDef>
+		</verb>
+		<logEntryDef>MeleeAttack</logEntryDef>
+		<combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+		<combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+		<combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+		<combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+	</ManeuverDef>
+
+	<ManeuverDef>
+		<defName>Rimgate_FlashPulse</defName>
+		<requiredCapacity>Rimgate_FlashPulse</requiredCapacity>
+		<verb>
+			<verbClass>Verb_MeleeAttackDamage</verbClass>
+			<meleeDamageDef>Rimgate_FlashPulse</meleeDamageDef>
+		</verb>
+		<logEntryDef>Rimgate_FlashPulse</logEntryDef>
+		<combatLogRulesHit>Maneuver_FlashPulse_MeleeHit</combatLogRulesHit>
+		<combatLogRulesDeflect>Maneuver_FlashPulse_MeleeDeflect</combatLogRulesDeflect>
+		<combatLogRulesMiss>Maneuver_FlashPulse_MeleeMiss</combatLogRulesMiss>
+		<combatLogRulesDodge>Maneuver_FlashPulse_MeleeDodge</combatLogRulesDodge>
+	</ManeuverDef>
+
+</Defs>

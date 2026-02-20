@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <PawnKindDef Name="Rimgate_WraithPlayerBase" Abstract="True">
+    <race>Human</race>
+    <combatPower>40</combatPower>
+    <isFighter>true</isFighter>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+    <forceNormalGearQuality>true</forceNormalGearQuality>
+    <initialWillRange>0~0</initialWillRange>
+    <humanPregnancyChance>0.06</humanPregnancyChance>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_WraithPlayerBase">
+    <defName>Rimgate_WraithPlayer</defName>
+    <label>wraith colonist</label>
+    <defaultFactionType>Rimgate_WraithPlayerColony</defaultFactionType>
+    <chemicalAddictionChance>0</chemicalAddictionChance>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Rimgate_Wraith>999</Rimgate_Wraith>
+      </xenotypeChances>
+    </xenotypeSet>
+    <useFactionXenotypes>false</useFactionXenotypes>
+    <initialResistanceRange>13~21</initialResistanceRange>
+    <minGenerationAge>21</minGenerationAge>
+    <maxGenerationAge>80</maxGenerationAge>
+    <gearHealthRange>0.7~2.3</gearHealthRange>
+    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
+    <apparelMoney>1000~2400</apparelMoney>
+    <apparelTags>
+      <li>Tribal</li>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>SpacerMilitary</li>
+      <li>Rimgate_WraithSoldierApparel_tag</li>
+      <li>Rimgate_WraithHeadgear_tag</li>
+      <li>Rimgate_WraithCommanderApparel_tag</li>
+    </apparelTags>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesChildhood>
+          <li>Rimgate_WraithChildBackStory</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_WraithAdultBackstory</li>
+          <li>Rimgate_WraithCommanderBackStory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
+    <weaponMoney>1200~2000</weaponMoney>
+    <weaponTags>
+      <li>Rimgate_WraithWeapons_tag</li>
+    </weaponTags>
+    <techHediffsChance>1</techHediffsChance>
+    <techHediffsMoney>1000~2000</techHediffsMoney> <!-- Just enough to "pay" for the implant -->
+    <techHediffsTags>
+      <li>Advanced</li>
+      <li>ImplantEmpireCommon</li>
+    </techHediffsTags>
+    <techHediffsDisallowTags>
+      <li>PainCauser</li>
+    </techHediffsDisallowTags>
+  </PawnKindDef>
+
+</Defs>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ================= Wraith ================= -->
+
+  <TerrainDef ParentName="FloorBase">
+    <defName>Rimgate_HiveFloor</defName>
+    <label>hive floor</label>
+    <renderPrecedence>250</renderPrecedence>
+    <description>a disturbingly organic floor material cultivated aboard Wraith hive ships. Soft underfoot, slightly squishy, and unnervingly warm. It might be alive... but hey, it’s clean.</description>
+    <texturePath>Things/Building/Floor/RGWraithHiveFloor</texturePath>
+    <edgeType>Hard</edgeType>
+    <color>(108,78,55)</color>
+    <layerable>true</layerable>
+    <affordances>
+      <li>Light</li>
+      <li>Medium</li>
+      <li>Heavy</li>
+    </affordances>
+    <fertility>0</fertility>
+    <constructEffect>ConstructDirt</constructEffect>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <pathCost>1</pathCost>
+    <statBases>
+      <WorkToBuild>85</WorkToBuild>
+      <Beauty>4</Beauty>
+      <Cleanliness>0.2</Cleanliness>
+      <CleaningTimeFactor>0.6</CleaningTimeFactor>
+    </statBases>
+    <costList>
+      <Steel>1</Steel>
+      <Rimgate_Biomass>2</Rimgate_Biomass>
+    </costList>
+    <constructEffect>ConstructWood</constructEffect>
+    <designationHotKey>Misc7</designationHotKey>
+    <researchPrerequisites>
+      <li>Rimgate_WraithBasic</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>3</constructionSkillPrerequisite>
+  </TerrainDef>
+
+</Defs>

@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_Meteorite</defName>
+    <root Class="Rimgate.ThingSetMaker_SpecialMeteorite" />
+  </ThingSetMakerDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_Techprints</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <!-- Bucket: tagged techprints -->
+        <li>
+          <weight>7</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_TechprintsByTag">
+            <techprintTags>
+              <li>Rimgate_TechprintPool</li> <!-- ResearchProjectTagDef defName -->
+            </techprintTags>
+            <marketValueFactor>1.0</marketValueFactor>
+            <requirePrereqsCompleted>false</requirePrereqsCompleted>
+            <!-- You can also pass ThingSetMakerParams from a parent caller (countRange/totalMarketValueRange).
+               If you want a fixed count here, wrap this in ThingSetMaker_Conditional/StackCount.-->
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: glyphs/schematics -->
+        <li>
+          <weight>3</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_GlyphParchment</li>
+                  <li>Rimgate_GlyphParchment_Orbit</li>
+                  <li>Schematic</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: scrap notes -->
+        <li>
+          <weight>4</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_ScrapNote</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: empty -->
+        <li>
+          <weight>1.5</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
+        </li>
+
+      </options>
+    </root>
+  </ThingSetMakerDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_GateComplexLootAlpha</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <!-- Luciferium -->
+        <li>
+          <weight>0.5</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Luciferium</li>
+                </thingDefs>
+              </filter>
+              <countRange>3~10</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Rimgate_GlyphParchment -->
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_GlyphParchment</li>
+                  <li>Rimgate_GlyphParchment_Orbit</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Silver -->
+        <li>
+          <weight>1</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Silver</li>
+                </thingDefs>
+              </filter>
+              <countRange>550~750</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Naquadria -->
+        <li MayRequire="Ludeon.RimWorld.Anomaly">
+          <weight>0.5</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_Naquadria</li>
+                </thingDefs>
+              </filter>
+              <countRange>1~5</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Rimgate_Naquadah -->
+        <li>
+          <weight>1</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_Naquadah</li>
+                </thingDefs>
+              </filter>
+              <countRange>25~45</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Ultratech meds -->
+        <li>
+          <weight>0.15</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>MedicineUltratech</li>
+                </thingDefs>
+              </filter>
+              <countRange>2~5</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Genepack -->
+        <li MayRequire="Ludeon.RimWorld.Biotech">
+          <weight>0.5</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Genepack</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Misc high value -->
+        <li>
+          <weight>0.05</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Apparel_PsychicInsanityLance</li>
+                  <li>Apparel_PsychicShockLance</li>
+                  <li>ArchotechArm</li>
+                  <li>ArchotechEye</li>
+                  <li>ArchotechLeg</li>
+                  <li>Rimgate_TauriFIMStinger</li>
+                  <li>MechSerumHealer</li>
+                  <li>MechSerumResurrector</li>
+                  <li>Rimgate_Tretonin</li>
+                  <li>OrbitalTargeterBombardment</li>
+                  <li>OrbitalTargeterPowerBeam</li>
+                  <li>PsychicAnimalPulser</li>
+                  <li>PsychicEmanator</li>
+                  <li>PsychicSoothePulser</li>
+                  <li>TechprofSubpersonaCore</li>
+                  <li>TornadoGenerator</li>
+                  <li>Rimgate_PrimogenitorSphere</li>
+                  <li>VanometricPowerCell</li>
+                  <li MayRequire="Ludeon.RimWorld.Biotech">ArchiteCapsule</li>
+                  <li MayRequire="Ludeon.RimWorld.Biotech">DeathrestCapacitySerum</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">BiomutationPulser</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_BiomutationLance</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Serums -->
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">VoidsightSerum</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">MetalbloodSerum</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">JuggernautSerum</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">MindNumbSerum</li>
+                </thingDefs>
+              </filter>
+              <countRange>1~2</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: scrap notes -->
+        <li>
+          <weight>1.0</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_ScrapNote</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: empty -->
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
+        </li>
+
+      </options>
+    </root>
+  </ThingSetMakerDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_GateComplexLootBravo</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <!-- Artifacts -->
+        <li>
+          <weight>0.4</weight>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <filter>
+                <categories>
+                  <li>Artifacts</li>
+                </categories>
+              </filter>
+              <countRange>1~2</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Rimgate_GlyphParchment -->
+        <li>
+          <weight>0.15</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_GlyphParchment</li>
+                  <li>Rimgate_GlyphParchment_Orbit</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Misc cool items -->
+        <li>
+          <weight>0.5</weight>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <qualityGenerator>Reward</qualityGenerator>
+              <filter>
+                <thingDefs>
+                  <li>TechprofSubpersonaCore</li>
+                  <li>Rimgate_PrimogenitorSphere</li>
+                  <li>ArchotechEye</li>
+                  <li>ArchotechArm</li>
+                  <li>ArchotechLeg</li>
+                  <li>PowerClaw</li>
+                  <li>BionicEye</li>
+                  <li>BionicArm</li>
+                  <li>BionicLeg</li>
+                  <li>BionicSpine</li>
+                  <li>BionicHeart</li>
+                  <li>MechSerumHealer</li>
+                  <li>MechSerumResurrector</li>
+                </thingDefs>
+                <thingSetMakerTagsToAllow>
+                  <li>SkillNeurotrainer</li>
+                </thingSetMakerTagsToAllow>
+              </filter>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Tretonin -->
+        <li>
+          <weight>0.35</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_Tretonin</li>
+                </thingDefs>
+              </filter>
+              <countRange>2~4</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Advanced components -->
+        <li>
+          <weight>0.35</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>ComponentSpacer</li>
+                </thingDefs>
+              </filter>
+              <countRange>1~4</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Ultratech meds -->
+        <li>
+          <weight>0.35</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>MedicineUltratech</li>
+                </thingDefs>
+              </filter>
+              <countRange>2~8</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+
+        <!-- Bucket: scrap notes -->
+        <li>
+          <weight>0.5</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_ScrapNote</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: empty -->
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
+        </li>
+
+      </options>
+    </root>
+  </ThingSetMakerDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_GateComplexLootCharlie</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <!-- Gold -->
+        <li>
+          <weight>0.75</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Gold</li>
+                </thingDefs>
+              </filter>
+              <countRange>45~75</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Rimgate_Naquadah -->
+        <li>
+          <weight>0.35</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_Naquadah</li>
+                </thingDefs>
+              </filter>
+              <countRange>30~60</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Advanced components -->
+        <li>
+          <weight>0.35</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>ComponentSpacer</li>
+                </thingDefs>
+              </filter>
+              <countRange>5~8</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Ultratech meds -->
+        <li>
+          <weight>0.5</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>MedicineUltratech</li>
+                </thingDefs>
+              </filter>
+              <countRange>3~10</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Utility apparel -->
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_GoauldKaraKesh</li>
+                  <li>Rimgate_WraithCommunicationDevice</li>
+                  <li>Rimgate_WraithQueensPendant</li>
+                  <li MayRequire="Ludeon.RimWorld.Royalty">Apparel_PackJump</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_DisruptorFlarePack</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_PackTurret</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Sentience catalyst -->
+        <li>
+          <weight>0.5</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>SentienceCatalyst</li>
+                </thingDefs>
+              </filter>
+              <countRange>1~3</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Misc -->
+        <li>
+          <weight>0.75</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>BionicEye</li>
+                  <li>BionicArm</li>
+                  <li>BionicLeg</li>
+                  <li>BionicSpine</li>
+                  <li>BionicHeart</li>
+                  <li>BionicStomach</li>
+                  <li>Neurotrainer_Shooting</li>
+                  <li>Neurotrainer_Melee</li>
+                  <li>Neurotrainer_Construction</li>
+                  <li>Neurotrainer_Mining</li>
+                  <li>Neurotrainer_Cooking</li>
+                  <li>Neurotrainer_Plants</li>
+                  <li>Neurotrainer_Animals</li>
+                  <li>Neurotrainer_Crafting</li>
+                  <li>Neurotrainer_Artistic</li>
+                  <li>Neurotrainer_Medicine</li>
+                  <li>Neurotrainer_Social</li>
+                  <li>Neurotrainer_Intellectual</li>
+                  <li MayRequire="Ludeon.RimWorld.Royalty">HealingEnhancer</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Misc high value -->
+        <li>
+          <weight>0.5</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Apparel_PsychicInsanityLance</li>
+                  <li>Apparel_PsychicShockLance</li>
+                  <li>ArchotechArm</li>
+                  <li>ArchotechEye</li>
+                  <li>ArchotechLeg</li>
+                  <li>Rimgate_TauriFIMStinger</li>
+                  <li>Rimgate_Tretonin</li>
+                  <li>MechSerumHealer</li>
+                  <li>MechSerumResurrector</li>
+                  <li>OrbitalTargeterBombardment</li>
+                  <li>OrbitalTargeterPowerBeam</li>
+                  <li>PsychicAnimalPulser</li>
+                  <li>PsychicEmanator</li>
+                  <li>PsychicSoothePulser</li>
+                  <li>TechprofSubpersonaCore</li>
+                  <li>TornadoGenerator</li>
+                  <li>VanometricPowerCell</li>
+                  <li>Rimgate_PrimogenitorSphere</li>
+                  <li MayRequire="Ludeon.RimWorld.Biotech">ArchiteCapsule</li>
+                  <li MayRequire="Ludeon.RimWorld.Biotech">DeathrestCapacitySerum</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">BiomutationPulser</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_BiomutationLance</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Serums -->
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">VoidsightSerum</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">MetalbloodSerum</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">JuggernautSerum</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">MindNumbSerum</li>
+                </thingDefs>
+              </filter>
+              <countRange>1~2</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Shard -->
+        <li>
+          <weight>0.05</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">Shard</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: scrap notes -->
+        <li>
+          <weight>0.35</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_ScrapNote</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: empty -->
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
+        </li>
+
+      </options>
+    </root>
+  </ThingSetMakerDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_WeaponStash</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <li>
+          <weight>1</weight>
+          <thingSetMaker Class="ThingSetMaker_UniqueWeapon" />
+        </li>
+
+        <li>
+          <weight>0.05</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Apparel_PsychicInsanityLance</li>
+                  <li>Apparel_PsychicShockLance</li>
+                  <li>OrbitalTargeterBombardment</li>
+                  <li>OrbitalTargeterPowerBeam</li>
+                  <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_BiomutationLance</li>
+                </thingDefs>
+              </filter>
+              <countRange>2</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: scrap notes -->
+        <li>
+          <weight>0.75</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_ScrapNote</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+      </options>
+    </root>
+  </ThingSetMakerDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_SymbioteContainer</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <li>
+          <weight>0.75</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_GoauldSymbiote</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <li>
+          <weight>0.25</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_PrimtaSymbiote</li>
+                </thingDefs>
+              </filter>
+              <countRange>3</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+        <!-- Bucket: empty -->
+        <li>
+          <weight>0.15</weight>
+          <thingSetMaker Class="Rimgate.ThingSetMaker_None" />
+        </li>
+
+      </options>
+    </root>
+  </ThingSetMakerDef>
+
+  <ThingSetMakerDef>
+    <defName>Rimgate_SymbioteQueenContainer</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+
+        <!-- Always give 1 queen -->
+        <li>
+          <weight>1</weight>
+          <thingSetMaker Class="ThingSetMaker_StackCount">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li>Rimgate_SymbioteQueen</li>
+                </thingDefs>
+              </filter>
+              <countRange>1</countRange>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+
+      </options>
+    </root>
+  </ThingSetMakerDef>
+
+</Defs>

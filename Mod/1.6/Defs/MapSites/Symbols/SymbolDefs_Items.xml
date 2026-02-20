@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- Resources -->
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GlyphParchment</defName>
+        <thing>Rimgate_GlyphParchment</thing>
+        <maxStackSize>1</maxStackSize>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GlyphParchment_Orbit</defName>
+        <thing>Rimgate_GlyphParchment_Orbit</thing>
+        <maxStackSize>1</maxStackSize>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ScrapNote</defName>
+        <thing>Rimgate_ScrapNote</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_ScrapNotice</defName>
+        <thing>Rimgate_ScrapNotice</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Naquadah</defName>
+        <thing>Rimgate_Naquadah</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Naquadria</defName>
+        <thing>Rimgate_Naquadria</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CocoonedMeat</defName>
+        <thing>Rimgate_CocoonedMeat</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_Biomass</defName>
+        <thing>Rimgate_Biomass</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CulturedMeat</defName>
+        <thing>Rimgate_CulturedMeat</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SymbioteImplant</defName>
+        <thing>Rimgate_GoauldSymbiote</thing>
+    </KCSG.SymbolDef>
+
+    <!-- Weapons -->
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldZat</defName>
+        <thing>Rimgate_GoauldZat</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldMaTokViolet</defName>
+        <thing>Rimgate_GoauldMaTokViolet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithSpear</defName>
+        <thing>Rimgate_WraithSpear</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithHandBlaster</defName>
+        <thing>Rimgate_WraithHandBlaster</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriFIMStinger</defName>
+        <thing>Rimgate_TauriFIMStinger</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriM92A</defName>
+        <thing>Rimgate_TauriM92A</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriM4A1Gun</defName>
+        <thing>Rimgate_TauriM4A1Gun</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriM4A1_M203Gun</defName>
+        <thing>Rimgate_TauriM4A1_M203Gun</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriUSAS12Shotgun</defName>
+        <thing>Rimgate_TauriUSAS12Shotgun</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_AntiReplicatorGun</defName>
+        <thing>Rimgate_AntiReplicatorGun</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriP90Gun</defName>
+        <thing>Rimgate_TauriP90Gun</thing>
+    </KCSG.SymbolDef>
+
+    <!-- Apparel -->
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_GoauldKaraKesh</defName>
+        <thing>Rimgate_GoauldKaraKesh</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_JaffaArmor</defName>
+        <thing>Rimgate_JaffaArmor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_JaffaHelmet</defName>
+        <thing>Rimgate_JaffaHelmet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_JackalHelmet</defName>
+        <thing>Rimgate_JackalHelmet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SerpentHelmet</defName>
+        <thing>Rimgate_SerpentHelmet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_HorusHelmet</defName>
+        <thing>Rimgate_HorusHelmet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_FirstPrimeArmor</defName>
+        <thing>Rimgate_FirstPrimeArmor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithCommanderArmor</defName>
+        <thing>Rimgate_WraithCommanderArmor</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithGoggles</defName>
+        <thing>Rimgate_WraithGoggles</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithHelmet</defName>
+        <thing>Rimgate_WraithHelmet</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_WraithCommunicationDevice</defName>
+        <thing>Rimgate_WraithCommunicationDevice</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriTacticalVest</defName>
+        <thing>Rimgate_TauriTacticalVest</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_SteelPlateInsert</defName>
+        <thing>Rimgate_SteelPlateInsert</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_CompositePlateInsert</defName>
+        <thing>Rimgate_CompositePlateInsert</thing>
+    </KCSG.SymbolDef>
+
+    <KCSG.SymbolDef>
+        <defName>Rimgate_TauriBallisticHelmet</defName>
+        <thing>Rimgate_TauriBallisticHelmet</thing>
+    </KCSG.SymbolDef>
+
+</Defs>

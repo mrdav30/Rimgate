@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <FactionDef Name="Rimgate_TreasureHuntersBase" ParentName="FactionBase">
+        <defName>Rimgate_TreasureHunters</defName>
+        <label>neutral treasure hunters</label>
+        <pawnSingular>treasure hunter</pawnSingular>
+        <pawnsPlural>treasure hunters</pawnsPlural>
+        <categoryTag>TreasureHunter</categoryTag>
+        <requiredCountAtGameStart>1</requiredCountAtGameStart>
+        <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
+        <hostileToFactionlessHumanlikes>true</hostileToFactionlessHumanlikes>
+        <configurationListOrderPriority>2000</configurationListOrderPriority>
+        <displayInFactionSelection>false</displayInFactionSelection>
+        <fixedName>Treasure Hunters</fixedName>
+        <canGenerateQuestSites>false</canGenerateQuestSites>
+        <factionIconPath>World/WorldObjects/Expanding/Sites/DownedRefugee</factionIconPath>
+        <techLevel>Ultra</techLevel>
+        <hidden>true</hidden>
+        <rescueesCanJoin>false</rescueesCanJoin>
+        <autoFlee>false</autoFlee>
+        <fixedLeaderKinds>
+            <li>Rimgate_TreasureHunterBoss</li>
+        </fixedLeaderKinds>
+        <apparelStuffFilter>
+            <thingDefs>
+                <li>Synthread</li>
+                <li>Hyperweave</li>
+                <li>DevilstrandCloth</li>
+                <li>Plasteel</li>
+            </thingDefs>
+        </apparelStuffFilter>
+        <maxPawnCostPerTotalPointsCurve>
+            <points>
+                <li>(0,0)</li>
+            </points>
+        </maxPawnCostPerTotalPointsCurve>
+        <raidsForbidden>true</raidsForbidden>
+        <raidCommonalityFromPointsCurve>
+            <points>
+                <li>(0, 0)</li>
+            </points>
+        </raidCommonalityFromPointsCurve>
+        <backstoryFilters>
+            <li>
+                <categories>
+                    <li>Offworld</li>
+                    <li>Outlander</li>
+                </categories>
+            </li>
+        </backstoryFilters>
+        <pawnGroupMakers>
+            <li>
+                <kindDef>Combat</kindDef>
+                <commonality>100</commonality>
+                <options>
+                    <Rimgate_TreasureHunterBoss>0.1</Rimgate_TreasureHunterBoss>
+                    <Rimgate_TreasureHunter>1</Rimgate_TreasureHunter>
+                </options>
+            </li>
+        </pawnGroupMakers>
+        <permanentEnemy>true</permanentEnemy>
+        <messageDefendersAttacking>Treasure Hunters are attacking.</messageDefendersAttacking>
+    </FactionDef>
+
+</Defs>

@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ============================ Goa'uld Base ============================ -->
+
+  <PawnKindDef Name="Rimgate_GoauldBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionType>Rimgate_GoauldBaal</defaultFactionType>
+    <chemicalAddictionChance>0</chemicalAddictionChance>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>30~60</initialResistanceRange>
+    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
+    <biocodeWeaponChance>0.2</biocodeWeaponChance>
+  </PawnKindDef>
+
+  <!-- ============ Goa'uld Civilian Classes ============ -->
+
+  <PawnKindDef Name="Rimgate_GoauldColonistBase" ParentName="Rimgate_GoauldBase">
+    <defName>Rimgate_GoauldColonist</defName>
+    <label>colonist</label>
+    <combatPower>25</combatPower>
+    <isFighter>false</isFighter>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.15</Neanderthal>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.15</Pigskin>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.15</Yttakin>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.15</Dirtmole>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+      </xenotypeChances>
+    </xenotypeSet>
+    <gearHealthRange>0.2~2.0</gearHealthRange>
+    <apparelMoney>1500~2800</apparelMoney>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <weaponMoney>270~1000</weaponMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <techHediffsChance>0.06</techHediffsChance>
+    <techHediffsMoney>50~600</techHediffsMoney>
+    <techHediffsTags>
+      <li>Poor</li>
+      <li>Simple</li>
+      <li>ImplantEmpireCommon</li>
+    </techHediffsTags>
+    <invNutrition>2.55</invNutrition>
+    <inventoryOptions>
+      <skipChance>0.75</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <choiceChance>90</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>25</min>
+            <max>70</max>
+          </countRange>
+        </li>
+        <li>
+          <choiceChance>10</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>700</min>
+            <max>1000</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_GoauldColonistBase">
+    <defName>Rimgate_GoauldTrader</defName>
+    <label>Goa'uld trader</label>
+    <trader>true</trader>
+    <isFighter>false</isFighter>
+    <chemicalAddictionChance>0.1</chemicalAddictionChance>
+    <combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance>
+    <invNutrition>2.55</invNutrition>
+    <itemQuality>Normal</itemQuality>
+    <inventoryOptions>
+      <skipChance>0.70</skipChance>
+      <subOptionsTakeAll>
+        <li>
+          <thingDef>Silver</thingDef>
+          <countRange>300~1000</countRange>
+        </li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <combatPower>40</combatPower>
+    <weaponTags>
+      <li>IndustrialGunAdvanced</li>
+    </weaponTags>
+    <weaponMoney>1100~3500</weaponMoney>
+    <apparelMoney>1250~2500</apparelMoney>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <techHediffsChance>0.15</techHediffsChance>
+    <techHediffsMoney>1000~1800</techHediffsMoney>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>16~25</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_GoauldBase">
+    <defName>Rimgate_GoauldSlave</defName>
+    <label>slave</label>
+    <combatPower>22</combatPower>
+    <isFighter>false</isFighter>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.15</Neanderthal>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.15</Pigskin>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.15</Yttakin>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.15</Dirtmole>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+      </xenotypeChances>
+    </xenotypeSet>
+    <chemicalAddictionChance>0.5</chemicalAddictionChance>
+    <itemQuality>Poor</itemQuality>
+    <apparelMoney>270~900</apparelMoney>
+    <apparelTags>
+      <li>Tribal</li>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesAdulthood>
+          <li>Rimgate_SlaveBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_GoauldBase">
+    <defName>Rimgate_GoauldSlaveDriver</defName>
+    <label>slave driver</label>
+    <combatPower>55</combatPower>
+    <isFighter>true</isFighter>
+    <useFactionXenotypes>false</useFactionXenotypes>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+      </xenotypeChances>
+    </xenotypeSet>
+    <requiredWorkTags>
+      <li>Social</li>
+    </requiredWorkTags>
+    <gearHealthRange>0.7~1.4</gearHealthRange>
+    <initialWillRange>4~6</initialWillRange>
+    <initialResistanceRange>50~80</initialResistanceRange>
+    <apparelMoney>1200~2200</apparelMoney>
+    <itemQuality>Good</itemQuality>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_CowboyHat</li>
+      <li>Apparel_Duster</li>
+    </apparelRequired>
+    <weaponMoney>2600~4500</weaponMoney>
+    <weaponTags Inherit="False">
+      <li>Rimgate_RodOfAnguish_tag</li>
+    </weaponTags>
+    <techHediffsChance>0.42</techHediffsChance>
+    <techHediffsMoney>1000~2000</techHediffsMoney>
+    <techHediffsTags>
+      <li>Simple</li>
+      <li>AdvancedWeapon</li>
+      <li>ImplantEmpireCommon</li>
+    </techHediffsTags>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesAdulthood>
+          <li>Rimgate_SlaveDriverBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
+    <inventoryOptions>
+      <skipChance>0.9</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Beer</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>3</max>
+          </countRange>
+        </li>
+        <li>
+          <thingDef>SmokeleafJoint</thingDef>
+          <countRange>
+            <min>1</min>
+            <max>2</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <skills>
+      <li>
+        <skill>Melee</skill>
+        <range>4~7</range>
+      </li>
+      <li>
+        <skill>Social</skill>
+        <range>6~10</range>
+      </li>
+      <li>
+        <skill>Animals</skill>
+        <range>2~5</range>
+      </li>
+    </skills>
+  </PawnKindDef>
+
+  <!-- ============ Goa'uld Boss ============ -->
+
+  <PawnKindDef Name="Rimagate_GoauldBoss" ParentName="Rimgate_GoauldBase" Abstract="True">
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+    <isFighter>true</isFighter>
+    <canBeSapper>true</canBeSapper>
+    <combatPower>150</combatPower>
+    <canUseAvoidGrid>true</canUseAvoidGrid>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.15</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.15</Genie>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.15</Starjack>
+        <Baseliner MayRequire="Ludeon.RimWorld.Biotech">0.5</Baseliner>
+        <Rimgate_GoauldJaffa>0.15</Rimgate_GoauldJaffa>
+      </xenotypeChances>
+    </xenotypeSet>
+    <backstoryFiltersOverride>
+      <li>
+        <categoriesChildhood>
+          <li>Rimgate_GoauldChildBackstory</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_FirstPrimeBackstory</li>
+          <li>Rimgate_GoauldAdultBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
+    <techHediffsChance>0.72</techHediffsChance>
+    <techHediffsMoney>1000~2000</techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+      <li>ImplantEmpireCommon</li>
+      <li>AdvancedWeapon</li>
+    </techHediffsTags>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_SymbioteImplant</def>
+      </li>
+      <li>
+        <def>Rimgate_Unrecruitable</def>
+      </li>
+    </startingHediffs>
+    <itemQuality>Excellent</itemQuality>
+    <gearHealthRange>1.0~2.3</gearHealthRange>
+    <weaponMoney>1200~4500</weaponMoney>
+    <weaponTags>
+      <li>Rimgate_GoauldRanged_tag</li>
+    </weaponTags>
+    <apparelMoney>4300~7000</apparelMoney>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
+      <li>Rimgate_GoauldPrimeApparel_tag</li>
+      <li>Rimgate_GoauldKaraKesh_tag</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Rimgate_FirstPrimeHelmet</li>
+      <li>Rimgate_FirstPrimeArmor</li>
+      <li>Rimgate_GoauldKaraKesh</li>
+    </apparelRequired>
+    <specificApparelRequirements>
+      <li>
+        <apparelDef>Rimgate_FirstPrimeHelmet</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_FirstPrimeArmor</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+    </specificApparelRequirements>
+    <invNutrition>2.55</invNutrition>
+    <inventoryOptions>
+      <skipChance>0.75</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <choiceChance>90</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>25</min>
+            <max>70</max>
+          </countRange>
+        </li>
+        <li>
+          <choiceChance>10</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>700</min>
+            <max>1000</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>12~20</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>12~20</range>
+      </li>
+    </skills>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimagate_GoauldBoss">
+    <defName>Rimgate_GoauldLeader</defName>
+    <label>under lord</label>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>39</minGenerationAge>
+    <maxGenerationAge>100</maxGenerationAge>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimagate_GoauldBoss">
+    <defName>Rimgate_CrazedUnderLord</defName>
+    <label>forgotten under lord</label>
+    <minGenerationAge>69</minGenerationAge>
+    <maxGenerationAge>100</maxGenerationAge>
+    <forcedAddictions>
+      <li>Rimgate_SarcophagusChemical</li>
+    </forcedAddictions>
+    <chemicalAddictionChance>1.0</chemicalAddictionChance>
+  </PawnKindDef>
+
+  <!-- ============ Goa'uld Jaffa ============ -->
+
+  <PawnKindDef Name="Rimgate_GoauldMilBase" ParentName="Rimgate_GoauldBase" Abstract="True">
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelIgnorePollution MayRequire="Ludeon.RimWorld.Biotech">true</apparelIgnorePollution>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Rimgate_GoauldJaffa>999</Rimgate_GoauldJaffa>
+      </xenotypeChances>
+    </xenotypeSet>
+    <backstoryFiltersOverride>
+      <li>
+        <categories>
+          <li>Rimgate_GoauldChildBackstory</li>
+          <li>Rimgate_GoauldAdultBackstory</li>
+        </categories>
+      </li>
+    </backstoryFiltersOverride>
+    <isFighter>true</isFighter>
+    <canBeSapper>true</canBeSapper>
+    <canUseAvoidGrid>true</canUseAvoidGrid>
+    <requiredWorkTags>
+      <li>Violent</li>
+    </requiredWorkTags>
+    <chemicalAddictionChance>0</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <minGenerationAge>19</minGenerationAge>
+    <maxGenerationAge>110</maxGenerationAge>
+    <gearHealthRange>0.7~2.3</gearHealthRange>
+    <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
+    <apparelMoney>5000~8000</apparelMoney>
+    <itemQuality>Normal</itemQuality>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li>IndustrialBasic</li>
+      <li>Rimgate_GoauldApparel_tag</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Rimgate_JaffaHelmet</li>
+      <li>Rimgate_JaffaArmor</li>
+      <li>Rimgate_JaffaDemiGauntlets</li>
+      <li>Rimgate_JaffaArmoredBoots</li>
+    </apparelRequired>
+    <specificApparelRequirements>
+      <li>
+        <apparelDef>Rimgate_JaffaHelmet</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaArmor</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaDemiGauntlets</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaArmoredBoots</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+    </specificApparelRequirements>
+    <weaponMoney>1100~2500</weaponMoney>
+    <techHediffsChance>0</techHediffsChance>
+    <techHediffsMoney>0</techHediffsMoney>
+    <techHediffsTags Inherit="False" />
+    <startingHediffs>
+      <li>
+        <def>Rimgate_SymbiotePouch</def>
+      </li>
+      <li>
+        <def>Rimgate_PrimtaInPouch</def>
+      </li>
+    </startingHediffs>
+    <combatEnhancingDrugsCount>
+      <min>0</min>
+      <max>2</max>
+    </combatEnhancingDrugsCount>
+    <inventoryOptions>
+      <skipChance>0.8</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>Rimgate_JaffaKnife</thingDef>
+          <countRange>1</countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>4~12</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>4~12</range>
+      </li>
+    </skills>
+  </PawnKindDef>
+
+  <!-- ====== Goa'uld Jaffa classes ========= -->
+
+  <PawnKindDef Name="Rimagate_GoaulJaffaBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
+    <combatPower>100</combatPower>
+    <weaponTags>
+      <li>Rimgate_GoauldRanged_tag</li>
+      <li>Rimgate_GoauldGrenade_tag</li>
+      <li>GrenadeDestructive</li>
+    </weaponTags>
+  </PawnKindDef>
+
+  <!-- Anubis -->
+
+  <PawnKindDef ParentName="Rimagate_GoaulJaffaBase">
+    <defName>Rimgate_GoauldRangedAnubis</defName>
+    <label>Anubis Jaffa warrior</label>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_JaffaForeheadSymbolImplantAnubis</def>
+      </li>
+    </startingHediffs>
+  </PawnKindDef>
+
+  <!-- Apophis -->
+
+  <PawnKindDef ParentName="Rimagate_GoaulJaffaBase">
+    <defName>Rimgate_GoauldRangedApophis</defName>
+    <label>Apophis Jaffa warrior</label>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_JaffaForeheadSymbolImplantApophis</def>
+      </li>
+    </startingHediffs>
+  </PawnKindDef>
+
+  <!-- Ra -->
+
+  <PawnKindDef ParentName="Rimagate_GoaulJaffaBase">
+    <defName>Rimgate_GoauldRangedRa</defName>
+    <label>Ra Jaffa warrior</label>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_JaffaForeheadSymbolImplantRa</def>
+      </li>
+    </startingHediffs>
+  </PawnKindDef>
+
+  <!-- ============ Jaffa Guard Base ============ -->
+
+  <PawnKindDef Name="Rimgate_GoauldGuardBase" ParentName="Rimgate_GoauldMilBase" Abstract="True">
+    <combatPower>130</combatPower>
+    <initialWillRange>3~6</initialWillRange>
+    <initialResistanceRange>55~64</initialResistanceRange>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~3.5</gearHealthRange>
+    <apparelMoney>7000~10000</apparelMoney>
+    <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
+    <apparelTags>
+      <li>Rimgate_GoauldGuardApparel_tag</li>
+    </apparelTags>
+    <apparelRequired Inherit="False"> <!-- All guards wear the same armor, just different helmets -->
+      <li>Rimgate_JaffaArmor</li>
+      <li>Rimgate_JaffaDemiGauntlets</li>
+      <li>Rimgate_JaffaArmoredBoots</li>
+    </apparelRequired>
+    <specificApparelRequirements Inherit="False">
+      <li>
+        <bodyPartGroup>FullHead</bodyPartGroup>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaArmor</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaDemiGauntlets</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_JaffaArmoredBoots</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+    </specificApparelRequirements>
+    <weaponMoney>3000~3500</weaponMoney>
+    <weaponTags>
+      <li>Rimgate_GoauldRanged_tag</li>
+    </weaponTags>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>8~16</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>8~16</range>
+      </li>
+    </skills>
+  </PawnKindDef>
+
+  <!-- Jaffa Guards -->
+
+  <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
+    <defName>Rimgate_SerpentGuard</defName>
+    <label>serpent guard</label>
+    <apparelRequired>
+      <li>Rimgate_SerpentHelmet</li>
+    </apparelRequired>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_JaffaForeheadSymbolImplantApophis</def>
+      </li>
+    </startingHediffs>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
+    <defName>Rimgate_HorusGuard</defName>
+    <label>falcon guard</label>
+    <apparelRequired>
+      <li>Rimgate_HorusHelmet</li>
+    </apparelRequired>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_JaffaForeheadSymbolImplantRa</def>
+      </li>
+    </startingHediffs>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
+    <defName>Rimgate_JackalGuard</defName>
+    <label>jackal Guard</label>
+    <apparelRequired>
+      <li>Rimgate_JackalHelmet</li>
+    </apparelRequired>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_JaffaForeheadSymbolImplantAnubis</def>
+      </li>
+    </startingHediffs>
+  </PawnKindDef>
+
+  <!-- ============ Prime Base ============ -->
+
+  <PawnKindDef Name="Rimgate_PrimeBase" ParentName="Rimgate_GoauldGuardBase" Abstract="True">
+    <combatPower>150</combatPower>
+    <itemQuality>Excellent</itemQuality>
+    <backstoryFiltersOverride Inherit="False">
+      <li>
+        <categoriesChildhood>
+          <li>Rimgate_GoauldChildBackstory</li>
+        </categoriesChildhood>
+        <categoriesAdulthood>
+          <li>Rimgate_FirstPrimeBackstory</li>
+        </categoriesAdulthood>
+      </li>
+    </backstoryFiltersOverride>
+    <apparelTags Inherit="False">
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>SpacerMilitary</li>
+      <li>Rimgate_GoauldPrimeApparel_tag</li>
+    </apparelTags>
+    <apparelRequired Inherit="false">
+      <li>Rimgate_FirstPrimeArmor</li>
+      <li>Rimgate_PrimeDemiGauntlets</li>
+      <li>Rimgate_PrimeArmoredBoots</li>
+    </apparelRequired>
+    <specificApparelRequirements Inherit="False">
+      <li>
+        <bodyPartGroup>FullHead</bodyPartGroup>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_FirstPrimeArmor</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_PrimeDemiGauntlets</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+      <li>
+        <apparelDef>Rimgate_PrimeArmoredBoots</apparelDef>
+        <stuff>Steel</stuff>
+      </li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_PrimeBase">
+    <defName>Rimgate_PrimeSerpentGuard</defName>
+    <label>First Prime</label>
+    <apparelRequired>
+      <li>Rimgate_PrimeSerpentHelmet</li>
+    </apparelRequired>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_PrimeForeheadSymbolImplantApophis</def>
+      </li>
+    </startingHediffs>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_PrimeBase">
+    <defName>Rimgate_PrimeHorusGuard</defName>
+    <label>First Prime</label>
+    <apparelRequired>
+      <li>Rimgate_PrimeHorusHelmet</li>
+    </apparelRequired>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_PrimeForeheadSymbolImplantRa</def>
+      </li>
+    </startingHediffs>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimgate_PrimeBase">
+    <defName>Rimgate_PrimeJackalGuard</defName>
+    <label>First Prime</label>
+    <apparelRequired>
+      <li>Rimgate_PrimeJackalHelmet</li>
+    </apparelRequired>
+    <startingHediffs>
+      <li>
+        <def>Rimgate_PrimeForeheadSymbolImplantAnubis</def>
+      </li>
+    </startingHediffs>
+  </PawnKindDef>
+
+  <!-- ============ Kull Warrior ============ -->
+
+  <PawnKindDef Name="Rimgate_GoauldKull" ParentName="Rimgate_GoauldMilBase">
+    <defName>Rimgate_KullWarrior</defName>
+    <label>Kull warrior</label>
+    <combatPower>150</combatPower>
+    <minGenerationAge>26</minGenerationAge>
+    <gearHealthRange>0.8~3.5</gearHealthRange>
+    <useFactionXenotypes>false</useFactionXenotypes>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Rimgate_KullWarrior>999</Rimgate_KullWarrior>
+      </xenotypeChances>
+    </xenotypeSet>
+    <backstoryFiltersOverride Inherit="False" />
+    <fixedChildBackstories>
+      <li>Rimgate_KullVatBorn</li>
+      <li>Rimgate_KullCombatImprint</li>
+    </fixedChildBackstories>
+    <fixedAdultBackstories>
+      <li>Rimgate_KullPhaseTwo</li>
+      <li>Rimgate_KullOnyxEnforcer</li>
+    </fixedAdultBackstories>
+    <useFactionXenotypes>false</useFactionXenotypes>
+    <techHediffsChance>0.72</techHediffsChance>
+    <techHediffsMoney>1000~2000</techHediffsMoney>
+    <techHediffsTags Inherit="false">
+      <li>Advanced</li>
+      <li>ImplantEmpireCommon</li>
+      <li>AdvancedWeapon</li>
+    </techHediffsTags>
+    <techHediffsRequired>
+      <li>DeathAcidifier</li>
+    </techHediffsRequired>
+    <startingHediffs Inherit="False">
+      <li>
+        <def>Rimgate_Unrecruitable</def>
+      </li>
+      <li>
+        <def>Rimgate_SymbioteImplant_Kull</def>
+      </li>
+    </startingHediffs>
+    <itemQuality>Good</itemQuality>
+    <apparelMoney>6000~9000</apparelMoney>
+    <apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
+    <apparelTags Inherit="False">
+      <li>Rimgate_KullApparel_tag</li>
+    </apparelTags>
+    <apparelRequired Inherit="False">
+      <li>Rimgate_KullArmor</li>
+      <li>Rimgate_KullHelmet</li>
+    </apparelRequired>
+    <weaponMoney>2600~3100</weaponMoney>
+    <weaponTags Inherit="False">
+      <li>Rimgate_KullRanged_tag</li>
+    </weaponTags>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>12~20</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>12~20</range>
+      </li>
+    </skills>
+  </PawnKindDef>
+
+</Defs>

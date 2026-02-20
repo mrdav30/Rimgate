@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ======================= Military Barriers =======================  -->
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_MilitaryBarrier</defName>
+		<label>military barrier</label>
+		<description>A deployable barrier used for controlling traffic and providing cover in combat zones. Made from reinforced materials to withstand small arms fire and explosions.</description>
+
+		<graphicData>
+			<texPath>Things/Building/Security/RGMilitaryBarrier</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(2,1)</drawSize>
+		</graphicData>
+
+		<size>(2, 1)</size>
+		<rotatable>true</rotatable>
+		<fillPercent>0.3</fillPercent>
+		<defaultPlacingRot>South</defaultPlacingRot>
+
+		<statBases>
+			<WorkToBuild>3000</WorkToBuild>
+			<MaxHitPoints>750</MaxHitPoints>
+			<Beauty>-10</Beauty>
+			<Flammability>0</Flammability>
+		</statBases>
+
+		<costList>
+			<Rimgate_Concrete>10</Rimgate_Concrete>
+			<Steel>10</Steel>
+		</costList>
+
+		<designationCategory>Security</designationCategory>
+		<passability>PassThroughOnly</passability>
+		<pathCost>42</pathCost>
+		<castEdgeShadows>true</castEdgeShadows>
+		<staticSunShadowHeight>0.5</staticSunShadowHeight>
+		<pathCostIgnoreRepeat>true</pathCostIgnoreRepeat>
+		<fillPercent>0.65</fillPercent>
+		<canOverlapZones>false</canOverlapZones>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+
+		<building>
+			<isInert>true</isInert>
+			<ai_chillDestination>false</ai_chillDestination>
+			<claimable>false</claimable>
+			<canLandGravshipOn>true</canLandGravshipOn>
+		</building>
+
+		<researchPrerequisites>
+			<li>Rimgate_TauriManufacturing</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Rimgate_ConcreteBarrier</defName>
+		<label>concrete barrier</label>
+		<description>A solid concrete barrier used for controlling traffic and providing cover in combat zones. Its sturdy construction offers reliable protection against small arms fire.</description>
+
+		<graphicData>
+			<texPath>Things/Building/Security/RGConcreteBarrier</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+
+		<rotatable>false</rotatable>
+
+		<statBases>
+			<MaxHitPoints>500</MaxHitPoints>
+			<Beauty>-10</Beauty>
+			<Flammability>0</Flammability>
+			<WorkToBuild>600</WorkToBuild>
+		</statBases>
+
+		<costList>
+			<Rimgate_Concrete>5</Rimgate_Concrete>
+			<Steel>5</Steel>
+		</costList>
+
+		<designationCategory>Security</designationCategory>
+		<castEdgeShadows>true</castEdgeShadows>
+		<staticSunShadowHeight>0.2</staticSunShadowHeight>
+		<pathCost>42</pathCost>
+		<pathCostIgnoreRepeat>true</pathCostIgnoreRepeat>
+		<passability>PassThroughOnly</passability>
+		<fillPercent>0.60</fillPercent>
+		<canOverlapZones>false</canOverlapZones>
+		<noRightClickDraftAttack>true</noRightClickDraftAttack>
+
+		<building>
+			<isInert>true</isInert>
+			<ai_chillDestination>false</ai_chillDestination>
+			<canLandGravshipOn>true</canLandGravshipOn>
+		</building>
+
+		<repairEffect>ConstructDirt</repairEffect>
+		<researchPrerequisites>
+			<li>Rimgate_TauriManufacturing</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<!-- ======================= M2 Turret =======================  -->
+
+	<!-- ==== Bases ==== -->
+
+	<ThingDef Name="Rimgate_MannedTurretBase" ParentName="BuildingBase" Abstract="true">
+		<thingClass>Building_TurretGun</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<altitudeLayer>Building</altitudeLayer>
+		<stealable>false</stealable>
+		<rotatable>true</rotatable>
+		<statBases>
+			<Flammability>0.15</Flammability>
+			<Beauty>-20</Beauty>
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<techLevel>Industrial</techLevel>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Breakdownable" />
+			<li Class="CompProperties_Mannable">
+				<manWorkType>Violent</manWorkType>
+			</li>
+		</comps>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<fillPercent>0.85</fillPercent>
+		<castEdgeShadows>true</castEdgeShadows>
+		<hasTooltip>true</hasTooltip>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<placeWorkers>
+			<li>PlaceWorker_TurretTop</li>
+			<li>PlaceWorker_ShowTurretRadius</li>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+	</ThingDef>
+
+	<ThingDef Name="Rimgate_MannedGunBase" ParentName="BaseWeaponTurret" Abstract="true">
+		<soundInteract>Interact_Rifle</soundInteract>
+		<destroyOnDrop>true</destroyOnDrop>
+		<tradeability>None</tradeability>
+		<useHitPoints>false</useHitPoints>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Flammability>0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<!-- M2 Turret -->
+
+	<ThingDef ParentName="Rimgate_MannedTurretBase">
+		<defName>Rimgate_M2Turret</defName>
+		<label>manned M2 .50 cal machine gun</label>
+		<description>A belt-fed brute of a machine gun—equipped with a steel shield for when diplomacy fails and cover is optional. Manned by the brave and backed by decades of battlefield legacy.\nCommonly deployed by SG teams to politely discourage alien threats.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/RGM2HMGStand</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(1.5,1.5)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Security/RGM2HMG</uiIconPath>
+		<statBases>
+			<MaxHitPoints>350</MaxHitPoints>
+			<WorkToBuild>10000</WorkToBuild>
+			<Mass>52</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>10000</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>250</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<costList>
+			<Steel>250</Steel>
+			<Plasteel>25</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<building>
+			<turretGunDef>Rimgate_M2Gun</turretGunDef>
+			<turretBurstCooldownTime>1.875</turretBurstCooldownTime>
+		</building>
+		<researchPrerequisites>
+			<li>Rimgate_TauriTurretsTierOne</li>
+		</researchPrerequisites>
+		<tradeTags>
+			<li>Rimgate_TauriHMGTurret</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- M2 Gun -->
+
+	<ThingDef ParentName="Rimgate_MannedGunBase">
+		<defName>Rimgate_M2Gun</defName>
+		<label>M2 heavy machine gun</label>
+		<description>a mounted M2 HMG—big, loud, and not interested in negotiations.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/RGM2HMG</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2.25,2.25)</drawSize>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.35</AccuracyLong>
+			<RangedWeapon_Cooldown>0.66</RangedWeapon_Cooldown>
+			<Mass>38</Mass>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_50CalBullet</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>49.9</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>10</burstShotCount>
+				<soundCast>RG_M2Shot</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>13</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- .50 cal bullet -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_50CalBullet</defName>
+		<label>.50 BMG bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBase>0.75</armorPenetrationBase>
+			<speed>105</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ======================= Railgun =======================  -->
+
+	<!-- ==== Bases ==== -->
+
+	<ThingDef Name="Rimgate_MannedRailgunTurretBase" ParentName="BuildingBase" Abstract="true">
+		<thingClass>Building_TurretGun</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<altitudeLayer>Building</altitudeLayer>
+		<stealable>false</stealable>
+		<rotatable>true</rotatable>
+		<statBases>
+			<Flammability>0.15</Flammability>
+			<Beauty>-20</Beauty>
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(-1,0,0)</interactionCellOffset>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Breakdownable" />
+			<li Class="CompProperties_Mannable">
+				<manWorkType>Violent</manWorkType>
+			</li>
+		</comps>
+		<passability>PassThroughOnly</passability>
+		<pathCost>80</pathCost>
+		<fillPercent>0.85</fillPercent>
+		<castEdgeShadows>true</castEdgeShadows>
+		<hasTooltip>true</hasTooltip>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<placeWorkers>
+			<li>PlaceWorker_TurretTop</li>
+			<li>Rimgate.PlaceWorker_ShowTurretRadiusWithOffset</li>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+	</ThingDef>
+
+	<ThingDef Name="Rimgate_MannedRailgunGunBase" ParentName="BaseWeaponTurret" Abstract="true">
+		<soundInteract>Interact_Rifle</soundInteract>
+		<destroyOnDrop>true</destroyOnDrop>
+		<tradeability>None</tradeability>
+		<useHitPoints>false</useHitPoints>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Flammability>0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<!-- Railgun Turret -->
+
+	<ThingDef ParentName="Rimgate_MannedRailgunTurretBase">
+		<defName>Rimgate_NaquadahRailgunTurret</defName>
+		<label>manned Naquadah enhanced railgun</label>
+		<description>A manned railgun enhanced with Naquadah—capable of turning Goa'uld armor into swiss cheese at 1,500 meters. Standard equipment on Earth’s finest spacefaring hardware.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/RGNaquadahRailgunStand</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+		</graphicData>
+		<size>(3,3)</size>
+		<uiIconPath>Things/Building/Security/RGNaquadahRailgun</uiIconPath>
+		<statBases>
+			<MaxHitPoints>500</MaxHitPoints>
+			<WorkToBuild>30000</WorkToBuild>
+			<Mass>102</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>10000</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>250</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<costList>
+			<Steel>300</Steel>
+			<Rimgate_Naquadah>40</Rimgate_Naquadah>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Rimgate_Naquadria>2</Rimgate_Naquadria>
+		</costList>
+		<building>
+			<turretTopDrawSize>5.5</turretTopDrawSize>
+			<turretGunDef>Rimgate_NaquadahRailgunGun</turretGunDef>
+			<turretBurstCooldownTime>1.875</turretBurstCooldownTime>
+		</building>
+		<researchPrerequisites>
+			<li>Rimgate_TauriTurretsTierTwo</li>
+		</researchPrerequisites>
+		<tradeTags>
+			<li>Rimgate_TauriRailgunTurret</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- Railgun Gun -->
+
+	<ThingDef ParentName="Rimgate_MannedRailgunGunBase">
+		<defName>Rimgate_NaquadahRailgunGun</defName>
+		<label>manned Naquadah enhanced railgun</label>
+		<description>a heavy-duty Naquadah-infused railgun, borrowed from Earth’s battle cruisers and lovingly mounted for planetary defense. Overkill? Absolutely.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/RGNaquadahRailgun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.85</AccuracyLong>
+			<RangedWeapon_Cooldown>0.99</RangedWeapon_Cooldown>
+			<Mass>38</Mass>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Rimgate.Verb_LaunchWithOffset</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_RailgunBullet</defaultProjectile>
+				<warmupTime>1.7</warmupTime>
+				<range>99.9</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>RG_M2Shot</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>13</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- Railgun bullet -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_RailgunBullet</defName>
+		<label>railgun shell</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<speed>125</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ======================= Staff cannon =======================  -->
+
+	<DesignatorDropdownGroupDef>
+		<defName>Rimgate_StaffCannonTurrets</defName>
+		<label>staff cannon turrets</label>
+		<iconSource>Placed</iconSource>
+	</DesignatorDropdownGroupDef>
+
+	<!-- ==== Bases ==== -->
+
+	<ThingDef Name="Rimgate_StaffCannonTurretBase" ParentName="BuildingBase" Abstract="true">
+		<thingClass>Building_TurretGun</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<altitudeLayer>Building</altitudeLayer>
+		<stealable>false</stealable>
+		<rotatable>true</rotatable>
+		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-2)</interactionCellOffset>
+		<passability>PassThroughOnly</passability>
+		<pathCost>80</pathCost>
+		<fillPercent>0.85</fillPercent>
+		<castEdgeShadows>true</castEdgeShadows>
+		<hasTooltip>true</hasTooltip>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<designatorDropdown>Rimgate_StaffCannonTurrets</designatorDropdown>
+		<placeWorkers>
+			<li>PlaceWorker_TurretTop</li>
+			<li>Rimgate.PlaceWorker_ShowTurretRadiusWithOffset</li>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Breakdownable" />
+		</comps>
+	</ThingDef>
+
+	<ThingDef Name="Rimgate_StaffCannonGunBase" ParentName="BaseWeaponTurret" Abstract="true">
+		<soundInteract>Interact_ChargeLance</soundInteract>
+		<destroyOnDrop>true</destroyOnDrop>
+		<tradeability>None</tradeability>
+		<useHitPoints>false</useHitPoints>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Flammability>0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<!-- ==== Manned ==== -->
+
+	<!-- Staff cannon Turret -->
+
+	<ThingDef ParentName="Rimgate_StaffCannonTurretBase">
+		<defName>Rimgate_StaffCannonTurret</defName>
+		<label>manned staff cannon</label>
+		<description>A ship-grade staff weapon grafted onto a field tripod—manned, mean, and hungry for naquadah. Lobs incandescent plasma in punishing bursts when “Jaffa, kree” needs to be said at 1200 RPM.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/RGStaffCannonStand</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(2.3,2.3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+		</graphicData>
+		<size>(3,3)</size>
+		<uiIconPath>Things/Building/Security/RGStaffCannon</uiIconPath>
+		<statBases>
+			<MaxHitPoints>460</MaxHitPoints>
+			<WorkToBuild>22000</WorkToBuild>
+			<Mass>88</Mass>
+			<Flammability>0.15</Flammability>
+			<Beauty>-20</Beauty>
+		</statBases>
+		<costList>
+			<Steel>260</Steel>
+			<Rimgate_Naquadah>40</Rimgate_Naquadah>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Rimgate_Naquadria>2</Rimgate_Naquadria>
+		</costList>
+		<building>
+			<turretTopDrawSize>4.5</turretTopDrawSize>
+			<turretGunDef>Rimgate_StaffCannonGun</turretGunDef>
+			<turretBurstCooldownTime>2.2</turretBurstCooldownTime>
+		</building>
+		<researchPrerequisites>
+			<li>Rimgate_GoauldTurretsTierOne</li>
+		</researchPrerequisites>
+		<tradeTags>
+			<li>Rimgate_GoauldStaffCannonTurret</li>
+		</tradeTags>
+		<comps>
+			<li Class="CompProperties_Mannable">
+				<manWorkType>Violent</manWorkType>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>8000</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>220</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<outOfFuelMessage>Cannot shoot: Needs more ammo</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Staff cannon gun -->
+
+	<ThingDef ParentName="Rimgate_StaffCannonGunBase">
+		<defName>Rimgate_StaffCannonGun</defName>
+		<label>manned staff cannon</label>
+		<description>The business end of a Goa’uld staff cannon: searing plasma volleys with siege-tier reach. Slow to wind up, terrifying to watch, excellent at making cover feel optional.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/RGStaffCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.55</AccuracyLong>
+			<RangedWeapon_Cooldown>1.20</RangedWeapon_Cooldown>
+			<Mass>36</Mass>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Rimgate.Verb_LaunchWithOffset</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_StaffCannonBullet</defaultProjectile>
+				<warmupTime>1.2</warmupTime>
+				<range>38</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Rimgate_GoauldMaTokShot</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<consumeFuelPerShot>2</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- ==== Auto ==== -->
+
+	<!-- Auto Staff cannon turret -->
+
+	<ThingDef Name="Rimgate_AutoStaffCannonTurretBase" ParentName="BuildingBase">
+		<defName>Rimgate_AutoStaffCannonTurret</defName>
+		<label>Auto staff cannon</label>
+		<description>An autonomous Goa’uld staff cannon upgraded with forbidden ion-focusing tech of unknown origin. The result: blisteringly precise plasma bursts that chew through shields and laugh at cover. Field units arrive pre-keyed and self-scorch their cores on capture. Very good at making trespassers reconsider their life choices.</description>
+		<thingClass>Building_TurretGun</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<drawHighlight>true</drawHighlight>
+		<drawHighlightOnlyForHostile>true</drawHighlightOnlyForHostile>
+		<graphicData>
+			<texPath>Things/Building/Security/RGStaffCannonStand</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(1.5,1.5)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(1.5,0.35,1.4)</volume>
+				<offset>(0,0,-0.05)</offset>
+			</shadowData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<stealable>false</stealable>
+		<rotatable>true</rotatable>
+		<size>(2,2)</size>
+		<uiIconPath>Things/Building/Security/RGStaffCannonAuto</uiIconPath>
+		<statBases>
+			<MaxHitPoints>380</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<Mass>100</Mass>
+			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+			<Beauty>-20</Beauty>
+		</statBases>
+		<damageMultipliers>
+			<li>
+				<damageDef>Flame</damageDef>
+				<multiplier>0</multiplier>
+			</li>
+		</damageMultipliers>
+		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<fillPercent>0.5</fillPercent>
+		<killedLeavings>
+			<ChunkSlagSteel>1</ChunkSlagSteel>
+		</killedLeavings>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<designatorDropdown>Rimgate_StaffCannonTurrets</designatorDropdown>
+		<costList>
+			<Steel>260</Steel>
+			<Rimgate_Naquadah>40</Rimgate_Naquadah>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<ComponentSpacer>4</ComponentSpacer>
+			<Rimgate_Naquadria>2</Rimgate_Naquadria>
+			<AIPersonaCore>1</AIPersonaCore>
+		</costList>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+		<building>
+			<combatPower>190</combatPower>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<turretGunDef>Rimgate_AutoStaffCannonGun</turretGunDef>
+			<turretTopDrawSize>3</turretTopDrawSize>
+			<turretBurstCooldownTime>2.1</turretBurstCooldownTime>
+		</building>
+		<uiIconScale>0.95</uiIconScale>
+		<researchPrerequisites>
+			<li>Rimgate_GoauldTurretsTierTwo</li>
+		</researchPrerequisites>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<wickTicks>240</wickTicks>
+				<explosiveRadius>5.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+			</li>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Breakdownable" />
+			<li Class="CompProperties_Stunnable">
+				<affectedDamageDefs>
+					<li>Stun</li>
+					<li>EMP</li>
+				</affectedDamageDefs>
+				<adaptableDamageDefs>
+					<li>EMP</li>
+				</adaptableDamageDefs>
+			</li>
+			<li Class="CompProperties_AmbientSound">
+				<sound>MechTurretBig_Call</sound>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>250</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until naquadah spent</fuelLabel>
+				<fuelGizmoLabel>Naquadah levels</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>4000</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>220</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<outOfFuelMessage>Cannot shoot: Needs more fuel</outOfFuelMessage>
+				<fuelIconPath>Things/Item/Resource/RGNaquadah</fuelIconPath>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Auto Staff cannon turret - Shielded -->
+
+	<ThingDef ParentName="Rimgate_AutoStaffCannonTurretBase">
+		<defName>Rimgate_AutoStaffCannonTurret_Shielded</defName>
+		<label>Auto staff cannon (shielded)</label>
+		<description>An autonomous Goa’uld staff cannon upgraded with forbidden ion-focusing tech of unknown origin. The result: blisteringly precise plasma bursts that chew through shields and laugh at cover. Field units arrive pre-keyed and self-scorch their cores on capture. Very good at making trespassers reconsider their life choices.\n\nThis variant is equipped with a personal energy shield generator, providing added protection against incoming fire at the cost of increased power consumption.</description>
+		<statBases>
+			<MaxHitPoints>225</MaxHitPoints>
+			<Mass>120</Mass>
+		</statBases>
+		<costList>
+			<BroadshieldCore>1</BroadshieldCore>
+		</costList>
+		<researchPrerequisites>
+			<li>Rimgate_GoauldTurretsTierThree</li>
+		</researchPrerequisites>
+		<comps Inherit="False">
+			<li Class="CompProperties_Explosive">
+				<wickTicks>240</wickTicks>
+				<explosiveRadius>5.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+			</li>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Breakdownable" />
+			<li Class="CompProperties_Stunnable">
+				<affectedDamageDefs>
+					<li>Stun</li>
+					<li>EMP</li>
+				</affectedDamageDefs>
+				<adaptableDamageDefs>
+					<li>EMP</li>
+				</adaptableDamageDefs>
+			</li>
+			<li Class="CompProperties_AmbientSound">
+				<sound>MechTurretBig_Call</sound>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>600</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until naquadah spent</fuelLabel>
+				<fuelGizmoLabel>Naquadah levels</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Rimgate_Naquadah</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>4000</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>220</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+				<outOfFuelMessage>Cannot shoot: Needs more fuel</outOfFuelMessage>
+				<fuelIconPath>Things/Item/Resource/RGNaquadah</fuelIconPath>
+			</li>
+
+			<li Class="Rimgate.CompProperties_ShieldEmitter">
+				<compClass>Rimgate.Comp_ShieldEmitter</compClass>
+				<interceptAirProjectiles>true</interceptAirProjectiles>
+				<interceptGroundProjectiles>true</interceptGroundProjectiles>
+				<interceptNonHostileProjectiles>false</interceptNonHostileProjectiles>
+				<podBlocker>false</podBlocker>
+				<resetTime>1500</resetTime>
+				<shieldScaleDefault>2</shieldScaleDefault>
+				<stressPerDamage>0.2</stressPerDamage> <!-- default 0.003 -->
+				<stressReduction>0.75</stressReduction> <!-- default 1-->
+				<empDamageFactor>4.5</empDamageFactor>
+				<shieldOverloadThreshold>0.9</shieldOverloadThreshold>
+				<shieldOverloadChance>0.15</shieldOverloadChance>
+				<extraOverloadRange>3</extraOverloadRange>
+				<overloadDamageType>EMP</overloadDamageType>
+				<explodeOnCollapse>true</explodeOnCollapse>
+				<shieldColor>(237, 227, 133)</shieldColor>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Auto Staff cannon gun -->
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>Rimgate_AutoStaffCannonGun</defName>
+		<label>auto staff cannon</label>
+		<graphicData>
+			<texPath>Things/Building/Security/RGStaffCannonAuto</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.5, 1.5)</drawSize>
+		</graphicData>
+		<destroyOnDrop>true</destroyOnDrop>
+		<statBases>
+			<AccuracyTouch>0.42</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.82</AccuracyMedium>
+			<AccuracyLong>0.75</AccuracyLong>
+			<RangedWeapon_Cooldown>1.72</RangedWeapon_Cooldown>
+			<Mass>36</Mass>
+		</statBases>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+		<verbs>
+			<li>
+				<verbClass>Rimgate.Verb_LaunchWithOffset</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rimgate_StaffCannonBullet</defaultProjectile>
+				<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+				<warmupTime>1.6</warmupTime>
+				<range>34</range>
+				<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+				<burstShotCount>2</burstShotCount>
+				<soundCast>Rimgate_GoauldMaTokShot</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<consumeFuelPerShot>4</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- ==== Staff cannon bullet ==== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Rimgate_StaffCannonBullet</defName>
+		<label>staff cannon blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/RGStaffCannonProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>22</damageAmountBase>
+			<armorPenetrationBase>0.62</armorPenetrationBase>
+			<speed>72</speed>
+			<!-- small splash to punish clumps -->
+			<explosionRadius>1.25</explosionRadius>
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+			<explosionChanceToStartFire>0.42</explosionChanceToStartFire>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+			<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+
+	<!-- ======================= Alarms ======================= -->
+
+	<ThingDef Name="Rimgate_ProximityAlarm" ParentName="MechBuildingBase" Abstract="True">
+		<size>(1,1)</size>
+		<tickerType>Normal</tickerType>
+		<receivesSignals>true</receivesSignals>
+		<fillPercent>0.25</fillPercent>
+		<pathCost>30</pathCost>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<WorkToBuild>300</WorkToBuild>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Building/Mech/ActivatorProximity</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+			<shadowData>
+				<volume>(0.6, 0.4, 0.6)</volume>
+			</shadowData>
+			<damageData>
+				<rect>(0.3, 0.3, 0.4, 0.4)</rect>
+			</damageData>
+		</graphicData>
+		<building>
+			<buildingTags>
+				<li>Rimgate_Alarm</li>
+			</buildingTags>
+			<neverBuildable>true</neverBuildable>
+			<minDistanceToSameTypeOfBuilding>7</minDistanceToSameTypeOfBuilding>
+			<destroySound>BuildingDestroyed_Metal_Small</destroySound>
+		</building>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<placeWorkers>
+			<li>PlaceWorker_ShowCompSendSignalOnPawnProximityRadius</li>
+		</placeWorkers>
+		<comps>
+			<li Class="CompProperties_MoteEmitterProximityScan">
+				<mote>Mote_ProximityScannerRadius</mote>
+				<emissionInterval>90</emissionInterval>
+				<maintain>True</maintain>
+				<soundEmitting>ActivatorProximity_Ambience</soundEmitting>
+				<saveKeysPrefix>scan</saveKeysPrefix>
+				<warmupPulseFadeInTime>0.12</warmupPulseFadeInTime>
+				<warmupPulseSolidTime>0.15</warmupPulseSolidTime>
+				<warmupPulseFadeOutTime>0.6</warmupPulseFadeOutTime>
+			</li>
+			<li Class="CompProperties_MoteEmitter">
+				<mote>Mote_ActivatorProximityGlow</mote>
+				<maintain>True</maintain>
+				<saveKeysPrefix>glow</saveKeysPrefix>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2.9</glowRadius>
+				<glowColor>(115,35,20,0)</glowColor>
+			</li>
+		</comps>
+		<costList>
+			<Plasteel>7</Plasteel>
+		</costList>
+	</ThingDef>
+
+	<ThingDef ParentName="Rimgate_ProximityAlarm">
+		<defName>Rimgate_CryptosleepProximityAlarm</defName>
+		<label>proximity alarm</label>
+		<description>An autonomous tripwire node wired into local stasis hardware. When a humanlike crosses its scan radius—or blinks in via skips—it quietly pings nearby cryptosleep caskets and security systems: wake, eject, engage. Expect lids popping, sirens mumbling, and very alert ‘former statues.’</description>
+		<comps>
+			<li Class="Rimgate.CompProperties_ProximityAlarm">
+				<onlyHumanlike>true</onlyHumanlike>
+				<triggerOnPawnInRoom>true</triggerOnPawnInRoom>
+				<triggeredBySkipPsycasts>true</triggeredBySkipPsycasts>
+				<enableAfterTicks>120</enableAfterTicks>
+				<compClass>Rimgate.Comp_AlarmOpenCaskets</compClass>
+				<ignoreCasketDefs>
+					<li>Rimgate_WraithCocoonPod</li>
+				</ignoreCasketDefs>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ResearchTabDef>
+		<defName>Rimgate_ResearchTab</defName>
+		<label>Dwarfgate</label>
+	</ResearchTabDef>
+
+	<!-- Glyph Deciphering -->
+	<ResearchProjectDef>
+		<tab>Rimgate_ResearchTab</tab>
+		<defName>Rimgate_GlyphDeciphering</defName>
+		<label>Glyph deciphering</label>
+		<description>The symbols etched into Dwarfgates—and scribbled across ominous scrolls—aren’t just artistic flair. Decoding them may unlock a galaxy-spanning transit network. Or a death trap. Possibly both.</description>
+		<baseCost>2000</baseCost>
+		<techLevel>Medieval</techLevel>
+		<researchViewX>0.00</researchViewX>
+		<researchViewY>0.00</researchViewY>
+
+		<discoveredLetterTitle>About: Glyph Deciphering</discoveredLetterTitle>
+		<discoveredLetterText>Your researchers have cracked the code behind the glyphs adorning the Dwarfgate.\n\nThese symbols are more than mere decoration; they represent coordinates and commands essential for operating the gate network.\n\nWith this newfound knowledge, your colony can now begin to unlock the secrets of gate travel.\n\nCaution is advised: some glyphs may lead to destinations best left unexplored.</discoveredLetterText>
+
+	</ResearchProjectDef>
+
+	<!-- Base -->
+	<ResearchProjectDef Name="Rimgate_ResearchBase" Abstract="True">
+		<tab>Rimgate_ResearchTab</tab>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+	<!-- Naquadah Refinement -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_NaquadahRefinement</defName>
+		<label>Refine Naquadah</label>
+		<description>Learn to stabilize and refine raw Naquadah into Naquadria — a hyperreactive isotope capable of powering anything from handheld energy weapons to planetary-scale disasters.\n\nThe process is equal parts chemistry, theoretical physics, and prayer.\n\nOne misplaced decimal and you’ll discover a new crater where your lab used to be — but hey, progress has casualties.</description>
+		<baseCost>3500</baseCost>
+		<prerequisites>
+			<li>Fabrication</li>
+		</prerequisites>
+		<researchViewX>0</researchViewX>
+		<researchViewY>1</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_Naquadah</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Naquadah Refinement</discoveredLetterTitle>
+		<discoveredLetterText>Your researchers have done the unthinkable: refined Naquadah into its unstable cousin, Naquadria.\n\nIt produces enough energy to power a city—or erase one. Testing reports describe the reaction as “beautiful” right before the shielding melted.\n\nTheoretical containment procedures are now logged. Whether they’ll hold is another matter.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Naquadah Refinement</li>
+				<li>subject->Naquadria synthesis</li>
+				<li>subject_adj->volatile</li>
+				<li>subject_adj->catastrophic</li>
+				<li>subject_adj->brilliant</li>
+
+				<li>subject_story->a mineral that hums when handled wrong</li>
+				<li>subject_story->a substance that powers gods and punishes amateurs</li>
+				<li>subject_story->a glowing reminder that curiosity has a blast radius</li>
+
+				<li>subject_gerund->refining Naquadah with improvised containment fields</li>
+				<li>subject_gerund->coaxing isotopes into stability through sheer optimism</li>
+				<li>subject_gerund->pretending to understand why it’s humming louder now</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<!-- Ancient Alloys -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_AncientAlloyResearch</defName>
+		<label>Ancient alloys</label>
+		<description>By combining Plasteel, Uranium, Naquadah, and Steel, our scientists have created an absurdly strong, absurdly unstable alloy.\nToo volatile for furniture, perfect for high-stakes wormhole shielding.</description>
+		<baseCost>4000</baseCost>
+		<researchViewX>1</researchViewX>
+		<researchViewY>1</researchViewY>
+		<prerequisites>
+			<li>Rimgate_NaquadahRefinement</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_GateIrisResearch</defName>
+		<label>Irises</label>
+		<description>By placing an ultra-thin barrier mere microns from a Dwarfgate's event horizon, we can prevent reintegration of inbound matter.\nIn simpler terms: unwanted guests go *splat*. Handy.</description>
+		<baseCost>6000</baseCost>
+		<prerequisites>
+			<li>Rimgate_GlyphDeciphering</li>
+			<li>Rimgate_AncientAlloyResearch</li>
+			<li>Machining</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<!-- DHD logic -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_DHDResearch</defName>
+		<label>DHD logic</label>
+		<description>By studying salvaged Dwarfgate alloys and Tau'ri fabrication techniques, researchers have developed a way to create a more... replaceable DHD.\nIt won’t impress the Ancients, but it dials just fine.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>4000</baseCost>
+		<prerequisites>
+			<li>Rimgate_GlyphDeciphering</li>
+			<li>Rimgate_AncientAlloyResearch</li>
+			<li>AdvancedFabrication</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>0.5</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_DialHomeDevice</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: DHD Logic</discoveredLetterTitle>
+		<discoveredLetterText>Through painstaking analysis — and at least one accidental power surge — your researchers have created a Tau’ri replacement for the ancient Dwarfgate dialer.\n\nIt’s not elegant, but it *works*: no line-of-sight needed, extended range, and full remote control of the gate’s iris. A triumph of modern engineering and excessive coffee consumption.\n\nJust don’t unplug it — the hum means it’s working.\n\nNote: Your researchers also believe they can train field members how to salvage destroyed DHDs and hijack a direct gate interface link that will allow dialing out in case of emergency.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<!-- Subject -->
+				<li>subject->Dial Home Device</li>
+				<li>subject->DHD</li>
+				<li>subject->control console</li>
+				<li>subject->glyph interface</li>
+				<li>subject->Ancient dialer</li>
+				<li>subject->subspace transceiver</li>
+
+				<!-- Adjectives -->
+				<li>subject_adj->Ancient</li>
+				<li>subject_adj->Tau'ri-engineered</li>
+				<li>subject_adj->hybrid</li>
+				<li>subject_adj->modular</li>
+				<li>subject_adj->jury-rigged</li>
+				<li>subject_adj->reverse-engineered</li>
+				<li>subject_adj->archaeotech</li>
+				<li>subject_adj->repurposed</li>
+
+				<!-- Lore/Story hooks -->
+				<li>subject_story->a crystalline interface that once spoke the language of the Ancients</li>
+				<li>subject_story->a control node designed to shape wormhole trajectories across subspace lattices</li>
+				<li>subject_story->an artifact scavenged from a collapsed outpost, its core humming faintly with zero-point residue</li>
+				<li>subject_story->a circular console whose glyphs correspond to constellations long forgotten by this world</li>
+				<li>subject_story->a device that encodes spatial coordinates into quantum lock sequences for instantaneous transit</li>
+				<li>subject_story->a remnant of the Ancients’ transportation web, now patched together with Tau'ri components and duct tape</li>
+				<li>subject_story->a battered interface whose inner crystal rings still resonate with the gate network’s subspace harmonics</li>
+				<li>subject_story->a piece of alien engineering that refuses to die, no matter how many centuries of dust it’s buried under</li>
+
+				<!-- Gerunds: research actions -->
+				<li>subject_gerund->decoding Ancient gate control subroutines</li>
+				<li>subject_gerund->mapping the quantum address schema of local gate nodes</li>
+				<li>subject_gerund->synchronizing Tau'ri microprocessors to Ancient neural lattices</li>
+				<li>subject_gerund->translating the glyph matrix into machine-readable code</li>
+				<li>subject_gerund->stabilizing wormhole initiation feedback loops</li>
+				<li>subject_gerund->aligning energy modulation crystals for efficient dialing</li>
+				<li>subject_gerund->adapting naquadah power conduits to human-safe voltage thresholds</li>
+				<li>subject_gerund->patching damaged Ancient protocols with modern circuitry</li>
+				<li>subject_gerund->compensating for subspace drift between gate nodes</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<!-- Replicator technology -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ReplicatorLink</defName>
+		<label>Replicator link</label>
+		<description>Salvaged from fallen Replicators, this inert link module hums faintly with dormant nanite activity.\n\nBy studying its structure and field patterns, we may unlock new ways to combat—or perhaps even control—these relentless machines.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>3000</baseCost>
+		<prerequisites>
+			<li>Rimgate_AncientAlloyResearch</li>
+			<li>StandardMechtech</li>
+			<li>AdvancedFabrication</li>
+		</prerequisites>
+		<requiredAnalyzed>
+			<li>Rimgate_ReplicatorLink</li>
+		</requiredAnalyzed>
+		<researchViewX>2</researchViewX>
+		<researchViewY>1</researchViewY>
+
+		<discoveredLetterTitle>About: Replicator Link</discoveredLetterTitle>
+		<discoveredLetterText>Analysis of the inert Replicator link has yielded partial schematics and a long list of unanswered questions.\n\nYour team believes the bonding field patterns can be reverse-engineered to disrupt active swarms—or even repurpose dormant nanites for friendly use.\n\nAs one researcher put it: “If we can make them stop… maybe we can make them help.”</discoveredLetterText>
+
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Replicator link</li>
+				<li>subject_adj->dormant</li>
+				<li>subject_adj->inert</li>
+				<li>subject_adj->nanite-infused</li>
+
+				<li>subject_story->a module humming with the echoes of a million tiny machines</li>
+				<li>subject_story->a fragment of a relentless swarm, frozen in time</li>
+				<li>subject_story->a piece of alien technology that defies understanding—and survival</li>
+
+				<li>subject_gerund->decoding nanite bonding field patterns</li>
+				<li>subject_gerund->mapping dormant Replicator subroutines</li>
+				<li>subject_gerund->reverse-engineering alien nanite architecture</li>
+			</rulesStrings>
+		</generalRules>
+
+	</ResearchProjectDef>
+
+	<!-- Replicator gestation -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ReplicatorGestation</defName>
+		<label>Replicator gestation</label>
+		<description>By synthesizing Replicator link modules with advanced mechanoid fabrication techniques, we can initiate controlled gestation of Replicator units.\n\nThis process is delicate: too little energy and the nanites fail to cohere; too much, and you risk unleashing a hostile swarm.\n\nWith careful monitoring, however, we can produce Replicators for study—or even defense.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>5000</baseCost>
+
+		<prerequisites>
+			<li>Rimgate_ReplicatorLink</li>
+			<li>HighMechtech</li>
+		</prerequisites>
+
+		<researchViewX>3</researchViewX>
+		<researchViewY>0.5</researchViewY>
+
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Replicator gestation</li>
+				<li>subject_adj->controlled</li>
+				<li>subject_adj->delicate</li>
+				<li>subject_adj->nanite-based</li>
+
+				<li>subject_story->a process that births machines from microscopic swarms</li>
+				<li>subject_story->a synthesis of alien nanotechnology and mechanoid fabrication</li>
+				<li>subject_story->a method to coax order from the chaos of self-replicating machines</li>
+
+				<li>subject_gerund->initiating Replicator cohesion sequences</li>
+				<li>subject_gerund->synthesizing nanite swarms into functional units</li>
+				<li>subject_gerund->monitoring energy flux during gestation cycles</li>
+			</rulesStrings>
+		</generalRules>
+
+	</ResearchProjectDef>
+
+	<!-- Humanoid Replicator gestation -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ReplicatorHumanoidGestation</defName>
+		<label>Humanoid Replicator gestation</label>
+		<description>By refining our gestation techniques and incorporating advanced neural scaffolding, we can now produce humanoid Replicator units.\n\nThese constructs exhibit enhanced adaptability and problem-solving capabilities, making them formidable both in combat and complex tasks.\n\nCaution is advised: their intelligence approaches that of sentient beings, raising ethical considerations alongside practical ones.</description>
+		<techLevel>Ultra</techLevel>
+		<baseCost>8000</baseCost>
+
+		<prerequisites>
+			<li>Rimgate_ReplicatorGestation</li>
+			<li>UltraMechtech</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<researchViewX>4</researchViewX>
+		<researchViewY>0.5</researchViewY>
+
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Humanoid Replicator gestation</li>
+				<li>subject_adj->advanced</li>
+				<li>subject_adj->neural-enhanced</li>
+				<li>subject_adj->intelligent</li>
+
+				<li>subject_story->a process that births self-aware machines from microscopic swarms</li>
+				<li>subject_story->a synthesis of alien nanotechnology and advanced neural scaffolding</li>
+				<li>subject_story->a method to create machines that think, adapt, and learn</li>
+
+				<li>subject_gerund->initiating humanoid Replicator cohesion sequences</li>
+				<li>subject_gerund->integrating neural scaffolds into nanite swarms</li>
+				<li>subject_gerund->monitoring cognitive development during gestation cycles</li>
+			</rulesStrings>
+		</generalRules>
+
+	</ResearchProjectDef>
+
+	<!-- Anti-Replicator weaponry -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_AntiReplicatorGun</defName>
+		<label>Anti-Replicator</label>
+		<description>A classified Tau’ri prototype adapted for field use: a directed energy pulse tuned to scramble Replicator bonding fields.\n\nTo organics it’s underwhelming; to Replicators it’s an existential crisis.\n\nProduction is slow, maintenance is grumpy, and the safety brief is just the word “Don’t” written six times.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>4500</baseCost>
+		<researchViewX>3</researchViewX>
+		<researchViewY>1</researchViewY>
+		<prerequisites>
+			<li>Rimgate_ReplicatorLink</li>
+		</prerequisites>
+
+		<discoveredLetterTitle>About: Anti-Replicator Weaponry</discoveredLetterTitle>
+		<discoveredLetterText>Analysis of the inert Replicator link has yielded a usable emission profile.\n\nYour team believes a tuned pulse can disrupt nanite cohesion long enough to turn active swarms into quiet scrap.\n\nField note #1: the pulse makes nearby Replicator debris tingle in a way that is deeply upsetting.</discoveredLetterText>
+
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Anti-Replicator gun</li>
+				<li>subject_adj->Tau’ri-derived</li>
+				<li>subject_adj->frequency-tuned</li>
+				<li>subject_adj->temperamental</li>
+
+				<li>subject_story->a weapon that whispers “no” into a billion nanite minds at once</li>
+				<li>subject_story->a project born from equal parts panic, genius, and spare parts</li>
+				<li>subject_story->a device that makes Replicators remember how to be dust</li>
+
+				<li>subject_gerund->mapping Replicator link lattices for resonance weaknesses</li>
+				<li>subject_gerund->overdriving capacitors to shape a collapsing coherence field</li>
+				<li>subject_gerund->pretending the status light blinking red is fine actually</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_AncientPuddleJumper</defName>
+		<label>Puddle Jumper</label>
+		<description>Blueprints recovered from the remains of an Ancient “Puddle Jumper” — a sleek, self-sealing scout craft built for silent insertion and questionable bravery.\n\nWhile the Ancients designed it for interstellar gates, the Tau’ri (and now, us) have re-engineered it for local atmospheric and orbital hops.\n\nNo wormhole travel, no auto-navigation, and definitely no manual that anyone can read — but it flies, shields, and occasionally terrifies pilots into sainthood.</description>
+		<baseCost>6500</baseCost>
+		<techLevel>Ultra</techLevel>
+		<prerequisites>
+			<li>Rimgate_AncientAlloyResearch</li>
+			<li>ShipBasics</li>
+			<li>Shuttles</li>
+			<li>OrbitalTech</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>1.5</researchViewY>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+		<requiredAnalyzed>
+			<li>Rimgate_DestroyedJumper</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: Ancient Puddle Jumper</discoveredLetterTitle>
+		<discoveredLetterText>Analysis of the ruined Ancient scout craft has yielded partial schematics and a long list of unanswered questions.\n\nYour team believes the design can be replicated — minus the exotic drive core and wormhole-rated frame. The resulting model should perform admirably in-atmosphere and for short-range exo flights.\n\nAs one researcher put it: “If it hums like that when powered, it’s either stable… or alive.”</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Ancient Puddle Jumper</li>
+				<li>subject_adj->reverse-engineered</li>
+				<li>subject_adj->Tau’ri-modified</li>
+				<li>subject_story->a whisper-quiet scout vessel with more personality than most pilots</li>
+				<li>subject_story->a ship that flies best when its operator pretends not to care about the warning lights</li>
+				<li>subject_story->a relic that hums with residual subspace charge, like it’s missing home</li>
+				<li>subject_gerund->rewiring Ancient flight matrices for Rim-standard controls</li>
+				<li>subject_gerund->replacing crystalline AI nodes with subcores and hope</li>
+				<li>subject_gerund->pretending you understand what “nanite lattice harmonics” means</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<!-- Ancient Structures -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_AncientStructures</defName>
+		<label>Ancient Structures</label>
+		<description>If we could get our hands on the construction techniques of Ancient architecture, we could adapt their methods to build more durable and efficient structures. Legends tell of designs that incorporate advanced materials and energy distribution systems that enhance the resilience of our buildings against environmental hazards and attacks.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>8000</baseCost>
+
+		<researchViewX>1</researchViewX>
+		<researchViewY>2.25</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_AncientAlloyResearch</li>
+			<li>Autodoors</li>
+			<li>FlakArmor</li>
+			<li>AdvancedFabrication</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithFaction</li>
+			<li>Rimgate_TauriFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+
+	</ResearchProjectDef>
+
+	<!-- Tok'ra Technology -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_TokraTunnelCrystals</defName>
+		<label>Tok'ra Excavation</label>
+		<description>The Tok'ra don’t dig. They *negotiate* with geology by utilizing crystal programming to embe a resonance “instruction” into a living lattice so it can propagate through stone, shed material, and leave stable passage behind. With the right notes on these techniques, researchers can use the methods employed by the Tok'ra to "program" crystals to rapidly grow tunnels underground.</description>
+		<techLevel>Ultra</techLevel>
+		<baseCost>8000</baseCost>
+
+		<researchViewX>2</researchViewX>
+		<researchViewY>2.25</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_AncientAlloyResearch</li>
+			<li>Stonecutting</li>
+		</prerequisites>
+
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_GoauldBaal</li>
+			<li>Rimgate_TauriFaction</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+
+		<discoveredLetterTitle>About: Tok'ra Tunnel Crystals</discoveredLetterTitle>
+		<discoveredLetterText>Your researchers have unlocked a new method for embedding resonance “instructions” into living crystal lattices.\n\nBy mixing raw stone and Naquadah together, we can make our own "programmable" crystals that can be used to rapidly clear designated mining areas.\n\nWhile harnessing this technology opens up new possibilities for resource extraction and base expansion, caution is advised. The rapid growth caused by these crystals can lead to structural instability if not properly managed.</discoveredLetterText>
+
+	</ResearchProjectDef>
+
+	<!-- Tok'ra Climate Control -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_TokraClimateControl</defName>
+		<label>Tok'ra Climate Control</label>
+		<description>Tok'ra caverns aren’t heated or cooled in the usual sense. Instead, living crystal lattices regulate thermal flow, balancing rooms like a tuned instrument—drawing excess heat into the surrounding stone, or pulling it back when the cold bites.\n\nYour researchers believe the same resonance principles can be adapted for surface colonies, provided the crystal is kept healthy with periodic naquadah feeding. The end result is climate control with no moving parts, no wiring… and a device that behaves less like a machine and more like a very cooperative organism.</description>
+		<techLevel>Ultra</techLevel>
+		<baseCost>8000</baseCost>
+
+		<researchViewX>3</researchViewX>
+		<researchViewY>2.25</researchViewY>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<prerequisites>
+			<li>Rimgate_TokraTunnelCrystals</li>
+			<li>AirConditioning</li>
+		</prerequisites>
+
+	</ResearchProjectDef>
+
+	<!-- ZPM Integration -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ZPMIntegration</defName>
+		<label>ZPM core</label>
+		<description>Decode Ancient supervisory fields and safety interlocks to bind a ZPM into modern distributions without catastrophic feedback. Until this is understood, a ZPM will remain inert when connected.</description>
+		<techLevel>Spacer</techLevel>
+		<baseCost>3200</baseCost>
+		<prerequisites>
+			<li>Batteries</li>
+			<li>MicroelectronicsBasics</li>
+		</prerequisites>
+		<researchViewX>0</researchViewX>
+		<researchViewY>3</researchViewY>
+		<requiredAnalyzed>
+			<li>Rimgate_ZPM</li>
+		</requiredAnalyzed>
+		<discoveredLetterTitle>About: ZPM</discoveredLetterTitle>
+		<discoveredLetterText>When your scientists finally cracked the containment lattice schematics, the lab went silent.\n\nEvery reading, every oscillation, every micro-field pointed to one conclusion: this was no ordinary crystal lattice. The ZPM’s inner structure is a sealed universe—an engineered pocket of subspace siphoning the quantum foam itself.\n\nYour researchers now understand the basic interlocks required to awaken such a device without annihilating half the map.\nOnce integrated into a power grid, a ZPM will initialize and begin harnessing and storing energy on a scale previously thought impossible.\n\nBe warned: this brilliance does not go unnoticed. The moment the containment field hums to life, eyes will turn toward your colony.</discoveredLetterText>
+		<generalRules>
+			<rulesStrings>
+				<li>subject->Zero Point Module</li>
+				<li>subject->ZPM</li>
+				<li>subject_adj->Ancient</li>
+				<li>subject_adj->archotech</li>
+				<li>subject_adj->forbidden</li>
+
+				<li>subject_story->an artifact sealed in a lattice of pure energy, humming with impossible stillness</li>
+				<li>subject_story->a power source so stable it defies entropy itself</li>
+				<li>subject_story->a relic from a civilization that bent the vacuum to its will</li>
+				<li>subject_story->a crystalline core suspended between universes, its heart beating in subspace</li>
+				<li>subject_story->a device older than recorded history, yet perfect beyond modern comprehension</li>
+				<li>subject_story->a cylinder of light and silence, pulsing with the echoes of creation</li>
+
+				<li>subject_gerund->decoding Ancient containment matrices</li>
+				<li>subject_gerund->stabilizing subspace manifolds</li>
+				<li>subject_gerund->translating the control glyphs of the Ancients</li>
+				<li>subject_gerund->aligning field harmonics to quantum lattice constants</li>
+				<li>subject_gerund->disentangling zero-point field feedback loops</li>
+			</rulesStrings>
+		</generalRules>
+	</ResearchProjectDef>
+
+	<!-- Subspace Masking -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_SubspaceMasking</defName>
+		<label>Subspace masking</label>
+		<description>Reverse-engineer Ancient carrier-noise and Tau’ri signal hygiene to hide a ZPM’s telltale subspace bleed. Not true invisibility—just enough distortion to keep opportunists from triangulating your base every other day.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>8000</baseCost>
+		<prerequisites>
+			<li>Rimgate_ZPMIntegration</li>
+			<li>Fabrication</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>3</researchViewY>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+	<!-- Subspace Coupling -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ParallelSubspaceCoupling</defName>
+		<label>Subspace coupling</label>
+		<description>Exploit cross-brane phase offsets to alternate a ZPM’s vacuum tap between adjacent subspace pockets. This doesn’t “refill” a ZPM so much as rotate where it drinks from. The math is ugly; the hum is beautiful.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>10000</baseCost>
+		<prerequisites>
+			<li>Rimgate_ZPMIntegration</li>
+			<li>Fabrication</li>
+		</prerequisites>
+		<researchViewX>1</researchViewX>
+		<researchViewY>3.5</researchViewY>
+		<discoveredLetterTitle>About: Phase Diverter</discoveredLetterTitle>
+		<discoveredLetterText>By expressing vacuum fluctuations across parallel subspace branes, your engineers can “phase-hop” a ZPM’s intake. Connected ZPMs will now gradually replenish reserves while a diverter runs on the same power net. Don’t stare at the interference fringes too long.</discoveredLetterText>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+	<!-- ZPM Housing -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_ZPMHousing</defName>
+		<label>ZPM Housing</label>
+		<description>Reconstruct Ancient multi-module containment architecture to safely align the output of multiple ZPMs. The original schematics assume access to a city-sized power grid, a few dozen drones, and a civilization that didn’t routinely store dead rats and beer in their workbenches.\n\nWith enough reverse-engineering, your colony can fabricate a compact cradle capable of synchronizing multiple ZPMs without blowing a hole in the local spacetime topology.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>10000</baseCost>
+
+		<researchViewX>2</researchViewX>
+		<researchViewY>3</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_SubspaceMasking</li>
+			<li>Rimgate_ParallelSubspaceCoupling</li>
+			<li>Rimgate_AncientStructures</li>
+			<li>AdvancedFabrication</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<discoveredLetterTitle>About: ZPM Housing</discoveredLetterTitle>
+		<discoveredLetterText>When the final glyph-lock snapped into place, your researchers didn’t cheer—they just stepped back, very slowly, as the holographic interface resolved itself into something unmistakably… Ancient.\n\nThe device before them isn’t just a docking frame. It’s a harmonizer, a stabilizer, and a very polite suggestion to the universe that several sealed micro-cosms should all pretend to act like one big battery.\n\nThrough careful reconstruction (and one memorable incident with a lab bench now permanently fused to the ceiling), your team decoded how the Ancients balanced parallel zero-point feeds.\n\nWith a proper containment housing, multiple ZPMs can now be aligned, synchronized, and—gods help you—combined.\n\nJust remember: the Ancients built these things under strict conditions, not next to a wooden barracks full of hungry boomrats.</discoveredLetterText>
+	</ResearchProjectDef>
+
+	<!-- Ancient Shield Technology -->
+	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
+		<defName>Rimgate_AncientShieldEmitter</defName>
+		<label>Ancient Shield Technology</label>
+		<description>Ancient notes describe a way to interweave hyper-activated quantum fields to create a defensive barrier around your base. With the help of a ZPM housing, it's actually feasible to power such a device on a large enough scale to protect against incoming attacks and provide a safe haven for your colonists.</description>
+		<techLevel>Archotech</techLevel>
+		<baseCost>10000</baseCost>
+
+		<researchViewX>3</researchViewX>
+		<researchViewY>3</researchViewY>
+
+		<prerequisites>
+			<li>Rimgate_ZPMHousing</li>
+			<li>ShieldBelt</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>Rimgate_AncientResearchBank</li>
+		</requiredResearchFacilities>
+
+		<techprintCount>1</techprintCount>
+		<techprintCommonality>3</techprintCommonality>
+		<techprintMarketValue>3000</techprintMarketValue>
+		<heldByFactionCategoryTags>
+			<li>Rimgate_WraithEmpire</li>
+		</heldByFactionCategoryTags>
+		<tags>
+			<li>Rimgate_TechprintPool</li>
+		</tags>
+
+	</ResearchProjectDef>
+
+</Defs>

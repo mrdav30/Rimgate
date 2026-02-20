@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <!-- ==================== Sarcophagus ==================== -->
+
+    <ChemicalDef>
+        <defName>Rimgate_SarcophagusChemical</defName>
+        <label>Sarcophagus</label>
+        <addictionHediff>Rimgate_SarcophagusAddiction</addictionHediff>
+        <canBinge>false</canBinge>
+        <generateAddictionGenes>false</generateAddictionGenes>
+    </ChemicalDef>
+
+    <NeedDef ParentName="DrugAddictionNeedBase">
+        <defName>Rimgate_SarcophagusChemicalNeed</defName>
+        <needClass>Need_Chemical</needClass>
+        <label>Sarcophagus</label>
+        <description>this pawn’s physiology craves the regenerative effects of a Goa’uld sarcophagus.\nDeprivation results in rapid decline, violent instability, and a personality best described as border-line insane.</description>
+        <listPriority>45</listPriority>
+        <fallPerDay>0.333</fallPerDay>
+    </NeedDef>
+
+    <!-- High -->
+
+    <HediffDef>
+        <defName>Rimgate_SarcophagusHigh</defName>
+        <hediffClass>Hediff_High</hediffClass>
+        <label>Sarcophagus high</label>
+        <description>a euphoric rush brought on by exposure to a Goa'uld sarcophagus.\nYou feel unstoppable—until you don’t.\nSide effects may include glowing arrogance and a god complex.</description>
+        <defaultLabelColor>(1,1,0.5)</defaultLabelColor>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <maxSeverity>1.0</maxSeverity>
+        <isBad>false</isBad>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-1.5</severityPerDay>
+                <showHoursToRecover>true</showHoursToRecover>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <painFactor>0.8</painFactor>
+                <statFactors>
+                    <RestFallRateFactor>0.33</RestFallRateFactor>
+                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>0.5</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Metabolism</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <!-- Addiction -->
+
+    <HediffDef ParentName="AddictionBase">
+        <defName>Rimgate_SarcophagusAddiction</defName>
+        <label>Sarcophagus addiction</label>
+        <description>once you've tasted the sarcophagus, reality feels... lacking.\nWithout regular exposure, users spiral into madness, organ failure, and dramatic shouting matches with invisible gods.</description>
+        <hediffClass>Hediff_Addiction</hediffClass>
+        <chemicalNeed>Rimgate_SarcophagusChemicalNeed</chemicalNeed>
+        <everCurableByItem>false</everCurableByItem>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-0.045</severityPerDay>
+                <showDaysToRecover>true</showDaysToRecover>
+            </li>
+        </comps>
+        <stages>
+            <li></li>
+            <li>
+                <label>withdrawal</label>
+                <painOffset>0.4</painOffset>
+                <hungerRateFactorOffset>0.5</hungerRateFactorOffset>
+                <socialFightChanceFactor>3.0</socialFightChanceFactor>
+                <statFactors>
+                    <RestFallRateFactor>1.5</RestFallRateFactor>
+                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.20</offset>
+                    </li>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.20</offset>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                </capMods>
+                <mentalStateGivers>
+                    <li>
+                        <mentalState>Berserk</mentalState>
+                        <mtbDays>4</mtbDays>
+                    </li>
+                    <li>
+                        <mentalState>Wander_Psychotic</mentalState>
+                        <mtbDays>2</mtbDays>
+                    </li>
+                </mentalStateGivers>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <!-- ==================== Tretonin ==================== -->
+
+    <ChemicalDef>
+        <defName>Rimgate_TretoninChemical</defName>
+        <label>Tretonin</label>
+        <addictionHediff>Rimgate_TretoninAddiction</addictionHediff>
+        <canBinge>false</canBinge>
+        <generateAddictionGenes>false</generateAddictionGenes>
+    </ChemicalDef>
+
+    <NeedDef ParentName="DrugAddictionNeedBase">
+        <defName>Rimgate_TretoninChemicalNeed</defName>
+        <needClass>Need_Chemical</needClass>
+        <label>Tretonin</label>
+        <description>once Tretonin enters the system, your body forgets how to fight infections on its own.\nRegular doses required. Missing one isn’t just uncomfortable—it’s a death sentence.\nYou’re not addicted, you’re *dependent*. Big difference.</description>
+        <listPriority>45</listPriority>
+        <fallPerDay>0.15</fallPerDay>
+        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    </NeedDef>
+
+    <HediffDef ParentName="AddictionBase">
+        <defName>Rimgate_TretoninAddiction</defName>
+        <label>Tretonin addiction</label>
+        <description>your body now runs on Tretonin like a Dwarfgate runs on naquadah.\nMiss a dose, and things go downhill fast: pain, hunger, weakness, and eventually, death.\nOn the bright side—no more symbiote required!</description>
+        <hediffClass>Hediff_Addiction</hediffClass>
+        <chemicalNeed>Rimgate_TretoninChemicalNeed</chemicalNeed>
+        <everCurableByItem>false</everCurableByItem>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <stages>
+            <li></li>
+            <li>
+                <label>unmet</label>
+                <painOffset>0.4</painOffset>
+                <lifeThreatening>true</lifeThreatening>
+                <deathMtbDays>10</deathMtbDays>
+                <hungerRateFactorOffset>0.5</hungerRateFactorOffset>
+                <statFactors>
+                    <ImmunityGainSpeed>0</ImmunityGainSpeed>
+                    <InjuryHealingFactor>0</InjuryHealingFactor>
+                </statFactors>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.9</setMax>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+        <allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+    </HediffDef>
+
+</Defs>
