@@ -9,7 +9,7 @@ namespace Rimgate;
 public class BiomaterialRecoveryDef : Def
 {
     [NoTranslate]
-    private string uiIconPath;
+    public string uiIconPath;
 
     // What we remove from the corpse/pawn.
     public HediffDef removesHediff;

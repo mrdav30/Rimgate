@@ -649,7 +649,7 @@ internal static class CloneUtility
         _cachedHairDefs ??= DefDatabase<HairDef>.AllDefsListForReading
             .Where<HairDef>(hairDef =>
             {
-                if (hairDef.styleGender == StyleGender.Any || hairDef.styleGender == null && pawn.gender == Gender.Male)
+                if (hairDef.styleGender == StyleGender.Any || hairDef.styleGender == StyleGender.Male && pawn.gender == Gender.Male)
                     return true;
                 return hairDef.styleGender == StyleGender.Female && pawn.gender == Gender.Female;
             }).ToList();

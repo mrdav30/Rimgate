@@ -55,7 +55,7 @@ public class Comp_CloningPodAnimation : ThingComp
             _idleEffecter.EffectTick(parent, new TargetInfo(parent.InteractionCell, parent.Map));
         }
 
-        if (!_clonePod.IsWorking)
+        if (!_clonePod.IsProcessing)
         {
             _operatingEffecter?.Cleanup();
             _operatingEffecter = null;
@@ -202,7 +202,7 @@ public class Comp_CloningPodAnimation : ThingComp
         else if (rot == Rot4.West)
             result = new Vector3(-0.5f, 0f, 0.25f);
 
-        if (_clonePod.IsWorking)
+        if (_clonePod.IsProcessing)
             return SetFloatingOffset(result, rot, ticks);
         else
             return result;

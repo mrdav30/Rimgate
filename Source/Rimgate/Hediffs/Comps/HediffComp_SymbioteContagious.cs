@@ -57,13 +57,9 @@ public class HediffComp_SymbioteContagious : HediffComp
             var candidate = candidates[i];
 
             float chance = 1f;
-            bool hasImmunity = false;
             var immunityRecord = candidate.health.immunity.GetImmunityRecord(RimgateDefOf.Rimgate_SymbiotePlague);
             if (immunityRecord != null)
-            {
-                hasImmunity = true;
                 chance = Mathf.Lerp(1f, 0f, immunityRecord.immunity / 0.6f);
-            }
 
             if (Rand.Chance(chance))
             {

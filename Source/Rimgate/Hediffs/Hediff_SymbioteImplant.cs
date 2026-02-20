@@ -13,7 +13,7 @@ public class Hediff_SymbioteImplant_Ext : DefModExtension
 
 public class Hediff_SymbioteImplant : Hediff_Implant
 {
-    public HediffComp_SymbioteHeritage Heritage => _heritage ?? GetComp<HediffComp_SymbioteHeritage>();
+    public HediffComp_SymbioteHeritage Heritage => _heritage ??= GetComp<HediffComp_SymbioteHeritage>();
 
     public Hediff_SymbioteImplant_Ext Props => _cachedProps ??= def.GetModExtension<Hediff_SymbioteImplant_Ext>();
 

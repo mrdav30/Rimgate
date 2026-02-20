@@ -3,11 +3,11 @@ param (
 )
 
 $ProjectPath = "UnityAssetBuilder"
-$RawTexturePath = "Assets/TexturesRaw"
-$RawSoundPath = "Assets/SoundsRaw"
+$RawTexturePath = "AssetsRaw/TexturesRaw"
+$RawSoundPath = "AssetsRaw/SoundsRaw"
 $UnityTexturePath = "UnityAssetBuilder/Assets/Data/Mrdav30.Rimgate/Textures"
 $UnitySoundPath = "UnityAssetBuilder/Assets/Data/Mrdav30.Rimgate/Sounds"
-$LogPath = "build.log"
+$LogPath = "build-assetbundle.log"
 
 Write-Host "Preparing assets..."
 

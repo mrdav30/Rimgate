@@ -1,614 +1,147 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F6B6BF20-E620-4CA7-BD28-8E6DD3D04B49}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rimgate</RootNamespace>
-    <AssemblyName>Rimgate</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <LangVersion>latest</LangVersion>
-    <TargetFrameworkProfile />
-	<RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <OutputPath>..\Assemblies\</OutputPath>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\Assemblies\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>0</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\Assemblies\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="BadHygiene">
-      <HintPath>..\..\..\Dubs-Bad-Hygiene-master\1.6\Assemblies\BadHygiene.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="KCSG">
-      <HintPath>D:\SteamLibrary\steamapps\workshop\content\294100\2023507013\1.6\Assemblies\KCSG.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="VEF">
-      <HintPath>D:\SteamLibrary\steamapps\workshop\content\294100\2023507013\1.6\Assemblies\VEF.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AccessibilityModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AIModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AndroidJNIModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ARModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ARModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ClothModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterInputModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterRendererModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CrashReportingModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.DSPGraphModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.GameCenterModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.GridModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.GridModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.HotReloadModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.InputModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.LocalizationModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.PerformanceReportingModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ScreenCaptureModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteMaskModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.StreamingModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SubstanceModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SubsystemsModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TextCoreModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TLSModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UNETModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UNETModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityConnectModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.VehiclesModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.VFXModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.VideoModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.VRModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VRModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.WindModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.WindModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.XRModule">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.XRModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Lib.Harmony">
-      <Version>2.3.6</Version>
-      <ExcludeAssets>runtime</ExcludeAssets>
-      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Abilities\CompAbilityEffect_EssenceCost.cs" />
-    <Compile Include="Abilities\CompAbilityEffect_LaunchMultipleProjectile.cs" />
-    <Compile Include="Abilities\CompAbilityEffect_ApplyDrainLife.cs" />
-    <Compile Include="Abilities\CompAbilityEffect_MechEnergyCost.cs" />
-    <Compile Include="Abilities\CompAbilityEffect_WraithCocoonWrap.cs" />
-    <Compile Include="Abilities\CompAbilityEffect_WraithEssenceMending.cs" />
-    <Compile Include="Abilities\CompAbility_RequiresTrainable.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_AbilityEssenceCost.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_AbilityMechEnergyCost.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_AbilityRequiresTrainable.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_WraithEssenceMending.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_CarryCorpseToCloningPod.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_CarryToCloningPod.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_CarryToSarcophagus.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_CalibrateClonePod.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_DrainLifeFromCocoonedPrisoner.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_EjectZpmFromHousing.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_EnterCloningPod.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_HaulToMobileContainer.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_InsertSymbioteQueen.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_InsertZpmIntoHousing.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_MeditateAtWraithTable.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_MeditateOnGoauldThrone.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_PushContainer.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_RecoverBiomaterialFromCorpse.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_SitFacingBuilding_Learning.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_CloseGate.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_Toggle.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_GoToAndUseItem.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_WraithCocoonPrisoner.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_WraithEssenceMending.cs" />
-    <Compile Include="AI\JobGivers\JobGiver_SatisfyEssenceNeed.cs" />
-    <Compile Include="AI\JobGivers\JobGiver_MaraudColony.cs" />
-    <Compile Include="AI\JobGivers\JobGiver_Unas.cs" />
-    <Compile Include="AI\LordJobs\LordJob_MaraudColony.cs" />
-    <Compile Include="AI\LordJobs\LordToil_MaraudColony.cs" />
-    <Compile Include="AI\ThinkNodes\ThinkNode_ConditionalHasGeneResourceNeed.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_LoadContainer.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_CalibrateCloningPod.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_PushContainer.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_Toggle.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_CloseGate.cs" />
-    <Compile Include="Comps\CompAssignableToPawn_Sarcophagus.cs" />
-    <Compile Include="Comps\CompUseEffect_AddGene.cs" />
-    <Compile Include="Comps\Properties\CompProperties_UseEffectAddGene.cs" />
-    <Compile Include="Comps\CompTargetable_TokraTunnelCrystal.cs" />
-    <Compile Include="Comps\CompTargetEffect_TokraTunnelCrystal.cs" />
-    <Compile Include="Comps\CompUseEffect_InstallSymbiote.cs" />
-    <Compile Include="Comps\Comp_BodyGraphicSwapper.cs" />
-    <Compile Include="Comps\Comp_Dissolves.cs" />
-    <Compile Include="Comps\Comp_ToggleIris.cs" />
-    <Compile Include="Comps\Properties\CompProperties_BodyGraphicSwapper.cs" />
-    <Compile Include="Comps\Properties\CompProperties_Dissolves.cs" />
-    <Compile Include="Comps\Properties\CompProperties_GlyphParchment.cs" />
-    <Compile Include="Comps\Properties\CompProperties_UseEffectInstallSymbiote.cs" />
-    <Compile Include="Comps\Comp_SymbiotePool.cs" />
-    <Compile Include="Comps\Comp_SymbioteRottable.cs" />
-    <Compile Include="Comps\Comp_TintedEmptyStateGraphic.cs" />
-    <Compile Include="Comps\Comp_AnalyzableResearchWhen.cs" />
-    <Compile Include="Comps\CompUseEffect_AssembleAndStartQuest.cs" />
-    <Compile Include="Comps\Comp_MobileContainerControl.cs" />
-    <Compile Include="Comps\Comp_PersistentMentalState.cs" />
-    <Compile Include="Comps\Comp_ResonanceIdol.cs" />
-    <Compile Include="Comps\Comp_SetInitialGestatorState.cs" />
-    <Compile Include="Comps\Comp_AlarmOpenCaskets.cs" />
-    <Compile Include="Comps\Comp_AnimatedSymbiotePool.cs" />
-    <Compile Include="Comps\Comp_ZpmSignalScrambler.cs" />
-    <Compile Include="Comps\Properties\CompProperties_AnalyzableResearchWhen.cs" />
-    <Compile Include="Comps\Properties\CompProperties_UseEffectAssembleAndStartQuest.cs" />
-    <Compile Include="Comps\Properties\CompProperties_MobileContainerControl.cs" />
-    <Compile Include="Comps\Properties\CompProperties_PersistentMentalState.cs" />
-    <Compile Include="Comps\Properties\CompProperties_ProximityAlarm.cs" />
-    <Compile Include="Comps\Comp_CloningPodAnimation.cs" />
-    <Compile Include="Comps\Comp_Toggle.cs" />
-    <Compile Include="Comps\Comp_ShieldEmitter.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_ApplyDrainLife.cs" />
-    <Compile Include="AI\WorkGivers\WorkerGiver_DoBill_Wraith.cs" />
-    <Compile Include="Comps\Properties\CompProperties_CloningPodAnimation.cs" />
-    <Compile Include="Comps\Properties\CompProperties_ResonanceIdol.cs" />
-    <Compile Include="Comps\Properties\CompProperties_SetInitialGestatorState.cs" />
-    <Compile Include="Comps\Properties\CompProperties_AnimatedSymbiotePool.cs" />
-    <Compile Include="Comps\Properties\CompProperties_SymbiotePool.cs" />
-    <Compile Include="Comps\Properties\CompProperties_SymbioteRottable.cs" />
-    <Compile Include="Comps\Properties\CompProperties_TintedEmptyStateGraphic.cs" />
-    <Compile Include="Comps\Properties\CompProperties_Toggle.cs" />
-    <Compile Include="Comps\Properties\CompProperties_FrameApparel.cs" />
-    <Compile Include="Comps\Properties\CompProperties_ShieldEmitter.cs" />
-    <Compile Include="Comps\Properties\CompProperties_SwitchWeapon.cs" />
-    <Compile Include="Comps\Comp_SwitchWeapon.cs" />
-    <Compile Include="Comps\Comp_FrameApparel.cs" />
-    <Compile Include="Comps\Comp_SymbioteHeritage.cs" />
-    <Compile Include="HarmonyPatches\Harmony_GenStep_Asteroid.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Messages_Message.cs" />
-    <Compile Include="HarmonyPatches\Harmony_ITab_Pawn_Character_IsVisible.cs" />
-    <Compile Include="HarmonyPatches\Harmony_PathGrid.cs" />
-    <Compile Include="HarmonyPatches\Harmony_PawnInventoryOption_GenerateThings.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Projectile_CheckForInterceptBetween.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Skyfaller_Tick.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Widgets_DefIcon_BiomaterialRecoveryDef.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_PersistentMentalState.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_SurgeryInspectableBiosignature.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_PersistentMentalState.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_ReplacesHediffs.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_ReplacesHediffs.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SurgeryInspectionBiosignature.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_Regeneration.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_Regeneration.cs" />
-    <Compile Include="Misc\DamageWorker_ApplyHediffToBodyPartTag.cs" />
-    <Compile Include="Misc\DamageWorker_ReplicatorDisrupt.cs" />
-    <Compile Include="Misc\GameComponent_RimgateDwarfgateTracker.cs" />
-    <Compile Include="Misc\PawnRenderNode_BodySwapper.cs" />
-    <Compile Include="Quests\GenStep_AncientComplex_GateSite.cs" />
-    <Compile Include="Quests\GenStep_PawnPresence.cs" />
-    <Compile Include="Quests\GenStep_SpawnStructureLayout.cs" />
-    <Compile Include="Quests\QuestNode_Root_GateSite.cs" />
-    <Compile Include="Quests\QuestNode_SetSiteQuestId.cs" />
-    <Compile Include="Recipes\IngredientValueGetter_Cement.cs" />
-    <Compile Include="Recipes\RecipeWorker_ModifyCatalyst.cs" />
-    <Compile Include="Social\ThoughtWorker_Precept_DwarfgateNoExpedition .cs" />
-    <Compile Include="Social\ThoughtWorker_Precept_SymbioteHostility_Social.cs" />
-    <Compile Include="Social\ThoughtWorker_Precept_SymbioteKinship_Social.cs" />
-    <Compile Include="Social\ThoughtWorker_Precept_HasNoSymbioteImplant.cs" />
-    <Compile Include="Social\ThoughtWorker_Precept_HasSymbioteImplant.cs" />
-    <Compile Include="Defs\BiomaterialRecoveryDef.cs" />
-    <Compile Include="Storyteller\GameCondition_Gate.cs" />
-    <Compile Include="Storyteller\IncidentWorker_Gate.cs" />
-    <Compile Include="Support\CalibrationOutcome.cs" />
-    <Compile Include="Support\SymbioteMemory.cs" />
-    <Compile Include="Genes\Gene_WraithEssenceMetabolism.cs" />
-    <Compile Include="HarmonyPatches\Harmony_ColonistBar.cs" />
-    <Compile Include="HarmonyPatches\Harmony_CompLabyrinthDoor_DrawJammed.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Designator_Uninstall.cs" />
-    <Compile Include="HarmonyPatches\Harmony_EquipmentUtility.cs" />
-    <Compile Include="HarmonyPatches\Harmony_FeedingUtilities.cs" />
-    <Compile Include="HarmonyPatches\Harmony_MeditationUtility.cs" />
-    <Compile Include="HarmonyPatches\Harmony_PowerNet.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Psycast.cs" />
-    <Compile Include="HarmonyPatches\Harmony_SiteMakerHelper_FactionCanOwn.cs" />
-    <Compile Include="HarmonyPatches\Harmony_MechanitorUtility.cs" />
-    <Compile Include="HarmonyPatches\Harmony_PawnGenerator.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Pawn_MechanitorTracker.cs" />
-    <Compile Include="HarmonyPatches\Harmony_ShortCircuitUtility.cs" />
-    <Compile Include="HarmonyPatches\Harmony_ThingOwnerUtility.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_PouchWatcher.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_PrimtaLifecycle.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_RandomCloneGeneration.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_GivePsylinkOnAdded.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_SymbioteKiller.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_Unrecruitable.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_PouchWatcher.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_PrimtaLifecycle.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SymbioteContagious.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SymbioteKiller.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_SymbioteContagious.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_SymbioteHeritage.cs" />
-    <Compile Include="Hediffs\Hediff_PrimtaInPouch.cs" />
-    <Compile Include="Hediffs\Hediff_SymbiotePlague.cs" />
-    <Compile Include="Hediffs\Hediff_Clone.cs" />
-    <Compile Include="Hediffs\Hediff_ClonedTracker.cs" />
-    <Compile Include="Hediffs\IngestionOutcomeDoer_HealAllDisease.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_GivePsylinkOnAdded.cs" />
-    <Compile Include="Rituals\RitualObligationTargetWorker_SymbiotePool.cs" />
-    <Compile Include="Rituals\RitualOutcomeEffectWorker_PrimtaRenewal.cs" />
-    <Compile Include="Rituals\RitualRole_PrimtaHost.cs" />
-    <Compile Include="Storyteller\GameCondition_GateHeatWave.cs" />
-    <Compile Include="Storyteller\GameCondition_GatePsychicDrone.cs" />
-    <Compile Include="Storyteller\GameCondition_GateToxicFallout.cs" />
-    <Compile Include="Storyteller\IncidentWorker_Asteroid.cs" />
-    <Compile Include="Storyteller\IncidentWorker_KillAllClonesNow.cs" />
-    <Compile Include="Storyteller\IncidentWorker_Marauders.cs" />
-    <Compile Include="Quests\QuestNode_RaidForZPM.cs" />
-    <Compile Include="Quests\QuestNode_RaidGateComplex.cs" />
-    <Compile Include="Quests\QuestNode_SpawnPawnsOnMap.cs" />
-    <Compile Include="Quests\QuestPart_DelayedPassOutInterval.cs" />
-    <Compile Include="Quests\QuestPart_RandomFactionRaid.cs" />
-    <Compile Include="Quests\QuestPart_SpawnPawnsOnSignal.cs" />
-    <Compile Include="Storyteller\IncidentWorker_SymbiotePlague.cs" />
-    <Compile Include="Things\Building_HackableMultiTileDoor.cs" />
-    <Compile Include="Things\Building_HackableSingleDoor.cs" />
-    <Compile Include="Things\Building_SymbioteAmbushTrap.cs" />
-    <Compile Include="Things\Building_CanopicJar.cs" />
-    <Compile Include="Things\Building_SymbioteSpawningPool.cs" />
-    <Compile Include="Things\Building_TokraClimateCrystal.cs" />
-    <Compile Include="Things\Building_ZPMHousing.cs" />
-    <Compile Include="Things\Pawn_Unas.cs" />
-    <Compile Include="Things\Thing_GoauldSymbiote.cs" />
-    <Compile Include="UI\Dialog_SliderWithValue.cs" />
-    <Compile Include="UI\FloatMenuOptionProvider_DialDestroyedDHD.cs" />
-    <Compile Include="UI\FloatMenuOptionProvider_EquipMechanoid.cs" />
-    <Compile Include="UI\FloatMenuOptionProvider_RecoverBiomaterials.cs" />
-    <Compile Include="UI\ITab_CanopicJar.cs" />
-    <Compile Include="UI\ITab_SymbiotePool.cs" />
-    <Compile Include="UI\RimgateTex.cs" />
-    <Compile Include="Social\ThoughtWorker_WraithEssenceCraving.cs" />
-    <Compile Include="Storyteller\IncidentWorker_GateHeatWave.cs" />
-    <Compile Include="Storyteller\IncidentWorker_GatePsychicDrone.cs" />
-    <Compile Include="Storyteller\IncidentWorker_GateToxicFallout.cs" />
-    <Compile Include="ThingSetMakers\ThingSetMaker_None.cs" />
-    <Compile Include="ThingSetMakers\ThingSetMaker_SpecialMeteorite.cs" />
-    <Compile Include="Hediffs\HediffGiver_AtAge.cs" />
-    <Compile Include="Abilities\Properties\CompProperties_MultipleProjectile.cs" />
-    <Compile Include="ThingSetMakers\ThingSetMaker_TechprintsByTag.cs" />
-    <Compile Include="Things\Apparel_WraithForceBuckler.cs" />
-    <Compile Include="Things\Building_Artistic.cs" />
-    <Compile Include="Things\Building_HackableForceField.cs" />
-    <Compile Include="Things\Building_MeatLab.cs" />
-    <Compile Include="Things\Building_DHD.cs" />
-    <Compile Include="Things\Building_MobileContainer.cs" />
-    <Compile Include="Things\Building_CloningPod.cs" />
-    <Compile Include="Things\Building_WraithCocoonPod.cs" />
-    <Compile Include="Things\Item_ScrapNote.cs" />
-    <Compile Include="Things\Projectile_AdditionalDamage.cs" />
-    <Compile Include="Things\Projectile_ZatBlast.cs" />
-    <Compile Include="Things\Building_Sarcophagus.cs" />
-    <Compile Include="Compatibility\AlphaGenesCompatibility.cs" />
-    <Compile Include="Compatibility\DbhCompatibility.cs" />
-    <Compile Include="Compatibility\EbfCompatibilityWrapper.cs" />
-    <Compile Include="Compatibility\ModCompatibility.cs" />
-    <Compile Include="Comps\Properties\CompProperties_AlternateApparel.cs" />
-    <Compile Include="Comps\Comp_AlternateApparel.cs" />
-    <Compile Include="Misc\DamageWorker_Siege.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Designator_Strip.cs" />
-    <Compile Include="HarmonyPatches\Harmony_FloatMenuOptionProviders.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Pawn.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Pawn_DraftController.cs" />
-    <Compile Include="HarmonyPatches\Harmony_WorkGiver_RescueDowned.cs" />
-    <Compile Include="Hediffs\Comps\HediffComp_SymbioteSlowAging.cs" />
-    <Compile Include="Hediffs\Comps\Properties\HediffCompProperties_SymbioteSlowAging.cs" />
-    <Compile Include="Hediffs\Hediff_SymbioteImplant.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_PatientGoToSarcophagus.cs" />
-    <Compile Include="AI\JobGivers\JobGiver_PatientGoToSarcophagus.cs" />
-    <Compile Include="Things\Building_Gate.cs" />
-    <Compile Include="AI\Arrivals\CaravanArrivalAction_PermanentGateSite.cs" />
-    <Compile Include="Comps\Comp_GlyphParchment.cs" />
-    <Compile Include="Comps\CompTargetable_Gate.cs" />
-    <Compile Include="Things\Building_ZPM.cs" />
-    <Compile Include="Things\Plant_MeatPlant.cs" />
-    <Compile Include="Things\ThingOwner_Container.cs" />
-    <Compile Include="Things\Thing_MobileCartProxy.cs" />
-    <Compile Include="Things\Thing_PushedCartVisual.cs" />
-    <Compile Include="Social\InteractionWorker_WraithHiveChat.cs" />
-    <Compile Include="Social\ThoughtWorker_SymbioteKinship_Social.cs" />
-    <Compile Include="Social\ThoughtWorker_SymbiotePouchEmpty.cs" />
-    <Compile Include="UI\Command_LoadToContainer.cs" />
-    <Compile Include="UI\Dialog_LoadContainers.cs" />
-    <Compile Include="UI\Dialog_RenameGateSite.cs" />
-    <Compile Include="HarmonyPatches\Harmony_Caravan_GetGizmos.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_BringToGate.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_DecodeGlyphs.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_DialGate.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_EnterGate.cs" />
-    <Compile Include="AI\JobDrivers\JobDriver_InstallIris.cs" />
-    <Compile Include="AI\Arrivals\PawnsArrivalModeWorker_Gate.cs" />
-    <Compile Include="UI\FloatMenuOptionProvider_CarryCorpseToCloningPod.cs" />
-    <Compile Include="UI\FloatMenuOptionProvider_DialAddress.cs" />
-    <Compile Include="UI\FloatMenuOptionProvider_EnterGate.cs" />
-    <Compile Include="UI\FloatMenuOptionProvider_CarryToCloningPod.cs" />
-    <Compile Include="UI\GeneGizmo_ResourceEssence.cs" />
-    <Compile Include="UI\Gizmo_ShieldStatus.cs" />
-    <Compile Include="UI\ITab_MobileContainer.cs" />
-    <Compile Include="UI\PlaceWorker_ShowTurretRadiusWithOffset.cs" />
-    <Compile Include="UI\PlaceWorker_ResonanceIdol.cs" />
-    <Compile Include="UI\PlaceWorker_Gate.cs" />
-    <Compile Include="Utilities\BiologyUtil.cs" />
-    <Compile Include="Utilities\CorpseBiomaterialRecoveryUtility.cs" />
-    <Compile Include="Utilities\MentalStateUtil.cs" />
-    <Compile Include="Utilities\MobileContainerUtility.cs" />
-    <Compile Include="Utilities\ResearchUtil.cs" />
-    <Compile Include="Utilities\RimgateEvents.cs" />
-    <Compile Include="Utilities\RimgateFactionOf.cs" />
-    <Compile Include="Utilities\GateUtil.cs" />
-    <Compile Include="World\MapComponent_ShieldList.cs" />
-    <Compile Include="World\MapComponent_ZpmRaidTracker.cs" />
-    <Compile Include="World\SitePartWorker_Gate.cs" />
-    <Compile Include="Utilities\CloneUtility.cs" />
-    <Compile Include="Rimgate_Settings.cs" />
-    <Compile Include="Support\TransitStoredThing.cs" />
-    <Compile Include="World\WorldComp_GateAddresses.cs" />
-    <Compile Include="Utilities\Utils.cs" />
-    <Compile Include="Misc\Verb_LaunchWithOffset.cs" />
-    <Compile Include="World\WorldObject_GateQuestSite.cs" />
-    <Compile Include="World\WorldObject_GateTransitSite.cs" />
-    <Compile Include="UI\FloatMenuOptionProvider_RescuePawnToSarcophagus.cs" />
-    <Compile Include="Utilities\SarcophagusUtil.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_Doctor_CarryFromBedToSarcophagus.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_Doctor_RescueToSarcophagus.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_Patient_GoToSarcophagus.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_Warden_CarryFromBedToSarcophagus.cs" />
-    <Compile Include="AI\WorkGivers\WorkGiver_Warden_RescueToSarcophagus.cs" />
-    <Compile Include="RimgateMod.cs" />
-    <Compile Include="Utilities\RimgateDefOf.cs" />
-    <Compile Include="Utilities\MedicalUtil.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Authors>mrdav30</Authors>
+		<Description>Rimgate introduces ancient planetary gate technology to RimWorld.</Description>
+		<Product>Rimgate</Product>
+		<FileVersion>1.0.0</FileVersion>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<ProjectGuid>{F6B6BF20-E620-4CA7-BD28-8E6DD3D04B49}</ProjectGuid>
+
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Configurations>Debug;Release</Configurations>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+
+		<OutputType>Library</OutputType>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>Rimgate</RootNamespace>
+		<AssemblyName>Rimgate</AssemblyName>
+		<TargetFramework>net48</TargetFramework>
+		<FileAlignment>512</FileAlignment>
+		<Deterministic>true</Deterministic>
+		<LangVersion>preview</LangVersion>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<LangVersion>preview</LangVersion>
+		<DebugType>embedded</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+		<ModDir>..\..\</ModDir>
+		<OutDir>$(ModDir)\Mod\1.6\Assemblies\</OutDir>
+		<RefDir>$(ModDir)\..\RimWorldWin64_Data\Managed</RefDir>
+		<SteamModDir>D:\SteamLibrary\steamapps\workshop\content\</SteamModDir>
+	</PropertyGroup>
+
+	<!-- Build Events -->
+	<Target Name="PostClean" AfterTargets="Clean">
+		<RemoveDir Directories="$(OutDir)" />
+	</Target>
+
+	<!--Build Configurations -->
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<DefineConstants>TRACE;DEBUG;UNITY_ASSERTIONS;DEV_TOOLS;PROFILER;</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>true</Optimize>
+		<DefineConstants>TRACE;RELEASE;</DefineConstants>
+	</PropertyGroup>
+
+	<!-- Dependencies -->
+
+	<ItemGroup>
+		<!-- Nuget -->
+		<PackageReference Include="Lib.Harmony.Ref" Version="2.3.6" />
+
+		<!-- Other mods -->
+		<Reference Include="BadHygiene">
+			<HintPath>$(ModDir)\..\Dubs-Bad-Hygiene-master\1.6\Assemblies\BadHygiene.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="KCSG">
+			<HintPath>$(SteamModDir)\294100\2023507013\1.6\Assemblies\KCSG.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="VEF">
+			<HintPath>$(SteamModDir)\294100\2023507013\1.6\Assemblies\VEF.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+
+		<!-- RimWorld -->
+		<Reference Include="System">
+			<HintPath>$(RefDir)\Assembly-CSharp.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System">
+			<HintPath>$(RefDir)\System.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System.Xml">
+			<HintPath>$(RefDir)\System.Xml.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System.Xml.Linq">
+			<HintPath>$(RefDir)\System.Xml.Linq.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System">
+			<HintPath>$(RefDir)\mscorlib.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(RefDir)\UnityEngine.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(RefDir)\UnityEngine.CoreModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.IMGUIModule">
+			<HintPath>$(RefDir)\UnityEngine.IMGUIModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>$(RefDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.InputModule">
+			<HintPath>$(RefDir)\UnityEngine.InputModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.TextRenderingModule">
+			<HintPath>$(RefDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Abilities\" />
+		<Folder Include="AI\" />
+		<Folder Include="Comps\" />
+		<Folder Include="HarmonyPatches\" />
+		<Folder Include="Hediffs\" />
+		<Folder Include="Misc\" />
+		<Folder Include="Quests\" />
+		<Folder Include="Recipes\" />
+		<Folder Include="Social\" />
+		<Folder Include="Defs\" />
+		<Folder Include="Storyteller\" />
+		<Folder Include="Support\" />
+		<Folder Include="Genes\" />
+		<Folder Include="Rituals\" />
+		<Folder Include="Things\" />
+		<Folder Include="UI\" />
+		<Folder Include="ThingSetMakers\" />
+		<Folder Include="Compatibility\" />
+		<Folder Include="Utilities\" />
+		<Folder Include="World\" />
+	</ItemGroup>
+
 </Project>

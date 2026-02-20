@@ -16,7 +16,7 @@ public class Comp_SymbiotePool : ThingComp
 
     public CompPowerTrader PowerTrader => _cachedPowerTrader ??= parent.GetComp<CompPowerTrader>();
 
-    public Comp_AnimatedSymbiotePool Animation => _cachedAnimation ?? parent.GetComp<Comp_AnimatedSymbiotePool>();
+    public Comp_AnimatedSymbiotePool Animation => _cachedAnimation ??= parent.GetComp<Comp_AnimatedSymbiotePool>();
 
     public Texture2D QueenIcon => _cachedInsertIcon ??= ContentFinder<Texture2D>.Get(Props.symbioteQueenDef.graphicData.texPath, true);
 

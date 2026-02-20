@@ -63,7 +63,7 @@ public class Building_Sarcophagus_Ext : DefModExtension
     [MayRequireBiotech]
     public List<XenotypeDef> disallowedXenotypes;
 
-    public virtual IEnumerable<string> ConfigErrors()
+    public override IEnumerable<string> ConfigErrors()
     {
         if (maxDiagnosisTime > 30f)
         {

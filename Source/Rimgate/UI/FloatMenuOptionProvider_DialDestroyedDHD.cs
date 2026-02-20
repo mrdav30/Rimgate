@@ -24,8 +24,7 @@ public class FloatMenuOptionProvider_DialDestroyedDHD : FloatMenuOptionProvider
 
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
-        var dhd = clickedThing.def == RimgateDefOf.Rimgate_DialHomeDeviceDestroyed;
-        if (dhd == null || !ResearchUtil.DHDLogicComplete)
+        if (clickedThing.def != RimgateDefOf.Rimgate_DialHomeDeviceDestroyed || !ResearchUtil.DHDLogicComplete)
             yield break;
 
         if (!Building_Gate.TryGetSpawnedGateOnMap(clickedThing.Map, out Building_Gate control))

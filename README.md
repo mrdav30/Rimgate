@@ -70,6 +70,22 @@ These files are required for RimWorld 1.6 and should not be removed.
 Raw textures and audio should NOT be included in the Steam Workshop upload.  
 Only the contents of the `Mod/` directory are distributed.
 
+## 🧰 Assembly Workflow ##
+
+Rimgate's C# project lives at `Source/Rimgate/Rimgate.csproj` and is built with `dotnet`.
+
+Build assembly only:
+
+```powershell
+.\build-assembly.ps1
+```
+
+Optional:
+
+```powershell
+.\build-assembly.ps1 -Configuration Debug
+```
+
 ## 🤝 Contributing ##
 
 Contributions are welcome.
@@ -106,13 +122,15 @@ The goal is long-term maintainability and expandability with a focus on performa
 
 1. Update XML and/or C#.
 2. Update textures or audio in `AssetsRaw/`.
-3. Run:
+3. Run the full release build:
 
     ```powershell
-    .\build-assetbundle.ps1
+    .\build-release.ps1
    ```
 
-4. Verify bundles exist in `Mod/1.6/AssetBundles/`.
+4. Verify output files:
+   - `Mod/1.6/Assemblies/Rimgate.dll`
+   - `Mod/1.6/AssetBundles/rimgate_core`
 5. Upload the `Mod/` folder to Steam Workshop.
 
 Do not upload:

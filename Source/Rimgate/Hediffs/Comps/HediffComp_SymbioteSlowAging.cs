@@ -9,9 +9,6 @@ public class HediffComp_SymbioteSlowAging : HediffComp
     private bool _initialized = false;
     private long _initialAgeTicks;
 
-    // Cache once to avoid boxing allocations
-    public Pawn Pawn => parent.pawn;
-
     public override void CompPostTick(ref float severityAdjustment)
     {
         if (Pawn.Dead || Props == null)

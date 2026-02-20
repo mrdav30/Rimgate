@@ -44,7 +44,7 @@ public class RimgateModSettings : ModSettings
 
     #endregion
 
-    public virtual void ExposeData()
+    public override void ExposeData()
     {
         base.ExposeData();
         Scribe_Values.Look<int>(ref RimgateModSettings.BaseCalibrationTicks, "BaseCalibrationTicks", 4500, true);

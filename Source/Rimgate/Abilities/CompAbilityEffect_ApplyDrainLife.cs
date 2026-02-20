@@ -5,7 +5,7 @@ namespace Rimgate;
 
 public class CompAbilityEffect_ApplyDrainLife : CompAbilityEffect
 {
-    public CompProperties_ApplyDrainLife Props => (CompProperties_ApplyDrainLife)props;
+    public new CompProperties_ApplyDrainLife Props => (CompProperties_ApplyDrainLife)props;
 
     // AI can only target pawns within range limits
     public override bool AICanTargetNow(LocalTargetInfo target)

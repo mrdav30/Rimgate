@@ -22,7 +22,7 @@ public class FloatMenuOptionProvider_CarryToCloningPod : FloatMenuOptionProvider
             && pawn.RaceProps.IsFlesh;
     }
 
-    public virtual IEnumerable<FloatMenuOption> GetOptionsFor(Pawn clickedPawn, FloatMenuContext context)
+    public override IEnumerable<FloatMenuOption> GetOptionsFor(Pawn clickedPawn, FloatMenuContext context)
     {
         if (!clickedPawn.Downed || !clickedPawn.RaceProps.IsFlesh)
             yield break;

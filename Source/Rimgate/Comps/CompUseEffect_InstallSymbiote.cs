@@ -6,7 +6,7 @@ namespace Rimgate;
 
 public class CompUseEffect_InstallSymbiote : CompUseEffect
 {
-    public new CompProperties_UseEffectInstallSymbiote Props => (CompProperties_UseEffectInstallSymbiote)props;
+    public CompProperties_UseEffectInstallSymbiote Props => (CompProperties_UseEffectInstallSymbiote)props;
 
     public override void DoEffect(Pawn usedBy)
     {

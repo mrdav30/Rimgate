@@ -185,8 +185,6 @@ public class Building_Gate : Building
 
     private CompExplosive _cachedexplosiveComp;
 
-    private Texture2D _cachedIrisToggleIcon;
-
     private bool _inert;
 
     private bool _gateConditionActive;

@@ -36,8 +36,7 @@ $dotnetCommand = Get-Command dotnet -ErrorAction SilentlyContinue
 if ($dotnetCommand) {
     & $dotnetCommand.Source build `
         $projectFullPath `
-        /t:Build `
-        /p:Configuration=$Configuration `
+        -c $Configuration `
         /p:Platform=AnyCPU `
         /nologo `
         /verbosity:minimal 2>&1 | Tee-Object -FilePath $logFullPath
@@ -53,12 +52,26 @@ else {
 }
 
 $candidateDlls = @(
+    (Join-Path $modAssemblyFullPath $dllName),
     (Join-Path $scriptRoot ("Source/Assemblies/{0}" -f $dllName)),
     (Join-Path $scriptRoot ("Source/Rimgate/bin/{0}/{1}" -f $Configuration, $dllName)),
-    (Join-Path $scriptRoot ("Source/Rimgate/bin/AnyCPU/{0}/{1}" -f $Configuration, $dllName))
+    (Join-Path $scriptRoot ("Source/Rimgate/bin/AnyCPU/{0}/{1}" -f $Configuration, $dllName)),
+    (Join-Path $scriptRoot ("Source/Rimgate/bin/{0}/net48/{1}" -f $Configuration, $dllName))
 )
 
 $builtDllPath = $candidateDlls | Where-Object { Test-Path $_ } | Select-Object -First 1
+
+if (!$builtDllPath) {
+    $fallbackDll = Get-ChildItem `
+        -Path (Join-Path $scriptRoot "Source/Rimgate/bin") `
+        -Filter $dllName `
+        -Recurse `
+        -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+
+    if ($fallbackDll) {
+        $builtDllPath = $fallbackDll.FullName
+    }
+}
 
 if (!$builtDllPath) {
     Write-Host "Build completed but could not find $dllName in expected output paths."
@@ -68,7 +81,9 @@ if (!$builtDllPath) {
 }
 
 $destinationDllPath = Join-Path $modAssemblyFullPath $dllName
-Copy-Item $builtDllPath $destinationDllPath -Force
+
+if ([System.IO.Path]::GetFullPath($builtDllPath) -ne [System.IO.Path]::GetFullPath($destinationDllPath)) {
+    Copy-Item $builtDllPath $destinationDllPath -Force
+}
 
 Write-Host "Assembly build complete."
-Write-Host "Copied: $destinationDllPath"

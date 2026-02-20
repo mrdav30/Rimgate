@@ -19,11 +19,24 @@ Rimgate is a mod for Rimworld that introduces new gameplay mechanics, assets, an
 
 ### Building the Project
 
-1. Open `Source/Rimgate.sln` in Visual Studio.
-2. Build the solution to generate `Rimgate.dll` and put in `Mod/1.6/Assemblies/`.
-3. Run `build-assetbundle.ps1` to generate Unity AssetBundles into `Mod/1.6/AssetBundles/`.
+Use the root build scripts:
 
-This script:
+1. `build-assembly.ps1` builds `Source/Rimgate/Rimgate.csproj` and outputs `Rimgate.dll` to `Mod/1.6/Assemblies/`.
+2. `build-assetbundle.ps1` generates Unity AssetBundles into `Mod/1.6/AssetBundles/`.
+3. `build-release.ps1` runs both scripts in sequence for release builds.
+
+Examples:
+
+- Assembly only: `.\build-assembly.ps1`
+- AssetBundles only: `.\build-assetbundle.ps1`
+- Full release build: `.\build-release.ps1`
+
+Optional parameters:
+
+- `.\build-assembly.ps1 -Configuration Debug`
+- `.\build-release.ps1 -Configuration Release -UnityPath "C:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe"`
+
+The `build-assetbundle.ps1` script:
 
 - Copies raw assets from `AssetsRaw/` into the Unity builder project
 - Builds the `rimgate_core` AssetBundle
@@ -83,6 +96,7 @@ Do not convert the Unity project to URP or HDRP.
 ## External Dependencies
 
 - **Harmony**: Used for runtime patching in C#.
+- **.NET SDK**: Required for `dotnet build` via `build-assembly.ps1`.
 - **Rimworld Modding Tools**: Recommended for XML validation and debugging.
 
 ## Key Files
@@ -90,7 +104,9 @@ Do not convert the Unity project to URP or HDRP.
 - `Mod/1.6/Defs/`: XML definitions.
 - `Source/Rimgate/`: C# source code.
 - `Mod/1.6/Patches/`: Compatibility patches.
+- `build-assembly.ps1`: Script for building the .NET assembly.
 - `build-assetbundle.ps1`: Script for building AssetBundles.
+- `build-release.ps1`: Script for full release builds (assembly + AssetBundles).
 - `AssetsRaw/`: Raw assets for textures and audio.
 
 ---

@@ -127,7 +127,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     public CloneType CloningType => _cloningType;
 
-    public bool IsWorking => Status == CloningStatus.CloningStarted || Status == CloningStatus.Incubating;
+    public bool IsProcessing => Status == CloningStatus.CloningStarted || Status == CloningStatus.Incubating;
 
     public bool HasPendingClone => _pendingCloneContainer != null && _pendingCloneContainer.Count > 0;
 
@@ -144,8 +144,6 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
     private float _hostSavedDbhThirstNeed;
 
     private bool _hostNeedsSnapshotTaken;
-
-    private Comp_CloningPodAnimation _cachedControl;
 
     private CompRefuelable _cachedRefuelable;
 
@@ -203,7 +201,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
         // State-dependent power consumption
         if (Power != null)
-            Power.PowerOutput = IsWorking ? -Power.Props.PowerConsumption : -Power.Props.idlePowerDraw;
+            Power.PowerOutput = IsProcessing ? -Power.Props.PowerConsumption : -Power.Props.idlePowerDraw;
 
         switch (Status)
         {
@@ -418,7 +416,6 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
         if (!Powered)
         {
-            string req = "not powered";
             yield return new FloatMenuOption("RG_CannotUse".Translate("NoPower".Translate()), null);
             yield break;
         }
