@@ -1,13 +1,7 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using UnityEngine;
 using Verse;
 using Verse.AI;
-using Verse.Noise;
 
 namespace Rimgate;
 
@@ -15,7 +9,7 @@ public static class CorpseBiomaterialRecoveryUtility
 {
     public static bool IsCorpseValidForRecovery(Corpse corpse, Pawn actor)
     {
-        if (corpse == null || corpse.Destroyed || corpse.IsForbidden(actor)) 
+        if (corpse == null || corpse.Destroyed || corpse.IsForbidden(actor))
             return false;
         if (corpse.InnerPawn == null) return false;
 
@@ -156,7 +150,7 @@ public static class CorpseBiomaterialRecoveryUtility
     private static void ConsumeKits(Pawn actor, ThingDef kitDef, int count)
     {
         bool requiresKit = kitDef != null && count > 0;
-        if (!requiresKit) 
+        if (!requiresKit)
             return;
 
         int remaining = count;

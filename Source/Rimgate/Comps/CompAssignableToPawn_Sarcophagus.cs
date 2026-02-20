@@ -4,6 +4,7 @@ using System.Linq;
 using Verse;
 
 namespace Rimgate;
+
 public class CompAssignableToPawn_Sarcophagus : CompAssignableToPawn
 {
     private Building_Sarcophagus BuildingSarcophagus => parent as Building_Sarcophagus;
@@ -33,8 +34,8 @@ public class CompAssignableToPawn_Sarcophagus : CompAssignableToPawn
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
         List<Pawn> invalidAssignments = assignedPawns
-            .Where(x => 
-                x == null 
+            .Where(x =>
+                x == null
                 || x.Dead
                 || !CanAssignTo(x))
             .ToList();

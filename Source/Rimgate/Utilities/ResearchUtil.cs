@@ -1,7 +1,4 @@
-﻿using RimWorld;
-using Verse;
-
-namespace Rimgate;
+﻿namespace Rimgate;
 
 public static class ResearchUtil
 {

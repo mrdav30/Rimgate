@@ -1,12 +1,7 @@
-﻿using System;
+﻿using RimWorld;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Verse.AI;
 using Verse;
-using RimWorld;
-using UnityEngine;
+using Verse.AI;
 
 namespace Rimgate;
 
@@ -59,7 +54,7 @@ public class JobDriver_CarryToSarcophagus : JobDriver
         yield return wait;
 
         Toil putInto = ToilMaker.MakeToil("PutIntoSarcophagus");
-        putInto.initAction = () => 
+        putInto.initAction = () =>
         {
             var sarcophagus = Sarcophagus;
             var traveler = pawn;

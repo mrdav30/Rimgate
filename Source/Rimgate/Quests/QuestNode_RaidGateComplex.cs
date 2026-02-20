@@ -1,8 +1,6 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
 using RimWorld.QuestGen;
-using System.Collections.Generic;
-using UnityEngine;
 using Verse;
 
 namespace Rimgate;
@@ -27,7 +25,7 @@ public class QuestNode_RaidGateComplex : QuestNode
 
         // Need a site target (map may or may not exist yet)
         var site = slate.Get<Site>("site");
-        if(site == null) 
+        if (site == null)
             return false;
 
         bool isSpace = site.Tile.LayerDef.isSpace;

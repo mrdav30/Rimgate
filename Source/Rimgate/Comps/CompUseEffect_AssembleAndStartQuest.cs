@@ -1,8 +1,8 @@
-﻿using System;
+﻿using RimWorld;
+using RimWorld.QuestGen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using RimWorld;
-using RimWorld.QuestGen;
 using Verse;
 
 namespace Rimgate;
@@ -103,7 +103,7 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
         foreach (var map in Find.Maps)
         {
             // Count only player-controlled maps
-            if (!(map.IsPlayerHome || (map.Parent?.Faction.IsOfPlayerFaction() ?? true))) 
+            if (!(map.IsPlayerHome || (map.Parent?.Faction.IsOfPlayerFaction() ?? true)))
                 continue;
 
             // a) Spawned items (on ground / in storage) not forbidden.

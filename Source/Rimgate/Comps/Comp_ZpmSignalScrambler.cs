@@ -5,10 +5,10 @@ namespace Rimgate;
 
 public class Comp_ZpmSignalScrambler : ThingComp
 {
-    private CompPowerTrader Power 
+    private CompPowerTrader Power
         => _cachedPower ??= parent.GetComp<CompPowerTrader>();
 
-    private CompFacility Facility 
+    private CompFacility Facility
         => _cachedFacility ??= parent.GetComp<CompFacility>();
 
     private MapComponent_ZpmRaidTracker Tracker
@@ -60,7 +60,7 @@ public class Comp_ZpmSignalScrambler : ThingComp
         bool powered = Power == null || Power.PowerOn;
         int linkCount = Facility?.LinkedBuildings?.Count(f => f.def == RimgateDefOf.Rimgate_ZPM) ?? 0;
 
-        if (!powered) 
+        if (!powered)
             return "RG_JammerInactive".Translate() + $" ({"NoPower".Translate()})";
         return (linkCount > 0)
             ? "RG_JammerActive".Translate()

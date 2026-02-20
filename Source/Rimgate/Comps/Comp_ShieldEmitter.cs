@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +12,7 @@ public class Comp_ShieldEmitter : ThingComp
 {
     private static readonly FleckDef SkyfallerFleckA = DefDatabase<FleckDef>.GetNamed("ElectricalSpark");
 
-    private static readonly FleckDef SkyfallerFleckB = DefDatabase< FleckDef>.GetNamed("PsycastPsychicEffect");
+    private static readonly FleckDef SkyfallerFleckB = DefDatabase<FleckDef>.GetNamed("PsycastPsychicEffect");
 
     public const float MaxStressLevel = 1f;
 

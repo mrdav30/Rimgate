@@ -1,11 +1,6 @@
 ﻿using HarmonyLib;
-using Rimgate;
 using RimWorld;
-using System.Collections.Generic;
-using System.Linq;
-using VEF.Apparels;
 using Verse;
-using Verse.Sound;
 
 namespace Rimgate.HarmonyPatches;
 
@@ -21,7 +16,7 @@ public class Patch_Skyfaller_Tick
             if (faction == null || faction.HostileTo(Faction.OfPlayer))
             {
                 var shieldGenList = __instance.Map?.GetComponent<MapComp_ShieldList>()?.ShieldGenList;
-                if (shieldGenList == null) 
+                if (shieldGenList == null)
                     return true;
 
                 for (int index = 0; index < shieldGenList.Count; ++index)

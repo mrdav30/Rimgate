@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using VEF.Utils;
 using Verse;
 
 namespace Rimgate.HarmonyPatches;

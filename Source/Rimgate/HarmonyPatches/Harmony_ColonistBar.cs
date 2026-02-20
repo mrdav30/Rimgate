@@ -1,13 +1,11 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using RimWorld.Planet;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using Verse;
 
 namespace Rimgate.HarmonyPatches;
+
+//TODO: replace _wasDirty with __state
 
 // ColonistBar caches a flat list of entries (pawns), grouped by map/caravan.
 // We wait until it's rebuilt, then drop any entries belonging to a Gate quest

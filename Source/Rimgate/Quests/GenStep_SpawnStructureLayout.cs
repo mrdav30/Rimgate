@@ -25,7 +25,7 @@ public class GenStep_SpawnStructureLayout : GenStep
     public override void Generate(Map map, GenStepParams parms)
     {
         LayoutWorker worker = layoutDef?.Worker;
-        if(worker == null)
+        if (worker == null)
         {
             Log.Error("Rimgate :: GenStep_SpawnLayout could not find LayoutWorker from LayoutDef.");
             return;
@@ -61,7 +61,7 @@ public class GenStep_SpawnStructureLayout : GenStep
                 ClearAreaAroundDoor(item.Position, map);
         }
 
-        if(orbitalDebrisDef != null)
+        if (orbitalDebrisDef != null)
             map.OrbitalDebris = orbitalDebrisDef;
     }
 

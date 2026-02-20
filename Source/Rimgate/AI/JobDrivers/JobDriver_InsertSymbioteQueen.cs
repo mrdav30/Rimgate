@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -13,7 +12,7 @@ public class JobDriver_InsertSymbioteQueen : JobDriver
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed) 
+        return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed)
             && pawn.Reserve(job.targetB, job, 1, -1, null, errorOnFailed);
     }
 
@@ -24,7 +23,7 @@ public class JobDriver_InsertSymbioteQueen : JobDriver
 
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
 
-        job.count = 1; 
+        job.count = 1;
 
         var startCarry = Toils_Haul.StartCarryThing(TargetIndex.A);
         startCarry.FailOn(() => Queen == null || Queen.Destroyed);

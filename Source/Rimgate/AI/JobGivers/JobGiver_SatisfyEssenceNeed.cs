@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -34,7 +33,7 @@ public class JobGiver_SatisfyEssenceNeed : ThinkNode_JobGiver
         if (abilityDrain == null || !abilityDrain.CanCast)
             return null;
 
-        if (!geneEssence.FilledPodsAllowed) 
+        if (!geneEssence.FilledPodsAllowed)
             return null;
 
         Building_WraithCocoonPod pod = Building_WraithCocoonPod.FindFilledPodFor(pawn);

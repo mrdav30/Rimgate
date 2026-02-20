@@ -17,7 +17,7 @@ public class PlaceWorker_Gate : PlaceWorker
         if (Building_Gate.TryGetSpawnedGateOnMap(map, out _, thingToIgnore: thing))
             return new AcceptanceReport("RG_CannotPlace_Gate".Translate(checkingDef.LabelCap, "RG_OnlyOneSGPerMap".Translate()));
 
-        if(GateUtil.AddressBookFull)
+        if (GateUtil.AddressBookFull)
             return new AcceptanceReport("RG_CannotPlace_Gate".Translate(checkingDef.LabelCap, "RG_Cannot_AddressBookFull".Translate()));
 
         // Pocket Maps do not have an associated PlanetTile, 

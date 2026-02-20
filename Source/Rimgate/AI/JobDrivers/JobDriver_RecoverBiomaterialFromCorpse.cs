@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -36,8 +35,8 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
                 if (carried?.def == RecoveryDef.requiredKit && carried.stackCount >= 1)
                     return;
 
-                if (!CorpseBiomaterialRecoveryUtility.TryGetClosestKit(pawn, RecoveryDef.requiredKit, out Thing kit)) 
-                { 
+                if (!CorpseBiomaterialRecoveryUtility.TryGetClosestKit(pawn, RecoveryDef.requiredKit, out Thing kit))
+                {
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }

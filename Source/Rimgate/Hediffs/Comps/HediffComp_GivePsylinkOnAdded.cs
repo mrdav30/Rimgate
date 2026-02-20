@@ -90,7 +90,7 @@ public class HediffComp_GivePsylinkOnAdded : HediffComp
 
         // Level it, use Hediff_Level to manage levels to prevent Hediff_Psylink from giving unwanted psycasts
         int level = Rand.RangeInclusive(Props.minLevel, Props.maxLevel);
-        for(int i = 0; i < level; i++)
+        for (int i = 0; i < level; i++)
         {
             GiveRandomPsycasts(pawn, i, configuredCandidates, Props.extraPsycasts.RandomInRange);
             psylink.level += 1;

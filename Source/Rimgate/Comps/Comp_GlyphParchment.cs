@@ -1,9 +1,8 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 using RimWorld.Planet;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
-using System.Collections.Generic;
 
 namespace Rimgate;
 
@@ -41,7 +40,7 @@ public class Comp_GlyphParchment : ThingComp
             yield break;
         }
 
-        if(GateUtil.AddressBookFull)
+        if (GateUtil.AddressBookFull)
         {
             yield return new FloatMenuOption("RG_CannotDecode".Translate("RG_Cannot_AddressBookFull".Translate()), null);
             yield break;

@@ -1,10 +1,5 @@
-﻿using System;
-using RimWorld;
-using Verse;
+﻿using System.Collections.Generic;
 using Verse.AI;
-using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Rimgate;
 

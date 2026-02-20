@@ -1,8 +1,5 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -53,7 +50,8 @@ public class JobDriver_CarryToCloningPod : JobDriver
 
         yield return new Toil()
         {
-            initAction = () => {
+            initAction = () =>
+            {
                 var pod = ClonePod;
                 var takee = Takee;
                 pod.TryAcceptThing(takee);

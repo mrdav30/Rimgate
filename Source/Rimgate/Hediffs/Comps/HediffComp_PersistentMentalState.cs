@@ -29,7 +29,7 @@ public class HediffComp_PersistentMentalState : HediffComp
 
     public override void CompPostTick(ref float severityAdjustment)
     {
-        if (!Pawn.IsHashIntervalTick(Props.checkIntervalTicks)) 
+        if (!Pawn.IsHashIntervalTick(Props.checkIntervalTicks))
             return;
 
         MentalStateUtil.EnsureInitialized(ref _state);

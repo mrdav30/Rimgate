@@ -16,9 +16,9 @@ public static class Harmony_ITab_Pawn_Character_IsVisible
     {
         Thing SelThing = Find.Selector.SingleSelectedThing;
 
-        if (__result 
-            && SelThing != null 
-            && SelThing is Pawn_Unas unas 
+        if (__result
+            && SelThing != null
+            && SelThing is Pawn_Unas unas
             && !unas.IsFormerHuman())
         {
             __result = false;

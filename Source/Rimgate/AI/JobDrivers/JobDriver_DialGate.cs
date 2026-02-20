@@ -1,6 +1,5 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -27,7 +26,7 @@ public class JobDriver_DialGate : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         var t = job.targetA.Thing;
-        if(t == null)
+        if (t == null)
         {
             EndJobWith(JobCondition.Incompletable);
             yield break;

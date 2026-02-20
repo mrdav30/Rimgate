@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Verse;
-using RimWorld;
+﻿using RimWorld;
 using UnityEngine;
+using Verse;
 
 namespace Rimgate;
 
@@ -35,7 +34,7 @@ public class Projectile_ZatBlast : Bullet
     private void ZatBlastImpact(Thing hitThing)
     {
         Pawn hitPawn = hitThing is Corpse corpse
-            ? corpse.InnerPawn 
+            ? corpse.InnerPawn
             : hitThing as Pawn;
 
         // zat doesn't affect non-flesh things or non-pawns

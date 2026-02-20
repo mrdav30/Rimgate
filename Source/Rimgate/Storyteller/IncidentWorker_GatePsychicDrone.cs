@@ -1,6 +1,5 @@
 ﻿using RimWorld;
 using Verse;
-using System.Linq;
 
 namespace Rimgate
 {
@@ -12,10 +11,10 @@ namespace Rimgate
             var points = parms.points;
             if (points < 0f)
                 points = StorytellerUtility.DefaultThreatPointsNow(map);
-            PsychicDroneLevel level = points < 800f 
-                ? PsychicDroneLevel.BadLow 
-                : !(points < 2000f) 
-                    ? PsychicDroneLevel.BadHigh 
+            PsychicDroneLevel level = points < 800f
+                ? PsychicDroneLevel.BadLow
+                : !(points < 2000f)
+                    ? PsychicDroneLevel.BadHigh
                     : PsychicDroneLevel.BadMedium;
             var duration = (int)(GenDate.TicksPerDay * Rand.Range(0.75f, 1.75f));
             var cond = (GameCondition_GatePsychicDrone)GameConditionMaker.MakeCondition(

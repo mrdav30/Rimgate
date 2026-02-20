@@ -52,7 +52,7 @@ public class HediffComp_SymbioteContagious : HediffComp
         int maxToInfect = Mathf.Min(2, candidates.Count);
         int amount = Rand.RangeInclusive(0, maxToInfect);
 
-        for ( int i = 0; i < amount;  i++)
+        for (int i = 0; i < amount; i++)
         {
             var candidate = candidates[i];
 

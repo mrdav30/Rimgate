@@ -1,13 +1,7 @@
-﻿using System;
+﻿using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
-using RimWorld;
-using UnityEngine;
-using RimWorld.Planet;
-using static RimWorld.Reward_Pawn;
-using static System.Collections.Specialized.BitVector32;
-using Verse.AI;
 
 namespace Rimgate;
 

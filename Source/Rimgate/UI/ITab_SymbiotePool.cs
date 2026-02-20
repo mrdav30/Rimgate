@@ -68,8 +68,8 @@ public class ITab_SymbiotePool : ITab_ContentsBase
         int cur = Pool?.HeldItems?.Count ?? 0;
         int max = Pool?.MaxHeldItems ?? 0;
         // If max is not defined for some reason, just show current.
-        return max > 0 
-            ? $"{baseLabel} ({cur} / {max})" 
+        return max > 0
+            ? $"{baseLabel} ({cur} / {max})"
             : $"{baseLabel} ({cur})";
     }
 

@@ -3,7 +3,6 @@ using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Verse;
 
 namespace Rimgate.HarmonyPatches;
@@ -37,7 +36,7 @@ public static class Harmony_SiteMakerHelper_FactionCanOwn
 
         if (faction == null || !RimgateHiddenFactions.Contains(faction.def))
         {
-            if(RimgateMod.Debug)
+            if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: Preventing faction '{faction?.Name ?? "null"}' from owning site part '{sitePart.defName}'");
             return true;
         }

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using RimWorld;
+using System.Collections.Generic;
 using System.Linq;
-using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -9,7 +9,7 @@ namespace Rimgate;
 public class ThingSetMaker_TechprintsByTag : ThingSetMaker
 {
     // XML-configurable, e.g. <techprintTags><li>Rimgate_TechprintPool</li></techprintTags>
-    public List<string> techprintTags; 
+    public List<string> techprintTags;
     public float marketValueFactor = 1f;
     public bool requirePrereqsCompleted = true; // only offer projects you could actually start
 

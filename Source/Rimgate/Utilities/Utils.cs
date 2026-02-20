@@ -1,12 +1,8 @@
-﻿using KCSG;
-using RimWorld;
-using System;
+﻿using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.Analytics;
 using Verse;
 using Verse.AI;
 
@@ -105,11 +101,11 @@ internal static class Utils
     {
         result = default;
 
-        float bestDist = float.MaxValue; 
+        float bestDist = float.MaxValue;
         bool found = false;
         foreach (var c in GenAdj.CellsAdjacentCardinal(dest, Rot4.North, new IntVec2(1, 1)))
         {
-            if (!IsGoodSpawnCell(c, map)) 
+            if (!IsGoodSpawnCell(c, map))
                 continue;
             bool canReach = map.reachability.CanReach(
                 from,
@@ -118,9 +114,9 @@ internal static class Utils
                 TraverseParms.For(TraverseMode.ByPawn));
             if (!canReach) continue;
             float d = c.DistanceTo(from);
-            if (d < bestDist) 
+            if (d < bestDist)
             {
-                result = c; 
+                result = c;
                 bestDist = d;
                 found = true;
             }
@@ -263,7 +259,7 @@ internal static class Utils
     {
         if (pawn == null || def == null) return;
         var memories = pawn.needs?.mood?.thoughts?.memories;
-        if(memories == null) return;
+        if (memories == null) return;
 
         // Refresh the short memory so it stays while in range (no stacking)
         if (memories.GetFirstMemoryOfDef(def) is Thought_Memory existing)
@@ -271,7 +267,7 @@ internal static class Utils
         else
             memories.TryGainMemory(def, otherPawn);
     }
-        
+
     public static bool HasActiveQuestOf(QuestScriptDef def)
     {
         if (def == null) return false;
@@ -305,7 +301,7 @@ internal static class Utils
     public static bool TryFindEnemyFaction(out Faction faction, List<FactionDef> blacklist = null, PawnGroupKindDef groupKindDef = null, bool allowNeolithic = true)
     {
         var candidates = Find.FactionManager.AllFactions
-            .Where(f => CanUseFaction(f, allowNeolithic) 
+            .Where(f => CanUseFaction(f, allowNeolithic)
             && (!blacklist?.Contains(f.def) ?? true)
             && (groupKindDef == null || f.def.pawnGroupMakers.Any(maker => maker.kindDef == groupKindDef)));
         // Flat random:

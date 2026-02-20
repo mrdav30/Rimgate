@@ -1,7 +1,5 @@
 ﻿using RimWorld;
 using Verse;
-using System.Linq;
-using Verse.Noise;
 
 namespace Rimgate;
 

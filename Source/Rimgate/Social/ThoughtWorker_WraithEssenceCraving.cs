@@ -12,7 +12,7 @@ public class ThoughtWorker_WraithEssenceCraving : ThoughtWorker
             || p.genes == null) return ThoughtState.Inactive;
 
         Gene_WraithEssenceMetabolism essence = p.GetActiveGene<Gene_WraithEssenceMetabolism>();
-        if (essence == null) 
+        if (essence == null)
             return ThoughtState.Inactive;
 
         return p.HasHediffOf(RimgateDefOf.Rimgate_WraithEssenceDeficit);

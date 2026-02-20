@@ -1,6 +1,4 @@
-﻿using RimWorld;
-using VEF.Apparels;
-using Verse;
+﻿using VEF.Apparels;
 
 namespace Rimgate;
 

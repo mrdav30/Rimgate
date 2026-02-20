@@ -1,10 +1,6 @@
-﻿using System;
-using RimWorld;
-using Verse;
-using Verse.AI;
-using UnityEngine;
+﻿using RimWorld;
 using System.Collections.Generic;
-using System.Linq;
+using Verse;
 
 namespace Rimgate;
 
@@ -19,10 +15,10 @@ public class CompTargetable_Gate : CompTargetable
             validator = (TargetInfo x) =>
             {
                 Building_Gate gate = x.Thing as Building_Gate;
-                bool canTarget = gate != null 
-                    && gate.Ext.canHaveIris 
+                bool canTarget = gate != null
+                    && gate.Ext.canHaveIris
                     && !gate.HasIris;
- 
+
                 return canTarget;
             }
         };

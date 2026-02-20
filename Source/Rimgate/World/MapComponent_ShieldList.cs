@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
@@ -14,7 +13,7 @@ public class MapComp_ShieldList : MapComponent
         get
         {
             return ShieldGenList
-                .Where<ThingWithComps>(shieldGen => 
+                .Where<ThingWithComps>(shieldGen =>
                     shieldGen.TryGetComp<Comp_ShieldEmitter>()?.Active ?? false);
         }
     }

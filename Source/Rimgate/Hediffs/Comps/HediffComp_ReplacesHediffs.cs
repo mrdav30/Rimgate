@@ -8,8 +8,8 @@ public class HediffComp_ReplacesHediffs : HediffComp
 
     public override void CompPostPostAdd(DamageInfo? dinfo)
     {
-        if (Pawn == null 
-            || !Pawn.Spawned 
+        if (Pawn == null
+            || !Pawn.Spawned
             || Props.hediffDefs == null) return;
 
         foreach (var def in Props.hediffDefs)
@@ -18,8 +18,8 @@ public class HediffComp_ReplacesHediffs : HediffComp
 
             Pawn.RemoveHediffOf(def);
 
-            if (!Props.spawnAnyThings 
-                || def.spawnThingOnRemoved == null 
+            if (!Props.spawnAnyThings
+                || def.spawnThingOnRemoved == null
                 || Pawn.Map != null) continue;
 
             var thing = ThingMaker.MakeThing(def.spawnThingOnRemoved);

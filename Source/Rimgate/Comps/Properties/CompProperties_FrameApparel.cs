@@ -1,9 +1,6 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace Rimgate;
@@ -21,7 +18,7 @@ public class CompProperties_FrameApparel : CompProperties
     public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
     {
 
-        if(isFrameRoot) yield break;
+        if (isFrameRoot) yield break;
 
         yield return new StatDrawEntry(
             StatCategoryDefOf.Apparel,

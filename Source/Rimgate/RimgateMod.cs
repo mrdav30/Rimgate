@@ -1,8 +1,5 @@
 ﻿using HarmonyLib;
 using System;
-using System.Linq;
-using System.Reflection;
-using UnityEngine;
 using Verse;
 
 namespace Rimgate;
@@ -21,7 +18,7 @@ public class RimgateMod : Mod
         try
         {
             harmony = new Harmony("com.Rimgate.patches");
-            harmony.PatchAll();    
+            harmony.PatchAll();
         }
         catch (Exception ex)
         {

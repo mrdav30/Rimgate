@@ -44,7 +44,7 @@ public static class Harmony_WorkGiver_RescueDowned_JobOnThing
         }
 
         var sarcophagus = SarcophagusUtil.FindBestSarcophagus(patient, pawn);
-        if(sarcophagus != null)
+        if (sarcophagus != null)
         {
             Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_RescueToSarcophagus, patient, sarcophagus);
             job.count = 1;

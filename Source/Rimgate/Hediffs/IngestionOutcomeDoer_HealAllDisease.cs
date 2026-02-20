@@ -1,6 +1,5 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
-using System.Linq;
 using Verse;
 
 namespace Rimgate;
@@ -18,7 +17,7 @@ public class IngestionOutcomeDoer_HealAllDisease : IngestionOutcomeDoer
         Thing ingested,
         int ingestedCount)
     {
-        if(forceRemove != null)
+        if (forceRemove != null)
         {
             foreach (var hediff in forceRemove)
                 pawn.RemoveHediffOf(hediff);

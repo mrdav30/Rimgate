@@ -147,25 +147,25 @@ public class JobGiver_Unas : JobGiver_Work
                     {
                         if (!c.IsForbidden(pawn) && scanner.HasJobOnCell(pawn, c))
                         {
-                            if (!allowUnreachable 
+                            if (!allowUnreachable
                                 && !pawn.CanReach(c, scanner.PathEndMode, maxPathDanger))
                             {
                                 return;
                             }
 
                             num3 = scanner.GetPriority(pawn, c);
-                            if (num3 > bestPriority 
+                            if (num3 > bestPriority
                                 || (num3 == bestPriority && num2 < closestDistSquared))
                             {
                                 flag = true;
                             }
                         }
                     }
-                    else if (num2 < closestDistSquared 
-                        && !c.IsForbidden(pawn) 
+                    else if (num2 < closestDistSquared
+                        && !c.IsForbidden(pawn)
                         && scanner.HasJobOnCell(pawn, c))
                     {
-                        if (!allowUnreachable 
+                        if (!allowUnreachable
                             && !pawn.CanReach(c, scanner.PathEndMode, maxPathDanger))
                         {
                             return;
@@ -190,8 +190,8 @@ public class JobGiver_Unas : JobGiver_Work
 
             if (bestTargetOfLastPriority.IsValid)
             {
-                Job job3 = ((!bestTargetOfLastPriority.HasThing) 
-                    ? scannerWhoProvidedTarget.JobOnCell(pawn, bestTargetOfLastPriority.Cell) 
+                Job job3 = ((!bestTargetOfLastPriority.HasThing)
+                    ? scannerWhoProvidedTarget.JobOnCell(pawn, bestTargetOfLastPriority.Cell)
                     : scannerWhoProvidedTarget.JobOnThing(pawn, bestTargetOfLastPriority.Thing));
                 if (job3 != null)
                 {

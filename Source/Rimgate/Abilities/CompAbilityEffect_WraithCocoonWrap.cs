@@ -19,7 +19,7 @@ public class CompAbilityEffect_WraithCocoonWrap : CompAbilityEffect
         }
 
         if (targetPawn.Dead || !targetPawn.Spawned)
-        { 
+        {
             if (throwMessages)
                 SendPostProcessedMessage("RG_Abilitiy_TargetMustBeAlive".Translate(targetPawn.Named("PAWN")), targetPawn, parent);
             return false;

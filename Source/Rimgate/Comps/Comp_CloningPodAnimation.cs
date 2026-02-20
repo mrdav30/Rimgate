@@ -2,8 +2,6 @@
 using System;
 using UnityEngine;
 using Verse;
-using Verse.Noise;
-using static UnityEngine.Networking.UnityWebRequest;
 
 namespace Rimgate;
 

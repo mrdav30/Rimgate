@@ -92,8 +92,8 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
     {
         base.PostRemoved();
 
-        if (_immediateRejection 
-            || pawn == null 
+        if (_immediateRejection
+            || pawn == null
             || pawn.health == null
             || pawn.Dead) return;
 

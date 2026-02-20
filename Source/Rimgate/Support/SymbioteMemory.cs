@@ -120,7 +120,7 @@ public class SymbioteMemory : IExposable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool IsPreviousHost(Pawn host)
     {
-        if(_previousHostIds == null) return false;
+        if (_previousHostIds == null) return false;
 
         var hostId = host.ThingID;
         bool found = false;

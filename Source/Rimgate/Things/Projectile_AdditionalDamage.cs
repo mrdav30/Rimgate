@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Verse;
-using RimWorld;
+﻿using RimWorld;
 using UnityEngine;
+using Verse;
 using Verse.Sound;
 
 namespace Rimgate;

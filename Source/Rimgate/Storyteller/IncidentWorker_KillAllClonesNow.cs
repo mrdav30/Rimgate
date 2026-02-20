@@ -8,7 +8,7 @@ namespace Rimgate;
 public class IncidentWorker_KillAllClonesNow : IncidentWorker
 {
     protected override bool CanFireNowSub(IncidentParms parms) => RimgateModSettings.EnableCloneIncidents;
- 
+
     protected override bool TryExecuteWorker(IncidentParms parms)
     {
         List<Pawn> list = PawnsFinder.AllMaps_FreeColonistsSpawned

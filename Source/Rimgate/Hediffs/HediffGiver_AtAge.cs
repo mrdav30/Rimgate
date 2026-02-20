@@ -1,6 +1,4 @@
-﻿using RimWorld;
-using System.Linq;
-using Verse;
+﻿using Verse;
 
 namespace Rimgate;
 
@@ -10,7 +8,7 @@ public class HediffGiver_AtAge : HediffGiver
 
     public override void OnIntervalPassed(Pawn pawn, Hediff cause)
     {
-        if(pawn == null) return;
+        if (pawn == null) return;
 
         int pawnAge = pawn.ageTracker.AgeBiologicalYears;
         if (pawnAge >= age && TryApply(pawn))

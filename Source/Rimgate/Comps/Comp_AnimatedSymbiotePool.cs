@@ -20,7 +20,7 @@ public class Comp_AnimatedSymbiotePool : ThingComp
 
     public void Toggle(bool status) => _enabled = status;
 
-    public override void PostSpawnSetup(bool respawningAfterLoad) 
+    public override void PostSpawnSetup(bool respawningAfterLoad)
         => _enabled = Props.enabledByDefault;
 
     public override void CompTick()
@@ -40,11 +40,11 @@ public class Comp_AnimatedSymbiotePool : ThingComp
         if (!parent.Spawned) return;
 
         // VFX
-        bool canFx = ModsConfig.OdysseyActive 
-            && _enabled 
+        bool canFx = ModsConfig.OdysseyActive
+            && _enabled
             && parent.IsHashIntervalTick(Props.moteIntervalTicks);
         if (canFx)
-            TrySpawnSymbioteMote();    
+            TrySpawnSymbioteMote();
     }
 
     public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)

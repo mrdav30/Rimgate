@@ -1,5 +1,4 @@
 using RimWorld;
-using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -21,7 +20,7 @@ public class CompAbilityEffect_MechEnergyCost : CompAbilityEffect
             Need_MechEnergy need = parent.pawn.needs?.TryGetNeed<Need_MechEnergy>();
             if (need == null || need.CurLevel < MechEnergyCost)
                 return false;
-             
+
             return true;
         }
     }

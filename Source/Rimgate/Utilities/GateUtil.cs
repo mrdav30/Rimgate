@@ -1,11 +1,8 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -40,8 +37,8 @@ public static class GateUtil
     public static bool ActiveQuestSitesAtLimit => ActiveQuestSiteCount >= MaxActiveQuestSiteCount;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool TryGetActiveGateOnMap(Map map, out Building_Gate gate) => 
-        Building_Gate.TryGetSpawnedGateOnMap(map, out gate) 
+    public static bool TryGetActiveGateOnMap(Map map, out Building_Gate gate) =>
+        Building_Gate.TryGetSpawnedGateOnMap(map, out gate)
         && gate.IsActive;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -126,7 +123,7 @@ public static class GateUtil
 
     public static bool IsValidAddress(PlanetTile address)
     {
-        if(!address.Valid)
+        if (!address.Valid)
             return false;
 
         var mp = Find.WorldObjects.MapParentAt(address);

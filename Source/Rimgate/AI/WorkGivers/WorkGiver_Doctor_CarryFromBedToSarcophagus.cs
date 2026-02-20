@@ -15,7 +15,7 @@ public class WorkGiver_Doctor_CarryFromBedToSarcophagus
 
         if (pawn.IncapableOfHauling(out _)) return true;
 
-        if(!(pawn.Map.listerBuildings?.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus)) ?? true) return true;
+        if (!(pawn.Map.listerBuildings?.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus)) ?? true) return true;
 
         List<Pawn> list = pawn.Map.mapPawns?.SpawnedPawnsInFaction(pawn.Faction);
         for (int i = 0; i < list.Count; i++)
@@ -43,8 +43,8 @@ public class WorkGiver_Doctor_CarryFromBedToSarcophagus
             || patient.Faction != pawn.Faction
             || !MedicalUtil.HasAllowedMedicalCareCategory(patient)
             || patient.ParentHolder is Building_Sarcophagus
-            || patient.health.surgeryBills.Bills.Any(x => x.suspended == false) 
-            || !pawn.CanReserve(patient, 1, -1, null, forced) 
+            || patient.health.surgeryBills.Bills.Any(x => x.suspended == false)
+            || !pawn.CanReserve(patient, 1, -1, null, forced)
             || GenAI.EnemyIsNear(patient, MinDistFromEnemy))
         {
             return false;

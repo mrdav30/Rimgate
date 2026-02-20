@@ -13,8 +13,8 @@ public class HediffComp_PrimtaLifecycle : HediffComp
     public HediffCompProperties_PrimtaLifecycle Props => (HediffCompProperties_PrimtaLifecycle)props;
 
     public float MaturityPct =>
-        _maturePeriod <= 0 
-        ? 0f 
+        _maturePeriod <= 0
+        ? 0f
         : Mathf.Clamp01((float)_ageTicks / _maturePeriod);
 
     private int _maturePeriod;
@@ -23,7 +23,7 @@ public class HediffComp_PrimtaLifecycle : HediffComp
     private bool _matured;
     private bool _krintakTriggered;
 
-    public override string CompLabelInBracketsExtra 
+    public override string CompLabelInBracketsExtra
     {
         get
         {
@@ -63,14 +63,14 @@ public class HediffComp_PrimtaLifecycle : HediffComp
     public override void CompPostTick(ref float severityAdjustment)
     {
         Pawn pawn = parent.pawn;
-        if (pawn == null 
+        if (pawn == null
             || !pawn.Faction.IsOfPlayerFaction()
-            || pawn.Dead 
+            || pawn.Dead
             || pawn.health == null) return;
 
         _ageTicks++;
 
-        if(!pawn.IsHashIntervalTick(GenTicks.TickRareInterval))
+        if (!pawn.IsHashIntervalTick(GenTicks.TickRareInterval))
             return;
 
         // Pouch must still exist

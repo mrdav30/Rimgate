@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using Verse;
-using RimWorld;
-using RimWorld.BaseGen;
 
 namespace Rimgate;
 

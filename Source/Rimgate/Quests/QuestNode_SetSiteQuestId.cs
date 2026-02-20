@@ -1,6 +1,5 @@
 ﻿using RimWorld.Planet;
 using RimWorld.QuestGen;
-using System;
 using Verse;
 
 namespace Rimgate;
@@ -20,7 +19,7 @@ public class QuestNode_SetSiteQuestId : QuestNode
         var site = slate.Get<Site>("site");
         if (site == null || site is not WorldObject_GateQuestSite wos)
         {
-            if(RimgateMod.Debug)
+            if (RimgateMod.Debug)
                 Log.Error("Rimgate :: could not find valid gate quest site.");
             return;
         }

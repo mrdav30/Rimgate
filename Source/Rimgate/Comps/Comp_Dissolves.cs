@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -57,7 +56,7 @@ public class Comp_Dissolves : ThingComp
     {
         get
         {
-            if(IsFrozen && Props.destroyIfFrozen)
+            if (IsFrozen && Props.destroyIfFrozen)
                 return 1;
 
             float num = DefaultTicksUntilDissolution;

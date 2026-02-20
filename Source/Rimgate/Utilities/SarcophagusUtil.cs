@@ -5,7 +5,6 @@ using System.Linq;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using static RimWorld.PsychicRitualRoleDef;
 
 namespace Rimgate;
 

@@ -1,5 +1,4 @@
-﻿using RimWorld;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Verse;
 
 namespace Rimgate;
@@ -79,7 +78,7 @@ public class Comp_BodyGraphicSwapper : ThingComp
     public override void Notify_Killed(Map prevMap, DamageInfo? dinfo = null)
     {
         var pawn = parent as Pawn;
-        if(pawn == null) return;
+        if (pawn == null) return;
         pawn.Drawer?.renderer?.SetAllGraphicsDirty();
     }
 

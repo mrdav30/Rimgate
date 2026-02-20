@@ -12,12 +12,12 @@ public class InteractionWorker_WraithHiveChat : InteractionWorker
     // Fires occasionally, more often when pawns are close.
     public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
     {
-        if (initiator?.Map == null 
-            || recipient?.Map == null 
+        if (initiator?.Map == null
+            || recipient?.Map == null
             || initiator.Map != recipient.Map) return 0f;
 
-        if (!ModsConfig.BiotechActive 
-            || !initiator.HasHiveConnection() 
+        if (!ModsConfig.BiotechActive
+            || !initiator.HasHiveConnection()
             || !recipient.HasHiveConnection()) return 0f;
 
         if (initiator.Downed || recipient.Downed) return 0f;

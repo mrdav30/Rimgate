@@ -42,7 +42,7 @@ public static class BiologyUtil
     public static Gene AddGene(this Pawn pawn, GeneDef geneDef, bool xenogene = false)
     {
         if (pawn.genes is null) return null;
-        if(pawn.GetActiveGeneOf(geneDef) != null) return null;
+        if (pawn.GetActiveGeneOf(geneDef) != null) return null;
         return pawn.genes.AddGene(geneDef, xenogene);
     }
 
@@ -108,8 +108,8 @@ public static class BiologyUtil
         if (gainerGene == null) return;
 
         // How much could the gainer actually accept?
-        float factor = applyStatFactor 
-            ? Mathf.Clamp01(gainer.GetStatValue(RimgateDefOf.Rimgate_EssenceGainFactor)) 
+        float factor = applyStatFactor
+            ? Mathf.Clamp01(gainer.GetStatValue(RimgateDefOf.Rimgate_EssenceGainFactor))
             : 0f;
         float want = Mathf.Ceil(essenceGainAmount * (1 + factor));
         float canAccept = Mathf.Max(0f, (gainerGene.Max - gainerGene.Value - gainerGene.MaxLevelOffset));

@@ -1,11 +1,9 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 using RimWorld.QuestGen;
+using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 using Verse.AI;
-using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Rimgate;
 

@@ -1,6 +1,4 @@
-﻿using Rimgate;
-using RimWorld;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -28,7 +26,7 @@ public class JobDriver_PatientGoToSarcophagus : JobDriver
             return !Sarcophagus.Power.PowerOn
                 || Sarcophagus.HasAnyContents
                 || !Sarcophagus.Accepts(pawn)
-                || !pawn.CanReach(Sarcophagus, PathEndMode.InteractionCell, Danger.Deadly) 
+                || !pawn.CanReach(Sarcophagus, PathEndMode.InteractionCell, Danger.Deadly)
                 || !SarcophagusUtil.IsValidForUserType(Sarcophagus, pawn);
         });
 

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using RimWorld;
+using System.Collections.Generic;
 using System.Linq;
-using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -28,7 +28,7 @@ public class Comp_ResonanceIdol : ThingComp
             .Where(p => (p.Position.ToVector3Shifted() - center).sqrMagnitude <= RadiusSq)
             .ToList();
 
-        if(!nearby.Any()) return;
+        if (!nearby.Any()) return;
 
         // Apply/refresh effects
         foreach (var pawn in nearby)
@@ -52,8 +52,8 @@ public class Comp_ResonanceIdol : ThingComp
     private void TryApplyMood(Pawn pawn)
     {
         bool isWraith = pawn.IsXenoTypeOf(RimgateDefOf.Rimgate_Wraith);
-        var def = isWraith 
-            ? Props.thoughtNearForWraith 
+        var def = isWraith
+            ? Props.thoughtNearForWraith
             : Props.thoughtNear;
         pawn.TryGiveThought(def);
     }

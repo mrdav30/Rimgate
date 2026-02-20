@@ -1,10 +1,8 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using Verse;
 using Verse.AI;
-using static RimWorld.PsychicRitualRoleDef;
 
 namespace Rimgate;
 

@@ -1,7 +1,7 @@
 ﻿using RimWorld;
-using Verse;
-using System.Linq;
 using RimWorld.QuestGen;
+using System.Linq;
+using Verse;
 
 namespace Rimgate;
 
@@ -17,7 +17,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
 
     private int _questId = -1;
 
-    public MapComponent_ZpmRaidTracker(Map map) 
+    public MapComponent_ZpmRaidTracker(Map map)
         : base(map) { }
 
     public override void FinalizeInit()
@@ -33,7 +33,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
         if (_suppressionActive == active) return;
         _suppressionActive = active;
 
-        if(RimgateMod.Debug)
+        if (RimgateMod.Debug)
             Log.Message($"Setting ZPM raid suppression to {_suppressionActive}.");
 
         // Kill the quest if it’s running; ZPMs are “masked”.
@@ -94,7 +94,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
 
         Quest quest = QuestUtility.GenerateQuestAndMakeAvailable(RimgateDefOf.Rimgate_ProtectZPM, slate);
 
-        if(quest.State != QuestState.Ongoing)
+        if (quest.State != QuestState.Ongoing)
         {
             Log.ErrorOnce("Failed to start ZPM protection quest.", 12345678);
             return;
@@ -111,7 +111,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
 
         var quest = ResolveQuest();
         if (quest != null && quest.State == QuestState.Ongoing)
-            quest.End(QuestEndOutcome.Fail, false, false); 
+            quest.End(QuestEndOutcome.Fail, false, false);
 
         _questCached = null;
         _questId = -1;

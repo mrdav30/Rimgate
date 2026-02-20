@@ -50,9 +50,9 @@ public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
             {
                 Pawn_PsychicEntropyTracker psychicEntropy = pawn.psychicEntropy;
                 bool flag2 = !flag && job.wasOnMeditationTimeAssignment;
-                if (pawn.IsHashIntervalTick(4000) 
-                    && psychicEntropy != null 
-                    && !flag 
+                if (pawn.IsHashIntervalTick(4000)
+                    && psychicEntropy != null
+                    && !flag
                     && psychicEntropy.CurrentPsyfocus >= Mathf.Max(psychicEntropy.TargetPsyfocus + 0.05f, 0.99f))
                 {
                     pawn.jobs.CheckForJobOverride();
@@ -72,7 +72,7 @@ public class JobDriver_MeditateOnGoauldThrone : JobDriver_Meditate
             {
                 EndJobWith(JobCondition.InterruptForced);
                 return;
-            }    
+            }
         });
         meditate.tickAction = delegate
         {

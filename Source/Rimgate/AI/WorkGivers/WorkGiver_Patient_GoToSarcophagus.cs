@@ -1,5 +1,4 @@
-﻿using Rimgate;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -19,7 +18,7 @@ public class WorkGiver_Patient_GoToSarcophagus : WorkGiver
         ThinkResult thinkResult = Giver.TryIssueJobPackage(pawn, default(JobIssueParams));
         if (thinkResult.IsValid)
             return thinkResult.Job;
-         
+
         return null;
     }
 }

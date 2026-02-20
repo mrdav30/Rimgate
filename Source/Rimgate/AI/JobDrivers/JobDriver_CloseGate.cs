@@ -21,8 +21,8 @@ public class JobDriver_CloseGate : JobDriver
         finalize.initAction = delegate
         {
             Pawn actor = finalize.actor;
-            if(actor.CurJob.targetA.Thing is Building_DHD dhd && dhd.WantsGateClosed)
-                dhd.DoCloseGate(); 
+            if (actor.CurJob.targetA.Thing is Building_DHD dhd && dhd.WantsGateClosed)
+                dhd.DoCloseGate();
         };
         finalize.defaultCompleteMode = ToilCompleteMode.Instant;
         yield return finalize;

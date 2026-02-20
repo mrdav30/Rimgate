@@ -1,6 +1,4 @@
 ﻿using Rimgate;
-using System.Collections.Generic;
-using UnityEngine;
 using Verse;
 
 public class CompProperties_GlyphParchment : CompProperties

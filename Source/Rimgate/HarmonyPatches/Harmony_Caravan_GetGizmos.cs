@@ -5,9 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 using Verse;
-using static RimWorld.PsychicRitualRoleDef;
 
 namespace Rimgate.HarmonyPatches;
 
@@ -55,7 +53,7 @@ public class Harmony_Caravan_GetGizmos
         foreach (var g in gizmos) yield return g;
 
         bool containsGate = __instance.AllThings.Any(t =>
-            t.GetInnerIfMinified() is Building_Gate bs 
+            t.GetInnerIfMinified() is Building_Gate bs
             && bs != null);
 
         var cmd = new Command_Action
@@ -81,7 +79,7 @@ public class Harmony_Caravan_GetGizmos
         };
 
         StringBuilder disabledReason = new();
-        if(GateUtil.AddressBookFull)
+        if (GateUtil.AddressBookFull)
             disabledReason.Append("RG_Cannot_AddressBookFull".Translate());
         else if (!containsGate)
             disabledReason.Append("RG_NoGateInCaravan".Translate());

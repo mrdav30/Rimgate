@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using HarmonyLib;
+using RimWorld;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using HarmonyLib;
-using RimWorld;
-using Verse;
 
 namespace Rimgate.HarmonyPatches;
 
@@ -29,7 +28,7 @@ public static class Harmony_BlockZpmFromBatteryDistribution
         SavedLists[__instance] = batteries;
 
         // Build filtered list that excludes ZPM batteries
-        var filtered = batteries.Where(b => 
+        var filtered = batteries.Where(b =>
             b?.parent?.def != RimgateDefOf.Rimgate_ZPM
             && b?.parent?.def != RimgateDefOf.Rimgate_ZPMHousing
         ).ToList();

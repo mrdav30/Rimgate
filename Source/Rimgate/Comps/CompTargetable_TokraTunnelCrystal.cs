@@ -25,7 +25,7 @@ public class CompTargetable_TokraTunnelCrystal : CompTargetable
                 IntVec3 c = targ.Cell;
                 if (!c.InBounds(map)) return false;
 
-                if(targ.Thing is not Mineable mineable) return false;
+                if (targ.Thing is not Mineable mineable) return false;
 
                 Designation des = map.designationManager.DesignationAt(c, DesignationDefOf.Mine);
                 if (des == null) return false;

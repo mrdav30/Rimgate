@@ -36,14 +36,14 @@ public class JobDriver_HaulToMobileContainer : JobDriver_HaulToContainer
             ? new ThingCount(job.targetA.Thing, job.targetA.Thing.stackCount)
             : MobileContainerUtility.FindThingToLoad(pawn, comp);
 
-        if (tc.Thing == null || tc.Count <= 0) 
-        { 
+        if (tc.Thing == null || tc.Count <= 0)
+        {
             EndJobWith(JobCondition.Incompletable);
             return;
         }
 
-        bool isCarrying = job.playerForced 
-            && pawn.carryTracker.CarriedThing != null 
+        bool isCarrying = job.playerForced
+            && pawn.carryTracker.CarriedThing != null
             && pawn.carryTracker.CarriedThing != tc.Thing;
 
         if (isCarrying)
@@ -51,8 +51,8 @@ public class JobDriver_HaulToMobileContainer : JobDriver_HaulToContainer
 
         // Clamp to what's actually still needed for *this exact thing*
         int remaining = comp.RemainingToLoadFor(tc.Thing);
-        if (remaining <= 0) 
-        { 
+        if (remaining <= 0)
+        {
             EndJobWith(JobCondition.Incompletable);
             return;
         }

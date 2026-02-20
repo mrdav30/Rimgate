@@ -1,8 +1,4 @@
 ﻿using RimWorld;
-using RimWorld.Planet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -14,7 +10,7 @@ public class DamageWorker_Siege : DamageWorker_AddInjury
     {
         Building wall = victim as Building;
         bool isWall = wall != null
-            && (wall.def.building.isNaturalRock 
+            && (wall.def.building.isNaturalRock
                 || wall.def == ThingDefOf.Wall);
         if (isWall)
         {

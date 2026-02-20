@@ -1,14 +1,10 @@
 using RimWorld;
-using RimWorld.QuestGen;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-using Verse.Noise;
-using static RimWorld.FleshTypeDef;
 
 namespace Rimgate;
 
@@ -207,9 +203,9 @@ public class Building_ZPM : Building
                 _darkEnergyReserve = Mathf.Min(_darkEnergyReserve + EnergyIncrement, _maxDarkEnergy);
             else
             {
-                int trickle = (int)(EnergyIncrement 
-                    * (SolarFlareActive 
-                        ? SolarFlareFactor 
+                int trickle = (int)(EnergyIncrement
+                    * (SolarFlareActive
+                        ? SolarFlareFactor
                         : TrickleFactor));
                 _darkEnergyReserve = Mathf.Min(_darkEnergyReserve + trickle, _maxDarkEnergy);
             }
@@ -306,7 +302,7 @@ public class Building_ZPM : Building
             yield break;
 
         // Find a housing with capacity & reachability
-        Building_ZPMHousing bestHousing = Building_ZPMHousing.FindBestHousingFor(pawn, this); 
+        Building_ZPMHousing bestHousing = Building_ZPMHousing.FindBestHousingFor(pawn, this);
         if (bestHousing == null)
             yield break;
 

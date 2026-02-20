@@ -1,5 +1,4 @@
-﻿using Rimgate;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace Rimgate;

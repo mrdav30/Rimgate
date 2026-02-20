@@ -24,7 +24,7 @@ public static class Harmony_FeedingUtilities
     [HarmonyBefore(new string[] { "Dubwise.DubsBadHygiene" })]
     public static void Postfix(ref bool __result, Pawn p)
     {
-        if (p.ParentHolder is Building_Sarcophagus sarcophagus 
+        if (p.ParentHolder is Building_Sarcophagus sarcophagus
             && sarcophagus.Power?.PowerOn == true)
         {
             __result = false;

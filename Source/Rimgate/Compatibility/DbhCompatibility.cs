@@ -1,5 +1,4 @@
-﻿using RimWorld;
-using Verse;
+﻿using Verse;
 
 namespace Rimgate;
 
@@ -16,7 +15,7 @@ public static class DbhCompatibility
     public static void SetThirstNeedCurLevelPercentage(Pawn pawn, float value)
     {
         var thirstNeed = pawn.needs.TryGetNeed<DubsBadHygiene.Need_Thirst>();
-            thirstNeed.CurLevelPercentage = value;
+        thirstNeed.CurLevelPercentage = value;
     }
 
     public static float GetHygieneNeedCurLevelPercentage(Pawn pawn)
@@ -43,7 +42,7 @@ public static class DbhCompatibility
 
     public static void ShouldBeWashedBySomeonePostfix(Pawn pawn, ref bool __result)
     {
-        if (pawn.ParentHolder is Building_Sarcophagus sarcophagus 
+        if (pawn.ParentHolder is Building_Sarcophagus sarcophagus
             && sarcophagus.Power?.PowerOn == true)
             __result = false;
     }

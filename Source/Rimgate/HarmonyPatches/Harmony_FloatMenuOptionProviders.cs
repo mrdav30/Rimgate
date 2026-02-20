@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Verse;
-using Verse.AI;
 
 namespace Rimgate.HarmonyPatches;
 
@@ -70,8 +69,8 @@ public static class Harmony_FloatMenuOptionProvider_Generic_GetSingleOptionFor_C
     public static void Postfix(ref FloatMenuOption __result, Thing clickedThing)
     {
         // Extra check to make sure the clicked target is actually a pawn
-        if (clickedThing != null 
-            && clickedThing is Pawn clickedPawn 
+        if (clickedThing != null
+            && clickedThing is Pawn clickedPawn
             && clickedPawn.ParentHolder is Building_Sarcophagus) __result = null;
     }
 }

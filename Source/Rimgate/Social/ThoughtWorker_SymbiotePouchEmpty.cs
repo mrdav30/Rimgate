@@ -1,5 +1,5 @@
-﻿using Verse;
-using RimWorld;
+﻿using RimWorld;
+using Verse;
 
 namespace Rimgate
 {
@@ -15,7 +15,7 @@ namespace Rimgate
                 return ThoughtState.Inactive;
 
             bool hasPouch = p.HasHediffOf(RimgateDefOf.Rimgate_SymbiotePouch);
-            if (!hasPouch) 
+            if (!hasPouch)
                 return ThoughtState.Inactive;
 
             bool hasPrimta = p.HasHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);

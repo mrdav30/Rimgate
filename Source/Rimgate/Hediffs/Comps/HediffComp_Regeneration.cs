@@ -1,11 +1,9 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 using Verse;
 using Verse.Sound;
-using static RimWorld.PsychicRitualRoleDef;
 
 namespace Rimgate;
 
@@ -180,12 +178,12 @@ public class HediffComp_Regeneration : HediffComp
         var hediffSet = pawn.health.hediffSet;
         var hediffs = hediffSet?.hediffs;
 
-        if(hediffs == null) return false;
+        if (hediffs == null) return false;
 
         for (int i = 0; i < hediffs.Count; i++)
         {
             Hediff h = hediffs[i];
-            if(!MedicalUtil.IsEligibleChronic(hediffSet, h)) continue;
+            if (!MedicalUtil.IsEligibleChronic(hediffSet, h)) continue;
 
             var maxHealth = h.Part?.def.GetMaxHealth(pawn) ?? 1;
             if (pawn.IsColonyMech)

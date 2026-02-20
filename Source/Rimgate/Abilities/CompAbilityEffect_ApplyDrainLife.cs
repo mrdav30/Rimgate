@@ -1,11 +1,4 @@
-﻿using DubsBadHygiene;
-using RimWorld;
-using RimWorld.Planet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using RimWorld;
 using Verse;
 
 namespace Rimgate;
@@ -22,7 +15,7 @@ public class CompAbilityEffect_ApplyDrainLife : CompAbilityEffect
         Pawn caster = parent?.pawn;
         Pawn victim = target.Pawn;
         if (caster == null || victim == null) return false;
-        if(caster.ThingID == victim.ThingID) return false;
+        if (caster.ThingID == victim.ThingID) return false;
         if (!victim.RaceProps.IsFlesh || victim.Dead) return false;
 
         var distance = caster.Position.DistanceToSquared(victim.Position);

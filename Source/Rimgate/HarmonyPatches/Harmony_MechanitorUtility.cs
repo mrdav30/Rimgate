@@ -7,8 +7,8 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch(
     typeof(MechanitorUtility),
     nameof(MechanitorUtility.InMechanitorCommandRange),
-    new Type[] { 
-        typeof(Pawn), 
+    new Type[] {
+        typeof(Pawn),
         typeof(LocalTargetInfo)
     })]
 static class PatchMechanitorUtility_InMechanitorCommandRange

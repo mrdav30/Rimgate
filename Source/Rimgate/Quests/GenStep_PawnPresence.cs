@@ -49,7 +49,7 @@ public class GenStep_PawnPresence : GenStep
         bool isSiteFaction = siteFaction != null && siteFaction == faction;
         LordJob job = isSiteFaction
                 ? (LordJob)new LordJob_DefendBase(faction, map.Center, 25000)
-                :  new LordJob_DefendPoint(cell, wanderRadius: 12f, defendRadius: 12f, addFleeToil: false);
+                : new LordJob_DefendPoint(cell, wanderRadius: 12f, defendRadius: 12f, addFleeToil: false);
 
         Lord lord = LordMaker.MakeNewLord(faction, job, map);
 

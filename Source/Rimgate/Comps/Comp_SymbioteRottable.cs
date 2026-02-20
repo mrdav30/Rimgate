@@ -1,6 +1,5 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
-using System.Text;
 using Verse;
 
 namespace Rimgate;

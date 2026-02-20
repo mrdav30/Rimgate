@@ -1,7 +1,5 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using Verse;
 
 namespace Rimgate;
@@ -27,8 +25,8 @@ public class Pawn_Unas : Pawn
 
         if (IsFormerHuman())
         {
-            if(RimgateMod.Debug)
-                Log.Message($"Skipping Unas setup for former human {def.defName}" );
+            if (RimgateMod.Debug)
+                Log.Message($"Skipping Unas setup for former human {def.defName}");
             return; // former humans have their own logic, ignore them
         }
 

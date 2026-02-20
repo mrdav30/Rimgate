@@ -10,9 +10,9 @@ namespace Rimgate;
 /// </summary>
 public class Comp_TintedEmptyStateGraphic : ThingComp
 {
-    private Graphic _tinted;                  
+    private Graphic _tinted;
 
-    private Color _lastPrimary = Color.white; 
+    private Color _lastPrimary = Color.white;
 
     private Color _lastSecondary = Color.white;
 
@@ -22,11 +22,11 @@ public class Comp_TintedEmptyStateGraphic : ThingComp
     {
         get
         {
-            if (parent is IThingHolder th && th.GetDirectlyHeldThings().NullOrEmpty()) 
+            if (parent is IThingHolder th && th.GetDirectlyHeldThings().NullOrEmpty())
                 return true;
 
             var wake = parent.TryGetComp<CompPawnSpawnOnWakeup>();
-            if (wake != null && !wake.CanSpawn) 
+            if (wake != null && !wake.CanSpawn)
                 return true;
 
             return false;
@@ -93,7 +93,7 @@ public class Comp_TintedEmptyStateGraphic : ThingComp
         // stuff/paint primary
         var primary = parent.DrawColor;
         // dual-tint shaders (CutoutComplex, etc.)
-        var secondary = parent.DrawColorTwo; 
+        var secondary = parent.DrawColorTwo;
 
         if (!force && _tinted != null && primary == _lastPrimary && secondary == _lastSecondary)
             return _tinted;

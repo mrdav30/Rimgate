@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -19,7 +18,7 @@ public class FloatMenuOptionProvider_CarryToCloningPod : FloatMenuOptionProvider
     public override bool TargetThingValid(Thing thing, FloatMenuContext context)
     {
         return thing is Pawn pawn
-            && !pawn.Downed 
+            && !pawn.Downed
             && pawn.RaceProps.IsFlesh;
     }
 

@@ -1,5 +1,4 @@
-﻿using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -46,7 +45,7 @@ public class JobDriver_EnterCloningPod : JobDriver
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
-        
+
         yield return enter;
     }
 }

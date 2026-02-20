@@ -5,13 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using VEF.Maps;
-using VEF.Utils;
 using Verse;
 using Verse.AI;
-using Verse.Noise;
 using Verse.Sound;
-using static UnityEngine.Networking.UnityWebRequest;
 
 namespace Rimgate;
 

@@ -1,6 +1,5 @@
 ﻿using RimWorld;
 using Verse;
-using Verse.AI;
 
 namespace Rimgate;
 
@@ -12,7 +11,7 @@ public class CompAbilityEffect_WraithEssenceMending : CompAbilityEffect
     {
         var targetCell = target.Cell;
 
-        if(!Utils.IsGoodSpawnCell(targetCell, parent.pawn.Map))
+        if (!Utils.IsGoodSpawnCell(targetCell, parent.pawn.Map))
         {
             if (throwMessages)
                 Messages.Message("CannotReach".Translate(), MessageTypeDefOf.RejectInput);

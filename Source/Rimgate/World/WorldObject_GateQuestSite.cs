@@ -1,12 +1,8 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using UnityEngine;
 using Verse;
-using Verse.Noise;
 
 namespace Rimgate;
 
@@ -97,7 +93,7 @@ public class WorldObject_GateQuestSite : Site
 
     public override void PostMapGenerate()
     {
-        if(!Building_Gate.TryGetReceivingGate(Map, out _) && RimgateMod.Debug)
+        if (!Building_Gate.TryGetReceivingGate(Map, out _) && RimgateMod.Debug)
             Log.Warning($"Rimgate :: No receiving gate found on quest site map at tile {Tile} during PostMapGenerate");
         GateUtil.IncrementQuestSiteCount();
         base.PostMapGenerate();
@@ -152,7 +148,7 @@ public class WorldObject_GateQuestSite : Site
 
     public override void Destroy()
     {
-        if(!HasMap)
+        if (!HasMap)
             RimgateEvents.Notify_GateQuestSiteRemoving(this);
         GateUtil.RemoveGateAddress(Tile);
         base.Destroy();

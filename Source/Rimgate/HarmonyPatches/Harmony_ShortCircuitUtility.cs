@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HarmonyLib;
+﻿using HarmonyLib;
 using RimWorld;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -27,7 +26,7 @@ public static class Harmony_ShortCircuitUtility
         bool IsZpmBattery(CompPowerBattery b) =>
             b?.parent?.def == RimgateDefOf.Rimgate_ZPM;
 
-        var toDrain = net.batteryComps.Where(b => 
+        var toDrain = net.batteryComps.Where(b =>
             b != null && !IsZpmBattery(b)).ToList();
 
         // Sum and drain ONLY non-ZPM energy

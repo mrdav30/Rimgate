@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-using HarmonyLib;
+﻿using HarmonyLib;
 using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Emit;
 using Verse;
 
 namespace Rimgate.HarmonyPatches;
@@ -21,7 +20,7 @@ public static class Harmony_PawnInventoryOption_GenerateThings
 
         if (def.MadeFromStuff)
         {
-            if(RimgateMod.Debug)
+            if (RimgateMod.Debug)
                 Log.Message($"Rimgate :: GenerateThings: making {def} with default stuff.");
             var defaultStuff = GenStuff.DefaultStuffFor(def);
             return ThingMaker.MakeThing(def, defaultStuff);

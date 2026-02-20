@@ -1,14 +1,10 @@
 ﻿using RimWorld;
-using System;
+using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using Verse.AI;
 using Verse;
-using Verse.AI.Group;
-using RimWorld.Planet;
+using Verse.AI;
 
 namespace Rimgate;
 
@@ -155,7 +151,7 @@ public static class MobileContainerUtility
         {
             var t = items[i];
             // Spawned + within radius of the cart (use PositionHeld so items in containers count correctly)
-            if (t.Spawned 
+            if (t.Spawned
                 && !t.IsForbidden(Faction.OfPlayer)
                 && t.PositionHeld.DistanceToSquared(center) <= r2)
                 yield return t;

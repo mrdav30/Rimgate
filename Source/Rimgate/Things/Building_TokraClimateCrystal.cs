@@ -1,13 +1,8 @@
 ﻿using RimWorld;
-using RimWorld;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
-using UnityEngine;
 using Verse;
-using Verse.AI;
-using Verse.AI.Group;
 
 namespace Rimgate;
 
@@ -130,7 +125,7 @@ public class Building_TokraClimateCrystal : Building_TempControl
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        foreach(var refuelGizmo in Refuel.CompGetGizmosExtra())
+        foreach (var refuelGizmo in Refuel.CompGetGizmosExtra())
             yield return refuelGizmo;
 
         Command_Action commandAction = new Command_Action();

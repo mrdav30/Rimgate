@@ -17,10 +17,10 @@ public class EbfCompatibilityWrapper
         {
             if (myDelegate == null)
                 myDelegate = MethodInvoker.GetHandler(makeshiftEbfEndpoint);
-  
+
             return (float)myDelegate(null, new object[] { def, pawn, record });
         }
 
         return def.GetMaxHealth(pawn);
     }
-}    
+}

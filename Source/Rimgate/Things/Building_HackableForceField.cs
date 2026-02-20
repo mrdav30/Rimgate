@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using RimWorld;
+using UnityEngine;
 using Verse;
-using RimWorld;
 
 namespace Rimgate;
 

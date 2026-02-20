@@ -40,9 +40,9 @@ public class HediffComp_PouchWatcher : HediffComp
     public override void CompPostTick(ref float severityAdjustment)
     {
         var pawn = parent.pawn;
-        if (pawn == null 
+        if (pawn == null
             || !pawn.Faction.IsOfPlayerFaction()
-            || pawn.Dead 
+            || pawn.Dead
             || !pawn.Spawned
             || pawn.Map == null
             || pawn.health == null) return;

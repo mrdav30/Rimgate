@@ -1,10 +1,6 @@
-﻿using System;
-using RimWorld;
+﻿using System.Collections.Generic;
 using Verse;
 using Verse.AI;
-using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Rimgate;
 
@@ -19,10 +15,10 @@ public class JobDriver_BringToGate : JobDriver
         Thing thing = job.targetA.Thing;
         job.count = thing?.stackCount ?? 0;
 
-        if(thing is Pawn takee)
+        if (thing is Pawn takee)
             base.Map.reservationManager.ReleaseAllForTarget(takee);
 
-        return pawn.Reserve(job.targetA, job, 1, thing.stackCount, errorOnFailed: errorOnFailed) 
+        return pawn.Reserve(job.targetA, job, 1, thing.stackCount, errorOnFailed: errorOnFailed)
             && pawn.Reserve(job.targetB, job, 1, errorOnFailed: errorOnFailed);
     }
 
@@ -46,7 +42,7 @@ public class JobDriver_BringToGate : JobDriver
                 Building_Gate gate = Gate;
                 pawn.carryTracker.innerContainer.Remove(hauled);
                 gate.AddToSendBuffer(hauled);
-                if(hauled is Pawn hauledPawn)
+                if (hauled is Pawn hauledPawn)
                     RimgateEvents.Notify_ColonistEnteredGate(hauledPawn, gate);
             }
         };

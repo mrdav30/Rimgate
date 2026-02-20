@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using RimWorld.Planet;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -18,7 +17,7 @@ public class WorkGiver_CalibrateCloningPod : WorkGiver_Scanner
         for (int i = 0; i < list.Count; i++)
         {
             var t = list[i];
-            if(t is not Building_CloningPod pod) continue;
+            if (t is not Building_CloningPod pod) continue;
             if (!pod.Power.PowerOn || !pod.HasHostPawn || pod.Status != CloningStatus.Idle) continue;
             if (!pawn.CanReserveAndReach(t, PathEndMode.Touch, Danger.Deadly)) continue;
             yield return t;
@@ -35,16 +34,16 @@ public class WorkGiver_CalibrateCloningPod : WorkGiver_Scanner
 
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        if(t is not Building_CloningPod pod || !pod.Power.PowerOn || !pod.HasHostPawn || pod.Status != CloningStatus.Idle) 
+        if (t is not Building_CloningPod pod || !pod.Power.PowerOn || !pod.HasHostPawn || pod.Status != CloningStatus.Idle)
             return false;
-        if (!pawn.CanReserveAndReach(t, PathEndMode.InteractionCell, Danger.Deadly)) 
+        if (!pawn.CanReserveAndReach(t, PathEndMode.InteractionCell, Danger.Deadly))
             return false;
         return true;
     }
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        if(t is not Building_CloningPod pod) 
+        if (t is not Building_CloningPod pod)
             return null;
 
         Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_CalibrateClonePodForPawn, pod);
