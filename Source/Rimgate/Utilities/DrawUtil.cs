@@ -1,0 +1,167 @@
+using UnityEngine;
+using Verse;
+
+namespace Rimgate;
+
+public static class DrawUtil
+{
+    public const float SliderHeight = 22f;
+
+    public const float SliderGap = 8f;
+
+    public const float CheckboxGap = 4f;
+
+    public const float SectionHeaderTopGap = 8f;
+
+    public const float SectionHeaderBottomGap = 4f;
+
+    public const float SettingsLabelWidth = 240f;
+
+    public static void DrawSectionHeader(Listing_Standard listing, string label, bool addTopGap = true)
+    {
+        if (addTopGap)
+            listing.Gap(SectionHeaderTopGap);
+
+        GameFont previousFont = Text.Font;
+        Text.Font = GameFont.Medium;
+        listing.Label(label);
+        Text.Font = previousFont;
+
+        listing.Gap(2f);
+        listing.GapLine();
+        listing.Gap(SectionHeaderBottomGap);
+    }
+
+    public static void DrawCheckbox(Listing_Standard listing, string label, ref bool value)
+    {
+        listing.CheckboxLabeled(label, ref value);
+        listing.Gap(CheckboxGap);
+    }
+
+    public static void DrawIntSliderWithInput(
+        Listing_Standard listing,
+        string label,
+        ref int value,
+        ref string valueBuffer,
+        int min,
+        int max,
+        string valueSuffix = "")
+    {
+        Rect sliderRect = listing.GetRect(SliderHeight);
+        int sliderValue = Mathf.RoundToInt(Widgets.HorizontalSlider(
+            sliderRect,
+            value,
+            min,
+            max,
+            true,
+            $"{label}: {value}{valueSuffix}",
+            min.ToString(),
+            max.ToString(),
+            1f));
+
+        if (sliderValue != value)
+        {
+            value = sliderValue;
+            valueBuffer = value.ToString();
+        }
+
+        listing.Gap(2f);
+
+        valueBuffer ??= value.ToString();
+
+        Rect inputRect = listing.GetRect(SliderHeight);
+        float labelWidth = Mathf.Min(SettingsLabelWidth * 0.45f, inputRect.width * 0.45f);
+        Rect inputLabelRect = new(inputRect.x, inputRect.y, labelWidth, inputRect.height);
+        Rect fieldRect = new(inputRect.x + labelWidth + 6f, inputRect.y, inputRect.width - labelWidth - 6f, inputRect.height);
+
+        Widgets.Label(inputLabelRect, "RG_SetTo".Translate());
+        string newBuffer = Widgets.TextField(fieldRect, valueBuffer);
+
+        if (newBuffer != valueBuffer)
+        {
+            valueBuffer = newBuffer;
+            if (int.TryParse(newBuffer, out int parsed))
+            {
+                value = Mathf.Clamp(parsed, min, max);
+                valueBuffer = value.ToString();
+            }
+        }
+
+        listing.Gap(SliderGap);
+    }
+
+    public static void DrawIntSlider(
+        Listing_Standard listing,
+        string label,
+        ref int value,
+        int min,
+        int max,
+        string valueSuffix = "")
+    {
+        Rect rect = listing.GetRect(SliderHeight);
+        value = Mathf.RoundToInt(Widgets.HorizontalSlider(
+            rect,
+            value,
+            min,
+            max,
+            true,
+            $"{label}: {value}{valueSuffix}",
+            min.ToString(),
+            max.ToString(),
+            1f));
+
+        listing.Gap(SliderGap);
+    }
+
+    public static void DrawFloatSlider(
+        Listing_Standard listing,
+        string label,
+        ref float value,
+        float min,
+        float max,
+        float roundTo,
+        string format,
+        string valueSuffix = "")
+    {
+        Rect rect = listing.GetRect(SliderHeight);
+        value = Widgets.HorizontalSlider(
+            rect,
+            value,
+            min,
+            max,
+            true,
+            $"{label}: {value.ToString(format)}{valueSuffix}",
+            min.ToString(format),
+            max.ToString(format),
+            roundTo);
+
+        listing.Gap(SliderGap);
+    }
+
+    public static void DrawPercentSlider(
+        Listing_Standard listing,
+        string label,
+        ref float value,
+        float min,
+        float max,
+        float roundTo)
+    {
+        int percent = Mathf.RoundToInt(value * 100f);
+        int minPercent = Mathf.RoundToInt(min * 100f);
+        int maxPercent = Mathf.RoundToInt(max * 100f);
+
+        Rect rect = listing.GetRect(SliderHeight);
+        value = Widgets.HorizontalSlider(
+            rect,
+            value,
+            min,
+            max,
+            true,
+            $"{label}: {percent}%",
+            $"{minPercent}%",
+            $"{maxPercent}%",
+            roundTo);
+
+        listing.Gap(SliderGap);
+    }
+}

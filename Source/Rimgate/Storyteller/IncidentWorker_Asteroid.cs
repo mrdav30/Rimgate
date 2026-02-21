@@ -11,7 +11,7 @@ public class IncidentWorker_Asteroid : IncidentWorker
     protected override bool CanFireNowSub(IncidentParms parms)
     {
         Map map = (Map)parms.target;
-        return this.TryFindCell(out IntVec3 intVec, map) && RimgateModSettings.EnableAsteroidIncidents;
+        return this.TryFindCell(out IntVec3 intVec, map) && RimgateMod.Settings.EnableAsteroidIncidents;
     }
 
     protected override bool TryExecuteWorker(IncidentParms parms)

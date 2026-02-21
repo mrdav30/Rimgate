@@ -502,6 +502,9 @@
 	<!-- Settings -->
 
 	<RG_Settings_Title>Rimgate Settings</RG_Settings_Title>
+	<RG_Settings_Tab_General>General</RG_Settings_Tab_General>
+	<RG_Settings_Tab_ClonePod>ClonePod</RG_Settings_Tab_ClonePod>
+	<RG_Settings_Section_General_Label>General options</RG_Settings_Section_General_Label>
 	<RG_Settings_Section_CloneTimings_Label>Clone timings</RG_Settings_Section_CloneTimings_Label>
 	<RG_Settings_Section_CloneModifiers_Label>Clone operation modifiers</RG_Settings_Section_CloneModifiers_Label>
 	<RG_Settings_Section_CloneBehavior_Label>Clone behavior</RG_Settings_Section_CloneBehavior_Label>
@@ -534,5 +537,6 @@
 	<RG_Settings_LogLevel_Warning>Warning</RG_Settings_LogLevel_Warning>
 	<RG_Settings_LogLevel_Message>Message</RG_Settings_LogLevel_Message>
 	<RG_Settings_LogLevel_Debug>Debug</RG_Settings_LogLevel_Debug>
+	<RG_Settings_RestoreDefaults_Button>Restore defaults</RG_Settings_RestoreDefaults_Button>
 
 </LanguageData>

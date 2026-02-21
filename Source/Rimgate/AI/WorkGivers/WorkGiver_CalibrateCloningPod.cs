@@ -27,7 +27,7 @@ public class WorkGiver_CalibrateCloningPod : WorkGiver_Scanner
     public override bool ShouldSkip(Pawn pawn, bool forced = false)
     {
         if (pawn.IncapableOfGivingAid(out _)) return true;
-        if (pawn.skills.GetSkill(SkillDefOf.Medicine).levelInt < RimgateModSettings.MedicineSkillReq)
+        if (pawn.skills.GetSkill(SkillDefOf.Medicine).levelInt < RimgateMod.Settings.MedicineSkillReq)
             return true;
         return false;
     }

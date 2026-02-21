@@ -19,14 +19,14 @@ public static class LogUtil
 {
     private const string Prefix = "Rimgate :: ";
 
-    public static RimgateLogLevel Level = RimgateLogLevel.Warning;
+    private static RimgateLogLevel CurrentLevel => RimgateMod.Settings?.LogLevel ?? RimgateLogLevel.Warning;
 
-    public static bool IsDebugEnabled => Level >= RimgateLogLevel.Debug;
+    public static bool IsDebugEnabled => CurrentLevel >= RimgateLogLevel.Debug;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Message(string message)
     {
-        if (Level < RimgateLogLevel.Message)
+        if (CurrentLevel < RimgateLogLevel.Message)
             return;
 
         Log.Message(PrefixMessage(message));
@@ -44,7 +44,7 @@ public static class LogUtil
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Warning(string message)
     {
-        if (Level < RimgateLogLevel.Warning)
+        if (CurrentLevel < RimgateLogLevel.Warning)
             return;
 
         Log.Warning(PrefixMessage(message));
@@ -62,7 +62,7 @@ public static class LogUtil
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Error(string message)
     {
-        if (Level < RimgateLogLevel.Error)
+        if (CurrentLevel < RimgateLogLevel.Error)
             return;
 
         Log.Error(PrefixMessage(message));
@@ -100,4 +100,31 @@ public static class LogUtil
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static string PrefixMessage(string message) => $"{Prefix}{message}";
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static RimgateLogLevel GetNextLogLevel(RimgateLogLevel current)
+    {
+        return current switch
+        {
+            RimgateLogLevel.Off => RimgateLogLevel.Error,
+            RimgateLogLevel.Error => RimgateLogLevel.Warning,
+            RimgateLogLevel.Warning => RimgateLogLevel.Message,
+            RimgateLogLevel.Message => RimgateLogLevel.Debug,
+            _ => RimgateLogLevel.Off
+        };
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetLogLevelLabel(RimgateLogLevel level)
+    {
+        return level switch
+        {
+            RimgateLogLevel.Off => "RG_Settings_LogLevel_Off".Translate(),
+            RimgateLogLevel.Error => "RG_Settings_LogLevel_Error".Translate(),
+            RimgateLogLevel.Warning => "RG_Settings_LogLevel_Warning".Translate(),
+            RimgateLogLevel.Message => "RG_Settings_LogLevel_Message".Translate(),
+            RimgateLogLevel.Debug => "RG_Settings_LogLevel_Debug".Translate(),
+            _ => "RG_Settings_LogLevel_Warning".Translate()
+        };
+    }
 }

@@ -44,11 +44,11 @@ internal static class CloneUtility
         bool majorInsaneClone = false;
         bool majorFailure = false;
 
-        int majorFailureChance = RimgateModSettings.MajorFailureChance;
-        int minorFailureChance = RimgateModSettings.MinorFailureChance;
+        int majorFailureChance = RimgateMod.Settings.MajorFailureChance;
+        int minorFailureChance = RimgateMod.Settings.MinorFailureChance;
         int num1 = Rand.RangeInclusive(1, 101);
         int num2 = Rand.RangeInclusive(1, 101);
-        if (RimgateModSettings.MajorFailures && num1 <= majorFailureChance)
+        if (RimgateMod.Settings.MajorFailures && num1 <= majorFailureChance)
         {
             majorFailure = true;
             switch (Rand.RangeInclusive(0, 4))
@@ -85,7 +85,7 @@ internal static class CloneUtility
             }
         }
 
-        if (!majorFailure && RimgateModSettings.MinorFailures && num2 <= minorFailureChance)
+        if (!majorFailure && RimgateMod.Settings.MinorFailures && num2 <= minorFailureChance)
         {
             switch (Rand.RangeInclusive(0, 4))
             {
@@ -308,7 +308,7 @@ internal static class CloneUtility
         story2.headType = story1.headType;
         clonePawn.style.BodyTattoo = RimgateDefOf.NoTattoo_Body;
         clonePawn.style.FaceTattoo = RimgateDefOf.NoTattoo_Face;
-        if (RimgateModSettings.CloneTattoos)
+        if (RimgateMod.Settings.CloneTattoos)
         {
             clonePawn.style.BodyTattoo = innerPawn.style.BodyTattoo;
             clonePawn.style.FaceTattoo = innerPawn.style.FaceTattoo;
@@ -409,7 +409,7 @@ internal static class CloneUtility
                         SkillRecord skill4 = skills3.GetSkill(skill3.def);
                         skill3.Level = cloneType != CloneType.Full
                             ? (int)((double)skill4.levelInt * 0.5)
-                            : (!RimgateModSettings.NoSkillLoss
+                            : (!RimgateMod.Settings.NoSkillLoss
                                 ? (int)((double)skill4.levelInt * 0.800000011920929)
                                 : skill4.levelInt);
                         skill3.passion = skill4.passion;
@@ -472,7 +472,7 @@ internal static class CloneUtility
         if (innerPawn.mutant != null)
             MutantUtility.SetPawnAsMutantInstantly(clonePawn, innerPawn.mutant.Def, RottableUtility.GetRotStage(innerPawn));
 
-        if (RimgateModSettings.GenerateSocialRelations)
+        if (RimgateMod.Settings.GenerateSocialRelations)
         {
             clonePawn.relations.ClearAllRelations();
             foreach (var direct in innerPawn.relations.DirectRelations)

@@ -260,8 +260,8 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                         if (has != _hadActiveInducer)
                         {
                             float modifier = has
-                                ? (1f / RimgateModSettings.InducerCalibrationSpeedFactor)
-                                : RimgateModSettings.InducerCalibrationSpeedFactor;
+                                ? (1f / RimgateMod.Settings.InducerCalibrationSpeedFactor)
+                                : RimgateMod.Settings.InducerCalibrationSpeedFactor;
 
                             int newTotal = Mathf.Max(1, Mathf.RoundToInt(_calibrationTicksTotal * modifier));
                             _calibrationWorkRemaining = RescaleRemainingFloat(_calibrationTicksTotal, _calibrationWorkRemaining, newTotal);
@@ -363,8 +363,8 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                         if (has != _hadActiveInducer)
                         {
                             float modifier = has
-                                ? (1f / RimgateModSettings.InducerIncubationSpeedFactor)
-                                : RimgateModSettings.InducerIncubationSpeedFactor;
+                                ? (1f / RimgateMod.Settings.InducerIncubationSpeedFactor)
+                                : RimgateMod.Settings.InducerIncubationSpeedFactor;
 
                             int newTotal = Mathf.Max(1, Mathf.RoundToInt(_incubationTicksTotal * modifier));
                             _incubationTicksRemaining = RescaleRemainingInt(_incubationTicksTotal, _incubationTicksRemaining, newTotal);
@@ -485,9 +485,9 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
         // if we have a pawn, show what the user can do
 
-        if (pawn.skills.GetSkill(SkillDefOf.Medicine).levelInt < RimgateModSettings.MedicineSkillReq)
+        if (pawn.skills.GetSkill(SkillDefOf.Medicine).levelInt < RimgateMod.Settings.MedicineSkillReq)
         {
-            string req = $"calibration requires {SkillDefOf.Medicine.label} >= {RimgateModSettings.MedicineSkillReq}";
+            string req = $"calibration requires {SkillDefOf.Medicine.label} >= {RimgateMod.Settings.MedicineSkillReq}";
             yield return new FloatMenuOption("RG_CannotUse".Translate(req), null);
             yield break;
         }
@@ -781,14 +781,14 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
             yield return state;
 
         var baseCost = BiomassCostPerCycle;
-        int baseCalibrationTicks = RimgateModSettings.BaseCalibrationTicks;
-        int baseIncubationTicks = RimgateModSettings.BaseIncubationTicks;
+        int baseCalibrationTicks = RimgateMod.Settings.BaseCalibrationTicks;
+        int baseIncubationTicks = RimgateMod.Settings.BaseIncubationTicks;
 
         float modifierCost = 1f;
         int stabilizerCount = ActiveBiomassStabilizerCount();
         if (stabilizerCount > 0)
         {
-            float reduction = RimgateModSettings.StabilizerBiomassCostReduction * stabilizerCount;
+            float reduction = RimgateMod.Settings.StabilizerBiomassCostReduction * stabilizerCount;
             reduction = Mathf.Clamp(reduction, 0f, 0.5f); // max 50% reduction
             modifierCost *= (1f - reduction);
         }
@@ -796,8 +796,8 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         float modifierInc = 1f;
         if (HasActiveInducer())
         {
-            modifierCal /= RimgateModSettings.InducerCalibrationSpeedFactor;
-            modifierInc /= RimgateModSettings.InducerIncubationSpeedFactor;
+            modifierCal /= RimgateMod.Settings.InducerCalibrationSpeedFactor;
+            modifierInc /= RimgateMod.Settings.InducerIncubationSpeedFactor;
         }
 
         yield return GetCostStatFor("RG_BeginCloneGenome".Translate(), baseCost, modifierCost, 4494);
@@ -809,37 +809,37 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
         if (ResearchUtil.WraithCloneFullComplete)
         {
-            int fullCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * RimgateModSettings.FullCloneFactor));
+            int fullCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * RimgateMod.Settings.FullCloneFactor));
             yield return GetCostStatFor("RG_BeginCloneFull".Translate(), fullCost, modifierCost, 4493);
 
-            int fullCalTicks = Mathf.Max(0, Mathf.RoundToInt(baseCalibrationTicks * RimgateModSettings.FullCloneFactor));
+            int fullCalTicks = Mathf.Max(0, Mathf.RoundToInt(baseCalibrationTicks * RimgateMod.Settings.FullCloneFactor));
             yield return GetCalibrationTicksFor("RG_BeginCloneFull".Translate(), fullCalTicks, modifierCal, 4493);
 
-            int fullIncTicks = Mathf.Max(0, Mathf.RoundToInt((baseIncubationTicks * RimgateModSettings.FullCloneFactor) * modifierInc));
+            int fullIncTicks = Mathf.Max(0, Mathf.RoundToInt((baseIncubationTicks * RimgateMod.Settings.FullCloneFactor) * modifierInc));
             yield return GetIncubationTicksFor("RG_BeginCloneFull".Translate(), fullIncTicks, modifierInc, 4493);
         }
 
         if (ResearchUtil.WraithCloneEnhancementComplete)
         {
-            int enhancedCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * RimgateModSettings.EnhancedCloneFactor));
+            int enhancedCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * RimgateMod.Settings.EnhancedCloneFactor));
             yield return GetCostStatFor("RG_BeginCloneSoldier".Translate(), enhancedCost, modifierCost, 4492);
 
-            int enhancedCalTicks = Mathf.Max(0, Mathf.RoundToInt(baseCalibrationTicks * RimgateModSettings.EnhancedCloneFactor));
+            int enhancedCalTicks = Mathf.Max(0, Mathf.RoundToInt(baseCalibrationTicks * RimgateMod.Settings.EnhancedCloneFactor));
             yield return GetCalibrationTicksFor("RG_BeginCloneSoldier".Translate(), enhancedCalTicks, modifierCal, 4492);
 
-            int enhancedIncTicks = Mathf.Max(0, Mathf.RoundToInt((baseIncubationTicks * RimgateModSettings.EnhancedCloneFactor) * modifierInc));
+            int enhancedIncTicks = Mathf.Max(0, Mathf.RoundToInt((baseIncubationTicks * RimgateMod.Settings.EnhancedCloneFactor) * modifierInc));
             yield return GetIncubationTicksFor("RG_BeginCloneSoldier".Translate(), enhancedIncTicks, modifierInc, 4492);
         }
 
         if (ResearchUtil.WraithCloneCorpseComplete)
         {
-            int reconstructCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * RimgateModSettings.ReconstructionCloneFactor));
+            int reconstructCost = Mathf.Max(0, Mathf.RoundToInt(baseCost * RimgateMod.Settings.ReconstructionCloneFactor));
             yield return GetCostStatFor("RG_BeginCloneCorpse".Translate(), reconstructCost, modifierCost, 4491);
 
-            int reconstructCalTicks = Mathf.Max(0, Mathf.RoundToInt(baseCalibrationTicks * RimgateModSettings.ReconstructionCloneFactor));
+            int reconstructCalTicks = Mathf.Max(0, Mathf.RoundToInt(baseCalibrationTicks * RimgateMod.Settings.ReconstructionCloneFactor));
             yield return GetCalibrationTicksFor("RG_BeginCloneCorpse".Translate(), reconstructCalTicks, modifierCal, 4491);
 
-            int reconstructIncTicks = Mathf.Max(0, Mathf.RoundToInt(baseIncubationTicks * RimgateModSettings.ReconstructionCloneFactor));
+            int reconstructIncTicks = Mathf.Max(0, Mathf.RoundToInt(baseIncubationTicks * RimgateMod.Settings.ReconstructionCloneFactor));
             yield return GetIncubationTicksFor("RG_BeginCloneCorpse".Translate(), reconstructIncTicks, modifierInc, 4491);
         }
 
@@ -1008,16 +1008,16 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         float cost = BiomassCostPerCycle;
 
         if (_cloningType == CloneType.Full)
-            cost *= RimgateModSettings.FullCloneFactor;
+            cost *= RimgateMod.Settings.FullCloneFactor;
         else if (_cloningType == CloneType.Enhanced)
-            cost *= RimgateModSettings.EnhancedCloneFactor;
+            cost *= RimgateMod.Settings.EnhancedCloneFactor;
         else if (_cloningType == CloneType.Reconstruct)
-            cost *= RimgateModSettings.ReconstructionCloneFactor;
+            cost *= RimgateMod.Settings.ReconstructionCloneFactor;
 
         int stabilizerCount = ActiveBiomassStabilizerCount();
         if (stabilizerCount > 0)
         {
-            float reduction = RimgateModSettings.StabilizerBiomassCostReduction * stabilizerCount;
+            float reduction = RimgateMod.Settings.StabilizerBiomassCostReduction * stabilizerCount;
             reduction = Mathf.Clamp(reduction, 0f, 0.5f); // max 50% reduction
             cost *= 1f - reduction;
         }
@@ -1029,17 +1029,17 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     private int GetTotalCalibrationTicks()
     {
-        int result = RimgateModSettings.BaseCalibrationTicks;
+        int result = RimgateMod.Settings.BaseCalibrationTicks;
 
         if (_cloningType == CloneType.Full)
-            result = (int)(result * RimgateModSettings.FullCloneFactor);
+            result = (int)(result * RimgateMod.Settings.FullCloneFactor);
         else if (_cloningType == CloneType.Enhanced)
-            result = (int)(result * RimgateModSettings.EnhancedCloneFactor);
+            result = (int)(result * RimgateMod.Settings.EnhancedCloneFactor);
         else if (_cloningType == CloneType.Reconstruct)
-            result = (int)(result * RimgateModSettings.ReconstructionCloneFactor);
+            result = (int)(result * RimgateMod.Settings.ReconstructionCloneFactor);
 
         if (HasActiveInducer())
-            result = (int)(result / RimgateModSettings.InducerCalibrationSpeedFactor);
+            result = (int)(result / RimgateMod.Settings.InducerCalibrationSpeedFactor);
 
         result = Mathf.Clamp(result, 0, int.MaxValue);
 
@@ -1081,14 +1081,14 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     private int GetTotalIncubationTicks(CalibrationOutcome outcome)
     {
-        int result = RimgateModSettings.BaseIncubationTicks;
+        int result = RimgateMod.Settings.BaseIncubationTicks;
 
         if (_cloningType == CloneType.Full)
-            result = (int)(result * RimgateModSettings.FullCloneFactor);
+            result = (int)(result * RimgateMod.Settings.FullCloneFactor);
         else if (_cloningType == CloneType.Enhanced)
-            result = (int)(result * RimgateModSettings.EnhancedCloneFactor);
+            result = (int)(result * RimgateMod.Settings.EnhancedCloneFactor);
         else if (_cloningType == CloneType.Reconstruct)
-            result = (int)(result * RimgateModSettings.ReconstructionCloneFactor);
+            result = (int)(result * RimgateMod.Settings.ReconstructionCloneFactor);
 
         // Note: not displayed in special stats since outcome is unknown at that time
         if (!outcome.AnyIssues)
@@ -1099,7 +1099,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
             result = (int)(result * 1.25f); // slower if minor failure occurs
 
         if (HasActiveInducer())
-            result = (int)(result / RimgateModSettings.InducerIncubationSpeedFactor);
+            result = (int)(result / RimgateMod.Settings.InducerIncubationSpeedFactor);
 
         result = Mathf.Clamp(result, 0, int.MaxValue);
 
@@ -1159,7 +1159,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         var list = Facilities.LinkedFacilitiesListForReading;
         if (list == null || list.Count == 0) return;
 
-        float rate = RimgateModSettings.StabilizerDeteriorationFactor;
+        float rate = RimgateMod.Settings.StabilizerDeteriorationFactor;
         if (rate <= 0f) rate = 0;
 
         for (int i = 0; i < list.Count; i++)
