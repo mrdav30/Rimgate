@@ -54,8 +54,8 @@ public class Verb_LaunchWithOffset : Verb_Shoot
                 if (index > 0)
                 {
                     IntVec3 c = currentTarget.Cell + GenRadial.RadialPattern[index];
-                    if (RimgateMod.Debug && DebugViewSettings.drawShooting)
-                        Utils.ThrowDebugText("Rimgate :: ToRadius: ", c, caster.Map);
+                    if (DebugViewSettings.drawShooting)
+                        LogUtil.ThrowDebugTextMote("ToRadius: ", c, caster.Map);
 
                     ProjectileHitFlags projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
                     if (Rand.Chance(0.5f))
@@ -85,12 +85,8 @@ public class Verb_LaunchWithOffset : Verb_Shoot
         if (!Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture))
         {
             shootLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget, true, caster.Map);
-            if (RimgateMod.Debug && DebugViewSettings.drawShooting)
-            {
-                Utils.ThrowDebugText("Rimgate :: ToWild "
-                    + (canHitNonTargetPawnsNow ? "chntp " : "")
-                    + "WildDest " + shootLine.Dest, caster.DrawPos, caster.Map);
-            }
+            if (DebugViewSettings.drawShooting)
+                LogUtil.ThrowDebugTextMote($"ToWild {(canHitNonTargetPawnsNow ? "chntp " : "")}WildDest {shootLine.Dest}", caster.DrawPos, caster.Map);
 
             ProjectileHitFlags projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
             if (Rand.Chance(0.5f) && canHitNonTargetPawnsNow)
@@ -111,12 +107,8 @@ public class Verb_LaunchWithOffset : Verb_Shoot
             && currentTarget.Thing.def.category == ThingCategory.Pawn
             && !Rand.Chance(shotReport.PassCoverChance))
         {
-            if (RimgateMod.Debug && DebugViewSettings.drawShooting)
-            {
-                Utils.ThrowDebugText("Rimgate :: ToCover "
-                    + (canHitNonTargetPawnsNow ? "chntp " : "")
-                    + "CoverDest\", randomCoverToMissInto.Position", caster.DrawPos, caster.Map);
-            }
+            if (DebugViewSettings.drawShooting)
+                LogUtil.ThrowDebugTextMote($"ToCover {(canHitNonTargetPawnsNow ? "chntp " : "")}CoverDest {randomCoverToMissInto.Position}", caster.DrawPos, caster.Map);
 
             ProjectileHitFlags projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
             if (canHitNonTargetPawnsNow)
@@ -142,8 +134,8 @@ public class Verb_LaunchWithOffset : Verb_Shoot
         if (!currentTarget.HasThing || currentTarget.Thing.def.Fillage == FillCategory.Full)
             projectileHitFlags1 = (ProjectileHitFlags)((int)projectileHitFlags1 | 4);
 
-        if (RimgateMod.Debug && DebugViewSettings.drawShooting)
-            Utils.ThrowDebugText("Rimgate :: ToHit" + (canHitNonTargetPawnsNow ? "\nchntp" : ""), caster.DrawPos, caster.Map);
+        if (DebugViewSettings.drawShooting)
+            LogUtil.ThrowDebugTextMote("ToHit" + (canHitNonTargetPawnsNow ? "\nchntp" : ""), caster.DrawPos, caster.Map);
 
         if (currentTarget.Thing != null)
         {
@@ -156,8 +148,8 @@ public class Verb_LaunchWithOffset : Verb_Shoot
                 thing2,
                 def);
 
-            if (RimgateMod.Debug && DebugViewSettings.drawShooting)
-                Utils.ThrowDebugText("Rimgate :: HitDest " + currentTarget.Cell, caster.DrawPos, caster.Map);
+            if (DebugViewSettings.drawShooting)
+                LogUtil.ThrowDebugTextMote($"HitDest {currentTarget.Cell}", caster.DrawPos, caster.Map);
         }
         else
         {
@@ -171,8 +163,8 @@ public class Verb_LaunchWithOffset : Verb_Shoot
                 thing2,
                 def);
 
-            if (RimgateMod.Debug && DebugViewSettings.drawShooting)
-                Utils.ThrowDebugText("Rimgate :: HitDest ", shootLine.Dest, caster.Map);
+            if (DebugViewSettings.drawShooting)
+                LogUtil.ThrowDebugTextMote($"HitDest {shootLine.Dest}", caster.DrawPos, caster.Map);
         }
         return true;
     }

@@ -27,8 +27,7 @@ public static class Harmony_PathGrid
         int idx = map.cellIndices.CellToIndex(c);
         if (idx == cellIndex)
         {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Reducing cost for vortex entry cell {c} on map {map} at tile {map.Tile} from {__result} to 3.");
+            LogUtil.Debug($"Reducing cost for vortex entry cell {c} on map {map} at tile {map.Tile} from {__result} to 3.");
 
             __result = 3;
         }

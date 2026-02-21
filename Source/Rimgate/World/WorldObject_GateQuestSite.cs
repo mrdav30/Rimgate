@@ -45,9 +45,8 @@ public class WorldObject_GateQuestSite : Site
         if (!_mapHidden && shouldBeHidden)
         {
             // Hide from colonist bar
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Hiding gate quest site map at tile {Tile} due to: "
-                    + $"map hidden - {_mapHidden}, allow peek - {allowPeek}, nobody visible - {!hasBlockingPawns}");
+            LogUtil.Debug($"Hiding gate quest site map at tile {Tile} due to: "
+                + $"map hidden - {_mapHidden}, allow peek - {allowPeek}, nobody visible - {!hasBlockingPawns}");
             Find.ColonistBar.MarkColonistsDirty();
             _mapHidden = true;
         }
@@ -55,9 +54,8 @@ public class WorldObject_GateQuestSite : Site
         if (_mapHidden && allowPeek)
         {
             // Reveal to colonist bar
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Revealing gate quest site map at tile {Tile} due to: "
-                    + $"map hidden - {_mapHidden}, allow peek - {allowPeek}");
+            LogUtil.Debug($"Revealing gate quest site map at tile {Tile} due to: "
+                + $"map hidden - {_mapHidden}, allow peek - {allowPeek}");
             Find.ColonistBar.MarkColonistsDirty();
             _mapHidden = false;
         }
@@ -84,8 +82,7 @@ public class WorldObject_GateQuestSite : Site
     {
         if (Map == null || !_mapHidden) return;
 
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Revealing gate quest site map at tile {Tile} due to gate use");
+        LogUtil.Debug($"Revealing gate quest site map at tile {Tile} due to gate use");
 
         Find.ColonistBar.MarkColonistsDirty();
         _mapHidden = false;
@@ -93,8 +90,8 @@ public class WorldObject_GateQuestSite : Site
 
     public override void PostMapGenerate()
     {
-        if (!Building_Gate.TryGetReceivingGate(Map, out _) && RimgateMod.Debug)
-            Log.Warning($"Rimgate :: No receiving gate found on quest site map at tile {Tile} during PostMapGenerate");
+        if (!Building_Gate.TryGetReceivingGate(Map, out _))
+            LogUtil.Warning($"No receiving gate found on quest site map at tile {Tile} during PostMapGenerate");
         GateUtil.IncrementQuestSiteCount();
         base.PostMapGenerate();
     }

@@ -202,7 +202,7 @@ public class Building_Gate : Building
         PlanetTile tile = map?.Tile ?? PlanetTile.Invalid;
         if (Destroyed || Spawned || tile == PlanetTile.Invalid)
         {
-            Log.Error($"Rimgate :: Invalid gate address for gate {this} on map {map}. Destroying.");
+            LogUtil.Error($"Invalid gate address for gate {this} on map {map}. Destroying.");
             Destroy(DestroyMode.KillFinalize);
             return;
         }
@@ -211,8 +211,7 @@ public class Building_Gate : Building
         // this should never happen normally, but just in-case let it spawn inert, then uninstall
         if (TryGetSpawnedGateOnMap(map, out _))
         {
-            if (RimgateMod.Debug)
-                Log.Warning($"Rimgate :: Attempted to spawn a second active gate {this} on map {map} - marking inert to prevent conflicts.");
+            LogUtil.DebugWarning($"Attempted to spawn a second active gate {this} on map {map} - marking inert to prevent conflicts.");
             _inert = true;
             base.SpawnSetup(map, respawningAfterLoad);
             return;
@@ -230,8 +229,7 @@ public class Building_Gate : Building
         // prevent nullreferenceexception in-case innercontainer disappears
         if (Transporter != null && Transporter.innerContainer == null)
         {
-            if (RimgateMod.Debug)
-                Log.Warning($"Rimgate :: attempting to fix null container for {this.ThingID}");
+            LogUtil.DebugWarning($"attempting to fix null container for {this.ThingID}");
             _cachedTransporter.innerContainer = new ThingOwner<Thing>(_cachedTransporter);
         }
 
@@ -244,7 +242,7 @@ public class Building_Gate : Building
                 {
                     if (!TryGetReceivingGate(site.Map, out ConnectedGate))
                     {
-                        Log.Error($"Rimgate :: could not re-establish connection for gate {this} to address {ConnectedAddress} on map {site.Map}.");
+                        LogUtil.Error($"could not re-establish connection for gate {this} to address {ConnectedAddress} on map {site.Map}.");
                         CloseGate();
                         return;
                     }
@@ -260,13 +258,7 @@ public class Building_Gate : Building
                 PuddleSustainer = RimgateDefOf.Rimgate_GateIdle.TrySpawnSustainer(SoundInfo.InMap(this));
         }
 
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: spawnssetup:"
-                + $" sgactive={IsActive},"
-                + $" connectgate={ConnectedGate},"
-                + $" connectaddress={ConnectedAddress},"
-                + $" mapparent={Map.Parent},"
-                + $" isHomeGate={IsHomeGate}");
+        LogUtil.Debug($"Spawnssetup: sgactive={IsActive} connectgate={ConnectedGate} connectaddress={ConnectedAddress} mapparent={Map.Parent} isHomeGate={IsHomeGate}");
     }
 
     protected override void Tick()
@@ -415,7 +407,7 @@ public class Building_Gate : Building
             action = delegate ()
             {
                 CloseGate(ConnectedGate != null);
-                Log.Message($"Rimgate :: {this} was force-closed.");
+                LogUtil.Message($"{this} was force-closed.");
             }
         };
 
@@ -538,8 +530,7 @@ public class Building_Gate : Building
 
     private void CleanupGate()
     {
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Cleaning up gate {this}.");
+        LogUtil.Debug($"Cleaning up gate {this}.");
 
         // Remove designations on connected DHD that would target this gate
         var dm = Map?.designationManager;
@@ -663,18 +654,15 @@ public class Building_Gate : Building
         MapParent mp = Find.WorldObjects.MapParentAt(address);
         if (mp == null)
         {
-            Log.Error($"Rimgate :: gate address at {address} doesn't have an associated MapParent.");
+            LogUtil.Error($"gate address at {address} doesn't have an associated MapParent.");
             return;
         }
 
         if (!mp.HasMap)
         {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: generating map for {mp} using {mp.def.defName}");
+            LogUtil.Debug($"Generating map for {mp} using {mp.def.defName}");
 
-            IntVec3 mapSize = mp.def.overrideMapSize.HasValue
-                ? mp.def.overrideMapSize.Value
-                : (mp as Site).PreferredMapSize;
+            IntVec3 mapSize = mp.def.overrideMapSize ?? (mp as Site).PreferredMapSize;
             LongEventHandler.QueueLongEvent(delegate
             {
                 // note: world object is created via quest initialization;
@@ -689,8 +677,7 @@ public class Building_Gate : Building
             GameAndMapInitExceptionHandlers.ErrorWhileGeneratingMap,
             callback: delegate
             {
-                if (RimgateMod.Debug)
-                    Log.Message($"Rimgate :: finished generating map");
+                LogUtil.Debug("Finished generating map");
 
                 FinalizeOpen(address, mp.Map);
             });
@@ -729,8 +716,7 @@ public class Building_Gate : Building
             Glower.PostSpawnSetup(false);
         }
 
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: finished opening gate {this}");
+        LogUtil.Debug($"Finished opening gate {this}");
     }
 
     // called on the receiving gate by the dialing gate
@@ -795,7 +781,7 @@ public class Building_Gate : Building
         if (closeOtherGate)
         {
             if (ConnectedGate == null)
-                Log.Warning($"Rimgate :: Recieving gate connected to gate {this} doesn't exist, but this gate wanted it closed.");
+                LogUtil.Warning($"Recieving gate connected to gate {this} doesn't exist, but this gate wanted it closed.");
             else
                 ConnectedGate.CloseGate();
         }
@@ -818,7 +804,7 @@ public class Building_Gate : Building
             if (Ext.explodeOnUse)
             {
                 if (Explosive == null)
-                    Log.Warning($"Rimgate :: {this} has the explodeOnUse tag set to true but doesn't have CompExplosive.");
+                    LogUtil.Warning($"{this} has the explodeOnUse tag set to true but doesn't have CompExplosive.");
                 else
                     Explosive.StartWick();
             }
@@ -1021,8 +1007,7 @@ public class Building_Gate : Building
             // AABB early reject
             if (pos.x < minX || pos.x > maxX || pos.z < minZ || pos.z > maxZ)
             {
-                if (RimgateMod.Debug)
-                    Log.Message($"Rimgate :: Skipping pawn {p.LabelShort} at {pos} outside AABB [{minX},{minZ}] - [{maxX},{maxZ}]");
+                LogUtil.Debug($"Skipping pawn {p.LabelShort} at {pos} outside AABB [{minX},{minZ}] - [{maxX},{maxZ}]");
                 continue;
             }
 
@@ -1047,8 +1032,7 @@ public class Building_Gate : Building
                 if (reserved.Contains(next)) near = true;
             }
 
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Pawn {p.LabelShort} at {pos} is {(near ? "" : "not ")}near vortex.");
+            LogUtil.Debug($"Pawn {p.LabelShort} at {pos} is {(near ? "" : "not ")}near vortex.");
 
             if (near)
                 pawnsToMove.Add(p);
@@ -1070,14 +1054,12 @@ public class Building_Gate : Building
                 best = Position + Rotation.FacingCell;
                 if (!best.InBounds(map) || !best.Walkable(map) || reserved.Contains(best))
                 {
-                    if (RimgateMod.Debug)
-                        Log.Message($"Rimgate :: Could not evacuate pawn {p.LabelShort} from {origin}; no valid cells.");
+                    LogUtil.Debug($"Could not evacuate pawn {p.LabelShort} from {origin}; no valid cells.");
                     continue;
                 }
             }
 
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Evacuating pawn {p.LabelShort} from {origin} to {best}");
+            LogUtil.Debug($"Evacuating pawn {p.LabelShort} from {origin} to {best}");
 
             var gotoJob = JobMaker.MakeJob(JobDefOf.Goto, best);
             gotoJob.playerForced = true;

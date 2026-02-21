@@ -29,8 +29,7 @@ internal static class CloneUtility
         Pawn innerPawn = pod.HostPawn;
         if (innerPawn == null || !innerPawn.RaceProps.Humanlike)
         {
-            if (RimgateMod.Debug)
-                Log.Warning($"Rimgate: unable to clone pawn in {pod}");
+            LogUtil.DebugWarning($"Unable to clone pawn in {pod}");
             return false;
         }
 
@@ -181,8 +180,7 @@ internal static class CloneUtility
         Pawn_StoryTracker story2 = clonePawn.story;
         if (story2 == null)
         {
-            if (RimgateMod.Debug)
-                Log.Warning($"Rimgate: {clonePawn} cloned without story");
+            LogUtil.DebugWarning($"{clonePawn} cloned without story");
             return false;
         }
 
@@ -273,8 +271,7 @@ internal static class CloneUtility
                 if (!clonePawn.genes.HasActiveGene(degradation))
                 {
                     clonePawn.genes.AddGene(degradation, false);
-                    if (RimgateMod.Debug)
-                        Log.Message($"Rimgate :: Added random degradation gene to {clonePawn.Name}");
+                    LogUtil.Debug($"Added random degradation gene to {clonePawn.Name}");
                 }
             }
         }
@@ -527,8 +524,7 @@ internal static class CloneUtility
     {
         if (pod == null || clone == null || outcome == null)
         {
-            if (RimgateMod.Debug)
-                Log.Warning("Rimgate: unable to finalize spawn of clone pawn due to null argument");
+            LogUtil.DebugWarning("Unable to finalize spawn of clone pawn due to null argument");
             return;
         }
 

@@ -25,8 +25,7 @@ public class Pawn_Unas : Pawn
 
         if (IsFormerHuman())
         {
-            if (RimgateMod.Debug)
-                Log.Message($"Skipping Unas setup for former human {def.defName}");
+            LogUtil.Debug($"Skipping Unas setup for former human {def.defName}");
             return; // former humans have their own logic, ignore them
         }
 

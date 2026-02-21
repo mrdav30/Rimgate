@@ -59,8 +59,7 @@ public class Building_WraithCocoonPod : Building, IThingHolder
             && !IsAbilitySpawn
             && Props?.spawnVictim == true)
         {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Spawning victim in cocoon pod at {Position} on map {Map}.");
+            LogUtil.Debug($"Spawning victim in cocoon pod at {Position} on map {Map}.");
             Pawn victim = Utils.GeneratePawnForContainer(Map, null, Props.containPawnKindAnyOf);
             TryAcceptThing(victim);
             contentsKnown = false;

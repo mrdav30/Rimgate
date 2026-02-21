@@ -66,8 +66,7 @@ public static class GateUtil
         {
             if (!IsValidAddress(tile))
             {
-                if (RimgateMod.Debug)
-                    Log.Message($"Rimgate :: Gate Address Cleanup: Removing invalid address at tile {tile}");
+                LogUtil.Debug($"Gate Address Cleanup: Removing invalid address at tile {tile}");
                 return true;
             }
             return false;
@@ -187,8 +186,7 @@ public static class GateUtil
         {
             spot = CellFinderLoose.RandomCellWith(c => c.Standable(map), map);
 
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Unable to find a safe spot to spawn a gate, spawning randomly at {spot}.");
+            LogUtil.Debug($"Unable to find a safe spot to spawn a gate, spawning randomly at {spot}.");
         }
 
         var gate = GenSpawn.Spawn(
@@ -200,8 +198,7 @@ public static class GateUtil
 
         if (faction != null) gate?.SetFaction(faction);
 
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Spawned a fallback gate at {spot} on {map}{(faction != null ? $" for faction {faction}" : "")}.");
+        LogUtil.Debug($"Spawned a fallback gate at {spot} on {map}{(faction != null ? $" for faction {faction}" : "")}.");
 
         return gate;
     }
@@ -241,8 +238,7 @@ public static class GateUtil
         {
             near = CellFinderLoose.RandomCellWith(c => c.Standable(map), map);
 
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Unable to find a safe spot to spawn a dhd, spawning randomly at {near}.");
+            LogUtil.Debug($"Unable to find a safe spot to spawn a dhd, spawning randomly at {near}.");
         }
 
         var dhdDef = RimgateDefOf.Rimgate_DialHomeDevice;
@@ -255,7 +251,6 @@ public static class GateUtil
 
         if (faction != null) dhd?.SetFaction(faction);
 
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Spawned a fallback DHD at {near} on {map}{(faction != null ? $" for faction {faction}" : "")}.");
+        LogUtil.Debug($"Spawned a fallback DHD at {near} on {map}{(faction != null ? $" for faction {faction}" : "")}.");
     }
 }

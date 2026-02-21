@@ -45,8 +45,7 @@ public static class Harmony_Messages_Message
         if (mapParent == null || mapParent is not WorldObject_GateQuestSite || nobodyVisible)
             return false;
 
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Suppressed message for GateQuestSite");
+        LogUtil.Debug("Suppressed message for GateQuestSite");
 
         return true;
     }

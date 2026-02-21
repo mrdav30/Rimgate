@@ -19,8 +19,7 @@ public class QuestNode_SetSiteQuestId : QuestNode
         var site = slate.Get<Site>("site");
         if (site == null || site is not WorldObject_GateQuestSite wos)
         {
-            if (RimgateMod.Debug)
-                Log.Error("Rimgate :: could not find valid gate quest site.");
+            LogUtil.Error("Could not find valid gate quest site.");
             return;
         }
 

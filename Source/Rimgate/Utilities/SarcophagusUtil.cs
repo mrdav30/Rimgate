@@ -296,8 +296,7 @@ public static class SarcophagusUtil
         // - blindnessRequired => Blindness never contributes to hasChronicDiseases.
         // So if those are the *only* issues, needsTreatment will be false.
 
-        if (RimgateMod.Debug)
-            Log.Message($"{patient} should use {sarcophagus}? = {needsTreatment.ToStringYesNo()}");
+        LogUtil.Debug($"{patient} should use {sarcophagus}? = {needsTreatment.ToStringYesNo()}");
 
         if (!needsTreatment)
         {

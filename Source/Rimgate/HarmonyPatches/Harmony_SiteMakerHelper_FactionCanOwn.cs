@@ -36,13 +36,11 @@ public static class Harmony_SiteMakerHelper_FactionCanOwn
 
         if (faction == null || !RimgateHiddenFactions.Contains(faction.def))
         {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Preventing faction '{faction?.Name ?? "null"}' from owning site part '{sitePart.defName}'");
+            LogUtil.Debug($"Preventing faction '{faction?.Name ?? "null"}' from owning site part '{sitePart.defName}'");
             return true;
         }
 
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Allowing faction '{faction?.Name ?? "null"}' to own site part '{sitePart.defName}'");
+        LogUtil.Debug($"Allowing faction '{faction?.Name ?? "null"}' to own site part '{sitePart.defName}'");
 
         __result = true;
         return false;

@@ -20,8 +20,7 @@ public static class Harmony_PawnInventoryOption_GenerateThings
 
         if (def.MadeFromStuff)
         {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: GenerateThings: making {def} with default stuff.");
+            LogUtil.Debug($"GenerateThings: making {def} with default stuff.");
             var defaultStuff = GenStuff.DefaultStuffFor(def);
             return ThingMaker.MakeThing(def, defaultStuff);
         }

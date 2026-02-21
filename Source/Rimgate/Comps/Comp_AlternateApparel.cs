@@ -39,8 +39,7 @@ public class Comp_AlternateApparel : ThingComp
         GetOrCreateAlternate();
         if (CachedAlternate == null)
         {
-            if (RimgateMod.Debug)
-                Log.Warning($"Rimgate :: unable to get alternate for {Apparel}");
+            LogUtil.DebugWarning($"Unable to get alternate for {Apparel}");
             return;
         }
 
@@ -53,8 +52,7 @@ public class Comp_AlternateApparel : ThingComp
         // Make other version if needed
         if (CachedAlternate == null)
         {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: creating new alternate {Props.alternateDef} for {Apparel} {(Apparel.Stuff != null ? $"using {Apparel.Stuff}" : "")}");
+            LogUtil.Debug($"Creating new alternate {Props.alternateDef} for {Apparel} {(Apparel.Stuff != null ? $"using {Apparel.Stuff}" : "")}");
 
             CachedAlternate = (Apparel)ThingMaker.MakeThing(Props.alternateDef, Apparel.Stuff);
             if (CachedAlternate == null) return null;

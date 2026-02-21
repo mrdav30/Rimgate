@@ -332,14 +332,4 @@ internal static class Utils
     {
         return building != null && building.ParentHolder is MinifiedThing;
     }
-
-    internal static void ThrowDebugText(string text, Vector3 drawPos, Map map)
-    {
-        MoteMaker.ThrowText(drawPos, map, text, -1f);
-    }
-
-    internal static void ThrowDebugText(string text, IntVec3 c, Map map)
-    {
-        MoteMaker.ThrowText(c.ToVector3Shifted(), map, text, -1f);
-    }
 }

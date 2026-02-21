@@ -499,4 +499,40 @@
 	<RG_CementValueDesc>Raw stone chunks go {0}x further than other stone materials and anything made of limestone reduces the cost by {1}.</RG_CementValueDesc>
 	<RG_TunnelCrystalClearedDesignation>Tunneling crystal resonance clears {0} designated tiles.</RG_TunnelCrystalClearedDesignation>
 
+	<!-- Settings -->
+
+	<RG_Settings_Title>Rimgate Settings</RG_Settings_Title>
+	<RG_Settings_Section_CloneTimings_Label>Clone timings</RG_Settings_Section_CloneTimings_Label>
+	<RG_Settings_Section_CloneModifiers_Label>Clone operation modifiers</RG_Settings_Section_CloneModifiers_Label>
+	<RG_Settings_Section_CloneBehavior_Label>Clone behavior</RG_Settings_Section_CloneBehavior_Label>
+	<RG_Settings_Section_CloneFailures_Label>Clone failures</RG_Settings_Section_CloneFailures_Label>
+	<RG_Settings_Section_CloneRequirements_Label>Clone requirements</RG_Settings_Section_CloneRequirements_Label>
+	<RG_Settings_Section_Logging_Label>Logging</RG_Settings_Section_Logging_Label>
+
+	<RG_Settings_BaseCalibrationTicks_Label>Base calibration time (ticks)</RG_Settings_BaseCalibrationTicks_Label>
+	<RG_Settings_BaseIncubationTicks_Label>Base incubation time (ticks)</RG_Settings_BaseIncubationTicks_Label>
+	<RG_Settings_FullCloneFactor_Label>Full clone factor</RG_Settings_FullCloneFactor_Label>
+	<RG_Settings_EnhancedCloneFactor_Label>Enhanced clone factor</RG_Settings_EnhancedCloneFactor_Label>
+	<RG_Settings_ReconstructionCloneFactor_Label>Reconstruction clone factor</RG_Settings_ReconstructionCloneFactor_Label>
+	<RG_Settings_StabilizerBiomassCostReduction_Label>Biomass stabilizer cost reduction</RG_Settings_StabilizerBiomassCostReduction_Label>
+	<RG_Settings_InducerCalibrationSpeedFactor_Label>Inducer calibration speed factor</RG_Settings_InducerCalibrationSpeedFactor_Label>
+	<RG_Settings_InducerIncubationSpeedFactor_Label>Inducer incubation speed factor</RG_Settings_InducerIncubationSpeedFactor_Label>
+	<RG_Settings_EnableCloneIncidents_Label>Enable clone incidents</RG_Settings_EnableCloneIncidents_Label>
+	<RG_Settings_EnableAsteroidIncidents_Label>Enable naquadah asteroid incidents</RG_Settings_EnableAsteroidIncidents_Label>
+	<RG_Settings_CloneTattoos_Label>Clone tattoos</RG_Settings_CloneTattoos_Label>
+	<RG_Settings_NoSkillLoss_Label>No skill loss on deep/reconstructed cloning</RG_Settings_NoSkillLoss_Label>
+	<RG_Settings_GenerateSocialRelations_Label>Generate social relations for clones</RG_Settings_GenerateSocialRelations_Label>
+	<RG_Settings_MinorFailures_Label>Enable minor failures</RG_Settings_MinorFailures_Label>
+	<RG_Settings_MinorFailureChance_Label>Minor failure chance</RG_Settings_MinorFailureChance_Label>
+	<RG_Settings_MajorFailures_Label>Enable major failures</RG_Settings_MajorFailures_Label>
+	<RG_Settings_MajorFailureChance_Label>Major failure chance</RG_Settings_MajorFailureChance_Label>
+	<RG_Settings_MedicineSkillReq_Label>Minimum medicine skill for calibration</RG_Settings_MedicineSkillReq_Label>
+	<RG_Settings_StabilizerDeteriorationFactor_Label>Biomass stabilizer deterioration factor</RG_Settings_StabilizerDeteriorationFactor_Label>
+	<RG_Settings_LogLevel_Label>Log level (click to cycle)</RG_Settings_LogLevel_Label>
+	<RG_Settings_LogLevel_Off>Off</RG_Settings_LogLevel_Off>
+	<RG_Settings_LogLevel_Error>Error</RG_Settings_LogLevel_Error>
+	<RG_Settings_LogLevel_Warning>Warning</RG_Settings_LogLevel_Warning>
+	<RG_Settings_LogLevel_Message>Message</RG_Settings_LogLevel_Message>
+	<RG_Settings_LogLevel_Debug>Debug</RG_Settings_LogLevel_Debug>
+
 </LanguageData>

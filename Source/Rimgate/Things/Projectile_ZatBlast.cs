@@ -91,8 +91,7 @@ public class Projectile_ZatBlast : Bullet
         if (corpse == null) return false;
         if (corpse.GetRotStage() != RotStage.Fresh) return false;
 
-        if (RimgateMod.Debug)
-            Messages.Message($"Rimgate :: {Label} disintegrated {corpse.InnerPawn.LabelShort}.", MessageTypeDefOf.NeutralEvent);
+        Messages.Message($"{Label} disintegrated {corpse.InnerPawn.LabelShort}.", MessageTypeDefOf.NeutralEvent);
 
         corpse.Destroy();
         if (corpse.Spawned)

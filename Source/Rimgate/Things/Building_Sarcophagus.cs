@@ -250,8 +250,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             // Interrupt treatment on power loss
             if (!Power.PowerOn)
             {
-                if (RimgateMod.Debug)
-                    Log.Message(this + $" :: Lost power while running (state: {Status})");
+                LogUtil.Debug($"{this} lost power while running (state: {Status})");
 
                 DischargePatient(patient, false);
                 EjectContents();
@@ -283,8 +282,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                             _patientNeedsSnapshotTaken = true;
                         }
 
-                        if (RimgateMod.Debug)
-                            Log.Message($"\t{patient} :: initial DiagnosingTicks = {DiagnosingTicks}");
+                        LogUtil.Debug($"\t{patient} :: initial DiagnosingTicks = {DiagnosingTicks}");
 
                         SwitchState();
                         break;
@@ -302,8 +300,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                         // Skip treatment if no treatable hediffs are found
                         if (_patientTreatableHediffs.NullOrEmpty())
                         {
-                            if (RimgateMod.Debug)
-                                Log.Message(this + $" :: Discharging patient since there are no hediffs to treat");
+                            LogUtil.Debug($"{this} :: Discharging patient since there are no hediffs to treat");
 
                             // No hediffs to heal, but we still want to cleanly discharge + restore needs.
                             DischargePatient(patient, true);
@@ -317,14 +314,12 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                         else
                         {
                             HealingTicks = ScaleHealingTicks(patient);
-                            if (RimgateMod.Debug)
-                            {
-                                Log.Message($"\t{patient} :: first hediff HealingTicks = {HealingTicks}"
-                                    + $" (hediff count: {_patientTreatableHediffs.Count()})");
-                            }
-
-                            SwitchState();
+                            LogUtil.Debug($"\t{patient} :: first hediff HealingTicks = {HealingTicks}"
+                                + $" (hediff count: {_patientTreatableHediffs.Count()})");
                         }
+
+                        SwitchState();
+
                         break;
                     }
                 case SarcophagusStatus.HealingStarted:
@@ -353,11 +348,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                         if (!_patientTreatableHediffs.NullOrEmpty())
                         {
                             HealingTicks = ScaleHealingTicks(patient);
-                            if (RimgateMod.Debug)
-                            {
-                                Log.Message($"\t{patient} :: next hediff HealingTicks = {HealingTicks}"
+                            LogUtil.Debug($"\t{patient} :: next hediff HealingTicks = {HealingTicks}"
                                     + $" (hediff count: {_patientTreatableHediffs.Count()})");
-                            }
 
                             // Jump back to the previous state to start healing the next hediff
                             Status = SarcophagusStatus.HealingStarted;
@@ -536,7 +528,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         if (gizmo != null)
             yield return gizmo;
 
-        if (RimgateMod.Debug && CanOpen)
+        if (DebugSettings.ShowDevGizmos && CanOpen)
         {
             yield return new Command_Action
             {
@@ -730,9 +722,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
                 break;
         }
 
-        if (RimgateMod.Debug)
-            Log.Message(this + $" :: state change from {oldStatus.ToStringSafe().Colorize(Color.yellow)}"
-                + $" to {Status.ToStringSafe().Colorize(Color.yellow)}");
+        LogUtil.Debug($"{this} state change from {oldStatus.ToStringSafe().Colorize(Color.yellow)}"
+            + $" to {Status.ToStringSafe().Colorize(Color.yellow)}");
     }
 
     public bool IsSarcophagusInUse()
@@ -793,8 +784,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         {
             int removedMissing = _patientTreatableHediffs.RemoveAll(h => h.def == HediffDefOf.MissingBodyPart);
 
-            if (RimgateMod.Debug && removedMissing > 0)
-                Log.Message($"{this} :: Missing body parts removed from treatment list (bioregeneration research not completed).");
+            if (removedMissing > 0)
+                LogUtil.Debug($"Missing body parts removed from treatment list for {this} (bioregeneration research not completed).");
         }
 
         // Ignore hediffs/injuries that are:
@@ -980,13 +971,10 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         if (finishTreatmentNormally)
             RimgateEvents.Notify_ColonyOfPawnEvent(patient, RimgateDefOf.Rimgate_UsedSarcophagus);
 
-        if (RimgateMod.Debug)
-        {
-            string message = finishTreatmentNormally
-                ? "NORMAL".Colorize(Color.green)
-                : "ABORTED".Colorize(Color.red);
-            Log.Message(this + $" :: Discharged patient {patient} ({message})");
-        }
+        string message = finishTreatmentNormally
+            ? "NORMAL".Colorize(Color.green)
+            : "ABORTED".Colorize(Color.red);
+        LogUtil.Debug($"{this} discharged patient {patient} ({message})");
     }
 
     public void StartWickSustainer()

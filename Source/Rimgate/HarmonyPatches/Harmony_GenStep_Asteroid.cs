@@ -10,10 +10,9 @@ public static class Harmony_GenStep_Asteroid
 {
     public static bool Prefix(GenStep_Asteroid __instance, Map map, GenStepParams parms)
     {
-        if (map?.Parent != null && map.Parent is WorldObject_GateQuestSite wos)
+        if (map?.Parent != null && map.Parent is WorldObject_GateQuestSite)
         {
-            if (RimgateMod.Debug)
-                Log.Message("Rimgate :: Generating asteroid ores for GateQuestSite map.");
+            LogUtil.Debug("Generating asteroid ores for GateQuestSite map.");
 
             var mineables = __instance.mineableCounts;
             ThingDef thingDef = mineables.RandomElement().mineable;

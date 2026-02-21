@@ -46,20 +46,19 @@ public class GenStep_AncientComplex_GateSite : GenStep_AncientComplex
     private LayoutStructureSketch GenerateStructureSketch(float points, bool generateTerminals = true)
     {
         int num = (int)ComplexSizeOverPointsCurve.Evaluate(points);
-        StructureGenParams parms = new StructureGenParams
+        StructureGenParams parms = new()
         {
             size = new IntVec2(num, num)
         };
 
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Generating lost complex structure sketch with size {parms.size} using {points}.");
+        LogUtil.Debug($"Generating lost complex structure sketch with size {parms.size} using {points}.");
 
         LayoutStructureSketch layoutStructureSketch = LayoutDef.Worker.GenerateStructureSketch(parms);
 
         if (layoutStructureSketch?.structureLayout == null)
         {
-            Log.Warning("Rimgate :: Failed to find lost complex structure sketch. Generating default.");
-            StructureGenParams parms2 = new StructureGenParams
+            LogUtil.DebugWarning("Failed to find lost complex structure sketch. Generating default.");
+            StructureGenParams parms2 = new()
             {
                 size = DefaultComplexSize
             };

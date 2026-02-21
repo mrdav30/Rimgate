@@ -33,8 +33,7 @@ public class MapComponent_ZpmRaidTracker : MapComponent
         if (_suppressionActive == active) return;
         _suppressionActive = active;
 
-        if (RimgateMod.Debug)
-            Log.Message($"Setting ZPM raid suppression to {_suppressionActive}.");
+        LogUtil.Debug($"Setting ZPM raid suppression to {_suppressionActive}.");
 
         // Kill the quest if it’s running; ZPMs are “masked”.
         if (_suppressionActive)

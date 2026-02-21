@@ -35,8 +35,7 @@ public class Comp_ToggleIris : Comp_Toggle
         // Ensure switch state matches iris state
         if (!linked.Powered && linked.IsIrisActivated)
         {
-            if (RimgateMod.Debug)
-                Log.Message("Rimgate :: Iris deactivated due to lack of power.");
+            LogUtil.Debug("Iris deactivated due to lack of power.");
 
             SwitchIsOn = false;
             _wantToggle = false;
@@ -46,8 +45,7 @@ public class Comp_ToggleIris : Comp_Toggle
 
         if (SwitchIsOn != linked.IsIrisActivated)
         {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Syncing iris state with switch state");
+            LogUtil.Debug($"Syncing iris state with switch state");
 
             _switchOnInt = linked.IsIrisActivated;
             _wantToggle = false;

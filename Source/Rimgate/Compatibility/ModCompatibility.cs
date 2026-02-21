@@ -20,31 +20,25 @@ public class ModCompatibility
 
     static ModCompatibility()
     {
-        if (ModCompatibility.AlphaGenesIsActive)
+        if (AlphaGenesIsActive)
         {
-            if (RimgateMod.Debug)
-                Log.Message("Rimgate :: Alpha Genes detected!");
+            LogUtil.Message("Alpha Genes detected!");
 
             // Conditionally patch BreakSomeBones patch to patients on Sarcophagus
             var targetPatchClass = AccessTools.TypeByName("AlphaGenes_Pawn_HealthTracker_MakeDowned_Patch");
             MethodInfo original = AccessTools.Method(targetPatchClass, "BreakSomeBones");
-            HarmonyMethod prefix = new HarmonyMethod(
-                typeof(AlphaGenesCompatibility),
-                nameof(AlphaGenesCompatibility.SkipIfPawnIsOnSarcophagus));
+            HarmonyMethod prefix = new(typeof(AlphaGenesCompatibility), nameof(AlphaGenesCompatibility.SkipIfPawnIsOnSarcophagus));
             RimgateMod.harmony.Patch(original, prefix);
         }
 
-        if (ModCompatibility.DbhIsActive)
+        if (DbhIsActive)
         {
-            if (RimgateMod.Debug)
-                Log.Message("Rimgate :: Dubs Bad Hygiene detected!");
+            LogUtil.Message("Dubs Bad Hygiene detected!");
 
             // Conditionally patch WorkGiver_washPatient to ignore Sarcophaguss
             var workGiver_washPatientType = AccessTools.TypeByName("WorkGiver_washPatient");
             MethodInfo original = AccessTools.Method(workGiver_washPatientType, "ShouldBeWashedBySomeone");
-            HarmonyMethod postfix = new HarmonyMethod(
-                typeof(DbhCompatibility),
-                nameof(DbhCompatibility.ShouldBeWashedBySomeonePostfix));
+            HarmonyMethod postfix = new(typeof(DbhCompatibility), nameof(DbhCompatibility.ShouldBeWashedBySomeonePostfix));
             RimgateMod.harmony.Patch(original, postfix: postfix);
         }
     }

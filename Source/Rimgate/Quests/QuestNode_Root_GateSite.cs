@@ -59,8 +59,7 @@ public class QuestNode_Root_GateSite : QuestNode
     {
         if (!TryFindSiteTile(slate, out _))
         {
-            if (RimgateMod.Debug)
-                Log.Error("Rimgate :: failed to find valid site tile.");
+            LogUtil.Error("Failed to find valid site tile.");
             return false;
         }
         return true;
@@ -73,19 +72,18 @@ public class QuestNode_Root_GateSite : QuestNode
 
         if (!TryFindSiteTile(slate, out var tile))
         {
-            Log.Error("Rimgate :: Could not find valid site tile.");
+            LogUtil.Error("Failed to find valid site tile.");
             return;
         }
 
         Faction resolvedFaction = ResolveFaction(slate);
         slate.Set<Faction>(FactionAlias, resolvedFaction);
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Generating gate site at tile {tile} for faction {resolvedFaction.Name}.");
+        LogUtil.Debug($"Generating gate site at tile {tile} for faction {resolvedFaction.Name}.");
 
         List<SitePartOption> sitePartDefsFor = sitePartDefs.GetValue(slate);
         if (sitePartDefsFor.NullOrEmpty())
         {
-            Log.Error("Rimgate :: No site part defs specified for site generation.");
+            LogUtil.Error("No site part defs specified for site generation.");
             return;
         }
 
@@ -142,7 +140,7 @@ public class QuestNode_Root_GateSite : QuestNode
     {
         if (!TryGetLayer(slate, out var source, out var layer))
         {
-            Log.Error("Rimgate :: Could not find valid planet layer for site.");
+            LogUtil.Error("Could not find valid planet layer for site.");
             tile = PlanetTile.Invalid;
             return false;
         }
@@ -197,8 +195,8 @@ public class QuestNode_Root_GateSite : QuestNode
         bool orbitLayerOnly = orbitOnly.GetValue(slate);
         bool allowSpaceForSource = !surfaceLayerOnly || orbitLayerOnly;
 
-        if (RimgateMod.Debug && surfaceLayerOnly && orbitLayerOnly)
-            Log.Warning("Rimgate :: planetSurfaceOnly && orbitOnly both true; treating as unrestricted.");
+        if (surfaceLayerOnly && orbitLayerOnly)
+            LogUtil.DebugWarning("`planetSurfaceOnly` && `orbitOnly` are both true; treating as unrestricted.");
 
         Map map = QuestGen.slate.Get<Map>("map");
         if (map != null && map.Tile.Valid)
@@ -302,13 +300,12 @@ public class QuestNode_Root_GateSite : QuestNode
             : 0f;
         threatPoints = Mathf.Max(minThreatPoints, threatPoints);
         slate.Set(SitePointsAlias, threatPoints);
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Using {points} points and {threatPoints} threat points for site generation.");
+        LogUtil.Debug($"Using {points} points and {threatPoints} threat points for site generation.");
 
         // Must have at least one always part (your rule)
         if (always.Count == 0)
         {
-            Log.Error("Rimgate :: GateSite requires at least one always-included site part (chance >= 1).");
+            LogUtil.Error("GateSite requires at least one always-included site part (chance >= 1).");
             partDefWithParams = null;
             return false;
         }
@@ -328,8 +325,7 @@ public class QuestNode_Root_GateSite : QuestNode
 
         void AddPart(SitePartDef def)
         {
-            if (RimgateMod.Debug)
-                Log.Message($"Rimgate :: Generating site part {def.defName}");
+            LogUtil.Debug($"Generating site part {def.defName}");
 
             result.Add(new SitePartDefWithParams(def, new SitePartParams
             {

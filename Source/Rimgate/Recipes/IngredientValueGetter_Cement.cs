@@ -15,8 +15,7 @@ public class IngredientValueGetter_Cement : IngredientValueGetter
         bool isStoneyStuff = IngredientValueGetter_Cement.IsStoneyStuff(t);
         if (isStoneyStuff)
         {
-            if (RimgateMod.Debug)
-                Log.Message($"IngredientValueGetter_Cement: {t.defName} is stoney stuff");
+            LogUtil.Debug($"IngredientValueGetter_Cement: {t.defName} is stoney stuff");
             return t.defName == "BlocksLimestone"
                 ? limestoneMultiplier // limestone blocks are a little more valuable
                 : 1f;
@@ -26,8 +25,7 @@ public class IngredientValueGetter_Cement : IngredientValueGetter
         bool isChunk = IngredientValueGetter_Cement.IsChunk(t);
         if (!isChunk)
         {
-            if (RimgateMod.Debug)
-                Log.Message($"IngredientValueGetter_Cement: {t.defName} is not a chunk");
+            LogUtil.Debug($"IngredientValueGetter_Cement: {t.defName} is not a chunk");
             return 0.0f; // only stoney stuff chunks are valid
         }
 
@@ -35,8 +33,7 @@ public class IngredientValueGetter_Cement : IngredientValueGetter
         if (t.defName == "ChunkLimestone")
             result *= limestoneMultiplier; // raw chunk limestone is much more valuable
 
-        if (RimgateMod.Debug)
-            Log.Message($"IngredientValueGetter_Cement: {t.defName} is chunk, value per unit: {result}");
+        LogUtil.Debug($"IngredientValueGetter_Cement: {t.defName} is chunk, value per unit: {result}");
 
         return result;
     }

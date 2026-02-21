@@ -301,14 +301,13 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                     if (!HasPendingClone)
                     {
                         Status = CloningStatus.Error;
-                        if (RimgateMod.Debug)
-                            Log.Message(this + " :: No pending clone found while paused, switching to Error state");
+                        LogUtil.Message($"No pending clone found for {this} while paused, switching to Error state");
                         return;
                     }
 
                     if (TryGetCostForCurrentCycle(out int cost))
                     {
-                        Log.Message($"consuming {cost} biomass to start incubation");
+                        LogUtil.Debug($"Consuming {cost} biomass to start incubation");
 
                         // Consume initial biomass cost prior to incubation to simulate starting the process
                         Refuelable.ConsumeFuel(cost);
@@ -326,8 +325,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                     if (!HasPendingClone)
                     {
                         Status = CloningStatus.Error;
-                        if (RimgateMod.Debug)
-                            Log.Message(this + " :: No pending clone found while paused, switching to Error state");
+                        LogUtil.Debug($"No pending clone found for {this} while paused, switching to Error state");
                         return;
                     }
 
@@ -1233,9 +1231,8 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                 }
         }
 
-        if (RimgateMod.Debug)
-            Log.Message(this + $" :: state change from {oldStatus.ToStringSafe().Colorize(Color.yellow)}"
-                + $" to {Status.ToStringSafe().Colorize(Color.yellow)}");
+        LogUtil.Debug(this + $"{this} state change from {oldStatus.ToStringSafe().Colorize(Color.yellow)}"
+            + $" to {Status.ToStringSafe().Colorize(Color.yellow)}");
     }
 
     public void EjectContents()

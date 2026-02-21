@@ -36,8 +36,7 @@ public class GenStep_PawnPresence : GenStep
         IntVec3 cell = Utils.TryFindSpawnCellNear(map, RimgateDefOf.Rimgate_Dwarfgate);
         if (!cell.IsValid)
         {
-            if (RimgateMod.Debug)
-                Log.Warning("Rimgate :: Could not find valid spawn cell near Rimgate_Dwarfgate. Aborting enemy presence generation.");
+            LogUtil.DebugWarning("Could not find valid spawn cell near Rimgate_Dwarfgate. Aborting enemy presence generation.");
             return;
         }
 
@@ -53,9 +52,8 @@ public class GenStep_PawnPresence : GenStep
 
         Lord lord = LordMaker.MakeNewLord(faction, job, map);
 
-        if (RimgateMod.Debug)
-            Log.Message($"Rimgate :: Spawning {(isSiteFaction ? "site" : "enemy")} presence for faction '{faction.Name}' at {cell}"
-                + (siteFaction != null ? $" (site faction: '{siteFaction.Name}')" : " (no site faction)"));
+        LogUtil.Debug($"Spawning {(isSiteFaction ? "site" : "enemy")} presence for faction '{faction.Name}' at {cell}"
+            + (siteFaction != null ? $" (site faction: '{siteFaction.Name}')" : " (no site faction)"));
 
         foreach (Pawn pawn in GeneratePawns(map, faction, parms))
         {
