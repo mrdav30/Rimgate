@@ -6,11 +6,13 @@ namespace Rimgate;
 public class Comp_SymbioteHeritage : ThingComp
 {
     public SymbioteMemory Memory;
+    public SymbioteQueenLineage QueenLineage;
 
     public override void PostExposeData()
     {
         base.PostExposeData();
         Scribe_Deep.Look(ref Memory, "Memory");
+        Scribe_Deep.Look(ref QueenLineage, "QueenLineage");
     }
 
     public override string GetDescriptionPart()
@@ -27,6 +29,11 @@ public class Comp_SymbioteHeritage : ThingComp
     public void AssumeMemory(SymbioteMemory memory)
     {
         Memory = SymbioteMemory.DeepCopy(memory);
+    }
+
+    public void AssumeQueenLineage(SymbioteQueenLineage lineage)
+    {
+        QueenLineage = SymbioteQueenLineage.DeepCopy(lineage);
     }
 
     public void ApplyMemoryPostRemoval(Pawn host)

@@ -143,14 +143,20 @@ public class HediffComp_PrimtaLifecycle : HediffComp
 
     private void BecomeGoauld(Pawn pawn)
     {
+        SymbioteQueenLineage lineage = null;
         if (parent is Hediff_PrimtaInPouch primta)
+        {
             primta.MarkInternalRemoval();
+            lineage = primta.QueenLineage;
+        }
 
         // Remove the Prim'ta
         pawn.health.RemoveHediff(parent);
 
         // Add mature symbiote, will remove the pouch hediff
         var sym = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SymbioteImplant, pawn);
+        if (sym is Hediff_SymbioteImplant implant)
+            implant.Heritage?.AssumeQueenLineage(lineage);
         pawn.health.AddHediff(sym);
 
         if (pawn.Faction.IsOfPlayerFaction())

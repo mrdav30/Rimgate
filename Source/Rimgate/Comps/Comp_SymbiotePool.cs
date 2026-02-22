@@ -261,12 +261,19 @@ public class Comp_SymbiotePool : ThingComp
         if (Props.productSymbioteDef == null || !parent.Spawned)
             return;
 
-        var pool = parent as Building_SymbioteSpawningPool;
+        if (parent is not Building_SymbioteSpawningPool pool)
+            return;
+
         // cap how many symbiotes can get produced
         if (pool.InnerContainer.TotalStackCount >= pool.MaxHeldItems)
             return;
 
+        Thing queen = FindQueen(pool);
+        if (queen is Thing_SymbioteQueen queenThing)
+            queenThing.EnsureLineageInitialized();
+
         Thing product = ThingMaker.MakeThing(Props.productSymbioteDef);
+        SymbioteLineageUtility.AssumeLineage(product, SymbioteLineageUtility.GetLineage(queen));
 
         // If storage rules reject (e.g., player changed filter),
         // just don’t create it.

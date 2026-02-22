@@ -88,8 +88,17 @@ public class Hediff_SymbioteImplant : Hediff_Implant
             // Spawn mature symbiote item at pawn's position
             if (!IsBlankSymbiote && pawn.Map != null)
             {
-                var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote);
-                GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
+                var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote) as Thing_GoualdSymbiote;
+                if (thing != null)
+                {
+                    if (thing.Heritage != null)
+                    {
+                        thing.Heritage.AssumeMemory(Heritage?.Memory);
+                        thing.Heritage.AssumeQueenLineage(Heritage?.QueenLineage);
+                    }
+
+                    GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
+                }
             }
 
             if (!isConfigStage && pawn.Faction.IsOfPlayerFaction())
@@ -194,13 +203,34 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         foreach (var stat in base.SpecialDisplayStats(req))
             yield return stat;
 
+        SymbioteQueenLineage lineage = Heritage?.QueenLineage;
+        if (lineage?.HasQueenName == true)
+            yield return new StatDrawEntry(
+                StatCategoryDefOf.BasicsImportant,
+                "RG_Symbiote_Stat_MotherQueen_Label".Translate(),
+                lineage.QueenName,
+                "RG_Symbiote_Stat_MotherQueen_Desc".Translate(),
+                4993);
+
+        if (lineage?.HasOffsets == true)
+        {
+            string offsetText = lineage.OffsetsDisplayString();
+            if (!offsetText.NullOrEmpty())
+                yield return new StatDrawEntry(
+                    StatCategoryDefOf.BasicsImportant,
+                    "RG_Symbiote_Stat_InheritedOffsets_Label".Translate(),
+                    offsetText,
+                    "RG_Symbiote_Stat_InheritedOffsets_Desc".Translate(),
+                    4992);
+        }
+
         if (!IsBlankSymbiote && Heritage?.Memory != null)
             yield return new StatDrawEntry(
                 StatCategoryDefOf.BasicsImportant,
                 "RG_Symbiote_Stat_PreviousHostCount_Label".Translate(),
                 Heritage?.Memory.PriorHostCount.ToString("F0"),
                 "RG_Symbiote_Stat_PreviousHostCount_Desc".Translate(),
-                4994);
+                4991);
     }
 
     public override void Notify_PawnKilled()
@@ -217,6 +247,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
             return;
 
         var hediffMemory = Heritage.Memory;
+        var hediffLineage = Heritage.QueenLineage;
         // Undo this symbiote's bonuses on the current host
         hediffMemory?.RemoveSessionBonuses(pawn);
 
@@ -224,11 +255,14 @@ public class Hediff_SymbioteImplant : Hediff_Implant
 
         // Preserve its accumulated memory and inherit skills from previous host,
         // regardless of how the symbiote is removed
-        var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote) as Thing_GoualdSymbiote;
+        if (ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote) is not Thing_GoualdSymbiote thing)
+            return;
+
         var heritageComp = thing.Heritage;
         if (heritageComp != null)
         {
             heritageComp.AssumeMemory(hediffMemory);
+            heritageComp.AssumeQueenLineage(hediffLineage);
             heritageComp.ApplyMemoryPostRemoval(pawn);
             var memory = heritageComp.Memory;
 

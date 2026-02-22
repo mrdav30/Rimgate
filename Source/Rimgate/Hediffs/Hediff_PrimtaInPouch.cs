@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
 using Verse;
 
 namespace Rimgate;
@@ -11,9 +12,22 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
 
     public HediffComp_PrimtaLifecycle Lifecycle => _lifecycle ??= GetComp<HediffComp_PrimtaLifecycle>();
 
+    public SymbioteQueenLineage QueenLineage;
+
     private bool _immediateRejection;
 
     private HediffComp_PrimtaLifecycle _lifecycle;
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Deep.Look(ref QueenLineage, "QueenLineage");
+    }
+
+    public void AssumeQueenLineage(SymbioteQueenLineage lineage)
+    {
+        QueenLineage = SymbioteQueenLineage.DeepCopy(lineage);
+    }
 
     public override void PostAdd(DamageInfo? dinfo)
     {
@@ -26,6 +40,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
             if (pawn.Map != null)
             {
                 var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_PrimtaSymbiote);
+                SymbioteLineageUtility.AssumeLineage(thing, QueenLineage);
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
             }
 
@@ -105,6 +120,7 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
                 ? RimgateDefOf.Rimgate_GoauldSymbiote
                 : RimgateDefOf.Rimgate_PrimtaSymbiote;
             var thing = ThingMaker.MakeThing(def);
+            SymbioteLineageUtility.AssumeLineage(thing, QueenLineage);
             if (pawn.Map != null)
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
         }
@@ -120,6 +136,22 @@ public class Hediff_PrimtaInPouch : Hediff_Implant
         if (memories == null) return;
 
         memories.RemoveMemoriesOfDef(RimgateDefOf.Rimgate_PrimtaMaturedThought);
+    }
+
+    public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
+    {
+        foreach (StatDrawEntry stat in base.SpecialDisplayStats(req))
+            yield return stat;
+
+        if (QueenLineage?.HasQueenName == true)
+        {
+            yield return new StatDrawEntry(
+                StatCategoryDefOf.BasicsImportant,
+                "RG_Symbiote_Stat_MotherQueen_Label".Translate(),
+                QueenLineage.QueenName,
+                "RG_Symbiote_Stat_MotherQueen_Desc".Translate(),
+                4993);
+        }
     }
 
     public override void Notify_PawnKilled()

@@ -27,13 +27,15 @@ public class HediffComp_PouchWatcher : HediffComp
         if (pawn == null || pawn.health == null || pawn.Map == null)
             return;
 
-        var primta = pawn.GetHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch);
+        var primta = pawn.GetHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch) as Hediff_PrimtaInPouch;
         if (primta == null)
             return;
 
+        SymbioteQueenLineage lineage = primta.QueenLineage;
         pawn.health.RemoveHediff(primta);
 
         var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_PrimtaSymbiote);
+        SymbioteLineageUtility.AssumeLineage(thing, lineage);
         GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
     }
 

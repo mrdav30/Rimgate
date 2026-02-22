@@ -136,6 +136,13 @@
 	<RG_SymbioteMemory_MaxHostsPerishedLabel>Worn symbiote</RG_SymbioteMemory_MaxHostsPerishedLabel>
 	<RG_SymbioteMemory_MaxHostsPerishedText>The symbiote {0} has gone through to many hosts to survive losing another one. It perished shortly after being removed from its current host.</RG_SymbioteMemory_MaxHostsPerishedText>
 
+	<RG_SymbioteQueen_Label>{0} (queen)</RG_SymbioteQueen_Label>
+	<RG_SymbioteQueen_Stat_Offsets_Label>Inherited lineage offsets</RG_SymbioteQueen_Stat_Offsets_Label>
+	<RG_SymbioteQueen_Stat_Offsets_Desc>Genetic offsets this queen passes to her brood.</RG_SymbioteQueen_Stat_Offsets_Desc>
+	<RG_Symbiote_Stat_MotherQueen_Label>Mother queen</RG_Symbiote_Stat_MotherQueen_Label>
+	<RG_Symbiote_Stat_MotherQueen_Desc>The queen lineage this symbiote descends from.</RG_Symbiote_Stat_MotherQueen_Desc>
+	<RG_Symbiote_Stat_InheritedOffsets_Label>Inherited offsets</RG_Symbiote_Stat_InheritedOffsets_Label>
+	<RG_Symbiote_Stat_InheritedOffsets_Desc>Genetic stat offsets inherited from the mother queen.</RG_Symbiote_Stat_InheritedOffsets_Desc>
 	<RG_Symbiote_Stat_PreviousHostCount_Label>Previous hosts</RG_Symbiote_Stat_PreviousHostCount_Label>
 	<RG_Symbiote_Stat_PreviousHostCount_Desc>The number of previous hosts this symbiote has inhabited.</RG_Symbiote_Stat_PreviousHostCount_Desc>
 

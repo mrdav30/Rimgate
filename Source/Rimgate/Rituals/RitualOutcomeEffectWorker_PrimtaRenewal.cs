@@ -123,6 +123,8 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
             return false;
         }
 
+        SymbioteQueenLineage incomingLineage = SymbioteLineageUtility.GetLineage(primtaItem);
+
         // ---- SUCCESS PATH ----
         var primta = host.GetHediffOf(RimgateDefOf.Rimgate_PrimtaInPouch) as Hediff_PrimtaInPouch;
         bool hadPrimta = primta != null;
@@ -131,6 +133,7 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
         // If there was an existing prim'ta, remove it safely and spawn the appropriate symbiote.
         if (hadPrimta)
         {
+            SymbioteQueenLineage oldLineage = primta.QueenLineage;
             primta.MarkInternalRemoval();
             host.health.RemoveHediff(primta);
 
@@ -141,6 +144,7 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
                     : RimgateDefOf.Rimgate_PrimtaSymbiote;
 
                 var thing = ThingMaker.MakeThing(defToSpawn);
+                SymbioteLineageUtility.AssumeLineage(thing, oldLineage);
                 GenPlace.TryPlaceThing(thing, host.Position, host.Map, ThingPlaceMode.Near);
             }
         }
@@ -150,6 +154,8 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
 
         // Add fresh prim'ta
         var newPrimta = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_PrimtaInPouch, host);
+        if (newPrimta is Hediff_PrimtaInPouch primtaHediff)
+            primtaHediff.AssumeQueenLineage(incomingLineage);
         host.health.AddHediff(newPrimta);
 
         // Safety: clear any residual Krin'tak

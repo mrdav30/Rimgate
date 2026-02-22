@@ -21,6 +21,7 @@
 
     <ThingDef ParentName="BodyPartBase">
         <defName>Rimgate_PrimtaSymbiote</defName>
+        <thingClass>Rimgate.Thing_PrimtaSymbiote</thingClass>
         <label>prim'ta symbiote</label>
         <description>A larval Goa’uld symbiote—squirming, half-formed, and disturbingly intent. Jaffa carry these in abdominal pouches until they mature, at which point they must be removed or risk “promotion” into a full-blown god complex.\n\nOutside a host or dedicated spawning pool, it spoils quickly and dies.</description>
         <descriptionHyperlinks>

@@ -30,12 +30,10 @@ public class Thing_GoualdSymbiote : ThingWithComps
     {
         get
         {
-            if (!_cachedSymbioteLabel.NullOrEmpty() || IsBlankSymbiote)
+            if (!_cachedSymbioteLabel.NullOrEmpty() || IsBlankSymbiote || Heritage.Memory == null)
                 return _cachedSymbioteLabel;
 
-            var name = Heritage?.Memory?.SymbioteName;
-            if (name.NullOrEmpty()) return null;
-
+            var name = Heritage.Memory.SymbioteName;
             var baseLabel = "RG_SymbioteMemory_Name".Translate(name);
             var suffix = SymbioteLimitSuffix;
 
@@ -66,12 +64,33 @@ public class Thing_GoualdSymbiote : ThingWithComps
         foreach (var stat in base.SpecialDisplayStats())
             yield return stat;
 
+        SymbioteQueenLineage lineage = Heritage?.QueenLineage;
+        if (lineage?.HasQueenName == true)
+            yield return new StatDrawEntry(
+                StatCategoryDefOf.BasicsImportant,
+                "RG_Symbiote_Stat_MotherQueen_Label".Translate(),
+                lineage.QueenName,
+                "RG_Symbiote_Stat_MotherQueen_Desc".Translate(),
+                4993);
+
+        if (lineage?.HasOffsets == true)
+        {
+            string offsetText = lineage.OffsetsDisplayString();
+            if (!offsetText.NullOrEmpty())
+                yield return new StatDrawEntry(
+                    StatCategoryDefOf.BasicsImportant,
+                    "RG_Symbiote_Stat_InheritedOffsets_Label".Translate(),
+                    offsetText,
+                    "RG_Symbiote_Stat_InheritedOffsets_Desc".Translate(),
+                    4992);
+        }
+
         if (!IsBlankSymbiote && Heritage?.Memory != null)
             yield return new StatDrawEntry(
                 StatCategoryDefOf.BasicsImportant,
                 "RG_Symbiote_Stat_PreviousHostCount_Label".Translate(),
                 $"{Heritage.Memory.PriorHostCount} / {SymbioteMemory.MaxPreviousHosts}".ToString(),
                 "RG_Symbiote_Stat_PreviousHostCount_Desc".Translate(),
-                4994);
+                4991);
     }
 }

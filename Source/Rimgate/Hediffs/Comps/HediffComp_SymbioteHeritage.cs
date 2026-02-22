@@ -7,6 +7,7 @@ namespace Rimgate;
 public class HediffComp_SymbioteHeritage : HediffComp
 {
     public SymbioteMemory Memory = new SymbioteMemory();
+    public SymbioteQueenLineage QueenLineage;
 
     public override string CompDescriptionExtra
     {
@@ -31,11 +32,17 @@ public class HediffComp_SymbioteHeritage : HediffComp
     {
         base.CompExposeData();
         Scribe_Deep.Look(ref Memory, "Memory");
+        Scribe_Deep.Look(ref QueenLineage, "QueenLineage");
     }
 
     public void AssumeMemory(SymbioteMemory memory)
     {
         Memory = SymbioteMemory.DeepCopy(memory);
+    }
+
+    public void AssumeQueenLineage(SymbioteQueenLineage lineage)
+    {
+        QueenLineage = SymbioteQueenLineage.DeepCopy(lineage);
     }
 
     public void ApplyMemoryPostEffect(Pawn host)
