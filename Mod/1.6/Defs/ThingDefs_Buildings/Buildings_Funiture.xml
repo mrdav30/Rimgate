@@ -131,22 +131,6 @@
     </comps>
     <modExtensions>
       <li Class="Rimgate.Building_Sarcophagus_Ext">
-        <applyAddictionHediff>true</applyAddictionHediff>
-        <severity>1.00</severity>
-        <needLevelOffset>0.9</needLevelOffset>
-        <addictiveness>1.0</addictiveness>
-
-        <!-- Timing -->
-        <maxDiagnosisTime>15</maxDiagnosisTime>
-        <maxPerHediffHealingTime>30</maxPerHediffHealingTime>
-
-        <!-- Base power usage BEFORE optimization -->
-        <diagnosisModePowerConsumption>4000</diagnosisModePowerConsumption>
-        <healingModePowerConsumption>8000</healingModePowerConsumption>
-
-        <!-- Fractional reduction once Rimgate_SarcophagusSubspaceOptimization is researched -->
-        <powerConsumptionReductionFactor>0.65</powerConsumptionReductionFactor>
-
         <sarchophagusGlowGraphicData>
           <texPath>FX/RGGoauldSarcophagusGlow</texPath>
           <graphicClass>Graphic_Multi</graphicClass>

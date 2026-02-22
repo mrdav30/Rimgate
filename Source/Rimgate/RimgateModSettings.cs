@@ -11,7 +11,8 @@ public class RimgateModSettings : ModSettings
     private enum SettingsTab
     {
         General,
-        ClonePod
+        ClonePod,
+        Sarcophagus
     }
 
     private const float ContentPadding = 12f;
@@ -67,6 +68,30 @@ public class RimgateModSettings : ModSettings
 
     #endregion
 
+    #region Sarcophagus
+
+    public float SarcophagusMaxDiagnosisTime = 15f;
+
+    public float SarcophagusMaxPerHediffHealingTime = 30f;
+
+    public float SarcophagusDiagnosisModePowerConsumption = 4000f;
+
+    public float SarcophagusHealingModePowerConsumption = 8000f;
+
+    public float SarcophagusPowerConsumptionReductionFactor = 0.65f;
+
+    public bool SarcophagusApplyAddictionHediff = true;
+
+    public float SarcophagusAddictiveness = 1f;
+
+    public float SarcophagusHighSeverity = 1f;
+
+    public float SarcophagusExistingAddictionSeverityOffset = 0.1f;
+
+    public float SarcophagusNeedLevelOffset = 0.9f;
+
+    #endregion
+
     public bool EnableAsteroidIncidents = true;
 
     public bool VerboseLogging = false;
@@ -97,6 +122,18 @@ public class RimgateModSettings : ModSettings
         Scribe_Values.Look<bool>(ref EnableAsteroidIncidents, "EnableAsteroidIncidents", true, true);
         Scribe_Values.Look<int>(ref MedicineSkillReq, "MedicineSkillReq", 10, true);
         Scribe_Values.Look<float>(ref StabilizerDeteriorationFactor, "StabilizerDeteriorationRate", 0.5f, true);
+
+        Scribe_Values.Look<float>(ref SarcophagusMaxDiagnosisTime, "SarcophagusMaxDiagnosisTime", 15f, true);
+        Scribe_Values.Look<float>(ref SarcophagusMaxPerHediffHealingTime, "SarcophagusMaxPerHediffHealingTime", 30f, true);
+        Scribe_Values.Look<float>(ref SarcophagusDiagnosisModePowerConsumption, "SarcophagusDiagnosisModePowerConsumption", 4000f, true);
+        Scribe_Values.Look<float>(ref SarcophagusHealingModePowerConsumption, "SarcophagusHealingModePowerConsumption", 8000f, true);
+        Scribe_Values.Look<float>(ref SarcophagusPowerConsumptionReductionFactor, "SarcophagusPowerConsumptionReductionFactor", 0.65f, true);
+        Scribe_Values.Look<bool>(ref SarcophagusApplyAddictionHediff, "SarcophagusApplyAddictionHediff", true, true);
+        Scribe_Values.Look<float>(ref SarcophagusAddictiveness, "SarcophagusAddictiveness", 1f, true);
+        Scribe_Values.Look<float>(ref SarcophagusHighSeverity, "SarcophagusHighSeverity", 1f, true);
+        Scribe_Values.Look<float>(ref SarcophagusExistingAddictionSeverityOffset, "SarcophagusExistingAddictionSeverityOffset", 0.1f, true);
+        Scribe_Values.Look<float>(ref SarcophagusNeedLevelOffset, "SarcophagusNeedLevelOffset", 0.9f, true);
+
         Scribe_Values.Look<bool>(ref VerboseLogging, "VerboseLogging", false, true);
 
         ApplyBuffers();
@@ -126,6 +163,9 @@ public class RimgateModSettings : ModSettings
             case SettingsTab.General:
                 DrawGeneralTab(innerContentRect);
                 break;
+            case SettingsTab.Sarcophagus:
+                DrawSarcophagusTab(innerContentRect);
+                break;
             default:
                 DrawClonePodTab(innerContentRect);
                 break;
@@ -145,6 +185,10 @@ public class RimgateModSettings : ModSettings
             "RG_Settings_Tab_ClonePod".Translate(),
             delegate { _activeTab = SettingsTab.ClonePod; },
             _activeTab == SettingsTab.ClonePod));
+        _tabs.Add(new TabRecord(
+            "RG_Settings_Tab_Sarcophagus".Translate(),
+            delegate { _activeTab = SettingsTab.Sarcophagus; },
+            _activeTab == SettingsTab.Sarcophagus));
 
         TabDrawer.DrawTabs(tabsRect, _tabs);
     }
@@ -300,6 +344,104 @@ public class RimgateModSettings : ModSettings
         Widgets.EndScrollView();
     }
 
+    private void DrawSarcophagusTab(Rect contentRect)
+    {
+        Listing_Standard listing = new();
+        listing.Begin(contentRect);
+
+        DrawUtil.DrawSectionHeader(listing, "RG_Settings_Section_SarcophagusTimings_Label".Translate(), addTopGap: false);
+        DrawUtil.DrawFloatSlider(
+            listing,
+            "RG_Settings_SarcophagusMaxDiagnosisTime_Label".Translate(),
+            ref SarcophagusMaxDiagnosisTime,
+            1f,
+            30f,
+            0.5f,
+            "0.0",
+            " s");
+        DrawUtil.DrawFloatSlider(
+            listing,
+            "RG_Settings_SarcophagusMaxPerHediffHealingTime_Label".Translate(),
+            ref SarcophagusMaxPerHediffHealingTime,
+            1f,
+            30f,
+            0.5f,
+            "0.0",
+            " s");
+
+        DrawUtil.DrawSectionHeader(listing, "RG_Settings_Section_SarcophagusPower_Label".Translate());
+        DrawUtil.DrawFloatSlider(
+            listing,
+            "RG_Settings_SarcophagusDiagnosisModePowerConsumption_Label".Translate(),
+            ref SarcophagusDiagnosisModePowerConsumption,
+            500f,
+            30000f,
+            100f,
+            "0",
+            " W");
+        DrawUtil.DrawFloatSlider(
+            listing,
+            "RG_Settings_SarcophagusHealingModePowerConsumption_Label".Translate(),
+            ref SarcophagusHealingModePowerConsumption,
+            500f,
+            30000f,
+            100f,
+            "0",
+            " W");
+        DrawUtil.DrawFloatSlider(
+            listing,
+            "RG_Settings_SarcophagusPowerConsumptionReductionFactor_Label".Translate(),
+            ref SarcophagusPowerConsumptionReductionFactor,
+            0f,
+            1f,
+            0.01f,
+            "0.00",
+            "x");
+
+        DrawUtil.DrawSectionHeader(listing, "RG_Settings_Section_SarcophagusAfterEffects_Label".Translate());
+        DrawUtil.DrawCheckbox(
+            listing,
+            "RG_Settings_SarcophagusApplyAddictionHediff_Label".Translate(),
+            ref SarcophagusApplyAddictionHediff);
+        if (SarcophagusApplyAddictionHediff)
+        {
+            DrawUtil.DrawPercentSlider(
+                listing,
+                "RG_Settings_SarcophagusAddictiveness_Label".Translate(),
+                ref SarcophagusAddictiveness,
+                0f,
+                1f,
+                0.01f);
+            DrawUtil.DrawFloatSlider(
+                listing,
+                "RG_Settings_SarcophagusExistingAddictionSeverityOffset_Label".Translate(),
+                ref SarcophagusExistingAddictionSeverityOffset,
+                0f,
+                2f,
+                0.01f,
+                "0.00");
+            DrawUtil.DrawFloatSlider(
+                listing,
+                "RG_Settings_SarcophagusNeedLevelOffset_Label".Translate(),
+                ref SarcophagusNeedLevelOffset,
+                0f,
+                2f,
+                0.01f,
+                "0.00");
+            DrawUtil.DrawFloatSlider(
+                listing,
+                "RG_Settings_SarcophagusHighSeverity_Label".Translate(),
+                ref SarcophagusHighSeverity,
+                -1f,
+                3f,
+                0.05f,
+                "0.00");
+        }
+
+        listing.Gap(DrawUtil.SliderGap);
+        listing.End();
+    }
+
     private float CalculateClonePodViewHeight(float availableWidth)
     {
         float sliderHeight = DrawUtil.GetSliderLineHeight();
@@ -341,6 +483,16 @@ public class RimgateModSettings : ModSettings
         StabilizerBiomassCostReduction = Mathf.Clamp(StabilizerBiomassCostReduction, 0f, 0.95f);
         InducerCalibrationSpeedFactor = Mathf.Max(0.1f, InducerCalibrationSpeedFactor);
         InducerIncubationSpeedFactor = Mathf.Max(0.1f, InducerIncubationSpeedFactor);
+
+        SarcophagusMaxDiagnosisTime = Mathf.Clamp(SarcophagusMaxDiagnosisTime, 1f, 30f);
+        SarcophagusMaxPerHediffHealingTime = Mathf.Clamp(SarcophagusMaxPerHediffHealingTime, 1f, 30f);
+        SarcophagusDiagnosisModePowerConsumption = Mathf.Clamp(SarcophagusDiagnosisModePowerConsumption, 500f, 30000f);
+        SarcophagusHealingModePowerConsumption = Mathf.Clamp(SarcophagusHealingModePowerConsumption, 500f, 30000f);
+        SarcophagusPowerConsumptionReductionFactor = Mathf.Clamp01(SarcophagusPowerConsumptionReductionFactor);
+        SarcophagusAddictiveness = Mathf.Clamp01(SarcophagusAddictiveness);
+        SarcophagusExistingAddictionSeverityOffset = Mathf.Clamp(SarcophagusExistingAddictionSeverityOffset, 0f, 2f);
+        SarcophagusNeedLevelOffset = Mathf.Clamp(SarcophagusNeedLevelOffset, 0f, 2f);
+        SarcophagusHighSeverity = Mathf.Clamp(SarcophagusHighSeverity, -1f, 3f);
     }
 
     private void RestoreDefaults()
@@ -370,6 +522,18 @@ public class RimgateModSettings : ModSettings
         MajorFailureChance = defaults.MajorFailureChance;
         MedicineSkillReq = defaults.MedicineSkillReq;
         StabilizerDeteriorationFactor = defaults.StabilizerDeteriorationFactor;
+
+        SarcophagusMaxDiagnosisTime = defaults.SarcophagusMaxDiagnosisTime;
+        SarcophagusMaxPerHediffHealingTime = defaults.SarcophagusMaxPerHediffHealingTime;
+        SarcophagusDiagnosisModePowerConsumption = defaults.SarcophagusDiagnosisModePowerConsumption;
+        SarcophagusHealingModePowerConsumption = defaults.SarcophagusHealingModePowerConsumption;
+        SarcophagusPowerConsumptionReductionFactor = defaults.SarcophagusPowerConsumptionReductionFactor;
+        SarcophagusApplyAddictionHediff = defaults.SarcophagusApplyAddictionHediff;
+        SarcophagusAddictiveness = defaults.SarcophagusAddictiveness;
+        SarcophagusHighSeverity = defaults.SarcophagusHighSeverity;
+        SarcophagusExistingAddictionSeverityOffset = defaults.SarcophagusExistingAddictionSeverityOffset;
+        SarcophagusNeedLevelOffset = defaults.SarcophagusNeedLevelOffset;
+
         EnableAsteroidIncidents = defaults.EnableAsteroidIncidents;
         VerboseLogging = defaults.VerboseLogging;
     }

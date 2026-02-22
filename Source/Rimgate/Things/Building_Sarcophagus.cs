@@ -24,26 +24,6 @@ public enum SarcophagusStatus
 
 public class Building_Sarcophagus_Ext : DefModExtension
 {
-    public float maxDiagnosisTime = 5f;
-
-    public float maxPerHediffHealingTime = 10f;
-
-    public float diagnosisModePowerConsumption = 4000f;
-
-    public float healingModePowerConsumption = 16000f;
-
-    public float powerConsumptionReductionFactor = 0.65f;
-
-    public bool applyAddictionHediff;
-
-    public float addictiveness;
-
-    public float severity = -1f;
-
-    public float existingAddictionSeverityOffset = 0.1f;
-
-    public float needLevelOffset = 1f;
-
     public GraphicData sarchophagusGlowGraphicData;
 
     public List<HediffDef> alwaysTreatableHediffs;
@@ -62,26 +42,11 @@ public class Building_Sarcophagus_Ext : DefModExtension
 
     [MayRequireBiotech]
     public List<XenotypeDef> disallowedXenotypes;
-
-    public override IEnumerable<string> ConfigErrors()
-    {
-        if (maxDiagnosisTime > 30f)
-        {
-            yield return $"{nameof(maxDiagnosisTime)} above allowed maximum; value capped at 30 seconds";
-            maxDiagnosisTime = 30f;
-        }
-
-        if (maxPerHediffHealingTime > 30f)
-        {
-            yield return $"{nameof(maxPerHediffHealingTime)} above allowed maximum; value capped at 30 seconds";
-            maxPerHediffHealingTime = 30f;
-        }
-    }
 }
 
 public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchableContents
 {
-    public Building_Sarcophagus_Ext Props => _cachedProps ??= def.GetModExtension<Building_Sarcophagus_Ext>();
+    public Building_Sarcophagus_Ext Ext => _cachedProps ??= def.GetModExtension<Building_Sarcophagus_Ext>();
 
     public CompPowerTrader Power => _powerTrader ??= GetComp<CompPowerTrader>();
 
@@ -103,29 +68,51 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public float DefaultIdlePower => Power?.Props.PowerConsumption ?? 0;
 
-    public float DiagnosingPowerConsumption => Props.diagnosisModePowerConsumption * CurrentPowerMultiplier;
+    private static RimgateModSettings Settings => RimgateMod.Settings;
 
-    public float HealingPowerConsumption => Props.healingModePowerConsumption * CurrentPowerMultiplier;
+    public float DiagnosisTimeSeconds => Settings?.SarcophagusMaxDiagnosisTime ?? 15f;
+
+    public float HealingTimeSeconds => Settings?.SarcophagusMaxPerHediffHealingTime ?? 30f;
+
+    public float DiagnosisModePowerConsumption => Settings?.SarcophagusDiagnosisModePowerConsumption ?? 4000f;
+
+    public float HealingModePowerConsumption => Settings?.SarcophagusHealingModePowerConsumption ?? 8000f;
+
+    public float PowerConsumptionReductionFactor => Settings?.SarcophagusPowerConsumptionReductionFactor ?? 0.65f;
+
+    public bool ApplyAddictionHediff => Settings?.SarcophagusApplyAddictionHediff ?? true;
+
+    public float Addictiveness => Settings?.SarcophagusAddictiveness ?? 1f;
+
+    public float ExistingAddictionSeverityOffset => Settings?.SarcophagusExistingAddictionSeverityOffset ?? 0.1f;
+
+    public float NeedLevelOffset => Settings?.SarcophagusNeedLevelOffset ?? 0.9f;
+
+    public float HighSeverity => Settings?.SarcophagusHighSeverity ?? 1f;
+
+    public float DiagnosingPowerConsumption => DiagnosisModePowerConsumption * CurrentPowerMultiplier;
+
+    public float HealingPowerConsumption => HealingModePowerConsumption * CurrentPowerMultiplier;
 
     public float CurrentPowerMultiplier => ResearchUtil.SarcophagusOptimizationComplete
-            ? Props.powerConsumptionReductionFactor
+            ? PowerConsumptionReductionFactor
             : 1f;
 
-    public List<HediffDef> AlwaysTreatableHediffs => Props.alwaysTreatableHediffs;
+    public List<HediffDef> AlwaysTreatableHediffs => Ext.alwaysTreatableHediffs;
 
-    public List<HediffDef> NeverTreatableHediffs => Props.neverTreatableHediffs;
+    public List<HediffDef> NeverTreatableHediffs => Ext.neverTreatableHediffs;
 
-    public List<HediffDef> NonCriticalTreatableHediffs => Props.nonCriticalTreatableHediffs;
+    public List<HediffDef> NonCriticalTreatableHediffs => Ext.nonCriticalTreatableHediffs;
 
-    public List<HediffDef> UsageBlockingHediffs => Props.usageBlockingHediffs;
+    public List<HediffDef> UsageBlockingHediffs => Ext.usageBlockingHediffs;
 
-    public List<TraitDef> UsageBlockingTraits => Props.usageBlockingTraits;
+    public List<TraitDef> UsageBlockingTraits => Ext.usageBlockingTraits;
 
-    public List<TraitDef> AlwaysTreatableTraits => Props.alwaysTreatableTraits;
+    public List<TraitDef> AlwaysTreatableTraits => Ext.alwaysTreatableTraits;
 
-    public List<string> DisallowedRaces => Props.disallowedRaces;
+    public List<string> DisallowedRaces => Ext.disallowedRaces;
 
-    public List<XenotypeDef> DisallowedXenotypes => Props.disallowedXenotypes;
+    public List<XenotypeDef> DisallowedXenotypes => Ext.disallowedXenotypes;
 
     public int ProgressHealingTicks = 0;
 
@@ -175,9 +162,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public ThingOwner SearchableContents => _innerContainer;
 
-    private Mesh GlowMesh => _cachedGlowMesh ??= Props.sarchophagusGlowGraphicData?.Graphic.MeshAt(Rotation);
+    private Mesh GlowMesh => _cachedGlowMesh ??= Ext.sarchophagusGlowGraphicData?.Graphic.MeshAt(Rotation);
 
-    private Material GlowMaterial => _cachedGlowMaterial ??= Props.sarchophagusGlowGraphicData?.Graphic.MatAt(Rotation, null);
+    private Material GlowMaterial => _cachedGlowMaterial ??= Ext.sarchophagusGlowGraphicData?.Graphic.MatAt(Rotation, null);
 
     private List<Hediff> _patientTreatableHediffs = new();
 
@@ -208,8 +195,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
     {
         base.SpawnSetup(map, respawningAfterLoad);
 
-        MaxDiagnosingTicks = GenTicks.SecondsToTicks(Props.maxDiagnosisTime);
-        MaxHealingTicks = GenTicks.SecondsToTicks(Props.maxPerHediffHealingTime);
+        MaxDiagnosingTicks = GenTicks.SecondsToTicks(DiagnosisTimeSeconds);
+        MaxHealingTicks = GenTicks.SecondsToTicks(HealingTimeSeconds);
 
         if (Faction?.IsPlayer == true)
             _contentsKnown = true;
@@ -244,6 +231,8 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         var patient = PatientPawn;
         if (patient != null)
         {
+            MaxDiagnosingTicks = GenTicks.SecondsToTicks(DiagnosisTimeSeconds);
+            MaxHealingTicks = GenTicks.SecondsToTicks(HealingTimeSeconds);
             PatientBodySizeScaledMaxDiagnosingTicks = Mathf.CeilToInt(MaxDiagnosingTicks * patient.BodySize);
             PatientBodySizeScaledMaxHealingTicks = Mathf.CeilToInt(MaxHealingTicks * patient.BodySize);
 
@@ -986,13 +975,13 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
     // only apply addiction if the patient received full treatment
     public void HandleAfterEffects(Pawn patient, bool isPostTreatment = true)
     {
-        if (!Props.applyAddictionHediff || !patient.RaceProps.IsFlesh)
+        if (!ApplyAddictionHediff || !patient.RaceProps.IsFlesh)
             return;
 
         Hediff_Addiction hediff_Addiction = AddictionUtility.FindAddictionHediff(patient, RimgateDefOf.Rimgate_SarcophagusChemical);
 
         if (hediff_Addiction != null)
-            hediff_Addiction.Severity += Props.existingAddictionSeverityOffset;
+            hediff_Addiction.Severity += ExistingAddictionSeverityOffset;
         else if (isPostTreatment)
             ApplyAddiction(patient);
 
@@ -1005,7 +994,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     public void ApplyAddiction(Pawn patient)
     {
-        if (Rand.Value >= Props.addictiveness) return;
+        if (Rand.Value >= Addictiveness) return;
 
         patient.health.AddHediff(RimgateDefOf.Rimgate_SarcophagusAddiction);
         if (PawnUtility.ShouldSendNotificationAbout(patient))
@@ -1033,7 +1022,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         if (!patient.needs.TryGetNeed(RimgateDefOf.Rimgate_SarcophagusChemicalNeed, out var need))
             return;
 
-        float effect = Props.needLevelOffset;
+        float effect = NeedLevelOffset;
         AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(
             patient,
             RimgateDefOf.Rimgate_SarcophagusChemical,
@@ -1048,9 +1037,9 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             return;
 
         Hediff hediff = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_SarcophagusHigh, patient);
-        float effect = Props.severity <= 0f
+        float effect = HighSeverity <= 0f
             ? RimgateDefOf.Rimgate_SarcophagusHigh.initialSeverity
-            : Props.severity;
+            : HighSeverity;
         // body-size scaling
         effect /= patient.BodySize;
         hediff.Severity = effect;
@@ -1072,11 +1061,11 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
         // Compute current effective multiplier:
         float multiplier = ResearchUtil.SarcophagusOptimizationComplete
-            ? Props.powerConsumptionReductionFactor
+            ? PowerConsumptionReductionFactor
             : 1f;
 
-        float diag = Props.diagnosisModePowerConsumption * multiplier;
-        float heal = Props.healingModePowerConsumption * multiplier;
+        float diag = DiagnosisModePowerConsumption * multiplier;
+        float heal = HealingModePowerConsumption * multiplier;
 
         yield return new StatDrawEntry(
             StatCategoryDefOf.Building,
@@ -1095,14 +1084,14 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         yield return new StatDrawEntry(
             StatCategoryDefOf.Building,
             "RG_Sarcophagus_Stat_DiagnosisTime_Label".Translate(),
-            "RG_Sarcophagus_Stat_TimeSeconds".Translate(Props.maxDiagnosisTime),
+            "RG_Sarcophagus_Stat_TimeSeconds".Translate(DiagnosisTimeSeconds),
             "RG_Sarcophagus_Stat_DiagnosisTime_Desc".Translate(),
             4992);
 
         yield return new StatDrawEntry(
             StatCategoryDefOf.Building,
             "RG_Sarcophagus_Stat_PerHediffHealingTime_Label".Translate(),
-            "RG_Sarcophagus_Stat_TimeSeconds".Translate(Props.maxPerHediffHealingTime),
+            "RG_Sarcophagus_Stat_TimeSeconds".Translate(HealingTimeSeconds),
             "RG_Sarcophagus_Stat_PerHediffHealingTime_Desc".Translate(),
             4991);
     }
