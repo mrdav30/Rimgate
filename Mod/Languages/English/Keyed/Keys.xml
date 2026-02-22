@@ -531,12 +531,8 @@
 	<RG_Settings_MajorFailureChance_Label>Major failure chance</RG_Settings_MajorFailureChance_Label>
 	<RG_Settings_MedicineSkillReq_Label>Minimum medicine skill for calibration</RG_Settings_MedicineSkillReq_Label>
 	<RG_Settings_StabilizerDeteriorationFactor_Label>Biomass stabilizer deterioration factor</RG_Settings_StabilizerDeteriorationFactor_Label>
-	<RG_Settings_LogLevel_Label>Log level (click to cycle)</RG_Settings_LogLevel_Label>
+	<RG_Settings_VerboseLogging_Label>Enable verbose logging</RG_Settings_VerboseLogging_Label>
 	<RG_Settings_LogLevel_Off>Off</RG_Settings_LogLevel_Off>
-	<RG_Settings_LogLevel_Error>Error</RG_Settings_LogLevel_Error>
-	<RG_Settings_LogLevel_Warning>Warning</RG_Settings_LogLevel_Warning>
-	<RG_Settings_LogLevel_Message>Message</RG_Settings_LogLevel_Message>
-	<RG_Settings_LogLevel_Debug>Debug</RG_Settings_LogLevel_Debug>
 	<RG_Settings_RestoreDefaults_Button>Restore defaults</RG_Settings_RestoreDefaults_Button>
 
 </LanguageData>

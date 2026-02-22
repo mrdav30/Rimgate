@@ -81,50 +81,17 @@ public static class LogUtil
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void ThrowDebugTextMote(string text, Vector3 drawPos, Map map)
+    public static void ThrowTextMote(string text, Vector3 drawPos, Map map)
     {
-        if (!IsDebugEnabled)
-            return;
-
         MoteMaker.ThrowText(drawPos, map, text, -1f);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void ThrowDebugTextMote(string text, IntVec3 c, Map map)
+    public static void ThrowTextMote(string text, IntVec3 c, Map map)
     {
-        if (!IsDebugEnabled)
-            return;
-
         MoteMaker.ThrowText(c.ToVector3Shifted(), map, text, -1f);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static string PrefixMessage(string message) => $"{Prefix}{message}";
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static RimgateLogLevel GetNextLogLevel(RimgateLogLevel current)
-    {
-        return current switch
-        {
-            RimgateLogLevel.Off => RimgateLogLevel.Error,
-            RimgateLogLevel.Error => RimgateLogLevel.Warning,
-            RimgateLogLevel.Warning => RimgateLogLevel.Message,
-            RimgateLogLevel.Message => RimgateLogLevel.Debug,
-            _ => RimgateLogLevel.Off
-        };
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string GetLogLevelLabel(RimgateLogLevel level)
-    {
-        return level switch
-        {
-            RimgateLogLevel.Off => "RG_Settings_LogLevel_Off".Translate(),
-            RimgateLogLevel.Error => "RG_Settings_LogLevel_Error".Translate(),
-            RimgateLogLevel.Warning => "RG_Settings_LogLevel_Warning".Translate(),
-            RimgateLogLevel.Message => "RG_Settings_LogLevel_Message".Translate(),
-            RimgateLogLevel.Debug => "RG_Settings_LogLevel_Debug".Translate(),
-            _ => "RG_Settings_LogLevel_Warning".Translate()
-        };
-    }
 }

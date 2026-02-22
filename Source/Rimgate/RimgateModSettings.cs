@@ -69,7 +69,9 @@ public class RimgateModSettings : ModSettings
 
     public bool EnableAsteroidIncidents = true;
 
-    public RimgateLogLevel LogLevel = RimgateLogLevel.Warning;
+    public bool VerboseLogging = false;
+
+    public RimgateLogLevel LogLevel => VerboseLogging ? RimgateLogLevel.Debug : RimgateLogLevel.Warning;
 
     public RimgateModSettings() => ApplyBuffers();
 
@@ -95,13 +97,7 @@ public class RimgateModSettings : ModSettings
         Scribe_Values.Look<bool>(ref EnableAsteroidIncidents, "EnableAsteroidIncidents", true, true);
         Scribe_Values.Look<int>(ref MedicineSkillReq, "MedicineSkillReq", 10, true);
         Scribe_Values.Look<float>(ref StabilizerDeteriorationFactor, "StabilizerDeteriorationRate", 0.5f, true);
-
-        int logLevel = (int)LogLevel;
-        Scribe_Values.Look<int>(ref logLevel, "LogLevel", (int)RimgateLogLevel.Warning, true);
-        if (logLevel < (int)RimgateLogLevel.Off || logLevel > (int)RimgateLogLevel.Debug)
-            logLevel = (int)RimgateLogLevel.Warning;
-
-        LogLevel = (RimgateLogLevel)logLevel;
+        Scribe_Values.Look<bool>(ref VerboseLogging, "VerboseLogging", false, true);
 
         ApplyBuffers();
     }
@@ -162,7 +158,7 @@ public class RimgateModSettings : ModSettings
         DrawUtil.DrawCheckbox(listing, "RG_Settings_EnableAsteroidIncidents_Label".Translate(), ref EnableAsteroidIncidents);
 
         DrawUtil.DrawSectionHeader(listing, "RG_Settings_Section_Logging_Label".Translate());
-        DrawLogLevelSelector(listing);
+        DrawUtil.DrawCheckbox(listing, "RG_Settings_VerboseLogging_Label".Translate(), ref VerboseLogging);
 
         Rect defaultsButtonRect = listing.GetRect(DrawUtil.SliderHeight + 2f);
         if (Widgets.ButtonText(defaultsButtonRect, "RG_Settings_RestoreDefaults_Button".Translate()))
@@ -170,21 +166,6 @@ public class RimgateModSettings : ModSettings
 
         listing.Gap(DrawUtil.SliderGap);
         listing.End();
-    }
-
-    public void DrawLogLevelSelector(Listing_Standard listing)
-    {
-        Rect rect = listing.GetRect(DrawUtil.SliderHeight);
-        float labelWidth = Mathf.Min(DrawUtil.SettingsLabelWidth, rect.width * 0.6f);
-
-        Rect labelRect = new(rect.x, rect.y, labelWidth, rect.height);
-        Rect buttonRect = new(rect.x + labelWidth + 6f, rect.y, rect.width - labelWidth - 6f, rect.height);
-
-        Widgets.Label(labelRect, "RG_Settings_LogLevel_Label".Translate());
-        if (Widgets.ButtonText(buttonRect, LogUtil.GetLogLevelLabel(LogLevel)))
-            LogLevel = LogUtil.GetNextLogLevel(LogLevel);
-
-        listing.Gap(DrawUtil.SliderGap);
     }
 
     private void DrawClonePodTab(Rect contentRect)
@@ -390,6 +371,6 @@ public class RimgateModSettings : ModSettings
         MedicineSkillReq = defaults.MedicineSkillReq;
         StabilizerDeteriorationFactor = defaults.StabilizerDeteriorationFactor;
         EnableAsteroidIncidents = defaults.EnableAsteroidIncidents;
-        LogLevel = defaults.LogLevel;
+        VerboseLogging = defaults.VerboseLogging;
     }
 }

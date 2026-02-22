@@ -55,7 +55,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
                 {
                     IntVec3 c = currentTarget.Cell + GenRadial.RadialPattern[index];
                     if (DebugViewSettings.drawShooting)
-                        LogUtil.ThrowDebugTextMote("ToRadius: ", c, caster.Map);
+                        LogUtil.ThrowTextMote("ToRadius: ", c, caster.Map);
 
                     ProjectileHitFlags projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
                     if (Rand.Chance(0.5f))
@@ -86,7 +86,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
         {
             shootLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget, true, caster.Map);
             if (DebugViewSettings.drawShooting)
-                LogUtil.ThrowDebugTextMote($"ToWild {(canHitNonTargetPawnsNow ? "chntp " : "")}WildDest {shootLine.Dest}", caster.DrawPos, caster.Map);
+                LogUtil.ThrowTextMote($"ToWild {(canHitNonTargetPawnsNow ? "chntp " : "")}WildDest {shootLine.Dest}", caster.DrawPos, caster.Map);
 
             ProjectileHitFlags projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
             if (Rand.Chance(0.5f) && canHitNonTargetPawnsNow)
@@ -108,7 +108,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
             && !Rand.Chance(shotReport.PassCoverChance))
         {
             if (DebugViewSettings.drawShooting)
-                LogUtil.ThrowDebugTextMote($"ToCover {(canHitNonTargetPawnsNow ? "chntp " : "")}CoverDest {randomCoverToMissInto.Position}", caster.DrawPos, caster.Map);
+                LogUtil.ThrowTextMote($"ToCover {(canHitNonTargetPawnsNow ? "chntp " : "")}CoverDest {randomCoverToMissInto.Position}", caster.DrawPos, caster.Map);
 
             ProjectileHitFlags projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
             if (canHitNonTargetPawnsNow)
@@ -135,7 +135,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
             projectileHitFlags1 = (ProjectileHitFlags)((int)projectileHitFlags1 | 4);
 
         if (DebugViewSettings.drawShooting)
-            LogUtil.ThrowDebugTextMote("ToHit" + (canHitNonTargetPawnsNow ? "\nchntp" : ""), caster.DrawPos, caster.Map);
+            LogUtil.ThrowTextMote("ToHit" + (canHitNonTargetPawnsNow ? "\nchntp" : ""), caster.DrawPos, caster.Map);
 
         if (currentTarget.Thing != null)
         {
@@ -149,7 +149,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
                 def);
 
             if (DebugViewSettings.drawShooting)
-                LogUtil.ThrowDebugTextMote($"HitDest {currentTarget.Cell}", caster.DrawPos, caster.Map);
+                LogUtil.ThrowTextMote($"HitDest {currentTarget.Cell}", caster.DrawPos, caster.Map);
         }
         else
         {
@@ -164,7 +164,7 @@ public class Verb_LaunchWithOffset : Verb_Shoot
                 def);
 
             if (DebugViewSettings.drawShooting)
-                LogUtil.ThrowDebugTextMote($"HitDest {shootLine.Dest}", caster.DrawPos, caster.Map);
+                LogUtil.ThrowTextMote($"HitDest {shootLine.Dest}", caster.DrawPos, caster.Map);
         }
         return true;
     }
