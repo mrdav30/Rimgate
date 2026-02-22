@@ -5,15 +5,21 @@ namespace Rimgate;
 
 public static class DrawUtil
 {
+    public const float TabHeight = 32f;
+
     public const float SliderHeight = 22f;
 
     public const float SliderGap = 8f;
+
+    public const float SliderInputGap = 2f;
 
     public const float CheckboxGap = 4f;
 
     public const float SectionHeaderTopGap = 8f;
 
     public const float SectionHeaderBottomGap = 4f;
+
+    public const float ListingVerticalSpacing = 2f;
 
     public const float SettingsLabelWidth = 240f;
 
@@ -36,6 +42,41 @@ public static class DrawUtil
     {
         listing.CheckboxLabeled(label, ref value);
         listing.Gap(CheckboxGap);
+    }
+
+    public static float GetSliderLineHeight()
+    {
+        return SliderHeight + SliderGap;
+    }
+
+    public static float GetSliderWithInputHeight()
+    {
+        return (SliderHeight * 2f) + SliderInputGap + SliderGap;
+    }
+
+    public static float GetSectionHeaderHeight(string label, float width, bool addTopGap = true)
+    {
+        float topGap = addTopGap ? SectionHeaderTopGap : 0f;
+        return topGap
+            + GetTextHeight(label, width, GameFont.Medium)
+            + ListingVerticalSpacing
+            + 2f
+            + Listing.DefaultGap
+            + SectionHeaderBottomGap;
+    }
+
+    public static float GetCheckboxHeight(string label, float width)
+    {
+        return GetTextHeight(label, width, GameFont.Small) + ListingVerticalSpacing + CheckboxGap;
+    }
+
+    public static float GetTextHeight(string text, float width, GameFont font)
+    {
+        GameFont previousFont = Text.Font;
+        Text.Font = font;
+        float height = Text.CalcHeight(text, Mathf.Max(1f, width));
+        Text.Font = previousFont;
+        return height;
     }
 
     public static void DrawIntSliderWithInput(
@@ -65,7 +106,7 @@ public static class DrawUtil
             valueBuffer = value.ToString();
         }
 
-        listing.Gap(2f);
+        listing.Gap(SliderInputGap);
 
         valueBuffer ??= value.ToString();
 

@@ -14,11 +14,9 @@ public class RimgateModSettings : ModSettings
         ClonePod
     }
 
-    private const float TabTopMargin = 4f;
-    private const float TabHeight = 32f;
-    private const float TabContentGap = 6f;
     private const float ContentPadding = 12f;
-    private const float ClonePodViewHeight = 1700f;
+    private const float ClonePodBottomPadding = 4f;
+    private const float ClonePodScrollBarPadding = 6f;
 
     private readonly List<TabRecord> _tabs = [];
     private SettingsTab _activeTab = SettingsTab.General;
@@ -116,14 +114,14 @@ public class RimgateModSettings : ModSettings
 
     public void DoSettingsWindowContents(Rect inRect)
     {
-        Rect tabsRect = new(inRect.x, inRect.y + TabTopMargin, inRect.width, TabHeight);
+        Rect tabsRect = new(inRect.x, inRect.y + DrawUtil.TabHeight, inRect.width, DrawUtil.TabHeight);
         DrawTabs(tabsRect);
 
         Rect contentRect = new(
             inRect.x,
-            tabsRect.yMax + TabContentGap,
+            inRect.y + DrawUtil.TabHeight,
             inRect.width,
-            inRect.height - tabsRect.height - TabTopMargin - TabContentGap);
+            inRect.height - DrawUtil.TabHeight);
         Widgets.DrawMenuSection(contentRect);
 
         Rect innerContentRect = contentRect.ContractedBy(ContentPadding);
@@ -191,8 +189,9 @@ public class RimgateModSettings : ModSettings
 
     private void DrawClonePodTab(Rect contentRect)
     {
-        float viewWidth = Mathf.Max(1f, contentRect.width - 16f);
-        Rect viewRect = new(0f, 0f, viewWidth, ClonePodViewHeight);
+        float viewWidth = Mathf.Max(1f, contentRect.width - GenUI.ScrollBarWidth - ClonePodScrollBarPadding);
+        float viewHeight = Mathf.Max(contentRect.height, CalculateClonePodViewHeight(viewWidth));
+        Rect viewRect = new(0f, 0f, viewWidth, viewHeight);
 
         Widgets.BeginScrollView(contentRect, ref _clonePodScrollPosition, viewRect);
         Listing_Standard listing = new();
@@ -318,6 +317,39 @@ public class RimgateModSettings : ModSettings
 
         listing.End();
         Widgets.EndScrollView();
+    }
+
+    private float CalculateClonePodViewHeight(float availableWidth)
+    {
+        float sliderHeight = DrawUtil.GetSliderLineHeight();
+        float sliderWithInputHeight = DrawUtil.GetSliderWithInputHeight();
+        float height = 0f;
+
+        height += DrawUtil.GetSectionHeaderHeight("RG_Settings_Section_CloneTimings_Label".Translate(), availableWidth, addTopGap: false);
+        height += 2f * sliderWithInputHeight;
+
+        height += DrawUtil.GetSectionHeaderHeight("RG_Settings_Section_CloneModifiers_Label".Translate(), availableWidth);
+        height += 6f * sliderHeight;
+
+        height += DrawUtil.GetSectionHeaderHeight("RG_Settings_Section_CloneBehavior_Label".Translate(), availableWidth);
+        height += DrawUtil.GetCheckboxHeight("RG_Settings_EnableCloneIncidents_Label".Translate(), availableWidth);
+        height += DrawUtil.GetCheckboxHeight("RG_Settings_CloneTattoos_Label".Translate(), availableWidth);
+        height += DrawUtil.GetCheckboxHeight("RG_Settings_NoSkillLoss_Label".Translate(), availableWidth);
+        height += DrawUtil.GetCheckboxHeight("RG_Settings_GenerateSocialRelations_Label".Translate(), availableWidth);
+
+        height += DrawUtil.GetSectionHeaderHeight("RG_Settings_Section_CloneFailures_Label".Translate(), availableWidth);
+        height += DrawUtil.GetCheckboxHeight("RG_Settings_MinorFailures_Label".Translate(), availableWidth);
+        if (MinorFailures)
+            height += sliderHeight;
+
+        height += DrawUtil.GetCheckboxHeight("RG_Settings_MajorFailures_Label".Translate(), availableWidth);
+        if (MajorFailures)
+            height += sliderHeight;
+
+        height += DrawUtil.GetSectionHeaderHeight("RG_Settings_Section_CloneRequirements_Label".Translate(), availableWidth);
+        height += 2f * sliderHeight;
+
+        return height + ClonePodBottomPadding;
     }
 
     private void ClampSettingsValues()
