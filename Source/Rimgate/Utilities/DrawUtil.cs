@@ -79,6 +79,37 @@ public static class DrawUtil
         return height;
     }
 
+    public static int DrawIntInputRow(
+        Rect rowRect,
+        int value,
+        ref string valueBuffer,
+        int min,
+        int max,
+        string label = null,
+        float labelPct = 0.35f,
+        float fieldPct = 0.60f)
+    {
+        valueBuffer ??= value.ToString();
+
+        Rect labelRect = rowRect.LeftPart(labelPct);
+        Rect fieldRect = rowRect.RightPart(fieldPct);
+
+        Widgets.Label(labelRect, label ?? "RG_SetTo".Translate());
+        string newBuffer = Widgets.TextField(fieldRect, valueBuffer);
+
+        if (newBuffer != valueBuffer)
+        {
+            valueBuffer = newBuffer;
+            if (int.TryParse(newBuffer, out int parsed))
+            {
+                value = Mathf.Clamp(parsed, min, max);
+                valueBuffer = value.ToString();
+            }
+        }
+
+        return value;
+    }
+
     public static void DrawIntSliderWithInput(
         Listing_Standard listing,
         string label,
@@ -107,26 +138,15 @@ public static class DrawUtil
         }
 
         listing.Gap(SliderInputGap);
-
-        valueBuffer ??= value.ToString();
-
         Rect inputRect = listing.GetRect(SliderHeight);
-        float labelWidth = Mathf.Min(SettingsLabelWidth * 0.45f, inputRect.width * 0.45f);
-        Rect inputLabelRect = new(inputRect.x, inputRect.y, labelWidth, inputRect.height);
-        Rect fieldRect = new(inputRect.x + labelWidth + 6f, inputRect.y, inputRect.width - labelWidth - 6f, inputRect.height);
-
-        Widgets.Label(inputLabelRect, "RG_SetTo".Translate());
-        string newBuffer = Widgets.TextField(fieldRect, valueBuffer);
-
-        if (newBuffer != valueBuffer)
-        {
-            valueBuffer = newBuffer;
-            if (int.TryParse(newBuffer, out int parsed))
-            {
-                value = Mathf.Clamp(parsed, min, max);
-                valueBuffer = value.ToString();
-            }
-        }
+        value = DrawIntInputRow(
+            inputRect,
+            value,
+            ref valueBuffer,
+            min,
+            max,
+            labelPct: 0.45f,
+            fieldPct: 0.50f);
 
         listing.Gap(SliderGap);
     }

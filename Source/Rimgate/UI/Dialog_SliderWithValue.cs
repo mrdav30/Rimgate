@@ -68,13 +68,13 @@ public class Dialog_SliderWithValue : Window
     {
         Text.Font = GameFont.Small;
         string header = TextGetter(_curValue);
-        float headerH = Text.CalcHeight(header, inRect.width);
+        float headerH = DrawUtil.GetTextHeight(header, inRect.width, GameFont.Small);
         var headerRect = new Rect(inRect.x, inRect.y, inRect.width, headerH);
         Text.Anchor = TextAnchor.UpperCenter;
         Widgets.Label(headerRect, header);
         Text.Anchor = TextAnchor.UpperLeft;
 
-        float y = headerRect.yMax + 8f;
+        float y = headerRect.yMax + DrawUtil.SliderGap;
 
         // Slider row
         var sliderRect = new Rect(inRect.x, y, inRect.width, 40f);
@@ -106,24 +106,11 @@ public class Dialog_SliderWithValue : Window
         Text.Font = GameFont.Small;
 
         // Optional numeric entry box
-        y = minRect.yMax + 8f;
+        y = minRect.yMax + DrawUtil.SliderGap;
         if (_showNumericEntry)
         {
             var entryRow = new Rect(inRect.x, y, inRect.width, 28f);
-
-            // left label
-            var labelRect = entryRow.LeftPart(0.35f);
-            Widgets.Label(labelRect, "RG_SetTo".Translate());
-
-            var fieldRect = entryRow.RightPart(0.60f);
-            _curValueBuffer = Widgets.TextField(fieldRect, _curValueBuffer);
-
-            if (int.TryParse(_curValueBuffer, out int parsed))
-            {
-                parsed = Mathf.Clamp(parsed, From, To);
-                if (parsed != _curValue)
-                    newValue = parsed;
-            }
+            newValue = DrawUtil.DrawIntInputRow(entryRow, newValue, ref _curValueBuffer, From, To);
         }
 
         // Apply newValue + keep buffer in sync when slider moves
