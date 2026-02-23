@@ -15,20 +15,6 @@ Players can discover, study, control, and weaponize this technology while naviga
 - 🔬 Research-Driven Progression — Study artifacts to unlock advanced capabilities
 - 🏛 Archotech & RimWorld Integration — Seamless lore blending with vanilla systems
 
-## 🧩 Modular Expansion Architecture ##
-
-Rimgate is designed as a modular ecosystem.
-
-The Dwarfgate Initiative serves as the foundational framework. Future expansions may include:
-
-- Dedicated faction modules
-- Event-driven content packs
-- Additional alien technologies
-- Quest and world systems
-- Expanded gate mechanics
-
-Each module is designed to operate independently while integrating cleanly with the core.
-
 ## 📦 Requirements ##
 
 - RimWorld (latest stable version)
@@ -36,55 +22,17 @@ Each module is designed to operate independently while integrating cleanly with 
 
 Detailed compatibility notes are available on the Workshop page.
 
-## 🧱 AssetBundle Workflow (RimWorld 1.6+) ##
+## 🧪 Development Notes ##
 
-Rimgate uses Unity AssetBundles for textures and audio.
+This project integrates:
 
-Raw assets are stored in the repository under `AssetsRaw/` and are bundled using a dedicated Unity 2022.3 LTS project before publishing.
+- Custom ThingDefs, ResearchDefs, and QuestDefs
+- Custom CompProperties and ModExtensions
+- Harmony patches where required
+- Modular faction definitions
+- Custom graphics and VFX
 
-### Building AssetBundles ##
-
-Run:
-
-```powershell
-.\build-assetbundle.ps1
-```
-
-This will:
-
-- Copy raw assets into the Unity builder project
-- Build the `rimgate_core` AssetBundle
-- Output bundles into `Mod/1.6/AssetBundles/`
-
-Generated files include:
-
-- rimgate_core
-- rimgate_core.manifest
-- AssetBundles
-- AssetBundles.manifest
-
-These files are required for RimWorld 1.6 and should not be removed.
-
-### Important ###
-
-Raw textures and audio should NOT be included in the Steam Workshop upload.  
-Only the contents of the `Mod/` directory are distributed.
-
-## 🧰 Assembly Workflow ##
-
-Rimgate's C# project lives at `Source/Rimgate/Rimgate.csproj` and is built with `dotnet`.
-
-Build assembly only:
-
-```powershell
-.\build-assembly.ps1
-```
-
-Optional:
-
-```powershell
-.\build-assembly.ps1 -Configuration Debug
-```
+The goal is long-term maintainability and expandability with a focus on performance.
 
 ## 🤝 Contributing ##
 
@@ -105,18 +53,6 @@ Please ensure:
 - C# patches avoid unnecessary Harmony conflicts
 
 For larger contributions, open an issue first to discuss design direction.
-
-## 🧪 Development Notes ##
-
-This project integrates:
-
-- Custom ThingDefs, ResearchDefs, and QuestDefs
-- Custom CompProperties and ModExtensions
-- Harmony patches where required
-- Modular faction definitions
-- Custom graphics and VFX
-
-The goal is long-term maintainability and expandability with a focus on performance.
 
 ## 🚀 Release Process ##
 
@@ -139,6 +75,16 @@ Do not upload:
 - Source/
 - AssetsRaw/
 - Raw textures or audio
+
+## 💬 Community & Support
+
+For questions, discussions, or general support, join the official Discord community:
+
+👉 **[Join the Discord Server](https://discord.gg/mhwK2QFNBA)**
+
+For bug reports or feature requests, please open an issue in this repository.
+
+We welcome feedback, contributors, and community discussion across all projects.
 
 ## 📜 License ##
 
