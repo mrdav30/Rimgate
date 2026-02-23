@@ -12,7 +12,7 @@
 				<!-- Prevent pawns from using or being rescued to Sarcophagi if they have the Warcasket trait -->
 				
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="Rimgate_Sarcophagus"]/modExtensions/li[@Class="Rimgate.Rimgate.Building_Sarcophagus_Ext"]/usageBlockingTraits</xpath>
+					<xpath>Defs/ThingDef[defName="Rimgate_GoauldSarcophagus"]/modExtensions/li[@Class="Rimgate.Building_Sarcophagus_Ext"]/usageBlockingTraits</xpath>
 					<value>
 						<li>VFEP_WarcasketTrait</li>
 					</value>
@@ -21,7 +21,7 @@
 				<!-- Remove Shellcasket trait for pawns that can be treated on Sarcophagi -->
 				
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="Rimgate_Sarcophagus"]/modExtensions/li[@Class="Rimgate.Rimgate.Building_Sarcophagus_Ext"]/alwaysTreatableTraits</xpath>
+					<xpath>Defs/ThingDef[defName="Rimgate_GoauldSarcophagus"]/modExtensions/li[@Class="Rimgate.Building_Sarcophagus_Ext"]/alwaysTreatableTraits</xpath>
 					<value>
 						<li>VFEP_Shellcasket</li>
 					</value>

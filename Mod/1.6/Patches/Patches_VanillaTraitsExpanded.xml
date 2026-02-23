@@ -12,7 +12,7 @@
 				<!-- Remove Lush and Stoner traits once Sarcophagus treatment is completed -->
 				
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="Rimgate_Sarcophagus"]/modExtensions/li[@Class="Rimgate.Rimgate.Building_Sarcophagus_Ext"]/alwaysTreatableTraits</xpath>
+					<xpath>Defs/ThingDef[defName="Rimgate_GoauldSarcophagus"]/modExtensions/li[@Class="Rimgate.Building_Sarcophagus_Ext"]/alwaysTreatableTraits</xpath>
 					<value>
 						<li>VTE_Lush</li>
 						<li>VTE_Stoner</li>

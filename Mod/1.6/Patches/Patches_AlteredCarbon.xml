@@ -12,7 +12,7 @@
 				<!-- Prevent sleeves with the Empty Sleeve hediff from being carried to Sarcophagi for treatment -->
 				
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="Rimgate_Sarcophagus"]/modExtensions/li[@Class="Rimgate.Rimgate.Building_Sarcophagus_Ext"]/usageBlockingHediffs</xpath>
+					<xpath>Defs/ThingDef[defName="Rimgate_GoauldSarcophagus"]/modExtensions/li[@Class="Rimgate.Building_Sarcophagus_Ext"]/usageBlockingHediffs</xpath>
 					<value>
 						<li>AC_EmptySleeve</li>
 					</value>

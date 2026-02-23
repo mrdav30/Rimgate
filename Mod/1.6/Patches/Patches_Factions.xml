@@ -10,7 +10,7 @@
 			<operations>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/FactionDef[@Name="Empire"]/permanentEnemyToEveryoneExcept</xpath>
+					<xpath>Defs/FactionDef[defName="Empire"]/permanentEnemyToEveryoneExcept</xpath>
 					<value>
 						<li>Rimgate_GoauldPlayerColony</li>
 						<li>Rimgate_TauriPlayerColony</li>

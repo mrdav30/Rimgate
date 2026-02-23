@@ -72,7 +72,7 @@
     <leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
     <staticSunShadowHeight>0.2</staticSunShadowHeight>
     <researchPrerequisites>
-      <li>Rimgate_Sarcophagus</li>
+      <li>Rimgate_GoauldSarcophagus</li>
     </researchPrerequisites>
     <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
     <techLevel>Ultra</techLevel>

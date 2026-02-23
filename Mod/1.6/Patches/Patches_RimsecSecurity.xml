@@ -12,7 +12,7 @@
 				<!-- Prevent Sarcophagus from treating Rimsec Security robots (as they are purely mechanical) -->
 				
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="Rimgate_Sarcophagus"]/modExtensions/li[@Class="Rimgate.Rimgate.Building_Sarcophagus_Ext"]/disallowedRaces</xpath>
+					<xpath>Defs/ThingDef[defName="Rimgate_GoauldSarcophagus"]/modExtensions/li[@Class="Rimgate.Building_Sarcophagus_Ext"]/disallowedRaces</xpath>
 					<value>
 						<li>RSPeacekeeperDefender</li>
 						<li>RSPeacekeeperDefenderDesert</li>

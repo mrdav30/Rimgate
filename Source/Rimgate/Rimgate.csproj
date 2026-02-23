@@ -61,7 +61,7 @@
 
 		<!-- Other mods -->
 		<Reference Include="BadHygiene">
-			<HintPath>$(ModDir)\..\Dubs-Bad-Hygiene-master\1.6\Assemblies\BadHygiene.dll</HintPath>
+			<HintPath>$(SteamModDir)\294100\836308268\1.6\Assemblies\BadHygiene.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="KCSG">

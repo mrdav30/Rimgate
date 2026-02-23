@@ -321,7 +321,7 @@
 
 	<!-- Sarcophagus -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
-		<defName>Rimgate_Sarcophagus</defName>
+		<defName>Rimgate_GoauldSarcophagus</defName>
 		<label>Sarcophagus</label>
 		<description>Gain access to the Goa’uld sarcophagus: a relic that knits flesh, purges disease, and drags the dying back across the line.\n\nIt also erodes judgment, inflates ego, and whispers that maybe you deserve to live forever.\n\nMiracle on the outside, rot on the inside—just like the Goa’uld who used it.</description>
 		<baseCost>3500</baseCost>
@@ -380,7 +380,7 @@
 		</requiredResearchFacilities>
 
 		<prerequisites>
-			<li>Rimgate_Sarcophagus</li>
+			<li>Rimgate_GoauldSarcophagus</li>
 			<li>Bioregeneration</li>
 		</prerequisites>
 
@@ -429,7 +429,7 @@
 		<prerequisites>
 			<li>Rimgate_SubspaceMasking</li>
 			<li>Rimgate_ParallelSubspaceCoupling</li>
-			<li>Rimgate_Sarcophagus</li>
+			<li>Rimgate_GoauldSarcophagus</li>
 		</prerequisites>
 
 		<researchViewX>2</researchViewX>

@@ -12,7 +12,7 @@
 				<!-- Prevent Sarcophagi from treating egg fatigue and hyperthermic/hypothermic slowdowns in Saurid pawns -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="Rimgate_Sarcophagus"]/modExtensions/li[@Class="Rimgate.Rimgate.Building_Sarcophagus_Ext"]/neverTreatableHediffs</xpath>
+					<xpath>Defs/ThingDef[defName="Rimgate_GoauldSarcophagus"]/modExtensions/li[@Class="Rimgate.Building_Sarcophagus_Ext"]/neverTreatableHediffs</xpath>
 					<value>
 						<li>VRESaurids_EggFatigue</li>
 						<li>VRESaurids_HyperthermicSlowdown</li>

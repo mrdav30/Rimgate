@@ -12,7 +12,7 @@
 				<!-- Prevent Sarcophagi from treating androids -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="Rimgate_Sarcophagus"]/modExtensions/li[@Class="Rimgate.Rimgate.Building_Sarcophagus_Ext"]/disallowedXenotypes</xpath>
+					<xpath>Defs/ThingDef[defName="Rimgate_GoauldSarcophagus"]/modExtensions/li[@Class="Rimgate.Building_Sarcophagus_Ext"]/disallowedXenotypes</xpath>
 					<value>
 						<li>VREA_AndroidAwakened</li>
 						<li>VREA_AndroidBasic</li>
