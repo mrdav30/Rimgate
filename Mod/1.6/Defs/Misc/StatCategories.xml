@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <StatCategoryDef>
+        <defName>RG_QueenLineage</defName>
+        <label>Inherited lineage offsets</label>
+        <displayOrder>110</displayOrder>
+        <displayAllByDefault>true</displayAllByDefault>
+    </StatCategoryDef>
+
+    <StatCategoryDef>
+        <defName>RG_SymbioteMemory</defName>
+        <label>Symbiotic skill bonuses</label>
+        <displayOrder>120</displayOrder>
+        <displayAllByDefault>true</displayAllByDefault>
+    </StatCategoryDef>
+
+</Defs>

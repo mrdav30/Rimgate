@@ -163,6 +163,9 @@ public static class RimgateDefOf
     public static StatDef Rimgate_EssenceCostFactor;
     public static StatDef Rimgate_EssenceGainFactor;
 
+    public static StatCategoryDef RG_QueenLineage;
+    public static StatCategoryDef RG_SymbioteMemory;
+
     public static TattooDef NoTattoo_Body;
     public static TattooDef NoTattoo_Face;
 

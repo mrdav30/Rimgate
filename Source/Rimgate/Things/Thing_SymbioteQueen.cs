@@ -58,16 +58,8 @@ public class Thing_SymbioteQueen : ThingWithComps
 
         if (Lineage?.HasOffsets == true)
         {
-            string offsetText = Lineage.OffsetsDisplayString();
-            if (!offsetText.NullOrEmpty())
-            {
-                yield return new StatDrawEntry(
-                    StatCategoryDefOf.BasicsImportant,
-                    "RG_SymbioteQueen_Stat_Offsets_Label".Translate(),
-                    offsetText,
-                    "RG_SymbioteQueen_Stat_Offsets_Desc".Translate(),
-                    4994);
-            }
+            foreach (var stat in Lineage.GetStatDrawEntries(showQueenName: false))
+                yield return stat;
         }
     }
 }

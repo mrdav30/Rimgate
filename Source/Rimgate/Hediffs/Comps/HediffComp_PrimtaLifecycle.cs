@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
@@ -6,6 +7,8 @@ namespace Rimgate;
 
 public class HediffComp_PrimtaLifecycle : HediffComp
 {
+    public const int TicksPerDay = 60000;
+
     public const float KrintakThreshold = 0.85f;
 
     public bool Mature => _matured;
@@ -89,27 +92,89 @@ public class HediffComp_PrimtaLifecycle : HediffComp
             }
 
             if (_ageTicks >= _maturePeriod)
-            {
-                _matured = true;
-                pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
-
-                pawn.TryGiveThought(RimgateDefOf.Rimgate_PrimtaMaturedThought);
-
-                if (pawn.Faction.IsOfPlayerFaction())
-                    Messages.Message(
-                        "RG_Primta_Matured".Translate(pawn.Named("PAWN")),
-                        pawn,
-                        MessageTypeDefOf.ThreatSmall);
-            }
+                MarkMature(pawn);
 
             return;
         }
 
+        if (!_matured)
+            return;
+
         if (_ageTicks < _maturePeriod + _matureGrace)
             return;
 
-        if (Find.TickManager.TicksGame % 60000 == 0)
+        // If the prim'ta has matured and stayed past the grace period, evaluate outcomes every in-game day
+        if (Find.TickManager.TicksGame % TicksPerDay == 0)
             EvaluateOverstayOutcome(pawn);
+    }
+
+    public override IEnumerable<Gizmo> CompGetGizmos()
+    {
+        Pawn pawn = parent?.pawn;
+        if (!Prefs.DevMode
+            || pawn == null
+            || pawn.Dead
+            || pawn.Faction?.IsOfPlayerFaction() != true)
+            yield break;
+
+        Command_Action cmd = new()
+        {
+            defaultLabel = "DEV: Mature Prim'ta",
+            defaultDesc = "Force this prim'ta into mature state immediately for testing.",
+            action = () => MarkMature(pawn)
+        };
+
+        if (_matured)
+            cmd.Disable("Prim'ta is already mature.");
+
+        yield return cmd;
+
+        Command_Action forceTakeover = new()
+        {
+            defaultLabel = "DEV: Overstay -> Takeover",
+            defaultDesc = "Force the mature prim'ta overstay outcome where it takes over the host.",
+            action = () => BecomeGoauld(pawn)
+        };
+
+        if (!_matured)
+            forceTakeover.Disable("Prim'ta must be mature.");
+        else if (pawn.HasHediffOf(RimgateDefOf.Rimgate_SymbioteImplant))
+            forceTakeover.Disable("Pawn already has a symbiote implant.");
+
+        yield return forceTakeover;
+
+        Command_Action forceFatal = new()
+        {
+            defaultLabel = "DEV: Overstay -> Fatal",
+            defaultDesc = "Force the mature prim'ta overstay outcome where host and prim'ta both die.",
+            action = () => KillHostAndPrimta(pawn)
+        };
+
+        if (!_matured)
+            forceFatal.Disable("Prim'ta must be mature.");
+
+        yield return forceFatal;
+    }
+
+    private void MarkMature(Pawn pawn)
+    {
+        if (pawn == null || _matured)
+            return;
+
+        _matured = true;
+        _krintakTriggered = true;
+        _ageTicks = Mathf.Max(_ageTicks, _maturePeriod);
+
+        pawn.RemoveHediffOf(RimgateDefOf.Rimgate_KrintakSickness);
+        pawn.TryGiveThought(RimgateDefOf.Rimgate_PrimtaMaturedThought);
+
+        if (pawn.Faction.IsOfPlayerFaction())
+        {
+            Messages.Message(
+                "RG_Primta_Matured".Translate(pawn.Named("PAWN")),
+                pawn,
+                MessageTypeDefOf.ThreatSmall);
+        }
     }
 
     private void TriggerKrintak(Pawn pawn)

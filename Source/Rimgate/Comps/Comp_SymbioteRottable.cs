@@ -26,8 +26,7 @@ public class Comp_SymbioteRottable : CompRottable
 
         base.CompTickInterval(delta);
 
-        int ticks = Find.TickManager.TicksGame;
-        if (ticks % 250 == 0)
+        if (Find.TickManager.TicksGame % GenTicks.TickRareInterval == 0)
             CheckFrozenAndDestroyIfNeeded();
     }
 
@@ -55,9 +54,6 @@ public class Comp_SymbioteRottable : CompRottable
     private bool IsInSymbiotePool()
     {
         // Stored directly in the spawning pool's inner container
-        if (parent.ParentHolder is Building_SymbioteSpawningPool)
-            return true;
-
-        return false;
+        return parent?.ParentHolder is Building_SymbioteSpawningPool;
     }
 }

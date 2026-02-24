@@ -4,7 +4,7 @@
     <PreceptDef>
         <defName>Rimgate_PrimtaRenewal</defName>
         <label>Prim'ta renewal</label>
-        <description>A formal Jaffa ceremony to replace a maturing prim'ta with a fresh larva. The host stands before the symbol of their god while the warriors chant, witnessing another cycle of borrowed life begin.</description>
+        <description>A formal Jaffa ceremony to replace a maturing prim'ta with a fresh larva. The host stands before those present, ready to undergo the renewal process.</description>
         <issue>Ritual</issue>
         <preceptClass>Precept_Ritual</preceptClass>
         <visible>false</visible>

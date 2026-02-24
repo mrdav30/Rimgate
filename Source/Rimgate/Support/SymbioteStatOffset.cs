@@ -22,13 +22,16 @@ public class SymbioteStatOffset : IExposable
 
     public bool Matches(StatDef stat) => stat != null && stat.defName == statDefName;
 
-    public string FormatForDisplay()
+    public StatDrawEntry GetStatDrawEntry()
     {
         StatDef stat = Stat;
-        string statLabel = stat?.LabelCap ?? statDefName ?? "Unknown";
+        string label = stat?.LabelCap ?? statDefName ?? "Unknown";
+        
         float pct = offset * 100f;
         string sign = pct >= 0f ? "+" : string.Empty;
-        return $"{statLabel}: {sign}{pct:0.#}%";
+        string value = $"{sign}{pct:0.#}%";
+
+        return new StatDrawEntry(RimgateDefOf.RG_QueenLineage, label, value, stat?.description ?? string.Empty, 4670);
     }
 
     public void ExposeData()

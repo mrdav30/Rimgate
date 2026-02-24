@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using RimWorld;
 using Verse;
 
 namespace Rimgate;
@@ -6,6 +7,7 @@ namespace Rimgate;
 public class Comp_SymbioteHeritage : ThingComp
 {
     public SymbioteMemory Memory;
+
     public SymbioteQueenLineage QueenLineage;
 
     public override void PostExposeData()
@@ -13,17 +15,6 @@ public class Comp_SymbioteHeritage : ThingComp
         base.PostExposeData();
         Scribe_Deep.Look(ref Memory, "Memory");
         Scribe_Deep.Look(ref QueenLineage, "QueenLineage");
-    }
-
-    public override string GetDescriptionPart()
-    {
-        if (Memory == null) return null;
-        StringBuilder sb = new StringBuilder();
-        var skills = Memory.SkillDescription;
-        if (skills != null) sb.Append(skills);
-        return sb.Length > 0
-            ? sb.ToString()
-            : null;
     }
 
     public void AssumeMemory(SymbioteMemory memory)
@@ -51,8 +42,19 @@ public class Comp_SymbioteHeritage : ThingComp
         {
             if (sk.TotallyDisabled) continue;
             // must be at least "adept" post symbiote removal
-            if (sk.Level < 6) continue;
+            if (sk.Level < SymbioteMemory.PawnMinSkillLevel) continue;
             Memory.AddRandomBonus(sk.def);
         }
+    }
+
+    public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
+    {
+        foreach (var stat in Memory.GetStatDrawEntries())
+            yield return stat;
+
+        if (QueenLineage == null) yield break;
+
+        foreach (var stat in QueenLineage.GetStatDrawEntries())
+            yield return stat;
     }
 }

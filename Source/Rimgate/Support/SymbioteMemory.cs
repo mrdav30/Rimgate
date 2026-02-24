@@ -3,19 +3,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using Verse;
 
 namespace Rimgate;
 
 public class SymbioteMemory : IExposable
 {
+    // must be at least "adept" to pass on skill bonuses
+    public const int PawnMinSkillLevel = 6;
+
+    // absolute cap on skill levels a symbiote can grant, to prevent absurdities with multiple hosts and/or mods that add many levels
+    public const int MaxSkillLevel = 20;
+
+    // cap on how many bonus levels a symbiote can grant for a single skill, to prevent absurdities with multiple hosts and/or mods that add many levels
     public const int SkillCap = 10;
 
     // Allow up to 4 hosts, afterwards symbiote is destroyed
     public const int MaxPreviousHosts = 3;
 
-    private static readonly IntRange RandomSkillDelta = new IntRange(1, 2);
+    private static readonly IntRange RandomSkillDelta = new(1, 2);
 
     public string SymbioteName => _symbioteName;
 
@@ -36,42 +42,10 @@ public class SymbioteMemory : IExposable
 
     private List<string> _previousHostIds;
 
-    private Dictionary<string, int> _skillBonuses = new();
+    private Dictionary<string, int> _skillBonuses = [];
 
     private List<string> _keys;
     private List<int> _values;
-
-    public string SkillDescription
-    {
-        get
-        {
-            var sb = new StringBuilder();
-
-            if (_skillBonuses == null || _skillBonuses.Count <= 0)
-                return null;
-
-            sb.AppendInNewLine("RG_SymbioteMemory_SkillsHeader".Translate());
-            sb.AppendLine();
-
-            foreach (var kv in _skillBonuses
-                         .Where(kv => kv.Value > 0)
-                         .OrderByDescending(kv => kv.Value))
-            {
-                var def = DefDatabase<SkillDef>.GetNamedSilentFail(kv.Key);
-                if (def == null) continue;
-
-                sb.Append("  - ");
-                sb.Append(def.skillLabel.CapitalizeFirst());
-                sb.Append(": +");
-                sb.Append(kv.Value);
-                sb.AppendLine();
-            }
-
-            return sb.Length > 0
-                ? sb.ToString().TrimEndNewlines()
-                : null;
-        }
-    }
 
     public void ExposeData()
     {
@@ -138,7 +112,7 @@ public class SymbioteMemory : IExposable
     public void MarkPreviousHost(Pawn host)
     {
         if (IsPreviousHost(host)) return;
-        _previousHostIds ??= new();
+        _previousHostIds ??= [];
         _previousHostIds.Add(host.ThingID);
         _priorHostCount++;
     }
@@ -177,6 +151,34 @@ public class SymbioteMemory : IExposable
 
             int newLevel = Math.Max(rec.Level - kv.Value, 0);
             rec.Level = newLevel;
+        }
+    }
+
+    public IEnumerable<StatDrawEntry> GetStatDrawEntries()
+    {
+        yield return new StatDrawEntry(
+            StatCategoryDefOf.BasicsImportant,
+            "RG_Symbiote_Stat_PreviousHostCount_Label".Translate(),
+            PriorHostCount.ToString("F0"),
+            "RG_Symbiote_Stat_PreviousHostCount_Desc".Translate(),
+            4991);
+
+        if (_skillBonuses == null || _skillBonuses.Count <= 0)
+            yield break;
+
+        foreach (var kv in _skillBonuses
+                     .Where(kv => kv.Value > 0)
+                     .OrderByDescending(kv => kv.Value))
+        {
+            var def = DefDatabase<SkillDef>.GetNamedSilentFail(kv.Key);
+            if (def == null) continue;
+
+            yield return new StatDrawEntry(
+                RimgateDefOf.RG_SymbioteMemory,
+                def.skillLabel.CapitalizeFirst(),
+                $"+{kv.Value}",
+                def.description,
+                4670);
         }
     }
 }

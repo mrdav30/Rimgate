@@ -19,16 +19,14 @@ public class Hediff_SymbioteImplant : Hediff_Implant
 
     public override bool Visible => true;
 
-    public bool IsBlankSymbiote => Heritage == null;
-
     public string SymbioteLabel
     {
         get
         {
-            if (!_cachedSymbioteLabel.NullOrEmpty() || IsBlankSymbiote)
+            if (!_cachedSymbioteLabel.NullOrEmpty() || Heritage == null)
                 return _cachedSymbioteLabel;
 
-            var name = Heritage?.Memory?.SymbioteName;
+            var name = Heritage?.Memory.SymbioteName;
             if (name.NullOrEmpty()) return null;
 
             var baseLabel = "RG_SymbioteMemory_Name".Translate(name);
@@ -36,21 +34,21 @@ public class Hediff_SymbioteImplant : Hediff_Implant
 
             _cachedSymbioteLabel = suffix.NullOrEmpty()
                 ? baseLabel
-                : $"{baseLabel}{suffix}";
+                : $"{baseLabel} {suffix}";
 
             return _cachedSymbioteLabel;
         }
     }
 
-    public override string LabelBase => !IsBlankSymbiote && !SymbioteLabel.NullOrEmpty()
+    public override string LabelBase => Heritage != null && !SymbioteLabel.NullOrEmpty()
         ? SymbioteLabel
         : base.LabelBase;
 
-    public override string Label => !IsBlankSymbiote && !SymbioteLabel.NullOrEmpty()
+    public override string Label => Heritage != null && !SymbioteLabel.NullOrEmpty()
         ? SymbioteLabel
         : base.Label;
 
-    public override string LabelInBrackets => !IsBlankSymbiote && !SymbioteLabel.NullOrEmpty()
+    public override string LabelInBrackets => Heritage != null && !SymbioteLabel.NullOrEmpty()
         ? SymbioteLabel
         : base.LabelInBrackets;
 
@@ -58,21 +56,21 @@ public class Hediff_SymbioteImplant : Hediff_Implant
     {
         get
         {
-            if (IsBlankSymbiote) return null;
+            if (Heritage == null) return null;
             // If the symbiote is already over limit, indicate it loudly.
             // Otherwise, if it is at the limit, indicate it's at max.
             var memory = Heritage.Memory;
-            if (memory.IsOverLimit) return " (exhausted)";
-            if (memory.IsAtLimit) return " (prime)";
+            if (memory.IsOverLimit) return "RG_SymbioteMemory_OverLimit_LabelSuffix".Translate();
+            if (memory.IsAtLimit) return "RG_SymbioteMemory_AtLimit_LabelSuffix".Translate();
             return null;
         }
     }
 
     private string _cachedSymbioteLabel;
 
-    private Hediff_SymbioteImplant_Ext _cachedProps;
-
     private bool _immediateRejection;
+
+    private Hediff_SymbioteImplant_Ext _cachedProps;
 
     private HediffComp_SymbioteHeritage _heritage;
 
@@ -86,10 +84,9 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         if (!IsValidHost(out string reason))
         {
             // Spawn mature symbiote item at pawn's position
-            if (!IsBlankSymbiote && pawn.Map != null)
+            if (Heritage != null && pawn.Map != null)
             {
-                var thing = ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote) as Thing_GoualdSymbiote;
-                if (thing != null)
+                if (ThingMaker.MakeThing(RimgateDefOf.Rimgate_GoauldSymbiote) is Thing_GoualdSymbiote thing)
                 {
                     if (thing.Heritage != null)
                     {
@@ -128,7 +125,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         if (!isConfigStage)
             RimgateEvents.Notify_ColonyOfPawnEvent(pawn, RimgateDefOf.Rimgate_InstalledSymbiote);
 
-        if (IsBlankSymbiote) return;
+        if (Heritage == null) return;
 
         Heritage.Memory ??= new SymbioteMemory();
         Heritage.Memory.EnsureName();
@@ -140,7 +137,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         {
             var msg = "RG_SymbioteSkillInheritance".Translate(
                 pawn.Named("PAWN"),
-                Heritage.Memory?.SymbioteName);
+                Heritage.Memory.SymbioteName);
             Messages.Message(
                 msg,
                 pawn,
@@ -158,8 +155,11 @@ public class Hediff_SymbioteImplant : Hediff_Implant
 
         if (!pawn.IsHashIntervalTick(Props.chronicHealCheckTicks)) return;
 
-        var memory = Heritage?.Memory;
-        if (memory?.IsOverLimit == true) return; // symbiote is exhausted; no free cures
+        if (Heritage != null)
+        {
+            var memory = Heritage.Memory;
+            if (memory.IsOverLimit == true) return; // symbiote is exhausted; no free cures
+        }
 
         if (!Rand.Chance(Props.chronicHealChance)) return;
 
@@ -184,7 +184,7 @@ public class Hediff_SymbioteImplant : Hediff_Implant
     {
         base.PostRemoved();
 
-        if (_immediateRejection || pawn == null || pawn.health == null || IsBlankSymbiote)
+        if (_immediateRejection || pawn == null || pawn.health == null || Heritage == null)
             return;
 
         if (!pawn.Dead
@@ -203,34 +203,11 @@ public class Hediff_SymbioteImplant : Hediff_Implant
         foreach (var stat in base.SpecialDisplayStats(req))
             yield return stat;
 
-        SymbioteQueenLineage lineage = Heritage?.QueenLineage;
-        if (lineage?.HasQueenName == true)
-            yield return new StatDrawEntry(
-                StatCategoryDefOf.BasicsImportant,
-                "RG_Symbiote_Stat_MotherQueen_Label".Translate(),
-                lineage.QueenName,
-                "RG_Symbiote_Stat_MotherQueen_Desc".Translate(),
-                4993);
-
-        if (lineage?.HasOffsets == true)
+        if (Heritage != null)
         {
-            string offsetText = lineage.OffsetsDisplayString();
-            if (!offsetText.NullOrEmpty())
-                yield return new StatDrawEntry(
-                    StatCategoryDefOf.BasicsImportant,
-                    "RG_Symbiote_Stat_InheritedOffsets_Label".Translate(),
-                    offsetText,
-                    "RG_Symbiote_Stat_InheritedOffsets_Desc".Translate(),
-                    4992);
+            foreach (var stat in Heritage.GetSpecialDisplayStats())
+                yield return stat;
         }
-
-        if (!IsBlankSymbiote && Heritage?.Memory != null)
-            yield return new StatDrawEntry(
-                StatCategoryDefOf.BasicsImportant,
-                "RG_Symbiote_Stat_PreviousHostCount_Label".Translate(),
-                Heritage?.Memory.PriorHostCount.ToString("F0"),
-                "RG_Symbiote_Stat_PreviousHostCount_Desc".Translate(),
-                4991);
     }
 
     public override void Notify_PawnKilled()

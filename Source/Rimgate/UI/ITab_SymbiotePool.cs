@@ -8,24 +8,22 @@ namespace Rimgate;
 
 public class ITab_SymbiotePool : ITab_ContentsBase
 {
-    private static readonly CachedTexture DropTex = new CachedTexture("UI/Buttons/Drop");
+    private static readonly CachedTexture DropTex = new("UI/Buttons/Drop");
 
-    public override IList<Thing> container => Pool.HeldItems.ToList();
+    public override IList<Thing> container => [.. Pool.HeldItems];
 
     public override bool IsVisible
     {
         get
         {
-            if (base.SelThing != null)
-            {
+            if (SelThing != null)
                 return base.IsVisible;
-            }
 
             return false;
         }
     }
 
-    public Building_SymbioteSpawningPool Pool => base.SelThing as Building_SymbioteSpawningPool;
+    public Building_SymbioteSpawningPool Pool => SelThing as Building_SymbioteSpawningPool;
 
     public override bool VisibleInBlueprintMode => false;
 
@@ -75,16 +73,20 @@ public class ITab_SymbiotePool : ITab_ContentsBase
 
     private void DoRow(Thing thing, float width, int i, ref float curY)
     {
-        Rect rect = new Rect(0f, curY, width, 28f);
+        Rect rect = new(0f, curY, width, 28f);
         if (Mouse.IsOver(rect))
             Widgets.DrawHighlightSelected(rect);
         else if (i % 2 == 1)
             Widgets.DrawLightHighlight(rect);
 
-        Rect rect2 = new Rect(rect.width - 24f, curY, 24f, 24f);
-        if (Widgets.ButtonImage(rect2, DropTex.Texture))
+        Rect dropRect = new(rect.width - 24f, curY, 24f, 24f);
+        Rect infoRect = new(dropRect.xMin - 24f, curY, 24f, 24f);
+
+        Widgets.InfoCardButton(infoRect.x, infoRect.y, thing);
+
+        if (Widgets.ButtonImage(dropRect, DropTex.Texture))
         {
-            if (!Pool.OccupiedRect().AdjacentCells.Where((IntVec3 x) => x.Walkable(Pool.Map)).TryRandomElement(out var result))
+            if (!Pool.OccupiedRect().AdjacentCells.Where(x => x.Walkable(Pool.Map)).TryRandomElement(out var result))
             {
                 result = Pool.Position;
             }
@@ -93,16 +95,23 @@ public class ITab_SymbiotePool : ITab_ContentsBase
             if (dropped.TryGetComp(out CompForbiddable comp))
                 comp.Forbidden = true;
         }
-        else if (Widgets.ButtonInvisible(rect))
+        else
         {
-            Find.Selector.ClearSelection();
-            Find.Selector.Select(thing);
+            Rect selectRect = rect;
+            selectRect.xMax = infoRect.xMin;
+            if (Widgets.ButtonInvisible(selectRect))
+            {
+                Find.Selector.ClearSelection();
+                Find.Selector.Select(thing);
+            }
         }
 
-        TooltipHandler.TipRegionByKey(rect2, "RG_EjectSymbioteTooltip");
+        TooltipHandler.TipRegionByKey(dropRect, "RG_EjectSymbioteTooltip");
         Widgets.ThingIcon(new Rect(24f, curY, 28f, 28f), thing);
-        Rect rect3 = new Rect(60f, curY, rect.width - 36f, rect.height);
-        rect3.xMax = rect2.xMin;
+        Rect rect3 = new(60f, curY, rect.width - 36f, rect.height)
+        {
+            xMax = infoRect.xMin
+        };
         Text.Anchor = TextAnchor.MiddleLeft;
         Widgets.Label(rect3, thing.LabelCap.Truncate(rect3.width));
         Text.Anchor = TextAnchor.UpperLeft;

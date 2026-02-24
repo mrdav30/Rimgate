@@ -35,6 +35,38 @@ public class Comp_SymbiotePool : ThingComp
         Scribe_Values.Look(ref _progress, "progress", 0f);
     }
 
+    public override IEnumerable<Gizmo> CompGetGizmosExtra()
+    {
+        foreach (Gizmo gizmo in base.CompGetGizmosExtra())
+            yield return gizmo;
+
+        if (!Prefs.DevMode || parent is not Building_SymbioteSpawningPool)
+            yield break;
+
+        yield return new Command_Action
+        {
+            defaultLabel = "DEV: Spawn in ~10 ticks",
+            defaultDesc = "Sets production progress to about 10 ticks before completion. It should spawn on the next pool production check.",
+            action = () =>
+            {
+                float ticksPerProduct = GetTicksPerProduct();
+                float elapsedTicks = Mathf.Clamp(ticksPerProduct - Mathf.Max(0f, 10f), 0f, ticksPerProduct);
+                _progress = elapsedTicks / ticksPerProduct;
+            }
+        };
+
+        yield return new Command_Action
+        {
+            defaultLabel = "DEV: Spawn next tick",
+            defaultDesc = "Sets production to completion (0 ticks remaining) so the next production check spawns immediately.",
+            action = () =>
+            {
+                // "_progress" stores completion ratio. 1f means 0 ticks remaining.
+                _progress = 1f;
+            }
+        };
+    }
+
     public override void CompTickRare()
     {
         if (!parent.Spawned) return;
@@ -75,10 +107,8 @@ public class Comp_SymbiotePool : ThingComp
         if ((Refuelable != null && !Refuelable.HasFuel) || !pool.HasQueen)
             return;
 
-        // Production progress
-        float ticksPerProduct = Props.daysPerSymbiote * GenDate.TicksPerDay;
-        if (ticksPerProduct <= 0f) ticksPerProduct = GenDate.TicksPerDay;
-        _progress += TicksPerRare / ticksPerProduct;
+        // Production progresses every rare tick, and spawns a new symbiote when it reaches 1.0 (100%).
+        _progress += TicksPerRare / GetTicksPerProduct();
         if (_progress < 1f) return;
 
         // Ready to complete a product;
@@ -109,6 +139,14 @@ public class Comp_SymbiotePool : ThingComp
         }
 
         return Props.upkeepFuelPerDayBase + larvaeCount * Props.upkeepFuelPerExtraSymbiote;
+    }
+
+    private float GetTicksPerProduct()
+    {
+        float ticksPerProduct = Props.daysPerSymbiote * GenDate.TicksPerDay;
+        if (ticksPerProduct <= 0f)
+            ticksPerProduct = GenDate.TicksPerDay;
+        return ticksPerProduct;
     }
 
     private void ApplyStarvationOrGoFeral(Building_SymbioteSpawningPool pool)

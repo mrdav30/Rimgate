@@ -1,32 +1,15 @@
 ﻿using System;
-using System.Text;
+using System.Collections.Generic;
+using RimWorld;
 using Verse;
 
 namespace Rimgate;
 
 public class HediffComp_SymbioteHeritage : HediffComp
 {
-    public SymbioteMemory Memory = new SymbioteMemory();
+    public SymbioteMemory Memory = new();
+
     public SymbioteQueenLineage QueenLineage;
-
-    public override string CompDescriptionExtra
-    {
-        get
-        {
-            if (Memory == null) return null;
-            StringBuilder sb = new StringBuilder();
-            var skillDesc = Memory.SkillDescription;
-            if (!skillDesc.NullOrEmpty())
-            {
-                sb.AppendLine();
-                sb.Append(skillDesc);
-            }
-
-            return sb.Length > 0
-                ? sb.ToString()
-                : null;
-        }
-    }
 
     public override void CompExposeData()
     {
@@ -56,16 +39,27 @@ public class HediffComp_SymbioteHeritage : HediffComp
         {
             if (sk.TotallyDisabled) continue;
 
-            // must be at least *adept* and the symbiote able to accept
-            if (sk.Level >= 6 && !Memory.IsOverLimit)
+            // must be at least *adept* and the symbiote not over limit to pass on bonuses
+            if (sk.Level >= SymbioteMemory.PawnMinSkillLevel && !Memory.IsOverLimit)
                 Memory.AddRandomBonus(sk.def);
 
             // pawn still recieves bonus from symbiote,
             // even if they aren't *adept*
             int totalBonusLevels = Memory.GetBonus(sk.def);
             if (totalBonusLevels <= 0) continue;
-            int newLevel = Math.Min(sk.Level + totalBonusLevels, 20);
+            int newLevel = Math.Min(sk.Level + totalBonusLevels, SymbioteMemory.MaxSkillLevel);
             sk.Level = newLevel;
         }
+    }
+
+    public IEnumerable<StatDrawEntry> GetSpecialDisplayStats()
+    {
+        foreach (var stat in Memory.GetStatDrawEntries())
+            yield return stat;
+
+        if (QueenLineage == null) yield break;
+
+        foreach (var stat in QueenLineage.GetStatDrawEntries())
+            yield return stat;
     }
 }

@@ -110,24 +110,26 @@ public class SymbioteQueenLineage : IExposable
         return 0f;
     }
 
-    public string OffsetsDisplayString()
+    public IEnumerable<StatDrawEntry> GetStatDrawEntries(bool showQueenName = true)
     {
-        if (_statOffsets == null || _statOffsets.Count == 0)
-            return null;
+        if (showQueenName)
+            yield return new StatDrawEntry(
+                StatCategoryDefOf.BasicsImportant,
+                "RG_Symbiote_Stat_MotherQueen_Label".Translate(),
+                _queenName,
+                "RG_Symbiote_Stat_MotherQueen_Desc".Translate(),
+                4993);
 
-        System.Text.StringBuilder sb = new();
+        if (_statOffsets == null || _statOffsets.Count == 0)
+            yield break;
+
         for (int i = 0; i < _statOffsets.Count; i++)
         {
             SymbioteStatOffset offset = _statOffsets[i];
             if (offset == null) continue;
 
-            if (sb.Length > 0)
-                sb.Append(", ");
-
-            sb.Append(offset.FormatForDisplay());
+            yield return offset.GetStatDrawEntry();
         }
-
-        return sb.ToString();
     }
 
     public static SymbioteQueenLineage DeepCopy(SymbioteQueenLineage src)
