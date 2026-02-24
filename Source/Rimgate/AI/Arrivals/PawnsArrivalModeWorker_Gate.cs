@@ -8,7 +8,8 @@ public class PawnsArrivalModeWorker_Gate : PawnsArrivalModeWorker
 {
     public override bool CanUseOnMap(Map map)
     {
-        return Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gate) && !gate.IsActive;
+        return Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gate) 
+            && (!gate.IsActive || gate.IsReceivingGate);
     }
 
     public override void Arrive(List<Pawn> pawns, IncidentParms parms)
@@ -25,16 +26,18 @@ public class PawnsArrivalModeWorker_Gate : PawnsArrivalModeWorker
     public override bool TryResolveRaidSpawnCenter(IncidentParms parms)
     {
         Map map = (Map)parms.target;
-        if (!Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gateOnMap) || gateOnMap.IsActive)
+        if (Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gateOnMap)
+           && gateOnMap.IsActive
+           && gateOnMap.IsReceivingGate)
         {
-            parms.raidArrivalMode = map.Tile.LayerDef.isSpace
-                ? PawnsArrivalModeDefOf.EdgeDrop
-                : PawnsArrivalModeDefOf.EdgeWalkIn;
-            return parms.raidArrivalMode?.Worker?.TryResolveRaidSpawnCenter(parms) ?? false;
+            parms.spawnRotation = gateOnMap.Rotation;
+            parms.spawnCenter = gateOnMap.Position;
+            return true;
         }
 
-        parms.spawnRotation = gateOnMap.Rotation;
-        parms.spawnCenter = gateOnMap.Position;
-        return true;
+        parms.raidArrivalMode = map.Tile.LayerDef.isSpace
+            ? PawnsArrivalModeDefOf.EdgeDrop
+            : PawnsArrivalModeDefOf.EdgeWalkIn;
+        return parms.raidArrivalMode?.Worker?.TryResolveRaidSpawnCenter(parms) ?? false;
     }
 }
