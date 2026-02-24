@@ -8,9 +8,18 @@ public class Thing_PrimtaSymbiote : ThingWithComps
 {
     public SymbioteQueenLineage Lineage;
 
+    public bool IgnoreDestroyEvent;
+
     public void AssumeQueenLineage(SymbioteQueenLineage lineage)
     {
         Lineage = SymbioteQueenLineage.DeepCopy(lineage);
+    }
+
+    public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+    {
+        if (!IgnoreDestroyEvent)
+            RimgateEvents.Notify_SymbioteDestroyed(this);
+        base.Destroy(mode);
     }
 
     public override void ExposeData()

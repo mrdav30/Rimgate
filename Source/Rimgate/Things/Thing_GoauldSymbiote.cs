@@ -10,6 +10,8 @@ public class Thing_GoualdSymbiote : ThingWithComps
 
     private Comp_SymbioteHeritage _heritage;
 
+    public bool IgnoreDestroyEvent;
+
     private string SymbioteLimitSuffix
     {
         get
@@ -56,4 +58,11 @@ public class Thing_GoualdSymbiote : ThingWithComps
     public override string GetCustomLabelNoCount(bool includeHp = true) => Heritage != null && !SymbioteLabel.NullOrEmpty()
         ? SymbioteLabel
         : base.GetCustomLabelNoCount(includeHp);
+
+    public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+    {
+        if (!IgnoreDestroyEvent)
+            RimgateEvents.Notify_SymbioteDestroyed(this);
+        base.Destroy(mode);
+    }
 }

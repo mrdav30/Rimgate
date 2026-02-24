@@ -111,11 +111,9 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
         }
 
         // 1) Try to take a Prim'ta from the *ritual pool* (selected target)
-        Thing primtaItem = TryTakePrimtaFromPool(target.Thing);
-
+        Thing_PrimtaSymbiote primtaItem = TryTakePrimtaFromPool(target.Thing);
         // 2) Fallback: look on the ground around the ritual center
-        if (primtaItem == null)
-            primtaItem = FindPrimtaItemOnGroundNear(target.Cell, map);
+        primtaItem ??= FindPrimtaItemOnGroundNear(target.Cell, map);
 
         if (primtaItem == null)
         {
@@ -150,7 +148,10 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
         }
 
         // Consume one larva item
-        primtaItem.SplitOff(1).Destroy(DestroyMode.Vanish);
+        Thing consumedPrimta = primtaItem.SplitOff(1);
+        if (consumedPrimta is Thing_PrimtaSymbiote typedPrimta)
+            typedPrimta.IgnoreDestroyEvent = true;
+        consumedPrimta.Destroy(DestroyMode.Vanish);
 
         // Add fresh prim'ta
         var newPrimta = HediffMaker.MakeHediff(RimgateDefOf.Rimgate_PrimtaInPouch, host);
@@ -165,10 +166,9 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
         return true;
     }
 
-    private Thing TryTakePrimtaFromPool(Thing targetThing)
+    private Thing_PrimtaSymbiote TryTakePrimtaFromPool(Thing targetThing)
     {
-        var pool = targetThing as Building_SymbioteSpawningPool;
-        if (pool == null) return null;
+        if (targetThing is not Building_SymbioteSpawningPool pool) return null;
 
         var inner = pool.InnerContainer.InnerListForReading;
         for (int i = 0; i < inner.Count; i++)
@@ -178,14 +178,14 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
             {
                 // We don't need to drop it into the world; just consume one inside the pool.
                 // SplitOff(1) adjusts the stack and gives us a single-thing which we destroy later.
-                return t;
+                return t as Thing_PrimtaSymbiote;
             }
         }
 
         return null;
     }
 
-    private Thing FindPrimtaItemOnGroundNear(IntVec3 center, Map map)
+    private Thing_PrimtaSymbiote FindPrimtaItemOnGroundNear(IntVec3 center, Map map)
     {
         foreach (var cell in GenRadial.RadialCellsAround(center, 6f, true))
         {
@@ -197,7 +197,7 @@ public class RitualOutcomeEffectWorker_PrimtaRenewal : RitualOutcomeEffectWorker
             {
                 var t = things[i];
                 if (t.def == RimgateDefOf.Rimgate_PrimtaSymbiote)
-                    return t;
+                    return t as Thing_PrimtaSymbiote;
             }
         }
 

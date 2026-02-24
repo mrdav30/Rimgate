@@ -42,6 +42,12 @@ public class Thing_SymbioteQueen : ThingWithComps
         Lineage = SymbioteQueenLineage.DeepCopy(lineage);
     }
 
+    public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+    {
+        RimgateEvents.Notify_SymbioteDestroyed(this);
+        base.Destroy(mode);
+    }
+
     public override void ExposeData()
     {
         base.ExposeData();

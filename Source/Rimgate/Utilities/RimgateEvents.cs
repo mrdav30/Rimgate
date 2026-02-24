@@ -39,6 +39,15 @@ public static class RimgateEvents
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void Notify_SymbioteDestroyed(Thing thing)
+    {
+        if (Current.ProgramState != ProgramState.Playing || thing == null) return;
+
+        var ev = new HistoryEvent(RimgateDefOf.Rimgate_SymbioteDestroyed);
+        Find.HistoryEventsManager.RecordEvent(ev);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Notify_ColonyOfPawnEvent(Pawn pawn, HistoryEventDef def)
     {
         if (!pawn.IsFreeColonist) return;

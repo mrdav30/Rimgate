@@ -21,4 +21,9 @@
         <label>dwarfgate site ignored</label>
     </HistoryEventDef>
 
+    <HistoryEventDef>
+        <defName>Rimgate_SymbioteDestroyed</defName>
+        <label>symbiote destroyed</label>
+    </HistoryEventDef>
+
 </Defs>

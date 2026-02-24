@@ -41,6 +41,12 @@
                 <thought>Rimgate_InstalledSymbiote_Know_Abhorrent</thought>
             </li>
 
+            <!-- “I know a symbiote was destroyed” = good -->
+            <li Class="PreceptComp_KnowsMemoryThought">
+                <eventDef>Rimgate_SymbioteDestroyed</eventDef>
+                <thought>Rimgate_SymbioteDestroyed_Abhorrent</thought>
+            </li>
+
             <!-- “I have a symbiote” = ongoing debuff -->
             <li Class="PreceptComp_SituationalThought">
                 <thought>Rimgate_HasSymbiote_Abhorrent</thought>
@@ -82,6 +88,12 @@
             <li Class="PreceptComp_KnowsMemoryThought">
                 <eventDef>Rimgate_InstalledSymbiote</eventDef>
                 <thought>Rimgate_InstalledSymbiote_Know_Disapproved</thought>
+            </li>
+
+            <!-- “I know a symbiote was destroyed” = good -->
+            <li Class="PreceptComp_KnowsMemoryThought">
+                <eventDef>Rimgate_SymbioteDestroyed</eventDef>
+                <thought>Rimgate_SymbioteDestroyed_Disapproved</thought>
             </li>
 
             <li Class="PreceptComp_SituationalThought">
@@ -132,6 +144,12 @@
         </conflictingMemes>
 
         <comps>
+            <!-- A destroyed symbiote is an ideological loss -->
+            <li Class="PreceptComp_KnowsMemoryThought">
+                <eventDef>Rimgate_SymbioteDestroyed</eventDef>
+                <thought>Rimgate_SymbioteDestroyed_Revered</thought>
+            </li>
+
             <!-- No symbiote = mild “you’re wasting your potential” -->
             <li Class="PreceptComp_SituationalThought">
                 <thought>Rimgate_HasNoSymbiote_Revered</thought>
@@ -195,6 +213,27 @@
                 <label>betrayed by host</label>
                 <description>They chose to share their body with a Goa'uld. Hard to trust someone who invited a false god into their rib cage.</description>
                 <baseOpinionOffset>-15</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Symbiote destroyed -->
+    <ThoughtDef>
+        <defName>Rimgate_SymbioteDestroyed_Abhorrent</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>6</durationDays>
+        <stackLimit>40</stackLimit>
+        <nullifyingTraits>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>symbiote eliminated</label>
+                <description>A Goa'uld symbiote was destroyed before it could infest anyone else. That's one less horror in the world.</description>
+                <baseMoodEffect>6</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -306,6 +345,32 @@
         </stages>
     </ThoughtDef>
 
+    <!-- Symbiote destroyed -->
+    <ThoughtDef>
+        <defName>Rimgate_SymbioteDestroyed_Disapproved</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>6</durationDays>
+        <stackLimit>40</stackLimit>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+            <li>Masochist</li>
+            <li>Kind</li>
+            <li>Bloodlust</li>
+            <li MayRequire="Ludeon.RimWorld.Biotech">Recluse</li>
+            <li>Transhumanist</li>
+        </nullifyingTraits>
+        <nullifyingHediffs>
+            <li>Inhumanized</li>
+        </nullifyingHediffs>
+        <stages>
+            <li>
+                <label>symbiote put down</label>
+                <description>A Goa'uld symbiote was destroyed. Not ideal, but it's still safer than letting it crawl into someone.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
     <!-- Having one is mildly bad -->
     <ThoughtDef>
         <defName>Rimgate_HasSymbiote_Disapproved</defName>
@@ -394,6 +459,24 @@
                 <label>lacking symbiote</label>
                 <description>Others carry living icons of power in their flesh. I, meanwhile, just have… organs. Very ordinary organs.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Symbiote destroyed -->
+    <ThoughtDef>
+        <defName>Rimgate_SymbioteDestroyed_Revered</defName>
+        <thoughtClass>Thought_Memory</thoughtClass>
+        <durationDays>6</durationDays>
+        <stackLimit>40</stackLimit>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>symbiote slain</label>
+                <description>A sacred symbiote was destroyed. We squandered a living vessel of power and legacy.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

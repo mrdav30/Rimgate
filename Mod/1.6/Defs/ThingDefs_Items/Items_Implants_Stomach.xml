@@ -63,7 +63,7 @@
         <defName>Rimgate_GoauldSymbiote</defName>
         <thingClass>Rimgate.Thing_GoualdSymbiote</thingClass>
         <label>Goa'uld symbiote</label>
-        <description>A genetically engineered space eel that grants its host rapid healing, disease immunity, and a nagging superiority complex. Install in the torso—side effects may include glowing eyes, evil laughter, and quoting false gods.\n\nBest kept stored in a symbiote spawning pool between uses.</description>
+        <description>A genetically engineered space eel that grants its host rapid healing, disease immunity, and a nagging superiority complex. Older symbiotes are said to carry faint echoes of former hosts, passing on fragments of hard-earned expertise to each new bearer. Install in the torso—side effects may include glowing eyes, evil laughter, and quoting false gods.\n\nBest kept stored in a symbiote spawning pool between uses.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
             <RecipeDef>Rimgate_RemoveGoauldSymbiote</RecipeDef>

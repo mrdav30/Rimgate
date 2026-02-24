@@ -89,6 +89,7 @@ public static class RimgateDefOf
     public static HistoryEventDef Rimgate_InstalledSymbiote;
     public static HistoryEventDef Rimgate_Dwarfgate_ExpeditionStarted;
     public static HistoryEventDef Rimgate_Dwarfgate_SiteExpiredUnvisited;
+    public static HistoryEventDef Rimgate_SymbioteDestroyed;
 
     public static IncidentDef Rimgate_Marauders;
 

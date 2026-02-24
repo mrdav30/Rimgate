@@ -13,8 +13,7 @@ public class CompUseEffect_InstallSymbiote : CompUseEffect
         base.DoEffect(usedBy);
 
         var pawn = usedBy;
-        var thing = parent as Thing_GoualdSymbiote;
-        if (thing == null)
+        if (parent is not Thing_GoualdSymbiote symbiote)
             return;
 
         if (usedBy.HasSymbiote())
@@ -27,12 +26,12 @@ public class CompUseEffect_InstallSymbiote : CompUseEffect
         }
 
         // Grab Thing memory
-        var thingHeritage = thing.Heritage;
-        if (thingHeritage == null)
+        var symbioteHeritage = symbiote.Heritage;
+        if (symbioteHeritage == null)
             return;
 
-        var memory = thingHeritage.Memory;
-        var lineage = thingHeritage.QueenLineage;
+        var memory = symbioteHeritage.Memory;
+        var lineage = symbioteHeritage.QueenLineage;
         if (memory != null)
         {
             if (memory.IsPreviousHost(pawn))
@@ -47,8 +46,7 @@ public class CompUseEffect_InstallSymbiote : CompUseEffect
 
         // Install hediff
         var part = pawn.RaceProps.body.GetPartsWithDef(Props.bodyPart).FirstOrDefault();
-        var hediff = HediffMaker.MakeHediff(Props.hediffDef, pawn, part) as Hediff_SymbioteImplant;
-        if (hediff == null)
+        if (HediffMaker.MakeHediff(Props.hediffDef, pawn, part) is not Hediff_SymbioteImplant hediff)
             return;
 
         var heritage = hediff.Heritage;
@@ -60,6 +58,7 @@ public class CompUseEffect_InstallSymbiote : CompUseEffect
         pawn.health.AddHediff(hediff);
 
         // Destroy the item (it’s now an implant)
-        thing.Destroy();
+        symbiote.IgnoreDestroyEvent = true;
+        symbiote.Destroy();
     }
 }
