@@ -8,7 +8,7 @@ namespace Rimgate;
 
 public class Comp_Dissolves : ThingComp
 {
-    private static List<string> _tmpDissolveReasons = new List<string>();
+    private static List<string> _tmpDissolveReasons = [];
 
     private CompProperties_Dissolves Props => (CompProperties_Dissolves)props;
 
@@ -132,12 +132,12 @@ public class Comp_Dissolves : ThingComp
             defaultLabel = "DEV: Set next dissolve time",
             action = delegate
             {
-                List<FloatMenuOption> list = new List<FloatMenuOption>();
-                int[] array = new int[11]
-                {
+                List<FloatMenuOption> list = [];
+                int[] array =
+                [
                     60, 120, 180, 240, 300, 600, 900, 1200, 1500, 1800,
                     3600
-                };
+                ];
                 foreach (int ticks in array)
                 {
                     list.Add(new FloatMenuOption(ticks.ToStringSecondsFromTicks("F0"), delegate
@@ -156,7 +156,7 @@ public class Comp_Dissolves : ThingComp
         if (!DissolutionEnabled)
             return base.CompInspectStringExtra();
 
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new();
         stringBuilder.Append(base.CompInspectStringExtra());
         if (stringBuilder.Length > 0)
             stringBuilder.AppendLine();
@@ -174,7 +174,7 @@ public class Comp_Dissolves : ThingComp
             _tmpDissolveReasons.Add($"{"DissolutionRain".Translate()} x{Props.dissolutionFactorRain.ToStringPercent()}");
 
         int amountToDissolve = Mathf.Min(Props.amountPerDissolution, parent.stackCount);
-        stringBuilder.Append("RG_DissolvesEvery".Translate(amountToDissolve, parent.LabelShort, Props.dissolveEveryActionVerb, DissolutionIntervalTicks.ToStringTicksToPeriod()));
+        stringBuilder.Append(Props.dissolveActionKey.Translate(amountToDissolve, parent.LabelShort, DissolutionIntervalTicks.ToStringTicksToPeriod()));
         if (_tmpDissolveReasons.Count > 0)
         {
             string str = _tmpDissolveReasons.ToLineList();

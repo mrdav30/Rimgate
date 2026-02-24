@@ -362,7 +362,9 @@
 
 	<!-- Dissolution -->
 
-	<RG_DissolvesEvery>{0} {1} {2} every {3}</RG_DissolvesEvery>
+	<RG_DissolvesEvery>{0} {1} dissolves every {3}</RG_DissolvesEvery>
+	<RG_Dissolves_HardensEvery>{0} {1} hardens every {3}</RG_Dissolves_HardensEvery>
+	<RG_Dissolves_DissipatesEvery>{0} {1} dissipates every {3}</RG_Dissolves_DissipatesEvery>
 	<RG_DissolveFrozenDestroys>Frozen solid (ruined)</RG_DissolveFrozenDestroys>
 
 	<!-- Shield -->

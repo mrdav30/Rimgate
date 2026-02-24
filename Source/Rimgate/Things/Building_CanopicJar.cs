@@ -46,13 +46,13 @@ public class Building_CanopicJar : Building_Art, IThingHolder, IThingHolderEvent
 
     public void Notify_ItemAdded(Thing item)
     {
-        if (item.TryGetComp<CompRottable>(out CompRottable comp))
+        if (item.TryGetComp(out CompRottable comp))
             comp.disabled = true;
     }
 
     public void Notify_ItemRemoved(Thing item)
     {
-        if (item.TryGetComp<CompRottable>(out CompRottable comp))
+        if (item.TryGetComp(out CompRottable comp))
             comp.disabled = false;
     }
 

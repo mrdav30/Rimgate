@@ -14,7 +14,7 @@ public class CompProperties_Dissolves : CompProperties
 
     public int amountPerDissolution = 1;
 
-    public string dissolveEveryActionVerb = "dissolves";
+    public string dissolveActionKey = "RG_DissolvesEvery";
 
     public CompProperties_Dissolves() => compClass = typeof(Comp_Dissolves);
 }

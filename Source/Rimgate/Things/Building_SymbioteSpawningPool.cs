@@ -54,13 +54,13 @@ public class Building_SymbioteSpawningPool : Building, IThingHolder, IThingHolde
         if (item is Thing_SymbioteQueen queen)
             queen.EnsureLineageInitialized();
 
-        if (item.TryGetComp(out Comp_SymbioteRottable comp))
+        if (item.TryGetComp(out CompRottable comp))
             comp.disabled = true;
     }
 
     public void Notify_ItemRemoved(Thing item)
     {
-        if (item.TryGetComp(out Comp_SymbioteRottable comp))
+        if (item.TryGetComp(out CompRottable comp))
             comp.disabled = false;
     }
 

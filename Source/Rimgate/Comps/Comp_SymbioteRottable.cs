@@ -8,11 +8,26 @@ public class Comp_SymbioteRottable : CompRottable
 {
     private const float FreezeThreshold = 0f; // Celsius
 
-    public CompProperties_SymbioteRottable SymbProps => (CompProperties_SymbioteRottable)props;
+    public bool ShouldRot
+    {
+        get
+        {
+            if (disabled)
+                return false;
+
+            // If the item is in a spawning pool or canopic jar, it should not rot
+            // Note: This is a safety check in case the disabled flag is not properly set by the container buildings
+            if (parent.ParentHolder is Thing container && (container is Building_SymbioteSpawningPool || container is Building_CanopicJar))
+                return false;
+
+            // Otherwise, it should rot as normal
+            return true;
+        }
+    }
 
     public override void CompTickRare()
     {
-        if (!parent.SpawnedOrAnyParentSpawned || !Active)
+        if (!ShouldRot)
             return;
 
         base.CompTickRare();
@@ -21,7 +36,7 @@ public class Comp_SymbioteRottable : CompRottable
 
     public override void CompTickInterval(int delta)
     {
-        if (!parent.SpawnedOrAnyParentSpawned || !Active)
+        if (!ShouldRot)
             return;
 
         base.CompTickInterval(delta);
@@ -32,9 +47,6 @@ public class Comp_SymbioteRottable : CompRottable
 
     private void CheckFrozenAndDestroyIfNeeded()
     {
-        if (IsInSymbiotePool())
-            return;
-
         float temp = parent.AmbientTemperature;
         if (temp > FreezeThreshold)
             return;
@@ -49,11 +61,5 @@ public class Comp_SymbioteRottable : CompRottable
         );
 
         parent.Destroy();
-    }
-
-    private bool IsInSymbiotePool()
-    {
-        // Stored directly in the spawning pool's inner container
-        return parent?.ParentHolder is Building_SymbioteSpawningPool;
     }
 }

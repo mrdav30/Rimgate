@@ -240,7 +240,7 @@
                 <dissolutionFactorIndoors>2</dissolutionFactorIndoors>
                 <dissolutionFactorRain>1</dissolutionFactorRain>
                 <destroyIfFrozen>true</destroyIfFrozen>
-                <dissolveEveryActionVerb>hardens</dissolveEveryActionVerb>
+                <dissolveActionKey>RG_Dissolves_HardensEvery</dissolveActionKey>
             </li>
         </comps>
     </ThingDef>
@@ -299,7 +299,7 @@
                 <dissolutionFactorIndoors>2</dissolutionFactorIndoors>
                 <dissolutionFactorRain>2</dissolutionFactorRain>
                 <destroyIfFrozen>false</destroyIfFrozen>
-                <dissolveEveryActionVerb>dissipates</dissolveEveryActionVerb>
+                <dissolveActionKey>RG_Dissolves_DissipatesEvery</dissolveActionKey>
             </li>
         </comps>
 

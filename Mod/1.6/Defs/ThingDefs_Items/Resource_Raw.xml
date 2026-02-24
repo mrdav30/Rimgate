@@ -175,7 +175,8 @@
     <tradeability>Sellable</tradeability>
     <comps>
       <li Class="CompProperties_Forbiddable" />
-      <li Class="Rimgate.CompProperties_SymbioteRottable">
+      <li Class="CompProperties_Rottable">
+        <compClass>Rimgate.Comp_SymbioteRottable</compClass>
         <daysToRotStart>1</daysToRotStart>
         <rotDestroys>true</rotDestroys>
       </li>

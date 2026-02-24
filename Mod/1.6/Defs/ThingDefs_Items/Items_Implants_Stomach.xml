@@ -49,7 +49,8 @@
         <thingSetMakerTags Inherit="False" />
         <tradeability>Sellable</tradeability>
         <comps>
-            <li Class="Rimgate.CompProperties_SymbioteRottable">
+            <li Class="CompProperties_Rottable">
+                <compClass>Rimgate.Comp_SymbioteRottable</compClass>
                 <!-- Short outside-host lifespan -->
                 <daysToRotStart>0.5</daysToRotStart>
                 <rotDestroys>true</rotDestroys>
@@ -126,7 +127,8 @@
                     <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
                 </targetingParameters>
             </li>
-            <li Class="Rimgate.CompProperties_SymbioteRottable">
+            <li Class="CompProperties_Rottable">
+                <compClass>Rimgate.Comp_SymbioteRottable</compClass>
                 <daysToRotStart>1</daysToRotStart>
                 <rotDestroys>true</rotDestroys>
             </li>
