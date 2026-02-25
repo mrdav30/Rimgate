@@ -29,17 +29,45 @@ if (Test-Path $logFullPath) {
 $projectName = [System.IO.Path]::GetFileNameWithoutExtension($projectFullPath)
 $dllName = "$projectName.dll"
 
-Write-Host "Building $projectName ($Configuration)..."
-
 $dotnetCommand = Get-Command dotnet -ErrorAction SilentlyContinue
 
 if ($dotnetCommand) {
-    & $dotnetCommand.Source build `
+    Write-Host "Restoring $projectName ($Configuration)..."
+
+    & $dotnetCommand.Source restore `
+        $projectFullPath `
+        /p:Platform=AnyCPU `
+        /nologo `
+        /verbosity:minimal 2>&1 | Tee-Object -FilePath $logFullPath
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Restore failed. Check $LogPath"
+        exit $LASTEXITCODE
+    }
+
+    Write-Host "Cleaning $projectName ($Configuration)..."
+
+    & $dotnetCommand.Source clean `
         $projectFullPath `
         -c $Configuration `
         /p:Platform=AnyCPU `
         /nologo `
-        /verbosity:minimal 2>&1 | Tee-Object -FilePath $logFullPath
+        /verbosity:minimal 2>&1 | Tee-Object -FilePath $logFullPath -Append
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Clean failed. Check $LogPath"
+        exit $LASTEXITCODE
+    }
+
+    Write-Host "Building $projectName ($Configuration)..."
+
+    & $dotnetCommand.Source build `
+        $projectFullPath `
+        -c $Configuration `
+        --no-restore `
+        /p:Platform=AnyCPU `
+        /nologo `
+        /verbosity:minimal 2>&1 | Tee-Object -FilePath $logFullPath -Append
 
     if ($LASTEXITCODE -ne 0) {
         Write-Host "Build failed. Check $LogPath"
