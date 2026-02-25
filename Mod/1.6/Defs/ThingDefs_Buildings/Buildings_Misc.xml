@@ -201,7 +201,8 @@
 		<building>
 			<paintable>true</paintable>
 			<isInert>true</isInert>
-			<claimable>false</claimable>
+			<claimable>true</claimable>
+			<expandHomeArea>false</expandHomeArea>
 			<fixedStorageSettings>
 				<filter>
 					<disallowedCategories>

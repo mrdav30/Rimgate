@@ -17,21 +17,13 @@ public class Projectile_ZatBlast_Ext : DefModExtension
 
 public class Projectile_ZatBlast : Bullet
 {
-    public Projectile_ZatBlast_Ext Props => _cachedProps ??= def.GetModExtension<Projectile_ZatBlast_Ext>();
+    public Projectile_ZatBlast_Ext Props => _cachedProps ??= def.GetModExtension<Projectile_ZatBlast_Ext>() ?? new Projectile_ZatBlast_Ext();
 
     private Projectile_ZatBlast_Ext _cachedProps;
 
     private static readonly TraitDef PsychicSensitivityTraitDef = TraitDef.Named("PsychicSensitivity");
 
     protected override void Impact(Thing hitThing, bool blockedByShield = false)
-    {
-        base.Impact(hitThing, blockedByShield);
-        if (blockedByShield) return;
-        if (Props == null || hitThing == null) return;
-        ZatBlastImpact(hitThing);
-    }
-
-    private void ZatBlastImpact(Thing hitThing)
     {
         Pawn hitPawn = hitThing is Corpse corpse
             ? corpse.InnerPawn
@@ -40,10 +32,17 @@ public class Projectile_ZatBlast : Bullet
         // zat doesn't affect non-flesh things or non-pawns
         if (hitPawn == null || !hitPawn.RaceProps.IsFlesh) return;
 
+        base.Impact(hitThing, blockedByShield);
+        if (blockedByShield) return;
+        ZatBlastImpact(hitPawn);
+    }
+
+    private void ZatBlastImpact(Pawn hitPawn)
+    {
         // If the pawn already has zat shock, they can potentially die from additional blasts.
         if (hitPawn.TryGetHediffOf(RimgateDefOf.Rimgate_ZatShock, out Hediff h))
         {
-            if (Props.enableCorpseDisintegration && hitThing is Corpse && TryDisintegrateCorpse(hitThing as Corpse))
+            if (Props.enableCorpseDisintegration && hitPawn.Corpse is not null && TryDisintegrateCorpse(hitPawn.Corpse))
                 return;
 
             float max = h.def.maxSeverity;
