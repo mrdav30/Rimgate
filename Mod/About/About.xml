@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
 	<packageId>mrdav30.Rimgate</packageId>
-	<name>Rimgate: The Dwarfgate Initiative</name>
+	<name>Rimgate: Ancient Legacy</name>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
 	<author>mrdav30</author>
 	<url>https://github.com/mrdav30/Rimgate/</url>
-	<description>Rimgate: The Dwarfgate Initiative introduces ancient planetary gate technology to RimWorld. Discover and control mysterious Dwarfgates, reverse-engineer alien relics, and navigate the growing conflict between factions drawn to their power.</description>
+	<description>Rimgate: Ancient Legacy introduces ancient planetary gate technology to RimWorld. Discover and control mysterious Dwarfgates, reverse-engineer alien relics, and navigate the growing conflict between factions drawn to their power.</description>
 	<modDependencies>
 		<li>
 			<packageId>brrainz.harmony</packageId>

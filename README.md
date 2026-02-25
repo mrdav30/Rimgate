@@ -1,6 +1,6 @@
-# Rimgate: The Dwarfgate Initiative #
+# Rimgate #
 
-Rimgate: The Dwarfgate Initiative is a large-scale Stargate-inspired expansion for RimWorld, introducing an ancient planetary gate network, alien technologies, and faction-driven conflict centered around mysterious Dwarfgates.
+Rimgate is a large-scale Stargate-inspired expansion for RimWorld, introducing an ancient planetary gate network, alien technologies, and faction-driven conflict centered around mysterious Dwarfgates.
 
 Unlike traditional Stargate interpretations, this mod reimagines gate technology as a sealed planetary lattice integrated directly into the RimWorld universe. Dwarfgates are relic constructs—smaller, dimmer cousins of myth—left scattered across the Rim for unknown reasons.
 
