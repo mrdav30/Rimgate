@@ -8,7 +8,7 @@ public class JobDriver_HaulToMobileContainer : JobDriver_HaulToContainer
 {
     public int InitialCount;
 
-    public Comp_MobileContainerControl Mobile => Container?.TryGetComp<Comp_MobileContainerControl>();
+    public Building_MobileContainer MobileContainer => Container as Building_MobileContainer;
 
     public override void ExposeData()
     {
@@ -29,12 +29,12 @@ public class JobDriver_HaulToMobileContainer : JobDriver_HaulToContainer
     public override void Notify_Starting()
     {
         base.Notify_Starting();
-        var comp = Mobile;
+        var container = MobileContainer;
 
         // If targetA wasn't prefilled, select one of the chosen items
         var tc = job.targetA.IsValid
             ? new ThingCount(job.targetA.Thing, job.targetA.Thing.stackCount)
-            : MobileContainerUtility.FindThingToLoad(pawn, comp);
+            : MobileContainerUtility.FindThingToLoad(pawn, container);
 
         if (tc.Thing == null || tc.Count <= 0)
         {
@@ -50,7 +50,7 @@ public class JobDriver_HaulToMobileContainer : JobDriver_HaulToContainer
             pawn.carryTracker.TryDropCarriedThing(pawn.Position, ThingPlaceMode.Near, out _);
 
         // Clamp to what's actually still needed for *this exact thing*
-        int remaining = comp.RemainingToLoadFor(tc.Thing);
+        int remaining = container.RemainingToLoadFor(tc.Thing);
         if (remaining <= 0)
         {
             EndJobWith(JobCondition.Incompletable);

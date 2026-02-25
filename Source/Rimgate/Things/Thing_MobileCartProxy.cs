@@ -1,59 +1,99 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 using Verse;
 
 namespace Rimgate;
 
-public class Thing_MobileCartProxy : ThingWithComps
+public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
 {
+    public ThingOwner InnerContainer;
+
+    public float FuelPerTick; // cached per-tick rate during push
+
+    public float PushingFuel;  // current fuel while proxy is carried
+
+    public ThingDef SavedDef; // original cart def
+
+    public ThingDef SavedStuff; // original stuff
+
+    public int SavedHitPoints;
+
+    public Color SavedDrawColor, SavedDrawColorTwo;
+
+    public bool SavedHasPaint;
+
+    public bool SavedUseContentsSetting;
+
+    public override string Label => SavedDef?.LabelCap ?? base.Label;
+
+    public override string LabelShort => SavedDef?.LabelCap ?? base.LabelShort;
+
+    public override string LabelNoCount => SavedDef?.LabelCap ?? base.LabelNoCount;
+
     public override Graphic Graphic => RimgateTex.EmptyGraphic;
 
-    public Comp_MobileContainerControl Control => _cachedMobile ??= GetComp<Comp_MobileContainerControl>();
+    public bool IsProxyRefuelable => FuelPerTick > 0f;
 
-    private Comp_MobileContainerControl _cachedMobile;
+    public bool ProxyFuelOk => !IsProxyRefuelable || PushingFuel > 0f;
+
+    public Thing_MobileCartProxy()
+    {
+        InnerContainer = new ThingOwner<Thing>(this);
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+
+        Scribe_Deep.Look(ref InnerContainer, "InnerContainer", this);
+        Scribe_Values.Look(ref FuelPerTick, "FuelPerTick", 0f);
+        Scribe_Values.Look(ref PushingFuel, "PushingFuel", 0f);
+        Scribe_Defs.Look(ref SavedDef, "SavedDef");
+        Scribe_Defs.Look(ref SavedStuff, "SavedStuff");
+        Scribe_Values.Look(ref SavedHitPoints, "SavedHitPoints", 0);
+        Scribe_Values.Look(ref SavedDrawColor, "SavedDrawColor", default);
+        Scribe_Values.Look(ref SavedDrawColorTwo, "SavedDrawColorTwo", default);
+        Scribe_Values.Look(ref SavedHasPaint, "SavedHasPaint", false);
+        Scribe_Values.Look(ref SavedUseContentsSetting, "SavedUseContentsSetting", false);
+    }
+
+    public ThingOwner GetDirectlyHeldThings() => InnerContainer;
+
+    public void GetChildHolders(List<IThingHolder> outChildren)
+    {
+        ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
+    }
 
     // proxy -> Docked at a specific cell, using the original cart def when possible
-    public Building_MobileContainer ConvertProxyToCart(
-        Pawn p,
-        ThingDef cartDef,
-        IntVec3? at = null,
-        Rot4? rot = null,
-        bool spawn = true)
+    public Building_MobileContainer ConvertProxyToCart()
     {
-        if (Control == null) return null;
-
         // Make cart with original stuff (if any), then spawn that instance
-        var made = ThingMaker.MakeThing(cartDef, Control.SavedStuff) as Building_MobileContainer;
-        made.HitPoints = Mathf.Clamp(Control.SavedHitPoints, 1, made.MaxHitPoints);
-
-        if (spawn)
-        {
-            var map = p.Map;
-            if (at == null || !at.Value.InBounds(map)) at = p.Position;
-            if (rot == null) rot = p.Rotation;
-            GenSpawn.Spawn(made, at.Value, map, rot.Value);
-        }
-
-        var ccomp = made.Control;
-
-        // Move back contents
-        Control.InnerContainer.TryTransferAllToContainer(ccomp.InnerContainer);
+        var made = ThingMaker.MakeThing(SavedDef, SavedStuff) as Building_MobileContainer;
+        made.HitPoints = Mathf.Clamp(SavedHitPoints, 1, made.MaxHitPoints);
+        made.AllowColonistsUseContents = SavedUseContentsSetting;
 
         // restore fuel (if any)
-        if (ccomp.Refuelable != null)
+        if (made.Refuelable != null)
         {
             // CompRefuelable starts at 0 on fresh Thing; add whatever is left from pushing
-            if (Control != null && Control.PushingFuel > 0f)
-                ccomp.Refuelable.Refuel(Control.PushingFuel);
+            if (PushingFuel > 0f)
+                made.Refuelable.Refuel(PushingFuel);
         }
 
         var paint = made.TryGetComp<CompColorable>();
-        if (paint != null && Control.SavedHasPaint)
-            paint.SetColor(Control.SavedDrawColor);
-
-        Control.Detach();
-        Destroy(DestroyMode.Vanish);
+        if (paint != null && SavedHasPaint)
+            paint.SetColor(SavedDrawColor);
 
         return made;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void MoveContentsToContainer(Building_MobileContainer container)
+    {
+        if (container == null) return;
+
+        InnerContainer.TryTransferAllToContainer(container.InnerContainer);
     }
 }
 

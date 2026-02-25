@@ -202,6 +202,13 @@
 			<paintable>true</paintable>
 			<isInert>true</isInert>
 			<claimable>false</claimable>
+			<fixedStorageSettings>
+				<filter>
+					<disallowedCategories>
+						<li>Pawn</li>
+					</disallowedCategories>
+				</filter>
+			</fixedStorageSettings>
 		</building>
 		<hasInteractionCell>True</hasInteractionCell>
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
@@ -225,10 +232,6 @@
 		<statBases>
 			<Mass>5</Mass>
 		</statBases>
-		<comps>
-			<!-- mobile logic -->
-			<li Class="Rimgate.CompProperties_MobileContainerControl" />
-		</comps>
 	</ThingDef>
 
 	<!-- Invisible, non-selectable attachment that only draws -->
@@ -256,6 +259,7 @@
 			<graphicClass>Graphic_Multi</graphicClass>
 			<drawSize>(1,1)</drawSize>
 		</graphicData>
+		<uiIconPath>Things/Building/MobileContainer/RGWheelbarrow_east</uiIconPath>
 		<statBases>
 			<Mass>18</Mass>
 			<Flammability>0.3</Flammability>
@@ -272,15 +276,15 @@
 			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<techLevel>Industrial</techLevel>
-		<comps>
-			<li Class="Rimgate.CompProperties_MobileContainerControl">
-				<slowdownSeverity>0.85</slowdownSeverity>
-				<massCapacity>136</massCapacity>
-			</li>
-		</comps>
 		<researchPrerequisites>
 			<li>Smithing</li>
 		</researchPrerequisites>
+		<modExtensions>
+			<li Class="Rimgate.Building_MobileContainer_Ext">
+				<slowdownSeverity>0.85</slowdownSeverity>
+				<massCapacity>136</massCapacity>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<!-- T2: Tracked haul cart -->
@@ -294,6 +298,7 @@
 			<shaderType>CutoutComplex</shaderType>
 			<drawSize>(1,1)</drawSize>
 		</graphicData>
+		<uiIconPath>Things/Building/MobileContainer/RGTrackedCart_east</uiIconPath>
 		<statBases>
 			<Mass>28</Mass>
 			<Flammability>0.3</Flammability>
@@ -314,10 +319,6 @@
 		</building>
 		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
 		<comps>
-			<li Class="Rimgate.CompProperties_MobileContainerControl">
-				<slowdownSeverity>0.55</slowdownSeverity>
-				<massCapacity>320</massCapacity>
-			</li>
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
@@ -334,6 +335,12 @@
 		<researchPrerequisites>
 			<li>Rimgate_TrackedCart</li>
 		</researchPrerequisites>
+		<modExtensions>
+			<li Class="Rimgate.Building_MobileContainer_Ext">
+				<slowdownSeverity>0.55</slowdownSeverity>
+				<massCapacity>320</massCapacity>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
@@ -346,6 +353,7 @@
 			<shaderType>CutoutComplex</shaderType>
 			<drawSize>(1.25,1.25)</drawSize>
 		</graphicData>
+		<uiIconPath>Things/Building/MobileContainer/RGTrackedCart_east</uiIconPath>
 		<statBases>
 			<Mass>28</Mass>
 			<Flammability>0.3</Flammability>
@@ -368,11 +376,6 @@
 		</building>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<comps>
-			<li Class="Rimgate.CompProperties_MobileContainerControl">
-				<slowdownSeverity>0.55</slowdownSeverity>
-				<massCapacity>300</massCapacity>
-				<shouldTickContents>false</shouldTickContents>
-			</li>
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>false</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
@@ -390,6 +393,13 @@
 		<researchPrerequisites>
 			<li>Rimgate_RefrigeratedCarts</li>
 		</researchPrerequisites>
+		<modExtensions>
+			<li Class="Rimgate.Building_MobileContainer_Ext">
+				<slowdownSeverity>0.55</slowdownSeverity>
+				<massCapacity>300</massCapacity>
+				<sealPreventsContentTick>true</sealPreventsContentTick>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<!-- T3: Hover skid (spacer) -->
@@ -403,6 +413,7 @@
 			<shaderType>CutoutComplex</shaderType>
 			<drawSize>(1,1)</drawSize>
 		</graphicData>
+		<uiIconPath>Things/Building/MobileContainer/RGHoverSkid_east</uiIconPath>
 		<statBases>
 			<Mass>28</Mass>
 			<Flammability>0.3</Flammability>
@@ -426,10 +437,6 @@
 		</building>
 		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
 		<comps>
-			<li Class="Rimgate.CompProperties_MobileContainerControl">
-				<slowdownSeverity>0.15</slowdownSeverity>
-				<massCapacity>520</massCapacity>
-			</li>
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
@@ -454,6 +461,12 @@
 		<researchPrerequisites>
 			<li>Rimgate_HoverSkid</li>
 		</researchPrerequisites>
+		<modExtensions>
+			<li Class="Rimgate.Building_MobileContainer_Ext">
+				<slowdownSeverity>0.15</slowdownSeverity>
+				<massCapacity>520</massCapacity>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="Rimgate_MobileContainerBase">
@@ -466,6 +479,7 @@
 			<shaderType>CutoutComplex</shaderType>
 			<drawSize>(1.2,1.2)</drawSize>
 		</graphicData>
+		<uiIconPath>Things/Building/MobileContainer/RGHoverSkid_east</uiIconPath>
 		<statBases>
 			<Mass>28</Mass>
 			<Flammability>0.3</Flammability>
@@ -489,11 +503,6 @@
 		</building>
 		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
 		<comps>
-			<li Class="Rimgate.CompProperties_MobileContainerControl">
-				<slowdownSeverity>0.15</slowdownSeverity>
-				<massCapacity>500</massCapacity>
-				<shouldTickContents>false</shouldTickContents>
-			</li>
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>false</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
@@ -520,6 +529,13 @@
 			<li>Rimgate_HoverSkid</li>
 			<li>Rimgate_RefrigeratedCarts</li>
 		</researchPrerequisites>
+		<modExtensions>
+			<li Class="Rimgate.Building_MobileContainer_Ext">
+				<slowdownSeverity>0.15</slowdownSeverity>
+				<massCapacity>500</massCapacity>
+				<sealPreventsContentTick>true</sealPreventsContentTick>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ======================= ZPM signal shield ======================= -->

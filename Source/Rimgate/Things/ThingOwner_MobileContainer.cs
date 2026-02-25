@@ -3,16 +3,13 @@ using Verse;
 
 namespace Rimgate;
 
-/// <summary>
-/// ThingOwner that routes add/remove/merge notifications to Comp_MobileContainer.
-/// </summary>
-public sealed class ThingOwner_Container : ThingOwner<Thing>
+public sealed class ThingOwner_MobileContainer : ThingOwner<Thing>
 {
-    private readonly Comp_MobileContainerControl _comp;
+    private readonly Building_MobileContainer _container;
 
-    public ThingOwner_Container(Comp_MobileContainerControl comp) : base(comp)
+    public ThingOwner_MobileContainer(Building_MobileContainer container) : base(container)
     {
-        _comp = comp;
+        _container = container;
     }
 
     public override bool TryAdd(Thing item, bool canMergeWithExistingStacks = true)
@@ -58,7 +55,7 @@ public sealed class ThingOwner_Container : ThingOwner<Thing>
                     {
                         // Our comp-specific MERGE notification
                         // Note: this is what vanilla only does for CompTransporter
-                        _comp?.Notify_ThingAddedAndMergedWith(stack, merged);
+                        _container?.Notify_ThingAddedAndMergedWith(stack, merged);
                     }
 
                     if (item.Destroyed || item.stackCount == 0)

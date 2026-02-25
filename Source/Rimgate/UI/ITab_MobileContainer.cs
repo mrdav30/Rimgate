@@ -8,22 +8,21 @@ namespace Rimgate;
 
 public class ITab_MobileContainer : ITab_ContentsBase
 {
-    public override IList<Thing> container => Mobile.InnerContainer;
+    public Building_MobileContainer Parent => SelThing as Building_MobileContainer;
+
+    public override IList<Thing> container => Parent.InnerContainer;
 
     public override bool UseDiscardMessage => false;
-
-    public Comp_MobileContainerControl Mobile => base.SelThing.TryGetComp<Comp_MobileContainerControl>();
 
     public override bool IsVisible
     {
         get
         {
-            if ((base.SelThing.Faction == null
-                || base.SelThing.Faction.IsOfPlayerFaction())
-                && Mobile != null)
+            var parent = Parent;
+            if (parent != null && parent.Faction.IsOfPlayerFaction())
             {
-                if (!Mobile.LoadingInProgress)
-                    return Mobile.InnerContainer.Any;
+                if (!parent.LoadingInProgress)
+                    return parent.InnerContainer.Any;
 
                 return true;
             }
@@ -32,7 +31,7 @@ public class ITab_MobileContainer : ITab_ContentsBase
         }
     }
 
-    public override IntVec3 DropOffset => base.DropOffset;
+    public override IntVec3 DropOffset => DropOffset;
 
     public ITab_MobileContainer()
     {
@@ -42,18 +41,18 @@ public class ITab_MobileContainer : ITab_ContentsBase
 
     protected override void DoItemsLists(Rect inRect, ref float curY)
     {
-        Comp_MobileContainerControl container = Mobile;
-        Rect rect = new Rect(0f, curY, (inRect.width - 10f) / 2f, inRect.height);
+        Building_MobileContainer parent = Parent;
+        Rect rect = new(0f, curY, (inRect.width - 10f) / 2f, inRect.height);
         Text.Font = GameFont.Small;
         bool flag = false;
         float curY2 = 0f;
         Widgets.BeginGroup(rect);
         Widgets.ListSeparator(ref curY2, rect.width, "ItemsToLoad".Translate());
-        if (container.LeftToLoad != null)
+        if (parent.LeftToLoad != null)
         {
-            for (int i = 0; i < container.LeftToLoad.Count; i++)
+            for (int i = 0; i < parent.LeftToLoad.Count; i++)
             {
-                TransferableOneWay t = container.LeftToLoad[i];
+                TransferableOneWay t = parent.LeftToLoad[i];
                 if (t.CountToTransfer > 0 && t.HasAnyThing)
                 {
                     flag = true;
@@ -75,16 +74,16 @@ public class ITab_MobileContainer : ITab_ContentsBase
             Widgets.NoneLabel(ref curY2, rect.width);
 
         Widgets.EndGroup();
-        Rect inRect2 = new Rect((inRect.width + 10f) / 2f, curY, (inRect.width - 10f) / 2f, inRect.height);
+        Rect inRect2 = new((inRect.width + 10f) / 2f, curY, (inRect.width - 10f) / 2f, inRect.height);
         float curY3 = 0f;
-        base.DoItemsLists(inRect2, ref curY3);
+        DoItemsLists(inRect2, ref curY3);
         curY += Mathf.Max(curY2, curY3);
     }
 
     protected override void OnDropThing(Thing t, int count)
     {
-        base.OnDropThing(t, count);
-        Mobile.Notify_ItemRemoved(t);
+        OnDropThing(t, count);
+        Parent.Notify_ItemRemoved(t);
     }
 
     private void OnDropToLoadThing(TransferableOneWay t, int count)
@@ -93,20 +92,20 @@ public class ITab_MobileContainer : ITab_ContentsBase
         if (newCount > 0)
             t.ForceTo(newCount);
         else
-            Mobile.RemoveFromLoadList(t);
+            Parent.RemoveFromLoadList(t);
         EndJobForEveryoneHauling(t);
     }
 
     private void EndJobForEveryoneHauling(TransferableOneWay t)
     {
-        IReadOnlyList<Pawn> allPawnsSpawned = base.SelThing.Map.mapPawns.AllPawnsSpawned;
+        IReadOnlyList<Pawn> allPawnsSpawned = SelThing.Map.mapPawns.AllPawnsSpawned;
         for (int i = 0; i < allPawnsSpawned.Count; i++)
         {
             Pawn pawn = allPawnsSpawned[i];
             if (pawn.CurJobDef == JobDefOf.HaulToTransporter)
             {
                 bool isValid = pawn.jobs.curDriver is JobDriver_HaulToMobileContainer jobDriver
-                    && jobDriver.Mobile.parent.ThingID == Mobile.parent.ThingID
+                    && jobDriver.MobileContainer.ThingID == Parent.ThingID
                     && jobDriver.ThingToCarry != null
                     && jobDriver.ThingToCarry.def == t.ThingDef;
                 if (isValid)

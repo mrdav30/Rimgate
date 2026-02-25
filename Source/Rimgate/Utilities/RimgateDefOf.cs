@@ -108,6 +108,7 @@ public static class RimgateDefOf
     public static JobDef Rimgate_EnterGate;
     public static JobDef Rimgate_EnterGateWithContainer;
     public static JobDef Rimgate_HaulToContainer;
+    public static JobDef Rimgate_IngestFromMobileContainer;
     public static JobDef Rimgate_InsertSymbioteQueen;
     public static JobDef Rimgate_InsertZpmIntoHousing;
     public static JobDef Rimgate_MeditateAtWraithTable;

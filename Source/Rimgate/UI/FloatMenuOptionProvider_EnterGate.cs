@@ -103,10 +103,9 @@ public class FloatMenuOptionProvider_EnterGate : FloatMenuOptionProvider
 
                         if (t.Thing is Building_MobileContainer container)
                         {
-                            var comp = container.Control;
-                            comp.ClearDesignations();
+                            container.ClearDesignations();
                             // send a push job targeting the *gate thing*
-                            var pushJob = comp.GetPushJob(pawn, gate);
+                            var pushJob = container.GetPushJob(pawn, gate);
                             if (pushJob == null) return;
                             pushJob.playerForced = true;
                             pawn.jobs.TryTakeOrderedJob(pushJob, JobTag.MiscWork);

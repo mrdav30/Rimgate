@@ -773,8 +773,7 @@
     <!-- Stone -->
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateStone</defName>
-        <!-- TODO: instead of base description, add a lore-friendly desc for why loot is stored in stone crates -->
-        <description></description>
+        <description>A heavy stone supply crate used in old gate complexes where power failed often and scavengers were constant. The stone shell keeps contents cool, dry, and harder to smash open than standard plasteel lockers, so emergency caches and valuables were packed into these and forgotten behind sealed halls.</description>
         <graphicData>
             <texPath>Things/Building/Prop/Crate/RGStoneSupplyCrateFilled</texPath>
             <graphicClass>Graphic_Single</graphicClass>

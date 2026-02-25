@@ -7,22 +7,22 @@ namespace Rimgate;
 
 public class Command_LoadToContainer : Command
 {
-    public Comp_MobileContainerControl Container;
+    public Building_MobileContainer Container;
 
     public override void ProcessInput(Event ev)
     {
         base.ProcessInput(ev);
 
         bool unreachable = !Container.Map.reachability.CanReach(
-                Container.parent.Position,
-                Container.parent,
+                Container.Position,
+                Container,
                 PathEndMode.Touch,
                 TraverseParms.For(TraverseMode.PassDoors));
         if (unreachable)
         {
             Messages.Message(
                 "RG_MessageCartUnreachable".Translate(),
-                Container.parent,
+                Container,
                 MessageTypeDefOf.RejectInput,
                 historical: false);
             return;

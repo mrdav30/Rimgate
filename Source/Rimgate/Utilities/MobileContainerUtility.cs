@@ -14,7 +14,7 @@ public static class MobileContainerUtility
 
     private static Dictionary<TransferableOneWay, int> tmpAlreadyLoading = new();
 
-    public static bool HasJobOnContainer(Pawn pawn, Comp_MobileContainerControl container)
+    public static bool HasJobOnContainer(Pawn pawn, Building_MobileContainer container)
     {
         if (!container.LoadingInProgress)
             return false;
@@ -22,7 +22,7 @@ public static class MobileContainerUtility
         if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             return false;
 
-        if (!pawn.CanReach(container.parent, PathEndMode.Touch, pawn.NormalMaxDanger()))
+        if (!pawn.CanReach(container, PathEndMode.Touch, pawn.NormalMaxDanger()))
             return false;
 
         if (FindThingToLoad(pawn, container).Thing == null)
@@ -31,7 +31,7 @@ public static class MobileContainerUtility
         return true;
     }
 
-    public static ThingCount FindThingToLoad(Pawn p, Comp_MobileContainerControl container)
+    public static ThingCount FindThingToLoad(Pawn p, Building_MobileContainer container)
     {
         neededThings.Clear();
         List<TransferableOneWay> leftToLoad = container.LeftToLoad;
@@ -45,7 +45,7 @@ public static class MobileContainerUtility
                     continue;
 
                 if (allPawnsSpawned[i].jobs.curDriver is not JobDriver_HaulToMobileContainer jobDriver
-                    || jobDriver.Mobile.parent.ThingID != container.parent.ThingID)
+                    || jobDriver.MobileContainer.ThingID != container.ThingID)
                     continue;
 
                 TransferableOneWay transferableOneWay = TransferableUtility.TransferableMatchingDesperate(jobDriver.ThingToCarry, leftToLoad, TransferAsOneMode.PodsOrCaravanPacking);
@@ -76,11 +76,8 @@ public static class MobileContainerUtility
         if (!neededThings.Any())
         {
             tmpAlreadyLoading.Clear();
-            return default(ThingCount);
+            return default;
         }
-
-        float r2 = container.Props.loadRadius * container.Props.loadRadius;
-        IntVec3 center = container.parent.Position;
 
         Thing thing = GenClosest.ClosestThingReachable(
             p.Position,
@@ -89,10 +86,9 @@ public static class MobileContainerUtility
             PathEndMode.Touch,
             TraverseParms.For(p),
             9999f,
-            (Thing x) =>
-                neededThings.Contains(x)
+            x => neededThings.Contains(x)
                 && x.Spawned
-                && x.PositionHeld.DistanceToSquared(center) <= r2  // radius gate
+                && x.PositionHeld.DistanceToSquared(container.Position) <= container.Ext.SqrdLoadRadius  // radius gate
                 && p.CanReserve(x)
                 && !x.IsForbidden(p)
                 && p.carryTracker.AvailableStackSpace(x.def) > 0);
@@ -121,7 +117,7 @@ public static class MobileContainerUtility
         return default(ThingCount);
     }
 
-    public static IEnumerable<Thing> ThingsBeingHauledTo(Comp_MobileContainerControl container, Map map)
+    public static IEnumerable<Thing> ThingsBeingHauledTo(Building_MobileContainer container, Map map)
     {
         IReadOnlyList<Pawn> pawns = map.mapPawns.AllPawnsSpawned;
         for (int i = 0; i < pawns.Count; i++)
@@ -129,23 +125,23 @@ public static class MobileContainerUtility
             Pawn pawn = pawns[i];
             bool isValid = pawn.CurJobDef == RimgateDefOf.Rimgate_HaulToContainer
                 && pawn.jobs.curDriver is JobDriver_HaulToMobileContainer jd
-                && jd.Mobile.parent.ThingID == container.parent.ThingID
+                && jd.MobileContainer.ThingID == container.ThingID
                 && pawn.carryTracker.CarriedThing != null;
             if (isValid)
                 yield return pawn.carryTracker.CarriedThing;
         }
     }
 
-    public static IEnumerable<Thing> AllSendableItems(Comp_MobileContainerControl container, Map map)
+    public static IEnumerable<Thing> AllSendableItems(Building_MobileContainer container, Map map)
     {
         var items = CaravanFormingUtility.AllReachableColonyItems(
             map,
             true,
-            container.Props.canChangeAssignedThingsAfterStarting && container.LoadingInProgress,
+            container.Ext.canChangeAssignedThingsAfterStarting && container.LoadingInProgress,
             true);
 
-        float r2 = container.Props.loadRadius * container.Props.loadRadius;
-        IntVec3 center = container.parent.Position;
+        float r2 = container.Ext.SqrdLoadRadius;
+        IntVec3 center = container.Position;
 
         for (int i = 0; i < items.Count; i++)
         {

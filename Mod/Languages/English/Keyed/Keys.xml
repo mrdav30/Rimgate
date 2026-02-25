@@ -407,6 +407,8 @@
 	<RG_CommandDumpLabel>Push and dump to…</RG_CommandDumpLabel>
 	<RG_CommandDumpDesc>Order a pawn to push this {0} to a destination and unload everything there.</RG_CommandDumpDesc>
 	<RG_CommandCartDisabled>Loading in progress.</RG_CommandCartDisabled>
+	<RG_CommandAllowUseCartContents_Label>Allow cart contents</RG_CommandAllowUseCartContents_Label>
+	<RG_CommandAllowUseCartContents_Desc>If enabled, colonists may pull needed items directly out of this {0} for jobs (construction, meals, refueling, etc.). Disable this to keep contents reserved until manually unloaded.</RG_CommandAllowUseCartContents_Desc>
 
 	<RG_MessagePawnCannotPush>{0} was unable to push {1}.</RG_MessagePawnCannotPush>
 	<RG_MessageNoPawnToPush>No available colonist to push {0}.</RG_MessageNoPawnToPush>

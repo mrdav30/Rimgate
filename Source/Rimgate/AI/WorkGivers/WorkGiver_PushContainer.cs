@@ -36,25 +36,25 @@ public class WorkGiver_PushContainer : WorkGiver_Scanner
 
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        if (t is not Building_MobileContainer container || container.Control == null) return false;
+        if (t is not Building_MobileContainer container) return false;
 
-        if (pawn.Map.designationManager.DesignationOn(t, RimgateDefOf.Rimgate_DesignationPushCart) == null)
+        if (pawn.Map.designationManager.DesignationOn(container, RimgateDefOf.Rimgate_DesignationPushCart) == null)
             return false;
 
-        if (container.Control.LoadingInProgress) return false;
-        if (!pawn.CanReserveAndReach(t, PathEndMode.InteractionCell, Danger.Deadly)) return false;
-        if (!container.Control.FuelOK) return false;
+        if (container.LoadingInProgress) return false;
+        if (!pawn.CanReserveAndReach(container, PathEndMode.InteractionCell, Danger.Deadly)) return false;
+        if (!container.FuelOK) return false;
 
         return true;
     }
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        Comp_MobileContainerControl control = (t as Building_MobileContainer).Control;
-        if (control == null) return null;
-        var job = control.GetDesignatedPushJob(pawn);
+        if (t is not Building_MobileContainer container) return null;
+        var job = container.GetDesignatedPushJob(pawn);
         if (job == null) return null;
         job.playerForced = forced;
+        job.count = 1;
         return job;
     }
 }

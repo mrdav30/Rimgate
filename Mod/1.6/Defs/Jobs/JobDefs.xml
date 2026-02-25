@@ -120,6 +120,13 @@
 	</JobDef>
 
 	<JobDef>
+		<defName>Rimgate_IngestFromMobileContainer</defName>
+		<driverClass>Rimgate.JobDriver_IngestFromMobileContainer</driverClass>
+		<reportString>taking food from cart.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
 		<defName>Rimgate_PushContainer</defName>
 		<driverClass>Rimgate.JobDriver_PushContainer</driverClass>
 		<reportString>pushing cart.</reportString>

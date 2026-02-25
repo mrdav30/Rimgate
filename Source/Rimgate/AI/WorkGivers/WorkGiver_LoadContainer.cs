@@ -22,10 +22,11 @@ public class WorkGiver_LoadContainer : WorkGiver_Scanner
         var list = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial);
         for (int i = 0; i < list.Count; i++)
         {
-            var comp = list[i].TryGetComp<Comp_MobileContainerControl>();
-            if (comp != null && comp.LoadingInProgress && comp.AnyPawnCanLoadAnythingNow)
+            if(list[i] is not Building_MobileContainer cart) continue;
+            if (cart.LoadingInProgress && cart.AnyPawnCanLoadAnythingNow)
                 return false;
         }
+
         return true;
     }
 
@@ -35,32 +36,29 @@ public class WorkGiver_LoadContainer : WorkGiver_Scanner
         var list = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial);
         for (int i = 0; i < list.Count; i++)
         {
-            var t = list[i];
-            var comp = t.TryGetComp<Comp_MobileContainerControl>();
-            if (comp == null) continue;
-            if (!comp.LoadingInProgress) continue;
-            if (!pawn.CanReserveAndReach(t, PathEndMode.Touch, Danger.Deadly)) continue;
+            if(list[i] is not Building_MobileContainer cart) continue;
+            if (!cart.LoadingInProgress) continue;
+            if (!pawn.CanReserveAndReach(cart, PathEndMode.Touch, Danger.Deadly)) continue;
 
             // Optional: make sure this pawn actually has something he can haul to this cart
-            if (!MobileContainerUtility.HasJobOnContainer(pawn, comp)) continue;
+            if (!MobileContainerUtility.HasJobOnContainer(pawn, cart)) continue;
 
-            yield return t;
+            yield return cart;
         }
     }
 
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        var container = t.TryGetComp<Comp_MobileContainerControl>();
-        return container != null
-            && container.LoadingInProgress
-            && pawn.CanReserveAndReach(t, PathEndMode.Touch, Danger.Deadly)
+        if (t is not Building_MobileContainer container) return false;
+        return container.LoadingInProgress
+            && pawn.CanReserveAndReach(container, PathEndMode.Touch, Danger.Deadly)
             && MobileContainerUtility.HasJobOnContainer(pawn, container);
     }
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        var container = t.TryGetComp<Comp_MobileContainerControl>();
-        var job = JobMaker.MakeJob(RimgateDefOf.Rimgate_HaulToContainer, LocalTargetInfo.Invalid, container.parent);
+        if (t is not Building_MobileContainer container) return null;
+        var job = JobMaker.MakeJob(RimgateDefOf.Rimgate_HaulToContainer, LocalTargetInfo.Invalid, container);
         job.ignoreForbidden = true;
         // (Optional) slightly prioritize this job when player-initiated loading is active
         return job;

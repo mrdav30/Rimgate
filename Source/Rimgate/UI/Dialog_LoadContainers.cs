@@ -19,7 +19,7 @@ public class Dialog_LoadContainers : Window
 
     private Map _map;
 
-    private Comp_MobileContainerControl _container;
+    private Building_MobileContainer _container;
 
     private List<TransferableOneWay> _transferables;
 
@@ -37,27 +37,21 @@ public class Dialog_LoadContainers : Window
 
     private float _cachedVisibility;
 
-    private string cachedVisibilityExplanation;
+    private readonly Vector2 BottomButtonSize = new(160f, 40f);
 
-    private const float TitleRectHeight = 35f;
+    private static List<TabRecord> tabsList = [];
 
-    private const float BottomAreaHeight = 55f;
-
-    private readonly Vector2 BottomButtonSize = new Vector2(160f, 40f);
-
-    private static List<TabRecord> tabsList = new();
-
-    public bool CanChangeAssignedThingsAfterStarting => _container.Props.canChangeAssignedThingsAfterStarting;
+    public bool CanChangeAssignedThingsAfterStarting => _container.Ext.canChangeAssignedThingsAfterStarting;
 
     public bool LoadingInProgress => _container.LoadingInProgress;
 
-    public override Vector2 InitialSize => new Vector2(1024f, UI.screenHeight);
+    public override Vector2 InitialSize => new(1024f, UI.screenHeight);
 
     protected override float Margin => 0f;
 
     private float MassCapacity => _container.MassCapacity;
 
-    private string ContainersLabel => _container.parent.Label;
+    private string ContainersLabel => _container.Label;
 
     private string ContainersLabelCap => ContainersLabel.CapitalizeFirst();
 
@@ -90,16 +84,14 @@ public class Dialog_LoadContainers : Window
             if (_visibilityDirty)
             {
                 _visibilityDirty = false;
-                StringBuilder stringBuilder = new StringBuilder();
-                _cachedVisibility = CaravanVisibilityCalculator.Visibility(_transferables, stringBuilder);
-                cachedVisibilityExplanation = stringBuilder.ToString();
+                _cachedVisibility = CaravanVisibilityCalculator.Visibility(_transferables);
             }
 
             return _cachedVisibility;
         }
     }
 
-    public Dialog_LoadContainers(Map map, Comp_MobileContainerControl container)
+    public Dialog_LoadContainers(Map map, Building_MobileContainer container)
     {
         _map = map;
         _container = container;
@@ -116,7 +108,7 @@ public class Dialog_LoadContainers : Window
 
     public override void DoWindowContents(Rect inRect)
     {
-        Rect rect = new Rect(0f, 0f, inRect.width, 35f);
+        Rect rect = new(0f, 0f, inRect.width, 35f);
         Text.Font = GameFont.Medium;
         Text.Anchor = TextAnchor.MiddleCenter;
         Widgets.Label(rect, "LoadTransporters".Translate(ContainersLabel).CapitalizeFirst());
@@ -126,7 +118,7 @@ public class Dialog_LoadContainers : Window
         {
             TaggedString taggedString = $"{MassUsage.ToStringEnsureThreshold(MassCapacity, 0)} / {MassCapacity:F0}" + "kg".Translate();
 
-            Rect infoRect = new Rect(12f, 35f, inRect.width - 24f, 40f);
+            Rect infoRect = new(12f, 35f, inRect.width - 24f, 40f);
             if (infoRect.width > 230f)
             {
                 infoRect.x += Mathf.Floor((infoRect.width - 230f) / 2f);
@@ -135,9 +127,9 @@ public class Dialog_LoadContainers : Window
 
             Widgets.BeginGroup(infoRect);
 
-            Rect infoRect2 = new Rect(0f, 0f, infoRect.width, infoRect.height);
-            Rect infoRect3 = new Rect(0f, 0f, infoRect.width, infoRect.height / 2f);
-            Rect infoRect4 = new Rect(0, infoRect.height / 2f, infoRect.width, infoRect.height / 2f);
+            Rect infoRect2 = new(0f, 0f, infoRect.width, infoRect.height);
+            Rect infoRect3 = new(0f, 0f, infoRect.width, infoRect.height / 2f);
+            Rect infoRect4 = new(0, infoRect.height / 2f, infoRect.width, infoRect.height / 2f);
 
             if (Time.time - _lastMassFlashTime < 1f)
                 GUI.DrawTexture(infoRect2, TransferableUIUtility.FlashTex);
@@ -146,7 +138,7 @@ public class Dialog_LoadContainers : Window
             Text.Font = GameFont.Tiny;
             GUI.color = Color.gray;
             Widgets.Label(new Rect(infoRect3.x, infoRect3.y - 2f, infoRect3.width, infoRect3.height - -3f), "Mass".Translate());
-            Rect infoRect5 = new Rect(infoRect4.x, infoRect4.y + -3f + 2f, infoRect4.width, infoRect4.height - -3f);
+            Rect infoRect5 = new(infoRect4.x, infoRect4.y + -3f + 2f, infoRect4.width, infoRect4.height - -3f);
             Text.Font = GameFont.Small;
 
             Text.Anchor = TextAnchor.UpperCenter;
@@ -276,7 +268,7 @@ public class Dialog_LoadContainers : Window
 
     private void CalculateAndRecacheTransferables()
     {
-        _transferables ??= new List<TransferableOneWay>();
+        _transferables ??= [];
         _transferables.Clear();
         foreach (Thing item in MobileContainerUtility.AllSendableItems(_container, _map))
             AddToTransferables(item);
@@ -291,8 +283,7 @@ public class Dialog_LoadContainers : Window
                 AddToTransferables(item);
 
         _itemsTransfer = new TransferableOneWayWidget(
-            _transferables.Where((TransferableOneWay x) =>
-                x.ThingDef.category != ThingCategory.Pawn),
+            _transferables.Where(x => x.ThingDef.category != ThingCategory.Pawn),
             null,
             null,
             "TransporterColonyThingCountTip".Translate(),
@@ -344,7 +335,7 @@ public class Dialog_LoadContainers : Window
                 Pawn current = allPawnsSpawned[i];
                 bool isMyJob = current.CurJobDef == RimgateDefOf.Rimgate_HaulToContainer
                     && current.jobs.curDriver is JobDriver_HaulToMobileContainer jd
-                    && jd.Mobile.parent.ThingID == _container.parent.ThingID;
+                    && jd.MobileContainer.ThingID == _container.ThingID;
                 if (isMyJob)
                     allPawnsSpawned[i].jobs.EndCurrentJob(JobCondition.InterruptForced);
             }
@@ -355,7 +346,7 @@ public class Dialog_LoadContainers : Window
             if (_container.LeftToLoad.Count > 0)
                 Messages.Message(
                 "RG_MessageContainerLoadingProcessStarted".Translate(),
-                _container.parent,
+                _container,
                 MessageTypeDefOf.TaskCompletion,
                 historical: false);
         }
@@ -395,7 +386,7 @@ public class Dialog_LoadContainers : Window
     private void AssignTransferablesToContainer()
     {
         // 1) Rebuild LeftToLoad from the UI selections
-        _container.LeftToLoad ??= new List<TransferableOneWay>();
+        _container.LeftToLoad ??= [];
         _container.LeftToLoad.Clear();
 
         for (int i = 0; i < _transferables.Count; i++)
@@ -423,8 +414,8 @@ public class Dialog_LoadContainers : Window
                 _container.Notify_ItemRemoved(inCart);
                 if (!_container.InnerContainer.TryDrop(
                     inCart,
-                    _container.parent.Position,
-                    _container.parent.Map,
+                    _container.Position,
+                    _container.Map,
                     ThingPlaceMode.Near,
                     overflow,
                     out _)) Log.Error($"Container failed to drop {overflow} of {inCart}");
@@ -444,7 +435,7 @@ public class Dialog_LoadContainers : Window
         Pawn pawn = pawns.Find((Pawn x) =>
             !x.MapHeld.reachability.CanReach(
                 x.PositionHeld,
-                _container.parent,
+                _container,
                 PathEndMode.Touch,
                 TraverseParms.For(TraverseMode.PassDoors))
             && !_container.InnerContainer.Contains(x));
@@ -457,8 +448,8 @@ public class Dialog_LoadContainers : Window
             return false;
         }
 
-        float r2 = _container.Props.loadRadius * _container.Props.loadRadius;
-        IntVec3 center = _container.parent.Position;
+        float r2 = _container.Ext.SqrdLoadRadius;
+        IntVec3 center = _container.Position;
 
         for (int i = 0; i < _transferables.Count; i++)
         {
@@ -475,14 +466,14 @@ public class Dialog_LoadContainers : Window
                 bool withinRadius = t.PositionHeld.DistanceToSquared(center) <= r2;
                 bool reachable = _map.reachability.CanReach(
                         t.PositionHeld,
-                        _container.parent,
+                        _container,
                         PathEndMode.Touch,
                         TraverseParms.For(TraverseMode.PassDoors))
                     || _container.InnerContainer.Contains(t)
                     || (carry != null
                         && carry.pawn.MapHeld.reachability.CanReach(
                             carry.pawn.PositionHeld,
-                            _container.parent,
+                            _container,
                             PathEndMode.Touch,
                             TraverseParms.For(TraverseMode.PassDoors)));
 
