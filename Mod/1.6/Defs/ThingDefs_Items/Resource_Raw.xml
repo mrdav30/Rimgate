@@ -5,7 +5,7 @@
 
   <ThingDef ParentName="ResourceBase">
     <defName>Rimgate_Naquadah</defName>
-    <label>Naquadah</label>
+    <label>naquadah</label>
     <description>A dense, metallic mineral that hums faintly under stress and can power everything from hand weapons to planetary extinction events.\n\nOnce refined, it becomes Naquadria — exponentially more powerful, exponentially more likely to redecorate your map in plasma.\n\nHandle with insulated gloves and smug superiority.</description>
     <graphicData>
       <texPath>Things/Item/Resource/RGNaquadah</texPath>
@@ -138,8 +138,8 @@
   <ThingDef>
     <defName>Rimgate_SymbioteQueen</defName>
     <thingClass>Rimgate.Thing_SymbioteQueen</thingClass>
-    <label>Goa'uld symbiote queen</label>
-    <description>A massive, mature Goa'uld symbiote capable of spawning new larvae. Too large and willful to be used as an implant—its proper place is submerged in a prepared spawning pool, where keepers can eventually learn her true name and lineage. If fed and tended properly, she will periodically produce fresh symbiote larvae.</description>
+    <label>symbiote queen</label>
+    <description>A massive female symbiote capable of spawning new larvae. Too large and willful to be used as an implant—its proper place is submerged in a prepared spawning pool, where keepers can eventually learn her true name and lineage. If fed and tended properly, she will periodically produce fresh symbiote larvae.</description>
     <descriptionHyperlinks>
       <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
     </descriptionHyperlinks>

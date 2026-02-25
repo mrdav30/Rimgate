@@ -206,13 +206,13 @@
 
 	<RecipeDef ParentName="SurgeryRemoveImplantBase">
 		<defName>Rimgate_RemoveGoauldSymbiote</defName>
-		<label>remove Goa'uld symbiote</label>
-		<description>Carefully extract a Goa'uld symbiote from the host. If they do not receive another symbiote—or an artificial replacement like tretonin—their body will begin to fail, spiraling into symbiote withdrawal.</description>
+		<label>remove mature symbiote</label>
+		<description>Carefully extract a mature symbiote from the host. If they do not receive another symbiote—or an artificial replacement like tretonin—their body will begin to fail, spiraling into symbiote withdrawal.</description>
 		<descriptionHyperlinks>
 			<HediffDef>Rimgate_SymbioteWithdrawal</HediffDef>
 		</descriptionHyperlinks>
 		<uiIconPath>Things/Item/Resource/RGGoauldSymbiote</uiIconPath>
-		<jobString>removing Goa'uld symbiote.</jobString>
+		<jobString>removing mature symbiote.</jobString>
 		<effectWorking>Surgery</effectWorking>
 		<soundWorking>Recipe_Machining</soundWorking>
 		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>

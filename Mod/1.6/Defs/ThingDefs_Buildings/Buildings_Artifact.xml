@@ -175,8 +175,8 @@
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DialHomeDevice</defName>
         <thingClass>Rimgate.Building_DHD</thingClass>
-        <label>Dial home device</label>
-        <description>An ancient alien control console designed to interface with a Dwarfgate.
+        <label>dial home device</label>
+        <description>A dial home device, or DHD, is an ancient alien control console designed to interface with a Dwarfgate.
             \n\nDwarfgates have a quirk: the global network can only store so many gate sites in memory before they refuse to hold more. Additionally, there seems to be a hard limit on the number of connections you can make to "restricted" gate sites before a passive cooldown buffer kicks in. Ancient tech, ancient bureaucracy.
             \n\n"Kind of a ring thing, comes with a dialer, you hit the symbols, it spins around and lights come on, it kind of flushes sideways..."</description>
         <graphicData>

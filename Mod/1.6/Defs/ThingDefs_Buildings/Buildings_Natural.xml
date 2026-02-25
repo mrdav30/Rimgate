@@ -5,7 +5,7 @@
 
   <ThingDef ParentName="RockBase">
     <defName>Rimgate_MineableNaquadah</defName>
-    <label>Naquadah ore</label>
+    <label>naquadah ore</label>
     <description>this dense rock glows faintly with power and radiates untapped potential. Naquadah is the backbone of alien tech—mining it may be your first step toward becoming a minor galactic tyrant.</description>
     <graphicData>
       <texPath>Things/Building/Linked/RockFlecked_Atlas</texPath>

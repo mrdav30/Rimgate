@@ -14,7 +14,7 @@
 
   <PawnKindDef ParentName="Rimgate_WraithPlayerBase">
     <defName>Rimgate_WraithPlayer</defName>
-    <label>wraith colonist</label>
+    <label>colonist</label>
     <defaultFactionType>Rimgate_WraithPlayerColony</defaultFactionType>
     <chemicalAddictionChance>0</chemicalAddictionChance>
     <xenotypeSet>

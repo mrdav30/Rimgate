@@ -309,9 +309,9 @@
 
   <BackstoryDef>
     <defName>Rimgate_KaraKeshAdept</defName>
-    <title>kara kesh adept</title>
+    <title>Kara kesh adept</title>
     <titleShort>hand-device adept</titleShort>
-    <baseDesc>Chosen to wield a kara kesh, [PAWN_nameDef] trained to turn thought into force—pinning, tossing, and crushing on command. The gods admired results, not restraint.</baseDesc>
+    <baseDesc>Chosen to wield a Kara kesh, [PAWN_nameDef] trained to turn thought into force—pinning, tossing, and crushing on command. The gods admired results, not restraint.</baseDesc>
     <slot>Adulthood</slot>
     <shuffleable>false</shuffleable>
     <spawnCategories>

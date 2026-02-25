@@ -22,7 +22,7 @@
     <ThingDef ParentName="BodyPartBase">
         <defName>Rimgate_PrimtaSymbiote</defName>
         <thingClass>Rimgate.Thing_PrimtaSymbiote</thingClass>
-        <label>prim'ta symbiote</label>
+        <label>Prim'ta</label>
         <description>A larval Goa’uld symbiote—squirming, half-formed, and disturbingly intent. Jaffa carry these in abdominal pouches until they mature, at which point they must be removed or risk “promotion” into a full-blown god complex.\n\nOutside a host or dedicated spawning pool, it spoils quickly and dies.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>
@@ -63,7 +63,7 @@
     <ThingDef ParentName="BodyPartBase">
         <defName>Rimgate_GoauldSymbiote</defName>
         <thingClass>Rimgate.Thing_GoualdSymbiote</thingClass>
-        <label>Goa'uld symbiote</label>
+        <label>mature symbiote</label>
         <description>A genetically engineered space eel that grants its host rapid healing, disease immunity, and a nagging superiority complex. Older symbiotes are said to carry faint echoes of former hosts, passing on fragments of hard-earned expertise to each new bearer. Install in the torso—side effects may include glowing eyes, evil laughter, and quoting false gods.\n\nBest kept stored in a symbiote spawning pool between uses.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_SymbioteSpawningPool</ThingDef>

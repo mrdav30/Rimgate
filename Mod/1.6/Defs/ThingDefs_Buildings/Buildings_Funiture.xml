@@ -100,7 +100,7 @@
         <destroyedOnAnalyzed>true</destroyedOnAnalyzed>
         <analysisDurationHours>10</analysisDurationHours>
         <completedLetterLabel>Sarcophagus analysis complete: {RESEARCH} unlocked</completedLetterLabel>
-        <completedLetter>By studying the Goa’uld Sarcophagus, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.\n\nUnfortunately, the device collapsed into inert crystal fragments the moment its core field destabilized — as if refusing to share its secrets.</completedLetter>
+        <completedLetter>By studying the Goa’uld sarcophagus, {PAWN_labelShort} has pieced together the groundwork for {RESEARCH} research.\n\nUnfortunately, the device collapsed into inert crystal fragments the moment its core field destabilized — as if refusing to share its secrets.</completedLetter>
         <completedLetterDef>PositiveEvent</completedLetterDef>
 
         <catastrophicFailureChance>0.25</catastrophicFailureChance>
@@ -115,8 +115,8 @@
         <maintainProgress>true</maintainProgress>
         <activateTexPath>UI/Icons/Study</activateTexPath>
         <activateLabelString>Analyze...</activateLabelString>
-        <activateDescString>Analyze the Goa'uld Sarcophagus.</activateDescString>
-        <jobString>Analyzing Sarcophagus</jobString>
+        <activateDescString>Analyze the Goa'uld sarcophagus.</activateDescString>
+        <jobString>Analyzing sarcophagus</jobString>
         <guiLabelString>Choose who should analyze this</guiLabelString>
         <inspectString>Can be analyzed by a colonist.</inspectString>
 

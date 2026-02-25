@@ -282,7 +282,7 @@
 
 	<ThingDef ParentName="ApparelNoQualityBase">
 		<defName>Rimgate_GoauldKaraKesh</defName>
-		<label>Goa'uld Kara kesh</label>
+		<label>Kara kesh</label>
 		<description>The famous Goa’uld hand device. Stylishly zaps incoming bullets like a diva flicking lint. Useless in melee, allergic to EMPs, and completely unfair in tribal raids.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Utility/RGGoauldKaraKesh</texPath>
@@ -379,7 +379,7 @@
 
 				<destroyedOnAnalyzed>true</destroyedOnAnalyzed>
 				<analysisDurationHours>9</analysisDurationHours>
-				<completedLetterLabel>Goa'uld Kara kesh studied: {RESEARCH} unlocked</completedLetterLabel>
+				<completedLetterLabel>Goa'uld Kara Kesh studied: {RESEARCH} unlocked</completedLetterLabel>
 				<completedLetter>The device emitted a final pulse of energy before collapsing into dust, as though its arrogance couldn’t survive mortal hands.\n\nHowever, by studying the Goa’uld Kara Kesh, {PAWN_labelShort} has acquired the insight needed for further {RESEARCH} research.</completedLetter>
 				<completedLetterDef>PositiveEvent</completedLetterDef>
 
@@ -389,8 +389,8 @@
 				<activateTexPath>UI/Icons/Study</activateTexPath>
 
 				<activateLabelString>Analyze...</activateLabelString>
-				<activateDescString>Analyze the Goa'uld Kara kesh.</activateDescString>
-				<jobString>Analyzing Goa'uld Kara kesh</jobString>
+				<activateDescString>Analyze the Goa'uld Kara Kesh.</activateDescString>
+				<jobString>Analyzing Goa'uld Kara Kesh</jobString>
 				<guiLabelString>Choose who should analyze this</guiLabelString>
 				<inspectString>Can be analyzed by a colonist.</inspectString>
 
@@ -540,7 +540,7 @@
 
 	<ThingDef Name="Rimgate_JaffaArmoredBootsBase" ParentName="ArmorSmithableBase">
 		<defName>Rimgate_JaffaArmoredBoots</defName>
-		<label>Jaffa Armored boots</label>
+		<label>Jaffa armored boots</label>
 		<description>Sturdy armored boots worn by Jaffa warriors. Designed to provide solid protection while allowing for agile movement across various terrains.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Footwear/RGJaffaArmoredBoots</texPath>
@@ -626,7 +626,7 @@
 
 	<ThingDef ParentName="Rimgate_JaffaArmoredBootsBase">
 		<defName>Rimgate_PrimeArmoredBoots</defName>
-		<label>Prime Armored boots</label>
+		<label>Prime armored boots</label>
 		<description>Sturdy armored boots worn by Prime Jaffa warriors. Designed to provide superior protection while allowing for agile movement across various terrains.</description>
 		<graphicData>
 			<color>(1, 0.93, 0.48)</color>
@@ -951,7 +951,7 @@
 	<!-- === Horus Helmet === -->
 
 	<ThingDef ParentName="Rimgate_GuardHeadgearBase">
-		<defName>Rimgate_HorusHelmet</defName>
+		<defName>Rimgate_FalconHelmet</defName>
 		<label>Horus helmet</label>
 		<description>The signature helm of Ra’s elite peacocks—er, warriors. High shine, moderate armor, and excellent against everything but bullets. Just don’t try to look up stairs in it.</description>
 		<descriptionHyperlinks>
@@ -990,7 +990,7 @@
 		<label>Horus helmet (open)</label>
 		<description>For when you want to cosplay as a Space Falcon but still show off your luscious beard. Same sleek Horus look, 100% more chin exposure.</description>
 		<descriptionHyperlinks>
-			<ThingDef>Rimgate_HorusHelmet</ThingDef>
+			<ThingDef>Rimgate_FalconHelmet</ThingDef>
 		</descriptionHyperlinks>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.1</PsychicSensitivity>
@@ -998,7 +998,7 @@
 		</equippedStatOffsets>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<alternateDef>Rimgate_HorusHelmet</alternateDef>
+				<alternateDef>Rimgate_FalconHelmet</alternateDef>
 				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
 			</li>
 		</comps>
@@ -1195,7 +1195,7 @@
 	<!-- Prime Horus Helmet -->
 
 	<ThingDef ParentName="Rimgate_PrimeGuardHeadgearBase">
-		<defName>Rimgate_PrimeHorusHelmet</defName>
+		<defName>Rimgate_PrimeFalconHelmet</defName>
 		<label>First Prime Horus helmet</label>
 		<description>Ra’s personal blinged-out bucket. Only the most loyal—and loud—First Primes get to wear this. Good luck surviving the honor.</description>
 		<descriptionHyperlinks>
@@ -1234,7 +1234,7 @@
 		<label>First Prime Horus helmet (open)</label>
 		<description>Same prestigious helm, just open-faced for when yelling “Jaffa, kree!” requires better airflow. Or when Ra wants to see your disappointed face after failure.</description>
 		<descriptionHyperlinks>
-			<ThingDef>Rimgate_PrimeHorusHelmet</ThingDef>
+			<ThingDef>Rimgate_PrimeFalconHelmet</ThingDef>
 		</descriptionHyperlinks>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.2</PsychicSensitivity>
@@ -1243,7 +1243,7 @@
 		</equippedStatOffsets>
 		<comps>
 			<li Class="Rimgate.CompProperties_AlternateApparel">
-				<alternateDef>Rimgate_PrimeHorusHelmet</alternateDef>
+				<alternateDef>Rimgate_PrimeFalconHelmet</alternateDef>
 				<toggleSound>Rimgate_GoauldGuardHelmToggle</toggleSound>
 			</li>
 		</comps>

@@ -323,8 +323,8 @@
 
 	<ThingDef ParentName="Rimgate_MannedRailgunTurretBase">
 		<defName>Rimgate_NaquadahRailgunTurret</defName>
-		<label>manned Naquadah enhanced railgun</label>
-		<description>A manned railgun enhanced with Naquadah—capable of turning Goa'uld armor into swiss cheese at 1,500 meters. Standard equipment on Earth’s finest spacefaring hardware.</description>
+		<label>manned naquadah railgun</label>
+		<description>A manned railgun enhanced with naquadah—capable of turning Goa'uld armor into swiss cheese at 1,500 meters. Standard equipment on Earth’s finest spacefaring hardware.</description>
 		<graphicData>
 			<texPath>Things/Building/Security/RGNaquadahRailgunStand</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -385,8 +385,8 @@
 
 	<ThingDef ParentName="Rimgate_MannedRailgunGunBase">
 		<defName>Rimgate_NaquadahRailgunGun</defName>
-		<label>manned Naquadah enhanced railgun</label>
-		<description>a heavy-duty Naquadah-infused railgun, borrowed from Earth’s battle cruisers and lovingly mounted for planetary defense. Overkill? Absolutely.</description>
+		<label>manned naquadah railgun</label>
+		<description>a heavy-duty naquadah-infused railgun, borrowed from Earth’s battle cruisers and lovingly mounted for planetary defense. Overkill? Absolutely.</description>
 		<graphicData>
 			<texPath>Things/Building/Security/RGNaquadahRailgun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -598,7 +598,7 @@
 
 	<ThingDef Name="Rimgate_AutoStaffCannonTurretBase" ParentName="BuildingBase">
 		<defName>Rimgate_AutoStaffCannonTurret</defName>
-		<label>Auto staff cannon</label>
+		<label>auto staff cannon</label>
 		<description>An autonomous Goa’uld staff cannon upgraded with forbidden ion-focusing tech of unknown origin. The result: blisteringly precise plasma bursts that chew through shields and laugh at cover. Field units arrive pre-keyed and self-scorch their cores on capture. Very good at making trespassers reconsider their life choices.</description>
 		<thingClass>Building_TurretGun</thingClass>
 		<drawerType>MapMeshAndRealTime</drawerType>
@@ -723,7 +723,7 @@
 
 	<ThingDef ParentName="Rimgate_AutoStaffCannonTurretBase">
 		<defName>Rimgate_AutoStaffCannonTurret_Shielded</defName>
-		<label>Auto staff cannon (shielded)</label>
+		<label>auto staff cannon (shielded)</label>
 		<description>An autonomous Goa’uld staff cannon upgraded with forbidden ion-focusing tech of unknown origin. The result: blisteringly precise plasma bursts that chew through shields and laugh at cover. Field units arrive pre-keyed and self-scorch their cores on capture. Very good at making trespassers reconsider their life choices.\n\nThis variant is equipped with a personal energy shield generator, providing added protection against incoming fire at the cost of increased power consumption.</description>
 		<statBases>
 			<MaxHitPoints>225</MaxHitPoints>

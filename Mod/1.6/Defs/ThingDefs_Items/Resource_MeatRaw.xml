@@ -5,7 +5,7 @@
 
   <ThingDef ParentName="OrganicProductBase">
     <defName>Rimgate_CulturedMeat</defName>
-    <label>Cultured meat</label>
+    <label>cultured meat</label>
     <description>Grown in a vat from Wraith biotech, this “meat” is technically food, arguably ethical, and absolutely disturbing.\nBest served raw.</description>
     <graphicData>
       <texPath>Things/Item/Resource/RGCultivatedMeat</texPath>

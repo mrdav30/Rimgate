@@ -62,7 +62,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_GoauldCanopicJar</defName>
         <thingClass>Rimgate.Building_CanopicJar</thingClass>
-        <label>Canopic Jar</label>
+        <label>canopic jar</label>
         <description>A hermetically sealed storage container designed to preserve Goa'uld symbiotes indefinitely. The airtight seal maintains ideal biopreservation conditions, preventing deterioration while the symbiote rests in stasis. Functions as a compact, secure storage unit for living symbiotes, extracted organs, or other sensitive biological specimens. Multiple jars can be arranged for efficient organization of valuable biosamples.\n\nNote: Only a truly skilled artisan can be trusted to carve the delicate glyphs that keep an angry symbiote from realizing it's in a jar.</description>
         <graphicData>
             <texPath>Things/Building/Art/CanopicJars</texPath>

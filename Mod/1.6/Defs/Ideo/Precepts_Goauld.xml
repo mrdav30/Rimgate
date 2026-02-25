@@ -186,7 +186,7 @@
         <stages>
             <li>
                 <label>accepted a parasite</label>
-                <description>Letting a Goa'uld symbiote into my body felt like a violation—an alien presence taking root where it doesn't belong.</description>
+                <description>Letting a symbiote into my body felt like a violation—an alien presence taking root where it doesn't belong.</description>
                 <baseMoodEffect>-8</baseMoodEffect>
             </li>
         </stages>
@@ -232,7 +232,7 @@
         <stages>
             <li>
                 <label>symbiote eliminated</label>
-                <description>A Goa'uld symbiote was destroyed before it could infest anyone else. That's one less horror in the world.</description>
+                <description>A symbiote was destroyed before it could infest anyone else. That's one less horror in the world.</description>
                 <baseMoodEffect>6</baseMoodEffect>
             </li>
         </stages>
@@ -365,7 +365,7 @@
         <stages>
             <li>
                 <label>symbiote put down</label>
-                <description>A Goa'uld symbiote was destroyed. Not ideal, but it's still safer than letting it crawl into someone.</description>
+                <description>A symbiote was destroyed. Not ideal, but it's still safer than letting it crawl into someone.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
         </stages>

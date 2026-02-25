@@ -46,7 +46,7 @@
 	<!-- Warrior armor -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithArmorTierOne</defName>
-		<label>Wraith Warrior armor</label>
+		<label>Wraith warrior armor</label>
 		<description>Research armor grown from bio-organic materials tailored to Wraith physiology. Flexible, durable, and mildly unsettling to the touch.\n\nNote: Wraith armor is a bit unorthodox since it is grown rather than forged, blending biological and technological elements. We'll have to adapt our manufacturing processes accordingly.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
@@ -61,7 +61,7 @@
 	<!-- Commander armor -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithArmorTierTwo</defName>
-		<label>Wraith Commander armor</label>
+		<label>Wraith commander armor</label>
 		<description>Unlock the secrets of Wraith commander armor: bio-engineered to enhance strength, resilience, and intimidation factor.\n\nThis research grants access to advanced armor plating and integrated enzyme sacks, perfect for elite operatives who lead from the front.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
@@ -120,7 +120,7 @@
 	<!-- Meatlab -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_MeatCultivation</defName>
-		<label>Meat cultivation</label>
+		<label>meat cultivation</label>
 		<description>Learn to bio-cultivate fresh, nutritious meat without hunting, farming, or asking permission from your livestock.\nA breakthrough in sustainable horror.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
@@ -135,7 +135,7 @@
 	<!-- Biomass generator -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithGenerator</defName>
-		<label>Biomass generator</label>
+		<label>biomass generator</label>
 		<description>Unlock the Wraith biomass generator—an advanced power source fueled by cultivated organic matter processed into biomass.</description>
 		<baseCost>4500</baseCost>
 		<prerequisites>
@@ -198,7 +198,7 @@
 	<!-- Biomass optimization -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_BiomassOptimization</defName>
-		<label>Advanced bioengineering</label>
+		<label>advanced bioengineering</label>
 		<description>Optimize the meat cultivation process by applying advanced bioengineering techniques to increase the power yield of biomass generators and reduce resource consumption of meat labs.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>9000</baseCost>
@@ -249,8 +249,8 @@
 	<!-- Tracking Drone -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_TrackingDroneGestation</defName>
-		<label>Tracking Drone</label>
-		<description>With an understanding of Wraith neural interface tech, decode recovered techprints to replicate Tracking Drone gestation. These small, fast, and twitchy Wraith-style hunter-seekers are built to stalk prey and feed allies real-time target data.</description>
+		<label>tracking Drone</label>
+		<description>With an understanding of Wraith neural interface tech, decode recovered techprints to replicate tracking drone gestation. These small, fast, and twitchy Wraith-style hunter-seekers are built to stalk prey and feed allies real-time target data.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
 			<li>Rimgate_WraithCommunicationDevice</li>
@@ -274,7 +274,7 @@
 	<!-- Gate Modification -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_GateModification</defName>
-		<label>Gate Modification</label>
+		<label>gate modification</label>
 		<description>Fragments of Wraith interface lore and signal hushwork.\n\nIt promises safer contact with the gate, but the real purpose is buried in the noise.</description>
 		<baseCost>10000</baseCost>
 		<techLevel>Archotech</techLevel>
@@ -308,7 +308,7 @@
 	<!-- Cloning -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithCloneGenome</defName>
-		<label>Cloning</label>
+		<label>cloning</label>
 		<description>Unlock Wraith genome templating: growth protocols, enzyme baths, and neural imprint scaffolds that skip childhood entirely.\n\nFresh bodies on demand—morals sold separately. Expect epigenetic drift, occasional extra teeth, and complaints from HR.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>5500</baseCost>
@@ -393,7 +393,7 @@
 	<!-- Clone full -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithCloneFull</defName>
-		<label>Full-body replication</label>
+		<label>full-body replication</label>
 		<description>Enable full-body replication for any pawn—Wraith, human, or unlucky intern.\n\nCopies quirks, scars, and bedtime fears with alarming fidelity. Printing colonists is now a workflow.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>3500</baseCost>
@@ -407,7 +407,7 @@
 	<!-- Clone enhancement -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithCloneEnhancement</defName>
-		<label>Clone enhancement</label>
+		<label>clone enhancement</label>
 		<description>Optimize the slurry: stronger bones, faster reflexes, cleaner neural binds.\n\nSide effects may include telepathy, hissing, and a belief that hallways should be darker.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>5000</baseCost>
@@ -422,7 +422,7 @@
 	<!-- Clone corpse -->
 	<ResearchProjectDef ParentName="Rimgate_WraithResearchBase">
 		<defName>Rimgate_WraithCloneCorpse</defName>
-		<label>Reconstruction</label>
+		<label>reconstruction</label>
 		<description>Reconstruction protocols extend cloning into reclamation: if you have biomass and a template, death becomes a scheduling error.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>6500</baseCost>

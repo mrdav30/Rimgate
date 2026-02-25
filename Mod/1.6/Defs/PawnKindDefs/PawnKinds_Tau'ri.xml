@@ -25,7 +25,7 @@
 
     <PawnKindDef ParentName="Rimgate_TauriBase">
         <defName>Rimgate_TauriScientist</defName>
-        <label>SGC scientist</label>
+        <label>scientist</label>
         <isFighter>false</isFighter>
         <requiredWorkTags>
             <li>Intellectual</li>
@@ -177,7 +177,7 @@
     <!-- Soldier -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCSoldier</defName>
-        <label>Soldier</label>
+        <label>soldier</label>
         <combatPower>100</combatPower>
         <weaponTags>
             <li>Rimgate_TauriSubmachineGun_tag</li>
@@ -198,7 +198,7 @@
     <!-- Medic -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriMedic</defName>
-        <label>Medic</label>
+        <label>medic</label>
         <combatPower>90</combatPower>
         <weaponTags>
             <li>Rimgate_TauriSubmachineGun_tag</li>
@@ -236,7 +236,7 @@
     <!-- Rocketman -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSGCDemolition</defName>
-        <label>Soldier</label>
+        <label>demolition</label>
         <combatPower>130</combatPower>
         <weaponMoney>3200~4500</weaponMoney>
         <apparelMoney>2300~3450</apparelMoney>
@@ -263,7 +263,7 @@
     <!-- Rifleman -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriRifleman</defName>
-        <label>Rifleman</label>
+        <label>rifleman</label>
         <race>Human</race>
         <combatPower>130</combatPower>
         <apparelTags>
@@ -291,7 +291,7 @@
     <!-- Special Forces -->
     <PawnKindDef Name="Rimgate_SpecialForcesBase" ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSpecialForces</defName>
-        <label>Tau'ri operator</label>
+        <label>operator</label>
         <race>Human</race>
         <combatPower>150</combatPower>
         <itemQuality>Good</itemQuality>
@@ -376,7 +376,7 @@
     <!-- Space Force -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriSpaceForce</defName>
-        <label>Tau'ri guardian</label>
+        <label>guardian</label>
         <race>Human</race>
         <combatPower>150</combatPower>
         <itemQuality>Excellent</itemQuality>
@@ -452,7 +452,7 @@
     <!-- Commander -->
     <PawnKindDef ParentName="Rimgate_TauriUniformedBase">
         <defName>Rimgate_TauriCommander</defName>
-        <label>Commander</label>
+        <label>commander</label>
         <factionLeader>true</factionLeader>
         <canBeSapper>true</canBeSapper>
         <combatPower>150</combatPower>

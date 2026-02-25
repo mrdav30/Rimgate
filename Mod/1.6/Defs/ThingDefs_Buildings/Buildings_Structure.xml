@@ -104,7 +104,7 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithHiveWall</defName>
-    <label>Wraith hive wall</label>
+    <label>hive wall</label>
     <description>A pulsating, organic wall born of Wraith biotech. It doesn't just hold up roofs—it whispers. Probably best not to listen.</description>
     <thingClass>Building</thingClass>
     <category>Building</category>
@@ -202,7 +202,7 @@
     <thingClass>Building</thingClass>
     <category>Building</category>
 
-    <label>Chain-link fence</label>
+    <label>chain-link fence</label>
     <description>A sturdy industrial-grade chain-link fence. Provides a basic level of perimeter security while allowing visibility through to the other side.\n\nNot capable of stopping determined intruders or holding up a roof.</description>
 
     <graphicData>
@@ -321,7 +321,7 @@
     <thingClass>Building</thingClass>
     <category>Building</category>
 
-    <label>Concrete slab fence</label>
+    <label>concrete slab fence</label>
     <description>A sturdy industrial-grade slab fence made from reinforced concrete. Provides a basic level of perimeter security.\n\nNot capable of stopping determined intruders or holding up a roof.</description>
 
     <graphicData>
@@ -551,7 +551,7 @@
     <defName>Rimgate_ChainLinkFenceGate</defName>
     <thingClass>Building_Door</thingClass>
 
-    <label>Chain-link gate</label>
+    <label>chain-link gate</label>
     <description>A swinging gate made of industrial-grade chain-link fencing. Provides easy access while keeping out unwanted visitors.</description>
     <graphicData>
       <texPath>Things/Building/Structure/RGChainLinkGate_Mover</texPath>

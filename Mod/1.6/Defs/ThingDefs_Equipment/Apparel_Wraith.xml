@@ -25,7 +25,7 @@
 
 	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithHelmet</defName>
-		<label>Wraith soldier helmet</label>
+		<label>drone helm</label>
 		<description>Standard issue cranial casing for your average Wraith footsoldier. Looks like alien exoskeleton, smells like biomass.\nSurprisingly breathable for something grown in a vat.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/WraithHelm/RGWraithHelmetIcon</texPath>
@@ -103,7 +103,7 @@
 
 	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithGoggles</defName>
-		<label>Goggles</label>
+		<label>recon goggles</label>
 		<description>Standard-issue optics for Wraith soldiers who need to look cool and see through three dimensions of prey at once. Offers modest protection against sand, smoke, and sass from superiors.\n\nFavored by Wraith assassins and reconnaissance units who need to stay sharp in the field.</description>
 		<thingCategories>
 			<li>Headgear</li>
@@ -186,7 +186,7 @@
 
 	<ThingDef ParentName="ArmorSmithableBase">
 		<defName>Rimgate_WraithCirclet</defName>
-		<label>Circlet</label>
+		<label>essence circlet</label>
 		<description>A ceremonial circlet worn only by Wraith queens and their chosen commanders. Forged from naquadah filigree fused with living biomass, the circlet amplifies psionic projection and lends its wearer an unsettling gravitas. To those who serve, it is a symbol of command and terror; to those who resist, a reminder that even a glance from the throne can feel like a blade at the throat.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Headgear/WraithCirclet/RGWraithCirclet</texPath>
@@ -272,7 +272,7 @@
 
 	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithQueensPendant</defName>
-		<label>Queen's pendant</label>
+		<label>queen's pendant</label>
 		<description>A pendant worn around the neck of Wraith queens and their most favored commanders. Crafted from a single piece of naquadah crystal that has been carefully shaped and infused with biomass, the pendant serves as both a symbol of authority and a conduit for psionic energy. It enhances the wearer's ability to project their will over others and provides a modest boost to psychic defenses.\n\nWorn by those who command respect through power and presence, the Queen's pendant is a coveted item among Wraiths who aspire to leadership.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Neck/RGWraithPendant</texPath>
@@ -363,7 +363,7 @@
 
 	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithSoldierArmor</defName>
-		<label>Chitin breastplate</label>
+		<label>chitin breastplate</label>
 		<description>A durable shirt of bio-organic material that was grown with care to have chitinous plating extrude from it to form into a breastplate. Offers solid protection and a mildly unsettling squelch sound when equipped.\n\nWorn by warriors who prefer their armor organic and their enemies terrified.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/WraithSoldier/RGWraithSoldierArmorIcon</texPath>
@@ -443,7 +443,7 @@
 
 	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithCommanderArmor</defName>
-		<label>Armored overcoat</label>
+		<label>armored overcoat</label>
 		<description>Elegant bio-armor for the discerning Wraith leader who wants high resistance and high fashion while draining life force.\n\nInterweaved with bio-organic fibers that enhance essence absorption and reduce essence expenditure.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Torso/WraithCommander/RGWraithCommanderArmorIcon</texPath>
@@ -527,7 +527,7 @@
 
 	<ThingDef ParentName="Rimgate_WraithApparelBase">
 		<defName>Rimgate_WraithBracers</defName>
-		<label>Spacer bracers</label>
+		<label>spacer bracers</label>
 		<description>Lightweight bracers that provide minimal protection and maximum style.\n\nAs a side note, they also store enzymatic enhancers for draining life force and a bio-organic weapon interface.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Handwear/RGWraithBracers</texPath>
@@ -619,7 +619,7 @@
 
 	<ThingDef ParentName="ApparelMakeableBase">
 		<defName>Rimgate_WraithLeatherBoots</defName>
-		<label>Knee-high leather boots</label>
+		<label>knee-high leather boots</label>
 		<description>Boots made from tanned chitin and reinforced with bio-organic fibers. They offer decent protection and a satisfying squelch when walking.\n\nWraith soldiers favor them for their combination of style, comfort, and the ability to leave unsettling footprints in soft terrain.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Footwear/RGWraithLeatherBoots</texPath>
@@ -823,7 +823,7 @@
 
 	<ThingDef ParentName="BaseMeleeWeapon_Blunt_Quality">
 		<defName>Rimgate_WraithForceBuckler</defName>
-		<label>Force buckler</label>
+		<label>force buckler</label>
 		<description>A compact Wraith repulsor emitter bound into a forearm buckler. It projects a tight, reactive barrier that swats aside bullets and turns blades—until its field dips, at which point it’s little more than a heavy cuff. Favored by Wraith assassins who close the distance fast, break lines, and finish the job in a blur of claws and static.</description>
 		<thingClass>Rimgate.Apparel_WraithForceBuckler</thingClass>
 		<techLevel>Spacer</techLevel>

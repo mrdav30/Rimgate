@@ -3,7 +3,7 @@
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_TokraClimateControlCrystal</defName>
-        <label>Climate crystal</label>
+        <label>climate crystal</label>
         <description>A Tok'ra-grown crystal lattice used to regulate underground habitats. It does not generate heat or cold so much as it *convinces* the air to behave—drawing warmth from crowded bodies, shedding it into stone, and reversing the flow just as easily.\n\nDespite its clean geometry, the lattice is alive. Neglect it and the resonance decays into inert glass. Feed it raw naquadah to maintain growth, then set a target temperature and let the crystal do what Tok'ra technology does best: quietly make the impossible look mundane.</description>
 
         <thingClass>Rimgate.Building_TokraClimateCrystal</thingClass>

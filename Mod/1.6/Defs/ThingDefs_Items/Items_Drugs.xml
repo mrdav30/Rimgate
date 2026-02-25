@@ -6,7 +6,7 @@
     <ThingDef ParentName="MechSerumBase">
         <defName>Rimgate_Tretonin</defName>
         <label>Tretonin</label>
-        <description>feeling sick, dying of alien withdrawals, or just done with having an immune system?\nTry Tretonin! It’s a miracle cure—if you don’t mind needing it forever.\nSide effects may include dependency and an unshakable desperation.</description>
+        <description>Feeling sick, dying of alien withdrawals, or just done with having an immune system?\nTry Tretonin! It’s a miracle cure—if you don’t mind needing it forever.\nSide effects may include dependency and an unshakable desperation.</description>
         <graphicData>
             <texPath>Things/Item/Resource/RGTretonin</texPath>
             <graphicClass>Graphic_Single</graphicClass>

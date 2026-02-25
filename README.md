@@ -22,17 +22,12 @@ Players can discover, study, control, and weaponize this technology while naviga
 
 Detailed compatibility notes are available on the Workshop page.
 
-## 🧪 Development Notes ##
+## 🧪 Developer Resources ##
 
-This project integrates:
+For build workflows, asset pipeline rules, testing checklists, and release packaging details:
 
-- Custom ThingDefs, ResearchDefs, and QuestDefs
-- Custom CompProperties and ModExtensions
-- Harmony patches where required
-- Modular faction definitions
-- Custom graphics and VFX
-
-The goal is long-term maintainability and expandability with a focus on performance.
+- [Developer and Contributor Notes](wiki/Developer-and-Contributor-Notes.md)
+- [AGENTS.md](AGENTS.md)
 
 ## 🤝 Contributing ##
 
@@ -45,7 +40,7 @@ If you'd like to contribute:
 3. Follow RimWorld XML and C# conventions
 4. Submit a pull request with a clear description of changes
 
-Please ensure:
+Before opening a PR:
 
 - New content follows established naming conventions (Rimgate_*)
 - Balance aligns with RimWorld progression
@@ -54,27 +49,7 @@ Please ensure:
 
 For larger contributions, open an issue first to discuss design direction.
 
-## 🚀 Release Process ##
-
-1. Update XML and/or C#.
-2. Update textures or audio in `AssetsRaw/`.
-3. Run the full release build:
-
-    ```powershell
-    .\build-release.ps1
-   ```
-
-4. Verify output files:
-   - `Mod/1.6/Assemblies/Rimgate.dll`
-   - `Mod/1.6/AssetBundles/rimgate_core`
-5. Upload the `Mod/` folder to Steam Workshop.
-
-Do not upload:
-
-- UnityAssetBuilder/
-- Source/
-- AssetsRaw/
-- Raw textures or audio
+Release/build instructions are maintained in [Developer and Contributor Notes](wiki/Developer-and-Contributor-Notes.md).
 
 ## 💬 Community & Support
 

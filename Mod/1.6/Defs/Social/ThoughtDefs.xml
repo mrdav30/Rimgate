@@ -30,7 +30,7 @@
             </li>
             <li>
                 <label>sarcophagus withdrawal</label>
-                <description>I'm feeling delusional and forgetful...I bet a Sarcophagus would fix this.</description>
+                <description>I'm feeling delusional and forgetful...I bet a sarcophagus would fix this.</description>
                 <baseMoodEffect>-22</baseMoodEffect>
             </li>
         </stages>

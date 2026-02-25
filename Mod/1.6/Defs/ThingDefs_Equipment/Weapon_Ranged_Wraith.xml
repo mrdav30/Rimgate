@@ -7,7 +7,7 @@
 
 	<ThingDef ParentName="BaseMakeableGrenade">
 		<defName>Rimgate_WraithGrenade</defName>
-		<label>Wraith grenade</label>
+		<label>bio-grenade</label>
 		<description>a biomechanical grenade used by Wraith warriors to flush prey out of cover—or into dinner.\nExplodes with a wet thump and questionable ethics.</description>
 		<tickerType>Normal</tickerType>
 		<costList>
@@ -29,7 +29,7 @@
 		</statBases>
 		<verbs>
 			<li>
-				<label>Throw Wraith grenade</label>
+				<label>Throw bio-grenade</label>
 				<verbClass>Verb_LaunchProjectile</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<range>15.9</range>
@@ -81,7 +81,7 @@
 	<ThingDef>
 		<defName>Rimgate_WraithGrenadeProjectile</defName>
 		<thingClass>Projectile_Explosive</thingClass>
-		<label>Wraith grenade</label>
+		<label>bio-grenade</label>
 		<category>Projectile</category>
 		<altitudeLayer>Projectile</altitudeLayer>
 		<tickerType>Normal</tickerType>
@@ -139,7 +139,7 @@
 
 	<ThingDef Name="Rimgate_WraithSpear" ParentName="Rimgate_WraithGunBase">
 		<defName>Rimgate_WraithSpear</defName>
-		<label>Wraith spear gun</label>
+		<label>Wraith spear</label>
 		<description>this grotesque biotech weapon launches stunning projectiles, ideal for disabling humans before mealtime.\nEfficient, cruel, and mildly drippy.</description>
 		<graphicData>
 			<texPath>Things/Item/Weapon/Ranged/RGWraithSpearGun</texPath>
@@ -260,7 +260,7 @@
 
 	<ThingDef ParentName="BaseBullet">
 		<defName>Rimgate_WraithSpearGunProjectile</defName>
-		<label>Wraith spear gun shot</label>
+		<label>Wraith spear shot</label>
 		<description>bio-plasma</description>
 		<thingClass>Rimgate.Projectile_AdditionalDamage</thingClass>
 		<graphicData>
@@ -287,7 +287,7 @@
 
 	<ThingDef Name="Rimgate_WraithHandBlaster" ParentName="Rimgate_WraithGunBase">
 		<defName>Rimgate_WraithHandBlaster</defName>
-		<label>Wraith hand blaster</label>
+		<label>Wraith handblaster</label>
 		<description>A grotesque biotech sidearm used by Wraith commanders and scouts. It emits searing plasma pulses that burn flesh, ignite tempers, and occasionally the shrubbery. Compact, deadly, and annoyingly moist.</description>
 		<graphicData>
 			<texPath>Things/Item/Weapon/Ranged/RGWraithHandBlaster</texPath>
@@ -393,7 +393,7 @@
 		</descriptionHyperlinks>
 	</ThingDef>
 
-	<!-- ====== Wraith hand blaster Projectile ====== -->
+	<!-- ====== Wraith handblaster Projectile ====== -->
 
 	<ThingDef ParentName="BaseBullet">
 		<defName>Rimgate_WraithHandBlasterProjectile</defName>

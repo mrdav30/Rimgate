@@ -5,7 +5,7 @@
 
     <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
         <defName>Rimgate_JaffaKnife</defName>
-        <label>Jaffa knife</label>
+        <label>ceremonial knife</label>
         <techLevel>Medieval</techLevel>
         <description>A traditional Jaffa blade, as stylish as it is stabby. Elegant curves meet brutal function—perfect for close-quarters combat, ritual duels, or just reminding someone who the real Prime is.\nForged with pride, polished with ego.</description>
         <graphicData>
@@ -78,7 +78,7 @@
 
     <ThingDef ParentName="BaseWeapon">
         <defName>Rimgate_RodOfAnguish</defName>
-        <label>rod of anguish</label>
+        <label>Rod of Anguish</label>
         <description>A cruel Goa’uld control rod that channels a focused pain field on contact. It leaves little lasting injury—but wrings screams, buckles knees, and short-outs crude circuitry. Favored by Jaffa overseers who want obedience more than corpses.</description>
 
         <techLevel>Ultra</techLevel>
@@ -194,7 +194,7 @@
 
     <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
         <defName>Rimgate_WraithAssassinBlade</defName>
-        <label>Wraith assassin blade</label>
+        <label>assassin blade</label>
         <description>A sleek and deadly melee weapon used by Wraith assassins. Its razor-sharp edge is designed for swift, silent kills, making it ideal for covert operations and close-quarters combat. Additionally, the blade is infused with a potent poison derived from biomass that incapacitates targets quickly.</description>
 
         <techLevel>Ultra</techLevel>

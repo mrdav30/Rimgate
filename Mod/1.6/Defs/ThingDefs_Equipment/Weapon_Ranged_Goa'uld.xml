@@ -5,7 +5,7 @@
 
 	<ThingDef ParentName="BaseMakeableGrenade">
 		<defName>Rimgate_GoauldTokKal</defName>
-		<label>Goa'uld Tok'Kal</label>
+		<label>Tok'Kal</label>
 		<description>A Goa'uld-issued stun grenade used by Jaffa for crowd control, prisoner retrieval, or ruining your day.\nDoesn’t kill—just ensures you *wish* it had.</description>
 		<tickerType>Normal</tickerType>
 		<costList>
@@ -77,7 +77,7 @@
 
 	<ThingDef>
 		<defName>Rimgate_GoauldTokKalProjectile</defName>
-		<label>Goa'uld Tok'Kal</label>
+		<label>Tok'Kal</label>
 		<thingClass>Rimgate.Projectile_AdditionalDamage</thingClass>
 		<category>Projectile</category>
 		<altitudeLayer>Projectile</altitudeLayer>
@@ -385,7 +385,7 @@
 
 	<ThingDef Name="Rimgate_KullGun" ParentName="Rimgate_GoauldGunBase">
 		<defName>Rimgate_KullGun</defName>
-		<label>Plasma repeater</label>
+		<label>plasma repeater</label>
 		<description>A devastating wrist-mounted weapon used by Kull warriors. Fires rapid energy bursts designed to overwhelm enemies and confidence alike.</description>
 		<techLevel>Spacer</techLevel>
 		<recipeMaker>

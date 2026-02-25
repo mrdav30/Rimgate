@@ -161,8 +161,8 @@
 	<!-- Symbiote Recipe -->
 	<RecipeDef>
 		<defName>Rimgate_MakeTretonin_Symbiote</defName>
-		<label>refine Tretonin (Goa'uld symbiote)</label>
-		<description>make a bulk batch of Tretonin by refining a mature Goa'uld symbiote.</description>
+		<label>refine Tretonin (mature symbiote)</label>
+		<description>make a bulk batch of Tretonin by refining a mature symbiote.</description>
 		<jobString>making bulk Tretonin.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_CookMeal</soundWorking>

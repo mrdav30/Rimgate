@@ -93,7 +93,7 @@
 
     <ThingDef Name="Rimgate_TacticalVestBase" ParentName="ArmorMachineableBase">
         <defName>Rimgate_TauriTacticalVest</defName>
-        <label>Utility tactical vest</label>
+        <label>utility tactical vest</label>
         <description>SGC-issued tactical vest for hauling gear and stopping bullets (well, most of them).\nPairs nicely with a steady hand, quick reflexes, and mild paranoia.</description>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
@@ -181,7 +181,7 @@
 
     <ThingDef ParentName="Rimgate_TacticalVestBase">
         <defName>Rimgate_TauriSpecOpsVest</defName>
-        <label>Spec ops vest</label>
+        <label>spec ops vest</label>
         <description>Advanced tactical vest used by Tau'ri special operations forces interlaced with Naquadah fibers. Features modular design for attaching additional gear and enhanced ballistic protection.\nFavored by SG teams for its balance of mobility and defense in high-risk missions.</description>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmorsTierTwo</researchPrerequisite>
@@ -276,7 +276,7 @@
 
     <ThingDef ParentName="Rimgate_PlateInsertBase">
         <defName>Rimgate_SteelPlateInsert</defName>
-        <label>Steel plate insert</label>
+        <label>steel plate insert</label>
         <description>Steel plate insert for Tau'ri tactical vests. Turns your ribcage into a glorified bunker wall.\nHeavy, loud, but delightfully ricochet-y.</description>
         <recipeMaker>
             <skillRequirements>
@@ -309,7 +309,7 @@
 
     <ThingDef ParentName="Rimgate_PlateInsertBase">
         <defName>Rimgate_CompositePlateInsert</defName>
-        <label>Composite plate insert</label>
+        <label>composite plate insert</label>
         <description>Composite plate insert for Tau'ri tactical vests—because steel's too mainstream. Offers solid protection against heat and blunt trauma.\nApproved by SG-1’s fashion-forward scientists and tactical nerds alike.</description>
         <techLevel>Industrial</techLevel>
         <recipeMaker>
@@ -348,7 +348,7 @@
 
     <ThingDef ParentName="Rimgate_PlateInsertBase">
         <defName>Rimgate_NaquadahPlateInsert</defName>
-        <label>Naquadah plate insert</label>
+        <label>naquadah plate insert</label>
         <description>Advanced naquadah plate insert for the Tau'ri SpecOps tactical vest. The naquadah core provides exceptional protection against energy weapons, ballistic impacts, and psionic attacks.\nA favorite among SG teams who prefer their armor to double as a portable bunker.</description>
         <descriptionHyperlinks Inherit="false">
             <ThingDef>Rimgate_TauriSpecOpsVest</ThingDef>
@@ -412,7 +412,7 @@
 
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TauriTacticalGloves</defName>
-        <label>Tactical gloves</label>
+        <label>tactical gloves</label>
         <description>Durable tactical gloves designed for combat and utility tasks. Provide decent protection while maintaining dexterity for handling weapons and equipment.\nStandard issue for Tau'ri special operations forces.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Handwear/RGTauriTacticalGloves</texPath>
@@ -498,7 +498,7 @@
 
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TauriTacticalBoots</defName>
-        <label>Tactical boots</label>
+        <label>tactical boots</label>
         <description>Rugged steel-toed tactical boots designed for offworld operations. Provide excellent protection and support for extended missions in diverse environments.\nFavored by Tau'ri special operations forces for their durability and comfort.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Footwear/RGTauriTacticalBoots</texPath>
@@ -583,7 +583,7 @@
 
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TauriTacticalElbowPads</defName>
-        <label>Tactical elbow pads</label>
+        <label>tactical elbow pads</label>
         <description>Durable tactical elbow pads designed for combat and utility tasks. Provide decent protection while maintaining flexibility for handling weapons and equipment.\nStandard issue for Tau'ri special operations forces.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Armwear/RGTauriTacticalElbowPads</texPath>
@@ -668,7 +668,7 @@
 
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TauriTacticalKneePads</defName>
-        <label>Tactical knee pads</label>
+        <label>tactical knee pads</label>
         <description>Durable tactical knee pads designed for combat and utility tasks. Provide decent protection while maintaining flexibility for handling weapons and equipment.\nStandard issue for Tau'ri special operations forces.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Legwear/RGTauriTacticalKneePads</texPath>
@@ -755,7 +755,7 @@
 
     <ThingDef Name="Rimgate_TauriBallisticHelmetBase" ParentName="ArmorHelmetMakeableBase">
         <defName>Rimgate_TauriBallisticHelmet</defName>
-        <label>Ballistic helmet</label>
+        <label>ballistic helmet</label>
         <description>Tried-and-true combat brain bucket. Offers decent protection from energy blasts and bad decisions. Not great for blunt trauma—so maybe don't headbutt Jaffa.\nWorn in black to blend into... alien deserts?</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Headgear/Ballistic/RGTauriBallisticHelmetIcon</texPath>
@@ -816,7 +816,7 @@
 
     <ThingDef ParentName="Rimgate_TauriBallisticHelmetBase">
         <defName>Rimgate_TauriTacticalGunlink</defName>
-        <label>Tactical gunlink</label>
+        <label>tactical gunlink</label>
         <description>Synthesize a ballistic helmet and gunlink into an advanced ballistic helmet with integrated tactical gunlink system. Enhances shooting accuracy while providing solid head protection.\nIdeal for snipers, marksmen, and anyone who enjoys looking cool while taking precise shots.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Headgear/TacticalGunlink/RGTacticalGunlinkIcon</texPath>
@@ -856,7 +856,7 @@
 
     <ThingDef ParentName="Rimgate_TauriBallisticHelmetBase">
         <defName>Rimgate_TauriBallisticGasmask</defName>
-        <label>Ballistic gasmask</label>
+        <label>ballistic gasmask</label>
         <description>Synthesize a ballistic helmet and gasmask into an advanced ballistic helmet with integrated gasmask system. Provides solid head protection while ensuring safety in toxic environments.\nPerfect for hazardous offworld missions where both ballistic protection and respiratory safety are paramount.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Headgear/BallisticGasmask/RGTauriBallisticGasmaskIcon</texPath>
@@ -909,7 +909,7 @@
 
     <ThingDef ParentName="Rimgate_TauriBallisticHelmetBase">
         <defName>Rimgate_TacticalVacsuitHelm</defName>
-        <label>Tactical Vacsuit Helm</label>
+        <label>tactical vacsuit helm</label>
         <description>Synthesize a ballistic helmet with vacsuit helm and gunlink into an advanced tactical vacsuit helm with integrated gunlink system. Provides solid head protection, respiratory safety, and enhanced shooting accuracy in vacuum environments.\nIdeal for offworld missions requiring both ballistic protection and precision shooting.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Headgear/TacticalVacsuitHelm/RGTacticalVacsuitHelmIcon</texPath>
@@ -1005,7 +1005,7 @@
 
     <ThingDef ParentName="CowboyHat">
         <defName>Rimgate_TauriGreenBoonieHat</defName>
-        <label>Boonie hat</label>
+        <label>boonie hat</label>
         <description>Essential gear for jungle planets, deserts, and anywhere the Dwarfgate drops you without sunscreen. Keeps the sun out, the sass in.\nWarning: May cause wearer to spontaneously mutter 'Indeed.'</description>
         <recipeMaker>
             <researchPrerequisite>Rimgate_TauriArmors</researchPrerequisite>
@@ -1039,7 +1039,7 @@
 
     <ThingDef ParentName="ArmorMachineableBase">
         <defName>Rimgate_TauriTacticalBackpack</defName>
-        <label>Tactical backpack</label>
+        <label>tactical backpack</label>
         <description>Standard Tau'ri tactical backpack for offworld excursions. Perfect for hauling rations, ammo, and that ancient alien device you definitely shouldn’t touch.\nRequires vest attachment because SGC frowns on space chiropractors.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_TauriTacticalVest</ThingDef>
@@ -1243,7 +1243,7 @@
     <!-- Construction Kit -->
     <ThingDef ParentName="Rimgate_VestAttachmentBase">
         <defName>Rimgate_TacticalConstructionKit</defName>
-        <label>Construction kit</label>
+        <label>construction kit</label>
         <description>Essential construction kit attachment for Tau'ri tactical vests. Equipped with tools and materials for on-the-fly repairs and fortifications.\nPerfect for engineers and builders venturing into hostile environments.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Utility/Attachment/RGConstructionBagAttachment</texPath>
@@ -1268,7 +1268,7 @@
     <!-- Fishing Tackle Kit -->
     <ThingDef ParentName="Rimgate_VestAttachmentBase">
         <defName>Rimgate_TacticalFishingTackle</defName>
-        <label>Fishing tackle kit</label>
+        <label>fishing tackle kit</label>
         <description>Specialized fishing tackle kit attachment for Tau'ri tactical vests. Equipped with fishing gear and bait for offworld angling adventures.\nIdeal for colonists who enjoy fishing during downtime on hostile planets.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Utility/Attachment/RGFishingTackleAttachment</texPath>
@@ -1289,9 +1289,9 @@
 
     <!-- Electronic Kit -->
     <ThingDef ParentName="Rimgate_VestAttachmentBase">
-        <defName>Rimgate_TacticalElectronicKit</defName>
-        <label>Electronic kit</label>
-        <description>Advanced electronic kit attachment for Tau'ri tactical vests. Equipped with tools and components for repairing and hacking electronic devices.\nPerfect for tech-savvy colonists venturing into alien worlds filled with mysterious technology.</description>
+        <defName>Rimgate_TacticalElectronicsKit</defName>
+        <label>electronics kit</label>
+        <description>Advanced electronics kit attachment for Tau'ri tactical vests. Equipped with tools and components for repairing and hacking electronic devices.\nPerfect for tech-savvy colonists venturing into alien worlds filled with mysterious technology.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Utility/Attachment/RGElectronicKitAttachment</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -1315,7 +1315,7 @@
     <!-- Gardening Kit -->
     <ThingDef ParentName="Rimgate_VestAttachmentBase">
         <defName>Rimgate_TacticalGardeningKit</defName>
-        <label>Gardening kit</label>
+        <label>gardening kit</label>
         <description>Essential gardening kit attachment for Tau'ri tactical vests. Equipped with tools and supplies for tending to plants and crops in offworld colonies.\nIdeal for colonists with a green thumb looking to cultivate life in hostile environments.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Utility/Attachment/RGGardeningKitAttachment</texPath>
@@ -1339,7 +1339,7 @@
     <!-- Medic Bag -->
     <ThingDef ParentName="Rimgate_AllVestAttachmentBase">
         <defName>Rimgate_TacticalMedicBag</defName>
-        <label>Medic bag</label>
+        <label>medic bag</label>
         <description>Standard Tau'ri medic bag attachment for tactical vests. Equipped with essential medical supplies for field treatment of injuries.\nA must-have for any offworld mission where getting shot at is a possibility.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Utility/Attachment/RGMedicBagAttachment</texPath>
@@ -1367,7 +1367,7 @@
     <!-- Ammo Pouch -->
     <ThingDef ParentName="Rimgate_AllVestAttachmentBase">
         <defName>Rimgate_TacticalAmmoPouch</defName>
-        <label>Ammo pouch</label>
+        <label>ammo pouch</label>
         <description>Essential ammo pouch attachment for Tau'ri tactical vests. Designed to hold extra magazines and ammunition for extended firefights.\nA favorite among soldiers and mercenaries operating in hostile offworld environments.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Utility/Attachment/RGAmmoPouchAttachment</texPath>
@@ -1394,7 +1394,7 @@
     <!-- Melee Pouch -->
     <ThingDef ParentName="Rimgate_AllVestAttachmentBase">
         <defName>Rimgate_TacticalMeleePouch</defName>
-        <label>Melee pouch</label>
+        <label>melee pouch</label>
         <description>Specialized melee pouch attachment for Tau'ri tactical vests. Designed to hold extra melee weapons and tools for close-quarters combat.\nPerfect for colonists who prefer to get up close and personal with their enemies.</description>
         <graphicData>
             <texPath>Things/Item/Apparel/Utility/Attachment/RGMeleePouchAttachment</texPath>

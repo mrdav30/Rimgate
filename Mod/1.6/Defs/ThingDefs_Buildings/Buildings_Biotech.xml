@@ -6,7 +6,7 @@
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_WraithCloningPod</defName>
-        <label>Cloning pod</label>
+        <label>cloning pod</label>
         <description>A tall, grotesque biotank filled with fluorescent goo and questionable ethics. The Wraith cloning pod allows rapid gestation of bioengineered pawns. Just add biomass and a touch of hubris.\n\nRequires a skilled Doctor's time and a lot of power to operate.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_Biomass</ThingDef>

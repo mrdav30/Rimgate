@@ -61,7 +61,7 @@
 	<!-- Prime armor-->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldArmorTierTwo</defName>
-		<label>Goa'uld Guard armor</label>
+		<label>Goa'uld guard armor</label>
 		<description>Unlock specialized armor worn by elite Jaffa guards and First Primes. Offers increased protection and 200% more self-importance.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
@@ -190,7 +190,7 @@
 	<!-- staff cannon -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTurretsTierOne</defName>
-		<label>Staff Cannon</label>
+		<label>staff cannon</label>
 		<description>Scale up staff-weapon physics into a manned emplacement. Unlocks the Goa’uld staff cannon—because sometimes diplomacy needs a sun-hot punctuation mark.</description>
 		<baseCost>2500</baseCost>
 		<prerequisites>
@@ -227,7 +227,7 @@
 	<!-- Shielded staff cannon -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldTurretsTierThree</defName>
-		<label>Shielded defense</label>
+		<label>shielded defense</label>
 		<description>Integrate ancient shielding concepts into automated staff cannon turrets. The resulting emplacements shrug off small arms fire and shrug on a smug sense of superiority. Unlocks construction of shielded automated staff cannon turrets.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>5500</baseCost>
@@ -250,7 +250,7 @@
 	<!-- Hover skid -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_HoverSkid</defName>
-		<label>Hover skid</label>
+		<label>hover skid</label>
 		<description>The Goa'uld have been working with Naquadah for centuries and have developed advanced focusing techniques. If we could "borrow" their knowledge, our engineers could use it to design a cargo skid with Naquadah focusing rails that won't collapse under load.</description>
 		<baseCost>1500</baseCost>
 		<prerequisites>
@@ -322,7 +322,7 @@
 	<!-- Sarcophagus -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_GoauldSarcophagus</defName>
-		<label>Sarcophagus</label>
+		<label>sarcophagus</label>
 		<description>Gain access to the Goa’uld sarcophagus: a relic that knits flesh, purges disease, and drags the dying back across the line.\n\nIt also erodes judgment, inflates ego, and whispers that maybe you deserve to live forever.\n\nMiracle on the outside, rot on the inside—just like the Goa’uld who used it.</description>
 		<baseCost>3500</baseCost>
 		<techLevel>Ultra</techLevel>
@@ -418,7 +418,7 @@
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_SarcophagusOptimization</defName>
 		<label>sarcophagus calibration</label>
-		<description>If we could gather the centuries of knowledge the Goa'uld have accumulated on Sarcophagus technology, and combine it with a deep understanding of ancient power systems, we may be able to optimize the sarcophagus' pulse envelope for maximum efficiency.</description>
+		<description>If we could gather the centuries of knowledge the Goa'uld have accumulated on sarcophagus technology, and combine it with a deep understanding of ancient power systems, we may be able to optimize the sarcophagus' pulse envelope for maximum efficiency.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>9000</baseCost>
 
@@ -478,7 +478,7 @@
 	<!-- Symbiote Study -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_SymbioteStudy</defName>
-		<label>Symbiote basics</label>
+		<label>symbiote basics</label>
 		<description>Delve deeper into the biology of Goa'uld symbiotes to decode how they bond, heal, and dominate their hosts. Learn how to “safely” extract one—or install it with only moderate screaming. The line between cure and conquest has never been thinner.</description>
 		<baseCost>5000</baseCost>
 
@@ -523,7 +523,7 @@
 	<!-- canopic jars -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_CanopicJars</defName>
-		<label>Canopic jars</label>
+		<label>canopic jars</label>
 		<description>Unlock the secrets of Goa'uld canopic jars: bio-containers that preserve and stabilize symbiote larvae. These jars will allow us to safely store and study symbiotes—or maybe even use them for more questionable purposes.</description>
 		<baseCost>5500</baseCost>
 
@@ -588,7 +588,7 @@
 	<!-- Cortical dampener hacking -->
 	<ResearchProjectDef ParentName="Rimgate_GoauldResearchBase">
 		<defName>Rimgate_CorticalDampenerHacking</defName>
-		<label>Cortical dampener hacking</label>
+		<label>cortical dampener hacking</label>
 		<description>Reverse-engineer the cortical dampener's neural interface by cross-referencing Goa'uld field notes to gain control over its effects and unlock its hidden potential.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>5500</baseCost>

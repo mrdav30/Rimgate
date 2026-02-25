@@ -5,7 +5,7 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_NaquadriaFiredGenerator</defName>
-    <label>Naquadria generator</label>
+    <label>naquadria generator</label>
     <description>A compact Tau'ri power unit that burns refined naquadria like a nervous scientist burns coffee.\n\nPuts out absurd amounts of power for its size and only occasionally makes the lights flicker in a "the universe is screaming" kind of way. Colonists insist it is safe. Mostly.</description>
     <thingClass>Building</thingClass>
     <size>(1,2)</size>
@@ -94,7 +94,7 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
-    <label>Industrial Naquadria generator</label>
+    <label>industrial naquadria generator</label>
     <description>A sprawling Tau'ri industrial-grade naquadria reactor, usually reserved for deep-space facilities and "absolutely do not let this explode" complexes.\n\nOutputs enough power to light a small city, run a full DHD emulator, and still have juice left over to annoy the neighbors. The humming sound in the walls is definitely normal. Probably.</description>
     <graphicData>
       <texPath>Things/Building/Power/RGIndustrialNaquadriaFiredGenerator</texPath>
@@ -187,8 +187,8 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithGenerator</defName>
-    <label>Biomass fired generator</label>
-    <label>biomass generator</label>
+    <label>biomass fired generator</label>
+    <label>Biomass generator</label>
     <description>A living power plant of Wraith design, its chambers packed with seething, organic matter that slowly digests biomass into raw energy. Though grotesque, it is brutally efficient—turning anything that once lived into fuel. The soft glow and faint chitter of its innards remind you this is less a machine than a creature chained to a wall.</description>
     <thingClass>Building</thingClass>
     <size>(1,2)</size>

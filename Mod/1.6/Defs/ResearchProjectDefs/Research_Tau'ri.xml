@@ -34,7 +34,7 @@
     <!-- Manufacturing -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriManufacturing</defName>
-        <label>Tauri Manufacturing</label>
+        <label>Tau'ri manufacturing</label>
         <description>The Goa'uld and Wraith scavenge, repurpose, and falsely claim technology as their own. The Tau'ri? They build it themselves, with a healthy load of brackets, adapters, and shielding.
             \n\nBy standardizing fabrication fixtures—crystal mounts, subcore regulators, hardened power buses, and “do not touch” interlocks—your engineers can safely assemble Ancient-adjacent hardware using human industry. Nothing elegant. Nothing alive. Just reliable, serviceable machinery that won’t vaporize the operator if wired correctly.
             \n\nEstablishes a foundation for Tau'ri-pattern manufacturing and unlocks dedicated production equipment and construction materials.</description>
@@ -72,7 +72,7 @@
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TretoninSynthesis</defName>
         <label>Tretonin synthesis</label>
-        <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from Goa'uld symbiote research.\n\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\n\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
+        <description>Unlocks the secrets of Tretonin, a breakthrough serum reverse-engineered from mature symbiote research.\n\nProvides total immunity to disease—at the cost of permanent biochemical dependency.\n\nTau'ri scientists call it a miracle. Symbiotes call it unemployment.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
             <li>Rimgate_TauriMedicalProcedures</li>
@@ -103,7 +103,7 @@
     <!-- Tretonin Synthesis Tier Two -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TretoninSynthesisTierTwo</defName>
-        <label>Synthesis advancements</label>
+        <label>synthesis advancements</label>
         <description>Using the Ancient's extensive notes on biochemistry along with Tau'ri field notes, it should be possible to optimize and refine the Tretonin synthesis protocols to remove the biochemical dependency that requires a symbiote for processing the serum.</description>
         <techLevel>Ultra</techLevel>
         <baseCost>6500</baseCost>
@@ -155,7 +155,7 @@
     <!-- Standard armor -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TauriArmors</defName>
-        <label>Tau'ri Uniforms</label>
+        <label>Tau'ri uniforms</label>
         <description>Standard-issue SGC uniforms and armor rated for both firefights and diplomatic blunders. Includes extra pockets for snacks, Zat holsters, and moral ambiguity.</description>
         <baseCost>2500</baseCost>
         <researchViewX>2</researchViewX>
@@ -169,7 +169,7 @@
     <!-- SpecOps armor -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TauriArmorsTierTwo</defName>
-        <label>Tau'ri Advanced Armor</label>
+        <label>Tau'ri advanced armor</label>
         <description>The Tau'ri Special Forces equipment production is a tight-guarded operation. If we could uncover these secrets, it would unlock advanced Tau'ri armor technologies and the true potential of the composition bench. Because sometimes, diplomacy fails and you need to survive the fallout.</description>
         <baseCost>2500</baseCost>
         <researchViewX>3</researchViewX>
@@ -310,7 +310,7 @@
     <!-- Naquadria Power -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_NaquadriaFiredGenerator</defName>
-        <label>Naquadria power</label>
+        <label>naquadria power</label>
         <description>Unlock a compact, high-yield power generator fueled by weaponized star dust. Enough energy to power a base—or vaporize one by accident.</description>
         <baseCost>3500</baseCost>
         <prerequisites>
@@ -325,7 +325,7 @@
     <!-- Industrial Naquadria Power -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_IndustrialNaquadriaFiredGenerator</defName>
-        <label>Naquadria engineering</label>
+        <label>naquadria engineering</label>
         <description>The Tau'ri have developed advanced naquadria power engineering techniques, but of course the details are classified. Tracing their notes reveals a heavily shielded, industrial-scale reactor capable of powering full complexes, deep-space platforms, and that one colonist who insists on running forty neural superchargers at once. If we could get just a glimpse at their blueprints, it would save us countless hours of dangerous trial and error with an unstable compound.</description>
         <baseCost>7000</baseCost>
         <prerequisites>
@@ -348,7 +348,7 @@
     <!-- Tracked Cart -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_TrackedCart</defName>
-        <label>Tracked cart</label>
+        <label>tracked cart</label>
         <description>Tau'ri field logistics in a crate: compact tracked haulers built for rough terrain, hard use, and too little time. Chemfuel-powered and stubbornly reliable, these carts move absurd loads without turning your colonists into orthopedic case studies.</description>
         <baseCost>2500</baseCost>
         <prerequisites>
@@ -364,7 +364,7 @@
     <!-- Refrigerated Carts -->
     <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
         <defName>Rimgate_RefrigeratedCarts</defName>
-        <label>Refrigerated lining</label>
+        <label>refrigerated lining</label>
         <description>With a solid understanding of HVAC systems, our engineers can develop blueprints to implement refrigerated lining into our carts. Keeps perishable goods fresh during long hauls through hot environments—because even in the far reaches of the galaxy, nobody wants spoiled food.</description>
         <baseCost>1500</baseCost>
         <prerequisites>

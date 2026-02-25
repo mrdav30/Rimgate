@@ -35,8 +35,8 @@
     <HediffDef>
         <defName>Rimgate_PrimtaInPouch</defName>
         <hediffClass>Rimgate.Hediff_PrimtaInPouch</hediffClass>
-        <label>prim'ta symbiote</label>
-        <labelNoun>a prim'ta symbiote</labelNoun>
+        <label>Prim'ta</label>
+        <labelNoun>a Prim'ta symbiote</labelNoun>
         <description>A larval Goa’uld symbiote residing in an abdominal pouch, sustaining and subtly reshaping the host. It bolsters healing and immunity while it grows, but its presence comes with an expiration date.\n\nWithout a pouch to shelter it—or a timely removal upon maturity—both host and symbiote are in lethal danger.</description>
         <descriptionShort>A larval Prim'ta symbiote.</descriptionShort>
         <descriptionHyperlinks>
@@ -71,7 +71,7 @@
     <HediffDef>
         <defName>Rimgate_SymbioteImplant</defName>
         <hediffClass>Rimgate.Hediff_SymbioteImplant</hediffClass>
-        <label>Goa'uld symbiote</label>
+        <label>mature symbiote</label>
         <description>A living parasite from the Goa’uld species that has been implanted into the host’s body, either by force or willingly. In return for unwavering loyalty and giving up your weekends, the symbiote grants enhanced healing, sharper senses, and a disturbing fondness for referring to yourself as a god.\n\nRemoval is possible—but the body it’s been sustaining will not take the separation well.\n\nNote: Healthy symbiotes will periodically heal chronic conditions afflicting their host.</description>
         <descriptionShort>A mature Goa'uld symbiote.</descriptionShort>
         <descriptionHyperlinks>

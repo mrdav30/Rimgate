@@ -6,8 +6,8 @@
 
     <ThingDef ParentName="BaseHumanMakeableGun">
         <defName>Rimgate_AntiReplicatorGun</defName>
-        <label>anti-replicator gun</label>
-        <description>Reverse-engineered disruptor emitter tuned to scramble mechanoid control lattices. Originally built for Replicators, but it crashes mechanoid block parties of any pattern.\n\nAgainst organics, it is just a very expensive noisemaker.</description>
+        <label>Anti-Replicator gun</label>
+        <description>The Anti-Replicator gun, or ARG, is a reverse-engineered disruptor emitter tuned to scramble mechanoid control lattices. Originally built for Replicators, but it crashes mechanoid block parties of any pattern.\n\nAgainst organics, it is just a very expensive noisemaker.</description>
         <graphicData>
             <texPath>Things/Item/Weapon/Ranged/RGAntiReplicatorGun</texPath>
             <graphicClass>Graphic_Single</graphicClass>

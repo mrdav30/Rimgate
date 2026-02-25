@@ -149,8 +149,8 @@
     </KCSG.SymbolDef>
 
     <KCSG.SymbolDef>
-        <defName>Rimgate_HorusGuard</defName>
-        <pawnKindDef>Rimgate_HorusGuard</pawnKindDef>
+        <defName>Rimgate_FalconGuard</defName>
+        <pawnKindDef>Rimgate_FalconGuard</pawnKindDef>
         <faction>Rimgate_GoauldBaal</faction>
         <spawnPartOfFaction>false</spawnPartOfFaction>
         <defendSpawnPoint>true</defendSpawnPoint>

@@ -14,7 +14,7 @@
 
   <PawnKindDef ParentName="Rimgate_TauriPlayerBase">
     <defName>Rimgate_TauriPlayer</defName>
-    <label>SGC member</label>
+    <label>soldier</label>
     <defaultFactionType>Rimgate_TauriPlayerColony</defaultFactionType>
     <chemicalAddictionChance>0.5</chemicalAddictionChance>
     <xenotypeSet>

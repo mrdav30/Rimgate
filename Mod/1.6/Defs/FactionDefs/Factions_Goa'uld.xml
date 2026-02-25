@@ -14,7 +14,7 @@
       <li MayRequire="Ludeon.RimWorld.Odyssey">Orbit</li>
     </arrivalLayerWhitelist>
     <autoFlee>false</autoFlee>
-    <leaderTitle>Under Lord</leaderTitle>
+    <leaderTitle>Underlord</leaderTitle>
     <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
     <techLevel>Ultra</techLevel>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
@@ -140,12 +140,12 @@
           <!-- Guards are rare in field raids -->
           <Rimgate_SerpentGuard>10</Rimgate_SerpentGuard>
           <Rimgate_JackalGuard>10</Rimgate_JackalGuard>
-          <Rimgate_HorusGuard>10</Rimgate_HorusGuard>
+          <Rimgate_FalconGuard>10</Rimgate_FalconGuard>
 
           <!-- Elites: extremely rare sprinkles -->
           <Rimgate_PrimeJackalGuard>0.6</Rimgate_PrimeJackalGuard>
           <Rimgate_PrimeSerpentGuard>0.6</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>0.6</Rimgate_PrimeHorusGuard>
+          <Rimgate_PrimeFalconGuard>0.6</Rimgate_PrimeFalconGuard>
           <Rimgate_KullWarrior>0.8</Rimgate_KullWarrior>
           <Rimgate_GoauldLeader>0.15</Rimgate_GoauldLeader>
         </options>
@@ -165,11 +165,11 @@
 
           <Rimgate_SerpentGuard>14</Rimgate_SerpentGuard>
           <Rimgate_JackalGuard>14</Rimgate_JackalGuard>
-          <Rimgate_HorusGuard>14</Rimgate_HorusGuard>
+          <Rimgate_FalconGuard>14</Rimgate_FalconGuard>
 
           <Rimgate_PrimeJackalGuard>0.7</Rimgate_PrimeJackalGuard>
           <Rimgate_PrimeSerpentGuard>0.7</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>0.7</Rimgate_PrimeHorusGuard>
+          <Rimgate_PrimeFalconGuard>0.7</Rimgate_PrimeFalconGuard>
           <Rimgate_KullWarrior>0.5</Rimgate_KullWarrior>
           <Rimgate_GoauldLeader>0.1</Rimgate_GoauldLeader>
         </options>
@@ -185,11 +185,11 @@
           <!-- Guards take the lead -->
           <Rimgate_SerpentGuard>14</Rimgate_SerpentGuard>
           <Rimgate_JackalGuard>14</Rimgate_JackalGuard>
-          <Rimgate_HorusGuard>14</Rimgate_HorusGuard>
+          <Rimgate_FalconGuard>14</Rimgate_FalconGuard>
 
           <Rimgate_PrimeJackalGuard>0.7</Rimgate_PrimeJackalGuard>
           <Rimgate_PrimeSerpentGuard>0.7</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>0.7</Rimgate_PrimeHorusGuard>
+          <Rimgate_PrimeFalconGuard>0.7</Rimgate_PrimeFalconGuard>
 
           <Rimgate_KullWarrior>0.7</Rimgate_KullWarrior>
         </options>
@@ -219,7 +219,7 @@
         <guards>
           <Rimgate_SerpentGuard>3</Rimgate_SerpentGuard>
           <Rimgate_JackalGuard>3</Rimgate_JackalGuard>
-          <Rimgate_HorusGuard>3</Rimgate_HorusGuard>
+          <Rimgate_FalconGuard>3</Rimgate_FalconGuard>
         </guards>
       </li>
       <li>
@@ -232,11 +232,11 @@
           <Rimgate_GoauldRangedRa>10</Rimgate_GoauldRangedRa>
           <Rimgate_SerpentGuard>15</Rimgate_SerpentGuard>
           <Rimgate_JackalGuard>15</Rimgate_JackalGuard>
-          <Rimgate_HorusGuard>15</Rimgate_HorusGuard>
+          <Rimgate_FalconGuard>15</Rimgate_FalconGuard>
           <Rimgate_KullWarrior>5</Rimgate_KullWarrior>
           <Rimgate_PrimeJackalGuard>5</Rimgate_PrimeJackalGuard>
           <Rimgate_PrimeSerpentGuard>5</Rimgate_PrimeSerpentGuard>
-          <Rimgate_PrimeHorusGuard>5</Rimgate_PrimeHorusGuard>
+          <Rimgate_PrimeFalconGuard>5</Rimgate_PrimeFalconGuard>
           <Rimgate_GoauldLeader>0.1</Rimgate_GoauldLeader>
         </options>
       </li>

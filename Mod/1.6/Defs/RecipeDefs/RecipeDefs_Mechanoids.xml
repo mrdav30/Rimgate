@@ -382,8 +382,8 @@
     <!-- Gestation -->
     <RecipeDef ParentName="BaseMechanoidRecipe">
         <defName>Rimgate_GestateTrackingDrone</defName>
-        <label>gestate Tracking Drone</label>
-        <description>Gestate a Tracking Drone.</description>
+        <label>gestate tracking drone</label>
+        <description>Gestate a tracking drone.</description>
         <descriptionHyperlinks>
             <ThingDef>Rimgate_TrackingDrone</ThingDef>
         </descriptionHyperlinks>
@@ -464,10 +464,10 @@
 
     <RecipeDef ParentName="BaseMechanoidResurrectionRecipe">
         <defName>Rimgate_ResurrectTrackingDrone</defName>
-        <label>resurrect Tracking Drone</label>
-        <description>Resurrect a friendly Tracking Drone. So long as its body is not completely destroyed, it can be resurrected.</description>
+        <label>resurrect tracking drone</label>
+        <description>Resurrect a friendly tracking drone. So long as its body is not completely destroyed, it can be resurrected.</description>
         <gestationCycles>2</gestationCycles>
-        <jobString>Resurrecting Tracking Drone.</jobString>
+        <jobString>Resurrecting tracking drone.</jobString>
         <researchPrerequisite>Rimgate_TrackingDroneGestation</researchPrerequisite>
         <ingredients>
             <li>

@@ -75,7 +75,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldColonistBase">
     <defName>Rimgate_GoauldTrader</defName>
-    <label>Goa'uld trader</label>
+    <label>trader</label>
     <trader>true</trader>
     <isFighter>false</isFighter>
     <chemicalAddictionChance>0.1</chemicalAddictionChance>
@@ -332,7 +332,7 @@
 
   <PawnKindDef ParentName="Rimagate_GoauldBoss">
     <defName>Rimgate_GoauldLeader</defName>
-    <label>under lord</label>
+    <label>underlord</label>
     <factionLeader>true</factionLeader>
     <minGenerationAge>39</minGenerationAge>
     <maxGenerationAge>100</maxGenerationAge>
@@ -340,7 +340,7 @@
 
   <PawnKindDef ParentName="Rimagate_GoauldBoss">
     <defName>Rimgate_CrazedUnderLord</defName>
-    <label>forgotten under lord</label>
+    <label>forgotten underlord</label>
     <minGenerationAge>69</minGenerationAge>
     <maxGenerationAge>100</maxGenerationAge>
     <forcedAddictions>
@@ -462,7 +462,7 @@
 
   <PawnKindDef ParentName="Rimagate_GoaulJaffaBase">
     <defName>Rimgate_GoauldRangedAnubis</defName>
-    <label>Anubis Jaffa warrior</label>
+    <label>Jaffa warrior</label>
     <startingHediffs>
       <li>
         <def>Rimgate_JaffaForeheadSymbolImplantAnubis</def>
@@ -474,7 +474,7 @@
 
   <PawnKindDef ParentName="Rimagate_GoaulJaffaBase">
     <defName>Rimgate_GoauldRangedApophis</defName>
-    <label>Apophis Jaffa warrior</label>
+    <label>Jaffa warrior</label>
     <startingHediffs>
       <li>
         <def>Rimgate_JaffaForeheadSymbolImplantApophis</def>
@@ -486,7 +486,7 @@
 
   <PawnKindDef ParentName="Rimagate_GoaulJaffaBase">
     <defName>Rimgate_GoauldRangedRa</defName>
-    <label>Ra Jaffa warrior</label>
+    <label>Jaffa warrior</label>
     <startingHediffs>
       <li>
         <def>Rimgate_JaffaForeheadSymbolImplantRa</def>
@@ -550,7 +550,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
     <defName>Rimgate_SerpentGuard</defName>
-    <label>serpent guard</label>
+    <label>Aphophis guard</label>
     <apparelRequired>
       <li>Rimgate_SerpentHelmet</li>
     </apparelRequired>
@@ -562,10 +562,10 @@
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
-    <defName>Rimgate_HorusGuard</defName>
-    <label>falcon guard</label>
+    <defName>Rimgate_FalconGuard</defName>
+    <label>Ra guard</label>
     <apparelRequired>
-      <li>Rimgate_HorusHelmet</li>
+      <li>Rimgate_FalconHelmet</li>
     </apparelRequired>
     <startingHediffs>
       <li>
@@ -576,7 +576,7 @@
 
   <PawnKindDef ParentName="Rimgate_GoauldGuardBase">
     <defName>Rimgate_JackalGuard</defName>
-    <label>jackal Guard</label>
+    <label>Anubis guard</label>
     <apparelRequired>
       <li>Rimgate_JackalHelmet</li>
     </apparelRequired>
@@ -649,10 +649,10 @@
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimgate_PrimeBase">
-    <defName>Rimgate_PrimeHorusGuard</defName>
+    <defName>Rimgate_PrimeFalconGuard</defName>
     <label>First Prime</label>
     <apparelRequired>
-      <li>Rimgate_PrimeHorusHelmet</li>
+      <li>Rimgate_PrimeFalconHelmet</li>
     </apparelRequired>
     <startingHediffs>
       <li>

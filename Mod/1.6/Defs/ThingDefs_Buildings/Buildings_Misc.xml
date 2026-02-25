@@ -6,7 +6,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_TauriDialHomeDevice</defName>
 		<thingClass>Rimgate.Building_DHD</thingClass>
-		<label>Dial home device</label>
+		<label>dial home device</label>
 		<description>A field-grade Tau'ri replacement for the original alien DHD—built with enough spare parts, ingenuity, and juice to re-establish interstellar dialing.\nDoesn't spin, doesn’t glow, but it gets the job done. In addition to allowing colonists to dial out in half the time, it can close a gate iris remotely. Also, this one is bolted down way better than the last one.</description>
 		<rotatable>false</rotatable>
 		<size>(1,1)</size>
@@ -654,7 +654,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_AncientShieldEmitter</defName>
-		<label>Ancient Shield Emitter</label>
+		<label>ancient shield Emitter</label>
 		<description>An ancient device that projects a protective energy field around itself, capable of deflecting incoming projectiles and protecting nearby units.\n\nRequires an immense amount of power, and adequate cooling, to function. If stressed too hard, it will shut down and require a cooldown period before resuming operation.</description>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGAncientShieldEmitter</texPath>
@@ -900,7 +900,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_TauriResearchDesk</defName>
-		<label>Research desk</label>
+		<label>research desk</label>
 		<description>A Tau'ri research station with a humming terminal, intact data routing, and just enough alien UI to make your brightest colonist feel slightly inadequate.\n\nDramatically accelerates complex research when linked to a hi-tech bench — and certain folk have spread the word on how to bypass safety protocols, allowing colonists to pretend to "research" for hours while off the clock.</description>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGTauriDesk</texPath>
@@ -999,7 +999,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_TauriDraftingDesk</defName>
-		<label>Blueprint Table</label>
+		<label>blueprint Table</label>
 		<description>A Tau'ri drafting console layered with glowing schematics, naquadah lattice diagrams, and notes in three different classification levels. When linked to a hi-tech bench, it streamlines research planning so efficiently that your colonists start finishing projects before the paperwork catches up.</description>
 
 		<graphicData>
@@ -1115,7 +1115,7 @@
 
 	<ThingDef ParentName="Rimgate_TauriHospitalUpgradeBase">
 		<defName>Rimgate_TauriSurgeryLights</defName>
-		<label>Surgical lights</label>
+		<label>surgical lights</label>
 		<description>A set of adjustable surgical lamps that provide optimal lighting conditions for medical procedures. Must be placed next to a hospital bed.</description>
 		<graphicData>
 			<texPath>Things/Building/Misc/RGTauriSurgicalLamp</texPath>
@@ -1173,7 +1173,7 @@
 
 	<ThingDef ParentName="Rimgate_TauriHospitalUpgradeBase">
 		<defName>Rimgate_TauriWallMonitor</defName>
-		<label>Vital wall monitor</label>
+		<label>vital wall monitor</label>
 		<description>A wall-mounted medical monitor that continuously tracks a patient's vital signs, providing real-time data to attending medical staff. Must be placed next to a hospital bed.</description>
 		<altitudeLayer>BuildingOnTop</altitudeLayer>
 		<graphicData>
@@ -1330,7 +1330,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>Rimgate_RemoteGateControl</defName>
 
-		<label>Remote gate control</label>
+		<label>remote gate control</label>
 		<description>A wall-mounted control panel that allows remote operation of a nearby gates's iris mechanism. When linked to a gate, it enables authorized personnel to open or close the iris from a distance, enhancing security and convenience during gate operations.</description>
 
 		<graphicData>

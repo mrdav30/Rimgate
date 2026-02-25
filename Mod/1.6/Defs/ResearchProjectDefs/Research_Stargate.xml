@@ -10,7 +10,7 @@
 	<ResearchProjectDef>
 		<tab>Rimgate_ResearchTab</tab>
 		<defName>Rimgate_GlyphDeciphering</defName>
-		<label>Glyph deciphering</label>
+		<label>glyph deciphering</label>
 		<description>The symbols etched into Dwarfgates—and scribbled across ominous scrolls—aren’t just artistic flair. Decoding them may unlock a galaxy-spanning transit network. Or a death trap. Possibly both.</description>
 		<baseCost>2000</baseCost>
 		<techLevel>Medieval</techLevel>
@@ -35,7 +35,7 @@
 	<!-- Naquadah Refinement -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_NaquadahRefinement</defName>
-		<label>Refine Naquadah</label>
+		<label>refine naquadah</label>
 		<description>Learn to stabilize and refine raw Naquadah into Naquadria — a hyperreactive isotope capable of powering anything from handheld energy weapons to planetary-scale disasters.\n\nThe process is equal parts chemistry, theoretical physics, and prayer.\n\nOne misplaced decimal and you’ll discover a new crater where your lab used to be — but hey, progress has casualties.</description>
 		<baseCost>3500</baseCost>
 		<prerequisites>
@@ -70,7 +70,7 @@
 	<!-- Ancient Alloys -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientAlloyResearch</defName>
-		<label>Ancient alloys</label>
+		<label>ancient alloys</label>
 		<description>By combining Plasteel, Uranium, Naquadah, and Steel, our scientists have created an absurdly strong, absurdly unstable alloy.\nToo volatile for furniture, perfect for high-stakes wormhole shielding.</description>
 		<baseCost>4000</baseCost>
 		<researchViewX>1</researchViewX>
@@ -82,7 +82,7 @@
 
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_GateIrisResearch</defName>
-		<label>Irises</label>
+		<label>gate iris</label>
 		<description>By placing an ultra-thin barrier mere microns from a Dwarfgate's event horizon, we can prevent reintegration of inbound matter.\nIn simpler terms: unwanted guests go *splat*. Handy.</description>
 		<baseCost>6000</baseCost>
 		<prerequisites>
@@ -235,7 +235,7 @@
 	<!-- Humanoid Replicator gestation -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ReplicatorHumanoidGestation</defName>
-		<label>Humanoid Replicator gestation</label>
+		<label>humanoid Replicator gestation</label>
 		<description>By refining our gestation techniques and incorporating advanced neural scaffolding, we can now produce humanoid Replicator units.\n\nThese constructs exhibit enhanced adaptability and problem-solving capabilities, making them formidable both in combat and complex tasks.\n\nCaution is advised: their intelligence approaches that of sentient beings, raising ethical considerations alongside practical ones.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>8000</baseCost>
@@ -253,7 +253,7 @@
 
 		<generalRules>
 			<rulesStrings>
-				<li>subject->Humanoid Replicator gestation</li>
+				<li>subject->humanoid Replicator gestation</li>
 				<li>subject_adj->advanced</li>
 				<li>subject_adj->neural-enhanced</li>
 				<li>subject_adj->intelligent</li>
@@ -344,7 +344,7 @@
 	<!-- Ancient Structures -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientStructures</defName>
-		<label>Ancient Structures</label>
+		<label>ancient structures</label>
 		<description>If we could get our hands on the construction techniques of Ancient architecture, we could adapt their methods to build more durable and efficient structures. Legends tell of designs that incorporate advanced materials and energy distribution systems that enhance the resilience of our buildings against environmental hazards and attacks.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>8000</baseCost>
@@ -378,7 +378,7 @@
 	<!-- Tok'ra Technology -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_TokraTunnelCrystals</defName>
-		<label>Tok'ra Excavation</label>
+		<label>Tok'ra excavation</label>
 		<description>The Tok'ra don’t dig. They *negotiate* with geology by utilizing crystal programming to embe a resonance “instruction” into a living lattice so it can propagate through stone, shed material, and leave stable passage behind. With the right notes on these techniques, researchers can use the methods employed by the Tok'ra to "program" crystals to rapidly grow tunnels underground.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>8000</baseCost>
@@ -410,7 +410,7 @@
 	<!-- Tok'ra Climate Control -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_TokraClimateControl</defName>
-		<label>Tok'ra Climate Control</label>
+		<label>Tok'ra climate control</label>
 		<description>Tok'ra caverns aren’t heated or cooled in the usual sense. Instead, living crystal lattices regulate thermal flow, balancing rooms like a tuned instrument—drawing excess heat into the surrounding stone, or pulling it back when the cold bites.\n\nYour researchers believe the same resonance principles can be adapted for surface colonies, provided the crystal is kept healthy with periodic naquadah feeding. The end result is climate control with no moving parts, no wiring… and a device that behaves less like a machine and more like a very cooperative organism.</description>
 		<techLevel>Ultra</techLevel>
 		<baseCost>8000</baseCost>
@@ -473,7 +473,7 @@
 	<!-- Subspace Masking -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_SubspaceMasking</defName>
-		<label>Subspace masking</label>
+		<label>subspace masking</label>
 		<description>Reverse-engineer Ancient carrier-noise and Tau’ri signal hygiene to hide a ZPM’s telltale subspace bleed. Not true invisibility—just enough distortion to keep opportunists from triangulating your base every other day.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>8000</baseCost>
@@ -491,7 +491,7 @@
 	<!-- Subspace Coupling -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ParallelSubspaceCoupling</defName>
-		<label>Subspace coupling</label>
+		<label>subspace coupling</label>
 		<description>Exploit cross-brane phase offsets to alternate a ZPM’s vacuum tap between adjacent subspace pockets. This doesn’t “refill” a ZPM so much as rotate where it drinks from. The math is ugly; the hum is beautiful.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>10000</baseCost>
@@ -511,7 +511,7 @@
 	<!-- ZPM Housing -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_ZPMHousing</defName>
-		<label>ZPM Housing</label>
+		<label>ZPM housing</label>
 		<description>Reconstruct Ancient multi-module containment architecture to safely align the output of multiple ZPMs. The original schematics assume access to a city-sized power grid, a few dozen drones, and a civilization that didn’t routinely store dead rats and beer in their workbenches.\n\nWith enough reverse-engineering, your colony can fabricate a compact cradle capable of synchronizing multiple ZPMs without blowing a hole in the local spacetime topology.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>10000</baseCost>
@@ -536,7 +536,7 @@
 	<!-- Ancient Shield Technology -->
 	<ResearchProjectDef ParentName="Rimgate_ResearchBase">
 		<defName>Rimgate_AncientShieldEmitter</defName>
-		<label>Ancient Shield Technology</label>
+		<label>ancient shield technology</label>
 		<description>Ancient notes describe a way to interweave hyper-activated quantum fields to create a defensive barrier around your base. With the help of a ZPM housing, it's actually feasible to power such a device on a large enough scale to protect against incoming attacks and provide a safe haven for your colonists.</description>
 		<techLevel>Archotech</techLevel>
 		<baseCost>10000</baseCost>

@@ -83,7 +83,7 @@
 		<defName>Rimgate_SlaveDriver</defName>
 		<title>Slave driver</title>
 		<titleShort>Slave driver</titleShort>
-		<baseDesc>Armed with a cruel rod of anguish and crueler orders, [PAWN_nameDef] was tasked with keeping miners and laborers in line. Their life was measured in screams per hour, not hours per shift. They learned how to instill fear, not how to lift a pick.</baseDesc>
+		<baseDesc>Armed with a cruel Rod of Anguish and crueler orders, [PAWN_nameDef] was tasked with keeping miners and laborers in line. Their life was measured in screams per hour, not hours per shift. They learned how to instill fear, not how to lift a pick.</baseDesc>
 		<slot>Adulthood</slot>
 		<spawnCategories>
 			<li>Offworld</li>

@@ -5,7 +5,7 @@
 
     <ChemicalDef>
         <defName>Rimgate_SarcophagusChemical</defName>
-        <label>Sarcophagus</label>
+        <label>sarcophagus</label>
         <addictionHediff>Rimgate_SarcophagusAddiction</addictionHediff>
         <canBinge>false</canBinge>
         <generateAddictionGenes>false</generateAddictionGenes>
@@ -14,7 +14,7 @@
     <NeedDef ParentName="DrugAddictionNeedBase">
         <defName>Rimgate_SarcophagusChemicalNeed</defName>
         <needClass>Need_Chemical</needClass>
-        <label>Sarcophagus</label>
+        <label>sarcophagus</label>
         <description>this pawn’s physiology craves the regenerative effects of a Goa’uld sarcophagus.\nDeprivation results in rapid decline, violent instability, and a personality best described as border-line insane.</description>
         <listPriority>45</listPriority>
         <fallPerDay>0.333</fallPerDay>
@@ -25,7 +25,7 @@
     <HediffDef>
         <defName>Rimgate_SarcophagusHigh</defName>
         <hediffClass>Hediff_High</hediffClass>
-        <label>Sarcophagus high</label>
+        <label>sarcophagus high</label>
         <description>a euphoric rush brought on by exposure to a Goa'uld sarcophagus.\nYou feel unstoppable—until you don’t.\nSide effects may include glowing arrogance and a god complex.</description>
         <defaultLabelColor>(1,1,0.5)</defaultLabelColor>
         <scenarioCanAdd>false</scenarioCanAdd>
@@ -81,7 +81,7 @@
 
     <HediffDef ParentName="AddictionBase">
         <defName>Rimgate_SarcophagusAddiction</defName>
-        <label>Sarcophagus addiction</label>
+        <label>sarcophagus addiction</label>
         <description>once you've tasted the sarcophagus, reality feels... lacking.\nWithout regular exposure, users spiral into madness, organ failure, and dramatic shouting matches with invisible gods.</description>
         <hediffClass>Hediff_Addiction</hediffClass>
         <chemicalNeed>Rimgate_SarcophagusChemicalNeed</chemicalNeed>

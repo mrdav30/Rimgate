@@ -5,7 +5,7 @@
 
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_Biomass</defName>
-        <label>Biomass</label>
+        <label>biomass</label>
         <description>A dense slurry of rendered meat and powdered naquadah, processed into a reactive biofeedstock. Under heat, pressure, or enzyme catalysts, it becomes extremely malleable, allowing Wraith forges to shape it into living armor, structural biotech, and cloning substrates, or crack it down into high-energy fuel.\nWarm, wet, and unpleasantly valuable.</description>
         <graphicData>
             <texPath>Things/Item/Resource/RGBiomass</texPath>
@@ -27,7 +27,7 @@
 
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_IrisInstallKit</defName>
-        <label>Iris installation kit</label>
+        <label>iris installation kit</label>
         <description>A high-tech deployment kit for installing an iris over a Dwarfgate.\nTurns your wormhole into a one-way trip—great for defense, less great for diplomacy.</description>
         <thingClass>ThingWithComps</thingClass>
         <graphicData>
@@ -91,7 +91,7 @@
 
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_Naquadria</defName>
-        <label>Naquadria</label>
+        <label>naquadria</label>
         <description>A highly enriched, dangerously unstable derivative of Naquadah. Perfect for experiments that end in glorious explosions—or annihilating your base if you sneeze too hard.</description>
         <graphicData>
             <texPath>Things/Item/Resource/RGNaquadria</texPath>
@@ -171,8 +171,8 @@
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_Concrete</defName>
 
-        <label>concrete slurry</label>
-        <description>A mixture of cement and aggregate which can be easily poured into a hard, resilient stony material.\n\nNote: Concrete must be used quickly before it hardens and is no longer workable.\n\nNote 2: Near impossible to use in freezing temperatures (below 0°C).</description>
+        <label>concrete</label>
+        <description>A slurry of cement and aggregate which can be easily poured into a hard, resilient stony material.\n\nNote: Concrete must be used quickly before it hardens and is no longer workable.\n\nNote 2: Near impossible to use in freezing temperatures (below 0°C).</description>
         <graphicData>
             <texPath>Things/Item/Resource/RGConcrete</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -249,7 +249,7 @@
 
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_TokraTunnelCrystal</defName>
-        <label>Tunnel crystal</label>
+        <label>tunnel crystal</label>
         <description>A palm-sized Tok'ra crystal, pre-programmed to “grow” through rock. When activated, it floods the surrounding stone with a resonance pattern and the marked strata simply… lets go—splitting along invisible fault lines as if it were soft clay.\n\nUse after designating rock for mining. The crystal will clear a limited number of marked tiles in the targeted area.\n\nTok'ra crystals are delicate and temperamental. Unused, they slowly dissolve into dust as the lattice collapses.</description>
 
         <graphicData>

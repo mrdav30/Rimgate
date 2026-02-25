@@ -113,7 +113,7 @@
 
   <PawnKindDef ParentName="Rimgate_WraithBase">
     <defName>Rimgate_WraithTrader</defName>
-    <label>Wraith trader</label>
+    <label>trader</label>
     <trader>true</trader>
     <isFighter>false</isFighter>
     <chemicalAddictionChance>0.1</chemicalAddictionChance>
@@ -193,7 +193,7 @@
   <!-- Soldier -->
   <PawnKindDef Name="Rimgate_WraithSoldierBase" ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithSoldier</defName>
-    <label>Wraith soldier</label>
+    <label>soldier</label>
     <combatPower>100</combatPower>
     <itemQuality>Normal</itemQuality>
     <apparelTags>
@@ -268,7 +268,7 @@
   <!-- Assassin -->
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithAssassin</defName>
-    <label>Wraith assassin</label>
+    <label>assassin</label>
     <combatPower>170</combatPower>
     <apparelMoney>5000~8000</apparelMoney>
     <itemQuality>Good</itemQuality>
@@ -312,7 +312,7 @@
   <!-- Commander -->
   <PawnKindDef Name="Rimgate_WraithCommanderBase" ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithCommander</defName>
-    <label>Wraith commander</label>
+    <label>commander</label>
     <combatPower>150</combatPower>
     <backstoryFiltersOverride Inherit="False">
       <li>
@@ -416,7 +416,7 @@
   <!-- Queen -->
   <PawnKindDef ParentName="Rimgate_WraithMilBase">
     <defName>Rimgate_WraithQueen</defName>
-    <label>Wraith queen</label>
+    <label>queen</label>
     <factionLeader>true</factionLeader>
     <fixedGender>Female</fixedGender>
     <minGenerationAge>26</minGenerationAge>

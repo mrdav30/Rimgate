@@ -31,18 +31,18 @@
 	<RG_Sarcophagus_InspectorStatus_Idle>Idle</RG_Sarcophagus_InspectorStatus_Idle>
 
 	<RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Label>Power consumption (Diagnosis)</RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Label>
-	<RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Desc>The amount of power this Sarcophagus will draw from the power grid while operating in Diagnosis mode.</RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Desc>
+	<RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Desc>The amount of power this sarcophagus will draw from the power grid while operating in Diagnosis mode.</RG_Sarcophagus_Stat_PowerConsumptionDiagnosis_Desc>
 	<RG_Sarcophagus_Stat_PowerConsumptionHealing_Label>Power consumption (Treatment)</RG_Sarcophagus_Stat_PowerConsumptionHealing_Label>
-	<RG_Sarcophagus_Stat_PowerConsumptionHealing_Desc>The amount of power this Sarcophagus will draw from the power grid while operating in Treatment mode.</RG_Sarcophagus_Stat_PowerConsumptionHealing_Desc>
+	<RG_Sarcophagus_Stat_PowerConsumptionHealing_Desc>The amount of power this sarcophagus will draw from the power grid while operating in Treatment mode.</RG_Sarcophagus_Stat_PowerConsumptionHealing_Desc>
 	<RG_Sarcophagus_Stat_DiagnosisTime_Label>Diagnosis time</RG_Sarcophagus_Stat_DiagnosisTime_Label>
-	<RG_Sarcophagus_Stat_DiagnosisTime_Desc>How long it takes for this Sarcophagus to diagnose a patient.</RG_Sarcophagus_Stat_DiagnosisTime_Desc>
+	<RG_Sarcophagus_Stat_DiagnosisTime_Desc>How long it takes for this sarcophagus to diagnose a patient.</RG_Sarcophagus_Stat_DiagnosisTime_Desc>
 	<RG_Sarcophagus_Stat_PerHediffHealingTime_Label>Avg. per-condition treatment time</RG_Sarcophagus_Stat_PerHediffHealingTime_Label>
-	<RG_Sarcophagus_Stat_PerHediffHealingTime_Desc>How long it takes (on average) for this Sarcophagus to treat each medical condition on a patient.\n\nNote that this is scaled according to the severity of the condition - for instance, less severe injuries will take less time to treat.</RG_Sarcophagus_Stat_PerHediffHealingTime_Desc>
+	<RG_Sarcophagus_Stat_PerHediffHealingTime_Desc>How long it takes (on average) for this sarcophagus to treat each medical condition on a patient.\n\nNote that this is scaled according to the severity of the condition - for instance, less severe injuries will take less time to treat.</RG_Sarcophagus_Stat_PerHediffHealingTime_Desc>
 	<RG_Sarcophagus_Stat_TimeSeconds>{0} s</RG_Sarcophagus_Stat_TimeSeconds>
 
 	<RG_CannotRescuePawn>Cannot take {PAWN_labelShort} to sarcophagus</RG_CannotRescuePawn>
-	<RG_Sarcophagus_CannotRescue_NoSarcophagus>no Sarcophagus available.</RG_Sarcophagus_CannotRescue_NoSarcophagus>
-	<RG_Sarcophagus_FloatMenu_Rescue>Take {0} to Sarcophagus</RG_Sarcophagus_FloatMenu_Rescue>
+	<RG_Sarcophagus_CannotRescue_NoSarcophagus>no sarcophagus available.</RG_Sarcophagus_CannotRescue_NoSarcophagus>
+	<RG_Sarcophagus_FloatMenu_Rescue>Take {0} to sarcophagus</RG_Sarcophagus_FloatMenu_Rescue>
 
 	<RG_Sarcophagus_NonHumanoidNotAllowed>only humanoids allowed</RG_Sarcophagus_NonHumanoidNotAllowed>
 	<RG_Sarcophagus_PatientWithHediffNotAllowed>cannot treat patients with {0} hediff</RG_Sarcophagus_PatientWithHediffNotAllowed>
@@ -56,12 +56,12 @@
 	<RG_Sarcophagus_Message_TreatmentComplete>Sarcophagus treatment complete for {1_label}.</RG_Sarcophagus_Message_TreatmentComplete>
 	<RG_Sarcophagus_Message_TreatmentInterrupted>Sarcophagus treatment interrupted for {1_label}.</RG_Sarcophagus_Message_TreatmentInterrupted>
 
-	<RG_Sarcophagus_SurgeryProhibited_PatientUsingSarcophagus>patient using Sarcophagus</RG_Sarcophagus_SurgeryProhibited_PatientUsingSarcophagus>
+	<RG_Sarcophagus_SurgeryProhibited_PatientUsingSarcophagus>patient using sarcophagus</RG_Sarcophagus_SurgeryProhibited_PatientUsingSarcophagus>
 
 	<RG_Sarcophagus_CommandGizmoDisabled_PatientReceivingTreatment>{0} is receiving treatment in {1}.</RG_Sarcophagus_CommandGizmoDisabled_PatientReceivingTreatment>
 	<RG_Sarcophagus_CommandGizmoDisabled_SarcophagusInUse>{0} is in use.</RG_Sarcophagus_CommandGizmoDisabled_SarcophagusInUse>
 
-	<RG_Sarcophagus_CommandSetOwnerDesc>Assign this Sarcophagus to be owned by a specific pawn.</RG_Sarcophagus_CommandSetOwnerDesc>
+	<RG_Sarcophagus_CommandSetOwnerDesc>Assign this sarcophagus to be owned by a specific pawn.</RG_Sarcophagus_CommandSetOwnerDesc>
 	<RG_Sarcophagus_CommandGizmoAllowGuests_Label>Allow guests</RG_Sarcophagus_CommandGizmoAllowGuests_Label>
 	<RG_Sarcophagus_CommandGizmoAllowGuests_Desc>Allow this {0} to be used by guests and other non-colony visitors.</RG_Sarcophagus_CommandGizmoAllowGuests_Desc>
 	<RG_Sarcophagus_CommandGizmoAllowSlaves_Label>Allow slaves</RG_Sarcophagus_CommandGizmoAllowSlaves_Label>
@@ -72,13 +72,13 @@
 	<RG_Sarcophagus_CommandGizmoAbortTreatment_Desc>Stop treating the current patient immediately.</RG_Sarcophagus_CommandGizmoAbortTreatment_Desc>
 
 	<RG_Sarcophagus_Letter_TraitRemoved_Label>Trait(s) removed</RG_Sarcophagus_Letter_TraitRemoved_Label>
-	<RG_Sarcophagus_Letter_TraitRemoved_Desc>{PAWN_labelShort} has had the following trait(s) removed via Sarcophagus treatment:\n</RG_Sarcophagus_Letter_TraitRemoved_Desc>
+	<RG_Sarcophagus_Letter_TraitRemoved_Desc>{PAWN_labelShort} has had the following trait(s) removed via sarcophagus treatment:\n</RG_Sarcophagus_Letter_TraitRemoved_Desc>
 
 	<!-- Symbiote Pool -->
 
 	<RG_CannotInsertQueen>Cannot insert queen ({0})</RG_CannotInsertQueen>
 	<RG_InsertQueen>Insert symbiote queen</RG_InsertQueen>
-	<RG_InsertQueenDesc>Order a colonist to install a Goa'uld symbiote queen into this spawning pool.</RG_InsertQueenDesc>
+	<RG_InsertQueenDesc>Order a colonist to install a mature symbiote queen into this spawning pool.</RG_InsertQueenDesc>
 	<RG_InsertQueenRejectOccupied>The spawning pool already contains a symbiote queen.</RG_InsertQueenRejectOccupied>
 	<RG_InsertQueenRejectNoQueen>No symbiote queen is available for that colonist to haul.</RG_InsertQueenRejectNoQueen>
 	<RG_PoolQueenPresent>Queen: present</RG_PoolQueenPresent>
@@ -122,7 +122,7 @@
 	<RG_PrimtaRenewal_NoMap>Cannot perform Prim'ta renewal: no ritual map available.</RG_PrimtaRenewal_NoMap>
 	<RG_PrimtaRenewal_NoHost>Cannot perform Prim'ta renewal: no suitable host selected.</RG_PrimtaRenewal_NoHost>
 	<RG_PrimtaRenewal_NoPouch>Cannot perform Prim'ta renewal: selected host lacks a symbiote pouch.</RG_PrimtaRenewal_NoPouch>
-	<RG_PrimtaRenewal_NoPrimta>Cannot perform Prim'ta renewal: selected host lacks an implanted prim'ta symbiote.</RG_PrimtaRenewal_NoPrimta>
+	<RG_PrimtaRenewal_NoPrimta>Cannot perform Prim'ta renewal: selected host lacks an implanted Prim'ta symbiote.</RG_PrimtaRenewal_NoPrimta>
 	<RG_PrimtaRenewal_TooOld>Cannot perform Prim'ta renewal: selected host is too old to undergo Prim'ta renewal.</RG_PrimtaRenewal_TooOld>
 
 	<RG_SymbioteSkillInheritance>{PAWN_nameDef} has accepted the symbiote {1}. Echoes of past lives stir in their mind…</RG_SymbioteSkillInheritance>

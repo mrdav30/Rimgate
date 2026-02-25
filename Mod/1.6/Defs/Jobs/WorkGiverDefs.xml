@@ -46,7 +46,7 @@
 
   <WorkGiverDef>
     <defName>Rimgate_Warden_RescueToSarcophagus</defName>
-    <label>rescue downed prisoner to Sarcophagus</label>
+    <label>rescue downed prisoner to sarcophagus</label>
     <giverClass>Rimgate.WorkGiver_Warden_RescueToSarcophagus</giverClass>
     <workType>Warden</workType>
     <emergency>true</emergency>
@@ -61,7 +61,7 @@
 
   <WorkGiverDef>
     <defName>Rimgate_Warden_CarryFromBedToSarcophagus</defName>
-    <label>carry prisoners from bed to Sarcophagus</label>
+    <label>carry prisoners from bed to sarcophagus</label>
     <giverClass>Rimgate.WorkGiver_Warden_CarryFromBedToSarcophagus</giverClass>
     <workType>Warden</workType>
     <emergency>true</emergency>

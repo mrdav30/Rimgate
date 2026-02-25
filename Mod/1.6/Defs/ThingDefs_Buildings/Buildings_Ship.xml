@@ -5,8 +5,8 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_GoauldTeltak</defName>
-    <label>Goa'uld Tel'tak</label>
-    <description>a compact Goa'uld transport craft built for swift infiltration, planetary landings, and discreet extractions. Lacks firepower—but makes up for it with sheer speed, stealth plating, and enough ego to carry a system lord.</description>
+    <label>Tel'tak</label>
+    <description>A compact Goa'uld transport craft built for swift infiltration, planetary landings, and discreet extractions. Lacks firepower—but makes up for it with sheer speed, stealth plating, and enough ego to carry a system lord.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <preventDroppingThingsOn>true</preventDroppingThingsOn>
     <size>(5,6)</size>
@@ -108,7 +108,7 @@
 
   <ThingDef ParentName="ShuttleSkyfallerBase">
     <defName>Rimgate_TeltakIncoming</defName>
-    <label>Goa'uld Tel'tak (incoming)</label>
+    <label>Tel'tak (incoming)</label>
     <thingClass>PassengerShuttleIncoming</thingClass>
     <graphicData>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -147,7 +147,7 @@
 
   <ThingDef ParentName="ShuttleSkyfallerBase">
     <defName>Rimgate_TeltakLeaving</defName>
-    <label>Goa'uld Tel'tak (leaving)</label>
+    <label>Tel'tak (leaving)</label>
     <thingClass>PassengerShuttleLeaving</thingClass>
     <rotatable>true</rotatable>
     <graphicData>
@@ -191,8 +191,8 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_WraithDart</defName>
-    <label>Wraith Dart</label>
-    <description>razor-fast and biomechanically fused, the Wraith Dart excels at hit-and-run attacks, stasis harvesting, and sudden disappearances. Its sinister hum alone is enough to send villagers fleeing.</description>
+    <label>Dart</label>
+    <description>Razor-fast and biomechanically fused, the Wraith Dart excels at hit-and-run attacks, stasis harvesting, and sudden disappearances. Its sinister hum alone is enough to send villagers fleeing.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <preventDroppingThingsOn>true</preventDroppingThingsOn>
     <size>(3,5)</size>
@@ -293,7 +293,7 @@
 
   <ThingDef ParentName="ShuttleSkyfallerBase">
     <defName>Rimgate_DartIncoming</defName>
-    <label>Wraith Dart (incoming)</label>
+    <label>Dart (incoming)</label>
     <thingClass>PassengerShuttleIncoming</thingClass>
     <graphicData>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -332,7 +332,7 @@
 
   <ThingDef ParentName="ShuttleSkyfallerBase">
     <defName>Rimgate_DartLeaving</defName>
-    <label>Wraith Dart (leaving)</label>
+    <label>Dart (leaving)</label>
     <thingClass>PassengerShuttleLeaving</thingClass>
     <rotatable>true</rotatable>
     <graphicData>
@@ -376,7 +376,7 @@
 
   <ThingDef ParentName="BuildingBase">
     <defName>Rimgate_AncientPuddleJumper</defName>
-    <label>Ancient Puddle Jumper</label>
+    <label>Puddle Jumper</label>
     <description>A marvel of Ancient engineering, retrofitted by the Tau’ri. Compact and equipped with a powerful deflector shield, the Puddle Jumper excels at stealth ops, extractions, and rapid deployment. Unfortunately, the Jumper’s hull dimensions mean it cannot fit through the smaller Dwarfgates scattered across the Rim, limiting its use to planetary travel and spaceflight.</description>
     <thingClass>Building_PassengerShuttle</thingClass>
     <size>(3,6)</size>
@@ -507,7 +507,7 @@
 
   <ThingDef ParentName="ShuttleSkyfallerBase">
     <defName>Rimgate_PuddleJumperIncoming</defName>
-    <label>Tau'ri Puddle Jumper (incoming)</label>
+    <label>Puddle Jumper (incoming)</label>
     <thingClass>PassengerShuttleIncoming</thingClass>
     <graphicData>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -546,7 +546,7 @@
 
   <ThingDef ParentName="ShuttleSkyfallerBase">
     <defName>Rimgate_PuddleJumperLeaving</defName>
-    <label>Tarui Puddle Jumper (leaving)</label>
+    <label>Puddle Jumper (leaving)</label>
     <thingClass>PassengerShuttleLeaving</thingClass>
     <rotatable>true</rotatable>
     <graphicData>

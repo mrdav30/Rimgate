@@ -5,7 +5,7 @@
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DestroyedDesk</defName>
-        <label>Ancient desk</label>
+        <label>ancient desk</label>
         <description>Once used to crunch data, it is now completely inoperable. Its usable parts were smashed or looted long ago.</description>
         <graphicData>
             <texPath>Things/Building/Prop/RGDestroyedDesk</texPath>
@@ -327,7 +327,7 @@
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DestroyedJumper</defName>
-        <label>dilapitated puddle jumper</label>
+        <label>dilapitated Puddle Jumper</label>
         <description>A shattered Ancient scout vessel, its crystal conduits still pulsing faintly with residual subspace charge.\n\nMost of its systems are fused or looted, but the data spine and flight control lattice might still whisper secrets to anyone patient enough to listen.</description>
         <graphicData>
             <texPath>Things/Building/Prop/RGPuddleJumper_Destroyed</texPath>
@@ -470,7 +470,7 @@
 
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_DestroyedDart</defName>
-        <label>decaying dart</label>
+        <label>decaying Dart</label>
         <description>A shattered Wraith Dart, its organic hull slowly liquefying.\n\nBiopolymer veins still twitch with residual charge, and faint hums echo from what’s left of its stasis chamber.\n\nIt’s more carcass than craft now—but one that remembers how to fly.</description>
         <graphicData>
             <texPath>Things/Building/Prop/RGDart_Destroyed</texPath>
@@ -628,7 +628,7 @@
 
     <!-- Base -->
     <ThingDef Name="Rimgate_SupplyCrateBase" ParentName="CrateBase" Abstract="True">
-        <label>Supply crate</label>
+        <label>supply crate</label>
         <description>A sturdy, hermetically sealed supply crate used to store various goods and artifacts. These crates are usually found in ancient outposts and supply caches-but more commonly in the hands of explorers and scavengers.</description>
         <size>(1, 1)</size>
         <fillPercent>0.5</fillPercent>
@@ -773,6 +773,8 @@
     <!-- Stone -->
     <ThingDef ParentName="Rimgate_SupplyCrateBase">
         <defName>Rimgate_SupplyCrateStone</defName>
+        <!-- TODO: instead of base description, add a lore-friendly desc for why loot is stored in stone crates -->
+        <description></description>
         <graphicData>
             <texPath>Things/Building/Prop/Crate/RGStoneSupplyCrateFilled</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -906,8 +908,8 @@
 
     <ThingDef ParentName="Rimgate_SymbioteUrnBase">
         <defName>Rimgate_SymbioteUrn</defName>
-        <label>Goa'uld Symbiote urn</label>
-        <description>A small urn that is hermetically sealed to contain a Goa'uld symbiote.</description>
+        <label>symbiote urn</label>
+        <description>A small urn that is hermetically sealed to contain a mature symbiotes.</description>
         <comps>
             <li Class="CompProperties_LootSpawn">
                 <contents>Rimgate_SymbioteContainer</contents>
@@ -917,7 +919,7 @@
 
     <ThingDef ParentName="Rimgate_SymbioteUrnBase">
         <defName>Rimgate_SymbioteQueenUrn</defName>
-        <label>Goa'uld Queen Symbiote urn</label>
+        <label>queen urn</label>
         <description>A small urn that is hermetically sealed to contain a Goa'uld Queen symbiote.</description>
         <comps>
             <li Class="CompProperties_LootSpawn">

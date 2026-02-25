@@ -6,7 +6,7 @@
     <!-- Vanilla -->
     <PawnKindDef Name="Rimgate_ReplicatorBase" ParentName="BaseMechanoidKind">
         <defName>Rimgate_Replicator</defName>
-        <label>replicator</label>
+        <label>Replicator</label>
         <race>Rimgate_Replicator</race>
         <defaultFactionType>Rimgate_Replicator</defaultFactionType>
         <aiAvoidCover>true</aiAvoidCover>
@@ -41,7 +41,7 @@
     <!-- Plasteel -->
     <PawnKindDef ParentName="Rimgate_ReplicatorBase">
         <defName>Rimgate_ReplicatorPlasteel</defName>
-        <label>replicator (plasteel)</label>
+        <label>Replicator (plasteel)</label>
         <race>Rimgate_ReplicatorPlasteel</race>
         <combatPower>110</combatPower>
         <abilities>
@@ -74,7 +74,7 @@
     <!-- Uranium -->
     <PawnKindDef ParentName="Rimgate_ReplicatorBase">
         <defName>Rimgate_ReplicatorUranium</defName>
-        <label>replicator (uranium)</label>
+        <label>Replicator (uranium)</label>
         <race>Rimgate_ReplicatorUranium</race>
         <combatPower>110</combatPower>
         <abilities>
@@ -107,7 +107,7 @@
     <!-- Naquadah -->
     <PawnKindDef ParentName="Rimgate_ReplicatorBase">
         <defName>Rimgate_ReplicatorNaquadah</defName>
-        <label>replicator (naquadah)</label>
+        <label>Replicator (naquadah)</label>
         <race>Rimgate_ReplicatorNaquadah</race>
         <combatPower>125</combatPower>
         <aiAvoidCover>false</aiAvoidCover>
@@ -142,7 +142,7 @@
 
     <PawnKindDef ParentName="BaseMechanoidKind">
         <defName>Rimgate_ReplicatorHumanoid</defName>
-        <label>replicator (humanoid)</label>
+        <label>Replicator (humanoid)</label>
         <race>Rimgate_ReplicatorHumanoid</race>
         <defaultFactionType>Rimgate_Replicator</defaultFactionType>
         <combatPower>210</combatPower>
