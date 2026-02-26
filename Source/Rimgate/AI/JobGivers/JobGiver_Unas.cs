@@ -190,9 +190,9 @@ public class JobGiver_Unas : JobGiver_Work
 
             if (bestTargetOfLastPriority.IsValid)
             {
-                Job job3 = ((!bestTargetOfLastPriority.HasThing)
+                Job job3 = !bestTargetOfLastPriority.HasThing
                     ? scannerWhoProvidedTarget.JobOnCell(pawn, bestTargetOfLastPriority.Cell)
-                    : scannerWhoProvidedTarget.JobOnThing(pawn, bestTargetOfLastPriority.Thing));
+                    : scannerWhoProvidedTarget.JobOnThing(pawn, bestTargetOfLastPriority.Thing);
                 if (job3 != null)
                 {
                     job3.workGiverDef = scannerWhoProvidedTarget.def;

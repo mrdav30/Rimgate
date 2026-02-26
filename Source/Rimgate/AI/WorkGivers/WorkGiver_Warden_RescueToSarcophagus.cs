@@ -15,7 +15,7 @@ public class WorkGiver_Warden_RescueToSarcophagus : WorkGiver_Warden
 
         if (pawn.IncapableOfHauling(out _)) return true;
 
-        if (!pawn.Map.listerBuildings.ColonistsHaveBuilding((Thing building) => building is Building_Sarcophagus))
+        if (!pawn.Map.listerBuildings.ColonistsHaveBuilding(building => building is Building_Sarcophagus))
             return true;
 
         List<Pawn> list = pawn.Map.mapPawns?.SpawnedPawnsInFaction(pawn.Faction);

@@ -42,8 +42,6 @@ public static class Harmony_FoodUtility_SpawnedFoodSearchInnerScan
                 mobileSources.Add(cart);
         }
 
-        LogUtil.Debug($"{pawn.Label} found {mobileSources.Count} mobile containers to search for food.");
-
         if (mobileSources.Count == 0)
             return;
 

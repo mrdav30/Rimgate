@@ -8,7 +8,7 @@ using Verse.AI;
 namespace Rimgate.HarmonyPatches;
 
 /// <summary>
-/// Enables searching mobile containers as haul sources during construction resource delivery jobs, 
+/// Enables searching mobile containers as haul sources during construction resource delivery jobs,
 /// by setting the 'lookInHaulSources' flag in GenClosest.ClosestThingReachable when appropriate.
 /// </summary>
 [HarmonyPatch(typeof(GenClosest), nameof(GenClosest.ClosestThingReachable))]
@@ -43,8 +43,6 @@ public static class Harmony_GenClosest_ClosestThingReachable
 
         if (!HasEnabledMobileHaulSource(map))
             return;
-
-        LogUtil.Debug($"Rimgate :: Enabling haul source search for {pawn.Name} searching for {thingReq.singleDef.label}");
 
         lookInHaulSources = true;
     }

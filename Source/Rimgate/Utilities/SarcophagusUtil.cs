@@ -305,7 +305,7 @@ public static class SarcophagusUtil
         }
 
         // Does not have hediffs or traits that block the pawn from using Sarcophagi
-        if (SarcophagusUtil.HasUsageBlockingHediffs(
+        if (HasUsageBlockingHediffs(
             patient,
             usageBlockingHediffs,
             out List<Hediff> blockingHediffs))
@@ -314,7 +314,7 @@ public static class SarcophagusUtil
             return false;
         }
 
-        if (SarcophagusUtil.HasUsageBlockingTraits(
+        if (HasUsageBlockingTraits(
             patient,
             usageBlockingTraits,
             out List<Trait> blockingTraits))
@@ -333,7 +333,7 @@ public static class SarcophagusUtil
         ListerThings listerThings = map?.listerThings;
         if (listerThings == null) return null;
 
-        _tmpSarcophagi ??= new List<Thing>();
+        _tmpSarcophagi ??= [];
         _tmpSarcophagi.Clear();
 
         // Prioritize searching for usable sarcophagi by distance,
@@ -359,17 +359,15 @@ public static class SarcophagusUtil
         {
             Danger maxDanger = i == 0 ? Danger.None : Danger.Deadly;
 
-            Building_Sarcophagus sarcophagus = GenClosest.ClosestThingReachable(
+
+            if (GenClosest.ClosestThingReachable(
                 traveler.Position,
                 map,
                 ThingRequest.ForUndefined(),
                 PathEndMode.OnCell,
                 TraverseParms.For(traveler),
                 validator: thing => thing.Position.GetDangerFor(traveler, map) <= maxDanger,
-                customGlobalSearchSet: _tmpSarcophagi) as Building_Sarcophagus;
-
-            if (sarcophagus != null)
-                return sarcophagus;
+                customGlobalSearchSet: _tmpSarcophagi) is Building_Sarcophagus sarcophagus) return sarcophagus;
         }
 
         // nothing found

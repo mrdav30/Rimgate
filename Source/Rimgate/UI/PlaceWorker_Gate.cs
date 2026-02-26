@@ -20,7 +20,7 @@ public class PlaceWorker_Gate : PlaceWorker
         if (GateUtil.AddressBookFull)
             return new AcceptanceReport("RG_CannotPlace_Gate".Translate(checkingDef.LabelCap, "RG_Cannot_AddressBookFull".Translate()));
 
-        // Pocket Maps do not have an associated PlanetTile, 
+        // Pocket Maps do not have an associated PlanetTile,
         // which is required for gate functionality.
         if (map.IsPocketMap)
             return new AcceptanceReport("RG_CannotPlace_Gate".Translate(checkingDef.LabelCap, "RG_PocketMapDisallowed".Translate()));
@@ -35,11 +35,11 @@ public class PlaceWorker_Gate : PlaceWorker
         Color ghostCol,
         Thing thing = null)
     {
-        var props = def.GetModExtension<Building_Gate_Ext>();
-        if (props == null) return;
+        var ext = def.GetModExtension<Building_Gate_Ext>();
+        if (ext == null) return;
 
-        List<IntVec3> pattern = new List<IntVec3>();
-        foreach (var off in RotatedPatternLocal(rot, props.vortexPattern))
+        List<IntVec3> pattern = [];
+        foreach (var off in RotatedPatternLocal(rot, ext.vortexPattern))
         {
             var cell = c + off;
             pattern.Add(cell);

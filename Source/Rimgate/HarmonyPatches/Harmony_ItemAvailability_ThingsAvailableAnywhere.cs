@@ -38,8 +38,6 @@ public static class Harmony_ItemAvailability_ThingsAvailableAnywhere
         if (map == null || !HasViableMobileHaulSource(map))
             return;
 
-        LogUtil.Debug($"Rimgate :: Checking haul sources for {pawn.Name} searching for {amount}x {need.label}");
-
         int total = 0;
 
         List<Thing> spawned = map.listerThings?.ThingsOfDef(need);
