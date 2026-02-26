@@ -148,6 +148,12 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
         set => _allowColonistsUseContents = value;
     }
 
+    public bool HasPushTarget => _cachedDesignationTarget.IsValid;
+
+    public LocalTargetInfo DesignatedTarget => _cachedDesignationTarget;
+
+    public bool WantsToBeDumped => _wantsToBeDumped;
+
     private List<Thing> _tmpThings = [];
 
     private bool _massDirty = true;
@@ -188,30 +194,15 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
 
         InnerContainer.DoTick();
 
-        // If we're set to prevent ticking when sealed, toggle sealing based on fuel state. 
+        // If we're set to prevent ticking when sealed, toggle sealing based on fuel state.
         // This ensures that rot and other comps that rely on ticking are properly paused while sealed, and resume when unsealed.
-        if (Ext.sealPreventsContentTick && this.IsHashIntervalTick(GenTicks.TickRareInterval))
+        if (this.IsHashIntervalTick(GenTicks.TickRareInterval))
         {
-            if (!FuelOK)
+            CheckSeal();
+            if (!HasPushTarget && (_wantsToBePushed || _wantsToBeDumped))
             {
-                InnerContainer.dontTickContents = false;
-
-                foreach (var t in InnerContainer.InnerListForReading)
-                {
-                    if (t.TryGetComp(out CompRottable comp))
-                        comp.disabled = false;
-                }
-                _isSealed = false;
-            }
-            else if (!_isSealed)
-            {
-                InnerContainer.dontTickContents = true;
-                foreach (var t in InnerContainer.InnerListForReading)
-                {
-                    if (t.TryGetComp(out CompRottable comp))
-                        comp.disabled = true;
-                }
-                _isSealed = true;
+                ClearDesignations();
+                Messages.Message("RG_PushTargetInvalid".Translate(LabelShort), this, MessageTypeDefOf.RejectInput);
             }
         }
 
@@ -241,10 +232,31 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
             FinalizeShortfall();
     }
 
-    public override void DrawExtraSelectionOverlays()
+    private void CheckSeal()
     {
-        if (!Spawned || Ext == null) return;
-        GenDraw.DrawRadiusRing(Position, Ext.loadRadius);
+        if (!Ext.sealPreventsContentTick) return;
+
+        if (!FuelOK)
+        {
+            InnerContainer.dontTickContents = false;
+
+            foreach (var t in InnerContainer.InnerListForReading)
+            {
+                if (t.TryGetComp(out CompRottable comp))
+                    comp.disabled = false;
+            }
+            _isSealed = false;
+        }
+        else if (!_isSealed)
+        {
+            InnerContainer.dontTickContents = true;
+            foreach (var t in InnerContainer.InnerListForReading)
+            {
+                if (t.TryGetComp(out CompRottable comp))
+                    comp.disabled = true;
+            }
+            _isSealed = true;
+        }
     }
 
     public override string GetInspectString()
@@ -362,7 +374,7 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
             yield break;
         }
 
-        // !LoadingInProgress
+        // Gizmos for managing loadout and push designations — only show when not actively loading, to avoid confusion and potential exploits.
 
         // Unload all — when idle and has contents
         if (InnerContainer.Any)
@@ -416,6 +428,48 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
         };
     }
 
+    private void SetGizmoDesignation(bool dumpAtTarget)
+    {
+        var dm = Map?.designationManager;
+        if (dm == null)
+        {
+            _wantsToBePushed = false;
+            _wantsToBeDumped = false;
+            return;
+        }
+
+        Designation designation = dm.DesignationOn(this, RimgateDefOf.Rimgate_DesignationPushCart);
+        if (designation == null)
+        {
+            var tp = GetPushTargetingParameters(!dumpAtTarget);
+            Find.Targeter.BeginTargeting(tp, target =>
+            {
+                IntVec3 dest = GetPushDestinationCell(target);
+                if (target == null
+                    || !dest.IsValid
+                    || !Map.reachability.CanReach(InteractionCell, dest, PathEndMode.OnCell, TraverseParms.For(TraverseMode.ByPawn)))
+                {
+                    Messages.Message("RG_CannotReachDestination".Translate(), this, MessageTypeDefOf.RejectInput);
+                    return;
+                }
+
+                _cachedDesignationTarget = target;
+                dm.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationPushCart));
+
+                if (dumpAtTarget)
+                    _wantsToBeDumped = true;
+                else
+                    _wantsToBePushed = true;
+            },
+            onGuiAction: target =>
+            {
+                GenDraw.DrawRadiusRing(target.Cell, Ext.loadRadius);
+            });
+        }
+        else
+            ClearDesignations();
+    }
+
     public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
     {
         if (selPawn == null || selPawn.Downed || selPawn.Dead) yield break;
@@ -435,17 +489,116 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
             yield break;
         }
 
+        if (!FuelOK)
+        {
+            Messages.Message("RG_CartNoFuel".Translate(LabelShort), this, MessageTypeDefOf.RejectInput);
+            yield break;
+        }
+
         // Prioritize push to…
         yield return FloatMenuUtility.DecoratePrioritizedTask(
             new FloatMenuOption("RG_CommandPushLabel".Translate(), () => BeginFloatTargeting(selPawn, false)),
-            selPawn, this);
+            selPawn,
+            this);
 
         if (!InnerContainer.Any) yield break;
 
         // Prioritize push & dump…
         yield return FloatMenuUtility.DecoratePrioritizedTask(
             new FloatMenuOption("RG_CommandDumpLabel".Translate(), () => BeginFloatTargeting(selPawn, true)),
-            selPawn, this);
+            selPawn,
+            this);
+    }
+
+    private void BeginFloatTargeting(Pawn pawn, bool dumpAtTarget)
+    {
+        var tp = GetPushTargetingParameters(!dumpAtTarget);
+        Find.Targeter.BeginTargeting(tp, target =>
+        {
+            IntVec3 dest = GetPushDestinationCell(target);
+            if (target == null || !dest.IsValid || !pawn.CanReach(dest, PathEndMode.OnCell, Danger.Deadly))
+            {
+                Messages.Message("RG_CannotReachDestination".Translate(), this, MessageTypeDefOf.RejectInput);
+                return;
+            }
+
+            if (target.Thing is not Building_Gate sg || !sg.IsActive || sg.IsIrisActivated)
+            {
+                Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), this, MessageTypeDefOf.RejectInput);
+                return;
+            }
+
+            _cachedDesignationTarget = target;
+            var job = GetPushJob(target, dumpAtTarget, true);
+            if (job == null) return;
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.MiscWork);
+        });
+    }
+
+    private TargetingParameters GetPushTargetingParameters(bool canTargetBuildings = false)
+    {
+        var tp = new TargetingParameters
+        {
+            canTargetPawns = false,
+            canTargetItems = false,
+            canTargetPlants = false,
+            canTargetCorpses = false,
+            canTargetLocations = true,
+            canTargetSelf = false,
+            canTargetFires = false,
+            canTargetBuildings = canTargetBuildings,
+            validator = target =>
+                {
+                    if (!target.Cell.IsValid) return false;
+                    if (!Utils.FindStandCellFor(InteractionCell, target.Cell, Map, out _))
+                        return false;
+                    if (target.HasThing)
+                    {
+                        if (target.Thing is Building_Gate gate)
+                            return gate.IsActive && !gate.IsIrisActivated;
+                        return false; // only gates can be targeted as things
+                    }
+
+                    return true;
+                }
+        };
+
+        return tp;
+    }
+
+    public Job GetPushJob(LocalTargetInfo target, bool dumpAtTarget, bool forced)
+    {
+        if (!Spawned) return null;
+
+        // Job def depends on whether we’re pushing to an empty cell or a gate (which requires special handling to interact with the gate properly)
+        var def = target.HasThing
+            ? RimgateDefOf.Rimgate_EnterGateWithContainer
+            : RimgateDefOf.Rimgate_PushContainer;
+
+        var job = JobMaker.MakeJob(def, this, target);
+        job.ignoreForbidden = true;
+
+        job.playerForced = forced;
+        if (dumpAtTarget)
+            job.haulMode = HaulMode.ToCellNonStorage;
+
+        job.count = 1;
+
+        return job;
+    }
+
+    // Called by JobDriver_PushContainer when the pawn actually reaches the container
+    // or when the gizmo designation is toggled off, to clear the designation and reset state.
+    public void ClearDesignations()
+    {
+        _wantsToBePushed = false;
+        _wantsToBeDumped = false;
+        _cachedDesignationTarget = LocalTargetInfo.Invalid;
+
+        var dm = Map?.designationManager;
+        if (dm == null) return;
+
+        dm.RemoveAllDesignationsOn(this);
     }
 
     public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
@@ -461,150 +614,22 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
             4994);
     }
 
-    private void SetGizmoDesignation(bool dump)
+    public bool TryGetPushDestination(out IntVec3 destinationCell)
     {
-        if (dump)
-            _wantsToBeDumped = !_wantsToBeDumped;
-        else
-            _wantsToBePushed = !_wantsToBePushed;
+        destinationCell = IntVec3.Invalid;
+        if (!Spawned || Map == null || !HasPushTarget)
+            return false;
 
-        var dm = Map?.designationManager;
-        if (dm == null) return;
-
-        Designation designation = dm.DesignationOn(this, RimgateDefOf.Rimgate_DesignationPushCart);
-        if (designation == null)
-        {
-            var tp = new TargetingParameters { canTargetLocations = true, canTargetBuildings = !dump };
-            Find.Targeter.BeginTargeting(tp, target =>
-            {
-                if (!target.Cell.IsValid) return;
-                if (!Utils.FindStandCellFor(InteractionCell, target.Cell, Map, out _))
-                {
-                    Messages.Message("RG_CannotReachDestination".Translate(),
-                        this,
-                        MessageTypeDefOf.RejectInput);
-                    return;
-                }
-
-                _cachedDesignationTarget = target;
-                dm.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationPushCart));
-            });
-        }
-        else
-        {
-            _cachedDesignationTarget = null;
-            designation?.Delete();
-        }
+        destinationCell = GetPushDestinationCell(_cachedDesignationTarget);
+        return destinationCell.IsValid && destinationCell.InBounds(Map);
     }
 
-    private void BeginFloatTargeting(Pawn pawn, bool dump)
+    public static IntVec3 GetPushDestinationCell(LocalTargetInfo target)
     {
-        var tp = new TargetingParameters { canTargetLocations = true, canTargetBuildings = !dump };
-        Find.Targeter.BeginTargeting(tp, target =>
-        {
-            if (!target.Cell.IsValid) return;
-            if (!Utils.FindStandCellFor(InteractionCell, target.Cell, Map, out _))
-            {
-                Messages.Message("RG_CannotReachDestination".Translate(),
-                    this,
-                    MessageTypeDefOf.RejectInput);
-                return;
-            }
-            ClearDesignations();
-            var job = GetPushJob(pawn, target);
-            if (job == null) return;
-            job.playerForced = true;
-            if (dump)
-                job.haulMode = HaulMode.ToCellNonStorage;
+        if (target.HasThing && target.Thing is Building_Gate gate && gate.Spawned)
+            return gate.InteractionCell;
 
-            pawn.jobs.TryTakeOrderedJob(job, JobTag.MiscWork);
-        });
-    }
-
-    public void ClearDesignations()
-    {
-        _wantsToBePushed = false;
-        _wantsToBeDumped = false;
-
-        var dm = Map?.designationManager;
-        if (dm == null) return;
-
-        dm.RemoveAllDesignationsOn(this);
-    }
-
-    public Job GetDesignatedPushJob(Pawn pawn)
-    {
-        if (!_cachedDesignationTarget.IsValid)
-            return null;
-
-        var job = GetPushJob(pawn, _cachedDesignationTarget);
-        if (job == null) return null;
-        _cachedDesignationTarget = null;
-        if (_wantsToBeDumped)
-            job.haulMode = HaulMode.ToCellNonStorage;
-        return job;
-    }
-
-    public Job GetPushJob(Pawn pawn, LocalTargetInfo dest)
-    {
-        if (!Spawned) return null;
-
-        if (pawn == null)
-        {
-            Messages.Message("RG_MessageNoPawnToPush".Translate(LabelShort),
-                this,
-                MessageTypeDefOf.RejectInput);
-            return null;
-        }
-
-        if (dest == null)
-        {
-            Messages.Message("RG_CannotReachDestination".Translate(), this, MessageTypeDefOf.RejectInput);
-            return null;
-        }
-
-        if (!FuelOK)
-        {
-            Messages.Message("RG_CartNoFuel".Translate(LabelShort), this, MessageTypeDefOf.RejectInput);
-            return null;
-        }
-
-        LocalTargetInfo targetInfo;
-        var def = RimgateDefOf.Rimgate_PushContainer;
-        // If a gate was clicked, store it directly in targetC; otherwise use the cell
-        if (dest.HasThing)
-        {
-            if (dest.Thing is not Building_Gate sg || !sg.IsActive)
-            {
-                Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), this, MessageTypeDefOf.RejectInput);
-                return null;
-            }
-
-            if (!pawn.CanReach(sg.InteractionCell, PathEndMode.OnCell, Danger.Deadly))
-            {
-                Messages.Message("RG_CannotReachDestination".Translate(), this, MessageTypeDefOf.RejectInput);
-                return null;
-            }
-
-            targetInfo = sg;
-            def = RimgateDefOf.Rimgate_EnterGateWithContainer;
-        }
-        else
-        {
-            if (!pawn.CanReach(dest.Cell, PathEndMode.OnCell, Danger.Deadly))
-            {
-                Messages.Message("RG_CannotReachDestination".Translate(), this, MessageTypeDefOf.RejectInput);
-                return null;
-            }
-
-            targetInfo = dest.Cell;
-        }
-
-        var job = JobMaker.MakeJob(def, this);
-        job.ignoreForbidden = true;
-        job.targetC = targetInfo;
-
-        return job;
+        return target.Cell;
     }
 
     public ThingOwner GetDirectlyHeldThings() => InnerContainer;

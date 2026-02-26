@@ -19,7 +19,7 @@ public class WorkGiver_PushContainer : WorkGiver_Scanner
         foreach (var item in dm.SpawnedDesignationsOfDef(RimgateDefOf.Rimgate_DesignationPushCart))
         {
             Thing t = item?.target.Thing;
-            if (t == null || t is not Building_MobileContainer) continue;
+            if (t is not Building_MobileContainer container || !TargetIsValid(container)) continue;
             yield return t;
         }
     }
@@ -36,25 +36,29 @@ public class WorkGiver_PushContainer : WorkGiver_Scanner
 
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        if (t is not Building_MobileContainer container) return false;
+        if (t is not Building_MobileContainer container || !TargetIsValid(container)) return false;
 
         if (pawn.Map.designationManager.DesignationOn(container, RimgateDefOf.Rimgate_DesignationPushCart) == null)
             return false;
 
-        if (container.LoadingInProgress) return false;
         if (!pawn.CanReserveAndReach(container, PathEndMode.InteractionCell, Danger.Deadly)) return false;
-        if (!container.FuelOK) return false;
 
         return true;
     }
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        if (t is not Building_MobileContainer container) return null;
-        var job = container.GetDesignatedPushJob(pawn);
+        if (t is not Building_MobileContainer container || !TargetIsValid(container)) return null;
+        var job = container.GetPushJob(container.DesignatedTarget, container.WantsToBeDumped, false);
         if (job == null) return null;
         job.playerForced = forced;
         job.count = 1;
         return job;
+    }
+
+    private bool TargetIsValid(Building_MobileContainer container)
+    {
+        if (container == null || container.LoadingInProgress || !container.FuelOK || !container.HasPushTarget) return false;
+        return true;
     }
 }

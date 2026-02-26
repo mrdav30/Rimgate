@@ -217,37 +217,39 @@
 		<inspectorTabs>
 			<li>Rimgate.ITab_MobileContainer</li>
 		</inspectorTabs>
+		<placeWorkers>
+			<li>Rimgate.PlaceWorker_MobileContainer</li>
+		</placeWorkers>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
 	</ThingDef>
 
 	<!-- Proxy item (what the pawn “carries” while pushing) -->
-	<ThingDef ParentName="ResourceBase">
+	<ThingDef>
 		<defName>Rimgate_MobileCartProxy</defName>
+		<thingClass>Rimgate.Thing_MobileCartProxy</thingClass>
 		<label>mobile cart (proxy)</label>
 		<description>Temporary proxy representing a mobile container while in motion.</description>
-		<thingClass>Rimgate.Thing_MobileCartProxy</thingClass>
 		<drawerType>None</drawerType>
 		<useHitPoints>false</useHitPoints>
 		<selectable>false</selectable>
 		<stackLimit>1</stackLimit>
 		<tradeability>None</tradeability>
-		<statBases>
-			<Mass>5</Mass>
-		</statBases>
+		<altitudeLayer>Building</altitudeLayer>
+		<tickerType>Never</tickerType>
 	</ThingDef>
 
 	<!-- Invisible, non-selectable attachment that only draws -->
-	<ThingDef Name="Rimgate_PushedCartVisual">
+	<ThingDef>
 		<defName>Rimgate_PushedCartVisual</defName>
-		<label>pushed cart visual</label>
 		<thingClass>Rimgate.Thing_PushedCartVisual</thingClass>
-		<category>Item</category>
-		<selectable>false</selectable>
-		<altitudeLayer>Building</altitudeLayer>
+		<label>pushed cart visual</label>
 		<drawerType>MapMeshAndRealTime</drawerType>
 		<useHitPoints>false</useHitPoints>
-		<tickerType>Never</tickerType>
+		<selectable>false</selectable>
+		<stackLimit>1</stackLimit>
 		<tradeability>None</tradeability>
-		<!-- No graphicData here; the class pulls from the cart's def -->
+		<altitudeLayer>Building</altitudeLayer>
+		<tickerType>Never</tickerType>
 	</ThingDef>
 
 	<!-- T1: Wheelbarrow (neolithic/industrial) -->

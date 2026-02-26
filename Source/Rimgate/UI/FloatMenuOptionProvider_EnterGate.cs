@@ -24,10 +24,9 @@ public class FloatMenuOptionProvider_EnterGate : FloatMenuOptionProvider
 
     public override IEnumerable<FloatMenuOption> GetOptionsFor(Thing clickedThing, FloatMenuContext context)
     {
-        Building_Gate gate = clickedThing as Building_Gate;
         Pawn pawn = context.FirstSelectedPawn;
 
-        if (pawn == null || gate == null)
+        if (pawn == null || clickedThing is not Building_Gate gate)
             yield break;
 
         if (!gate.IsActive)
@@ -83,7 +82,7 @@ public class FloatMenuOptionProvider_EnterGate : FloatMenuOptionProvider
                 : "RG_BringToGate").Translate(gate.LabelCap);
             yield return new FloatMenuOption(bringLabel, () =>
             {
-                TargetingParameters parms = new TargetingParameters()
+                TargetingParameters parms = new()
                 {
                     canTargetPawns = true,
                     canTargetCorpses = true,
@@ -103,11 +102,9 @@ public class FloatMenuOptionProvider_EnterGate : FloatMenuOptionProvider
 
                         if (t.Thing is Building_MobileContainer container)
                         {
-                            container.ClearDesignations();
                             // send a push job targeting the *gate thing*
-                            var pushJob = container.GetPushJob(pawn, gate);
+                            var pushJob = container.GetPushJob(gate, false, true);
                             if (pushJob == null) return;
-                            pushJob.playerForced = true;
                             pawn.jobs.TryTakeOrderedJob(pushJob, JobTag.MiscWork);
                             return;
                         }
@@ -124,6 +121,4 @@ public class FloatMenuOptionProvider_EnterGate : FloatMenuOptionProvider
             });
         }
     }
-
-
 }

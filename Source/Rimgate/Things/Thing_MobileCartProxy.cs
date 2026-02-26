@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -9,11 +11,11 @@ public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
 {
     public ThingOwner InnerContainer;
 
+    public ThingDef SavedDef; // original cart def
+
     public float FuelPerTick; // cached per-tick rate during push
 
     public float PushingFuel;  // current fuel while proxy is carried
-
-    public ThingDef SavedDef; // original cart def
 
     public ThingDef SavedStuff; // original stuff
 
@@ -24,6 +26,8 @@ public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
     public bool SavedHasPaint;
 
     public bool SavedUseContentsSetting;
+
+    public IntVec3 PushDestination = IntVec3.Invalid;
 
     public override string Label => SavedDef?.LabelCap ?? base.Label;
 
@@ -36,6 +40,10 @@ public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
     public bool IsProxyRefuelable => FuelPerTick > 0f;
 
     public bool ProxyFuelOk => !IsProxyRefuelable || PushingFuel > 0f;
+
+    public bool HasPushDestination => PushDestination.IsValid;
+
+    private Graphic _cachedPushGhostGraphic;
 
     public Thing_MobileCartProxy()
     {
@@ -56,6 +64,7 @@ public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
         Scribe_Values.Look(ref SavedDrawColorTwo, "SavedDrawColorTwo", default);
         Scribe_Values.Look(ref SavedHasPaint, "SavedHasPaint", false);
         Scribe_Values.Look(ref SavedUseContentsSetting, "SavedUseContentsSetting", false);
+        Scribe_Values.Look(ref PushDestination, "PushDestination", IntVec3.Invalid);
     }
 
     public ThingOwner GetDirectlyHeldThings() => InnerContainer;
@@ -66,10 +75,14 @@ public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
     }
 
     // proxy -> Docked at a specific cell, using the original cart def when possible
-    public Building_MobileContainer ConvertProxyToCart()
+    public Building_MobileContainer ConvertProxyToCart(Faction faction = null)
     {
         // Make cart with original stuff (if any), then spawn that instance
         var made = ThingMaker.MakeThing(SavedDef, SavedStuff) as Building_MobileContainer;
+
+        if(faction != null)
+            made.SetFaction(faction);
+
         made.HitPoints = Mathf.Clamp(SavedHitPoints, 1, made.MaxHitPoints);
         made.AllowColonistsUseContents = SavedUseContentsSetting;
 
@@ -95,5 +108,20 @@ public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
 
         InnerContainer.TryTransferAllToContainer(container.InnerContainer);
     }
-}
 
+    public Graphic GetPushGhostGraphic()
+    {
+        if (SavedDef?.graphicData == null)
+            return null;
+
+        if (_cachedPushGhostGraphic != null)
+            return _cachedPushGhostGraphic;
+
+        Graphic baseGraphic = SavedDef.graphicData.Graphic;
+        if (baseGraphic == null)
+            return null;
+
+        _cachedPushGhostGraphic = baseGraphic.GetColoredVersion(baseGraphic.Shader, SavedDrawColor, SavedDrawColorTwo);
+        return _cachedPushGhostGraphic;
+    }
+}

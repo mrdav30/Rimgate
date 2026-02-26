@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Runtime.CompilerServices;
 using Verse;
 using Verse.AI;
 
@@ -8,17 +8,22 @@ namespace Rimgate;
 
 public class JobDriver_PushContainer : JobDriver
 {
-    private Thing_MobileCartProxy _proxyCart;
+    // whether the proxy cart has been spawned during init (used to determine if we need to try to restore it on job interruption)
+    private bool _proxySpawned;
 
-    private Thing_PushedCartVisual _pushVisual;
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref _proxySpawned, "proxySpawned");
+    }
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
         if (!pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed)) return false;
 
         // Reserve destination (targetC will be filled in init)
-        if (job.targetC.IsValid && pawn.Map != null)
-            pawn.Map.reservationManager.Reserve(pawn, job, job.targetC);
+        if (job.targetB.IsValid && pawn.Map != null)
+            pawn.Map.reservationManager.Reserve(pawn, job, job.targetB);
 
         return true;
     }
@@ -47,11 +52,8 @@ public class JobDriver_PushContainer : JobDriver
                     return;
                 }
 
-                var dest = job.targetC.HasThing
-                    ? job.targetC.Thing.InteractionCell // destination is a gate
-                    : job.targetC.IsValid
-                        ? job.targetC.Cell
-                        : pawn.Position;  // final desired cell
+                var dest = Building_MobileContainer.GetPushDestinationCell(job.targetB);
+                if (!dest.IsValid) dest = pawn.Position; // fallback to current position if something went wrong with the destination
 
                 if (!Utils.FindStandCellFor(pawn.Position, dest, pawn.Map, out IntVec3 stand))
                 {
@@ -63,80 +65,74 @@ public class JobDriver_PushContainer : JobDriver
                     return;
                 }
 
-                // Save stand in B so Goto below knows where to stand
-                job.targetB = stand;
+                // Save stand in C so Goto below knows where to stand
+                job.targetC = stand;
                 cart.ClearDesignations();
 
                 // Convert to proxy and pick it up
-                _proxyCart = cart.GetProxyForCart();
-                if (_proxyCart == null)
+                Thing_MobileCartProxy proxyCart = cart.GetProxyForCart();
+                if (proxyCart == null)
                 {
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
 
-                // If enough fuel to push — restore immediately and end the job
-                if (!_proxyCart.ProxyFuelOk)
-                {
-                    Messages.Message("RG_CartNoFuel".Translate(cart.LabelShort),
-                        cart,
-                        MessageTypeDefOf.RejectInput);
+                proxyCart.PushDestination = dest;
 
-                    _proxyCart.Destroy();
+                string failureReason = null;
+
+                // If not enough fuel to push — restore immediately and end the job
+                if (!proxyCart.ProxyFuelOk)
+                    failureReason = "RG_CartNoFuel".Translate(cart.LabelShort);
+
+                // Check if pawn can carry this
+                if (!pawn.carryTracker.TryStartCarry(proxyCart))
+                    failureReason = " RG_MessagePawnCannotPush".Translate(pawn.LabelShort, cart.LabelShort);
+
+                if (!failureReason.NullOrEmpty())
+                {
+                    Messages.Message(failureReason, cart, MessageTypeDefOf.RejectInput);
+                    proxyCart.Destroy();
+                    proxyCart = null;
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
 
-                // Proxy is not spawned in; give it directly to the carry tracker
-                if (!pawn.carryTracker.TryStartCarry(_proxyCart))
-                {
-                    // Pawn can’t carry this (capacity, reservation weirdness, etc.) — restore
-                    Messages.Message("RG_MessagePawnCannotPush".Translate(pawn.LabelShort, cart.LabelShort),
-                        pawn,
-                        MessageTypeDefOf.RejectInput);
-
-                    _proxyCart.Destroy();
-                    EndJobWith(JobCondition.Incompletable);
-                    return;
-                }
+                _proxySpawned = true;
 
                 // Move contents to proxy before despawning cart, to preserve stuff & HP
-                cart.MoveContentsToProxy(_proxyCart);
-
-                ResetPushVisual();
-
-                _pushVisual = GenSpawn.Spawn(RimgateDefOf.Rimgate_PushedCartVisual,
-                    pawn.Position,
-                    pawn.Map,
-                    WipeMode.Vanish) as Thing_PushedCartVisual;
-
-                _pushVisual.Init(cart.def, cart.DrawColor, cart.DrawColorTwo, cart.Ext.frontOffset);
-                _pushVisual.AttachTo(pawn);
+                cart.MoveContentsToProxy(proxyCart);
+                cart.DeSpawn();
 
                 if (!pawn.HasHediffOf(RimgateDefOf.Rimgate_PushingCart)) // prevent stacking
                     pawn.ApplyHediff(RimgateDefOf.Rimgate_PushingCart, severity: cart.Ext.slowdownSeverity);
 
-                // Now that the proxy is safely in the carry tracker, we can despawn the cart
-                cart.DeSpawn();
+                Thing_PushedCartVisual pushVisual = GenSpawn.Spawn(RimgateDefOf.Rimgate_PushedCartVisual,
+                    pawn.Position,
+                    pawn.Map,
+                    WipeMode.Vanish) as Thing_PushedCartVisual;
+
+                pushVisual.Setup(cart.def, cart.DrawColor, cart.DrawColorTwo, cart.Ext.frontOffset);
+                pushVisual.AttachTo(pawn);
             }
         };
         yield return init;
 
         // Walk to stand cell next to the destination
-        var move = Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell)
+        var move = Toils_Goto.GotoCell(TargetIndex.C, PathEndMode.OnCell)
             .FailOn(() => pawn.Downed)
-            .FailOn(() => _proxyCart == null);
+            .FailOn(() => pawn.carryTracker.CarriedThing is not Thing_MobileCartProxy carried);
 
         // drain fuel every tick while moving
         move.tickAction = () =>
         {
-            if (!_proxyCart.IsProxyRefuelable) return;
+            if (pawn.carryTracker.CarriedThing is not Thing_MobileCartProxy cart || !cart.IsProxyRefuelable) return;
 
-            _proxyCart.PushingFuel -= _proxyCart.FuelPerTick;
-            if (_proxyCart.ProxyFuelOk) return;
+            cart.PushingFuel -= cart.FuelPerTick;
+            if (cart.ProxyFuelOk) return;
 
             // out of fuel
-            Messages.Message("RG_CartRanOutOfFuel".Translate(_proxyCart.Label),
+            Messages.Message("RG_CartRanOutOfFuel".Translate(cart.Label),
                 new TargetInfo(pawn.Position, pawn.Map),
                 MessageTypeDefOf.NegativeEvent);
             EndJobWith(JobCondition.Incompletable);
@@ -148,66 +144,58 @@ public class JobDriver_PushContainer : JobDriver
         {
             initAction = () =>
             {
+                // Clean up visuals & hediff right away
+                pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PushingCart);
+                pawn.TryGetComp<CompAttachBase>()?.GetAttachment(RimgateDefOf.Rimgate_PushedCartVisual)?.Destroy();
+
                 if (pawn.carryTracker.CarriedThing is not Thing_MobileCartProxy carried)
                 {
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
 
-                if (job.targetC.Thing is Building_Gate gate)
+                // 1) Convert carried proxy -> cart (unspawned)
+                Building_MobileContainer cart = carried.ConvertProxyToCart(pawn.Faction);
+                carried.MoveContentsToContainer(cart);
+                carried.Destroy();
+
+                if (job.targetB.HasThing && job.targetB.Thing is Building_Gate gate)
                 {
-                    // sanity: gate usable?
-                    if (!gate.IsActive || gate.IsIrisActivated)
+                    // 2) If destination is an active gate with open iris, send the cart through the gate instead of placing on ground
+                    if (gate.IsActive && !gate.IsIrisActivated)
                     {
-                        Messages.Message(
-                            "CannotEnterPortal".Translate(gate.Label),
-                            gate,
-                            MessageTypeDefOf.RejectInput);
-                        EndJobWith(JobCondition.Incompletable);
+                        // 2) hand the unspawned cart to the gate
+                        gate.AddToSendBuffer(cart);  // gate system will forward & spawn at receiver
+
+                        if (job.def == RimgateDefOf.Rimgate_EnterGateWithContainer)
+                        {
+                            gate.AddToSendBuffer(pawn);
+                            pawn.DeSpawn();
+                        }
+
+                        EndJobWith(JobCondition.Succeeded);
                         return;
                     }
 
-                    // 1) Convert carried proxy -> cart (unspawned), hand to gate send buffer
-                    Building_MobileContainer container = carried.ConvertProxyToCart();
-                    carried.MoveContentsToContainer(container);
-                    carried.Destroy();
-                    _proxyCart = null; // just in case
-
-                    pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PushingCart);
-                    ResetPushVisual();
-
-                    // 2) hand the unspawned cart to the gate
-                    gate.AddToSendBuffer(container);  // gate system will forward & spawn at receiver
-
-                    if (job.def == RimgateDefOf.Rimgate_EnterGateWithContainer)
-                    {
-                        gate.AddToSendBuffer(pawn);
-                        pawn.DeSpawn();
-                        EndJobWith(JobCondition.Succeeded);
-                    }
-
-                    return;
+                    // Gate is not active or iris is closed — can’t place cart into an inactive gate
+                    Messages.Message("CannotEnterPortal".Translate(gate.Label),
+                        gate,
+                        MessageTypeDefOf.RejectInput);
                 }
 
                 // “place on ground” path (when dest is not a gate)
                 var map = pawn.Map;
-                var dest = job.targetC.Cell;
-                if (map != null && !dest.InBounds(map))
-                    dest = pawn.Position; // fallback to current position if something went wrong with the destination
+                var cartDestination = job.targetB.Cell;
+                var pawnDestination = job.targetC.Cell;
 
-                // Convert directly from carried proxy → spawned cart at destination
-                var cart = carried.ConvertProxyToCart();
-                carried.MoveContentsToContainer(cart);
-                carried.Destroy();
-                _proxyCart = null; // just in case
-                GenSpawn.Spawn(cart, dest, map, Utils.RotationFacingFor(job.targetB.Cell, dest));
-
-                pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PushingCart);
-                ResetPushVisual();
+                // Spawn the cart at destination, facing the direction of the push (from pawn to dest)
+                GenSpawn.Spawn(cart, cartDestination, map, Utils.RotationFacingFor(pawnDestination, cartDestination));
 
                 // Dump if this is the push & dump job
                 if (job.haulMode == HaulMode.ToCellNonStorage)
-                    cart?.InnerContainer.TryDropAll(dest, pawn.Map, ThingPlaceMode.Near);
+                    cart?.InnerContainer.TryDropAll(cartDestination, pawn.Map, ThingPlaceMode.Near);
+
+                EndJobWith(JobCondition.Succeeded);
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
@@ -216,13 +204,21 @@ public class JobDriver_PushContainer : JobDriver
         // Final safety: if interrupted, try to restore a cart and clean up visuals/hediff
         AddFinishAction((jc) =>
         {
-            if (jc == JobCondition.Succeeded || _proxyCart == null) return;
+            // If job completed successfully, no need to do anything — cart is already placed and visuals cleaned up
+            if (jc == JobCondition.Succeeded) return;
+
+            // Clean up visuals & hediff right away
+            pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PushingCart);
+            pawn.TryGetComp<CompAttachBase>()?.GetAttachment(RimgateDefOf.Rimgate_PushedCartVisual)?.Destroy();
+
+            // If proxy was never spawned (interrupted during init), nothing to restore
+            if (!_proxySpawned) return;
 
             // 1) If carrying a proxy, convert it back right away
             if (pawn.carryTracker?.CarriedThing is Thing_MobileCartProxy carried)
             {
                 var drop = Utils.BestDropCellNearThing(pawn);
-                var cart = carried.ConvertProxyToCart();
+                var cart = carried.ConvertProxyToCart(pawn.Faction);
                 carried.MoveContentsToContainer(cart);
                 carried.Destroy();
                 GenSpawn.Spawn(cart, drop, pawn.Map, Utils.RotationFacingFor(pawn.Position, drop));
@@ -239,7 +235,7 @@ public class JobDriver_PushContainer : JobDriver
                     {
                         if (list[i] is Thing_MobileCartProxy pr)
                         {
-                            var cart = pr.ConvertProxyToCart();
+                            var cart = pr.ConvertProxyToCart(pawn.Faction);
                             pr.MoveContentsToContainer(cart);
                             pr.Destroy();
                             GenSpawn.Spawn(cart, pr.Position, pawn.Map, Utils.RotationFacingFor(pawn.Position, pr.Position));
@@ -248,16 +244,7 @@ public class JobDriver_PushContainer : JobDriver
                 }
             }
 
-            _proxyCart = null;
-            pawn.RemoveHediffOf(RimgateDefOf.Rimgate_PushingCart);
-            ResetPushVisual();
+            _proxySpawned = false;
         });
-    }
-
-    private void ResetPushVisual()
-    {
-        if (_pushVisual != null && !_pushVisual.Destroyed)
-            _pushVisual.Destroy(DestroyMode.Vanish);
-        _pushVisual = null;
     }
 }

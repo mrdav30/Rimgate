@@ -3,14 +3,9 @@ using Verse;
 
 namespace Rimgate;
 
-public sealed class ThingOwner_MobileContainer : ThingOwner<Thing>
+public sealed class ThingOwner_MobileContainer(Building_MobileContainer container) : ThingOwner<Thing>(container)
 {
-    private readonly Building_MobileContainer _container;
-
-    public ThingOwner_MobileContainer(Building_MobileContainer container) : base(container)
-    {
-        _container = container;
-    }
+    private readonly Building_MobileContainer _container = container;
 
     public override bool TryAdd(Thing item, bool canMergeWithExistingStacks = true)
     {

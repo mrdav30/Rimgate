@@ -425,6 +425,8 @@
 	<RG_CartNoFuel>Unable to push {0} (no fuel).</RG_CartNoFuel>
 	<RG_CannotReachDestination>No colonist can reach the designated target.</RG_CannotReachDestination>
 
+	<RG_PushTargetInvalid>The designated push target is invalid.</RG_PushTargetInvalid>
+
 	<!-- Constant focus -->
 
 	<RG_MeditationFocusConstant>Constant {0}</RG_MeditationFocusConstant>

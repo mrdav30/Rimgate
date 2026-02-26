@@ -52,7 +52,7 @@ public class Thing_PushedCartVisual : AttachableThing
         Scribe_Values.Look(ref _colB, "colB", Color.white);
     }
 
-    public void Init(ThingDef def, Color drawA, Color drawB, float frontOffset)
+    public void Setup(ThingDef def, Color drawA, Color drawB, float frontOffset)
     {
         ParentDef = def;
         _frontOffset = frontOffset;
