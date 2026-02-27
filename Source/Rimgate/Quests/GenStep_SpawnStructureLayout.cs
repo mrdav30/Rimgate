@@ -27,7 +27,7 @@ public class GenStep_SpawnStructureLayout : GenStep
         LayoutWorker worker = layoutDef?.Worker;
         if (worker == null)
         {
-            Log.Error("Rimgate :: GenStep_SpawnLayout could not find LayoutWorker from LayoutDef.");
+            LogUtil.Error("Could not find LayoutWorker from LayoutDef.");
             return;
         }
 

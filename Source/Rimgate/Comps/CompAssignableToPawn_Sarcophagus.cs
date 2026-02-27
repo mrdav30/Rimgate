@@ -116,7 +116,7 @@ public class CompAssignableToPawn_Sarcophagus : CompAssignableToPawn
                 || !CanAssignTo(p));
 
             if (invalid != 0)
-                Log.Warning($"{parent.ToStringSafe()} had invalid assigned pawns. Removing.");
+                LogUtil.Warning($"{parent.ToStringSafe()} had invalid assigned pawns. Removing.");
         }
     }
 

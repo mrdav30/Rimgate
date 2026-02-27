@@ -49,7 +49,7 @@ public static class CorpseBiomaterialRecoveryUtility
 
         if (checkAvailability)
         {
-            if (CorpseBiomaterialRecoveryUtility.CountAvailableKits(actor, def.requiredKit) < 1)
+            if (CountAvailableKits(actor, def.requiredKit) < 1)
             {
                 reason = $"missing {def.requiredKit.LabelCap} x1";
                 return false;

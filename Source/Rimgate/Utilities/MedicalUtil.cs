@@ -228,13 +228,13 @@ public static class MedicalUtil
     {
         if (!pawn.Dead)
         {
-            Log.Error("Tried to resurrect a pawn who is not dead: " + pawn.ToStringSafe());
+            LogUtil.Error("Tried to resurrect a pawn who is not dead: " + pawn.ToStringSafe());
             return false;
         }
 
         if (pawn.Discarded)
         {
-            Log.Error("Tried to resurrect a discarded pawn: " + pawn.ToStringSafe());
+            LogUtil.Error("Tried to resurrect a discarded pawn: " + pawn.ToStringSafe());
             return false;
         }
 

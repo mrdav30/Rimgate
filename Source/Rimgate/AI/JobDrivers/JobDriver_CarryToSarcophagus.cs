@@ -67,7 +67,7 @@ public class JobDriver_CarryToSarcophagus : JobDriver
 
     private void CheckMakeTakeeGuest()
     {
-        Log.Warning("checking making patient guest");
+        LogUtil.Warning($"Checking if {Patient} should be made a guest");
         if (!job.def.makeTargetPrisoner
             && !Patient.Faction.IsOfPlayerFaction()
             && !Patient.HostFaction.IsOfPlayerFaction()
@@ -75,7 +75,7 @@ public class JobDriver_CarryToSarcophagus : JobDriver
             && !Patient.IsWildMan()
             && Patient.DevelopmentalStage != DevelopmentalStage.Baby)
         {
-            Log.Warning("making patient guest");
+            LogUtil.Warning($"Making {Patient} guest");
             Patient.guest.SetGuestStatus(Faction.OfPlayer);
             QuestUtility.SendQuestTargetSignals(Patient.questTags, "Rescued", Patient.Named("SUBJECT"));
         }

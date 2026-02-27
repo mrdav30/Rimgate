@@ -217,7 +217,7 @@ public class Dialog_LoadContainers : Window
         }
 
         if (transferableOneWay.things.Contains(t))
-            Log.Error("Tried to add the same thing twice to TransferableOneWay: " + t);
+            LogUtil.Error("Tried to add the same thing twice to TransferableOneWay: " + t);
         else
             transferableOneWay.things.Add(t);
     }
@@ -418,7 +418,7 @@ public class Dialog_LoadContainers : Window
                     _container.Map,
                     ThingPlaceMode.Near,
                     overflow,
-                    out _)) Log.Error($"Container failed to drop {overflow} of {inCart}");
+                    out _)) LogUtil.Error($"Container failed to drop {overflow} of {inCart}");
             }
         }
     }

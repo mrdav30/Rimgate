@@ -61,7 +61,7 @@ public class JobDriver_WraithCocoonPrisoner : JobDriver
                 // Stuff pawn into the pod
                 if (!pod.TryAcceptThing(victim, allowSpecialEffects: true))
                 {
-                    Log.Warning($"Rimgate :: Wraith cocoon pod at {cell} failed to accept {victim}.");
+                    LogUtil.Warning($"Wraith cocoon pod at {cell} failed to accept {victim}.");
                     pod.Destroy(); // clean up orphan pod
                     return;
                 }

@@ -215,7 +215,7 @@ internal static class CloneUtility
                 _cachedGeneDefs ??= DefDatabase<GeneDef>.AllDefsListForReading;
                 if (_cachedGeneDefs == null || _cachedGeneDefs.Count == 0)
                 {
-                    Log.Error("Rimgate :: No genes found in DefDatabase.");
+                    LogUtil.Error("No genes found in DefDatabase.");
                     return false;
                 }
 
@@ -226,7 +226,7 @@ internal static class CloneUtility
                     GeneDef geneDef = _cachedGeneDefs[Rand.RangeInclusive(0, _cachedGeneDefs.Count)];
                     if (!innerPawn.genes.HasActiveGene(geneDef) && !geneDefList.Contains(geneDef))
                     {
-                        Log.Message($"Rimgate :: Added gene: {geneDef.label} to random gene list");
+                        LogUtil.Message($"Added gene: {geneDef.label} to random gene list");
                         geneDefList.Add(geneDef);
                     }
                 }
@@ -234,7 +234,7 @@ internal static class CloneUtility
                 foreach (GeneDef geneDef in geneDefList)
                 {
                     clonePawn.genes.AddGene(geneDef, true);
-                    Log.Message($"Rimgate :: Added gene: {((Def)geneDef).label} to {clonePawn.Name}");
+                    LogUtil.Message($"Added gene: {((Def)geneDef).label} to {clonePawn.Name}");
                 }
             }
 
@@ -328,7 +328,7 @@ internal static class CloneUtility
             _cachedTraitDefs ??= DefDatabase<TraitDef>.AllDefsListForReading;
             if (_cachedTraitDefs == null || _cachedTraitDefs.Count == 0)
             {
-                Log.Error("Rimgate :: No traits found in DefDatabase.");
+                LogUtil.Error("No traits found in DefDatabase.");
                 return false;
             }
 

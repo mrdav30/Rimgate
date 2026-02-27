@@ -28,7 +28,7 @@ public static class Harmony_GenStep_Asteroid
 
             if (num == 0)
             {
-                Log.Error("Rimgate :: No count found for resource " + thingDef);
+                LogUtil.Error("No count found for resource " + thingDef);
                 return false;
             }
 

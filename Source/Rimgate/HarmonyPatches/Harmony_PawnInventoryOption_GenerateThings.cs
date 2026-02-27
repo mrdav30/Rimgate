@@ -44,7 +44,7 @@ public static class Harmony_PawnInventoryOption_GenerateThings
 
         if (makeThing == null || helper == null)
         {
-            Log.Error($"Rimgate :: GenerateThings transpiler: method lookup failed. makeThing={(makeThing != null)}, helper={(helper != null)}");
+            LogUtil.Error($"GenerateThings transpiler: method lookup failed. makeThing={(makeThing != null)}, helper={(helper != null)}");
             return codes;
         }
 
@@ -61,7 +61,7 @@ public static class Harmony_PawnInventoryOption_GenerateThings
         }
 
         if (replaced == 0)
-            Log.Warning("Rimgate :: GenerateThings transpiler: found no ThingMaker.MakeThing(def, stuff) call sites to replace.");
+            LogUtil.Warning("GenerateThings transpiler: found no ThingMaker.MakeThing(def, stuff) call sites to replace.");
 
         return codes;
     }

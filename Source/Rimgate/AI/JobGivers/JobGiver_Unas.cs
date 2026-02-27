@@ -185,7 +185,7 @@ public class JobGiver_Unas : JobGiver_Work
             }
             catch (Exception ex)
             {
-                Log.Error(string.Concat(pawn, " threw exception in WorkGiver ", workGiver.def.defName, ": ", ex.ToString()));
+                LogUtil.Error(string.Concat(pawn, " threw exception in WorkGiver ", workGiver.def.defName, ": ", ex.ToString()));
             }
 
             if (bestTargetOfLastPriority.IsValid)
@@ -203,7 +203,7 @@ public class JobGiver_Unas : JobGiver_Work
 
                     return new ThinkResult(job3, this, list[j].def.tagToGive);
                 }
-                Log.ErrorOnce(string.Concat(scannerWhoProvidedTarget, " provided target ", bestTargetOfLastPriority, " but yielded no actual job for pawn ", pawn, ". The CanGiveJob and JobOnX methods may not be synchronized."), 6112651);
+                Log.ErrorOnce($"{scannerWhoProvidedTarget} provided target {bestTargetOfLastPriority} but yielded no actual job for pawn {pawn}. The CanGiveJob and JobOnX methods may not be synchronized.", 6112651);
             }
 
             num = workGiver.def.priorityInType;
@@ -288,7 +288,7 @@ public class JobGiver_Unas : JobGiver_Work
         }
         catch (Exception ex)
         {
-            Log.Error(string.Concat(pawn, " threw exception in GiverTryGiveJobTargeted on WorkGiver ", giver.def.defName, ": ", ex.ToString()));
+            LogUtil.Error($"{pawn} threw exception in GiverTryGiveJobTargeted on WorkGiver {giver.def.defName}: {ex}");
         }
 
         return null;

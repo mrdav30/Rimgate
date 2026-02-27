@@ -70,7 +70,7 @@ public class IncidentWorker_Marauders : IncidentWorker_RaidEnemy
             threatPawns = PawnGroupMakerUtility.GeneratePawns(pawnMakerParms, true).ToList<Pawn>();
             if (threatPawns.Count == 0)
             {
-                Log.Error("Got no pawns spawning raid from parms " + parms?.ToString());
+                LogUtil.Error("Got no pawns spawning raid from parms " + parms?.ToString());
                 return false;
             }
             parms.raidArrivalMode.Worker.Arrive(threatPawns, parms);

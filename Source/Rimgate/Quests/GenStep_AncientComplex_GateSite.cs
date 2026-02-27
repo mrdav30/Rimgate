@@ -81,7 +81,7 @@ public class GenStep_AncientComplex_GateSite : GenStep_AncientComplex
         if (!rect.TryFindRandomInnerRect(new IntVec2(container.Width, container.Height), out var rect2))
         {
             rect2 = rect;
-            Log.Error($"Attempted to generate and spawn an anicent complex, but could not find rect of valid size {Size} within provided Rect {rect}");
+            LogUtil.Error($"Attempted to generate and spawn an anicent complex, but could not find rect of valid size {Size} within provided Rect {rect}");
         }
 
         ResolveParams resolveParams = default(ResolveParams);

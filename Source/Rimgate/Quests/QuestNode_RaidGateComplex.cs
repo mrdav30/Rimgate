@@ -5,7 +5,7 @@ using Verse;
 
 namespace Rimgate;
 
-/// Drives “timed detection” raids for a gate site, 
+/// Drives “timed detection” raids for a gate site,
 /// without using the vanilla TimedDetectionRaids WO comp.
 /// Triggers on site.MapGenerated and then repeats on an interval until quest end.
 public class QuestNode_RaidGateComplex : QuestNode
@@ -46,7 +46,7 @@ public class QuestNode_RaidGateComplex : QuestNode
         var site = slate.Get<Site>("site");
         if (site == null || !site.Tile.Valid)
         {
-            Log.Error("Rimgate :: no valid site found in slate.");
+            LogUtil.Error("No valid site found in slate.");
             return;
         }
 

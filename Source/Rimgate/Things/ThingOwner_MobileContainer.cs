@@ -11,19 +11,19 @@ public sealed class ThingOwner_MobileContainer(Building_MobileContainer containe
     {
         if (item == null)
         {
-            Log.Warning("Tried to add null item to ThingOwner.");
+            LogUtil.Warning("Tried to add null item to ThingOwner.");
             return false;
         }
 
         if (Contains(item))
         {
-            Log.Warning($"Tried to add {item.ToStringSafe()} but it's already in this ThingOwner.");
+            LogUtil.Warning($"Tried to add {item.ToStringSafe()} but it's already in this ThingOwner.");
             return false;
         }
 
         if (item.holdingOwner != null)
         {
-            Log.Warning($"Tried to add {item.ToStringSafe()} but it's already in another container (current owner={item.holdingOwner.Owner.ToStringSafe()}). Use TryTransfer APIs.");
+            LogUtil.Warning($"Tried to add {item.ToStringSafe()} but it's already in another container (current owner={item.holdingOwner.Owner.ToStringSafe()}). Use TryTransfer APIs.");
             return false;
         }
 

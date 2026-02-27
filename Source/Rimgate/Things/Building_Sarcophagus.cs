@@ -149,7 +149,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
             if (pawn != null)
                 return pawn;
 
-            Log.Error($"{ThingID} _innerContainer is not empty but contains no Pawn.");
+            LogUtil.Error($"{ThingID} _innerContainer is not empty but contains no Pawn.");
             return null;
         }
     }
@@ -947,7 +947,7 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         patient.health.CheckForStateChange(null, null);
 
         // Apply the appropriate cortical stimulation hediff,
-        // depending on whether the treatment was completed or interrupted            
+        // depending on whether the treatment was completed or interrupted
         string popupMessage = finishTreatmentNormally
             ? "RG_Sarcophagus_Message_TreatmentComplete".Translate(patient.LabelCap, patient)
             : "RG_Sarcophagus_Message_TreatmentInterrupted".Translate(patient.LabelCap, patient);
