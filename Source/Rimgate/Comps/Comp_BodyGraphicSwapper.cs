@@ -44,7 +44,6 @@ public class Comp_BodyGraphicSwapper : ThingComp
         return Props.tierTwoFemaleGraphicData.Graphic;
     }
 
-    // TODO: Make this virtual so other classes can override it for custom behavior
     // TODO: Make the thresholds configurable via CompProperties
     public virtual SwapTier GetCurrentSwapTier(Pawn pawn)
     {

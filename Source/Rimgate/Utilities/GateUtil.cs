@@ -11,16 +11,13 @@ namespace Rimgate;
 
 public static class GateUtil
 {
-    // TODO: move this to mod config
-    public const int MaxAddresses = 11;
+    public static int MaxAddresses => RimgateMod.Settings.MaxGateAddresses;
 
-    public const int MaxActiveQuestSiteCount = 2;
+    public static int MaxActiveQuestSiteCount => RimgateMod.Settings.MaxActiveGateQuestSites;
 
     public const string Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private const int MaxGateSearchRadius = 50;
-
-    private const int MaxTries = 2000;
 
     public static WorldComp_GateAddresses WorldComp => _cachedWorldComp ??= Find.World.GetComponent<WorldComp_GateAddresses>();
 
@@ -55,8 +52,7 @@ public static class GateUtil
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void RemoveGateAddress(PlanetTile address)
     {
-        if (WorldComp != null)
-            WorldComp.AddressList.Remove(address);
+        WorldComp?.AddressList.Remove(address);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -76,32 +72,27 @@ public static class GateUtil
     public static List<PlanetTile> GetAddressList(PlanetTile exclude = default)
     {
         if (WorldComp == null)
-            return new List<PlanetTile>();
+            return [];
 
         GateUtil.CleanupAddresses();
-        return WorldComp.AddressList
-            .Where(tile => tile != exclude)
-            .ToList();
+        return [.. WorldComp.AddressList.Where(tile => tile != exclude)];
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void IncrementQuestSiteCount()
     {
-        if (WorldComp != null)
-            WorldComp.ActiveQuestSiteCount = Mathf.Min(WorldComp.ActiveQuestSiteCount + 1, MaxActiveQuestSiteCount);
+        WorldComp?.ActiveQuestSiteCount = Mathf.Min(WorldComp.ActiveQuestSiteCount + 1, MaxActiveQuestSiteCount);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void DecrementQuestSiteCount()
     {
-        if (WorldComp != null)
-            WorldComp.ActiveQuestSiteCount = Mathf.Max(WorldComp.ActiveQuestSiteCount - 1, 0);
+        WorldComp?.ActiveQuestSiteCount = Mathf.Max(WorldComp.ActiveQuestSiteCount - 1, 0);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void SetModificationEquipmentActive(bool status)
     {
-        if (WorldComp != null)
-            WorldComp.ModificationEquipmentActive = status;
+        WorldComp?.ModificationEquipmentActive = status;
     }
 
     public static bool IsGateConditionActive(Map map)
@@ -218,7 +209,6 @@ public static class GateUtil
             return;
 
         // Find a near spot (4..8 tiles) that’s clear for a DHD
-        IntVec3 near;
         bool found = CellFinder.TryFindRandomReachableNearbyCell(
             gate.Position,
             map,
@@ -232,7 +222,7 @@ public static class GateUtil
                 && c.GetEdifice(map) == null
                 && c.DistanceTo(gate.Position) > 4f,
             null,
-            out near);
+            out IntVec3 near);
 
         if (!found)
         {

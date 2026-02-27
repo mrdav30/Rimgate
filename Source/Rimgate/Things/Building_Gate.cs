@@ -20,7 +20,7 @@ public class Building_Gate_Ext : DefModExtension
 
     public bool explodeOnUse = false;
 
-    public Color modActivatedColor = new Color(0.38f, 0.53f, 0.49f);
+    public Color modActivatedColor = new(0.38f, 0.53f, 0.49f);
 
     public GraphicData puddleGraphicData;
 
@@ -30,8 +30,8 @@ public class Building_Gate_Ext : DefModExtension
 
     public GraphicData chevronHighlight;
 
-    public List<IntVec3> vortexPattern = new List<IntVec3>
-    {
+    public List<IntVec3> vortexPattern =
+    [
         new IntVec3(0,0,1),
         new IntVec3(1,0,1),
         new IntVec3(-1,0,1),
@@ -45,20 +45,20 @@ public class Building_Gate_Ext : DefModExtension
         new IntVec3(1,0,-2),
         new IntVec3(-1,0,-2),
         new IntVec3(0,0,-3)
-    };
+    ];
 
     public List<SoundDef> teleportSounds;
 }
 
 public class Building_Gate : Building
 {
-    public static readonly Dictionary<int, int> GlobalVortexEntryCellCache = new();
+    public static readonly Dictionary<int, int> GlobalVortexEntryCellCache = [];
 
     public Building_Gate_Ext Ext => _cachedProps ??= def.GetModExtension<Building_Gate_Ext>() ?? new();
 
     private const int GlowRadius = 10;
 
-    private static readonly IntRange IdleTimeoutRange = new IntRange(1900, 2500);
+    private static readonly IntRange IdleTimeoutRange = new(1900, 2500);
 
     private const int UnstableVortexInterval = 150;
 
@@ -389,7 +389,7 @@ public class Building_Gate : Building
         if (!Prefs.DevMode)
             yield break;
 
-        Command_Action commandDevMode = new Command_Action
+        Command_Action commandDevMode = new()
         {
             defaultLabel = "Add/remove iris",
             action = delegate ()
@@ -470,7 +470,7 @@ public class Building_Gate : Building
         if (this.IsMinified())
             return null;
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
 
         if (!GateAddress.Valid)
             return sb.Append("RG_RespawnGateString".Translate()).ToString();

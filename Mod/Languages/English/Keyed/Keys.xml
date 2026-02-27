@@ -515,9 +515,11 @@
 	<RG_Settings_Github_Button>Wiki</RG_Settings_Github_Button>
 	<RG_Settings_Discord_Button>Discord</RG_Settings_Discord_Button>
 	<RG_Settings_Tab_General>General</RG_Settings_Tab_General>
+	<RG_Settings_Tab_Gate>Gate</RG_Settings_Tab_Gate>
 	<RG_Settings_Tab_ClonePod>ClonePod</RG_Settings_Tab_ClonePod>
 	<RG_Settings_Tab_Sarcophagus>Sarcophagus</RG_Settings_Tab_Sarcophagus>
 	<RG_Settings_Section_General_Label>General options</RG_Settings_Section_General_Label>
+	<RG_Settings_Section_Gate_Label>Gate options</RG_Settings_Section_Gate_Label>
 	<RG_Settings_Section_CloneTimings_Label>Clone timings</RG_Settings_Section_CloneTimings_Label>
 	<RG_Settings_Section_CloneModifiers_Label>Clone operation modifiers</RG_Settings_Section_CloneModifiers_Label>
 	<RG_Settings_Section_CloneBehavior_Label>Clone behavior</RG_Settings_Section_CloneBehavior_Label>
@@ -538,6 +540,8 @@
 	<RG_Settings_InducerIncubationSpeedFactor_Label>Inducer incubation speed factor</RG_Settings_InducerIncubationSpeedFactor_Label>
 	<RG_Settings_EnableCloneIncidents_Label>Enable clone incidents</RG_Settings_EnableCloneIncidents_Label>
 	<RG_Settings_EnableAsteroidIncidents_Label>Enable naquadah asteroid incidents</RG_Settings_EnableAsteroidIncidents_Label>
+	<RG_Settings_MaxGateAddresses_Label>Maximum gate addresses</RG_Settings_MaxGateAddresses_Label>
+	<RG_Settings_MaxActiveQuestSites_Label>Maximum active gate quest sites</RG_Settings_MaxActiveQuestSites_Label>
 	<RG_Settings_CloneTattoos_Label>Clone tattoos</RG_Settings_CloneTattoos_Label>
 	<RG_Settings_NoSkillLoss_Label>No skill loss on deep/reconstructed cloning</RG_Settings_NoSkillLoss_Label>
 	<RG_Settings_GenerateSocialRelations_Label>Generate social relations for clones</RG_Settings_GenerateSocialRelations_Label>

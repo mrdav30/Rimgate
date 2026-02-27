@@ -5,11 +5,11 @@ using Verse;
 namespace Rimgate;
 
 /*
- * Unas are are an intermediate between animal and humanlike. 
+ * Unas are are an intermediate between animal and humanlike.
  * They have full-fledged cleaning and hauling work givers instead of stubs other animals have, allowing them to do all relevant jobs, like refueling!
- * 
+ *
  * They are still not fully sapient, however, so you need to teach them what they have to do and keep necessary training up.
- * 
+ *
  */
 public class Pawn_Unas : Pawn
 {
@@ -45,10 +45,6 @@ public class Pawn_Unas : Pawn
         //crownType = CrownType.Average,
         //childhood = xxx,
         ////adulthood = xxx
-        ///
-        //_unasTint = UnasPalette.RandomElement();
-        //story.SkinColorBase = _unasTint;
-        //Drawer.renderer.SetAllGraphicsDirty();
 
         // only used for WorkGiversInOrderNormal / WorkGiversInOrderEmergency
         workSettings ??= new(this);

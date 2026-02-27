@@ -2,7 +2,6 @@
 
 namespace Rimgate;
 
-// TODO: “unpowered,” “no fuel,” “broken” states
 public class CompProperties_TintedEmptyStateGraphic : CompProperties
 {
     // overlay shown when "empty"

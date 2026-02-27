@@ -11,6 +11,7 @@ public class RimgateModSettings : ModSettings
     private enum SettingsTab
     {
         General,
+        Gate,
         ClonePod,
         Sarcophagus
     }
@@ -98,6 +99,10 @@ public class RimgateModSettings : ModSettings
 
     #endregion
 
+    public int MaxGateAddresses = 11;
+
+    public int MaxActiveGateQuestSites = 2;
+
     public bool EnableAsteroidIncidents = true;
 
     public bool VerboseLogging = false;
@@ -125,6 +130,8 @@ public class RimgateModSettings : ModSettings
         Scribe_Values.Look<int>(ref MinorFailureChance, "MinorFailureChance", 10, true);
         Scribe_Values.Look<int>(ref MajorFailureChance, "MajorFailureChance", 1, true);
         Scribe_Values.Look<bool>(ref EnableCloneIncidents, "EnableIncidents", true, true);
+        Scribe_Values.Look<int>(ref MaxGateAddresses, "MaxGateAddresses", 11, true);
+        Scribe_Values.Look<int>(ref MaxActiveGateQuestSites, "MaxActiveGateQuestSites", 2, true);
         Scribe_Values.Look<bool>(ref EnableAsteroidIncidents, "EnableAsteroidIncidents", true, true);
         Scribe_Values.Look<int>(ref MedicineSkillReq, "MedicineSkillReq", 10, true);
         Scribe_Values.Look<float>(ref StabilizerDeteriorationFactor, "StabilizerDeteriorationRate", 0.5f, true);
@@ -176,11 +183,17 @@ public class RimgateModSettings : ModSettings
             case SettingsTab.General:
                 DrawGeneralTab(innerContentRect);
                 break;
+            case SettingsTab.Gate:
+                DrawGateTab(innerContentRect);
+                break;
+            case SettingsTab.ClonePod:
+                DrawClonePodTab(innerContentRect);
+                break;
             case SettingsTab.Sarcophagus:
                 DrawSarcophagusTab(innerContentRect);
                 break;
             default:
-                DrawClonePodTab(innerContentRect);
+                DrawGeneralTab(innerContentRect);
                 break;
         }
 
@@ -261,6 +274,10 @@ public class RimgateModSettings : ModSettings
             delegate { _activeTab = SettingsTab.General; },
             _activeTab == SettingsTab.General));
         _tabs.Add(new TabRecord(
+            "RG_Settings_Tab_Gate".Translate(),
+            delegate { _activeTab = SettingsTab.Gate; },
+            _activeTab == SettingsTab.Gate));
+        _tabs.Add(new TabRecord(
             "RG_Settings_Tab_ClonePod".Translate(),
             delegate { _activeTab = SettingsTab.ClonePod; },
             _activeTab == SettingsTab.ClonePod));
@@ -286,6 +303,29 @@ public class RimgateModSettings : ModSettings
         Rect defaultsButtonRect = listing.GetRect(DrawUtil.SliderHeight + 2f);
         if (Widgets.ButtonText(defaultsButtonRect, "RG_Settings_RestoreDefaults_Button".Translate()))
             RestoreDefaults();
+
+        listing.Gap(DrawUtil.SliderGap);
+        listing.End();
+    }
+
+    private void DrawGateTab(Rect contentRect)
+    {
+        Listing_Standard listing = new();
+        listing.Begin(contentRect);
+
+        DrawUtil.DrawSectionHeader(listing, "RG_Settings_Section_Gate_Label".Translate(), addTopGap: false);
+        DrawUtil.DrawIntSlider(
+            listing,
+            "RG_Settings_MaxGateAddresses_Label".Translate(),
+            ref MaxGateAddresses,
+            2,
+            50);
+        DrawUtil.DrawIntSlider(
+            listing,
+            "RG_Settings_MaxActiveQuestSites_Label".Translate(),
+            ref MaxActiveGateQuestSites,
+            0,
+            10);
 
         listing.Gap(DrawUtil.SliderGap);
         listing.End();
@@ -556,6 +596,8 @@ public class RimgateModSettings : ModSettings
 
     private void ClampSettingsValues()
     {
+        MaxGateAddresses = Mathf.Clamp(MaxGateAddresses, 2, 50);
+        MaxActiveGateQuestSites = Mathf.Clamp(MaxActiveGateQuestSites, 0, 10);
         MinorFailureChance = Mathf.Clamp(MinorFailureChance, 0, 100);
         MajorFailureChance = Mathf.Clamp(MajorFailureChance, 0, 100);
         MedicineSkillReq = Mathf.Clamp(MedicineSkillReq, 0, 20);
@@ -601,6 +643,8 @@ public class RimgateModSettings : ModSettings
         MajorFailureChance = defaults.MajorFailureChance;
         MedicineSkillReq = defaults.MedicineSkillReq;
         StabilizerDeteriorationFactor = defaults.StabilizerDeteriorationFactor;
+        MaxGateAddresses = defaults.MaxGateAddresses;
+        MaxActiveGateQuestSites = defaults.MaxActiveGateQuestSites;
 
         SarcophagusMaxDiagnosisTime = defaults.SarcophagusMaxDiagnosisTime;
         SarcophagusMaxPerHediffHealingTime = defaults.SarcophagusMaxPerHediffHealingTime;

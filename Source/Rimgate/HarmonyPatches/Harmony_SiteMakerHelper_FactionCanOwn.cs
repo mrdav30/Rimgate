@@ -11,21 +11,19 @@ namespace Rimgate.HarmonyPatches;
 [HarmonyPatch(
     typeof(SiteMakerHelper),
     "FactionCanOwn",
-    new Type[4]
-    {
+    [
         typeof (SitePartDef),
         typeof (Faction),
         typeof (bool),
         typeof (Predicate<Faction>)
-    })]
+    ])]
 public static class Harmony_SiteMakerHelper_FactionCanOwn
 {
-    // TODO: make this configurable via mod settings
-    public static readonly List<FactionDef> RimgateHiddenFactions = new()
-    {
+    public static readonly List<FactionDef> RimgateHiddenFactions =
+    [
         RimgateDefOf.Rimgate_Replicator,
         RimgateDefOf.Rimgate_TreasureHunters
-    };
+    ];
 
     public static bool Prefix(
         ref bool __result,
