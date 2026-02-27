@@ -9,19 +9,23 @@ public class MapComponent_MobileContainerPushPreview(Map map) : MapComponent(map
 {
     private static readonly Color PushGhostColorValid = new(1f, 1f, 1f, 1f);
 
-    // TODO: consider having Building_MobileContainer and Thing_MobileCartProxy toggling flags here to avoid iterating over all designations and pawns every tick
     public override void MapComponentUpdate()
     {
-        DrawDesignatedContainerDestinations();
-        DrawActiveProxyDestinations();
-    }
+        if (Find.CurrentMap != map)
+            return;
 
-    private void DrawDesignatedContainerDestinations()
-    {
-        var designationManager = map?.designationManager;
+        DesignationManager designationManager = map?.designationManager;
         if (designationManager == null)
             return;
 
+        if (designationManager.AnySpawnedDesignationOfDef(RimgateDefOf.Rimgate_DesignationPushCart))
+            DrawDesignatedContainerDestinations(designationManager);
+
+        DrawActiveProxyDestinations();
+    }
+
+    private void DrawDesignatedContainerDestinations(DesignationManager designationManager)
+    {
         foreach (Designation designation in designationManager.SpawnedDesignationsOfDef(RimgateDefOf.Rimgate_DesignationPushCart))
         {
             if (designation?.target.Thing is not Building_MobileContainer cart)
@@ -40,8 +44,8 @@ public class MapComponent_MobileContainerPushPreview(Map map) : MapComponent(map
 
     private void DrawActiveProxyDestinations()
     {
-        IReadOnlyList<Pawn> pawns = map?.mapPawns?.AllPawnsSpawned;
-        if (pawns == null)
+        List<Pawn> pawns = map?.mapPawns?.FreeColonistsSpawned;
+        if (pawns == null || pawns.Count == 0)
             return;
 
         for (int i = 0; i < pawns.Count; i++)

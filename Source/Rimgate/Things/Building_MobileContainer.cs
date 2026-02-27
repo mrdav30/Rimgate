@@ -442,29 +442,37 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
         if (designation == null)
         {
             var tp = GetPushTargetingParameters(!dumpAtTarget);
-            Find.Targeter.BeginTargeting(tp, target =>
-            {
-                IntVec3 dest = GetPushDestinationCell(target);
-                if (target == null
-                    || !dest.IsValid
-                    || !Map.reachability.CanReach(InteractionCell, dest, PathEndMode.OnCell, TraverseParms.For(TraverseMode.ByPawn)))
+            Find.Targeter.BeginTargeting(
+                tp,
+                target =>
                 {
-                    Messages.Message("RG_CannotReachDestination".Translate(), this, MessageTypeDefOf.RejectInput);
-                    return;
-                }
+                    _cachedDesignationTarget = target;
+                    dm.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationPushCart));
 
-                _cachedDesignationTarget = target;
-                dm.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationPushCart));
+                    if (dumpAtTarget)
+                        _wantsToBeDumped = true;
+                    else
+                        _wantsToBePushed = true;
+                },
+                highlightAction: null,
+                targetValidator: target =>
+                {
+                    IntVec3 dest = GetPushDestinationCell(target);
+                    if (!dest.IsValid || !Map.reachability.CanReach(InteractionCell, dest, PathEndMode.OnCell, TraverseParms.For(TraverseMode.ByPawn)))
+                    {
+                        Messages.Message("RG_CannotReachDestination".Translate(), this, MessageTypeDefOf.RejectInput);
+                        return false;
+                    }
 
-                if (dumpAtTarget)
-                    _wantsToBeDumped = true;
-                else
-                    _wantsToBePushed = true;
-            },
-            onGuiAction: target =>
-            {
-                GenDraw.DrawRadiusRing(target.Cell, Ext.loadRadius);
-            });
+                    if (!target.HasThing) return true;
+
+                    if (target.Thing is Building_Gate sg && sg.IsActive && !sg.IsIrisActivated)
+                        return true;
+
+                    Messages.Message("RG_PushTargetInvalid".Translate(), this, MessageTypeDefOf.RejectInput);
+                    return false;
+                },
+                onUpdateAction: DrawPushLoadRadiusPreview);
         }
         else
             ClearDesignations();
@@ -513,26 +521,46 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
     private void BeginFloatTargeting(Pawn pawn, bool dumpAtTarget)
     {
         var tp = GetPushTargetingParameters(!dumpAtTarget);
-        Find.Targeter.BeginTargeting(tp, target =>
-        {
-            IntVec3 dest = GetPushDestinationCell(target);
-            if (target == null || !dest.IsValid || !pawn.CanReach(dest, PathEndMode.OnCell, Danger.Deadly))
+        Find.Targeter.BeginTargeting(
+            tp,
+            target =>
             {
-                Messages.Message("RG_CannotReachDestination".Translate(), this, MessageTypeDefOf.RejectInput);
-                return;
-            }
+                // Clear any existing designations and cached targets set by a gizmo
+                ClearDesignations();
 
-            if (target.Thing is not Building_Gate sg || !sg.IsActive || sg.IsIrisActivated)
+                _cachedDesignationTarget = target;
+                var job = GetPushJob(target, dumpAtTarget, true);
+                if (job == null) return;
+                pawn.jobs.TryTakeOrderedJob(job, JobTag.MiscWork);
+            },
+            highlightAction: null,
+            targetValidator: target =>
             {
-                Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), this, MessageTypeDefOf.RejectInput);
-                return;
-            }
+                IntVec3 dest = GetPushDestinationCell(target);
+                if (!dest.IsValid || !pawn.CanReach(dest, PathEndMode.OnCell, Danger.Deadly))
+                {
+                    Messages.Message("RG_CannotReachDestination".Translate(), this, MessageTypeDefOf.RejectInput);
+                    return false;
+                }
 
-            _cachedDesignationTarget = target;
-            var job = GetPushJob(target, dumpAtTarget, true);
-            if (job == null) return;
-            pawn.jobs.TryTakeOrderedJob(job, JobTag.MiscWork);
-        });
+                if (!target.HasThing) return true;
+
+                if (target.Thing is Building_Gate sg && sg.IsActive && !sg.IsIrisActivated)
+                    return true;
+
+                Messages.Message("RG_PushTargetInvalid".Translate(), this, MessageTypeDefOf.RejectInput);
+                return false;
+            },
+            onUpdateAction: DrawPushLoadRadiusPreview);
+    }
+
+    private void DrawPushLoadRadiusPreview(LocalTargetInfo target)
+    {
+        IntVec3 destinationCell = GetPushDestinationCell(target);
+        if (!destinationCell.IsValid)
+            return;
+
+        GenDraw.DrawRadiusRing(destinationCell, Ext.loadRadius);
     }
 
     private TargetingParameters GetPushTargetingParameters(bool canTargetBuildings = false)
@@ -626,8 +654,14 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
 
     public static IntVec3 GetPushDestinationCell(LocalTargetInfo target)
     {
-        if (target.HasThing && target.Thing is Building_Gate gate && gate.Spawned)
-            return gate.InteractionCell;
+        if (!target.IsValid) return IntVec3.Invalid;
+
+        if (target.HasThing)
+        {
+            if (target.Thing is Building_Gate gate && gate.IsActive && !gate.IsIrisActivated)
+                return gate.InteractionCell;
+            return IntVec3.Invalid; // only gates can be targeted as things
+        }
 
         return target.Cell;
     }
