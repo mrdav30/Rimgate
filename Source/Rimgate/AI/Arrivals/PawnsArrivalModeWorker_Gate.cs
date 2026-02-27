@@ -8,8 +8,8 @@ public class PawnsArrivalModeWorker_Gate : PawnsArrivalModeWorker
 {
     public override bool CanUseOnMap(Map map)
     {
-        return Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gate) 
-            && (!gate.IsActive || gate.IsReceivingGate);
+        return Building_Gate.TryGetSpawnedGateOnMap(map, out Building_Gate gate)
+            && !gate.IsActive;
     }
 
     public override void Arrive(List<Pawn> pawns, IncidentParms parms)
