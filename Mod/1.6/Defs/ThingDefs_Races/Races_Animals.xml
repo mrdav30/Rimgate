@@ -95,7 +95,7 @@
         <defName>Rimgate_Unas</defName>
         <thingClass>Rimgate.Pawn_Unas</thingClass>
         <label>Unas</label>
-        <description>A towering, reptilian humanoid press-ganged by the Goa'uld for hard labor and shock troops. These Unas have been gene-edited and fitted with crude cortical dampeners to blunt higher cognition—cheap obedience over culture. Fierce, durable, and trainable, but quick to rage if mistreated.</description>
+        <description>A towering reptilian humanoid with dense scaled hide, a heavy-jawed snout, and long clawed hands built for tearing and hauling. Their coloration ranges from swamp green and slate to tan, dusty rose, and rust-brown, with males and females difficult to distinguish at a glance. These Unas were gene-shaped and conditioned by the Goa'uld for heavy labor and shock assaults; crude cortical dampeners blunt higher reasoning, making them obedient, trainable, and dangerous when provoked.</description>
 
         <statBases>
             <MoveSpeed>4.5</MoveSpeed>

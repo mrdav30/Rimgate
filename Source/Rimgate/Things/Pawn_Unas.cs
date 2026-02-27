@@ -35,16 +35,11 @@ public class Pawn_Unas : Pawn
         foreach (SkillRecord skill in skills.skills)
             skill.Level = 6;  // Make skills neutral for price factor
 
-        // TODO: is this still necessary?
-        // necessary for job giver to work properly,
-        // but adds a bunch of problems since only humanlikes are supposed to have it
+        // SkillRecord.Interval assumes pawn.story exists.
         story ??= new(this);
         story.bodyType = gender == Gender.Male
             ? BodyTypeDefOf.Hulk
             : BodyTypeDefOf.Female;
-        //crownType = CrownType.Average,
-        //childhood = xxx,
-        ////adulthood = xxx
 
         // only used for WorkGiversInOrderNormal / WorkGiversInOrderEmergency
         workSettings ??= new(this);

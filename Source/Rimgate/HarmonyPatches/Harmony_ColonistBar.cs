@@ -66,7 +66,7 @@ public static class Harmony_ColonistBar
         }
 
         // 2) Densify existing group ids (preserve vanilla grouping incl. caravans)
-        _tmpRemovalsMap ??= [with(16)];
+        _tmpRemovalsMap ??= new(16);
         _tmpRemovalsMap.Clear();
         int nextGroup = 0;
 
@@ -89,7 +89,8 @@ public static class Harmony_ColonistBar
         // 4) Recompute draw locs using the actual number of groups left
         var drawLocs = trav.Field("cachedDrawLocs").GetValue<List<Vector2>>();
         drawLocs.Clear();
-        new ColonistBarDrawLocsFinder().CalculateDrawLocs(drawLocs, out float scale, _tmpRemovalsMap.Count);
+        float scale;
+        new ColonistBarDrawLocsFinder().CalculateDrawLocs(drawLocs, out scale, _tmpRemovalsMap.Count);
         trav.Field("cachedDrawLocs").SetValue(drawLocs);
         trav.Field("cachedScale").SetValue(scale);
     }
