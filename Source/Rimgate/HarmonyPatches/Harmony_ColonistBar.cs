@@ -5,40 +5,36 @@ using UnityEngine;
 
 namespace Rimgate.HarmonyPatches;
 
-//TODO: replace _wasDirty with __state
-
 // ColonistBar caches a flat list of entries (pawns), grouped by map/caravan.
 // We wait until it's rebuilt, then drop any entries belonging to a Gate quest
 // map that has no “showable” pawns.
 [HarmonyPatch(typeof(ColonistBar), "CheckRecacheEntries")]
 public static class Harmony_ColonistBar
 {
-    private static bool _wasDirty;
-
     private static HashSet<int> _tmpRemovals;
 
     private static Dictionary<int, int> _tmpRemovalsMap;
 
-    public static bool Prefix(ColonistBar __instance)
+    public static bool Prefix(ColonistBar __instance, out bool __state)
     {
         var trav = Traverse.Create(__instance);
-        if (!_wasDirty)
-            _wasDirty = trav.Field("entriesDirty").GetValue<bool>();
+        __state = trav.Field("entriesDirty").GetValue<bool>();
         return true;
     }
 
-    public static void Postfix(ColonistBar __instance)
+    public static void Postfix(ColonistBar __instance, bool __state)
     {
         // Only run right after a real recache
-        if (!_wasDirty) return;
-        _wasDirty = false;
+        if (!__state) return;
 
         var trav = Traverse.Create(__instance);
+        if (trav.Field("entriesDirty").GetValue<bool>()) return;
+
         var entries = trav.Field("cachedEntries").GetValue<List<ColonistBar.Entry>>();
         if (entries == null || entries.Count == 0) return;
 
         // 1) Hide gate site maps with no pawns and no active gate
-        _tmpRemovals ??= new HashSet<int>();
+        _tmpRemovals ??= [];
         _tmpRemovals.Clear();
 
         foreach (var e in entries)
@@ -70,7 +66,7 @@ public static class Harmony_ColonistBar
         }
 
         // 2) Densify existing group ids (preserve vanilla grouping incl. caravans)
-        _tmpRemovalsMap ??= new Dictionary<int, int>(16);
+        _tmpRemovalsMap ??= [with(16)];
         _tmpRemovalsMap.Clear();
         int nextGroup = 0;
 
@@ -93,10 +89,8 @@ public static class Harmony_ColonistBar
         // 4) Recompute draw locs using the actual number of groups left
         var drawLocs = trav.Field("cachedDrawLocs").GetValue<List<Vector2>>();
         drawLocs.Clear();
-        float scale;
-        new ColonistBarDrawLocsFinder().CalculateDrawLocs(drawLocs, out scale, _tmpRemovalsMap.Count);
+        new ColonistBarDrawLocsFinder().CalculateDrawLocs(drawLocs, out float scale, _tmpRemovalsMap.Count);
         trav.Field("cachedDrawLocs").SetValue(drawLocs);
         trav.Field("cachedScale").SetValue(scale);
     }
 }
-
