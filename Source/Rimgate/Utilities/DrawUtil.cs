@@ -5,8 +5,6 @@ namespace Rimgate;
 
 public static class DrawUtil
 {
-    public const float TabHeight = 32f;
-
     public const float SliderHeight = 22f;
 
     public const float SliderGap = 8f;

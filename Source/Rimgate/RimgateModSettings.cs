@@ -18,6 +18,12 @@ public class RimgateModSettings : ModSettings
     private const float ContentPadding = 12f;
     private const float ClonePodBottomPadding = 4f;
     private const float ClonePodScrollBarPadding = 6f;
+    private const float HeaderLinkRowHeight = 34f;
+    private const float HeaderLinkIconSize = 24f;
+    private const float HeaderLinkInnerGap = 6f;
+    private const float HeaderLinkGroupsGap = 12f;
+    private const float HeaderLinkButtonMinWidth = 90f;
+    private const float HeaderLinkButtonExtraWidth = 20f;
 
     private readonly List<TabRecord> _tabs = [];
     private SettingsTab _activeTab = SettingsTab.General;
@@ -147,14 +153,21 @@ public class RimgateModSettings : ModSettings
 
     public void DoSettingsWindowContents(Rect inRect)
     {
-        Rect tabsRect = new(inRect.x, inRect.y + DrawUtil.TabHeight, inRect.width, DrawUtil.TabHeight);
+        Rect headerLinksRect = new(inRect.x, inRect.y, inRect.width, HeaderLinkRowHeight);
+        DrawHeaderLinks(headerLinksRect);
+
+        Rect tabsRect = new(
+            inRect.x,
+            headerLinksRect.yMax + HeaderLinkRowHeight,
+            inRect.width,
+            TabDrawer.TabHeight);
         DrawTabs(tabsRect);
 
         Rect contentRect = new(
             inRect.x,
-            inRect.y + DrawUtil.TabHeight,
+            tabsRect.yMax - TabDrawer.TabHeight, // slight overlap to hide tab content gap
             inRect.width,
-            inRect.height - DrawUtil.TabHeight);
+            Mathf.Max(0f, inRect.yMax - tabsRect.yMax));
         Widgets.DrawMenuSection(contentRect);
 
         Rect innerContentRect = contentRect.ContractedBy(ContentPadding);
@@ -172,6 +185,72 @@ public class RimgateModSettings : ModSettings
         }
 
         ClampSettingsValues();
+    }
+
+    private void DrawHeaderLinks(Rect rowRect)
+    {
+        float halfWidth = (rowRect.width - HeaderLinkGroupsGap) * 0.5f;
+        Rect leftGroupRect = new(rowRect.x, rowRect.y, halfWidth, rowRect.height);
+        Rect rightGroupRect = new(leftGroupRect.xMax + HeaderLinkGroupsGap, rowRect.y, halfWidth, rowRect.height);
+
+        if (DrawLeftIconLinkButton(
+            leftGroupRect,
+            "RG_Settings_Github_Button".Translate(),
+            RimgateTex.GithubIconTex))
+        {
+            Application.OpenURL("https://github.com/mrdav30/Rimgate/wiki");
+        }
+
+        if (DrawRightIconLinkButton(
+            rightGroupRect,
+            "RG_Settings_Discord_Button".Translate(),
+            RimgateTex.DiscordIconTex))
+        {
+            Application.OpenURL("https://discord.gg/mhwK2QFNBA");
+        }
+    }
+
+    private bool DrawLeftIconLinkButton(Rect groupRect, string label, Texture2D icon)
+    {
+        float buttonWidth = CalculateHeaderLinkButtonWidth(label, groupRect.width);
+        Rect iconRect = new(
+            groupRect.x,
+            groupRect.y + ((groupRect.height - HeaderLinkIconSize) * 0.5f),
+            HeaderLinkIconSize,
+            HeaderLinkIconSize);
+        Rect buttonRect = new(iconRect.xMax + HeaderLinkInnerGap, groupRect.y, buttonWidth, groupRect.height);
+
+        Widgets.DrawTextureFitted(iconRect, icon, 1f);
+        return Widgets.ButtonText(buttonRect, label);
+    }
+
+    private bool DrawRightIconLinkButton(Rect groupRect, string label, Texture2D icon)
+    {
+        float buttonWidth = CalculateHeaderLinkButtonWidth(label, groupRect.width);
+        Rect iconRect = new(
+            groupRect.xMax - HeaderLinkIconSize,
+            groupRect.y + ((groupRect.height - HeaderLinkIconSize) * 0.5f),
+            HeaderLinkIconSize,
+            HeaderLinkIconSize);
+        Rect buttonRect = new(
+            iconRect.x - HeaderLinkInnerGap - buttonWidth,
+            groupRect.y,
+            buttonWidth,
+            groupRect.height);
+
+        Widgets.DrawTextureFitted(iconRect, icon, 1f);
+        return Widgets.ButtonText(buttonRect, label);
+    }
+
+    private static float CalculateHeaderLinkButtonWidth(string label, float groupWidth)
+    {
+        float maxWidth = Mathf.Max(
+            1f,
+            groupWidth - HeaderLinkIconSize - HeaderLinkInnerGap);
+        float desiredWidth = Mathf.Max(
+            HeaderLinkButtonMinWidth,
+            label.GetWidthCached() + HeaderLinkButtonExtraWidth);
+        return Mathf.Min(maxWidth, desiredWidth);
     }
 
     private void DrawTabs(Rect tabsRect)

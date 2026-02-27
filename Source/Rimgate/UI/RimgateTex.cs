@@ -54,6 +54,10 @@ public static class RimgateTex
 
     public static readonly Texture2D EssenceCostTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.78f, 0.72f, 0.66f));
 
+    public static readonly Texture2D DiscordIconTex = ContentFinder<Texture2D>.Get("UI/Icon/discord");
+
+    public static readonly Texture2D GithubIconTex = ContentFinder<Texture2D>.Get("UI/Icon/github");
+
     public static Graphic EmptyGraphic
     {
         get

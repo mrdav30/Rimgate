@@ -1,16 +1,16 @@
 ManifestFileVersion: 0
 UnityVersion: 6000.3.9f1
-CRC: 3872439585
+CRC: 1453258919
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8c60147587a0da73a67b4d296cd59fe0
+    Hash: def0b93ae5769780bf2e4fd20b36e25f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9805626a0a960da8f69a56443df5de53
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 40af99955ce67fe83818eef0c63c11bf
+    Hash: d181bd7adeb1d10268ce9bb0478556a0
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -210,6 +210,7 @@ Assets:
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Projectile/RGWraithSpearGunProjectile.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Misc/RGTauriDraftingDesk_south.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Artifact/RGDHD_north.png
+- Assets/Data/Mrdav30.Rimgate/Textures/UI/Icon/github.png
 - Assets/Data/Mrdav30.Rimgate/Sounds/Gate/RG_Gate_Fail.ogg
 - Assets/Data/Mrdav30.Rimgate/Textures/UI/Button/RGWraithCloningPodFullIcon.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Pawn/Humanlike/Hair/Deep/RGDeepBraid_east.png
@@ -387,6 +388,7 @@ Assets:
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Production/RGCompositionBench_north.png
 - Assets/Data/Mrdav30.Rimgate/Textures/UI/Meme/RG_Meme_DwarfgateExplorers.png
 - Assets/Data/Mrdav30.Rimgate/Textures/FX/RGClonePodBackground_south.png
+- Assets/Data/Mrdav30.Rimgate/Textures/UI/Icon/discord.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Pawn/Animal/Unas/RGUnasBeserk_north.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Prop/RGDHD_Destroyed.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Prop/Crate/RGSupplyCrateEmpty_m.png
@@ -627,15 +629,15 @@ Assets:
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Art/CanopicJars/RGCanopicJar_f.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Art/CanopicJars/RGCanopicJar_g_m.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Misc/RGWraithCyclicWaveInducer.png
-- Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Structure/RGForceField_BarrierBlue_south.png
+- Assets/Data/Mrdav30.Rimgate/Textures/Things/Pawn/Animal/Unas/RGUnasE_north.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Projectile/RGWraithHandBlasterProjectile.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Item/Apparel/Headgear/WraithCirclet/RGWraithCirclet_east.png
 - Assets/Data/Mrdav30.Rimgate/Textures/FX/RGGoauldSarcophagusGlow_north.png
-- Assets/Data/Mrdav30.Rimgate/Textures/Things/Pawn/Animal/Unas/RGUnasE_north.png
-- Assets/Data/Mrdav30.Rimgate/Textures/Things/Item/Apparel/Torso/SGCBDU/RGSGCBDU_Female_north.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Item/Apparel/Torso/SGCBDU/RGSGCBDU_Hulk_eastm
   - Copy.png
+- Assets/Data/Mrdav30.Rimgate/Textures/Things/Item/Apparel/Torso/SGCBDU/RGSGCBDU_Female_north.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Item/Apparel/Torso/SGCBDU/RGSGCBDU_Fat_south.png
+- Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Structure/RGForceField_BarrierBlue_south.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Building/Power/RGIndustrialNaquadriaFiredGenerator_west.png
 - Assets/Data/Mrdav30.Rimgate/Textures/Things/Pawn/Humanlike/Head/Wraith/Female/RGWraithFemale_Average_Pointy_south.png
 - Assets/Data/Mrdav30.Rimgate/Textures/FX/RGTrackingRelayMask.png
