@@ -94,6 +94,7 @@ public static class RimgateDefOf
     public static IncidentDef Rimgate_Marauders;
 
     public static JobDef Rimgate_BringToGate;
+    public static JobDef Rimgate_AssembleCipher;
     public static JobDef Rimgate_CarryToSarcophagus;
     public static JobDef Rimgate_CarryToCloningPod;
     public static JobDef Rimgate_CarryCorpseToCloningPod;

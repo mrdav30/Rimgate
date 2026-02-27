@@ -1,15 +1,10 @@
 ﻿using RimWorld;
 using RimWorld.QuestGen;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Verse;
 
 namespace Rimgate;
 
-// TODO: this should really be a job driver instead of a CompUseEffect, similiar to JobDriver_DecodeGlyphs
-// however, the new job driver will need to account for the pawn retrieving all required fragments from storage etc.
-// or even simpler, make sure there are enough fragments in the specific pawns inventory, being held, or on the ground nearby.
 public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
 {
     public CompProperties_UseEffectAssembleAndStartQuest Props => (CompProperties_UseEffectAssembleAndStartQuest)props;
@@ -27,7 +22,7 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
             return new AcceptanceReport("RG_CannotDecode".Translate("RG_CannotDecode_QuestActive".Translate()));
         }
 
-        int have = TotalFragmentsInPlayer();
+        int have = TreasureCipherUtility.CountColonyReachableFragments(p, parent);
         if (have < Props.requiredCount)
         {
             var message = "RG_CannotDecode".Translate("RG_CannotDecode_Count".Translate(Props.requiredCount, parent.LabelShort, have));
@@ -39,6 +34,20 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
 
     public override void DoEffect(Pawn usedBy)
     {
+        var availableFragments = TreasureCipherUtility.CollectLocalFragments(usedBy, parent, Props.nearbySearchRadius);
+        int availableCount = 0;
+        for (int i = 0; i < availableFragments.Count; i++)
+            availableCount += availableFragments[i].stackCount;
+
+        if (availableCount < Props.requiredCount)
+        {
+            Messages.Message(
+                "RG_CannotDecode".Translate("RG_CannotDecode_Count".Translate(Props.requiredCount, parent.LabelShort, availableCount)),
+                MessageTypeDefOf.RejectInput,
+                historical: false);
+            return;
+        }
+
         // 1) Start quest
         var slate = new Slate();
         var quest = QuestUtility.GenerateQuestAndMakeAvailable(Props.questScript, slate);
@@ -63,81 +72,26 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
                 LetterDefOf.PositiveEvent);
         }
 
-        // 3) Consume the item that was actually used (in the pawn’s hands)
+        // 3) Consume required fragments from local sources (used stack, carried, inventory, nearby ground).
         int needed = Props.requiredCount;
-        if (parent != null && !parent.Destroyed)
+        for (int i = 0; i < availableFragments.Count && needed > 0; i++)
         {
-            parent.SplitOff(1).Destroy();
-            needed--;
+            Thing thing = availableFragments[i];
+            if (thing == null || thing.Destroyed)
+                continue;
+
+            int take = Math.Min(needed, thing.stackCount);
+            if (take <= 0)
+                continue;
+
+            Thing consumed = thing.SplitOff(take);
+            consumed?.Destroy(DestroyMode.Vanish);
+            needed -= take;
         }
 
         if (needed > 0)
-        {
-            // 4) Consume the remaining fragments from player holdings
-            var candidates = EnumeratePlayerFragments().ToList();
-            foreach (var thing in candidates)
-            {
-                if (needed <= 0) break;
-                int take = Math.Min(needed, thing.stackCount);
-                thing.SplitOff(take).Destroy(DestroyMode.Vanish);
-                needed -= take;
-            }
-        }
+            LogUtil.Warning($"Assembled cipher quest started but {needed} required fragment(s) were not consumed.");
     }
 
     public override void PrepareTick() { }
-
-    private int TotalFragmentsInPlayer()
-    {
-        int total = 0;
-        foreach (var t in EnumeratePlayerFragments()) total++;
-        return total;
-    }
-
-    private IEnumerable<Thing> EnumeratePlayerFragments()
-    {
-        var def = parent.def;
-
-        // 1) Player maps (spawned items)
-        foreach (var map in Find.Maps)
-        {
-            // Count only player-controlled maps
-            if (!(map.IsPlayerHome || (map.Parent?.Faction.IsOfPlayerFaction() ?? true)))
-                continue;
-
-            // a) Spawned items (on ground / in storage) not forbidden.
-            var spawnedList = map.listerThings.ThingsOfDef(def);
-            for (int i = 0; i < spawnedList.Count; i++)
-            {
-                var thing = spawnedList[i];
-                if (thing.Destroyed || thing.IsForbidden(Faction.OfPlayer))
-                    continue;
-                yield return thing;
-            }
-
-            // b) Player pawns’ inventories on this map
-            var pawns = map.mapPawns?.PawnsInFaction(Faction.OfPlayer);
-            if (pawns != null)
-            {
-                for (int i = 0; i < pawns.Count; i++)
-                {
-                    var inv = pawns[i].inventory?.innerContainer;
-                    if (inv == null) continue;
-                    for (int j = 0; j < inv.Count; j++)
-                        if (inv[j].def == def) yield return inv[j];
-                }
-            }
-        }
-
-        if (!Props.checkCaravans) yield break;
-
-        // 2) Player caravans (AllThings already includes inventories)
-        foreach (var caravan in Find.WorldObjects.Caravans)
-        {
-            if (!caravan.Faction.IsOfPlayerFaction()) continue;
-            var things = caravan.AllThings;
-            foreach (var thing in things)
-                if (thing.def == def) yield return thing;
-        }
-    }
 }

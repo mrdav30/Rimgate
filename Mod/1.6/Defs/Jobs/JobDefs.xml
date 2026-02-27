@@ -108,6 +108,15 @@
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 
+	<JobDef>
+		<defName>Rimgate_AssembleCipher</defName>
+		<driverClass>Rimgate.JobDriver_AssembleCipher</driverClass>
+		<reportString>assembling cipher fragments.</reportString>
+		<playerInterruptible>true</playerInterruptible>
+		<neverShowWeapon>true</neverShowWeapon>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
 	<!-- =============== Mobile Container =============== -->
 
 	<JobDef>

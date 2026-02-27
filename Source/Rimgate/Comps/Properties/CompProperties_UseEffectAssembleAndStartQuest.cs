@@ -10,7 +10,10 @@ public class CompProperties_UseEffectAssembleAndStartQuest : CompProperties
 
     public ResearchProjectDef requiredProjectDef;
 
+    // Legacy setting kept for XML compatibility with older patches; no longer used.
     public bool checkCaravans;
+
+    public float nearbySearchRadius = 5.9f;
 
     public QuestScriptDef questScript;
 
@@ -27,5 +30,7 @@ public class CompProperties_UseEffectAssembleAndStartQuest : CompProperties
     {
         foreach (var e in base.ConfigErrors(parent)) yield return e;
         if (questScript == null) yield return "[CompProperties_AssembleAndStartQuest] questScript is null.";
+        if (requiredCount <= 0) yield return "[CompProperties_AssembleAndStartQuest] requiredCount must be > 0.";
+        if (nearbySearchRadius < 0f) yield return "[CompProperties_AssembleAndStartQuest] nearbySearchRadius must be >= 0.";
     }
 }
