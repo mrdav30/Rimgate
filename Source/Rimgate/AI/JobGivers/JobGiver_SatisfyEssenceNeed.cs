@@ -33,19 +33,47 @@ public class JobGiver_SatisfyEssenceNeed : ThinkNode_JobGiver
         if (abilityDrain == null || !abilityDrain.CanCast)
             return null;
 
-        if (!geneEssence.FilledPodsAllowed)
-            return null;
-
-        Building_WraithCocoonPod pod = Building_WraithCocoonPod.FindFilledPodFor(pawn);
-        if (pod != null)
+        if (geneEssence.FilledPodsAllowed)
         {
-            var job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DrainLifeFromCocoonedPrisoner, pod);
-            job.ability = abilityDrain;
-            return job;
+            Building_WraithCocoonPod pod = Building_WraithCocoonPod.FindFilledPodFor(pawn);
+            if (pod != null)
+            {
+                var job = JobMaker.MakeJob(RimgateDefOf.Rimgate_DrainLifeFromCocoonedPrisoner, pod);
+                job.ability = abilityDrain;
+                return job;
+            }
         }
 
-        // TODO: pods first. then if none,
-        // try colony prisoners similiar to Biotech DLC JobGiver_GetHemogen.CanFeedOnPrisoner
+        if (!geneEssence.PrisonersAllowed)
+            return null;
+
+        Map map = pawn.MapHeld;
+        if (map == null)
+            return null;
+
+        if (abilityDrain.def.jobDef == null)
+            return null;
+
+        if (GenClosest.ClosestThingReachable(
+            pawn.PositionHeld,
+            map,
+            ThingRequest.ForUndefined(),
+            PathEndMode.Touch,
+            TraverseParms.For(pawn),
+            9999f,
+            validator: thing =>
+            {
+                if (thing is not Pawn candidate
+                    || !candidate.IsPrisonerOfColony
+                    || !pawn.CanReserve(candidate))
+                {
+                    return false;
+                }
+
+                return abilityDrain.CanApplyOn(new LocalTargetInfo(candidate));
+            },
+            customGlobalSearchSet: map.mapPawns.PrisonersOfColonySpawned) is Pawn prisoner)
+            return abilityDrain.GetJob(new LocalTargetInfo(prisoner), LocalTargetInfo.Invalid);
 
         return null;
     }

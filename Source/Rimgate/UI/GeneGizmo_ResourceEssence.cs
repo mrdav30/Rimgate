@@ -7,14 +7,14 @@ using Verse.Sound;
 
 namespace Rimgate;
 
-public class GeneGizmo_ResourceEssence : GeneGizmo_Resource
+public class GeneGizmo_ResourceEssence(Gene_Resource gene, List<IGeneResourceDrain> drainGenes, Color barColor, Color barHighlightColor)
+    : GeneGizmo_Resource(gene, drainGenes, barColor, barHighlightColor)
 {
     private static bool _draggingBar;
+    private const float ToggleSize = 24f;
+    private const float ToggleSpacing = 2f;
 
     protected override bool DraggingBar { get => _draggingBar; set => _draggingBar = value; }
-
-    public GeneGizmo_ResourceEssence(Gene_Resource gene, List<IGeneResourceDrain> drainGenes, Color barColor, Color barHighlightColor)
-        : base(gene, drainGenes, barColor, barHighlightColor) { }
 
     public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
     {
@@ -60,37 +60,51 @@ public class GeneGizmo_ResourceEssence : GeneGizmo_Resource
 
     private void OnDrawHeader(Rect headerRect, ref bool mouseOverElement)
     {
-        Gene_WraithEssenceMetabolism essenceGene = gene as Gene_WraithEssenceMetabolism;
-        if (essenceGene == null) return;
+        if (gene is not Gene_WraithEssenceMetabolism essenceGene)
+            return;
 
-        headerRect.xMax -= 24f;
-        Rect rect = new Rect(headerRect.xMax, headerRect.y, 24f, 24f);
-        Widgets.DefIcon(rect, RimgateDefOf.Rimgate_WraithCocoonPod);
+        float minValue = essenceGene.PostProcessValue(essenceGene.targetValue);
+
+        headerRect.xMax -= ToggleSize;
+        Rect podRect = new(headerRect.xMax, headerRect.y, ToggleSize, ToggleSize);
+
+        headerRect.xMax -= ToggleSize + ToggleSpacing;
+        Rect prisonerRect = new(headerRect.xMax, headerRect.y, ToggleSize, ToggleSize);
+
+        if (DrawAutoUseToggle(prisonerRect, XenotypeDefOf.Baseliner, ref essenceGene.PrisonersAllowed, "RG_AutoUsePrisonersDesc", minValue, 282973714)
+            || DrawAutoUseToggle(podRect, RimgateDefOf.Rimgate_WraithCocoonPod, ref essenceGene.FilledPodsAllowed, "RG_AutoUsePodsDesc", minValue, 282973713))
+            mouseOverElement = true;
+    }
+
+    private bool DrawAutoUseToggle(Rect rect, Def iconDef, ref bool autoUseEnabled, string tooltipKey, float minValue, int tooltipId)
+    {
+        Widgets.DefIcon(rect, iconDef);
         GUI.DrawTexture(new Rect(rect.center.x, rect.y, rect.width / 2f, rect.height / 2f),
-            essenceGene.FilledPodsAllowed
+            autoUseEnabled
                 ? Widgets.CheckboxOnTex
                 : Widgets.CheckboxOffTex);
+
         if (Widgets.ButtonInvisible(rect))
         {
-            essenceGene.FilledPodsAllowed = !essenceGene.FilledPodsAllowed;
-            if (essenceGene.FilledPodsAllowed)
+            autoUseEnabled = !autoUseEnabled;
+            if (autoUseEnabled)
                 SoundDefOf.Tick_High.PlayOneShotOnCamera();
             else
                 SoundDefOf.Tick_Low.PlayOneShotOnCamera();
         }
 
-        if (!Mouse.IsOver(rect)) return;
+        if (!Mouse.IsOver(rect))
+            return false;
 
         Widgets.DrawHighlight(rect);
-        string onOff = (essenceGene.FilledPodsAllowed
+        string onOff = (autoUseEnabled
             ? "On"
             : "Off").Translate().ToString().UncapitalizeFirst();
         TooltipHandler.TipRegion(rect,
-            () => "RG_AutoUsePodsDesc".Translate(gene.pawn.Named("PAWN"),
-            essenceGene.PostProcessValue(essenceGene.targetValue).Named("MIN"),
-            onOff.Named("ONOFF")).Resolve(),
-            282973713);
-        mouseOverElement = true;
+            () => tooltipKey.Translate(gene.pawn.Named("PAWN"), minValue.Named("MIN"), onOff.Named("ONOFF")).Resolve(),
+            tooltipId);
+
+        return true;
     }
 
     protected override string GetTooltip()

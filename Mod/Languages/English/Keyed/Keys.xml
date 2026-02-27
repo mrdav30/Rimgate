@@ -483,6 +483,7 @@
 	<!-- Abilities -->
 
 	<RG_AutoUsePodsDesc>This determines whether {PAWN_nameDef} will automatically drain life from filled cocoon pods when {PAWN_possessive} essence is below {MIN}.\n\nAutomatic use is currently {ONOFF}.</RG_AutoUsePodsDesc>
+	<RG_AutoUsePrisonersDesc>This determines whether {PAWN_nameDef} will automatically drain life from colony prisoners when {PAWN_possessive} essence is below {MIN}.\n\nAutomatic use is currently {ONOFF}.</RG_AutoUsePrisonersDesc>
 
 	<RG_AbilityEssenceCost>Essence cost</RG_AbilityEssenceCost>
 	<RG_AbilityDisabledNoEssenceGene>{0_labelShort} is not essogenic.</RG_AbilityDisabledNoEssenceGene>

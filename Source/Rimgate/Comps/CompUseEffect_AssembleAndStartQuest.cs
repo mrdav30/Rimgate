@@ -22,7 +22,6 @@ public class CompUseEffect_AssembleAndStartQuest : CompUseEffect
             return new AcceptanceReport(message);
         }
 
-        // TODO: configure how many sites can be active at once ?
         if (Utils.HasActiveQuestOf(Props.questScript))
         {
             return new AcceptanceReport("RG_CannotDecode".Translate("RG_CannotDecode_QuestActive".Translate()));

@@ -91,7 +91,7 @@
 				<li Class="ScenPart_ScatterThingsNearPlayerStart">
 					<def>ScatterThingsNearPlayerStart</def>
 					<thingDef>Rimgate_WraithCocoonPod</thingDef>
-					<count>3</count>
+					<count>1</count>
 				</li>
 				<li Class="ScenPart_StartingThing_Defined">
 					<def>StartingThing_Defined</def>

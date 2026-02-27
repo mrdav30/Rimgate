@@ -9,6 +9,8 @@ public class Gene_WraithEssenceMetabolism : Gene_Resource, IGeneResourceDrain
 {
     public bool FilledPodsAllowed = true;
 
+    public bool PrisonersAllowed = true;
+
     public Pawn Pawn => pawn;
     public Gene_Resource Resource => this;
 
@@ -20,13 +22,18 @@ public class Gene_WraithEssenceMetabolism : Gene_Resource, IGeneResourceDrain
     public override float MinLevelForAlert => 0.15f;
     public override float MaxLevelOffset => 0.1f;
 
-    protected override Color BarColor => new Color(0.35f, 0.95f, 0.85f);
-    protected override Color BarHighlightColor => new Color(0.45f, 1.0f, 0.95f);
+    protected override Color BarColor => new(0.35f, 0.95f, 0.85f);
+    protected override Color BarHighlightColor => new(0.45f, 1.0f, 0.95f);
 
-    private static readonly FloatRange Peckish = new FloatRange(0.50f, 0.66f);
-    private static readonly FloatRange Hungry = new FloatRange(0.33f, 0.50f);
-    private static readonly FloatRange Starving = new FloatRange(0.15f, 0.33f);
-    private const float Catastrophic = 0.05f;
+    private const float PeckishMin = 0.66f;
+    private const float PeckishSev = 0.20f;
+    private const float HungryMin = 0.50f;
+    private const float HungrySev = 0.45f;
+    private const float StarvingMin = 0.33f;
+    private const float StarvingSev = 0.70f;
+    private const float CatastrophicMin = 0.05f;
+    private const float CatastrophicSev = 0.95f;
+    private const float HediffLerpFactor = 0.2f;
 
     public override void PostAdd()
     {
@@ -63,10 +70,10 @@ public class Gene_WraithEssenceMetabolism : Gene_Resource, IGeneResourceDrain
         float pct = Value;
 
         float sev = 0f;
-        if (pct <= 0.05f) sev = 0.95f;
-        else if (pct < 0.33f) sev = 0.70f;
-        else if (pct < 0.50f) sev = 0.45f;
-        else if (pct < 0.66f) sev = 0.20f;
+        if (pct <= CatastrophicMin) sev = CatastrophicSev;
+        else if (pct < StarvingMin) sev = StarvingSev;
+        else if (pct < HungryMin) sev = HungrySev;
+        else if (pct < PeckishMin) sev = PeckishSev;
 
         var def = RimgateDefOf.Rimgate_WraithEssenceDeficit;
         var hediff = pawn.GetHediffOf(def);
@@ -79,7 +86,7 @@ public class Gene_WraithEssenceMetabolism : Gene_Resource, IGeneResourceDrain
                 pawn.health.AddHediff(hediff);
             }
             else
-                hediff.Severity = Mathf.Lerp(hediff.Severity, sev, 0.2f);
+                hediff.Severity = Mathf.Lerp(hediff.Severity, sev, HediffLerpFactor);
         }
         else if (hediff != null)
             pawn.health.RemoveHediff(hediff);
@@ -89,5 +96,6 @@ public class Gene_WraithEssenceMetabolism : Gene_Resource, IGeneResourceDrain
     {
         base.ExposeData();
         Scribe_Values.Look(ref FilledPodsAllowed, "FilledPodsAllowed", defaultValue: true);
+        Scribe_Values.Look(ref PrisonersAllowed, "PrisonersAllowed", defaultValue: true);
     }
 }

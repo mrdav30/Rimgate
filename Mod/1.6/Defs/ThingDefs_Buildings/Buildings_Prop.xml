@@ -803,7 +803,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>Rimgate_WraithCocoonPod</defName>
         <label>cocoon pod</label>
-        <description>A Wraith-grown pod for storing humans the way sensible people store meals: sealed, warm, and inconveniently still alive.\n\nIt cocoons the occupant in sticky biopolymer webbing and holds them in stasis for ages—perfect for long flights, emergencies, or a "snack later" plan. Victims are usually out cold, sometimes twitchy enough to beg or struggle.\n\nDisturbingly, it’s padded and spine-friendly. Nothing says "ancient space vampire" like ergonomic prisoner storage.</description>
+        <description>A Wraith-grown pod for storing humans the way sensible people store meals: sealed, warm, and inconveniently still alive.\n\nIt cocoons the occupant in sticky biopolymer webbing and holds them in stasis for ages—perfect for long flights, emergencies, or a "snack later" plan. Victims are usually out cold, sometimes twitchy enough to beg or struggle.\n\nDisturbingly, it’s padded and spine-friendly. Nothing says "ancient space vampire" like ergonomic prisoner storage.\n\nNote: once "grown", that’s where it stays. No hauling, no reinstalling, no "just scoot it two tiles."</description>
         <thingClass>Rimgate.Building_WraithCocoonPod</thingClass>
         <containedPawnsSelectable>false</containedPawnsSelectable>
         <graphicData>
