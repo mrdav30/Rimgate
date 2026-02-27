@@ -44,16 +44,14 @@ public class Comp_BodyGraphicSwapper : ThingComp
         return Props.tierTwoFemaleGraphicData.Graphic;
     }
 
-    // TODO: Make the thresholds configurable via CompProperties
     public virtual SwapTier GetCurrentSwapTier(Pawn pawn)
     {
         var healthPercentage = pawn.health.summaryHealth.SummaryHealthPercent;
-        if (healthPercentage < 0.75f && healthPercentage >= 0.35f)
-            return SwapTier.TierOne;
-        else if (healthPercentage < 0.35f)
+        if (healthPercentage < Props.tierTwoHealthThreshold)
             return SwapTier.TierTwo;
-        else
-            return SwapTier.None;
+        if (healthPercentage < Props.tierOneHealthThreshold)
+            return SwapTier.TierOne;
+        return SwapTier.None;
     }
 
     public Graphic GetCurrentPawnGraphic(Pawn pawn)
