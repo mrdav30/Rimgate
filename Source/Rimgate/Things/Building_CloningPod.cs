@@ -163,6 +163,8 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
     private int _incubationTicksRemaining;
 
+    private int _incubationUnpoweredTicks;
+
     private bool _fuelConsumedForCurrentCycle;
 
     private CalibrationOutcome _calibrationOutcome;
@@ -353,9 +355,26 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
                         return;
                     }
 
-                    // stop if power is off, but don't put in paused state
-                    // TODO: the longer power is off, start decrementing _incubationTicksRemaining to simulate deterioration?
-                    if (!Powered) return;
+                    // Stop normal incubation while unpowered and apply escalating deterioration over time.
+                    if (!Powered)
+                    {
+                        if (_incubationUnpoweredTicks < int.MaxValue)
+                            _incubationUnpoweredTicks++;
+
+                        if (_incubationTicksRemaining > 0)
+                        {
+                            int unpoweredSeconds = _incubationUnpoweredTicks / GenTicks.TicksPerRealSecond;
+                            if (unpoweredSeconds > 0)
+                            {
+                                int deteriorationPerTick = 1 + (unpoweredSeconds / 30);
+                                _incubationTicksRemaining = Mathf.Max(0, _incubationTicksRemaining - deteriorationPerTick);
+                            }
+                        }
+
+                        return;
+                    }
+
+                    _incubationUnpoweredTicks = 0;
 
                     if (!this.IsHashIntervalTick(GenTicks.TicksPerRealSecond))
                     {
@@ -923,6 +942,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         Scribe_Values.Look(ref _calibrationWorkRemaining, "_calibrationWorkRemaining", 0f);
         Scribe_Values.Look(ref _incubationTicksTotal, "_incubationTicksTotal", 0);
         Scribe_Values.Look(ref _incubationTicksRemaining, "_incubationTicksRemaining", 0);
+        Scribe_Values.Look(ref _incubationUnpoweredTicks, "_incubationUnpoweredTicks", 0);
         Scribe_Values.Look(ref _hadActiveInducer, "_hadActiveInducer", false);
         Scribe_Values.Look(ref _fuelConsumedForCurrentCycle, "_fuelConsumedForCurrentCycle", false);
         Scribe_Deep.Look(ref _calibrationOutcome, "_calibrationOutcome");
@@ -1120,6 +1140,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
         // Determine incubation time based on outcome
         _incubationTicksTotal = GetTotalIncubationTicks(outcome);
         _incubationTicksRemaining = _incubationTicksTotal;
+        _incubationUnpoweredTicks = 0;
 
         return true;
     }
@@ -1270,6 +1291,7 @@ public class Building_CloningPod : Building, IThingHolder, IThingHolderWithDrawn
 
         _calibrationWorkRemaining = 0f;
         _incubationTicksRemaining = 0;
+        _incubationUnpoweredTicks = 0;
         _fuelConsumedForCurrentCycle = false;
         _calibrationOutcome = null;
 
