@@ -13,8 +13,8 @@
         <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
 
         <skillRequirements>
-            <Medicine>6</Medicine>
-            <Intellectual>6</Intellectual>
+            <Medicine>5</Medicine>
+            <Intellectual>5</Intellectual>
         </skillRequirements>
 
         <workSkill>Medicine</workSkill>
