@@ -54,7 +54,7 @@
     </ResearchProjectDef>
 
     <!-- Medical Procedures -->
-    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchBase">
         <defName>Rimgate_TauriMedicalProcedures</defName>
         <label>Tau'ri medical procedures</label>
         <description>Unlocks Tau'ri medical protocols: triage techniques, surgical procedures, and field treatments adapted from off-world military medicine.\n\nDramatically improves medical care quality and survival rates for severe injuries.</description>
@@ -66,6 +66,13 @@
         </prerequisites>
         <researchViewX>1</researchViewX>
         <researchViewY>3.75</researchViewY>
+    </ResearchProjectDef>
+
+    <!-- ======== Hi-Tech Base ======== -->
+    <ResearchProjectDef Name="Rimgate_TauriResearchHiBase" ParentName="Rimgate_TauriResearchBase" Abstract="True">
+        <requiredResearchFacilities>
+            <li>Rimgate_TauriDraftingDesk</li>
+        </requiredResearchFacilities>
     </ResearchProjectDef>
 
     <!-- Tretonin Synthesis -->
@@ -143,11 +150,33 @@
 
     </ResearchProjectDef>
 
-    <!-- Hi-Tech Base -->
-    <ResearchProjectDef Name="Rimgate_TauriResearchHiBase" ParentName="Rimgate_TauriResearchBase" Abstract="True">
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
+        <defName>Rimgate_BiomaterialRecovery</defName>
+        <label>biomaterial recovery</label>
+        <description>Unlocks Tau'ri biomaterial salvage protocols, allowing colonists to recover biomaterials from corpses. Recovery is available once the research needed to craft that biomaterial is completed. Some materials may also require specialized research for recovery.</description>
+        <baseCost>2000</baseCost>
+        <prerequisites>
+            <li>Rimgate_TauriMedicalProcedures</li>
+            <li>Fabrication</li>
+        </prerequisites>
+        <researchViewX>2</researchViewX>
+        <researchViewY>4.5</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="Rimgate_TauriResearchHiBase">
+        <defName>Rimgate_AdvancedBiomaterialRecovery</defName>
+        <label>advanced biomaterial recovery</label>
+        <description>Unlocks advanced biomaterial recovery techniques, adapted from Ancient biochemistry notes, which will allow for the extraction of Archotech biomaterials.</description>
+        <baseCost>3500</baseCost>
+        <prerequisites>
+            <li>Rimgate_BiomaterialRecovery</li>
+            <li>Bionics</li>
+        </prerequisites>
         <requiredResearchFacilities>
-            <li>Rimgate_TauriDraftingDesk</li>
+            <li>Rimgate_AncientResearchBank</li>
         </requiredResearchFacilities>
+        <researchViewX>3</researchViewX>
+        <researchViewY>4.5</researchViewY>
     </ResearchProjectDef>
 
     <!-- ======== Tau'ri Armor ========= -->

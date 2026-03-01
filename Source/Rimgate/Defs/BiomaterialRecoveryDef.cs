@@ -11,10 +11,10 @@ public class BiomaterialRecoveryDef : Def
     [NoTranslate]
     public string uiIconPath;
 
-    // What we remove from the corpse/pawn.
-    public HediffDef removesHediff;
+    // What we remove from the corpse/pawn (first matching hediff is used).
+    public List<HediffDef> removesHediffs;
 
-    // Optional: if null, we’ll use removesHediff.spawnThingOnRemoved.
+    // Optional: if null, we’ll use spawnThingOnRemoved from the matched hediff.
     public ThingDef spawnThingOverride;
 
     // Gating / balance
@@ -37,9 +37,29 @@ public class BiomaterialRecoveryDef : Def
 
     // Filters
     public bool allowRotten = false;
-    public bool animalsOnly = true;
+    public bool humansOnly = false;
+    public bool animalsOnly = false;
 
-    public ThingDef RecoverableThing => spawnThingOverride ?? removesHediff?.spawnThingOnRemoved;
+    public ThingDef RecoverableThing
+    {
+        get
+        {
+            if (spawnThingOverride != null)
+                return spawnThingOverride;
+
+            if (removesHediffs.NullOrEmpty())
+                return null;
+
+            for (int i = 0; i < removesHediffs.Count; i++)
+            {
+                ThingDef spawnThing = removesHediffs[i]?.spawnThingOnRemoved;
+                if (spawnThing != null)
+                    return spawnThing;
+            }
+
+            return null;
+        }
+    }
 
     [Unsaved(false)]
     private Texture2D _cachedIcon;
@@ -58,10 +78,56 @@ public class BiomaterialRecoveryDef : Def
     public override void ResolveReferences()
     {
         base.ResolveReferences();
+
+        removesHediffs ??= [];
         workSpeedStat ??= RimgateDefOf.MedicalOperationSpeed;
         workSkill ??= SkillDefOf.Medicine;
         effectWorking ??= EffecterDefOf.Surgery;
         soundWorking ??= SoundDefOf.Recipe_Surgery;
+    }
+
+    public Hediff GetFirstMatchingHediff(Pawn pawn)
+    {
+        if (pawn == null || removesHediffs.NullOrEmpty())
+            return null;
+
+        for (int i = 0; i < removesHediffs.Count; i++)
+        {
+            HediffDef hediffDef = removesHediffs[i];
+            if (hediffDef == null)
+                continue;
+
+            Hediff found = pawn.GetHediffOf(hediffDef);
+            if (found != null)
+                return found;
+        }
+
+        return null;
+    }
+
+    public bool TargetSatisfiesFilters(Pawn targetPawn, out string reason)
+    {
+        reason = null;
+        RaceProperties race = targetPawn?.RaceProps;
+        if (race?.IsAnomalyEntity == true)
+        {
+            reason = "anomaly entities are not valid";
+            return false;
+        }
+
+        if (humansOnly && !(race?.Humanlike == true))
+        {
+            reason = "requires human corpse";
+            return false;
+        }
+
+        if (animalsOnly && !(race?.Animal == true))
+        {
+            reason = "requires animal corpse";
+            return false;
+        }
+
+        return true;
     }
 
     public bool PawnSatisfiesSkillRequirements(Pawn pawn, out string reason)
@@ -137,7 +203,7 @@ public class BiomaterialRecoveryDef : Def
                 4403);
         }
 
-        var product = spawnThingOverride ?? removesHediff.spawnThingOnRemoved;
+        ThingDef product = RecoverableThing;
 
         if (product != null)
         {
@@ -173,5 +239,26 @@ public class BiomaterialRecoveryDef : Def
             successChance.ToStringPercent(),
             "Stat_Thing_Surgery_SuccessChanceFactor_Desc".Translate(),
             4102);
+    }
+
+    public override IEnumerable<string> ConfigErrors()
+    {
+        foreach (string err in base.ConfigErrors())
+            yield return err;
+
+        if (removesHediffs.NullOrEmpty())
+            yield return $"{defName} has no hediffs to remove";
+
+        if (RecoverableThing == null)
+            yield return $"{defName} has no recoverable thing (missing spawnThingOnRemoved in hediff or spawnThingOverride)";
+
+        if (workAmount <= 0f)
+            yield return $"{defName} has non-positive workAmount";
+
+        if (humansOnly && animalsOnly)
+            yield return $"{defName} cannot be both humansOnly and animalsOnly";
+
+        if(!humansOnly && !animalsOnly)
+            yield return $"{defName} should be either humansOnly or animalsOnly";
     }
 }

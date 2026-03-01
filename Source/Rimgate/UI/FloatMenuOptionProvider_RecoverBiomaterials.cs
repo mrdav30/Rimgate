@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -36,20 +35,19 @@ public class FloatMenuOptionProvider_RecoverBiomaterials : FloatMenuOptionProvid
         if (!CorpseBiomaterialRecoveryUtility.IsCorpseValidForRecovery(corpse, actor))
             yield break;
 
-        var corpsePawn = corpse.InnerPawn;
+        Pawn corpsePawn = corpse.InnerPawn;
         _cachedDefs ??= DefDatabase<BiomaterialRecoveryDef>.AllDefsListForReading;
         for (int i = 0; i < _cachedDefs.Count; i++)
         {
             BiomaterialRecoveryDef def = _cachedDefs[i];
-            if (def.removesHediff == null)
+            if (def.removesHediffs.NullOrEmpty())
                 continue;
 
-            if (!corpse.InnerPawn.HasHediffOf(def.removesHediff))
+            if (def.GetFirstMatchingHediff(corpse.InnerPawn) == null)
                 continue;
 
-            RaceProperties race = corpsePawn?.RaceProps;
-            if (race?.IsAnomalyEntity == true) continue;
-            if (def.animalsOnly && !(race?.Animal == true)) continue;
+            if (!def.TargetSatisfiesFilters(corpsePawn, out _))
+                continue;
 
             bool available = CorpseBiomaterialRecoveryUtility.CanStartRecoveryJob(
                 actor,
@@ -68,12 +66,12 @@ public class FloatMenuOptionProvider_RecoverBiomaterials : FloatMenuOptionProvid
                 continue;
             }
 
-            Action action = delegate
+            void action()
             {
                 Job job = JobMaker.MakeJob(RimgateDefOf.Rimgate_RecoverBiomaterialFromCorpse, corpse);
                 job.dutyTag = def.defName;
                 actor.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-            };
+            }
 
             yield return FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(label, action),

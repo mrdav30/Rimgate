@@ -64,12 +64,13 @@
     <ThingDef ParentName="ResourceBase">
         <defName>Rimgate_BiomaterialProcurementKit</defName>
         <label>biomaterial procurement kit</label>
-        <description>Sterile field tools, preservative gel, and a disappointingly sharp set of cutters. Required to recover intact biomaterials from corpses without turning them into soup.</description>
+        <description>Sterile field tools, preservative gel, and a disappointingly sharp set of cutters. Required to recover intact biomaterials from corpses without having them rendered useless, or in some cases explode.</description>
         <graphicData>
             <texPath>Things/Item/Resource/ProcurementKit</texPath>
             <graphicClass>Graphic_StackCount</graphicClass>
             <drawSize>0.85</drawSize>
         </graphicData>
+        <uiIconPath>Things/Item/Resource/ProcurementKit/RG_BiomaterialProcurementKit_a</uiIconPath>
         <uiIconForStackCount>1</uiIconForStackCount>
         <techLevel>Ultra</techLevel>
         <possessionCount>1</possessionCount>

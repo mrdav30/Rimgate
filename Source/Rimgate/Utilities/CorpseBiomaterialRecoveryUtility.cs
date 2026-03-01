@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -31,6 +32,15 @@ public static class CorpseBiomaterialRecoveryUtility
             return false;
         }
 
+        if (def == null)
+        {
+            reason = "invalid recovery definition";
+            return false;
+        }
+
+        if (!def.TargetSatisfiesFilters(corpse.InnerPawn, out reason))
+            return false;
+
         if (!def.allowRotten && corpse.GetRotStage() == RotStage.Rotting)
         {
             reason = "corpse is rotten";
@@ -46,10 +56,15 @@ public static class CorpseBiomaterialRecoveryUtility
         if (!def.PawnSatisfiesSkillRequirements(actor, out reason))
             return false;
 
+        if (def.GetFirstMatchingHediff(corpse.InnerPawn) == null)
+        {
+            reason = "biomaterial missing";
+            return false;
+        }
 
         if (checkAvailability)
         {
-            if (CountAvailableKits(actor, def.requiredKit) < 1)
+            if (def.requiredKit != null && CountAvailableKits(actor, def.requiredKit) < 1)
             {
                 reason = $"missing {def.requiredKit.LabelCap} x1";
                 return false;
@@ -68,11 +83,18 @@ public static class CorpseBiomaterialRecoveryUtility
         out string failReason)
     {
         spawnedThing = null;
-        failReason = null;
+        if (corpse?.InnerPawn == null || def == null)
+        {
+            failReason = "invalid recovery target";
+            return false;
+        }
+
+        if (!def.TargetSatisfiesFilters(corpse.InnerPawn, out failReason))
+            return false;
 
         // Find the hediff instance
         Pawn inner = corpse.InnerPawn;
-        Hediff found = inner?.GetHediffOf(def.removesHediff);
+        Hediff found = def.GetFirstMatchingHediff(inner);
         if (found == null)
         {
             failReason = "biomaterial missing";
@@ -85,15 +107,16 @@ public static class CorpseBiomaterialRecoveryUtility
         float skillChance = def.successChanceStat != null
             ? actor.GetStatValue(def.successChanceStat)
             : 1;
+        float totalChance = Mathf.Clamp01(def.successChance * skillChance);
 
         // success roll
-        if (!Rand.Chance(def.successChance * skillChance))
+        if (!Rand.Chance(totalChance))
         {
             failReason = "procedure failed";
             return false;
         }
 
-        ThingDef spawnDef = def.RecoverableThing;
+        ThingDef spawnDef = def.spawnThingOverride ?? found.def?.spawnThingOnRemoved;
         if (spawnDef != null)
         {
             spawnedThing = ThingMaker.MakeThing(spawnDef);
@@ -110,6 +133,11 @@ public static class CorpseBiomaterialRecoveryUtility
         if (actor == null || kitDef == null) return 0;
 
         int count = 0;
+
+        // Count carried kit first so float-menu availability matches job behavior.
+        Thing carried = actor.carryTracker?.CarriedThing;
+        if (carried?.def == kitDef && !carried.Destroyed)
+            count += carried.stackCount;
 
         // Map stock only
         Map map = actor.Map;

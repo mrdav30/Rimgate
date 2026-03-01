@@ -590,26 +590,27 @@
 	<!-- ==================== Biomaterial Procurement Kit ==================== -->
 
 	<RecipeDef>
-		<defName>Rimgate_MakeBiomaterialProcurementKit</defName>
-		<label>assemble biomaterial procurement kit</label>
+		<defName>Rimgate_MakeIndustrialBioProcurementKit</defName>
+		<label>assemble bio-procurement kit (medicine)</label>
 		<description>Assemble a biomaterial procurement kit.</description>
 
 		<jobString>Assembling biomaterial procurement kit.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_CookMeal</soundWorking>
 
-		<workAmount>1800</workAmount>
+		<workAmount>2400</workAmount>
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<workSkill>Crafting</workSkill>
 		<workSkillLearnFactor>0.03</workSkillLearnFactor>
 
 		<skillRequirements>
-			<Crafting>6</Crafting>
-			<Medicine>4</Medicine>
+			<Crafting>5</Crafting>
+			<Medicine>6</Medicine>
 		</skillRequirements>
 
 		<recipeUsers>
 			<li>DrugLab</li>
+			<li>FabricationBench</li>
 		</recipeUsers>
 
 		<ingredients>
@@ -620,7 +621,7 @@
 						<li>MedicineIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>4</count>
 			</li>
 
 			<!-- containers + tools -->
@@ -630,7 +631,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>15</count>
+				<count>5</count>
 			</li>
 
 			<li>
@@ -652,23 +653,88 @@
 				<count>5</count>
 			</li>
 
-			<!-- optional: make it feel more spacer/medical -->
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>1</count>
-			</li>
 		</ingredients>
 
 		<!-- Produce multiple to reduce micromanagement -->
 		<products>
-			<Rimgate_BiomaterialProcurementKit>3</Rimgate_BiomaterialProcurementKit>
+			<Rimgate_BiomaterialProcurementKit>1</Rimgate_BiomaterialProcurementKit>
 		</products>
 
-		<researchPrerequisite>Bionics</researchPrerequisite>
+		<researchPrerequisite>Rimgate_BiomaterialRecovery</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>Rimgate_MakeUltratechBioProcurementKit</defName>
+		<label>assemble bio-procurement kit (glitter)</label>
+		<description>Assemble a biomaterial procurement kit.</description>
+
+		<jobString>Assembling biomaterial procurement kit.</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
+
+		<workAmount>1800</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<workSkillLearnFactor>0.03</workSkillLearnFactor>
+
+		<skillRequirements>
+			<Crafting>4</Crafting>
+			<Medicine>4</Medicine>
+		</skillRequirements>
+
+		<recipeUsers>
+			<li>DrugLab</li>
+			<li>FabricationBench</li>
+		</recipeUsers>
+
+		<ingredients>
+			<!-- sterile supplies -->
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineUltratech</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+
+			<!-- containers + tools -->
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Cloth</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+
+			<!-- “preservative gel” stand-in -->
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+
+		</ingredients>
+
+		<!-- Produce multiple to reduce micromanagement -->
+		<products>
+			<Rimgate_BiomaterialProcurementKit>1</Rimgate_BiomaterialProcurementKit>
+		</products>
+
+		<researchPrerequisite>Rimgate_BiomaterialRecovery</researchPrerequisite>
 	</RecipeDef>
 
 	<!-- ==================== Cement + Concrete ==================== -->

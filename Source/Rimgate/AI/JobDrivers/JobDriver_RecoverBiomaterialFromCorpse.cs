@@ -94,13 +94,13 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
         Toil finish = ToilMaker.MakeToil("RecoverBiomaterial_Finish");
         finish.initAction = delegate
         {
-            var corpse = _corpse;
+            Corpse corpse = _corpse;
             bool ok = CorpseBiomaterialRecoveryUtility.TryRecoverFromCorpse(
                 pawn,
                 corpse,
                 RecoveryDef,
                 consumeKitOnAttempt: true,
-                out var spawnedThing,
+                out Thing spawnedThing,
                 out string reason);
 
             if (!ok)
@@ -112,7 +112,11 @@ public class JobDriver_RecoverBiomaterialFromCorpse : JobDriver
                 return;
             }
 
-            Messages.Message("RG_BiomaterialRecoveryMessage_Procured".Translate(spawnedThing.LabelShort, corpse.InnerPawn.LabelShort),
+            string recoveredLabel = spawnedThing?.LabelShort
+                ?? RecoveryDef.RecoverableThing?.LabelCap
+                ?? RecoveryDef.label.CapitalizeFirst();
+
+            Messages.Message("RG_BiomaterialRecoveryMessage_Procured".Translate(recoveredLabel, corpse.InnerPawn.LabelShort),
                 new TargetInfo(corpse.Position, corpse.Map),
                 MessageTypeDefOf.PositiveEvent);
         };

@@ -2,15 +2,19 @@
 <Defs>
 
     <Rimgate.BiomaterialRecoveryDef Name="Rimgate_RecoveryBase" Abstract="True">
+        <descriptionHyperlinks>
+            <ThingDef>Rimgate_BiomaterialProcurementKit</ThingDef>
+        </descriptionHyperlinks>
+        <uiIconPath>Things/Item/Resource/ProcurementKit</uiIconPath>
+
         <requiredKit>Rimgate_BiomaterialProcurementKit</requiredKit>
 
         <workAmount>2000</workAmount>
         <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
 
         <skillRequirements>
-            <Medicine>5</Medicine>
-            <Crafting>5</Crafting>
-            <Intellectual>8</Intellectual>
+            <Medicine>6</Medicine>
+            <Intellectual>6</Intellectual>
         </skillRequirements>
 
         <workSkill>Medicine</workSkill>
@@ -18,40 +22,252 @@
         <effectWorking>Surgery</effectWorking>
         <soundWorking>Recipe_Surgery</soundWorking>
 
-        <successChance>0.8</successChance>
+        <successChance>1</successChance>
         <successChanceStat>MedicalSurgerySuccessChance</successChanceStat>
     </Rimgate.BiomaterialRecoveryDef>
 
     <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
-        <defName>Rimgate_Recover_CorticalDampener</defName>
-        <label>recover cortical dampener</label>
-        <description>Recover a cortical dampener from the brain of an Unas corpse. This procedure is highly invasive and requires specialized equipment.</description>
-        <descriptionHyperlinks>
-            <ThingDef>Rimgate_CorticalDampener</ThingDef>
-            <ThingDef>Rimgate_BiomaterialProcurementKit</ThingDef>
-            <HediffDef>Rimgate_CorticalDampener</HediffDef>
-        </descriptionHyperlinks>
-        <uiIconPath>Things/Item/Implant/RG_CorticalDampener</uiIconPath>
-        <removesHediff>Rimgate_CorticalDampener</removesHediff>
+        <defName>Rimgate_Recover_UnasBiology</defName>
+        <label>recover cortical stack</label>
+        <description>Recover a cortical stack from the brain of an Unas corpse.</description>
+        <removesHediffs>
+            <li>Rimgate_CorticalDampener</li>
+            <li>Rimgate_CorticalCatalyst</li>
+        </removesHediffs>
         <researchPrerequisite>Rimgate_UnasBiology</researchPrerequisite>
         <allowRotten>false</allowRotten>
         <animalsOnly>true</animalsOnly>
     </Rimgate.BiomaterialRecoveryDef>
 
     <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
-        <defName>Rimgate_Recover_CorticalCatalyst</defName>
-        <label>recover cortical catalyst</label>
-        <description>Recover a cortical catalyst from the brain of an Unas corpse. This procedure is highly invasive and requires specialized equipment.</description>
-        <descriptionHyperlinks>
-            <ThingDef>Rimgate_CorticalCatalyst</ThingDef>
-            <ThingDef>Rimgate_BiomaterialProcurementKit</ThingDef>
-            <HediffDef>Rimgate_CorticalCatalyst</HediffDef>
-        </descriptionHyperlinks>
-        <uiIconPath>Things/Item/Implant/RG_CorticalCatalyst</uiIconPath>
-        <removesHediff>Rimgate_CorticalCatalyst</removesHediff>
-        <researchPrerequisite>Rimgate_UnasBiology</researchPrerequisite>
+        <defName>Rimgate_Recover_HumanProsthetic</defName>
+        <label>recover prosthetic</label>
+        <description>Recover a prosthetic from a human corpse.</description>
+        <removesHediffs>
+            <li>SimpleProstheticLeg</li>
+            <li>SimpleProstheticArm</li>
+            <li>SimpleProstheticHeart</li>
+            <li>CochlearImplant</li>
+        </removesHediffs>
+        <researchPrerequisite>Prosthetics</researchPrerequisite>
         <allowRotten>false</allowRotten>
-        <animalsOnly>true</animalsOnly>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_Bionics</defName>
+        <label>recover bionic implant</label>
+        <description>Recover a bionic implant from a human corpse.</description>
+        <removesHediffs>
+            <li>BionicEye</li>
+            <li>BionicArm</li>
+            <li>BionicLeg</li>
+            <li>BionicSpine</li>
+            <li>BionicHeart</li>
+            <li>BionicStomach</li>
+            <li>BionicEar</li>
+            <li>BionicTongue</li>
+            <li>BionicJaw</li>
+        </removesHediffs>
+        <researchPrerequisite>Bionics</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_SpecializedLimbs</defName>
+        <label>recover specialized limb implant</label>
+        <description>Recover a specialized limb implant from a human corpse.</description>
+        <removesHediffs>
+            <li>DrillArm</li>
+            <li>FieldHand</li>
+            <li>PowerClaw</li>
+        </removesHediffs>
+        <researchPrerequisite>SpecializedLimbs</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_CompactWeaponry</defName>
+        <label>recover compact weaponry implant</label>
+        <description>Recover a compact weaponry implant from a human corpse.</description>
+        <removesHediffs>
+            <li>HandTalon</li>
+            <li>ElbowBlade</li>
+            <li>KneeSpike</li>
+        </removesHediffs>
+        <researchPrerequisite>CompactWeaponry</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_VenomSynthesis</defName>
+        <label>recover venom synthesis implant</label>
+        <description>Recover a venom synthesis implant from a human corpse.</description>
+        <removesHediffs>
+            <li>VenomFangs</li>
+            <li>VenomTalon</li>
+        </removesHediffs>
+        <researchPrerequisite>VenomSynthesis</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_ToxFiltration</defName>
+        <label>recover detox implant</label>
+        <description>Recover a detox implant from a human corpse.</description>
+        <removesHediffs>
+            <li>DetoxifierLung</li>
+            <li>DetoxifierKidney</li>
+        </removesHediffs>
+        <researchPrerequisite>ToxFiltration</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_FleshShaping</defName>
+        <label>recover flesh shaping implant</label>
+        <description>Recover a flesh shaping implant from a human corpse.</description>
+        <removesHediffs>
+            <li>AestheticNose</li>
+            <li>AestheticShaper</li>
+            <li>LoveEnhancer</li>
+        </removesHediffs>
+        <researchPrerequisite>FleshShaping</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_ArtificialMetabolism</defName>
+        <label>recover artificial metabolism implant</label>
+        <description>Recover an artificial metabolism implant from a human corpse.</description>
+        <removesHediffs>
+            <li>DetoxifierStomach</li>
+            <li>ReprocessorStomach</li>
+            <li>NuclearStomach</li>
+        </removesHediffs>
+        <researchPrerequisite>ArtificialMetabolism</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_CircadianInfluence</defName>
+        <label>recover circadian influence implant</label>
+        <description>Recover a circadian influence implant from a human corpse.</description>
+        <removesHediffs>
+            <li>CircadianAssistant</li>
+            <li>CircadianHalfCycler</li>
+        </removesHediffs>
+        <researchPrerequisite>CircadianInfluence</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_NeuralComputation</defName>
+        <label>recover neural implant</label>
+        <description>Recover a neural implant from a human corpse.</description>
+        <removesHediffs>
+            <li>Neurocalculator</li>
+            <li>LearningAssistant</li>
+        </removesHediffs>
+        <researchPrerequisite>NeuralComputation</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_MolecularAnalysis</defName>
+        <label>recover molecular implant</label>
+        <description>Recover a molecular implant from a human corpse.</description>
+        <removesHediffs>
+            <li>GastroAnalyzer</li>
+            <li>Immunoenhancer</li>
+        </removesHediffs>
+        <researchPrerequisite>MolecularAnalysis</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_HealingFactors</defName>
+        <label>recover healing implant</label>
+        <description>Recover a healing implant from a human corpse.</description>
+        <removesHediffs>
+            <li>Coagulator</li>
+            <li>HealingEnhancer</li>
+        </removesHediffs>
+        <researchPrerequisite>HealingFactors</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_SkinHardening</defName>
+        <label>recover skin implant</label>
+        <description>Recover a skin implant from a human corpse.</description>
+        <removesHediffs>
+            <li>ToughskinGland</li>
+            <li>ArmorskinGland</li>
+            <li>StoneskinGland</li>
+            <li>VacskinGland</li>
+        </removesHediffs>
+        <researchPrerequisite>SkinHardening</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_BrainWiring</defName>
+        <label>recover brain wiring implant</label>
+        <description>Recover a brain wiring implant from a human corpse.</description>
+        <removesHediffs>
+            <li>Mindscrew</li>
+            <li>Joywire</li>
+            <li>Painstopper</li>
+        </removesHediffs>
+        <researchPrerequisite>BrainWiring</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_Archotech</defName>
+        <label>recover archotech implant</label>
+        <description>Recover an archotech implant from a human corpse.</description>
+        <removesHediffs>
+            <li>ArchotechEye</li>
+            <li>ArchotechArm</li>
+            <li>ArchotechLeg</li>
+        </removesHediffs>
+        <researchPrerequisite>Rimgate_AdvancedBiomaterialRecovery</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+        <successChance>0.8</successChance>
+    </Rimgate.BiomaterialRecoveryDef>
+
+    <Rimgate.BiomaterialRecoveryDef ParentName="Rimgate_RecoveryBase">
+        <defName>Rimgate_Recover_GhoulEnhancements</defName>
+        <label>recover ghoul implant</label>
+        <description>Recover a ghoul implant from a human corpse.</description>
+        <removesHediffs>
+            <li>GhoulPlating</li>
+            <li>GhoulBarbs</li>
+            <li>AdrenalHeart</li>
+            <li>CorrosiveHeart</li>
+            <li>MetalbloodHeart</li>
+            <li>BloodWarmer</li>
+        </removesHediffs>
+        <researchPrerequisite>GhoulEnhancements</researchPrerequisite>
+        <allowRotten>false</allowRotten>
+        <humansOnly>true</humansOnly>
+        <successChance>0.8</successChance>
     </Rimgate.BiomaterialRecoveryDef>
 
 </Defs>
