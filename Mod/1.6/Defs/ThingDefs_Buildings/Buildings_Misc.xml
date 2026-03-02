@@ -325,7 +325,7 @@
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
-				<fuelConsumptionRate>135.0</fuelConsumptionRate>
+				<fuelConsumptionRate>67.5</fuelConsumptionRate>
 				<fuelCapacity>15.0</fuelCapacity>
 				<fuelFilter>
 					<thingDefs>
@@ -443,7 +443,7 @@
 			<li Class="CompProperties_Refuelable">
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
-				<fuelConsumptionRate>115.0</fuelConsumptionRate>
+				<fuelConsumptionRate>57.5</fuelConsumptionRate>
 				<fuelCapacity>10.0</fuelCapacity>
 				<fuelFilter>
 					<thingDefs>

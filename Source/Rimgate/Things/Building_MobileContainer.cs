@@ -706,7 +706,7 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
             // copy current fuel
             proxy.PushingFuel = refuelable.Fuel;
             float massRatio = MassCapacity > 0f ? Mathf.Clamp01(MassUsage / MassCapacity) : 1f;
-            proxy.FuelPerTick = Mathf.Lerp(0f, ConsumptionRatePerTick, massRatio);
+            proxy.FuelPerTick = ConsumptionRatePerTick * (1f + massRatio);
         }
         else
         {
