@@ -37,7 +37,7 @@
 				</value>
 			</li>
 
-			<!-- Prevent any traders from selling Sarcophagus buildings -->
+			<!-- Prevent any traders from selling specific artifacts -->
 
 			<li Class="PatchOperationConditional">
 				<xpath>Defs/TraderKindDef/stockGenerators/li[categoryDef="BuildingsFurniture"]/excludedThingDefs</xpath>
@@ -53,6 +53,9 @@
 				<xpath>Defs/TraderKindDef/stockGenerators/li[categoryDef="BuildingsFurniture"]/excludedThingDefs</xpath>
 				<value>
 					<li>Rimgate_GoauldSarcophagus</li>
+					<li>Rimgate_ArchotechIdolOfResonance</li>
+					<li>Rimgate_AncientResearchBank</li>
+					<li>Rimgate_Dwarfgate</li>
 				</value>
 			</li>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -6,12 +6,21 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Rimgate_Malp"]/race/mechEnabledWorkTypes</xpath>
 					<value>
 						<li>QuarryMining</li>
 					</value>
 				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Rimgate_Unas"]/race/mechEnabledWorkTypes</xpath>
+					<value>
+						<li>QuarryMining</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
