@@ -20,7 +20,6 @@
 		<TargetFramework>net48</TargetFramework>
 		<FileAlignment>512</FileAlignment>
 		<Deterministic>true</Deterministic>
-		<LangVersion>preview</LangVersion>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<LangVersion>preview</LangVersion>
 		<DebugType>embedded</DebugType>
@@ -28,15 +27,16 @@
 		<WarningLevel>4</WarningLevel>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-		<ModDir>..\..\</ModDir>
-		<OutDir>$(ModDir)\Mod\1.6\Assemblies\</OutDir>
-		<RefDir>$(ModDir)\..\RimWorldWin64_Data\Managed</RefDir>
-		<SteamModDir>D:\SteamLibrary\steamapps\workshop\content\</SteamModDir>
+		<RimWorldVersion Condition="'$(RimWorldVersion)' == ''">1.6</RimWorldVersion>
+		<ModDir>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)/../../'))</ModDir>
+		<OutDir Condition="'$(OutDir)' == ''">$(ModDir)\Mod\$(RimWorldVersion)\Assemblies\</OutDir>
+		<RefDir Condition="'$(RefDir)' == ''">$(ModDir)\..\RimWorldWin64_Data\Managed</RefDir>
+		<SteamModDir Condition="'$(SteamModDir)' == ''">D:\SteamLibrary\steamapps\workshop\content\</SteamModDir>
 	</PropertyGroup>
 
-	<!-- Build Events -->
-	<Target Name="PostClean" AfterTargets="Clean">
-		<RemoveDir Directories="$(OutDir)" />
+	<!-- This source tree belongs to 1.6; newer targets need their own project. -->
+	<Target Name="ValidateRimWorldVersion" BeforeTargets="PrepareForBuild">
+		<Error Condition="'$(RimWorldVersion)' != '1.6'" Text="Source/Rimgate targets RimWorld 1.6 only. Create a version-owned project before selecting another version." />
 	</Target>
 
 	<!--Build Configurations -->

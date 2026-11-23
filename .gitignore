@@ -13,6 +13,7 @@ UnityAssetBuilder/[Rr]ecordings/
 .vs/
 .vscode/
 *.csproj
+!Source/**/Rimgate.csproj
 *.unityproj
 *.sln
 *.slnx
@@ -56,10 +57,20 @@ ExportedObj/
 
 # Specific deployment build files
 Mod/1.6/Assemblies/Rimgate.dll
+Mod/*/Assemblies/
+Mod/AssetBundles/
+Mod/*/AssetBundles/*
+# Preserve the four existing 1.6 baseline files; other generated outputs stay ignored.
+!Mod/1.6/AssetBundles/AssetBundles
+!Mod/1.6/AssetBundles/AssetBundles.manifest
+!Mod/1.6/AssetBundles/rimgate_core
+!Mod/1.6/AssetBundles/rimgate_core.manifest
 Mod/Assets/
 
 # Source folder generated files
 Source/Rimgate/obj/
+Source/**/obj/
+Source/**/bin/
 Source/.vs/
 Source/Rimgate/.vs/
 Source/Assemblies/

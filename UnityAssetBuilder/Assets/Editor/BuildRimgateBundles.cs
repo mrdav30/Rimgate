@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,12 +9,26 @@ public static class BuildRimgateBundles
 {
     private const string BundleName = "rimgate_core";
     private const string AssetsPath = "Assets/Data/Mrdav30.Rimgate/";
-    private const string OutputPath = "../Mod/AssetBundles";
 
-    public static void BuildBundles()
+    public static void BuildBundlesFromCommandLine()
     {
-        if (!Directory.Exists(OutputPath))
-            Directory.CreateDirectory(OutputPath);
+        string[] arguments = Environment.GetCommandLineArgs();
+        int versionIndex = Array.IndexOf(arguments, "-rimgateVersion");
+        if (versionIndex < 0 || versionIndex + 1 >= arguments.Length || arguments[versionIndex + 1].StartsWith("-"))
+            throw new ArgumentException("Supply -rimgateVersion <major.minor> to select the bundle target.");
+        BuildBundles(arguments[versionIndex + 1]);
+    }
+
+    public static void BuildBundles(string rimWorldVersion)
+    {
+        if (string.IsNullOrEmpty(rimWorldVersion) || !Regex.IsMatch(rimWorldVersion, @"^\d+\.\d+$"))
+            throw new ArgumentException("The RimWorld version must have the form major.minor.", nameof(rimWorldVersion));
+
+        string versionPath = Path.GetFullPath(Path.Combine(Application.dataPath, "../../Mod", rimWorldVersion));
+        if (!Directory.Exists(versionPath))
+            throw new InvalidOperationException($"No content folder exists for RimWorld {rimWorldVersion}: {versionPath}");
+        string outputPath = Path.Combine(versionPath, "AssetBundles");
+        Directory.CreateDirectory(outputPath);
 
         List<AssetBundleBuild> assetBundleDefinitionList = new();
         AssetBundleBuild ab = new();
@@ -23,14 +39,15 @@ public static class BuildRimgateBundles
         var targetPlatform = BuildTarget.StandaloneWindows64;
         BuildAssetBundlesParameters buildParameters = new()
         {
-            outputPath = OutputPath,
+            outputPath = outputPath,
             bundleDefinitions = assetBundleDefinitionList.ToArray(),
             options = BuildAssetBundleOptions.ChunkBasedCompression,
             targetPlatform = targetPlatform
         };
-        BuildPipeline.BuildAssetBundles(buildParameters);
+        if (BuildPipeline.BuildAssetBundles(buildParameters) == null)
+            throw new InvalidOperationException("Rimgate AssetBundle build did not produce a manifest.");
 
-        Debug.Log("Rimgate AssetBundle build complete.");
+        Debug.Log($"Rimgate AssetBundle build complete for RimWorld {rimWorldVersion}: {outputPath}");
     }
 
     private static List<string> RecursiveGetAllAssetsInDirectory(string path)

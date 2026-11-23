@@ -17,10 +17,14 @@ Players can discover, study, control, and weaponize this technology while naviga
 
 ## 📦 Requirements ##
 
-- RimWorld (latest stable version)
-- DLC compatibility may vary by module
+- RimWorld **1.6** (the currently configured version).
+- Royalty, Ideology, Biotech, Anomaly and Odyssey.
+- Harmony and Vanilla Expanded Framework.
 
-Detailed compatibility notes are available on the Workshop page.
+Rimgate is maintained here as an open source project and used locally. It has not
+been published as a mod release or on Steam Workshop. See the
+[Compatibility Matrix](wiki/Compatibility-Matrix.md) for declared dependencies
+and implemented integrations; these are not a claim of 1.7 compatibility.
 
 ## 🧪 Developer Resources ##
 
@@ -28,6 +32,14 @@ For build workflows, asset pipeline rules, testing checklists, and release packa
 
 - [Developer and Contributor Notes](wiki/Developer-and-Contributor-Notes.md)
 - [AGENTS.md](AGENTS.md)
+- [RimWorld modding skill](.agents/skills/rimworld-modding/SKILL.md)
+- [Rimgate specialization](.agents/skills/rimgate-development/SKILL.md)
+
+Build and development scripts live in `.assets/scripts/`; build logs stay in the
+repository root and are gitignored. The build scripts accept `-RimWorldVersion 1.6`
+and default to `1.6`. Other versions are rejected until their content, source and
+load configuration exist.
+The 1.7 migration remains separate work.
 
 ## 🤝 Contributing ##
 
