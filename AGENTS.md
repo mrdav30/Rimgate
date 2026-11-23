@@ -9,15 +9,14 @@ Use the repository's [Rimgate specialization](.agents/skills/rimgate-development
 which applies the shared [RimWorld modding workflow](.agents/skills/rimworld-modding/SKILL.md).
 Keep this entry point concise; detailed instructions belong in the owning docs:
 
-- [Developer and Contributor Notes](wiki/Developer-and-Contributor-Notes.md):
+- [Developer and Contributor Notes](docs/guides/developer-and-contributor-notes.md):
   builds, version/source ownership, assets, validation and packaging.
-- [Compatibility Matrix](wiki/Compatibility-Matrix.md): dependencies and patches.
-- [Wiki home](wiki/Home.md): feature guides; trace affected source before editing.
+- [Compatibility Matrix](docs/guides/compatibility-matrix.md): dependencies and patches.
+- [Guides](docs/guides/index.md): feature guides; trace affected source before editing.
 
-Inspect the main repository and `wiki/` submodule worktrees before changes.
-Leave changes unstaged/uncommitted unless explicitly instructed otherwise. Wiki
-changes remain separate from the main repository; do not commit, push or publish
-as an implied documentation step.
+Documentation is authored in this repository; the GitHub Wiki submodule has been
+removed. Leave changes unstaged/uncommitted unless explicitly instructed
+otherwise. Do not commit, push or publish as an implied documentation step.
 
 ## Current contracts
 
@@ -56,6 +55,13 @@ The release script builds local outputs; it does not publish. Use the contributo
 guide for dependency-path overrides and checks. Parse XML and build C# as needed,
 then verify the affected gameplay and save/load path when runtime behavior changes.
 Compilation alone does not prove gameplay compatibility. State unrun checks.
+
+Build the library, Guides and API reference with `.assets/scripts/build-docs.ps1`.
+It restores pinned public 1.6 references, builds the selected latest configured
+target and runs DocFX with warnings as errors plus generated-site link checks.
+Keep `docs/docfx.json`, navigation, guides and templates authored; do not commit
+`docs/obj/` or `.assets/references/`. Keep code changes and their guide/API comments
+in the same PR. The documentation workflow validates PRs and publishes `main`.
 
 For live 1.6 checks, run `.assets/scripts/setup-rimbridge-dev.ps1` with all RimWorld
 instances stopped, then use the `rimgate-dev` MCP server and `gameId: rimgate16`.

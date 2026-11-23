@@ -15,23 +15,29 @@ it has not been published as a mod release. Do not infer Workshop distribution.
 ## Read the owner for the task
 
 - Build, source layout, assets, checks and the 1.6 freeze strategy:
-  [Developer and Contributor Notes](../../../wiki/Developer-and-Contributor-Notes.md).
+  [Developer and Contributor Notes](../../../docs/guides/developer-and-contributor-notes.md).
 - Live runtime validation: the same guide's RimBridge workflow,
   [setup-rimbridge-dev.ps1](../../../.assets/scripts/setup-rimbridge-dev.ps1) and
   [rimbridge-smoke.lua](../../../.assets/scripts/rimbridge-smoke.lua). Use the isolated
   `rimgate16` profile; discover the installed bridge's schemas rather than
   assuming current upstream examples match its frozen 1.6 payload.
 - Required dependencies and optional patches:
-  [Compatibility Matrix](../../../wiki/Compatibility-Matrix.md), checked against
+  [Compatibility Matrix](../../../docs/guides/compatibility-matrix.md), checked against
   Mod/About/About.xml and the affected patch/C# code.
-- Gameplay: start with the matching page in [wiki/Home.md](../../../wiki/Home.md),
+- Gameplay: start with the matching page in [Guides](../../../docs/guides/index.md),
   then trace the implementation. Guides describe intended behavior; source and
   reproduction determine whether a defect exists.
 
-The wiki is a separate git submodule. Inspect both worktrees and preserve user
-changes. Leave both unstaged/uncommitted for review unless explicitly instructed
-otherwise. Record concise evidence in the owning page or existing issue/plan;
-do not create parallel feature reports.
+Guides and the generated API site are owned by this repository under `docs/`;
+the former wiki submodule has been removed. Build with
+`.assets/scripts/build-docs.ps1`, which compiles Rimgate against pinned public
+references and runs strict DocFX/site checks. Keep guide links relative with
+their `.md` extensions or use API xrefs. Keep authored navigation/config/templates
+in source control; `docs/obj/` and restored `.assets/references/` are generated.
+The site follows `main` and the latest configured target, with no legacy wiki
+mirrors. Preserve user changes and leave work unstaged/uncommitted for review.
+Record concise evidence in the owning page or existing issue/plan; do not create
+parallel feature reports.
 
 ## Respect the current boundaries
 

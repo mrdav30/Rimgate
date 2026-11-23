@@ -5,6 +5,7 @@ param (
     [string]$RimWorldVersion = '1.6',
     [string]$RimWorldManagedPath,
     [string]$SteamModPath,
+    [switch]$UseReferenceAssemblies,
     [string]$LogPath = 'build-dotnet.log'
 )
 
@@ -25,6 +26,9 @@ if ($RimWorldManagedPath) {
 }
 if ($SteamModPath) {
     $buildArgs += "-p:SteamModDir=$($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($SteamModPath))"
+}
+if ($UseReferenceAssemblies) {
+    $buildArgs += '-p:UseReferenceAssemblies=true'
 }
 
 Write-Host "Building Rimgate for RimWorld $RimWorldVersion ($Configuration)..."

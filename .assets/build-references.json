@@ -1,0 +1,42 @@
+[
+  {
+    "path": "294100/2023507013/1.6/Assemblies/VEF.dll",
+    "url": "https://raw.githubusercontent.com/Vanilla-Expanded/VanillaExpandedFramework/090437424d981b0a130c819dee27b174aa30633e/1.6/Assemblies/VEF.dll",
+    "sha256": "2f0c890c54dd0498aebcfa42b63a859f8acee894adddd08807a523d683e8dc6d"
+  },
+  {
+    "path": "294100/2023507013/1.6/Assemblies/KCSG.dll",
+    "url": "https://raw.githubusercontent.com/Vanilla-Expanded/VanillaExpandedFramework/090437424d981b0a130c819dee27b174aa30633e/1.6/Assemblies/KCSG.dll",
+    "sha256": "5d6346be76942be568f569ad700e4a02a8aaf99b831844ba5d70445eca932ec0"
+  },
+  {
+    "path": "294100/836308268/1.6/Assemblies/BadHygiene.dll",
+    "url": "https://raw.githubusercontent.com/Dubwise56/Dubs-Bad-Hygiene/96ec4b51efaf9ef4baa98aa832a8078be09d3f45/1.6/Assemblies/BadHygiene.dll",
+    "sha256": "511a4ec97d04c232f09e3f1e7efde20c44b66b52563e03fb4359e3823aaab597"
+  },
+  {
+    "path": "294100/836308268/1.6/Assemblies/0DubCore.dll",
+    "url": "https://raw.githubusercontent.com/Dubwise56/Dubs-Bad-Hygiene/96ec4b51efaf9ef4baa98aa832a8078be09d3f45/1.6/Assemblies/0DubCore.dll",
+    "sha256": "6f2750e1f71eafbd7461cf8b1feb8e9967b2831d774b86da9f04bc1e8b745d02"
+  },
+  {
+    "path": "294100/836308268/1.6/Assemblies/0MultiplayerAPI.dll",
+    "url": "https://raw.githubusercontent.com/Dubwise56/Dubs-Bad-Hygiene/96ec4b51efaf9ef4baa98aa832a8078be09d3f45/1.6/Assemblies/0MultiplayerAPI.dll",
+    "sha256": "4a59e58b8e21be53798dc4d361cfc97551295adee6b7626c3bfc199b16c36dca"
+  },
+  {
+    "path": "294100/2023507013/1.6/Assemblies/PipeSystem.dll",
+    "url": "https://raw.githubusercontent.com/Vanilla-Expanded/VanillaExpandedFramework/090437424d981b0a130c819dee27b174aa30633e/1.6/Assemblies/PipeSystem.dll",
+    "sha256": "e397dd6e7b4f4242d79514fb7dad7eb2ff149073647a1db20fd6d546a2147d99"
+  },
+  {
+    "path": "294100/2023507013/1.6/Assemblies/0PrepatcherAPI.dll",
+    "url": "https://raw.githubusercontent.com/Vanilla-Expanded/VanillaExpandedFramework/090437424d981b0a130c819dee27b174aa30633e/1.6/Assemblies/0PrepatcherAPI.dll",
+    "sha256": "9a1561097a9fc7ffac73d83132f298c501972ea5639df03b8cdc1fedd7ee09cd"
+  },
+  {
+    "path": "294100/2023507013/1.6/Assemblies/System.Buffers.dll",
+    "url": "https://raw.githubusercontent.com/Vanilla-Expanded/VanillaExpandedFramework/090437424d981b0a130c819dee27b174aa30633e/1.6/Assemblies/System.Buffers.dll",
+    "sha256": "2d78d770c9cb997199154ae8c018b9f1d1efbc86729f7264dde6dbad2a12cac3"
+  }
+]

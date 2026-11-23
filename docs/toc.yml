@@ -1,0 +1,69 @@
+items:
+  - name: Home
+    href: index.md
+  - name: Guides
+    href: guides/index.md
+    items:
+      - name: Getting Started
+        items:
+          - name: "Rimgate Guides"
+            href: guides/index.md
+          - name: "Gate Network Guide"
+            href: guides/gate-network-guide.md
+          - name: "Research and Progression"
+            href: guides/research-and-progression.md
+      - name: People and Factions
+        items:
+          - name: "Factions and Pawn Types"
+            href: guides/factions-and-pawn-types.md
+          - name: "Xenotypes and Genes"
+            href: guides/xenotypes-and-genes.md
+          - name: "Symbiotes and Prim'ta"
+            href: guides/symbiotes-and-primta.md
+          - name: "Wraith Biomass and Cocoon Operations"
+            href: guides/wraith-biomass-and-cocoon-operations.md
+          - name: "Wraith Essence Management"
+            href: guides/wraith-essence-management.md
+          - name: "Cloning Systems"
+            href: guides/cloning-systems.md
+          - name: "Sarcophagus Guide"
+            href: guides/sarcophagus-guide.md
+      - name: Equipment and Infrastructure
+        items:
+          - name: "Items and Resources"
+            href: guides/items-and-resources.md
+          - name: "Biomaterial Recovery Guide"
+            href: guides/biomaterial-recovery-guide.md
+          - name: "Apparel and Utilities"
+            href: guides/apparel-and-utilities.md
+          - name: "Weapons"
+            href: guides/weapons.md
+          - name: "Buildings and Structures"
+            href: guides/buildings-and-structures.md
+          - name: "Power, Shields, and ZPM Infrastructure"
+            href: guides/power-shields-and-zpm-infrastructure.md
+          - name: "Mobile Logistics and Carts"
+            href: guides/mobile-logistics-and-carts.md
+          - name: "Shuttles and Planetary Transport"
+            href: guides/shuttles-and-planetary-transport.md
+          - name: "Base Defense and Fortification"
+            href: guides/base-defense-and-fortification.md
+      - name: World and Support
+        items:
+          - name: "Incidents, Quests, and Sites"
+            href: guides/incidents-quests-and-sites.md
+          - name: "Compatibility Matrix"
+            href: guides/compatibility-matrix.md
+          - name: "Troubleshooting and Known Issues"
+            href: guides/troubleshooting-and-known-issues.md
+          - name: "Mod Settings Reference"
+            href: guides/mod-settings-reference.md
+      - name: Development
+        items:
+          - name: "Developer and Contributor Notes"
+            href: guides/developer-and-contributor-notes.md
+  - name: API Reference
+    href: obj/api/
+    homepage: obj/api/Rimgate.yml
+  - name: Source
+    href: https://github.com/mrdav30/Rimgate

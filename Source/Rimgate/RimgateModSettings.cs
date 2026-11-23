@@ -211,7 +211,7 @@ public class RimgateModSettings : ModSettings
             "RG_Settings_Github_Button".Translate(),
             RimgateTex.GithubIconTex))
         {
-            Application.OpenURL("https://github.com/mrdav30/Rimgate/wiki");
+            Application.OpenURL("https://mrdav30.github.io/Rimgate/");
         }
 
         if (DrawRightIconLinkButton(

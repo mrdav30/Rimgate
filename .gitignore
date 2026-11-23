@@ -78,3 +78,7 @@ Source/Assemblies/
 # Ensure metadata is tracked
 !UnityAssetBuilder/[Aa]ssets/**/*.meta
 UnityAssetBuilder/Assets/Data
+
+# Restored build references and generated documentation
+.assets/references/
+docs/obj/

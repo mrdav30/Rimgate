@@ -1,0 +1,59 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "obj/assembly/Rimgate.dll"
+          ]
+        }
+      ],
+      "dest": "obj/api",
+      "globalNamespaceId": "Global"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "index.md",
+          "toc.yml",
+          "guides/**/*.md"
+        ]
+      },
+      {
+        "files": [
+          "**/*.yml"
+        ],
+        "src": "obj/api",
+        "dest": "api"
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "ModIcon.png"
+        ],
+        "src": "../Mod/About",
+        "dest": "assets"
+      }
+    ],
+    "output": "obj/_site",
+    "overwrite": [{ "files": ["overrides/*.md"] }],
+    "template": [
+      "default",
+      "modern",
+      "templates/rimgate"
+    ],
+    "globalMetadataFiles": [
+      "obj/site-metadata.json"
+    ],
+    "globalMetadata": {
+      "_appName": "Rimgate",
+      "_appTitle": "Rimgate documentation",
+      "_enableSearch": true,
+      "_appLogoPath": "assets/ModIcon.png",
+      "_appFaviconPath": "assets/ModIcon.png"
+    }
+  }
+}

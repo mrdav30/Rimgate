@@ -1,0 +1,16 @@
+body {
+  --bs-primary-rgb: 21, 119, 156;
+  --bs-link-color-rgb: 14, 102, 139;
+  --bs-link-hover-color-rgb: 5, 76, 111;
+}
+
+[data-bs-theme="dark"] body {
+  --bs-link-color-rgb: 98, 197, 230;
+  --bs-link-hover-color-rgb: 152, 220, 242;
+}
+
+#logo {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}

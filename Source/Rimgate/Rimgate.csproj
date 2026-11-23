@@ -26,6 +26,8 @@
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
 
 		<RimWorldVersion Condition="'$(RimWorldVersion)' == ''">1.6</RimWorldVersion>
 		<ModDir>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)/../../'))</ModDir>
@@ -58,6 +60,7 @@
 	<ItemGroup>
 		<!-- Nuget -->
 		<PackageReference Include="Lib.Harmony.Ref" Version="2.3.6" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4871" PrivateAssets="all" Condition="'$(UseReferenceAssemblies)' == 'true'" />
 
 		<!-- Other mods -->
 		<Reference Include="BadHygiene">
@@ -73,7 +76,18 @@
 			<Private>False</Private>
 		</Reference>
 
-		<!-- RimWorld -->
+	</ItemGroup>
+
+	<!-- Metadata readers need Harmony's transitive types; these are not runtime references. -->
+	<ItemGroup Condition="'$(UseReferenceAssemblies)' == 'true'">
+		<PackageDownload Include="MonoMod.Utils" Version="[25.0.8]" />
+		<PackageDownload Include="Mono.Cecil" Version="[0.11.5]" />
+		<PackageDownload Include="MonoMod.ILHelpers" Version="[1.1.0]" />
+		<PackageDownload Include="MonoMod.Backports" Version="[1.1.2]" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(UseReferenceAssemblies)' != 'true'">
+		<!-- Installed RimWorld; portable CI builds use Krafs.Rimworld.Ref instead. -->
 		<Reference Include="System">
 			<HintPath>$(RefDir)\Assembly-CSharp.dll</HintPath>
 			<Private>False</Private>
