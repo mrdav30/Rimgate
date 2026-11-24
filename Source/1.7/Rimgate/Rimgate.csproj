@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Authors>mrdav30</Authors>
+    <Description>Experimental RimWorld 1.7 port of Rimgate.</Description>
+    <Product>Rimgate</Product>
+    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Rimgate</RootNamespace>
+    <AssemblyName>Rimgate</AssemblyName>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14.0</LangVersion>
+    <Deterministic>true</Deterministic>
+    <DebugType>embedded</DebugType>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <RimWorldVersion Condition="'$(RimWorldVersion)' == ''">1.7</RimWorldVersion>
+    <ModDir>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)/../../../'))</ModDir>
+    <!-- Experimental outputs cannot enter the supported player package. -->
+    <OutDir Condition="'$(OutDir)' == ''">$(ModDir)/.assets/experimental/1.7/Assemblies/</OutDir>
+    <DefineConstants Condition="'$(Configuration)' == 'Debug'">$(DefineConstants);UNITY_ASSERTIONS;DEV_TOOLS;PROFILER</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Release'">$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.7.5014-unstable" PrivateAssets="all" />
+    <!-- Supply a Workshop content root with matching 1.7 dependencies, never 1.6 references. -->
+    <Reference Include="0Harmony" HintPath="$(SteamModDir)/294100/2009463077/1.7/Assemblies/0Harmony.dll" Private="false" />
+    <Reference Include="VEF" HintPath="$(SteamModDir)/294100/2023507013/1.7/Assemblies/VEF.dll" Private="false" />
+    <Reference Include="KCSG" HintPath="$(SteamModDir)/294100/2023507013/1.7/Assemblies/KCSG.dll" Private="false" />
+    <Reference Include="BadHygiene" HintPath="$(SteamModDir)/294100/836308268/1.7/Assemblies/BadHygiene.dll" Private="false" />
+  </ItemGroup>
+  <Target Name="ValidateRimWorldVersion" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(RimWorldVersion)' != '1.7'" Text="Source/1.7/Rimgate targets RimWorld 1.7 only; this is an unvalidated migration project." />
+    <Error Condition="'$(SteamModDir)' == ''" Text="Pass SteamModDir pointing to Workshop content containing matching 1.7 dependencies. See the migration plan." />
+    <Error Condition="!Exists('%(Reference.HintPath)')" Text="Missing experimental 1.7 reference: %(Reference.HintPath)" />
+  </Target>
+</Project>

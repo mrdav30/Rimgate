@@ -1,3 +1,26 @@
+<#
+.SYNOPSIS
+Builds Rimgate bundles and its assembly for a supported version.
+.DESCRIPTION
+Validates the target, runs the asset build, then builds the C# assembly.
+Replaces generated local outputs and writes the standard root build logs.
+Does not create a published release, upload files or enable experimental 1.7.
+.PARAMETER Configuration
+Assembly configuration, Debug or Release. Defaults to Release.
+.PARAMETER UnityPath
+Unity.exe override for the configured builder editor. Defaults to the standard
+Unity Hub installation of the version recorded in ProjectVersion.txt.
+.PARAMETER RimWorldVersion
+Supported major.minor game target. Defaults to 1.6.
+.PARAMETER RimWorldManagedPath
+Installed 1.6 RimWorldWin64_Data/Managed override. Defaults to the project's
+sibling game-data directory when omitted.
+.PARAMETER SteamModPath
+Workshop content root above 294100. Defaults to the project's Steam library.
+.EXAMPLE
+.\.assets\scripts\build-release.ps1 -RimWorldVersion 1.6 -Configuration Release
+Rebuilds 1.6 bundles and the release assembly locally.
+#>
 param (
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release',

@@ -81,7 +81,7 @@ These are patch-based integrations and are only applied when the target mod is p
 
 - XML definitions: `Mod/1.6/Defs/`
 - Compatibility patches: `Mod/1.6/Patches/`
-- C# source: `Source/Rimgate/`
+- C# source: `Source/1.6/Rimgate/` (supported), `Source/1.7/Rimgate/` (experimental port)
 - Build script (assembly): `.assets/scripts/build-assembly.ps1`
 - Build script (assetbundle): `.assets/scripts/build-assetbundle.ps1`
 - Build script (full release): `.assets/scripts/build-release.ps1`

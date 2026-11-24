@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+Rebuilds version-owned Rimgate AssetBundles from AssetsRaw.
+.DESCRIPTION
+Validates the supported target, stages raw textures/audio into UnityAssetBuilder,
+then runs its configured Unity editor in batch mode. Verifies all four expected
+outputs under Mod/<version>/AssetBundles and writes build-assetbundle.log at the
+repository root. Replaces generated bundles; use only when a rebuild is intended.
+.PARAMETER UnityPath
+Unity.exe path for the editor recorded in ProjectVersion.txt. Defaults to that
+version's standard Unity Hub installation under Program Files.
+.PARAMETER RimWorldVersion
+Supported major.minor game target. Defaults to 1.6; experimental 1.7 is rejected.
+.EXAMPLE
+.\.assets\scripts\build-assetbundle.ps1 -RimWorldVersion 1.6
+Rebuilds the 1.6 bundles with the configured Unity editor.
+#>
 param (
     [string]$UnityPath,
     [ValidatePattern('^\d+\.\d+$')]

@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/1.6/">
+    <Project Path="1.6/Rimgate/Rimgate.csproj" />
+  </Folder>
+  <Folder Name="/1.7/">
+    <Project Path="1.7/Rimgate/Rimgate.csproj">
+      <Build Project="false" />
+    </Project>
+  </Folder>
+</Solution>

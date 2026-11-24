@@ -1,3 +1,17 @@
+<#
+.SYNOPSIS
+Restores and verifies pinned public mod references for portable builds.
+.DESCRIPTION
+Reads .assets/build-references.json, downloads missing DLLs and checks every
+cached file's SHA-256. A hash mismatch fails rather than replacing the file.
+These references are build inputs, not player-package dependencies.
+.PARAMETER Destination
+Reference cache root. Defaults to .assets/references under the repository.
+An explicit relative path is resolved against the caller's working directory.
+.EXAMPLE
+.\.assets\scripts\restore-build-references.ps1
+Restores the pinned references into the default ignored cache.
+#>
 param (
     [string]$Destination
 )

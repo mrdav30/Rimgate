@@ -17,8 +17,11 @@ UnityAssetBuilder/[Rr]ecordings/
 *.unityproj
 *.sln
 *.slnx
+!Source/Rimgate.slnx
 *.suo
 *.user
+# Retain the already-tracked 1.6 project settings through its relocation.
+!Source/1.6/Rimgate/Rimgate.csproj.user
 *.userprefs
 *.vsconfig
 *.pidb
@@ -81,4 +84,5 @@ UnityAssetBuilder/Assets/Data
 
 # Restored build references and generated documentation
 .assets/references/
+.assets/experimental/
 docs/obj/

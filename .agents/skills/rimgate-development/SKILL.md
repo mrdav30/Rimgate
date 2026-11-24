@@ -52,7 +52,7 @@ feature reports.
 
 ## Respect the current boundaries
 
-Only RimWorld 1.6 is currently configured. Source/Rimgate is the 1.6 source owner;
+Only RimWorld 1.6 is declared supported. Source/1.6/Rimgate is the retained source owner;
 Mod/1.6 owns its defs, patches, assembly and AssetBundles. Keep generated bundles
 in Mod/<version>/AssetBundles, with none in the shared Mod/AssetBundles location.
 AssetsRaw owns raw
@@ -66,13 +66,24 @@ replacement bundles require their own requested scope.
 Use the build scripts in `.assets/scripts/` and select the target explicitly when
 relevant. Keep PowerShell and Lua tooling there; default build logs stay at the
 repository root.
-Version selection does not authorize a 1.7 migration, metadata support bump or
-replacement asset pipeline. Keep framework/dependency changes tied to evidence
-from the target game. Do not move source folders merely to prepare empty targets.
+Source/1.7/Rimgate is the separately owned experimental .NET 10/C# 14 port.
+Only assembly builds accept `-Experimental -RimWorldVersion 1.7`, with explicit
+matching 1.7 dependency paths and ignored output outside Mod. Normal release,
+asset and documentation builds still select only supported 1.6. Keep metadata
+support bumps and asset-pipeline changes behind actual runtime evidence.
+Preserve 1.6 source/content while working in 1.7; the migration plan owns its
+freeze milestone and remaining acceptance work.
+
+Once 1.7 is accepted, retain the final 1.6 source/content in Git and move active
+builds, dependencies, RimBridge validation and documentation to 1.7. Revisit 1.6
+only for explicitly scoped maintenance; do not require ongoing 1.6 environment
+capture, restoration or live validation after the freeze. The existing local
+snapshot is temporary migration insurance, kept untouched outside Git. Preserve
+normal player-config backups and post-run checks for whichever dev target is active.
 
 ## Follow the affected system
 
-Runtime code lives under Source/Rimgate, with XML references centralized in
+Runtime code lives under Source/<version>/Rimgate, with XML references centralized in
 Rimgate_DefOf. Follow the feature's Things/Comps, AI/jobs, World, UI, utilities and
 HarmonyPatches together as applicable. Representative stateful owners include
 Building_Gate plus WorldComp_GateAddresses, Building_Sarcophagus,

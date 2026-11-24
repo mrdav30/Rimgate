@@ -1,3 +1,15 @@
+<#
+.SYNOPSIS
+Builds the supported Rimgate library, DocFX guides and API reference.
+.DESCRIPTION
+Selects the highest supported version in About.xml, verifies/restores pinned
+public references and the local DocFX tool, then builds the library and site.
+Replaces generated docs/obj content, treats DocFX warnings as errors and runs
+test-docs.ps1. Logs stay at the repository root. Does not deploy or publish.
+.EXAMPLE
+.\.assets\scripts\build-docs.ps1
+Builds and validates the site locally without a Steam installation or Unity.
+#>
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'build-common.ps1')
 $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))

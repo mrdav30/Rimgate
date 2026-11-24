@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Authors>mrdav30</Authors>
+		<Description>Rimgate introduces ancient planetary gate technology to RimWorld.</Description>
+		<Product>Rimgate</Product>
+		<FileVersion>1.0.0</FileVersion>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Configurations>Debug;Release</Configurations>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+
+		<OutputType>Library</OutputType>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>Rimgate</RootNamespace>
+		<AssemblyName>Rimgate</AssemblyName>
+		<TargetFramework>net48</TargetFramework>
+		<FileAlignment>512</FileAlignment>
+		<Deterministic>true</Deterministic>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<LangVersion>preview</LangVersion>
+		<DebugType>embedded</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+
+		<RimWorldVersion Condition="'$(RimWorldVersion)' == ''">1.6</RimWorldVersion>
+		<ModDir>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)/../../../'))</ModDir>
+		<OutDir Condition="'$(OutDir)' == ''">$(ModDir)\Mod\$(RimWorldVersion)\Assemblies\</OutDir>
+		<RefDir Condition="'$(RefDir)' == ''">$(ModDir)\..\RimWorldWin64_Data\Managed</RefDir>
+		<SteamModDir Condition="'$(SteamModDir)' == ''">D:\SteamLibrary\steamapps\workshop\content\</SteamModDir>
+	</PropertyGroup>
+
+	<!-- This source tree belongs to 1.6; newer targets need their own project. -->
+	<Target Name="ValidateRimWorldVersion" BeforeTargets="PrepareForBuild">
+		<Error Condition="'$(RimWorldVersion)' != '1.6'" Text="Source/1.6/Rimgate targets RimWorld 1.6 only. Create a version-owned project before selecting another version." />
+	</Target>
+
+	<!--Build Configurations -->
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<DefineConstants>TRACE;DEBUG;UNITY_ASSERTIONS;DEV_TOOLS;PROFILER;</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>true</Optimize>
+		<DefineConstants>TRACE;RELEASE;</DefineConstants>
+	</PropertyGroup>
+
+	<!-- Dependencies -->
+
+	<ItemGroup>
+		<!-- Nuget -->
+		<PackageReference Include="Lib.Harmony.Ref" Version="2.3.6" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4871" PrivateAssets="all" Condition="'$(UseReferenceAssemblies)' == 'true'" />
+
+		<!-- Other mods -->
+		<Reference Include="BadHygiene">
+			<HintPath>$(SteamModDir)\294100\836308268\1.6\Assemblies\BadHygiene.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="KCSG">
+			<HintPath>$(SteamModDir)\294100\2023507013\1.6\Assemblies\KCSG.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="VEF">
+			<HintPath>$(SteamModDir)\294100\2023507013\1.6\Assemblies\VEF.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+
+	</ItemGroup>
+
+	<!-- Metadata readers need Harmony's transitive types; these are not runtime references. -->
+	<ItemGroup Condition="'$(UseReferenceAssemblies)' == 'true'">
+		<PackageDownload Include="MonoMod.Utils" Version="[25.0.8]" />
+		<PackageDownload Include="Mono.Cecil" Version="[0.11.5]" />
+		<PackageDownload Include="MonoMod.ILHelpers" Version="[1.1.0]" />
+		<PackageDownload Include="MonoMod.Backports" Version="[1.1.2]" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(UseReferenceAssemblies)' != 'true'">
+		<!-- Installed RimWorld; portable CI builds use Krafs.Rimworld.Ref instead. -->
+		<Reference Include="System">
+			<HintPath>$(RefDir)\Assembly-CSharp.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System">
+			<HintPath>$(RefDir)\System.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System.Xml">
+			<HintPath>$(RefDir)\System.Xml.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System.Xml.Linq">
+			<HintPath>$(RefDir)\System.Xml.Linq.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System">
+			<HintPath>$(RefDir)\mscorlib.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(RefDir)\UnityEngine.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(RefDir)\UnityEngine.CoreModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.IMGUIModule">
+			<HintPath>$(RefDir)\UnityEngine.IMGUIModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>$(RefDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.InputModule">
+			<HintPath>$(RefDir)\UnityEngine.InputModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.TextRenderingModule">
+			<HintPath>$(RefDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Abilities\" />
+		<Folder Include="AI\" />
+		<Folder Include="Comps\" />
+		<Folder Include="HarmonyPatches\" />
+		<Folder Include="Hediffs\" />
+		<Folder Include="Misc\" />
+		<Folder Include="Quests\" />
+		<Folder Include="Recipes\" />
+		<Folder Include="Social\" />
+		<Folder Include="Defs\" />
+		<Folder Include="Storyteller\" />
+		<Folder Include="Support\" />
+		<Folder Include="Genes\" />
+		<Folder Include="Rituals\" />
+		<Folder Include="Things\" />
+		<Folder Include="UI\" />
+		<Folder Include="ThingSetMakers\" />
+		<Folder Include="Compatibility\" />
+		<Folder Include="Utilities\" />
+		<Folder Include="World\" />
+	</ItemGroup>
+
+</Project>

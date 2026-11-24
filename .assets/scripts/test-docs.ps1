@@ -1,3 +1,17 @@
+<#
+.SYNOPSIS
+Validates the generated DocFX site before publication.
+.DESCRIPTION
+Requires expected guides/API pages and theme assets, rejects dependency
+binaries, and verifies local HTML link targets stay inside the rendered site.
+Reads existing outputs only; run build-docs.ps1 to generate them first.
+.PARAMETER SitePath
+Rendered site root. Defaults to docs/obj/_site under the repository.
+An explicit relative path is resolved against the caller's working directory.
+.EXAMPLE
+.\.assets\scripts\test-docs.ps1
+Checks the default generated site without rebuilding it.
+#>
 param ([string]$SitePath)
 
 $ErrorActionPreference = 'Stop'

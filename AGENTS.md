@@ -25,11 +25,19 @@ otherwise. Do not commit, push or publish as an implied documentation step.
 
 ## Current contracts
 
-- Only RimWorld **1.6** is configured. The build scripts default to it and accept
+- Only RimWorld **1.6** is declared supported. The build scripts default to it and accept
   `-RimWorldVersion 1.6`; an unconfigured target must fail. Version selection does
-  not establish compatibility. Keep the 1.7 migration separate until requested.
-- `Source/Rimgate/` owns the 1.6 C# implementation; `Mod/1.6/Defs/` and `Patches/`
+  not establish compatibility. The separate `Source/1.7/Rimgate/` project is an
+  experimental .NET 10/C# 14 port. Only assembly builds accept `-Experimental`
+  with `-RimWorldVersion 1.7`; outputs stay in ignored `.assets/experimental/`.
+  Do not add public 1.7 support or package its outputs before runtime validation.
+- `Source/1.6/Rimgate/` owns the retained net48 implementation; `Mod/1.6/Defs/` and `Patches/`
   own its XML. Preserve def names, save keys and pawn/container ownership.
+- Once 1.7 is accepted, freeze the final 1.6 source/content in Git and move
+  active builds, dependencies, runtime checks and documentation to 1.7. Later
+  1.6 work requires explicitly scoped maintenance. The existing local snapshot
+  is temporary migration insurance; keep it untouched and outside Git. It is
+  not a maintained capture/restore workflow or an ongoing 1.6 environment contract.
 - Raw art/audio belongs in `AssetsRaw/`. Rebuild through
   `.assets/scripts/build-assetbundle.ps1` after asset edits. Do not manually place
   raw assets in `Mod/` or edit bundles.

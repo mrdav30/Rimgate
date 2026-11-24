@@ -1,3 +1,33 @@
+<#
+.SYNOPSIS
+Prepares an isolated RimWorld 1.6/RimBridge development view or checks player config.
+.DESCRIPTION
+With RimWorld stopped, backs up normal ModsConfig/Prefs bytes, restores pinned
+GABS/RimBridge tools, builds Rimgate, refreshes private mod deployments and writes
+the isolated profile/config. Registers the user-level rimgate-dev MCP server.
+Game data and required dependencies are junctions to the selected installation.
+Does not launch the game or change the Steam branch.
+.PARAMETER GamePath
+Installed 1.6 game root. Defaults to D:\SteamLibrary\steamapps\common\RimWorld.
+Unused when VerifyPlayerConfig is selected.
+.PARAMETER SteamModPath
+Workshop content root above 294100. Defaults to the D: Steam library's
+workshop/content directory. Unused in verify mode.
+.PARAMETER ToolsPath
+Mutable development root for Game-1.6, Profile-1.6, tools, evidence and GABS
+configuration. Defaults to LOCALAPPDATA/RimgateDev. Use a fresh external root
+when selecting a different installation; existing junctions are not retargeted.
+.PARAMETER VerifyPlayerConfig
+Only compare normal config existence/hashes against ToolsPath's existing
+player-config-baseline.json. Does not refresh setup or restore changed files.
+.EXAMPLE
+.\.assets\scripts\setup-rimbridge-dev.ps1 -GamePath 'D:\SteamLibrary\steamapps\common\RimWorld' -ToolsPath 'C:\RimgateDev16'
+Prepares an isolated view of the installed 1.6 game and registers it with Codex.
+.EXAMPLE
+.\.assets\scripts\setup-rimbridge-dev.ps1 -ToolsPath 'C:\RimgateDev16' -VerifyPlayerConfig
+After game shutdown, checks normal config against that view's backed-up baseline.
+#>
+[CmdletBinding()]
 param (
     [string]$GamePath = 'D:\SteamLibrary\steamapps\common\RimWorld',
     [string]$SteamModPath = 'D:\SteamLibrary\steamapps\workshop\content',
@@ -8,9 +38,9 @@ param (
 $ErrorActionPreference = 'Stop'
 $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $ToolsPath = [IO.Path]::GetFullPath($ToolsPath)
-$baselinePath = Join-Path $ToolsPath 'player-config-baseline.json'
+$playerConfigBaselinePath = Join-Path $ToolsPath 'player-config-baseline.json'
 if ($VerifyPlayerConfig) {
-    $baseline = Get-Content -LiteralPath $baselinePath -Raw | ConvertFrom-Json
+    $baseline = Get-Content -LiteralPath $playerConfigBaselinePath -Raw | ConvertFrom-Json
     foreach ($file in $baseline.files) {
         $exists = Test-Path -LiteralPath $file.path
         if ($exists -ne $file.existed -or ($exists -and (Get-FileHash -LiteralPath $file.path -Algorithm SHA256).Hash -ne $file.sha256)) {
@@ -75,7 +105,7 @@ $files = foreach ($name in @('ModsConfig.xml', 'Prefs.xml')) {
     }
     @{ path = $path; existed = $existed; sha256 = $hash }
 }
-@{ backupDirectory = $backupDirectory; files = @($files) } | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $baselinePath -Encoding UTF8
+@{ backupDirectory = $backupDirectory; files = @($files) } | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $playerConfigBaselinePath -Encoding UTF8
 Install-ReleaseArchive 'GABS' 'v1.1.2' 'gabs-v1.1.2-windows-amd64.zip' 'c0337277789162657bcc577ed6a559136f3c1b0c38e074ae7cf5cb1223b3a3d8'
 Install-ReleaseArchive 'RimBridgeServer' 'v2.5.0' 'RimBridgeServer.zip' '4b31843ff94e74a99d740916cabae82a3c17a96b6b31b668ab348cd53976859c'
 $gabs = Join-Path $ToolsPath 'GABS-v1.1.2/gabs-v1.1.2-windows-amd64/gabs.exe'

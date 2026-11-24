@@ -18,7 +18,9 @@ installation does not create a second set of instructions to maintain.
 | --- | --- |
 | `Mod/About/About.xml`, `Mod/LoadFolders.xml` | Declared versions, dependencies and loaded folders |
 | `Mod/1.6/Defs/`, `Mod/1.6/Patches/` | 1.6 gameplay XML and compatibility patches |
-| `Source/Rimgate/Rimgate.csproj` | Current 1.6 C# source project, targeting .NET Framework 4.8 |
+| `Source/1.6/Rimgate/Rimgate.csproj` | Retained 1.6 C# project, targeting .NET Framework 4.8 |
+| `Source/1.7/Rimgate/Rimgate.csproj` | Experimental .NET 10/C# 14 port; compilation does not establish game compatibility |
+| `Source/Rimgate.slnx` | XML solution with both version-owned projects; default solution builds select only 1.6 |
 | `Mod/1.6/Assemblies/Rimgate.dll` | Generated 1.6 runtime assembly |
 | `AssetsRaw/TexturesRaw/`, `AssetsRaw/SoundsRaw/` | Raw asset sources |
 | `UnityAssetBuilder/` | Built-in-render-pipeline AssetBundle builder |
@@ -30,6 +32,7 @@ installation does not create a second set of instructions to maintain.
 | `docs/obj/` | Ignored API metadata, documentation inputs and rendered site |
 | `.assets/build-references.json` | Commit/hash pins for public mod build references |
 | `.assets/scripts/` | PowerShell build/development tools and Lua runtime smoke cases |
+| `.assets/experimental/` | Ignored experimental assembly outputs; excluded from the player package |
 
 Bundles go to **`Mod/<version>/AssetBundles/`** (`Mod/1.6/AssetBundles/` today).
 The shared root is loaded alongside `1.6` by `LoadFolders.xml`, so keep the old
@@ -101,6 +104,10 @@ game version; verify loading in-game when changing the pipeline or assets.
 
 ## Build the selected version
 
+Open `Source/Rimgate.slnx` for both projects in version folders. The experimental
+1.7 project is excluded from default solution builds. The SDK-style projects
+use their paths as solution identity and do not carry legacy `ProjectGuid` values.
+
 From the repository root:
 
 ```powershell
@@ -110,6 +117,9 @@ From the repository root:
 ```
 
 All default to `1.6`. `-Configuration Debug` is available for assembly/full builds.
+Each PowerShell script includes a synopsis, parameter help where applicable and
+usage examples. Inspect a script without executing it with
+`Get-Help .\.assets\scripts\build-assembly.ps1 -Full` or `-Examples`.
 The release script builds bundles first, then the assembly; it does not publish.
 Scripts in `.assets/scripts/` resolve repository inputs two levels above their
 own directory, so invoking a script by its full path from another working
@@ -205,25 +215,49 @@ equivalent Pages source when setting up a fork. The README documentation badge a
 in-game Docs button point there. No commit, push or deployment is implied by a
 local documentation edit.
 
-## Version ownership and a future 1.6 freeze
+## Version ownership and the 1.7 port
 
-Only **1.6 is configured now**. `.assets/scripts/build-common.ps1` checks `About.xml`,
+Only **1.6 is declared supported**. `.assets/scripts/build-common.ps1` checks `About.xml`,
 `LoadFolders.xml`, the selected `Mod/<version>` folder and its source project
 before running build tools. Passing `-RimWorldVersion 1.7` fails; it does not
 create content, change support metadata or make the current code compatible.
-The current project also rejects a direct MSBuild target other than 1.6.
+Each project also rejects a direct MSBuild target belonging to the other version.
 
-Keep `Source/Rimgate/` as the current 1.6 owner rather than moving every file
-before there is another implementation. The resolver also recognizes
-`Source/<version>/Rimgate/Rimgate.csproj` for an explicitly configured target.
-This provides a place for version-specific source when it is needed, without
-compiling all version folders together or scattering version conditionals.
+`Source/1.6/Rimgate/` retains the existing implementation and compiler settings;
+`Source/1.7/Rimgate/` owns the .NET 10/C# 14 port. Each project compiles its own
+source tree, with independent intermediates and outputs. Both retain assembly
+name `Rimgate` and existing save/type identities. Avoid cross-version source
+includes or project references; a change to 1.7 must not silently change 1.6.
 
-When a migration is requested, establish the last accepted 1.6 baseline and its
-validation evidence first. If 1.6 is then frozen, preserve its source, defs,
-patches, dependency references and assets. Add a separately owned project for
-the new version; do not point a new output folder at 1.6 code and call it a port.
-Moving the existing 1.6 source into the versioned layout can happen then if useful.
+An experimental 1.7 assembly build requires an explicit Workshop
+`content` root containing Harmony, VEF/KCSG and DBH under their `1.7/Assemblies`
+folders. It uses pinned RimRef 1.7.5014-unstable for game signatures and the SDK's
+normal .NET 10 references. It does not use the installed 1.6 game references:
+
+```powershell
+.\.assets\scripts\build-assembly.ps1 -RimWorldVersion 1.7 -Experimental `
+  -SteamModPath 'D:\SteamLibrary\steamapps\workshop\content' -LogPath build-experimental-1.7.log
+```
+
+Select packages with 1.7 assemblies matching the target being validated. The
+migration plan records the provisional dependency hashes used for initial
+compilation; actual 1.7 runtime validation and durable public dependency pins
+remain migration work. Outputs go to ignored
+`.assets/experimental/1.7/Assemblies/`. There is no `Mod/1.7` support declaration,
+experimental release/bundle switch or automatic DocFX target change. Default
+solution builds exclude 1.7; select its project or the command above explicitly.
+
+The [migration plan](https://github.com/mrdav30/Rimgate/blob/main/docs/feature-work/rimworld-1.7-migration-plan.md)
+owns the baseline evidence, runtime gates and 1.6 freeze milestone. Freeze ongoing
+1.6 development once the agreed 1.7 baseline is accepted, retaining explicitly
+scoped 1.6 maintenance when needed.
+
+At acceptance, retain the final 1.6 source/content in Git and move active builds,
+dependencies, RimBridge validation, CI and documentation to 1.7. There is no
+ongoing requirement to maintain a parallel 1.6 runtime or update its dependencies.
+The existing local snapshot is temporary migration insurance, kept untouched
+outside Git; no maintained capture/restore workflow is required. Normal player
+config backups and post-run checks still apply to the active development target.
 
 Bundle outputs are version-owned under `Mod/<version>/AssetBundles/`. Raw assets
 and builder inputs still have a shared 1.6 owner in `AssetsRaw/` and
@@ -329,9 +363,10 @@ Core, the five DLC, Vanilla Expanded Framework, Rimgate and RimBridgeServer.
 Setup does not write the normal Steam `Mods/Rimgate` copy or player save/config
 directory. Verify configuration preservation after each live run as described
 below; the first adoption run detected a normal `Prefs.xml` change. Game data
-and Workshop dependencies are linked, not frozen copies;
-they must remain compatible with 1.6. Run setup before a new validation cycle,
-especially after upstream updates. A future 1.7 setup is separate work.
+and Workshop dependencies are linked to mutable installed files and must match
+the selected 1.6 runtime during this transition. Run setup before a new validation
+cycle, especially after upstream updates. A future 1.7 setup is separate work;
+once validated, it becomes the active workflow while 1.6 source/content is frozen.
 
 Pins verified on November 23, 2026:
 

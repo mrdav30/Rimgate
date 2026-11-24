@@ -27,14 +27,21 @@ tracking records to the DocFX content or navigation.
 
 ## Active feature work
 
-No active feature implementation plans are currently recorded.
+### RimWorld 1.7 migration
+
+[Migration plan](rimworld-1.7-migration-plan.md) — in progress. Separate version-owned
+1.6 and experimental `net10.0`/C# 14 projects compile. The plan owns the 1.6
+source/content freeze milestone and remaining runtime, asset, dependency and save
+gates. Active development will follow accepted 1.7; the existing local snapshot
+is temporary migration insurance without maintained capture/restore tooling.
+Only 1.6 remains declared supported; 1.7 assembly outputs are opt-in and stay
+outside the player package. Live 1.7 validation has not started.
 
 ## Deferred work
 
 | Work | Agreed boundary and next planning step |
 | --- | --- |
 | API documentation enrichment | Deferred. Inventory authored public/protected contracts, select useful extension points, and plan ownership, save/load and failure documentation with rendered API checks. No runtime change is implied. |
-| RimWorld 1.7 migration | Deferred and separate from 1.6 hardening. Verify the actual target API, asset pipeline and dependencies before planning the port and the 1.6 freeze. No 1.7 support is currently configured. |
 
 ## Recently completed
 

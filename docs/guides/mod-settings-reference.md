@@ -50,6 +50,6 @@ assignment and prisoner/slave access controls.
 ## Developer reference
 
 <xref:Rimgate.RimgateModSettings> exposes the fields and persistence method.
-The [source](https://github.com/mrdav30/Rimgate/blob/main/Source/Rimgate/RimgateModSettings.cs)
+The [source](https://github.com/mrdav30/Rimgate/blob/main/Source/1.6/Rimgate/RimgateModSettings.cs)
 owns defaults, UI bounds and saved keys. Changing a saved key requires deliberate
 save/config compatibility handling.
