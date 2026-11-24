@@ -2,8 +2,9 @@
 
 - **Status:** In progress. Versioned source split and experimental 1.7 compilation
   implemented; the existing local snapshot is temporary migration insurance.
-  Live 1.7 startup/profile and hidden-window smoke checks pass;
-  [RG-Issue-002](issue-tracker.md#rg-issue-002) is closed. Owned asset loading and
+  Live 1.7 startup/profile and hidden-window smoke checks passed earlier;
+  [RG-Issue-002](issue-tracker.md#rg-issue-002) is now reopened for recurring
+  input/capture timeouts. Owned asset loading and
   powered iris close/open rendering pass for Unity and pack-only native assets.
   The native comparison is complete; the owner selected native as the 1.7
   development default, retaining explicit Unity comparison and the 1.6 pipeline.
@@ -11,7 +12,9 @@
   queued/active and both in-flight save checkpoints, redraft and closure now pass.
   [RG-Issue-003](issue-tracker.md#rg-issue-003) and
   [RG-Issue-004](issue-tracker.md#rg-issue-004) are corrected in 1.7 only.
-  Broader visual acceptance, audible playback, discovery,
+  Planetary glyph discovery, quest/site persistence and visitation now pass;
+  selected production sounds also produce finite nonzero engine PCM.
+  Broader visual acceptance, device/listening checks, orbital discovery,
   optional-integration and old-save acceptance and the 1.6 freeze/support
   milestone remain pending.
 - **Created:** November 23, 2026. **Scope reconciled:** November 24, 2026.
@@ -994,3 +997,146 @@ Markdown paths/anchors, Rimgate skill validation and Git diff checks passed.
 Independent source/caller review found no blocking regression after the Scribe
 phase correction. HEAD remains `068b95e`, the index is unchanged and all changes
 are unstaged for owner review. No release/support metadata was changed.
+
+## November 24 discovery and presentation pass - scope
+
+Continue phase 2 from committed `6f324b3`. Exercise planet glyph decoding through
+its real context-menu job, quest/site/address persistence and subsequent DHD
+dialing. Fixture preparation may complete prerequisite research and provide a
+healthy Intellectual-20 colonist and parchment; it must not generate the quest,
+register its destination directly or invoke decoding completion. Capture the
+native gate/DHD overlays at additional orientations and follow production
+open/idle/iris/close audio where the installed engine exposes scoped observation.
+Do not use desktop focus, microphone or system-wide audio capture. Distinguish
+clip metadata, per-voice PCM output and subjective/device listening evidence.
+Keep 1.6, normal player configuration and private baseline saves intact; helpers
+and captures remain development-only. Results and any confirmed defects belong
+here and in the existing tracker. Full optional integrations, containers and
+pre-migration player-save acceptance remain phase-3 work.
+
+### Discovery and presentation results
+
+**Disposition:** Planetary discovery and scoped production-audio checks pass.
+Additional orientation rendering remains blocked by reopened
+[RG-Issue-002](issue-tracker.md#rg-issue-002); phase 2 is not complete. This pass
+changes only development companions, scenarios and documentation. Production
+source, XML/support metadata, raw assets and the retained 1.6 pipeline are unchanged.
+Runtime/dependency context remains the 1.7.5014 rev1195 native profile recorded
+above, with GABS 1.1.2 and bridge/SDK 2.5.0.0/2.0.0.0. The final companion adds
+discovery, presentation, scoped audio and read-only capture diagnostics, bringing
+this session to 143 tools including the 130 core tools.
+
+The planet fixture prepares Intellectual 20, glyph research, a short clear
+approach and two planetary parchments. It does not replace the decode outcome,
+create a quest/site/address or bypass the real DHD/entry jobs. The skill removes
+the production decode failure chance without an RNG patch. Accepted observations:
+
+| Check | Result / operation |
+| --- | --- |
+| Prepare | Source tile 6293 only; no quest/site, parchment `Thing_Rimgate_GlyphParchment42766` stack 2; `op_cc704d3754b944549ae16dcc80915246` |
+| Decode with working-job save/reload | Real **Decode symbols** job observed after 100 ticks, saved/reloaded, then completed. Stack 2 -> 1; one ongoing `Rimgate_GateQuestScript_Planet` quest ID 0 and one bound site ID 115 at surface tile 11898 (`P1T-351`), with no map yet. Decoded save/reload retains quest root/state, site binding, current-world ownership and one registered address; `op_98ce7edf981f4822b2f980b4e62e7cfb` |
+| Dial discovered address | Real DHD job generates **Forbidden Dwarfgate Citadel**, parts `Rimgate_GateSiteMech` and `Rimgate_SoldierTauri`; generated receiving gate and reciprocal active links, quest-map count 0 -> 1; `op_14db5417ba7a410b9e97930ea734b5e8` |
+| Visit and persist | Real Enter Dwarfgate action transfers the living Human989 to map 1; WasEverVisited becomes true. Saved/reloaded `Rimgate-discovery-visited` preserves pawn/site/quest binding and count 1; status `op_0c38d1f6c69a471e82b226d700542dbd`. The pawn's FleeAndCower job reflects the hostile site; combat was not suppressed. |
+
+The durable recipe is `.assets/scripts/rimbridge-discovery-1.7.lua`. Prepare,
+decode and connect passed as script phases. Visitation passed through direct
+production bridge actions before the input recurrence; the subsequently added
+visit phase compiled but its replay hit the synthetic-context-menu timeout
+(`op_fd981cdb05214aca907debb9e5ef6f7f`). Do not report the full four-phase script
+as passing. A deferred second map event initially stopped maturation; connect
+now waits for only the specific busy response and resumes remaining ticks within
+eight attempts. The revised connect passed; arbitrary failures are not ignored.
+
+The accepted North-facing discovery capture shows the native blue event horizon,
+lit chevrons and residual opening smoke (`rimgate-discovery-active.png`). It
+extends the prior North-state evidence, not all-rotation/animation acceptance.
+The presentation scenario and guarded inactive respawn/controller fixture compile;
+its initial North ancient-DHD material/power/facility checks passed, then capture
+timed out. The complete orientation scenario, other rotations, Tau'ri overlay
+pixels and active-iris orientation captures remain unverified. Material names,
+valid shaders and framebuffer dimensions alone do not establish visual fidelity.
+
+#### Production-voice audio evidence
+
+The development audio helper observes only explicitly named Rimgate production
+SoundDefs through the installed `AudioSource.GetOutputData`/native voice tap.
+The actual game jobs generate the sounds. No synthetic playback, OS/device mix,
+microphone or other-application audio capture was used. Master output is muted
+before effect gain is enabled; previous effect/master gains (0 / 0.8) are restored
+afterward. The native backend is **miniaudio, 48000 Hz**, channel 0; 16384-sample
+rolling windows may overlap and are not a continuous recording.
+
+| Production sound | Nonzero / observed source windows | Peak | Maximum window RMS |
+| --- | ---: | ---: | ---: |
+| Gate open | 58 / 60 | 0.106662 | 0.042982 |
+| Gate idle during reopening | 58 / 60 | 0.006619 | 0.001928 |
+| Gate close | 84 / 85 | 0.110104 | 0.035784 |
+| Iris close | 101 / 103 | 0.091403 | 0.035986 |
+| Iris open | 106 / 107 | 0.087376 | 0.044129 |
+
+All examined samples were finite. The real iris/close sequence passed in
+`op_49b6e2ac39924a748386bbed5786e811` (731 reads, maximum gap 95 ms); normal DHD
+reopening passed in `op_d23ab5e9d5cc4f75aa0c0efbbf425c8b` (325 reads, maximum gap
+36 ms). Both report no missing definitions and restored gains. Other-map idle
+voices remain silent as expected. The one-second inactive/paused timeout control
+automatically restored gains with no explicit end call; it correctly reports a
+missing idle definition and **success false** because no sound was generated.
+This proves cleanup/negative detection, not positive playback acceptance.
+
+The initial audio attempt across monolithic Lua/map-generation work observed
+only two near-silent windows per voice. It was not accepted and the threshold
+was not lowered. Installed IL confirms idle's muteWhenPaused behavior. Separate
+bridge calls with short Normal-speed intervals produced the accepted results;
+the guide owns that invocation contract. Per-voice PCM establishes engine output,
+not final speaker/device routing or human listening quality. Those remain open,
+along with teleport/failure/iris-hit and other systems' audio coverage.
+
+#### Recurring hidden capture/input blocker
+
+After the accepted discovery/audio/visit observations, full and rectangle
+screenshots timed out repeatedly. A fresh process loading the owned smoke save
+**before any audio probe** reproduced the failure. Actual argv remains
+`-savedatafolder=<private Profile-1.7> -NoWindow -WindowSize=1280,720`; private Prefs
+are byte-identical to the before-copy (SHA-256
+`023238fbbb7fdf40092b37c16a4a87d9b4b9e1aadb63c7b1981ddba07dca9cd7`).
+Brief Normal-speed running and explicit camera framing did not resolve it.
+Volume setters do invoke broad Prefs.Apply, but this launch locks the dimensions,
+and a prior capture succeeded after probing; no audio-causality claim follows.
+
+The final read-only diagnostic control:
+
+- Before request `op_e2e56c3b86f44bdb8cef553c7b470373`: native
+  `RimWorldWaylith.Rendering.ScreenCaptureFeature`, CanCapture true, no queued
+  files, frame 809, no pending request; Screen/render extent both 1280x720.
+- Screenshot `op_4ee7b0b5a919495da50c9101c3026acd`: handler completes but gameplay
+  success is false, ten-second file timeout.
+- After `op_02cbdeded60e4650851105067f6faa3d`: frame 1420, accepted filename still
+  queued, captureRequested true, no capture texture, same Screen/render extent.
+
+This localizes the observed request before PNG encoding/writing; it does not
+identify why native capture/readback did not run. Transient armed/readable null
+values alone are not a diagnosis. Synthetic right-click also timed out on the
+visit replay while state queries, camera operations and tick stepping worked.
+No ERROR/exception log entries explain the final cold control. The original
+RG-Issue-002 history remains valid, but its reopening condition is now met.
+Stop this bounded investigation here; restore reliable hidden input/render/capture
+before more pixel acceptance or phase-3 expansion. No speculative runtime patch
+or uncoordinated foreground automation was added.
+
+Evidence is retained outside Git under
+`%LOCALAPPDATA%/RimgateDev/evidence/discovery-presentation-20261124-150200/`:
+actual working/decoded/active/visited saves, accepted capture, positive and failed
+operation JSON, native logs, runtime/probe binary hashes and byte-backed config
+copies. Preserve these controls when investigating recurrence; the recipes and
+observations above remain usable if temporary artifacts are later removed.
+
+Closeout checks passed: the final companion compiled against the installed 1.7
+assemblies with zero warnings/errors; supported 1.6 library/DocFX generation and
+strict site checks passed with zero warnings/errors. The updated skill validates,
+51 local Markdown paths/anchors and Git diff checks pass, and independent tooling
+review found no blocking safety/production regression. All 125 normal config
+files, private Prefs bytes and four 1.6 bundle hashes matched their byte-backed
+baselines. The native pack hash is unchanged from the prior acceptance. Production
+source/content/raw assets/reference pins and the local insurance snapshot were
+not modified. All private game processes are stopped. HEAD remains `6f324b3`,
+the index is unchanged and all new changes are unstaged/uncommitted for review.

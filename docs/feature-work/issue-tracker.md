@@ -34,14 +34,42 @@ performance signals belong in the [performance backlog](performance-signal-backl
 
 ## Active and deferred investigations
 
-No active investigations.
+<a id="rg-issue-002"></a>
+
+### RG-Issue-002 - Hidden Waylith input/capture timeouts recur
+
+- **Status / priority:** Reopened; confirmed automation blocker, cause unresolved / P2.
+- **Revision / context:** November 24, 2026, discovery/presentation pass from
+  `6f324b3`; 1.7.5014 rev1195, native packs, unchanged hidden 1280x720 profile.
+- **History:** The earlier `-Headless` workflow was replaced with graphics-enabled
+  `-NoWindow`; selection, iris/save/load/ticks and capture then passed. Preserve
+  that [earlier acceptance](rimworld-1.7-migration-plan.md#november-24-background-input-and-capture-acceptance).
+  The defined reopening condition is now met; this does not establish the same
+  underlying cause or invalidate those historical results.
+- **Reproduction / observed:** Fresh private process, load the owned smoke save,
+  request a screenshot. It times out after ten seconds. Native capture support
+  is true, extent and Screen are both 1280x720, but the accepted filename remains
+  queued over 600 advancing engine frames, with captureRequested true and no
+  allocated capture texture. A later real-entry context menu also timed out.
+  Tick stepping, state queries and camera changes continue working.
+- **Controls / limits:** Reproduced before any audio probe in fresh processes;
+  private Prefs bytes and actual launch arguments are unchanged. Earlier capture
+  succeeded after audio probing, so no audio-causality claim is supported.
+  Explicit camera-rectangle capture and briefly running at Normal speed did not
+  resolve it. No ERROR/exception log entries explain the final control.
+- **Next action:** Restore hidden input/render/capture operation before accepting
+  additional orientation pixels or calling phase 2 complete. The bounded
+  investigation stopped at the native capture/readback stage; do not add a
+  speculative gameplay/rendering patch. Retain OS/GPU/runtime/window context
+  and inspect actual frame submission/capture-feature execution next. Evidence,
+  exact operations and the diagnostic tool are in the
+  [current pass](rimworld-1.7-migration-plan.md#discovery-and-presentation-results).
 
 ## Closed issues
 
 | Issue | Closed | Disposition and evidence | Reopening condition |
 | --- | --- | --- | --- |
 | <a id="rg-issue-001"></a>RG-Issue-001 - Normal player preferences changed during initial isolated launch | November 24, 2026 | **Closed by decision; historical cause not reproduced.** Different hashes established a byte change, but the original preferences bytes and deterministic trigger are unavailable. Later byte-backed checks passed; they do not explain that first change. [Original observation and closure](done/2026-11-23-development-tooling-hardening.md#live-rimbridge-adoption-verification). | A new mismatch with retained before/after bytes, verified profile/arguments and game/Steam/bridge process context. Compare actual XML differences before choosing a bounded reproduction. |
-| <a id="rg-issue-002"></a>RG-Issue-002 - Waylith bridge synthetic selection and capture time out | November 24, 2026 | **Verified workflow fix.** Experimental setup now uses graphics-enabled `-NoWindow` with `-WindowSize=1280,720`. The unchanged smoke passed selection, iris mutation/save/reload, 120 exact ticks and screenshot capture with an empty error journal. [Reproduction, launch change and acceptance](rimworld-1.7-migration-plan.md#november-24-background-input-and-capture-acceptance). This does not attribute the original engine pause internally or establish full asset/transit compatibility. | Selection/capture fails again under the recorded hidden graphics profile; retain argv, build/dependencies, payloads and frame/render evidence. |
 | <a id="rg-issue-003"></a>RG-Issue-003 - Gate addresses stay bound to a previous world | November 24, 2026 | **Verified 1.7 correction.** Resolve the current world component instead of a static cached instance. Same-process reload/registration plus queued and active saved address books pass. [Reproduction and acceptance](rimworld-1.7-migration-plan.md#complete-operation-result-and-persistence-corrections). Retained 1.6 is unchanged. | Current-world identity or registered-address persistence fails after loading another world/save. |
 | <a id="rg-issue-004"></a>RG-Issue-004 - Saving a gate-buffered pawn loses it and its inventory | November 24, 2026 | **Verified 1.7 correction.** Deep-owned pending contents and phase-correct receive/redraft reconstruction preserve exact pawn/item identities through both in-flight checkpoints and resumed arrival. Pending cancellation and normal closure pass. [Failed save, correction, acceptance and limits](rimworld-1.7-migration-plan.md#complete-operation-result-and-persistence-corrections). Already-lost matter is not recoverable from missing definitions; 1.6 unchanged. | Loss, duplication, stranded queue ownership or redraft failure recurs across admission, save/load, arrival or closure; broaden with a retained failing checkpoint. |
 

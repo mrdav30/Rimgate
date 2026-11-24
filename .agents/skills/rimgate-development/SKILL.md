@@ -49,6 +49,16 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   can equate different objects with the same def/ID. Separate developer pending
   cancellation from normal DHD closure and inventory cargo from hauling/container
   coverage. Do not expand this case into a mock game or player dependency.
+  Planetary discovery uses
+  [rimbridge-discovery-1.7.lua](../../../.assets/scripts/rimbridge-discovery-1.7.lua):
+  prepare inputs only; the real decode job must create and persist its quest,
+  lazy site and address before real dialing/visitation. Use the guide for the
+  presentation scenario, scoped production-audio probes and render diagnostics.
+  Idle audio mutes while paused; observe normal unpaused frames between separate
+  calls and check sampling cadence plus restored gains. Per-voice PCM does not
+  establish device/human audibility. An accepted capture request or frame count
+  does not establish rendered pixels; preserve failed payloads and stop a bounded
+  investigation at the unresolved native stage instead of patching gameplay.
   Experimental 1.7 setup defaults to `WaylithPack`; retained 1.6 defaults to
   `UnityBundles`. Use `-AssetFormat UnityBundles` explicitly for a 1.7 comparison.
   Supply the chosen `assetFormat` to the Lua comparison and preserve

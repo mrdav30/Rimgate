@@ -104,6 +104,11 @@ case using the contributor guide. The native 1.7 transit case is
 `.assets/scripts/rimbridge-transit-1.7.lua`; its bounded phases exercise real
 DHD/entry jobs, both in-flight save checkpoints and closure. Use the guide's
 fixture/phase contract and distinguish deep ownership from queue references.
+Planetary discovery and presentation have separate `rimbridge-discovery-1.7.lua`
+and `rimbridge-presentation-1.7.lua` scenarios. The contributor guide owns their
+phases, production-voice audio probes and capture diagnostics. Preserve explicit
+limits: PCM is separate from listening, material resolution from rendered pixels,
+and an input/capture timeout blocks the affected acceptance check.
 After shutdown, run
 `.assets/scripts/setup-rimbridge-dev.ps1 -VerifyPlayerConfig` against the
 recoverable config backup. Keep normal player saves/mod configuration untouched

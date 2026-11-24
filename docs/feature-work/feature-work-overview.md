@@ -37,15 +37,19 @@ is temporary migration insurance without maintained capture/restore tooling.
 Only 1.6 remains declared supported; 1.7 outputs and metadata stay in a private
 test package. Licensed 1.7 startup, profile isolation and read-only bridge calls
 now work. The hidden-window smoke passes gate selection, iris mutation/save/reload,
-120 exact ticks and screenshot capture; [RG-Issue-002](issue-tracker.md#rg-issue-002)
-is closed. The asset pass resolves all 814 bundled textures and 26 clips and
+120 exact ticks and screenshot capture. [RG-Issue-002](issue-tracker.md#rg-issue-002)
+has since reopened for recurring capture/input timeouts, blocking new visual
+acceptance. The asset pass resolves all 814 bundled textures and 26 clips and
 renders the powered iris closed/open through real pawn jobs; the two dev red Xs
 are inherited null-icon defaults. Known-address DHD dialing, lazy map generation,
 pawn/inventory transit, both in-flight save checkpoints, redraft and closure now
 pass. The 1.7-only address-cache and pending-ownership corrections close
 [RG-Issue-003](issue-tracker.md#rg-issue-003) and
-[RG-Issue-004](issue-tracker.md#rg-issue-004). Broader effects, discovery, audible
-playback and optional-integration acceptance remain open. Native pack-only loading and the
+[RG-Issue-004](issue-tracker.md#rg-issue-004). Planetary glyph decoding, generated
+quest/site/address persistence, lazy quest-map generation and visitation pass.
+Gate open/idle/close and iris open/close produce finite nonzero production-voice
+PCM with master output muted. Broader effects, orbital discovery, device/listening
+checks and optional integrations remain open. Native pack-only loading and the
 same iris scenario also pass; the larger pack and changed sampling/clip metadata
 are recorded in the owning plan. Native packs are now the owner's selected 1.7
 setup default; Unity remains the retained 1.6 pipeline and an explicit 1.7

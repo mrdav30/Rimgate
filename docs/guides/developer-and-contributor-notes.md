@@ -396,7 +396,8 @@ Pins verified on November 24, 2026:
 | GABS Windows x64 | `1.1.2` | `c0337277789162657bcc577ed6a559136f3c1b0c38e074ae7cf5cb1223b3a3d8` |
 | RimBridgeServer package | `2.5.0` | `4b31843ff94e74a99d740916cabae82a3c17a96b6b31b668ab348cd53976859c` |
 
-The observed 1.7 bridge is **2.5.0.0**, SDK **2.0.0.0**, exposing **130 tools**.
+The observed 1.7 bridge is **2.5.0.0**, SDK **2.0.0.0**, with 130 core tools
+plus the deployed development companions.
 Discover schemas from the live runtime. The package's historical 1.6 payload
 reported different versions; package version alone does not identify the loaded SDK.
 
@@ -533,6 +534,91 @@ does not cover loose-item hauling, transporter loading, containers or every
 interruption/blocked-placement path. Use the owning migration plan for dated
 evidence, remaining acceptance and saved-state defects. The companion and its
 Rimgate reference stay outside the player mod.
+
+### Verify planetary discovery and quest persistence
+
+Compile and run
+[`.assets/scripts/rimbridge-discovery-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-discovery-1.7.lua)
+with the same three private paths, a 180-second outer timeout and separate
+`prepare`, `decode`, `connect`, `visit` invocations. Pass prepare's returned
+`fixture` into later phases and decode's returned `site` into connect/visit.
+The native package and owned smoke save are required. The case writes only
+`Rimgate-discovery-*` checkpoints; it does not overwrite the smoke/transit saves.
+
+The guarded companion provides two planetary parchments, prerequisite research
+and a healthy Intellectual-20 colonist. The real **Decode symbols** menu job
+must consume one parchment and generate the quest/site/address. Preparation
+does not insert any discovery outcome. The scenario saves/reloads an unfinished
+decode job, verifies the completed quest and lazy site's persistent binding,
+dials the discovered address, and checks generated receiving gates and map count.
+The visit phase orders real entry and saves/reloads the visited site. Hostile
+quest contents still apply; the fixture does not suppress combat or force survival.
+Orbital discovery and quest completion are separate acceptance work.
+
+The connect phase handles a bounded number of deferred long events, accepting
+only the bridge's specific busy response and resuming the remaining ticks. Other
+failures remain failures. Its screenshot and visit's real context-menu input
+require working hidden rendering/input. Current capture/input limitations and
+the distinction between verified manual steps and whole-script results are
+recorded in the [migration plan](https://github.com/mrdav30/Rimgate/blob/main/docs/feature-work/rimworld-1.7-migration-plan.md).
+
+### Observe production audio without speaker output
+
+The development companion exposes `rimgate/begin_audio_probe`,
+`audio_probe_status` and `end_audio_probe`. Discover their installed schemas.
+Begin requires the exact private config/mod paths, a comma-separated list of
+Rimgate-owned SoundDef names and a duration of 1000..60000 ms. It mutes master
+output before enabling effect gain, observes only the requested production
+voices and restores both gains on end, timeout or a handled probe failure.
+It does not play sounds or capture system/microphone audio. Check
+`preferencesRestored` even when the requested sounds were not observed.
+
+Use separate bridge invocations and normal unpaused engine frames for this case:
+
+1. Load `Rimgate-discovery-active` after the discovery connect phase. View the
+   source map with its camera near the gate. Begin a 60-second probe for
+   `Rimgate_GateIdle,Rimgate_IrisClose,Rimgate_IrisOpen,Rimgate_GateClose`.
+2. Request **Close iris**, order the real **Prioritize toggling switch** job,
+   run at Normal speed for roughly three seconds and pause. Assert the iris
+   closed. Repeat **Open iris** with its normal job and about 1.5 seconds.
+3. Request **Close Dwarfgate** on the DHD, order the normal closing job, run
+   at Normal for roughly three seconds and pause. Assert the connection closed.
+   End the probe and require no missing definitions, finite/nonzero source
+   windows and restored gains. Allow more time within the bound if pathing
+   requires it; validate state instead of assuming a delay completed the job.
+4. For opening, begin a separate 20-second probe for
+   `Rimgate_GateOpen,Rimgate_GateIdle`, order real DHD dialing to the already
+   loaded discovered site, run Normal for roughly 10.5 seconds, pause, then end.
+   Map generation should be finished before this timed audio case.
+
+Do not put the whole audio observation interval inside one Lua run or a long
+tick-stepping call: these can starve background sampling. Leave real time between
+separate calls and inspect `readCalls`/`maximumReadGapMs`. Idle deliberately mutes
+while paused, and a voice on the other map is normally silent. A probe with no
+requested event must report missing definitions; timeout cleanup is not positive
+audio acceptance. Volume setters invoke the game's broader preference application,
+so keep probes on the guarded private profile and verify configuration afterward.
+
+These are overlapping per-voice engine-output windows, not a continuous recording,
+final device mix, speaker check or human listening assessment. Keep those limits
+when interpreting the returned peak/RMS statistics.
+
+### Inspect additional native presentation states
+
+[`.assets/scripts/rimbridge-presentation-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-presentation-1.7.lua)
+provides `prepare`, `open` and optional `iris` phases. Supply the private paths,
+`rotation: 0..3`, `controller: Ancient|Tauri` and a unique `capturePrefix`; pass
+prepare's `fixture` to later phases. Preparation respawns only the inactive
+empty source gate/controller; normal jobs must dial and operate the iris.
+The material report is distinct from the screenshots that require visual review.
+The full orientation scenario remains unaccepted while capture is blocked.
+
+After an input/capture timeout, use the guarded read-only
+`rimgate/render_capture_status` to record native capture support, queued files,
+capture flags and render/framebuffer dimensions. Do not clear the queue or
+infer successful rendering from frame counters or a readiness flag. Preserve
+the failed payload and native log. Follow the migration plan's bounded
+investigation; coordinate any foreground/manual checks with the user.
 
 ### Compare native Waylith packs with Unity bundles
 
