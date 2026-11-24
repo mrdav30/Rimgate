@@ -100,7 +100,11 @@ The contributor guide owns setup, tool discovery and the
 `.assets/scripts/rimbridge-smoke.lua` acceptance case. For the 1.7 asset pass,
 setup also deploys the development-only `rimgate/asset_report` companion outside
 the player mod; run `.assets/scripts/rimbridge-assets-1.7.lua` after the smoke
-case using the contributor guide. After shutdown, run
+case using the contributor guide. The native 1.7 transit case is
+`.assets/scripts/rimbridge-transit-1.7.lua`; its bounded phases exercise real
+DHD/entry jobs, both in-flight save checkpoints and closure. Use the guide's
+fixture/phase contract and distinguish deep ownership from queue references.
+After shutdown, run
 `.assets/scripts/setup-rimbridge-dev.ps1 -VerifyPlayerConfig` against the
 recoverable config backup. Keep normal player saves/mod configuration untouched
 and validate both bridge operation status and gameplay payloads. RimBridge is
@@ -109,5 +113,6 @@ development tooling, not a dependency of Rimgate's player package.
 The experimental 1.7 profile uses graphics-enabled `-NoWindow` and a fixed
 1280x720 framebuffer so bridge input/capture can run without desktop focus.
 Do not substitute graphics-free `-Headless` for visual checks. The smoke verifies
-selection, iris save/load, 120 ticks and a rendered capture; complete asset and
-gate-transit acceptance remain migration gates. See the owning migration plan.
+selection, iris save/load, 120 ticks and a rendered capture. Known-address transit
+has a separate scenario; broader assets, discovery, integrations and saved-state
+acceptance remain migration gates. See the owning migration plan.

@@ -164,13 +164,18 @@ public class JobDriver_PushContainer : JobDriver
                     // 2) If destination is an active gate with open iris, send the cart through the gate instead of placing on ground
                     if (gate.IsActive && !gate.IsIrisActivated)
                     {
-                        // 2) hand the unspawned cart to the gate
-                        gate.AddToSendBuffer(cart);  // gate system will forward & spawn at receiver
-
-                        if (job.def == RimgateDefOf.Rimgate_EnterGateWithContainer)
+                        // 3) hand the unspawned cart to the gate
+                        if (!gate.AddToSendBuffer(cart))
                         {
-                            gate.AddToSendBuffer(pawn);
-                            pawn.DeSpawn();
+                            GenPlace.TryPlaceThing(cart, pawn.Position, pawn.Map, ThingPlaceMode.Near);
+                            EndJobWith(JobCondition.Incompletable);
+                            return;
+                        }
+
+                        if (job.def == RimgateDefOf.Rimgate_EnterGateWithContainer && !gate.AddToSendBuffer(pawn))
+                        {
+                            EndJobWith(JobCondition.Incompletable);
+                            return;
                         }
 
                         EndJobWith(JobCondition.Succeeded);

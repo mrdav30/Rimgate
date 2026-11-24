@@ -19,9 +19,7 @@ public static class GateUtil
 
     private const int MaxGateSearchRadius = 50;
 
-    public static WorldComp_GateAddresses WorldComp => _cachedWorldComp ??= Find.World.GetComponent<WorldComp_GateAddresses>();
-
-    private static WorldComp_GateAddresses _cachedWorldComp;
+    public static WorldComp_GateAddresses WorldComp => Find.World?.GetComponent<WorldComp_GateAddresses>();
 
     public static bool ModificationEquipmentActive => WorldComp?.ModificationEquipmentActive == true;
 

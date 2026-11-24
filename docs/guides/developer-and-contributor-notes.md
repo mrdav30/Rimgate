@@ -489,9 +489,50 @@ This check establishes asset names, ownership, loading and the rendered states
 exercised by the scenario. It does not compare raw files with decoded bundle
 bytes or establish visual fidelity for every asset. The profile is muted; valid
 clip metadata does not prove audible playback. Active gate/DHD effects, other
-rotations, audio playback and transit belong to the remaining migration checks.
+rotations and audio playback belong to the remaining migration checks. The
+separate transit case below checks a known-address gate operation.
 The retained 1.6 bundles and Unity builder remain unchanged. The native-pack
 comparison below is experimental and does not declare public 1.7 support.
+
+### Verify the experimental 1.7 gate operation
+
+After the smoke case creates its owned save, compile and run
+[`.assets/scripts/rimbridge-transit-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-transit-1.7.lua)
+with the same `configPath`, `modRoot` and `evidenceDirectory` parameters. Use
+`phase: prepare` first, then pass its returned `fixture` object unchanged to
+`dial`, `connect`, `send`, `receive` and `close`, in that order. Each invocation
+is bounded separately; use an outer 180-second timeout and inspect gameplay
+payloads as well as operation status. The isolated English profile and native
+Waylith package are required. These phases overwrite only their owned
+`Rimgate-transit-*` saves. Preserve copies before investigating a failed run.
+
+The development companion prepares a lazy transit site through normal address
+registration, a powered source gate and staged colonists with a unique inventory
+item. Dialing must generate the destination map through the real DHD job. The
+case reloads queued and active links, then uses real entry jobs and saves at
+both send and receive boundaries. It checks object identity, one actual owner,
+inventory, redraft intent, resumed arrival, empty buffers and normal DHD closure.
+`send` and `receive` each reload the owned active checkpoint. An additional
+`send` invocation with `cancelPending: true` checks pending-matter cleanup through
+the existing developer **Force close** command while paused; run it before the
+normal send/receive/close sequence. This cancellation check is separate from the
+normal pawn-driven close job.
+
+Discover `rimgate/prepare_transit_fixture`, `transit_status`,
+`stage_transit_approach` and `view_transit_map` from the installed companion.
+Fixture tools guard the private profile/deployment and only prepare same-map
+actors or change the viewed map; they do not activate links or transfer travelers.
+Status resolves IDs anew after every reload and distinguishes queue references
+from the deep owner. Bridge frame stepping can stop when lazy map generation
+starts a long event; the connect phase accepts only that specific busy result,
+waits for readiness and resumes checks. Do not treat arbitrary stepping failures
+as success.
+
+This is known-address registration, not glyph/quest discovery. Inventory cargo
+does not cover loose-item hauling, transporter loading, containers or every
+interruption/blocked-placement path. Use the owning migration plan for dated
+evidence, remaining acceptance and saved-state defects. The companion and its
+Rimgate reference stay outside the player mod.
 
 ### Compare native Waylith packs with Unity bundles
 

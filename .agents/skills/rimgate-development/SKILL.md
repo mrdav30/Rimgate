@@ -36,7 +36,19 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   after the smoke case to verify owned assets and real pawn-driven iris
   close/open rendering. Null icons on the two dev-only gate commands are
   inherited defaults; validate the player's iris icons independently. The
-  migration plan still owns active effects, audible playback and transit.
+  migration plan still owns broader presentation and audible playback. For a
+  complete known-address operation, run
+  [rimbridge-transit-1.7.lua](../../../.assets/scripts/rimbridge-transit-1.7.lua)
+  using the contributor guide's bounded phase/fixture contract. Prepare a lazy
+  site through normal registration; real DHD/entry jobs must generate its map
+  and transfer the traveler. Test queued/active links and both in-flight save
+  boundaries, exact object identity, one deep owner, inventory, redraft intent,
+  resumed arrival and closure. Queue references are not ownership; temporary
+  Scribe lists must survive the phases that populate and consume them. Use
+  reference equality when counting distinct Thing objects, since game equality
+  can equate different objects with the same def/ID. Separate developer pending
+  cancellation from normal DHD closure and inventory cargo from hauling/container
+  coverage. Do not expand this case into a mock game or player dependency.
   Experimental 1.7 setup defaults to `WaylithPack`; retained 1.6 defaults to
   `UnityBundles`. Use `-AssetFormat UnityBundles` explicitly for a 1.7 comparison.
   Supply the chosen `assetFormat` to the Lua comparison and preserve

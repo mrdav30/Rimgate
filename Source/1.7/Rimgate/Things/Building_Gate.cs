@@ -50,7 +50,7 @@ public class Building_Gate_Ext : DefModExtension
     public List<SoundDef> teleportSounds;
 }
 
-public class Building_Gate : Building
+public class Building_Gate : Building, IThingHolder
 {
     public static readonly Dictionary<int, int> GlobalVortexEntryCellCache = [];
 
@@ -165,11 +165,20 @@ public class Building_Gate : Building
 
     private int _ticksUntilOpen = -1;
 
+    private ThingOwner<Thing> _pendingContents;
+
+    private ThingOwner<Thing> PendingContents => _pendingContents ??= new ThingOwner<Thing>(this);
+
     private List<Thing> _sendBuffer;
 
     private HashSet<int> _redraftOnArrival;
 
     private Queue<Thing> _recvBuffer;
+
+    // Scribe fills these during different load phases; retain them until PostLoadInit.
+    private List<Thing> _recvBufferSaveList;
+
+    private List<int> _redraftSaveList;
 
     private bool _isIrisActivated = false;
 
@@ -311,7 +320,11 @@ public class Building_Gate : Building
         }
 
         if (!IsActive)
+        {
+            if (PendingContents.Count > 0 && this.IsHashIntervalTick(GenTicks.TickRareInterval))
+                DropPendingContents(this);
             return;
+        }
 
         if (!_isIrisActivated && TicksSinceOpened < UnstableVortexInterval && TicksSinceOpened % 10 == 0)
             DoUnstableVortex();
@@ -323,13 +336,7 @@ public class Building_Gate : Building
         {
             Thing thing = Transporter.innerContainer.FirstOrFallback();
             if (thing != null)
-            {
-                if (thing.Spawned)
-                    thing.DeSpawn();
-
                 AddToSendBuffer(thing);
-                Transporter.innerContainer.Remove(thing);
-            }
             else if (Transporter.LoadingInProgressOrReadyToLaunch && !Transporter.AnyInGroupHasAnythingLeftToLoad)
                 Transporter.CancelLoad();
         }
@@ -566,28 +573,35 @@ public class Building_Gate : Building
         Scribe_Values.Look(ref _inert, "_inert", false);
         Scribe_Values.Look(ref _gateConditionActive, "_gateConditionActive", false);
 
+        // Buffers keep ordering references; this owner serializes their actual contents.
+        Scribe_Deep.Look(ref _pendingContents, "pendingContents", this);
+
         // --- SEND buffer (List<Thing>) ---
         Scribe_Collections.Look(ref _sendBuffer, "_sendBuffer", LookMode.Reference);
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
-            _sendBuffer = _sendBuffer?.Where(t => t != null).ToList() ?? new List<Thing>();
+            _sendBuffer = _sendBuffer?.Where(t => TryOwnPending(t)).Distinct().ToList() ?? new List<Thing>();
 
-        // --- RECV buffer (Queue<Thing>) via temp list ---
-        List<Thing> recvList = null;
+        // --- RECV buffer (Queue<Thing>) via a list retained through reference resolution ---
         if (Scribe.mode == LoadSaveMode.Saving)
-            recvList = _recvBuffer?.Where(t => t != null).ToList();
+            _recvBufferSaveList = _recvBuffer?.Where(t => t != null).ToList();
 
-        Scribe_Collections.Look(ref recvList, "_recvBuffer_list", LookMode.Reference);
+        Scribe_Collections.Look(ref _recvBufferSaveList, "_recvBuffer_list", LookMode.Reference);
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
-            _recvBuffer = new Queue<Thing>(recvList?.Where(t => t != null) ?? Enumerable.Empty<Thing>());
+            _recvBuffer = new Queue<Thing>(_recvBufferSaveList?.Where(t => TryOwnPending(t) && !_sendBuffer.Contains(t)).Distinct() ?? Enumerable.Empty<Thing>());
 
-        // --- Redraft set (HashSet<int>) via temp list ---
-        List<int> redraftList = null;
-        if (Scribe.mode == LoadSaveMode.Saving && _redraftOnArrival != null)
-            redraftList = _redraftOnArrival.ToList();
+        // --- Redraft set (HashSet<int>) via a list retained from LoadingVars ---
+        if (Scribe.mode == LoadSaveMode.Saving)
+            _redraftSaveList = _redraftOnArrival?.ToList();
 
-        Scribe_Collections.Look(ref redraftList, "redraftOnArrival_list", LookMode.Value);
+        Scribe_Collections.Look(ref _redraftSaveList, "redraftOnArrival_list", LookMode.Value);
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
-            _redraftOnArrival = redraftList != null ? new HashSet<int>(redraftList) : null;
+            _redraftOnArrival = _redraftSaveList != null ? new HashSet<int>(_redraftSaveList) : null;
+
+        if (Scribe.mode is LoadSaveMode.Saving or LoadSaveMode.PostLoadInit)
+        {
+            _recvBufferSaveList = null;
+            _redraftSaveList = null;
+        }
     }
 
     #endregion
@@ -743,7 +757,7 @@ public class Building_Gate : Building
 
     public void CloseGate(bool closeOtherGate = false)
     {
-        if (!IsActive && _externalHoldCount == 0)
+        if (!IsActive && _externalHoldCount == 0 && PendingContents.Count == 0)
             return;
 
         Transporter?.CancelLoad();
@@ -752,30 +766,10 @@ public class Building_Gate : Building
         if (connectedDHD != null)
             Map.designationManager.RemoveAllDesignationsOn(connectedDHD);
 
-        // clear buffers just in case
-        var drop = Utils.BestDropCellNearThing(this);
-
-        var dropMap = Map;
-        if (dropMap == null && ConnectedGate?.Map != null)
-            dropMap = ConnectedGate.Map;
-
-        if (dropMap != null)
-        {
-            if (_sendBuffer?.Any() == true)
-            {
-                foreach (Thing thing in _sendBuffer)
-                    GenSpawn.Spawn(thing, drop, dropMap);
-            }
-
-            if (_recvBuffer?.Any() == true)
-            {
-                foreach (Thing thing in _recvBuffer)
-                    GenSpawn.Spawn(thing, drop, dropMap);
-            }
-        }
-
-        _sendBuffer?.Clear();
-        _recvBuffer?.Clear();
+        // Failed placement stays owned and queued so it can be retried safely.
+        var dropAnchor = Spawned ? this : ConnectedGate?.Spawned == true ? ConnectedGate : null;
+        if (dropAnchor != null)
+            DropPendingContents(dropAnchor);
         _redraftOnArrival?.Clear();
 
         if (closeOtherGate)
@@ -818,41 +812,98 @@ public class Building_Gate : Building
         IsReceivingGate = false;
     }
 
-    public void AddToSendBuffer(Thing thing)
+    public ThingOwner GetDirectlyHeldThings() => PendingContents;
+
+    public void GetChildHolders(List<IThingHolder> outChildren)
     {
+        ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, PendingContents);
+        foreach (var comp in AllComps)
+            if (comp is IThingHolder holder)
+                outChildren.Add(holder);
+    }
+
+    private bool TryOwnPending(Thing thing)
+    {
+        if (thing.DestroyedOrNull()) return false;
+        if (PendingContents.Contains(thing)) return true;
+        if (!PendingContents.CanAcceptAnyOf(thing, false)) return false;
+
+        var map = thing.Map;
+        var position = thing.Position;
+        var rotation = thing.Rotation;
+        if (thing.Spawned)
+            thing.DeSpawn();
+        if (PendingContents.TryAddOrTransfer(thing, false))
+            return true;
+        if (map != null)
+            GenSpawn.Spawn(thing, position, map, rotation);
+        return false;
+    }
+
+    private void DropPendingContents(Building_Gate anchor)
+    {
+        foreach (Thing thing in PendingContents.ToList())
+            TryDropPending(thing, anchor, out _);
+        _sendBuffer?.RemoveAll(t => t == null || !PendingContents.Contains(t));
+        if (_recvBuffer != null)
+            _recvBuffer = new Queue<Thing>(_recvBuffer.Where(t => t != null && PendingContents.Contains(t)));
+    }
+
+    private bool TryDropPending(Thing thing, Building_Gate anchor, out Thing spawned)
+    {
+        var map = anchor.Map;
+        var drop = Utils.BestDropCellNearThing(anchor);
+        // Keep the original thing instead of absorbing it into an existing item stack.
+        return PendingContents.TryDrop(thing, drop, map, ThingPlaceMode.Near, out spawned,
+            nearPlaceValidator: cell => !cell.GetThingList(map).Any(other => thing.CanStackWith(other)),
+            playDropSound: false);
+    }
+
+    public bool AddToSendBuffer(Thing thing)
+    {
+        if (_sendBuffer?.Contains(thing) == true || _recvBuffer?.Contains(thing) == true)
+            return false;
+        bool redraft = ShouldRedraftAfterSpawn(thing);
+        if (!TryOwnPending(thing)) return false;
         _sendBuffer ??= new();
         _sendBuffer.Add(thing);
 
-        // redraft flag travels as an ID on the destination comp
-        if (ConnectedGate != null && ShouldRedraftAfterSpawn(thing))
+        if (ConnectedGate != null && redraft)
             ConnectedGate.MarkRedraftOnArrival(thing);
 
         PlayTeleportSound();
+        return true;
     }
 
     private void BeamSendBufferTo()
     {
-        for (int i = 0; i < _sendBuffer.Count; i++)
+        for (int i = 0; i < _sendBuffer.Count;)
         {
-            Thing t = _sendBuffer[i];
-
-            if (IsReceivingGate)
+            Thing thing = _sendBuffer[i];
+            if (thing.DestroyedOrNull() || IsReceivingGate)
             {
-                if (!t.DestroyedOrNull())
-                    t.Kill();
-                continue;
+                if (thing != null)
+                {
+                    PendingContents.Remove(thing);
+                    if (!thing.Destroyed) thing.Kill();
+                }
+                _sendBuffer.RemoveAt(i);
             }
-
-            ConnectedGate.AddToReceiveBuffer(t);
+            else if (ConnectedGate != null && ConnectedGate.AddToReceiveBuffer(thing))
+                _sendBuffer.RemoveAt(i);
+            else
+                i++;
         }
-
-        _sendBuffer.Clear();
     }
 
-    public void AddToReceiveBuffer(Thing thing)
+    public bool AddToReceiveBuffer(Thing thing)
     {
+        if (_recvBuffer?.Contains(thing) == true || _sendBuffer?.Contains(thing) == true)
+            return false;
+        if (!TryOwnPending(thing)) return false;
         _recvBuffer ??= new();
         _recvBuffer.Enqueue(thing);
+        return true;
     }
 
     private void SpawnFromReceiveBuffer()
@@ -863,6 +914,7 @@ public class Building_Gate : Building
         Thing t = _recvBuffer.Peek();
         if (t == null || t.Destroyed)
         {
+            if (t != null) PendingContents.Remove(t);
             _recvBuffer.Dequeue();
             return;
         }
@@ -870,8 +922,8 @@ public class Building_Gate : Building
         if (!_isIrisActivated)
         {
             // Buildings (e.g., carts) must NOT spawn exactly on the gate/edifices.
-            IntVec3 drop = Utils.BestDropCellNearThing(this);
-            var spawned = GenSpawn.Spawn(t, drop, Map);
+            if (!TryDropPending(t, this, out Thing spawned))
+                return;
             PlayTeleportSound();
 
             // Cleanly re-draft on arrival
@@ -887,6 +939,7 @@ public class Building_Gate : Building
         }
         else
         {
+            PendingContents.Remove(t);
             if (!t.DestroyedOrNull())
                 t.Kill();
             RimgateDefOf.Rimgate_IrisHit.PlayOneShot(SoundInfo.InMap(this));

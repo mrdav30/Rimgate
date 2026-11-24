@@ -40,8 +40,11 @@ public class JobDriver_BringToGate : JobDriver
             {
                 Thing hauled = ThingToHaul;
                 Building_Gate gate = Gate;
-                pawn.carryTracker.innerContainer.Remove(hauled);
-                gate.AddToSendBuffer(hauled);
+                if (!gate.AddToSendBuffer(hauled))
+                {
+                    EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
                 if (hauled is Pawn hauledPawn)
                     RimgateEvents.Notify_ColonistEnteredGate(hauledPawn, gate);
             }

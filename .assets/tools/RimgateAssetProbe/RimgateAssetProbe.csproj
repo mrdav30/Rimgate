@@ -14,6 +14,7 @@
     <Reference Include="Assembly-CSharp"><HintPath>$(RimWorld17ManagedDir)/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Waylith"><HintPath>$(RimWorld17ManagedDir)/Waylith.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityStubs"><HintPath>$(RimWorld17ManagedDir)/UnityStubs.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Rimgate"><HintPath>../../experimental/1.7/Assemblies/Rimgate.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
   <Target Name="CheckGameReferences" BeforeTargets="ResolveReferences">
     <Error Condition="!Exists('$(RimWorld17ManagedDir)/UnityStubs.dll')" Text="Pass RimWorld17ManagedDir for the actual 1.7 apphost directory." />

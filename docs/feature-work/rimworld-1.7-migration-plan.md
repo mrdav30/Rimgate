@@ -7,7 +7,11 @@
   powered iris close/open rendering pass for Unity and pack-only native assets.
   The native comparison is complete; the owner selected native as the 1.7
   development default, retaining explicit Unity comparison and the 1.6 pipeline.
-  Broader visual acceptance, active effects/audio, transit,
+  Known-address DHD dialing, lazy destination generation, pawn/inventory transit,
+  queued/active and both in-flight save checkpoints, redraft and closure now pass.
+  [RG-Issue-003](issue-tracker.md#rg-issue-003) and
+  [RG-Issue-004](issue-tracker.md#rg-issue-004) are corrected in 1.7 only.
+  Broader visual acceptance, audible playback, discovery,
   optional-integration and old-save acceptance and the 1.6 freeze/support
   milestone remain pending.
 - **Created:** November 23, 2026. **Scope reconciled:** November 24, 2026.
@@ -871,3 +875,122 @@ passed with zero warnings/errors; skill/diff checks and independent review passe
 Private byte backups and verification JSON are under
 `%LOCALAPPDATA%/RimgateDev/evidence/native-default-20261124-132336/`.
 Prior comparison edits and these follow-up changes remain unstaged/uncommitted.
+
+
+## November 24 complete gate-operation acceptance - scope
+
+The owner authorized the next phase-2 slice after committing native asset tooling
+as `068b95e`: known-destination registration/dialing, normal pawn/item transfer,
+arrival/cleanup and save/load continuation on the native 1.7 baseline. Retain
+1.6 and player data; do not declare public support or expand to all phase-3 systems.
+
+Use the owned smoke save and a controlled lazy destination site. Fixture
+helpers may register that site, stage actors and a uniquely identified inventory item;
+they must not open the gates or directly relocate a traveler across maps to
+obtain a passing result. Dial, enter and close through the real DHD/context menus
+and mod jobs. Distinguish fixture address registration from glyph/quest progression.
+Check reciprocal gate/map references, pending/active state, exact pawn/item
+identity and ownership, buffers, post-arrival state and clean closure.
+
+Save/reload checks must include queued dialing, an active connection and an
+in-flight checkpoint where practical, then continue the actual operation.
+Read-only snapshots and saved XML should distinguish a real persistence defect
+from a UI/fixture problem. Source candidates involving the world-component cache
+and reference-only buffers require reproduction before selecting a runtime fix.
+Keep results, limits and any confirmed issue links here rather than a parallel plan.
+
+### Complete-operation result and persistence corrections
+
+**Accepted slice:** The known-address production path passes on native packs.
+This does not close all of phase 2 or declare public 1.7 support. Actual target:
+Windows RimWorld **1.7.5014 rev1195**, Steam build **26793372**, custom runtime
+**10.0.15-waylithclr.dev**; hidden graphics profile, Harmony **3.0.4.0**, Core and
+all five DLC, VEF, Rimgate and RimBridge **2.5.0**. GABS is **1.1.2**, bridge SDK
+**2.0.0.0**. Workshop VEF SHA-256 is
+`8557af77a8e4cc2915c2de710f2f6a4d167f2989704014918a8369f133dbf13a`;
+the public CI reference remains separately pinned at
+`d3559813de4e3f91ad9862d756ca2f01548c7bf8e5f01fdc5afadd7fdf485fd9`.
+These are distinct dependency contexts, not a parity claim. Bad Hygiene was absent.
+
+The development-only companion now offers four fixture/observation tools beside
+the asset report. It references the experimental assembly without copying it or
+SDK/game libraries into the player mod. The repeatable scenario is
+`.assets/scripts/rimbridge-transit-1.7.lua`; the contributor guide owns invocation.
+Fixture source tile **6293** (`P3F-539`) and lazy destination **77722** (`P8N-331`)
+use normal site registration. Real DHD dialing generates the second map; helpers
+never activate gates or relocate travelers across maps. Healthy colonists and a
+unique inventory pistol are staged on the source map. The gate's interaction
+cell is walkable but not standable; it lies in the pass-through gate footprint.
+
+Two defects were reproduced before correction:
+
+- **RG-Issue-003:** The static `GateUtil.WorldComp` cached a previous world's
+  address component. Load smoke, register the site, reload smoke and register
+  again: UI/cache showed both tiles while the current component and queued-save
+  XML contained only 6293. Status operation
+  `op_ca3ca3c56d274a67b4d35420357e3b3c` established unequal component identity.
+  The 1.7 property now resolves the current world's component on access.
+- **RG-Issue-004:** Normal Enter Dwarfgate queues/despawns the traveler immediately
+  when already at the interaction cell. Before ticking, save operation
+  `op_d9af69983e3d4f9aabc9bf5cd2c28648` recorded only a reference to Human989:
+  zero deep pawn or Gun_Autopistol42767 definitions, no ParentHolder and no world
+  registration. Reload operation `op_0df5d6525e5d465f99c99de1e258ce83` found
+  neither object. The gate now owns pending matter through a deep-saved
+  `ThingOwner`, with the existing send/receive keys retaining ordering references.
+  Entry, hauling, container and transporter admission transfer ownership only
+  on success; handoff, arrival, iris destruction and closure release it correctly.
+  Receive/redraft temporary lists survive the Scribe phases that populate them
+  until post-load reconstruction. Failed placement retains owned contents and
+  retries on rare ticks while inactive. No 1.6 source was changed, and matter
+  already missing from an old save cannot be reconstructed by this correction.
+
+Final cold-start acceptance used the current runtime/probe and reference-based
+object counting (game Thing equality can equate separate objects by def/ID):
+
+| Phase | Observed result | Bridge operation |
+| --- | --- | --- |
+| Prepare, same-process reload/register twice | Current component identity; both addresses registered once; destination still has no map | `op_efb2d70706e3409a8b5625b364068963` |
+| Real DHD dial, queued save/reload | Lazy site remains ungenerated, opening timer resumes; saved address list contains both tiles | `op_b7f89fd111d94738856467c931fa0c33` |
+| Connect, active save/reload | Lazy map generated; active reciprocal links and direction survive reload | `op_6d653452ce524d44a6677e68c4f6bb4a` |
+| Pending cancellation | Existing developer Force close safely returns the queued pawn/inventory to source, with one owner and empty pending/send state | `op_5b2064610e0a497cb35bb754a9775c39` |
+| Send save/reload, then 300 ticks | One owned Human989 and inventory item, destination redraft intent 989; exact IDs arrive once, drafted, buffers empty | `op_8293bfbe401e4e388243ee4d36ed5224` |
+| Receive save/reload, then 300 ticks | Staggered real entry jobs expose receiver checkpoint; same identity/owner/inventory/redraft/arrival checks pass | `op_5f6566d5ec8745778cf6dd2cfe52650b` |
+| Normal DHD close job, closed save/reload | Both links inactive/cleared, buffers/owners/transporters empty, no DHD close request, pawn/item retained | `op_497da82312b44999bdc75f1f2d03578d` |
+
+Both in-flight saves contain exactly **one pawn definition and one nested item
+definition under pendingContents**, retaining the same IDs. Source active and
+destination-arrived screenshots show the blue event horizon and lit chevrons
+without missing textures at the tested rotation/zoom. No claim of pixel identity
+with Unity or complete animation acceptance follows from those captures. The
+bridge error journal was empty; the preserved native log has no ERROR/exception
+entries. It does contain Vulkan-layer warnings and shutdown persistent-allocation
+warnings; their origin was not established as Rimgate behavior.
+
+Preserved external evidence is under
+`%LOCALAPPDATA%/RimgateDev/evidence/gate-transit-20261124-134658/`: before-fix
+assemblies, actual failed saves, status/operation JSON, accepted checkpoint saves,
+captures, logs and byte-backed player-config manifests. The tracked recipe and
+observations above remain the durable reproduction if temporary files are removed.
+The final native pack remains SHA-256
+`0dea55cedec8eb2f14bc1fed2ac78b9f6fe1e1b4e2e5ec03f02f3568e8ba6797`, with no
+loose/bundle fallback. All **125** normal config files and four tracked 1.6 bundle
+hashes were preserved; private game processes were stopped. Retained source/raw
+assets/Unity inputs/reference pins and the local insurance snapshot were untouched.
+
+**Remaining gates:** glyph/quest discovery, audible playback, other rotations and
+active DHD/effect/animation coverage, loose-item hauling/transporter loading,
+containers, iris-blocked arrivals and interrupted/fully blocked placement remain
+unverified by this slice. Rare-tick recovery is reviewed/compiled but its fully
+blocked placement case was not exercised live. Existing owned smoke saves without
+the new pendingContents key load successfully; real pre-migration 1.6 save acceptance
+and optional integrations remain separate work. Next take a bounded phase-2
+discovery/audio/presentation pass before broadening into phase-3 systems or the
+1.6 freeze/support milestone.
+
+Verification closeout: installed-dependency mod/probe builds and native baking
+passed; the separate public-reference 1.7 build and supported 1.6 library/DocFX
+build passed with zero warnings/errors. Generated-site checks, **48** local
+Markdown paths/anchors, Rimgate skill validation and Git diff checks passed.
+Independent source/caller review found no blocking regression after the Scribe
+phase correction. HEAD remains `068b95e`, the index is unchanged and all changes
+are unstaged for owner review. No release/support metadata was changed.
