@@ -38,8 +38,11 @@ Only 1.6 remains declared supported; 1.7 outputs and metadata stay in a private
 test package. Licensed 1.7 startup, profile isolation and read-only bridge calls
 now work. The hidden-window smoke passes gate selection, iris mutation/save/reload,
 120 exact ticks and screenshot capture. [RG-Issue-002](issue-tracker.md#rg-issue-002)
-has since reopened for recurring capture/input timeouts, blocking new visual
-acceptance. The asset pass resolves all 814 bundled textures and 26 clips and
+was reopened for recurring capture/input timeouts and is now closed with a
+verified private-profile occlusion/redraw correction. The regression proves
+failure with redraw suppressed and repeated real UI/capture plus save/reload
+success with it enabled; the previously blocked discovery visit also passes.
+The asset pass resolves all 814 bundled textures and 26 clips and
 renders the powered iris closed/open through real pawn jobs; the two dev red Xs
 are inherited null-icon defaults. Known-address DHD dialing, lazy map generation,
 pawn/inventory transit, both in-flight save checkpoints, redraft and closure now

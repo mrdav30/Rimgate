@@ -59,6 +59,14 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   establish device/human audibility. An accepted capture request or frame count
   does not establish rendered pixels; preserve failed payloads and stop a bounded
   investigation at the unresolved native stage instead of patching gameplay.
+  Hidden rendering is maintained by the private 1.7 companion's public Waylith
+  redraw callback. Provider discovery must construct its instance tool owner;
+  do not rely on a module initializer in an all-static dynamically loaded tool
+  assembly. Verify startup before companion calls and exercise
+  [rimbridge-background-1.7.lua](../../../.assets/scripts/rimbridge-background-1.7.lua)
+  with redraw suppressed/enabled under bounded engine-only occlusion. End the
+  fixture in caller cleanup; never lock the user's session or alter display power
+  to reproduce it. Keep rendering, visibility and focus as separate observations.
   Experimental 1.7 setup defaults to `WaylithPack`; retained 1.6 defaults to
   `UnityBundles`. Use `-AssetFormat UnityBundles` explicitly for a 1.7 comparison.
   Supply the chosen `assetFormat` to the Lua comparison and preserve

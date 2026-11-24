@@ -6,8 +6,9 @@ With RimWorld stopped, backs up normal ModsConfig/Prefs bytes, restores pinned
 GABS/RimBridge tools, builds Rimgate, refreshes private mod deployments and writes
 the isolated profile/config. Registers the user-level rimgate-dev MCP server.
 Game data and required dependencies are junctions to the selected installation.
-For 1.7, builds a development-only RimBridge asset probe and generates its raw
-asset inventory under the private game's BridgeTools directory.
+For 1.7, builds the development-only RimBridge companions and raw asset inventory
+under the private game's BridgeTools directory. The hidden-profile companion
+requests graphics redraws when occluded; it does not show or focus the window.
 Native mode launches a bounded hidden bake process, not a playable session.
 Does not change the Steam branch.
 .PARAMETER GamePath

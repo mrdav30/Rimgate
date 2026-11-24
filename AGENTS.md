@@ -117,6 +117,11 @@ development tooling, not a dependency of Rimgate's player package.
 
 The experimental 1.7 profile uses graphics-enabled `-NoWindow` and a fixed
 1280x720 framebuffer so bridge input/capture can run without desktop focus.
+The 1.7 development companion automatically requests redraws when that hidden
+window is occluded and retains a nonzero graphics surface. Keep its initialization
+on SDK provider discovery; all-static tool metadata loading does not guarantee
+startup code runs. Use `rimbridge-background-1.7.lua` and the guide's bounded
+occlusion controls to verify actual UI/capture completion without OS focus changes.
 Do not substitute graphics-free `-Headless` for visual checks. The smoke verifies
 selection, iris save/load, 120 ticks and a rendered capture. Known-address transit
 has a separate scenario; broader assets, discovery, integrations and saved-state

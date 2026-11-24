@@ -3,8 +3,8 @@
 - **Status:** In progress. Versioned source split and experimental 1.7 compilation
   implemented; the existing local snapshot is temporary migration insurance.
   Live 1.7 startup/profile and hidden-window smoke checks passed earlier;
-  [RG-Issue-002](issue-tracker.md#rg-issue-002) is now reopened for recurring
-  input/capture timeouts. Owned asset loading and
+  [RG-Issue-002](issue-tracker.md#rg-issue-002) is closed after a verified
+  private-profile occlusion/redraw correction and startup regression. Owned asset loading and
   powered iris close/open rendering pass for Unity and pack-only native assets.
   The native comparison is complete; the owner selected native as the 1.7
   development default, retaining explicit Unity comparison and the 1.6 pipeline.
@@ -1140,3 +1140,110 @@ baselines. The native pack hash is unchanged from the prior acceptance. Producti
 source/content/raw assets/reference pins and the local insurance snapshot were
 not modified. All private game processes are stopped. HEAD remains `6f324b3`,
 the index is unchanged and all new changes are unstaged/uncommitted for review.
+
+### RG-Issue-002 automatic hidden redraw correction
+
+The owner authorized a focused reliability correction from committed `a21e56e`,
+preserving 1.6 and leaving edits unstaged. **Disposition: verified private-profile
+workflow correction; RG-Issue-002 closed again.** This addresses a deterministic
+occlusion/render-scheduling defect. The exact OS occlusion source during the
+earlier natural failures was not recorded; do not attribute those occurrences
+specifically to session locking, display power, shell cloaking or audio probing.
+
+Runtime remains 1.7.5014 rev1195 with the same native pack, dependency profile,
+GABS 1.1.2 and RimBridge/SDK 2.5.0.0/2.0.0.0. A fresh unmodified run initially
+captured successfully in 178 ms, demonstrating the intermittent state. Extended
+diagnostics showed a hidden, unfocused but **unoccluded** window with
+ShouldPresent true, a nonzero surface and no session-lock/display-off flags.
+
+Inspection of the installed binaries established the shared path:
+
+```text
+renderWanted = Window.ShouldPresent
+    || (_redrawRequested && Window.Surface != null && !Window.SurfaceSize.IsZero)
+```
+
+Win32 ShouldPresent requires a surface, nonzero size and no reported occlusion.
+When renderWanted is false, application updates and bridge frame/tick scheduling
+continue, but CaptureFrame/render enqueue/end-of-frame capture processing do not.
+Root/UIRoot OnGUI callbacks also do not run, so synthetic gestures cannot advance
+their down/up/completion phases. Neither this build's native screenshot request
+nor the bridge gesture queue requests a redraw. Hidden visibility alone is not
+the gate. This explains why readiness/frame counters can progress while both UI
+and capture requests wait indefinitely.
+
+The correction stays in the development companion, outside the player mod:
+
+- Register a public `EngineApplication.PrePollEvents` callback. In the bound
+  private `Profile-1.7` developer session with HideWindow true and Headless false,
+  request the public `IWindow.RequestRedraw()` when ShouldPresent is false and a
+  nonzero surface exists. It schedules normal rendering without changing window
+  visibility, focus, reported occlusion, OS session state or display power.
+- Register during SDK **provider discovery**, before core-only UI tools. The
+  installed loader uses Assembly.LoadFile and skips instance creation for
+  all-static tool owners; a module initializer alone was not activated by the
+  cold metadata-only control. RenderProbe now has an instance status tool and
+  an idempotent public constructor, which the existing SDK discovery lifecycle
+  explicitly creates. The startup log proves registration before any companion
+  call. No warning suppression or player-mod startup patch is needed.
+- Reference Waylith.Windowing with Private=false. Setup deploys only the probe
+  DLL, its deps JSON and the asset manifest in BridgeTools; no engine/SDK DLL was
+  added to the player mod or companion output.
+
+The regression fixture reports occlusion only to the engine's owned window;
+it does not lock, minimize, cloak, show, focus or power-cycle anything in Windows.
+It can temporarily suppress the redraw callback for a negative control. Explicit
+end or the bounded timer calls Win32 UpdateOcclusion to resynchronize current OS
+conditions. Suppression resets in unconditional cleanup, including dispatcher
+failure, so the test cannot permanently disable the redraw hook. Native refresh
+failure is still reported as not restored. The caller ends the fixture in finally
+outside the Lua invocation; the timer provides a maximum-60-second fallback.
+
+Accepted checks include:
+
+| Check | Result / evidence |
+| --- | --- |
+| Negative occlusion control | With redraw suppressed, renderWanted false and nonzero 1280x720 surface, the unchanged screenshot times out in 10 s and right-click in 2 s while engine frames advance and a filename remains pending. Exact expected failures asserted by `op_b1a34bef83e44fc590f218dea5cf4ea4`; success denotes the regression was reproduced. |
+| Positive control after cold restart | Same reported occlusion, hidden/unfocused window and ShouldPresent false: five real left-click/selection/right-click/menu/capture cycles, iris mutation/save/reload, 120 exact ticks and final capture pass. Native requests keep renderWanted true and drain capture queues. |
+| Final provider-startup regression | `op_642421b2dfcc46c9a23c7ea7a9f3d13d` passes in 7.753 s; redraw requests rise 5 -> 384 while the 60 s fixture remains active/occluded. Explicit end restores actual OS-derived state. |
+| Core-only cold startup | Startup INFO identifies RenderProbe constructor / SDK TryCreateInstance before any companion method call. Unchanged `rimbridge-smoke.lua` passes from the main menu in `op_662fa4d8a5284577b8f9bfa32bd17ecf`: creation, selection, iris mutation/save/reload, 120 ticks and capture. The original owned smoke bytes were backed up and restored after this case. |
+| Previously blocked discovery visit | The unchanged visit Lua phase now passes under occlusion in `op_4ffeb9fd99524a54876854d3eb67d881`: real context menu/entry, living arrival and visited-state save/reload. A subsequent capture also passes before fixture cleanup. |
+| Previously blocked presentation preparation | North ancient-controller preparation, material/power/facility checks and inactive capture pass while occluded in `op_92e83deae7c3437a8075a089a36de292`. Other orientation/active presentation acceptance remains separate. |
+| Timer fallback | A one-second suppressed fixture restores itself without an end call; status reports completed/restored, suppression false and normal presentation resumed. A new capture succeeds afterward. |
+| Standard deployment smoke | `setup-rimbridge-dev.ps1 -RimWorldVersion 1.7` rebuilds/stages the companion and natively bakes successfully. After setup, startup registration appears before companion calls; core selection and capture pass (`op_12893b2ff7904b0eab114bca6f471b3d`, 136 ms). |
+
+`.assets/scripts/rimbridge-background-1.7.lua` retains prepare/negative/positive
+phases and assertions for the exact failure, nonzero surface, real ui_event
+provider, expected DHD option, object identity/iris state, capture completion,
+tick count and continued occlusion/hidden/unfocused state. The active-fixture
+assertion prevents accepting a positive test that merely outlasted occlusion.
+Negative captures can finish late after restoration; retain those files as late
+artifacts, not successful negative operations. No queue clearing was used.
+
+Evidence is under `%LOCALAPPDATA%/RimgateDev/evidence/rg-issue-002-20261124-160726/`:
+before/final probe bytes, startup and native logs, raw operation/diagnostic JSON,
+negative/positive captures, test saves, config/bundle manifests and the original
+owned smoke save. Initial explicit end and timer restoration both passed. One
+GABS stop reported the owned PID still alive; setup correctly refused to refresh
+it. Targeted games_kill verified termination before redeployment. A later normal
+stop after the deployment smoke verified exit. Do not treat a stop action's
+reported success alone as process termination.
+
+No physical OS lock/display-off or graphics-device-loss experiment was performed.
+The observed supported case requires a nonzero graphics surface; this is not a
+claim to recover a lost device or accept all asset orientations. No production
+Rimgate source, support metadata, 1.6 inputs or Steam branch changed. Resume the
+remaining native presentation acceptance next; do not skip it because capture
+now works.
+
+Closeout verification passed: companion and standard experimental setup builds,
+native baking, supported 1.6 library/DocFX/site checks, Windows PowerShell 5.1
+parser/help, skill validation, 53 local Markdown paths/anchors and Git diff checks.
+Independent reviews identified the cleanup and startup-lifecycle gaps; both were
+corrected before final acceptance. All 125 normal config files, private Prefs and
+ModsConfig bytes, original owned smoke save and four 1.6 bundle hashes match
+their before-copies/manifests. The native pack remains byte-identical to the
+previous SHA-256. Production source/content/raw assets/reference pins and the
+local insurance snapshot are untouched. The final private process exit is
+verified. HEAD remains `a21e56e`; the index is unchanged and all edits are
+unstaged/uncommitted for review.

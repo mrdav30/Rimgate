@@ -611,7 +611,7 @@ provides `prepare`, `open` and optional `iris` phases. Supply the private paths,
 prepare's `fixture` to later phases. Preparation respawns only the inactive
 empty source gate/controller; normal jobs must dial and operate the iris.
 The material report is distinct from the screenshots that require visual review.
-The full orientation scenario remains unaccepted while capture is blocked.
+The full orientation scenario still requires its separate visual acceptance.
 
 After an input/capture timeout, use the guarded read-only
 `rimgate/render_capture_status` to record native capture support, queued files,
@@ -619,6 +619,51 @@ capture flags and render/framebuffer dimensions. Do not clear the queue or
 infer successful rendering from frame counters or a readiness flag. Preserve
 the failed payload and native log. Follow the migration plan's bounded
 investigation; coordinate any foreground/manual checks with the user.
+
+### Keep hidden input and capture progressing
+
+Experimental setup deploys a 1.7 companion that registers a public
+`EngineApplication.PrePollEvents` callback during SDK provider discovery. When
+the private `Profile-1.7` developer window is hidden, graphics-enabled and has a
+nonzero surface, the callback requests redraws if normal presentation is
+suppressed. It neither shows nor focuses the window, changes OS session/display
+state, patches gameplay nor clears screenshot queues. Non-occluded operation
+continues through the normal engine path. `-Headless` remains unsuitable for
+rendered checks, and a missing/lost graphics surface needs its own diagnosis.
+
+RimBridge 2.5.0 constructs tool owners with instance methods during discovery;
+all-static metadata loading does not guarantee startup initialization. Keep the
+existing render-status owner constructor as the idempotent registration point.
+The native log records **Hidden background redraw hook initialized** before
+companion tool calls; `render_capture_status` reports installation, requests
+and the actual render predicate. The additional `Waylith.Windowing` reference
+is non-copying and belongs only to the development companion.
+
+Run the regression through
+[`.assets/scripts/rimbridge-background-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-background-1.7.lua)
+using the same private paths and a unique `capturePrefix`:
+
+1. Run `phase: prepare`; retain its returned `fixture`. It loads the owned smoke
+   save and stages a real DHD menu target. It does not overwrite that save.
+2. Call `rimgate/start_render_occlusion_fixture` with the exact config/mod paths,
+   `suppressRedraw: true`, `durationMs: 25000`. Run `phase: negative` with the
+   returned preparation fixture. Success here means the expected capture/input
+   failures were reproduced while updates continued, not that those actions passed.
+3. In caller `finally` cleanup, call `rimgate/end_render_occlusion_fixture` and
+   require `restored: true`. Use a separate bridge invocation for cleanup.
+4. Start another fixture with `suppressRedraw: false`, `durationMs: 60000`, then
+   run `phase: positive`. It checks five real UI/capture cycles, iris mutation,
+   save/reload and 120 exact ticks while still occluded, hidden and unfocused.
+   End/verify cleanup in the same way, including when a phase fails.
+
+The fixture reports occlusion only inside the engine and restores actual OS
+conditions automatically on timeout (maximum 60 seconds). It does not minimize
+or cloak a real window, lock the computer or change display power. A timed-out
+negative capture can finish after cleanup restores rendering; retain it as a
+late artifact, not a passing negative operation. Use unique capture names across
+runs to keep that distinction clear. The script writes only its owned
+`Rimgate-background-check` save. The migration plan owns dated evidence and the
+limits of this controlled test.
 
 ### Compare native Waylith packs with Unity bundles
 
