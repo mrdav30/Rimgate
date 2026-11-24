@@ -99,6 +99,8 @@ recoverable config backup. Keep normal player saves/mod configuration untouched
 and validate both bridge operation status and gameplay payloads. RimBridge is
 development tooling, not a dependency of Rimgate's player package.
 
-The live 1.7 smoke currently stops at synthetic input/screenshot timeouts
-([RG-Issue-002](docs/feature-work/issue-tracker.md#rg-issue-002)). Do not claim
-rendered assets, iris save/load or gate transit acceptance from startup alone.
+The experimental 1.7 profile uses graphics-enabled `-NoWindow` and a fixed
+1280x720 framebuffer so bridge input/capture can run without desktop focus.
+Do not substitute graphics-free `-Headless` for visual checks. The smoke verifies
+selection, iris save/load, 120 ticks and a rendered capture; complete asset and
+gate-transit acceptance remain migration gates. See the owning migration plan.

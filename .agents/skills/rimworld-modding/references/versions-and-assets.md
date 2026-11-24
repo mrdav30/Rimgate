@@ -48,3 +48,11 @@ describes broad mod compatibility and asks authors to test before marking mods
 compatible. It is useful context, not evidence for a particular mod. Consult the
 current upstream guidance and installed build during an actual migration; this
 reference does not prescribe a 1.7 framework, replacement API or asset format.
+
+For unattended Waylith visual checks, distinguish hidden graphics execution
+(`-NoWindow`) from graphics-free `-Headless`. Verify the switches against the
+actual build and prove synthetic input and a nonempty rendered capture; a
+bridge readiness flag alone does not prove GUI/render frames are progressing.
+Prefer a verified hidden profile to desktop focus changes, and coordinate any
+required foreground checks with the user. Keep argv, framebuffer dimensions,
+loaded bridge/dependency versions and nested gameplay results in the evidence.

@@ -36,8 +36,9 @@ gates. Active development will follow accepted 1.7; the existing local snapshot
 is temporary migration insurance without maintained capture/restore tooling.
 Only 1.6 remains declared supported; 1.7 outputs and metadata stay in a private
 test package. Licensed 1.7 startup, profile isolation and read-only bridge calls
-now work; a fresh test colony spawns the gate/DHD. Synthetic selection/capture
-timeouts block further smoke acceptance in [RG-Issue-002](issue-tracker.md#rg-issue-002).
+now work. The hidden-window smoke passes gate selection, iris mutation/save/reload,
+120 exact ticks and screenshot capture; [RG-Issue-002](issue-tracker.md#rg-issue-002)
+is closed. Full asset, transit and optional-integration acceptance remain open.
 Public dependency restoration and CI also compile the experimental 1.7 project.
 
 ## Deferred work
@@ -50,7 +51,7 @@ Public dependency restoration and CI also compile the experimental 1.7 project.
 
 | Work | Outcome | Owning record |
 | --- | --- | --- |
-| Development tooling hardening | Version-aware 1.6 builds, preserved version-owned bundles, agent workflows, isolated RimBridge validation and script consolidation. The preferences anomaly remains a deferred investigation in [RG-Issue-001](issue-tracker.md#rg-issue-001). | [November 23, 2026 hardening record](done/2026-11-23-development-tooling-hardening.md) |
+| Development tooling hardening | Version-aware 1.6 builds, preserved version-owned bundles, agent workflows, isolated RimBridge validation and script consolidation. The historical preferences anomaly was closed by decision without a reproduced cause in [RG-Issue-001](issue-tracker.md#rg-issue-001). | [November 23, 2026 hardening record](done/2026-11-23-development-tooling-hardening.md) |
 | DocFX migration | Wiki articles moved into Guides, compiled API reference and portable CI added, and hosted build/deploy verified for the implementation commit. | [November 23, 2026 DocFX record](done/2026-11-23-docfx-migration.md) |
 
 ## Plan shape and completion

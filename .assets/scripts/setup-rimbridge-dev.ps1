@@ -23,6 +23,8 @@ player-config-baseline.json. Does not refresh setup or restore changed files.
 .PARAMETER RimWorldVersion
 1.6 or experimental 1.7. Defaults to 1.6 until public 1.7 acceptance. The 1.7
 view uses RimWorld.exe and a private metadata overlay, with no support bump in Mod.
+Waylith runs with -NoWindow and a fixed 1280x720 framebuffer for background
+rendering and synthetic input. This is not graphics-free -Headless mode.
 .EXAMPLE
 .\.assets\scripts\setup-rimbridge-dev.ps1 -GamePath 'D:\SteamLibrary\steamapps\common\RimWorld' -ToolsPath 'C:\RimgateDev16'
 Prepares an isolated view of the installed 1.6 game and registers it with Codex.
@@ -212,7 +214,7 @@ Set-Content -LiteralPath (Join-Path $profile 'Config/ModsConfig.xml') -Encoding 
 if (!(Test-Path -LiteralPath (Join-Path $profile 'Config/Prefs.xml'))) {
     Set-Content -LiteralPath (Join-Path $profile 'Config/Prefs.xml') -Encoding UTF8 -Value '<PrefsData><devMode>true</devMode><runInBackground>true</runInBackground><fullscreen>false</fullscreen><langFolderName>English</langFolderName><volumeGame>0</volumeGame><volumeMusic>0</volumeMusic></PrefsData>'
 }
-$launchArgs = if ($experimental) { @("-savedatafolder=$profile") }
+$launchArgs = if ($experimental) { @("-savedatafolder=$profile", '-NoWindow', '-WindowSize=1280,720') }
     else { @("-savedatafolder=$profile", '-screen-fullscreen', '0', '-screen-width', '1280', '-screen-height', '720', '-logFile', (Join-Path $ToolsPath 'evidence/Player.log')) }
 $config = @{
     version = '1.0'

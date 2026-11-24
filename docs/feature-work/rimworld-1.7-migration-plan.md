@@ -2,14 +2,17 @@
 
 - **Status:** In progress. Versioned source split and experimental 1.7 compilation
   implemented; the existing local snapshot is temporary migration insurance.
-  Initial live 1.7 startup/profile checks pass; gameplay smoke acceptance is open
-  in [RG-Issue-002](issue-tracker.md#rg-issue-002). The 1.6 freeze/support milestone remains pending.
+  Live 1.7 startup/profile and hidden-window smoke checks pass;
+  [RG-Issue-002](issue-tracker.md#rg-issue-002) is closed. Full asset/transit,
+  optional-integration and old-save acceptance and the 1.6 freeze/support
+  milestone remain pending.
 - **Created:** November 23, 2026. **Scope reconciled:** November 24, 2026.
 - **Planning baseline:** `14a15f6` (feature-work tracking); clean worktree before
   this plan. Current playable/configured target remains RimWorld 1.6.
 - **Tracking:** [Feature work overview](feature-work-overview.md).
-- **Related investigation:** [RG-Issue-001](issue-tracker.md#rg-issue-001), normal
-  preferences preservation during isolated launches.
+- **Historical investigation:** [RG-Issue-001](issue-tracker.md#rg-issue-001), normal
+  preferences preservation during isolated launches; closed by decision without
+  a reproduced cause. Keep byte-backed config preservation checks.
 
 ## Outcome and boundaries
 
@@ -434,9 +437,9 @@ remains untouched migration insurance. No public support declaration was added.
   without an extra gameId successfully invoke them. No upstream fix is claimed.
 - The Lua file compiles and starts a fresh colony, spawning a real Dwarfgate and
   DHD. It then fails at synthetic selection; direct selection and screenshot
-  attempts also time out. Detailed reproduction/next control live solely in
-  [RG-Issue-002](issue-tracker.md#rg-issue-002). No save/load, tick, rendered asset,
-  transit or broad optional-integration acceptance is claimed.
+  attempts also time out. That initial run did not reach save/load, tick,
+  rendered asset, transit or optional-integration acceptance. The issue was
+  subsequently resolved for hidden-window automation as recorded below.
 
 Computer Use was stopped with the physical Escape key before the native-window
 activation control. All UI automation stopped and the private game was gracefully
@@ -447,8 +450,8 @@ shared application log is preserved privately at
 and saves use Profile-1.7, but Waylith's Player.log uses the normal application
 `Logs` folder. Native Vulkan layer warnings were observed without startup errors.
 
-Resume at the owning input/capture investigation, then rerun the unchanged smoke
-assertions and continue the complete gate-transit/asset/save matrix. The test
+The input/capture follow-up below reran the unchanged smoke assertions. Continue
+with the complete gate-transit/asset/save matrix after that bounded acceptance. The test
 package, active GABS configuration and experimental CI compile are preparation;
 they do not freeze 1.6 or satisfy the public 1.7 support gates.
 
@@ -459,3 +462,88 @@ game/reference-pin guards, skill validation and 43 local links/anchors passed.
 The Git index and HEAD are unchanged; 1.6 source/content, prior dependency pins,
 normal configuration and all 8,678 insurance-snapshot files remain intact.
 The added CI commands were exercised locally; no workflow was pushed or run remotely.
+
+
+## November 24 background input and capture acceptance
+
+Based on committed preparation `918d34c`, with no desktop automation or native
+window activation. [RG-Issue-002](issue-tracker.md#rg-issue-002) is closed as a
+**verified launch-workflow fix**, not an engine or Rimgate gameplay patch.
+
+The original operation `op_a6aff743a4a0490d82c2877cb1b81156` spawned a gate at
+`(110,130)` and DHD at `(110,134)`, then failed selection after 2,000 ms. The
+selection stayed empty despite read-only inspection confirming the gate and no
+blocking window. Screenshot capture separately timed out after about ten seconds
+without a PNG. The bridge reported `visualReady` and its input patches applied;
+those flags did not establish GUI/render progress. A foreground control was
+cancelled before it ran, so the exact original internal pause cause is unproven.
+
+Upstream's [Waylith launch inventory](https://github.com/pardeike/RimBridgeServer/blob/60c951ce494b47db69387b2b3347756aede45264/skills/rimworld-17/references/launch-arguments.md)
+and [autonomous development evidence](https://github.com/pardeike/RimBridgeServer/blob/60c951ce494b47db69387b2b3347756aede45264/skills/rimworld-17/references/autonomous-development.md)
+distinguish graphics-enabled `-NoWindow` from graphics-free `-Headless`, and
+identify focus-related pause handling. Their earlier macOS results were a lead;
+the acceptance here is Windows **1.7.5014 rev1195**, Steam build **26793372**,
+.NET **10.0.15-waylithclr.dev**, GABS **1.1.2**, released bridge **2.5.0.0**
+(commit `b861da3219d1c0b2dd3b5e9d5052aeaf95c697b7`) and SDK **2.0.0.0**.
+No newer bridge, optional companion or SDK was installed for this fix.
+
+Experimental setup now generates this argv array:
+
+```json
+[
+  "-savedatafolder=C:\\Users\\david\\AppData\\Local\\RimgateDev\\Profile-1.7",
+  "-NoWindow",
+  "-WindowSize=1280,720"
+]
+```
+
+The fixed size makes captures comparable; hidden graphics mode avoids occupying
+the desktop. The launched process argv independently matched these flags, and
+its `MainWindowHandle` was zero. Profile/config and Rimgate deployment paths were
+verified by the unchanged guarded Lua case. Ten loaded entries remained Harmony,
+Core, five DLC, installed VEF, Rimgate and RimBridge, with zero configuration
+issues. The installed/public VEF distinction recorded above still applies;
+DBH remained absent at runtime.
+
+Acceptance operation **`op_c5f325f718794996b864aeaa46e9b9fc`** completed in
+23,473 ms: script success true, 22 capability calls passed and zero failed steps.
+The gate was `Thing_Rimgate_Dwarfgate45149`, DHD
+`Thing_Rimgate_DialHomeDevice45150`, gate address **P9F-659**. Selection succeeded
+in 56 ms and after reload in 63 ms. The real iris gizmo added the iris, a save
+persisted it, removal changed inspect state, and reload restored identical gate
+identity and iris/address text. Exact stepping advanced **120 ticks across 120
+frames**; this asserts the delta, not a fixed initial tick after loading.
+Screenshot capture took 134 ms and produced a decoded **1280x720**, **2,015,381
+byte** PNG. The bridge error journal was empty and the native log had zero ERROR
+headers. A native ruin-generation warning and existing Vulkan-layer warnings
+were observed; no blanket warning suppression was added.
+
+The screenshot was visually inspected: the gate and its saved iris/address UI
+render, but the iris/force-close command icons show red X placeholders. DHD
+placement is proven by its spawn payload; this capture does not establish its
+texture correctness. These observations remain inputs to the existing complete
+asset acceptance gate; capture success is not full texture/bundle compatibility.
+Gate transit, optional DBH presence, the public dependency runtime set and old
+1.6 saves were not tested by this case.
+
+Private evidence is under `%LOCALAPPDATA%/RimgateDev/evidence/rg-issue-002/`:
+`hidden-window-smoke.json`, `hidden-window-smoke.log`, the screenshot, and a
+byte-backed snapshot/manifest of normal config before launch. The generated
+save is `Profile-1.7/Saves/Rimgate-bridge-smoke.rws`. These paths are supplementary;
+the checked-in script, argv, input versions, results and limitations above retain
+the reproduction contract if private evidence is later removed.
+
+The private game was stopped and termination verified. Setup's config verifier
+passed; a separate recursive comparison found all **125** normal config files
+unchanged with no additions. The 1.6 source/content and local insurance snapshot
+were not modified. Reopen RG-Issue-002 if input/capture fails under this hidden
+graphics profile, retaining actual argv, build/dependencies, payloads and
+frame/render evidence. Do not weaken smoke assertions to hide a recurrence.
+
+Local verification also passed the real experimental setup/build (zero warnings
+or errors), GABS configuration validation, Windows PowerShell 5.1 parsing and
+parameter help, both skill validators, 44 local Markdown links/anchors, and the
+supported 1.6 library/DocFX/site checks (zero warnings or errors). The generated
+GABS argv was checked against the tested hidden graphics profile. Git diff checks
+passed; HEAD remained `918d34c`, with no staged changes or tracked source/content/
+dependency-pin changes. All follow-up edits remain unstaged/uncommitted.

@@ -26,9 +26,11 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   [rimbridge-smoke.lua](../../../.assets/scripts/rimbridge-smoke.lua). Use the isolated
   experimental `rimgate17` profile after setup with `-RimWorldVersion 1.7`;
   discover the installed bridge's schemas rather than assuming upstream examples
-  match the loaded SDK. The 1.7 smoke is blocked by input/capture timeouts in
-  [RG-Issue-002](../../../docs/feature-work/issue-tracker.md#rg-issue-002); startup
-  and read-only calls do not establish gameplay or rendered-asset acceptance.
+  match the loaded SDK. Setup's 1.7 profile uses graphics-enabled `-NoWindow`
+  with a fixed 1280x720 framebuffer for bridge input/capture without desktop
+  focus. Do not substitute `-Headless` for rendered checks or use desktop
+  automation without coordination. Selection, iris save/load, 120 ticks and
+  capture passed; the migration plan still owns full asset/transit acceptance.
 - Required dependencies and optional patches:
   [Compatibility Matrix](../../../docs/guides/compatibility-matrix.md), checked against
   Mod/About/About.xml and the affected patch/C# code.

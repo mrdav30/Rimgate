@@ -1,7 +1,8 @@
 # Development Tooling Hardening
 
-- **Status:** Completed implementation and recorded verification; the preferences
-  anomaly remains a deferred investigation in [RG-Issue-001](../issue-tracker.md#rg-issue-001).
+- **Status:** Completed implementation and recorded verification. The historical
+  preferences anomaly was closed by decision on November 24 without a reproduced
+  cause in [RG-Issue-001](../issue-tracker.md#rg-issue-001).
 - **Recorded:** November 23, 2026; these are historical observations, not a new run
   or evidence of a published mod release.
 - **Implementation:** [dfdb384](https://github.com/mrdav30/Rimgate/commit/dfdb3840dc11ad0a5b902982fd4ae2003f056259).
@@ -150,10 +151,22 @@ Runtime source and player dependency metadata were not changed.
 
 Local run artifacts are retained under `%LOCALAPPDATA%/RimgateDev/evidence` and
 the owned save under `Profile-1.6/Saves/Rimgate-bridge-smoke.rws`. The pinned setup,
-Lua source and [contributor workflow](../../guides/developer-and-contributor-notes.md#live-16-validation-with-rimbridge) reproduce the check without those captures. Keep
+Lua source and [contributor workflow](../../guides/developer-and-contributor-notes.md#live-validation-with-rimbridge) reproduce the check without those captures. Keep
 bridge endpoint tokens and raw private logs outside version control. Coverage is
 the smoke scenario described above; full gate-transit and optional-mod matrices
 remain feature-specific validation rather than claims of this adoption.
+
+On November 24, 2026, [RG-Issue-001](../issue-tracker.md#rg-issue-001) was
+closed by decision as an unreproduced historical observation. The original
+Prefs.xml bytes and a deterministic trigger are unavailable. The before hash was
+`cc3a5e0ba55006f07efe528d588dd800c8593e4ebff82dca02cfc2fe7c327832`;
+the retained changed-file hash was
+`7ecb8b582fda45c6388f4b8754423496f23e9a63aac7766b1ef460e189d3b4f4`.
+Different hashes establish different bytes, but cannot recover which fields
+changed or attribute the cause. Replaying an unknown initial state would not
+resolve that evidence gap. Reopen on a fresh mismatch with actual before/after
+files and process/profile context; retain the current byte-backed guard.
+This disposition does not claim a verified fix.
 
 ### Script layout verification
 

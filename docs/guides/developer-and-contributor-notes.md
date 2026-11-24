@@ -329,9 +329,10 @@ usage/compatibility contract. Documentation changes need no game run.
 [RimBridgeServer](https://github.com/pardeike/RimBridgeServer) and
 [GABS](https://github.com/pardeike/GABS) are development tools, separate from
 Rimgate's player dependencies. The active migration profile is experimental
-`rimgate17`. Startup and read-only bridge calls have been verified; the full
-1.7 smoke case is currently blocked by synthetic input/screenshot timeouts
-([RG-Issue-002](https://github.com/mrdav30/Rimgate/blob/main/docs/feature-work/issue-tracker.md#rg-issue-002)).
+`rimgate17`. Its graphics-enabled hidden-window smoke verifies gate selection,
+iris mutation/save/reload, 120 exact ticks and a rendered screenshot without
+desktop focus. Full asset, transit and optional-integration acceptance remain
+migration gates.
 This does not declare Rimgate 1.7-compatible. Historical 1.6 smoke evidence is in
 the completed hardening record; runtime checks must match the actual target.
 
@@ -367,7 +368,10 @@ and `-ToolsPath`. Defaults use the D: Steam library and
    and 1.6 assets remain unchanged. The private copy is deployed under
    `Game-1.7/Mods/Rimgate` alongside the bridge.
 5. Creates `Profile-1.7` and configures/registers GABS as `rimgate17`. Registration
-   selects this active profile; old 1.6 view/profile files are not removed. Do not
+   selects this active profile. Waylith uses `-NoWindow` and
+   `-WindowSize=1280,720`, keeping rendering and synthetic input available without
+   showing a native window. Graphics-free `-Headless` is unsuitable for this
+   visual case. Old 1.6 view/profile files are not removed. Do not
    launch the old Unity view after its Steam-linked game data has moved to Waylith.
 
 The helper still accepts `-RimWorldVersion 1.6` for an actual 1.6 installation;
@@ -421,9 +425,10 @@ reported different versions; package version alone does not identify the loaded 
    ```
 
 5. Check operation status **and** nested gameplay/script success. A completed
-   handler may report `success: false`. The 1.7 run currently stops at gate
-   selection; save/load, tick and rendered screenshot assertions have not passed.
-   Resolve the owning issue before accepting the case. Longer gate-transit,
+   handler may report `success: false`. Require the complete smoke assertions,
+   inspect the actual screenshot for rendered content and affected textures,
+   and read the native log as well as the bridge journal. A successful capture
+   does not establish that every asset loaded correctly. Longer gate-transit,
    optional-integration and old-save checks remain separate migration gates.
 6. Stop the private game with `games_stop`, then run:
 
@@ -440,8 +445,10 @@ Waylith's log is observed at
 It is shared application output even with an isolated save-data argument. Copy it
 into the external evidence directory after shutdown, and inspect startup errors
 as well as the bridge journal: errors before bridge initialization can be absent
-from that journal. The 1.7 launch passes only `-savedatafolder=<profile>`; it does
-not reuse Unity's screen/log flags. Normal player-config backup checks still apply.
+from that journal. The 1.7 launch passes `-savedatafolder=<profile>`, `-NoWindow`
+and `-WindowSize=1280,720`; it does not reuse Unity's screen/log flags. Keep
+background checks on this hidden graphics profile and coordinate any foreground
+validation with the user. Normal player-config backup checks still apply.
 
 ## Local packaging and review
 
