@@ -71,7 +71,10 @@ Tip: You can enable `verbose logging` in Rimgate mod settings when collecting di
 
 ## Known Issues (Confirmed)
 
-As of February 25, 2026: no confirmed release-blocking issues are tracked in this wiki yet.
+For current technical findings, reproduction evidence and dispositions, see the
+[issue tracker](https://github.com/mrdav30/Rimgate/blob/main/docs/feature-work/issue-tracker.md).
+Investigations needing reproduction are labeled separately from confirmed
+defects. Use the triage and log-collection steps above when reporting a problem.
 
 ## Known Behavior Notes (Often Reported as Bugs)
 

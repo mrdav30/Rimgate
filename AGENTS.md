@@ -13,6 +13,11 @@ Keep this entry point concise; detailed instructions belong in the owning docs:
   builds, version/source ownership, assets, validation and packaging.
 - [Compatibility Matrix](docs/guides/compatibility-matrix.md): dependencies and patches.
 - [Guides](docs/guides/index.md): feature guides; trace affected source before editing.
+- [Feature work overview](docs/feature-work/feature-work-overview.md): active,
+  deferred and completed work, with links to owning plans.
+- [Issue tracker](docs/feature-work/issue-tracker.md): defects and investigations.
+- [Performance signal backlog](docs/feature-work/performance-signal-backlog.md):
+  measured performance and measurement-reliability concerns.
 
 Documentation is authored in this repository; the GitHub Wiki submodule has been
 removed. Leave changes unstaged/uncommitted unless explicitly instructed
@@ -39,6 +44,16 @@ otherwise. Do not commit, push or publish as an implied documentation step.
   Do not convert the builder to URP or HDRP.
 - Prefer existing defs, comps and narrow hooks over broad Harmony patches. Check
   optional integrations with their dependencies absent and present as applicable.
+
+## Work tracking
+
+Keep status and detailed evidence in one owning plan or tracker entry. Feature
+work gets descriptive plan names; preserve `RG-Issue-NNN` and `RG-Perf-NNN` IDs
+through closure. Record the actual game/dependency context and distinguish
+verified fixes from mitigations or investigations without a reproduced cause.
+Archive completed plans in `docs/feature-work/done/`; keep guides evergreen.
+Tracking records stay repository-only and are excluded from the DocFX site.
+Small fixes and routine documentation edits do not need separate feature plans.
 
 ## Build and verification
 

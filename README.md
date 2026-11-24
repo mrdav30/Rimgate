@@ -36,6 +36,7 @@ For build workflows, asset pipeline rules, testing checklists, and release packa
 
 - [Documentation site: Guides and API reference](https://mrdav30.github.io/Rimgate/)
 - [Developer and Contributor Notes](docs/guides/developer-and-contributor-notes.md)
+- [Feature work overview and tracking](docs/feature-work/feature-work-overview.md)
 - [AGENTS.md](AGENTS.md)
 - [RimWorld modding skill](.agents/skills/rimworld-modding/SKILL.md)
 - [Rimgate specialization](.agents/skills/rimgate-development/SKILL.md)
@@ -69,7 +70,9 @@ Before opening a PR:
 - XML is clean and commented where appropriate
 - C# patches avoid unnecessary Harmony conflicts
 
-For larger contributions, open an issue first to discuss design direction.
+For larger contributions, discuss the design and record agreed scope in a
+focused plan linked from the [feature work overview](docs/feature-work/feature-work-overview.md).
+Link related GitHub discussions and defect reports from the owning record.
 
 Release/build instructions are maintained in [Developer and Contributor Notes](docs/guides/developer-and-contributor-notes.md).
 

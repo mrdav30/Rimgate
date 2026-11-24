@@ -16,6 +16,11 @@ it has not been published as a mod release. Do not infer Workshop distribution.
 
 - Build, source layout, assets, checks and the 1.6 freeze strategy:
   [Developer and Contributor Notes](../../../docs/guides/developer-and-contributor-notes.md).
+- Planning and status: [feature work overview](../../../docs/feature-work/feature-work-overview.md).
+  Use the [issue tracker](../../../docs/feature-work/issue-tracker.md) for defects
+  and investigations, and the [performance backlog](../../../docs/feature-work/performance-signal-backlog.md)
+  for measured signals and measurement reliability. Their intake/evidence rules
+  specialize the workflow for the actual game, mod list, settings and scenario.
 - Live runtime validation: the same guide's RimBridge workflow,
   [setup-rimbridge-dev.ps1](../../../.assets/scripts/setup-rimbridge-dev.ps1) and
   [rimbridge-smoke.lua](../../../.assets/scripts/rimbridge-smoke.lua). Use the isolated
@@ -36,8 +41,14 @@ their `.md` extensions or use API xrefs. Keep authored navigation/config/templat
 in source control; `docs/obj/` and restored `.assets/references/` are generated.
 The site follows `main` and the latest configured target, with no legacy wiki
 mirrors. Preserve user changes and leave work unstaged/uncommitted for review.
-Record concise evidence in the owning page or existing issue/plan; do not create
-parallel feature reports.
+Keep status, decisions and evidence in one owning plan or tracker entry. Features
+use descriptive plan names rather than bug IDs; preserve issue/performance IDs
+through closure. Move completed plans into `docs/feature-work/done/`, keeping
+historical observations and unresolved findings qualified. Routine fixes and
+documentation edits need no separate plan. Keep guides evergreen and tracking
+records repository-only; use GitHub source URLs when a published guide links to
+them. Do not add tracking records to DocFX content/navigation or create parallel
+feature reports.
 
 ## Respect the current boundaries
 
