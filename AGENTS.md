@@ -80,17 +80,25 @@ then verify the affected gameplay and save/load path when runtime behavior chang
 Compilation alone does not prove gameplay compatibility. State unrun checks.
 
 Build the library, Guides and API reference with `.assets/scripts/build-docs.ps1`.
-It restores pinned public 1.6 references, builds the selected latest configured
+It restores pinned public references into `.assets/references/<version>/`, builds the selected latest configured
 target and runs DocFX with warnings as errors plus generated-site link checks.
 Keep `docs/docfx.json`, navigation, guides and templates authored; do not commit
 `docs/obj/` or `.assets/references/`. Keep code changes and their guide/API comments
 in the same PR. The documentation workflow validates PRs and publishes `main`.
 
-For live 1.6 checks, run `.assets/scripts/setup-rimbridge-dev.ps1` with all RimWorld
-instances stopped, then use the `rimgate-dev` MCP server and `gameId: rimgate16`.
+For experimental live 1.7 checks, run `.assets/scripts/setup-rimbridge-dev.ps1
+-RimWorldVersion 1.7` with all RimWorld instances stopped, then use the
+`rimgate-dev` MCP server and `gameId: rimgate17`. The installed build must match
+the experimental reference pin. Only the private test package declares 1.7;
+the player package still declares 1.6. The CI workflow also compiles experimental
+1.7 using pinned public dependencies; compilation is not runtime acceptance.
 The contributor guide owns setup, tool discovery and the
 `.assets/scripts/rimbridge-smoke.lua` acceptance case. After shutdown, run
 `.assets/scripts/setup-rimbridge-dev.ps1 -VerifyPlayerConfig` against the
 recoverable config backup. Keep normal player saves/mod configuration untouched
 and validate both bridge operation status and gameplay payloads. RimBridge is
 development tooling, not a dependency of Rimgate's player package.
+
+The live 1.7 smoke currently stops at synthetic input/screenshot timeouts
+([RG-Issue-002](docs/feature-work/issue-tracker.md#rg-issue-002)). Do not claim
+rendered assets, iris save/load or gate transit acceptance from startup alone.

@@ -150,8 +150,9 @@ go to `build-dotnet.log` (override with `-LogPath`); Unity logs go to
 `build-assetbundle.log`. Check the child exit code, log and expected outputs when
 diagnosing a failure. The scripts stop on failed tools or missing outputs.
 Both default build logs stay at the repository root and are gitignored, including
-when the scripts are invoked from another working directory. The isolated game's
-`Player.log` stays under its existing external `ToolsPath/evidence` directory.
+when the scripts are invoked from another working directory. The 1.6 game's redirected
+`Player.log` stays under `ToolsPath/evidence`. Waylith 1.7 uses its application
+`Logs/Player.log`; copy that log into external evidence after each test run.
 
 Assembly output is fixed to the selected version's `Mod/<version>/Assemblies`;
 the previous arbitrary `-ProjectPath` and `-ModAssemblyPath` parameters are
@@ -173,13 +174,13 @@ It restores the pinned local DocFX tool, verifies public mod references against
 `.assets/build-references.json`, and builds the latest configured RimWorld target
 using `Krafs.Rimworld.Ref`. A Steam/game installation, Workshop login and Unity
 editor are not required for this build. Restored DLLs stay in the ignored
-`.assets/references/` cache and are not published with the site or player mod.
+`.assets/references/<version>/` caches and are not published with the site or player mod.
 
 For an assembly-only build using the same portable references:
 
 ```powershell
 .\.assets\scripts\restore-build-references.ps1
-.\.assets\scripts\build-assembly.ps1 -UseReferenceAssemblies -SteamModPath .assets/references
+.\.assets\scripts\build-assembly.ps1 -UseReferenceAssemblies -SteamModPath .assets/references/1.6
 ```
 
 Ordinary assembly/release builds still use the installed reference paths described
@@ -229,20 +230,23 @@ source tree, with independent intermediates and outputs. Both retain assembly
 name `Rimgate` and existing save/type identities. Avoid cross-version source
 includes or project references; a change to 1.7 must not silently change 1.6.
 
-An experimental 1.7 assembly build requires an explicit Workshop
-`content` root containing Harmony, VEF/KCSG and DBH under their `1.7/Assemblies`
-folders. It uses pinned RimRef 1.7.5014-unstable for game signatures and the SDK's
+An experimental 1.7 assembly build accepts a restored public reference root or
+an explicit Workshop `content` root containing Harmony, VEF/KCSG and DBH under
+their `1.7/Assemblies` folders. It uses pinned RimRef 1.7.5014-unstable for game signatures and the SDK's
 normal .NET 10 references. It does not use the installed 1.6 game references:
 
 ```powershell
+.\.assets\scripts\restore-build-references.ps1 -RimWorldVersion 1.7
 .\.assets\scripts\build-assembly.ps1 -RimWorldVersion 1.7 -Experimental `
-  -SteamModPath 'D:\SteamLibrary\steamapps\workshop\content' -LogPath build-experimental-1.7.log
+  -SteamModPath .assets/references/1.7 -LogPath build-experimental-1.7.log
 ```
 
 Select packages with 1.7 assemblies matching the target being validated. The
-migration plan records the provisional dependency hashes used for initial
-compilation; actual 1.7 runtime validation and durable public dependency pins
-remain migration work. Outputs go to ignored
+manifest records commit URLs and SHA-256 for both versions. Restoration selects
+only the requested version and defaults to its own cache; unknown targets fail
+before writing files. CI compiles the experimental 1.7 project with those public
+inputs in addition to building the supported 1.6 documentation site. Runtime
+acceptance remains migration work. Outputs go to ignored
 `.assets/experimental/1.7/Assemblies/`. There is no `Mod/1.7` support declaration,
 experimental release/bundle switch or automatic DocFX target change. Default
 solution builds exclude 1.7; select its project or the command above explicitly.
@@ -320,129 +324,124 @@ not prove old saves survive. Keep concise evidence in the owning tracker entry o
 feature plan, including checks that could not be run. Guides retain the current
 usage/compatibility contract. Documentation changes need no game run.
 
-## Live 1.6 validation with RimBridge
+## Live validation with RimBridge
 
 [RimBridgeServer](https://github.com/pardeike/RimBridgeServer) and
-[GABS](https://github.com/pardeike/GABS) are verified development tools for live
-Rimgate checks. They remain separate from the player mod's dependencies and
-ordinary release builds. DecompilerServer is an optional upstream code-inspection
-tool; it is not needed or installed by this workflow.
+[GABS](https://github.com/pardeike/GABS) are development tools, separate from
+Rimgate's player dependencies. The active migration profile is experimental
+`rimgate17`. Startup and read-only bridge calls have been verified; the full
+1.7 smoke case is currently blocked by synthetic input/screenshot timeouts
+([RG-Issue-002](https://github.com/mrdav30/Rimgate/blob/main/docs/feature-work/issue-tracker.md#rg-issue-002)).
+This does not declare Rimgate 1.7-compatible. Historical 1.6 smoke evidence is in
+the completed hardening record; runtime checks must match the actual target.
 
 ### Prepare or refresh the isolated deployment
 
-Stop any running RimWorld instance, keep the selected Steam installation on
-RimWorld 1.6, then run from the repository:
+With all RimWorld instances stopped, install the matching 1.7 game, then run:
 
 ```powershell
-.\.assets\scripts\setup-rimbridge-dev.ps1
+.\.assets\scripts\setup-rimbridge-dev.ps1 -RimWorldVersion 1.7
 ```
 
+Ludeon provides 1.7 on Steam's `unstable` branch. Changing the branch is a user
+choice; the setup script does not change it. On November 24 the owner authorized
+that switch, yielding **1.7.5014 rev1195**. Keep Steam running during validation.
+The experimental RimRef pin must match the installed game build before staging.
+
 Overrides are `-GamePath`, `-SteamModPath` (Workshop `content`, above `294100`)
-and `-ToolsPath`. Defaults match the local D: Steam library and
-`%LOCALAPPDATA%/RimgateDev`. Start Steam before launching the game and keep it
-running during validation. Avoid a simultaneous normal-game session.
-The setup script:
+and `-ToolsPath`. Defaults use the D: Steam library and
+`%LOCALAPPDATA%/RimgateDev`. The script:
 
-1. Rejects a game installation outside 1.6 or any running RimWorld instance,
-   and refuses linked content inside a mod deployment before replacing it.
-   Backs up the actual normal-player `ModsConfig.xml` and `Prefs.xml` bytes in a
-   timestamped evidence directory and records their hashes/existence in
-   `player-config-baseline.json` before preparing the tools.
-2. Downloads the pinned release archives if missing and checks their SHA-256.
-   Extracted version-specific package directories are reusable installation caches.
-3. Builds the 1.6 Rimgate assembly against the selected game's references.
-4. Creates a private game view with copied player binaries, read-only-use
-   junctions to installed game data/runtime and required Workshop dependencies,
-   and independent copies of Rimgate and RimBridgeServer in its `Mods` folder.
-5. Writes the dedicated minimal mod list and GABS configuration, validates it,
-   and registers the user-level Codex MCP server `rimgate-dev` using GABS stdio.
+1. Checks the selected version, executable and 1.7 .NET 10 runtime layout; rejects
+   setup while either game executable is running. Backs up normal-player
+   `ModsConfig.xml` and `Prefs.xml` bytes/hashes before preparing the deployment.
+2. Downloads and verifies pinned GABS/RimBridge archives, then builds the selected
+   project against the installed dependency set. Use public reference restoration
+   for portable compile checks; it is not a runtime mod installer.
+3. Copies the 1.7 runtime's root files into `Game-1.7`, junctions `Data`, `Rendering`
+   and `vulkan` to the installed game, and links required Workshop dependencies.
+   These are mutable development views, not preserved installations.
+4. Creates an ignored `.assets/experimental/1.7/Mod` overlay using the retained
+   1.6 XML/bundle inputs, shared About/languages and new assembly. Only that test
+   package declares 1.7, with a 1.7-only LoadFolders entry; tracked player metadata
+   and 1.6 assets remain unchanged. The private copy is deployed under
+   `Game-1.7/Mods/Rimgate` alongside the bridge.
+5. Creates `Profile-1.7` and configures/registers GABS as `rimgate17`. Registration
+   selects this active profile; old 1.6 view/profile files are not removed. Do not
+   launch the old Unity view after its Steam-linked game data has moved to Waylith.
 
-The game view is `Game-1.6`, save/config data is `Profile-1.6`, and captures/logs
-are under `evidence`, all beneath `ToolsPath`. The ten active entries are Harmony,
-Core, the five DLC, Vanilla Expanded Framework, Rimgate and RimBridgeServer.
-Setup does not write the normal Steam `Mods/Rimgate` copy or player save/config
-directory. Verify configuration preservation after each live run as described
-below; the first adoption run detected a normal `Prefs.xml` change. Game data
-and Workshop dependencies are linked to mutable installed files and must match
-the selected 1.6 runtime during this transition. Run setup before a new validation
-cycle, especially after upstream updates. A future 1.7 setup is separate work;
-once validated, it becomes the active workflow while 1.6 source/content is frozen.
+The helper still accepts `-RimWorldVersion 1.6` for an actual 1.6 installation;
+its default stays 1.6 until public 1.7 acceptance. Use the explicit 1.7 argument
+for current migration work. Setup never writes the normal Steam `Mods/Rimgate`
+copy or player config/save directory. Its generated prefs use the exact lowercase
+`fullscreen` field required by the 1.7 XML loader.
 
-Pins verified on November 23, 2026:
+The minimal active list is Harmony, Core, five DLC, Vanilla Expanded Framework,
+Rimgate and RimBridgeServer. DBH remains absent for the initial runtime case;
+its assembly is a compile input for the optional integration.
+
+Pins verified on November 24, 2026:
 
 | Component | Version | Release archive SHA-256 |
 | --- | --- | --- |
 | GABS Windows x64 | `1.1.2` | `c0337277789162657bcc577ed6a559136f3c1b0c38e074ae7cf5cb1223b3a3d8` |
 | RimBridgeServer package | `2.5.0` | `4b31843ff94e74a99d740916cabae82a3c17a96b6b31b668ab348cd53976859c` |
 
-The package's **loaded 1.6 bridge and SDK are `2.3.0.0`**, not the active 1.7
-source/SDK described by upstream main. The live 1.6 connection exposed 128 tools.
-Discover schemas from the connected runtime before calling them or writing a
-companion. No Rimgate-specific companion or new runtime reference is needed for
-the smoke case below.
+The observed 1.7 bridge is **2.5.0.0**, SDK **2.0.0.0**, exposing **130 tools**.
+Discover schemas from the live runtime. The package's historical 1.6 payload
+reported different versions; package version alone does not identify the loaded SDK.
 
 ### Run the acceptance case through MCP
 
-Use the registered server's GABS tools:
+1. Use `games_list`, then `games_start` with `gameId: rimgate17`, `profile: dev`,
+   `timeout: 240`. A `started_bridge_pending` result means startup continues;
+   inspect status/connect instead of starting another process.
+2. Discover names with `games_tool_names` and inspect schemas with
+   `games_tool_detail`. If a hot configuration change makes detail lookup report
+   an unknown game despite a live connection, `games_tools` with a narrow `query`
+   exposes the live schemas. Fully qualified names without a redundant `gameId`
+   worked with `games_call_tool` in this session.
+3. Confirm `rimworld/get_mod_configuration_status`: private `configPath` and
+   Rimgate `rootDir`, matching loaded session, no version/dependency/configuration
+   issues. Confirm bridge/SDK state. GABS context reporting was `unknown` even on
+   1.7; verify OS process arguments and live profile paths independently.
+4. From the main menu, compile `.assets/scripts/rimbridge-smoke.lua` with
+   `rimbridge/compile_lua_file`, then run it with `rimbridge/run_lua_file` and a
+   240-second outer timeout. Supply the actual profile/deployment/evidence paths:
 
-1. `games_start` with `gameId: rimgate16`, `profile: dev`, `timeout: 240`.
-   `started_bridge_pending` means startup continues; use `games_status` and
-   `games_connect` instead of starting a second process.
-2. `games_tool_names` for `rimgate16`, then `games_tool_detail` for the needed
-   tools. Pass returned names unchanged to `games_call_tool`.
-3. Confirm `rimworld/get_mod_configuration_status`: correct isolated `configPath`
-   and Rimgate `rootDir`, matching loaded session, zero configuration/dependency
-   issues. Confirm the actual bridge/SDK with `rimbridge/get_bridge_status`.
-4. Start from the main menu; `rimworld/go_to_main_menu` returns there if needed.
-   Compile `.assets/scripts/rimbridge-smoke.lua` using `rimbridge/compile_lua_file`, then run it
-   with `rimbridge/run_lua_file`, allowing a 240-second outer call timeout.
-5. Check **both** the operation status and gameplay/script `success` payloads.
-   A completed handler can return `success: false`; a successful transport call
-   alone does not prove the action worked. Inspect the saved screenshot and
-   startup `Player.log` in addition to the bridge error journal.
-6. Stop the isolated game with `games_stop` after capturing results, then run:
+   ```json
+   {
+     "scriptPath": "F:/gamedevrepos/rimworld mods/Rimgate/.assets/scripts/rimbridge-smoke.lua",
+     "parameters": {
+       "configPath": "C:\\Users\\david\\AppData\\Local\\RimgateDev\\Profile-1.7\\Config\\ModsConfig.xml",
+       "modRoot": "C:\\Users\\david\\AppData\\Local\\RimgateDev\\Game-1.7\\Mods\\Rimgate",
+       "evidenceDirectory": "C:\\Users\\david\\AppData\\Local\\RimgateDev\\evidence\\1.7"
+     }
+   }
+   ```
+
+5. Check operation status **and** nested gameplay/script success. A completed
+   handler may report `success: false`. The 1.7 run currently stops at gate
+   selection; save/load, tick and rendered screenshot assertions have not passed.
+   Resolve the owning issue before accepting the case. Longer gate-transit,
+   optional-integration and old-save checks remain separate migration gates.
+6. Stop the private game with `games_stop`, then run:
 
    ```powershell
    .\.assets\scripts\setup-rimbridge-dev.ps1 -VerifyPlayerConfig
    ```
 
-   Use the same `-ToolsPath` override as setup, if any. A mismatch fails with the
-   original backup location. Review differences before restoring the file; do
-   not overwrite player edits made after the snapshot. Run this check before
-   another setup refresh records a new baseline.
+   Use the same ToolsPath override as setup. Review any mismatch against the
+   recoverable backup before restoring; do not overwrite concurrent player edits.
+   Run this check before another setup refresh replaces the recorded baseline.
 
-The older 1.6 payload does not implement GABS's newer launch-context reporting;
-on Windows, `contextDelivery` can therefore be `unknown`. Verify the process
-arguments and the live configuration paths above as independent delivery evidence.
-
-For default paths, the file-tool arguments are:
-
-```json
-{
-  "scriptPath": "F:/gamedevrepos/rimworld mods/Rimgate/.assets/scripts/rimbridge-smoke.lua",
-  "parameters": {
-    "configPath": "C:\\Users\\david\\AppData\\Local\\RimgateDev\\Profile-1.6\\Config\\ModsConfig.xml",
-    "modRoot": "C:\\Users\\david\\AppData\\Local\\RimgateDev\\Game-1.6\\Mods\\Rimgate",
-    "evidenceDirectory": "C:\\Users\\david\\AppData\\Local\\RimgateDev\\evidence"
-  }
-}
-```
-
-Replace paths for another checkout or `ToolsPath`. The Lua case rejects a
-different profile/deployment and an already-loaded game before creating its fresh
-test colony. It spawns a gate and DHD, claims the gate, adds an iris through its
-live gizmo, saves, removes the iris, and reloads. It asserts the same thing ID and
-inspect/address state were restored, advances exactly 120 ticks across 120
-frames, captures a screenshot and rejects errors in the bridge journal. It
-creates/replaces only the owned `Rimgate-bridge-smoke` save in the isolated profile.
-The profile uses English UI labels and dev mode for the iris gizmo.
-
-Selection-scoped gizmo IDs must be rediscovered after selection/state changes.
-Use `click_cell` for plain map selection; `open_context_menu` expects a selected
-pawn when issuing orders. Keep longer feature-specific cases separate: this
-smoke verifies bridge integration, asset rendering, UI mutation, tick control and
-save/load restoration. It does **not** validate gate transit, combat balance,
-every optional integration or multiplayer.
+Waylith's log is observed at
+`%USERPROFILE%/AppData/LocalLow/Ludeon Studios/RimWorld by Ludeon Studios/Logs/Player.log`.
+It is shared application output even with an isolated save-data argument. Copy it
+into the external evidence directory after shutdown, and inspect startup errors
+as well as the bridge journal: errors before bridge initialization can be absent
+from that journal. The 1.7 launch passes only `-savedatafolder=<profile>`; it does
+not reuse Unity's screen/log flags. Normal player-config backup checks still apply.
 
 ## Local packaging and review
 

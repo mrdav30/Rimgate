@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Prepares an isolated RimWorld 1.6/RimBridge development view or checks player config.
+Prepares an isolated version-owned RimWorld/RimBridge view or checks player config.
 .DESCRIPTION
 With RimWorld stopped, backs up normal ModsConfig/Prefs bytes, restores pinned
 GABS/RimBridge tools, builds Rimgate, refreshes private mod deployments and writes
@@ -8,21 +8,27 @@ the isolated profile/config. Registers the user-level rimgate-dev MCP server.
 Game data and required dependencies are junctions to the selected installation.
 Does not launch the game or change the Steam branch.
 .PARAMETER GamePath
-Installed 1.6 game root. Defaults to D:\SteamLibrary\steamapps\common\RimWorld.
+Installed game root matching RimWorldVersion. Defaults to D:\SteamLibrary\steamapps\common\RimWorld.
 Unused when VerifyPlayerConfig is selected.
 .PARAMETER SteamModPath
 Workshop content root above 294100. Defaults to the D: Steam library's
 workshop/content directory. Unused in verify mode.
 .PARAMETER ToolsPath
-Mutable development root for Game-1.6, Profile-1.6, tools, evidence and GABS
+Mutable development root for Game-<version>, Profile-<version>, tools, evidence and GABS
 configuration. Defaults to LOCALAPPDATA/RimgateDev. Use a fresh external root
 when selecting a different installation; existing junctions are not retargeted.
 .PARAMETER VerifyPlayerConfig
 Only compare normal config existence/hashes against ToolsPath's existing
 player-config-baseline.json. Does not refresh setup or restore changed files.
+.PARAMETER RimWorldVersion
+1.6 or experimental 1.7. Defaults to 1.6 until public 1.7 acceptance. The 1.7
+view uses RimWorld.exe and a private metadata overlay, with no support bump in Mod.
 .EXAMPLE
 .\.assets\scripts\setup-rimbridge-dev.ps1 -GamePath 'D:\SteamLibrary\steamapps\common\RimWorld' -ToolsPath 'C:\RimgateDev16'
 Prepares an isolated view of the installed 1.6 game and registers it with Codex.
+.EXAMPLE
+.\.assets\scripts\setup-rimbridge-dev.ps1 -RimWorldVersion 1.7
+Builds and stages the experimental 1.7 package against an installed Waylith game.
 .EXAMPLE
 .\.assets\scripts\setup-rimbridge-dev.ps1 -ToolsPath 'C:\RimgateDev16' -VerifyPlayerConfig
 After game shutdown, checks normal config against that view's backed-up baseline.
@@ -32,7 +38,9 @@ param (
     [string]$GamePath = 'D:\SteamLibrary\steamapps\common\RimWorld',
     [string]$SteamModPath = 'D:\SteamLibrary\steamapps\workshop\content',
     [string]$ToolsPath = (Join-Path $env:LOCALAPPDATA 'RimgateDev'),
-    [switch]$VerifyPlayerConfig
+    [switch]$VerifyPlayerConfig,
+    [ValidateSet('1.6', '1.7')]
+    [string]$RimWorldVersion = '1.6'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -51,8 +59,24 @@ if ($VerifyPlayerConfig) {
     return
 }
 $GamePath = (Resolve-Path -LiteralPath $GamePath).Path
-if ((Get-Content -LiteralPath (Join-Path $GamePath 'Version.txt') -Raw) -notmatch '^1\.6\.') {
-    throw 'This development profile requires a RimWorld 1.6 installation.'
+$gameVersion = (Get-Content -LiteralPath (Join-Path $GamePath 'Version.txt') -Raw).Trim()
+if ($gameVersion -notmatch ('^' + [regex]::Escape($RimWorldVersion) + '\.')) {
+    throw "This development profile requires a RimWorld $RimWorldVersion installation; found $gameVersion."
+}
+$experimental = $RimWorldVersion -eq '1.7'
+$executable = if ($experimental) { 'RimWorld.exe' } else { 'RimWorldWin64.exe' }
+$processName = [IO.Path]::GetFileNameWithoutExtension($executable)
+if (!(Test-Path -LiteralPath (Join-Path $GamePath $executable) -PathType Leaf)) {
+    throw "Missing game executable: $executable"
+}
+if ($experimental) {
+    $runtime = Get-Content -LiteralPath (Join-Path $GamePath 'RimWorld.runtimeconfig.json') -Raw | ConvertFrom-Json
+    if ($runtime.runtimeOptions.tfm -ne 'net10.0') { throw 'Expected the inspected .NET 10 Waylith runtime layout.' }
+    [xml]$project = Get-Content -LiteralPath (Join-Path $repoRoot 'Source/1.7/Rimgate/Rimgate.csproj') -Raw
+    $reference = $project.Project.ItemGroup.PackageReference | Where-Object Include -EQ 'Krafs.Rimworld.Ref'
+    if ([regex]::Match($reference.Version, '^\d+\.\d+\.\d+').Value -ne [regex]::Match($gameVersion, '^\d+\.\d+\.\d+').Value) {
+        throw 'The experimental RimRef pin must match the installed game build before staging.'
+    }
 }
 foreach ($protectedRoot in @($GamePath, $repoRoot)) {
     if ($ToolsPath.Equals($protectedRoot, [StringComparison]::OrdinalIgnoreCase) -or
@@ -60,8 +84,10 @@ foreach ($protectedRoot in @($GamePath, $repoRoot)) {
         throw 'ToolsPath must be outside the game installation and repository.'
     }
 }
-$privateGame = Join-Path $ToolsPath 'Game-1.6'
-if (Get-Process RimWorldWin64 -ErrorAction SilentlyContinue) {
+$privateGame = Join-Path $ToolsPath "Game-$RimWorldVersion"
+$profile = Join-Path $ToolsPath "Profile-$RimWorldVersion"
+$gameId = 'rimgate' + $RimWorldVersion.Replace('.', '')
+if (Get-Process RimWorldWin64, RimWorld -ErrorAction SilentlyContinue) {
     throw 'Stop RimWorld before refreshing the development deployment and taking the player-config backup.'
 }
 
@@ -91,7 +117,7 @@ function Ensure-Junction($Path, $Target) {
 }
 
 New-Item -ItemType Directory -Path $ToolsPath, $privateGame, (Join-Path $privateGame 'Mods'),
-    (Join-Path $ToolsPath 'Profile-1.6/Config'), (Join-Path $ToolsPath 'gabs'), (Join-Path $ToolsPath 'evidence') -Force | Out-Null
+    (Join-Path $profile 'Config'), (Join-Path $ToolsPath 'gabs'), (Join-Path $ToolsPath 'evidence') -Force | Out-Null
 $backupDirectory = Join-Path $ToolsPath ('evidence/player-config-' + (Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
 New-Item -ItemType Directory -Path $backupDirectory | Out-Null
 $normalConfig = Join-Path ([Environment]::GetFolderPath('UserProfile')) 'AppData/LocalLow/Ludeon Studios/RimWorld by Ludeon Studios/Config'
@@ -110,18 +136,55 @@ Install-ReleaseArchive 'GABS' 'v1.1.2' 'gabs-v1.1.2-windows-amd64.zip' 'c0337277
 Install-ReleaseArchive 'RimBridgeServer' 'v2.5.0' 'RimBridgeServer.zip' '4b31843ff94e74a99d740916cabae82a3c17a96b6b31b668ab348cd53976859c'
 $gabs = Join-Path $ToolsPath 'GABS-v1.1.2/gabs-v1.1.2-windows-amd64/gabs.exe'
 
-& (Join-Path $PSScriptRoot 'build-assembly.ps1') -RimWorldVersion 1.6 -RimWorldManagedPath (Join-Path $GamePath 'RimWorldWin64_Data/Managed') -SteamModPath $SteamModPath
-foreach ($file in @('RimWorldWin64.exe', 'UnityPlayer.dll', 'UnityCrashHandler64.exe', 'steam_appid.txt', 'Version.txt')) {
+$buildArgs = @{ RimWorldVersion = $RimWorldVersion; SteamModPath = $SteamModPath }
+if ($experimental) { $buildArgs.Experimental = $true }
+else { $buildArgs.RimWorldManagedPath = Join-Path $GamePath 'RimWorldWin64_Data/Managed' }
+& (Join-Path $PSScriptRoot 'build-assembly.ps1') @buildArgs
+$gameFiles = if ($experimental) { @(Get-ChildItem -LiteralPath $GamePath -File | Select-Object -ExpandProperty Name) }
+    else { @('RimWorldWin64.exe', 'UnityPlayer.dll', 'UnityCrashHandler64.exe', 'steam_appid.txt', 'Version.txt') }
+foreach ($file in $gameFiles) {
     Copy-Item -LiteralPath (Join-Path $GamePath $file) -Destination $privateGame -Force
 }
-foreach ($folder in @('Data', 'RimWorldWin64_Data', 'MonoBleedingEdge')) {
+$gameFolders = if ($experimental) { @('Data', 'Rendering', 'vulkan') } else { @('Data', 'RimWorldWin64_Data', 'MonoBleedingEdge') }
+foreach ($folder in $gameFolders) {
     Ensure-Junction (Join-Path $privateGame $folder) (Join-Path $GamePath $folder)
 }
 Ensure-Junction (Join-Path $privateGame 'Mods/Harmony') (Join-Path $SteamModPath '294100/2009463077')
 Ensure-Junction (Join-Path $privateGame 'Mods/VanillaExpandedFramework') (Join-Path $SteamModPath '294100/2023507013')
 
+$rimgateSource = Join-Path $repoRoot 'Mod'
+if ($experimental) {
+    $rimgateSource = Join-Path $repoRoot '.assets/experimental/1.7/Mod'
+    # Only the private test package declares 1.7 and reuses the retained XML/bundles.
+    if (Test-Path -LiteralPath $rimgateSource) {
+        if ((Get-Item -LiteralPath $rimgateSource).Attributes -band [IO.FileAttributes]::ReparsePoint -or
+            (Get-ChildItem -LiteralPath $rimgateSource -Recurse -Force | Where-Object { $_.Attributes -band [IO.FileAttributes]::ReparsePoint } | Select-Object -First 1)) {
+            throw 'Refusing to replace linked experimental package content.'
+        }
+        $expectedPackage = [IO.Path]::GetFullPath((Join-Path $repoRoot '.assets/experimental/1.7/Mod'))
+        if ([IO.Path]::GetFullPath($rimgateSource) -ne $expectedPackage) { throw 'Unexpected experimental package path.' }
+        Remove-Item -LiteralPath $rimgateSource -Recurse -Force
+    }
+    New-Item -ItemType Directory -Path (Join-Path $rimgateSource '1.7/Assemblies') -Force | Out-Null
+    foreach ($folder in @('About', 'Languages')) {
+        Copy-Item -LiteralPath (Join-Path $repoRoot "Mod/$folder") -Destination $rimgateSource -Recurse
+    }
+    foreach ($folder in @('Defs', 'Patches', 'AssetBundles')) {
+        Copy-Item -LiteralPath (Join-Path $repoRoot "Mod/1.6/$folder") -Destination (Join-Path $rimgateSource '1.7') -Recurse
+    }
+    foreach ($file in @('Rimgate.dll', 'Rimgate.xml')) {
+        Copy-Item -LiteralPath (Join-Path $repoRoot ".assets/experimental/1.7/Assemblies/$file") -Destination (Join-Path $rimgateSource '1.7/Assemblies')
+    }
+    [xml]$about = Get-Content -LiteralPath (Join-Path $rimgateSource 'About/About.xml') -Raw
+    $supportedVersions = $about.SelectSingleNode('/ModMetaData/supportedVersions')
+    $supportedVersions.RemoveAll()
+    $versionNode = $about.CreateElement('li'); $versionNode.InnerText = '1.7'
+    $null = $supportedVersions.AppendChild($versionNode)
+    $about.Save((Join-Path $rimgateSource 'About/About.xml'))
+    Set-Content -LiteralPath (Join-Path $rimgateSource 'LoadFolders.xml') -Encoding UTF8 -Value '<loadFolders><v1.7><li>/</li><li>1.7</li></v1.7></loadFolders>'
+}
 foreach ($deployment in @(
-    @{ Name = 'Rimgate'; Source = (Join-Path $repoRoot 'Mod') },
+    @{ Name = 'Rimgate'; Source = $rimgateSource },
     @{ Name = 'RimBridgeServer'; Source = (Join-Path $ToolsPath 'RimBridgeServer-v2.5.0/RimBridgeServer') }
 )) {
     $destination = [IO.Path]::GetFullPath((Join-Path $privateGame "Mods/$($deployment.Name)"))
@@ -141,33 +204,34 @@ foreach ($deployment in @(
     Copy-Item -LiteralPath $deployment.Source -Destination $destination -Recurse
 }
 
-$profile = Join-Path $ToolsPath 'Profile-1.6'
 $mods = @('brrainz.harmony', 'ludeon.rimworld', 'ludeon.rimworld.royalty', 'ludeon.rimworld.ideology',
     'ludeon.rimworld.biotech', 'ludeon.rimworld.anomaly', 'ludeon.rimworld.odyssey',
     'oskarpotocki.vanillafactionsexpanded.core', 'mrdav30.rimgate', 'brrainz.rimbridgeserver')
 $modList = ($mods | ForEach-Object { "<li>$_</li>" }) -join ''
-Set-Content -LiteralPath (Join-Path $profile 'Config/ModsConfig.xml') -Encoding UTF8 -Value "<ModsConfigData><version>1.6</version><activeMods>$modList</activeMods><knownExpansions /></ModsConfigData>"
+Set-Content -LiteralPath (Join-Path $profile 'Config/ModsConfig.xml') -Encoding UTF8 -Value "<ModsConfigData><version>$RimWorldVersion</version><activeMods>$modList</activeMods><knownExpansions /></ModsConfigData>"
 if (!(Test-Path -LiteralPath (Join-Path $profile 'Config/Prefs.xml'))) {
-    Set-Content -LiteralPath (Join-Path $profile 'Config/Prefs.xml') -Encoding UTF8 -Value '<PrefsData><devMode>true</devMode><runInBackground>true</runInBackground><fullScreen>false</fullScreen><langFolderName>English</langFolderName><volumeGame>0</volumeGame><volumeMusic>0</volumeMusic></PrefsData>'
+    Set-Content -LiteralPath (Join-Path $profile 'Config/Prefs.xml') -Encoding UTF8 -Value '<PrefsData><devMode>true</devMode><runInBackground>true</runInBackground><fullscreen>false</fullscreen><langFolderName>English</langFolderName><volumeGame>0</volumeGame><volumeMusic>0</volumeMusic></PrefsData>'
 }
+$launchArgs = if ($experimental) { @("-savedatafolder=$profile") }
+    else { @("-savedatafolder=$profile", '-screen-fullscreen', '0', '-screen-width', '1280', '-screen-height', '720', '-logFile', (Join-Path $ToolsPath 'evidence/Player.log')) }
 $config = @{
     version = '1.0'
     toolNormalization = @{ enableOpenAINormalization = $true; maxToolNameLength = 64; preserveOriginalName = $true }
     stripOutputSchema = $true
     timeouts = @{ startup = @{ processStartSeconds = 10; gabpConnectSeconds = 300 } }
-    games = @{ rimgate16 = @{
-        id = 'rimgate16'; name = 'Rimgate isolated RimWorld 1.6'; launchMode = 'DirectPath'
-        target = (Join-Path $privateGame 'RimWorldWin64.exe'); workingDir = $privateGame
-        stopProcessName = 'RimWorldWin64'; defaultProfile = 'dev'
+    games = @{ $gameId = @{
+        id = $gameId; name = "Rimgate isolated RimWorld $RimWorldVersion"; launchMode = 'DirectPath'
+        target = (Join-Path $privateGame $executable); workingDir = $privateGame
+        stopProcessName = $processName; defaultProfile = 'dev'
         profiles = @{ dev = @{
             description = 'Isolated Rimgate development saves and minimal mod list'
-            args = @("-savedatafolder=$profile", '-screen-fullscreen', '0', '-screen-width', '1280', '-screen-height', '720', '-logFile', (Join-Path $ToolsPath 'evidence/Player.log'))
+            args = @($launchArgs)
         } }
     } }
 }
 [IO.File]::WriteAllText((Join-Path $ToolsPath 'gabs/config.json'), ($config | ConvertTo-Json -Depth 10), [Text.UTF8Encoding]::new($false))
-& $gabs games doctor rimgate16 --configDir (Join-Path $ToolsPath 'gabs')
+& $gabs games doctor $gameId --configDir (Join-Path $ToolsPath 'gabs')
 if ($LASTEXITCODE -ne 0) { throw 'GABS configuration validation failed.' }
 & codex mcp add rimgate-dev -- $gabs server --configDir (Join-Path $ToolsPath 'gabs')
 if ($LASTEXITCODE -ne 0) { throw 'Codex MCP registration failed.' }
-Write-Host "Ready: use the rimgate-dev MCP server and gameId rimgate16. Isolated data: $profile"
+Write-Host "Ready: use the rimgate-dev MCP server and gameId $gameId. Isolated data: $profile"

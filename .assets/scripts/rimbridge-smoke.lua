@@ -1,4 +1,4 @@
--- Run from the isolated rimgate16 main menu; parameters must identify that profile.
+-- Run from the isolated dev main menu; parameters must identify that version's profile.
 local config = rb.call("rimworld/get_mod_configuration_status", {})
 rb.assert(config.success and config.result.success, "Mod configuration query failed.")
 rb.assert(config.result.configPath == params.configPath, "Refusing to modify a different save-data profile.")

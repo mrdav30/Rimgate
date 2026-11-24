@@ -26,6 +26,11 @@ jobs:
       - name: Build library, guides and API reference
         shell: pwsh
         run: ./.assets/scripts/build-docs.ps1
+      - name: Compile experimental RimWorld 1.7 project
+        shell: pwsh
+        run: |
+          ./.assets/scripts/restore-build-references.ps1 -RimWorldVersion 1.7
+          ./.assets/scripts/build-assembly.ps1 -RimWorldVersion 1.7 -Experimental -SteamModPath .assets/references/1.7
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5

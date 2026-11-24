@@ -34,8 +34,11 @@ tracking records to the DocFX content or navigation.
 source/content freeze milestone and remaining runtime, asset, dependency and save
 gates. Active development will follow accepted 1.7; the existing local snapshot
 is temporary migration insurance without maintained capture/restore tooling.
-Only 1.6 remains declared supported; 1.7 assembly outputs are opt-in and stay
-outside the player package. Live 1.7 validation has not started.
+Only 1.6 remains declared supported; 1.7 outputs and metadata stay in a private
+test package. Licensed 1.7 startup, profile isolation and read-only bridge calls
+now work; a fresh test colony spawns the gate/DHD. Synthetic selection/capture
+timeouts block further smoke acceptance in [RG-Issue-002](issue-tracker.md#rg-issue-002).
+Public dependency restoration and CI also compile the experimental 1.7 project.
 
 ## Deferred work
 

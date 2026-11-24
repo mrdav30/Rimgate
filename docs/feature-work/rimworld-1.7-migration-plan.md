@@ -2,8 +2,8 @@
 
 - **Status:** In progress. Versioned source split and experimental 1.7 compilation
   implemented; the existing local snapshot is temporary migration insurance.
-  Live 1.7 validation and
-  the 1.6 freeze/support milestone remain pending.
+  Initial live 1.7 startup/profile checks pass; gameplay smoke acceptance is open
+  in [RG-Issue-002](issue-tracker.md#rg-issue-002). The 1.6 freeze/support milestone remains pending.
 - **Created:** November 23, 2026. **Scope reconciled:** November 24, 2026.
 - **Planning baseline:** `14a15f6` (feature-work tracking); clean worktree before
   this plan. Current playable/configured target remains RimWorld 1.6.
@@ -18,10 +18,11 @@ while freezing the accepted 1.6 implementation and its version-owned content in 
 Preserve gameplay, def names, saved keys, runtime namespaces and object ownership
 unless a specific migration decision and its acceptance evidence require change.
 
-This plan authorizes no support declaration by itself. The current implementation
-scope preserves the accepted 1.6 source/content and splits build ownership, with minimal
-1.7 compile adjustments. It does not change Steam beta selection, player config,
-the existing isolated deployment, asset pipeline or shipped support metadata. Workshop publication,
+This plan authorizes no support declaration by itself. Current work preserves
+accepted 1.6 source/content and brings up a private experimental 1.7 package.
+The owner explicitly authorized changing Steam to `unstable` on November 24.
+Player configuration, the asset builder and shipped support metadata remain
+unchanged. Workshop publication,
 unrelated gameplay redesign and broad API prose enrichment are outside scope.
 
 ## Framework decision and evidence
@@ -106,10 +107,12 @@ at the baseline; version assets/tooling only where their contracts diverge.
 
 - Retain the accepted 1.6 source/content, four baseline bundle hashes and
   tool/reference pins in the revision record. Current local
-  `Version.txt` reports **1.6.4871 rev590**; no 1.7 installation was inspected here.
-- Obtain an independent licensed 1.7 installation and record its executable,
+  pre-migration `Version.txt` reported **1.6.4871 rev590**. The current authorized
+  `unstable` installation is **1.7.5014 rev1195**, inspected November 24.
+- Use a licensed 1.7 installation and record its executable,
   runtime configuration, game assemblies/build and dependency versions. Do not
-  silently switch the player's current Steam branch to obtain it.
+  silently switch the player's current Steam branch to obtain it; the November
+  24 switch was explicitly authorized.
 - The original `Game-1.6` dev view uses junctions to live game data/runtime and
   Workshop dependencies. The existing independent local snapshot is retained
   only as transition insurance; maintaining a frozen 1.6 runtime is not a gate.
@@ -381,3 +384,78 @@ supported 1.6 library/DocFX build pass; builds report zero warnings/errors and
 generated-site checks pass. All 8,678 local snapshot files and its manifest remain
 unchanged. The staged index, prior working edits, gameplay source, bundles, Steam
 metadata and player configuration are preserved. No game or setup refresh ran.
+
+## November 24 runtime bring-up and portable 1.7 builds
+
+Base revision: `6c0eab2`, clean worktree before this step. The owner authorized
+switching the Steam branch after confirming no independent 1.7 copy was present.
+Ludeon's documented public testing route is `unstable`; Steam completed the
+download as build **26793372**, version **1.7.5014 rev1195**. The old 1.6 snapshot
+remains untouched migration insurance. No public support declaration was added.
+
+### Implemented and observed
+
+- Added four public 1.7 compile inputs to `.assets/build-references.json`, using
+  immutable commit URLs and SHA-256: Harmony `dc540c7e2674f3c03dc938fb0b33fbe60cfba2fa`,
+  VEF/KCSG `090437424d981b0a130c819dee27b174aa30633e`, DBH
+  `96ec4b51efaf9ef4baa98aa832a8078be09d3f45`. All existing 1.6 pins are unchanged.
+  Restoration selects the requested version into `.assets/references/<version>`;
+  the documentation workflow now also compiles experimental 1.7 without Steam.
+- Version-aware setup inspects the installed build before writing a deployment.
+  The 1.7 view copies the self-contained runtime's root files and junctions
+  `Data`, `Rendering` and `vulkan`. `RimWorld.runtimeconfig.json` confirms
+  `net10.0` and runtime **10.0.15-waylithclr.dev**. The private executable is
+  `Game-1.7/RimWorld.exe`; the only launch argument is
+  `-savedatafolder=<ToolsPath>/Profile-1.7`.
+- The actual `EarlyPrefs.PrefsFilePath`, `GenFilePaths.SaveDataFolderPath` and
+  cache override read `savedatafolder`. Setup's generated XML now uses the exact
+  lowercase `fullscreen` field. An initial case-mismatch error was corrected in
+  the private prefs and setup template; the clean restart has zero ERROR headers.
+- The private mod overlay reuses 1.6 XML/bundle bytes, shared About/languages and
+  the new assembly. Only this ignored overlay declares/loads 1.7. Source-owned
+  `Mod/About/About.xml`, `Mod/LoadFolders.xml`, 1.6 source and baseline bundles
+  remain unchanged. No Unity rebuild or new asset pipeline was introduced.
+- Installed 1.7 VEF remains the earlier `8557af77...` binary recorded above;
+  the public pinned VEF binary is
+  `d3559813de4e3f91ad9862d756ca2f01548c7bf8e5f01fdc5afadd7fdf485fd9`.
+  Builds with both sets pass; they are distinct compile/runtime input records,
+  not an assertion that the binaries are identical. Runtime acceptance of the
+  public dependency set remains separate from its CI compilation.
+- The real `PawnInventoryOption/<GenerateThings>d__6.MoveNext` contains one call
+  to `ThingMaker.MakeThing(ThingDef, ThingDef)`, matching the transpiler's expected
+  signature/pattern. No Rimgate Harmony startup error appears in the clean log.
+- GABS **1.1.2** connects to bridge **2.5.0.0**, SDK **2.0.0.0**, with **130 tools**.
+  All ten configured mods are loaded from the private view, with zero version,
+  dependency, ordering or session-mismatch issues. DBH is absent at runtime.
+  Context reporting is still `unknown`; OS arguments plus live config/mod paths
+  independently verify the selected profile. After hot configuration reload,
+  single-tool detail lookup inconsistently reports an unknown game; filtered
+  `games_tools` exposes schemas and fully qualified `games_call_tool` names
+  without an extra gameId successfully invoke them. No upstream fix is claimed.
+- The Lua file compiles and starts a fresh colony, spawning a real Dwarfgate and
+  DHD. It then fails at synthetic selection; direct selection and screenshot
+  attempts also time out. Detailed reproduction/next control live solely in
+  [RG-Issue-002](issue-tracker.md#rg-issue-002). No save/load, tick, rendered asset,
+  transit or broad optional-integration acceptance is claimed.
+
+Computer Use was stopped with the physical Escape key before the native-window
+activation control. All UI automation stopped and the private game was gracefully
+terminated. Setup's player-config verification passed, and a separate byte-backed
+comparison confirmed all **125** normal config files unchanged. The runtime's
+shared application log is preserved privately at
+`%LOCALAPPDATA%/RimgateDev/evidence/1.7/startup-and-smoke.log`; the isolated cache
+and saves use Profile-1.7, but Waylith's Player.log uses the normal application
+`Logs` folder. Native Vulkan layer warnings were observed without startup errors.
+
+Resume at the owning input/capture investigation, then rerun the unchanged smoke
+assertions and continue the complete gate-transit/asset/save matrix. The test
+package, active GABS configuration and experimental CI compile are preparation;
+they do not freeze 1.6 or satisfy the public 1.7 support gates.
+
+Local validation passed for the public-reference 1.7 build, supported 1.6
+library/DocFX build and generated-site checks, with zero build warnings/errors.
+PowerShell syntax/help, unknown-target and corrupt-cache rejection, pre-write
+game/reference-pin guards, skill validation and 43 local links/anchors passed.
+The Git index and HEAD are unchanged; 1.6 source/content, prior dependency pins,
+normal configuration and all 8,678 insurance-snapshot files remain intact.
+The added CI commands were exercised locally; no workflow was pushed or run remotely.

@@ -6,8 +6,9 @@ Source of truth: `Mod/1.6/Patches/` and `Mod/About/About.xml`.
 
 ## At a Glance
 
-- RimWorld `1.6` is the only declared and configured build target. Version
-  selection in the scripts does not establish `1.7` compatibility.
+- RimWorld `1.6` is the only declared supported target. Experimental `1.7`
+  compilation and private runtime bring-up do not establish gameplay compatibility;
+  its input/capture acceptance issue remains open in the migration tracker.
 - `Integrated` below means integration code/patches exist; it does not identify
   a recently tested game build or dependency combination.
 - Rimgate has required dependencies that must be present for the mod to load.

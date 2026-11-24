@@ -13,7 +13,7 @@ Major.minor game target. Defaults to supported 1.6; 1.7 requires Experimental.
 Installed 1.6 RimWorldWin64_Data/Managed directory. Overrides the project's
 sibling game-data default. Omit for portable references and experimental 1.7.
 .PARAMETER SteamModPath
-Workshop content root, above 294100, or the restored .assets/references root.
+Workshop content root, above 294100, or the restored .assets/references/<version> root.
 Required for experimental 1.7; use matching packages with 1.7 dependency folders.
 Supported 1.6 otherwise uses the project's default Steam library.
 .PARAMETER UseReferenceAssemblies
@@ -25,7 +25,7 @@ support, modify player metadata or enable experimental asset/release builds.
 .PARAMETER LogPath
 Build log path relative to the repository root. Defaults to build-dotnet.log.
 .EXAMPLE
-.\.assets\scripts\build-assembly.ps1 -UseReferenceAssemblies -SteamModPath .assets/references
+.\.assets\scripts\build-assembly.ps1 -UseReferenceAssemblies -SteamModPath .assets/references/1.6
 Builds 1.6 with public references after running restore-build-references.ps1.
 .EXAMPLE
 .\.assets\scripts\build-assembly.ps1 -RimWorldVersion 1.7 -Experimental -SteamModPath 'D:\SteamLibrary\steamapps\workshop\content'

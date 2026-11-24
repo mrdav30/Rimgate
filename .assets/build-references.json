@@ -38,5 +38,25 @@
     "path": "294100/2023507013/1.6/Assemblies/System.Buffers.dll",
     "url": "https://raw.githubusercontent.com/Vanilla-Expanded/VanillaExpandedFramework/090437424d981b0a130c819dee27b174aa30633e/1.6/Assemblies/System.Buffers.dll",
     "sha256": "2d78d770c9cb997199154ae8c018b9f1d1efbc86729f7264dde6dbad2a12cac3"
+  },
+  {
+    "path": "294100/2009463077/1.7/Assemblies/0Harmony.dll",
+    "url": "https://raw.githubusercontent.com/pardeike/HarmonyRimWorld/dc540c7e2674f3c03dc938fb0b33fbe60cfba2fa/1.7/Assemblies/0Harmony.dll",
+    "sha256": "7252fbe77bc96fcfb5e6aa446a4957f4547de312d889046fe3ec7d15f7f0fcf5"
+  },
+  {
+    "path": "294100/2023507013/1.7/Assemblies/VEF.dll",
+    "url": "https://raw.githubusercontent.com/Vanilla-Expanded/VanillaExpandedFramework/090437424d981b0a130c819dee27b174aa30633e/1.7/Assemblies/VEF.dll",
+    "sha256": "d3559813de4e3f91ad9862d756ca2f01548c7bf8e5f01fdc5afadd7fdf485fd9"
+  },
+  {
+    "path": "294100/2023507013/1.7/Assemblies/KCSG.dll",
+    "url": "https://raw.githubusercontent.com/Vanilla-Expanded/VanillaExpandedFramework/090437424d981b0a130c819dee27b174aa30633e/1.7/Assemblies/KCSG.dll",
+    "sha256": "aa61be424b21d1a2a47bf414cac0746a3ffcf1930cf71983ebb742cd64e3fab9"
+  },
+  {
+    "path": "294100/836308268/1.7/Assemblies/BadHygiene.dll",
+    "url": "https://raw.githubusercontent.com/Dubwise56/Dubs-Bad-Hygiene/96ec4b51efaf9ef4baa98aa832a8078be09d3f45/1.7/Assemblies/BadHygiene.dll",
+    "sha256": "475ee45786db312118e88d5f060da9cb8d45ef9ff3b041c26c85d0d3ed3e7b0b"
   }
 ]

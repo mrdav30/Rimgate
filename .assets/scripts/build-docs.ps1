@@ -16,7 +16,7 @@ $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 [xml]$about = Get-Content -LiteralPath (Join-Path $repoRoot 'Mod/About/About.xml') -Raw
 $version = ($about.ModMetaData.supportedVersions.li | Sort-Object { [version]$_ } -Descending | Select-Object -First 1)
 $target = Get-RimgateBuildTarget -RimWorldVersion $version
-$referenceRoot = Join-Path $repoRoot '.assets/references'
+$referenceRoot = Join-Path $repoRoot ".assets/references/$version"
 $generatedRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'docs/obj'))
 if (!$generatedRoot.StartsWith((Join-Path $repoRoot 'docs') + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
     throw "Generated documentation path escapes docs: $generatedRoot"
@@ -29,7 +29,7 @@ if (Test-Path -LiteralPath $generatedRoot) {
     Remove-Item -LiteralPath $generatedRoot -Recurse -Force
 }
 
-& (Join-Path $PSScriptRoot 'restore-build-references.ps1') -Destination $referenceRoot
+& (Join-Path $PSScriptRoot 'restore-build-references.ps1') -RimWorldVersion $version -Destination $referenceRoot
 & (Join-Path $PSScriptRoot 'build-assembly.ps1') -RimWorldVersion $version -UseReferenceAssemblies -SteamModPath $referenceRoot
 
 Push-Location $repoRoot

@@ -24,8 +24,11 @@ it has not been published as a mod release. Do not infer Workshop distribution.
 - Live runtime validation: the same guide's RimBridge workflow,
   [setup-rimbridge-dev.ps1](../../../.assets/scripts/setup-rimbridge-dev.ps1) and
   [rimbridge-smoke.lua](../../../.assets/scripts/rimbridge-smoke.lua). Use the isolated
-  `rimgate16` profile; discover the installed bridge's schemas rather than
-  assuming current upstream examples match its frozen 1.6 payload.
+  experimental `rimgate17` profile after setup with `-RimWorldVersion 1.7`;
+  discover the installed bridge's schemas rather than assuming upstream examples
+  match the loaded SDK. The 1.7 smoke is blocked by input/capture timeouts in
+  [RG-Issue-002](../../../docs/feature-work/issue-tracker.md#rg-issue-002); startup
+  and read-only calls do not establish gameplay or rendered-asset acceptance.
 - Required dependencies and optional patches:
   [Compatibility Matrix](../../../docs/guides/compatibility-matrix.md), checked against
   Mod/About/About.xml and the affected patch/C# code.
@@ -71,6 +74,9 @@ Only assembly builds accept `-Experimental -RimWorldVersion 1.7`, with explicit
 matching 1.7 dependency paths and ignored output outside Mod. Normal release,
 asset and documentation builds still select only supported 1.6. Keep metadata
 support bumps and asset-pipeline changes behind actual runtime evidence.
+Restore portable dependencies with `restore-build-references.ps1 -RimWorldVersion
+<version>` into separate `.assets/references/<version>/` caches. CI compiles the
+experimental 1.7 project independently; shipped docs still follow supported 1.6.
 Preserve 1.6 source/content while working in 1.7; the migration plan owns its
 freeze milestone and remaining acceptance work.
 

@@ -7,7 +7,7 @@ gameplay, persistence, compatibility, documentation and tooling. Feature scope
 belongs in the [overview and owning plans](feature-work-overview.md); measured
 performance signals belong in the [performance backlog](performance-signal-backlog.md).
 
-- IDs use `RG-Issue-NNN`. The next available ID is **RG-Issue-002**. Assign at
+- IDs use `RG-Issue-NNN`. The next available ID is **RG-Issue-003**. Assign at
   intake, never reuse an ID, and check this file's history before repairing the
   counter. Keep an explicit `rg-issue-nnn` anchor through closure or compaction.
 - Record discovery date/revision, affected owners, impact, status/priority,
@@ -63,13 +63,54 @@ performance signals belong in the [performance backlog](performance-signal-backl
   This verified the guard and those runs; the original cause remains unknown.
 - **Next action / revisit:** Investigate on recurrence or explicit
   prioritization. With normal RimWorld stopped, use the contributor guide's
-  [isolated workflow](../guides/developer-and-contributor-notes.md#live-16-validation-with-rimbridge)
+  [isolated workflow](../guides/developer-and-contributor-notes.md#live-validation-with-rimbridge)
   to capture a byte-backed baseline, launch the game once, confirm live profile
   and process arguments, stop it, then verify config preservation. On a mismatch,
   retain the before/after XML, game/Steam/bridge context and process timeline;
   compare the fields before selecting a bounded control. Review differences
   before restoration so concurrent player edits are preserved. A passing replay
   does not resolve the original observation.
+
+<a id="rg-issue-002"></a>
+
+### RG-Issue-002 - Waylith bridge synthetic selection and capture time out
+
+- **Status / priority:** Observed; cause unconfirmed / P2. Blocks acceptance of
+  the experimental 1.7 gameplay smoke; no Rimgate runtime fix is inferred.
+- **Discovered / revision:** November 24, 2026, migration work based on `6c0eab2`.
+  Related [migration record](rimworld-1.7-migration-plan.md#november-24-runtime-bring-up-and-portable-17-builds).
+- **Owners / context:** Windows; Steam `unstable`, RimWorld **1.7.5014 rev1195**,
+  custom .NET **10.0.15-waylithclr.dev**, GABS **1.1.2**, bridge **2.5.0.0**,
+  SDK **2.0.0.0**, 130 tools. Isolated `Profile-1.7`, `Game-1.7` private overlay;
+  ten active entries: Harmony, Core, five DLC, VEF, Rimgate and RimBridge.
+  No DBH runtime mod. Config/session match with zero dependency/version issues.
+- **Reproduction / expected:** Run the guide's isolated setup and the guarded
+  `.assets/scripts/rimbridge-smoke.lua` from the main menu. A fresh debug colony
+  reaches visual readiness, spawns the Dwarfgate at `(110,130)` and DHD at
+  `(110,134)`, and jumps the camera. `click_cell` should select the gate.
+- **Observed:** The script halts at `Gate selection failed`, operation
+  `op_a6aff743a4a0490d82c2877cb1b81156`. A direct retry times out after 2,000 ms,
+  with empty selection before/after. Read-only cell inspection confirms a live
+  `Rimgate.Building_Gate` at the target; UI state has no blocking windows or world
+  view. A separate `take_screenshot` times out after approximately ten seconds
+  without writing the expected PNG. The bridge reports completed operations with
+  failed gameplay payloads. Its error journal is empty.
+  Bridge status reports essential, 58 optional and six late-input hooks applied
+  without failures; that report does not establish that queued input was processed.
+- **Evidence / limits:** Clean restart log has zero ERROR headers; native Vulkan
+  layer warnings are present. Private log copy:
+  `%LOCALAPPDATA%/RimgateDev/evidence/1.7/startup-and-smoke.log`. Save/load, exact
+  ticks, gate transit and rendered-asset checks were not reached. Root cause may
+  involve frame/foreground handling or bridge/Waylith compatibility; neither was
+  established. Computer Use was stopped with Escape before the window-activation
+  control could run. The private game was stopped; all 125 normal config files
+  matched their byte-backed pre-launch hashes.
+- **Next action:** With permission to resume UI work, compare the same bridge
+  click/capture with the native game window active and occluded, recording frame
+  progress and original payloads. If foreground does not distinguish it, inspect
+  the exact released bridge's input/capture hooks against this runtime. Keep the
+  investigation bounded; do not change Rimgate gameplay or weaken smoke assertions
+  merely to obtain a passing automation result.
 
 ## Closed issues
 
