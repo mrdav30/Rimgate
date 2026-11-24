@@ -93,7 +93,10 @@ the experimental reference pin. Only the private test package declares 1.7;
 the player package still declares 1.6. The CI workflow also compiles experimental
 1.7 using pinned public dependencies; compilation is not runtime acceptance.
 The contributor guide owns setup, tool discovery and the
-`.assets/scripts/rimbridge-smoke.lua` acceptance case. After shutdown, run
+`.assets/scripts/rimbridge-smoke.lua` acceptance case. For the 1.7 asset pass,
+setup also deploys the development-only `rimgate/asset_report` companion outside
+the player mod; run `.assets/scripts/rimbridge-assets-1.7.lua` after the smoke
+case using the contributor guide. After shutdown, run
 `.assets/scripts/setup-rimbridge-dev.ps1 -VerifyPlayerConfig` against the
 recoverable config backup. Keep normal player saves/mod configuration untouched
 and validate both bridge operation status and gameplay payloads. RimBridge is

@@ -361,7 +361,12 @@ and `-ToolsPath`. Defaults use the D: Steam library and
    for portable compile checks; it is not a runtime mod installer.
 3. Copies the 1.7 runtime's root files into `Game-1.7`, junctions `Data`, `Rendering`
    and `vulkan` to the installed game, and links required Workshop dependencies.
-   These are mutable development views, not preserved installations.
+   These are mutable development views, not preserved installations. For 1.7,
+   also builds the SDK 2.0.0 development asset probe into
+   `Game-1.7/BridgeTools/Rimgate/` and generates `asset-manifest.json` from
+   `AssetsRaw`. Its source project is under `.assets/tools/RimgateAssetProbe/`;
+   it references the actual installed game. Only its own DLL/deps file and
+   manifest are deployed there, outside the Rimgate player package.
 4. Creates an ignored `.assets/experimental/1.7/Mod` overlay using the retained
    1.6 XML/bundle inputs, shared About/languages and new assembly. Only that test
    package declares 1.7, with a 1.7-only LoadFolders entry; tracked player metadata
@@ -449,6 +454,43 @@ from that journal. The 1.7 launch passes `-savedatafolder=<profile>`, `-NoWindow
 and `-WindowSize=1280,720`; it does not reuse Unity's screen/log flags. Keep
 background checks on this hidden graphics profile and coordinate any foreground
 validation with the user. Normal player-config backup checks still apply.
+
+### Verify the experimental 1.7 assets
+
+After the smoke case creates `Rimgate-bridge-smoke.rws`, compile and run
+[`.assets/scripts/rimbridge-assets-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-assets-1.7.lua)
+through the same Lua tools and with the same three path parameters. Use an outer
+timeout of 180 seconds and inspect both script and nested gameplay results.
+The case reloads that owned save, reveals its map, spawns/claims a Vanometric
+power cell at `(105,130)` outside the gate footprint, waits for power, and orders
+a real colonist to close and reopen the iris. It captures both states and
+requires a clean bridge error journal. It does not overwrite the smoke save;
+reruns reload it to reset the fixture. An obstructed map or failed pawn job must
+be investigated as a fixture/gameplay failure, not bypassed with a state mutation.
+Keep this case on the isolated English profile, whose labels it asserts.
+
+Setup deploys the read-only `rimgate/asset_report` companion tool for this case.
+It reads the generated manifest, resolves each texture/audio object directly from
+Rimgate's loaded bundles, checks texture dimensions and clip metadata, and checks
+that normal `ContentFinder` lookup returns the same objects. It also inspects
+`RimgateTex` materials/shaders and selected gate command icons. An unselected
+menu report can check the inventory, but does not validate gate commands; the Lua
+case explicitly requires an equipped selected gate and its real iris control.
+Discover the installed schema before calling the tool directly.
+
+The red X glyphs on the developer-only **Add/remove iris** and **Force close**
+commands are inherited null-icon defaults in both 1.6 and 1.7. They are separate
+from the player's **Close iris/Open iris** command, which must resolve its real
+`RGIris_Close`/`RGIris_Open` textures. A nonnull bad texture is still a failure.
+Do not infer a bundle-loading defect from an intentionally unassigned dev icon.
+
+This check establishes asset names, ownership, loading and the rendered states
+exercised by the scenario. It does not compare raw files with decoded bundle
+bytes or establish visual fidelity for every asset. The profile is muted; valid
+clip metadata does not prove audible playback. Active gate/DHD effects, other
+rotations, audio playback and transit belong to the remaining migration checks.
+The retained 1.6 bundles and Unity builder remain unchanged; asset loading alone
+does not justify replacing their pipeline or declaring public 1.7 support.
 
 ## Local packaging and review
 

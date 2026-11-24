@@ -38,7 +38,10 @@ Only 1.6 remains declared supported; 1.7 outputs and metadata stay in a private
 test package. Licensed 1.7 startup, profile isolation and read-only bridge calls
 now work. The hidden-window smoke passes gate selection, iris mutation/save/reload,
 120 exact ticks and screenshot capture; [RG-Issue-002](issue-tracker.md#rg-issue-002)
-is closed. Full asset, transit and optional-integration acceptance remain open.
+is closed. The asset pass resolves all 814 bundled textures and 26 clips and
+renders the powered iris closed/open through real pawn jobs; the two dev red Xs
+are inherited null-icon defaults. Active effects, audible playback, transit and
+optional-integration acceptance remain open.
 Public dependency restoration and CI also compile the experimental 1.7 project.
 
 ## Deferred work

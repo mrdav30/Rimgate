@@ -30,7 +30,13 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   with a fixed 1280x720 framebuffer for bridge input/capture without desktop
   focus. Do not substitute `-Headless` for rendered checks or use desktop
   automation without coordination. Selection, iris save/load, 120 ticks and
-  capture passed; the migration plan still owns full asset/transit acceptance.
+  capture passed. For asset checks, setup deploys the development-only
+  `rimgate/asset_report` companion from `.assets/tools/RimgateAssetProbe/`.
+  Run [rimbridge-assets-1.7.lua](../../../.assets/scripts/rimbridge-assets-1.7.lua)
+  after the smoke case to verify owned bundle assets and real pawn-driven iris
+  close/open rendering. Null icons on the two dev-only gate commands are
+  inherited defaults; validate the player's iris icons independently. The
+  migration plan still owns active effects, audible playback and transit.
 - Required dependencies and optional patches:
   [Compatibility Matrix](../../../docs/guides/compatibility-matrix.md), checked against
   Mod/About/About.xml and the affected patch/C# code.

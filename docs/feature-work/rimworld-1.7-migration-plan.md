@@ -3,7 +3,8 @@
 - **Status:** In progress. Versioned source split and experimental 1.7 compilation
   implemented; the existing local snapshot is temporary migration insurance.
   Live 1.7 startup/profile and hidden-window smoke checks pass;
-  [RG-Issue-002](issue-tracker.md#rg-issue-002) is closed. Full asset/transit,
+  [RG-Issue-002](issue-tracker.md#rg-issue-002) is closed. Owned asset loading and
+  powered iris close/open rendering pass. Active effects/audio, transit,
   optional-integration and old-save acceptance and the 1.6 freeze/support
   milestone remain pending.
 - **Created:** November 23, 2026. **Scope reconciled:** November 24, 2026.
@@ -547,3 +548,129 @@ supported 1.6 library/DocFX/site checks (zero warnings or errors). The generated
 GABS argv was checked against the tested hidden graphics profile. Git diff checks
 passed; HEAD remained `918d34c`, with no staged changes or tracked source/content/
 dependency-pin changes. All follow-up edits remain unstaged/uncommitted.
+
+
+## November 24 asset loading and iris rendering pass
+
+Based on `f70a1b6`, using the same Windows 1.7.5014 rev1195 installation,
+10.0.15-waylithclr.dev runtime, GABS 1.1.2 and released RimBridge 2.5.0.0 /
+SDK 2.0.0.0. The ten-mod isolated dependency set is unchanged; the runtime VEF
+versus public CI reference distinction still applies. No desktop automation,
+Steam branch change, public support bump, gameplay source edit or bundle rebuild
+was needed. Two subagents audited source/raw assets and an additional subagent
+implemented the development probe; an independent read-only review checked its
+ownership and non-vacuous command assertions.
+
+### Red X diagnosis
+
+`Building_Gate.GetGizmos` creates the dev-only Add/remove iris and Force close
+actions without assigning `icon`; the owning 1.6 and 1.7 files are identical.
+Inspection of actual installed 1.7 `Verse.Command.DrawIcon` IL shows that a null
+icon uses `BaseContent.BadTex`; the read-only 1.6 insurance assembly has the same
+behavior. The earlier capture's red X observation was real, but its suggestion
+of missing command assets was unproven. This pass establishes an inherited dev
+UI default, not an engine migration defect. Those commands were preserved.
+The player's `Comp_ToggleIris` command instead uses the existing
+`UI/Button/RGIris_Close` and `UI/Button/RGIris_Open` textures.
+
+### Inventory and development tooling
+
+The retained manifest has **840 assets**, exactly matching **814 raw PNGs** and
+**26 raw OGGs** by name. One YAML path wraps onto a continuation line; counting
+only lines beginning with `- Assets/` would incorrectly report 839. Source/XML
+path audits found no unresolved candidates, including checked vanilla/DLC paths.
+There are no bundled custom shaders/materials: effects use game shader entries.
+This inventory comparison is by names, not raw-source versus bundled-byte equality.
+
+Setup now builds `.assets/tools/RimgateAssetProbe/RimgateAssetProbe.csproj`
+against the actual 1.7 game and SDK 2.0.0, deploying only the development companion
+and generated raw-path manifest to `Game-1.7/BridgeTools/Rimgate/`. It adds one
+read-only capability, `rimgate/asset_report` (**131** total live tools), outside
+the Rimgate player package. Each named object loads directly from Rimgate's own
+bundle, with normal `ContentFinder` lookup checked for the same object. Positive
+texture dimensions, finite positive audio duration, sample count, channels and
+frequency are required. The report also checks static textures/materials/shaders
+and selected gate command/iris texture semantics. A main-menu inventory report
+is supported; selected-command acceptance explicitly requires one equipped gate.
+
+A deliberately nonexistent manifest texture `UI/AssetProbe-DeliberatelyMissing`
+produced `success:false`, with both missing bundle entry and missing texture
+reported, operation `op_d296ce832a5a4428ab9c00e82666370d`. The operation handler
+itself completed successfully, demonstrating why nested results matter. Restoring
+the exact external manifest bytes returned `success:true` in
+`op_b6dce2509dd94fcca4eb4bb71fc1e666`. No baseline bundle was modified by this control.
+During probe development, a main-menu selector cast failure was corrected with
+an explicit Playing/current-map guard; final acceptance used a clean rebuilt,
+deployed and restarted companion.
+
+Independent review also moved the loaded-deployment root guard ahead of the
+first save load. A wrong-root control, `op_53aa4aafb70f4bae999f266aab9ae307`,
+failed at that guard after only the configuration query; state remained Entry
+with `hasCurrentGame:false`. The final corrected Lua compiled into 139 top-level
+statements and its full positive scenario passed below.
+
+### Runtime and rendered acceptance
+
+The unchanged base smoke passed in **18,848 ms**, operation
+`op_b1caaa5dba6e4d6d8186fa32c5da4c3a`, including iris mutation/save/reload,
+120 exact ticks and capture, with no failed script steps. It produced owned gate
+`Thing_Rimgate_Dwarfgate38637`, DHD `Thing_Rimgate_DialHomeDevice38638`, address
+**P3F-539** and the `Rimgate-bridge-smoke` save.
+
+The version-owned `.assets/scripts/rimbridge-assets-1.7.lua` then loads that save,
+verifies the private config/deployment and selected equipped gate, clears fog,
+places/claims a Vanometric power cell at `(105,130)` outside the gate footprint,
+and allows 750 ticks for the normal power net. It requests Close iris through
+the real gizmo, orders a colonist through the real context-menu toggle job and
+steps 600 ticks. It captures the closed overlay and repeats the real job to
+reopen, with another 600 ticks. This is fixture power, not an unlimited-power
+cheat or direct iris-state assignment. Reruns reload the owned save first; the
+case does not overwrite it.
+
+Final clean-run operation **`op_cab033aec99f4297ac85b94d75a2f607`** passed in
+**42,801 ms**, with **31 successful capability calls** and zero failed steps.
+Both **1280x720** screenshots were inspected: gate, revealed DHD, closed iris
+overlay, reopened gate, corresponding Open iris/Close iris textures and unchanged
+dev glyphs render. The final report `op_4032f3909b324be2abeaf0cbb135c538` resolved
+all **814 textures / 26 clips**, with no missing bundle entries, invalid metadata,
+shadowed content, bad static material/texture or invalid selected command.
+Both static force-field materials use valid **MoteGlow** shader/texture pairs;
+this validates resolution, not a rendered shield-effect test.
+
+The final bridge error journal was empty and native log had zero ERROR headers.
+The private game was stopped and termination verified. Setup's verifier passed;
+a recursive pre/post comparison found all **125** normal player-config files
+unchanged, with no additions. Tracked 1.6 source/content, raw inputs, builder,
+dependency pins, four bundle bytes and the local insurance snapshot were preserved.
+
+Private evidence is under
+`%LOCALAPPDATA%/RimgateDev/evidence/asset-pass-20261124-115053/`: baseline-smoke,
+asset-scenario, guarded-asset-scenario, asset-report, menu-asset-report,
+missing-texture-control, restored-manifest-control and wrong-deployment-control
+JSON; final-asset-pass.log; both PNGs; and recoverable
+normal config bytes/manifest. The checked-in scenario, probe source, setup,
+input identities and results above retain the reproduction contract if temporary
+evidence is removed. The owned save is under `Profile-1.7/Saves/`.
+
+### Disposition and remaining gates
+
+The existing legacy bundles load correctly for all enumerated objects on this
+build. There is no evidence requiring an asset-pipeline or importer change.
+Retain the existing bundles and builder; version new inputs/tooling only when an
+actual 1.7 requirement diverges. No issue ID was assigned to the inherited dev
+icon defaults, since this investigation did not establish an asset defect.
+
+This pass does not establish visual fidelity of every rotation/effect, active
+DHD/chevron/event-horizon rendering, or audible playback (the isolated profile is
+muted). Carry those behavior-dependent checks into the complete dialing/transit
+scenario. Public dependency runtime parity, optional DBH, other stateful systems,
+old 1.6 saves and public support/freeze remain separate gates. A manifest match
+and positive clip metadata must not be reported as audible or full gameplay acceptance.
+
+
+Windows PowerShell 5.1 setup/build/deployment and GABS configuration validation
+passed. Both the experimental mod and companion built with zero warnings/errors.
+The supported 1.6 library/DocFX build and generated-site checks also passed with
+zero warnings/errors. PowerShell parsing/help, the Rimgate skill validator,
+37 local Markdown links/anchors and Git diff checks passed. HEAD remains
+`f70a1b6`; the index is unchanged and all follow-up edits are unstaged/uncommitted.

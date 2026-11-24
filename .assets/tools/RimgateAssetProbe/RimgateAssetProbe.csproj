@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>RimgateAssetProbe</AssemblyName>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>none</DebugType>
+    <OutputPath>../../experimental/1.7/AssetProbe/</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RimWorld17ManagedDir Condition="'$(RimWorld17ManagedDir)' == ''">$(RIMWORLD17_MANAGED_DIR)</RimWorld17ManagedDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="RimBridgeServer.Sdk" Version="2.0.0" PrivateAssets="all" ExcludeAssets="runtime" />
+    <Reference Include="Assembly-CSharp"><HintPath>$(RimWorld17ManagedDir)/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityStubs"><HintPath>$(RimWorld17ManagedDir)/UnityStubs.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <Target Name="CheckGameReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(RimWorld17ManagedDir)/UnityStubs.dll')" Text="Pass RimWorld17ManagedDir for the actual 1.7 apphost directory." />
+  </Target>
+</Project>

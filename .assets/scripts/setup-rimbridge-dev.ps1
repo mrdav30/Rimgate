@@ -6,6 +6,8 @@ With RimWorld stopped, backs up normal ModsConfig/Prefs bytes, restores pinned
 GABS/RimBridge tools, builds Rimgate, refreshes private mod deployments and writes
 the isolated profile/config. Registers the user-level rimgate-dev MCP server.
 Game data and required dependencies are junctions to the selected installation.
+For 1.7, builds a development-only RimBridge asset probe and generates its raw
+asset inventory under the private game's BridgeTools directory.
 Does not launch the game or change the Steam branch.
 .PARAMETER GamePath
 Installed game root matching RimWorldVersion. Defaults to D:\SteamLibrary\steamapps\common\RimWorld.
@@ -150,6 +152,25 @@ foreach ($file in $gameFiles) {
 $gameFolders = if ($experimental) { @('Data', 'Rendering', 'vulkan') } else { @('Data', 'RimWorldWin64_Data', 'MonoBleedingEdge') }
 foreach ($folder in $gameFolders) {
     Ensure-Junction (Join-Path $privateGame $folder) (Join-Path $GamePath $folder)
+}
+if ($experimental) {
+    $probeOutput = Join-Path $privateGame 'BridgeTools/Rimgate'
+    New-Item -ItemType Directory -Path $probeOutput -Force | Out-Null
+    & dotnet build (Join-Path $repoRoot '.assets/tools/RimgateAssetProbe/RimgateAssetProbe.csproj') `
+        --configuration Release --output $probeOutput "-p:RimWorld17ManagedDir=$GamePath"
+    if ($LASTEXITCODE -ne 0) { throw 'Development asset probe build failed.' }
+    $inventory = @{}
+    foreach ($kind in @('Textures', 'Sounds')) {
+        $rawRoot = Join-Path $repoRoot "AssetsRaw/${kind}Raw"
+        $extension = if ($kind -eq 'Textures') { '*.png' } else { '*.ogg' }
+        $inventory[$kind.ToLowerInvariant()] = @(Get-ChildItem -LiteralPath $rawRoot -Filter $extension -File -Recurse |
+            Sort-Object FullName | ForEach-Object {
+                $relative = $_.FullName.Substring($rawRoot.Length + 1).Replace('\', '/')
+                $relative.Substring(0, $relative.Length - $_.Extension.Length)
+            })
+    }
+    [IO.File]::WriteAllText((Join-Path $probeOutput 'asset-manifest.json'),
+        ($inventory | ConvertTo-Json -Depth 3), [Text.UTF8Encoding]::new($false))
 }
 Ensure-Junction (Join-Path $privateGame 'Mods/Harmony') (Join-Path $SteamModPath '294100/2009463077')
 Ensure-Junction (Join-Path $privateGame 'Mods/VanillaExpandedFramework') (Join-Path $SteamModPath '294100/2023507013')
