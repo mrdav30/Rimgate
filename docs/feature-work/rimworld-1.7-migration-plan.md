@@ -4,7 +4,10 @@
   implemented; the existing local snapshot is temporary migration insurance.
   Live 1.7 startup/profile and hidden-window smoke checks pass;
   [RG-Issue-002](issue-tracker.md#rg-issue-002) is closed. Owned asset loading and
-  powered iris close/open rendering pass. Active effects/audio, transit,
+  powered iris close/open rendering pass for Unity and pack-only native assets.
+  The native comparison is complete; the owner selected native as the 1.7
+  development default, retaining explicit Unity comparison and the 1.6 pipeline.
+  Broader visual acceptance, active effects/audio, transit,
   optional-integration and old-save acceptance and the 1.6 freeze/support
   milestone remain pending.
 - **Created:** November 23, 2026. **Scope reconciled:** November 24, 2026.
@@ -674,3 +677,197 @@ The supported 1.6 library/DocFX build and generated-site checks also passed with
 zero warnings/errors. PowerShell parsing/help, the Rimgate skill validator,
 37 local Markdown links/anchors and Git diff checks passed. HEAD remains
 `f70a1b6`; the index is unchanged and all follow-up edits are unstaged/uncommitted.
+
+
+## November 24 native Waylith pack comparison - scope and acceptance
+
+The owner authorized comparing the native 1.7 pack path with the validated Unity
+bundles before continuing transit work. The prior asset pass proved legacy
+compatibility; it did not establish that Unity is the preferred 1.7 builder.
+The installed 1.7.5014 baker accepts `-BakeModAssetPacks=<mod-root>` and writes
+native `Assets.zip` plus stamp/role sidecars for applicable load folders.
+
+This slice keeps `AssetsRaw`, the Unity builder, tracked 1.6 source/content and
+all four bundle bytes intact. Build only an ignored experimental 1.7 candidate,
+using the same private game/dependencies, owned smoke save and hidden renderer.
+Stage raw `Textures`/`Sounds`, bake through the game's native executable, retain
+its pack metadata and remove loose inputs plus Unity bundles from the native
+test deployment. Verify actual native ownership rather than fallback lookup.
+Public support metadata, 1.6 freeze and release packaging do not change here.
+
+Compare complete inventory, texture dimensions/format/mips/filtering, audio
+metadata, package bytes and the same rendered powered iris scenario. Native
+baking does not consume Unity importer settings; record differences and inspect
+alpha/edge rendering instead of treating successful name lookup as equivalence.
+Use equal source identities and note existing bundle provenance limits. Do not
+claim startup/memory improvements from one run or call inherited caches cold.
+A passing native candidate informs the next 1.7 tooling decision; active effects,
+audible playback, transit, dependencies and old-save gates remain open.
+
+The comparison results and subsequent native-default decision are recorded below.
+No extra feature plan or support declaration is implied.
+
+
+### Native comparison implementation and results
+
+Based on `cd02845`, Windows RimWorld **1.7.5014 rev1195**, runtime
+**10.0.15-waylithclr.dev**, unchanged ten-mod profile/dependencies, bridge
+**2.5.0.0** and SDK **2.0.0.0**. Both runs use the same owned
+`Rimgate-bridge-smoke` save (gate 38637, DHD 38638, address P3F-539), fixed
+1280x720 hidden rendering and unchanged 1.7 gameplay assembly/source. The current
+installed/public VEF distinction remains; this is not dependency-parity acceptance.
+
+The initial comparison added experimental `-AssetFormat UnityBundles|WaylithPack`
+to setup and retained **UnityBundles as default** at that stage; the subsequent
+owner decision below changes the 1.7 default. The native builder stages only ignored 1.7 inputs,
+launches `-NoWindow -WindowSize=1280,720 -savedatafolder=<external-bake-profile>
+-BakeModAssetPacks=<ignored-mod-root>` and checks child exit plus four nonempty
+pack files. It removes prior known outputs before a fresh bake, then removes
+only staged source folders/legacy bundles. No Unity editor was used, no tracked
+asset was regenerated, and public support/release selection remains 1.6.
+The initial Windows PowerShell 5.1 wrapper could not read ExitCode after its
+wait despite a successful bake; retaining the process handle before waiting
+fixed it. Actual 5.1 setup and standalone rebake subsequently passed.
+
+Actual baker IL uses BC7 target/quality 1, Kaiser full mip generation, disabled
+RDO and no Unity .meta reader; grayscale assets may choose BC4. XML
+`borderMipMaps`/`uncompressed` flags are recognized, but neither restores the
+old no-mip/bilinear/clamp import policy. A bounded inspection found no supported
+per-texture native pack metadata for disabling mips or selecting filter/wrap;
+matching that policy would require deliberate further runtime/tooling work.
+
+The successful setup bake reported **840 entries, 0 reused, 48 deduplicated,
+0 failed**, **8.3 seconds** for encoding/baking; total wrapper time was **14.51
+seconds**. A standalone rebake passed in **10.49 seconds** total and produced
+the same Assets.zip SHA-256 as the deployed/tested candidate. These are local
+build observations, not a startup or general performance benchmark.
+
+| Comparison | Retained Unity bundles | Native Waylith candidate |
+| --- | --- | --- |
+| Resolved source inventory | 814 textures, 26 clips | 814 textures, 26 clips; 840 owned current pack entries |
+| Texture width/height | Existing loaded dimensions | All 814 match Unity and source dimensions |
+| Formats | 708 DXT5, 99 DXT1, 7 RGBA32 | 752 BC7, 62 BC4 |
+| Mip levels | 1 on all textures | Full chains: 6-11 levels |
+| Sampling | Bilinear / Clamp on all 814 | Trilinear / Repeat on all 814 |
+| Asset payload bytes | 10,016,071 rimgate_core | 19,332,224 Assets.zip |
+| All four artifact bytes | 10,097,945 | 19,489,545 |
+| Powered iris scenario | Passed, 42,041 ms | Passed, 42,037 ms |
+
+The native pack is about **1.93x** the four-file legacy set. Its format/mipmap
+policy differs, so the size result does not isolate container overhead or imply
+a quality-equivalent performance regression. All PNG source dimensions are at
+most 1024; 70 images are non-power-of-two. Runtime comparison found no dimension
+change. Existing Unity bundle provenance establishes names and loaded objects,
+not decoded byte parity with current raw inputs; no image-equality claim is made.
+
+The two native screenshots show the same gate/DHD and correctly closed/reopened
+iris with valid command icons and transparency in the exercised views. The gate
+looks visibly softer at the tested zoom, consistent with the changed sampling
+and mip policy; it is not being silently accepted as identical presentation.
+Other UV/rotation/effect states remain unverified.
+
+Audio channels/duration/sample metadata match for 24 clips. The two differences
+are recorded rather than normalized away:
+
+- `Ability/RG_Wraith_Cocoon_Cast`: Unity 48,000 Hz / 12,049 samples;
+  native 96,000 Hz / 24,098 samples, same duration. Reading the raw Vorbis
+  identification header and final Ogg granule confirms the native values match
+  the source; the imported Unity clip uses half that rate/sample count.
+- `Building/RG_Sarcophagus_Running`: both stereo 44,100 Hz; Unity 73,600 samples
+  / 1.6689342 s, native 73,664 / 1.6703855 s. Raw Ogg metadata matches native.
+  The 64-sample (~1.451 ms) difference does not establish its import mechanism
+  or audible loop behavior. The profile remained muted; audible acceptance is open.
+
+The probe now uses actual public `Waylith.Assets.ContentPack` mount/current-entry
+APIs, exact pack path and Rimgate's own content holder. It rejects bundle/loose
+fallback and compares normal content lookup with the owned object. The native
+pack had 840 content hashes/current entries, zero loaded bundles and no loose
+Textures/Sounds folders. Both full inventories, static materials/shaders and
+real command/iris checks passed. Script operation IDs:
+
+- Unity: **`op_b46526f1c67a4f6fa253ea5270047449`**.
+- Native: **`op_5b0e7067aec641738e6b30990c6085e6`**.
+
+Native negative controls detected a missing manifest entry
+(`op_3c67aa867c524369ba984fb62c8734dc`) and an injected loose-file directory
+(`op_ffb2d09619a649aeafd8b272d5aebc7c`). Restoring exact manifest bytes/removing
+only the known loose control returned success in
+`op_24f27fad74a24d7394b23032574ef52c`. No fallback was needed to pass. Both
+scenarios ended with empty bridge error journals; native logs had zero ERROR
+headers. The baker's stderr also contained a Vulkan/Fossilize layer diagnostic;
+its successful output and exit were independently checked, not inferred from
+silencing that diagnostic.
+
+Native outputs retained together:
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| Assets.zip | 19,332,224 | 0dea55cedec8eb2f14bc1fed2ac78b9f6fe1e1b4e2e5ec03f02f3568e8ba6797 |
+| Assets.zip.stamps | 83,135 | 915d23b0ed98fc33af4896bb35b35fc166f6962948855cc3a2e6f2bcb3d3d274 |
+| Assets.zip.roles | 74,016 | 26f1588ebd14bd3c8ff001f89b3943b04a9782c0da4242221f0fc119e78c38c2 |
+| Assets.zip.fingerprint | 170 | 589f238100089732167a8b91078d0e20b443371d7c167648e6c3e86e61b79c1d |
+
+Private evidence is `%LOCALAPPDATA%/RimgateDev/evidence/native-pack-20261124-123501/`:
+per-format complete reports/scenario results, original/open/closed PNGs, native
+bake/rebake logs and artifact identities, both negative controls plus restored
+report, comparison JSON, normal config byte copies and hashes. No private logs,
+endpoints, generated packs or source art are added to tracked player content.
+The checked-in builders/probe/scenario and input/result details here retain
+reproduction independently of those temporary artifacts.
+
+**Initial comparison disposition (superseded for the default):** Native packaging
+was viable but initially remained opt-in while presentation differences were
+reviewed. The owner's subsequent selection below makes it the 1.7 development
+default; the recorded size, sampling and audio observations remain valid.
+The 1.6 freeze, public 1.7 support, optional integrations and old-save acceptance
+remain open.
+
+
+Final verification: actual Windows PowerShell 5.1 setup passed for both formats;
+standalone native rebaking passed with byte-identical Assets.zip; parser/help and
+unsupported-1.6 native rejection checks passed. Both mod/probe builds and the
+supported 1.6 library/DocFX/site build passed with zero warnings/errors. The
+Rimgate skill validator, 37 local Markdown links/anchors and Git diff checks
+passed. Both runtime processes and the baker were stopped/finished. All **125**
+normal config files matched their pre-comparison byte-backed hashes, with no
+additions; the four tracked Unity baseline hashes and protected source/raw/builder/
+reference inputs were unchanged. The local insurance snapshot was not modified.
+HEAD/index remain `cd02845`/unchanged; all edits and the new builder are unstaged.
+
+
+### November 24 owner decision - native default for 1.7
+
+The owner selected Waylith packs as the 1.7 development default to remove Unity
+from active 1.7 asset building, with continued checks that textures retain their
+intended appearance. Setup now resolves an omitted AssetFormat by target:
+**1.7 -> WaylithPack**, **1.6 -> UnityBundles**. Explicit UnityBundles remains
+available for 1.7 comparison/reproduction; explicit native format for 1.6 is
+still rejected. The script's default game target remains 1.6, and public support,
+release packaging and DocFX target selection have not changed.
+
+Use `setup-rimbridge-dev.ps1 -RimWorldVersion 1.7` for the native development
+baseline and pass `assetFormat: WaylithPack` to the asset scenario. The recorded
+pack-only inventory, dimensions, command icons and powered iris results support
+this default. The earlier gate capture was visibly softer at the tested zoom;
+that observation is retained rather than claiming identical pixels. Sampling
+policy selection does not close broader texture appearance, rotations, active
+DHD/event-horizon/chevron effects, audible playback or complete transit gates.
+Investigate unexpected distortion, seams, missing detail or incorrect asset
+selection in the owning 1.7 path before accepting the affected behavior.
+
+The retained 1.6 source, content, Unity builder/bundles and local insurance
+snapshot remain untouched. No additional rebuild or maintenance of 1.6 assets
+is required to change the experimental 1.7 default.
+
+Follow-up verification used the actual Windows PowerShell 5.1 parameter block:
+omitted target/format resolves to 1.6/Unity, explicit 1.7 to native, and explicit
+1.7/Unity remains honored. Running setup with only `-RimWorldVersion 1.7`
+successfully baked/deployed native assets in 15.13 seconds. The deployed pack
+matches the previously runtime-tested SHA-256 above, with no loose/bundle fallback
+folders. Gameplay was not rerun for this selection-only change; the prior native
+scenario remains the runtime evidence. All 125 normal config files and four 1.6
+bundle hashes were preserved. The mod/probe and supported 1.6 DocFX/site builds
+passed with zero warnings/errors; skill/diff checks and independent review passed.
+Private byte backups and verification JSON are under
+`%LOCALAPPDATA%/RimgateDev/evidence/native-default-20261124-132336/`.
+Prior comparison edits and these follow-up changes remain unstaged/uncommitted.

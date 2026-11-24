@@ -38,9 +38,13 @@ otherwise. Do not commit, push or publish as an implied documentation step.
   1.6 work requires explicitly scoped maintenance. The existing local snapshot
   is temporary migration insurance; keep it untouched and outside Git. It is
   not a maintained capture/restore workflow or an ongoing 1.6 environment contract.
-- Raw art/audio belongs in `AssetsRaw/`. Rebuild through
-  `.assets/scripts/build-assetbundle.ps1` after asset edits. Do not manually place
-  raw assets in `Mod/` or edit bundles.
+- Raw art/audio belongs in `AssetsRaw/`. The retained 1.6 pipeline rebuilds through
+  `.assets/scripts/build-assetbundle.ps1`. Experimental 1.7 setup accepts
+  `-AssetFormat UnityBundles|WaylithPack` (native default for 1.7, Unity for 1.6);
+  the native helper
+  `.assets/scripts/build-waylith-assets.ps1` stages/bakes only under ignored
+  `.assets/experimental/`. Keep the four native pack files together. Do not
+  manually place raw assets in tracked `Mod/` or edit generated packs/bundles.
 - Bundles go to **`Mod/<version>/AssetBundles/`** (`Mod/1.6/AssetBundles/` today).
   Keep the shared `Mod/AssetBundles/` location empty. The four existing baseline
   files were relocated without changing their bytes. Do not regenerate baseline

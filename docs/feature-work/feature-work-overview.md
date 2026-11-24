@@ -41,7 +41,11 @@ now work. The hidden-window smoke passes gate selection, iris mutation/save/relo
 is closed. The asset pass resolves all 814 bundled textures and 26 clips and
 renders the powered iris closed/open through real pawn jobs; the two dev red Xs
 are inherited null-icon defaults. Active effects, audible playback, transit and
-optional-integration acceptance remain open.
+optional-integration acceptance remain open. Native pack-only loading and the
+same iris scenario also pass; the larger pack and changed sampling/clip metadata
+are recorded in the owning plan. Native packs are now the owner's selected 1.7
+setup default; Unity remains the retained 1.6 pipeline and an explicit 1.7
+comparison override. Broader visual/effect/audio acceptance remains open.
 Public dependency restoration and CI also compile the experimental 1.7 project.
 
 ## Deferred work

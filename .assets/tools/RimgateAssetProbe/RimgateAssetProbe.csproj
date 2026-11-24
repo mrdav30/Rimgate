@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="RimBridgeServer.Sdk" Version="2.0.0" PrivateAssets="all" ExcludeAssets="runtime" />
     <Reference Include="Assembly-CSharp"><HintPath>$(RimWorld17ManagedDir)/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Waylith"><HintPath>$(RimWorld17ManagedDir)/Waylith.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityStubs"><HintPath>$(RimWorld17ManagedDir)/UnityStubs.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
   <Target Name="CheckGameReferences" BeforeTargets="ResolveReferences">

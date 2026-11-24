@@ -17,6 +17,9 @@ local selected = rb.call("rimworld/click_cell", { x = 110, z = 130, button = "le
 rb.assert(selected.success and selected.result.success, "The smoke gate could not be selected.")
 local report = rb.call("rimgate/asset_report", {})
 rb.assert(report.success and report.result.success, "Asset resolution or metadata validation failed.")
+if params.assetFormat then
+    rb.assert(report.result.assetFormat == params.assetFormat, "The deployed asset format differs from the requested comparison.")
+end
 rb.assert(report.result.configPath == params.configPath and report.result.modRoot == params.modRoot, "Asset probe inspected a different deployment.")
 rb.assert(report.result.textureCount > 0 and report.result.soundCount > 0, "Asset inventory was empty.")
 rb.assert(report.result.selectedGateCount == 1, "Select the smoke case's gate first.")

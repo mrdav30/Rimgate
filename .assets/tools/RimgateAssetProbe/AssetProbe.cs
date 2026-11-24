@@ -4,6 +4,7 @@ using RimBridgeServer.Sdk;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Waylith.Assets;
 
 namespace Rimgate.AssetProbe;
 
@@ -21,28 +22,61 @@ public sealed class AssetProbe
             Path.GetDirectoryName(typeof(AssetProbe).Assembly.Location)!, "asset-manifest.json")));
         var texturePaths = ReadPaths(manifest.RootElement.GetProperty("textures"));
         var soundPaths = ReadPaths(manifest.RootElement.GetProperty("sounds"));
+        var assetFormat = manifest.RootElement.TryGetProperty("assetFormat", out var format)
+            ? format.GetString() : "UnityBundles";
+        if (assetFormat is not ("UnityBundles" or "WaylithPack"))
+            throw new InvalidDataException("Asset format must be UnityBundles or WaylithPack.");
+        bool native = assetFormat == "WaylithPack";
         var bundles = mod.assetBundles.loadedAssetBundles;
+        var nativeRoot = Path.Combine(mod.RootDir, "1.7");
+        var nativePackPath = Path.Combine(nativeRoot, "Assets.zip");
+        var nativePacks = ContentPack.Mounts.Where(m => Path.GetFullPath(m.Pack.Path)
+            .StartsWith(Path.GetFullPath(mod.RootDir) + Path.DirectorySeparatorChar, PathComparison)).ToArray();
+        var unexpectedSources = new List<string>();
+        if (native)
+        {
+            if (nativePacks.Length != 1 || !SamePath(nativePacks[0].Root, nativeRoot)
+                || !SamePath(nativePacks[0].Pack.Path, nativePackPath))
+                unexpectedSources.Add("Expected exactly the mounted 1.7/Assets.zip native pack.");
+            if (bundles.Count != 0)
+                unexpectedSources.Add("Legacy AssetBundles are loaded alongside the native candidate.");
+            foreach (var folder in mod.foldersToLoadDescendingOrder)
+                foreach (var kind in new[] { "Textures", "Sounds" })
+                {
+                    var loose = Path.Combine(folder, kind);
+                    if (Directory.Exists(loose) && Directory.EnumerateFiles(loose, "*", SearchOption.AllDirectories).Any())
+                        unexpectedSources.Add(loose);
+                }
+        }
+        else if (nativePacks.Length != 0)
+            unexpectedSources.Add("Native packs are mounted alongside the Unity bundle baseline.");
+        var nativeEntries = new List<object>();
+        var missingPackEntries = new List<string>();
         var bundleOwners = bundles.SelectMany(b => b.GetAllAssetNames()
             .Select(p => new KeyValuePair<string, AssetBundle>(p, b)))
             .ToDictionary(p => p.Key, p => p.Value, StringComparer.OrdinalIgnoreCase);
-        var missingBundleEntries = texturePaths.Select(p => $"assets/data/mrdav30.rimgate/textures/{p}.png")
+        var missingBundleEntries = native ? [] : texturePaths.Select(p => $"assets/data/mrdav30.rimgate/textures/{p}.png")
             .Concat(soundPaths.Select(p => $"assets/data/mrdav30.rimgate/sounds/{p}.ogg"))
             .Where(p => !bundleOwners.ContainsKey(p)).ToArray();
         var missingTextures = new List<string>();
         var invalidTextures = new List<string>();
         var shadowedTextures = new List<string>();
-        var textureSamples = new List<object>();
+        var textures = new List<object>();
         foreach (var path in texturePaths)
         {
-            var texture = LoadOwned<Texture2D>(bundleOwners, $"assets/data/mrdav30.rimgate/textures/{path}.png");
+            bool owned = !native || NativeEntry(nativeRoot, nativePackPath, "Textures", path, true,
+                nativeEntries, missingPackEntries);
+            var texture = native
+                ? owned ? mod.GetContentHolder<Texture2D>().Get(path) : null
+                : LoadOwned<Texture2D>(bundleOwners, $"assets/data/mrdav30.rimgate/textures/{path}.png");
             if (texture == null || texture == BaseContent.BadTex)
                 missingTextures.Add(path);
             else if (texture.width <= 0 || texture.height <= 0)
                 invalidTextures.Add(path);
-            else if (textureSamples.Count < 3 || path.Contains("Iris", StringComparison.OrdinalIgnoreCase)
-                || path.Contains("Dwarfgate", StringComparison.OrdinalIgnoreCase)
-                || path.Contains("DialHome", StringComparison.OrdinalIgnoreCase))
-                textureSamples.Add(new { path, texture.name, texture.width, texture.height });
+            else
+                textures.Add(new { path, texture.name, texture.width, texture.height,
+                    format = texture.format.ToString(), texture.mipmapCount,
+                    filterMode = texture.filterMode.ToString(), wrapMode = texture.wrapMode.ToString() });
             if (texture != null && ContentFinder<Texture2D>.Get(path, false) != texture)
                 shadowedTextures.Add(path);
         }
@@ -53,7 +87,11 @@ public sealed class AssetProbe
         var sounds = new List<object>();
         foreach (var path in soundPaths)
         {
-            var clip = LoadOwned<AudioClip>(bundleOwners, $"assets/data/mrdav30.rimgate/sounds/{path}.ogg");
+            bool owned = !native || NativeEntry(nativeRoot, nativePackPath, "Sounds", path, false,
+                nativeEntries, missingPackEntries);
+            var clip = native
+                ? owned ? mod.GetContentHolder<AudioClip>().Get(path) : null
+                : LoadOwned<AudioClip>(bundleOwners, $"assets/data/mrdav30.rimgate/sounds/{path}.ogg");
             if (clip == null)
                 missingSounds.Add(path);
             else
@@ -125,20 +163,53 @@ public sealed class AssetProbe
         {
             success = missingTextures.Count + invalidTextures.Count + missingSounds.Count + invalidSounds.Count
                 + invalidStatics.Count + invalidCommands.Count + missingBundleEntries.Length
-                + shadowedTextures.Count + shadowedSounds.Count == 0,
+                + shadowedTextures.Count + shadowedSounds.Count + missingPackEntries.Count
+                + unexpectedSources.Count == 0,
             gameVersion = VersionControl.CurrentVersionStringWithRev,
             configPath = GenFilePaths.ModsConfigFilePath, modRoot = mod.RootDir,
             width = Screen.width, height = Screen.height,
             selectedGateCount = selectedGates.Length,
             textureCount = texturePaths.Length, soundCount = soundPaths.Length,
+            assetFormat, nativePackPath = native ? nativePackPath : null,
+            nativePacks = nativePacks.Select(m => new { m.Root, path = m.Pack.Path,
+                contentHashCount = m.Pack.ContentHashes.Count }).ToArray(),
+            nativeEntries, missingPackEntries, unexpectedSources,
             bundles = bundles.Select(b => new { b.name, assetCount = b.GetAllAssetNames().Length }).ToArray(),
             missingBundleEntries,
             missingTextures, invalidTextures, shadowedTextures, missingSounds, invalidSounds, shadowedSounds,
             invalidStatics, invalidCommands,
-            textureSamples, sounds, staticAssets, commands, irisComps,
+            textures, textureSamples = textures.Take(3).ToArray(), sounds, staticAssets, commands, irisComps,
             limits = "Resolution and metadata checks only; rendered effects, visual fidelity and audible playback require separate checks."
         };
     });
+
+    private static StringComparison PathComparison => OperatingSystem.IsWindows()
+        ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+
+    private static bool SamePath(string left, string right) => Path.TrimEndingDirectorySeparator(Path.GetFullPath(left))
+        .Equals(Path.TrimEndingDirectorySeparator(Path.GetFullPath(right)), PathComparison);
+
+    private static bool NativeEntry(string root, string packPath, string kind, string path, bool texture,
+        List<object> entries, List<string> missing)
+    {
+        var source = Path.Combine(root, kind, path + (texture ? ".png" : ".ogg"));
+        AssetPack pack = null;
+        string entry;
+        bool current;
+        if (texture)
+        {
+            current = ContentPack.TryGetCurrentTextureEntry(source, false, out var mount, out entry);
+            if (current) pack = mount.Pack;
+        }
+        else
+            current = ContentPack.TryGetCurrentEntry(source, "", out pack, out entry);
+        bool valid = current && pack != null && SamePath(pack.Path, packPath) && pack.Contains(entry);
+        if (valid)
+            entries.Add(new { kind, path, pack = pack.Path, entry });
+        else
+            missing.Add($"{kind}/{path}");
+        return valid;
+    }
 
     private static T LoadOwned<T>(Dictionary<string, AssetBundle> owners, string path) where T : UnityEngine.Object
         => owners.TryGetValue(path, out var bundle) ? bundle.LoadAsset<T>(path) : null;

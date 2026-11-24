@@ -8,7 +8,8 @@ the isolated profile/config. Registers the user-level rimgate-dev MCP server.
 Game data and required dependencies are junctions to the selected installation.
 For 1.7, builds a development-only RimBridge asset probe and generates its raw
 asset inventory under the private game's BridgeTools directory.
-Does not launch the game or change the Steam branch.
+Native mode launches a bounded hidden bake process, not a playable session.
+Does not change the Steam branch.
 .PARAMETER GamePath
 Installed game root matching RimWorldVersion. Defaults to D:\SteamLibrary\steamapps\common\RimWorld.
 Unused when VerifyPlayerConfig is selected.
@@ -27,12 +28,17 @@ player-config-baseline.json. Does not refresh setup or restore changed files.
 view uses RimWorld.exe and a private metadata overlay, with no support bump in Mod.
 Waylith runs with -NoWindow and a fixed 1280x720 framebuffer for background
 rendering and synthetic input. This is not graphics-free -Headless mode.
+.PARAMETER AssetFormat
+Defaults to WaylithPack for experimental 1.7 and UnityBundles for retained 1.6.
+UnityBundles remains an explicit 1.7 comparison override.
+WaylithPack bakes staged raw textures/audio using the game's native baker and
+deploys pack-only content. This option does not change the retained 1.6 assets.
 .EXAMPLE
 .\.assets\scripts\setup-rimbridge-dev.ps1 -GamePath 'D:\SteamLibrary\steamapps\common\RimWorld' -ToolsPath 'C:\RimgateDev16'
 Prepares an isolated view of the installed 1.6 game and registers it with Codex.
 .EXAMPLE
 .\.assets\scripts\setup-rimbridge-dev.ps1 -RimWorldVersion 1.7
-Builds and stages the experimental 1.7 package against an installed Waylith game.
+Builds, natively bakes and stages the experimental 1.7 package with Waylith.
 .EXAMPLE
 .\.assets\scripts\setup-rimbridge-dev.ps1 -ToolsPath 'C:\RimgateDev16' -VerifyPlayerConfig
 After game shutdown, checks normal config against that view's backed-up baseline.
@@ -44,7 +50,9 @@ param (
     [string]$ToolsPath = (Join-Path $env:LOCALAPPDATA 'RimgateDev'),
     [switch]$VerifyPlayerConfig,
     [ValidateSet('1.6', '1.7')]
-    [string]$RimWorldVersion = '1.6'
+    [string]$RimWorldVersion = '1.6',
+    [ValidateSet('UnityBundles', 'WaylithPack')]
+    [string]$AssetFormat = $(if ($RimWorldVersion -eq '1.7') { 'WaylithPack' } else { 'UnityBundles' })
 )
 
 $ErrorActionPreference = 'Stop'
@@ -68,6 +76,7 @@ if ($gameVersion -notmatch ('^' + [regex]::Escape($RimWorldVersion) + '\.')) {
     throw "This development profile requires a RimWorld $RimWorldVersion installation; found $gameVersion."
 }
 $experimental = $RimWorldVersion -eq '1.7'
+if (!$experimental -and $AssetFormat -ne 'UnityBundles') { throw 'WaylithPack is limited to the experimental 1.7 deployment.' }
 $executable = if ($experimental) { 'RimWorld.exe' } else { 'RimWorldWin64.exe' }
 $processName = [IO.Path]::GetFileNameWithoutExtension($executable)
 if (!(Test-Path -LiteralPath (Join-Path $GamePath $executable) -PathType Leaf)) {
@@ -159,7 +168,7 @@ if ($experimental) {
     & dotnet build (Join-Path $repoRoot '.assets/tools/RimgateAssetProbe/RimgateAssetProbe.csproj') `
         --configuration Release --output $probeOutput "-p:RimWorld17ManagedDir=$GamePath"
     if ($LASTEXITCODE -ne 0) { throw 'Development asset probe build failed.' }
-    $inventory = @{}
+    $inventory = @{ assetFormat = $AssetFormat }
     foreach ($kind in @('Textures', 'Sounds')) {
         $rawRoot = Join-Path $repoRoot "AssetsRaw/${kind}Raw"
         $extension = if ($kind -eq 'Textures') { '*.png' } else { '*.ogg' }
@@ -205,6 +214,9 @@ if ($experimental) {
     $null = $supportedVersions.AppendChild($versionNode)
     $about.Save((Join-Path $rimgateSource 'About/About.xml'))
     Set-Content -LiteralPath (Join-Path $rimgateSource 'LoadFolders.xml') -Encoding UTF8 -Value '<loadFolders><v1.7><li>/</li><li>1.7</li></v1.7></loadFolders>'
+    if ($AssetFormat -eq 'WaylithPack') {
+        & (Join-Path $PSScriptRoot 'build-waylith-assets.ps1') -GamePath $privateGame -ToolsPath $ToolsPath
+    }
 }
 foreach ($deployment in @(
     @{ Name = 'Rimgate'; Source = $rimgateSource },

@@ -368,7 +368,7 @@ and `-ToolsPath`. Defaults use the D: Steam library and
    it references the actual installed game. Only its own DLL/deps file and
    manifest are deployed there, outside the Rimgate player package.
 4. Creates an ignored `.assets/experimental/1.7/Mod` overlay using the retained
-   1.6 XML/bundle inputs, shared About/languages and new assembly. Only that test
+   1.6 XML inputs, selected asset format, shared About/languages and new assembly. Only that test
    package declares 1.7, with a 1.7-only LoadFolders entry; tracked player metadata
    and 1.6 assets remain unchanged. The private copy is deployed under
    `Game-1.7/Mods/Rimgate` alongside the bridge.
@@ -470,8 +470,9 @@ be investigated as a fixture/gameplay failure, not bypassed with a state mutatio
 Keep this case on the isolated English profile, whose labels it asserts.
 
 Setup deploys the read-only `rimgate/asset_report` companion tool for this case.
-It reads the generated manifest, resolves each texture/audio object directly from
-Rimgate's loaded bundles, checks texture dimensions and clip metadata, and checks
+It reads the generated manifest, resolves each texture/audio object from Rimgate's
+selected owned format (Unity bundles or the mounted native pack), checks texture
+dimensions and clip metadata, and checks
 that normal `ContentFinder` lookup returns the same objects. It also inspects
 `RimgateTex` materials/shaders and selected gate command icons. An unselected
 menu report can check the inventory, but does not validate gate commands; the Lua
@@ -489,8 +490,65 @@ exercised by the scenario. It does not compare raw files with decoded bundle
 bytes or establish visual fidelity for every asset. The profile is muted; valid
 clip metadata does not prove audible playback. Active gate/DHD effects, other
 rotations, audio playback and transit belong to the remaining migration checks.
-The retained 1.6 bundles and Unity builder remain unchanged; asset loading alone
-does not justify replacing their pipeline or declaring public 1.7 support.
+The retained 1.6 bundles and Unity builder remain unchanged. The native-pack
+comparison below is experimental and does not declare public 1.7 support.
+
+### Compare native Waylith packs with Unity bundles
+
+Setup defaults to native Waylith packs when `-RimWorldVersion 1.7` is selected;
+retained 1.6 continues to default to Unity bundles. With all game instances
+stopped, prepare native 1.7 or explicitly select the legacy comparison:
+
+```powershell
+.\.assets\scripts\setup-rimbridge-dev.ps1 -RimWorldVersion 1.7
+.\.assets\scripts\setup-rimbridge-dev.ps1 -RimWorldVersion 1.7 -AssetFormat UnityBundles
+```
+
+Run and stop one deployment before preparing the other. Both use the same private
+game/profile and owned smoke save. Keep their evidence directories separate and
+pass `assetFormat` (`UnityBundles` or `WaylithPack`) with the three path parameters
+to `rimbridge-assets-1.7.lua`; its optional format assertion prevents a requested
+comparison from silently using the other format. Direct `rimgate/asset_report`
+returns complete texture/audio metadata for comparisons; large script-step
+payloads may be omitted, so preserve the direct report as well as script status.
+
+Native setup stages raw PNGs/OGGs only inside the ignored experimental overlay,
+then calls `.assets/scripts/build-waylith-assets.ps1`. That helper launches the
+matching game's bounded hidden `-BakeModAssetPacks=<staged-mod-root>` process
+with a separate `Profile-1.7-Bake`. It writes `build-waylith-assets.log` and
+`build-waylith-assets-stderr.log` at the repository root. After successful exit
+and nonempty output checks it removes staged loose `Textures`, `Sounds` and
+`AssetBundles`; the private candidate contains `1.7/Assets.zip` with `.stamps`,
+`.roles` and `.fingerprint` sidecars. The native probe requires the exact mounted
+Rimgate pack and rejects loose files, legacy bundles, missing entries and shadowed
+objects. Do not create this pack with a generic ZIP tool or copy source files
+into tracked `Mod/` manually.
+
+The helper can also rebake an already prepared overlay directly:
+
+```powershell
+.\.assets\scripts\build-waylith-assets.ps1 -RimWorldVersion 1.7
+```
+
+It accepts `-GamePath` and `-ToolsPath` for alternate installed/private roots.
+A standalone rebake updates the ignored overlay; rerun setup with the chosen
+format to redeploy it. The helper deletes only its four known prior outputs
+before baking, so stale files cannot establish a successful new build. Setup
+rejects native format for 1.6. Normal release/docs/Unity bundle builds retain
+their existing supported-target behavior.
+
+Native baking consumes raw inputs rather than Unity importer metadata. The
+current comparison preserved all texture dimensions, but native results use
+mip chains, trilinear/repeat sampling and BC7/BC4, while the retained bundle uses
+one mip, bilinear/clamp sampling and DXT/RGBA formats. The gate looks softer at
+the tested zoom. Audio metadata can also differ from the old imported clips.
+The owner selected native as the 1.7 development default to remove the Unity
+build dependency. Preserve the known softer sampling observation and verify
+texture appearance in subsequent scenarios; passing asset checks does not
+establish identical presentation. The migration plan owns the dated comparison,
+default decision and remaining visual/effect/audio gates. Setup leaves the
+selected format deployed until the next setup. The retained 1.6 Unity pipeline
+and tracked player package are unchanged.
 
 ## Local packaging and review
 
