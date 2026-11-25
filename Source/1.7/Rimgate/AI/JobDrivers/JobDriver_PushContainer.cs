@@ -55,7 +55,13 @@ public class JobDriver_PushContainer : JobDriver
                 }
 
                 var dest = Building_MobileContainer.GetPushDestinationCell(job.targetB);
-                if (!dest.IsValid) dest = pawn.Position; // fallback to current position if something went wrong with the destination
+                if (!dest.IsValid)
+                {
+                    // A gate can close while the pawn approaches the original cart.
+                    // Leave that cart intact instead of turning an invalid gate into a cell push.
+                    EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
 
                 if (!Utils.FindStandCellFor(pawn.Position, dest, pawn.Map, out IntVec3 stand))
                 {
@@ -159,38 +165,41 @@ public class JobDriver_PushContainer : JobDriver
                     return;
                 }
 
-                // 1) Convert carried proxy -> cart (unspawned)
+                Building_Gate gate = null;
+                if (job.targetB.HasThing)
+                {
+                    gate = job.targetB.Thing as Building_Gate;
+                    if (gate == null || !gate.Spawned || gate.Map != pawn.Map || !gate.IsActive || gate.IsIrisActivated)
+                    {
+                        if (gate != null)
+                            Messages.Message("CannotEnterPortal".Translate(gate.Label), gate, MessageTypeDefOf.RejectInput);
+                        // Keep the carried proxy for normal failure cleanup; never spawn on a gate.
+                        EndJobWith(JobCondition.Incompletable);
+                        return;
+                    }
+                }
+
                 Building_MobileContainer cart = carried.ConvertProxyToCart(pawn.Faction);
+                // Secure the gate owner before releasing the proxy's cargo. Failed admission
+                // leaves the original carried owner intact for interruption cleanup.
+                if (gate != null && !gate.AddToSendBuffer(cart))
+                {
+                    cart.Destroy();
+                    EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
                 carried.MoveContentsToContainer(cart);
                 carried.Destroy();
 
-                if (job.targetB.HasThing && job.targetB.Thing is Building_Gate gate)
+                if (gate != null)
                 {
-                    // 2) If destination is an active gate with open iris, send the cart through the gate instead of placing on ground
-                    if (gate.IsActive && !gate.IsIrisActivated)
+                    if (job.def == RimgateDefOf.Rimgate_EnterGateWithContainer && !gate.AddToSendBuffer(pawn))
                     {
-                        // 3) hand the unspawned cart to the gate
-                        if (!gate.AddToSendBuffer(cart))
-                        {
-                            GenPlace.TryPlaceThing(cart, pawn.Position, pawn.Map, ThingPlaceMode.Near);
-                            EndJobWith(JobCondition.Incompletable);
-                            return;
-                        }
-
-                        if (job.def == RimgateDefOf.Rimgate_EnterGateWithContainer && !gate.AddToSendBuffer(pawn))
-                        {
-                            EndJobWith(JobCondition.Incompletable);
-                            return;
-                        }
-
-                        EndJobWith(JobCondition.Succeeded);
+                        EndJobWith(JobCondition.Incompletable);
                         return;
                     }
-
-                    // Gate is not active or iris is closed — can’t place cart into an inactive gate
-                    Messages.Message("CannotEnterPortal".Translate(gate.Label),
-                        gate,
-                        MessageTypeDefOf.RejectInput);
+                    EndJobWith(JobCondition.Succeeded);
+                    return;
                 }
 
                 // “place on ground” path (when dest is not a gate)

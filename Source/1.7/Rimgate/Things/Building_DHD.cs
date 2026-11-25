@@ -25,7 +25,10 @@ public class Building_DHD : Building
 
     public CompPowerTrader PowerTrader => _cachedPowerTrader ??= GetComp<CompPowerTrader>();
 
-    public bool WantsGateClosed => _wantGateClosed;
+    // The native designation already persists the request and drives its work/job.
+    public bool WantsGateClosed => CloseGateDesignation != null;
+
+    private Designation CloseGateDesignation => Map?.designationManager.DesignationOn(this, RimgateDefOf.Rimgate_DesignationCloseGate);
 
     public bool Powered => PowerTrader == null || PowerTrader.PowerOn;
 
@@ -38,8 +41,6 @@ public class Building_DHD : Building
     private Building_DHD_Ext _cachedProps;
 
     private CompFacility _cachedFacility;
-
-    private bool _wantGateClosed;
 
     public override void TickRare()
     {
@@ -102,24 +103,21 @@ public class Building_DHD : Building
             defaultLabel = "RG_CloseGate".Translate(linked.LabelCap),
             defaultDesc = "RG_CloseGateDesc".Translate(linked.LabelCap),
             icon = RimgateTex.CancelCommandTex,
-            isActive = () => _wantGateClosed,
+            isActive = () => WantsGateClosed,
             toggleAction = delegate
             {
-                _wantGateClosed = !_wantGateClosed;
-
                 var dm = Map.designationManager;
-                Designation des = dm.DesignationOn(this, RimgateDefOf.Rimgate_DesignationCloseGate);
-
-                if (_wantGateClosed && des == null)
-                    Map.designationManager.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationCloseGate));
+                var des = CloseGateDesignation;
+                if (des == null)
+                    dm.AddDesignation(new Designation(this, RimgateDefOf.Rimgate_DesignationCloseGate));
                 else
-                    des?.Delete();
+                    des.Delete();
             }
         };
 
         if (!linked.IsActive)
         {
-            _wantGateClosed = false;
+            CloseGateDesignation?.Delete();
             closeGateCmd.Disable("RG_GateIsNotActive".Translate(linked.LabelCap));
         }
         else if (linked.IsReceivingGate)
@@ -228,7 +226,7 @@ public class Building_DHD : Building
     public void DoCloseGate()
     {
         if (!TryGetLinkedGate(out Building_Gate control)) return;
-        _wantGateClosed = false;
+        CloseGateDesignation?.Delete();
         control.CloseGate(true);
     }
 

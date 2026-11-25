@@ -476,8 +476,8 @@ local table variable as the whole argument object. Recompile after each edit,
 inspect both operation and nested payload success, and run long cases as separate
 bounded phases rather than one large invocation.
 
-Utility, loose gate-cargo and orbital bulk waits run ordinary **Ultrafast**
-simulation and use `rb.poll` against their read-only companion's root
+Bulk scenario waits run ordinary **Ultrafast** simulation. Elapsed-tick waits
+use `rb.poll` against their read-only companion's root
 `result.tick`: `utilities_status`, `transit_status` or `orbital_equipment_status`.
 They wait for at least the requested elapsed work; overshoot is allowed and no
 time-boost setting is changed. Retain single-tick pickup/checkpoint observations
@@ -583,6 +583,67 @@ branch from the same carry checkpoint: normal drafting interrupts the job, and
 the item must retain one source-map/carry owner. These checks are distinct from
 inventory cargo, mobile containers and transporter-loading acceptance.
 
+### Verify blocked landing and inactive retry
+
+Compile [`.assets/scripts/rimbridge-gate-edges-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-gate-edges-1.7.lua)
+with the installed bridge. Use gate-cargo `prepare` with `cargoDef: Steel` and
+`stackCount: 1`, then gate-edges `block` **before** gate-cargo `carry-reload`.
+Pass the transit `fixture`, exact `cargoId`, `receiverGateId` and private paths;
+retain `block`'s returned `blocked` payload for release. Continue with `blocked`,
+`checkpoint`, `keeper`, `close`, `closed-checkpoint`, `release`, then `recover`.
+
+The ordinary Steel piles exercise the gate's identity-preserving no-merge filter.
+Require `nativeCanPlace: false` and zero positive-quality cells across the complete
+native search (517 cells in the pinned build). The input helper preserves original
+objects and preflights full item cells already rejected by native placement:
+`GenSpawn` can relocate existing items there even when `SpawningWipes` is false.
+Walls or a count of added obstacles alone do not establish blocked placement.
+The `blocked` phase also observes 81 normal ticks after admission, exceeding the
+receiver's maximum 80-tick retry delay, before checking the unchanged owner/head.
+
+`keeper` orders the real tracked pawn through the gate behind the blocked Steel
+FIFO head. Normal DHD closure releases that pawn while leaving Steel owned and
+blocked, retaining the map for the inactive retry case. After reload, release
+only the recorded fixture pile; normal ticks must recover the exact original
+Steel once, clear its queue reference and gate ownership, and preserve the living pawn.
+Without a receiver pawn, a closed transit site can unload into `TransitStoredThing`
+value records retaining Steel definition/count rather than original IDs/queues.
+Inspect those records separately; a missing loaded-map object is not lost matter.
+
+### Verify loaded carts at a gate
+
+Compile [`.assets/scripts/rimbridge-cart-gate-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-cart-gate-1.7.lua).
+Pass the existing transit fixture as `transitFixture` to `prepare`; use its returned
+`fixture` for `load_dialog`, `accept_load`, `start`, `checkpoint` and `arrive`.
+Set the unique pistol's manifest count to one through real UI and pass a fresh
+`acceptTargetId`; never use DEV loading. The fixture's Construction 0 and HP 107
+inputs isolate the retained-HP check from autonomous repairs.
+
+Run `close` or `iris` while carrying as separate rejection branches, then `reject`.
+Use `close-checkpoint` in place of `close` to save/reload the actual assigned DHD
+close job before it completes. Close intent must survive until that job consumes
+the native designation. The same toggle must cancel the designation on demand.
+Cleanup can restore the cart on the closing tick; an already-restored cart is a
+valid rejection result. Require exact original cargo/operator ownership, retained
+stuff/HP/use settings, gate survival, and cleared proxy, slowdown and attachment.
+Cart conversion creates a new cart identity; use cargo identity for continuity.
+
+### Verify receiver iris jobs and cargo outcomes
+
+Compile [`.assets/scripts/rimbridge-iris-edges-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-iris-edges-1.7.lua).
+Pass the owned transit `fixture` and private paths. `prepare` sends the actual
+operator through normal entry, adds ordinary receiver power and uses the DEV
+Add/remove iris command only as installation input. The second tracked colonist
+remains the source hauler; neither is teleported to complete an operation.
+Run `close`, `send-closed`, `open`, `send-open`, then `clear-watch`; toggles must
+execute genuine pawn jobs. Start each cargo watch after any external reload.
+
+The Game-bound watch retains one observational item reference without creating
+an owner. Require that same object's destroyed flag for closed-iris cargo, or
+its surviving map registration/reference for open-iris cargo. Clear the watch
+after completion **and failure**, and always pause in host `finally` cleanup.
+These phases leave audio/listening acceptance separate from gameplay outcomes.
+
 ### Verify cloning and sarcophagus cycles
 
 Compile [`.assets/scripts/rimbridge-medical-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-medical-1.7.lua)
@@ -667,7 +728,8 @@ and proxy references through reload, and final removal of the pushing hediff and
 visual attachment. Conversion deliberately creates a new cart ID, so continuity
 is established through cargo and retained cart properties. `unload` uses the
 player's **Unload all** command. Recharge facilities, fuel-consuming variants,
-contents used by other colonist jobs and cart gate handoff need separate cases.
+contents used by other colonist jobs need separate cases. Use the loaded-cart
+gate protocol above for gate handoff and rejection.
 
 ### Check native layout symbols
 

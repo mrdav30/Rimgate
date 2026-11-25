@@ -7,7 +7,7 @@ gameplay, persistence, compatibility, documentation and tooling. Feature scope
 belongs in the [overview and owning plans](feature-work-overview.md); measured
 performance signals belong in the [performance backlog](performance-signal-backlog.md).
 
-- IDs use `RG-Issue-NNN`. The next available ID is **RG-Issue-013**. Assign at
+- IDs use `RG-Issue-NNN`. The next available ID is **RG-Issue-015**. Assign at
   intake, never reuse an ID, and check this file's history before repairing the
   counter. Keep an explicit `rg-issue-nnn` anchor through closure or compaction.
 - Record discovery date/revision, affected owners, impact, status/priority,
@@ -34,7 +34,8 @@ performance signals belong in the [performance backlog](performance-signal-backl
 
 ## Active and deferred investigations
 
-No active investigations.
+None currently open. The remaining migration acceptance matrix is owned by the
+[migration plan](rimworld-1.7-migration-plan.md#remaining-phase-3-gates).
 
 ## Closed issues
 
@@ -52,6 +53,8 @@ No active investigations.
 | <a id="rg-issue-010"></a>RG-Issue-010 - Moving cart saves retain an unsaved original target | November 25, 2026 | **Verified 1.7 correction.** Release the original reservation, retarget the job to the deep-owned proxy and avoid premature map access during toil reconstruction. Fresh loaded pushing preserves proxy/cargo/job/visual across reload, reaches the exact chosen cell, unloads, and restores the cart cleanly on draft interruption. [Retained failure and replay](rimworld-1.7-migration-plan.md#phase-3-gameplay-and-current-save-acceptance). Old broken checkpoints lack the original target; historical repair excluded; 1.6 unchanged. | A loaded push loses its job, cargo, visual or reservation integrity across a current-save checkpoint, or leaves duplicate contents/slowdown after cleanup. |
 | <a id="rg-issue-011"></a>RG-Issue-011 - Layouts contain stale or malformed symbols | November 25, 2026 | **Verified shared XML correction.** With owner approval, correct 34 cells in 27 authored rows across four layout files reused by 1.6 and private 1.7, preserving row widths; the initial 1.7 patch was removed. Native resolved-symbol report changes from 34 bad cells to zero across 44 layouts. [Evidence and inferred SmokeleafJoint intent](rimworld-1.7-migration-plan.md#phase-3-gameplay-and-current-save-acceptance). This is definition resolution, not acceptance of every rendered structure or live 1.6 behavior. | A layout has missing/wrong symbols or an authored row regresses after source updates. Retain exact layout/layer/row and loaded resolved definitions. |
 | <a id="rg-issue-012"></a>RG-Issue-012 - DBH thirst-disabled treatment throws | November 25, 2026 | **Verified 1.7 correction.** Null-check the optional thirst need, matching other DBH setters. DBH 3.2.3260 with Bladder/Hygiene and no Thirst now treats, reloads and discharges the real patient successfully. [Before log and replay](rimworld-1.7-migration-plan.md#phase-3-gameplay-and-current-save-acceptance). This does not establish all DBH variants; 1.6 unchanged. | An optional need's absence breaks a real treatment/restore path, or a present thirst need is restored incorrectly. |
+| <a id="rg-issue-013"></a>RG-Issue-013 - Rejected cart placement removes the destination gate | November 25, 2026 | **Verified 1.7 correction.** Reject invalid destinations before conversion and unavailable gates before proxy release; secure gate ownership before transferring cargo. Retained failure replay, fresh handoff, real DHD/iris cancellation and pre-pickup closure preserve gate/cargo/operator and clear pushing state. [Reproduction and limits](rimworld-1.7-migration-plan.md#gate-edge-and-loaded-cart-acceptance). Fully blocked interruption placement remains separate; 1.6 unchanged. | Rejection removes infrastructure, loses/duplicates cargo or leaves a proxy/slowdown/visual; retain the actual carried checkpoint and target gate. |
+| <a id="rg-issue-014"></a>RG-Issue-014 - Saved DHD close jobs lose their close request | November 25, 2026 | **Verified 1.7 correction.** Remove the unsaved duplicate boolean; derive intent from the existing persisted native designation used by the work giver/job. The retained pre-pickup close checkpoint and new carried pending-close reload now complete actual closure; completed-state reload and request cancellation also pass. [Reproduction and acceptance](rimworld-1.7-migration-plan.md#gate-edge-and-loaded-cart-acceptance). No new save key or 1.6 change. | A designated close request disappears, completes without closure, or cannot be cancelled across current-save reload. Retain designation, closer job and linked gate state. |
 
 ## Intake template
 

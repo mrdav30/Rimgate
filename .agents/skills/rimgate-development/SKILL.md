@@ -54,7 +54,9 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   cycles. Verify spawned, connected fixtures, default durations, exact treatment
   queues and deep ownership across reload/interruption. Compile changed Lua with
   the actual bridge `compile_lua_file`; its restricted subset is narrower than
-  offline MoonSharp parsing. The guide owns syntax limits and phase parameters.
+  offline MoonSharp parsing. The guide owns syntax limits and phase parameters,
+  including blocked-landing, cart-gate and receiver-iris cases with their watch
+  cleanup and transit-site value-record boundaries.
   Planetary discovery uses
   [rimbridge-discovery-1.7.lua](../../../.assets/scripts/rimbridge-discovery-1.7.lua):
   prepare inputs only; the real decode job must create and persist its quest,

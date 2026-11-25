@@ -114,7 +114,10 @@ checks in `rimbridge-effects-1.7.lua`: trigger a real incident,
 verify the held reference through reload, then end it normally and check cleanup.
 The contributor guide owns `rimbridge-medical-1.7.lua`, `rimbridge-utilities-1.7.lua`
 and `rimbridge-gate-cargo-1.7.lua`: prepare inputs only, then use real jobs and
-verify progress, ownership, interruption and reload. Compile changed scenarios
+verify progress, ownership, interruption and reload. Gate-edge cases use
+`rimbridge-gate-edges-1.7.lua`, `rimbridge-cart-gate-1.7.lua` and
+`rimbridge-iris-edges-1.7.lua`; the guide owns their phase and cleanup contracts.
+Compile changed scenarios
 with the installed `rimbridge/compile_lua_file`; offline Lua parsing is insufficient.
 Use the companion's read-only `rimgate/patch_report` for actual Harmony registration;
 registered patches do not establish every affected feature's behavior. Preserve explicit

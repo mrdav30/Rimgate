@@ -70,6 +70,12 @@ DBH's thirst-disabled treatment path (RG-Issue-008–012). Cloning, ZPM insertio
 ejection and orbital decoding/equipment eligibility have focused native checks.
 The owner waived historical player-save migration; current-save continuation
 remains required. The plan owns exact results and the remaining wider matrix.
+The second phase-3 batch verifies blocked landing/reload/inactive retry, receiver
+iris protection and loaded-cart gate handoff/cancellation. Two reproduced 1.7
+defects are corrected: rejected cart placement could remove its target gate
+(RG-Issue-013), and saved DHD close jobs lost their unsaved close intent
+(RG-Issue-014). Transporter/wider cargo, health/resource, orbital and optional
+integration checks remain open; this does not complete phase 3.
 Native pack-only loading and the
 same iris scenario also pass; the larger pack and changed sampling/clip metadata
 are recorded in the owning plan. Native packs are now the owner's selected 1.7

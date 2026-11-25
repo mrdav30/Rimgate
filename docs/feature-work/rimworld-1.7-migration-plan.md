@@ -1607,15 +1607,15 @@ companion clock after a failed trial.
 
 ### Remaining phase-3 gates
 
-Phase 3 is **still active**. This batch closes RG-Issue-008–012 for the reproduced
-paths, not the entire feature matrix. Continue with:
+Phase 3 is **still active**. The first and gate-edge batches close
+RG-Issue-008–014 for the reproduced paths, not the entire feature matrix.
+Blocked landing/retry/closure, receiver iris protection and loaded-cart gate
+handoff/cancellation now have focused acceptance below. Continue with:
 
-- Blocked-arrival ownership/retry/closure and receiver iris protection. The bounded
-  obstacle attempt placed 525 walls but skipped 272 occupied cells; cargo still
-  arrived. It proves neither blocked placement nor recovery. The rejected helper
-  and result are retained in private evidence, not shipped as unused tooling.
-- Loaded cart gate handoff/cancellation, transporter paths, partial stacks,
-  corpses/incapacitated pawns and broader interruption/cleanup cases.
+- Transporter paths, partial stacks, corpses/incapacitated pawns and broader
+  interruption/cleanup cases, including cart restoration when every nearby
+  placement cell is blocked. Steel-specific congestion and successful gate/cart
+  cases do not close these different ownership and placement paths.
 - Full/enhanced/corpse cloning, abort/resource/needs edge cases, sarcophagus
   interruption and other health integrations; fuelled carts, ZPM broadcasting,
   raid suppression and recharge facilities.
@@ -1687,3 +1687,80 @@ checks. The game is stopped; all 125 normal config files, 10 original player sav
 both private config files, four 1.6 bundles and the native pack match their
 baselines. Live 1.6 was not rerun; its source/layout checks do not replace that
 runtime coverage.
+
+### Gate-edge and loaded-cart acceptance
+
+**November 25, 2026; starting revision `5ec4ff3`.** This second phase-3 batch
+uses the same licensed 1.7.5014 rev1195 / Steam build 26793372, Windows and five
+DLC, with native pack-only loading. Load order is Harmony 3.0.4.0, Core/Royalty/
+Ideology/Biotech/Anomaly/Odyssey, VEF, Rimgate and RimBridgeServer 2.5.0; SDK 2.0.0 and
+GABS 1.1.2 provide development tooling only. DBH/VTE are absent. The installed
+VEF context remains the earlier recorded runtime, distinct from the CI reference
+pin; these results do not validate every optional integration. Testing uses the
+owned mature `Rimgate-transit-active` checkpoint and real jobs/menus in the hidden
+graphics-enabled private profile, with no desktop focus or computer-use actions.
+
+Two verified defects were discovered and corrected only in 1.7:
+
+- **RG-Issue-013:** Issue a normal loaded-cart gate order, then let the gate close
+  during the approach. Initialization replaced an invalid gate destination with
+  the pawn's current cell. Replaying the carried proxy checkpoint then converted
+  and spawned its cart at the original gate cell even though that gate was
+  inactive. `cart-carried-before.rws` and `cart-rejection-after.rws` retain the
+  original failure: cargo survives, but Gate38637 itself disappears from the save.
+  Reject invalid destinations before conversion and unavailable gates before
+  releasing the proxy. Secure gate ownership of the reconstructed empty cart
+  before transferring cargo; failed admission retains the carried owner for
+  normal interruption cleanup. General fully blocked restoration is still a
+  separate acceptance case, not a claim of this correction.
+- **RG-Issue-014:** Save a real assigned DHD close job and designation while the
+  pusher is still approaching its cart. On reload, the designation/job survive,
+  but the unsaved `_wantGateClosed` flag is false; the close job completes without
+  closing and the cart proceeds through the still-open gate. The retained
+  `dhd-close-before-pickup-before-fix.rws` contains both jobs and the designation.
+  Remove that duplicate flag and derive close intent from the persisted native
+  designation already used by the work giver/job. Toggle cancellation and normal
+  completion remove the same designation; no new save key or migration hook.
+
+| Case | Verified result and representative operation |
+| --- | --- |
+| Genuine blocked landing | A rejected 525-wall attempt had holes and delivered cargo; it was not accepted as blockage. The new Steel1 fixture creates 691 ordinary loose inputs while preserving original objects. The actual Near search checks 517 candidates, 438 native-spawnable cells all vetoed by the production no-merge policy, zero positive-quality cells and `nativeCanPlace: false`. Normal hauling admits Steel53699 to the receiver. The reusable `blocked` phase observes a further 81 real ticks, beyond the maximum normal receive delay, and retains that same object, one deep owner and one FIFO alias (`op_09fd0869eaf14ae0b7d191c09ebc77d2`). This is Steel-specific, not a universal physical obstruction test. |
+| Reload, normal closure and inactive retry | Active blocked reload passes. The real Pawn989 enters behind Steel in the FIFO; normal DHD closure releases the pawn while Steel stays blocked, naturally retaining the map. Closed-state reload preserves the exact Steel/queue. Releasing only tracked input Steel53702 exposes one positive-quality cell; normal inactive hash retry places original Steel53699 on map 1 once, clears ownership/queue references and leaves both gates inactive (`op_58d9a9e2197b4159a9365ea9910aff64`). The full reusable sequence passes before and after the DHD correction. |
+| No-pawn destination unload | A separate ordinary close with no receiving pawn unloads the map. The existing transit-site value cache retains gate→Steel/count 1 (`op_54b0760f4e684cdb9edd8aff4a0f3027`). These records deliberately lack original Thing IDs/queue identities. This is not lost matter, nor proof of exact-ID continuation across site regeneration; no world-site behavior was changed. |
+| Cart retained failure | Replaying the original inactive-gate carried checkpoint now restores its loaded cart near the operator, preserves Gate38637, Steel stuff/HP107/use=false and exact cargo Gun53700, and clears proxy/visual/slowdown (`op_07088124ce9846c5aeeab3abe089d43b`). |
+| Fresh cart handoff and cancellation | The real manifest selects only Gun53700; ordinary hauling loads it. Carried proxy53706, cargo and pushing job survive save/reload. Normal handoff delivers reconstructed cart plus the same living operator once; a later replay after requesting/cancelling DHD closure also arrives (`op_c8f4dc05241548cdb8205bb25f3d3a49`). Real separate DHD-close and iris-close jobs each leave the loaded cart/operator on the source side with Gate38637 intact and no proxy/visual/slowdown (`op_1918d94cbac34693a2ba3c13051cfff6`, `op_b84f2ae4ad2c4470a0ba2767f010457a`). Cart IDs change on conversion by design; cargo identity and stuff/HP/use are exact. Construction is disabled only as a fixture input so autonomous repairs cannot invalidate HP107. |
+| Pending DHD close reload | The retained pre-pickup checkpoint now closes normally after reload; the original, unconverted cart58305/cargo/properties stay intact (`op_34f6959b69484dceaef3782e09e3d2c2`). Reloading its completed save keeps closure consumed. A reusable `close-checkpoint` phase also saves/reloads the real assigned closer job while the cart is carried, completes closure (`op_8a5d339374ae427690795da9fe501966`) and passes normal rejection cleanup (`op_ef4ce3d788ab4a6d95b737c46345c29f`). Real toggle on/off reports intent true/false and leaves the link available for the successful handoff above. Load readiness may advance normal ticks, so a request consumed during loading is accepted only with actual gate closure. |
+| Receiver iris protection | The real traveler enters, ordinary generator/iris installation inputs provide a powered receiver, then actual close/open iris jobs execute. Closed iris destroys the exact watched Gun53713 object (`Destroyed: true`, count 0, no owner/loaded registration; `op_9a9057a3cd804c8291ed9a85a2715114`). Open iris delivers watched Gun53720 intact to map 1 with one object/owner (`op_565fceddcc6d4a13b77d779c8768b9b4`). The explicit non-owning watch is Game-bound and cleared after the case; it does not claim reference identity across reload. The full six-phase reusable scenario passes in the final cold session. |
+| Source closed-iris menu | A real close-iris job leaves only the disabled “Cannot enter Dwarfgate: iris closed.” option, with no enabled Enter/Bring action. This does not establish every already-issued ordinary pawn/cargo race. Destination actors can flee from native dangers after arrival; transport survival is not combat safety. |
+
+The contributor guide owns the three new bounded Lua protocols and guarded
+companion inputs/observations. They never insert successful admission, placement,
+closure or iris-destruction outcomes. One rejected congestion fixture exposed
+native item relocation at full cells; preflight now skips cells already rejected
+by native placement and verifies every original object's position/state/HP/count.
+The rejected fixture and timeout trials remain separate from successful runs.
+Outcome polling replaces an arbitrary 1500-tick cart wait that expired despite a
+successful arrival. Every caller pauses on failure; iris cleanup also releases
+its single observation. These are tooling corrections, not game-speed changes.
+
+Evidence is retained outside Git at
+`%LOCALAPPDATA%/RimgateDev/evidence/phase3-gate-edges-20261125-112923/`: byte-backed
+inputs, before/after failures, accepted checkpoints, native logs, runtime context,
+binary hashes and complete operation JSON. `accepted-and-trial-operations.json`
+includes failed trials explicitly; `final-native-operations.json` holds final
+replays. The final bridge error journal is empty and process termination is
+verified. Private Prefs/ModsConfig and all four original owned input saves were
+restored after retaining the accepted outputs. All 125 normal config files,
+10 original player saves and four retained 1.6 bundles match their before hashes
+and file inventories. The native pack hash remains
+`0dea55cedec8eb2f14bc1fed2ac78b9f6fe1e1b4e2e5ec03f02f3568e8ba6797`.
+
+Experimental assembly and companion builds pass with zero warnings/errors; all
+three new Lua files compile through the installed SDK. Supported 1.6 library,
+strict DocFX/site checks and skill validation pass. Independent review covers
+both production corrections and the new scenario/probe contracts; its retry
+measurement qualification was resolved by the explicit 81-tick observation.
+Source/1.6, tracked Mod content, raw assets, Unity builder, dependency pins,
+Steam branch and insurance snapshot remain unchanged. Public support still
+declares only 1.6. The index is unchanged; all changes remain unstaged/uncommitted.
+The remaining gates above, including manual quality checks, keep phase 3 active.
