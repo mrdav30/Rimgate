@@ -89,26 +89,24 @@ public class FloatMenuOptionProvider_EnterGate : FloatMenuOptionProvider
                     onlyTargetIncapacitatedPawns = true,
                     canTargetBuildings = true,
                     canTargetItems = true,
-                    canTargetPlants = true,
-                    canTargetFires = true,
+                    canTargetPlants = false,
+                    canTargetFires = false,
                     mapObjectTargetsMustBeAutoAttackable = false
                 };
 
                 Find.Targeter.BeginTargeting(parms, t =>
                 {
-                    if (t.Thing != null)
+                    if (t.Thing == null) return;
+                    if (t.Thing is Building_MobileContainer container)
                     {
-                        if (!t.Thing.def.Claimable) return;
-
-                        if (t.Thing is Building_MobileContainer container)
-                        {
-                            // send a push job targeting the *gate thing*
-                            var pushJob = container.GetPushJob(gate, false, true);
-                            if (pushJob == null) return;
-                            pawn.jobs.TryTakeOrderedJob(pushJob, JobTag.MiscWork);
-                            return;
-                        }
+                        if (!container.def.Claimable) return;
+                        // send a push job targeting the *gate thing*
+                        var pushJob = container.GetPushJob(gate, false, true);
+                        if (pushJob == null) return;
+                        pawn.jobs.TryTakeOrderedJob(pushJob, JobTag.MiscWork);
+                        return;
                     }
+                    if (t.Thing is Building) return;
 
                     Job job = JobMaker.MakeJob(
                         RimgateDefOf.Rimgate_BringToGate,

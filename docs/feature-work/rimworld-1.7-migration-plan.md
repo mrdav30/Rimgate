@@ -1,6 +1,6 @@
 # RimWorld 1.7 Migration Plan
 
-- **Status:** In progress; **phases 0, 1 and 2 complete. Phase 3 is next.**
+- **Status:** In progress; **phases 0, 1 and 2 complete. Phase 3 is active.**
   Versioned source split and experimental 1.7 compilation
   implemented; the existing local snapshot is temporary migration insurance.
   Live 1.7 startup/profile and hidden-window smoke checks passed earlier;
@@ -20,8 +20,10 @@
   Conditional iris glow, condition ownership/reload/end and the final complete
   gate replay also pass; RG-Issue-006/007 are corrected in 1.7 only.
   Broader feature/edge-case, device/listening, orbital, optional-integration and
-  old-save acceptance belong to phase 3. The 1.6 freeze/support milestone is phase 4.
-- **Created:** November 23, 2026. **Scope reconciled:** November 24, 2026.
+  current-save acceptance belong to phase 3. Historical player-save migration was
+  waived by the owner on November 25; see the phase-3 record below. The 1.6
+  freeze/support milestone is phase 4.
+- **Created:** November 23, 2026. **Scope reconciled:** November 25, 2026.
 - **Planning baseline:** `14a15f6` (feature-work tracking); clean worktree before
   this plan. Current playable/configured target remains RimWorld 1.6.
 - **Tracking:** [Feature work overview](feature-work-overview.md).
@@ -202,8 +204,9 @@ Apply the [contributor acceptance matrix](../guides/developer-and-contributor-no
 gates/address ownership, cloning, sarcophagus, mobile containers, ZPM/housing,
 incidents/quests, UI and relevant optional integrations. Test interruption and
 cleanup as well as successful use. Exercise optional integrations absent and
-present. Verify a new colony and a copy of an existing 1.6 save, preserving the
-original. Record incompatibilities and any deliberate migrations explicitly.
+present. Verify a new colony and current 1.7 save/load continuation. The owner
+waived historical player-save migration on November 25 after the retained-save
+trial; preserve the originals and record that disposition explicitly.
 
 Put defects in the [issue tracker](issue-tracker.md), measured regressions in the
 [performance backlog](performance-signal-backlog.md), and keep migration status
@@ -1520,3 +1523,167 @@ pins, Steam branch and local insurance snapshot are unchanged. Owned test output
 saves have recoverable before-copies outside Git. The final private process exit
 is verified. HEAD remains `2468084`; the index is unchanged and all new changes
 are unstaged/uncommitted for review.
+
+## Phase 3: gameplay and current-save acceptance
+
+**In progress, November 25, 2026; starting revision `1f9e83f`.** Keep phase 4
+separate: only 1.6 is publicly supported. Its C# and unrelated content are
+preserved; the owner approved the shared layout XML corrections described below.
+The target remains 1.7.5014 rev1195, Steam build 26793372, Windows, all five DLC,
+the recorded Harmony/VEF runtime and native pack-only deployment. The ten-mod
+baseline was tested without DBH/VTE; the twelve-mod optional profile adds
+Dubs Bad Hygiene 3.2.3260 and Vanilla Traits Expanded, before Rimgate.
+Installed metadata is not acceptance of every optional integration.
+
+### Historical save disposition
+
+A private copy of the retained 1.6.4871 smoke save loaded, advanced 120 ticks,
+saved as a new 1.7 file and reloaded with the same gate/iris state. This is one
+specific import, not general save compatibility. A copy of the January player
+save (1.6.4633) failed with missing historical definitions and related apparel
+errors; its original bytes were preserved. Camera+ and Visual Exceptions were
+temporarily enabled only in the private profile to satisfy its recorded list,
+then removed from the active profile. No upgraded player save was produced.
+
+The owner explicitly waived old-save migration: “i don't care about old saves.”
+The subsequent clarification identifies `Rimgate_TacticalVestSteelPlateInsert`
+as the former name of `Rimgate_SteelPlateInsert`. Do not add historical aliases,
+reconstruct removed items or make archival saves a release gate. Current 1.7
+operation/checkpoint/reload/continuation remains required.
+
+### Reproduced defects and fixture controls
+
+| Issue | Before-fix evidence | Correction boundary |
+| --- | --- | --- |
+| RG-Issue-008: loose cargo targeting silently does nothing | Actual Bring selected targeting left a unique autopistol on the ground and the pawn waiting. | The 1.7 callback applies Claimable only to mobile containers, rejects ordinary buildings/plants/fires, and permits normal haulable items/corpses/incapacitated pawns. No admission shortcut. |
+| RG-Issue-009: treatment queues disappear on reload | Valid 24 kW fixture: HealingStarted, remaining 258, patient-owned Hediff_207 queued. After reload the patient remained owned/powered but the queue was empty. Retained `medical-valid-power-before.rws`. | Save ordered hediff references and trait definition/degree keys through Scribe phases; rebind actual patient-owned trait instances after load. No re-diagnosis, timer/resource reset or power grace. |
+| RG-Issue-010: moving cart checkpoint loses its original target | A real loaded push saved its carried proxy/cargo but referenced the despawned original cart in job target A and reservations. Reload failed to resume the pusher. Retained `moving-cart-before.rws` and native log. | Release the original reservation before despawn, retarget the job to its deep-owned carried proxy, and avoid spawned-map access while rebuilding loaded toils. |
+| RG-Issue-011: live layout cells still name removed or malformed symbols | Read-only native KCSG report: 44 layouts, 34 invalid cells, 12 token forms. Includes old plate names, whitespace/dot errors, recharger/wall-lamp spelling and Smokeleaf. | Correct the authored Goa'uld, Mech, Misc and Tau'ri layout XML directly: 27 rows / 34 cells with unchanged row widths. The owner approved these shared 1.6/private-1.7 content fixes in place of the initial experimental patch. `SmokeleafJoint` is inferred stored-drug intent beside Beer, not a recovered original asset. |
+| RG-Issue-012: DBH with thirst disabled throws every healing tick | Real patient needs had Bladder/Hygiene but no Thirst. Native log identifies SetThirstNeedCurLevelPercentage from Sarcophagus.Tick. | Null-check the optional thirst need, matching the existing hygiene/bladder setters. 1.7 only. |
+
+The new scenarios prepare inputs and observe production results. They do not
+insert successful transfers, healing, clones or discovered quests. Two invalid
+fixtures were corrected before drawing production conclusions: duplicate power
+transmitters split the medical net; a conduit over the housing minified it.
+Preparation now skips transmitting footprints and asserts spawned objects plus
+normal network initialization. These are test defects, not fixes to game power.
+
+Dormant ancient mechs in the owned smoke map caused later host jobs to flee.
+Native Thing.HostileTo explicitly excludes dormant pawns; preparation now uses
+map thing listings and faction hostility before unfogging, excludes all player,
+colonist, prisoner and slave pawns, and records removed IDs. The four removed
+guards are Militor4472, Tesseron4474, Scorcher4476 and Tesseron4478.
+This isolates medical/utility/orbital inputs; it does not establish combat safety.
+
+The installed Lua compiler, rather than an offline general Lua parse, is the
+authoring gate. Roundtrip assertions use measured game-tick deltas instead of
+assuming visual readiness loads are zero-tick. Identity, queue order and fuel
+checks remain exact. Script/companion details belong in the contributor guide.
+
+### Accepted first-batch checks
+
+| Case | Observed result and operation |
+| --- | --- |
+| Loose cargo | Autopistol53700 retains one object/owner through carry reload (`op_a4db111040864278a0474484f68ee54c`), destination arrival (`op_b7c41c5874d144ae8ed1f13e6b1c9b73`) and draft interruption back on the source map (`op_623bd3034e624f5aa50d2bd7511ff9f8`). This is one item, not a partial-stack/corpse/pawn test. |
+| Sarcophagus, DBH/VTE absent | Fresh healing checkpoint retains Hediff_207; elapsed ticks explain timer progress without resetting it. Normal treatment ejects the same patient/inventory and removes the original injury (`op_0c0a712a9ed14b5382859afdf073cab0`). |
+| Sarcophagus, DBH/VTE present | DBH has Bladder/Hygiene and no Thirst. Two ordered hediff targets plus the actual degree-0 VTE_Lush trait reference survive healing reload (`op_0376ba2eb781425c80a5e2a125c18894`). Real completion removes the targets/trait and discharges the same patient (`op_f5a34d05212b41caa2b21c6336c8a2c4`). |
+| Genome cloning | Admitted host, unfinished calibration and pending-clone checkpoints survive reload. Final calibration replay `op_bcd8fdc9e425445c8f827b1d6e098e09` observes six elapsed ticks and bounded actor-stat work, not a zero-tick load. Pending clone Human51227 stays singly owned across reload (`op_166a3a236ef3463a933df38345a0f78c`) and real flick-off/on (`op_e6453789775c4806854613b9308138b6`, `op_1e7d3444c4d34238bca072046ad58c40`). Normal incubation completes with the same living, spawned generation-1 pawn, empty owners, Idle pod and fuel 200→100 once (`op_0fec809e8a7d4536a529ce629b03f4c3`). No developer finish command or duration/failure-setting override. Temporary Ultrafast boost was restored to false. |
+| ZPM housing | Three real insertions produce stored energy 72000 and dark reserve 1500. Reload preserves both (`op_8c56b98326ac40a397d49026dc134b67`); ejection restores the same three modules, each 24000/500, and empty housing 0/0 (`op_69ef88e6acae44ec8ac77758121a38f3`). Spawned housing and connected/powered lamp prerequisites are asserted. Broadcasting/raid suppression/recharging remain separate. |
+| Mobile cart | A normal loading manifest selects only one autopistol. Proxy46952/cargo42774/job/visual survive the moving checkpoint (`op_db61b684a30140fa8b319a46d9e110c5`). Resume places a steel, HP120 cart at the selected (150,120), preserves its cargo/use setting and clears slowdown/visual (`op_a863e8db2ae74f8ab675fc8196c37d5b`). Normal unload and draft interruption from the same checkpoint pass (`op_84f45eb5e34340eb96f9e7d1a54e7e4f`, `op_39d9048bee1f470abe4c0555a49cec8a`). Reconstructed cart ID changes by design; cargo identity is exact. |
+| Orbital discovery/equipment | Real decoding consumes one of two parchments, survives an unfinished-job reload, creates ongoing Orbit quest 0 / site115 / tile214 / O1E-361 and preserves its lazy site/address (`op_296e8517fb2c4aacb99a0fb6f0e379f9`). The actual DHD option is disabled without equipment, enabled with normal powered linked equipment and remains eligible after reload (`op_e0b0d1e634914188bc4f52c7aafe275b`). No orbital map generation/entry/vacuum claim. |
+| Layout symbols | Native report resolves all 44 loaded Rimgate layouts, 66460 nonempty cells, zero unresolved cells/layouts/tokens and zero ignored out-of-bounds cells. It does not generate or visually inspect every structure. |
+| Final minimal-profile cold run | Final companion plus four production corrections pass a new 1.7 debug colony, gate/iris save/reload, 120 exact ticks and capture (`op_1f559dc8c53b44418ca2763ae11a020a`). Native asset scenario resolves 814 textures/26 clips and runs the normal powered iris jobs (`op_804456d007aa4061bea2c5d2e79b44ea`); both captures were inspected. Terrain/fog near the new fixture limits full-base visual coverage; the earlier controlled presentation matrix remains the presentation evidence. Final bridge error journal is empty. |
+
+Bulk utility/cargo/orbital waits now run ordinary Ultrafast simulation and poll
+their read-only companion's actual `result.tick`; they allow overshoot and
+always pause on successful completion. The caller pauses in `finally` on
+failure. This avoids coupling completion waits to hidden render-frame cadence
+without claiming exact ticks or changing simulation jobs. One-tick in-flight
+observations and the smoke's exact 120 ticks remain separate. Retained failures
+include 119/250 frame-stepped ticks in 30 seconds and an orbital invocation's
+60-second script budget expiry; neither was accepted as success. The bridge
+status snapshot has no tick field; polling it was corrected to the owned
+companion clock after a failed trial.
+
+### Remaining phase-3 gates
+
+Phase 3 is **still active**. This batch closes RG-Issue-008–012 for the reproduced
+paths, not the entire feature matrix. Continue with:
+
+- Blocked-arrival ownership/retry/closure and receiver iris protection. The bounded
+  obstacle attempt placed 525 walls but skipped 272 occupied cells; cargo still
+  arrived. It proves neither blocked placement nor recovery. The rejected helper
+  and result are retained in private evidence, not shipped as unused tooling.
+- Loaded cart gate handoff/cancellation, transporter paths, partial stacks,
+  corpses/incapacitated pawns and broader interruption/cleanup cases.
+- Full/enhanced/corpse cloning, abort/resource/needs edge cases, sarcophagus
+  interruption and other health integrations; fuelled carts, ZPM broadcasting,
+  raid suppression and recharge facilities.
+- Orbital dialing/map entry with real vacuum protection, quest abandonment/site
+  cleanup, remaining incidents and reward/loot paths. Discovery/eligibility alone
+  does not close these.
+- Remaining optional integrations absent/present on actual 1.7 dependencies.
+  Installed metadata alone is insufficient; Quarry's installed package declares
+  only through 1.6, and requires an explicit unsupported/deferred disposition.
+- The coordinated manual motion/device/listening quality pass.
+
+After verified shutdown, preservation checks pass for all **125 normal config
+files, 10 original player saves**, both private config files, the original owned
+smoke input and four retained 1.6 bundles. The native pack hash remains
+`0dea55cedec8eb2f14bc1fed2ac78b9f6fe1e1b4e2e5ec03f02f3568e8ba6797`.
+The fresh 1.7 colony has a separate evidence copy; the original smoke input was
+restored. Normal player files were never restored over concurrent edits because
+none changed. At the initial batch closeout, Source/1.6, Mod/1.6, raw assets,
+Unity builder, dependency pins and Steam branch were unchanged; the local 1.6
+insurance snapshot was untouched. The owner subsequently approved the narrow
+layout-source exception below. The initial batch left the index unchanged and
+all new edits unstaged/uncommitted.
+
+### Evidence location
+
+Evidence is private under
+`%LOCALAPPDATA%/RimgateDev/evidence/phase3-20261125-002512/`: byte-backed normal
+config, original-save hashes, private config/smoke backups, retained failures,
+native logs and operation JSON. Recovery inputs stay outside Git. Keep successful
+replays distinct from failed or invalid fixtures. No public support/default
+change follows from this record.
+
+Final validation passes the experimental 1.7 assembly and final companion with
+zero warnings/errors, supported 1.6 library plus strict DocFX/site checks,
+PowerShell parsing, skill validation, Markdown path/anchor checks and Git diff
+checks. Independent review found no blocking issue in the other production
+paths, new scenario oracles or initial layout patch; sarcophagus serialization was
+self-reviewed by its implementing agent. Record the manual and wider gameplay
+limits above when assessing this first batch.
+
+### Direct layout source corrections
+
+On November 25 the owner approved correcting the shared authored XML instead of
+retaining the experimental layout patch. This is a narrow exception to preserving
+1.6 content: four files under `Mod/1.6/Defs/MapSites/Structures/` (Goa'uld, Mech,
+Misc and Tau'ri), 27 rows and 34 cells. The direct edits produce exactly the same
+parsed XML as the former patch, with unchanged row widths and unrelated bytes.
+The patch and its extra setup copy step were removed; private 1.7 setup now
+copies the corrected XML through the existing path. No def aliases, support
+metadata, 1.6 C#, asset inputs or bundles changed.
+
+Full setup and a cold native load without the patch pass: all four deployed
+files match the authored source, and the report still resolves all 44 layouts /
+66460 nonempty cells with zero unresolved or ignored cells
+(`op_c376189bac694557852fbc6eacad5295`). In a new private debug colony, KCSG's
+actual Quickspawn structure generator successfully creates
+`Rimgate_StructureGoauldNaquadahStorehouse`, `Rimgate_StructureMechHiveBravo`,
+`Rimgate_StructureJadeHengeBravo` and `Rimgate_StructureSGC`, one affected layout
+from each edited file. The bridge error journal is empty. This verifies selected
+layout generation, not every site, quest, rendered structure or live 1.6 behavior.
+
+Evidence and the generated colony are retained under
+`%LOCALAPPDATA%/RimgateDev/evidence/layout-source-20261125-111405/`, including the
+old patch, original source bytes, exact transfer report and native operations.
+The owner's staged snapshot is preserved; these follow-up edits remain unstaged.
+Validation also passes all 153 definition XML files, the setup PowerShell parser,
+skill validation, supported 1.6 library/strict DocFX/site checks and Git diff
+checks. The game is stopped; all 125 normal config files, 10 original player saves,
+both private config files, four 1.6 bundles and the native pack match their
+baselines. Live 1.6 was not rerun; its source/layout checks do not replace that
+runtime coverage.

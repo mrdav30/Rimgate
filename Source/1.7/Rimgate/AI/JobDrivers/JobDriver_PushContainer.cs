@@ -36,7 +36,9 @@ public class JobDriver_PushContainer : JobDriver
         // Go to cart
         var goToThing = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
         goToThing.FailOnDespawnedNullOrForbidden(TargetIndex.A);
-        if (Map.designationManager.DesignationOn(job.targetA.Thing, RimgateDefOf.Rimgate_DesignationPushCart) != null)
+        // On reload A is the carried proxy and the pawn may not be spawned yet.
+        if (job.targetA.Thing is Building_MobileContainer { Spawned: true } designatedCart &&
+            designatedCart.Map.designationManager.DesignationOn(designatedCart, RimgateDefOf.Rimgate_DesignationPushCart) != null)
             goToThing.FailOnThingMissingDesignation(TargetIndex.A, RimgateDefOf.Rimgate_DesignationPushCart);
         yield return goToThing;
 
@@ -102,6 +104,9 @@ public class JobDriver_PushContainer : JobDriver
 
                 // Move contents to proxy before despawning cart, to preserve stuff & HP
                 cart.MoveContentsToProxy(proxyCart);
+                // The original is no longer saved; retain only references to the owned proxy.
+                cart.Map.reservationManager.Release(cart, pawn, job);
+                job.SetTarget(TargetIndex.A, proxyCart);
                 cart.DeSpawn();
 
                 if (!pawn.HasHediffOf(RimgateDefOf.Rimgate_PushingCart)) // prevent stacking

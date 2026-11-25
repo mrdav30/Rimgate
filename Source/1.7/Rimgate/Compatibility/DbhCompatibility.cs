@@ -15,7 +15,7 @@ public static class DbhCompatibility
     public static void SetThirstNeedCurLevelPercentage(Pawn pawn, float value)
     {
         var thirstNeed = pawn.needs.TryGetNeed<DubsBadHygiene.Need_Thirst>();
-        thirstNeed.CurLevelPercentage = value;
+        thirstNeed?.CurLevelPercentage = value;
     }
 
     public static float GetHygieneNeedCurLevelPercentage(Pawn pawn)

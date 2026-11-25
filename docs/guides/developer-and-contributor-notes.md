@@ -251,6 +251,13 @@ acceptance remains migration work. Outputs go to ignored
 experimental release/bundle switch or automatic DocFX target change. Default
 solution builds exclude 1.7; select its project or the command above explicitly.
 
+Private 1.7 setup copies the authored 1.6 XML into its test package. Correct
+shared layout symbols directly in `Mod/1.6/Defs/MapSites/Structures/`; spelling,
+empty-cell and renamed-symbol corrections do not need a version-specific patch
+or historical def aliases. Preserve row widths and unrelated retained content.
+The private package is not a public support declaration or an additional
+supported build target.
+
 The [migration plan](https://github.com/mrdav30/Rimgate/blob/main/docs/feature-work/rimworld-1.7-migration-plan.md)
 owns the baseline evidence, runtime gates and 1.6 freeze milestone. Freeze ongoing
 1.6 development once the agreed 1.7 baseline is accepted, retaining explicitly
@@ -295,8 +302,9 @@ changes separate from generated output changes.
 
 Preserve existing XML category structure and `Rimgate_*` naming. Reuse existing
 defs and extension points, centralize XML-linked C# definitions in `Rimgate_DefOf`,
-and keep Harmony patches narrow. Conditional XML patches belong under
-`Mod/1.6/Patches/`; check activation with the external mod absent and present.
+and keep Harmony patches narrow. Retained XML compatibility patches belong under
+`Mod/1.6/Patches/`; correct owned layout definitions directly in their authored
+XML. Check optional patch activation with the external mod absent and present.
 Update the compatibility matrix when an integration changes, distinguishing
 implemented support from a tested dependency combination.
 
@@ -368,7 +376,8 @@ and `-ToolsPath`. Defaults use the D: Steam library and
    it references the actual installed game. Only its own DLL/deps file and
    manifest are deployed there, outside the Rimgate player package.
 4. Creates an ignored `.assets/experimental/1.7/Mod` overlay using the retained
-   1.6 XML inputs, selected asset format, shared About/languages and new assembly. Only that test
+   1.6 XML inputs, the selected asset format, shared About/languages and new
+   assembly. Only that test
    package declares 1.7, with a 1.7-only LoadFolders entry; tracked player metadata
    and 1.6 assets remain unchanged. The private copy is deployed under
    `Game-1.7/Mods/Rimgate` alongside the bridge.
@@ -435,7 +444,7 @@ reported different versions; package version alone does not identify the loaded 
    inspect the actual screenshot for rendered content and affected textures,
    and read the native log as well as the bridge journal. A successful capture
    does not establish that every asset loaded correctly. Longer gate-transit,
-   optional-integration and old-save checks remain separate migration gates.
+   optional-integration and current 1.7 save/load checks remain separate migration gates.
 6. Stop the private game with `games_stop`, then run:
 
    ```powershell
@@ -455,6 +464,28 @@ from that journal. The 1.7 launch passes `-savedatafolder=<profile>`, `-NoWindow
 and `-WindowSize=1280,720`; it does not reuse Unity's screen/log flags. Keep
 background checks on this hidden graphics profile and coordinate any foreground
 validation with the user. Normal player-config backup checks still apply.
+
+Compile every new or changed scenario through the installed
+`rimbridge/compile_lua_file` before running it. An offline Lua/MoonSharp parse
+does not check the bridge's restricted lowering step. Keep scripts to the tested
+subset: simple references, constant indices, conditionals and bounded `for`/`ipairs`
+loops. Local functions, general function calls, unary `#`, dynamic indices, table
+field assignment and `break` are unsupported. Return explicit C# count fields
+instead of using `#`. Pass inline argument tables to `rb.call`; do not pass a
+local table variable as the whole argument object. Recompile after each edit,
+inspect both operation and nested payload success, and run long cases as separate
+bounded phases rather than one large invocation.
+
+Utility, loose gate-cargo and orbital bulk waits run ordinary **Ultrafast**
+simulation and use `rb.poll` against their read-only companion's root
+`result.tick`: `utilities_status`, `transit_status` or `orbital_equipment_status`.
+They wait for at least the requested elapsed work; overshoot is allowed and no
+time-boost setting is changed. Retain single-tick pickup/checkpoint observations
+where ordering matters. The caller must always restore
+`rimworld/set_time_speed` with `speed: Paused` in host `finally` cleanup, including
+script failures and timeouts; an in-script pause can be skipped by an exception.
+Measure actual tick deltas for timer assertions. Input/capture failures still
+block their own acceptance checks under this clock policy.
 
 ### Verify the experimental 1.7 assets
 
@@ -535,6 +566,121 @@ interruption/blocked-placement path. Use the owning migration plan for dated
 evidence, remaining acceptance and saved-state defects. The companion and its
 Rimgate reference stay outside the player mod.
 
+### Verify loose gate cargo
+
+Compile [`.assets/scripts/rimbridge-gate-cargo-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-gate-cargo-1.7.lua)
+after preparing, dialing and connecting the transit fixture. Supply `configPath`,
+`modRoot`, that transit `fixture` and `phase`. `prepare` reloads the owned active
+connection and stages loose cargo; it requires a mature outgoing link with an
+open iris. Retain its `cargoId` and `stackCount` for later phases. `cargoDef`
+defaults to `Gun_Autopistol`; a separate stack case can select another def/count.
+
+Run `carry-reload` to use the player's **Bring selected to Dwarfgate** targeting
+and real `Rimgate_BringToGate` job. It observes the actual carry tracker, saves
+`Rimgate-gate-cargo-held` and reloads it. Then run `arrive` to resume hauling and
+check the exact cargo/count on the destination map. Run `interrupt` as a separate
+branch from the same carry checkpoint: normal drafting interrupts the job, and
+the item must retain one source-map/carry owner. These checks are distinct from
+inventory cargo, mobile containers and transporter-loading acceptance.
+
+### Verify cloning and sarcophagus cycles
+
+Compile [`.assets/scripts/rimbridge-medical-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-medical-1.7.lua)
+and pass `configPath`, `modRoot` and `phase`. `prepare` reloads the owned smoke save
+and returns a `fixture` for every later call. The companion stages a host, doctor,
+assigned patient with a burn, inventory markers, research, seeded biomass and
+24 kW of vanilla power generation. Normal ticks must connect that network; check
+the reported power topology and actual `powered` flags before starting work.
+Do not lay conduits over existing transmitting power-comp footprints, including
+multi-cell generators or ZPM housings, because placement can uninstall/minify
+the intended fixture. The helper does not admit, clone or heal anyone.
+
+Use independent invocations to observe the real operation:
+
+| Phase | Parameters and purpose |
+| --- | --- |
+| `host`, `patient`, `calibrate` | Pass `fixture`; start the genuine enabled float-menu admission/calibration jobs. Calibration requires the admitted host and doctor. |
+| `status`, `advance` | Pass `fixture` and the tracked `cloneId` once available. `advance` accepts `ticks` from 1 to 30000; inspect progress between calls. |
+| `roundtrip` | Pass `fixture`, optional tracked `cloneId` and `checkpoint`: `host`, `calibration`, `incubating`, `diagnosing` or `healing`. Saves/reloads the matching `Rimgate-medical-*` checkpoint. |
+| `assert-interruption`, `assert-resumed` | Interrupt with a real building power gizmo and pawn flick job first. Supply `before` and `target: pod` or `sarcophagus` to the interruption assertion; resume the pod normally and pass the interruption status as `before`. |
+| `assert-complete` | Use `target: pod` with the actual pending `cloneId` and expected single-cycle `expectedFuel`, or `target: sarcophagus` for patient treatment/ejection. |
+
+Keep default durations, power demands and failure settings. The default base
+calibration/incubation settings are 4500/120000 ticks; the actual cycle may scale
+them. Sarcophagus diagnosis/healing bases are 15/30 seconds and scale with the
+patient and condition. Read the reported remaining durations instead of
+shortening settings or writing progress fields to finish a check. Seeded biomass
+does not exercise hauling/refueling. For exact timer checks, compare before/after
+status `tick` values and the measured countdown change, accounting for state
+transitions and work rates. A requested tick count alone is not elapsed-tick
+evidence.
+
+At reload, check the exact host, patient, pending clone and inventory-marker
+identities, one owner or map registration each, progress and fuel markers. Healing
+also needs the same ordered treatment references, not just a matching queue
+count. Inspect checkpoint XML for one deep definition of each owned object, then
+continue normal completion and cleanup. Power loss ejects the sarcophagus
+patient; unpowered incubation retains its clone but can deteriorate after one
+second. It is not an indefinitely paused cycle. Optional health integrations
+need their own dependency-present cases; these phases do not establish them.
+
+With Vanilla Traits Expanded loaded, preparation seeds a genuine `VTE_Lush`
+trait only when the actual sarcophagus whitelist already permits it. Check
+`traitInputEligible` and the seeded trait key, then require real diagnosis to add
+that patient-owned instance to the ordered treatment queue. Reload must retain
+the same def/degree, order and patient reference; normal completion must remove
+it and clear the queue. Do not alter the whitelist to manufacture eligibility.
+A DBH-present case with thirst disabled checks a different boundary: confirm the
+actual needs omit `Need_Thirst`, then exercise treatment/discharge without adding
+that optional need. Check hygiene/bladder behavior and the loaded treatment
+exclusion independently.
+
+### Verify ZPM housing and mobile containers
+
+Compile [`.assets/scripts/rimbridge-utilities-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-utilities-1.7.lua).
+Pass `configPath`, `modRoot`, `phase` and the `fixture` returned by `prepare`.
+Preparation stages three loose charged ZPMs, an empty housing/lamp network, a
+steel wheelbarrow and one loose autopistol. It waits normal power-initialization
+ticks and requires the housing and lamp to remain spawned and connected. A
+minified housing is an invalid fixture, even if its deep contents survive.
+
+Run `insert` for the three real ZPM jobs, `checkpoint` for save/reload and `eject`
+for normal ejection. Compare charge/reserve state and exact ZPM ownership as well
+as housing count; account for normal power use and reserve conversion while
+ticks advance. The companion reports interaction/reachability and direct menu
+options so a missing action can be distinguished from fixture placement or
+selection errors.
+
+For the cart, `load_dialog` opens the real **Load** dialog and returns its UI
+layout. Use core UI controls to set only the autopistol quantity to **1**, obtain
+a fresh normal **Accept** target, then call `accept_load` with `acceptTargetId`.
+Never use **DEV: Load instantly**. The default work label is **Prioritize loading
+steel wheelbarrow**; override labels only from the actual menu. `loaded` checks
+the result without loading anything itself.
+
+Use `push_start` to begin normal same-map pushing and observe the actual carried
+proxy; pass the same optional `destination: {x, z}` to `push_start` and
+`push_resume` when selecting another cell. Run `checkpoint`
+while the proxy is carried, then `push_resume`, or use `interrupt` as a separate
+normal-drafting branch. Check cargo identity/count, one deep owner, continued job
+and proxy references through reload, and final removal of the pushing hediff and
+visual attachment. Conversion deliberately creates a new cart ID, so continuity
+is established through cargo and retained cart properties. `unload` uses the
+player's **Unload all** command. Recharge facilities, fuel-consuming variants,
+contents used by other colonist jobs and cart gate handoff need separate cases.
+
+### Check native layout symbols
+
+Use the private companion's `rimgate/layout_content_report` with
+`expectedConfigPath` and `expectedModRoot` set to the guarded profile/deployment
+paths before and after correcting the authored layout XML. It
+reads the loaded KCSG grids, grouping unresolved tokens and non-null rotation
+fallbacks with missing underlying ThingDef/PawnKindDef targets. Native symbol
+lookup is case-sensitive; static XML name scans and startup's missing-symbol
+list can miss an invalid rotation fallback. Keep the before/after payloads and
+exercise affected site generation separately. Resolved definitions alone do not
+prove a complete generated site or its rendered appearance.
+
 ### Verify planetary discovery and quest persistence
 
 Compile and run
@@ -561,6 +707,27 @@ failures remain failures. Its screenshot and visit's real context-menu input
 require working hidden rendering/input. Current capture/input limitations and
 the distinction between verified manual steps and whole-script results are
 recorded in the [migration plan](https://github.com/mrdav30/Rimgate/blob/main/docs/feature-work/rimworld-1.7-migration-plan.md).
+
+### Verify orbital discovery prerequisites
+
+Compile [`.assets/scripts/rimbridge-orbital-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-orbital-1.7.lua)
+and run `prepare`, `decode`, `equipment` as separate invocations with `configPath`
+and `modRoot`. Pass prepare's `fixture` to later phases and decode's `site` to
+`equipment`. Preparation supplies prerequisite research, two orbital parchments,
+an operator and power. The real decode job must consume one parchment and create
+the lazy Orbit quest/site/address, including in-progress and completed reloads.
+`equipment` checks the real DHD menu disabled without modification equipment,
+then stages an ordinary linked building and waits normal power/rare ticks for
+the same destination to become eligible through the actual menu and after reload.
+It does not dial or generate the orbital map; arrival, vacuum protection,
+combat and loot require separate acceptance.
+
+The medical/orbital input colonies remove initially hostile guards before
+unfogging. Include faction hostility in that bounded cleanup: native
+`HostileTo(Thing, Faction)` can be false for an `IsActivityDormant` ancient mech.
+Always protect player-faction pawns, colonists, prisoners and slaves. Retain
+prepare's `removedHostileIds` and candidate observations as fixture evidence;
+this cleanup establishes controlled inputs, not combat acceptance.
 
 ### Observe production audio without speaker output
 

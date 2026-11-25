@@ -49,6 +49,12 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   can equate different objects with the same def/ID. Separate developer pending
   cancellation from normal DHD closure and inventory cargo from hauling/container
   coverage. Do not expand this case into a mock game or player dependency.
+  Use the contributor guide's medical, utility and loose gate-cargo phases for
+  wider acceptance. Probes prepare inputs and observe; real jobs must complete
+  cycles. Verify spawned, connected fixtures, default durations, exact treatment
+  queues and deep ownership across reload/interruption. Compile changed Lua with
+  the actual bridge `compile_lua_file`; its restricted subset is narrower than
+  offline MoonSharp parsing. The guide owns syntax limits and phase parameters.
   Planetary discovery uses
   [rimbridge-discovery-1.7.lua](../../../.assets/scripts/rimbridge-discovery-1.7.lua):
   prepare inputs only; the real decode job must create and persist its quest,
@@ -128,6 +134,10 @@ Use the build scripts in `.assets/scripts/` and select the target explicitly whe
 relevant. Keep PowerShell and Lua tooling there; default build logs stay at the
 repository root.
 Source/1.7/Rimgate is the separately owned experimental .NET 10/C# 14 port.
+Private 1.7 setup reuses the authored 1.6 XML. Correct shared layout symbols in
+`Mod/1.6/Defs/MapSites/Structures/` directly instead of adding a version patch.
+Use the native layout-content report plus affected site generation; a static
+name scan can miss case/rotation failures. Preserve unrelated retained content.
 Only assembly builds accept `-Experimental -RimWorldVersion 1.7`, with explicit
 matching 1.7 dependency paths and ignored output outside Mod. Normal release,
 asset and documentation builds still select only supported 1.6. Keep metadata

@@ -33,6 +33,9 @@ otherwise. Do not commit, push or publish as an implied documentation step.
   Do not add public 1.7 support or package its outputs before runtime validation.
 - `Source/1.6/Rimgate/` owns the retained net48 implementation; `Mod/1.6/Defs/` and `Patches/`
   own its XML. Preserve def names, save keys and pawn/container ownership.
+- The private 1.7 package reuses the authored 1.6 XML. Correct shared layout
+  symbols directly in `Mod/1.6/Defs/MapSites/Structures/`, then verify native
+  resolution and affected generation. Keep unrelated 1.6 content unchanged.
 - Once 1.7 is accepted, freeze the final 1.6 source/content in Git and move
   active builds, dependencies, runtime checks and documentation to 1.7. Later
   1.6 work requires explicitly scoped maintenance. The existing local snapshot
@@ -109,6 +112,10 @@ and `rimbridge-presentation-1.7.lua` scenarios. The contributor guide owns their
 phases, production-voice audio probes and capture diagnostics. Run the condition
 checks in `rimbridge-effects-1.7.lua`: trigger a real incident,
 verify the held reference through reload, then end it normally and check cleanup.
+The contributor guide owns `rimbridge-medical-1.7.lua`, `rimbridge-utilities-1.7.lua`
+and `rimbridge-gate-cargo-1.7.lua`: prepare inputs only, then use real jobs and
+verify progress, ownership, interruption and reload. Compile changed scenarios
+with the installed `rimbridge/compile_lua_file`; offline Lua parsing is insufficient.
 Use the companion's read-only `rimgate/patch_report` for actual Harmony registration;
 registered patches do not establish every affected feature's behavior. Preserve explicit
 limits: PCM is separate from listening, material resolution from rendered pixels,

@@ -176,6 +176,12 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
 
     private List<Trait> _patientTraitsToRemove = new();
 
+    // Trait instances belong to the patient's TraitSet and have no load-reference ID.
+    // Retain these keys through Scribe's phases, then resolve the existing instances.
+    private List<TraitDef> _patientTraitDefsToRemove;
+
+    private List<int> _patientTraitDegreesToRemove;
+
     private CompPowerTrader _powerTrader;
 
     private CompAssignableToPawn_Sarcophagus _assignable;
@@ -409,6 +415,41 @@ public class Building_Sarcophagus : Building, IThingHolder, IOpenable, ISearchab
         Scribe_Values.Look(ref _patientSavedFoodNeed, "_patientSavedFoodNeed", 0f);
         Scribe_Values.Look(ref _patientSavedDbhThirstNeed, "_patientSavedDbhThirstNeed", 0f);
         Scribe_Values.Look(ref _patientNeedsSnapshotTaken, "_patientNeedsSnapshotTaken", false);
+
+        // The patient deep-owns its hediffs; this list preserves the remaining work order.
+        Scribe_Collections.Look(ref _patientTreatableHediffs, "_patientTreatableHediffs", LookMode.Reference);
+        if (Scribe.mode == LoadSaveMode.Saving)
+        {
+            _patientTraitDefsToRemove = _patientTraitsToRemove?.Select(t => t.def).ToList();
+            _patientTraitDegreesToRemove = _patientTraitsToRemove?.Select(t => t.Degree).ToList();
+        }
+        Scribe_Collections.Look(ref _patientTraitDefsToRemove, "_patientTraitDefsToRemove", LookMode.Def);
+        Scribe_Collections.Look(ref _patientTraitDegreesToRemove, "_patientTraitDegreesToRemove", LookMode.Value);
+
+        if (Scribe.mode == LoadSaveMode.PostLoadInit)
+        {
+            var patient = PatientPawn;
+            _patientTreatableHediffs = _patientTreatableHediffs?
+                .Where(h => h != null && patient?.health.hediffSet.hediffs.Any(actual => ReferenceEquals(actual, h)) == true)
+                .ToList() ?? new List<Hediff>();
+            _patientTraitsToRemove = new List<Trait>();
+            if (_patientTraitDefsToRemove != null && _patientTraitDegreesToRemove != null
+                && _patientTraitDefsToRemove.Count == _patientTraitDegreesToRemove.Count)
+            {
+                for (int i = 0; i < _patientTraitDefsToRemove.Count; i++)
+                {
+                    var target = patient?.story?.traits.allTraits.FirstOrDefault(t =>
+                        t.def == _patientTraitDefsToRemove[i] && t.Degree == _patientTraitDegreesToRemove[i]);
+                    if (target != null && !_patientTraitsToRemove.Contains(target))
+                        _patientTraitsToRemove.Add(target);
+                }
+            }
+        }
+        if (Scribe.mode is LoadSaveMode.Saving or LoadSaveMode.PostLoadInit)
+        {
+            _patientTraitDefsToRemove = null;
+            _patientTraitDegreesToRemove = null;
+        }
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
