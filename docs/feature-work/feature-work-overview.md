@@ -79,8 +79,9 @@ integration checks remain open; this does not complete phase 3.
 The third batch verifies native two-item transporter manifests, carried/partial
 reloads and DHD-close cleanup, plus loose partial stacks, corpses and downed-pawn
 hauling. RG-Issue-015 restores native transporter owner/manifest notifications;
-RG-Issue-016 prevents replicator-link stack loss through map compression in the
-private 1.7 package. Fresh-save checks pass; old compressed quantities cannot be
+RG-Issue-016 prevents replicator-link stack loss through map compression using
+an owner-approved shared XML correction, replacing its initial 1.7 patch.
+Fresh 1.7 save checks pass; old compressed quantities cannot be
 recovered. The plan owns remaining loading, placement and broader gameplay gates.
 Native pack-only loading and the
 same iris scenario also pass; the larger pack and changed sampling/clip metadata

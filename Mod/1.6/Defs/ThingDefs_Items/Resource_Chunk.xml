@@ -14,6 +14,8 @@
         </graphicData>
         <drawGUIOverlay>true</drawGUIOverlay>
         <stackLimit>99</stackLimit>
+        <!-- Chunk compression stores a def per cell, not this item's stack count. -->
+        <saveCompressible>false</saveCompressible>
         <statBases>
             <Mass>0.5</Mass>
         </statBases>

@@ -33,11 +33,19 @@ otherwise. Do not commit, push or publish as an implied documentation step.
   Do not add public 1.7 support or package its outputs before runtime validation.
 - `Source/1.6/Rimgate/` owns the retained net48 implementation; `Mod/1.6/Defs/` and `Patches/`
   own its XML. Preserve def names, save keys and pawn/container ownership.
-- The private 1.7 package reuses the authored 1.6 XML. Correct shared layout
-  symbols directly in `Mod/1.6/Defs/MapSites/Structures/`, then verify native
-  resolution and affected generation. Experimental 1.7 XML corrections use
-  `Mod/1.7/Patches/`, overlaid by setup onto the private copy of retained XML.
-  Keep unrelated 1.6 content unchanged.
+- The private 1.7 package reuses authored XML from `Mod/1.6/`. Correct shared
+  Rimgate-owned XML, localization and content directly when both versions can
+  consume the correction with their existing assemblies. These maintenance fixes
+  do not require DLL changes or a separate approval for each named definition.
+  Preserve identities, save contracts and unrelated behavior; new features,
+  balance changes and assembly/schema changes still follow the task's scope.
+- Prefer direct source edits and existing defs/comps/hooks. Use XML patches when
+  editing dependency-owned content or when a genuine version difference cannot
+  be handled through authored version-owned content and load folders;
+  use Harmony only when the required behavior cannot use an existing extension
+  point. Do not duplicate a shared source correction in a version patch. Keep
+  version-specific C# work in its owning project; leave the retained 1.6 DLL/C#
+  unchanged unless explicitly scoped as maintenance.
 - Once 1.7 is accepted, freeze the final 1.6 source/content in Git and move
   active builds, dependencies, runtime checks and documentation to 1.7. Later
   1.6 work requires explicitly scoped maintenance. The existing local snapshot
@@ -51,16 +59,14 @@ otherwise. Do not commit, push or publish as an implied documentation step.
   `.assets/experimental/`. Keep the four native pack files together. Do not
   manually place raw assets in tracked `Mod/` or edit generated packs/bundles.
 - Bundles go to **`Mod/<version>/AssetBundles/`** (`Mod/1.6/AssetBundles/` today).
-  Keep the shared `Mod/AssetBundles/` location empty. The four existing baseline
-  files were relocated without changing their bytes. Do not regenerate baseline
-  files for a path-only move or add/update generated artifacts in commits without
-  explicit instruction.
+  Keep the shared `Mod/AssetBundles/` location empty. Preserve baseline bytes
+  during path-only changes; rebuilding assets is separate from correcting XML.
+  Do not add/update generated artifacts in commits without explicit instruction.
 - `UnityAssetBuilder/ProjectSettings/ProjectVersion.txt` owns the builder editor
-  version (currently **6000.3.9f1**). Preserve the built-in render pipeline,
+  version. Read it before selecting an editor. Preserve the built-in render pipeline,
   `StandaloneWindows64` target and `ChunkBasedCompression` (LZ4); no scenes needed.
   Do not convert the builder to URP or HDRP.
-- Prefer existing defs, comps and narrow hooks over broad Harmony patches. Check
-  optional integrations with their dependencies absent and present as applicable.
+- Check optional integrations with their dependencies absent and present as applicable.
 
 ## Work tracking
 
@@ -95,52 +101,24 @@ Keep `docs/docfx.json`, navigation, guides and templates authored; do not commit
 `docs/obj/` or `.assets/references/`. Keep code changes and their guide/API comments
 in the same PR. The documentation workflow validates PRs and publishes `main`.
 
-For experimental live 1.7 checks, run `.assets/scripts/setup-rimbridge-dev.ps1
--RimWorldVersion 1.7` with all RimWorld instances stopped, then use the
-`rimgate-dev` MCP server and `gameId: rimgate17`. The installed build must match
-the experimental reference pin. Only the private test package declares 1.7;
-the player package still declares 1.6. The CI workflow also compiles experimental
-1.7 using pinned public dependencies; compilation is not runtime acceptance.
-The contributor guide owns setup, tool discovery and the
-`.assets/scripts/rimbridge-smoke.lua` acceptance case. For the 1.7 asset pass,
-setup also deploys the development-only `rimgate/asset_report` companion outside
-the player mod; run `.assets/scripts/rimbridge-assets-1.7.lua` after the smoke
-case using the contributor guide. The native 1.7 transit case is
-`.assets/scripts/rimbridge-transit-1.7.lua`; its bounded phases exercise real
-DHD/entry jobs, both in-flight save checkpoints and closure. Use the guide's
-fixture/phase contract and distinguish deep ownership from queue references.
-Planetary discovery and presentation have separate `rimbridge-discovery-1.7.lua`
-and `rimbridge-presentation-1.7.lua` scenarios. The contributor guide owns their
-phases, production-voice audio probes and capture diagnostics. Run the condition
-checks in `rimbridge-effects-1.7.lua`: trigger a real incident,
-verify the held reference through reload, then end it normally and check cleanup.
-The contributor guide owns `rimbridge-medical-1.7.lua`, `rimbridge-utilities-1.7.lua`
-and `rimbridge-gate-cargo-1.7.lua`: prepare inputs only, then use real jobs and
-verify progress, ownership, interruption and reload. Gate-edge cases use
-`rimbridge-gate-edges-1.7.lua`, `rimbridge-cart-gate-1.7.lua` and
-`rimbridge-iris-edges-1.7.lua`; native manifests and cargo kinds use
-`rimbridge-transporter-1.7.lua` and `rimbridge-cargo-kinds-1.7.lua`.
-The guide owns their phase, saved-state and cleanup contracts.
-Compile changed scenarios
-with the installed `rimbridge/compile_lua_file`; offline Lua parsing is insufficient.
-Use the companion's read-only `rimgate/patch_report` for actual Harmony registration;
-registered patches do not establish every affected feature's behavior. Preserve explicit
-limits: PCM is separate from listening, material resolution from rendered pixels,
-and an input/capture timeout blocks the affected acceptance check.
-After shutdown, run
-`.assets/scripts/setup-rimbridge-dev.ps1 -VerifyPlayerConfig` against the
-recoverable config backup. Keep normal player saves/mod configuration untouched
-and validate both bridge operation status and gameplay payloads. RimBridge is
-development tooling, not a dependency of Rimgate's player package.
+For live validation, use the contributor guide's isolated RimBridge setup and
+scenario protocols. Refresh the selected deployment with all game instances
+stopped; match the installed game/dependency set to its reference pins. The
+experimental 1.7 profile uses `rimgate-dev` / `gameId: rimgate17`; bridge tooling
+and companions stay outside the player package. Preserve player files and
+recoverable config bytes before setup; verify them after shutdown.
 
-The experimental 1.7 profile uses graphics-enabled `-NoWindow` and a fixed
-1280x720 framebuffer so bridge input/capture can run without desktop focus.
-The 1.7 development companion automatically requests redraws when that hidden
-window is occluded and retains a nonzero graphics surface. Keep its initialization
-on SDK provider discovery; all-static tool metadata loading does not guarantee
-startup code runs. Use `rimbridge-background-1.7.lua` and the guide's bounded
-occlusion controls to verify actual UI/capture completion without OS focus changes.
-Do not substitute graphics-free `-Headless` for visual checks. The smoke verifies
-selection, iris save/load, 120 ticks and a rendered capture. Known-address transit
-has a separate scenario; broader assets, discovery, integrations and saved-state
-acceptance remain migration gates. See the owning migration plan.
+Prepare fixture inputs and observe outcomes; real gameplay jobs must perform the
+operation. Check both bridge status and gameplay payloads, exact quantities,
+object identity, deep ownership and cleanup across interruption/save/load.
+Compile changed Lua with the installed SDK; offline parsing alone is insufficient.
+Use the guide to select relevant scenarios, phases and cleanup rather than
+reproducing those procedures here. Pause/clean up bounded checks on failure and
+state what remains unverified. Patch registration does not establish behavior.
+
+Use graphics-enabled hidden execution for background input/capture and coordinate
+any foreground computer use. Do not substitute graphics-free headless mode for
+visual checks. The guide owns launch settings, redraw initialization and capture
+diagnostics. Keep material resolution, rendered pixels, sampled audio and audible
+playback as separate evidence. Current results and remaining gates belong in the
+owning plan/tracker, not these instructions.

@@ -1802,6 +1802,8 @@ Two additional reproduced defects have narrow, version-scoped corrections:
   `Mod/1.7/Patches/` after copying the retained XML into the private package;
   the 1.6 definition and all shared content remain unchanged in this batch.
   This is a defect verified in 1.7, not evidence that it is unique to Waylith.
+  The initial patch ownership is superseded by the owner-approved
+  [direct-source correction](#direct-replicator-link-source-correction) below.
 
 **Old compressed records are not repaired.** Their original counts/IDs were
 never saved, and the native loader skips those records once the def becomes
@@ -1863,3 +1865,41 @@ both new probe/scenario contracts. The final close phase also requires an actual
 second-item carry at entry, then passes native compilation and a fresh guarded
 replay. PowerShell parsing, all 177 Mod XML files, 94 changed-document links/
 anchors and Git diff checks pass. No wider/manual acceptance is inferred.
+
+### Direct replicator-link source correction
+
+On November 25, 2026, starting at `e3c4ec0`, the owner approved correcting the
+original XML instead of retaining a 1.7 patch, matching the earlier layout
+decision. `Mod/1.6/Defs/ThingDefs_Items/Resource_Chunk.xml` now explicitly sets
+`saveCompressible=false` beside `stackLimit=99`. This is an authored persistence
+correction shared by retained 1.6 content and its private 1.7 copy. The former
+`Patches_ReplicatorLinkPersistence.xml` and the setup-only patch overlay step are
+removed. No version-specific patch pipeline is retained without a consumer.
+Unrelated XML, C#, def/save identities, public support metadata and assets are
+unchanged. This is a narrowly approved shared-content exception to the freeze.
+
+Full experimental setup passes without the patch: 1.7 assembly and companion
+build with zero warnings/errors, native baking succeeds, and deployed source XML
+matches the authored file byte-for-byte with no stale persistence patch. In the
+same isolated 1.7.5014 rev1195 ten-mod profile, the loaded flag is false. A fresh
+loose99 survives save/reload with the same ID/count/one owner
+(`op_5aa09d86c0c54207a302c5752d02fec0`). Real hauling splits it into carried75
+and source24; both original IDs and all 99 survive the carried checkpoint
+(`op_2badb6f99e0f424f95b4c2888b6ab316`), actual destination arrival
+(`op_481bec54eab34a07a8a883cf760956c9`) and normal draft interruption
+(`op_f42b4bedef994207a2f94bc23bd2a725`). Gate owners/queues drain, and the final
+bridge error journal is empty. These results replace patch-based deployment
+acceptance, not the original failure evidence. Old compressed-record loss remains
+unrecoverable and outside the owner-waived historical-save scope. Live 1.6 was
+not rerun; supported 1.6 compilation and static XML checks do not establish that
+runtime coverage.
+
+Evidence and accepted checkpoints are retained outside Git under
+`%LOCALAPPDATA%/RimgateDev/evidence/replicator-source-20261125-144340/`, including
+the removed patch, original XML, exact operation JSON and native log. XML
+comparison finds only the intended field addition; all 176 Mod XML files parse.
+Setup PowerShell parsing, skill validation and supported 1.6 library/strict
+DocFX/site checks pass. After verified shutdown, all 125 normal config files,
+10 original player saves, four 1.6 bundles and the native pack match their
+baselines. Private configs and original owned test inputs are restored. The
+original index is unchanged and follow-up edits remain unstaged/uncommitted.

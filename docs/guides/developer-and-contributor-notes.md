@@ -248,17 +248,25 @@ before writing files. CI compiles the experimental 1.7 project with those public
 inputs in addition to building the supported 1.6 documentation site. Runtime
 acceptance remains migration work. Outputs go to ignored
 `.assets/experimental/1.7/Assemblies/`. The player package still declares only
-1.6; experimental XML overlays do not declare public 1.7 support. There is no
+1.6; copying shared XML does not declare public 1.7 support. There is no
 experimental release/bundle switch or automatic DocFX target change. Default
 solution builds exclude 1.7; select its project or the command above explicitly.
 
 Private 1.7 setup copies the authored 1.6 XML into its test package. Correct
-shared layout symbols directly in `Mod/1.6/Defs/MapSites/Structures/`; spelling,
-empty-cell and renamed-symbol corrections do not need a version-specific patch
-or historical def aliases. Preserve row widths and unrelated retained content.
-Experimental 1.7 XML corrections belong in `Mod/1.7/Patches/`: setup copies the
-retained XML first, then overlays those patches into the private `1.7/Patches/`
-folder. This keeps the retained 1.6 definitions and patches unchanged.
+shared Rimgate-owned XML, localization and content at their source when both
+versions can consume the change with their existing assemblies. Routine content
+maintenance does not require a DLL rebuild or a separate approval for each def.
+Preserve def/save identities and unrelated behavior; new features, balance and
+assembly/schema changes still follow the task's scope. Validate the affected
+native behavior and saved-state path; XML parsing alone is insufficient.
+
+Prefer direct authored edits and existing extension points. XML patches are for
+dependency-owned content or genuine version differences that cannot use authored
+version-owned content and load folders. Harmony is a fallback when defs, comps or hooks cannot
+implement the required behavior. Avoid duplicate version patches for shared fixes.
+C# changes belong in the version-owned project; retained 1.6 C#/DLL changes require
+explicit maintenance scope. Content changes must still reference types and fields
+available in each consuming assembly. Rebuilding art/audio is a separate pipeline.
 The private package is not a public support declaration or an additional
 supported build target.
 
@@ -631,13 +639,14 @@ Corpse/downed modes create fresh fixture subjects and owned inventory markers;
 verify the actual corpse/inner pawn or living downed pawn and nested marker through
 reload, delivery and interruption. Do not replace these paths with direct admission.
 
-The 1.7-only `Patches_ReplicatorLinkPersistence.xml` overlay sets this chunk-like
-def's `saveCompressible` false. Native compressed map records store only a def per
+The authored replicator-link def sets `saveCompressible` false. Native compressed
+map records store only a def per
 cell, losing stack count and original identity; fresh 1.7 checkpoints must preserve
 both. Historical missing quantities are unrecoverable from those records, and the
 native loader skips existing compressed records once the flag is false. This
 correction does not repair old compressed saves; recreate acceptance inputs from
-an unaffected checkpoint. Keep the retained 1.6 definition unchanged.
+an unaffected checkpoint. This shared XML correction is owner-approved; live
+1.6 behavior needs its own runtime evidence when explicitly tested.
 
 ### Verify blocked landing and inactive retry
 
