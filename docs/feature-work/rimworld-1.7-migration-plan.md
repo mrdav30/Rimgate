@@ -1609,13 +1609,15 @@ companion clock after a failed trial.
 
 Phase 3 is **still active**. The first and gate-edge batches close
 RG-Issue-008–014 for the reproduced paths, not the entire feature matrix.
-Blocked landing/retry/closure, receiver iris protection and loaded-cart gate
-handoff/cancellation now have focused acceptance below. Continue with:
+Blocked landing/retry/closure, receiver iris protection, loaded-cart gate
+handoff/cancellation, native transporter loading and representative partial-stack/
+corpse/downed hauling now have focused acceptance below. Continue with:
 
-- Transporter paths, partial stacks, corpses/incapacitated pawns and broader
-  interruption/cleanup cases, including cart restoration when every nearby
-  placement cell is blocked. Steel-specific congestion and successful gate/cart
-  cases do not close these different ownership and placement paths.
+- Broader interruption/cleanup cases, including cart restoration and native
+  transporter cancellation when every nearby placement cell is blocked. The
+  accepted two-item native manifest and loose partial-stack/corpse/downed cases
+  do not close transporter pawn boarding, other manifest combinations or
+  unloaded-site identity/quantity continuation for those cargo kinds.
 - Full/enhanced/corpse cloning, abort/resource/needs edge cases, sarcophagus
   interruption and other health integrations; fuelled carts, ZPM broadcasting,
   raid suppression and recharge facilities.
@@ -1764,3 +1766,100 @@ Source/1.6, tracked Mod content, raw assets, Unity builder, dependency pins,
 Steam branch and insurance snapshot remain unchanged. Public support still
 declares only 1.6. The index is unchanged; all changes remain unstaged/uncommitted.
 The remaining gates above, including manual quality checks, keep phase 3 active.
+
+### Native transporter and wider-cargo acceptance
+
+**November 25, 2026; starting revision `8df57cc`.** This third phase-3 batch uses
+the same licensed 1.7.5014 rev1195 / Steam build 26793372, Windows, five DLC and
+ten-mod native-pack profile as the gate-edge batch. Harmony 3.0.4.0, the recorded
+installed VEF context, RimBridgeServer 2.5.0 / SDK 2.0.0 and GABS 1.1.2 are
+unchanged; DBH/VTE remain absent. Loaded configuration has no issues. The private
+graphics-enabled `-NoWindow` profile needs no desktop focus or computer use.
+
+Two additional reproduced defects have narrow, version-scoped corrections:
+
+- **RG-Issue-015 — native loading bypasses its transporter owner.** On the owned
+  mature outgoing link, use the actual Load manifest to select unique Gun53700,
+  then order **Prioritize loading Dwarfgate**. After 300 normal ticks, the item
+  remains in source Gate38637's deep `pendingContents`, with no send/receive
+  alias, empty native `innerContainer`, outstanding native manifest count1 and
+  `notifiedCantLoadMore: true`. The receiver gets nothing. The retained
+  `Rimgate-transporter-stranded-before.rws` preserves that state.
+  Exact native IL shows `TryGetInnerInteractableThingOwner` chooses a building's
+  own `IThingHolder` before its comps; native hauling therefore bypasses
+  `CompTransporter.Notify_ThingAdded` and manifest subtraction. A gate-only
+  postfix routes native interactable-owner lookup to its existing transporter
+  container. Other holders, pending ownership, saved keys, traversal, direct
+  Bring/Enter and receiving-buffer handling remain unchanged. Do not rescue
+  arbitrary orphaned pending matter as a substitute for the owner correction.
+- **RG-Issue-016 — stackable chunks lose quantity in map compression.** A legal
+  ReplicatorLink99 input splits through actual hauling into carried75 and
+  source24. The original carry-boundary assertions pass, but reload retains
+  only the explicit carried75 and reconstructs a new source-cell link/count1:
+  total76, losing23 units. Native compression stores a def hash per cell and
+  does not restore stack count; the authored stackable chunk inherits
+  `saveCompressible: true`. The 1.7-only XML patch sets it false. Setup overlays
+  `Mod/1.7/Patches/` after copying the retained XML into the private package;
+  the 1.6 definition and all shared content remain unchanged in this batch.
+  This is a defect verified in 1.7, not evidence that it is unique to Waylith.
+
+**Old compressed records are not repaired.** Their original counts/IDs were
+never saved, and the native loader skips those records once the def becomes
+noncompressible. The owner waived historical save migration. Retain the broken
+checkpoint as failure evidence and use fresh inputs from an unaffected checkpoint
+for acceptance; do not label a replay of already-lost quantity as repaired.
+
+| Case | Verified result and representative operation |
+| --- | --- |
+| Real native manifest | The helper stages only two different loose guns, healthy approaches and two explicit Home cells. Native `AllSendableItems` includes both; ordinary Items-tab quantities1/1 and Accept create the native manifest/group with remaining2 (`op_9dbab111827c460098cb44af31a52353`). No DEV loading or manual manifest acknowledgment. The gate streams loaded contents automatically; no separate launch step exists in this path. |
+| Native haul and both reload boundaries | Real `HaulToTransporter` carries Gun53700 with native remaining2; carried checkpoint preserves the exact job/targets/group and deep owner (`op_308c88ba4c664fea818a3cc5ef475956`). First delivery leaves remaining1/GateIsLoading, then a partial-manifest save/reload preserves the first arrival and outstanding second gun (`op_b43b119ecfbb44a381135217f2e08bf9`). Actual owner lookup reports the transporter, not pending transit storage. |
+| Complete manifest | Both exact guns arrive once with one object/deep owner each. Native remaining becomes0, group becomes-1, loading ends and transporter/pending/queue owners drain (`op_0f2f61fd91174ff4bfe2d3f8b02bdcfa`). This is a two-item nonstackable manifest, not transporter pawn boarding or every loading combination. |
+| Close during second carry | From the actual partial checkpoint, the existing native job picks up rifle53701 (`op_61f54a10c24b4983af4a961f8335e681`). A separate colonist's real DHD close job cancels loading, releases the rifle onto the source map once, ends hauling/carrying and clears group/manifest/container/pending/queue state (`op_296a7c922686490b80326ec13b74899c`). No developer force-close. The empty receiver unloads normally, so the earlier delivered gun thereafter uses the existing site's value-record contract rather than an original-ID claim. |
+| Manual cancel disposition | The attempted Cancel branch found no such gizmo at this carried/partial boundary. Native gizmo enumeration requires `innerContainer.Any`; the gate has streamed the first gun out while the second is carried, leaving that container empty. This is expected UI behavior at this boundary, not a missing-control defect. The unused branch was removed; no player UI was added. Other nonempty-container states can offer native Cancel/Unload and remain separate. |
+| Fresh full-stack save | Loaded definition reports `saveCompressible: false`. A fresh loose99 saves/reloads with its same original ID, count99 and one owner (`op_49cd0df5327740a1a70a98f806a6241a`). No stat, capacity, quest-tag or compression-reference workaround. |
+| Native partial stack | Native capacity75 splits original Link53699 into source24 plus carried Link53701/count75. Carried reload retains both IDs/counts and the real job target (`op_3f7cf9d4fff849c3bdbe6ca7d4f6a82d`). Arrival places the same75 on map1 while24 remains on source (`op_4194afe6d92545958483415b6f3925d4`); draft interruption restores the carried stack source-side (`op_fb9cb5725e794762a75b6790829922d7`). Every branch totals exactly99 across only the recorded IDs, with empty gate queues. Native remerge into the original remainder is allowed by the oracle but was not observed in this run. |
+| Corpse cargo | A newly generated fixture pawn is killed only as an explicit input; a unique inventory marker is seeded after native death drops. Actual Bring carries corpse53702/inner Pawn53699/marker53703 through reload, arrival and draft interruption with exact nested identities and one owner each (`op_d9aebccc2d0047c8830ddb96896e84cf`, `op_09870ca7c8454ebf893d7e87bf0d2f87`, `op_89dbd6ec46604fbfa2ea0dd841151f06`). No existing colonist is killed or repaired to complete the case. |
+| Downed cargo | A fresh fixture pawn is natively downed by default Anesthetic input. Actual Bring retains the same living downed pawn, Hediff_252 and unique inventory marker across carried reload, destination arrival and draft interruption (`op_9feaa6a9a0fb4e5ba8315fc838ef51a9`, `op_992456bd5f3448289f0f45b9de20870f`, `op_23fe58c67a254040b9daec283785bfc3`). These are hauling/ownership checks, not treatment, combat or recovery acceptance. |
+
+The contributor guide owns the two new bounded Lua protocols and companion
+schemas. Inputs/observers never carry, admit, transfer, finish or cancel outcomes
+directly. Rejected tooling trials are retained separately: passing an entire Lua
+parameter object produced literal unresolved RPC arguments; omitted empty fixture
+fields needed mode-conditional bindings; distant transporter inputs initially
+failed native Home/storage eligibility. These observations do not establish game
+defects. Strict original-ID and 99 checks caught actual compression loss; diagnostic
+source-cell replacements never contribute to passing quantities.
+
+Full experimental setup passes after the XML overlay change: assembly and final
+companion build with zero warnings/errors, authored patch bytes are deployed, and
+native baking reports 840 entries/48 deduplicated/zero failures. The native pack
+retains hash `0dea55cedec8eb2f14bc1fed2ac78b9f6fe1e1b4e2e5ec03f02f3568e8ba6797`;
+live inventory still resolves 814 textures/26 sounds. This rerun establishes asset
+resolution, not a new visual or audible-quality acceptance pass. Native SDK
+compilation passes both new scripts, including the final second-carry/close path.
+The loaded Harmony report has 47 targets including the exact owner-routing postfix;
+registration is separate from the real loading evidence above.
+
+Evidence is private under
+`%LOCALAPPDATA%/RimgateDev/evidence/phase3-cargo-20261125-123653/`: original
+byte-backed inputs, stranded save, compression failure/current-cell report,
+accepted checkpoints, exact native holder/compressor inspection, final binaries'
+hashes and complete operation JSON. Failed/prototype runs remain distinct from
+successful acceptance. The final bridge error journal is empty. Native fixture
+warnings about verb references to removed ancient guards are retained in the
+log; no pristine-warning or broader dependency-compatibility claim follows.
+
+The game is stopped with verified termination. Private Prefs/ModsConfig and three
+original owned input saves are restored. All 125 normal config files, 10 original
+player saves and four retained 1.6 bundles match their before hashes and inventory;
+the setup helper's player-config verification also passes. Source/1.6, Mod/1.6,
+raw assets, Unity builder, dependency pins, Steam branch and local insurance
+snapshot are unchanged. Public support still declares only 1.6; the authored
+1.7 patch is selected only by private setup. Supported 1.6 library/strict DocFX/
+site checks and skill validation pass. All new edits remain unstaged/uncommitted
+with the original index intact. The remaining phase-3 gates above stay active.
+Independent review covers the owner-routing correction, XML/setup boundary and
+both new probe/scenario contracts. The final close phase also requires an actual
+second-item carry at entry, then passes native compilation and a fresh guarded
+replay. PowerShell parsing, all 177 Mod XML files, 94 changed-document links/
+anchors and Git diff checks pass. No wider/manual acceptance is inferred.

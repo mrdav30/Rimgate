@@ -205,6 +205,11 @@ if ($experimental) {
     foreach ($folder in @('Defs', 'Patches', 'AssetBundles')) {
         Copy-Item -LiteralPath (Join-Path $repoRoot "Mod/1.6/$folder") -Destination (Join-Path $rimgateSource '1.7') -Recurse
     }
+    # Experimental corrections layer over retained inputs without changing 1.6.
+    $experimentalPatches = Join-Path $repoRoot 'Mod/1.7/Patches'
+    if (Test-Path -LiteralPath $experimentalPatches -PathType Container) {
+        Get-ChildItem -LiteralPath $experimentalPatches | Copy-Item -Destination (Join-Path $rimgateSource '1.7/Patches') -Recurse -Force
+    }
     foreach ($file in @('Rimgate.dll', 'Rimgate.xml')) {
         Copy-Item -LiteralPath (Join-Path $repoRoot ".assets/experimental/1.7/Assemblies/$file") -Destination (Join-Path $rimgateSource '1.7/Assemblies')
     }

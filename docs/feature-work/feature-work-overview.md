@@ -76,6 +76,12 @@ defects are corrected: rejected cart placement could remove its target gate
 (RG-Issue-013), and saved DHD close jobs lost their unsaved close intent
 (RG-Issue-014). Transporter/wider cargo, health/resource, orbital and optional
 integration checks remain open; this does not complete phase 3.
+The third batch verifies native two-item transporter manifests, carried/partial
+reloads and DHD-close cleanup, plus loose partial stacks, corpses and downed-pawn
+hauling. RG-Issue-015 restores native transporter owner/manifest notifications;
+RG-Issue-016 prevents replicator-link stack loss through map compression in the
+private 1.7 package. Fresh-save checks pass; old compressed quantities cannot be
+recovered. The plan owns remaining loading, placement and broader gameplay gates.
 Native pack-only loading and the
 same iris scenario also pass; the larger pack and changed sampling/clip metadata
 are recorded in the owning plan. Native packs are now the owner's selected 1.7

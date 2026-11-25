@@ -247,7 +247,8 @@ only the requested version and defaults to its own cache; unknown targets fail
 before writing files. CI compiles the experimental 1.7 project with those public
 inputs in addition to building the supported 1.6 documentation site. Runtime
 acceptance remains migration work. Outputs go to ignored
-`.assets/experimental/1.7/Assemblies/`. There is no `Mod/1.7` support declaration,
+`.assets/experimental/1.7/Assemblies/`. The player package still declares only
+1.6; experimental XML overlays do not declare public 1.7 support. There is no
 experimental release/bundle switch or automatic DocFX target change. Default
 solution builds exclude 1.7; select its project or the command above explicitly.
 
@@ -255,6 +256,9 @@ Private 1.7 setup copies the authored 1.6 XML into its test package. Correct
 shared layout symbols directly in `Mod/1.6/Defs/MapSites/Structures/`; spelling,
 empty-cell and renamed-symbol corrections do not need a version-specific patch
 or historical def aliases. Preserve row widths and unrelated retained content.
+Experimental 1.7 XML corrections belong in `Mod/1.7/Patches/`: setup copies the
+retained XML first, then overlays those patches into the private `1.7/Patches/`
+folder. This keeps the retained 1.6 definitions and patches unchanged.
 The private package is not a public support declaration or an additional
 supported build target.
 
@@ -582,6 +586,58 @@ check the exact cargo/count on the destination map. Run `interrupt` as a separat
 branch from the same carry checkpoint: normal drafting interrupts the job, and
 the item must retain one source-map/carry owner. These checks are distinct from
 inventory cargo, mobile containers and transporter-loading acceptance.
+
+### Verify native gate transporter loading
+
+Compile [`.assets/scripts/rimbridge-transporter-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-transporter-1.7.lua)
+through the installed SDK. Pass the active `transitFixture` to `prepare`, then its
+returned `fixture` with the private paths. Run `load_dialog`, set both unique gun
+quantities to **1** in the real **Items** tab, and pass a fresh `acceptTargetId`
+to `accept`. The two cargo Home cells are fixture eligibility inputs; verify
+native `AllSendableItems` includes both. Never use DEV instant loading.
+
+Continue with `carry`, `checkpoint`, then `first-arrive`. Use `arrive` for normal
+completion. For the closure branch, checkpoint that partial-loading state, run
+`second-carry`, then `close` through the real DHD job. The gate automatically
+forwards loaded contents; there is no separate Launch step. Check native
+interactable-owner routing to `CompTransporter.innerContainer`, manifest decrement
+and exact cargo identity. Pending transit ownership is distinct; do not acknowledge
+manifests manually or rescue arbitrary unqueued pending contents.
+
+Native **Cancel load**/**Unload** gizmos require transporter `innerContainer.Any`.
+At the first-arrived/second-carried boundary the gate has already drained that
+container, so this protocol uses DHD closure rather than a manual cancel command.
+Keep this check on the existing DHD path; inspect actual gizmos at other loading states.
+Closure must reach quiescence: loading/manifest clear, transporter and pending
+owners/queues empty, loader carrying nothing, and the second exact gun spawned
+on the source map. An unoccupied receiver can unload into value records, so this
+branch does not establish the first cargo's original loaded-map identity afterward.
+Pause in host `finally` cleanup on failure or timeout, as for other bulk cases.
+
+### Verify partial stacks, corpses and downed cargo
+
+Compile [`.assets/scripts/rimbridge-cargo-kinds-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-cargo-kinds-1.7.lua).
+Pass `transitFixture` and `mode: partial|corpse|downed` to `prepare`; retain its
+returned `fixture`. Run `carry-reload`, then branch from its checkpoint into
+`arrive` or `interrupt`, supplying the returned actual `carriedCargoId`.
+All pickup, splitting, admission and delivery must use the normal Bring job.
+
+The partial input is a legal `Rimgate_ReplicatorLink` stack of 99. Use the reported
+native carry limit and actual split IDs: the baseline 75 carried plus 24 source
+remainder must retain their exact counts/owners across reload and arrival.
+Normal drafting/drop can remerge those two stacks on interruption; conserve 99
+across only their actual IDs, rather than summing unrelated items of the same def.
+Corpse/downed modes create fresh fixture subjects and owned inventory markers;
+verify the actual corpse/inner pawn or living downed pawn and nested marker through
+reload, delivery and interruption. Do not replace these paths with direct admission.
+
+The 1.7-only `Patches_ReplicatorLinkPersistence.xml` overlay sets this chunk-like
+def's `saveCompressible` false. Native compressed map records store only a def per
+cell, losing stack count and original identity; fresh 1.7 checkpoints must preserve
+both. Historical missing quantities are unrecoverable from those records, and the
+native loader skips existing compressed records once the flag is false. This
+correction does not repair old compressed saves; recreate acceptance inputs from
+an unaffected checkpoint. Keep the retained 1.6 definition unchanged.
 
 ### Verify blocked landing and inactive retry
 

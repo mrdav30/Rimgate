@@ -56,7 +56,9 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   the actual bridge `compile_lua_file`; its restricted subset is narrower than
   offline MoonSharp parsing. The guide owns syntax limits and phase parameters,
   including blocked-landing, cart-gate and receiver-iris cases with their watch
-  cleanup and transit-site value-record boundaries.
+  cleanup and transit-site value-record boundaries. Use its native-transporter
+  and cargo-kind protocols for manifest routing, real capacity splits and nested
+  corpse/downed ownership; pending transit ownership is separate from loading.
   Planetary discovery uses
   [rimbridge-discovery-1.7.lua](../../../.assets/scripts/rimbridge-discovery-1.7.lua):
   prepare inputs only; the real decode job must create and persist its quest,
@@ -139,7 +141,9 @@ Source/1.7/Rimgate is the separately owned experimental .NET 10/C# 14 port.
 Private 1.7 setup reuses the authored 1.6 XML. Correct shared layout symbols in
 `Mod/1.6/Defs/MapSites/Structures/` directly instead of adding a version patch.
 Use the native layout-content report plus affected site generation; a static
-name scan can miss case/rotation failures. Preserve unrelated retained content.
+name scan can miss case/rotation failures. Experimental 1.7 corrections belong
+in `Mod/1.7/Patches/`, overlaid onto the private XML copy by setup. Keep retained
+1.6 content unchanged outside explicitly shared corrections.
 Only assembly builds accept `-Experimental -RimWorldVersion 1.7`, with explicit
 matching 1.7 dependency paths and ignored output outside Mod. Normal release,
 asset and documentation builds still select only supported 1.6. Keep metadata

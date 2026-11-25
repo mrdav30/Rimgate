@@ -35,7 +35,9 @@ otherwise. Do not commit, push or publish as an implied documentation step.
   own its XML. Preserve def names, save keys and pawn/container ownership.
 - The private 1.7 package reuses the authored 1.6 XML. Correct shared layout
   symbols directly in `Mod/1.6/Defs/MapSites/Structures/`, then verify native
-  resolution and affected generation. Keep unrelated 1.6 content unchanged.
+  resolution and affected generation. Experimental 1.7 XML corrections use
+  `Mod/1.7/Patches/`, overlaid by setup onto the private copy of retained XML.
+  Keep unrelated 1.6 content unchanged.
 - Once 1.7 is accepted, freeze the final 1.6 source/content in Git and move
   active builds, dependencies, runtime checks and documentation to 1.7. Later
   1.6 work requires explicitly scoped maintenance. The existing local snapshot
@@ -116,7 +118,9 @@ The contributor guide owns `rimbridge-medical-1.7.lua`, `rimbridge-utilities-1.7
 and `rimbridge-gate-cargo-1.7.lua`: prepare inputs only, then use real jobs and
 verify progress, ownership, interruption and reload. Gate-edge cases use
 `rimbridge-gate-edges-1.7.lua`, `rimbridge-cart-gate-1.7.lua` and
-`rimbridge-iris-edges-1.7.lua`; the guide owns their phase and cleanup contracts.
+`rimbridge-iris-edges-1.7.lua`; native manifests and cargo kinds use
+`rimbridge-transporter-1.7.lua` and `rimbridge-cargo-kinds-1.7.lua`.
+The guide owns their phase, saved-state and cleanup contracts.
 Compile changed scenarios
 with the installed `rimbridge/compile_lua_file`; offline Lua parsing is insufficient.
 Use the companion's read-only `rimgate/patch_report` for actual Harmony registration;

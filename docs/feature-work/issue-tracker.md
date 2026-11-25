@@ -7,7 +7,7 @@ gameplay, persistence, compatibility, documentation and tooling. Feature scope
 belongs in the [overview and owning plans](feature-work-overview.md); measured
 performance signals belong in the [performance backlog](performance-signal-backlog.md).
 
-- IDs use `RG-Issue-NNN`. The next available ID is **RG-Issue-015**. Assign at
+- IDs use `RG-Issue-NNN`. The next available ID is **RG-Issue-017**. Assign at
   intake, never reuse an ID, and check this file's history before repairing the
   counter. Keep an explicit `rg-issue-nnn` anchor through closure or compaction.
 - Record discovery date/revision, affected owners, impact, status/priority,
@@ -34,7 +34,7 @@ performance signals belong in the [performance backlog](performance-signal-backl
 
 ## Active and deferred investigations
 
-None currently open. The remaining migration acceptance matrix is owned by the
+None currently open. Remaining acceptance work belongs to the
 [migration plan](rimworld-1.7-migration-plan.md#remaining-phase-3-gates).
 
 ## Closed issues
@@ -55,6 +55,8 @@ None currently open. The remaining migration acceptance matrix is owned by the
 | <a id="rg-issue-012"></a>RG-Issue-012 - DBH thirst-disabled treatment throws | November 25, 2026 | **Verified 1.7 correction.** Null-check the optional thirst need, matching other DBH setters. DBH 3.2.3260 with Bladder/Hygiene and no Thirst now treats, reloads and discharges the real patient successfully. [Before log and replay](rimworld-1.7-migration-plan.md#phase-3-gameplay-and-current-save-acceptance). This does not establish all DBH variants; 1.6 unchanged. | An optional need's absence breaks a real treatment/restore path, or a present thirst need is restored incorrectly. |
 | <a id="rg-issue-013"></a>RG-Issue-013 - Rejected cart placement removes the destination gate | November 25, 2026 | **Verified 1.7 correction.** Reject invalid destinations before conversion and unavailable gates before proxy release; secure gate ownership before transferring cargo. Retained failure replay, fresh handoff, real DHD/iris cancellation and pre-pickup closure preserve gate/cargo/operator and clear pushing state. [Reproduction and limits](rimworld-1.7-migration-plan.md#gate-edge-and-loaded-cart-acceptance). Fully blocked interruption placement remains separate; 1.6 unchanged. | Rejection removes infrastructure, loses/duplicates cargo or leaves a proxy/slowdown/visual; retain the actual carried checkpoint and target gate. |
 | <a id="rg-issue-014"></a>RG-Issue-014 - Saved DHD close jobs lose their close request | November 25, 2026 | **Verified 1.7 correction.** Remove the unsaved duplicate boolean; derive intent from the existing persisted native designation used by the work giver/job. The retained pre-pickup close checkpoint and new carried pending-close reload now complete actual closure; completed-state reload and request cancellation also pass. [Reproduction and acceptance](rimworld-1.7-migration-plan.md#gate-edge-and-loaded-cart-acceptance). No new save key or 1.6 change. | A designated close request disappears, completes without closure, or cannot be cancelled across current-save reload. Retain designation, closer job and linked gate state. |
+| <a id="rg-issue-015"></a>RG-Issue-015 - Native transporter loading strands cargo | November 25, 2026 | **Verified 1.7 correction.** Gate-only native interactable-owner routing restores CompTransporter admission/manifest notification while preserving pending transit ownership. Real two-gun loading, carried/partial reloads, complete delivery and DHD-close cleanup during second carry pass. [Reproduction and limits](rimworld-1.7-migration-plan.md#native-transporter-and-wider-cargo-acceptance). 1.6 unchanged; no orphan-rescue migration. | Native loading leaves unqueued pending matter, fails manifest cleanup, loses/duplicates cargo or strands carrying work. Retain manifest, job, owner and queues. |
+| <a id="rg-issue-016"></a>RG-Issue-016 - Replicator-link stacks lose quantity in chunk compression | November 25, 2026 | **Verified fresh-save 1.7 correction.** A private XML overlay disables lossy chunk compression for the stackable link. Fresh ground 99 and real native 75+24 split retain counts/IDs through reload, arrival and draft interruption. [Before 76/expected 99, native cause and acceptance](rimworld-1.7-migration-plan.md#native-transporter-and-wider-cargo-acceptance). Old omitted quantities cannot be recovered; native loading skips existing compressed records after this flag changes. Owner-waived historical repair and retained 1.6 remain separate. | A fresh current-save stack loses quantity/identity across save/load or the private overlay is not applied. Retain before counts, actual loaded flag, original IDs and native checkpoint. |
 
 ## Intake template
 
