@@ -29,7 +29,8 @@ tracking records to the DocFX content or navigation.
 
 ### RimWorld 1.7 migration
 
-[Migration plan](rimworld-1.7-migration-plan.md) — in progress. Separate version-owned
+[Migration plan](rimworld-1.7-migration-plan.md) — in progress; phases 0–2 complete,
+phase 3 is next. Separate version-owned
 1.6 and experimental `net10.0`/C# 14 projects compile. The plan owns the 1.6
 source/content freeze milestone and remaining runtime, asset, dependency and save
 gates. Active development will follow accepted 1.7; the existing local snapshot
@@ -56,12 +57,18 @@ checks and optional integrations remain open. Native gate presentation now passe
 25 sampled states across four ancient-controller rotations and North with Tau'ri.
 [RG-Issue-005](issue-tracker.md#rg-issue-005) corrects duplicate overlay altitude
 and mismatched mesh pitch that hid layers at close zoom; 1.6 is unchanged.
-Conditional iris glow and continuous animation remain separate gates.
+The conditional iris glow now passes all four directions, condition save/load
+and normal end cleanup. The 1.7-only condition-reference and manual glow fixes
+close [RG-Issue-006](issue-tracker.md#rg-issue-006) and
+[RG-Issue-007](issue-tracker.md#rg-issue-007). Final transit replay and all 46
+registered Harmony targets pass their phase-2 checks. The wider feature/save/
+dependency matrix and remaining manual quality checks are phase 3; public
+support/default changes and the 1.6 freeze remain phase 4.
 Native pack-only loading and the
 same iris scenario also pass; the larger pack and changed sampling/clip metadata
 are recorded in the owning plan. Native packs are now the owner's selected 1.7
 setup default; Unity remains the retained 1.6 pipeline and an explicit 1.7
-comparison override. Broader visual/effect/audio acceptance remains open.
+comparison override. Phase 3 retains broader visual/effect/audio acceptance.
 Public dependency restoration and CI also compile the experimental 1.7 project.
 
 ## Deferred work

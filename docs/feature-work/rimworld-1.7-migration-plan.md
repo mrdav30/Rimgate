@@ -1,6 +1,7 @@
 # RimWorld 1.7 Migration Plan
 
-- **Status:** In progress. Versioned source split and experimental 1.7 compilation
+- **Status:** In progress; **phases 0, 1 and 2 complete. Phase 3 is next.**
+  Versioned source split and experimental 1.7 compilation
   implemented; the existing local snapshot is temporary migration insurance.
   Live 1.7 startup/profile and hidden-window smoke checks passed earlier;
   [RG-Issue-002](issue-tracker.md#rg-issue-002) is closed after a verified
@@ -16,9 +17,10 @@
   selected production sounds also produce finite nonzero engine PCM.
   Native gate/controller presentation passes 25 sampled states after the 1.7-only
   [RG-Issue-005](issue-tracker.md#rg-issue-005) altitude/pitch correction.
-  Continuous effects and conditional iris glow, device/listening checks, orbital discovery,
-  optional-integration and old-save acceptance and the 1.6 freeze/support
-  milestone remain pending.
+  Conditional iris glow, condition ownership/reload/end and the final complete
+  gate replay also pass; RG-Issue-006/007 are corrected in 1.7 only.
+  Broader feature/edge-case, device/listening, orbital, optional-integration and
+  old-save acceptance belong to phase 3. The 1.6 freeze/support milestone is phase 4.
 - **Created:** November 23, 2026. **Scope reconciled:** November 24, 2026.
 - **Planning baseline:** `14a15f6` (feature-work tracking); clean worktree before
   this plan. Current playable/configured target remains RimWorld 1.6.
@@ -119,6 +121,14 @@ at the baseline; version assets/tooling only where their contracts diverge.
 
 ## Implementation phases and exit evidence
 
+| Phase | Current disposition | Owning evidence / next gate |
+| --- | --- | --- |
+| 0 - Runtime and protected baselines | Complete | Exact licensed runtime, isolated profile and byte-backed preservation checks established. |
+| 1 - Versioned experimental projects | Complete | Independent 1.6/1.7 source, explicit experimental output, pinned references and CI compilation. |
+| 2 - One complete production gate path | Complete | [Phase-2 closeout](#phase-2-completion): startup/patches, native assets, planetary discovery, dialing, pawn/inventory transit, save checkpoints, closure and ordinary/conditional iris presentation. |
+| 3 - Wider feature/save/dependency matrix | Next | Gate edge cases and copied 1.6 saves, then other systems, orbital discovery, optional dependencies and remaining manual quality checks. |
+| 4 - Declare support and move defaults | Pending phase 3 | Public metadata, active 1.7 tooling/docs/CI and final 1.6 source/content freeze. |
+
 ### 0. Establish the actual runtime and protected baselines
 
 - Retain the accepted 1.6 source/content, four baseline bundle hashes and
@@ -167,7 +177,7 @@ only the framework portion of this phase.
 preserved; experimental 1.7 output is correctly routed without a public support
 bump. CLI/CI checks exercise target rejection, paths with spaces and clean output.
 
-### 2. Prove startup, assets, patching and one complete gate operation
+### 2. Prove startup, assets, patching and one complete gate operation - complete
 
 - Audit direct engine calls and Harmony targets against the actual 1.7 binaries.
   `Harmony_PawnInventoryOption_GenerateThings` patches an enumerator's IL and is
@@ -1367,3 +1377,146 @@ insurance snapshot were not modified. Final binary identities and preservation
 results are in the external evidence directory. HEAD remains `0b6dea1`, the
 index is unchanged and all edits are unstaged/uncommitted for review. Only 1.6
 remains declared supported; this acceptance does not freeze it or publish 1.7.
+
+## Phase 2 completion
+
+**Disposition: phase 2 complete on November 24, 2026, from committed `2468084`.**
+This closes the representative engine-compatibility gate: startup/patches,
+native asset loading, planetary discovery, real dialing/map generation,
+pawn/inventory-item transit and saved-state continuation, closure and ordinary /
+conditional iris presentation. Phase 3's wider feature, edge-case, optional-mod
+and existing-save matrix is next. Phase 4 still owns public support and the 1.6
+freeze; neither changed here.
+
+The target remains 1.7.5014 rev1195 / Steam build 26793372, Windows,
+10.0.15-waylithclr.dev, all five DLC and the same ten-mod private profile with
+VEF present and **DBH absent**.
+Native pack-only loading still resolves 814 textures and 26 clips with SHA-256
+`0dea55cedec8eb2f14bc1fed2ac78b9f6fe1e1b4e2e5ec03f02f3568e8ba6797`.
+Runtime VEF still differs from pinned CI; no binary-parity claim is added.
+
+### Conditional lifecycle defects and corrections
+
+The new `.assets/scripts/rimbridge-effects-1.7.lua` loads the owned smoke save,
+stages an inactive rotated gate and real power, closes its iris through the pawn
+job, then executes the discovered **production** psychic-drone incident. The
+incident registers GameCondition_GatePsychicDrone; its normal Init takes one
+hold and opens a local receiver. The script never sets private outcome flags,
+forces activation or force-closes a gate to fake successful cleanup.
+
+**RG-Issue-006:** The original condition stored `_heldGate` only in memory while
+the gate serialized `_externalHoldCount`. Before-fix condition operation
+`op_d450129453df40a39017369d3062e9df` has one condition, the correct held gate,
+hold 1 and active receiver. Reload `op_e583fcbd9dee497088d63711de96f804` fails:
+the condition disappears, hold 1 remains and the receiver stays active. The
+installed GameConditionManager load path does not call Init for saved conditions.
+
+The 1.7 base condition now scribes its gate reference under the new `heldGate`
+key. It never pushes another hold while loading. For missing-key saves only,
+recovery may adopt exactly one existing local receiver hold when there is one
+unambiguous condition, no remote gate/address and exactly one hold. Eligibility
+is frozen at PostLoadInit, before any condition can end and change the count;
+spawned-gate lookup waits until first use because maps spawn loaded things after
+Scribe finalization. A shared one-shot helper runs before Tick, End and Saving,
+so ending or resaving while paused cannot bypass recovery. Explicit null stays
+authoritative. No existing save key was renamed.
+
+| Ownership control | Observed result |
+| --- | --- |
+| Retained original missing-key checkpoint | Condition/reference survive; hold stays 1 without another push. |
+| Explicit `<heldGate>null</heldGate>` | No adoption; condition ends and existing hold 1 is untouched. |
+| Two missing-key conditions / one hold | Neither adopts, regardless of iteration shrinking the list; hold 1 is untouched. |
+| One missing-key condition / two holds | No adoption; both existing holds remain untouched. |
+| Real incident during reciprocal remote connection | It is a nonowner before saving. After reload it ends without closing either gate, adding a hold or releasing another owner's hold. |
+
+The three policy counterfixtures derive from the retained pre-fix save: append an
+explicit-null key; duplicate the condition with uniqueID 9999; or change the source
+gate's `_externalHoldCount` from 1 to 2, respectively. No successful gameplay
+outcome is inserted. Live paused bridge loads may already advance the first load
+tick; the true pre-first-tick End/Saving hooks were independently reviewed rather
+than claimed as a zero-tick UI experiment. Recovery cannot identify the owner of
+an already-removed condition or ambiguous/corrupt holds; those require a retained
+case and separate disposition. This is not blanket 1.6-save compatibility.
+
+**RG-Issue-007:** With a real condition and closed iris, the original North
+capture showed a red lower half with a hard horizontal edge across the dark iris.
+The manual glow DrawMesh bypassed Graphic.DrawWorker, used an untilted quaternion
+and shared the iris center Y. The 1.7 correction applies the base's same 2-degree
+pitch and raises the glow 0.005 above the iris, below the chevrons. All four
+directions now show the full authored red aperture with no half-disc seam. The
+initial fault PNG was overwritten by the successful replay; the fault is retained
+as an observation with its committed source revision and reproducible scenario,
+not misrepresented as an available before-image.
+
+### Accepted conditional and complete-operation checks
+
+Each conditional case captures before, condition-active, reloaded and normally
+ended states. All 16 final frames were independently inspected. The same condition
+ID and gate reference survive; hold remains 1 across reload and becomes 0 after
+the normal End path, with the local receiver closed and cached glow cleared.
+Side-facing ellipses preserve authored perspective; chevrons remain above the glow.
+
+| Rotation | Condition operation | Reload operation | End operation |
+| --- | --- | --- | --- |
+| North | `op_13201ad21b5a45da9675278f5ba5ed0d` | `op_bc187770bc984dfab8c739f3e20df7b3` | `op_42c6eaf222bc432fb6667e38f6149dc3` |
+| East | `op_d6c46b2a73a44d6a9b9b4f13a07e7e9a` | `op_cdd57e17b1474eddbe2ebe227119e948` | `op_f30a5382d480452e9526e299ea8b4d20` |
+| South | `op_396cca1bc2454939b6bc1de9e1e228ac` | `op_98b1b9f1605042588fd0786c7a6b2137` | `op_7a0e546f0ce043f09952a7ebc1a7c0f9` |
+| West | `op_62436ac5c6c84649907e368ed0fc77c9` | `op_643a5cfd0af5471f948f64258d7201a8` | `op_21ccbc81b5804c9699d808b4686b80d7` |
+
+The unchanged transit recipe also passes all six phases on the corrected build:
+prepare, queued dialing/reload, lazy generation/active reload, send and receive
+in-flight checkpoints with resumed living arrival, and normal DHD closure/reload.
+Send `op_24f7c18cacb346ef804d4d9a5248a348` and receive
+`op_eac1cf31e19a4411b58c66a73be1333b` preserve exactly one tracked pawn and its
+unique inventory pistol, redrafted at the destination. Close
+`op_1fd0031adcaf4a568144571c7f40e3d4` leaves both gates inactive, links/queues
+cleared and the living pawn/cargo intact. Inventory cargo does not substitute
+for phase 3's loose hauling/transporter/container coverage.
+
+The new read-only `rimgate/patch_report` observes **46 actual patched targets**
+owned by `com.Rimgate.patches`, including the real
+`Verse.PawnInventoryOption+<GenerateThings>d__6.MoveNext` transpiler. The earlier
+exact game-IL call-pattern audit and clean startup log remain applicable. This
+proves patch registration, not correctness of every patched feature. Startup
+clarifies the version labels: **Harmony Mod v3.0.4.0**, library assembly/file
+**3.0.0.0**, product **3.0.0.0-rc.7+b18fbc7562836f38acb4fd4563456cde2c130414**.
+The DLL SHA-256 is unchanged at
+`7252fbe77bc96fcfb5e6aa446a4957f4547de312d889046fe3ec7d15f7f0fcf5`;
+the same labels occur in the prior presentation log. No deployment-change or
+new Harmony dependency claim follows from the more precise report.
+
+### Phase boundary and remaining acceptance
+
+Phase 2 closes a representative production gate path, with engine-side audio
+evidence from the prior five real-job SoundDefs. It does not claim human/device
+listening, every animation frame, every random sound variant or Unity/native
+pixel parity. Static horizon/iris graphics and sampled native opening flecks plus
+the condition branch are accepted for this milestone. The remaining manual
+motion/listening quality pass stays explicit in phase 3's wider acceptance.
+
+Start phase 3 with gate edge cases and a preserved copy of an existing 1.6 save,
+then cover the contributor matrix: loose cargo/containers, blocked arrivals and
+placement, interruption/cleanup, cloning and sarcophagus, mobile containers,
+ZPM/housing, orbital discovery, other quests/incidents, UI and optional mods
+absent/present. Keep focused evidence in this plan or the relevant issue; do not
+restart the completed engine bring-up or silently publish support.
+
+Evidence is private under
+`%LOCALAPPDATA%/RimgateDev/evidence/phase2-closeout-20261124-232136/`: pre-fix
+condition save and failed operations, policy fixture provenance, 16 final frames,
+six-phase transit results, actual patch report, final native log and byte-backed
+player/private config plus original owned test saves. The final live session has
+no bridge error entries and verified process termination. RG-Issue-006 and
+RG-Issue-007 are closed for their reproduced paths; source/content for 1.6 remains
+the retained baseline, with no public 1.7 metadata bump.
+
+Final checks pass: experimental 1.7 and companion builds with zero warnings/
+errors, supported 1.6 library/strict DocFX/site checks, skill validation, 62 local
+Markdown paths/anchors, independent source/visual/documentation review and Git
+diff checks. All 125 normal config files, private Prefs/ModsConfig, original owned
+smoke save, four 1.6 bundle hashes and the native pack match their byte-backed
+baselines. Source/1.6, tracked Mod content, raw assets, Unity builder, dependency
+pins, Steam branch and local insurance snapshot are unchanged. Owned test output
+saves have recoverable before-copies outside Git. The final private process exit
+is verified. HEAD remains `2468084`; the index is unchanged and all new changes
+are unstaged/uncommitted for review.

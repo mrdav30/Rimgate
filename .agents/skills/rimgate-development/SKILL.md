@@ -58,7 +58,12 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   valid materials can still render behind the camera or tilted base. Use the
   presentation scenario's bounded approach, powered controller and held dialer
   rather than accepting a missing operator after an uncontrolled lethal opening.
-  Keep sampled overlay states distinct from continuous effects and special iris glow.
+  Use [rimbridge-effects-1.7.lua](../../../.assets/scripts/rimbridge-effects-1.7.lua)
+  for a real condition's iris glow, held-gate save/reload and normal end cleanup.
+  A saved hold count is not its owner; restore references without pushing again,
+  and distinguish missing legacy keys from explicit null or ambiguous ownership.
+  The read-only `rimgate/patch_report` proves registration, not feature behavior.
+  Keep sampled states distinct from continuous motion and device/listening checks.
   Idle audio mutes while paused; observe normal unpaused frames between separate
   calls and check sampling cadence plus restored gains. Per-voice PCM does not
   establish device/human audibility. An accepted capture request or frame count

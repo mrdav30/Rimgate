@@ -1,3 +1,4 @@
+using System.Reflection;
 using RimBridgeServer.Sdk;
 using RimWorld;
 using UnityEngine;
@@ -8,6 +9,8 @@ namespace Rimgate.AssetProbe;
 // Private-fixture orientation/controller preparation; production jobs still dial and operate the iris.
 public sealed class PresentationProbe
 {
+    private static readonly FieldInfo HeldGate = typeof(GameCondition_Gate).GetField("_heldGate", BindingFlags.Instance | BindingFlags.NonPublic)!;
+    private static readonly FieldInfo ConditionVisible = typeof(Building_Gate).GetField("_gateConditionActive", BindingFlags.Instance | BindingFlags.NonPublic)!;
     [Tool("rimgate/stage_gate_presentation", Description = "Reposition the inactive owned smoke gate at one cardinal rotation and select its ancient or Tau'ri controller. Does not dial or activate it.")]
     public static Task<object> Stage(IRimBridgeContext context, string expectedConfigPath,
         string expectedModRoot, int rotation, string controller = "Ancient")
@@ -61,6 +64,7 @@ public sealed class PresentationProbe
             Material("gate", gate.Graphic, gate.Rotation, gate),
             Material("eventHorizon", gate.GatePuddle, gate.Rotation, gate),
             Material("iris", gate.GateIris, gate.Rotation, gate),
+            Material("irisGlow", gate.Ext.irisGlowGraphicData?.Graphic, gate.Rotation, gate),
             Material("chevrons", gate.ChevronHighlight, gate.Rotation, gate),
             Material("dhd", dhd?.Graphic, dhd?.Rotation ?? Rot4.North, dhd),
             Material("dhdActive", dhd?.ActiveGraphic, dhd?.Rotation ?? Rot4.North, dhd) };
@@ -68,6 +72,12 @@ public sealed class PresentationProbe
             gate.IsActive, gate.IsReceivingGate, gate.IsOpeningQueued, gate.TicksSinceOpened,
             ticksUntilOpen = gate.TicksUntilOpen,
             gate.HasIris, irisClosed = gate.IsIrisActivated, gate.Powered,
+            gate.ExternalHoldCount,
+            gateConditionActive = GateUtil.IsGateConditionActive(gate.Map),
+            glowRequested = gate.IsIrisActivated && (bool)ConditionVisible.GetValue(gate)!,
+            conditions = gate.Map.GameConditionManager.ActiveConditions.OfType<GameCondition_Gate>().Select(c => new {
+                c.uniqueID, defName = c.def.defName, c.TicksLeft,
+                heldGateId = ((Building_Gate)HeldGate.GetValue(c))?.GetUniqueLoadID() }).ToArray(),
             dhdId = dhd?.GetUniqueLoadID(), dhdDef = dhd?.def.defName,
             dhdPowered = dhd?.Powered, dhdLinked = dhd?.TryGetLinkedGate(out var linked) == true && linked == gate,
             overlayDepth = new {

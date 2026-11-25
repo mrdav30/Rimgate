@@ -106,7 +106,11 @@ DHD/entry jobs, both in-flight save checkpoints and closure. Use the guide's
 fixture/phase contract and distinguish deep ownership from queue references.
 Planetary discovery and presentation have separate `rimbridge-discovery-1.7.lua`
 and `rimbridge-presentation-1.7.lua` scenarios. The contributor guide owns their
-phases, production-voice audio probes and capture diagnostics. Preserve explicit
+phases, production-voice audio probes and capture diagnostics. Run the condition
+checks in `rimbridge-effects-1.7.lua`: trigger a real incident,
+verify the held reference through reload, then end it normally and check cleanup.
+Use the companion's read-only `rimgate/patch_report` for actual Harmony registration;
+registered patches do not establish every affected feature's behavior. Preserve explicit
 limits: PCM is separate from listening, material resolution from rendered pixels,
 and an input/capture timeout blocks the affected acceptance check.
 After shutdown, run

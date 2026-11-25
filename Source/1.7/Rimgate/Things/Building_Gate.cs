@@ -462,14 +462,19 @@ public class Building_Gate : Building, IThingHolder
             GateIris.Draw(irisDrawPos, rot, this);
 
             if (_gateConditionActive)
+            {
+                // Manual glow shares the iris pitch and sits between the iris and chevrons.
+                var glowRotation = def.graphicData.addTopAltitudeBias
+                    ? Quaternion.Euler(Vector3.left * 2f) : Quaternion.identity;
                 Graphics.DrawMesh(
                     IrisGlowMesh,
-                    irisDrawPos,
-                    Quaternion.identity,
+                    Utils.AddY(irisDrawPos, 0.005f),
+                    glowRotation,
                     FadedMaterialPool.FadedVersionOf(
                         IrisGlowMat,
                         0.5f),
                     0);
+            }
         }
 
         // Chevron highlight floats above the gate/puddle/iris.

@@ -626,6 +626,27 @@ incoming draw altitude once and match overlay mesh pitch to the base. Check
 chevrons remain above the closed iris. Opening stills sample the repeated vortex
 effect; conditional iris glow and continuous animation require separate cases.
 
+For the condition branch, run
+[`.assets/scripts/rimbridge-effects-1.7.lua`](https://github.com/mrdav30/Rimgate/blob/main/.assets/scripts/rimbridge-effects-1.7.lua)
+with the same private paths, `rotation: 0..3`, a unique `capturePrefix` and phases
+`prepare`, `condition`, `reload`, `end`. Pass prepare's `fixture` to later phases.
+It closes the inactive powered iris through the real pawn job, then invokes the
+game's `Actions\Do incident\Rimgate_GatePsychicDrone` debug leaf. The production
+incident must acquire one local receiver hold; the scenario never sets a gate's
+activation or condition flags. Check actual glow pixels as well as the reference,
+hold count and duration across reload. To end, discover
+`Actions\Remove Game Condition...` and supply its exact owned condition leaf as
+`endConditionPath` (English: `Actions\Remove Game Condition...\Dwarfgate-borne psychic drone`).
+The normal end must remove the condition, release its hold, close the local
+receiver and remove the glow after the next rare tick. Do not force-close the
+gate to simulate condition cleanup. Check all four rotations; remote connections
+are a separate nonowner control.
+
+`rimgate/patch_report` reads the loaded Rimgate Harmony owner's registered targets
+and patch functions, including the real inventory enumerator. It reports assembly
+identity separately from file/product version and path. Pair it with the exact
+game IL/log evidence; registration alone does not validate every patched feature.
+
 After an input/capture timeout, use the guarded read-only
 `rimgate/render_capture_status` to record native capture support, queued files,
 capture flags and render/framebuffer dimensions. Do not clear the queue or
