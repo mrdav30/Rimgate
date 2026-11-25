@@ -35,6 +35,13 @@ public sealed class PresentationProbe
         var dhd = (Building_DHD)GenSpawn.Spawn(def, new IntVec3(110, 0, 134), map,
             controller == "Tauri" ? Rot4.North : new Rot4(rotation));
         dhd.SetFaction(Faction.OfPlayer);
+        // The Tau'ri controller (800 W) plus installed iris (500 W) exceeds the fixture's 1000 W cell.
+        if (controller == "Tauri")
+        {
+            var power = GenSpawn.Spawn(DefDatabase<ThingDef>.GetNamed("VanometricPowerCell"),
+                new IntVec3(104, 0, 130), map, Rot4.North);
+            power.SetFaction(Faction.OfPlayer);
+        }
         return new { success = true, rotation, controller, sourceGateId = gate.GetUniqueLoadID(),
             sourceDhdId = dhd.GetUniqueLoadID(), limits = "Inactive fixture respawn only; use real DHD dialing and iris jobs for active captures." };
     });
@@ -45,6 +52,11 @@ public sealed class PresentationProbe
         var gate = Find.CurrentMap.listerThings.AllThings.OfType<Building_Gate>()
             .Single(g => g.Position == new IntVec3(110, 0, 130));
         var dhd = gate.ConnectedDHD;
+        var drawOffset = gate.def.graphicData.DrawOffsetForRot(gate.Rotation);
+        var blueprintY = AltitudeLayer.Blueprint.AltitudeFor();
+        var overlayPosition = gate.DrawPos + drawOffset;
+        var legacyPosition = overlayPosition + Vector3.up * blueprintY;
+        var camera = Find.Camera;
         var assets = new[] {
             Material("gate", gate.Graphic, gate.Rotation, gate),
             Material("eventHorizon", gate.GatePuddle, gate.Rotation, gate),
@@ -58,6 +70,16 @@ public sealed class PresentationProbe
             gate.HasIris, irisClosed = gate.IsIrisActivated, gate.Powered,
             dhdId = dhd?.GetUniqueLoadID(), dhdDef = dhd?.def.defName,
             dhdPowered = dhd?.Powered, dhdLinked = dhd?.TryGetLinkedGate(out var linked) == true && linked == gate,
+            overlayDepth = new {
+                gateY = gate.DrawPos.y, drawOffsetY = drawOffset.y, blueprintY,
+                baseTopAltitudeBias = gate.def.graphicData.addTopAltitudeBias,
+                horizonTopAltitudeBias = gate.Ext.puddleGraphicData?.addTopAltitudeBias,
+                irisTopAltitudeBias = gate.Ext.irisGraphicData?.addTopAltitudeBias,
+                chevronTopAltitudeBias = gate.Ext.chevronHighlight?.addTopAltitudeBias,
+                legacyAdditiveY = legacyPosition.y, overlayY = overlayPosition.y,
+                cameraY = camera.transform.position.y, camera.nearClipPlane, camera.farClipPlane,
+                legacyAdditiveDepth = camera.WorldToViewportPoint(legacyPosition).z,
+                overlayDepth = camera.WorldToViewportPoint(overlayPosition).z },
             assets, tick = Find.TickManager.TicksGame };
     });
 

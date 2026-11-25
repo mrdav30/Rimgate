@@ -54,6 +54,11 @@ it has not been published as a mod release. Do not infer Workshop distribution.
   prepare inputs only; the real decode job must create and persist its quest,
   lazy site and address before real dialing/visitation. Use the guide for the
   presentation scenario, scoped production-audio probes and render diagnostics.
+  Review native gate layers at minimum normal zoom as well as ordinary framing;
+  valid materials can still render behind the camera or tilted base. Use the
+  presentation scenario's bounded approach, powered controller and held dialer
+  rather than accepting a missing operator after an uncontrolled lethal opening.
+  Keep sampled overlay states distinct from continuous effects and special iris glow.
   Idle audio mutes while paused; observe normal unpaused frames between separate
   calls and check sampling cadence plus restored gains. Per-voice PCM does not
   establish device/human audibility. An accepted capture request or frame count

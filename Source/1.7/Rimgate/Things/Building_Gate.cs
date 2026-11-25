@@ -216,6 +216,10 @@ public class Building_Gate : Building, IThingHolder
             return;
         }
 
+        // Overlay meshes must share the base's pitch so its raised top cannot cover them.
+        foreach (var overlay in new[] { Ext.puddleGraphicData, Ext.irisGraphicData, Ext.chevronHighlight })
+            overlay?.addTopAltitudeBias = def.graphicData.addTopAltitudeBias;
+
         // only one active gate allowed per map
         // this should never happen normally, but just in-case let it spawn inert, then uninstall
         if (TryGetSpawnedGateOnMap(map, out _))
@@ -444,7 +448,8 @@ public class Building_Gate : Building, IThingHolder
         var rot = Rotation;
         var drawOffset = def.graphicData.DrawOffsetForRot(rot);
 
-        var drawPos = Utils.AddY(drawLoc + drawOffset, AltitudeLayer.Blueprint.AltitudeFor());
+        // drawLoc already includes the building altitude; adding it again clips overlays at close zoom.
+        var drawPos = drawLoc + drawOffset;
 
         // Puddle is slightly below the iris.
         if (IsActive && !_isIrisActivated && GatePuddle != null)
@@ -469,7 +474,7 @@ public class Building_Gate : Building, IThingHolder
 
         // Chevron highlight floats above the gate/puddle/iris.
         if ((IsOpeningQueued || IsActive) && ChevronHighlight != null)
-            ChevronHighlight.Draw(Utils.AddY(drawPos, 0.01f), rot, this);
+            ChevronHighlight.Draw(Utils.AddY(drawPos, 0.03f), rot, this);
     }
 
     public override string GetInspectString()

@@ -25,6 +25,8 @@ if params.phase == "prepare" then
     rb.assert(status.result.rotation == params.rotation and status.result.IsActive == false, "Incorrect inactive rotation/state.")
     local camera = rb.call("rimworld/jump_camera_to_cell", { x = 110, z = 130 })
     rb.assert(camera.result.success, "Camera positioning failed.")
+    local zoom = rb.call("rimworld/set_camera_zoom", { rootSize = 11 })
+    rb.assert(zoom.result.success, "Close presentation framing failed.")
     local shot = rb.call("rimworld/take_screenshot", { fileName = params.capturePrefix .. "-inactive", outputDirectory = params.evidenceDirectory, includeTargets = false })
     rb.assert(shot.result.success, "Inactive capture failed.")
     return { success = true, fixture = fixture.result, status = status.result, screenshot = shot.result.path }
@@ -37,13 +39,27 @@ if params.phase == "open" then
     rb.assert(menu.result.success, "DHD context menu failed.")
     local dial = rb.call("rimworld/execute_context_menu_option", { label = f.destinationName })
     rb.assert(dial.result.success, "Normal DHD dial job failed.")
-    local ticks = rb.call("rimworld/step_game_ticks", { ticks = 80, timeoutMs = 30000 })
-    rb.assert(ticks.result.success, "Dial stepping failed.")
     local queued = rb.call("rimgate/gate_presentation_status", {})
+    -- Rotating the controller changes the real pawn's approach distance.
+    for attempt = 1, 20 do
+        if queued.result.IsOpeningQueued == false then
+            local approach = rb.call("rimworld/step_game_ticks", { ticks = 20, timeoutMs = 30000 })
+            rb.assert(approach.result.success, "Dial approach stepping failed.")
+            queued = rb.call("rimgate/gate_presentation_status", {})
+        end
+    end
     rb.assert(queued.result.success and queued.result.IsOpeningQueued, "Queued chevron state not observed.")
+    local depth = queued.result.overlayDepth
+    rb.assert(depth.overlayDepth > depth.nearClipPlane + 0.1 and depth.overlayDepth < depth.farClipPlane, "Gate overlay is outside the camera depth range.")
+    rb.assert(depth.baseTopAltitudeBias == depth.horizonTopAltitudeBias and depth.baseTopAltitudeBias == depth.irisTopAltitudeBias and depth.baseTopAltitudeBias == depth.chevronTopAltitudeBias, "Gate overlays must share the base mesh pitch.")
+    -- Keep the finished dialer at the safe controller instead of resuming wandering.
+    local held = rb.call("rimworld/set_draft", { pawnId = f.pawnId, drafted = true })
+    rb.assert(held.result.success, "Could not hold the dialer during the lethal opening effect.")
+    local operator = rb.call("rimworld/get_pawn_details", { pawnId = f.pawnId })
+    rb.assert(operator.result.success and operator.result.pawn.drafted and operator.result.pawn.dead == false and operator.result.pawn.downed == false, "Opening operator must be alive and drafted.")
     local shot = rb.call("rimworld/take_screenshot", { fileName = params.capturePrefix .. "-queued", outputDirectory = params.evidenceDirectory, includeTargets = false })
     rb.assert(shot.result.success, "Queued capture failed.")
-    ticks = rb.call("rimworld/step_game_ticks", { ticks = queued.result.ticksUntilOpen + 1, timeoutMs = 30000 })
+    local ticks = rb.call("rimworld/step_game_ticks", { ticks = queued.result.ticksUntilOpen + 1, timeoutMs = 30000 })
     if ticks.result.success == false then
         rb.assert(ticks.result.message == "RimWorld is busy with a long event.", "Unexpected opening step failure.")
     end
@@ -61,11 +77,16 @@ if params.phase == "open" then
     rb.assert(ticks.result.success, "Mature gate stepping failed.")
     local status = rb.call("rimgate/gate_presentation_status", {})
     rb.assert(status.result.success and status.result.IsActive and status.result.dhdPowered and status.result.dhdLinked and status.result.rotation == params.rotation, "Active gate/controller state or assets are invalid.")
+    local survivor = rb.call("rimworld/get_pawn_details", { pawnId = f.pawnId })
+    rb.assert(survivor.result.success and survivor.result.pawn.dead == false and survivor.result.pawn.downed == false and survivor.result.pawn.drafted, "Opening lost the held dialer.")
+    rb.assert(survivor.result.pawn.position.x == operator.result.pawn.position.x and survivor.result.pawn.position.z == operator.result.pawn.position.z, "Held dialer moved during opening.")
     shot = rb.call("rimworld/take_screenshot", { fileName = params.capturePrefix .. "-active", outputDirectory = params.evidenceDirectory, includeTargets = false })
     rb.assert(shot.result.success, "Active capture failed.")
-    return { success = true, queued = queued.result, opening = opening.result, status = status.result, screenshot = shot.result.path }
+    return { success = true, queued = queued.result, operator = operator.result.pawn, survivor = survivor.result.pawn, opening = opening.result, status = status.result, screenshot = shot.result.path }
 end
 rb.assert(params.phase == "iris", "Choose a documented phase.")
+local released = rb.call("rimworld/set_draft", { pawnId = f.pawnId, drafted = false })
+rb.assert(released.result.success, "Iris operator undrafting failed.")
 local selected = rb.call("rimworld/click_cell", { x = 110, z = 130, button = "left" })
 rb.assert(selected.result.success, "Iris gate selection failed.")
 local gizmos = rb.call("rimworld/list_selected_gizmos", {})

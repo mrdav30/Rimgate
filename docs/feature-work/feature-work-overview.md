@@ -52,7 +52,12 @@ pass. The 1.7-only address-cache and pending-ownership corrections close
 quest/site/address persistence, lazy quest-map generation and visitation pass.
 Gate open/idle/close and iris open/close produce finite nonzero production-voice
 PCM with master output muted. Broader effects, orbital discovery, device/listening
-checks and optional integrations remain open. Native pack-only loading and the
+checks and optional integrations remain open. Native gate presentation now passes
+25 sampled states across four ancient-controller rotations and North with Tau'ri.
+[RG-Issue-005](issue-tracker.md#rg-issue-005) corrects duplicate overlay altitude
+and mismatched mesh pitch that hid layers at close zoom; 1.6 is unchanged.
+Conditional iris glow and continuous animation remain separate gates.
+Native pack-only loading and the
 same iris scenario also pass; the larger pack and changed sampling/clip metadata
 are recorded in the owning plan. Native packs are now the owner's selected 1.7
 setup default; Unity remains the retained 1.6 pipeline and an explicit 1.7

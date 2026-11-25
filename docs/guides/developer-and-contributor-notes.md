@@ -610,8 +610,21 @@ provides `prepare`, `open` and optional `iris` phases. Supply the private paths,
 `rotation: 0..3`, `controller: Ancient|Tauri` and a unique `capturePrefix`; pass
 prepare's `fixture` to later phases. Preparation respawns only the inactive
 empty source gate/controller; normal jobs must dial and operate the iris.
-The material report is distinct from the screenshots that require visual review.
-The full orientation scenario still requires its separate visual acceptance.
+The Tau'ri fixture adds enough power for its 800 W controller plus the 500 W iris.
+`open` polls the real approach in 20-tick steps, bounded at 400 ticks, then drafts
+the dialer at the controller through the lethal opening effect. It verifies the
+pawn survives without moving; `iris` undrafts before requesting the real toggle
+job. This isolates presentation from ordinary post-job wandering; it does not
+test automatic evacuation or make the vortex harmless.
+
+Captures use the normal minimum camera root size, 11. Review inactive, queued,
+opening, active and closed-iris pixels for all four ancient-controller rotations
+and North with Tau'ri. Compare the same paused state at root size 24 when checking
+zoom-dependent defects. Material success is separate from rendered pixels; the
+read-only status includes camera depth and base/overlay pitch. Preserve the
+incoming draw altitude once and match overlay mesh pitch to the base. Check
+chevrons remain above the closed iris. Opening stills sample the repeated vortex
+effect; conditional iris glow and continuous animation require separate cases.
 
 After an input/capture timeout, use the guarded read-only
 `rimgate/render_capture_status` to record native capture support, queued files,

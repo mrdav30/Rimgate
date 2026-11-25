@@ -14,7 +14,9 @@
   [RG-Issue-004](issue-tracker.md#rg-issue-004) are corrected in 1.7 only.
   Planetary glyph discovery, quest/site persistence and visitation now pass;
   selected production sounds also produce finite nonzero engine PCM.
-  Broader visual acceptance, device/listening checks, orbital discovery,
+  Native gate/controller presentation passes 25 sampled states after the 1.7-only
+  [RG-Issue-005](issue-tracker.md#rg-issue-005) altitude/pitch correction.
+  Continuous effects and conditional iris glow, device/listening checks, orbital discovery,
   optional-integration and old-save acceptance and the 1.6 freeze/support
   milestone remain pending.
 - **Created:** November 23, 2026. **Scope reconciled:** November 24, 2026.
@@ -1247,3 +1249,121 @@ previous SHA-256. Production source/content/raw assets/reference pins and the
 local insurance snapshot are untouched. The final private process exit is
 verified. HEAD remains `a21e56e`; the index is unchanged and all edits are
 unstaged/uncommitted for review.
+
+## Native presentation acceptance and RG-Issue-005
+
+Resumed from committed `0b6dea1` on November 24 with the remaining North/East/
+South/West ancient-DHD and North Tau'ri presentation matrix. Runtime remains
+**1.7.5014 rev1195**, Steam build 26793372, .NET 10.0.15-waylithclr.dev,
+Windows, all five DLC, Harmony 3.0.4.0, VEF, Rimgate and RimBridge 2.5.0.0 /
+SDK 2.0.0.0 with GABS 1.1.2. Bad Hygiene is absent at runtime. The installed VEF
+hash remains `8557af77a8e4cc2915c2de710f2f6a4d167f2989704014918a8369f133dbf13a`;
+it differs from the pinned CI reference, so runtime/CI dependency parity is not
+claimed. The hidden private profile uses graphics-enabled `-NoWindow` and a
+1280x720 framebuffer; no desktop input/focus or OS session changes were used.
+
+### Reproduced rendering defect and correction
+
+Material and gameplay assertions initially passed at minimum normal zoom while
+screenshots lacked the horizon, iris and chevrons. The DHD overlay and opening
+flecks still rendered. A retained South active/closed-iris save, paused at tick
+1739 after reload, reproduced disappearance at root size 11 and reappearance at
+24 without changing simulation state. The native report measured:
+
+| Value | Minimum zoom 11 | Ordinary zoom 24 |
+| --- | ---: | ---: |
+| Camera Y | 15 | 28.265305 |
+| Gate / Blueprint Y | 9.512196 | 9.512196 |
+| Old additive overlay Y | 19.024391 | 19.024391 |
+| Old overlay camera depth | -4.024391 | 9.240915 |
+| Corrected overlay camera depth | 5.4878054 | 18.753113 |
+
+Near/far clip planes are 0.5 / 65.5. `DrawAt` received an already raised draw
+location, then added Blueprint altitude again, putting overlays behind the close
+camera. Removing that addition restored the iris but exposed a second defect:
+the base's `addTopAltitudeBias` tilts its mesh by 2 degrees, while the flat
+overlays intersected it and lost the upper three chevrons. Installed drawing IL
+and the two-visible-chevron intermediate capture established this distinction.
+
+The **1.7-only** correction reuses `drawLoc + drawOffset`, copies the base's pitch
+flag to horizon/iris/chevron GraphicData during spawn/load and places chevrons at
++0.03 above the iris's +0.02. Graphic_Multi retains the GraphicData reference and
+DrawWorker reads the flag each draw; no material rebuild or engine patch is
+needed. The retained failing save now displays the iris and all five chevrons at
+close zoom. No raw art, defs, save keys, ownership or gameplay timing changed.
+This closes **RG-Issue-005** for the observed ordinary overlay path.
+
+### Final scenario and visual acceptance
+
+`.assets/scripts/rimbridge-presentation-1.7.lua` runs prepare/open/iris separately.
+Preparation reloads the owned smoke save and stages only inactive inputs. Real
+DHD jobs queue and generate the destination; real toggle jobs close the iris.
+The scenario polls approach in 20-tick increments, at most 400 ticks, and checks
+depth/pitch, materials, power/facility linkage and gate state. It captures five
+states per case: inactive, queued, opening at 20 ticks, active at 200 ticks and
+active with closed iris at 400 ticks. All cases use normal minimum zoom 11.
+
+| Controller / gate rotation | Open operation | Iris operation |
+| --- | --- | --- |
+| Ancient / North | `op_0001f2802050441786485305a09ad714` | `op_540bd9799eb440a59a89142306eb12fe` |
+| Ancient / East | `op_9245dc23f54f451caf8ea8abb8039b0d` | `op_15c73939fe414eac90f8881384e31f28` |
+| Ancient / South | `op_fb2621bd6dbe4d26b0ed62372d5e76d0` | `op_98e65d30dacf4cb0b1195ff264932b2d` |
+| Ancient / West | `op_480ee1f229e7453b8aa4593cff6bb322` | `op_48699bd33dad40bca1407f61a37ea954` |
+| Tau'ri / North | `op_7e4f723d9e1c406890f1adda9bdad5ea` | `op_b4cfd4402bda4d8c9602d7cfa8aab4dc` |
+
+Independent visual inspection of all 25 final frames finds no remaining ordinary
+gate-layer clipping or alignment defect: chevrons light before opening, the blue
+horizon fills the authored aperture, and the segmented iris replaces it while
+chevrons remain above it. East/West retain the authored narrow/slanted profile;
+the flat lower edge is in the source art. Ancient DHD illumination and the Tau'ri
+monitor brighten only when active and remain lit with a closed iris. Rotated
+opening flecks appear in the expected direction. After a real iris reopening,
+an additional Tau'ri capture at 1000 active ticks shows the unobscured blue horizon
+and bright monitor; ordinary-zoom capture also succeeds without advancing ticks.
+
+Fixture failures were retained, not accepted as rendering results. East's fixed
+80-tick approach was too short; another 80 ticks completed the real job. An
+unheld West dialer died before the opening screenshot. Subsequent checkpoints
+showed ordinary wandering after dialing and during the queue; they do not
+reconstruct the exact death. The revised case drafts the operator at the safe
+controller after queueing, asserts alive/drafted/same cell through opening, then
+undrafts **before** requesting the iris job. Undrafting after the request can
+start the automatic toggle immediately, making the later forced-menu assertion
+invalid. No damage suppression, relocation during opening or evacuation patch
+was added. Tau'ri initially exhausted the fixture's 1000 W cell (800 W controller
++ 500 W iris); its private staging now adds a second cell, and power checks pass.
+
+These are sampled ordinary states, not every animation frame, automatic
+evacuation safety, special condition-driven iris glow or exact Unity/native pixel
+parity. The manual iris-glow mesh bypasses Graphic.DrawWorker and needs its own
+condition-triggered acceptance. Human/device audio, orbital discovery, other
+phase-3 systems, optional integrations, old-save acceptance and public support /
+1.6 freeze remain open. Next, finish the conditional iris/effect checks before
+broadening phase 3; retain the separate audio listening and dependency/save gates.
+
+Evidence is outside Git under
+`%LOCALAPPDATA%/RimgateDev/evidence/native-presentation-20261124-165544/`: original
+and corrected captures, the retained regression save, operation JSON, native
+logs and byte-backed player/private config and smoke-save copies. Native pack
+SHA-256 remains
+`0dea55cedec8eb2f14bc1fed2ac78b9f6fe1e1b4e2e5ec03f02f3568e8ba6797`;
+all 814 textures and 26 clips resolve from pack-only deployment. Keep this exact
+runtime/pack and same-save zoom comparison when reopening RG-Issue-005.
+
+Closeout passes the experimental 1.7 assembly and final companion builds with
+zero warnings/errors. The exact final companion was cold-launched and reran all
+Tau'ri phases successfully: open `op_0af0f53a19c248b8b80dd422c25df1cf`, iris
+`op_bed63f9d854e4ba08b04226bfcaf8ab5`. Both final game sessions report no bridge
+error entries. Supported 1.6 library/DocFX generation and strict site checks pass
+with zero warnings/errors; the skill validator, 48 changed-document local paths/
+anchors and Git diff checks pass. Independent code, visual and documentation
+review found no remaining blocking issue.
+
+After verified process shutdown, all 125 normal config files, private Prefs and
+ModsConfig, the original owned smoke save and four 1.6 bundle hashes match their
+byte-backed baselines. The native pack is unchanged. Source/1.6, tracked Mod
+content, AssetsRaw, Unity builder, reference pins, Steam branch and the local
+insurance snapshot were not modified. Final binary identities and preservation
+results are in the external evidence directory. HEAD remains `0b6dea1`, the
+index is unchanged and all edits are unstaged/uncommitted for review. Only 1.6
+remains declared supported; this acceptance does not freeze it or publish 1.7.
