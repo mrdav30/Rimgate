@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Only the 1.7 assembly implements housing-aware broadcast/quest handling.
+       The retained 1.6 definition must keep its original inactive ticker. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Rimgate_ZPMHousing"]</xpath>
+    <value>
+      <tickerType>Rare</tickerType>
+    </value>
+  </Operation>
+</Patch>

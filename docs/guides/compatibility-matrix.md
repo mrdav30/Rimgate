@@ -2,7 +2,8 @@
 
 This page tracks how Rimgate interacts with other mods and core RimWorld content.
 
-Source of truth: `Mod/1.6/Patches/` and `Mod/About/About.xml`.
+Source of truth: `Mod/1.6/Patches/`, each version project's `Compatibility/`
+code and `Mod/About/About.xml`.
 
 ## At a Glance
 
@@ -38,9 +39,10 @@ Runtime absence/presence checks remain necessary when changing that integration.
 
 ## Optional Mod Integrations
 
-These patches are conditional and only apply when the matching mod is active.
+These integrations activate conditionally when the matching mod is present.
+The C# hooks and wrappers are version-owned alongside the gameplay assembly.
 
-| External Mod | Patch File | Integration Summary | Status |
+| External Mod | Owner | Integration Summary | Status |
 | --- | --- | --- | --- |
 | `Altered Carbon 2: ReSleeved` | `Patches_AlteredCarbon.xml` | Prevents empty sleeves from being sent to sarcophagus treatment. | `Integrated` |
 | `Dubs Bad Hygiene` (`Lite` / `Thirst` variants) | `Patches_DubsBadHygiene.xml` | Excludes hygiene-related hediff treatment in sarcophagus flows. | `Integrated` |
@@ -53,6 +55,16 @@ These patches are conditional and only apply when the matching mod is active.
 | `Vanilla Races Expanded - Android` | `Patches_VanillaRacesExpandedAndroid.xml` | Prevents android xenotypes from sarcophagus treatment. | `Integrated` |
 | `Vanilla Races Expanded - Saurid` | `Patches_VanillaRacesExpandedSaurid.xml` | Prevents treatment of specific Saurid-specific condition hediffs. | `Integrated` |
 | `Vanilla Traits Expanded` | `Patches_VanillaTraitsExpanded.xml` | Adds trait-specific sarcophagus treatment handling (`Lush`, `Stoner`). | `Integrated` |
+| `Alpha Genes` | `Compatibility/ModCompatibility.cs`, `AlphaGenesCompatibility.cs` | Guards the dependency's bone-breaking hook while a pawn is held in a sarcophagus. | `Integrated` |
+| `Elite Bionics Framework` | `Compatibility/EbfCompatibilityWrapper.cs` | Uses the dependency's body-part maximum-health calculation when its optional endpoint is available; otherwise uses vanilla. | `Integrated` |
+
+Experimental 1.7 acceptance checks the actual loaded versions, resolved content
+and gameplay, with dependencies absent and present. Full Dubs Bad Hygiene does
+not establish its separate Lite/Thirst variants. An older selected load folder
+alone establishes neither compatibility nor failure. The installed Quarry copies
+currently declare only through 1.6 and are excluded from the 1.7 acceptance profile;
+this does not remove the retained integration or declare an untested fork broken.
+The migration tracker owns exact combinations and outstanding checks.
 
 ## Core/Gamewide Patches (Always Shipped)
 
@@ -70,7 +82,8 @@ These are not external mod integrations, but they do affect compatibility expect
 
 ## Non-Compatible Mods (Placeholder)
 
-As of February 25, 2026, no hard incompatibilities are explicitly tracked in-repo.
+No confirmed hard incompatibility is currently recorded here. Keep unavailable
+or unverified experimental combinations distinct from reproduced conflicts.
 
 | Mod | Status | Notes |
 | --- | --- | --- |

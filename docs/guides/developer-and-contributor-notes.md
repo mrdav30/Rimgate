@@ -252,8 +252,10 @@ acceptance remains migration work. Outputs go to ignored
 experimental release/bundle switch or automatic DocFX target change. Default
 solution builds exclude 1.7; select its project or the command above explicitly.
 
-Private 1.7 setup copies the authored 1.6 XML into its test package. Correct
-shared Rimgate-owned XML, localization and content at their source when both
+Private 1.7 setup copies the authored 1.6 XML into its test package, then stages
+authored `Mod/1.7/Defs/` and `Mod/1.7/Patches/` over the corresponding private
+directories. The public 1.6 load folders do not select that version-owned content.
+Correct shared Rimgate-owned XML, localization and content at their source when both
 versions can consume the change with their existing assemblies. Routine content
 maintenance does not require a DLL rebuild or a separate approval for each def.
 Preserve def/save identities and unrelated behavior; new features, balance and
@@ -267,6 +269,9 @@ implement the required behavior. Avoid duplicate version patches for shared fixe
 C# changes belong in the version-owned project; retained 1.6 C#/DLL changes require
 explicit maintenance scope. Content changes must still reference types and fields
 available in each consuming assembly. Rebuilding art/audio is a separate pipeline.
+Also trace the behavior newly activated by an XML change: a dormant assembly
+path can make a structurally valid correction version-specific. Preserve the
+retained target when its existing DLL cannot consume the corrected behavior.
 The private package is not a public support declaration or an additional
 supported build target.
 
@@ -728,7 +733,7 @@ Use independent invocations to observe the real operation:
 | `host`, `patient`, `calibrate` | Pass `fixture`; start the genuine enabled float-menu admission/calibration jobs. Calibration requires the admitted host and doctor. |
 | `status`, `advance` | Pass `fixture` and the tracked `cloneId` once available. `advance` accepts `ticks` from 1 to 30000; inspect progress between calls. |
 | `roundtrip` | Pass `fixture`, optional tracked `cloneId` and `checkpoint`: `host`, `calibration`, `incubating`, `diagnosing` or `healing`. Saves/reloads the matching `Rimgate-medical-*` checkpoint. |
-| `assert-interruption`, `assert-resumed` | Interrupt with a real building power gizmo and pawn flick job first. Supply `before` and `target: pod` or `sarcophagus` to the interruption assertion; resume the pod normally and pass the interruption status as `before`. |
+| `assert-interruption`, `assert-resumed` | Interrupt the pod with its real power gizmo and pawn flick job. An occupied sarcophagus exposes no power toggle; use a native environmental outage instead. Supply `before` and `target: pod` or `sarcophagus` to the interruption assertion; restore power normally and pass the interruption status as `before`. |
 | `assert-complete` | Use `target: pod` with the actual pending `cloneId` and expected single-cycle `expectedFuel`, or `target: sarcophagus` for patient treatment/ejection. |
 
 Keep default durations, power demands and failure settings. The default base
@@ -992,6 +997,105 @@ late artifact, not a passing negative operation. Use unique capture names across
 runs to keep that distinction clear. The script writes only its owned
 `Rimgate-background-check` save. The migration plan owns dated evidence and the
 limits of this controlled test.
+
+### Wider experimental lifecycle scenarios
+
+The following scenarios extend the existing utility, medical, transporter and
+discovery fixtures. They use the same expected private `configPath`/`modRoot`,
+require compilation through the installed bridge SDK, and need caller-side
+`Paused` cleanup in `finally` after failures. Retain each returned fixture and
+actual object IDs; use fresh UI IDs after selection or reload.
+
+| Scenario under `.assets/scripts/` | Inputs and actual operation |
+| --- | --- |
+| `rimbridge-utility-edges-1.7.lua` | Reuse the utility fixture. `prepare` adds empty shroud/diverter inputs; `wait` advances bounded ordinary ticks; `checkpoint` saves/reloads the actual broadcast and facility state. Read charge, native links, power and protection-quest state separately. |
+| `rimbridge-logistics-edges-1.7.lua` | `fuel-input` replaces only the empty utility cart and stages loose compatible fuel. Retain the replacement cart ID. Use `refuel-menu`/`refuel` with the actual native label, then the existing loading/pushing scenario. `block` stages ordinary obstruction inputs at a carried boundary; `blocked-interrupt` uses real drafting and checks original obstruction survival. A free pawn cell is a separate placement case from obstructing that cell too. Full-search cases use the host protocol below. |
+| `rimbridge-transporter-pawns-1.7.lua` | On the mature transit fixture, `prepare` removes hostile non-colony smoke guards and creates a healthy boarder with a unique inventory marker, optionally a loose rifle (`mixed: true`). Set the real People checkbox and optional Items quantity. `boarding`/`checkpoint` retain the native walking job; `arrive` checks the actual destination and marker. `admitted` is a bounded diagnostic: native admission/drain can occur between snapshots, so a missed sample is not proof of a production failure. No DEV loading. |
+| `rimbridge-cargo-site-1.7.lua` | After actual cargo-kind arrival, use real source closure, checkpoint and redial. This is an observer: the host must assert stored/recreated quantities, nested ownership and native map-removal blockers. Preserve the closed-site scavenging flag before reopening resets it. Coarse item records do not promise original IDs. |
+| `rimbridge-medical-edges-1.7.lua` | Fresh `prepare` selects `Genome`, `Full`, `Enhanced` or `Reconstruct` inputs with native biomass costs/timers. Use real host/corpse admission, calibration and refuelling. Check pending traits before reload, then use the existing medical roundtrips and real completion. Separate phases exercise shortage, abort/eject, saved needs, actual incidents and sarcophagus power interruption. |
+| `rimbridge-world-edges-1.7.lua` | Use a real discovered/equipped orbital fixture. Wear loose vanilla protection through normal jobs before real dialing/entry; read actual vacuum and native resistance. Real return dialing and world Abandon UI test visitation, quest/address/site cleanup and reload. Preserve hostile encounter results separately from vacuum or transport failures. |
+| `rimbridge-world-incidents-1.7.lua` | Trigger the selected real incident worker, inspect its actual conditions/ore/hostiles and save/load. Ending a condition through the native debug End action proves its cleanup lifecycle, not natural-duration expiry. Generated ore and raiders do not establish mining or combat victory. |
+| `rimbridge-integrations-1.7.lua` | Read-only resolved-content and hook checks. Supply an exact `expectedActivePackagesCsv` (empty for absence) and optional `patientId`. Actual eligibility, treatment and facility operations remain separate assertions. |
+
+For the bounded Alpha Genes clinical case, arm the passive
+`rimgate/begin_alpha_clinical_watch` **after** equipment, admission and any reload,
+with the expected private paths, actual brittle-bones `patientId` and at most
+60,000 milliseconds. Require `observerRegistered: true` after Begin; this checks
+the exact observer method and its Harmony owner. Then use the real combat job; the watch never invokes the
+guard or changes its arguments/result. Read `rimgate/alpha_clinical_watch_status`
+and require an actual call for that patient with the exact sarcophagus holder ID,
+`ownedBySarcophagus: true` and `returned: false` before claiming guard-specific
+evidence. The host must call `rimgate/end_alpha_clinical_watch` in `finally` and
+require `observerRegistered: false` and `unpatched: true`. Expiry attempts the same
+owned cleanup, but a main-thread timeout may leave an inert registered observer;
+retain that error and retry End rather than claiming successful removal. Only
+qualifying calls captured for the bound `Current.Game` before the deadline count;
+zero qualifying calls or calls outside that scope cannot establish suppression.
+A qualifying retained call remains valid after normal End or expiry, when
+`active: false` is expected and actual observer removal must still be verified.
+Keep this distinct from merely finding the hook registered or
+observing injuries after destruction.
+
+Read-only observers must also respect active integrations' API protocols. Use an
+upstream explicit raw/vanilla-intent query when that is the measurement, and its
+integration-aware query for gameplay health; calling a patched vanilla getter
+or suppressing its diagnostics can invalidate the observation itself.
+
+Optional admission checks need an independent native treatment need so an
+unrelated `not injured` denial cannot pass. For ordinary organic subjects, use a
+visible, tendable injury such as `patientConditionDef: "Burn"`. Factory-created
+races must use their dependency's actual spawner; generic pawn generation can
+omit required initialization, and mechanical injuries need not be tendable.
+Traits granted exclusively by apparel must come from the native equip/foundry
+path, not direct trait insertion. Combine an empty-sleeve input with
+`patientEbfArm: true` for a separate native bruise. Run medical-edges
+`assert-eligibility` with `enabled: false` and `denialKind: "race"`, `"xenotype"`,
+`"hediff"` or `"trait"` (or an independently expected exact `expectedDenialLabel`).
+The actual disabled menu must match that policy denial. A separate injured human
+control without a blocker must pass with `enabled: true`. If an earlier care or
+treatment-need rule preempts the intended guard, record that boundary; do not
+change native policy or force an injury flag to obtain the desired denial.
+
+Fixture preparation may stage empty buildings, loose materials, fresh subjects,
+research and ordinary starting health/equipment. It must not assign the operation's
+manifest, force admission, set progress, create its quest/raid/reward outcome or
+repair ownership. Normal menus, jobs, incidents and ticks must produce those
+outcomes. Reload a healthy compatible input when branching. A missing-mod save
+that produces native load errors is an invalid fixture, even if a later bridge
+call succeeds; retain the failure and start from a healthy matching profile.
+
+For fully obstructed cart recovery, call `rimgate/prepare_cart_obstructions`
+with `radius: 13` and `blockCenter: true` only at an actual carried-proxy boundary.
+The returned `nativeNearLegalCellCount` must be zero; a wall ring or blocked
+operator cell alone does not establish that the full native Near search fails.
+Retain the exact blocker IDs and their original positions/HP. Use real drafting
+to interrupt, then read `rimgate/cart_recovery_status` and ordinary utility
+ownership. Save/reload the deep-owned cart, release only the recorded inputs with
+`rimgate/release_cart_obstructions`, and run ordinary ticks for automatic retry.
+Recovery must preserve cargo, cart definition/stuff/HP/fuel/use settings and clear
+the temporary proxy, slowdown and visual attachment. Compare the large blocker
+arrays on the host; the local-case Lua's nested matching exceeds the SDK statement
+budget for a full radius-13 fixture. A missing or unloaded original destination
+does not establish successful placement; retain the recovery owner and report it.
+
+Keep installed metadata, loaded XML, registered hooks and real gameplay evidence
+distinct. Optional dependencies must actually load on the selected target. Do not
+force an installed version that declares only an older game into acceptance, or
+infer that a legacy assembly either works or fails solely from its references.
+The migration plan owns tested combinations, unavailable variants and remaining
+manual continuous-motion/listening/device checks.
+
+Two focused medical reports complement the lifecycle scenarios.
+`rimgate/sarcophagus_work_report` observes actual doctor target predicates and
+suitable destinations without constructing jobs. `rimgate/clone_random_degree_report`
+invokes the loaded production degree selector with 32 bounded seeds, restoring
+native `Rand` state in `finally`. Its failure payload is separate from bridge
+operation success; it does not create a clone or force a failure outcome.
+
+When delegating, keep one explicit owner for the live game, deployment and private
+profile. Other agents can inspect or edit distinct source owners. Hand the game
+over paused or after verified shutdown, with its current save and retained evidence;
+do not run independent scenarios against the same mutable session concurrently.
 
 ### Compare native Waylith packs with Unity bundles
 

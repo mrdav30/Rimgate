@@ -29,66 +29,39 @@ tracking records to the DocFX content or navigation.
 
 ### RimWorld 1.7 migration
 
-[Migration plan](rimworld-1.7-migration-plan.md) — in progress; phases 0–2 complete,
-phase 3 is active. Separate version-owned
-1.6 and experimental `net10.0`/C# 14 projects compile. The plan owns the 1.6
-source/content freeze milestone and remaining runtime, asset, dependency and save
-gates. Active development will follow accepted 1.7; the existing local snapshot
-is temporary migration insurance without maintained capture/restore tooling.
-Only 1.6 remains declared supported; 1.7 outputs and metadata stay in a private
-test package. Licensed 1.7 startup, profile isolation and read-only bridge calls
-now work. The hidden-window smoke passes gate selection, iris mutation/save/reload,
-120 exact ticks and screenshot capture. [RG-Issue-002](issue-tracker.md#rg-issue-002)
-was reopened for recurring capture/input timeouts and is now closed with a
-verified private-profile occlusion/redraw correction. The regression proves
-failure with redraw suppressed and repeated real UI/capture plus save/reload
-success with it enabled; the previously blocked discovery visit also passes.
-The asset pass resolves all 814 bundled textures and 26 clips and
-renders the powered iris closed/open through real pawn jobs; the two dev red Xs
-are inherited null-icon defaults. Known-address DHD dialing, lazy map generation,
-pawn/inventory transit, both in-flight save checkpoints, redraft and closure now
-pass. The 1.7-only address-cache and pending-ownership corrections close
-[RG-Issue-003](issue-tracker.md#rg-issue-003) and
-[RG-Issue-004](issue-tracker.md#rg-issue-004). Planetary glyph decoding, generated
-quest/site/address persistence, lazy quest-map generation and visitation pass.
-Gate open/idle/close and iris open/close produce finite nonzero production-voice
-PCM with master output muted. Broader effects, orbital entry, device/listening
-checks and remaining optional integrations remain open. Native gate presentation now passes
-25 sampled states across four ancient-controller rotations and North with Tau'ri.
-[RG-Issue-005](issue-tracker.md#rg-issue-005) corrects duplicate overlay altitude
-and mismatched mesh pitch that hid layers at close zoom; 1.6 is unchanged.
-The conditional iris glow now passes all four directions, condition save/load
-and normal end cleanup. The 1.7-only condition-reference and manual glow fixes
-close [RG-Issue-006](issue-tracker.md#rg-issue-006) and
-[RG-Issue-007](issue-tracker.md#rg-issue-007). Final transit replay and all 46
-registered Harmony targets pass their phase-2 checks. The wider feature/save/
-dependency matrix and remaining manual quality checks are phase 3; public
-support/default changes and the 1.6 freeze remain phase 4.
-The first phase-3 batch corrects and verifies loose-cargo targeting, sarcophagus
-treatment persistence, moving-cart checkpoints, stale layout symbols and
-DBH's thirst-disabled treatment path (RG-Issue-008–012). Cloning, ZPM insertion/
-ejection and orbital decoding/equipment eligibility have focused native checks.
-The owner waived historical player-save migration; current-save continuation
-remains required. The plan owns exact results and the remaining wider matrix.
-The second phase-3 batch verifies blocked landing/reload/inactive retry, receiver
-iris protection and loaded-cart gate handoff/cancellation. Two reproduced 1.7
-defects are corrected: rejected cart placement could remove its target gate
-(RG-Issue-013), and saved DHD close jobs lost their unsaved close intent
-(RG-Issue-014). Transporter/wider cargo, health/resource, orbital and optional
-integration checks remain open; this does not complete phase 3.
-The third batch verifies native two-item transporter manifests, carried/partial
-reloads and DHD-close cleanup, plus loose partial stacks, corpses and downed-pawn
-hauling. RG-Issue-015 restores native transporter owner/manifest notifications;
-RG-Issue-016 prevents replicator-link stack loss through map compression using
-an owner-approved shared XML correction, replacing its initial 1.7 patch.
-Fresh 1.7 save checks pass; old compressed quantities cannot be
-recovered. The plan owns remaining loading, placement and broader gameplay gates.
-Native pack-only loading and the
-same iris scenario also pass; the larger pack and changed sampling/clip metadata
-are recorded in the owning plan. Native packs are now the owner's selected 1.7
-setup default; Unity remains the retained 1.6 pipeline and an explicit 1.7
-comparison override. Phase 3 retains broader visual/effect/audio acceptance.
-Public dependency restoration and CI also compile the experimental 1.7 project.
+[Migration plan](rimworld-1.7-migration-plan.md) — **in progress: phases 0–2
+complete; phase 3 is active.** Only 1.6 is publicly supported. Independent net48
+and experimental .NET 10/C# 14 projects, pinned references, private-profile
+isolation and hidden graphics/input/capture are established. Native Waylith packs
+are the selected 1.7 development default; the retained 1.6 source, content and
+bundle baseline remain protected.
+
+The wider matrix now verifies production gates and discovery, planetary/orbital
+travel and living return, current-save ownership, medical/cloning lifecycles,
+conditions/incidents, native transporter manifests and DHD cancellation, guarded
+meteorite generation with separately controlled extraction, ZPM facilities and
+cart fuel/refrigeration/recovery. The owning plan distinguishes actual gameplay
+from generation, registration, sampled frames and component-isolated checks.
+[Issue records](issue-tracker.md) retain each reproduced correction and its limits.
+
+The owner-selected current-threat ZPM correction now passes a fresh scheduled
+wave. The bounded optional pass is complete on actual absent/present dependency
+profiles: startup, content/hook contracts and representative clinical/facility
+operations pass. The plan preserves qualified or unexercised policy/combat
+branches. [RG-Issue-028](issue-tracker.md#rg-issue-028) tracks the pre-existing
+nested-corpse representation risk awaiting its own native reproduction.
+The [coordinated manual quality pass](rimworld-1.7-migration-plan.md#coordinated-manual-quality-pass)
+requires continuous motion, representative native texture appearance and actual
+audio/device listening. Background captures and PCM do not close those gates.
+Historical player-save migration was waived; current-save continuation remains
+required. The plan owns unavailable dependencies and other bounded dispositions.
+
+**Phase 4 remains pending:** after acceptance, freeze final 1.6 source/content
+and move active support metadata, builds, dependencies, CI and the single DocFX
+site to 1.7. The local 1.6 snapshot stays untouched as temporary migration insurance;
+there is no maintained capture/restore workflow or ongoing 1.6 environment
+contract. No public support/default change or mod publication follows from the
+experimental checks alone.
 
 ## Deferred work
 

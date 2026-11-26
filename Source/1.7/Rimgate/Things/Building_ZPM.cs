@@ -351,8 +351,8 @@ public class Building_ZPM : Building
         Thing zpmOnMap = null;
         foreach (Thing thing in map.listerThings.AllThings)
         {
-            if (thing != thingToIgnore
-                && thing.def == RimgateDefOf.Rimgate_ZPM)
+            if (thing != thingToIgnore && thing.Spawned
+                && thing.Faction.IsOfPlayerFaction() && IsBroadcastingZpm(thing))
             {
                 zpmOnMap = thing;
                 break;
@@ -361,4 +361,11 @@ public class Building_ZPM : Building
 
         return zpmOnMap;
     }
+
+    public static bool IsBroadcastingZpm(Thing thing) => thing switch
+    {
+        Building_ZPM zpm => zpm.IsBroadcasting,
+        Building_ZPMHousing housing => housing.IsBroadcasting,
+        _ => false
+    };
 }

@@ -51,7 +51,7 @@ public class WorkGiver_Doctor_RescueToSarcophagus : WorkGiver_RescueDowned
             return false;
         }
 
-        return true;
+        return SarcophagusUtil.FindBestSarcophagus(patient, pawn) != null;
     }
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)

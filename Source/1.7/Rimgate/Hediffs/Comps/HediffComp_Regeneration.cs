@@ -99,7 +99,7 @@ public class HediffComp_Regeneration : HediffComp
             pawn.health.RestorePart(partToRestore);
 
             if (pawn.IsColonyMech)
-                AdjustMechEnergyUsage(pawn, partToRestore.def.GetMaxHealth(pawn));
+                AdjustMechEnergyUsage(pawn, EbfCompatibilityWrapper.GetMaxHealth(partToRestore.def, pawn, partToRestore));
 
             // After restore, add “regenerating tissue” for missing-part hediffs that disappeared.
             // Compare references: if a beforeMissing item is no longer present, it was restored.
@@ -112,7 +112,7 @@ public class HediffComp_Regeneration : HediffComp
                         continue;
 
                     var h = HediffMaker.MakeHediff(Props.regeneratingHediff, pawn, oldMissing.Part);
-                    h.Severity = (oldMissing.Part.def.GetMaxHealth(pawn) - 1f) * Props.regenerateMissingTimeFactor;
+                    h.Severity = (EbfCompatibilityWrapper.GetMaxHealth(oldMissing.Part.def, pawn, oldMissing.Part) - 1f) * Props.regenerateMissingTimeFactor;
                     pawn.health.AddHediff(h);
                 }
             }
@@ -185,7 +185,7 @@ public class HediffComp_Regeneration : HediffComp
             Hediff h = hediffs[i];
             if (!MedicalUtil.IsEligibleChronic(hediffSet, h)) continue;
 
-            var maxHealth = h.Part?.def.GetMaxHealth(pawn) ?? 1;
+            var maxHealth = h.Part == null ? 1f : EbfCompatibilityWrapper.GetMaxHealth(h.Part.def, pawn, h.Part);
             if (pawn.IsColonyMech)
                 AdjustMechEnergyUsage(pawn, maxHealth);
 
@@ -198,7 +198,7 @@ public class HediffComp_Regeneration : HediffComp
             if (Props.regeneratingHediff != null && h.Part != null)
             {
                 var regen = HediffMaker.MakeHediff(Props.regeneratingHediff, pawn, h.Part);
-                regen.Severity = (h.Part.def.GetMaxHealth(pawn) - 1f) * Props.regenerateChronicTimeFactor;
+                regen.Severity = (EbfCompatibilityWrapper.GetMaxHealth(h.Part.def, pawn, h.Part) - 1f) * Props.regenerateChronicTimeFactor;
                 pawn.health.AddHediff(regen);
             }
 
@@ -280,6 +280,6 @@ public class HediffComp_Regeneration : HediffComp
     public override void CompExposeData()
     {
         Scribe_Values.Look(ref _resurrectionsLeft, "_resurrectionsLeft", 1);
-        Scribe_Values.Look(ref _cachedMechWeapon, "_cachedMechWeapon");
+        Scribe_Deep.Look(ref _cachedMechWeapon, "_cachedMechWeapon");
     }
 }

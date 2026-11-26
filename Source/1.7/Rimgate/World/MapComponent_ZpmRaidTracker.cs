@@ -24,33 +24,31 @@ public class MapComponent_ZpmRaidTracker : MapComponent
     {
         base.FinalizeInit();
         RebuildFromMapState();
-        if (_suppressionActive)
-            EndQuestIfNoZpm(); // ensure no lingering quest after load
     }
 
-    public void SetSuppressionActive(bool active)
+    public void NotifySuppressionChanged()
     {
+        // Each emitter reports a change; the map owns the combined suppression.
+        bool active = map.listerThings.AllThings.OfType<ThingWithComps>()
+            .Any(t => t.Spawned && t.GetComp<Comp_ZpmSignalScrambler>()?.IsSuppressing == true);
         if (_suppressionActive == active) return;
         _suppressionActive = active;
 
         LogUtil.Debug($"Setting ZPM raid suppression to {_suppressionActive}.");
 
-        // Kill the quest if it’s running; ZPMs are “masked”.
-        if (_suppressionActive)
-            EndQuestIfNoZpm(); // no raids while masked
-        else // If any broadcasting ZPMs exist, (re)start the quest loop.
-            RebuildFromMapState();
+        RebuildFromMapState();
     }
 
     private void RebuildFromMapState()
     {
         if (map == null) return;
 
-        int physicalCount = map.listerThings
-            .ThingsOfDef(RimgateDefOf.Rimgate_ZPM)
+        _suppressionActive = map.listerThings.AllThings.OfType<ThingWithComps>()
+            .Any(t => t.Spawned && t.GetComp<Comp_ZpmSignalScrambler>()?.IsSuppressing == true);
+        int physicalCount = map.listerThings.AllThings
             .Count(t => t.Faction.IsOfPlayerFaction()
                      && t.Spawned
-                     && (t is Building_ZPM b ? b.IsBroadcasting : true));
+                     && Building_ZPM.IsBroadcastingZpm(t));
 
         // If shroud is active, treat as zero “active” ZPMs for the quest
         _activeZpmCount = _suppressionActive ? 0 : physicalCount;
@@ -116,18 +114,8 @@ public class MapComponent_ZpmRaidTracker : MapComponent
         _questId = -1;
     }
 
-    public void NotifyZpmBeganBroadcast()
-    {
-        _activeZpmCount++;
-        if (_activeZpmCount == 1)
-            StartQuestIfNeeded();
-    }
+    public void NotifyZpmBeganBroadcast() => RebuildFromMapState();
 
-    public void NotifyZpmEndedBroadcast()
-    {
-        if (_activeZpmCount > 0) _activeZpmCount--;
-        if (_activeZpmCount == 0)
-            EndQuestIfNoZpm();
-    }
+    public void NotifyZpmEndedBroadcast() => RebuildFromMapState();
 }
 

@@ -34,6 +34,8 @@ public class Building_ZPMHousing : Building, IThingHolder
 
     private bool _isBroadcasting;
 
+    public bool IsBroadcasting => _isBroadcasting;
+
     private ThingOwner<Thing> _innerContainer;
 
     private CompPowerBattery Battery => _battery ??= GetComp<CompPowerBattery>();

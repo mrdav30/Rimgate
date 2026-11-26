@@ -411,6 +411,7 @@
 	<RG_CommandAllowUseCartContents_Desc>If enabled, colonists may pull needed items directly out of this {0} for jobs (construction, meals, refueling, etc.). Disable this to keep contents reserved until manually unloaded.</RG_CommandAllowUseCartContents_Desc>
 
 	<RG_MessagePawnCannotPush>{0} was unable to push {1}.</RG_MessagePawnCannotPush>
+	<RG_CartRecoveryBlocked>No clear space to restore the cart. It is safely retained; clear space near its last position and it will be restored automatically.</RG_CartRecoveryBlocked>
 	<RG_MessageNoPawnToPush>No available colonist to push {0}.</RG_MessageNoPawnToPush>
 	<RG_MessagePawnCannotReachDestination>{0} cannot reach the designated target.</RG_MessagePawnCannotReachDestination>
 	<RG_MessageCantLoadMoreIntoCart>Your {0} can't finish loading the {1} because some items became unavailable ({2}).</RG_MessageCantLoadMoreIntoCart>

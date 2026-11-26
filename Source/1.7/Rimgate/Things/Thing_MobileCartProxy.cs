@@ -17,6 +17,8 @@ public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
 
     public float PushingFuel;  // current fuel while proxy is carried
 
+    public bool SavedAutoRefuel = true;
+
     public ThingDef SavedStuff; // original stuff
 
     public int SavedHitPoints;
@@ -57,6 +59,7 @@ public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
         Scribe_Deep.Look(ref InnerContainer, "InnerContainer", this);
         Scribe_Values.Look(ref FuelPerTick, "FuelPerTick", 0f);
         Scribe_Values.Look(ref PushingFuel, "PushingFuel", 0f);
+        Scribe_Values.Look(ref SavedAutoRefuel, "SavedAutoRefuel", true);
         Scribe_Defs.Look(ref SavedDef, "SavedDef");
         Scribe_Defs.Look(ref SavedStuff, "SavedStuff");
         Scribe_Values.Look(ref SavedHitPoints, "SavedHitPoints", 0);
@@ -89,6 +92,7 @@ public class Thing_MobileCartProxy : ThingWithComps, IThingHolder
         // restore fuel (if any)
         if (made.Refuelable != null)
         {
+            made.Refuelable.allowAutoRefuel = SavedAutoRefuel;
             // CompRefuelable starts at 0 on fresh Thing; add whatever is left from pushing
             if (PushingFuel > 0f)
                 made.Refuelable.Refuel(PushingFuel);

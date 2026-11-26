@@ -33,7 +33,8 @@ otherwise. Do not commit, push or publish as an implied documentation step.
   Do not add public 1.7 support or package its outputs before runtime validation.
 - `Source/1.6/Rimgate/` owns the retained net48 implementation; `Mod/1.6/Defs/` and `Patches/`
   own its XML. Preserve def names, save keys and pawn/container ownership.
-- The private 1.7 package reuses authored XML from `Mod/1.6/`. Correct shared
+- The private 1.7 package reuses authored XML from `Mod/1.6/`, then stages authored
+  `Mod/1.7/Defs/` and `Patches/` for genuine version differences. Correct shared
   Rimgate-owned XML, localization and content directly when both versions can
   consume the correction with their existing assemblies. These maintenance fixes
   do not require DLL changes or a separate approval for each named definition.

@@ -20,6 +20,11 @@ public class Comp_ZpmSignalScrambler : ThingComp
 
     private CompPowerTrader _cachedPower;
 
+    private int LinkedZpmCount => Facility?.LinkedBuildings?.Count(b =>
+        b is Building_ZPM || b is Building_ZPMHousing { HasAnyZpm: true }) ?? 0;
+
+    public bool IsSuppressing => parent.Spawned && (Power == null || Power.PowerOn) && LinkedZpmCount > 0;
+
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
         base.PostSpawnSetup(respawningAfterLoad);
@@ -35,30 +40,18 @@ public class Comp_ZpmSignalScrambler : ThingComp
     public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
         base.PostDeSpawn(map, mode);
-        Tracker?.SetSuppressionActive(false);
+        map.GetComponent<MapComponent_ZpmRaidTracker>()?.NotifySuppressionChanged();
     }
 
     private void UpdateSuppression()
     {
-        // Power remains optional.
-        bool powered = Power == null || Power.PowerOn;
-
-        // Require at least one *linked* ZPM facility.
-        bool linkedToZpm = false;
-        if (Facility?.LinkedBuildings != null)
-            linkedToZpm = Facility.LinkedBuildings
-                .Any(b => b?.def == RimgateDefOf.Rimgate_ZPM);
-
-        bool shouldSuppress = powered && linkedToZpm;
-
-        // Only suppress when powered AND linked to >=1 ZPM.
-        Tracker?.SetSuppressionActive(shouldSuppress);
+        Tracker?.NotifySuppressionChanged();
     }
 
     public override string CompInspectStringExtra()
     {
         bool powered = Power == null || Power.PowerOn;
-        int linkCount = Facility?.LinkedBuildings?.Count(f => f.def == RimgateDefOf.Rimgate_ZPM) ?? 0;
+        int linkCount = LinkedZpmCount;
 
         if (!powered)
             return "RG_JammerInactive".Translate() + $" ({"NoPower".Translate()})";

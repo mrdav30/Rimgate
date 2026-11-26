@@ -35,6 +35,7 @@ public class QuestNode_RaidForZPM : QuestNode
 
         bool allowViolentQuests = Find.Storyteller.difficulty.allowViolentQuests;
         slate.Set("allowViolence", allowViolentQuests);
+        slate.Set("raidIntervalAvg", _raidIntervalTicksRange.Average);
 
         Map map = slate.Get<Map>("map");
         Thing zpm = Building_ZPM.FindZpmOnMap(map);
@@ -71,20 +72,18 @@ public class QuestNode_RaidForZPM : QuestNode
             quest.AddPart(part);
         });
 
-        float points = slate.Get("points", 1f);
-
         QuestPart_RandomFactionRaid randomRaid = new QuestPart_RandomFactionRaid();
         randomRaid.inSignal = triggerRaidSignal;
         randomRaid.mapParent = map.Parent;
-        randomRaid.pointsRange = new FloatRange(points * MinRaidThreatPointsFactor, points * MaxRaidThreatPointsFactor);
+        randomRaid.pointsRange = new FloatRange(MinRaidThreatPointsFactor, MaxRaidThreatPointsFactor);
         randomRaid.arrivalMode = map.Tile.LayerDef.isSpace
             ? PawnsArrivalModeDefOf.CenterDrop
             : PawnsArrivalModeDefOf.EdgeWalkIn;
         randomRaid.raidStrategy = RimgateDefOf.ImmediateAttackSmart;
         randomRaid.AllowNeolithic = false;
         randomRaid.UseGateIfAvailable = true;
-        randomRaid.TargetDefs = new List<ThingDef> { RimgateDefOf.Rimgate_ZPM };
-        randomRaid.TargetPredicate = (t) => t is Building_ZPM zpm && zpm.IsBroadcasting;
+        randomRaid.TargetDefs = new List<ThingDef> { RimgateDefOf.Rimgate_ZPM, RimgateDefOf.Rimgate_ZPMHousing };
+        randomRaid.RequireBroadcastingZpm = true;
         randomRaid.UseLetterKey = "RG_LetterRaidZpmProtectDesc";
         randomRaid.generateFightersOnly = true;
         randomRaid.fallbackToPlayerHomeMap = true;
@@ -93,6 +92,5 @@ public class QuestNode_RaidForZPM : QuestNode
         quest.End(QuestEndOutcome.Fail, 0, null, questEndSignal, QuestPart.SignalListenMode.OngoingOnly, sendStandardLetter: true);
         quest.End(QuestEndOutcome.Fail, 0, null, QuestGenUtility.HardcodedSignalWithQuestID("map.MapRemoved"));
         slate.Set("map", map);
-        slate.Set("raidIntervalAvg", _raidIntervalTicksRange.Average);
     }
 }

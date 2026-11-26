@@ -223,7 +223,7 @@ internal static class CloneUtility
                 List<GeneDef> geneDefList = new List<GeneDef>();
                 while (geneDefList.Count < num4)
                 {
-                    GeneDef geneDef = _cachedGeneDefs[Rand.RangeInclusive(0, _cachedGeneDefs.Count)];
+                    GeneDef geneDef = _cachedGeneDefs.RandomElement();
                     if (!innerPawn.genes.HasActiveGene(geneDef) && !geneDefList.Contains(geneDef))
                     {
                         LogUtil.Message($"Added gene: {geneDef.label} to random gene list");
@@ -336,7 +336,7 @@ internal static class CloneUtility
             List<TraitDef> traitDefList = new List<TraitDef>();
             while (traitDefList.Count < num5)
             {
-                TraitDef traitDef = _cachedTraitDefs[Rand.RangeInclusive(0, _cachedTraitDefs.Count)];
+                TraitDef traitDef = _cachedTraitDefs.RandomElement();
                 if (!innerPawn.story.traits.HasTrait(traitDef) && !traitDefList.Contains(traitDef))
                     traitDefList.Add(traitDef);
             }
@@ -350,7 +350,17 @@ internal static class CloneUtility
         else
         {
             foreach (Trait allTrait in story1.traits.allTraits)
-                story2.traits.GainTrait(allTrait, false);
+            {
+                // GainTrait assigns Trait.pawn: sharing the host's instance
+                // corrupts its owner even when Enhanced later clears the clone.
+                var copiedTrait = new Trait(allTrait.def, allTrait.Degree, allTrait.ScenForced)
+                {
+                    sourceGene = FindClonedGene(allTrait.sourceGene, innerPawn, clonePawn),
+                    suppressedByGene = FindClonedGene(allTrait.suppressedByGene, innerPawn, clonePawn),
+                    suppressedByTrait = allTrait.suppressedByTrait
+                };
+                story2.traits.GainTrait(copiedTrait, false);
+            }
 
             switch (cloneType)
             {
@@ -640,6 +650,16 @@ internal static class CloneUtility
         }
     }
 
+    private static Gene FindClonedGene(Gene sourceGene, Pawn host, Pawn clone)
+    {
+        if (sourceGene == null) return null;
+        // The same def can exist in both collections; preserve which copy owns
+        // the trait or suppression rather than selecting the xenogene first.
+        var genes = host.genes.Endogenes.Contains(sourceGene)
+            ? clone.genes.Endogenes : clone.genes.Xenogenes;
+        return genes.FirstOrDefault(gene => gene.def == sourceGene.def);
+    }
+
     internal static void AssignRandomGenderAppropriateHair(Pawn pawn)
     {
         _cachedHairDefs ??= DefDatabase<HairDef>.AllDefsListForReading
@@ -663,7 +683,7 @@ internal static class CloneUtility
     internal static int GetRandomDegreeForTrait(TraitDef traitDef)
     {
         return traitDef.degreeDatas != null && traitDef.degreeDatas.Count > 0
-            ? traitDef.degreeDatas[Rand.RangeInclusive(0, traitDef.degreeDatas.Count)].degree
+            ? traitDef.degreeDatas.RandomElement().degree
             : 0;
     }
 

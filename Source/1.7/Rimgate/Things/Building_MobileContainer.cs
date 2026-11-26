@@ -184,13 +184,12 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
         base.SpawnSetup(map, respawningAfterLoad);
-        InnerContainer.dontTickContents = !Ext.sealPreventsContentTick;
-        _isSealed = !Ext.sealPreventsContentTick && FuelOK;
+        CheckSeal();
     }
 
     protected override void Tick()
     {
-        base.TickLong();
+        base.Tick();
 
         InnerContainer.DoTick();
 
@@ -234,28 +233,12 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
 
     private void CheckSeal()
     {
-        if (!Ext.sealPreventsContentTick) return;
-
-        if (!FuelOK)
+        _isSealed = Ext.sealPreventsContentTick && FuelOK;
+        InnerContainer.dontTickContents = _isSealed;
+        foreach (var t in InnerContainer.InnerListForReading)
         {
-            InnerContainer.dontTickContents = false;
-
-            foreach (var t in InnerContainer.InnerListForReading)
-            {
-                if (t.TryGetComp(out CompRottable comp))
-                    comp.disabled = false;
-            }
-            _isSealed = false;
-        }
-        else if (!_isSealed)
-        {
-            InnerContainer.dontTickContents = true;
-            foreach (var t in InnerContainer.InnerListForReading)
-            {
-                if (t.TryGetComp(out CompRottable comp))
-                    comp.disabled = true;
-            }
-            _isSealed = true;
+            if (t.TryGetComp(out CompRottable comp))
+                comp.disabled = _isSealed;
         }
     }
 
@@ -705,6 +688,7 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
         {
             // copy current fuel
             proxy.PushingFuel = refuelable.Fuel;
+            proxy.SavedAutoRefuel = refuelable.allowAutoRefuel;
             float massRatio = MassCapacity > 0f ? Mathf.Clamp01(MassUsage / MassCapacity) : 1f;
             proxy.FuelPerTick = ConsumptionRatePerTick * (1f + massRatio);
         }

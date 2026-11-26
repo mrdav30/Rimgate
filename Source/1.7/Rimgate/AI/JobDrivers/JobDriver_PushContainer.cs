@@ -233,37 +233,12 @@ public class JobDriver_PushContainer : JobDriver
             // If proxy was never spawned (interrupted during init), nothing to restore
             if (!_proxySpawned) return;
 
-            // 1) If carrying a proxy, convert it back right away
-            if (pawn.carryTracker?.CarriedThing is Thing_MobileCartProxy carried)
-            {
-                var drop = Utils.BestDropCellNearThing(pawn);
-                var cart = carried.ConvertProxyToCart(pawn.Faction);
-                carried.MoveContentsToContainer(cart);
-                carried.Destroy();
-                GenSpawn.Spawn(cart, drop, pawn.Map, Utils.RotationFacingFor(pawn.Position, drop));
-            }
-            else
-            {
-                // 2) Otherwise, scan small radius for a dropped proxy
-                var map = pawn.Map;
-                foreach (var c in GenRadial.RadialCellsAround(pawn.Position, 2.0f, useCenter: true))
-                {
-                    if (!c.InBounds(map)) continue;
-                    var list = c.GetThingList(map);
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        if (list[i] is Thing_MobileCartProxy pr)
-                        {
-                            var cart = pr.ConvertProxyToCart(pawn.Faction);
-                            pr.MoveContentsToContainer(cart);
-                            pr.Destroy();
-                            GenSpawn.Spawn(cart, pr.Position, pawn.Map, Utils.RotationFacingFor(pawn.Position, pr.Position));
-                        }
-                    }
-                }
-            }
-
-            _proxySpawned = false;
+            // Target A is the exact deeply owned proxy after conversion, including after reload.
+            // Never convert another pusher's nearby proxy during this job's cleanup.
+            if (job.targetA.Thing is Thing_MobileCartProxy proxy && !proxy.Destroyed
+                && (pawn.carryTracker?.CarriedThing == proxy
+                    || proxy.Spawned && proxy.Map == pawn.Map))
+                _proxySpawned = !WorldComp_CartRecovery.TryRestore(proxy, pawn);
         });
     }
 }

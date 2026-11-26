@@ -9,6 +9,8 @@ Game data and required dependencies are junctions to the selected installation.
 For 1.7, builds the development-only RimBridge companions and raw asset inventory
 under the private game's BridgeTools directory. The hidden-profile companion
 requests graphics redraws when occluded; it does not show or focus the window.
+Stages retained XML followed by authored Mod/1.7 Defs/Patches for genuine
+version differences; the public 1.6 load folders do not select that content.
 Native mode launches a bounded hidden bake process, not a playable session.
 Does not change the Steam branch.
 .PARAMETER GamePath
@@ -204,6 +206,13 @@ if ($experimental) {
     }
     foreach ($folder in @('Defs', 'Patches', 'AssetBundles')) {
         Copy-Item -LiteralPath (Join-Path $repoRoot "Mod/1.6/$folder") -Destination (Join-Path $rimgateSource '1.7') -Recurse
+    }
+    foreach ($folder in @('Defs', 'Patches')) {
+        $versionContent = Join-Path $repoRoot "Mod/1.7/$folder"
+        if (Test-Path -LiteralPath $versionContent) {
+            Get-ChildItem -LiteralPath $versionContent |
+                Copy-Item -Destination (Join-Path $rimgateSource "1.7/$folder") -Recurse -Force
+        }
     }
     foreach ($file in @('Rimgate.dll', 'Rimgate.xml')) {
         Copy-Item -LiteralPath (Join-Path $repoRoot ".assets/experimental/1.7/Assemblies/$file") -Destination (Join-Path $rimgateSource '1.7/Assemblies')

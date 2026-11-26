@@ -8,6 +8,104 @@ namespace Rimgate.AssetProbe;
 // Native manifest/loading inputs and observations; no direct owner or manifest writes.
 public sealed class TransporterProbe
 {
+    [Tool("rimgate/prepare_transporter_pawn", Description = "Create one healthy player fixture colonist with a unique inventory marker, and optionally one loose rifle/Home cell, beside the mature owned transit source. Does not assign a manifest, lord, boarding/hauling job, or owner transition.")]
+    public static Task<object> PreparePawn(IRimBridgeContext context, string expectedConfigPath,
+        string expectedModRoot, string sourceGateId, int destinationParentId, string closerId, bool mixed = false)
+        => context.MainThread.InvokeAsync<object>(() =>
+    {
+        Guard(expectedConfigPath, expectedModRoot);
+        var map = Find.CurrentMap;
+        var gate = map.listerThings.AllThings.OfType<Building_Gate>().Single(g => Id(g) == sourceGateId);
+        var destination = Find.WorldObjects.MapParents.OfType<WorldObject_GateTransitSite>()
+            .Single(s => s.ID == destinationParentId && s.SiteName == "Rimgate transit destination");
+        if (gate.Position != new IntVec3(110, 0, 130) || !gate.IsActive || gate.IsReceivingGate
+            || gate.IsOpeningQueued || gate.TicksSinceOpened < 150 || gate.IsIrisActivated
+            || gate.ConnectedGate == null || gate.ConnectedGate.IsIrisActivated || gate.ConnectedGate.Map != destination.Map
+            || gate.GetDirectlyHeldThings().Count != 0 || gate.ConnectedGate.GetDirectlyHeldThings().Count != 0
+            || gate.Transporter == null || gate.Transporter.LoadingInProgressOrReadyToLaunch || gate.Transporter.innerContainer.Count != 0
+            || !map.mapPawns.FreeColonistsSpawned.Any(p => Id(p) == closerId && !p.Dead && !p.Downed))
+            throw new InvalidOperationException("Use the mature owned reciprocal empty open-iris source and retain its separate source closer.");
+        var cells = new CellRect(133, 118, 7, 7).Cells.Where(c => c.InBounds(map) && c.Walkable(map)
+            && c.GetThingList(map).Count == 0).ToArray();
+        if (cells.Length < (mixed ? 2 : 1)) throw new InvalidOperationException("Two untouched empty walkable staging cells are required.");
+        // The owned smoke input contains sleeping ancient guards; remove only
+        // these hostile non-colony inputs before native loading wakes the map.
+        var hostiles = map.listerThings.AllThings.OfType<Pawn>().Where(p => p.Spawned && !p.Dead
+            && p.Faction != Faction.OfPlayer && !p.IsColonist && !p.IsPrisonerOfColony && !p.IsSlaveOfColony
+            && (p.Faction?.HostileTo(Faction.OfPlayer) == true || p.HostileTo(Faction.OfPlayer))).ToArray();
+        var removedHostileIds = hostiles.Select(Id).ToArray();
+        foreach (var hostile in hostiles) hostile.Destroy(DestroyMode.Vanish);
+        var boarder = PawnGenerator.GeneratePawn(new PawnGenerationRequest(PawnKindDefOf.Colonist, Faction.OfPlayer,
+            forceGenerateNewPawn: true, allowDead: false, allowDowned: false, canGeneratePawnRelations: false,
+            fixedBiologicalAge: 25f, fixedChronologicalAge: 25f));
+        boarder.Name = new NameTriple("Rimgate", "Boarder", mixed ? "Mixed" : "Solo");
+        var marker = ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("Gun_Autopistol"));
+        if (boarder.inventory?.innerContainer.TryAdd(marker, false) != true)
+            throw new InvalidOperationException("The fresh boarder must own its unique inventory marker.");
+        GenSpawn.Spawn(boarder, cells[0], map);
+        Thing item = null;
+        if (mixed)
+        {
+            item = GenSpawn.Spawn(DefDatabase<ThingDef>.GetNamed("Gun_BoltActionRifle"), cells[1], map);
+            item.SetForbidden(false, false);
+            map.areaManager.Home[item.Position] = true;
+        }
+        var transporters = new List<CompTransporter> { gate.Transporter };
+        return new { success = true, sourceGateId, destinationParentId, closerId, mixed, sourceMapId = map.uniqueID,
+            boarderId = Id(boarder), boarderLabel = ColoredText.StripTags(boarder.LabelShort), markerId = Id(marker), itemId = item == null ? "" : Id(item), removedHostileIds,
+            boarderCell = new { x = boarder.Position.x, z = boarder.Position.z },
+            boarderNativeSendable = TransporterUtility.AllSendablePawns(transporters, map).Any(p => ReferenceEquals(p, boarder)),
+            itemNativeSendable = item == null || TransporterUtility.AllSendableItems(transporters, map).Any(t => ReferenceEquals(t, item)),
+            limits = "One fresh healthy colonist/inventory marker, optional loose rifle and its Home cell, and removal of hostile non-colony smoke guards only. Colony actors and gates stay intact. Use the native People checkbox and optional Items quantity, then actual native EnterTransporter/HaulToTransporter jobs." };
+    });
+
+    [Tool("rimgate/transporter_pawn_status", Description = "Read exact boarder/marker ownership, native boarding job, manifest and current native gate commands. Reacquires all IDs after reload; never initiates boarding, cancels or acknowledges loading.")]
+    public static async Task<object> PawnStatus(IRimBridgeContext context, string expectedConfigPath,
+        string expectedModRoot, string sourceGateId, int destinationParentId, string boarderId, string markerId, string itemId = "")
+    {
+        var transit = await TransitProbe.Status(context, sourceGateId, destinationParentId, boarderId, markerId);
+        var cargo = string.IsNullOrEmpty(itemId) ? null : await TransitProbe.Status(context, sourceGateId, destinationParentId, boarderId, itemId);
+        return await context.MainThread.InvokeAsync<object>(() =>
+        {
+            Guard(expectedConfigPath, expectedModRoot);
+            var gate = Find.Maps.SelectMany(m => m.listerThings.AllThings.OfType<Building_Gate>()).Single(g => Id(g) == sourceGateId);
+            var destination = Find.WorldObjects.MapParents.Single(s => s.ID == destinationParentId);
+            var all = new List<Thing>();
+            var visited = new HashSet<IThingHolder>(ReferenceEqualityComparer.Instance);
+            void Walk(IThingHolder holder)
+            {
+                if (!visited.Add(holder)) return;
+                if (holder.GetDirectlyHeldThings() is { } owner) all.AddRange(owner);
+                var children = new List<IThingHolder>();
+                holder.GetChildHolders(children);
+                foreach (var child in children) Walk(child);
+            }
+            foreach (var map in Find.Maps) Walk(map);
+            var boarder = all.OfType<Pawn>().FirstOrDefault(p => Id(p) == boarderId);
+            var marker = all.FirstOrDefault(t => Id(t) == markerId);
+            var transporter = gate.Transporter;
+            var commands = gate.GetGizmos().OfType<Command>().Select(c => new { label = ColoredText.StripTags(c.Label), disabled = c.Disabled }).ToArray();
+            return new { success = true, tick = Find.TickManager.TicksGame, gateActive = gate.IsActive,
+                loading = transporter.LoadingInProgressOrReadyToLaunch, groupId = transporter.groupID,
+                remaining = transporter.leftToLoad?.Sum(t => t.CountToTransfer) ?? 0,
+                boarderManifestCount = transporter.leftToLoad?.Where(t => t.things.Any(p => p != null && Id(p) == boarderId)).Sum(t => t.CountToTransfer) ?? 0,
+                itemManifestCount = transporter.leftToLoad?.Where(t => t.things.Any(p => p != null && Id(p) == itemId)).Sum(t => t.CountToTransfer) ?? 0,
+                transporterCount = transporter.innerContainer.Count, transporterIds = transporter.innerContainer.Select(Id).ToArray(),
+                transporterHasBoarder = transporter.innerContainer.Any(t => Id(t) == boarderId), commands,
+                nativeInteractableOwnerIsTransporter = ReferenceEquals(ThingOwnerUtility.TryGetInnerInteractableThingOwner(gate), transporter.innerContainer),
+                boardingJob = boarder?.CurJobDef == JobDefOf.EnterTransporter,
+                boarderSpawnedOnSource = boarder?.Spawned == true && boarder.Map == gate.Map,
+                boarderArrived = boarder?.Spawned == true && boarder.Map == destination.Map,
+                itemArrived = !string.IsNullOrEmpty(itemId) && destination.Map?.listerThings.AllThings.Any(t => Id(t) == itemId) == true,
+                markerInBoarderInventory = marker != null && boarder?.inventory?.innerContainer.Contains(marker) == true,
+                boarder = boarder == null ? null : new { id = Id(boarder), dead = boarder.Dead, downed = boarder.Downed,
+                    spawned = boarder.Spawned, mapId = boarder.MapHeld?.uniqueID, job = boarder.CurJobDef?.defName,
+                    targetA = boarder.CurJob?.targetA.Thing?.GetUniqueLoadID(), targetB = boarder.CurJob?.targetB.Thing?.GetUniqueLoadID(),
+                    parentHolder = boarder.ParentHolder?.GetType().FullName, inventoryIds = boarder.inventory?.innerContainer.Select(Id).ToArray() },
+                transit, cargo, limits = "Read-only sequential samples; pause for exact boundaries. Native manifest references, transporter deep ownership, gate pending ownership and queue aliases differ. Commands are observed at this actual instant, not invented cancellation availability." };
+        });
+    }
+
     [Tool("rimgate/prepare_transporter_fixture", Description = "Stage two different loose guns and healthy source operators on the owned mature transit fixture. Does not assign a manifest, start hauling, admit or cancel anything.")]
     public static Task<object> Prepare(IRimBridgeContext context, string expectedConfigPath,
         string expectedModRoot, string sourceGateId, int destinationParentId, string pawnId, string closerId)
@@ -104,6 +202,8 @@ public sealed class TransporterProbe
                 transporterCount = transporter.innerContainer.Count,
                 transporterContents = transporter.innerContainer.Select(t => new { id = Id(t), defName = t.def.defName,
                     count = t.stackCount, parentHolder = t.ParentHolder?.GetType().FullName }).ToArray(),
+                commands = gate.GetGizmos().OfType<Command>().Select(c => new {
+                    label = ColoredText.StripTags(c.Label), disabled = c.Disabled }).ToArray(),
                 pending = gate.GetDirectlyHeldThings().Select(Id).ToArray(),
                 loader = pawn == null ? null : new { id = Id(pawn), dead = pawn.Dead, downed = pawn.Downed,
                     job = pawn.CurJobDef?.defName, targetA = pawn.CurJob?.targetA.Thing?.GetUniqueLoadID(),

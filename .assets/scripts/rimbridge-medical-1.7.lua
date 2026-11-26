@@ -4,9 +4,10 @@
 -- roundtrip accepts checkpoint: host/calibration/incubating/diagnosing/healing.
 -- Track the first pending cloneId returned by status in later calls.
 -- assert-complete accepts target pod|sarcophagus; pod also requires cloneId and expectedFuel.
--- Interruption: caller uses the real building power gizmo and a real flick job,
--- then assert-interruption (target sarcophagus|pod, before status). Power on normally,
--- then assert-resumed (before interruption status). No fixture state is fast-forwarded.
+-- Interruption: use the real pod power gizmo/flick job, or a native environmental
+-- outage for an occupied sarcophagus (which exposes no power toggle). Then use
+-- assert-interruption (target sarcophagus|pod, before status) and restore power
+-- normally before assert-resumed. No fixture progress is fast-forwarded.
 local config = rb.call("rimworld/get_mod_configuration_status", {})
 rb.assert(config.success and config.result.success and config.result.configPath == params.configPath
     and config.result.configurationIssueCount == 0, "Use the healthy isolated profile.")
@@ -246,7 +247,7 @@ if params.phase == "assert-interruption" then
             and before.pod.cycleFuelConsumed and before.pod.fuel == old.pod.fuel, "Power loss must retain the pending clone and consumed-fuel marker.")
         rb.assert(before.clone.distinctObjectCount == 1 and before.clone.ownershipOccurrences + before.clone.mapOccurrences == 1, "Interrupted pending clone must have one actual object and one owner/map registration.")
     end
-    return { success = true, status = before, limits = "This observes the result of a separately executed normal power/flick action. Unpowered incubation deliberately deteriorates after one second; it does not freeze indefinitely." }
+    return { success = true, status = before, limits = "This observes a separately executed native power interruption. Unpowered incubation deliberately deteriorates after one second; it does not freeze indefinitely." }
 end
 if params.phase == "assert-resumed" then
     local old = params.before

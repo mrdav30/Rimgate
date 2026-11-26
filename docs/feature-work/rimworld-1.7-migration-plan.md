@@ -1,28 +1,19 @@
 # RimWorld 1.7 Migration Plan
 
 - **Status:** In progress; **phases 0, 1 and 2 complete. Phase 3 is active.**
-  Versioned source split and experimental 1.7 compilation
-  implemented; the existing local snapshot is temporary migration insurance.
-  Live 1.7 startup/profile and hidden-window smoke checks passed earlier;
-  [RG-Issue-002](issue-tracker.md#rg-issue-002) is closed after a verified
-  private-profile occlusion/redraw correction and startup regression. Owned asset loading and
-  powered iris close/open rendering pass for Unity and pack-only native assets.
-  The native comparison is complete; the owner selected native as the 1.7
-  development default, retaining explicit Unity comparison and the 1.6 pipeline.
-  Known-address DHD dialing, lazy destination generation, pawn/inventory transit,
-  queued/active and both in-flight save checkpoints, redraft and closure now pass.
-  [RG-Issue-003](issue-tracker.md#rg-issue-003) and
-  [RG-Issue-004](issue-tracker.md#rg-issue-004) are corrected in 1.7 only.
-  Planetary glyph discovery, quest/site persistence and visitation now pass;
-  selected production sounds also produce finite nonzero engine PCM.
-  Native gate/controller presentation passes 25 sampled states after the 1.7-only
-  [RG-Issue-005](issue-tracker.md#rg-issue-005) altitude/pitch correction.
-  Conditional iris glow, condition ownership/reload/end and the final complete
-  gate replay also pass; RG-Issue-006/007 are corrected in 1.7 only.
-  Broader feature/edge-case, device/listening, orbital, optional-integration and
-  current-save acceptance belong to phase 3. Historical player-save migration was
-  waived by the owner on November 25; see the phase-3 record below. The 1.6
-  freeze/support milestone is phase 4.
+  The background core matrix now accepts native assets, planetary/orbital travel,
+  living return, current-save ownership, medical/cloning, conditions/incidents,
+  native manifests/DHD cancellation, cart recovery/fuel/refrigeration, unloaded
+  cargo/loose corpse continuation and ZPM facilities/scheduled raids. Optional
+  present-dependency clinical/facility checks have finished their bounded pass;
+  23-mod startup, content/hook contracts and representative actual operations
+  pass, with qualified branches retained in the [optional acceptance record](#final-optional-integration-acceptance).
+  [RG-Issue-028](issue-tracker.md#rg-issue-028) remains a separate nested-corpse
+  candidate needing reproduction. Continuous-motion, representative
+  native appearance and actual device/listening acceptance remain coordinated
+  manual gates. See [remaining gates](#remaining-phase-3-gates) and the dated
+  records below for exact scopes and rejected fixtures. Only **1.6** is publicly
+  supported; **phase 4** owns acceptance, default/support changes and its freeze.
 - **Created:** November 23, 2026. **Scope reconciled:** November 25, 2026.
 - **Planning baseline:** `14a15f6` (feature-work tracking); clean worktree before
   this plan. Current playable/configured target remains RimWorld 1.6.
@@ -128,7 +119,7 @@ at the baseline; version assets/tooling only where their contracts diverge.
 | 0 - Runtime and protected baselines | Complete | Exact licensed runtime, isolated profile and byte-backed preservation checks established. |
 | 1 - Versioned experimental projects | Complete | Independent 1.6/1.7 source, explicit experimental output, pinned references and CI compilation. |
 | 2 - One complete production gate path | Complete | [Phase-2 closeout](#phase-2-completion): startup/patches, native assets, planetary discovery, dialing, pawn/inventory transit, save checkpoints, closure and ordinary/conditional iris presentation. |
-| 3 - Wider feature/save/dependency matrix | Next | Gate edge cases and copied 1.6 saves, then other systems, orbital discovery, optional dependencies and remaining manual quality checks. |
+| 3 - Wider feature/save/dependency matrix | In progress | [Remaining gates](#remaining-phase-3-gates): broader logistics, medical/resource lifecycles, orbital operations, optional integrations and coordinated manual quality checks. |
 | 4 - Declare support and move defaults | Pending phase 3 | Public metadata, active 1.7 tooling/docs/CI and final 1.6 source/content freeze. |
 
 ### 0. Establish the actual runtime and protected baselines
@@ -1611,25 +1602,47 @@ Phase 3 is **still active**. The first and gate-edge batches close
 RG-Issue-008–014 for the reproduced paths, not the entire feature matrix.
 Blocked landing/retry/closure, receiver iris protection, loaded-cart gate
 handoff/cancellation, native transporter loading and representative partial-stack/
-corpse/downed hauling now have focused acceptance below. Continue with:
+corpse/downed hauling now have focused acceptance below. Current follow-ups are:
 
-- Broader interruption/cleanup cases, including cart restoration and native
-  transporter cancellation when every nearby placement cell is blocked. The
-  accepted two-item native manifest and loose partial-stack/corpse/downed cases
-  do not close transporter pawn boarding, other manifest combinations or
-  unloaded-site identity/quantity continuation for those cargo kinds.
-- Full/enhanced/corpse cloning, abort/resource/needs edge cases, sarcophagus
-  interruption and other health integrations; fuelled carts, ZPM broadcasting,
-  raid suppression and recharge facilities.
-- Orbital dialing/map entry with real vacuum protection, quest abandonment/site
-  cleanup, remaining incidents and reward/loot paths. Discovery/eligibility alone
-  does not close these.
-- Remaining optional integrations absent/present on actual 1.7 dependencies.
-  Installed metadata alone is insufficient; Quarry's installed package declares
-  only through 1.6, and requires an explicit unsupported/deferred disposition.
+- [Local and fully blocked cart restoration](#non-wiping-cart-recovery-rg-issue-023),
+  [unloaded-site cargo/loose corpse continuation and downed-map lifetime](#final-logistics-acceptance),
+  and [solo/mixed native manifests plus walking-pawn DHD cancellation](#final-baseline-acceptance)
+  now pass. A standalone native Cancel command was not exposed, and a fleeting
+  in-frame comp-admission snapshot was not captured; do not infer a defect or
+  claim fully blocked deep-comp cancellation from those observations. Arbitrary
+  nested corpses in value-snapshotted containers remain outside the loose-corpse
+  identity proof.
+- Independent review recorded the pre-existing nested-corpse representation risk
+  as [RG-Issue-028](issue-tracker.md#rg-issue-028). Its exact native manifestation
+  still needs the bounded cart/load/unload/reopen reproduction in that entry;
+  the loose-corpse correction does not close it or establish a new regression.
+- [Full/enhanced/corpse cloning, resource/abort/needs, sarcophagus interruption
+  and core medical incidents](#remaining-medical-acceptance) now pass their native
+  cases. [Optional present-dependency health checks](#final-optional-integration-acceptance)
+  now have representative actual acceptance and explicit unexercised branches.
+  [Fuelled/refrigerated carts](#final-logistics-acceptance),
+  [ZPM broadcasting, suppression and recharge](#remaining-zpm-acceptance) pass;
+  the [actual scheduled consumer](#final-zpm-scheduled-consumer) also runs.
+  [RG-Issue-027's current-threat correction](#current-threat-zpm-raid-scaling-rg-issue-027)
+  passes its fresh-quest reload and naturally scheduled wave.
+- [Orbital entry, native vacuum protection, visited reload, both abandonment
+  branches and remaining world incident lifecycles](#remaining-world-and-orbital-acceptance)
+  now have focused acceptance. The [short living orbital round trip and reload](#final-baseline-acceptance)
+  passes on a later natural site. Previous bounded combat losses remain recorded
+  separately. Meteorite guardian generation/hostile combat and a separately
+  controlled real extraction/haul/reload pass; unmodified guarded-resource
+  collection and orbital combat/loot victory are not claimed by those cases.
+- The [bounded optional pass](#final-optional-integration-acceptance) now covers
+  absent/present dependencies and representative actual health/facility paths.
+  Isolated Android/Rimsec guards, the genuine Warcasket foundry consumer and
+  Alpha's clinical suppression remain qualified or unproven. Quarry's installed
+  package declares only through 1.6 and is excluded from the 1.7 profile; separate
+  DBH variants are unaccepted. These are explicit coverage limits, not blanket
+  compatibility claims.
 - The coordinated manual motion/device/listening quality pass.
 
-After verified shutdown, preservation checks pass for all **125 normal config
+At the initial phase-3 batch closeout, verified shutdown and preservation checks
+passed for all **125 normal config
 files, 10 original player saves**, both private config files, the original owned
 smoke input and four retained 1.6 bundles. The native pack hash remains
 `0dea55cedec8eb2f14bc1fed2ac78b9f6fe1e1b4e2e5ec03f02f3568e8ba6797`.
@@ -1903,3 +1916,805 @@ DocFX/site checks pass. After verified shutdown, all 125 normal config files,
 10 original player saves, four 1.6 bundles and the native pack match their
 baselines. Private configs and original owned test inputs are restored. The
 original index is unchanged and follow-up edits remain unstaged/uncommitted.
+
+### Remaining world and orbital acceptance
+
+On November 25, 2026, from `6c6b268`, these checks ran in the same isolated
+RimWorld 1.7.5014 rev1195 ten-mod native-pack profile. This slice cold-deployed
+only the development companion; it did not deploy production C#/XML, change the
+player profile or declare public 1.7 support. The current private package also
+contained the separately investigated ZPM housing rare-tick input. An initial
+attempt to reuse an older twelve-mod orbital checkpoint without its recorded
+DBH/VTE dependencies produced missing-need/research and native map-update errors.
+That input was discarded, the process cold-reset, and every accepted result below
+was regenerated from the healthy ten-mod `Rimgate-bridge-smoke` save. The failed
+load is fixture incompatibility, with no historical-save compatibility claim.
+
+`WorldEdgeProbe.cs` stages loose vanilla vacsuit/helmet inputs and ordinary source
+waits; its remaining tools observe native state or select the real world site.
+`rimbridge-world-edges-1.7.lua` uses actual Wear, DHD dialing and Enter Dwarfgate
+jobs, current UI targets, ordinary simulation and native save/load. Two genuine
+orbital parchments created independent lazy quest/site/address bindings. The
+second produced **Silent Signal Dock**, site 116/quest 1, Orbit tile 450,
+`Rimgate_OrbitalSatellite` plus `Rimgate_EnemyPresenceOrbit`. Real suit/helmet
+ownership gave native VacuumResistance 1 and `HarmedByVacuum=false`; actual entry
+recorded the expedition/visited state and an unpressurized room with Vacuum 1.
+The requested 600-tick sample and visited reload passed while the traveler was
+alive and conscious, with no VacuumExposure/VacuumBurn hediff (observed ticks
+4913 through 5541, including load readiness;
+`op_317956d0f85a4b90ad191c2c5766c6f9`). Real home-DHD closure and orbital DHD
+return dialing passed (`op_52069c7e7462421ca084ccc3dc599d37`,
+`op_87cad71ba2a74e358433ef96ebfec8c3`). **Actual return did not pass**: generated
+hostiles downed the scout before the Enter job completed
+(`op_1d1163b6346d43488a52b263ff72d612`). Earlier attempts in the first hostile
+ark also lost the scout to ordinary combat, including one with a normally worn
+shield belt. No generated hostile, health result, vacuum flag, quest completion
+or travel outcome was removed or inserted to obtain acceptance. Combat safety,
+a completed orbital round trip, indefinite exposure and loot pickup remain
+pending; the observed generated crates/items establish generation only.
+
+Both native **Abandon exploration** paths passed through the actual world UI and
+reload. Lazy unvisited abandonment removed site/address, failed its quest and
+advanced LastIgnoredTick (`op_db4d8ae9cb054575aeae3df81c21d980`). The visited
+case followed the genuinely lost scout's ordinary BloodLoss death; once the map
+had no blocking colonist, abandonment removed the site/address/map, restored the
+active-site counter to zero, failed quest 1 and left LastIgnoredTick at -1
+(`op_273f000438264a20a77b1dc5629879a2`). Its saved XML contains only home map 0.
+The unrelated lazy quest 0 remains ongoing. This verifies cleanup after a lost
+expedition, and does not substitute for a living return/abandon expedition.
+
+`rimbridge-world-incidents-1.7.lua` exercised actual native incident workers via
+their normal developer incident actions, default durations and ordinary ticks:
+
+- Gate heat wave and toxic fallout each produced the positive authored ramp,
+  one exact local receiver hold/reference through reload, then zero holds and
+  closed reception after native End and condition-manager pruning. Representative
+  reloads: `op_0cbb222b60f04bd299fb905ab39a199b` and
+  `op_945c8c1e2bbe487c9571274d4421e061`; End checks also passed.
+- The Naquadah meteorite landed 13 new mineable cell coordinates, increasing the
+  native count from 124 to 137, with the same coordinates/count after reload
+  (`op_14261a1efe6d49fd85395248579e7419`,
+  `op_f59155a9464a43f5a13a6c85263cf896`). Native compressed mineable IDs regenerate
+  on reload, so these checks compare actual counts/coordinates and retain both
+  ID lists. They do not claim mined-item pickup or stable compressed-ore IDs.
+- Marauders generated a real hostile pawn with
+  `Rimgate.LordJob_MaraudColony`; the same pawn ID/custom lord continued through
+  reload (`op_16af28597b864d2f83b6b69c19b3cbed`,
+  `op_ceacc1eb558241289988135f42795ac1`). This establishes worker/lord persistence,
+  without a combat-victory or exhaustive timed-quest-raid claim.
+
+The ten-mod optional-absence report also passed all 16 resolved XML/actual hook
+contracts with the expected optional package set empty
+(`op_796d802bbe2e43a78384ecb0137af73e`); this is registration/content evidence,
+not present-dependency gameplay acceptance. The companion build passed with zero
+warnings/errors, both new world Lua files passed installed-SDK compilation, and
+the game was stopped with native process termination verified before returning
+the exclusive runtime lease. Root-level player/config restoration and final
+cross-slice validation remain owned by the enclosing acceptance run.
+
+Evidence is outside Git under
+`%LOCALAPPDATA%/RimgateDev/evidence/phase3-completion-20261125-145845/world/`:
+`summary.json`, operation JSON, the protected visited save, blocked-return save,
+visited-abandoned save and the earlier combat-downing input. Reopen these checks
+if native protection/visit state fails to survive reload, abandonment retains a
+map/site/address or corrupts counters/history, an incident loses its hold/lord or
+generated mineables, or a living, normally protected orbital return demonstrates
+a production failure independent of enemy combat. The combat/round-trip/loot
+limits above remain explicit pending acceptance, not closed migration defects
+or a phase-3 completion claim.
+
+### Remaining medical acceptance
+
+On **2026-11-25**, the isolated ten-mod 1.7.5014 profile completed the remaining
+core cloning and sarcophagus cases through real UI/jobs, ordinary Ultrafast
+progress and native save/load. Default settings remained unchanged. All three
+recorded calibration outcomes had **every failure flag false**; their native
+clean-outcome incubation multiplier was 0.75. This does not sample every random
+failure outcome or complete optional present-dependency clinical acceptance.
+
+| Mode | Calibration work | Biomass charged once | Actual default incubation | Clone | Completion / completed reload |
+| --- | ---: | ---: | ---: | --- | --- |
+| Full | 6,750 | 150 | 135,000 ticks | `Human47104` | `op_3ed889b304ae4dd6ab25397a7bb30d6f` / `op_f6e036305c75410d8cea2e83a079c709` |
+| Enhanced | 9,000 | 200 | 180,000 ticks | `Human43021` | `op_821a5763a98b40edae273a57ce860704` / `op_a45c4b64e5a1408e808108da1e8554f4` |
+| Reconstruct | 11,250 | 250 | 225,000 ticks | `Human43019` | `op_30acaf22ae1a49c6a5f30b241d1fe374` / `op_3c46ef2fcb3b49d085dc0af749e9f2d9` |
+
+Each case retained its exact pending clone and deep owner through reload, then
+completed with the same identity, empty pod owners and no second charge.
+Reconstruct used a fresh dead donor, original corpse wrapper and nested marker;
+the real corpse-hauling job also performs calibration. Pre-reload snapshots
+verified independent host/clone traits. A read-only audit of those recorded
+snapshots also passed all 12 skill/passion results per mode and the applicable
+backstories: Full retains 80% of source levels, Reconstruct 50%, and Enhanced
+has its authored combat skills and baseline traits.
+
+- **RG-Issue-018:** actual Full calibration shared a host Trait instance and
+  changed its owner to the pending clone before any reload. The retained
+  `full-admitted-before.rws` reproduces this; the failing assertion is
+  `op_390460d467de40438d946735845f7e72`. Fresh native Trait copies fixed Full
+  (`op_d701e402690d498d99cbbbfb5653c698`) and Enhanced
+  (`op_698944a3c56d4371993603ec54757ebe`) before reload. The final gene-reference
+  mapping preserves endogene/xenogene collection identity; Reconstruct ran that
+  final implementation, but a duplicate-def gene-reference edge was not sampled.
+- **RG-Issue-019:** the completed Full clone was normally downed by
+  `Rimgate_ClonePodSickness` and `Rimgate_SystemShock`, despite its clean outcome.
+  Native AI exposed the doctor work-giver destination mismatch. The retained
+  completed input now reports no job when its sarcophagus is assigned elsewhere
+  (`op_cd542dc95a554ab48638a930c95e2bb8`). Actual Set owner UI assignment makes
+  the rescue predicate/destination available (`op_b4b7f849bff24e44a4e1e84e6144e28d`);
+  ordinary AI then places the same clone inside the diagnosing sarcophagus with
+  one deep owner (`op_55fa40a155bc4b4ca495834da0f9c2c4`). This is not a separate
+  bed-transfer or Warden branch acceptance claim.
+- **RG-Issue-020:** the actual loaded degree selector threw for 21 of 32 bounded
+  seeded calls (`op_1d45248119f84998ac308431be89a6cb`); native `RandomElement`
+  selectors eliminate the inclusive-Count indexing error. The same 32 calls
+  passed (`op_4ea89e4599bf46e69bfa45b65ff0b654`), restoring Rand state after
+  each call. This pure-method check is separate from natural cloning outcomes.
+
+Additional successful paths include paused host ejection with exact saved-food
+restoration; resource-paused clone reload, actual biomass hauling/resumption,
+abort without refund and empty-state reload; and both diagnosis/healing aborts
+with exact restored needs and retained unfinished targets. The native hauler
+delivered 60 biomass, then 40 through a second real order before the 100-cost
+Genome cycle resumed; one haul was never assumed to fill the cycle requirement.
+`Rimgate_KillAllClonesNow` killed the actual completed clone and preserved its
+corpse ownership through reload. `Rimgate_SymbiotePlague` infected a fresh native
+symbiote host, preserved the disease reference through reload and diagnosis,
+and was removed by normal treatment with a living patient after reload.
+
+The smoke map rejects the SolarFlare **incident** target, and an occupied
+sarcophagus exposes no usable power designation. Neither restriction was
+bypassed. Instead, the native **Solar flare / 1 day GameCondition** supplied the
+environmental input: actual electricity-disabled/PowerOff state caused native
+ejection and ownership reset (`op_e8db15d1367443fbb0ca756e56d83589`), survived
+reload, and recovered after native condition End. Normal re-entry completed
+the retained injury (`op_2181ad3352c241728bf4cbd92ad36186`). This proves condition
+interruption/cleanup, not incident eligibility or natural-duration expiry.
+
+Fixture limits are retained explicitly: bulk post-discharge sampling can observe
+ordinary need decay; exact needs use paused eject/abort boundaries. Ordinary AI
+later injured a released donor and dropped its exact marker onto the map; the
+post-discharge oracle requires the original ID/count and one deep owner or map
+registration, while held checkpoints still require inventory ownership. No
+mid-cycle health/needs rescue occurred. Native combat temporarily slowed progress;
+bounded clock waits timed out without implying failed cloning. Reconstruct UI
+capitalization/rich-text labels and its automatic calibration were corrected in
+the scenario after rejected fixture attempts.
+
+Detailed operations, flags, timing, failed fixture boundaries and actual input
+save bytes are retained outside Git under
+`%LOCALAPPDATA%/RimgateDev/evidence/phase3-completion-20261125-145845/medical/`;
+`summary.json` and `clone-shape-recorded-audit.json` consolidate the results.
+Production and companion builds passed with zero warnings/errors, the installed
+SDK compiled `rimbridge-medical-edges-1.7.lua`
+(`op_8373abbfc9fb4b0584d6016ec96fecd6`), and shutdown verified no RimWorld process.
+Optional native race/xenotype/health-policy, EBF arm-injury and Alpha Genes input
+tools are prepared; their present-dependency clinical behavior remains unrun here.
+
+### Coordinated manual quality pass
+
+On November 25 the owner requested finishing feasible background checks first,
+then discussing the checks requiring human observation. This does **not** waive
+motion, visible sampling or device/listening quality. Background framebuffer and
+per-voice PCM evidence remain separate from these gates.
+
+| User observation | Existing evidence / focused remaining check |
+| --- | --- |
+| Continuous gate/controller/iris motion | Sampled frames, native rendering and actual jobs already pass their recorded cases. Watch an entire opening/idle/closure and iris cycle at normal and close zoom; check ordering, clipping, flicker and motion continuity. Include the conditional powered glow and representative controller orientations. |
+| Representative native texture appearance | Native assets resolve and sampled presentation passes. Look at representative gate, controller, apparel and building surfaces in motion/at close zoom for visible sampling defects; do not require identical sampler metadata to Unity. |
+| Actual audio/device playback | Production voice probes establish finite nonzero engine PCM, with output muted. In a coordinated private visible session, select the intended speakers/headphones and listen to gate open/idle/close and iris cues, their timing, balance and transitions. Record the actual device and private game volumes; restore preference bytes afterward. |
+
+Coordinate this session explicitly before taking foreground focus or changing
+output volume. Use the private package/profile and compatible owned input, with
+the installed game/reference pin still matching; keep normal player saves and
+configuration untouched. Record each actual pass/failure in this owning plan,
+including a useful frame/clip or exact symptom for a failure. Do not declare
+phase 3 complete or move support/defaults to phase 4 while these checks or another
+required gameplay gate remain unresolved.
+
+### Remaining logistics acceptance
+
+The continuing November 25 pass uses the same isolated ten-mod 1.7.5014 profile
+and baseline `6c6b268`. Private `phase3-completion-20261125-145845/`
+retains complete operations in `root-logistics-wave1.json`, fixture IDs, the
+original failing checkpoints and subsequent candidate saves. This subsection
+distinguishes the original failures from the final acceptance below.
+
+| Defect | Reproduced failure and focused correction |
+| --- | --- |
+| RG-Issue-022: parked refrigerator consumes no fuel | A real native refuelling job fills refrigerated tracked cart42790 to25. Ticks890–1940 leave fuel25 despite configured5/day (`op_cded589d13da40a7bf56a2deca4fc625`). Its Normal ticker calls `base.TickLong`, skipping native `CompRefuelable.CompTick`. The 1.7 correction calls `base.Tick`; the retained input then consumes24.999916→24.912384 over1043 actual ticks (`op_7c4c30e8c2af455587e48198b93c0d1a`), matching native repeated single-precision subtraction. Inner-container ticking is still explicit. |
+| RG-Issue-023: interruption wipes an obstruction | With actual proxy53706 carried at137,119, thirteen native-invalid local cells include Sandbags58305 at the pusher. Real draft interruption removes that sandbag at1677 (`op_fc301d56ead146ac976067043d66b77e`). Native Near can itself choose destructive low-quality placements, and native job cleanup can drop a remaining carried proxy. The correction must secure non-wiping placement or durable saved ownership before releasing the original cargo. Final local/full-search recovery results belong below. |
+| RG-Issue-024: unloaded site loses loose items and corpses | Real native split/haul delivers75 of99 Replicator Links. Closure unloads the receiving map without scavenging, but records only gate/DHD (`op_49c393b425b14c50a50a4ec68bca8b33`). Separate arrival of Corpse53703/Pawn53700/inventory53704 loses their site ownership too (`op_1fe3170baa6b4d0c8e09ca207cff8974`). Accept factionless ordinary cargo into existing value records; retain loose corpses in a separate deep owner, preserving their graph and existing normal-item scavenging. Capture follows the incoming-transporter veto. |
+| RG-Issue-025: ordinary wheelbarrow freezes food | Actual loading stores MealSimple42792 with rot disabled; ticks906–1694 leave progress110.73198 (`op_ad31d6b1062145b3a00a27d7617a1add`). Spawn setup inverted the refrigeration extension. The corrected owner derives sealing from `sealPreventsContentTick && FuelOK`, reconciles ticking/rot on spawn and rare checks, and releases rot on removal. The same retained input now has rot enabled and advances110.73198→1077.2817 over1048 ticks (`op_5531b41d187841ea96521bfb3c39dc96`). |
+
+**Rejected intermediate site replay:** closed-map corpse ownership and reload
+preserved the exact corpse/pawn/inventory, and the ordinary value record retained
+75 links, but both were absent after redial/reopening
+(`op_0580d4bf08f0462f9489f16acd7efb58`,
+`op_de836efb6d294dcd937a35a49be89682`). Original cargo cell55,27 and the new
+corpse restoration anchor overlap the actual North gate's opening-vortex cells.
+Final restoration must exclude the actual rotated vortex footprint and retain
+failed placements; successful closed-state serialization alone is insufficient.
+The first broad factionless-item candidate also retained natural stone chunks;
+exclude those without excluding Replicator Links, which deliberately share the
+broader Chunks category. These intermediate operations are not acceptance passes.
+
+**Native People manifests:** real People/Items controls produce a mixed
+pawn/one-rifle manifest, and native loading delivers both originals with empty
+queues/group cleanup (`op_e477a7ed72e34ae08a871a65e4630bd6`). A solo native
+`EnterTransporter` walking job and manifest survive reload
+(`op_e2d3353fdafa42c895411c1bc5f3e520`), then deliver the same healthy pawn and
+inventory marker with group-1/remaining0 (`op_e86fa5c919d0451284f0e08ea727ddb4`).
+A first600-iteration diagnostic hit the SDK's10000-statement budget; bounded
+scans now use200. One-tick snapshots still missed the fleeting comp-admission
+boundary, so no deep-comp cancellation claim follows from successful arrival.
+The observed native commands while loading expose no Cancel action. A subsequent
+DHD-close branch encountered the smoke input's ancient guards/fire and ordinary
+inventory dropping; it is retained as a failed fixture, not a cart/gate defect.
+Fresh transporter preparation now removes those hostile non-colony prerequisites
+as the other smoke fixtures do; its clean replay remains required.
+
+Retained 1.6 C#/DLLs and asset bytes are unchanged. None of these checks accepts
+every cargo type inside arbitrary nested value-snapshotted containers or repairs
+state already absent from historical saves.
+
+### Remaining ZPM acceptance
+
+The private native 1.7 run verified the housing/tracker/shroud paths of
+RG-Issue-017 and reproduced the separate raid-policy persistence defect,
+RG-Issue-021. Evidence is retained under
+`C:/Users/david/AppData/Local/RimgateDev/evidence/phase3-completion-20261125-145845/zpm/`
+(`summary.json`, complete bridge results and save XML); the readable external
+`zpm-acceptance-journal.md` also retains the original failure operations.
+
+- **Housing and reload:** the original loaded housing def was `Never`, so its
+  three modules powered the lamp without running `TickRare`. After the initial
+  `Rare` ticker experiment, the original tracker rebuild still omitted
+  housing: reload at ticks 2570→2596 changed tracker count 1 / quest 1 into count 0 /
+  quest -1 and ended that quest while the same housing stayed broadcasting with
+  three modules; 520 further ticks did not recover it. The 1.7 owner correction
+  recognizes both standalone modules and loaded housing in source discovery,
+  tracker reconstruction and protection targets. Fresh normal ticks 2008→2570
+  then produced broadcasting/count 1 / quest 1; reload 2570→2600 preserved the same
+  ongoing quest, tracker and exact three module IDs
+  (`op_d6649789c0734233bbd1d63b21950e69`,
+  `op_33ce1f6b72414e1f82194f5bf729813e`).
+- **RG-Issue-021:** before its fix, a fresh protection quest retained its ID and
+  ongoing state but reload discarded both `TargetDefs`, the broadcasting
+  predicate and `RG_LetterRaidZpmProtectDesc`, reverting the letter key to the
+  generic marauder default (`op_ce5f30453cc544d6908c2a5a0a56674e`). The focused
+  1.7 fix saves the def list and letter key, replacing the unscribable delegate
+  with the narrow persisted `RequireBroadcastingZpm` policy. The fresh quest
+  above retained both ZPM/housing target defs, true policy and its protection
+  letter key across reload. Existing callers retain their default policy; this
+  does not reconstruct fields already lost from an older private quest save.
+- **Suppression and recharge:** two ordinary adjacent emitters became linked,
+  powered and suppressing through native initialization. A real flick job turned
+  one off; the other kept map suppression active, including across reload
+  (`op_c0d18e0001e2419998cdaf491302ae6b`). Turning the last emitter off through
+  another real flick job resumed a new protection quest. A powered linked phase
+  diverter increased housing dark reserve 500→562 over two ordinary rare ticks.
+  After a real flick job disabled it, ticks 3980→4750 retained reserve 624 exactly
+  with all three facilities off (`op_379a59049a9745909779d0f1488f8978`). No
+  tracker, power, link, quest outcome or reserve setter produced these outcomes.
+
+**Final ticker ownership:** preserve the exact retained 1.6 power definition.
+Source plus inspection of its actual built DLL proves that enabling the housing
+ticker activates broadcast→tracker→quest generation while its source discovery
+still recognizes standalone ZPMs only; the housing-only quest returns before
+populating its interval grammar. No live 1.6 replay is claimed. The correction
+therefore belongs in `Mod/1.7/Patches/Patches_ZPMHousingTicker.xml`, consumed by
+experimental setup's version-owned Defs/Patches staging. This is a necessary
+assembly-version difference, unlike the shared layout/replicator XML corrections.
+No retained 1.6 DLL change or implicit maintenance expansion is required.
+When phase 4 establishes the full authored 1.7 definition tree, put `Rare` on
+that housing definition and remove this override; do not add a second ticker or
+change the frozen 1.6 definition.
+
+**Scheduled consumer:** the retained continuation is private save
+`Rimgate-zpm-scheduler-pending`, paused at tick 14686; its bytes are retained as
+`zpm/scheduler-pending.rws`. Quest 2's initial delay is enableTick 3534 plus 19917,
+ending at 23451. The later live run corrected the initial first-event estimate:
+the native interval emits immediately when enabled, so the first actual raid
+fires at 23452; 90000–120000 is the interval for later waves. It retains the same
+quest/policy, selects housing42766, produces the protection-specific letter and
+creates a real marauding lord. The final consumer record below owns the exact
+operations and context; no combat-victory or balance-quality acceptance follows.
+A 20000-tick wait hit its 20-second deadline at roughly 14626
+(`op_57d21dd8ada341c9a93347dcb7081498`); the completed outer operation was
+correctly rejected because the script/gameplay payload failed, then finally
+paused. Eight native survival-meal stacks of 10 were staged on inspected empty
+cells before the long wait. Random Storyteller activity was explicitly disabled
+for that lab branch, while quest timers and the raid worker remained unchanged;
+the debug setting was restored before shutdown. Cached-tracker behavior after
+real cross-map minify/reinstall was not exercised in this lease.
+
+Both selected 1.7 builds passed with zero warnings/errors. The utility, logistics,
+cargo-site, transporter-pawn and optional-integration Lua scenarios compiled
+through the installed SDK at their recorded revisions. The private game stopped
+with process 2148 absent and no `RimWorld` process; player-config verification
+matched its recoverable baseline. No retained 1.6 DLL or bundle was changed.
+
+### Non-wiping cart recovery (RG-Issue-023)
+
+On November 25, 2026, the real blocked-cart fixture reproduced destructive
+interruption cleanup: a carried loaded wheelbarrow, thirteen radius-2 obstacles
+including Sandbags on the operator's cell, then actual drafting plus one tick.
+The old direct spawn destroyed Sandbags58305
+(`op_fc301d56ead146ac976067043d66b77e`), while the native placement predicates had
+already rejected the obstructed cells. This is a verified production defect,
+not a timeout or compilation inference.
+
+Experimental 1.7 now restores only the exact job-target proxy. It uses native
+Near placement with an explicit whole-footprint non-wiping validator, securing
+placement before releasing cargo. Native Near searches radius 12.9; its default
+lowest-quality fallback can wipe another building, so merely calling Near is
+insufficient. If every candidate is rejected, a narrow
+`WorldComp_CartRecovery` deep-owns the actual restored cart, retaining its
+map-parent reference and anchor, and retries every 250 ordinary ticks when that
+map is loaded. Native world traversal includes this holder. Generic carry and
+inventory cleanup cannot serve as the fallback because their native drops can
+again select a destructive placement. No gate/address storage or 1.6 C# changes
+are involved. The new English keyed notice is an otherwise unused shared
+language addition; its authored/private bytes match and the actual native
+message resolves correctly (`op_7e15c3432a0a40939619c0929a7658f0`).
+
+Both branches pass on the cold-deployed combined 1.7 build in the same unchanged
+ten-mod native-pack profile:
+
+- Replaying `Rimgate-cart-blocked-before` naturally fails the saved blocked
+  approach during load readiness and restores a Steel wheelbarrow at (135,118).
+  All thirteen original obstacle IDs, positions and HP survive, including the
+  previously destroyed Sandbags58305; the exact pistol53700 remains owned once.
+  Cart HP107/use-contents=false, cleared proxy/visual/slowdown and the living
+  operator are verified (`op_a1400da62ebc46d0b515f2ca241902c4`,
+  `op_a77e637858ff4294a16ed14003028149`).
+- A fresh real carried checkpoint is enclosed to radius 13 without deleting or
+  moving existing objects. Already invalid original cells are preserved; 318
+  ordinary obstruction inputs block the remaining cells, and the actual
+  production validator reports zero legal native-Near candidates
+  (`op_c3bb667e17f44d9abdd9bcd15b3737d1`). Actual drafting and one tick produce
+  restored cart58623 deep-owned by the world recovery holder, with its original
+  Steel/HP107/use=false properties and exact pistol53700 once
+  (`op_e9ec4068f5e04b4d9f9e570f6005b291`). Proxy, attachment and slowdown clear.
+- Saving/reloading retains that same cart ID, its cargo ID, map-parent 114 and
+  anchor (138,119) (`op_29d224c63e1a4b34a9c4d8441b393fba`). All 318 obstruction
+  IDs/positions/HP also remain exact after reload
+  (`op_bd1ef64d2ac34c53aef01f5333524f96`). Saved XML contains exactly one deep
+  cart and one deep pistol, with the destination stored as a reference.
+- Removing only the recorded obstruction IDs and running an ordinary requested
+  500 ticks allows the normal retry to restore the same cart58623 on map 0 at
+  its anchor, preserving the same cargo once. The recovery owner/list drain and
+  final XML still contains one cart and pistol
+  (`op_3029efd5c76a4f34a7d0f5bf8d6b32d8`,
+  `op_2006bf7f0ca14a1f9e80326ad68a7246`). Bulk simulation can overshoot; this
+  does not claim an exact 500-tick placement latency.
+
+Production/companion builds pass with zero warnings/errors. Installed-SDK
+compilation also passes the updated logistics, cargo-site, medical and transporter
+pawn scenarios. The game is stopped with process termination verified before
+returning the exclusive lease. Original input, fully blocked input, pending
+owner and recovered-final saves plus operation JSON and `summary.json` are
+retained outside Git under
+`%LOCALAPPDATA%/RimgateDev/evidence/phase3-completion-20261125-145845/cart-recovery/`.
+
+This proves the mapped Steel-wheelbarrow case, current-save ownership and natural
+retry. It does not establish fuelled-cart fallback, another pusher's live
+interruption, recovery after map unloading, or permanent destination destruction.
+Clearing space near the recorded anchor is the normal recovery contract. If the
+referenced map parent is permanently destroyed, the cart remains deep-owned but
+there is no automatic alternate-map relocation or new recovery UI. Reopen RG-Issue-023
+if interruption wipes an original object, cargo/metadata changes across the
+pending checkpoint, ownership duplicates, or clearing space fails to drain the
+retained owner through ordinary ticks.
+
+### Final logistics acceptance
+
+The November 25, 2026 native 1.7.5014 replay used the same isolated ten-mod
+profile, graphics-enabled hidden window and Waylith pack. The full experimental
+setup path passed after introducing the version-owned housing ticker patch;
+the resolved housing ticker is `Rare`. The authored retained 1.6 power XML and
+DLL are unchanged. Native `Assets.zip` remains
+`0DEA55CEDEC8EB2F14BC1FED2AC78B9F6FE1E1B4E2E5EC03F02F3568E8BA6797`,
+with all four pack files deployed together. Production and companion builds
+passed with zero warnings/errors. The cargo-site, cargo-kind, logistics-edge,
+utility and utility-edge scenarios compiled through the installed SDK.
+
+Complete operation payloads, input/checkpoint saves and native XML observations
+are retained under
+`%LOCALAPPDATA%/RimgateDev/evidence/phase3-completion-20261125-145845/logistics-final/`.
+The earlier rejected vortex-restoration operations remain failures; the final
+cold-deployed results below replace them as acceptance evidence.
+
+- **RG-Issue-024, corpse ownership:** normal DHD closure deep-retained original
+  corpse 53703, inner pawn 53700 and inventory marker 53704 in the world site.
+  Closed-state reload preserved all three identities
+  (`op_a95d0bb6828248babd653b8760a62195`,
+  `op_0beaf75363c0411d8f5ad5a0a4181724`). Real redial and matured reopening
+  restored that same corpse at (55,30), outside every actual rotated gate-vortex
+  cell (`op_5923785283a5447da21245f6aa377f61`,
+  `op_7afb1a61bcef42a8bf294c472f400e6b`). A further reopened save/reload still
+  contains the original body/pawn/inventory exactly once
+  (`op_fba1abc754444181b915ca49529d1f35`,
+  `op_80858c49b6d0408d9066dcf5c8192806`). The corpse is not a value record or
+  a recreated pawn. It stays intact through the site's existing scavenging
+  transition; no new corpse-loot mechanic is introduced.
+- **RG-Issue-024, factionless quantities:** the real 99-link split retained
+  source 53700 count 24 plus the destination value record count 75 through closure
+  and reload (`op_183881b6b2aa43f7b87d508087cef734`,
+  `op_ff8d66addb0243eeb9a3e5006c6746e4`). Redial/reopening recreated that
+  record as 68789 count 75 at (55,30), outside the actual vortex; source count 24
+  still exists, giving exactly 99
+  (`op_98f35f3f6c694e1ca790841d83f322f3`,
+  `op_79851ee896d9492286c77574b72919c4`).
+  Coarse value storage deliberately changes the recreated item's ID. Neither
+  case captured natural StoneChunks. Failed legal placements retain their
+  record/deep owner for a later regeneration; a completely blocked regeneration
+  was not exercised here. Restored normal records retain the existing scavenging
+  policy. Historical cargo already absent from saves is not recovered.
+- **Living downed subject:** the real transported Human 53700, anesthetic
+  Hediff 252 and inventory marker 53703 survived normal closure and reload
+  (`op_90185c344fa04364b37478a5759f1042`,
+  `op_cdebf5517c654abfbd9dfa82a00572c4`,
+  `op_36c501258386417c8d4a9eb8be90c1d4`). Native
+  `AnyPawnBlockingMapRemoval` kept the destination map loaded. This proves a
+  living pawn's native map-lifetime contract separately from unloaded corpse or
+  item storage. One earlier script attempt lacked the fixture's anesthetic ID
+  and was rejected; the corrected replay above owns the pass.
+- **RG-Issue-022, native fuel tick:** the root replay already measured
+  RefrigeratedTracked fuel 24.999916→24.912384 over ticks 891→1934 after
+  `base.Tick()` replaced the incorrect `base.TickLong()`. The additional
+  RefrigeratedHover run consumed24.956074→24.882908 over 1096 ordinary ticks,
+  matching repeated native float32 subtraction of 4/60000, while its exact meal's
+  rot progress223.82686 remained frozen. Reload retained that state
+  (`op_d91075b93b3044b8bfdf6c6ea8f38eaf`,
+  `op_3083366888b64b9bbc2804d6fb601b85`).
+- **Actual moving fuel:** native jobs refuelled Tracked with 15 Chemfuel and Hover
+  with 10 Naquadah, then loaded the original pistol 42774 through the actual Load
+  dialog and pushed normally. Twenty individual ticks matched each proxy's
+  reported per-tick float32 fuel subtraction; carried reload preserved the same
+  proxy/cargo/fuel state
+  (`op_a6a2a7a5d9c14ce99aa68506fe156256`,
+  `op_c46108a4cf08405589123b0f8c234d9e`). Real arrival restored Tracked 46945
+  with 14.66803 fuel and Hover 46944 with 9.733983, original cargo exactly once,
+  input Steel/HP 180 or 160 and use-contents=false, with no remaining proxy,
+  attachment or slowdown
+  (`op_fe8b64f1dfd145b593b78a466f92722e`,
+  `op_3539a02b9dd845ac83224e327353310b`). Ordinary repair jobs had legitimately
+  repaired the input carts before pushing; HP claims use that actual pre-push
+  baseline.
+- **RG-Issue-025, seal lifecycle:** the root ordinary-cart replay changed meal
+  rot 110.73198→1077.2817 over ticks 934→1982 with disabled=false/dontTick=false.
+  Here the refrigerated meal stayed frozen while loaded, then real unloading
+  cleared its rot-disabled flag and 1000 ordinary ticks advanced the same meal
+  223.826859→791.332275
+  (`op_d761b82b19304c3c9be6eb9c832f09f5`;
+  `refrigerated-hover-unloaded-rot.json`). Together these distinguish native
+  comp ticking, refrigeration and unsealed-food ticking.
+- **RG-Issue-026, actual auto-refuel preference:** natural fuel exhaustion first
+  exposed a previously false setting becoming true on cart reconstruction,
+  starting an unwanted automatic refuel job. Retained input/restored saves and
+  `026-before-field-proof.json` establish the actual field change. The narrow
+  proxy field now copies, scribes and restores `allowAutoRefuel`. Fresh false
+  survives conversion, carried reload and natural exhaustion: restored 46937
+  has fuel 0/false, the same pistol once and no automatic refuel job
+  (`op_95e87821e0b049db960606c9f4433750`,
+  `op_5a4e0418e33f48ec93fc0a574f631ccd`;
+  `026-false-restored.json`). A positive control uses the real fuel gizmo to
+  enable auto-refuel, lets the native job fill 15 fuel, then preserves true
+  through another push/reload/arrival
+  (`op_7a1e68cd772040c092e976335a329a32`,
+  `op_f318086c74754353b82384673e1bf5a2`). The missing-field default preserves
+  previous proxy behavior; it cannot reconstruct an old lost false preference.
+
+Two load warnings refer to obsolete cart IDs in historical message
+`LookTargets`; no error-level entry accompanied these final checks, and exact
+cargo/owner checks passed. These warnings are retained rather than reported as a
+clean log. No arbitrary nested-container, permanent site destruction or fully
+blocked corpse-regeneration acceptance follows from this batch.
+
+### Final ZPM scheduled consumer
+
+**RG-Issue-027 decision:** after the scheduled consumer exposed mixed threat
+units, the owner selected **90–110% of current colony threat on every wave**.
+Keep the custom part's current-threat multiplier behavior and correct the ZPM
+caller to supply dimensionless factors, matching the gate-complex caller.
+Do not introduce creation-time locking or change the stated factors. Verify a
+fresh protection quest and its saved range before accepting a natural wave;
+older experimental quests that already stored absolute points are not silently
+rewritten by a caller-only correction.
+
+The same ongoing quest 2 from the persisted policy checkpoint reached its first
+real scheduled raid at tick 23452: enableTick 3534 plus initial delay 19917 ends at
+23451, then the native interval emits immediately on enable. Its 90000–120000
+range controls later waves, not the first event. No timer, signal, threat outcome
+or lord was injected. Random Storyteller incidents were explicitly disabled for
+this lab wait; quest timers and the real raid worker remained active.
+
+`zpm-initial-delay-boundary.json` records the true broadcasting policy,
+both ZPM/housing target defs and the protection-specific letter key. The actual
+attack target is housing 42766. The real letter is "Raid: Syttkon" with the
+ZPM-energy-signature text, and the actual `LordJob_MaraudColony` save stores
+`_priorityTarget=Thing_Rimgate_ZPMHousing42766`. Its first observed member,
+Human 67698, is a live spawned hostile on Map 0; the native lord owns 152 pawns.
+The full snapshot, actual pawn payload and private
+`Rimgate-zpm-first-scheduled-raid` save are retained
+(`op_76fae2c6e97c420db1b29f4e1526d3fa`).
+A long poll deadline preceded the direct consumer observation; that timed-out
+wait is not itself an acceptance pass. This closes the targeted17/21
+housing/policy/letter/lord consumer check, without claiming combat victory or
+raid-balance quality.
+
+Read-only follow-up identified a separate points-contract inconsistency rather
+than inferring a defect from pawn count. At the same paused 23452, native
+`Outputs\\Current Threat Points` logged 145.41
+(`op_accb73d7f9d5490eaa7415e45140bc62`). Quest2 stores an absolute
+pointsRange 123.919945–151.457718 and false `useCurrentThreatPoints`
+(the native Scribe default for its omitted key). Installed native
+`QuestPart_RandomRaid` uses that range directly in the false branch; Rimgate's
+override multiplies it by current threat points. The ZPM caller supplies
+absolute slate points times .9–1.1, while the other GateComplex caller supplies
+a factor range .85–1.10. Both callers therefore require explicit reconciliation;
+blindly changing the shared branch would alter GateComplex. Exact native IL and
+read-only output are retained in `native-questpart-randomraid.il.txt` and
+`raid-points-readonly-output.json`. No points/balance edit was made during this
+lease. The focused current-threat decision and follow-up acceptance below own
+its disposition.
+
+Finally, the native Storyteller setting was restored to true
+(`op_72a5b72c3ef4448094b3f282b36bdebb`). Shutdown verified process 15976 absent
+and no RimWorld process; game status is stopped. Player-config verification
+matched recoverable baseline `player-config-20261125-164850-670`. The runtime
+lease was explicitly returned before later agents' checks. Retained 1.6 C#/DLLs,
+bundle bytes, normal player configuration and player saves were not changed.
+
+### Current-threat ZPM raid scaling (RG-Issue-027)
+
+The user chose each protection wave at 90–110% of current threat points, matching
+the other custom raid caller, before the existing faction minimum. The 1.7 ZPM
+quest node now supplies the factor range 0.9–1.1 instead of multiplying it by
+quest-creation slate points. The custom raid part retains its per-wave current
+threat calculation and faction minimum; its comment makes the difference from
+native absolute-range semantics explicit. No new policy/save fields or factor
+abstraction were added. Read-only companion diagnostics expose current threat,
+actual stored range/policy and selected faction/minimum without sampling RNG.
+
+The cold-deployed native ten-mod replay loaded the old quest 2 unchanged with
+range 123.919945–151.457718 and current threat 145.49414. Real flick jobs enabled
+one linked shroud, ending that quest through suppression, then disabled it.
+Normal broadcasting created quest 3 with range 0.9–1.1 and false
+`useCurrentThreatPoints`. A real checkpoint preserved the same quest, range,
+housing/target policy and letter key
+(`op_b0ab0b5edfa74605b8aeaaadc70d113f`). Current threat at that checkpoint was
+145.3216; no timer or quest signal was set by the probe.
+
+Untouched initial delay 33737+26827 produced the first scheduled wave at 60565.
+Current threat was 144.5641; the selected Wraith Empire's native combat minimum
+was 100. The nominal factor band is therefore 130.11–159.02 before the existing
+minimum. The actual worker created one spawned hostile WraithSoldier 72026 at
+(130,0), owned by `LordJob_MaraudColony`; saved `_priorityTarget` is the actual
+housing 42766. The protection-specific "Raid: Wraith Domain" letter also arrived.
+The real raid save is `Rimgate-zpm-current-threat-first-raid`
+(`op_5df3ab377c4b467c82823154c6921ba3`), with the spawned-pawn observation
+`op_16c9df8a641a400da4500765ff3a3acb`. Exact local incident-points sampling was
+not added; this verifies the chosen stored contract, current-threat calculation
+and actual scheduled consumer, without claiming a particular RNG draw, combat
+victory or balance quality.
+
+Full JSON, before/after saves and native lord XML are retained outside Git under
+`phase3-completion-20261125-145845/zpm27/`. An initial ad hoc wait passed a Lua
+object binding where the installed SDK requires explicit argument fields; its
+helper guard rejected the missing path. That attempt is not a production defect
+or acceptance pass. After diagnosis/acknowledgement and pausing, explicit fields
+produced successful bounded ordinary-tick waits. Random Storyteller incidents
+were disabled only for the lab wait, then restored before shutdown. Process 18952
+was verified absent, no RimWorld process remained, and player configuration
+matched its recoverable baseline before the lease was returned.
+
+Existing private experimental quests keep their stored absolute ranges; the fix
+does not reinterpret old values or repair historical quest saves. End the old
+quest through normal gameplay and create a fresh one. Production and companion
+builds passed with zero warnings/errors. Retained 1.6 source/DLLs, assets and normal
+player files were unchanged; all changes remain unstaged/uncommitted.
+
+### Final baseline acceptance
+
+The follow-up baseline lease used the healthy ten-mod private profile and the
+existing deployed experimental build, without source, deployment, Steam or mod
+profile changes. External evidence is under
+`C:/Users/david/AppData/Local/RimgateDev/evidence/phase3-completion-20261125-145845/final-baseline/`:
+`summary.json`, operation payloads and nine private input/result saves. The
+deployed Rimgate DLL SHA-256 was
+`DF12244C4DFB5BF263EB12CC90DBA3E651CDDDF0757CBFCDCB6E61741C0B2B1B`;
+the companion was
+`A8547EEA35C23C8BEC1A691D6DF33AC1852F8CB933F7A8AF76CFB926CC388892`.
+
+**Native People manifests.** Independent fresh `Rimgate-transit-active` branches
+passed solo boarding, mixed pawn/loose-rifle delivery and real DHD closure during
+walking boarding. The solo branch saved/reloaded the native `EnterTransporter`
+job before admission, then delivered pawn 53699 and inventory marker 53702 alive
+and conscious with one exact object/deep owner each
+(`op_49f4ed01cc19460d91d364420e14b4a0`). The mixed manifest delivered its original
+pawn, marker and rifle 53703 once; group became -1, outstanding count zero,
+loading false and gate pending/queues empty
+(`op_82568718d4b946c8a29d1964b73a2990`). Two bounded 200-tick mixed boarding
+scans stopped while the pawn was legitimately hauling its rifle; they do not
+establish a mixed walking checkpoint. Natural progression subsequently passed
+the full arrival assertions. The separate real `Prioritize closing` branch
+retained its source boarder 53700/marker 53703 exactly once, ended boarding and
+cleared manifest/group/loading with both ends closed
+(`op_f38578ca4c0a45ebbdb18b49f40818ae`). The fixture removed only the four known
+hostile non-colony smoke guards before assigning any manifest. No manual native
+cancel-command surface or fleeting transporter-admission checkpoint is claimed.
+
+**Living orbital round trip.** The bounded return-only ordering succeeded.
+Loading `Rimgate-orbital-protected-source`, decoding the remaining actual glyph
+created the natural Voidborne Signal Relay, site 116 / quest 1 / Orbit tile176,
+with AbandonedPlatform and EnemyReplicator parts. The discovery wait initially
+used an invalid array polling path and timed out; the host paused and directly
+re-read the actual completed discovery before continuing. This diagnostic is
+retained separately from the gameplay passes. Real DHD dial, entry, home DHD
+closure, orbital DHD return dial and return entry brought pawn989 home alive,
+conscious and drafted (`op_02b68970a25d4440ab357153b816e7f8`). The same ordinarily
+worn vacsuit55200/helmet55201 retained full HP, native resistance1 and
+`HarmedByVacuum=false`; only the original torso Stab6 remained. Saving/reloading
+`Rimgate-orbital-short-returned` preserved that state and the visited site/quest
+(`op_c18013adb7ca4d7b85aff51c3b04b95d`). The separate earlier 600-tick exposure
+sample was not repeated, avoiding unnecessary combat delay. No stronger gear,
+psylink, enemy deletion, health repair, vacuum override or forced transfer was
+used in this orbital branch. This closes the living round-trip gap; it does not
+establish combat victory or orbital loot pickup.
+
+**Meteorite extraction and hauling.** The original guarded mining attempt is
+retained as a combat failure: the real Mine designation/job was accepted, but
+the miner died before damaging the rock. Connected source confirms
+`IncidentWorker_Asteroid.TriggerRaid` deliberately creates a `StageThenAttack`
+guardian targeting the meteorite; this was not unrelated Marauder residue.
+A fresh controlled smoke branch removed its initial four non-colony guards,
+disabled random Storyteller incidents, then ran the actual meteorite worker.
+It generated thirteen new ore cells and an actual Wraith guardian42782, with
+the generated guarded input retained before further preparation. Only that
+exact generated guardian was removed as an explicit **starting input for the
+extraction subcase**, before assigning any Mine order. This separates resource
+extraction from defeating the intended guard and makes no guarded-collection
+or player combat-victory claim.
+
+The native Work tab enabled Mining, then real `Prioritize mining naquadah ore`
+extracted the new 4000-HP rock at (103,23)
+(`op_32b79a2bf8224e0c951be397221e3c17`). The result was Naquadah42977 x32,
+consistent with the authored base yield40 and installed native MiningYield
+factor0.8 at the miner's unchanged level2. A real stockpile designation and
+`Prioritize hauling naquadah x32` produced `HaulToCell`, with all32 units in
+the actual carry tracker. Carry checkpoint/reload retained the same item ID,
+quantity and single deep owner (`op_06c9938b14144e2eb72baf54f0615c7f`). Ordinary
+hauling deposited that item at stockpile (120,113); final save/reload retained
+exactly one spawned item42977 x32 and a living conscious miner
+(`op_355adea51d9c42bf9ac3953006feb337`). No ore, material yield, job completion
+or inventory outcome was inserted. Native compressed ore IDs remain unsuitable
+as reload identity assertions; the extracted ordinary item ID was retained.
+
+The native Storyteller setting was restored to true before final shutdown.
+Process19252 was verified absent and the lease returned with the game stopped.
+Reopen these contracts for lost/duplicated pawn or material ownership, manifest
+cleanup failures, an actual protected return failure outside combat, or native
+mining/hauling regressions. This evidence leaves motion/audio listening,
+orbital combat victory and actual orbital loot collection as distinct checks;
+it does not declare public 1.7 support or phase3 completion by itself.
+
+### Final optional integration acceptance
+
+November 25, 2026: the private 23-mod profile loaded every planned package with
+zero order/dependency/version errors and passed 16 resolved-content/Harmony
+contracts. Fresh cases used the owned `Rimgate-optional-smoke` save after native
+VEF faction-add dialogs, preserving the original ten-mod smoke. Exact loaded
+assembly versions/paths, operation payloads, rejected fixtures and final builds
+are retained in external `phase3-completion-20261125-145845/optional-clinical/summary.json`.
+Folder names alone were not treated as compatibility evidence: EBF 6.0.12.0
+actually selected its `v1.6/Assemblies/EliteBionicsFramework.dll`, while Android,
+Altered Carbon, EPOE and VFEMedical also selected declared legacy-folder binaries.
+
+| Case | Actual acceptance and limits |
+| --- | --- |
+| EBF/EPOE | Native BionicArm plus Bruise on the same Arm measured raw max30 versus integrated max36. Actual severity5.76 produced 289 healing ticks, versus vanilla counterfactual346, through ordered queue/reload/cure. The implant and max36 remained (`op_5ba7678a8c004b57b88952aee15bb514`, `op_9b61053e89074f3e869986205c84a8ef`, `op_29e47407e3454627b82da454e9dbd003`). |
+| Saurid exclusions | All three excluded conditions retained their exact IDs through independent Bruise-only treatment, reload and completion; the Bruise healed. Completion operations: `op_433c581c31684704933701e4a1d75da3`, `op_b663415e03a146bd8fd00a3162f2675b`, `op_48b452c30b1a407ea4e6f41a95ddcc66`. |
+| DBH | Actual admission held BadHygiene while hygiene/bladder filled normally. Native DBH cleaning removed that condition before diagnosis, so this is not isolated queue-exclusion causality. Separate dirty BadHygiene-only input correctly reported not injured (`op_969c6bf79f4b426eb8bae93bf710889d`); Bruise treatment/reload/cure passed (`op_33ee274526cf4a508e1d5065e2a003df`). Thirst was disabled; DBH variants remain unaccepted. |
+| Positive policies | RadiationIncurable, Shellcasket, Lush and Stoner entered actual treatment queues, survived queue reload and were removed by normal completion; BionicArm remained. Completion operations: `op_ee9d5072a2734c8d8370d907f4f2ee2a`, `op_5ba609310d324415924c206c36606398`, `op_a227f040e66f4e73969e66c5afcbabcc`, `op_19015a5e275942d48d66fcd9e69d4ad5`. Naturally generated scar/addiction targets were retained in the observed queue rather than cleared for the test. |
+| Admission controls | Injured unrestricted human actually entered and aborted normally. EmptySleeve plus independently treatable EBF Bruise reached the intended native blocking-hediff denial (`op_62cb7ded72e44856aed2ac1d6218328f`). |
+| Android | Both actual excluded xenotypes with independent tendable Burn were rejected, but upstream medical-care policy preempted the xenotype-specific denial. Resolved exclusion plus observed rejection is accepted; isolated xenotype-guard execution is not (`op_7b35869e12da41a085ea467d318592f3`, `op_6776d28ad0ab42b68cb86d8609e34abe`). |
+| Rimsec | Generic PawnGenerator input was invalid because it omitted native robot initialization. The genuine DefenderSpawner produced consciousness/battery-bearing robot47119 and ran 120 ticks without that error (`op_004660a7892b4558945e651cc4bba446`, `op_3d64db3915f5421ca764dd1eb4de052b`). NotInjured preempted specific race denial; the helper now rejects that exact factory-only generic input. Race-guard clinical acceptance remains qualified. |
+| Warcasket | Raw trait insertion was rejected by upstream apparel-exclusive policy; loose apparel spawning also failed. Neither is an accepted clinical input. The genuine foundry consumer remains unrun; no guessed cause or production workaround was adopted. |
+| VFEMedical | Native reciprocal table/light links and real pawn flick jobs measured facility offset .15→0→.15 and surgery factor .71400005→.63750005→.71400005 (`op_6a2b2b44d88e4002b6aff4f52687624c`, `op_c26cff05adff44d79bd3417efc4fb568`, `op_43022628435941e6b04c1fa4b81ebec8`). This proves link/power/stat behavior, not surgery outcomes. |
+| Alpha Genes | The exact passive observer registered, and a real player-forced AttackStatic targeted the occupied sarcophagus. Normal treatment discharged the patient before destruction within the bounded 900-tick attempt; zero qualifying guard calls means suppression remains unproven. Actual End removed the observer (`op_d375227cc13c4956b5eec1af67b9dd48`, `op_09bc19f765424a0a9eeac7585e2ad1f1`, `op_86d77ca061ef47ee9f5325a06f667f1f`). Registration/consumer audit and watch cleanup are distinct evidence. |
+
+The initial EBF observer itself violated upstream protocol by calling the patched
+vanilla getter (attention12, stack naming `MedicalProbe.Tracked`). It now uses
+the installed `EBF.VanillaExtender.GetRawMaxHealth` explicit vanilla-intent API
+for its raw comparison. This was a measurement correction, with its failing
+payload retained, rather than a Rimgate gameplay fix. Other rejected boundaries
+included invalid generic Rimsec construction, invalid Warcasket inputs, a native
+Flick instruction dialog that force-paused input, and selecting Fire at will
+instead of the weapon-target command on the first Alpha setup. Those do not
+establish mod or engine defects.
+
+Actual authored NaniteRegeneration plus missing natural Finger exposed two
+production defects, separately reproduced before correction:
+
+- [RG-Issue-029](issue-tracker.md#rg-issue-029): paused save emitted the Thing
+  `Scribe_Values` error for `_cachedMechWeapon`
+  (`op_7337cf07a2b942c299533ce31aed89b8`, attention35). Same-key deep serialization
+  now matches the field's removed-equipment ownership.
+- [RG-Issue-030](issue-tracker.md#rg-issue-030): 120 ordinary native ticks emitted
+  EBF's protocol error from actual `TryRegrowOneMissingPart` line115
+  (`op_364a83734d3a45bbb7dac8daa47e9509`, journal36). All four regeneration health
+  queries now use the existing EBF wrapper with their actual BodyPartRecord;
+  whole-body chronic fallback remains1f.
+
+Cold final-binary replay loaded the retained pre-regrowth save, saved before
+processing without the Scribe error, then naturally restored the Finger and
+created RegeneratingNanites246 in 120 ticks. Save/reload retained that ID and
+severity5.0133333 plus original Nanite241 (`op_8e97e611dae44711900a6c9a8fd4e684`,
+`op_0f30b4227a7c48c8a53a21d2d06eec6f`, `op_cf0eacc8bd1b40f6a390748b5c7c8403`).
+Final-process error journal was empty (`op_25cc5cd1cb834cea85e34957ed004618`).
+Nonnull cached mech-weapon/resurrection, colony-mech energy and chronic branches
+were not live sampled; their shared ownership/API corrections passed independent
+source review. This does not claim those distinct outcomes were exercised.
+
+Production and companion builds passed with zero warnings/errors. Final deployed
+SHA256: production `BA4C275985773B6609882ED1EC5CFFBD2B57EFB5B6D51543B6832F3670BF4CC3`;
+companion `1930181DEAC95C8F3FEC00B3B69BE601A86B831147C91B09D09574123A25EE56`.
+All nine changed/new scenarios compiled through the actual installed SDK; the
+aggregate operation IDs are retained in the summary. Process22568 was verified
+stopped before returning the lease. Root-owned absence/config preservation and
+final build checks follow separately. Quarry is metadata1.6-only and excluded.
+Phase3 remains active for coordinated manual acceptance, qualified branches and
+the open [RG-Issue-028](issue-tracker.md#rg-issue-028) nested-corpse candidate;
+these results do not declare public1.7 support or completion of every integration.
+
+### Automated pass closeout and remaining acceptance
+
+The final November 25 follow-up cold-started the restored **ten-mod** profile
+with all optional integrations absent. A fresh owned medical input supplied a
+missing Finger; the native Add Hediff action added authored NaniteRegeneration
+to the whole pawn. Actual save/load, 120 explicitly stepped ticks and final
+save/load preserved Nanite211 and RegeneratingNanites212, restored the Finger
+and retained regrowth severity 5.0133333/max 8. Native load readiness also advanced
+ordinary ticks; this is not a claim of exactly 120 total elapsed ticks. The fresh
+error journal was empty (`op_e8f693c1e919426e8af95624f384f60c`), and all 16 absent
+content/hook contracts passed (`op_7c3178164d2349ddbe625ce42c50a1bf`). This accepts
+the wrapper's vanilla fallback and the null-weapon save case alongside the
+present-EBF replay above. It does not extend the nonnull mech/chronic proof.
+Exact payloads, both new input/result saves and the native log are retained as
+`final-absence.json`, `Rimgate-nanite-absence-*.rws` and
+`final-absence-Player.log` under the same private completion evidence directory.
+
+Final validation passes the supported 1.6 library and strict DocFX/site checks,
+portable pinned-reference 1.7 build, installed-runtime-reference 1.7 build and
+development companion, with zero warnings/errors. The final runtime DLLs match
+the production/companion hashes in the optional acceptance record. All nine
+changed/new Lua scenarios compiled through the installed SDK. Independent source
+review found no introduced blocker, including the last two regeneration fixes;
+the nested-corpse candidate is tracked separately rather than treated as fixed.
+All nine PowerShell scripts and 176 authored Mod XML files parse; 87 tracking/
+AGENTS relative links and anchors, all 30 issue IDs and `git diff --check` pass.
+Live 1.6 gameplay was not rerun.
+
+Verified shutdown removed process 10200. The full private pre-optional config,
+original task Prefs/ModsConfig and four original owned input saves were restored
+and byte-checked; the generated private Rimatomics settings were removed. Full
+inventories/hashes match for **125 normal config files, 10 original player saves
+and four retained 1.6 bundles**. The setup helper's player-config verification
+also passes. Source/1.6 and Mod/1.6 have no Git diff; the retained DLL hash remains
+`804D03320F63466457EAD8B4B14445AAA5035CE045EB0740F1032ACAA573738A`.
+The native pack remains
+`0dea55cedec8eb2f14bc1fed2ac78b9f6fe1e1b4e2e5ec03f02f3568e8ba6797`.
+Raw assets, Unity builder, public support metadata, dependency pins, Steam branch
+and the local 1.6 insurance snapshot are unchanged. The index remains
+`5b32eb2c0c2351376a9440b7f2d2748fcd189c2f`; all edits are unstaged/uncommitted.
+
+The feasible background pass is finished. **Phase 3 remains active** for the
+[coordinated manual quality pass](#coordinated-manual-quality-pass), the qualified
+optional branches above and the bounded [RG-Issue-028](issue-tracker.md#rg-issue-028)
+investigation/disposition. Next resolve that saved-state candidate, then review
+motion, representative native texture appearance and actual device playback in
+a coordinated visible private session. No foreground focus or output-volume
+change was made during this pass. Phase 4/public support/defaults/final freeze
+remain pending; background success does not waive those remaining gates.

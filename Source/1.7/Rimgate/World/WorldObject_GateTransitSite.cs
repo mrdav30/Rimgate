@@ -7,7 +7,7 @@ using Verse;
 
 namespace Rimgate;
 
-public class WorldObject_GateTransitSite : MapParent, IRenameable
+public class WorldObject_GateTransitSite : MapParent, IRenameable, IThingHolder
 {
     public string SiteName;
 
@@ -38,6 +38,24 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     private const float LootChanceItems = 0.0035f;
 
     private List<TransitStoredThing> _storedThings = new();
+
+    // Value records cannot represent an actual corpse's pawn, health and inventory.
+    // These remains stay deep-owned intact; the existing item-scavenging rule applies
+    // only to the ordinary value records, not to newly preserved pawn/corpse state.
+    private ThingOwner<Corpse> _storedCorpses;
+
+    public WorldObject_GateTransitSite()
+    {
+        _storedCorpses = new ThingOwner<Corpse>(this);
+    }
+
+    ThingOwner IThingHolder.GetDirectlyHeldThings() => _storedCorpses;
+
+    public override void GetChildHolders(List<IThingHolder> outChildren)
+    {
+        base.GetChildHolders(outChildren);
+        ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, _storedCorpses);
+    }
 
     private bool _lastKnownHasGate;
 
@@ -117,8 +135,15 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
         _lastKnownHasGate = Building_Gate.TryGetSpawnedGateOnMap(Map, out Building_Gate gateOnMap);
         _lastKnownHasDhd = Building_DHD.TryGetDhdOnMap(Map, out Building_DHD dhdOnMap, RimgateDefOf.Rimgate_DialHomeDevice);
 
-        // If the map is eligible to despawn, snapshot player things
-        bool canDespawn = !gateOnMap.IsActive && !Map.mapPawns.AnyPawnBlockingMapRemoval;
+        // Do not take ownership away from a live map before its final removal veto.
+        if (TransporterUtility.IncomingTransporterPreventingMapRemoval(base.Map))
+        {
+            alsoRemoveWorldObject = false;
+            return false;
+        }
+
+        // If the map is eligible to despawn, snapshot player things and loose cargo.
+        bool canDespawn = gateOnMap?.IsActive != true && !Map.mapPawns.AnyPawnBlockingMapRemoval;
         if (canDespawn)
         {
             SnapshotPlayerThings(Map);
@@ -132,25 +157,21 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
             }
         }
 
-        if (TransporterUtility.IncomingTransporterPreventingMapRemoval(base.Map))
-        {
-            alsoRemoveWorldObject = false;
-            return false;
-        }
-
-        // remove the world object only when BOTH are gone
-        alsoRemoveWorldObject = gateOnMap == null && dhdOnMap == null;
+        // Keep the site's retained cargo reachable even if both pieces of infra are gone.
+        alsoRemoveWorldObject = gateOnMap == null && dhdOnMap == null
+            && _storedThings.Count == 0 && _storedCorpses.Count == 0;
         return canDespawn;
     }
 
     private void SnapshotPlayerThings(Map map)
     {
-        _storedThings.Clear();
+        // Any records left after regeneration are failed placements, not live map
+        // copies. Retain them when this map is removed again.
 
         // As we loop, keep "last known" flags in sync post-setup
         bool sawGate = false, sawDhd = false;
 
-        foreach (var t in map.listerThings.AllThings)
+        foreach (var t in map.listerThings.AllThings.ToArray())
         {
             if (t == null || !t.Spawned) continue;
 
@@ -158,14 +179,24 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
             if (t is Building_Gate) sawGate = true;
             if (t is Building_DHD) sawDhd = true;
 
-            if (!t.Faction.IsOfPlayerFaction()) continue;
+            if (!t.Faction.IsOfPlayerFaction()
+                && !(t.Faction == null && t.def.category == ThingCategory.Item)) continue;
 
-            // Skip pawns/filth/frames/blueprints/plants/corpses/chunks
+            if (t is Corpse corpse)
+            {
+                corpse.DeSpawn();
+                if (!_storedCorpses.TryAdd(corpse, false))
+                    throw new System.InvalidOperationException("Could not retain transit-site corpse ownership.");
+                continue;
+            }
+
+            // Skip pawns/filth/frames/blueprints/plants/chunks.
             if (t is Pawn || t is Blueprint || t is Frame || t.def.category == ThingCategory.Plant) continue;
             if (t.def.IsFilth || t.def.IsFrame || t.def.IsBlueprint) continue;
             if (t.def.mineable || t.def.building?.isNaturalRock == true) continue;
-            if (t is Corpse) continue;
-
+            // Natural stone is map context, not retained cargo. Do not exclude all
+            // Chunks: the transported ReplicatorLink resource belongs to that category.
+            if (t.def.IsWithinCategory(ThingCategoryDefOf.StoneChunks)) continue;
             _storedThings.Add(new TransitStoredThing(t));
         }
 
@@ -177,6 +208,7 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
     {
         GateUtil.RemoveGateAddress(Tile);
         base.Destroy();
+        _storedCorpses.ClearAndDestroyContents();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -206,9 +238,9 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
 
     private void RestoreCachedThings()
     {
-        if (_storedThings == null || _storedThings.Count == 0) return;
-
-        foreach (var rec in _storedThings)
+        // Restore infrastructure before choosing item cells, so exclusions use the
+        // actual gates and their rotated authored vortex patterns.
+        foreach (var rec in _storedThings.OrderBy(r => r.Def?.category == ThingCategory.Item).ToArray())
         {
             if (rec.Def == null) continue;
 
@@ -216,14 +248,50 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
             if (thing == null) continue;
 
             // Player ownership for anything we rebuild
-            thing.SetFaction(Faction.OfPlayer);
+            if (thing.def.CanHaveFaction)
+                thing.SetFaction(Faction.OfPlayer);
 
-            // Place at saved cell/rot if valid; else fallback near center
-            Utils.TryPlaceExactOrNear(thing, Map, rec.Pos, rec.Rot);
+            bool placed;
+            if (thing.def.category == ThingCategory.Item)
+            {
+                var rotation = rec.Rot ?? thing.def.defaultPlacingRot;
+                placed = rec.Pos.HasValue && CanRestoreItemAt(thing, rec.Pos.Value, rotation)
+                    && GenPlace.TryPlaceThing(thing, rec.Pos.Value, Map, ThingPlaceMode.Direct, rot: rotation);
+                if (!placed)
+                    placed = GenPlace.TryPlaceThing(thing, RestorationAnchor(), Map, ThingPlaceMode.Near,
+                        extraValidator: cell => CanRestoreItemAt(thing, cell, rotation), rot: rotation);
+            }
+            else
+            {
+                Utils.TryPlaceExactOrNear(thing, Map, rec.Pos, rec.Rot);
+                placed = thing.Spawned;
+            }
+
+            if (placed)
+                _storedThings.Remove(rec);
+            else
+                thing.Destroy(DestroyMode.Vanish); // Keep its value record for a later regeneration.
         }
 
-        _storedThings.Clear();
+        foreach (var corpse in _storedCorpses.InnerListForReading.ToArray())
+        {
+            // Native Near placement handles corpses; reject wiping and full item cells
+            // explicitly so a failed restoration leaves this exact body in its owner.
+            _storedCorpses.TryDrop(corpse, RestorationAnchor(), Map, ThingPlaceMode.Near, out _,
+                nearPlaceValidator: cell => CanRestoreItemAt(corpse, cell, corpse.Rotation),
+                playDropSound: false);
+        }
     }
+
+    private IntVec3 RestorationAnchor() => Building_Gate.TryGetSpawnedGateOnMap(Map, out var gate)
+        ? gate.Position : Map.Center;
+
+    private bool CanRestoreItemAt(Thing thing, IntVec3 cell, Rot4 rotation) =>
+        GenSpawn.CanSpawnAt(thing.def, cell, Map, rotation, false)
+        && GenAdj.OccupiedRect(cell, rotation, thing.def.size).All(c => c.InBounds(Map)
+            && c.GetItemCount(Map) < c.GetMaxItemsAllowedInCell(Map)
+            && !c.GetThingList(Map).Any(t => GenSpawn.SpawningWipes(thing.def, t.def, false))
+            && !Map.listerThings.AllThings.OfType<Building_Gate>().Any(g => g.VortexCells.Contains(c)));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void RefreshPresenceCache()
@@ -268,6 +336,13 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable
         Scribe_Values.Look(ref _lastKnownHasDhd, "_lastKnownHasDhd");
         Scribe_Values.Look(ref _ranInitialSetup, "_ranInitialSetup", false);
         Scribe_Collections.Look(ref _storedThings, "_storedThings", LookMode.Deep);
+        Scribe_Deep.Look(ref _storedCorpses, "_storedCorpses", this);
         Scribe_Values.Look(ref _wasLooted, "_wasLooted", false);
+
+        if (Scribe.mode == LoadSaveMode.PostLoadInit)
+        {
+            _storedThings ??= new List<TransitStoredThing>();
+            _storedCorpses ??= new ThingOwner<Corpse>(this);
+        }
     }
 }

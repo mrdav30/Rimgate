@@ -113,14 +113,34 @@ public sealed class GateEdgeProbe
         var records = ((List<TransitStoredThing>)StoredThings.GetValue(destination)!) ?? [];
         var stored = new List<object>();
         Flatten(records, "site", stored);
+        var corpseOwner = ((IThingHolder)destination).GetDirectlyHeldThings();
+        var siteChildren = new List<IThingHolder>();
+        destination.GetChildHolders(siteChildren);
+        var storedCorpses = corpseOwner?.OfType<Corpse>().Select(c => new
+        {
+            id = c.GetUniqueLoadID(), spawned = c.Spawned, destroyed = c.Destroyed,
+            parentHolder = c.ParentHolder?.GetType().FullName, directOwnerIsSite = ReferenceEquals(corpseOwner.Owner, destination),
+            childTraversalIncludesCorpse = siteChildren.Any(h => ReferenceEquals(h, c)),
+            innerPawnId = c.InnerPawn?.GetUniqueLoadID(), innerPawnDead = c.InnerPawn?.Dead,
+            innerPawnOwnedByCorpse = c.InnerPawn != null && ReferenceEquals(c.InnerPawn.ParentHolder, c),
+            worldPawnRegistered = c.InnerPawn != null && Find.WorldPawns.AllPawnsAliveOrDead.Any(p => ReferenceEquals(p, c.InnerPawn)),
+            inventory = c.InnerPawn?.inventory?.innerContainer.Select(t => new { id = t.GetUniqueLoadID(), defName = t.def.defName,
+                count = t.stackCount, ownerIsInnerPawnInventory = ReferenceEquals(t.ParentHolder, c.InnerPawn.inventory) }).ToArray(),
+            equipmentIds = c.InnerPawn?.equipment?.AllEquipmentListForReading.Select(t => t.GetUniqueLoadID()).ToArray(),
+            apparelIds = c.InnerPawn?.apparel?.WornApparel.Select(t => t.GetUniqueLoadID()).ToArray()
+        }).ToArray();
         return new
         {
             success = true, tick = Find.TickManager.TicksGame, sourceGateId, receiverGateId, destinationParentId, cargoId,
             sourceActive = source.IsActive, sourcePending = source.GetDirectlyHeldThings().Select(t => t.GetUniqueLoadID()).ToArray(),
             destinationHasMap = destination.HasMap, mapId = destination.Map?.uniqueID,
+            siteScavenged = (bool)typeof(WorldObject_GateTransitSite).GetField("_wasLooted", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(destination)!,
             receiverFoundByOriginalId = receiver != null, receiverActive = receiver?.IsActive,
             receiverPending = receiver?.GetDirectlyHeldThings().Select(t => t.GetUniqueLoadID()).ToArray(),
             destinationGateIds = destination.Map?.listerThings.AllThings.OfType<Building_Gate>().Select(g => g.GetUniqueLoadID()).ToArray(),
+            destinationGates = destination.Map?.listerThings.AllThings.OfType<Building_Gate>()
+                .Select(g => new { id = g.GetUniqueLoadID(), cell = Cell(g.Position), rotation = g.Rotation.AsInt,
+                    vortexCells = g.VortexCells.Select(Cell).ToArray() }).ToArray(),
             anyPawnBlockingMapRemoval = destination.Map?.mapPawns.AnyPawnBlockingMapRemoval,
             cargo = cargo == null ? null : new
             {
@@ -132,7 +152,9 @@ public sealed class GateEdgeProbe
             },
             placement = receiver != null && cargo != null ? PlacementReport(Inspect(receiver, cargo), includeCells) : null,
             storedRecords = stored.ToArray(),
-            limits = "Loaded-object lookup is separate from the site's private stored value records. TransitStoredThing records contain definition/count/nested contents, not original Thing IDs or live Thing references; this report does not claim missing loaded objects are destroyed. Native placement inspection invokes the actual deterministic read-only search and quality methods, never TryDrop or admission. Steel-specific congestion does not prove every cargo type is blocked."
+            storedCorpseCount = storedCorpses?.Length ?? 0, storedCorpses,
+            loadedItems = destination.Map?.listerThings.AllThings.Where(t => t.def.category == ThingCategory.Item).Select(t => new { id = t.GetUniqueLoadID(), defName = t.def.defName, count = t.stackCount, faction = t.Faction?.GetUniqueLoadID(), cell = Cell(t.Position), innerPawnId = (t as Corpse)?.InnerPawn?.GetUniqueLoadID() }).ToArray(),
+            limits = "Ordinary TransitStoredThing value records retain definition/count/nested contents, not original IDs. Corpses use the site's separate deep owner and must retain their exact pawn/inventory identities; world-pawn registration is observed without changes. Native placement inspection invokes deterministic read-only search/quality methods, never TryDrop or admission. Steel-specific congestion does not prove every cargo type is blocked."
         };
     });
 
@@ -350,6 +372,7 @@ public sealed class GateEdgeProbe
             foreach (var child in children) Walk(child);
         }
         foreach (var map in Find.Maps) Walk(map);
+        foreach (var site in Find.WorldObjects.MapParents.OfType<WorldObject_GateTransitSite>()) Walk(site);
         return things.Distinct(ReferenceEqualityComparer.Instance).Cast<Thing>().SingleOrDefault(t => t.GetUniqueLoadID() == id);
     }
     private static (Building_Gate Source, WorldObject_GateTransitSite Destination, Building_Gate Receiver) Resolve(

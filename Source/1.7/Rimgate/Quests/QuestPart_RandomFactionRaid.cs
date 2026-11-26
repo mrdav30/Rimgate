@@ -13,7 +13,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
 
     public List<ThingDef> TargetDefs;
 
-    public Predicate<Thing> TargetPredicate;
+    public bool RequireBroadcastingZpm;
 
     public bool AllowNeolithic;
 
@@ -46,6 +46,8 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
         incidentParms.quest = quest;
         incidentParms.target = map;
         float pts = StorytellerUtility.DefaultThreatPointsNow(map);
+        // This custom part treats pointsRange as a factor of current threat on
+        // each wave; the native base part instead treats that range as absolute.
         incidentParms.points = useCurrentThreatPoints
             ? pts * currentThreatPointsFactor
             : pts * pointsRange.RandomInRange;
@@ -66,7 +68,7 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
                     .ThingsOfDef(target)
                     .Where(p => p.Faction.IsOfPlayerFaction()
                         && p.Spawned
-                        && (TargetPredicate != null ? TargetPredicate(p) : true))
+                        && (!RequireBroadcastingZpm || Building_ZPM.IsBroadcastingZpm(p)))
                     .ToList();
                 if (foundTargets.Any())
                     attackTargets.AddRange(foundTargets);
@@ -106,5 +108,8 @@ public class QuestPart_RandomFactionRaid : QuestPart_RandomRaid
         base.ExposeData();
         Scribe_Values.Look(ref AllowNeolithic, "AllowNeolithic");
         Scribe_Values.Look(ref UseGateIfAvailable, "UseGateIfAvailable");
+        Scribe_Values.Look(ref UseLetterKey, "UseLetterKey", "RG_LetterMaraudersDesc");
+        Scribe_Collections.Look(ref TargetDefs, "TargetDefs", LookMode.Def);
+        Scribe_Values.Look(ref RequireBroadcastingZpm, "RequireBroadcastingZpm");
     }
 }

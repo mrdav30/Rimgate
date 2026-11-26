@@ -141,6 +141,7 @@ public sealed class CargoKindsProbe
             var cargo = FindThing(trackedCargoId);
             var subject = FindThing(subjectPawnId) as Pawn;
             var marker = FindThing(markerId);
+            var worldSubject = Find.WorldPawns.AllPawnsAliveOrDead.FirstOrDefault(p => Id(p) == subjectPawnId);
             var source = all.OfType<Building_Gate>().Single(g => Id(g) == sourceGateId);
             var sourceCellCandidates = mode == "partial" ? source.Map.listerThings.AllThings
                 .Where(t => t.Spawned && t.Position == new IntVec3(114, 0, 134)
@@ -168,6 +169,12 @@ public sealed class CargoKindsProbe
                     inventoryIds = subject.inventory?.innerContainer.Select(Id).ToArray(),
                     anestheticIds = subject.health.hediffSet.hediffs.Where(h => h.def.defName == "Anesthetic").Select(h => h.GetUniqueLoadID()).ToArray()
                 },
+                worldSubject = worldSubject == null ? null : new { id = Id(worldSubject), dead = worldSubject.Dead,
+                    downed = worldSubject.Downed, spawned = worldSubject.Spawned,
+                    inventoryIds = worldSubject.inventory?.innerContainer.Select(Id).ToArray(),
+                    corpseId = worldSubject.Corpse?.GetUniqueLoadID(),
+                    corpseSpawned = worldSubject.Corpse?.Spawned,
+                    corpseHolder = worldSubject.Corpse?.ParentHolder?.GetType().FullName },
                 marker = ThingState(marker), transit, remainderTransit, subjectTransit,
                 limits = "Sequential read-only main-thread samples: pause at boundaries. Pair totals cover only the original remainder and actual carried split IDs, not unrelated map stacks. Exact source-cell/definition candidates diagnose native compression loss; they never replace the original ID or contribute to acceptance totals. Deep ownership is separate from gate queue aliases; no unloaded-site identity claim."
             };

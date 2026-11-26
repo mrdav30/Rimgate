@@ -14,6 +14,214 @@ public sealed class MedicalProbe
     private static readonly FieldInfo Treatment = Field<Building_Sarcophagus>("_patientTreatableHediffs");
     private static readonly FieldInfo Traits = Field<Building_Sarcophagus>("_patientTraitsToRemove");
 
+    [Tool("rimgate/prepare_medical_edge_inputs", Description = "Add research, initial biomass/needs and optional fresh corpse inputs to an empty owned medical fixture. Does not admit, choose clone type, calibrate, heal, abort, refuel during a cycle or shorten default timers.")]
+    public static Task<object> PrepareEdges(IRimBridgeContext context, string expectedConfigPath, string expectedModRoot,
+        string hostId, string doctorId, string patientId, string podId, string sarcophagusId,
+        string hostMarkerId, string patientMarkerId, string injuryId, string cloneMode,
+        float initialBiomass = 250f, int looseBiomass = 250,
+        string patientConditionDef = "", string patientTraitDef = "",
+        string patientRaceDef = "", string patientXenotypeDef = "", bool patientEbfArm = false,
+        bool patientBrittleBones = false)
+        => context.MainThread.InvokeAsync<object>(() =>
+    {
+        Guard(expectedConfigPath, expectedModRoot);
+        if (cloneMode is not ("Genome" or "Full" or "Enhanced" or "Reconstruct"))
+            throw new ArgumentException("Choose Genome, Full, Enhanced or Reconstruct.");
+        var map = Find.CurrentMap;
+        var roots = map.listerThings.AllThings;
+        var pod = roots.OfType<Building_CloningPod>().Single(p => p.GetUniqueLoadID() == podId);
+        var sarc = roots.OfType<Building_Sarcophagus>().Single(s => s.GetUniqueLoadID() == sarcophagusId);
+        var host = roots.OfType<Pawn>().Single(p => p.GetUniqueLoadID() == hostId);
+        var doctor = roots.OfType<Pawn>().Single(p => p.GetUniqueLoadID() == doctorId);
+        var patient = roots.OfType<Pawn>().Single(p => p.GetUniqueLoadID() == patientId);
+        if (pod.Position != new IntVec3(124, 0, 132) || sarc.Position != new IntVec3(132, 0, 132)
+            || pod.Status != CloningStatus.Idle || pod.HasHostPawn || pod.HasPendingClone
+            || sarc.PatientPawn != null || sarc.Status != SarcophagusStatus.Idle
+            || new[] { host, doctor, patient }.Any(p => p.Dead || p.Downed || p.InMentalState)
+            || initialBiomass < 0 || initialBiomass > pod.Refuelable.Props.fuelCapacity
+            || looseBiomass < 0 || looseBiomass > 1000)
+            throw new InvalidOperationException("Use the empty owned medical fixture and bounded native-valid resource inputs.");
+        if (!string.IsNullOrEmpty(patientConditionDef) || !string.IsNullOrEmpty(patientTraitDef)
+            || !string.IsNullOrEmpty(patientRaceDef) || !string.IsNullOrEmpty(patientXenotypeDef)
+            || patientEbfArm || patientBrittleBones)
+        {
+            var kind = PawnKindDefOf.Colonist;
+            if (!string.IsNullOrEmpty(patientRaceDef))
+            {
+                if (patientRaceDef == "RSPeacekeeperDefender")
+                    throw new InvalidOperationException("RSPeacekeeperDefender requires its native RSPeacekeeperDefenderSpawner; generic pawn generation omits required robot initialization.");
+                if (!sarc.DisallowedRaces.Contains(patientRaceDef))
+                    throw new InvalidOperationException("Race inputs are limited to the actually resolved sarcophagus disallowed list.");
+                var race = DefDatabase<ThingDef>.GetNamed(patientRaceDef);
+                kind = DefDatabase<PawnKindDef>.AllDefs.Where(k => k.race == race).OrderBy(k => k.defName).FirstOrDefault()
+                    ?? throw new InvalidOperationException("The loaded excluded race must have a real native PawnKind.");
+            }
+            var xenotype = string.IsNullOrEmpty(patientXenotypeDef) ? null : DefDatabase<XenotypeDef>.GetNamed(patientXenotypeDef);
+            if (xenotype != null && !sarc.DisallowedXenotypes.Contains(xenotype))
+                throw new InvalidOperationException("Xenotype inputs are limited to the actually resolved sarcophagus disallowed list.");
+            var brittle = patientBrittleBones ? DefDatabase<GeneDef>.GetNamed("AG_BrittleBones") : null;
+            var bionicArm = patientEbfArm ? DefDatabase<HediffDef>.GetNamed("BionicArm") : null;
+            if (patientEbfArm && (EbfCompatibilityWrapper.makeshiftEbfEndpoint == null
+                || bionicArm.comps?.Any(c => c.GetType().FullName == "EBF.Hediffs.HediffCompProperties_MaxHPAdjust") != true))
+                throw new InvalidOperationException("Use the actually loaded EBF endpoint and native EPOE BionicArm max-health component; no synthetic component inputs.");
+            HediffDef condition = patientConditionDef is "" or "Healthy" ? null : DefDatabase<HediffDef>.GetNamed(patientConditionDef);
+            TraitDef trait = string.IsNullOrEmpty(patientTraitDef) ? null : DefDatabase<TraitDef>.GetNamed(patientTraitDef);
+            if (condition != null && !(sarc.AlwaysTreatableHediffs.Contains(condition)
+                || sarc.NeverTreatableHediffs.Contains(condition) || sarc.UsageBlockingHediffs.Contains(condition)
+                || sarc.NonCriticalTreatableHediffs.Contains(condition)
+                || condition.defName is "Burn" or "Flu" or "BadBack" or "MissingBodyPart" or "Rimgate_SymbioteImplant"))
+                throw new InvalidOperationException("Seed only a vanilla representative or an actually resolved native sarcophagus policy condition.");
+            if (trait != null && !sarc.AlwaysTreatableTraits.Contains(trait) && !sarc.UsageBlockingTraits.Contains(trait))
+                throw new InvalidOperationException("Seed only an actually resolved native sarcophagus trait policy input.");
+            var newPatient = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, Faction.OfPlayer,
+                forceGenerateNewPawn: true, allowDead: false, allowDowned: false,
+                canGeneratePawnRelations: false, fixedBiologicalAge: 25f, fixedChronologicalAge: 25f));
+            if (xenotype != null)
+            {
+                if (newPatient.genes == null) throw new InvalidOperationException("The native input pawn has no gene tracker for its excluded xenotype.");
+                newPatient.genes.SetXenotype(xenotype);
+            }
+            newPatient.Name = new NameTriple("Rimgate", "Medical", "input");
+            if (newPatient.playerSettings != null) newPatient.playerSettings.medCare = MedicalCareCategory.Best;
+            if (brittle != null) newPatient.genes.AddGene(brittle, false);
+            var cell = sarc.InteractionCell + new IntVec3(2, 0, 1);
+            if (!cell.InBounds(map) || !cell.Standable(map) || cell.GetEdifice(map) != null)
+                throw new InvalidOperationException("Use a clear native-valid medical input cell.");
+            GenSpawn.Spawn(newPatient, cell, map);
+            Stage(newPatient, cell);
+            sarc.Assignable.ForceRemovePawn(patient);
+            sarc.Assignable.TryAssignPawn(newPatient);
+            patient = newPatient;
+            patientId = patient.GetUniqueLoadID();
+            if (patient.inventory != null)
+                patientMarkerId = Marker(patient, ThingDefOf.Gold, 11).GetUniqueLoadID();
+            else
+            {
+                // Nonhuman excluded races may have no inventory. This loose marker
+                // remains an input; eligibility checks make no inventory-owner claim.
+                var marker = ThingMaker.MakeThing(ThingDefOf.Gold);
+                marker.stackCount = 11;
+                var markerCell = cell + IntVec3.East;
+                if (!markerCell.InBounds(map) || !markerCell.Standable(map) || markerCell.GetEdifice(map) != null)
+                    throw new InvalidOperationException("The excluded native race needs a clear loose marker input cell.");
+                GenSpawn.Spawn(marker, markerCell, map);
+                patientMarkerId = marker.GetUniqueLoadID();
+            }
+            injuryId = "";
+            if (condition != null)
+            {
+                BodyPartRecord part = condition.defName == "MissingBodyPart"
+                    ? patient.RaceProps.body.AllParts.First(p => p.def.defName == "Finger")
+                    : condition.defName == "Burn" ? patient.RaceProps.body.corePart
+                    : condition.defaultInstallPart != null
+                        ? patient.RaceProps.body.AllParts.First(p => p.def == condition.defaultInstallPart) : null;
+                var input = patient.health.AddHediff(condition, part);
+                if (condition.defName == "Burn") input.Severity = 6f;
+                injuryId = input.GetUniqueLoadID();
+            }
+            if (patientEbfArm)
+            {
+                var arm = patient.RaceProps.body.AllParts.First(p => p.def.defName == "Arm");
+                patient.health.AddHediff(bionicArm, arm);
+                var bruise = patient.health.AddHediff(DefDatabase<HediffDef>.GetNamed("Bruise"), arm);
+                bruise.Severity = 6f;
+                injuryId = bruise.GetUniqueLoadID();
+            }
+            if (trait != null)
+            {
+                if (patient.story?.traits == null) throw new InvalidOperationException("The native input pawn has no TraitSet for the requested policy input.");
+                patient.story.traits.GainTrait(new Trait(trait, 0));
+            }
+        }
+        foreach (string research in new[] { "Rimgate_WraithCloneFull", "Rimgate_WraithCloneEnhancement", "Rimgate_WraithCloneCorpse" })
+            Find.ResearchManager.FinishProject(DefDatabase<ResearchProjectDef>.GetNamed(research), false, doctor, false);
+        pod.Refuelable.ConsumeFuel(pod.Refuelable.Fuel);
+        if (initialBiomass > 0) pod.Refuelable.Refuel(initialBiomass);
+        pod.Refuelable.allowAutoRefuel = false;
+        if (host.needs.food != null) host.needs.food.CurLevelPercentage = 0.35f;
+        if (patient.needs.food != null) patient.needs.food.CurLevelPercentage = 0.45f;
+        foreach (var pawn in new[] { host, patient })
+            foreach (var need in pawn.needs.AllNeeds.Where(n => n.def.defName is "DBHThirst" or "Bladder" or "Hygiene"))
+                // DBH naturally removes BadHygiene each need interval when clean.
+                // Keep only that fresh exclusion input genuinely dirty until entry.
+                need.CurLevelPercentage = ReferenceEquals(pawn, patient)
+                    && patientConditionDef == "BadHygiene" && need.def.defName == "Hygiene" ? 0f : 0.4f;
+        var biomassDef = DefDatabase<ThingDef>.GetNamed("Rimgate_Biomass");
+        var biomassInputs = new List<Thing>();
+        int remaining = looseBiomass;
+        int index = 0;
+        while (remaining > 0)
+        {
+            var cell = new IntVec3(137, 0, 134 + index++);
+            if (!cell.InBounds(map) || !cell.Standable(map) || cell.GetEdifice(map) != null
+                || cell.GetThingList(map).Any(t => t.def.category == ThingCategory.Item))
+                throw new InvalidOperationException("Keep native biomass input cells clear; no existing object may be replaced.");
+            var input = ThingMaker.MakeThing(biomassDef);
+            input.stackCount = Math.Min(remaining, biomassDef.stackLimit);
+            GenSpawn.Spawn(input, cell, map);
+            input.SetForbidden(false, false);
+            biomassInputs.Add(input);
+            remaining -= input.stackCount;
+        }
+        // Default cycles span several in-game days. Supply ordinary legal food
+        // inputs now; later real draft/undraft UI releases parked actors to eat.
+        var mealDef = DefDatabase<ThingDef>.GetNamed("MealSurvivalPack");
+        var mealCells = new CellRect(120, 129, 20, 10).Cells.Where(c => c.InBounds(map)
+            && c.Standable(map) && c.GetThingList(map).Count == 0 && c != pod.InteractionCell
+            && c != sarc.InteractionCell && c != pod.InteractionCell + new IntVec3(3, 0, 1)).Take(8).ToArray();
+        if (mealCells.Length != 8) throw new InvalidOperationException("The fresh medical apron needs eight clear ordinary ration cells.");
+        var rations = new List<Thing>();
+        foreach (var cell in mealCells)
+        {
+            var meal = ThingMaker.MakeThing(mealDef);
+            meal.stackCount = Math.Min(10, mealDef.stackLimit);
+            GenSpawn.Spawn(meal, cell, map);
+            meal.SetForbidden(false, false);
+            map.areaManager.Home[cell] = true;
+            rations.Add(meal);
+        }
+        string corpseId = "";
+        if (cloneMode == "Reconstruct")
+        {
+            // This newly generated dead donor is an input, not a clone outcome.
+            var donor = PawnGenerator.GeneratePawn(new PawnGenerationRequest(PawnKindDefOf.Colonist, Faction.OfPlayer,
+                forceGenerateNewPawn: true, allowDead: false, allowDowned: false,
+                canGeneratePawnRelations: false, fixedBiologicalAge: 25f, fixedChronologicalAge: 25f));
+            donor.Name = new NameTriple("Rimgate", "Reconstruction", "input");
+            var donorCell = pod.InteractionCell + new IntVec3(3, 0, 1);
+            if (!donorCell.InBounds(map) || !donorCell.Standable(map) || donorCell.GetEdifice(map) != null)
+                throw new InvalidOperationException("The new donor needs a clear native-valid corpse input cell.");
+            GenSpawn.Spawn(donor, donorCell, map);
+            donor.Kill(null, null);
+            var corpse = donor.Corpse ?? throw new InvalidOperationException("The new donor must produce a native corpse.");
+            corpse.SetForbidden(false, false);
+            host = donor;
+            hostId = donor.GetUniqueLoadID();
+            hostMarkerId = Marker(donor, ThingDefOf.Steel, 7).GetUniqueLoadID();
+            corpseId = corpse.GetUniqueLoadID();
+        }
+        var seededTrait = patient.story?.traits.allTraits.FirstOrDefault(t => sarc.AlwaysTreatableTraits.Contains(t.def));
+        return new
+        {
+            success = true, hostId, doctorId, patientId, podId, sarcophagusId, hostMarkerId, patientMarkerId, injuryId,
+            patientConditionDef, patientTraitDef, patientRaceDef, patientXenotypeDef, patientEbfArm, patientBrittleBones,
+            traitInputEligible = seededTrait != null, seededTraitDef = seededTrait?.def.defName, seededTraitDegree = seededTrait?.Degree,
+            cloneMode, initialBiomass = pod.Refuelable.Fuel, looseBiomass,
+            biomassInputs = biomassInputs.Select(t => new { id = t.GetUniqueLoadID(), count = t.stackCount,
+                x = t.Position.x, z = t.Position.z }).ToArray(), corpseId,
+            rations = rations.Select(t => new { id = t.GetUniqueLoadID(), count = t.stackCount,
+                x = t.Position.x, z = t.Position.z, home = map.areaManager.Home[t.Position] }).ToArray(),
+            rationCount = rations.Sum(t => t.stackCount),
+            routinePawnIds = map.mapPawns.FreeColonistsSpawned.Where(p => !p.Dead && !p.Downed && !p.InMentalState)
+                .Select(p => p.GetUniqueLoadID()).ToArray(),
+            corpseX = host.Corpse?.Position.x, corpseZ = host.Corpse?.Position.z,
+            doctorLabel = doctor.Label, hostFoodInput = host.needs?.food?.CurLevelPercentage,
+            patientFoodInput = patient.needs.food?.CurLevelPercentage,
+            initial = Snapshot(hostId, doctorId, patientId, podId, sarcophagusId, hostMarkerId, patientMarkerId, ""),
+            limits = "Only idle-fixture inputs. Clone mode is selected by normal UI, not this helper. Default costs/durations/failure rules remain unchanged. Loose biomass must enter through native refueling. Reconstruct uses a fresh dead donor and post-death inventory marker; original colonists remain intact."
+        };
+    });
+
     [Tool("rimgate/prepare_medical_fixture", Description = "Prepare guarded private cloning/sarcophagus inputs: buildings, real power network, research, fuel, staged colonists, assignment and one burn. Does not admit patients, calibrate, clone or heal.")]
     public static Task<object> Prepare(IRimBridgeContext context, string expectedConfigPath, string expectedModRoot)
         => context.MainThread.InvokeAsync<object>(() =>
@@ -147,6 +355,8 @@ public sealed class MedicalProbe
         var host = PawnById(hostId);
         var doctor = PawnById(doctorId);
         var patient = PawnById(patientId);
+        var clone = PawnById(string.IsNullOrEmpty(cloneId) ? pod.PendingClonePawn?.GetUniqueLoadID() ?? "" : cloneId);
+        var outcome = Field<Building_CloningPod>("_calibrationOutcome").GetValue(pod) as CalibrationOutcome;
         var plants = occurrences.Select(o => o.Thing).Distinct(ReferenceEqualityComparer.Instance)
             .OfType<ThingWithComps>().Select(t => t.GetComp<CompPowerPlant>()).Where(p => p != null).ToArray();
         var fixturePlants = plants.Where(p => p.parent.MapHeld == pod.Map
@@ -157,6 +367,8 @@ public sealed class MedicalProbe
                 .SelectMany(c => t.OccupiedRect().Select(cell => new { mapId = t.Map.uniqueID, cell, id = t.GetUniqueLoadID() })))
             .GroupBy(x => (x.mapId, x.cell)).Where(g => g.Count() > 1)
             .Select(g => new { g.Key.mapId, x = g.Key.cell.x, z = g.Key.cell.z, ids = g.Select(x => x.id).ToArray() }).ToArray();
+        var blockingHediffs = patient?.health.hediffSet.hediffs.Where(h => sarc.UsageBlockingHediffs.Contains(h.def)).ToArray() ?? [];
+        var blockingTraits = patient?.story?.traits.allTraits.Where(t => sarc.UsageBlockingTraits.Contains(t.def)).ToArray() ?? [];
         return new
         {
             success = true, tick = Find.TickManager.TicksGame,
@@ -178,7 +390,28 @@ public sealed class MedicalProbe
                 cycleCostAvailable = pod.TryGetCostForCurrentCycle(out int cost), cycleCost = cost,
                 hostMenu = Menu(pod, host), doctorMenu = Menu(pod, doctor),
                 genomeEntryLabel = ColoredText.StripTags("RG_EnterCloningPod".Translate("RG_BeginCloneGenome".Translate()).ToString()),
-                genomeCalibrationLabel = pod.HostPawn == null ? null : ColoredText.StripTags("RG_CloneOccupantGenes".Translate(pod.HostPawn.LabelCap).ToString())
+                genomeCalibrationLabel = pod.HostPawn == null ? null : ColoredText.StripTags("RG_CloneOccupantGenes".Translate(pod.HostPawn.LabelCap).ToString()),
+                fullEntryLabel = ColoredText.StripTags("RG_EnterCloningPod".Translate("RG_BeginCloneFull".Translate()).ToString()),
+                enhancedEntryLabel = ColoredText.StripTags("RG_EnterCloningPod".Translate("RG_BeginCloneSoldier".Translate()).ToString()),
+                calibrationLabel = pod.HostPawn == null ? null : ColoredText.StripTags((pod.CloningType switch
+                {
+                    CloneType.Full => "RG_CloneOccupantFull", CloneType.Enhanced => "RG_CloneOccupantSoldier",
+                    CloneType.Reconstruct => "RG_CloneReconstructDead", _ => "RG_CloneOccupantGenes"
+                }).Translate(pod.HostPawn.LabelCap).ToString()),
+                reconstructGizmoLabel = "RG_BeginCloneCorpse".Translate().ToString().CapitalizeFirst(),
+                ejectLabel = "RG_CommandCloningPodEjectLabel".Translate().ToString(),
+                abortLabel = "RG_CommandCloningPodAbortIncubationLabel".Translate().ToString(),
+                containsCorpse = pod.ContainsCorpse, containedThingId = pod.ContainedThing?.GetUniqueLoadID(),
+                needsSnapshotTaken = (bool)Field<Building_CloningPod>("_hostNeedsSnapshotTaken").GetValue(pod),
+                savedFood = (float)Field<Building_CloningPod>("_hostSavedFoodNeed").GetValue(pod),
+                savedDbhThirst = (float)Field<Building_CloningPod>("_hostSavedDbhThirstNeed").GetValue(pod),
+                unpoweredTicks = (int)Field<Building_CloningPod>("_incubationUnpoweredTicks").GetValue(pod),
+                outcome = outcome == null ? null : new { outcome.AnyIssues, outcome.MinorIssues, outcome.MajorIssues,
+                    outcome.majorCloneDies, outcome.majorHostDies, outcome.majorIdiotClone, outcome.majorInsaneClone,
+                    outcome.minorGenderSwap, outcome.minorAlbino, outcome.minorBonusGenes, outcome.minorRandomTraits },
+                sharedHostCloneTraitReferences = host?.story?.traits?.allTraits.Count(t => clone?.story?.traits?.allTraits
+                    .Any(other => ReferenceEquals(t, other)) == true) ?? 0,
+                biomassOnMap = roots.Where(t => t.def.defName == "Rimgate_Biomass").Sum(t => t.stackCount)
             },
             sarcophagus = new
             {
@@ -198,7 +431,22 @@ public sealed class MedicalProbe
                     patientOwnsReference = sarc.PatientPawn?.story?.traits.allTraits.Any(actual => ReferenceEquals(actual, t)) == true
                 }).ToArray(),
                 assigned = sarc.Assignable.AssignedPawnsForReading.Select(p => p.GetUniqueLoadID()).ToArray(),
-                patientMenu = Menu(sarc, patient)
+                patientMenu = Menu(sarc, patient),
+                policyDenials = new
+                {
+                    medicalCareAllowed = MedicalUtil.HasAllowedMedicalCareCategory(patient),
+                    raceBlocked = patient != null && !patient.IsValidRaceFor(sarc.DisallowedRaces),
+                    xenotypeBlocked = patient != null && !patient.IsValidXenotypeFor(sarc.DisallowedXenotypes),
+                    raceLabel = patient == null ? "" : DenialLabel("RG_Sarcophagus_RaceNotAllowed".Translate(patient.def.label.CapitalizeFirst())),
+                    xenotypeLabel = patient?.genes?.Xenotype == null ? "" : DenialLabel("RG_Sarcophagus_RaceNotAllowed".Translate(patient.genes.Xenotype.label.CapitalizeFirst())),
+                    blockingHediffCount = blockingHediffs.Length, blockingTraitCount = blockingTraits.Length,
+                    blockingHediffLabels = blockingHediffs.Select(h => DenialLabel("RG_Sarcophagus_PatientWithHediffNotAllowed".Translate(h.LabelCap))).ToArray(),
+                    blockingTraitLabels = blockingTraits.Select(t => DenialLabel("RG_Sarcophagus_PatientWithTraitNotAllowed".Translate(t.LabelCap))).ToArray()
+                },
+                abortLabel = "RG_Sarcophagus_CommandGizmoAbortTreatment_Label".Translate().ToString(),
+                needsSnapshotTaken = (bool)Field<Building_Sarcophagus>("_patientNeedsSnapshotTaken").GetValue(sarc),
+                savedFood = (float)Field<Building_Sarcophagus>("_patientSavedFoodNeed").GetValue(sarc),
+                savedDbhThirst = (float)Field<Building_Sarcophagus>("_patientSavedDbhThirstNeed").GetValue(sarc)
             },
             powerTopology = new
             {
@@ -220,7 +468,10 @@ public sealed class MedicalProbe
             {
                 RimgateMod.Settings.BaseCalibrationTicks, RimgateMod.Settings.BaseIncubationTicks,
                 RimgateMod.Settings.MedicineSkillReq, RimgateMod.Settings.MinorFailures, RimgateMod.Settings.MajorFailures,
-                RimgateMod.Settings.SarcophagusMaxDiagnosisTime, RimgateMod.Settings.SarcophagusMaxPerHediffHealingTime
+                RimgateMod.Settings.SarcophagusMaxDiagnosisTime, RimgateMod.Settings.SarcophagusMaxPerHediffHealingTime,
+                RimgateMod.Settings.FullCloneFactor, RimgateMod.Settings.EnhancedCloneFactor,
+                RimgateMod.Settings.ReconstructionCloneFactor, RimgateMod.Settings.NoSkillLoss,
+                RimgateMod.Settings.MajorFailureChance, RimgateMod.Settings.MinorFailureChance
             },
             limits = "Reference equality distinguishes actual objects; owner occurrences and map registrations are separate. Pending clones are inspected explicitly because generic holder traversal alone does not expose that owner. Compare XML deep definitions as a separate Scribe proof; a missing tracked object alone does not establish destruction."
         };
@@ -237,6 +488,7 @@ public sealed class MedicalProbe
             wantsOn = power != null && FlickUtility.WantsToBeOn(power.parent),
             brokenDown = power != null && power.parent.IsBrokenDown(),
             electricityDisabled = power?.parent.Map?.gameConditionManager.ElectricityDisabled(power.parent.Map),
+            solarFlareActive = power?.parent.Map?.gameConditionManager.ConditionIsActive(DefDatabase<GameConditionDef>.GetNamed("SolarFlare")),
             generationWatts = parts.Where(p => p.PowerOn && p.PowerOutput > 0f).Sum(p => p.PowerOutput),
             drawWatts = -parts.Where(p => p.PowerOn && p.PowerOutput < 0f).Sum(p => p.PowerOutput),
             currentGainWattDaysPerTick = net?.CurrentEnergyGainRate(), storedWattDays = net?.CurrentStoredEnergy(),
@@ -285,21 +537,49 @@ public sealed class MedicalProbe
             pawn = pawn == null ? null : new
             {
                 dead = pawn.Dead, downed = pawn.Downed, job = pawn.CurJobDef?.defName,
+                raceDef = pawn.def.defName, xenotypeDef = pawn.genes?.Xenotype?.defName, bodySize = pawn.BodySize,
                 jobTargetA = pawn.CurJob?.targetA.Thing?.GetUniqueLoadID(),
                 medicalOperationSpeed = readMedicalSpeed ? (double?)StatExtension.GetStatValue(pawn, RimgateDefOf.MedicalOperationSpeed, true, -1) : null,
                 medicine = pawn.skills?.GetSkill(SkillDefOf.Medicine).Level,
                 cloneGeneration = pawn.health.hediffSet.hediffs.OfType<Hediff_Clone>().FirstOrDefault()?.CloneGeneration,
-                traits = pawn.story?.traits.allTraits.Select(t => new { defName = t.def.defName, degree = t.Degree }).ToArray(),
+                traits = pawn.story?.traits.allTraits.Select(t => new { defName = t.def.defName, degree = t.Degree,
+                    ownerId = t.pawn?.GetUniqueLoadID(), ownerIsThisPawn = ReferenceEquals(t.pawn, pawn),
+                    scenForced = t.ScenForced, t.suppressedByTrait,
+                    sourceGene = t.sourceGene?.def.defName,
+                    sourceGeneOwned = t.sourceGene == null || pawn.genes.GenesListForReading.Contains(t.sourceGene),
+                    sourceEndogene = t.sourceGene == null ? (bool?)null : pawn.genes.Endogenes.Contains(t.sourceGene),
+                    suppressorGene = t.suppressedByGene?.def.defName,
+                    suppressorGeneOwned = t.suppressedByGene == null || pawn.genes.GenesListForReading.Contains(t.suppressedByGene),
+                    suppressorEndogene = t.suppressedByGene == null ? (bool?)null : pawn.genes.Endogenes.Contains(t.suppressedByGene) }).ToArray(),
+                childhood = pawn.story?.Childhood?.defName, adulthood = pawn.story?.Adulthood?.defName,
+                skills = pawn.skills?.skills.Select(s => new { defName = s.def.defName, level = s.Level,
+                    passion = s.passion.ToString() }).ToArray(),
                 food = pawn.needs?.food?.CurLevelPercentage, inventory = Ids(pawn.inventory?.innerContainer),
                 needs = pawn.needs?.AllNeeds.Select(n => new { defName = n.def.defName, type = n.GetType().FullName,
                     level = n.CurLevel, percentage = n.CurLevelPercentage }).ToArray(),
                 hediffs = pawn.health.hediffSet.hediffs.Select(h => new
-                { id = h.GetUniqueLoadID(), defName = h.def.defName, severity = h.Severity, part = h.Part?.def.defName }).ToArray()
+                { id = h.GetUniqueLoadID(), defName = h.def.defName, severity = h.Severity, part = h.Part?.def.defName,
+                    tendableNow = h.TendableNow(), visible = h.Visible,
+                    nativePartMaxHealth = h.Part == null ? (float?)null : RawPartMaxHealth(h.Part, pawn),
+                    wrapperPartMaxHealth = h.Part == null ? (float?)null : EbfCompatibilityWrapper.GetMaxHealth(h.Part.def, pawn, h.Part) }).ToArray(),
+                genes = pawn.genes?.GenesListForReading.Select(g => new { defName = g.def.defName,
+                    endogene = pawn.genes.Endogenes.Contains(g), active = g.Active }).ToArray()
             }
         };
     }
     private static object[] Menu(Thing thing, Pawn pawn) => pawn?.Spawned == true
         ? thing.GetFloatMenuOptions(pawn).Select(o => (object)new { label = ColoredText.StripTags(o.Label), disabled = o.Disabled }).ToArray() : [];
+    private static string DenialLabel(string reason) => ColoredText.StripTags("UseMedicalBed".Translate() + " (" + reason + ")");
+    private static float RawPartMaxHealth(BodyPartRecord part, Pawn pawn)
+    {
+        var endpoint = EbfCompatibilityWrapper.makeshiftEbfEndpoint;
+        if (endpoint == null) return part.def.GetMaxHealth(pawn);
+        // EBF's explicit vanilla-intent API owns its protocol marker; never call
+        // the patched generic getter directly or suppress diagnostics ourselves.
+        var raw = endpoint.DeclaringType!.GetMethod("GetRawMaxHealth", [typeof(BodyPartDef), typeof(Pawn)])
+            ?? throw new InvalidOperationException("The loaded EBF endpoint lacks its explicit raw max-health API.");
+        return (float)raw.Invoke(null, [part.def, pawn]);
+    }
     private static string[] Ids(ThingOwner owner) => owner?.Select(t => t.GetUniqueLoadID()).ToArray() ?? [];
     private static FieldInfo Field<T>(string name) => typeof(T).GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)!;
     private static void LayConduit(IntVec3 cell, Map map)
@@ -328,7 +608,7 @@ public sealed class MedicalProbe
     private static void Stage(Pawn pawn, IntVec3 cell)
     {
         pawn.jobs.StopAll();
-        pawn.drafter.Drafted = false;
+        if (pawn.drafter != null) pawn.drafter.Drafted = false;
         pawn.pather.StopDead();
         pawn.Position = cell;
         var wait = JobMaker.MakeJob(JobDefOf.Wait_MaintainPosture);
