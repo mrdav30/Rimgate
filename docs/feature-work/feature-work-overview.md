@@ -47,8 +47,11 @@ from generation, registration, sampled frames and component-isolated checks.
 The owner-selected current-threat ZPM correction now passes a fresh scheduled
 wave. The bounded optional pass is complete on actual absent/present dependency
 profiles: startup, content/hook contracts and representative clinical/facility
-operations pass. The plan preserves qualified or unexercised policy/combat
-branches. [RG-Issue-028](rimworld-1.7-migration-plan.md#nested-corpse-container-persistence-rg-issue-028)
+operations pass. A [bounded follow-up](rimworld-1.7-migration-plan.md#optional-foundry-and-alpha-clinical-follow-up)
+also verifies native Warcasket manufacture and trait-based admission rejection,
+plus Alpha Genes suppression through real occupied-sarcophagus destruction.
+The plan preserves other qualified or unexercised policy/combat branches.
+[RG-Issue-028](rimworld-1.7-migration-plan.md#nested-corpse-container-persistence-rg-issue-028)
 now preserves nested bodies in bare/minified carts across site unloading and
 regeneration, with the original container structure and existing loose saves.
 The [coordinated manual quality pass](rimworld-1.7-migration-plan.md#coordinated-manual-quality-pass)

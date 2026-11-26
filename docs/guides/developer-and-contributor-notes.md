@@ -1017,6 +1017,7 @@ actual object IDs; use fresh UI IDs after selection or reload.
 | `rimbridge-world-edges-1.7.lua` | Use a real discovered/equipped orbital fixture. Wear loose vanilla protection through normal jobs before real dialing/entry; read actual vacuum and native resistance. Real return dialing and world Abandon UI test visitation, quest/address/site cleanup and reload. Preserve hostile encounter results separately from vacuum or transport failures. |
 | `rimbridge-world-incidents-1.7.lua` | Trigger the selected real incident worker, inspect its actual conditions/ore/hostiles and save/load. Ending a condition through the native debug End action proves its cleanup lifecycle, not natural-duration expiry. Generated ore and raiders do not establish mining or combat victory. |
 | `rimbridge-integrations-1.7.lua` | Read-only resolved-content and hook checks. Supply an exact `expectedActivePackagesCsv` (empty for absence) and optional `patientId`. Actual eligibility, treatment and facility operations remain separate assertions. |
+| `rimbridge-optional-clinical-1.7.lua` | Alpha Genes: `inputs` stages native default-severity addictions and a loose Minigun for an existing fresh adult brittle-bones medical patient. Retain its returned fixture, then use real equip, movement, admission and ranged-target commands. `combat` observes the actual occupied-sarcophagus destruction/downing caller; a qualifying held-patient guard call and verified observer removal are required. |
 
 For nested-corpse checks, call `rimgate/prepare_cart_gate_fixture` first, then
 `rimgate/prepare_nested_corpse` with the actual empty cart ID. The latter creates
@@ -1040,6 +1041,40 @@ and single deep ownership. The existing loose-corpse owner is a separate control
 input** for the shell/inner-cart branch; it does not establish minify-job or
 manifest-loading acceptance. Compile changed Lua through the installed SDK and
 keep host-side pause cleanup in `finally` for every phase.
+
+For Warcasket admission checks, prepare a fresh medical edge patient with an
+independent treatable injury and a distinct Crafting-capable welder. Load the
+owned save matching the actual optional-mod profile through `sourceSave`; do not
+reuse the core-profile save with missing dependencies. Call
+`rimgate/prepare_warcasket_foundry_inputs` with the expected private paths,
+`sarcophagusId`, `patientId` and `welderId`. It stages only an empty foundry,
+basic research, raw materials and Crafting priority, rejecting occupied/wiping
+footprints. Let normal ticks connect power, select the patient and choose the
+actual **Entomb in warcasket** menu. Accept the native customization dialog,
+then order the separate welder's real **Prioritize welding** job. Observe
+`rimgate/warcasket_foundry_status` with the returned `foundryId` and actor IDs.
+Require completed native work, cleared project/occupant, normal pilot release
+and the actual worn apparel/trait; customization preview state cannot pass.
+Then verify the genuine sarcophagus trait-specific denial while the independent
+injury remains, including retained identities and the denial across save/load.
+Reacquire exact pawn selection and menu targets after reload; a missing/stale UI
+sample is inconclusive. Keep jobs/progress/apparel/traits as native outcomes.
+
+For Alpha Genes, prepare an adult active `AG_BrittleBones` patient using the
+medical edge scenario's `patientBrittleBones` input and a matching `sourceSave`.
+Use the optional clinical scenario's `inputs` with that patient, a distinct
+empty-handed `shooterId` and `sarcophagusId`. Its own returned fixture includes
+the actual loose gun identity and coordinates. Use `equip-menu`/`equip` with
+the discovered native label, then normal draft/movement to a clear firing cell
+near the sarcophagus **before** `admit-menu`/`admit`. The three native addictions
+allow longer treatment at default severities/timers; do not reset clinical
+progress, HP, injuries or RNG during the case. `combat-menu` exposes the real
+weapon commands; pass its current `Command_VerbTarget` ID as `attackGizmoId` to
+`combat`, rather than choosing Fire at will. The script verifies the equipped
+gun and exact-target AttackStatic job, then observes normal combat up to its
+wall-clock/tick limits (`maxTicks` defaults to 3000, at most 4500). Record the
+actual elapsed ticks. A timeout or patient discharge without a qualifying call
+does not pass; use host pause/End cleanup on failures rather than retrying seeds.
 
 For the bounded Alpha Genes clinical case, arm the passive
 `rimgate/begin_alpha_clinical_watch` **after** equipment, admission and any reload,

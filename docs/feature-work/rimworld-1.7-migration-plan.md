@@ -7,7 +7,9 @@
   cargo/loose corpse continuation and ZPM facilities/scheduled raids. Optional
   present-dependency clinical/facility checks have finished their bounded pass;
   23-mod startup, content/hook contracts and representative actual operations
-  pass, with qualified branches retained in the [optional acceptance record](#final-optional-integration-acceptance).
+  pass. The [bounded follow-up](#optional-foundry-and-alpha-clinical-follow-up)
+  also accepts genuine Warcasket manufacture/exclusion and Alpha's held-patient
+  suppression; other qualified branches remain explicit.
   [RG-Issue-028](#nested-corpse-container-persistence-rg-issue-028) now preserves
   nested bodies in bare/minified carts through site unloading and regeneration.
   Continuous-motion, representative
@@ -1636,8 +1638,9 @@ corpse/downed hauling now have focused acceptance below. Current follow-ups are:
   collection and orbital combat/loot victory are not claimed by those cases.
 - The [bounded optional pass](#final-optional-integration-acceptance) now covers
   absent/present dependencies and representative actual health/facility paths.
-  Isolated Android/Rimsec guards, the genuine Warcasket foundry consumer and
-  Alpha's clinical suppression remain qualified or unproven. Quarry's installed
+  The [foundry/Alpha follow-up](#optional-foundry-and-alpha-clinical-follow-up)
+  now verifies those two actual consumers. Isolated Android/Rimsec guards remain
+  qualified. Quarry's installed
   package declares only through 1.6 and is excluded from the 1.7 profile; separate
   DBH variants are unaccepted. These are explicit coverage limits, not blanket
   compatibility claims.
@@ -2621,11 +2624,18 @@ Altered Carbon, EPOE and VFEMedical also selected declared legacy-folder binarie
 | DBH | Actual admission held BadHygiene while hygiene/bladder filled normally. Native DBH cleaning removed that condition before diagnosis, so this is not isolated queue-exclusion causality. Separate dirty BadHygiene-only input correctly reported not injured (`op_969c6bf79f4b426eb8bae93bf710889d`); Bruise treatment/reload/cure passed (`op_33ee274526cf4a508e1d5065e2a003df`). Thirst was disabled; DBH variants remain unaccepted. |
 | Positive policies | RadiationIncurable, Shellcasket, Lush and Stoner entered actual treatment queues, survived queue reload and were removed by normal completion; BionicArm remained. Completion operations: `op_ee9d5072a2734c8d8370d907f4f2ee2a`, `op_5ba609310d324415924c206c36606398`, `op_a227f040e66f4e73969e66c5afcbabcc`, `op_19015a5e275942d48d66fcd9e69d4ad5`. Naturally generated scar/addiction targets were retained in the observed queue rather than cleared for the test. |
 | Admission controls | Injured unrestricted human actually entered and aborted normally. EmptySleeve plus independently treatable EBF Bruise reached the intended native blocking-hediff denial (`op_62cb7ded72e44856aed2ac1d6218328f`). |
-| Android | Both actual excluded xenotypes with independent tendable Burn were rejected, but upstream medical-care policy preempted the xenotype-specific denial. Resolved exclusion plus observed rejection is accepted; isolated xenotype-guard execution is not (`op_7b35869e12da41a085ea467d318592f3`, `op_6776d28ad0ab42b68cb86d8609e34abe`). |
-| Rimsec | Generic PawnGenerator input was invalid because it omitted native robot initialization. The genuine DefenderSpawner produced consciousness/battery-bearing robot47119 and ran 120 ticks without that error (`op_004660a7892b4558945e651cc4bba446`, `op_3d64db3915f5421ca764dd1eb4de052b`). NotInjured preempted specific race denial; the helper now rejects that exact factory-only generic input. Race-guard clinical acceptance remains qualified. |
+| Android | Both actual excluded xenotypes with independent tendable Burn were rejected, but Rimgate's medical-care prerequisite, using the game's effective care category, ran before its xenotype-specific denial. Resolved exclusion plus observed rejection is accepted; isolated xenotype-guard execution is not (`op_7b35869e12da41a085ea467d318592f3`, `op_6776d28ad0ab42b68cb86d8609e34abe`). |
+| Rimsec | Generic PawnGenerator input was invalid because it omitted native robot initialization. The genuine DefenderSpawner produced consciousness/battery-bearing robot47119 and ran 120 ticks without that error (`op_004660a7892b4558945e651cc4bba446`, `op_3d64db3915f5421ca764dd1eb4de052b`). Rimgate's treatment-eligibility check returned NotInjured before its specific race denial; the helper now rejects that exact factory-only generic input. Race-guard clinical acceptance remains qualified. |
 | Warcasket | Raw trait insertion was rejected by upstream apparel-exclusive policy; loose apparel spawning also failed. Neither is an accepted clinical input. The genuine foundry consumer remains unrun; no guessed cause or production workaround was adopted. |
 | VFEMedical | Native reciprocal table/light links and real pawn flick jobs measured facility offset .15→0→.15 and surgery factor .71400005→.63750005→.71400005 (`op_6a2b2b44d88e4002b6aff4f52687624c`, `op_c26cff05adff44d79bd3417efc4fb568`, `op_43022628435941e6b04c1fa4b81ebec8`). This proves link/power/stat behavior, not surgery outcomes. |
 | Alpha Genes | The exact passive observer registered, and a real player-forced AttackStatic targeted the occupied sarcophagus. Normal treatment discharged the patient before destruction within the bounded 900-tick attempt; zero qualifying guard calls means suppression remains unproven. Actual End removed the observer (`op_d375227cc13c4956b5eec1af67b9dd48`, `op_09bc19f765424a0a9eeac7585e2ad1f1`, `op_86d77ca061ef47ee9f5325a06f667f1f`). Registration/consumer audit and watch cleanup are distinct evidence. |
+
+These earlier admission results do not mean the race/xenotype exclusions were
+removed or bypassed. `SarcophagusUtil.IsValidSarcophagusFor` calls
+`ShouldSeekTreatment` before `IsValidForUserType`, which owns those exclusions.
+The first failing prerequisite supplies the visible denial. Describing this as
+"earlier native rules" was imprecise: these are Rimgate admission checks using
+game/dependency state. No check order or medical policy was changed for coverage.
 
 The initial EBF observer itself violated upstream protocol by calling the patched
 vanilla getter (attention12, stack naming `MedicalProbe.Tracked`). It now uses
@@ -2721,6 +2731,106 @@ case. Motion, representative native texture appearance and actual device playbac
 still require a coordinated visible private session. No foreground focus or output-volume
 change was made during this pass. Phase 4/public support/defaults/final freeze
 remain pending; background success does not waive those remaining gates.
+
+### Optional foundry and Alpha clinical follow-up
+
+November 26, 2026, based on `bcb639f`: bounded checks used the same actual
+1.7.5014 rev1195 game, all five DLC and matching 23-mod private profile. Startup
+reported 23 active/loaded packages, session match and zero configuration,
+dependency, order or version warnings (`op_af8851bd39b245efa49fadaefb2bf67d`).
+The tested production DLL remained unchanged. Only development companion inputs,
+readers and a replay scenario were added; no production policy, patch order,
+treatment timer, building HP or RNG outcome was changed.
+
+**Warcasket.** Fresh patient `Thing_Human47072` had independently treatable
+Burn `Hediff_239`. Input preparation staged an empty foundry at (129,136),
+native research, Crafting priority and basic raw materials without wiping
+existing objects (`op_acc835a52b2141b080be24198e902ef2`). Real Entomb in warcasket
+opened the native customization dialog. Its actual Accept button selected the
+default armor, shoulders and helmet; preview apparel was not accepted as a result.
+The actual Prioritize welding job hauled the required 160 Steel, 20 Uranium and
+3 industrial components and performed native work: 0 → 2939.7893 → completed,
+against total 3000. The project/occupant cleared and the patient resumed an
+ordinary Ingest job (`op_357a37469331479aa8bb9baa78f3963d`,
+`op_b7643cea6b114e248c198afe9699f299`, `op_d6a2f82e4940483fa5eab49bc0e1576a`).
+
+Normal equipment wear granted `VFEP_WarcasketTrait` and produced apparel IDs
+`Thing_VFEP_Warcasket_Warcasket51289`,
+`Thing_VFEP_WarcasketShoulders_Warcasket51291` and
+`Thing_VFEP_WarcasketHelmet_Warcasket51290`, each worn by the exact patient.
+With the original Burn still present, the actual sarcophagus menu rejected
+admission with **cannot treat patients with Warcasket trait**
+(`op_89a8c4e522eb44a2a29eefe5f3bc1cc6`). Save/reload preserved those apparel
+identities, the trait, patient and injury. A fresh exact-patient selection and
+actual menu repeated that denial (`op_8d2eaebc7137476d8fc78563a3cf5bbf`);
+the read-only medical oracle independently reported one blocking trait and the
+same denial. An earlier immediately-after-load UI sample returned no menu, then
+a not-assigned label; that sample alone was inconclusive and was superseded by
+the exact selection/oracle/menu check. No production workaround was needed.
+
+**Alpha Genes.** Installed `AlphaGenes.dll` hashes to
+`899A91B3B2C917A2E1D8561943BD8AA55ABF3BE393D50AF848B4574E4D1D8C38`.
+Its actual `BreakSomeBones` postfix consumes `Pawn_HealthTracker.MakeDowned`;
+Rimgate prefixes that dependency method. Occupied-sarcophagus destruction calls
+`HealthUtility.DamageUntilDowned` before ejection, providing the genuine caller.
+A fresh adult patient with active `AG_BrittleBones` received native
+Alcohol/Smokeleaf/Psychite addictions at their default severity .5 and one loose
+Minigun was staged (`op_9cde4477a93e4daaa58d4fd40e660141`). Those were starting
+inputs, allowing longer ordinary treatment; the helper did not equip, admit,
+damage, down or finish anything.
+
+Real Equip and movement put shooter `Thing_Human992` at (129,132) with the exact
+input gun `Thing_Gun_Minigun47115`. Real admission held patient
+`Thing_Human47072` alive and conscious in sarcophagus
+`Thing_Rimgate_GoauldSarcophagus47069`, initially at HP380 with default diagnosis
+and treatment settings (`op_b02494595dc64eb798c9eb2b138bcc52`). The genuine ranged
+`Command_VerbTarget` created an exact-target AttackStatic job. Within the bounded
+3000-tick budget, actual combat ran from job tick1380 to observed terminal
+tick2914; the building was gone and the original patient was alive/downed on the
+map. This is not a claim of long-term patient survival or every damage path.
+
+The passive observer recorded **one actual call at tick2903**, for that exact
+patient and sarcophagus holder, `ownedBySarcophagus: true`, `returned: false`.
+That directly verifies suppression rather than inferring it from injuries
+(`op_d2854ed9ab274a019a95e0f8c1d1c692`). End and host-finally cleanup both verified
+`observerRegistered: false`, `unpatched: true`
+(`op_9f669f43342e4c02baeab165c9aeb98f`). No direct guard call or forced destruction
+was used. Both operation and nested scenario results succeeded. The new scenario
+compiled through the installed SDK (`op_ce04d8f0a8c040cda008ff6aa68ad5e4`), and
+independent source review found no material issue in the input/observation scope
+or acceptance/cleanup checks.
+
+Exact native method audits, fixture IDs, operation payloads, result saves and
+the final native log are retained outside Git under
+`RimgateDev/evidence/optional-followup-20261126-152737/`. The contributor guide
+owns the reusable protocols. Earlier rejected fixtures remain historical
+evidence; the two previously unproven consumers now pass. Android/Rimsec
+qualification and unavailable dependency variants are unchanged. Continuous
+motion, representative native appearance and actual device/listening remain
+coordinated manual gates; phase 3 remains active and phase 4 remains pending.
+
+The companion build and supported-library/strict DocFX/site checks passed with
+zero warnings/errors; all 26 relative file links in the changed docs and
+`git diff --check` passed. Independent review also matched the recorded results
+to the actual operation payloads. The tested companion SHA256 is
+`4329CAA427FBFEA6B7D69349877C2F6A0919F1253466629FD07C4CB75FA213FA`;
+the unchanged production DLL is
+`0472D4858844CF666D1E56EFEDA77034643C7AC29649694AF6A4D75F2BAB2D40`.
+No ERROR/Exception entries were found in the retained final native log; existing
+startup/engine warnings are not claimed absent. Live 1.6 gameplay was not rerun.
+
+Shutdown verified process21360 gone. Original private config (6 files) and
+142 owned private saves were restored and byte/inventory checked; generated
+test saves and Rimatomics settings were retained separately as evidence.
+All **125 normal config files, 10 player saves, four retained 1.6 bundles and
+four native pack files** match the starting inventories/hashes. The documentation
+build's temporary 1.6 assembly outputs were replaced with their backed-up
+original bytes; the retained DLL remains
+`804D03320F63466457EAD8B4B14445AAA5035CE045EB0740F1032ACAA573738A`.
+There is no diff to Source/1.6, Mod/1.6, raw assets or the Unity builder, and
+the Git index remains `e911953aee87089b4dbb67d80360bb9ff978e044`. No foreground
+focus, output volume, player config, Steam branch, support/default or local
+insurance-snapshot change was made. All changes remain unstaged/uncommitted.
 
 ### Nested corpse container persistence (RG-Issue-028)
 
