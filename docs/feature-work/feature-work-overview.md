@@ -48,8 +48,9 @@ The owner-selected current-threat ZPM correction now passes a fresh scheduled
 wave. The bounded optional pass is complete on actual absent/present dependency
 profiles: startup, content/hook contracts and representative clinical/facility
 operations pass. The plan preserves qualified or unexercised policy/combat
-branches. [RG-Issue-028](issue-tracker.md#rg-issue-028) tracks the pre-existing
-nested-corpse representation risk awaiting its own native reproduction.
+branches. [RG-Issue-028](rimworld-1.7-migration-plan.md#nested-corpse-container-persistence-rg-issue-028)
+now preserves nested bodies in bare/minified carts across site unloading and
+regeneration, with the original container structure and existing loose saves.
 The [coordinated manual quality pass](rimworld-1.7-migration-plan.md#coordinated-manual-quality-pass)
 requires continuous motion, representative native texture appearance and actual
 audio/device listening. Background captures and PCM do not close those gates.

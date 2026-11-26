@@ -302,6 +302,14 @@ public class Building_MobileContainer : Building, ILoadReferenceable, IHaulSourc
         Scribe_TargetInfo.Look(ref _cachedDesignationTarget, "_cachedDesignationTarget");
     }
 
+    internal void DeSpawnForTransitStorage()
+    {
+        // Site storage keeps the actual cargo; map-only work targets cannot survive unloading.
+        CancelLoad(Map);
+        ClearDesignations();
+        base.DeSpawn();
+    }
+
     public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
     {
         base.DeSpawn(mode);

@@ -34,38 +34,8 @@ performance signals belong in the [performance backlog](performance-signal-backl
 
 ## Active and deferred investigations
 
-The migration plan owns optional-integration coverage limits and manual quality
-gates. The following source-grounded concern needs a bounded native reproduction;
-it is separate from the verified loose-corpse correction.
-
-<a id="rg-issue-028"></a>
-
-### RG-Issue-028 - Nested corpse state is not represented by site value snapshots
-
-- **Status / priority:** Needs reproduction; P2 saved-state risk. No migration
-  regression or verified runtime failure is claimed.
-- **Discovered / revision:** November 25, 2026; independent review of the
-  uncommitted phase-3 work based on `6c6b268`.
-- **Owners / impact:** `Source/1.7/Rimgate/Support/TransitStoredThing.cs` and
-  `World/WorldObject_GateTransitSite.cs`. The site's new deep owner handles
-  spawned loose corpses. A corpse inside a cart instead uses the unchanged
-  recursive value snapshot: it skips `Pawn` children and reconstructs a generic
-  corpse without assigning its original `InnerPawn`. Potential impact is invalid
-  remains or loss of the nested pawn's identity, health and inventory when an
-  unloaded site regenerates. This coarse-container path predates this round.
-- **Reproduction / expected / observed:** Static inspection establishes the
-  missing representation, not its exact native manifestation. Prepare a corpse
-  with a unique inventory marker; use real cart loading and gate jobs; return the
-  operator and close the gate until the receiving site unloads; save/reload,
-  reopen and compare corpse/pawn/marker identity, state, deep owners and errors.
-  Do not substitute loose-corpse transit or a map that never unloaded.
-- **Evidence / limits:** The [phase-3 coverage boundary](rimworld-1.7-migration-plan.md#remaining-phase-3-gates)
-  already excludes arbitrary nested corpses from the loose-corpse proof.
-  `TransitStoredThing` is unchanged from the baseline; no fix or live reproduction
-  was attempted in the optional clinical pass.
-- **Next action:** Run that single retained-input case before choosing a
-  representation change. Preserve retained 1.6 and distinguish deep ownership
-  from queue references; do not generalize the existing loose-corpse acceptance.
+No active defect entries. The migration plan owns remaining manual quality
+gates and qualified optional-integration coverage.
 
 ## Closed issues
 
@@ -98,6 +68,7 @@ it is separate from the verified loose-corpse correction.
 | <a id="rg-issue-025"></a>RG-Issue-025 - Ordinary carts incorrectly refrigerate food | November 25, 2026 | **Verified 1.7 correction.** Derive sealing from the refrigeration extension and actual fuel; reconcile on spawn/reload and rare checks. The retained wheelbarrow meal resumes rot; a fuelled refrigerator preserves its meal through reload and real unloading resumes spoilage. [Before/after and limits](rimworld-1.7-migration-plan.md#final-logistics-acceptance). | Ordinary parked cargo stops ticking/rotting, a fuelled refrigerator fails to preserve it, or fuel loss/unloading fails to release preservation under the measured native conditions. |
 | <a id="rg-issue-026"></a>RG-Issue-026 - Cart conversion re-enables automatic refuelling | November 25, 2026 | **Verified 1.7 correction.** Save/copy the actual auto-refuel flag through proxy conversion. Fresh disabled input survives proxy reload and natural exhaustion without an automatic refill; the real enabled-gizmo control survives reload/restoration and permits native refuelling. [Field proof and controls](rimworld-1.7-migration-plan.md#final-logistics-acceptance). Missing older private proxy flags retain prior restoration behavior; no historical recovery claim. | Conversion/reload changes the original auto-refuel choice or native refuelling contradicts the restored flag. Retain the pre-conversion input and actual source/proxy/restored flag reports. |
 | <a id="rg-issue-027"></a>RG-Issue-027 - ZPM raid scaling mixes absolute points and factors | November 25, 2026 | **Verified 1.7 correction following owner decision.** Supply factors0.9–1.1 to the existing current-threat consumer; preserve GateComplex and the native faction minimum. A real shroud cycle creates fresh quest3, reload preserves its range, and a naturally scheduled wave uses the correct target/letter/lord at current threat144.5641. [Units, actual wave and limits](rimworld-1.7-migration-plan.md#current-threat-zpm-raid-scaling-rg-issue-027). Older absolute-range experimental quests retain their stored values. | A new protection quest stores absolute points instead of factors, later waves stop using current threat, or the saved range/target/letter changes. Check native faction/strategy floors before judging pawn counts. |
+| <a id="rg-issue-028"></a>RG-Issue-028 - Site snapshots corrupt corpses inside carts | November 26, 2026 | **Verified 1.7 correction.** Retain actual bare/minified corpse-containing cart roots through an additive deep owner. Real loading, transfer, return, unload/reload and reopening reproduce the old malformed body/flattened contents, then preserve exact root/corpse/pawn/inventory/sibling identities and health. A distinct-rotation minified control and existing loose-corpse save also pass. [Reproduction, native acceptance and limits](rimworld-1.7-migration-plan.md#nested-corpse-container-persistence-rg-issue-028). Existing malformed records and arbitrary other holder types are not repaired. | An unscavenged bare/minified cart loses or duplicates its nested corpse/pawn/inventory graph, changes saved facing, wipes an obstruction, or discards its saved root on failed placement. Retain the actual pre-unload input and distinguish coarse records/world references from deep ownership. |
 | <a id="rg-issue-029"></a>RG-Issue-029 - Nanite regeneration value-serializes a cached weapon | November 25, 2026 | **Verified 1.7 correction.** Deep-serialize the owned weapon with the existing key; its source equipment relinquishes ownership before caching. The actual authored-nanite input previously logged the native `Scribe_Values` Thing error. Cold replay, save before processing, ordinary regeneration and exact hediff save/reload now pass with an empty fresh-process error journal. [Reproduction, replay and limits](rimworld-1.7-migration-plan.md#final-optional-integration-acceptance). The live human case has a null cached weapon; nonnull mech-weapon resurrection is not separately accepted. | Saving/loading an actual regeneration component logs the serializer error, loses an owned cached weapon or duplicates it when re-equipped. Retain the pre-death and cached checkpoints for a nonnull weapon case. |
 | <a id="rg-issue-030"></a>RG-Issue-030 - Passive regeneration bypasses EBF health calculations | November 25, 2026 | **Verified 1.7 correction.** Route all four health calculations through the existing optional wrapper with the exact body-part record, preserving the whole-body fallback. Ordinary missing-finger regeneration previously emitted an EBF protocol error attributed to Rimgate; cold retained-input replay now regenerates normally and preserves exact nanite/regrowth IDs through reload without errors. [Native proof and limits](rimworld-1.7-migration-plan.md#final-optional-integration-acceptance). Mech-energy and chronic branches are not separately sampled. | Regeneration logs an EBF protocol error, uses an incorrect part's maximum health, breaks vanilla fallback, or changes saved regeneration state. Retain the actual modified-part/dependency context and native operation before diagnosing the result. |
 

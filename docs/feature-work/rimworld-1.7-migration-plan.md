@@ -8,13 +8,14 @@
   present-dependency clinical/facility checks have finished their bounded pass;
   23-mod startup, content/hook contracts and representative actual operations
   pass, with qualified branches retained in the [optional acceptance record](#final-optional-integration-acceptance).
-  [RG-Issue-028](issue-tracker.md#rg-issue-028) remains a separate nested-corpse
-  candidate needing reproduction. Continuous-motion, representative
+  [RG-Issue-028](#nested-corpse-container-persistence-rg-issue-028) now preserves
+  nested bodies in bare/minified carts through site unloading and regeneration.
+  Continuous-motion, representative
   native appearance and actual device/listening acceptance remain coordinated
   manual gates. See [remaining gates](#remaining-phase-3-gates) and the dated
   records below for exact scopes and rejected fixtures. Only **1.6** is publicly
   supported; **phase 4** owns acceptance, default/support changes and its freeze.
-- **Created:** November 23, 2026. **Scope reconciled:** November 25, 2026.
+- **Created:** November 23, 2026. **Scope reconciled:** November 26, 2026.
 - **Planning baseline:** `14a15f6` (feature-work tracking); clean worktree before
   this plan. Current playable/configured target remains RimWorld 1.6.
 - **Tracking:** [Feature work overview](feature-work-overview.md).
@@ -1612,10 +1613,11 @@ corpse/downed hauling now have focused acceptance below. Current follow-ups are:
   claim fully blocked deep-comp cancellation from those observations. Arbitrary
   nested corpses in value-snapshotted containers remain outside the loose-corpse
   identity proof.
-- Independent review recorded the pre-existing nested-corpse representation risk
-  as [RG-Issue-028](issue-tracker.md#rg-issue-028). Its exact native manifestation
-  still needs the bounded cart/load/unload/reopen reproduction in that entry;
-  the loose-corpse correction does not close it or establish a new regression.
+- [RG-Issue-028's follow-up](#nested-corpse-container-persistence-rg-issue-028)
+  reproduces malformed remains and flattened contents, then verifies the actual
+  bare/minified cart graphs through unload/reload/reopening. Other arbitrary
+  holders and pending gate cargo retain their existing behavior; this is a
+  scoped cart correction, not acceptance of every coarse-snapshot container.
 - [Full/enhanced/corpse cloning, resource/abort/needs, sarcophagus interruption
   and core medical incidents](#remaining-medical-acceptance) now pass their native
   cases. [Optional present-dependency health checks](#final-optional-integration-acceptance)
@@ -2710,11 +2712,125 @@ Raw assets, Unity builder, public support metadata, dependency pins, Steam branc
 and the local 1.6 insurance snapshot are unchanged. The index remains
 `5b32eb2c0c2351376a9440b7f2d2748fcd189c2f`; all edits are unstaged/uncommitted.
 
-The feasible background pass is finished. **Phase 3 remains active** for the
+At the November 25 closeout, the feasible background pass was finished but
+**phase 3 remained active** for the
 [coordinated manual quality pass](#coordinated-manual-quality-pass), the qualified
 optional branches above and the bounded [RG-Issue-028](issue-tracker.md#rg-issue-028)
-investigation/disposition. Next resolve that saved-state candidate, then review
-motion, representative native texture appearance and actual device playback in
-a coordinated visible private session. No foreground focus or output-volume
+investigation/disposition. The November 26 follow-up below now closes the cart
+case. Motion, representative native texture appearance and actual device playback
+still require a coordinated visible private session. No foreground focus or output-volume
 change was made during this pass. Phase 4/public support/defaults/final freeze
 remain pending; background success does not waive those remaining gates.
+
+### Nested corpse container persistence (RG-Issue-028)
+
+November 26, 2026, based on `872e4d6`: the owner authorized the bounded
+[RG-Issue-028](issue-tracker.md#rg-issue-028) investigation. The same isolated
+RimWorld **1.7.5014 rev1195**, all-five-DLC, ten-mod profile and native Waylith
+packs were used. Normal config bytes, original owned inputs, the index and
+baseline assets were captured before work. Evidence is retained outside Git in
+`%LOCALAPPDATA%/RimgateDev/evidence/issue028-20261125-235831/`, including complete
+operations, actual save inputs/results, native logs and XML ownership audits.
+
+**Native reproduction.** The actual Load manifest selected a fresh corpse and
+the original loose autopistol, quantity one each. Real hauling and cart gate
+jobs delivered both, with a separate pistol inside the dead pawn's inventory.
+After ordinary home closure, the actual cart Push job parked it at (63,34),
+outside the receiver's measured vortex. Reverse DHD dialing and native outgoing
+entry returned the living operator home. Ordinary idle expiry then closed the
+link and genuinely unloaded the empty destination map. A receiving DHD cannot
+manually disengage that incoming connection; attempting that command was a
+rejected harness step, not a gameplay defect.
+
+`siteScavenged` was false. Nevertheless, the closed site held only coarse value
+records: the cart had five child records instead of two, including duplicated
+inventory/apparel flattened out of the corpse. Closed save/reload retained that
+representation (`op_1cb33349d29b45b8b8419d02a470f855`,
+`op_7bb737a24ba74113bf371046ac8075eb`). Real redial/reopening created a different
+cart with five direct contents and a malformed corpse whose `InnerPawn` was
+null (`op_375b34ec57f14bebb91af3b691d6236a`). The original dead pawn still had a
+native world registration; that reference was not the preserved cart/corpse
+graph. Do not describe all pawn bytes as absent. The exact-ownership regression
+oracle failed (`op_cad62357ae554c1d9bf55f9b2494d276`) although generation itself
+reported success and emitted no native error.
+
+**Focused correction.** Only the 1.7 implementation changes. Bare mobile carts
+and minified mobile carts containing corpses bypass `TransitStoredThing` and
+retain their actual top-level root in a saved `TransitStoredCorpseContainer`.
+The additive `_storedCorpseContainers` key uses constructor arguments to bind
+each entry to its loading site before reading its deep owner. Native holder
+traversal exposes the complete root/corpse/pawn/inventory graph. Existing coarse
+records and the typed `_storedCorpses` key remain unchanged.
+
+Bare-cart storage despawns without ejecting its contents; both cart forms clear
+transient map loading/designation targets. Ordinary cart despawn is unchanged.
+Restoration supplies the explicit saved rotation to native placement and checks
+non-wiping footprints and actual gate vortex cells. An unsuccessful placement
+retains the original saved owner rather than destroying a rebuilt cart.
+Containers retain the existing 0.0035 per-root scavenging chance. If selected,
+their actual bodies transfer to the existing loose-corpse owner before the root
+is destroyed; a failed body transfer retains the root. No random state, chance,
+placement result or ownership outcome was forced for acceptance.
+
+| Case | Verified native result |
+| --- | --- |
+| Retained pre-unload input | Actual cart58322, corpse58301, pawn58298, inventory pistol58302 and ordinary sibling pistol53700 retain one deep object each. Burn252 remains severity3; cart remains Steel, HP107, with two direct contents. |
+| Closed site and reload | Ordinary idle closure captures the same root; actual map is absent and all nested owners remain reachable through the site. Closed reload passes (`op_9aa1f861ce7d47499e200eccad7e6a58`, `op_3e8cf2d18f974e90857bc32dbd09a174`). XML contains each of those five deep IDs exactly once and only gate/DHD coarse records. |
+| Reopening and reopened reload | Real DHD redial, mature opening ticks and save/reload preserve the same root and graph, with two contents and no vortex overlap (`op_e50bfc1853254d668f5566896a503fee`, `op_04543ace68b345a49e9cfba371e145de`). The baseline-failing exact-ID oracle now passes. |
+| Minified, multi-root control | A separate **preloaded starting input** supplies shell67921/East1, inner cart67919/West3, corpse67917/pawn67913, inventory pistol67918 and Steel67920 x17. Native closure, closed reload, reopening and reopened reload preserve those identities, both rotations, quantities and health, alongside the original bare cart. All eleven combined deep IDs occur once in closed XML. This is storage acceptance, not a minifying or loading-job result for the additional root. |
+| Existing loose-corpse save | The older closed-site input still resolves corpse53703/pawn53700/inventory53704 through the unchanged typed owner. Resaving/reloading preserves the graph (`op_27026a15c27640aa89703dfb49361c46`, `op_e93e9848bc6a4ea9b7c57bda80249aa2`). |
+
+The final scenario selects its cart by the exact corpse ID, so unrelated carts
+cannot satisfy its assertions. A cold reopened-save check passes the same SDK
+oracle for both roots (`op_cd7c4a8327ec45bd9ffb383c2b72953f`,
+`op_f02a48cd72474565badbb5cec025f5e1`). Final Lua compilation passes
+(`op_8edfd43ba05644ccaf48ca35f40bdb65`); the fresh error journal is empty
+(`op_134f8a74ad034fc2b03d43935c34b39e`). Independent review checked the production
+owners, native rotation/despawn APIs, companion and scenario without an
+introduced blocker. The operator is held through the normal draft control at
+an already-safe home cell before the next opening; no health repair is used.
+
+**Rejected inputs and limits.** Initial attempts met receiver wildlife and an
+existing `WaspDroneTrap`. Their interrupted states are retained separately.
+Accepted preparation removed those starting hazards before transport and
+disabled random Storyteller incidents, then restored the setting. This is not
+combat acceptance. A first script used an unsupported lowered argument-table
+form; its guard failure is retained and corrected to explicit call arguments.
+An earlier minified reopening omitted the wandering operator; the accepted
+branch restarts from its intact closed checkpoint and uses real draft controls
+before opening, without rescuing an already failed outcome.
+
+No repair of already malformed coarse records is claimed. Gate-pending corpses
+and arbitrary other holder types remain outside this cart-specific path.
+Selected-scavenging transfer failure, total regenerated-map placement blockage
+and an actual minification job were not live sampled; their owner retention or
+scope limits remain explicit. No 1.6 runtime, public support/default changes,
+asset regeneration or manual motion/listening acceptance is implied.
+
+**Final validation and preservation.** Installed-reference and portable pinned
+1.7 builds, the companion, supported 1.6 compilation and strict DocFX/site checks
+pass with zero warnings/errors. All nine PowerShell scripts and 176 authored
+Mod XML files parse; 88 tracking/AGENTS relative links/anchors, all 30 unique
+issue IDs and `git diff --check` pass. Final tested production SHA256 is
+`0472D4858844CF666D1E56EFEDA77034643C7AC29649694AF6A4D75F2BAB2D40`;
+the companion is
+`D7D50148724F993701C00094A0B1FBC35916113DE498B5E0715477F83AB122BD`.
+The installed-reference assembly and companion match the tested deployment.
+Live 1.6 was not rerun.
+
+Full inventories/hashes match for **125 normal config files, 10 original player
+saves, four 1.6 bundles and all four native pack files**. Six private config
+files and six original owned inputs are restored and byte-checked. The supported
+documentation build embeds the current Git revision in its informational
+version, changing the generated 1.6 DLL from its earlier build. Its validation
+output is retained separately; the original DLL/XML bytes were restored after
+verification (retained DLL SHA256 `804D03320F63466457EAD8B4B14445AAA5035CE045EB0740F1032ACAA573738A`).
+Source/1.6 and Mod/1.6 have no Git diff; installed game version, public support,
+dependency pins, raw assets, Unity builder, Steam branch and local insurance
+snapshot are unchanged. Graceful termination did not finish on two intermediate
+private launches; only the verified owned private process was force-terminated.
+The final cold-check process 22860 stopped gracefully with termination verified.
+The index remains `fa69f6ca94c147f4fef5554c7f96c537c34c4343` and every new edit is
+unstaged/uncommitted. RG-Issue-028 is closed for the scoped cart contracts;
+phase 3 remains active for manual quality acceptance and qualified optional
+branches, with no phase-4 support/default change.

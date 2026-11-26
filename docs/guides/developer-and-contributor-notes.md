@@ -1012,10 +1012,34 @@ actual object IDs; use fresh UI IDs after selection or reload.
 | `rimbridge-logistics-edges-1.7.lua` | `fuel-input` replaces only the empty utility cart and stages loose compatible fuel. Retain the replacement cart ID. Use `refuel-menu`/`refuel` with the actual native label, then the existing loading/pushing scenario. `block` stages ordinary obstruction inputs at a carried boundary; `blocked-interrupt` uses real drafting and checks original obstruction survival. A free pawn cell is a separate placement case from obstructing that cell too. Full-search cases use the host protocol below. |
 | `rimbridge-transporter-pawns-1.7.lua` | On the mature transit fixture, `prepare` removes hostile non-colony smoke guards and creates a healthy boarder with a unique inventory marker, optionally a loose rifle (`mixed: true`). Set the real People checkbox and optional Items quantity. `boarding`/`checkpoint` retain the native walking job; `arrive` checks the actual destination and marker. `admitted` is a bounded diagnostic: native admission/drain can occur between snapshots, so a missed sample is not proof of a production failure. No DEV loading. |
 | `rimbridge-cargo-site-1.7.lua` | After actual cargo-kind arrival, use real source closure, checkpoint and redial. This is an observer: the host must assert stored/recreated quantities, nested ownership and native map-removal blockers. Preserve the closed-site scavenging flag before reopening resets it. Coarse item records do not promise original IDs. |
+| `rimbridge-nested-corpse-1.7.lua` | Real cart loading/push, safe parking, reversed return and unloaded-site ownership. Use the preparation and phase order below; keep the actual corpse/pawn/inventory graph distinct from value records and queue references. |
 | `rimbridge-medical-edges-1.7.lua` | Fresh `prepare` selects `Genome`, `Full`, `Enhanced` or `Reconstruct` inputs with native biomass costs/timers. Use real host/corpse admission, calibration and refuelling. Check pending traits before reload, then use the existing medical roundtrips and real completion. Separate phases exercise shortage, abort/eject, saved needs, actual incidents and sarcophagus power interruption. |
 | `rimbridge-world-edges-1.7.lua` | Use a real discovered/equipped orbital fixture. Wear loose vanilla protection through normal jobs before real dialing/entry; read actual vacuum and native resistance. Real return dialing and world Abandon UI test visitation, quest/address/site cleanup and reload. Preserve hostile encounter results separately from vacuum or transport failures. |
 | `rimbridge-world-incidents-1.7.lua` | Trigger the selected real incident worker, inspect its actual conditions/ore/hostiles and save/load. Ending a condition through the native debug End action proves its cleanup lifecycle, not natural-duration expiry. Generated ore and raiders do not establish mining or combat victory. |
 | `rimbridge-integrations-1.7.lua` | Read-only resolved-content and hook checks. Supply an exact `expectedActivePackagesCsv` (empty for absence) and optional `patientId`. Actual eligibility, treatment and facility operations remain separate assertions. |
+
+For nested-corpse checks, call `rimgate/prepare_cart_gate_fixture` first, then
+`rimgate/prepare_nested_corpse` with the actual empty cart ID. The latter creates
+new corpse/health/inventory inputs and clears initial receiver wildlife and exact
+`WaspDroneTrap` hazards before player arrival; this is controlled setup, not combat
+acceptance. In the real Load dialog set only the new corpse and loose pistol
+sibling to quantity1 each. Pass the fresh Accept target to `load`, then use
+`loaded`, `push` and `checkpoint` to verify actual jobs and nested ownership.
+
+Use `close` for the normal home DHD job before `park` moves the arrived cart
+outside every gate's actual vortex. Use `dial-menu`/`dial` with
+`fromDestination: true` and the actual home-address label, then
+`entry-menu`/`enter` for the outgoing return. Never enter a receiving gate.
+After returning, use `idle-close`: home is now receiving and cannot manually
+close that incoming connection. Require actual destination map removal, then
+`checkpoint`. Before reopening, move the operator to a safe home cell through
+normal movement and use `hold-home` to draft there. Redial, `settle`, checkpoint
+and `assert-intact`; compare exact retained roots, corpse/pawn/marker IDs, health
+and single deep ownership. The existing loose-corpse owner is a separate control.
+`rimgate/prepare_minified_nested_corpse` adds a separate **preloaded starting
+input** for the shell/inner-cart branch; it does not establish minify-job or
+manifest-loading acceptance. Compile changed Lua through the installed SDK and
+keep host-side pause cleanup in `finally` for every phase.
 
 For the bounded Alpha Genes clinical case, arm the passive
 `rimgate/begin_alpha_clinical_watch` **after** equipment, admission and any reload,

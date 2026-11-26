@@ -44,6 +44,8 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable, IThingHolder
     // only to the ordinary value records, not to newly preserved pawn/corpse state.
     private ThingOwner<Corpse> _storedCorpses;
 
+    private List<TransitStoredCorpseContainer> _storedCorpseContainers = new();
+
     public WorldObject_GateTransitSite()
     {
         _storedCorpses = new ThingOwner<Corpse>(this);
@@ -55,6 +57,8 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable, IThingHolder
     {
         base.GetChildHolders(outChildren);
         ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, _storedCorpses);
+        if (_storedCorpseContainers != null)
+            outChildren.AddRange(_storedCorpseContainers);
     }
 
     private bool _lastKnownHasGate;
@@ -155,11 +159,29 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable, IThingHolder
                 if (removed > 0)
                     _wasLooted = true;
             }
+
+            foreach (var entry in _storedCorpseContainers.ToArray())
+            {
+                if (entry.Root == null || IsImportant(entry.Root.def) || !Rand.Chance(LootChanceItems)) continue;
+                // Scavenge containers at the existing rate, but retain their actual bodies.
+                bool retainedBodies = true;
+                foreach (var corpse in FindContainedCorpses(entry.Root))
+                {
+                    if (corpse.holdingOwner?.TryTransferToContainer(corpse, _storedCorpses, 1) == 1) continue;
+                    retainedBodies = false;
+                    break;
+                }
+                if (!retainedBodies) continue;
+                entry.DestroyContents();
+                _storedCorpseContainers.Remove(entry);
+                _wasLooted = true;
+            }
         }
 
         // Keep the site's retained cargo reachable even if both pieces of infra are gone.
         alsoRemoveWorldObject = gateOnMap == null && dhdOnMap == null
-            && _storedThings.Count == 0 && _storedCorpses.Count == 0;
+            && _storedThings.Count == 0 && _storedCorpses.Count == 0
+            && _storedCorpseContainers.Count == 0;
         return canDespawn;
     }
 
@@ -197,6 +219,12 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable, IThingHolder
             // Natural stone is map context, not retained cargo. Do not exclude all
             // Chunks: the transported ReplicatorLink resource belongs to that category.
             if (t.def.IsWithinCategory(ThingCategoryDefOf.StoneChunks)) continue;
+            if ((t is Building_MobileContainer || t is MinifiedThing { InnerThing: Building_MobileContainer })
+                && FindContainedCorpses(t).Count > 0)
+            {
+                _storedCorpseContainers.Add(new TransitStoredCorpseContainer(this, t));
+                continue;
+            }
             _storedThings.Add(new TransitStoredThing(t));
         }
 
@@ -209,6 +237,8 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable, IThingHolder
         GateUtil.RemoveGateAddress(Tile);
         base.Destroy();
         _storedCorpses.ClearAndDestroyContents();
+        foreach (var entry in _storedCorpseContainers) entry.DestroyContents();
+        _storedCorpseContainers.Clear();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -273,6 +303,22 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable, IThingHolder
                 thing.Destroy(DestroyMode.Vanish); // Keep its value record for a later regeneration.
         }
 
+        foreach (var entry in _storedCorpseContainers.ToArray())
+        {
+            var root = entry.Root;
+            if (root == null) { _storedCorpseContainers.Remove(entry); continue; }
+            bool placed = CanRestoreItemAt(root, entry.Position, entry.Rotation)
+                && GenPlace.TryPlaceThing(root, entry.Position, Map, ThingPlaceMode.Direct, rot: entry.Rotation);
+            if (!placed)
+                placed = GenPlace.TryPlaceThing(root, RestorationAnchor(), Map, ThingPlaceMode.Near,
+                    extraValidator: cell => CanRestoreItemAt(root, cell, entry.Rotation), rot: entry.Rotation);
+            if (placed)
+            {
+                entry.Contents.Remove(root);
+                _storedCorpseContainers.Remove(entry);
+            }
+        }
+
         foreach (var corpse in _storedCorpses.InnerListForReading.ToArray())
         {
             // Native Near placement handles corpses; reject wiping and full item cells
@@ -285,6 +331,24 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable, IThingHolder
 
     private IntVec3 RestorationAnchor() => Building_Gate.TryGetSpawnedGateOnMap(Map, out var gate)
         ? gate.Position : Map.Center;
+
+    private static List<Corpse> FindContainedCorpses(Thing root)
+    {
+        var corpses = new List<Corpse>();
+        var visited = new HashSet<IThingHolder>(ReferenceEqualityComparer.Instance);
+        void Visit(IThingHolder holder)
+        {
+            if (!visited.Add(holder)) return;
+            if (holder.GetDirectlyHeldThings() is { } owner)
+                foreach (var thing in owner)
+                    if (thing is Corpse corpse) corpses.Add(corpse);
+            var children = new List<IThingHolder>();
+            holder.GetChildHolders(children);
+            foreach (var child in children) Visit(child);
+        }
+        if (root is IThingHolder holder) Visit(holder);
+        return corpses;
+    }
 
     private bool CanRestoreItemAt(Thing thing, IntVec3 cell, Rot4 rotation) =>
         GenSpawn.CanSpawnAt(thing.def, cell, Map, rotation, false)
@@ -337,12 +401,14 @@ public class WorldObject_GateTransitSite : MapParent, IRenameable, IThingHolder
         Scribe_Values.Look(ref _ranInitialSetup, "_ranInitialSetup", false);
         Scribe_Collections.Look(ref _storedThings, "_storedThings", LookMode.Deep);
         Scribe_Deep.Look(ref _storedCorpses, "_storedCorpses", this);
+        Scribe_Collections.Look(ref _storedCorpseContainers, "_storedCorpseContainers", LookMode.Deep, this);
         Scribe_Values.Look(ref _wasLooted, "_wasLooted", false);
 
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {
             _storedThings ??= new List<TransitStoredThing>();
             _storedCorpses ??= new ThingOwner<Corpse>(this);
+            _storedCorpseContainers ??= new List<TransitStoredCorpseContainer>();
         }
     }
 }
